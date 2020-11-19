@@ -10,7 +10,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 5			// 5 Watts for thermostat related circuitry
-	circuit = /obj/item/weapon/circuitboard/unary_atmos/cooler
+	circuit = /obj/item/weapon/electronics/circuitboard/unary_atmos/cooler
 	var/heatsink_temperature = T20C	// The constant temperature reservoir into which the freezer pumps heat. Probably the hull of the station or something.
 	var/internal_volume = 600		// L
 

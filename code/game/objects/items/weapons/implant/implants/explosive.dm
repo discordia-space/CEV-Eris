@@ -135,3 +135,4 @@
 /obj/item/weapon/implanter/explosive
 	name = "implanter (E)"
 	implant = /obj/item/weapon/implant/explosive
+	spawn_tags = null

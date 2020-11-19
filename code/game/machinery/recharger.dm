@@ -6,7 +6,7 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
-	circuit = /obj/item/weapon/circuitboard/recharger
+	circuit = /obj/item/weapon/electronics/circuitboard/recharger
 	var/max_power_usage = 40000	//40 kW. This is the highest power the charger can draw and use,
 	//though it may draw less when charging weak cells due to their charging rate limits
 	active_power_usage = 40000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
@@ -76,7 +76,7 @@
 			return
 		var/obj/item/weapon/cell/cell = I.get_cell()
 
-		if(!cell && istype(I, /obj/item/weapon/tool))
+		if(!cell && istool(I))
 			var/obj/item/weapon/tool/T = I
 
 			if(!T.suitable_cell)

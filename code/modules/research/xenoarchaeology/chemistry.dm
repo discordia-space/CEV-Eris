@@ -30,10 +30,6 @@
 	name = "beaker (tungsten)"
 	preloaded_reagents = list("tungsten" = 60)
 
-/obj/item/weapon/reagent_containers/glass/beaker/oxygen
-	name = "beaker (oxygen)"
-	preloaded_reagents = list("oxygen" = 60)
-
 /obj/item/weapon/reagent_containers/glass/beaker/sodium
 	name = "beaker (sodium)"
 	preloaded_reagents = list("sodium" = 60)

@@ -26,6 +26,8 @@
 	icon_state = "ano00"
 	var/icon_num = 0
 	density = TRUE
+	spawn_blacklisted = TRUE
+	spawn_frequency = 9
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0
@@ -208,9 +210,8 @@
 	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
 		secondary_effect.DoEffectTouch(user)
 
-/obj/machinery/artifact/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-
-	if (istype(W, /obj/item/weapon/reagent_containers/))
+/obj/machinery/artifact/attackby(obj/item/weapon/W, mob/living/user)
+	if (istype(W, /obj/item/weapon/reagent_containers))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 			if(my_effect.trigger == TRIGGER_WATER)
 				my_effect.ToggleActivate()

@@ -142,6 +142,7 @@
 	icon_state = "biomatter_tank_medium"
 	amount_per_transfer_from_this = 50
 	volume = 400
+	spawn_blacklisted = TRUE
 
 
 /obj/structure/reagent_dispensers/biomatter/large

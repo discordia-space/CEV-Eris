@@ -4,13 +4,13 @@
 	icon = 'icons/obj/guns/projectile/gyropistol.dmi'
 	icon_state = "gyropistol"
 	item_state = "pistol"
-	caliber = CAL_70
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	can_dual = 1
 	origin_tech = list(TECH_COMBAT = 3)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 2500
 	ammo_type = "/obj/item/ammo_casing/a75"
+	caliber = CAL_70
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a75

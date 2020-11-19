@@ -68,7 +68,7 @@
 	if(opacity && isturf(loc))
 		var/turf/T = loc
 		T.reconsider_lights()
-	
+
 	if(istype(loc, /turf/simulated/open))
 		var/turf/simulated/open/open = loc
 		if(open.isOpen())
@@ -87,7 +87,7 @@
 	. = ..()
 	if (!.)
 		return
-	
+
 	opacity = new_opacity
 	var/turf/T = loc
 	if (!isturf(T))

@@ -7,7 +7,7 @@
 	</div>
 {{/if}}
 <div class="itemLabel">
-	Status: 
+	Status:
 </div>
 {{if data.on}}
 	<div class="itemContent">
@@ -29,7 +29,7 @@
 {{if !data.minimal}}
 	{{if data.on}}
 		<div class="itemLabel">
-			Time left: 
+			Time left:
 		</div>
 		<div class="itemContent">
 			{{:data.timeLeft}}
@@ -40,18 +40,18 @@
 	<h4>Settings:</h4>
 </div>
 	<div class="itemLabel">
-		Mode: 
+		Mode:
 	</div>
 	<div class="itemContent">
-		{{:helper.link('Separation', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
-		{{:helper.link('Synthesis',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('Separation (Transfers reagents from main beaker between separation beakers)', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('Synthesis (Separates antibodies from blood)',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
 		{{if !data.minimal}}
-			{{:helper.link('Isolation',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
+			{{:helper.link('Isolation (Isolates a virus sample from blood)',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
 		{{/if}}
 	</div>
 {{if data.cycleTime}}
 	<div class="itemLabel">
-		Cycle time: 
+		Cycle time:
 	</div>
 	<div class="itemContent">
 		{{:helper.link('5',  'clock', { 'setTime' : 5  }, data.cycleTime == 5  ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}

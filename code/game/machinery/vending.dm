@@ -341,7 +341,7 @@
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
 							O.forceMove(loc)
-					new /obj/item/weapon/circuitboard/vending(loc)
+					new /obj/item/weapon/electronics/circuitboard/vending(loc)
 					qdel(src)
 
 		if(ABORT_CHECK)
@@ -1090,7 +1090,11 @@
 					/obj/item/weapon/flame/lighter/random = 4,
 					/obj/item/weapon/storage/fancy/cigar = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
-					/obj/item/clothing/mask/vape = 5
+					/obj/item/clothing/mask/vape = 5,
+					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 10,
+					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana = 10,
+					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon = 10,
+					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine = 5
 				   )
 
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
@@ -1099,7 +1103,12 @@
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
-				  /obj/item/clothing/mask/vape = 300)
+				  /obj/item/clothing/mask/vape = 300,
+				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 100,
+				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana = 100,
+				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon = 100,
+				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine = 100
+				  )
 
 
 /obj/machinery/vending/medical
@@ -1214,7 +1223,10 @@
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
 					/obj/item/device/holowarrant = 8,
-					/obj/item/weapon/storage/box/evidence = 2)
+					/obj/item/weapon/storage/box/evidence = 2,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 2,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih = 2,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1)
 	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
@@ -1317,7 +1329,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10,/obj/item/weapon/rpd = 3)
+	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/electronics/airlock = 10,/obj/item/weapon/electronics/circuitboard/apc = 10,/obj/item/weapon/electronics/airalarm = 10,/obj/item/weapon/cell/large/high = 10,/obj/item/weapon/rpd = 3)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	auto_price = FALSE
@@ -1411,11 +1423,12 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
-					/obj/item/weapon/circuitboard/autolathe = 3,
-					/obj/item/weapon/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+					/obj/item/weapon/electronics/circuitboard/autolathe = 3,
+					/obj/item/weapon/electronics/circuitboard/vending = 10)
+	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3)
 	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50,
 					/obj/item/weapon/storage/box/data_disk/basic = 100,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
@@ -1428,11 +1441,12 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic = 800,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
-					/obj/item/weapon/circuitboard/autolathe = 700,
-					/obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500,
+					/obj/item/weapon/electronics/circuitboard/autolathe = 700,
+					/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/electronics/circuitboard/vending = 500,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
 
 /obj/machinery/vending/serbomat

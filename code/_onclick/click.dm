@@ -237,7 +237,7 @@
 	swap_hand()
 	return
 
-/mob/proc/ShiftMiddleClickOn(var/atom/A)
+/mob/proc/ShiftMiddleClickOn(atom/A)
 	pointed(A)
 
 // In case of use break glass

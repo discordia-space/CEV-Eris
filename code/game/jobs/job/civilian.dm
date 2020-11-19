@@ -13,7 +13,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
-	access = list(access_bar, access_kitchen, access_maint_tunnels)
+	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club)
 	initial_balance = 3000
 	wage = WAGE_NONE // Makes his own money
 	stat_modifiers = list(

@@ -7,6 +7,9 @@
 	anchored = TRUE
 	flags = CONDUCT
 	layer = TURF_LAYER + 0.45
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_STRUCTURE_TRAP_ARMED_WIRE
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
 /obj/structure/wire_splicing/Initialize(roundstart)

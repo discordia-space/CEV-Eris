@@ -1,9 +1,9 @@
-/obj/item/weapon/circuitboard/bssilk_cons
+/obj/item/weapon/electronics/circuitboard/bssilk_cons
 	name = T_BOARD("bluespace snare console")
 	origin_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 6)
 	build_path = /obj/machinery/computer/bssilk_control
 
-/obj/item/weapon/circuitboard/bssilk_hub
+/obj/item/weapon/electronics/circuitboard/bssilk_hub
 	name = T_BOARD("bluespace snare hub")
 	icon_state = "mainboard"
 	origin_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 6)

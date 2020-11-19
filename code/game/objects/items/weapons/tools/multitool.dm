@@ -17,6 +17,7 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+	rarity_value = 12
 
 	var/buffer_name
 	var/atom/buffer_object
@@ -25,21 +26,21 @@
 	unregister_buffer(buffer_object)
 	return ..()
 
-/obj/item/weapon/tool/multitool/proc/get_buffer(var/typepath)
+/obj/item/weapon/tool/multitool/proc/get_buffer(typepath)
 	// Only allow clearing the buffer name when someone fetches the buffer.
 	// Means you cannot be sure the source hasn't been destroyed until the very moment it's needed.
 	get_buffer_name(TRUE)
 	if(buffer_object && (!typepath || istype(buffer_object, typepath)))
 		return buffer_object
 
-/obj/item/weapon/tool/multitool/proc/get_buffer_name(var/null_name_if_missing = FALSE)
+/obj/item/weapon/tool/multitool/proc/get_buffer_name(null_name_if_missing = FALSE)
 	if(buffer_object)
 		buffer_name = buffer_object.name
 	else if(null_name_if_missing)
 		buffer_name = null
 	return buffer_name
 
-/obj/item/weapon/tool/multitool/proc/set_buffer(var/atom/buffer)
+/obj/item/weapon/tool/multitool/proc/set_buffer(atom/buffer)
 	if(!buffer || istype(buffer))
 		buffer_name = buffer ? buffer.name : null
 		if(buffer != buffer_object)
@@ -48,7 +49,7 @@
 			if(buffer_object)
 				GLOB.destroyed_event.register(buffer_object, src, /obj/item/weapon/tool/multitool/proc/unregister_buffer)
 
-/obj/item/weapon/tool/multitool/proc/unregister_buffer(var/atom/buffer_to_unregister)
+/obj/item/weapon/tool/multitool/proc/unregister_buffer(atom/buffer_to_unregister)
 	// Only remove the buffered object, don't reset the name
 	// This means one cannot know if the buffer has been destroyed until one attempts to use it.
 	if(buffer_to_unregister == buffer_object && buffer_object)

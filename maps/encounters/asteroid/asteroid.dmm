@@ -35,7 +35,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "am" = (
-/obj/random/gun_normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "an" = (
@@ -71,28 +71,28 @@
 "au" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "av" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/surgery_tool,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/medical,
-/obj/random/medical/low_chance,
+/obj/spawner/medical,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ax" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ay" = (
@@ -104,18 +104,18 @@
 "az" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/material_rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aB" = (
-/obj/random/material_rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aC" = (
@@ -134,28 +134,28 @@
 "aF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aI" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/boxes,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aJ" = (
@@ -163,7 +163,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aK" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "aL" = (
@@ -200,13 +200,13 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/gun_energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aS" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aT" = (
@@ -285,18 +285,18 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/gun_normal/low_chance,
-/obj/random/ammo/low_chance,
-/obj/random/ammo/low_chance,
-/obj/random/ammo/low_chance,
+/obj/spawner/gun/normal/low_chance,
+/obj/spawner/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bD" = (
@@ -324,10 +324,10 @@
 /area/outpost/abandoned)
 "bI" = (
 /obj/structure/closet/oldstyle,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bJ" = (
@@ -378,7 +378,7 @@
 /area/outpost/abandoned)
 "bQ" = (
 /obj/structure/table/steel,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bR" = (
@@ -424,7 +424,7 @@
 	icon_state = "0-4";
 	dir = 8
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cc" = (
@@ -495,7 +495,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "co" = (
@@ -510,14 +510,14 @@
 /area/outpost/abandoned)
 "cq" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cr" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -655,26 +655,26 @@
 "cE" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tank,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cH" = (
@@ -697,16 +697,16 @@
 "cJ" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/crate,
-/obj/random/material_rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cK" = (
 /obj/structure/closet/crate,
-/obj/random/material_rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cL" = (
@@ -728,14 +728,14 @@
 "cP" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cQ" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 

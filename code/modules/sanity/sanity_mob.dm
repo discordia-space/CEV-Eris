@@ -66,7 +66,6 @@
 	var/view_damage_threshold = 20
 	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
 
-
 	var/say_time = 0
 	var/breakdown_time = 0
 	var/spook_time = 0
@@ -77,6 +76,8 @@
 
 	var/eat_time_message = 0
 
+	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how much are the effects multiplied
+
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
 	level = max_level
@@ -85,7 +86,8 @@
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
 /datum/sanity/proc/onLife()
-	if(owner.stat == DEAD || owner.in_stasis)
+	handle_breakdowns()
+	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
 		return
 	var/affect = SANITY_PASSIVE_GAIN * sanity_passive_gain_multiplier
 	if(owner.stat) //If we're unconscious
@@ -94,10 +96,10 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
-	handle_breakdowns()
+	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_insight()
 	handle_level()
+	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
 /datum/sanity/proc/handle_view()
 	. = 0
@@ -136,12 +138,11 @@
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
+
 	if(owner.stats.getPerk(/datum/perk/artist))
 		artist_factor = 2
-	else
-		artist_factor = 1
 	if(!insight_block)
-		insight += INSIGHT_GAIN(level_change) * artist_factor * insight_passive_gain_multiplier * moralist_factor * style_factor
+		insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier * artist_factor
 	while(insight >= 100)
 		if(insight_block)
 			break
@@ -231,12 +232,12 @@
 
 	INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
-	if(owner.stats.getPerk(/datum/perk/artist/))
+	if(owner.stats.getPerk(/datum/perk/artist))
 		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats.")) //Temporary description
-		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	else
 		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
-		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+	owner.pick_individual_objective()
 	resting = 0
 	insight_block = 0
 
@@ -264,6 +265,8 @@
 			var/obj/item/weapon/oddity/OD = O
 			if(OD.perk)
 				owner.stats.addPerk(OD.perk)
+		for(var/mob/living/carbon/human/H in viewers(owner))
+			SEND_SIGNAL(H, COMSIG_HUMAN_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -388,6 +391,8 @@
 
 		if(B.occur())
 			breakdowns += B
+			for(var/mob/living/carbon/human/H in viewers(owner))
+				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
 		return
 
 #undef SANITY_PASSIVE_GAIN

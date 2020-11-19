@@ -61,7 +61,7 @@
 /area/asteroid/rogue)
 "q" = (
 /obj/structure/table/onestar,
-/obj/random/pack/tech_loot/onestar,
+/obj/spawner/pack/tech_loot/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "r" = (
@@ -79,7 +79,7 @@
 /area/asteroid/rogue)
 "u" = (
 /obj/structure/table/onestar,
-/obj/random/pack/gun_loot,
+/obj/spawner/pack/gun_loot,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "v" = (
@@ -87,7 +87,7 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "w" = (
-/obj/random/pack/tech_loot/onestar,
+/obj/spawner/pack/tech_loot/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 

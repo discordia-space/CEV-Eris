@@ -6,6 +6,8 @@
 	icon_state = "butterfly2"
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
+	rarity_value = 16.66
+	spawn_tags = SPAWN_TAG_CONTRABAND
 
 /obj/item/weapon/material/butterflyhandle
 	name = "concealed knife grip"
@@ -14,6 +16,8 @@
 	icon_state = "butterfly1"
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
+	rarity_value = 16.66
+	spawn_tags = SPAWN_TAG_CONTRABAND
 
 /obj/item/weapon/material/wirerod
 	name = "wired rod"
@@ -27,8 +31,10 @@
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
+	rarity_value = 16.66
+	spawn_tags = SPAWN_TAG_CONTRABAND
 
-/obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user as mob)
+/obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user)
 	..()
 	var/obj/item/finished
 	if(istype(I, /obj/item/weapon/material/shard))

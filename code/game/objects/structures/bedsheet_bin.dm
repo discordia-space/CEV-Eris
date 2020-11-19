@@ -19,6 +19,11 @@ LINEN BINS
 	var/folded = FALSE
 	var/inuse = FALSE
 
+/obj/item/weapon/bedsheet/Initialize(mapload, nfolded=FALSE)
+	.=..()
+	folded = nfolded
+	update_icon()
+
 /obj/item/weapon/bedsheet/afterattack(atom/A, mob/user)
 	if(!user || user.incapacitated() || !user.Adjacent(A) || istype(A, /obj/structure/bedsheetbin) || istype(A, /obj/item/weapon/storage/))
 		return
@@ -28,7 +33,7 @@ LINEN BINS
 		add_fingerprint(user)
 		return
 
-/obj/item/weapon/bedsheet/proc/toggle_roll(var/mob/living/user, var/no_message = FALSE)
+/obj/item/weapon/bedsheet/proc/toggle_roll(mob/living/user, no_message = FALSE)
 	if(!user)
 		return FALSE
 	if(inuse)
@@ -56,7 +61,7 @@ LINEN BINS
 	inuse = FALSE
 	return FALSE
 
-/obj/item/weapon/bedsheet/proc/toggle_fold(var/mob/user, var/no_message = FALSE)
+/obj/item/weapon/bedsheet/proc/toggle_fold(mob/user, no_message=FALSE)
 	if(!user)
 		return FALSE
 	if(inuse)
@@ -91,7 +96,7 @@ LINEN BINS
 	set category = "Object"
 	set src in view(1)
 
-	if(istype(loc,/mob))
+	if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_fold(usr)
@@ -103,7 +108,7 @@ LINEN BINS
 
 	if(folded)
 		to_chat(usr, "Unfold \the [src] first.")
-	else if(istype(loc,/mob))
+	else if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_roll(usr)
@@ -122,7 +127,7 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/weapon/bedsheet/attack_hand(mob/user as mob)
+/obj/item/weapon/bedsheet/attack_hand(mob/user)
 	if(!user || user.incapacitated(INCAPACITATION_UNCONSCIOUS))
 		return
 	if(!folded)
@@ -206,7 +211,7 @@ LINEN BINS
 	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
-	var/obj/item/hidden = null
+	var/obj/item/hidden
 
 
 /obj/structure/bedsheetbin/examine(mob/user)
@@ -228,7 +233,7 @@ LINEN BINS
 		else				icon_state = "linenbin-full"
 
 
-/obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/bedsheetbin/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/bedsheet))
 		user.drop_item()
 		I.loc = src
@@ -242,7 +247,7 @@ LINEN BINS
 		hidden = I
 		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
 
-/obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+/obj/structure/bedsheetbin/attack_hand(mob/user)
 	if(amount >= 1)
 		amount--
 
@@ -252,9 +257,9 @@ LINEN BINS
 			sheets.Remove(B)
 
 		else
-			B = new /obj/item/weapon/bedsheet(loc)
-
+			B = new /obj/item/weapon/bedsheet(loc, TRUE)
 		B.loc = user.loc
+
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
 
@@ -266,7 +271,7 @@ LINEN BINS
 
 	add_fingerprint(user)
 
-/obj/structure/bedsheetbin/attack_tk(mob/user as mob)
+/obj/structure/bedsheetbin/attack_tk(mob/user)
 	if(amount >= 1)
 		amount--
 
@@ -276,7 +281,7 @@ LINEN BINS
 			sheets.Remove(B)
 
 		else
-			B = new /obj/item/weapon/bedsheet(loc)
+			B = new /obj/item/weapon/bedsheet(loc, TRUE)
 
 		B.loc = loc
 		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))

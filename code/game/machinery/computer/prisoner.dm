@@ -5,7 +5,7 @@
 	icon_screen = "explosive"
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_access = list(access_armory)
-	circuit = /obj/item/weapon/circuitboard/prisoner
+	circuit = /obj/item/weapon/electronics/circuitboard/prisoner
 	var/locked = TRUE
 
 

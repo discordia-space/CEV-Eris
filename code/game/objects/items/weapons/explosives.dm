@@ -8,11 +8,11 @@
 	flags = NOBLUDGEON
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 2)
-	var/datum/wires/explosive/c4/wires = null
+	var/datum/wires/explosive/c4/wires
 	var/timer = 10
-	var/atom/target = null
+	var/atom/target
 	var/open_panel = 0
-	var/image_overlay = null
+	var/image_overlay
 
 /obj/item/weapon/plastique/New()
 	wires = new(src)
@@ -29,7 +29,7 @@
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_panel = !open_panel
 			to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
-	else if(istype(I, /obj/item/weapon/tool))
+	else if(istool(I))
 		wires.Interact(user)
 	else
 		..()
@@ -69,7 +69,7 @@
 		spawn(timer*10)
 			explode(get_turf(target))
 
-/obj/item/weapon/plastique/proc/explode(var/location)
+/obj/item/weapon/plastique/proc/explode(location)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)
@@ -94,5 +94,5 @@
 		target.overlays -= image_overlay
 	qdel(src)
 
-/obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/weapon/plastique/attack(mob/M, mob/user, def_zone)
 	return

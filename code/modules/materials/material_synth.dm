@@ -5,6 +5,7 @@
 	charge_costs = list(1000)
 	gender = NEUTER
 	matter = null // Don't shove it in the autholathe.
+	spawn_tags = null
 
 /obj/item/stack/material/cyborg/New()
 	if(..())

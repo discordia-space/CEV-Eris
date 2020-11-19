@@ -47,8 +47,8 @@ var/list/mannequins_
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
+var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 // Posters
 GLOBAL_LIST_EMPTY(poster_designs)
@@ -68,6 +68,12 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 
 //PERKS
 GLOBAL_LIST_EMPTY(all_perks)
+
+//individual_objectives
+GLOBAL_LIST_EMPTY(all_faction_items)
+
+//faction_items
+GLOBAL_LIST_EMPTY(individual_objectives)
 
 //NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
@@ -110,7 +116,6 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
 var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
-
 //////////////////////////
 /////Initial Building/////
 //////////////////////////
@@ -138,7 +143,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		var/datum/surgery_step/S = new path
 		GLOB.surgery_steps[path] = S
 
-	//perkS - Initialise all /datum/perks into a list
+	//perks - Initialise all /datum/perks into a list
 	paths = subtypesof(/datum/perk)
 	for(var/path in paths)
 		var/datum/perk/P = new path
@@ -162,6 +167,11 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	for(var/T in paths)
 		var/datum/job/J = new T
 		GLOB.joblist[J.title] = J
+
+	paths = subtypesof(/datum/individual_objective)
+	for(var/T in paths)
+		var/datum/individual_objective/IO = new T
+		GLOB.individual_objectives[T] = IO
 
 	//Stashes
 	paths = subtypesof(/datum/stash)
@@ -232,7 +242,6 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 			GLOB.all_rituals[R.name] = R
 
 	return 1
-
 
 var/global/list/admin_permissions = list(
 	"fun" = 0x1,

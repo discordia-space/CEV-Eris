@@ -48,7 +48,7 @@
 /turf/simulated/wall/levelupdate()
 	for(var/obj/O in src)
 		O.hide(TRUE)
-		SEND_SIGNAL(O, CONSIG_TURF_LEVELUPDATE, TRUE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, TRUE)
 
 /turf/simulated/wall/New(newloc, materialtype, rmaterialtype)
 	if (!damage_overlays)

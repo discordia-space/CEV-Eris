@@ -17,6 +17,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 1200
+	rarity_value = 19.2
 	damage_multiplier = 0.8
 	recoil_buildup = 4
 	one_hand_penalty = 5 //smg level

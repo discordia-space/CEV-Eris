@@ -203,7 +203,7 @@ var/const/enterloopsanity = 100
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
-		SEND_SIGNAL(O, CONSIG_TURF_LEVELUPDATE, !is_plating())
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, !is_plating())
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
@@ -269,7 +269,7 @@ var/const/enterloopsanity = 100
 	else if(flooring)
 		sound = footstep_sound(flooring.footstep_sound)
 	else if(initial_flooring)
-		var/decl/flooring/floor = initial_flooring
+		var/decl/flooring/floor = decls_repository.get_decl(initial_flooring)
 		sound = footstep_sound(floor.footstep_sound)
 
 	return sound

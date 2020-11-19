@@ -71,8 +71,8 @@ datum/unit_test/wire_test
 datum/unit_test/wire_test/start_test()
 	var/wire_test_count = 0
 	var/bad_tests = 0
-	var/turf/T = null
-	var/obj/structure/cable/C = null
+	var/turf/T
+	var/obj/structure/cable/C
 	var/list/cable_turfs = list()
 	var/list/dirs_checked = list()
 

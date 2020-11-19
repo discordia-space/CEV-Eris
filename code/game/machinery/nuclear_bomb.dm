@@ -127,7 +127,7 @@ var/bomb_set
 		if(ABORT_CHECK)
 			return
 
-	if (panel_open && (istype(I, /obj/item/weapon/tool)))
+	if (panel_open && (istool(I)))
 		return attack_hand(user)
 
 	if (src.extended)

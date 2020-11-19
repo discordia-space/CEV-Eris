@@ -168,8 +168,8 @@
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
-	new /obj/item/weapon/circuitboard/solar_control(src)
-	new /obj/item/weapon/tracker_electronics(src)
+	new /obj/item/weapon/electronics/circuitboard/solar_control(src)
+	new /obj/item/weapon/electronics/tracker(src)
 	new /obj/item/weapon/paper/solar(src)
 
 /obj/structure/closet/crate/freezer

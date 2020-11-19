@@ -23,14 +23,24 @@
 	for (var/turf/T in diffused_turfs)
 		T.diffused--
 
-	//Empty our list
+	//Empty our list ..but firstly check if we need to regen shields
+	if(!enabled)
+		for(var/turf/T in diffused_turfs)
+			var/obj/effect/shield/shield = locate(/obj/effect/shield) in T
+			if(shield)
+				shield.disabled_for = 0
+				shield.regenerate()
+	// ..then do other checks.
 	diffused_turfs = list()
-
-	if (enabled && !alarm && istype(loc, /turf))
+	if(alarm)
+		return
+	if(!istype(loc, /turf))
+		return
+	if (enabled)
 		diffuse(loc)
 		for (var/d in GLOB.cardinal)
 			diffuse(get_step(src, d))
-	update_shield_generators()
+		
 
 /obj/machinery/shield_diffuser/proc/diffuse(var/turf/T)
 	if (!T)
@@ -39,6 +49,10 @@
 	if (!(T in diffused_turfs))
 		diffused_turfs.Add(T)
 		T.diffused++
+
+	var/obj/effect/shield/shield = locate(/obj/effect/shield) in T
+	if(shield) shield.fail(SSmachines.wait)
+	
 
 /obj/machinery/shield_diffuser/Process()
 	if(alarm)
@@ -49,6 +63,9 @@
 			update_icon()
 			return PROCESS_KILL
 		return
+	if(enabled)
+		for(var/turf/T in diffused_turfs)
+			diffuse(T)
 
 /obj/machinery/shield_diffuser/Initialize()
 	update_turfs()

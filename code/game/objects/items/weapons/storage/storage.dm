@@ -6,17 +6,19 @@
 	icon = 'icons/obj/storage.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	spawn_tags = SPAWN_TAG_STORAGE
+	bad_type = /obj/item/weapon/storage
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/can_hold_extra = list() //List of objects which this item can additionally store not defined by the parent.
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = null //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
-	var/storage_slots = null //The number of storage slots in this container.
-	var/use_to_pickup = null //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number = null //Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty = null //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/max_storage_space //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
+	var/storage_slots //The number of storage slots in this container.
+	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
+	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 	var/is_tray_hidden = FALSE //hides from even t-rays
@@ -38,24 +40,24 @@
 /HUD_element/slottedItemBackground
 	icon = 'icons/HUD/block.png'
 
-/obj/item/weapon/storage/proc/storageBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+/obj/item/weapon/storage/proc/storageBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
 		var/obj/item/I = clientMob.get_active_hand()
 		if(I)
 			clientMob.ClickOn(A)
 
-/obj/item/weapon/storage/proc/itemBackgroundClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+/obj/item/weapon/storage/proc/itemBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
 		clientMob.ClickOn(A)
 
-/obj/item/weapon/storage/proc/closeButtonClick(var/HUD_element/sourceElement, var/mob/clientMob, location, control, params)
+/obj/item/weapon/storage/proc/closeButtonClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
 	var/obj/item/weapon/storage/S = sourceElement.getData("item")
 	if(S)
 		S.close(clientMob)
 
-/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item, var/itemCount)
+/obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
 	itemBackground.setClickProc(.proc/itemBackgroundClick)
 	itemBackground.setData("item", item)
 
@@ -77,7 +79,7 @@
 	if (itemCount)
 		item.maptext = "<font color='white'>[itemCount]</font>"
 
-/obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
+/obj/item/weapon/storage/proc/generateHUD(datum/hud/data)
 	RETURN_TYPE(/HUD_element)
 	var/HUD_element/main = new("storage")
 	main.setDeleteOnHide(TRUE)
@@ -222,8 +224,8 @@
 			L += G.gift:return_inv()
 	return L
 
-/obj/item/weapon/storage/proc/show_to(var/mob/user)
-	if (!user.client)
+/obj/item/weapon/storage/proc/show_to(mob/user)
+	if(!user.client)
 		return
 
 	if(user.s_active != src) //opening a new storage item
@@ -235,12 +237,12 @@
 				return
 
 	var/datum/hud/data = GLOB.HUDdatums[user.defaultHUD]
-	if (data)
+	if(data)
 		generateHUD(data).show(user.client)
 		is_seeing |= user
 		user.s_active = src
 
-/obj/item/weapon/storage/proc/hide_from(var/mob/user)
+/obj/item/weapon/storage/proc/hide_from(mob/user)
 	is_seeing -= user
 	if (user.s_active == src)
 		user.s_active = null
@@ -250,13 +252,13 @@
 
 	user.client.hide_HUD_element("storage")
 
-/obj/item/weapon/storage/proc/open(var/mob/user)
-	if (src.use_sound)
+/obj/item/weapon/storage/proc/open(mob/user)
+	if(src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
 	show_to(user)
 
-/obj/item/weapon/storage/proc/close(var/mob/user)
+/obj/item/weapon/storage/proc/close(mob/user)
 	hide_from(user)
 
 /obj/item/weapon/storage/AltClick(mob/user)
@@ -269,7 +271,7 @@
 		src.open(user)
 
 /obj/item/weapon/storage/proc/close_all()
-	for (var/mob/M in is_seeing)
+	for(var/mob/M in is_seeing)
 		close(M)
 
 /obj/item/weapon/storage/proc/refresh_all()
@@ -339,7 +341,7 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	if (!istype(W)) return 0
 	if (usr)
 		usr.prepare_for_slotmove(W)
@@ -369,7 +371,7 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/weapon/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
 	if (!istype(W))
 		return
 
@@ -394,9 +396,8 @@
 	update_icon()
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/storage/attackby(obj/item/W, mob/user)
 	..()
-
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
 		var/amt_inserted = 0
@@ -413,7 +414,7 @@
 			return
 
 	if(!can_be_inserted(W))
-		return
+		return FALSE
 
 	if(istype(W, /obj/item/weapon/tray))
 		var/obj/item/weapon/tray/T = W
@@ -431,10 +432,10 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
 
-/obj/item/weapon/storage/dropped(mob/user as mob)
+/obj/item/weapon/storage/dropped(mob/user)
 	return
 
-/obj/item/weapon/storage/attack_hand(mob/user as mob)
+/obj/item/weapon/storage/attack_hand(mob/user)
 	// v Why does that exist? ~Luduk
 	/*if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -447,7 +448,7 @@
 			H.r_store = null
 			return*/
 
-	if (loc == user)
+	if(loc == user)
 		open(user)
 	else
 		close_all()
@@ -467,7 +468,7 @@
 		if(0)
 			to_chat(usr, "[src] now picks up one item at a time.")
 
-/obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
+/obj/item/weapon/storage/proc/collectItems(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
 	var/limiter = 15
@@ -512,7 +513,7 @@
 		return
 	dump_it(T, usr)
 
-/obj/item/weapon/storage/proc/dump_it(var/turf/target) //he bought?
+/obj/item/weapon/storage/proc/dump_it(turf/target) //he bought?
 	if(!isturf(target))
 		return
 	if(!Adjacent(usr))
@@ -555,10 +556,11 @@
 			O.emp_act(severity)
 	..()
 
-/obj/item/weapon/storage/attack_self(mob/user as mob)
+/obj/item/weapon/storage/attack_self(mob/user)
 	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
 		if(user.swap_hand())
 			open(user)
+			return TRUE
 
 /obj/item/weapon/storage/proc/make_exact_fit()
 	storage_slots = contents.len
@@ -630,7 +632,7 @@
 
 
 //Useful for spilling the contents of containers all over the floor
-/obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
+/obj/item/weapon/storage/proc/spill(dist = 2, turf/T)
 	if (!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 

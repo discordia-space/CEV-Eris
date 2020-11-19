@@ -3,12 +3,12 @@
 	name = "large parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
-	var/obj/wrapped = null
 	density = TRUE
-	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	var/examtext = null
+	var/obj/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/label_y
 	var/label_x
@@ -117,9 +117,9 @@
 	name = "small parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrate3"
-	var/obj/item/wrapped = null
-	var/sortTag = null
-	var/examtext = null
+	var/obj/item/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/tag_x
 
@@ -224,6 +224,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = ITEM_SIZE_NORMAL
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
+	rarity_value = 50
 	var/amount = 25.0
 
 
@@ -331,6 +333,7 @@
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 	var/currTag = 0
 
 	w_class = ITEM_SIZE_SMALL

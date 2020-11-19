@@ -8,6 +8,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	w_class = ITEM_SIZE_SMALL
+	slot_flags = SLOT_HOLSTER|SLOT_BELT
 	projectile_type = /obj/item/projectile/beam
 	charge_cost = 50
 	can_dual = 1

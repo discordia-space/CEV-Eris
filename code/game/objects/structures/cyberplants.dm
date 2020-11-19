@@ -31,7 +31,7 @@
 	var/sanity_value = 0.2
 
 /obj/structure/cyberplant/Initialize()
-	..()
+	. = ..()
 	change_plant(plant)
 	change_color(plant_color)
 

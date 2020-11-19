@@ -29,7 +29,7 @@
 	update_wear_icon()
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
-	anchored = 0
+	anchored = FALSE
 	if(!active)
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
@@ -110,24 +110,26 @@
 	deactivate(user)
 
 /obj/item/weapon/melee/energy/sword/New()
-	blade_color = pick("red","blue","green","purple")
+	if(!blade_color)
+		blade_color = pick("red","blue","green","purple")
+	..()
 
-/obj/item/weapon/melee/energy/sword/green/New()
+/obj/item/weapon/melee/energy/sword/green
 	blade_color = "green"
 
-/obj/item/weapon/melee/energy/sword/red/New()
+/obj/item/weapon/melee/energy/sword/red
 	blade_color = "red"
 
-/obj/item/weapon/melee/energy/sword/blue/New()
+/obj/item/weapon/melee/energy/sword/blue
 	blade_color = "blue"
 
-/obj/item/weapon/melee/energy/sword/purple/New()
+/obj/item/weapon/melee/energy/sword/purple
 	blade_color = "purple"
 
-/obj/item/weapon/melee/energy/sword/pirate/New()
+/obj/item/weapon/melee/energy/sword/pirate
 	blade_color = "cutlass"
 
-/obj/item/weapon/melee/energy/sword/sabre/New()
+/obj/item/weapon/melee/energy/sword/sabre
 	blade_color = "green"
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
@@ -195,7 +197,7 @@
 	var/cleanup = TRUE	// Should the blade despawn moments after being discarded by the summoner?
 
 /obj/item/weapon/melee/energy/blade/New()
-
+	..()
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)

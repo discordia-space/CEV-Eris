@@ -8,7 +8,10 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	price_tag = 200
+	rarity_value = 20
 	style = 1
+	bad_type = /obj/item/clothing/suit/armor
+	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
 /*
  * Vests
@@ -27,6 +30,10 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1, //Small plasteel cost since it's better than a handmade vest, which only costs steel
+	)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -43,6 +50,7 @@
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	price_tag = 350
+	rarity_value = 35
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
@@ -62,6 +70,7 @@
 		rad = 0
 	)
 	price_tag = 150
+	rarity_value = 15
 
 /obj/item/clothing/suit/armor/greatcoat
 	name = "armored coat"
@@ -78,6 +87,7 @@
 		rad = 0
 	)
 	price_tag = 600
+	rarity_value = 60
 
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
@@ -101,6 +111,7 @@
 	icon_state = "flakvest"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	rarity_value = 18
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -122,6 +133,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	slowdown = 0.15
+	rarity_value = 6
 	armor = list(
 		melee = 25,
 		bullet = 55,
@@ -131,6 +143,11 @@
 		rad = 0
 	)
 	price_tag = 500
+	matter = list(
+		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
+		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
+	)
+	rarity_value = 50
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
@@ -146,6 +163,10 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 15, // fullbody suit, so it costs a lot of steel compared to the non-ih one
+		MATERIAL_PLASTEEL = 3,
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/serbian
 	name = "black platecarrier vest"
@@ -159,6 +180,7 @@
 		rad = 0
 	)
 	price_tag = 400
+	rarity_value = 40
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/green
 	name = "green platecarrier vest"
@@ -175,6 +197,7 @@
 	item_state = "ablative"
 	blood_overlay_type = "armor"
 	slowdown = 0.15
+	rarity_value = 45
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -185,8 +208,14 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 650
+	rarity_value = 65
+	matter = list(
+		MATERIAL_STEEL = 6, // slightly less steel cost to make room for reflective glass
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 15 // reflective material, lots of it
+	)
 
-/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack") //TODO: Refactor this all into humandefense
+/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
 
@@ -238,6 +267,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	rarity_value = 50
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -248,6 +278,7 @@
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 250
+	rarity_value = 25
 	style = 0
 
 /obj/item/clothing/suit/armor/heavy/red
@@ -271,6 +302,7 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_inv = NONE
+	rarity_value = 90
 	armor = list(
 		melee = 75,
 		bullet = 25,
@@ -280,6 +312,7 @@
 		rad = 0
 	)
 	price_tag = 500
+	rarity_value = 50
 
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer
 	icon_state = "riot_ironhammer"
@@ -290,14 +323,15 @@
  * Storage Types
  */
 /obj/item/clothing/suit/storage/vest
-	name = "webbed armor vest"
-	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
+	name = "webbed armor"
+	desc = "An armored vest used for day-to-day operations. This one has various pouches and straps attached."
 	icon_state = "webvest"
-	armor = list(
-		melee = 20,
+	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
+	armor = list( //Same stats as the standard vest only difference is that this one has storage
+		melee = 30,
 		bullet = 30,
-		energy = 20,
-		bomb = 25,
+		energy = 30,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)
@@ -317,6 +351,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
+	rarity_value = 90
 	armor = list(
 		melee = 55,
 		bullet = 55,
@@ -347,6 +382,7 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	price_tag = 600
+	rarity_value = 60
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
 /*
@@ -368,32 +404,22 @@
 		bio = 0,
 		rad = 0
 	)
+	var/entropy_value = 2
 
-/obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(prob(50))
 		user.visible_message(SPAN_DANGER("The reactive teleport system flings [user] clear of the attack!"))
-		var/list/turfs = new/list()
 		var/turf/TLoc = get_turf(user)
-		for(var/turf/T in trange(6, TLoc))
-			if(istype(T,/turf/space)) continue
-			if(T.density) continue
-			if(T.x>world.maxx-6 || T.x<6)	continue
-			if(T.y>world.maxy-6 || T.y<6)	continue
-			turfs += T
-		if(!turfs.len) turfs += pick(/turf in orange(6))
-		var/turf/picked = pick(turfs)
-		if(!isturf(picked)) return
-
+		var/turf/picked = get_random_secure_turf_in_range(src, 7, 1)
+		if(!picked) return
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, "sparks", 50, 1)
-
-		user.loc = picked
+		go_to_bluespace(TLoc, entropy_value, TRUE, user, picked)
 		return PROJECTILE_FORCE_MISS
-	return 0
+	return FALSE
 
-/obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
+/obj/item/clothing/suit/armor/reactive/attack_self(mob/user)
 	src.active = !( src.active )
 	if (src.active)
 		to_chat(user, "\blue The reactive armor is now active.")

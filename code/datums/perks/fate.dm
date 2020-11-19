@@ -6,10 +6,12 @@
 
 /datum/perk/fate/paper_worm/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.positive_prob += 20
+	if(holder)
+		holder.sanity.positive_prob += 20
 
 /datum/perk/fate/paper_worm/remove()
-	holder.sanity.positive_prob -= 20
+	if(holder)
+		holder.sanity.positive_prob -= 20
 	..()
 
 /datum/perk/fate/freelancer
@@ -42,13 +44,15 @@
 
 /datum/perk/fate/nihilist/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.positive_prob += 10
-	holder.sanity.negative_prob += 20
+	if(holder)
+		holder.sanity.positive_prob += 10
+		holder.sanity.negative_prob += 20
 
 /datum/perk/fate/nihilist/remove()
-	holder.sanity.positive_prob -= 10
-	holder.sanity.negative_prob -= 20
-	holder.stats.removeTempStat(STAT_COG, "Fate Nihilist")
+	if(holder)
+		holder.sanity.positive_prob -= 10
+		holder.sanity.negative_prob -= 20
+		holder.stats.removeTempStat(STAT_COG, "Fate Nihilist")
 	..()
 
 /datum/perk/fate/moralist
@@ -102,14 +106,16 @@
 
 /datum/perk/fate/alcoholic_active/assign(mob/living/carbon/human/H)
 	..()
-	holder.stats.addTempStat(STAT_ROB, 10, INFINITY, "Fate Alcoholic")
-	holder.stats.addTempStat(STAT_TGH, 10, INFINITY, "Fate Alcoholic")
-	holder.stats.addTempStat(STAT_VIG, 10, INFINITY, "Fate Alcoholic")
+	if(holder)
+		holder.stats.addTempStat(STAT_ROB, 10, INFINITY, "Fate Alcoholic")
+		holder.stats.addTempStat(STAT_TGH, 10, INFINITY, "Fate Alcoholic")
+		holder.stats.addTempStat(STAT_VIG, 10, INFINITY, "Fate Alcoholic")
 
 /datum/perk/fate/alcoholic_active/remove()
-	holder.stats.removeTempStat(STAT_ROB, "Fate Alcoholic")
-	holder.stats.removeTempStat(STAT_TGH, "Fate Alcoholic")
-	holder.stats.removeTempStat(STAT_VIG, "Fate Alcoholic")
+	if(holder)
+		holder.stats.removeTempStat(STAT_ROB, "Fate Alcoholic")
+		holder.stats.removeTempStat(STAT_TGH, "Fate Alcoholic")
+		holder.stats.removeTempStat(STAT_VIG, "Fate Alcoholic")
 	..()
 
 /datum/perk/fate/noble
@@ -120,6 +126,8 @@
 
 /datum/perk/fate/noble/assign(mob/living/carbon/human/H)
 	..()
+	if(!holder)
+		return
 	holder.sanity.environment_cap_coeff -= 1
 	if(!holder.last_name)
 		holder.stats.removePerk(src.type)
@@ -149,7 +157,8 @@
 		holder.equip_to_storage_or_drop(W)
 
 /datum/perk/fate/noble/remove()
-	holder.sanity.environment_cap_coeff += 1
+	if(holder)
+		holder.sanity.environment_cap_coeff += 1
 	..()
 
 /datum/perk/fate/rat
@@ -161,10 +170,12 @@
 
 /datum/perk/fate/rat/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.max_level -= 10
+	if(holder)
+		holder.sanity.max_level -= 10
 
 /datum/perk/fate/rat/remove()
-	holder.sanity.max_level += 10
+	if(holder)
+		holder.sanity.max_level += 10
 	..()
 
 /datum/perk/fate/rejected_genius
@@ -176,16 +187,18 @@
 
 /datum/perk/fate/rejected_genius/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.environment_cap_coeff -= 1
-	holder.sanity.positive_prob_multiplier -= 1
-	holder.sanity.insight_passive_gain_multiplier *= 1.5
-	holder.sanity.max_level -= 20
+	if(holder)
+		holder.sanity.environment_cap_coeff -= 1
+		holder.sanity.positive_prob_multiplier -= 1
+		holder.sanity.insight_passive_gain_multiplier *= 1.5
+		holder.sanity.max_level -= 20
 
 /datum/perk/fate/rejected_genius/remove()
-	holder.sanity.environment_cap_coeff += 1
-	holder.sanity.positive_prob_multiplier += 1
-	holder.sanity.insight_passive_gain_multiplier /= 1.5
-	holder.sanity.max_level += 20
+	if(holder)
+		holder.sanity.environment_cap_coeff += 1
+		holder.sanity.positive_prob_multiplier += 1
+		holder.sanity.insight_passive_gain_multiplier /= 1.5
+		holder.sanity.max_level += 20
 	..()
 
 /datum/perk/fate/oborin_syndrome
@@ -197,12 +210,14 @@
 
 /datum/perk/fate/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.max_level += 20
-	spawn(1)
-		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
+	if(holder)
+		holder.sanity.max_level += 20
+		spawn(1)
+			holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
 /datum/perk/fate/oborin_syndrome/remove()
-	holder.sanity.max_level -= 20
+	if(holder)
+		holder.sanity.max_level -= 20
 	..()
 
 /datum/perk/fate/lowborn
@@ -213,8 +228,10 @@
 
 /datum/perk/fate/lowborn/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.max_level += 10
+	if(holder)
+		holder.sanity.max_level += 10
 
 /datum/perk/fate/lowborn/remove()
-	holder.sanity.max_level -= 10
+	if(holder)
+		holder.sanity.max_level -= 10
 	..()

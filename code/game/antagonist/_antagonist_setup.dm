@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			L.Add(A)
 	return L
 
-/proc/get_player_antag_name(var/datum/mind/player)
+/proc/get_player_antag_name(datum/mind/player)
 	if(!istype(player))
 		return "ERROR"
 	var/names
@@ -125,9 +125,13 @@ GLOBAL_LIST_EMPTY(faction_types)
 			names += ", "+A.role_text
 		else
 			names = A.role_text
+
+	if(!names && player_is_limited_antag(player))
+		names = "Limited antag"
+
 	return names
 
-/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
+/proc/player_is_antag(datum/mind/player, only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if((antag.outer && only_offstation_roles) || !only_offstation_roles)
 			return TRUE

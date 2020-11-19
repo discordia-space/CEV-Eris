@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/smes
+/obj/item/weapon/electronics/circuitboard/smes
 	name = T_BOARD("superconductive magnetic energy storage")
 	build_path = /obj/machinery/power/smes/buildable
 	board_type = "machine"
@@ -8,7 +8,7 @@
 		/obj/item/stack/cable_coil = 30
 	)
 
-/obj/item/weapon/circuitboard/batteryrack
+/obj/item/weapon/electronics/circuitboard/batteryrack
 	name = T_BOARD("battery rack PSU")
 	build_path = /obj/machinery/power/smes/batteryrack
 	board_type = "machine"
@@ -17,7 +17,7 @@
 		/obj/item/weapon/cell/large = 3
 	)
 
-/obj/item/weapon/circuitboard/apc
+/obj/item/weapon/electronics/circuitboard/apc
 	name = "power control module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "power_mod"
@@ -30,7 +30,7 @@
 	)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
-/obj/item/weapon/circuitboard/antigrav
+/obj/item/weapon/electronics/circuitboard/antigrav
 	name = T_BOARD("antigrav generator")
 	build_path = /obj/machinery/antigrav
 	board_type = "machine"
@@ -42,7 +42,7 @@
 		/obj/item/weapon/stock_parts/capacitor = 3
 	)
 
-/obj/item/weapon/circuitboard/breakerbox
+/obj/item/weapon/electronics/circuitboard/breakerbox
 	name = T_BOARD("breaker box")
 	build_path = /obj/machinery/power/breakerbox
 	board_type = "machine"

@@ -1,9 +1,9 @@
 "a" = (/turf/simulated/floor/tiled/dark,/area/deepmaint)
 "b" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/dark,/area/deepmaint)
 "c" = (/turf/simulated/wall,/area/deepmaint)
-"d" = (/obj/structure/table/rack,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
-"e" = (/obj/structure/table/rack,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
-"f" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"d" = (/obj/structure/table/rack,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"e" = (/obj/structure/table/rack,/obj/spawner/pack/gun_loot/low_chance,/obj/spawner/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"f" = (/obj/structure/table/rack/shelf,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth/low_chance,/obj/spawner/pack/cloth/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "g" = (/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
 "h" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/deepmaint)
 "i" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
@@ -16,7 +16,7 @@
 "p" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
 "q" = (/obj/machinery/bodyscanner,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "r" = (/obj/machinery/body_scanconsole,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
-"s" = (/obj/structure/table/rack,/obj/random/medical,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"s" = (/obj/structure/table/rack,/obj/spawner/medical,/obj/spawner/medical/low_chance,/obj/spawner/medical/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "t" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/deepmaint)
 
 (1,1,1) = {"

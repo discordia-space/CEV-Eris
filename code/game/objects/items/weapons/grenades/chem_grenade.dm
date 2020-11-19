@@ -316,6 +316,8 @@
 	can_be_modified = FALSE
 	stage = READY
 	path = 1
+	spawn_tags = SPAWN_TAG_GRENADE_CLEANER
+	rarity_value = 25
 
 /obj/item/weapon/grenade/chem_grenade/cleaner/Initialize()
 	. = ..()

@@ -160,7 +160,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	update_listeners()
 
 /datum/sound_token/proc/add_listener(var/atom/listener)
-	if(istype(listener, /mob))
+	if(ismob(listener))
 		var/mob/l_mob = listener
 		if(l_mob.ear_deaf > 0)
 			return
