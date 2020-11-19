@@ -1,4 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Airlock electronic boards now have their UI again.

@@ -117,13 +117,13 @@
 	var/turf/T = get_step(src, src.dir)
 	if(!T || !istype(T))
 		return 0
-	if(T.density == 1)
+	if(T.density)
 		return 0
 	for(var/obj/O in T.contents)
 		if(istype(O,/obj/structure))
 			if(istype(O,/obj/structure/railing))
 				return 1
-			else if(O.density == 1)
+			else if(O.density)
 				return 0
 	return 1
 

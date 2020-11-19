@@ -180,7 +180,7 @@
 		break
 
 /obj/item/weapon/gun/energy/psychic/proc/reg_break(mob/living/carbon/human/victim)
-	if(victim.get_species() != "Human")
+	if(victim.get_species() != SPECIES_HUMAN)
 		return
 
 	if(!contract)
