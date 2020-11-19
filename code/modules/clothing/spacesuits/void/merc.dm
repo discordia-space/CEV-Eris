@@ -85,11 +85,14 @@
 	resilience = 0.08
 	species_restricted = list("Human")
 	helmet = /obj/item/clothing/head/space/void/merc
-	rarity_value = 50
+	rarity_value = 60
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/oxygen
+	accompanying_object = null
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/merc/boxed
 	tank = /obj/item/weapon/tank/emergency_oxygen/double
+	spawn_blacklisted = TRUE

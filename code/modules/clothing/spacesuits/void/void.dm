@@ -16,8 +16,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	light_overlay = "helmet_light"
-	spawn_blacklisted = TRUE
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"
@@ -41,8 +40,6 @@
 	can_breach = 1
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	rarity_value = 10
-	spawn_frequency = 8
-	spawn_blacklisted = FALSE
 	accompanying_object = /obj/item/clothing/shoes/magboots
 
 	//Inbuilt devices.
@@ -91,7 +88,7 @@
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 
-	if (is_held())
+	if(is_held())
 		retract()
 
 	var/mob/living/carbon/human/H = M
@@ -102,20 +99,20 @@
 		return
 
 	if(boots)
-		if (H.equip_to_slot_if_possible(boots, slot_shoes))
+		if(H.equip_to_slot_if_possible(boots, slot_shoes))
 			boots.canremove = 0
 
 	if(helmet)
 		if(H.head)
 			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
-		else if (H.equip_to_slot_if_possible(helmet, slot_head))
+		else if(H.equip_to_slot_if_possible(helmet, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			helmet.canremove = 0
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
 			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
-		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
+		else if(H.equip_to_slot_if_possible(tank, slot_s_store))
 			to_chat(M, "The valve on your suit's installed tank safely engages.")
 			tank.canremove = 0
 
@@ -153,7 +150,6 @@
 		tank.forceMove(src)
 
 /obj/item/clothing/suit/space/void/verb/toggle_helmet()
-
 	set name = "Toggle Helmet"
 	set category = "Object"
 	set src in usr
@@ -196,7 +192,7 @@
 	if(!isliving(usr))
 		return
 
-	if (!Adjacent(usr, get_turf(src)))
+	if(!Adjacent(usr, get_turf(src)))
 		to_chat(usr, SPAN_WARNING("You're too far away to eject the tank."))
 		return
 

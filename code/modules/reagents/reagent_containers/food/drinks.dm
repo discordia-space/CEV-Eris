@@ -194,7 +194,7 @@
 	center_of_mass = list("x"=16, "y"=12)
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/update_icon()
-	if(reagents.total_volume)
+	if(reagents && reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"

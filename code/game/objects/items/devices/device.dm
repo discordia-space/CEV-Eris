@@ -2,7 +2,6 @@
 	icon = 'icons/obj/device.dmi'
 	spawn_tags = SPAWN_TAG_DIVICE
 	bad_type = /obj/item/device
-	price_tag = 1
 	var/starting_cell = TRUE
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell

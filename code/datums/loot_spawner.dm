@@ -166,6 +166,12 @@
 	else if(ispath(path, /obj/item/clothing))
 		var/obj/item/clothing/C = path
 		. += 5 * initial(C.style)
+		if(ispath(path, /obj/item/clothing/suit/space/void))
+			var/obj/item/clothing/suit/space/void/V = A
+			if(initial(V.tank))
+				. += get_spawn_price(initial(V.tank))
+			if(initial(V.boots))
+				. += get_spawn_price(initial(V.boots))
 	else if(ispath(path, /obj/item/weapon/cell))
 		var/obj/item/weapon/cell/C = path
 		if(initial(C.price_tag))
@@ -174,6 +180,8 @@
 				bonus *= 2
 			. += bonus
 	else if(ispath(path, /obj/item/device))
+		if(. == 0)
+			. += 1 //for pure random
 		var/obj/item/device/D = path
 		if(initial(D.starting_cell) && initial(D.suitable_cell))
 			. += get_spawn_price(initial(D.suitable_cell))

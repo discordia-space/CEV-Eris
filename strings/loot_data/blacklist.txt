@@ -335,9 +335,12 @@
 /obj/item/clothing/gloves/latex/nitrile
 /obj/item/clothing/suit/space/void/excelsior
 /obj/item/clothing/suit/space/void/SCAF
+/obj/item/clothing/suit/space/void/merc/equipped
+/obj/item/clothing/suit/space/void/merc/boxed
 /obj/item/clothing/suit/space/void/acolyte
 /obj/item/clothing/suit/space/void/agrolyte
 /obj/item/clothing/suit/space/void/custodian
+/obj/item/clothing/suit/space/void/engineering/equipped
 /obj/item/clothing/suit/space/void/medical/equipped
 /obj/item/clothing/suit/space/void/security/equipped
 /obj/item/clothing/suit/space/void/science
