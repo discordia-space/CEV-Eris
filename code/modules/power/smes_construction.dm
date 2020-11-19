@@ -60,7 +60,7 @@
 
 /obj/item/stock_part/emp_shield/smes
 	name = "SMES EMP shield"
-	desc = "Device that would save your SMES from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+	desc = "Device that would save your SMES from electromagnetic pulses. Probably. \nAttention! The manufacturer takes no responsibility for any harm caused by this device."
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4, TECH_MATERIAL = 2)
 
