@@ -14,7 +14,7 @@
 		holder.sanity.death_view_multiplier *= 2
 	..()
 
-/datum/perk/artist
+/datum/perk/job/artist
 	name = "Artist" //Temporary Description
 	desc = "" //Temporary Description
 	icon_state = "" //Temporary Description

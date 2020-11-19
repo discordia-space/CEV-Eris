@@ -333,7 +333,7 @@
 /obj/item/weapon/oddity/artwork
 	name = "Strange Device"
 	desc = "You can't find out how to turn it on. Maybe it's already working?"
-	icon_state = "artwork"
+	icon_state = "artwork_1"
 
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)

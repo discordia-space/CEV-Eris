@@ -5,7 +5,7 @@
 	desc = "" //Temporary description.
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "protolathe"
-	circuit = /obj/item/weapon/circuitboard/artist_bench
+	circuit = /obj/item/weapon/electronics/circuitboard/artist_bench
 
 	var/obj/item/weapon/oddity/strange_item = null //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
 	var/list/strange_item_stats = list()
@@ -65,7 +65,7 @@
 	if(href_list["create_art"])
 		var/mob/living/carbon/human/H = usr
 		var/ins_used = 0
-		if(usr.stats.getPerk(/datum/perk/artist/)) //Temporary job title
+		if(usr.stats.getPerk(PERK_ARTIST))
 			ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight]","Insight Used") as null|num
 		else
 			ins_used = H.sanity.insight
@@ -138,18 +138,18 @@
 	var/list/LStats = list()
 
 	if(strange_item)
-		if(H.stats.getPerk(/datum/perk/artist))
+		if(H.stats.getPerk(PERK_ARTIST))
 			var/datum/component/inspiration/I = strange_item.GetComponent(/datum/component/inspiration)
 			var/list/LE = I.calculate_statistics()
 			for(var/stat in LE)
 				var/list/LF = list("name" = stat, "level" = LE[stat])
 				LStats.Add(list(LF))
 
-	var/weight_mechanical = 0 + LStats[STAT_MEC],
-	var/weight_cognition = 0 + LStats[STAT_COG],
-	var/weight_biology = 0 + LStats[STAT_BIO],
-	var/weight_robustness = 0 + LStats[STAT_ROB],
-	var/weight_toughness = 0 + LStats[STAT_TGH],
+	var/weight_mechanical = 0 + LStats[STAT_MEC]
+	var/weight_cognition = 0 + LStats[STAT_COG]
+	var/weight_biology = 0 + LStats[STAT_BIO]
+	var/weight_robustness = 0 + LStats[STAT_ROB]
+	var/weight_toughness = 0 + LStats[STAT_TGH]
 	var/weight_vigilance = 0 + LStats[STAT_VIG]
 
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
@@ -298,7 +298,7 @@
 //	if(!Adjacent(user))
 //		return
 
-	if(!H.stats.getPerk(/datum/perk/artist/))
+	if(!H.stats.getPerk(PERK_ARTIST))
 		var/list/stat_change = list()
 
 		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
@@ -308,5 +308,5 @@
 	consume_materials(artwork)
 	H.put_in_hands(artwork)
 	H.sanity.insight -= ins_used
-	if(H.stats.getPerk(/datum/perk/artist/) && H.sanity.insight_block == 1)
+	if(H.stats.getPerk(PERK_ARTIST && H.sanity.insight_block == 1)
 		H.sanity.finish_rest()

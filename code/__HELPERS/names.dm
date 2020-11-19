@@ -118,7 +118,6 @@ var/syndicate_name = null
 
 //When you need something simple (for random Artist Artwork)
 /proc/get_weapon_name(capitalize = FALSE)
-
 	var/list/art_weapon_first_names = file2list("config/names/art_weapon_first.txt")
 	var/list/art_weapon_second_names = file2list("config/names/art_weapon_second.txt")
 

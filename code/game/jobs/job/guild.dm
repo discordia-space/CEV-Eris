@@ -196,7 +196,7 @@ Character Expectations:<br>\
 		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
 	)
 
-	perks = list(/datum/perk/artist)
+	perks = list(PERK_ARTIST)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,

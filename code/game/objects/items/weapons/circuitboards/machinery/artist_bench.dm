@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/artist_bench
+/obj/item/weapon/electronics/circuitboard/artist_bench
 	name = T_BOARD("artist's bench")
 	build_path = /obj/machinery/autolathe/artist_bench
 	board_type = "machine"

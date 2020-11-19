@@ -97302,7 +97302,7 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
 "ery" = (
-/obj/landmark/join/start/actor,
+/obj/landmark/join/start/artist,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
 "erz" = (
