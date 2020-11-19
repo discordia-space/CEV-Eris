@@ -63,7 +63,7 @@
 
 /obj/item/stock_part/emp_shield/apc
 	name = "APC EMP shield"
-	desc = "Device that would save your APC from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+	desc = "Device that would save your APC from electromagnetic pulses. Probably. \nAttention! The manufacturer takes no responsibility for any harm caused by this device."
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_URANIUM = 1)
 
 /obj/machinery/power/apc
