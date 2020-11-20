@@ -308,5 +308,5 @@
 	consume_materials(artwork)
 	H.put_in_hands(artwork)
 	H.sanity.insight -= ins_used
-	if(H.stats.getPerk(PERK_ARTIST && H.sanity.insight_block == 1)
+	if(H.stats.getPerk(PERK_ARTIST) && H.sanity.resting)
 		H.sanity.finish_rest()
