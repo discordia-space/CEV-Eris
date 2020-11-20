@@ -1,4 +1,4 @@
-<!-- 
+<!--
 Title: Artist's bench, largely from Autolathe.tmpl
 Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
  -->
@@ -6,35 +6,25 @@ Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
 <div style="display: table; width:100%">
 
 <div style="display: table-row">
-	<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
-		<div class="display">
-			<header><h3>Loaded materials</h3></header>
-
-			<article>
-			{{for data.materials}}
-				<section>
-					<span class="label">{{:value.name.toTitleCase()}}</span>
-					<div class="content">{{:Math.round(value.amount * 100) / 100}}/{{:data.mat_capacity}}</div>
-					<div class="content">{{:helper.link('', 'eject', {'eject_material' : value.id}, null, 'statusValue')}}</div>
-				</section>
-			{{empty}}
-				<section>
-					<span class="label">None loaded</span>
-				</section>
-			{{/for}}
-				<section>
-					<div class="content">{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}</div>
-				</section>
-			</article>
+	{{if data.have_materials && data.have_reagents}}
+		<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+			{{#def._materials}}
 		</div>
-	</div>
+		<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+			{{#def._reagents}}
+		</div>
+	{{else data.have_materials}}
+		{{#def._materials}}
+	{{else data.have_reagents}}
+		{{#def._reagents}}
+	{{/if}}
 </div>
 
 <div class="fixedWidest" style="width:100%; display: table-row">
 	<div class="block">
 		<div class="item">
 			<div class="itemContentWide">
-			Model Oddity: 
+			Model Oddity:
 			{{if data.strange_item_name}}
 				<b>{{:data.strange_item_name ? data.strange_item_name :'data strange_item_name'}}</b>
 			{{else}}

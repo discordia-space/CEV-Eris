@@ -1,11 +1,23 @@
+#define ERR_OK 0
+#define ERR_NOTFOUND "not found"
+#define ERR_NOMATERIAL "no material"
+#define ERR_NOREAGENT "no reagent"
+#define ERR_NOLICENSE "no license"
+#define ERR_PAUSED "paused"
+#define ERR_NOINSIGHT = "no insight"
+
 /obj/machinery/autolathe/artist_bench
 	name = "artist's bench"
 	desc = "" //Temporary description.
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "protolathe"
 	circuit = /obj/item/weapon/electronics/circuitboard/artist_bench
+	have_disk = FALSE
+	have_reagents = FALSE
+	have_recycling = FALSE
+	have_design_selector = FALSE
 	var/min_insight = 40
-	var/datum/component/inspiration/insp
+	var/datum/component/inspiration/inspiration
 
 	var/obj/item/weapon/oddity/strange_item //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
 	var/list/strange_item_stats = list()
@@ -13,13 +25,18 @@
 	categories = list("Create Artwork") //Temporary name.
 
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
+	var/min_mat = 20
 
 /obj/machinery/autolathe/artist_bench/ui_data()
 	var/list/data = list()
 
-	if(insp)
+	data["have_disk"] = have_disk
+	data["have_materials"] = have_materials
+	data |= materials_data()
+
+	if(inspiration)
 		var/list/L = list()
-		var/list/LE = insp.calculate_statistics()
+		var/list/LE = inspiration.calculate_statistics()
 		for(var/stat in LE)
 			var/list/LF = list("name" = stat, "level" = LE[stat])
 			L.Add(list(LF))
@@ -30,7 +47,7 @@
 	return data
 
 
-/obj/machinery/autolathe/artist_bench/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/autolathe/artist_bench/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -67,7 +84,7 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			var/ins_used = 0
-			if(H.stats.getPerk(PERK_ARTIST))
+			if(H.stats.getPerk(PERK_ARTIST) && H.sanity.insight > 40)
 				ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight]","Insight Used") as null|num
 			else
 				ins_used = H.sanity.insight
@@ -98,7 +115,7 @@
 
 	inserted_oddity.forceMove(src)
 	strange_item = inserted_oddity
-	insp = C
+	inspiration = C
 	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src].")) //Temporary description.
 	SSnano.update_uis(src)
 
@@ -113,7 +130,8 @@
 		user.put_in_hands(strange_item)
 
 	strange_item = null
-	insp = null
+	inspiration = null
+	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used)
 	var/weight_artwork_statue = 8
@@ -145,8 +163,8 @@
 	var/full_artwork = choose_base_art(ins_used)
 	var/list/LStats = list()
 
-	if(insp && user.stats.getPerk(PERK_ARTIST))
-		LStats = insp.calculate_statistics()
+	if(inspiration && user.stats.getPerk(PERK_ARTIST))
+		LStats = inspiration.calculate_statistics()
 
 	var/weight_mechanical = 0 + LStats[STAT_MEC]
 	var/weight_cognition = 0 + LStats[STAT_COG]
@@ -158,7 +176,7 @@
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
 
 	if(full_artwork == "artwork_revolver")
-		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new()
+		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(get_turf(src))
 
 		var/gun_pattern = pickweight(list(
 			"pistol" = 8 + weight_robustness,
@@ -198,10 +216,10 @@
 			if("rifle")
 				R.caliber = pick(CAL_CLRIFLE, CAL_SRIFLE, CAL_LRIFLE)
 				R.fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
-//
-//No gun currently uses CAL_357 far as I know
-//			if("revolver")
-//				caliber = pick(CAL_357)
+
+			//No gun currently uses CAL_357 far as I know
+			//	if("revolver")
+			//		caliber = pick(CAL_357)
 
 			if("sniper")//From sniper.dm, Arbitrary values
 				R.caliber = CAL_ANTIM
@@ -240,11 +258,11 @@
 		return R
 
 	else if(full_artwork == "artwork_statue")
-		var/obj/structure/artwork_statue/S = new()
+		var/obj/structure/artwork_statue/S = new(get_turf(src))
 		return S
 
 	else if(full_artwork == "artwork_oddity")
-		var/obj/item/weapon/oddity/artwork/O = new(src)
+		var/obj/item/weapon/oddity/artwork/O = new(get_turf(src))
 
 		var/oddity_pattern = pickweight(list(
 			"combat" = 8 + weight_robustness + weight_toughness + weight_vigilance,
@@ -254,33 +272,30 @@
 
 		var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)//May not be nessecary
 		switch(oddity_pattern)//Arbitrary values
-
 			if("combat")
 				oddity_stats = list(
-					STAT_TGH = 9 + rand(-3,3),
-					STAT_ROB = 9 + rand(-3,3),
-					STAT_VIG = 9 + rand(-3,3),
+					STAT_TGH = rand(6,12),
+					STAT_ROB = rand(6,12),
+					STAT_VIG = rand(6,12),
 				)
-
 			if("craft")
 				oddity_stats = list(
-					STAT_COG = 9 + rand(-3,3),
-					STAT_BIO = 9 + rand(-3,3),
-					STAT_MEC = 9 + rand(-3,3),
+					STAT_COG = rand(6,12),
+					STAT_BIO = rand(6,12),
+					STAT_MEC = rand(6,12),
 				)
-
 			if("mix")
 				oddity_stats = list(
-					STAT_TGH = 4 + rand(-1, 5),
-					STAT_ROB = 4 + rand(-1, 5),
-					STAT_VIG = 4 + rand(-1, 5),
-					STAT_COG = 4 + rand(-1, 5),
-					STAT_BIO = 4 + rand(-1, 5),
-					STAT_MEC = 4 + rand(-1, 5),
+					STAT_TGH = rand(3, 9),
+					STAT_ROB = rand(3, 9),
+					STAT_VIG = rand(3, 9),
+					STAT_COG = rand(3, 9),
+					STAT_BIO = rand(3, 9),
+					STAT_MEC = rand(3, 9),
 				)
 
 		O.oddity_stats = oddity_stats
-		O.AddComponent(/datum/component/inspiration, O.oddity_stats)
+		O.AddComponent(/datum/component/inspiration, O.oddity_stats, O.perk)
 
 		return O
 
@@ -288,28 +303,78 @@
 		return "ERR_ARTWORK"
 
 /obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/carbon/human/user)
-	var/artwork = choose_full_art(ins_used, user)
-
-	if(!ins_used)
-		return
+	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
 
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
 
-//
-//	if(!Adjacent(user))
-//		return
+	var/obj/artwork = choose_full_art(ins_used, user)
+	var/datum/design/art
+	if(isobj(artwork))
+		art = new()
+		art.build_path = artwork.type
+		art.AssembleDesignInfo(artwork)
+	else
+		visible_message(SPAN_WARNING("Unknown error."))
+		return
+	var/err = can_print(art, ins_used)
+	if(err != ERR_OK)
+		if(err in error_messages)
+			error = error_messages[err]
+		else
+			error = "Unknown error."
+		visible_message(SPAN_WARNING("[error]"))
+		qdel(artwork)
+		QDEL_NULL(art)
+		return
+
+	//	if(!Adjacent(user))
+	//		return
 
 	if(!user.stats.getPerk(PERK_ARTIST))
 		var/list/stat_change = list()
 
 		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
 		while(stat_pool--)
-			LAZYAMINUS(stat_change, pick(ALL_STATS), 1)
+			LAZYAPLUS(stat_change, pick(ALL_STATS), -1)
 
-	consume_materials(artwork)
-	user.put_in_hands(artwork)
+		for(var/stat in stat_change)
+			user.stats.changeStat(stat, stat_change[stat])
+
+	consume_materials(art)
+	if(isitem(artwork))
+		user.put_in_hands(artwork)
 	user.sanity.insight -= ins_used
 	if(user.stats.getPerk(PERK_ARTIST) && user.sanity.resting)
 		user.sanity.finish_rest()
+
+/obj/machinery/autolathe/artist_bench/can_print(datum/design/design)
+	for(var/rmat in suitable_materials)
+		if(stored_material[rmat] < min_mat)
+			return ERR_NOMATERIAL
+
+	for(var/rmat in design.materials)
+		if(!(rmat in stored_material))
+			return ERR_NOMATERIAL
+
+		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
+			return ERR_NOMATERIAL
+
+	if(design.chemicals.len)
+		if(!container || !container.is_drawable())
+			return ERR_NOREAGENT
+
+		for(var/rgn in design.chemicals)
+			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
+				return ERR_NOREAGENT
+
+	return ERR_OK
+
+#undef ERR_OK
+#undef ERR_NOTFOUND
+#undef ERR_NOMATERIAL
+#undef ERR_NOREAGENT
+#undef ERR_NOLICENSE
+#undef ERR_PAUSED
+#undef ERR_NOINSIGHT
