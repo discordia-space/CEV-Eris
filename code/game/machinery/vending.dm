@@ -1478,6 +1478,37 @@
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
 
+	// Where did we go wrong? This is supposed to be admin-spawn only. Genessee made a promise to code a neko vending machine should he get sprites. He got sprites.
+/obj/machinery/vending/neko
+	name = "NekoTheology Auto-Quartermaster"
+	desc = "A vending machine from another world, another timeline. It smells like hairballs and degeneracy."
+	product_slogans = "Nyaa!~; Hewwo, customer-chan! Do you want to buy something?~; Illegal in three million timelines and dimensions!"
+	product_ads = "Meow!;Tabletop Games approved!;I'm only a little bit awful!"
+	icon_state = "neko"
+	vendor_department = DEPARTMENT_CHURCH
+	products = list(
+					/obj/item/clothing/head/collectable/kitty = 10, 
+					/obj/item/clothing/under/schoolgirl = 10,
+					/obj/item/clothing/under/jersey = 10,
+					/mob/living/simple_animal/cat = 4,
+					/obj/item/weapon/handcuffs/fake = 2,
+					)
+	contraband = list(
+					/obj/item/weapon/grenade/flashbang = 5,
+					/obj/item/weapon/grenade/chem_grenade/teargas = 5,
+					/obj/item/weapon/oddity/common/book_bible = 2
+					)
+	prices = list(
+				/obj/item/clothing/head/collectable/kitty = 100,
+				/obj/item/clothing/under/schoolgirl = 100,
+				/obj/item/clothing/under/jersey = 100,
+				/mob/living/simple_animal/cat = 200,
+				/obj/item/weapon/handcuffs/fake = 10,
+				/obj/item/weapon/grenade/flashbang = 50,
+				/obj/item/weapon/grenade/chem_grenade/teargas = 50,
+				/obj/item/weapon/oddity/common/book_bible = 200
+				)
+
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."
