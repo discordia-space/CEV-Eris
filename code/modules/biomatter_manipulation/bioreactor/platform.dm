@@ -13,9 +13,6 @@
 	active_power_usage = 400
 	var/make_glasswalls_after_creation = FALSE
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_platform
-
-
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
 	. = ..()
 	update_icon()

@@ -127,8 +127,6 @@
 	name = "biogenerator screen"
 	icon_state = "screen-working"
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_console
-
 	//we store it here and update with special proc
 	var/list/metrics = list("operational" = FALSE,
 							"output_power" = 0,
@@ -207,8 +205,6 @@
 	var/wearout_cycle = 1200
 	var/pipes_dirtiness = 0
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_port
-
 
 /obj/machinery/multistructure/biogenerator_part/port/update_icon()
 	overlays.Cut()
@@ -280,12 +276,6 @@
 				panel_open = !panel_open
 				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the panel."))
 
-		if(QUALITY_PRYING)
-			if(panel_open)
-				to_chat(user, SPAN_NOTICE("You begin deconstructing [src]..."))
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-					dismantle()
-
 	if(panel_open && (istype(I, /obj/item/weapon/soap) || istype(I, /obj/item/weapon/reagent_containers/glass/rag)))
 		if(pipes_dirtiness)
 			pipes_dirtiness--
@@ -311,9 +301,6 @@
 	icon = null
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
 	var/obj/machinery/power/biogenerator_core/core
-
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen
-
 
 /obj/machinery/multistructure/biogenerator_part/generator/New()
 	. = ..()
@@ -386,7 +373,7 @@
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I, mob/user)
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING, QUALITY_PRYING), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
@@ -407,15 +394,6 @@
 					to_chat(user, SPAN_WARNING("There are no wires here."))
 			else
 				to_chat(user, SPAN_WARNING("You need open cover first."))
-
-		if(QUALITY_PRYING)
-			if(panel_open && !generator.core.coil_frame)
-				to_chat(user, SPAN_NOTICE("You begin deconstructing [generator]..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_REMOVING))
-					to_chat(user, SPAN_NOTICE("You deconstructed [generator]."))
-					generator.dismantle()
-			else
-				to_chat(user, SPAN_WARNING("You need to open chamber panel and remove core's coil frame first!"))
 
 	if(istype(I, /obj/item/stack/cable_coil))
 		if(!panel_open)

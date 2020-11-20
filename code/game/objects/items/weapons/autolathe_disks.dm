@@ -417,32 +417,7 @@
 
 		/datum/design/autolathe/device/headset_church
 	)
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
-	disk_name = "NeoTheology Circuit Pack"
-	icon_state = "neotheology"
-
-	license = -1
-	designs = list(
-		/datum/design/autolathe/circuit/bioprinter,
-		/datum/design/autolathe/circuit/solidifier,
-
-		/datum/design/autolathe/circuit/cloner,
-		/datum/design/autolathe/circuit/reader,
-		/datum/design/autolathe/circuit/biocan,
-
-		/datum/design/autolathe/circuit/bioreactor_platform,
-		/datum/design/autolathe/circuit/bioreactor_unloader,
-		/datum/design/autolathe/circuit/bioreactor_biotank,
-		/datum/design/autolathe/circuit/bioreactor_port,
-		/datum/design/autolathe/circuit/bioreactor_metrics,
-		/datum/design/autolathe/circuit/bioreactor_loader,
-
-		/datum/design/autolathe/circuit/biogen,
-		/datum/design/autolathe/circuit/biogen_port,
-		/datum/design/autolathe/circuit/biogen_console,
-	)
-
+	
 // Ironhammer
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/security
 	disk_name = "Ironhammer Miscellaneous Pack"
