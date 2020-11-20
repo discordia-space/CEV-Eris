@@ -262,10 +262,8 @@
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
-		if(istype(O, /obj/item/weapon/oddity))
-			var/obj/item/weapon/oddity/OD = O
-			if(OD.perk)
-				owner.stats.addPerk(OD.perk)
+		if(I.perk)
+			owner.stats.addPerk(I.perk)
 		for(var/mob/living/carbon/human/H in viewers(owner))
 			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 

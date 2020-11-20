@@ -156,7 +156,7 @@
 				var/mob/living/carbon/human/user = src.loc
 				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
 				T.oddity_stats = src.oddity_stats
-				T.AddComponent(/datum/component/inspiration, T.oddity_stats)
+				T.AddComponent(/datum/component/inspiration, T.oddity_stats, T.perk)
 				items_count = 0
 				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				last_produce = world.time

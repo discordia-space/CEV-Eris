@@ -1,13 +1,13 @@
-#define INSIGHT_MIN 40
-
 /obj/machinery/autolathe/artist_bench
 	name = "artist's bench"
 	desc = "" //Temporary description.
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "protolathe"
 	circuit = /obj/item/weapon/electronics/circuitboard/artist_bench
+	var/min_insight = 40
+	var/datum/component/inspiration/insp
 
-	var/obj/item/weapon/oddity/strange_item = null //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
+	var/obj/item/weapon/oddity/strange_item //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
 	var/list/strange_item_stats = list()
 
 	categories = list("Create Artwork") //Temporary name.
@@ -17,10 +17,9 @@
 /obj/machinery/autolathe/artist_bench/ui_data()
 	var/list/data = list()
 
-	if(strange_item)
+	if(insp)
 		var/list/L = list()
-		var/datum/component/inspiration/I = strange_item.GetComponent(/datum/component/inspiration)
-		var/list/LE = I.calculate_statistics()
+		var/list/LE = insp.calculate_statistics()
 		for(var/stat in LE)
 			var/list/LF = list("name" = stat, "level" = LE[stat])
 			L.Add(list(LF))
@@ -45,9 +44,10 @@
 		ui.open()
 
 /obj/machinery/autolathe/artist_bench/attackby(obj/item/I, mob/user)
-	if(GET_COMPONENT_FROM(C, /datum/component/inspiration, I))
-	if(istype(I, /obj/item/weapon/oddity))
+	GET_COMPONENT_FROM(C, /datum/component/inspiration, I)
+	if(C && C.perk)
 		insert_oddity(user, I)
+		return
 	. = ..()
 
 /obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
@@ -61,30 +61,36 @@
 			remove_oddity(usr)
 		else
 			insert_oddity(usr)
-		return 1
+		return TRUE
 
 	if(href_list["create_art"])
-		var/mob/living/carbon/human/H = usr
-		var/ins_used = 0
-		if(usr.stats.getPerk(PERK_ARTIST))
-			ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight]","Insight Used") as null|num
-		else
-			ins_used = H.sanity.insight
-		create_art(ins_used)
-		return 1
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			var/ins_used = 0
+			if(H.stats.getPerk(PERK_ARTIST))
+				ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight]","Insight Used") as null|num
+			else
+				ins_used = H.sanity.insight
+			create_art(ins_used, H)
+			return TRUE
+		return FALSE
 
-/obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/weapon/oddity/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
+/obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
+	if(strange_item)
+		to_chat(user, SPAN_NOTICE("There's already \a [strange_item] inside [src].")) //Temporary description
+		return
+
 	if(!inserted_oddity && istype(user))
 		inserted_oddity = user.get_active_hand()
 
 	if(!istype(inserted_oddity))
 		return
 
-	if(!Adjacent(user) && !Adjacent(inserted_oddity))
+	if(!Adjacent(user) || !Adjacent(inserted_oddity))
 		return
 
-	if(strange_item)
-		to_chat(user, SPAN_NOTICE("There's already \a [strange_item] inside [src].")) //Temporary description
+	GET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
+	if(!C || !C.perk)
 		return
 
 	if(istype(user) && (inserted_oddity in user))
@@ -92,7 +98,8 @@
 
 	inserted_oddity.forceMove(src)
 	strange_item = inserted_oddity
-	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] onto the model stand in [src].")) //Temporary description.
+	insp = C
+	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src].")) //Temporary description.
 	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/remove_oddity(mob/living/user)
@@ -103,9 +110,10 @@
 	to_chat(usr, SPAN_NOTICE("You remove \the [strange_item] from the model stand in [src].")) //Temporary description.
 
 	if(istype(user) && Adjacent(user))
-		user.put_in_active_hand(strange_item)
+		user.put_in_hands(strange_item)
 
 	strange_item = null
+	insp = null
 
 /obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used)
 	var/weight_artwork_statue = 8
@@ -133,18 +141,12 @@
 		"artwork_oddity" = weight_artwork_oddity
 	))
 
-/obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/user)
-	var/mob/living/carbon/human/H = usr
+/obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/carbon/human/user)
 	var/full_artwork = choose_base_art(ins_used)
 	var/list/LStats = list()
 
-	if(strange_item)
-		if(H.stats.getPerk(PERK_ARTIST))
-			var/datum/component/inspiration/I = strange_item.GetComponent(/datum/component/inspiration)
-			var/list/LE = I.calculate_statistics()
-			for(var/stat in LE)
-				var/list/LF = list("name" = stat, "level" = LE[stat])
-				LStats.Add(list(LF))
+	if(insp && user.stats.getPerk(PERK_ARTIST))
+		LStats = insp.calculate_statistics()
 
 	var/weight_mechanical = 0 + LStats[STAT_MEC]
 	var/weight_cognition = 0 + LStats[STAT_COG]
@@ -285,21 +287,21 @@
 	else
 		return "ERR_ARTWORK"
 
-/obj/machinery/autolathe/artist_bench/proc/create_art(ins_used)
-	var/mob/living/carbon/human/H = usr
-	var/artwork = choose_full_art()
+/obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/carbon/human/user)
+	var/artwork = choose_full_art(ins_used, user)
 
 	if(!ins_used)
 		return
 
-	if(ins_used < INSIGHT_MIN)
-		to_chat(usr, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
+	if(ins_used < min_insight)
+		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
+
 //
 //	if(!Adjacent(user))
 //		return
 
-	if(!H.stats.getPerk(PERK_ARTIST))
+	if(!user.stats.getPerk(PERK_ARTIST))
 		var/list/stat_change = list()
 
 		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
@@ -307,7 +309,7 @@
 			LAZYAMINUS(stat_change, pick(ALL_STATS), 1)
 
 	consume_materials(artwork)
-	H.put_in_hands(artwork)
-	H.sanity.insight -= ins_used
-	if(H.stats.getPerk(PERK_ARTIST) && H.sanity.resting)
-		H.sanity.finish_rest()
+	user.put_in_hands(artwork)
+	user.sanity.insight -= ins_used
+	if(user.stats.getPerk(PERK_ARTIST) && user.sanity.resting)
+		user.sanity.finish_rest()

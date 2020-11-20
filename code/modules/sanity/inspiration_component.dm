@@ -30,7 +30,7 @@
 /datum/component/inspiration/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 
-/datum/component/inspiration/proc/on_examine(var/mob/user)
+/datum/component/inspiration/proc/on_examine(mob/user)
 	for(var/stat in stats)
 		var/aspect
 		switch(stats[stat])
@@ -45,6 +45,9 @@
 			else
 				continue
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+	if(perk)
+		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
+		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()
