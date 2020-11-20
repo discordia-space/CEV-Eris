@@ -178,7 +178,7 @@ Character Expectations:<br>\
 	join_tag = /datum/job/mining
 
 /datum/job/artist
-	title = "Artist"
+	title = "Guild Artist"
 	flag = ARTIST
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD

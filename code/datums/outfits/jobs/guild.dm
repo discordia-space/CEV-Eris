@@ -38,7 +38,7 @@
 	suit = /obj/item/clothing/suit/space/void/mining
 
 /decl/hierarchy/outfit/job/cargo/artist/clown
-	name = OUTFIT_JOB_NAME("Clown")
+	name = OUTFIT_JOB_NAME("Guild Clown")
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat

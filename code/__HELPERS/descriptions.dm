@@ -16,8 +16,6 @@
 
 //For Artist project,
 /proc/get_artwork_description()
-
-
 	var/list/art_description_types = file2list("config/names/art_types.txt")
 	//var/list/art_description_object_creatures_plural = file2list("config/name/art_ceatures_names_plural.txt")
 	var/list/art_description_locations = file2list("config/descriptions/art_locations.txt")
@@ -93,12 +91,13 @@
 	var/description_statue = "[description_artwork_statue] [get_artwork_description()]"
 	return description_statue
 
-/proc/get_gun_description()
-	var/list/art_description_type_ofs_gun = file2list("config/descriptions/art_type_ofs_gun.txt")
-	var/list/art_description_type_actions_gun = file2list("config/descriptions/art_type_actions_gun.txt")
+//gung descritions for artist
+GLOBAL_LIST_INIT(art_description_type_ofs_gun, file2list("config/descriptions/art_type_ofs_gun.txt"))
+GLOBAL_LIST_INIT(art_description_type_actions_gun, file2list("config/descriptions/art_type_actions_gun.txt"))
 
+/proc/get_gun_description()
 	var/description_artwork_gun = ""
-	description_artwork_gun = "[pick(art_description_type_ofs_gun)] [pick("of","that [pick(art_description_type_actions_gun)]")]"
+	description_artwork_gun = "[pick(GLOB.art_description_type_ofs_gun)] [pick("of","that [pick(GLOB.art_description_type_actions_gun)]")]"
 
 	var/description_gun = "[description_artwork_gun] [get_artwork_description()]"
 	return description_gun

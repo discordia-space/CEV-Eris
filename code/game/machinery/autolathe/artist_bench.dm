@@ -45,9 +45,10 @@
 		ui.open()
 
 /obj/machinery/autolathe/artist_bench/attackby(obj/item/I, mob/user)
+	if(GET_COMPONENT_FROM(C, /datum/component/inspiration, I))
 	if(istype(I, /obj/item/weapon/oddity))
 		insert_oddity(user, I)
-	.=..()
+	. = ..()
 
 /obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
 	if(..())
@@ -155,7 +156,7 @@
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
 
 	if(full_artwork == "artwork_revolver")
-		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new /obj/item/weapon/gun/projectile/revolver/artwork_revolver
+		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new()
 
 		var/gun_pattern = pickweight(list(
 			"pistol" = 8 + weight_robustness,
@@ -237,11 +238,11 @@
 		return R
 
 	else if(full_artwork == "artwork_statue")
-		var/obj/structure/artwork_statue/S = new /obj/structure/artwork_statue
+		var/obj/structure/artwork_statue/S = new()
 		return S
 
 	else if(full_artwork == "artwork_oddity")
-		var/obj/item/weapon/oddity/artwork/O = new /obj/item/weapon/oddity/artwork(src)
+		var/obj/item/weapon/oddity/artwork/O = new(src)
 
 		var/oddity_pattern = pickweight(list(
 			"combat" = 8 + weight_robustness + weight_toughness + weight_vigilance,
