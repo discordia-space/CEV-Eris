@@ -115,22 +115,18 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
 	name = "berry vape vial"
 	preloaded_reagents = list("nicotine" = 20, "berryjuice" = 10)
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon
 	name = "lemon vape vial"
 	preloaded_reagents = list("nicotine" = 20, "lemonjuice" = 10)
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana
 	name= "banana vape vial"
 	preloaded_reagents = list("nicotine" = 20, "banana" = 10)
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine
 	name = "nicotine vape vial"
 	preloaded_reagents = list("nicotine" = 30)
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."
