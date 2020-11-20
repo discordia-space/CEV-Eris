@@ -30,6 +30,10 @@
 /obj/item/clothing/gloves/stungloves/proc/deductcharge(var/power_drain)
 	if(cell)
 		if(cell.checked_use(power_drain))
+			//do we have enough power for another hit?
+			if(!cell.check_charge(hitcost))
+				status = FALSE
+				update_icon()
 			return TRUE
 		else
 			status = FALSE
@@ -43,13 +47,16 @@
 		icon_state = "powerglove"
 	update_wear_icon()
 
+	if(ismob(usr))
+		usr.update_action_buttons()
+
 /obj/item/clothing/gloves/stungloves/examine(mob/user)
 	if(!..(user, 1))
 		return
 
 	if(cell)
 		to_chat(user, SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged."))
-	if(!cell)
+	else
 		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
@@ -88,9 +95,12 @@
 	else
 		L.visible_message(SPAN_DANGER("[L] has been punched with [src] by [user]!"))
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-	L.stun_effect_act(stun, agony, user.targeted_organ, src)
-	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
-	deductcharge(hitcost)
+
+	if(deductcharge(hitcost))
+		L.stun_effect_act(stun, agony, user.targeted_organ, src)
+		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Stunned [key_name(L)] with [src]</font>"
+		L.attack_log += "\[[time_stamp()]\] <font color='orange'>Was stunned by [key_name(L)] with [src]</font>"
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -106,7 +116,9 @@
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 		status = FALSE
+		update_icon()
 
 /obj/item/clothing/gloves/stungloves/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
+		update_icon()

@@ -26,8 +26,8 @@
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
 	if(status_flags & GODMODE)	return FALSE	//godmode
 
-	if(species && species.has_organ[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
+	if(species && species.has_process[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = sponge.damage
@@ -39,8 +39,8 @@
 /mob/living/carbon/human/setBrainLoss(amount)
 	if(status_flags & GODMODE)	return FALSE	//godmode
 
-	if(species && species.has_organ[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
+	if(species && species.has_process[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.damage = min(max(amount, 0),(maxHealth*2))
 			brainloss = sponge.damage
@@ -53,8 +53,8 @@
 
 	if(status_flags & GODMODE)	return FALSE	//godmode
 
-	if(species && species.has_organ[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
+	if(species && species.has_process[BP_BRAIN])
+		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			brainloss = min(sponge.damage,maxHealth*2)
 		else

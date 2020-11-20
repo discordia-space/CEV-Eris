@@ -41,7 +41,7 @@
 	overlaylist = list()
 
 /obj/item/weapon/extinguisher/Initialize()
-	..()
+	. = ..()
 	if(overlaylist.len)
 		var/icon/temp = new /icon('icons/obj/items.dmi', overlaylist[rand(1,overlaylist.len)])
 		overlays += temp

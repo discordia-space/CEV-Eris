@@ -14,11 +14,13 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module
 	name = "robot module"
+	desc = "This is a robot module parent class. You shouldn't see this description"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = 100
 	item_state = "electronic"
 	flags = CONDUCT
+	bad_type = /obj/item/weapon/robot_module
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
@@ -66,9 +68,6 @@ var/global/list/robot_modules = list(
 	)
 
 
-
-	desc = "This is a robot module parent class. You shouldn't see this description"
-
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
 	..()
 	if (!istype(R))
@@ -102,12 +101,13 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/weapon/robot_module/Initialize()
+	. = ..()
 	for(var/obj/item/I in modules)
 		I.canremove = 0
 		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
-	for (var/obj/item/weapon/tool/T in modules)
+	for(var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
 	//A quick hack to stop robot modules running out of power
@@ -548,7 +548,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/material/cyborg/steel/M = new (src)
 	M.synths = list(metal)
 	src.modules += M
-	
+
 	var/obj/item/stack/material/cyborg/glass/G = new (src)
 	G.synths = list(glass)
 	src.modules += G

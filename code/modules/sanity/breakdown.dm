@@ -32,7 +32,7 @@
 	return !!name
 
 /datum/breakdown/proc/update()
-	if(finished || (duration && world.time > end_time))
+	if(finished || (duration && world.time > end_time) || holder.owner.stat == DEAD)
 		conclude()
 		return FALSE
 	return TRUE

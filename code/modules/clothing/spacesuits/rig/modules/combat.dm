@@ -16,7 +16,7 @@
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
 	device_type = /obj/item/device/flash
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/grenade_launcher
 	name = "mounted grenade launcher"
@@ -153,7 +153,7 @@
 	interface_desc = "A shoulder-mounted cell-powered taser."
 
 	gun_type = /obj/item/weapon/gun/energy/taser/mounted
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/mounted/energy_blade
 	name = "energy blade projector"

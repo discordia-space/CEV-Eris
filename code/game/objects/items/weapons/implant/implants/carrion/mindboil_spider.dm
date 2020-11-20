@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 		GLOB.active_mindboil_spiders += src
 		to_chat(owner_mob, SPAN_NOTICE("\The [src] is active."))
 	..()
-	
+
 
 /obj/item/weapon/implant/carrion_spider/mindboil/Process()
 	..()
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 		else
 			attack_from = src
 		for(var/mob/living/carbon/human/H in view(5, attack_from))
-			if(H.get_species() != "Human" || (H in victims) || (H == owner_mob))
+			if(H.get_species() != SPECIES_HUMAN || (H in victims) || (H == owner_mob))
 				continue
 			H.sanity.onPsyDamage(1) //Half the ammount of mind fryer, can be mass produced
 
@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 /obj/item/weapon/implant/carrion_spider/mindboil/Destroy()
 	GLOB.active_mindboil_spiders -= src
 	. = ..()
-	
+
 
 /obj/item/weapon/implant/carrion_spider/mindboil/proc/find_contract()
 	for(var/datum/antag_contract/derail/C in GLOB.various_antag_contracts)
@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 		break
 
 /obj/item/weapon/implant/carrion_spider/mindboil/proc/reg_break(mob/living/carbon/human/victim)
-	if(victim.get_species() != "Human")
+	if(victim.get_species() != SPECIES_HUMAN)
 		return
 
 	if(victim == owner_mob)

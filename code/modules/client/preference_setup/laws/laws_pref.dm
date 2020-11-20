@@ -25,41 +25,12 @@
 /datum/category_item/player_setup_item/law_pref/sanitize_character()
 	if(!istype(pref.laws))	pref.laws = list()
 
-	var/datum/species/species = all_species[pref.species]
-	if(!(species && species.has_organ[BP_POSIBRAIN]))
-		pref.is_shackled = initial(pref.is_shackled)
-	else
-		pref.is_shackled = sanitize_bool(pref.is_shackled, initial(pref.is_shackled))
+	pref.is_shackled = initial(pref.is_shackled)
 
 /datum/category_item/player_setup_item/law_pref/content()
 	. = list()
-	var/datum/species/species = all_species[pref.species]
 
-	if(!(species && species.has_organ[BP_POSIBRAIN]))
-		. += "<b>Your Species Has No Laws</b><br>"
-	else
-		. += "<b>Shackle: </b>"
-		if(!pref.is_shackled)
-			. += "<span class='linkOn'>Off</span>"
-			. += "<a href='?src=\ref[src];toggle_shackle=[pref.is_shackled]'>On</a>"
-			. += "<br>Only shackled positronics have laws in an integrated positronic chassis."
-			. += "<hr>"
-		else
-			. += "<a href='?src=\ref[src];toggle_shackle=[pref.is_shackled]'>Off</a>"
-			. += "<span class='linkOn'>On</span>"
-			. += "<br>You are shackled and have laws that restrict your behaviour."
-			. += "<hr>"
-
-			. += "<b>Your Current Laws:</b><br>"
-
-			if(!pref.laws.len)
-				. += "<b>You currently have no laws.</b><br>"
-			else
-				for(var/i in 1 to pref.laws.len)
-					. += "[i]) [pref.laws[i]]<br>"
-
-			. += "Law sets: <a href='?src=\ref[src];lawsets=1'>Load Set</a><br>"
-
+	. += "<b>Your Species Has No Laws</b><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/law_pref/OnTopic(href, href_list, user)

@@ -76,3 +76,55 @@
 	self_recharge = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun/projectile/get_hardpoint_maptext()
+	return "[get_ammo()]/[ammo_magazine.max_ammo]"
+
+/obj/item/weapon/gun/projectile/get_hardpoint_status_value()
+	if(ammo_magazine)
+		return get_ammo()/ammo_magazine.max_ammo
+	return null
+
+/obj/item/mech_equipment/mounted_system/ballistic
+	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
+
+/obj/item/mech_equipment/mounted_system/ballistic/pk
+	name = "SA \"VJP\""
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
+	icon_state = "mech_pk"
+	holding_type = /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
+	matter = list(MATERIAL_PLASTEEL = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
+	name = 	"SA \"VJP\""
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
+	restrict_safety = TRUE
+	twohanded = FALSE
+	init_firemodes = list(
+		list(mode_name="spit fire",  burst=15, burst_delay=0.8, move_delay=15,  icon="burst")
+		)
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
+	. = ..()
+	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk(src)
+
+/obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
+	..()
+	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
+		qdel(ammo_magazine)
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
+		var/mob/living/exosuit/E = loc
+		if(istype(E))
+			var/obj/item/weapon/cell/cell = E.get_cell()
+			if(istype(cell))
+				cell.use(500)
+		ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk(src)
+		spawn(1)
+			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
+		spawn(2)
+			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)

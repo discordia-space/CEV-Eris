@@ -1218,7 +1218,7 @@ var/list/FLOORITEMS = list(
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
 /mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
-	return
+	return INITIALIZE_HINT_NORMAL
 
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)

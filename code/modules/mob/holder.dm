@@ -53,7 +53,7 @@ var/list/holder_mob_icon_cache = list()
 	reagents = null
 	STOP_PROCESSING(SSprocessing, src)
 	if (contained)
-		release_mob()
+		release_mob(FALSE)
 	return ..()
 
 /obj/item/weapon/holder/examine(mob/user)
@@ -97,7 +97,7 @@ var/list/holder_mob_icon_cache = list()
 //is_unsafe_container should be checked before calling this
 //This function releases mobs into wherever the holder currently is. Its not safe to call from a lot of places
 //Use release_to_floor for a simple, safe release
-/obj/item/weapon/holder/proc/release_mob()
+/obj/item/weapon/holder/proc/release_mob(var/des_self = TRUE)
 	for(var/mob/living/M in contents)
 		var/atom/movable/mob_container
 		mob_container = M
@@ -106,7 +106,8 @@ var/list/holder_mob_icon_cache = list()
 		M.Released()
 
 	contained = null
-	qdel(src)
+	if(des_self)
+		qdel(src)
 
 //Similar to above function, but will not deposit things in any container, only directly on a turf.
 //Can be called safely anywhere. Notably on holders held or worn on a mob

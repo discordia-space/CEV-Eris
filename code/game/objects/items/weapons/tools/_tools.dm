@@ -81,15 +81,13 @@
 		cell = new suitable_cell(src)
 
 	if(use_fuel_cost)
-		var/datum/reagents/R = new/datum/reagents(max_fuel)
-		reagents = R
-		R.my_atom = src
-		R.add_reagent("fuel", max_fuel)
+		create_reagents(max_fuel)
+		reagents.add_reagent("fuel", max_fuel)
 
-	if (use_stock_cost)
+	if(use_stock_cost)
 		stock = max_stock
 
-	if (max_health)
+	if(max_health)
 		health = max_health
 
 	update_icon()
@@ -937,7 +935,7 @@
 		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if(!E)
 			return
 		var/safety = H.eyecheck()
@@ -1033,6 +1031,7 @@
 	name = "Electric Boogaloo 3000"
 	icon_state = "omnitool"
 	item_state = "omnitool"
+	spawn_tags = null
 	tool_qualities = list(QUALITY_BOLT_TURNING = 100,
 							QUALITY_PRYING = 100,
 							QUALITY_WELDING = 100,

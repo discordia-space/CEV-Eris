@@ -278,7 +278,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/killthroat
 	desc = "A roll of tobacco and nicotine. Gives the best bang for buck for your throat."
-	preloaded_reagents = list("nicotine" = 10, "fuel" = 3)
+	preloaded_reagents = list("nicotine" = 10, "poisonberryjuice" = 3)
 
 /obj/item/clothing/mask/smokable/cigarette/homeless
 	desc = "A roll of tobacco and nicotine. Gives the feeling of fight."
@@ -382,7 +382,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		START_PROCESSING(SSobj, src)
 		update_wear_icon()
 
-/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user as mob)
+/obj/item/clothing/mask/smokable/pipe/attack_self(mob/user)
 	if(lit == 1)
 		user.visible_message(SPAN_NOTICE("[user] puts out [src]."), SPAN_NOTICE("You put out [src]."))
 		lit = 0
@@ -397,7 +397,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.clear_reagents()
 		name = "empty [initial(name)]"
 
-/obj/item/clothing/mask/smokable/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/clothing/mask/smokable/pipe/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/melee/energy/sword))
 		return
 
@@ -462,11 +462,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "zippo"
 	item_state = "zippo"
 
-/obj/item/weapon/flame/lighter/random
-	New()
-		icon_state = "lighter-[pick("r","c","y","g")]"
-		item_state = icon_state
-		base_state = icon_state
+/obj/item/weapon/flame/lighter/random/New()
+	icon_state = "lighter-[pick("r","c","y","g")]"
+	item_state = icon_state
+	base_state = icon_state
+	..()
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(!base_state)
@@ -543,7 +543,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "vape_mask"
 	item_state = "vape_mask"
 	w_class = ITEM_SIZE_TINY
-	var/chem_volume = 100
+	var/chem_volume = 50
 	var/vapetime = 0
 	var/screw = 0
 	var/emagged = 0
@@ -552,14 +552,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/voltage = 0
 	var/quality_multiplier = 1
 
-	var/charge_per_use = 1
+	var/charge_per_use = 0.5
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/clothing/mask/vape/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, NO_REACT)
-	reagents.add_reagent("nicotine", 70)
+	reagents.add_reagent("nicotine", 20)
+	reagents.add_reagent(pick(list("banana","berryjuice","grapejuice","lemonjuice","limejuice","orangejuice","watermelonjuice")), 10)
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 
@@ -728,4 +729,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	waste = pick(0.4, 0.7)
 	transfer_amount = pick(0.3, 1)
-	charge_per_use = pick(0.5, 0.9)
+	charge_per_use = pick(0.2, 0.5)

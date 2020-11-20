@@ -43,7 +43,7 @@
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/stack/sheet/refined_scrap
+/obj/item/stack/refined_scrap
 	name = "refined scrap"
 	desc = "This is ghetto gold! It could be used as fuel or building material. Even central Command would give cargo points for this."
 	icon = 'icons/obj/structures/scrap/refine.dmi'

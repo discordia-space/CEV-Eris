@@ -114,7 +114,7 @@
 	if(!istype(I, /obj/item/weapon/scrap_lump))
 		chance_mod = 5
 	if(prob(chance_to_recycle / chance_mod))
-		new /obj/item/stack/sheet/refined_scrap(loc)
+		new /obj/item/stack/refined_scrap(loc)
 	qdel(I)
 
 /obj/machinery/recycler/proc/stop(mob/living/L)

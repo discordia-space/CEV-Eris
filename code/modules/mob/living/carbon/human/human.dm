@@ -86,13 +86,13 @@
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
 
-		var/obj/item/organ/internal/carrion/chemvessel/chemvessel = internal_organs_by_name[BP_CHEMICALS]
-		if(chemvessel)
-			stat("Chemical Storage", "[chemvessel.stored_chemicals]/[chemvessel.max_chemicals]")
+		var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
+		if(chemvessel_efficiency)
+			stat("Chemical Storage", "[carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
 
-		var/obj/item/organ/internal/carrion/maw/maw = internal_organs_by_name[BP_MAW]
-		if(maw)
-			stat("Gnawing hunger", "[maw.hunger]/10")
+		var/maw_efficiency = get_organ_efficiency(OP_MAW)
+		if(maw_efficiency > 0)
+			stat("Gnawing hunger", "[carrion_hunger]/[round(maw_efficiency/10)]")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
@@ -590,26 +590,25 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ[BP_EYES]) //No eyes, can't hurt them.
+	if(!species.has_process[OP_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name[BP_EYES]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name[BP_EYES]
-		if(I.status & ORGAN_CUT_AWAY)
-			return FLASH_PROTECTION_MAJOR
+	var/eye_efficiency = get_organ_efficiency(OP_EYES)
+	if(eye_efficiency <= 0)
+		return FLASH_PROTECTION_MAJOR
 
 	return flash_protection
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
 /mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = BP_BRAIN)
-	if(!species.has_organ[brain_tag])
+	if(!species.has_process[brain_tag])
 		return 0
 
-	var/obj/item/organ/affecting = internal_organs_by_name[brain_tag]
+	var/obj/item/organ/affecting = random_organ_by_process(brain_tag)
 
 	target_zone = check_zone(target_zone)
-	if(!affecting || affecting.parent_organ != target_zone)
+	if(!affecting || affecting.parent != target_zone)
 		return 0
 
 	//if the parent organ is significantly larger than the brain organ, then hitting it is not guaranteed
@@ -853,7 +852,7 @@ var/list/rank_prefix = list(\
 	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/internal/brain/H in world)
+		for(var/obj/item/organ/internal/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -870,11 +869,11 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
+	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
 	return L && L.is_bruised()
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
+	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
 
 	if(L && !L.is_bruised())
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -1061,7 +1060,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 	if(!dna)
 		if(!new_species)
-			new_species = "Human"
+			new_species = SPECIES_HUMAN
 	else
 		if(!new_species)
 			new_species = dna.species
@@ -1070,7 +1069,7 @@ var/list/rank_prefix = list(\
 
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
-		new_species = "Human"
+		new_species = SPECIES_HUMAN
 
 	if(species)
 
@@ -1102,6 +1101,10 @@ var/list/rank_prefix = list(\
 		holder_type = species.holder_type
 
 	icon_state = lowertext(species.name)
+
+	if(species.has_process.len)
+		for(var/process in species.has_process)
+			internal_organs_by_efficiency[process] = list()
 
 	rebuild_organs()
 	src.sync_organ_dna()
@@ -1144,7 +1147,7 @@ var/list/rank_prefix = list(\
 
 	status_flags |= REBUILDING_ORGANS
 
-	var/obj/item/organ/internal/carrion/core = internal_organs_by_name[BP_SPCORE]
+	var/obj/item/organ/internal/carrion/core = random_organ_by_process(BP_SPCORE)
 	var/list/organs_to_readd = list()
 	if(core) //kinda wack, this whole proc should be remade
 		for(var/obj/item/organ/internal/carrion/C in internal_organs)
@@ -1168,9 +1171,6 @@ var/list/rank_prefix = list(\
 			internal_organs.Cut()
 		if(organs_by_name.len)
 			organs_by_name.Cut()
-		if(internal_organs_by_name.len)
-			internal_organs_by_name.Cut()
-
 		var/datum/preferences/Pref
 		if(istype(from_preference, /datum/preferences))
 			Pref = from_preference
@@ -1184,7 +1184,7 @@ var/list/rank_prefix = list(\
 		for(var/tag in species.has_limbs)
 			BM = Pref.get_modification(tag)
 			var/datum/organ_description/OD = species.has_limbs[tag]
-			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
+			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ_base)
 			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
 				BM = PBM
 			if(BM.is_allowed(tag, Pref, src))
@@ -1192,16 +1192,16 @@ var/list/rank_prefix = list(\
 			else
 				OD.create_organ(src)
 
-		for(var/tag in species.has_organ)
+		for(var/tag in species.has_process)
 			BM = Pref.get_modification(tag)
 			if(BM.is_allowed(tag, Pref, src))
-				BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
+				BM.create_organ(src, species.has_process[tag], Pref.modifications_colors[tag])
 			else
-				var/organ_type = species.has_organ[tag]
+				var/organ_type = species.has_process[tag]
 				new organ_type(src)
 
 		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
-		if(I.implant_type)
+		if(I.implant_type && (!mind || mind.assigned_role != "Robot"))
 			var/obj/item/weapon/implant/core_implant/C = new I.implant_type
 			C.install(src)
 			C.activate()
@@ -1219,9 +1219,9 @@ var/list/rank_prefix = list(\
 				continue
 			OD.create_organ(src)
 
-		for(var/organ_tag in species.has_organ)
-			organ_type = species.has_organ[organ_tag]
-			var/obj/item/I = internal_organs_by_name[organ_tag]
+		for(var/organ_tag in species.has_process)
+			organ_type = species.has_process[organ_tag]
+			var/obj/item/I = random_organ_by_process(organ_tag)
 			if(I && I.type == organ_type)
 				continue
 			new organ_type(src)
@@ -1236,12 +1236,20 @@ var/list/rank_prefix = list(\
 				C.access.Add(mind.assigned_job.cruciform_access)
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
-		C.replaced(get_organ(C.parent_organ))
+		C.replaced(get_organ(C.parent_organ_base))
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
+
+/mob/living/carbon/human/proc/post_prefinit()
+	var/obj/item/weapon/implant/core_implant/C = locate() in src
+	if(C)
+		C.install(src)
+		C.activate()
+		C.install_default_modules_by_job(mind.assigned_job)
+		C.access |= mind.assigned_job.cruciform_access
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
@@ -1365,14 +1373,17 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	return istype(internal_organs_by_name[BP_BRAIN], /obj/item/organ/internal/brain)
+	if(organ_list_by_process(BP_BRAIN).len)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name[BP_EYES])
-		var/obj/item/organ/internal/eyes = internal_organs_by_name[BP_EYES]
-		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
-			return 1
-	return 0
+	if(organ_list_by_process(BP_EYES).len)
+		for(var/obj/item/organ/internal/eyes in organ_list_by_process(OP_EYES))
+			if(!(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY)))
+				return FALSE
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
@@ -1486,11 +1497,10 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
-	if(!H)
+	if(!(organ_list_by_process(OP_HEART).len))
 		return PULSE_NONE
 	else
-		return H.pulse
+		return pulse
 
 /mob/living/carbon/human/verb/lookup()
 	set name = "Look up"
@@ -1513,17 +1523,17 @@ var/list/rank_prefix = list(\
 		to_chat(src, SPAN_NOTICE("You can't do it right now."))
 	return
 
-/mob/living/carbon/human/should_have_organ(var/organ_check)
+/mob/living/carbon/human/should_have_process(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(BP_HEART, BP_LUNGS))
+	if(organ_check in list(OP_HEART, OP_LUNGS))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(BP_LIVER, BP_KIDNEYS))
+	else if(organ_check in list(OP_LIVER, OP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (BP_IS_ROBOTIC(affecting)))
 		return FALSE
-	return (species && species.has_organ[organ_check])
+	return (species && species.has_process[organ_check])
 
 /mob/living/carbon/human/proc/check_self_for_injuries()
 	if(stat)

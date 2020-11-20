@@ -123,6 +123,8 @@
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/stripping/task_completed()
+	if(mind_holder.stat == DEAD)
+		return
 	units_completed = 0
 	for(var/obj/item/I in target.contents)
 		units_completed += I.get_item_cost() 

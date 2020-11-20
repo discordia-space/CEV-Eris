@@ -21,7 +21,7 @@
 		rad = 75
 	)
 	siemens_coefficient = 0
-	species_restricted = list("Human")
+	species_restricted = list(SPECIES_HUMAN)
 	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and monitoring console
 	light_overlay = "helmet_light_green"
 

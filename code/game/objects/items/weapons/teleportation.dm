@@ -23,6 +23,7 @@
 	var/portal_type = /obj/effect/portal
 	var/portal_fail_chance = null
 	var/cell_charge_per_attempt = 33
+	var/entropy_value = 2  //for bluespace entropy
 
 /obj/item/weapon/hand_tele/Initialize()
 	. = ..()
@@ -71,6 +72,7 @@
 	to_chat(user, SPAN_NOTICE("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
+	P.entropy_value = entropy_value
 	if(portal_fail_chance)
 		P.failchance = portal_fail_chance
 	src.add_fingerprint(user)
@@ -96,6 +98,7 @@
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
 	var/calibration_required = TRUE
+	entropy_value = 4 //for bluespace entropy
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
 	..()
@@ -106,7 +109,7 @@
 				user.drop_from_inventory(user.get_active_hand())
 				user.drop_from_inventory(user.get_inactive_hand())
 				if(teleport_location)
-					do_teleport(user, teleport_location, 1)
+					go_to_bluespace(get_turf(src), entropy_value, TRUE, user, teleport_location, 1)
 					return
 			if(do_after(user, 30))
 				if(calibration_required)
@@ -136,14 +139,15 @@
 	icon_state = "telespear"
 	item_state = "telespear"
 	slot_flags = SLOT_BACK
+	var/entropy_value = 1 //for bluespace entropy
 
-/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))
-		do_teleport(user, teleport_location, 1)
+		go_to_bluespace(get_turf(src), entropy_value, FALSE, user, teleport_location, 1)
 	else
-		do_teleport(M, teleport_location, 1)
+		go_to_bluespace(get_turf(src), entropy_value, FALSE, M, teleport_location, 1)
 	qdel(src)
 	var/obj/item/stack/rods/R = new(M.loc)
 	user.put_in_active_hand(R)

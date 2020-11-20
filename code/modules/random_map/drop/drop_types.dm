@@ -91,11 +91,11 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/armour/New()
 	..()
 	contents = list(
-		/obj/item/clothing/head/armor/riot,
+		/obj/item/clothing/head/armor/faceshield/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
-		/obj/item/clothing/head/armor/riot,
+		/obj/item/clothing/head/armor/faceshield/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
-		/obj/item/clothing/head/armor/riot,
+		/obj/item/clothing/head/armor/faceshield/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/suit/armor/vest,

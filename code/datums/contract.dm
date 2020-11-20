@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/samples = list()
 	for(var/obj/item/weapon/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != "Human" || (data["blood_DNA"] in samples))
+		if(!data || data["species"] != SPECIES_HUMAN || (data["blood_DNA"] in samples))
 			continue
 		samples += data["blood_DNA"]
 		if(samples.len >= count)
@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	excelsior_energy += reward
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
-	
+
 /datum/antag_contract/excel/appropriate
 	name = "Appropriate"
 	reward = 400
@@ -407,27 +407,27 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/targets_command = prob(command_bias)
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts)
 		candidates -= M.target_mind
-	
+
 	while(candidates.len)
 		var/datum/mind/candidate_mind = pick(candidates)
 		candidates -= candidate_mind
-		
+
 		if(player_is_antag_id(candidate_mind, ROLE_EXCELSIOR_REV))
 			continue
 
 		var/mob/living/carbon/human/H = candidate_mind.current
 		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
 			continue
-		
+
 		if (targets_command)
 			if(!(candidate_mind.assigned_role in list(JOBS_COMMAND + JOBS_SECURITY)))
 				continue
-		
+
 		if (cruciform_check)
 			var/cruciform = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 			if(cruciform)
 				continue
-		
+
 		target_mind = candidate_mind
 		desc = "[name] [target_mind.current.real_name] [desc_text]"
 		if(H.stats.getPerk(PERK_NOBLE))
@@ -458,7 +458,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	name = "Propaganda"
 	reward = 600
 	var/list/area/targets = list()
-	
+
 /datum/antag_contract/excel/propaganda/New()
 	var/list/candidates = ship_areas.Copy()
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)

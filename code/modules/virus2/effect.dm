@@ -224,7 +224,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			var/obj/item/organ/internal/brain/B = H.internal_organs_by_name[BP_BRAIN]
+			var/obj/item/organ/internal/brain/B = H.random_organ_by_process(BP_BRAIN)
 			if (B && B.damage < B.min_broken_damage)
 				B.take_damage(5)
 		else
@@ -342,7 +342,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			if(H.species.name == "Human" && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
+			if(H.species.name == SPECIES_HUMAN && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 				to_chat(H, SPAN_DANGER("Your hair starts to fall out in clumps..."))
 				spawn(50)
 					H.h_style = "Balding Hair"

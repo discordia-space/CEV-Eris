@@ -87,18 +87,14 @@
 	charge_meter = FALSE
 	w_class = ITEM_SIZE_NORMAL
 	twohanded = FALSE
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	suitable_cell = /obj/item/weapon/cell/small
-
-	projectile_type=/obj/item/projectile/plasma/light
+	projectile_type = /obj/item/projectile/plasma/light
 	projectile_color = "#00FFFF"
-
-	fire_sound='sound/weapons/Taser.ogg'
-
-	fire_delay=8
-	charge_cost=15
-
+	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_delay = 8
+	charge_cost = 15
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
-
 	init_firemodes = list()
 
 /obj/item/weapon/gun/energy/plasma/brigador/update_icon()

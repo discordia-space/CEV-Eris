@@ -1,0 +1,5 @@
+/obj/item/weapon/storage/box/shotgunammo/slug    blacklisted=0    spawn_value=5    price_tag=0   100    
+/obj/item/weapon/storage/box/shotgunammo/beanbags    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/storage/box/shotgunammo/practiceshells    blacklisted=0    spawn_value=2    price_tag=0   100    
+/obj/item/weapon/storage/box/shotgunammo    blacklisted=0    spawn_value=2.5    price_tag=0   100    
+/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=17.2727    price_tag=100   100    

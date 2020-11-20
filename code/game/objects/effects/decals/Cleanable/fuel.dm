@@ -49,7 +49,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
-	anchored = 0
+	anchored = FALSE
 	var/turf/origin
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, _amount = 1, d = 0, var/turf/_origin)

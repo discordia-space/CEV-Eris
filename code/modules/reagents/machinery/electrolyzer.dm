@@ -141,7 +141,7 @@
 		separation_beaker.forceMove(get_turf(src))
 		separation_beaker = null
 	..()
-	
+
 
 /obj/machinery/electrolyzer/attack_hand(mob/user)
 	if(..())
@@ -213,20 +213,16 @@
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis_makeshift"
 	rarity_value = 50
+	starting_cell = FALSE
+	suitable_cell = /obj/item/weapon/cell/small
 	var/on = FALSE
 	var/tick_cost = 3
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
 	var/obj/item/weapon/reagent_containers/beaker
 	var/obj/item/weapon/reagent_containers/separation_beaker
 
 /obj/item/device/makeshift_electrolyser/Destroy()
 	QDEL_NULL(beaker)
-	QDEL_NULL(cell)
 	return ..()
-
-/obj/item/device/makeshift_electrolyser/get_cell()
-	return cell
 
 /obj/item/device/makeshift_electrolyser/MouseDrop_T(atom/movable/C, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!Adjacent(user) || !C.Adjacent(user))
@@ -252,17 +248,13 @@
 
 /obj/item/device/makeshift_electrolyser/handle_atom_del(atom/A)
 	..()
-	if(A == cell)
-		cell = null
-		update_icon()
 	if(A == beaker)
 		beaker = null
 		update_icon()
 
 /obj/item/device/makeshift_electrolyser/proc/turn_on(mob/user)
-	if(!cell || !cell.check_charge(tick_cost))
+	if(!cell_use_check(tick_cost, user))
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return FALSE
 	on = TRUE
 	START_PROCESSING(SSobj, src)
@@ -274,7 +266,7 @@
 
 /obj/item/device/makeshift_electrolyser/Process()
 	if(on)
-		if(!cell || !cell.checked_use(tick_cost))
+		if(!cell_use_check(tick_cost))
 			visible_message(SPAN_NOTICE("[src]'s electrodes stopped bubbling."), range = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
@@ -282,18 +274,12 @@
 			if(!state || state == -1)
 				turn_off()
 			SSnano.update_uis(src)
-			
 
-/obj/item/device/makeshift_electrolyser/attack_self(mob/user as mob)
+
+/obj/item/device/makeshift_electrolyser/attack_self(mob/user)
 	user.set_machine(src)
 	ui_interact(user)
 	add_fingerprint(user)
-
-/obj/item/device/makeshift_electrolyser/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-	else
-		return ..()
 
 /obj/item/device/makeshift_electrolyser/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
@@ -334,7 +320,7 @@
 /obj/item/device/makeshift_electrolyser/ui_data()
 	var/data = list()
 	data["on"] = on
-	data["has_power"] = cell ? cell.check_charge(tick_cost) : FALSE
+	data["has_power"] = cell_check(tick_cost)
 
 	if(beaker)
 		data["beaker"] = beaker.reagents.ui_data()

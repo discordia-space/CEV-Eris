@@ -1,4 +1,7 @@
 //Food items that are eaten normally and don't leave anything behind.
+/obj/item/weapon/reagent_containers/food
+	bad_type = /obj/item/weapon/reagent_containers/food
+
 /obj/item/weapon/reagent_containers/food/snacks
 	name = "snack"
 	desc = "yummy"
@@ -7,6 +10,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_COOKED_FOOD
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
@@ -590,6 +594,7 @@
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
+	preloaded_reagents = list("sprinkles" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/On_Consume(var/mob/eater, var/mob/feeder = null)
 	..()
@@ -604,45 +609,49 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/mec
 	name = "Yellow Masterpiece Donut"
-	desc = "The taste you will never forget. Special for engineers."
+	desc = "The sour citrus flavor you will never forget. A choice sweet of mechanics."
 	icon_state = "donut_mec"
 	overlay_state = "donut_mec_c"
 	stats_buff = list(STAT_MEC)
+	preloaded_reagents = list("sprinkles" = 1, "lemonjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog
 	name = "Purple Masterpiece Donut"
-	desc = "The taste you will never forget. Special for intelligent people."
+	desc = "The too-sweet artificial grape taste you will never forget. An intellectual's favorite."
 	icon_state = "donut_cog"
 	overlay_state = "donut_cog_c"
 	stats_buff = list(STAT_COG)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/bio
 	name = "Green Masterpiece Donut"
-	desc = "The taste you will never forget. Special for medics."
+	desc = "The fresh spearmint flavor you will never forget. Perfect for an immaculate doctor."
 	icon_state = "donut_bio"
 	overlay_state = "donut_bio_c"
 	stats_buff = list(STAT_BIO)
+	preloaded_reagents = list("sprinkles" = 1, "mint" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob
 	name = "Brown Masterpiece Donut"
-	desc = "The taste you will never forget. Special for strong people."
+	desc = "A near-chocolate taste you will never forget. A robust flavor for the strong."
 	icon_state = "donut_rob"
 	overlay_state = "donut_rob_c"
 	stats_buff = list(STAT_ROB)
+	preloaded_reagents = list("sprinkles" = 1, "coco" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh
 	name = "Cream Masterpiece Donut"
-	desc = "The taste you will never forget. Special for tough people."
+	desc = "The classic donut flavor you will never forget. Specially panders to tough people."
 	icon_state = "donut_tgh"
 	overlay_state = "donut_tgh_c"
 	stats_buff = list(STAT_TGH)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig
 	name = "Blue Masterpiece Donut"
-	desc = "The taste you will never forget. Special for vigilant people."
+	desc = "A tart blueberry taste you will never forget. A go-to choice for the vigilant watchman."
 	icon_state = "donut_vig"
 	overlay_state = "donut_vig_c"
 	stats_buff = list(STAT_VIG)
+	preloaded_reagents = list("sprinkles" = 1, "berryjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -3310,7 +3319,7 @@
 	taste_tag = list(BLAND_FOOD)
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user)
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user) //this is obsolete??
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
 			new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)

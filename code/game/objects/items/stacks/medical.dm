@@ -7,18 +7,15 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 20
-	var/heal_brute = 0
-	var/heal_burn = 0
 	price_tag = 10
 	spawn_tags = SPAWN_TAG_MEDICINE
 	bad_type = /obj/item/stack/medical
 	matter = list(MATERIAL_BIOMATTER = 5)
+	var/heal_brute = 0
+	var/heal_burn = 0
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
-
-/obj/item/stack/medical/advanced
-	bad_type = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
@@ -270,6 +267,9 @@
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
+
+/obj/item/stack/medical/advanced
+	bad_type = /obj/item/stack/medical/advanced
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"

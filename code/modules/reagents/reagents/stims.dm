@@ -32,7 +32,7 @@
 	M.add_chemical_effect(CE_TOXIN, 1)
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[BP_LIVER]
+		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(3, 0)
 
@@ -171,7 +171,7 @@
 /datum/reagent/stim/steady/overdose(mob/living/carbon/M, alien)
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
+		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
 			L.take_damage(5, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
@@ -205,7 +205,7 @@
 	M.add_chemical_effect(CE_TOXIN, 1)
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[BP_LIVER]
+		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(5, 0)
 
@@ -354,7 +354,7 @@
 /datum/reagent/stim/turbo/overdose(mob/living/carbon/M, alien)
 	if(ishuman(M) && (prob(80 - (30 * M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
+		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
 			L.take_damage(7, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)

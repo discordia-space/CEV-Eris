@@ -47,8 +47,8 @@ var/list/mannequins_
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
+var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 // Posters
 GLOBAL_LIST_EMPTY(poster_designs)
@@ -115,8 +115,6 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
 var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
-
-GLOBAL_LIST_EMPTY(all_spawn_data)
 
 //////////////////////////
 /////Initial Building/////
@@ -242,8 +240,6 @@ GLOBAL_LIST_EMPTY(all_spawn_data)
 		//Rituals which are just categories for subclasses will have a null phrase
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
-
-	GLOB.all_spawn_data["loot_s_data"] = new /datum/loot_spawner_data
 
 	return 1
 

@@ -424,7 +424,7 @@ default behaviour is:
 	disabilities = 0
 
 	// fix blindness and deafness
-	blinded = 0
+	blinded = FALSE
 	eye_blind = 0
 	eye_blurry = 0
 	ear_deaf = 0
@@ -835,6 +835,11 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+
+/mob/living/Destroy()
+	qdel(stats)
+	stats = null
+	return ..()
 
 /mob/living/proc/vomit()
 	return

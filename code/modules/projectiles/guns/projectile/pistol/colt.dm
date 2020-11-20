@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/colt
 	name = "FS HG .35 Auto \"Colt M1911\""
-	desc = "A cheap knock-off of a Colt M1911. Uses standard .35 Auto mags."
+	desc = "A cheap knock-off of a Colt M1911. Uses standard .35 and high capacity magazines."
 	icon = 'icons/obj/guns/projectile/colt.dmi'
 	icon_state = "colt"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -10,7 +10,7 @@
 	can_dual = 1
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.5
 	recoil_buildup = 17

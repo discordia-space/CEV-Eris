@@ -8,7 +8,7 @@
 
 /obj/spawner/mob/burrow()
 	if(biome_spawner && biome && biome.can_burrow)
-		find_or_create_burrow(get_turf(src))
+		find_or_create_burrow(get_turf(biome))
 		return TRUE
 	return FALSE
 

@@ -1,0 +1,6 @@
+/obj/item/weapon/plantspray/weeds    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/plantspray/pests/old/carbaryl    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/plantspray/pests/old/lindane    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/plantspray/pests/old/phosmet    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/plantspray/pests/old    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/plantspray/pests    blacklisted=0    spawn_value=10    price_tag=1   100    

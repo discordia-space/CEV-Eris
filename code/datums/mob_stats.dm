@@ -35,7 +35,7 @@
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
 	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
-	
+
 /datum/stat_holder/proc/setStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.setValue(Value)
@@ -43,7 +43,8 @@
 /datum/stat_holder/proc/getStat(statName, pure = FALSE)
 	if (!islist(statName))
 		var/datum/stat/S = stat_list[statName]
-		SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+		if(holder)
+			SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 		return S ? S.getValue(pure) : 0
 	else
 		log_debug("passed list to getStat()")
@@ -89,6 +90,16 @@
 		return 0
 	var/avg = getSumOfStat(namesList, pure)
 	return avg / namesList.len
+
+/datum/stat_holder/proc/copyTo(var/datum/stat_holder/recipient)
+	for(var/i in stat_list)
+		var/datum/stat/S = stat_list[i]
+		var/datum/stat/RS = recipient.stat_list[i]
+		S.copyTo(RS)
+
+	for(var/datum/perk/P in perks)
+		recipient.addPerk(P.type)
+
 
 // return value from 0 to 1 based on value of stat, more stat value less return value
 // use this proc to get multiplier for decreasing delay time (exaple: "50 * getMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
@@ -182,6 +193,9 @@
 
 /datum/stat/proc/setValue(value)
 	src.value = value
+
+/datum/stat/proc/copyTo(var/datum/stat/recipient)
+	recipient.value = getValue(TRUE)
 
 /datum/stat/productivity
 	name = STAT_MEC
