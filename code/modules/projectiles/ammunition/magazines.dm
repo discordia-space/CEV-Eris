@@ -1,8 +1,4 @@
 /////////////Standard/////////////
-/obj/item/ammo_magazine
-	spawn_tags = SPAWN_TAG_AMMO
-	rarity_value = 10
-
 /obj/item/ammo_magazine/pistol
 	name = "standard magazine (.35 Auto)"
 	icon_state = "pistol_l"
@@ -18,8 +14,6 @@
 /obj/item/ammo_magazine/pistol/empty
 	icon_state = "pistol"
 	initial_ammo = 0
-	spawn_frequency = 5
-	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/practice
 	name = "standard magazine (.35 Auto practice)"
@@ -57,7 +51,6 @@
 /obj/item/ammo_magazine/hpistol/empty
 	icon_state = "hpistol"
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
@@ -96,7 +89,6 @@
 	icon_state = "smg"
 	ammo_color = ""
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/smg/practice
 	name = "smg magazine (.35 Auto practice)"
@@ -135,7 +127,6 @@
 	icon_state = "smg"
 	ammo_color = ""
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/msmg/practice
 	name = "smg magazine (.40 Magnum practice)"
@@ -174,7 +165,6 @@
 /obj/item/ammo_magazine/magnum/empty
 	icon_state = "magnum"
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/magnum/practice
 	name = "magazine (40 Magnum practice)"
@@ -212,7 +202,6 @@
 	icon_state = "srifle"
 	matter = list(MATERIAL_STEEL = 3)
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/srifle/practice
 	name = "magazine (.20 Rifle practice)"
@@ -258,7 +247,6 @@
 /obj/item/ammo_magazine/ihclrifle/empty
 	icon_state = "ihclrifle"
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/ihclrifle/practice
 	name = "magazine (.25 Caseless Rifle practice)"
@@ -295,7 +283,6 @@
 /obj/item/ammo_magazine/cspistol/empty
 	icon_state = "cspistol"
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/cspistol/practice
 	name = "pistol magazine (.25 Caseless Rifle practice)"
@@ -328,7 +315,6 @@
 
 /obj/item/ammo_magazine/lrifle/empty
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle/pk
 	name = "PK munitions box (.30 Rifle)"
@@ -358,7 +344,6 @@
 
 /obj/item/ammo_magazine/lrifle/pk/empty
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle
 	name = "long magazine (.30 Rifle)"
@@ -374,7 +359,6 @@
 /obj/item/ammo_magazine/lrifle/empty
 	icon_state = "lrifle"
 	initial_ammo = 0
-	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle/practice
 	name = "long magazine (.30 Rifle practice)"
@@ -500,7 +484,6 @@
 
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = 0
-	spawn_frequency = 5
 
 ////////////Shotguns!////////////
 
@@ -532,4 +515,3 @@
 	name = "ammo drum (.50)"
 	icon_state = "m12"
 	initial_ammo = 0
-	spawn_frequency = 5

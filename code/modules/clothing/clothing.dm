@@ -1,3 +1,7 @@
+#define STYLE_NONE 0
+#define STYLE_LOW 1
+#define STYLE_HIGH 2
+
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
@@ -19,7 +23,7 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = 0
+	var/style = STYLE_NONE
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
@@ -171,6 +175,7 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	bad_type = /obj/item/clothing/ears
 
 /obj/item/clothing/ears/attack_hand(mob/user)
 	if (!user) return
@@ -212,9 +217,11 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	spawn_tags = null
 	var/obj/item/master_item
 
 /obj/item/clothing/ears/offear/New(obj/O)
+	.=..()
 	name = O.name
 	desc = O.desc
 	icon = O.icon
@@ -254,6 +261,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
+	bad_type = /obj/item/clothing/glasses
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -270,12 +278,12 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.75
 	bad_type = /obj/item/clothing/gloves
 	spawn_tags = SPAWN_TAG_GLOVES
-	var/wired = 0
-	var/clipped = 0
 	body_parts_covered = ARMS
 	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
+	var/wired = 0
+	var/clipped = 0
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
@@ -418,15 +426,15 @@ BLIND     // can't see anything
 	spawn_tags = SPAWN_TAG_SHOES
 	bad_type = /obj/item/clothing/shoes
 
-	var/can_hold_knife
-	var/obj/item/holding
-	var/noslip = 0
-	var/module_inside = 0
-
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
+
+	var/can_hold_knife
+	var/obj/item/holding
+	var/noslip = 0
+	var/module_inside = 0
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -514,9 +522,6 @@ BLIND     // can't see anything
 	else to_chat(usr, "You haven't got any accessories in your shoes")
 
 
-
-
-
 /obj/item/clothing/shoes/update_icon()
 	overlays.Cut()
 	if(holding)
@@ -532,7 +537,6 @@ BLIND     // can't see anything
 /obj/item/clothing/suit
 	icon = 'icons/inventory/suit/icon.dmi'
 	name = "suit"
-	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(
 		/obj/item/weapon/clipboard,
@@ -557,12 +561,15 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-	var/list/extra_allowed = list()
 	equip_delay = 1 SECONDS
+	bad_type = /obj/item/clothing/suit
+	var/fire_resist = T0C+100
+	var/list/extra_allowed = list()
 
-/obj/item/clothing/suit/New()
-	allowed |= extra_allowed
+/obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
+	allowed |= extra_allowed
+
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under
@@ -655,6 +662,9 @@ BLIND     // can't see anything
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
 
+/obj/item/clothing/under/rank
+	bad_type = /obj/item/clothing/under/rank
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = 3

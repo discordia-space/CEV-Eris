@@ -1,9 +1,10 @@
 /obj/item/weapon/gun/matter/launcher
+	bad_type = /obj/item/weapon/gun/matter/launcher
 	w_class = ITEM_SIZE_HUGE
+	muzzle_flash = 0
 
 	var/release_force = 1
 	var/throw_distance = 7
-	muzzle_flash = 0
 
 //This normally uses a proc on projectiles and our ammo is not strictly speaking a projectile.
 /obj/item/weapon/gun/matter/launcher/can_hit(mob/living/target, mob/living/user)

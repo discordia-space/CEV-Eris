@@ -3,13 +3,13 @@
 	desc = "This injects the person with DNA."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "dnainjector"
-	var/block=0
-	var/datum/dna2/record/buf=null
-	var/s_time = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	var/block=0
+	var/datum/dna2/record/buf
+	var/s_time = 10
 	var/uses = 1
 	var/nofail
 	var/is_bullet = 0

@@ -10,7 +10,7 @@
 	max_shells = 96
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	ammo_type = "/obj/item/ammo_casing/lrifle"
+	ammo_type = "/obj/item/ammo_casing/lrifle"//??
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	tac_reloads = FALSE

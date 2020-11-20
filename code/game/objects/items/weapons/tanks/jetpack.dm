@@ -318,6 +318,7 @@
 	desc = "A tank of compressed air for use as propulsion in zero-gravity areas. Has a built in compressor to refill it in any gaseous environment."
 	default_pressure = 6*ONE_ATMOSPHERE	// kPa. Also the pressure the compressor would fill itself to
 	default_gas = "carbon_dioxide"
+	spawn_tags = null
 	var/processing = FALSE
 	var/compressing = FALSE
 	var/minimum_pressure = 95 //KPa. If environment pressure is less than this, we won't draw air

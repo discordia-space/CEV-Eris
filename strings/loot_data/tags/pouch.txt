@@ -1,12 +1,12 @@
-/obj/item/weapon/storage/pouch/small_generic    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pouch/medium_generic    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/pouch/large_generic    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/item/weapon/storage/pouch/medical_supply    blacklisted=0    spawn_value=3.0303    price_tag=0   100    
-/obj/item/weapon/storage/pouch/engineering_tools    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/pouch/engineering_supply    blacklisted=0    spawn_value=3.0303    price_tag=0   100    
-/obj/item/weapon/storage/pouch/ammo    blacklisted=0    spawn_value=3.0303    price_tag=0   100    
-/obj/item/weapon/storage/pouch/tubular/vial    blacklisted=0    spawn_value=7.14286    price_tag=0   100    
-/obj/item/weapon/storage/pouch/tubular    blacklisted=0    spawn_value=7.14286    price_tag=0   100    
-/obj/item/weapon/storage/pouch/pistol_holster    blacklisted=0    spawn_value=3.0303    price_tag=0   100    
-/obj/item/weapon/storage/pouch/baton_holster    blacklisted=0    spawn_value=3.0303    price_tag=0   100    
-/obj/item/weapon/storage/pouch/holding    blacklisted=1    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/storage/pouch/small_generic    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/medium_generic    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/large_generic    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/medical_supply    blacklisted=0    spawn_value=3.0303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/engineering_tools    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/engineering_supply    blacklisted=0    spawn_value=3.0303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/ammo    blacklisted=0    spawn_value=3.0303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/tubular/vial    blacklisted=0    spawn_value=7.14286   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/tubular    blacklisted=0    spawn_value=7.14286   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/pistol_holster    blacklisted=0    spawn_value=3.0303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/baton_holster    blacklisted=0    spawn_value=3.0303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pouch/holding    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

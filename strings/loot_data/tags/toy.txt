@@ -1,60 +1,41 @@
-/obj/item/weapon/storage/makeshift_grinder    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/extinguisher/mini    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/extinguisher/mech    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/extinguisher    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/mop    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/weldpack/canister    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=10.4167    price_tag=200   100    
-/obj/item/weapon/inflatable_dispenser    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/weapon/packageWrap    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/stack/cable_coil/cut    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/yellow    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/blue    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/green    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/pink    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/orange    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/cyan    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/white    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil/random    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/stack/cable_coil    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/toy/balloon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/blink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/spinningtoy    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/crossbow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/ammo/crossbow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/ammo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/sword    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/katana    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/snappop    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/waterflower/flags    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/waterflower    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/bosunwhistle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/ripley    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/fireripley    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/deathripley    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/gygax    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/durand    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/honk    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/marauder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/seraph    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/mauler    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/odysseus    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize/phazon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/prize    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/excelsior    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/serbian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/acolyte    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/carrion    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/roach    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/vagabond    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/rooster    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/barking_dog    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/red_soldier    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/metacat    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/shitcurity    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/metro_patrolman    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/mouse    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/kitten    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/lizard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/spider    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/cultsword    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=8.40263   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/balloon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/blink    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/spinningtoy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/crossbow    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/ammo/crossbow    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/ammo    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/sword    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/katana    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/snappop    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/waterflower/flags    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/waterflower    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/bosunwhistle    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/ripley    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/fireripley    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/deathripley    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/gygax    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/durand    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/honk    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/marauder    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/seraph    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/mauler    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/odysseus    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/prize/phazon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/excelsior    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/acolyte    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/carrion    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/roach    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/vagabond    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/rooster    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/barking_dog    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/red_soldier    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/metacat    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/shitcurity    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/metro_patrolman    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/mouse    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/kitten    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/lizard    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/spider    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/cultsword    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

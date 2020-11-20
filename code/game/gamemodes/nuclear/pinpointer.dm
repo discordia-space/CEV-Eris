@@ -9,9 +9,10 @@
 	throw_speed = 4
 	throw_range = 20
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	var/obj/item/weapon/disk/nuclear/the_disk = null
-	var/obj/item/weapon/disk/nuclear/slot = null
-	var/obj/machinery/nuclearbomb/pointbomb = null
+	//spawn_blacklisted = TRUE//antag_item_targets??
+	var/obj/item/weapon/disk/nuclear/the_disk
+	var/obj/item/weapon/disk/nuclear/slot
+	var/obj/machinery/nuclearbomb/pointbomb
 	var/active = FALSE
 
 
@@ -52,12 +53,12 @@
 
 /obj/item/weapon/pinpointer/proc/workdisk()
 	if(!active) return
-	
+
 	if(slot)
 		worknuclear()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
 		return
-	
+
 	if(!the_disk)
 		the_disk = locate()
 		if(!the_disk)
@@ -117,8 +118,8 @@
 	icon = 'icons/obj/device.dmi'
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 	var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates.
-	var/turf/location = null
-	var/obj/target = null
+	var/turf/location
+	var/obj/target
 
 /obj/item/weapon/pinpointer/advpinpointer/attack_self()
 	if(!active)
@@ -241,7 +242,7 @@
 
 /obj/item/weapon/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
-	var/obj/machinery/computer/shuttle_control/multi/mercenary/home = null
+	var/obj/machinery/computer/shuttle_control/multi/mercenary/home
 
 /obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
 	if(!active)

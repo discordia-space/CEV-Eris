@@ -12,12 +12,12 @@
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
-	unacidable = 1 //plastic
+	unacidable = TRUE //plastic
 	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
 	matter = list(MATERIAL_PLASTIC = 2)
+	volume = 250
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
-	volume = 250
 
 /obj/item/weapon/reagent_containers/spray/Initialize()
 	. = ..()

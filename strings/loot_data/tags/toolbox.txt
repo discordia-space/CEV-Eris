@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/toolbox/emergency    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/weapon/storage/toolbox/mechanical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/toolbox/electrical    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/toolbox/syndicate    blacklisted=1    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/storage/toolbox/emergency    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/toolbox/mechanical    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/toolbox/electrical    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/toolbox/syndicate    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

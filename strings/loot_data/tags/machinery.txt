@@ -1,22 +1,22 @@
-/obj/item/modular_computer/console/preset/engineering/alarms    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering/supermatter    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering/rcon    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering/shield    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering/power    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering/atmos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/engineering    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/medical/records    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/medical/monitor    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/research/sysadmin    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/research    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/command/access    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/command    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/security/camera    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/security/records    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/security    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/civilian/professional/library    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/civilian/professional    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/civilian    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console/preset/trade    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/modular_computer/console    blacklisted=1    spawn_value=10    price_tag=0   100    
+/obj/item/modular_computer/console/preset/engineering/alarms    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering/supermatter    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering/rcon    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering/shield    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering/power    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering/atmos    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/engineering    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/medical/records    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/medical/monitor    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/research/sysadmin    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/research    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/command/access    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/command    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/security/camera    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/security/records    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/security    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/civilian/professional/library    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/civilian/professional    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/civilian    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console/preset/trade    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/modular_computer/console    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1,15 +1,15 @@
-/obj/item/weapon/reagent_containers/food/drinks/dry_ramen    blacklisted=0    spawn_value=6.66667    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/sosjerky    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/chips    blacklisted=0    spawn_value=6.66667    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/sandwich    blacklisted=0    spawn_value=5    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/popcorn    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/pie    blacklisted=0    spawn_value=5    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/hotdog    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    spawn_value=20    price_tag=30   100    
+/obj/item/weapon/reagent_containers/food/drinks/dry_ramen    blacklisted=0    spawn_value=5.98839   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sosjerky    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/chips    blacklisted=0    spawn_value=6.25   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sandwich    blacklisted=0    spawn_value=4.72231   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/popcorn    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/pie    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/hotdog    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    spawn_value=15.439   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

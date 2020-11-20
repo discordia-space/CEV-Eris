@@ -1,12 +1,12 @@
-/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=17.2727    price_tag=100   100    
-/obj/item/ammo_magazine/ammobox/clrifle/rubber    blacklisted=0    spawn_value=20    price_tag=40   100    
-/obj/item/ammo_magazine/ammobox/clrifle    blacklisted=0    spawn_value=20    price_tag=40   100    
-/obj/item/ammo_magazine/magnum/empty    blacklisted=0    spawn_value=10    price_tag=60   100    
-/obj/item/ammo_magazine/magnum/rubber    blacklisted=0    spawn_value=33.3333    price_tag=60   100    
-/obj/item/ammo_magazine/magnum    blacklisted=0    spawn_value=20    price_tag=60   100    
-/obj/item/ammo_magazine/ihclrifle/empty    blacklisted=0    spawn_value=10    price_tag=60   100    
-/obj/item/ammo_magazine/ihclrifle/practice    blacklisted=0    spawn_value=10    price_tag=60   100    
-/obj/item/ammo_magazine/ihclrifle/rubber    blacklisted=0    spawn_value=20    price_tag=60   100    
-/obj/item/ammo_magazine/ihclrifle    blacklisted=0    spawn_value=20    price_tag=60   100    
-/obj/item/ammo_magazine/slmagnum/rubber    blacklisted=0    spawn_value=20    price_tag=60   100    
-/obj/item/ammo_magazine/slmagnum    blacklisted=0    spawn_value=20    price_tag=60   100    
+/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=13.3031   spawn_price=104   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ammobox/clrifle/rubber    blacklisted=0    spawn_value=11.5143   spawn_price=4840   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ammobox/clrifle    blacklisted=0    spawn_value=11.5143   spawn_price=4840   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/magnum/empty    blacklisted=0    spawn_value=14.7533   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/magnum/rubber    blacklisted=0    spawn_value=18.4673   spawn_price=260   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/magnum    blacklisted=0    spawn_value=13.4862   spawn_price=260   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ihclrifle/empty    blacklisted=0    spawn_value=14.7533   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ihclrifle/practice    blacklisted=0    spawn_value=6.39423   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ihclrifle/rubber    blacklisted=0    spawn_value=12.7885   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/ihclrifle    blacklisted=0    spawn_value=12.7885   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/slmagnum/rubber    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/slmagnum    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing

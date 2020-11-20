@@ -1,0 +1,2 @@
+/obj/structure/closet/lasertag/red    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/lasertag/blue    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

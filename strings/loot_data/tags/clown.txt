@@ -1,7 +1,7 @@
-/obj/item/weapon/bananapeel    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/soap/nanotrasen    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/soap/deluxe    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/soap/syndie    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/soap    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/bikehorn/rubberducky    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/bikehorn    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/bananapeel    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/soap/nanotrasen    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/soap/deluxe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/soap/syndie    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/soap    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/bikehorn/rubberducky    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/bikehorn    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

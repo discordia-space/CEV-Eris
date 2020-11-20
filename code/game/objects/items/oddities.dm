@@ -275,6 +275,7 @@
 	desc = "A broken necklace that has a blue crystal as a trinket."
 	icon_state = "broken_necklace"
 	origin_tech = list(TECH_BLUESPACE = 9)
+	spawn_frequency = 0//unique
 	oddity_stats = list(
 		STAT_COG = 9,
 		STAT_VIG = 9,

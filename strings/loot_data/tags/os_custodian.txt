@@ -1,3 +1,3 @@
-/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168    price_tag=0   100    
+/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

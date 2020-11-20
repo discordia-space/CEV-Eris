@@ -372,6 +372,7 @@
 	desc = "It emits an abhorrent smell, you shouldn't step anywhere near it."
 	icon_state = "toxic_puddle"
 	anchored = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/effect/decal/cleanable/carrion_puddle/Initialize()
 	. = ..()

@@ -9,7 +9,7 @@
 	return /obj/item/weapon/spacecash/bundle
 
 /obj/spawner/credits/post_spawn(list/spawns)
-	for (var/obj/item/weapon/spacecash/bundle/C in spawns)
+	for(var/obj/item/weapon/spacecash/bundle/C in spawns)
 		C.worth = rand(low_price, top_price) //Rand conveniently produces integers
 		C.update_icon()
 

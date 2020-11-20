@@ -11,7 +11,7 @@
 	sharp = FALSE
 	edge = FALSE
 	bad_type = /obj/item/weapon/material
-
+	spawn_tags = SPAWN_TAG_WEAPON
 	var/applies_material_colour = 1
 	var/unbreakable
 	var/force_divisor = 1

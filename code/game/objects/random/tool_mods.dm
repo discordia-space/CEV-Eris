@@ -13,7 +13,7 @@
 /obj/spawner/tool_upgrade/rare
 	name = "random rare tool upgrade"
 	icon_state = "tech-red"
-	tags_to_spawn = list(SPAWN_RARE_TOOL_UPGRADE)
+	tags_to_spawn = list(SPAWN_TOOL_UPGRADE_RARE)
 
 /obj/spawner/tool_upgrade/rare/low_chance
 	name = "low chance random rare tool upgrade"

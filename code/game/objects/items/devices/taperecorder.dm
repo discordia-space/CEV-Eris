@@ -6,6 +6,10 @@
 	w_class = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	flags = CONDUCT
+	throwforce = WEAPON_FORCE_HARMLESS
+	throw_speed = 4
+	throw_range = 20
 
 	var/emagged = 0
 	var/recording = 0
@@ -14,12 +18,8 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/mydrive
 	var/datum/computer_file/data/audio/audio_file
 	var/starting_drive_type = /obj/item/weapon/computer_hardware/hard_drive/portable
-	var/datum/wires/taperecorder/wires = null // Wires datum
+	var/datum/wires/taperecorder/wires // Wires datum
 	var/open_panel = 0
-	flags = CONDUCT
-	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 4
-	throw_range = 20
 
 /obj/item/device/taperecorder/New()
 	..()
@@ -254,7 +254,7 @@
 		audio_file.used_capacity = 0
 		if(show_message)
 			to_chat(usr, SPAN_NOTICE("File cleared."))
-	
+
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
 

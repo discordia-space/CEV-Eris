@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/matter
+	bad_type = /obj/item/weapon/gun/matter
 	var/max_stored_matter = 30
 	var/stored_matter = 0
 	var/matter_type

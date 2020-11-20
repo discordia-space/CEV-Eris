@@ -1,8 +1,4 @@
 /obj/item/weapon/melee/energy
-	var/active = 0
-	var/active_force
-	var/active_throwforce
-	var/active_w_class
 	sharp = FALSE
 	edge = FALSE
 	armor_penetration = ARMOR_PEN_HALF
@@ -10,6 +6,11 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
 	embed_mult = 0 //No physical matter to catch onto things
+	bad_type = /obj/item/weapon/melee/energy
+	var/active = 0
+	var/active_force
+	var/active_throwforce
+	var/active_w_class
 
 /obj/item/weapon/melee/energy/is_hot()
 	if (active)
@@ -109,10 +110,10 @@
 	..()
 	deactivate(user)
 
-/obj/item/weapon/melee/energy/sword/New()
+/obj/item/weapon/melee/energy/sword/Initialize(mapload)
+	. = ..()
 	if(!blade_color)
 		blade_color = pick("red","blue","green","purple")
-	..()
 
 /obj/item/weapon/melee/energy/sword/green
 	blade_color = "green"
@@ -195,14 +196,15 @@
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/cleanup = TRUE	// Should the blade despawn moments after being discarded by the summoner?
+	var/init_procees = TRUE
 
-/obj/item/weapon/melee/energy/blade/New()
-	..()
-	spark_system = new /datum/effect/effect/system/spark_spread()
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
-
-	START_PROCESSING(SSobj, src)
+/obj/item/weapon/melee/energy/blade/Initialize(mapload)
+	. = ..()
+	if(init_procees)
+		spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/melee/energy/blade/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -235,7 +237,6 @@
 
 /obj/item/weapon/melee/energy/blade/organ_module //just to make sure that blade doesnt delet itself
 	cleanup = FALSE
+	init_procees = FALSE
 
-/obj/item/weapon/melee/energy/blade/organ_module/New()
-
-/obj/item/weapon/melee/energy/blade/organ_module/attack_self(mob/user as mob)
+/obj/item/weapon/melee/energy/blade/organ_module/attack_self(mob/user)
