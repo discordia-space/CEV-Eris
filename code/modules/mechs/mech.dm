@@ -12,6 +12,7 @@
 	mob_size = MOB_LARGE
 	can_be_fed = 0
 	defaultHUD = "exosuits"
+	bad_type = /mob/living/exosuit
 
 	var/initial_icon
 

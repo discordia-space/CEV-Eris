@@ -12,8 +12,8 @@
 	var/is_caseless = FALSE
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/projectile_type					//The bullet type to create when New() is called
-	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
-	var/spent_icon = null
+	var/obj/item/projectile/BB			//The loaded bullet - make it so that the projectiles are created only when needed?
+	var/spent_icon
 	var/amount = 1
 	var/maxamount = 15
 	var/reload_delay = 0
@@ -161,6 +161,10 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 10
+	bad_type = /obj/item/ammo_magazine
 
 	var/ammo_color = ""		//For use in modular sprites
 

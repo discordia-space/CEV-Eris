@@ -1,0 +1,1 @@
+/obj/structure/closet/coffin/spawnercorpse    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

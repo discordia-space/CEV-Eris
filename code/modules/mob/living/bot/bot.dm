@@ -6,6 +6,7 @@
 	layer = MOB_LAYER
 	universal_speak = 1
 	density = FALSE
+	bad_type = /mob/living/bot
 	var/obj/item/weapon/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = TRUE

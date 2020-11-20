@@ -1,19 +1,19 @@
-/obj/structure/reagent_dispensers/biomatter/large    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/biomatter    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/watertank/derelict    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/watertank/huge/derelict    blacklisted=1    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/watertank/huge    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/watertank    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/fueltank/derelict    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/fueltank/huge/derelict    blacklisted=1    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/fueltank/huge    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/fueltank    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/peppertank    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/water_cooler    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/beerkeg    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/cahorsbarrel    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/virusfood    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/acid    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/bidon/advanced    blacklisted=0    spawn_value=1.66667    price_tag=5   100    
-/obj/structure/reagent_dispensers/bidon    blacklisted=0    spawn_value=6.66667    price_tag=5   100    
-/obj/structure/reagent_dispensers/coolanttank    blacklisted=0    spawn_value=10    price_tag=5   100    
+/obj/structure/reagent_dispensers/biomatter/large    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/biomatter    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/derelict    blacklisted=1    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/huge/derelict    blacklisted=1    spawn_value=3.06729   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/huge    blacklisted=0    spawn_value=3.06729   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/derelict    blacklisted=1    spawn_value=7.75008   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/huge/derelict    blacklisted=1    spawn_value=3.01167   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/huge    blacklisted=0    spawn_value=3.01167   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank    blacklisted=0    spawn_value=7.75008   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/peppertank    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/water_cooler    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/beerkeg    blacklisted=1    spawn_value=7.76695   spawn_price=750   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/cahorsbarrel    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/virusfood    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/acid    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/bidon/advanced    blacklisted=0    spawn_value=1.64747   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/bidon    blacklisted=0    spawn_value=6.36984   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/coolanttank    blacklisted=0    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing

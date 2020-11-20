@@ -18,7 +18,7 @@
 	rarity_value = 25
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 
-/obj/item/weapon/weldpack/Initialize()
+/obj/item/weapon/weldpack/Initialize(mapload)
 	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)
 	. = ..()

@@ -220,7 +220,8 @@
 		return 1
 	return 0
 
-/obj/item/weapon/holo/esword/New()
+/obj/item/weapon/holo/esword/Initialize(mapload)
+	. = ..()
 	if(!item_color)
 		item_color = pick("red","blue","green","purple")
 

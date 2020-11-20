@@ -1,12 +1,12 @@
-/obj/item/toy/figure/excelsior    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/serbian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/acolyte    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/carrion    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/roach    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/vagabond    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/rooster    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/barking_dog    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/red_soldier    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/metacat    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/shitcurity    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/figure/metro_patrolman    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/toy/figure/excelsior    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/acolyte    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/carrion    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/roach    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/vagabond    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/rooster    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/barking_dog    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/red_soldier    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/metacat    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/shitcurity    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/figure/metro_patrolman    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

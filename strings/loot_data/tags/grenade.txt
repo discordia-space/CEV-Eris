@@ -1,2 +1,2 @@
-/obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner    blacklisted=0    spawn_value=4    price_tag=50   100    
-/obj/item/weapon/grenade/chem_grenade/cleaner    blacklisted=0    spawn_value=4    price_tag=50   100    
+/obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner    blacklisted=0    spawn_value=3.74546   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/grenade/chem_grenade/cleaner    blacklisted=0    spawn_value=3.74546   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

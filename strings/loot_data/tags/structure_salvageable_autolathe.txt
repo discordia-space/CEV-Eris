@@ -1,1 +1,1 @@
-/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13    price_tag=0   100    
+/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

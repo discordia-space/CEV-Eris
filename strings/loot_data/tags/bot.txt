@@ -1,4 +1,4 @@
-/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10    price_tag=0   100    
+/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

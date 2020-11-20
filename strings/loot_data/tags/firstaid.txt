@@ -1,8 +1,8 @@
-/obj/item/weapon/storage/firstaid/fire    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/regular    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/toxin    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/o2    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/adv    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/combat    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/surgery/traitor    blacklisted=1    spawn_value=1.11111    price_tag=0   100    
-/obj/item/weapon/storage/firstaid/surgery    blacklisted=0    spawn_value=1.11111    price_tag=0   100    
+/obj/item/weapon/storage/firstaid/fire    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/regular    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/toxin    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/o2    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/adv    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/combat    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/surgery/traitor    blacklisted=1    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/firstaid/surgery    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

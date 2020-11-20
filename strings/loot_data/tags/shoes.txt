@@ -1,33 +1,33 @@
-/obj/item/clothing/shoes/color/black    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/white    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/green    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/yellow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/purple    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/brown    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/rainbow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/color/orange    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/shoes/galoshes    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/shoes/jackboots/ironhammer    blacklisted=1    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/jackboots/german    blacklisted=0    spawn_value=1.5015    price_tag=30   100    
-/obj/item/clothing/shoes/jackboots/neotheology    blacklisted=1    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/jackboots    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/reinforced/ironhammer    blacklisted=1    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/reinforced/medical    blacklisted=1    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/reinforced    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/workboots    blacklisted=0    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/shoes/magboots/merc    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/magboots    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/syndigaloshes    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/mime    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/sandal/marisa    blacklisted=1    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/sandal    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/clown_shoes    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/cult    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/cyborg    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/slippers    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/slippers_worn    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/swimmingfins    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/leather    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
+/obj/item/clothing/shoes/color/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/white    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/yellow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/purple    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/brown    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/rainbow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/color/orange    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/galoshes    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/jackboots/ironhammer    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/jackboots/german    blacklisted=0    spawn_value=1.46892   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/jackboots/neotheology    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/jackboots    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/reinforced/ironhammer    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/reinforced/medical    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/reinforced    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/workboots    blacklisted=0    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/magboots/merc    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/magboots    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/syndigaloshes    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/mime    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/sandal/marisa    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/sandal    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/clown_shoes    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/cult    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/cyborg    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/slippers    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/slippers_worn    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/swimmingfins    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/leather    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

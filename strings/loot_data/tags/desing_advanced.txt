@@ -1,40 +1,40 @@
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools    blacklisted=0    spawn_value=20    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo    blacklisted=0    spawn_value=5    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lamia    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone    blacklisted=0    spawn_value=5.88235    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor    blacklisted=0    spawn_value=5.88235    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall    blacklisted=0    spawn_value=4    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon    blacklisted=0    spawn_value=3.0003    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad    blacklisted=0    spawn_value=1.11111    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun    blacklisted=0    spawn_value=2    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof    blacklisted=0    spawn_value=6.66667    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/ablative    blacklisted=0    spawn_value=6.25    price_tag=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic    blacklisted=0    spawn_value=8.33333    price_tag=25   100    
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools    blacklisted=0    spawn_value=8.06586   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo    blacklisted=0    spawn_value=4.67335   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lamia    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone    blacklisted=0    spawn_value=5.43539   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor    blacklisted=0    spawn_value=5.43539   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon    blacklisted=0    spawn_value=2.87953   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad    blacklisted=0    spawn_value=1.09412   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun    blacklisted=0    spawn_value=1.9456   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof    blacklisted=0    spawn_value=6.09833   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/ablative    blacklisted=0    spawn_value=5.74781   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic    blacklisted=0    spawn_value=7.46383   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
