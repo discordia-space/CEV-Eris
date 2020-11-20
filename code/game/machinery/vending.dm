@@ -1467,8 +1467,8 @@
 					)
 	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
-          			/obj/item/weapon/storage/deferred/crate/uniform_green = 2000,
-          			/obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
+					/obj/item/weapon/storage/deferred/crate/uniform_green = 2000,
+					/obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000,
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
@@ -1477,6 +1477,20 @@
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
+
+/obj/machinery/vending/politi
+	name = "Politi-Vend"
+	desc = "Remembering the brave past is just the next step into the future! Though, it's usually those in the present writing the past."
+	product_slogans = "Mr. Customer, get down - with our prices!"
+	product_ads = "HOPE;Uuuuhh-uh-uh.;I approve this message."
+	icon_state = "neko"
+	products = list(/obj/item/clothing/head/kitty = 10,
+					/obj/item/clothing/under/schoolgirl = 20,
+					/obj/item/clothing/head/rabbitears = 10)
+	prices = list(/obj/item/clothing/head/kitty = 0,
+					/obj/item/clothing/under/schoolgirl = 0,
+					/obj/item/clothing/head/rabbitears = 0
+					)
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
