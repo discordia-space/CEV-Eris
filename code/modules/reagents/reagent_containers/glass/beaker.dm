@@ -110,7 +110,7 @@
 	desc = "A small plastic vial."
 	icon_state = "vial_plastic"
 	matter = list(MATERIAL_PLASTIC = 1)
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
 	name = "berry vape vial"
