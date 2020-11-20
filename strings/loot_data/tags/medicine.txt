@@ -1,23 +1,22 @@
-/obj/item/weapon/storage/pill_bottle/antitox    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/bicaridine    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/dexalin_plus    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/dermaline    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/dylovene    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/inaprovaline    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/kelotane    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/spaceacillin    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/tramadol    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/citalopram    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/prosurgeon    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/pill_bottle/dice    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/reagent_containers/syringe/inaprovaline    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    spawn_value=6.66667    price_tag=20   100    
-/obj/item/weapon/reagent_containers/syringe/spaceacillin    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/stack/medical/bruise_pack/handmade    blacklisted=1    spawn_value=20    price_tag=10   100    
-/obj/item/stack/medical/bruise_pack    blacklisted=0    spawn_value=20    price_tag=10   100    
-/obj/item/stack/medical/ointment    blacklisted=0    spawn_value=20    price_tag=10   100    
-/obj/item/stack/medical/advanced/bruise_pack    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/stack/medical/advanced/ointment    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/stack/medical/splint    blacklisted=0    spawn_value=5    price_tag=10   100    
-/obj/item/stack/nanopaste    blacklisted=0    spawn_value=5    price_tag=15   100    
+/obj/item/weapon/storage/pill_bottle/antitox    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/bicaridine    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/dexalin_plus    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/dermaline    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/dylovene    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/inaprovaline    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/kelotane    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/spaceacillin    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/tramadol    blacklisted=0    spawn_value=5.83222   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/citalopram    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/pill_bottle/prosurgeon    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/inaprovaline    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    spawn_value=6.13458   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/spaceacillin    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/bruise_pack/handmade    blacklisted=1    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/bruise_pack    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/ointment    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/advanced/bruise_pack    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/advanced/ointment    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/splint    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/nanopaste    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1,61 +1,60 @@
-/obj/item/clothing/mask/smokable/cigarette/dromedaryco    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette/killthroat    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette/homeless    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette/cigar/havana    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette/cigar    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/cigarette    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/pipe/cobpipe    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable/pipe    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/smokable    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/vape/better    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/vape    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/mask/balaclava/tactical    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/balaclava    blacklisted=0    spawn_value=7.50188    price_tag=30   100    
-/obj/item/clothing/mask/luchador/tecnicos    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/mask/luchador/rudos    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/mask/luchador    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/mask/breath/medical    blacklisted=0    spawn_value=2.5    price_tag=30   100    
-/obj/item/clothing/mask/breath    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/gas/plaguedoctor    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/swat    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/gas/ihs    blacklisted=0    spawn_value=5    price_tag=40   100    
-/obj/item/clothing/mask/gas/syndicate    blacklisted=1    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/gas/clown_hat    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/clothing/mask/gas/sexyclown    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/mime    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/monkeymask    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/sexymime    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/death_commando    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/cyborg    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/gas/owl_mask    blacklisted=0    spawn_value=1    price_tag=20   100    
-/obj/item/clothing/mask/gas/german    blacklisted=0    spawn_value=1    price_tag=20   100    
-/obj/item/clothing/mask/gas/voice    blacklisted=0    spawn_value=1    price_tag=20   100    
-/obj/item/clothing/mask/gas    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/clothing/mask/muzzle/tape    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/mask/muzzle    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/mask/surgical    blacklisted=0    spawn_value=4    price_tag=10   100    
-/obj/item/clothing/mask/fakemoustache    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/snorkel    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/scarf/stripedblue    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/red    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/stripedred    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/redwhite    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/green    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/stripedgreen    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf/ninja    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/scarf    blacklisted=0    spawn_value=1    price_tag=50   100    
-/obj/item/clothing/mask/pig    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/horsehead    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/ai    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/mask/bandana/red    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/blue    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/green    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/gold    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/orange    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/purple    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/botany    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/camo    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana/skull    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
-/obj/item/clothing/mask/bandana    blacklisted=0    spawn_value=5.49451    price_tag=20   100    
+/obj/item/clothing/mask/smokable/cigarette/dromedaryco    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette/killthroat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette/homeless    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette/cigar/havana    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette/cigar    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/cigarette    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/pipe/cobpipe    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/smokable/pipe    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/vape/better    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/vape    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/balaclava/tactical    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/balaclava    blacklisted=0    spawn_value=6.75351   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/luchador/tecnicos    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/luchador/rudos    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/luchador    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/breath/medical    blacklisted=0    spawn_value=2.40708   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/breath    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/plaguedoctor    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/swat    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/ihs    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/syndicate    blacklisted=1    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/clown_hat    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/sexyclown    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/mime    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/monkeymask    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/sexymime    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/death_commando    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/cyborg    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/owl_mask    blacklisted=0    spawn_value=0.987157   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/german    blacklisted=0    spawn_value=0.987157   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/voice    blacklisted=0    spawn_value=0.987157   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/muzzle/tape    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/muzzle    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/surgical    blacklisted=0    spawn_value=3.84615   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/fakemoustache    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/snorkel    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/stripedblue    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/red    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/stripedred    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/redwhite    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/green    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/stripedgreen    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf/ninja    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/scarf    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/pig    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/horsehead    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/ai    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/red    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/blue    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/green    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/gold    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/orange    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/purple    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/botany    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/camo    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana/skull    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/bandana    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

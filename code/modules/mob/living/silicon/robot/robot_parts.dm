@@ -8,6 +8,7 @@
 	slot_flags = SLOT_BELT
 	dir = SOUTH
 	matter = list(MATERIAL_STEEL = 15)
+	bad_type = /obj/item/robot_parts
 	var/body_part = "part"
 
 /obj/item/robot_parts/set_dir()

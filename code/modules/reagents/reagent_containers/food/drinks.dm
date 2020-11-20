@@ -9,8 +9,9 @@
 	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
 	volume = 50
-	var/base_name = null // Name to put in front of drinks, i.e. "[base_name] of [contents]"
-	var/base_icon = null // Base icon name for fill states
+	bad_type = /obj/item/weapon/reagent_containers/food/drinks
+	var/base_name // Name to put in front of drinks, i.e. "[base_name] of [contents]"
+	var/base_icon // Base icon name for fill states
 
 /obj/item/weapon/reagent_containers/food/drinks/Initialize()
 	. = ..()
@@ -60,7 +61,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/update_icon()
 	cut_overlays()
-	if(reagents.total_volume)
+	if(reagents && reagents.total_volume)
 		if(base_name)
 			var/datum/reagent/R = reagents.get_master_reagent()
 			SetName("[base_name] of [R.glass_name ? R.glass_name : "something"]")
@@ -193,7 +194,7 @@
 	center_of_mass = list("x"=16, "y"=12)
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/update_icon()
-	if(reagents.total_volume)
+	if(reagents && reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"

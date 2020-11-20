@@ -12,6 +12,7 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 	matter = list(MATERIAL_BIOMATTER = 1)
+	bad_type = /obj/item/weapon/reagent_containers/pill
 
 /obj/item/weapon/reagent_containers/pill/Initialize()
 	. = ..()

@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/desc
 	var/reward = 0
 	var/completed = FALSE
-	var/datum/mind/completed_by = null
+	var/datum/mind/completed_by
 	var/unique = FALSE
 
 /datum/antag_contract/proc/can_place()

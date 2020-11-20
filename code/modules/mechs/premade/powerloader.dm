@@ -84,14 +84,11 @@
 	name = "S.E.U. \"Firestarter\""
 	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
-	spawn_blacklisted = TRUE
 
 /mob/living/exosuit/premade/powerloader/flames_blue
 	name = "S.E.U. \"Burning Chrome\""
 	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
-	spawn_blacklisted = TRUE
-
 
 /mob/living/exosuit/premade/powerloader/firefighter
 	name = "S.E.U. \"Firefighter\""

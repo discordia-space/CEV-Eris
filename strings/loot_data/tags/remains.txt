@@ -1,5 +1,5 @@
-/obj/item/remains/human    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/remains/xeno    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/item/remains/robot    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/remains/mouse    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/remains/lizard    blacklisted=0    spawn_value=5    price_tag=0   100    
+/obj/item/remains/human    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/remains/xeno    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/remains/robot    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/remains/mouse    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/remains/lizard    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -8,6 +8,7 @@
 
 /obj/item/ai_verbs
 	name = "AI verb holder"
+	spawn_tags = null
 
 /obj/item/ai_verbs/verb/hardsuit_interface()
 	set category = "Hardsuit"

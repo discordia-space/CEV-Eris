@@ -1,4 +1,0 @@
-/obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner    blacklisted=0    spawn_value=4    price_tag=50   100    
-/obj/item/weapon/grenade/chem_grenade/cleaner    blacklisted=0    spawn_value=4    price_tag=50   100    
-/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=6.0241    price_tag=200   100    

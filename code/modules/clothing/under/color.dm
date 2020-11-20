@@ -83,7 +83,7 @@
 	desc = "aqua"
 	icon_state = "aqua"
 	item_state = "b_suit"
-	style = 2
+	style = STYLE_HIGH
 
 
 /obj/item/clothing/under/purple

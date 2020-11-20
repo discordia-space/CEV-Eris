@@ -1,3 +1,3 @@
-/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1,7 +1,7 @@
-/obj/item/device/assembly/igniter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/infra    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/mousetrap    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/prox_sensor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/signaler    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/timer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly/voice    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/device/assembly/igniter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/infra    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/mousetrap    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/prox_sensor    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/signaler    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/timer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/voice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
