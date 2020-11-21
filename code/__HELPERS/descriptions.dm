@@ -16,19 +16,19 @@
 
 //For Artist project,
 /proc/get_artwork_description()
-	var/list/art_description_types = file2list("config/names/art_types.txt")
-	//var/list/art_description_object_creatures_plural = file2list("config/name/art_ceatures_names_plural.txt")
-	var/list/art_description_locations = file2list("config/descriptions/art_locations.txt")
-	var/list/art_description_locations_descriptors = file2list("config/descriptions/art_locations_descriptors.txt")
-	var/list/art_description_locations_specifics = file2list("config/descriptions/art_locations_specifics.txt")
-	var/list/art_description_objectssubjects = file2list("config/names/art_objectsubject.txt")
-	var/list/art_description_subject_actions = file2list("config/descriptions/art_subject_actions.txt")
-	var/list/art_description_object_actions = file2list("config/descriptions/art_object_actions.txt")
-	var/list/art_description_objectsubject_actions = file2list("config/descriptions/art_objectsubject_actions.txt")
-	var/list/art_description_objectsubject_actions_present = file2list("config/descriptions/art_objectsubject_actions_present.txt")
-	var/list/art_description_objectsubject_states = file2list("config/descriptions/art_objectsubject_states.txt")
-	var/list/art_description_style_descriptors = file2list("config/descriptions/art_style_descriptors.txt")
-	var/list/art_description_themes = file2list("config/descriptions/art_themes.txt")
+	var/list/art_description_types = file2list("strings/artist_strings/names/art_types.txt")
+	//var/list/art_description_object_creatures_plural = file2list("strings/artist_strings/name/art_ceatures_names_plural.txt")
+	var/list/art_description_locations = file2list("strings/artist_strings/descriptions/art_locations.txt")
+	var/list/art_description_locations_descriptors = file2list("strings/artist_strings/descriptions/art_locations_descriptors.txt")
+	var/list/art_description_locations_specifics = file2list("strings/artist_strings/descriptions/art_locations_specifics.txt")
+	var/list/art_description_objectssubjects = file2list("strings/artist_strings/names/art_objectsubject.txt")
+	var/list/art_description_subject_actions = file2list("strings/artist_strings/descriptions/art_subject_actions.txt")
+	var/list/art_description_object_actions = file2list("strings/artist_strings/descriptions/art_object_actions.txt")
+	var/list/art_description_objectsubject_actions = file2list("strings/artist_strings/descriptions/art_objectsubject_actions.txt")
+	var/list/art_description_objectsubject_actions_present = file2list("strings/artist_strings/descriptions/art_objectsubject_actions_present.txt")
+	var/list/art_description_objectsubject_states = file2list("strings/artist_strings/descriptions/art_objectsubject_states.txt")
+	var/list/art_description_style_descriptors = file2list("strings/artist_strings/descriptions/art_style_descriptors.txt")
+	var/list/art_description_themes = file2list("strings/artist_strings/descriptions/art_themes.txt")
 
 	var/object = pick(pick(art_description_objectssubjects),get_artwork_crew_name())
 	var/subject = pick(pick(art_description_objectssubjects),get_artwork_crew_name())
@@ -78,10 +78,10 @@
 	return description
 
 /proc/get_statue_description()
-	var/list/art_description_type_actions_statue = file2list("config/descriptions/art_type_actions_statue.txt")
-	var/list/art_description_sculpting_method_descriptors = file2list("config/descriptions/art_sculpting_method_descriptors.txt")
-	var/list/art_description_type_ofs_statue = file2list("config/descriptions/art_type_ofs_statue.txt")
-	var/list/art_description_types_statue = file2list("config/names/art_types_statue.txt")
+	var/list/art_description_type_actions_statue = file2list("strings/artist_strings/descriptions/art_type_actions_statue.txt")
+	var/list/art_description_sculpting_method_descriptors = file2list("strings/artist_strings/descriptions/art_sculpting_method_descriptors.txt")
+	var/list/art_description_type_ofs_statue = file2list("strings/artist_strings/descriptions/art_type_ofs_statue.txt")
+	var/list/art_description_types_statue = file2list("strings/artist_strings/names/art_types_statue.txt")
 
 	var/description_artwork_statue = ""
 	var/description_artwork_statue_verb = "[pick("This","The")] [pick(art_description_types_statue)] [pick(art_description_type_actions_statue)] [pick("",pick(art_description_type_ofs_statue))]"
@@ -92,8 +92,8 @@
 	return description_statue
 
 //gung descritions for artist
-GLOBAL_LIST_INIT(art_description_type_ofs_gun, file2list("config/descriptions/art_type_ofs_gun.txt"))
-GLOBAL_LIST_INIT(art_description_type_actions_gun, file2list("config/descriptions/art_type_actions_gun.txt"))
+GLOBAL_LIST_INIT(art_description_type_ofs_gun, file2list("strings/artist_strings/descriptions/art_type_ofs_gun.txt"))
+GLOBAL_LIST_INIT(art_description_type_actions_gun, file2list("strings/artist_strings/descriptions/art_type_actions_gun.txt"))
 
 /proc/get_gun_description()
 	var/description_artwork_gun = ""

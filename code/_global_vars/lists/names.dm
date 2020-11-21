@@ -17,5 +17,5 @@ GLOBAL_LIST_EMPTY(in_character_filter)
 
 
 //Weapon names for artist
-GLOBAL_LIST_INIT(art_weapon_first_names, file2list("config/names/art_weapon_first.txt"))
-GLOBAL_LIST_INIT(art_weapon_second_names, file2list("config/names/art_weapon_second.txt"))
+GLOBAL_LIST_INIT(art_weapon_first_names, file2list("strings/artist_strings/names/art_weapon_first.txt"))
+GLOBAL_LIST_INIT(art_weapon_second_names, file2list("strings/artist_strings/names/art_weapon_second.txt"))
