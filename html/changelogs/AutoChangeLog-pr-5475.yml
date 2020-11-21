@@ -1,9 +1,0 @@
-author: soslow4u
-delete-after: true
-changes:
-  - rscadd: Two new litanies under Priest tab
-  - rscadd: 'Manifestation litany: build NT machinery and some other items with your
-      faith and raw materials.'
-  - rscadd: 'Divine Guidance litany: check construction requirements for Manifestation.'
-  - rscdel: Removed NT-related circuitboards, upgrades via RnD and ability to dismantle
-      NT machines. Be wise about your constructions

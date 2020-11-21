@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - rscadd: a chemical that can rejuvenate objects.
-  - refactor: oldificator code
-  - tweak: the probability of finding old items in trash piles increases to 80.
-  - tweak: the price of the items affects their spawn frequency.
