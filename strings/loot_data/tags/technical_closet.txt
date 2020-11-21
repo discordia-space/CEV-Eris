@@ -1,4 +1,0 @@
-/obj/structure/closet/emcloset/legacy    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/closet/emcloset    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/closet/firecloset    blacklisted=0    spawn_value=66.6667    price_tag=0   100    
-/obj/structure/closet/toolcloset    blacklisted=0    spawn_value=66.6667    price_tag=0   100    

@@ -20,13 +20,13 @@
 	min_air_pressure = 0
 	min_bodytemperature = 0
 
-	spawn_tags = SPAWN_TAG_NANITE_ROACH
+	spawn_tags = SPAWN_TAG_ROACH_NANITE
 	rarity_value = 22.5
 
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 
-/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
 	. = ..()
 
 	if(isliving(A))

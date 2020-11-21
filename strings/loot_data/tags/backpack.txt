@@ -1,51 +1,51 @@
-/obj/item/weapon/storage/backpack/holding    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/purple/scientist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/purple    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/blue/geneticist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/green/virologist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/orange/chemist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/botanist    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/captain    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/storage/backpack/industrial    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/medical    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/security    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/clown    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/ironhammer    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/storage/backpack/neotheology    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/storage/backpack/military    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/purple    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/botanist    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/ironhammer    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport/neotheology    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/storage/backpack/sport    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/purple/scientist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/purple    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/blue/geneticist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/green/virologist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/orange/chemist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/botanist    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/captain    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/industrial    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/medical    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/security    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/leather/withwallet    blacklisted=0    spawn_value=24.0385    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/leather    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/ironhammer    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/neotheology    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel/military    blacklisted=0    spawn_value=12.0048    price_tag=0   100    
-/obj/item/weapon/storage/backpack/satchel    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/backpack/duffelbag    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/storage/backpack/chameleon    blacklisted=1    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/storage/backpack    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/storage/backpack/holding    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/white    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/purple/scientist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/purple    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/blue/geneticist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/blue    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/green/virologist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/green    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/orange/chemist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/orange    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/botanist    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/captain    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/industrial    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/medical    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/security    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/clown    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/ironhammer    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/neotheology    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/military    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/white    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/purple    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/blue    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/green    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/orange    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/botanist    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/ironhammer    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport/neotheology    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/sport    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/white    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/purple/scientist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/purple    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/blue/geneticist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/blue    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/green/virologist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/green    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/orange/chemist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/orange    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/botanist    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/captain    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/industrial    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/medical    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/security    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/leather/withwallet    blacklisted=0    spawn_value=24.0385   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/leather    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/ironhammer    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/neotheology    blacklisted=0    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel/military    blacklisted=0    spawn_value=12.0048   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/satchel    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/duffelbag    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack/chameleon    blacklisted=1    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/backpack    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

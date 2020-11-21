@@ -131,7 +131,7 @@
 		set_light(2)
 	else
 		set_light(0)
-		if(reagents.total_volume)
+		if(reagents && reagents.total_volume)
 			icon_state = icon_state_full
 		else
 			icon_state = icon_state_empty

@@ -1,4 +1,4 @@
-/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

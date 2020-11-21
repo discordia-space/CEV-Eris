@@ -1,4 +1,4 @@
-/obj/item/clothing/accessory/holster/armpit    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/accessory/holster/waist    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/accessory/holster/hip    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/accessory/holster    blacklisted=0    spawn_value=10    price_tag=200   100    
+/obj/item/clothing/accessory/holster/armpit    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/accessory/holster/waist    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/accessory/holster/hip    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/accessory/holster    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing

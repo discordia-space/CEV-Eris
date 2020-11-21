@@ -1,0 +1,2 @@
+/obj/structure/mine/mine_no_primer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/mine/mine_scraps    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

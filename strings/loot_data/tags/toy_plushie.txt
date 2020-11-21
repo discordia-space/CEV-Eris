@@ -1,8 +1,8 @@
-/obj/item/toy/plushie/mouse    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/kitten    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/lizard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/plushie/spider    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/ian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/drone    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/carp    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/beepsky    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/toy/plushie/mouse    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/kitten    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/lizard    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/toy/plushie/spider    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/ian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/drone    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/carp    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/beepsky    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

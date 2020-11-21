@@ -63,7 +63,7 @@
 	var/max_beakers = 3
 	var/dart_reagent_amount = 15
 	var/beaker_type = /obj/item/weapon/reagent_containers/glass/beaker
-	var/list/starting_chems = null
+	var/list/starting_chems
 
 /obj/item/weapon/gun/projectile/dartgun/New()
 	..()

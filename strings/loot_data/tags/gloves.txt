@@ -1,30 +1,30 @@
-/obj/item/clothing/gloves/color/white    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/yellow    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/orange    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/red    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/rainbow    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/blue    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/purple    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/green    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/grey    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/light_brown    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/color/brown    blacklisted=0    spawn_value=33.3333    price_tag=30   100    
-/obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/gloves/boxing/green    blacklisted=0    spawn_value=9.09091    price_tag=30   100    
-/obj/item/clothing/gloves/boxing/blue    blacklisted=0    spawn_value=9.09091    price_tag=30   100    
-/obj/item/clothing/gloves/boxing/yellow    blacklisted=0    spawn_value=9.09091    price_tag=30   100    
-/obj/item/clothing/gloves/boxing/hologlove    blacklisted=0    spawn_value=9.09091    price_tag=30   100    
-/obj/item/clothing/gloves/boxing    blacklisted=0    spawn_value=9.09091    price_tag=30   100    
-/obj/item/clothing/gloves/captain    blacklisted=0    spawn_value=1.0101    price_tag=500   100    
-/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=6.0241    price_tag=200   100    
-/obj/item/clothing/gloves/thick    blacklisted=0    spawn_value=5.12821    price_tag=100   100    
-/obj/item/clothing/gloves/security/ironhammer    blacklisted=1    spawn_value=2.0202    price_tag=100   100    
-/obj/item/clothing/gloves/security/tactical    blacklisted=0    spawn_value=1.0101    price_tag=500   100    
-/obj/item/clothing/gloves/security    blacklisted=0    spawn_value=2.0202    price_tag=100   100    
-/obj/item/clothing/gloves/latex/nitrile    blacklisted=1    spawn_value=9.09091    price_tag=50   100    
-/obj/item/clothing/gloves/latex    blacklisted=0    spawn_value=9.09091    price_tag=50   100    
-/obj/item/clothing/gloves/botanic_leather    blacklisted=0    spawn_value=3.0303    price_tag=50   100    
-/obj/item/clothing/gloves/fingerless    blacklisted=0    spawn_value=1.11111    price_tag=10   100    
-/obj/item/clothing/gloves/german    blacklisted=0    spawn_value=3.0303    price_tag=30   100    
-/obj/item/clothing/gloves/stungloves    blacklisted=0    spawn_value=1.0101    price_tag=500   100    
+/obj/item/clothing/gloves/color/white    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/yellow    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/orange    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/red    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/rainbow    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/blue    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/purple    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/green    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/grey    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/light_brown    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/color/brown    blacklisted=0    spawn_value=22.3358   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/boxing/green    blacklisted=0    spawn_value=8.01467   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/boxing/blue    blacklisted=0    spawn_value=8.01467   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/boxing/yellow    blacklisted=0    spawn_value=8.01467   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/boxing/hologlove    blacklisted=0    spawn_value=8.01467   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/boxing    blacklisted=0    spawn_value=8.01467   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/captain    blacklisted=0    spawn_value=0.983294   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=5.29072   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/thick    blacklisted=0    spawn_value=4.65116   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/security/ironhammer    blacklisted=1    spawn_value=1.94175   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/security/tactical    blacklisted=0    spawn_value=0.983294   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/security    blacklisted=0    spawn_value=1.94175   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/latex/nitrile    blacklisted=1    spawn_value=7.87465   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/latex    blacklisted=0    spawn_value=7.87465   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/botanic_leather    blacklisted=0    spawn_value=2.88193   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/fingerless    blacklisted=0    spawn_value=1.0989   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/german    blacklisted=0    spawn_value=2.90047   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/stungloves    blacklisted=0    spawn_value=0.983294   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

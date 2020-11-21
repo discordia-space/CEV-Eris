@@ -25,7 +25,7 @@
 			spawn(3)
 				var/mob/living/carbon/human/H = owner.current
 				if(istype(H))
-					H.change_appearance(APPEARANCE_ALL, H.loc, H, TRUE, list("Human"), state = GLOB.z_state)
+					H.change_appearance(APPEARANCE_ALL, H.loc, H, TRUE, list(SPECIES_HUMAN), state = GLOB.z_state)
 
 	GLOB.current_antags.Add(src)
 	special_init()

@@ -5,8 +5,6 @@
 	item_state = "mindreader"
 	flags_inv = HIDEEARS
 	action_button_name = "Extract Memory"
-	var/self_cooldown = 2 MINUTES
-	var/last_use = 0
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
 		melee = 10,
@@ -16,6 +14,8 @@
 		bio = 0,
 		rad = 0
 	)
+	var/self_cooldown = 2 MINUTES
+	var/last_use = 0
 
 /obj/item/clothing/head/mindreader/ui_action_click()
 	if(ismob(loc))

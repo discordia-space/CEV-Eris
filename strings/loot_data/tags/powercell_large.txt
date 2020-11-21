@@ -1,0 +1,12 @@
+/obj/item/weapon/cell/large/high    blacklisted=0    spawn_value=12.7757   spawn_price=212.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/super    blacklisted=0    spawn_value=8.08037   spawn_price=237.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/hyper    blacklisted=0    spawn_value=4.0164   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/moebius/high    blacklisted=0    spawn_value=11.3155   spawn_price=217.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/moebius/super    blacklisted=0    spawn_value=8.79784   spawn_price=232.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/moebius/hyper    blacklisted=0    spawn_value=4.01781   spawn_price=245   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/moebius/nuclear    blacklisted=0    spawn_value=2.10867   spawn_price=265   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/moebius    blacklisted=0    spawn_value=12.8012   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/excelsior    blacklisted=0    spawn_value=1.08254   spawn_price=237.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/potato    blacklisted=1    spawn_value=18.8585   spawn_price=200.75   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large/slime    blacklisted=1    spawn_value=18.684   spawn_price=225   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/large    blacklisted=0    spawn_value=18.8451   spawn_price=202.5   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1,12 +1,12 @@
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/starkist    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_up    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/tonic    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater    blacklisted=0    spawn_value=10    price_tag=10   100    
+/obj/item/weapon/reagent_containers/food/drinks/cans/cola    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/starkist    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_up    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/tonic    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -200,152 +200,110 @@
 	rarity_value = 10
 	bad_type = /obj/item/weapon/storage/pill_bottle
 	spawn_tags = SPAWN_TAG_MEDICINE
+	var/pill_type
+	var/initial_amt = 7
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"
 	desc = "Contains pills used to counter toxins."
+	pill_type = /obj/item/weapon/reagent_containers/pill/antitox
 
 /obj/item/weapon/storage/pill_bottle/antitox/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/bicaridine
 	name = "bottle of Bicaridine pills"
 	desc = "Contains pills used to stabilize the severely injured."
+	pill_type = /obj/item/weapon/reagent_containers/pill/bicaridine
 
 /obj/item/weapon/storage/pill_bottle/bicaridine/populate_contents()
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
-    new /obj/item/weapon/reagent_containers/pill/bicaridine(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/dexalin_plus
 	name = "bottle of Dexalin Plus pills"
 	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
+	pill_type = /obj/item/weapon/reagent_containers/pill/dexalin_plus
 
 /obj/item/weapon/storage/pill_bottle/dexalin_plus/populate_contents()
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
-    new /obj/item/weapon/reagent_containers/pill/dexalin_plus(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/dermaline
 	name = "bottle of Dermaline pills"
 	desc = "Contains pills used to treat burn wounds."
+	pill_type = /obj/item/weapon/reagent_containers/pill/dermaline
 
 /obj/item/weapon/storage/pill_bottle/dermaline/populate_contents()
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
-    new /obj/item/weapon/reagent_containers/pill/dermaline(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/dylovene
 	name = "bottle of Dylovene pills"
 	desc = "Contains pills used to treat toxic substances in the blood."
+	pill_type = /obj/item/weapon/reagent_containers/pill/dylovene
 
 /obj/item/weapon/storage/pill_bottle/dylovene/populate_contents()
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
-    new /obj/item/weapon/reagent_containers/pill/dylovene(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/inaprovaline
 	name = "bottle of Inaprovaline pills"
 	desc = "Contains pills used to stabilize patients."
+	pill_type = /obj/item/weapon/reagent_containers/pill/inaprovaline
 
 /obj/item/weapon/storage/pill_bottle/inaprovaline/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/pill/inaprovaline(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/kelotane
 	name = "bottle of Kelotane pills"
 	desc = "Contains pills used to treat burns."
+	pill_type = /obj/item/weapon/reagent_containers/pill/kelotane
 
 /obj/item/weapon/storage/pill_bottle/kelotane/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
-	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/spaceacillin
 	name = "bottle of Spaceacillin pills"
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
+	pill_type = /obj/item/weapon/reagent_containers/pill/spaceacillin
 
 /obj/item/weapon/storage/pill_bottle/spaceacillin/populate_contents()
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
-    new /obj/item/weapon/reagent_containers/pill/spaceacillin(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/tramadol
 	name = "bottle of Tramadol pills"
 	desc = "Contains pills used to relieve pain."
 	spawn_tags = SPAWN_TAG_MEDICINE_CONTRABAND
 	rarity_value = 15
+	pill_type = /obj/item/weapon/reagent_containers/pill/tramadol
 
 /obj/item/weapon/storage/pill_bottle/tramadol/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
-	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/citalopram
 	name = "bottle of Citalopram pills"
 	desc = "Contains pills used to stabilize a patient's mood."
+	pill_type = /obj/item/weapon/reagent_containers/pill/citalopram
 
 /obj/item/weapon/storage/pill_bottle/citalopram/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
-	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /obj/item/weapon/storage/pill_bottle/prosurgeon
 	name = "bottle of ProSurgeon pills"
 	desc = "Contains pills used to reduce hand tremor."
+	pill_type = /obj/item/weapon/reagent_containers/pill/prosurgeon
 	rarity_value = 20
 
 /obj/item/weapon/storage/pill_bottle/prosurgeon/populate_contents()
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
-	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
 
 /*
  * Portable Freezers

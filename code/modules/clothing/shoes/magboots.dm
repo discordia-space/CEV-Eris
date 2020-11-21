@@ -5,14 +5,14 @@
 	species_restricted = null
 	force = WEAPON_FORCE_WEAK
 	overslot = 1
-	var/magpulse = 0
-	var/mag_slow = 3
-	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
 	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
-	style = 0
+	style = STYLE_NONE
 	spawn_blacklisted = TRUE
+	var/magpulse = 0
+	var/mag_slow = 3
+	var/icon_base = "magboots"
 
 /obj/item/clothing/shoes/magboots/proc/set_slowdown()
 	var/obj/item/clothing/shoes/shoes = overslot_contents

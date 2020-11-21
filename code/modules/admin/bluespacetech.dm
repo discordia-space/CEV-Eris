@@ -295,7 +295,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "An ID straight from Central Command. This one looks highly classified."
 	spawn_frequency = 0
 
-/obj/item/weapon/card/id/bst/Initialize()
+/obj/item/weapon/card/id/bst/Initialize(mapload)
 	. = ..()
 	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 

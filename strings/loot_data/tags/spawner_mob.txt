@@ -1,20 +1,20 @@
-/obj/spawner/mob/biome_spawner_mob/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/biome_spawner_mob    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster/beacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster/rainbow    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/rainbow    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/assembled    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roomba    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/spawner/mob/biome_spawner_mob/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/biome_spawner_mob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster/beacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster/rainbow    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/rainbow    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/assembled    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roomba    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

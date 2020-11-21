@@ -1,10 +1,13 @@
 /obj/item/weapon/gun/matter
+	bad_type = /obj/item/weapon/gun/matter
 	var/max_stored_matter = 30
 	var/stored_matter = 0
 	var/matter_type
 
 	var/projectile_cost = 1
 	var/projectile_type
+
+	bad_type = /obj/item/weapon/gun/matter
 
 /obj/item/weapon/gun/matter/attackby(obj/item/I, mob/user)
 	var/obj/item/stack/material/M = I

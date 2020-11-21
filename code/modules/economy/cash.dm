@@ -14,6 +14,7 @@
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/weapon/spacecash
 	spawn_tags = null
 	var/access = list()
 	access = access_crate_cash

@@ -185,8 +185,8 @@
 // Used for spawning/debugging.
 /mob/living/exosuit/premade/random/normal
 
-/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
 	..(newloc, source_frame, FALSE, TRUE)
 
-/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
 	..(newloc, source_frame, TRUE)

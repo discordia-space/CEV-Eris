@@ -79,7 +79,7 @@
 		return
 
 /obj/item/weapon/contraband/poster/proc/roll_and_drop()
-	anchored = 0
+	anchored = FALSE
 	pixel_x = 0
 	pixel_y = 0
 	icon = initial(icon)

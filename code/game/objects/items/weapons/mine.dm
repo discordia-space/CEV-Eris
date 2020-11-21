@@ -8,7 +8,7 @@
 	matter_reagents = list("fuel" = 40)
 	layer = BELOW_MOB_LAYER //fixed the wrong layer - Plasmatik
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_ITEM_MINE
+	spawn_tags = SPAWN_TAG_MINE_ITEM
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
