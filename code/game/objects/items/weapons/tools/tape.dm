@@ -41,16 +41,9 @@
 	desc = "A bucket of milky white fluid. Can be used to stick things together, but unlike tape, it cannot be used to seal things."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "glue"
-	w_class = ITEM_SIZE_SMALL
 	tool_qualities = list(QUALITY_ADHESIVE = 40) // Better than duct tape, but can't seal things and is mostly used in crafting
 	matter = list(MATERIAL_BIOMATTER = 30)
 	worksound = NO_WORKSOUND
-	use_stock_cost = 0.15
-	max_stock = 100
-	degradation = 0
-	flags = NOBLUDGEON
-	max_upgrades = 0
-	rarity_value = 3
 
 /obj/item/weapon/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))
