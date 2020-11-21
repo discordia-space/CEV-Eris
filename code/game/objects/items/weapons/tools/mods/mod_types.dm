@@ -632,3 +632,26 @@
 	UPGRADE_ITEMFLAGPLUS = LOUD
 	)
 	I.prefix = "hydraulic"
+	
+// Randomizes a bunch of weapon stats on application - can be re-rolled by re-applying it, but runs the risk of destroying the toolmod
+/obj/item/weapon/tool_upgrade/augment/randomizer
+	name = "BSL \"Randomizer\" tool polish"
+	desc = "This unidentified tar-like liquid warps and bends reality around it. Applying it to a tool may have unexpected results."
+	icon_state = "randomizer"
+	matter = list(MATERIAL_PLASMA = 4, MATERIAL_URANIUM = 4)
+	rarity_value = 80
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
+
+/obj/item/weapon/tool_upgrade/augment/randomizer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_DEGRADATION_MULT = rand(-1,10),
+	UPGRADE_HEALTH_THRESHOLD = rand(-10,10),
+	UPGRADE_WORKSPEED = rand(-1,3),
+	UPGRADE_PRECISION = rand(-20,20),
+	UPGRADE_FORCE_MOD = rand(-20,20),
+	UPGRADE_BULK = rand(-1,2),
+	UPGRADE_COLOR = "#3366ff"
+	)
+	I.prefix = "theoretical"
