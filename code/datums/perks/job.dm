@@ -17,7 +17,7 @@
 /datum/perk/job/artist
 	name = "Artist" //Temporary Description
 	desc = "" //Temporary Description
-	icon_state = "" //Temporary Description
+	icon_state = "venus" //https://game-icons.net/1x1/delapouite/venus-of-willendorf.html#download
 	var/old_max_insight = INFINITY
 	var/old_max_resting = INFINITY
 	var/old_insight_rest_gain_multiplier = 1
