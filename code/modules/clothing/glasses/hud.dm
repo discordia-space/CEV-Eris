@@ -69,6 +69,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their opinion on communism."
 	icon_state = "excelhud"
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/hud/excelsior/process_hud(mob/M)
 	if(is_excelsior(M))
