@@ -37,6 +37,14 @@
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/mining
 
+/decl/hierarchy/outfit/job/cargo/artist
+	name = OUTFIT_JOB_NAME("Guild Artist")
+	uniform = /obj/item/clothing/under/rank/artist
+	shoes = /obj/item/clothing/shoes/artist_shoes
+	mask = /obj/item/clothing/mask/gas/artist_hat
+	l_pocket = /obj/item/weapon/bikehorn
+	backpack_contents = list(/obj/item/weapon/bananapeel = 1, /obj/item/weapon/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/weapon/stamp/clown = 1, /obj/item/weapon/handcuffs/fake = 1)
+
 /decl/hierarchy/outfit/job/cargo/artist/clown
 	name = OUTFIT_JOB_NAME("Guild Clown")
 	uniform = /obj/item/clothing/under/rank/clown

@@ -190,7 +190,7 @@ Character Expectations:<br>\
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	access = list(access_maint_tunnels, access_theatre, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/artist/clown
+	outfit_type = /decl/hierarchy/outfit/job/cargo/artist
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
 		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
@@ -209,6 +209,6 @@ Character Expectations:<br>\
 	loyalties = ""//Temporary description
 
 /obj/landmark/join/start/artist
-	name = "Artist"
+	name = "Guild Artist"
 	icon_state = "player-grey"
 	join_tag = /datum/job/artist

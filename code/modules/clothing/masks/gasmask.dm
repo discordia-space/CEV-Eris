@@ -71,6 +71,28 @@
 	rarity_value = 100
 	spawn_blacklisted = TRUE
 
+/obj/item/clothing/mask/gas/artist_hat
+	name = "Spooky Rebreather"
+	desc = "Wearing this makes you feel awesome - seeing someone else wearing this makes them look like a loser."
+	icon_state = "artist"
+	item_state = "artist_hat"
+	spawn_frequency = 0
+
+/obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)
+	var/list/options = list()
+	options["True Form"] = "artist"
+	options["The clown"] = "clown"
+	options["The Feminist"] = "sexyclown"
+	options["The Madman"] = "joker"
+	options["The Rainbow Color"] ="rainbow"
+
+	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
+
+	if(src && choice && !user.incapacitated() && Adjacent(user))
+		icon_state = options[choice]
+		to_chat(user, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
+		return TRUE
+
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
@@ -79,20 +101,18 @@
 	rarity_value = 20
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
-
-	var/mob/M = usr
 	var/list/options = list()
 	options["True Form"] = "clown"
 	options["The Feminist"] = "sexyclown"
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"
 
-	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
+	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
 
-	if(src && choice && !M.incapacitated() && Adjacent(M))
+	if(src && choice && !user.incapacitated() && Adjacent(user))
 		icon_state = options[choice]
-		to_chat(M, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
-		return 1
+		to_chat(user, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
+		return TRUE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
