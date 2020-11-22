@@ -105,6 +105,7 @@
 	name = "Feathered Beret"
 	desc = "Fit for artists, frenchmen, and eccentric military officers across the cosmos."
 	icon_state = "beret_artist"
+	item_state = "beret_artist"
 	spawn_frequency = 0
 
 //Medical
