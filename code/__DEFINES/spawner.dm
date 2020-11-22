@@ -501,3 +501,5 @@
 #define SPAWN_NEOTHEOLOGY "neotheology"
 #define SPAWN_MOEBIUS "moebius"
 #define SPAWN_SERBIAN "serbian"
+
+#define CHEAP_ITEM_PRICE 800

@@ -2157,7 +2157,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/remains/robot    obj,item,remains    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/remains/mouse    obj,item,remains    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/remains/lizard    obj,item,remains    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/bodybag/cryobag    obj,item    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/bodybag/cryobag    obj,item,medical    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/bodybag    obj,item,medical    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/kit/suit    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/kit/paint/powerloader/flames_red    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

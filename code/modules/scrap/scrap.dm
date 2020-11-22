@@ -138,12 +138,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			var/top_price = 800
 			if(rare)
 				top_price = 2000
-			candidates -= SSspawn_data.spawns_upper_price(candidates, top_price)
-			var/list/old_tags = SSspawn_data.take_tags(candidates, list(SPAWN_OBJ))
-			var/new_tags_amt = max(round(old_tags.len*0.10),1)
 			true_loot_tags = list()
+			var/list/tags = SSspawn_data.lowkeyrandom_tags.Copy()
+			var/new_tags_amt = max(round(tags.len*0.10),1)
 			for(var/i in 1 to new_tags_amt)
-				true_loot_tags += pick_n_take(old_tags)
+				true_loot_tags += pick_n_take(tags)
 			if(rare)
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
