@@ -21,7 +21,7 @@
 		tally -= 0.5
 
 	var/health_deficiency = (maxHealth - health)
-	var/hunger_deficiency = (400 - nutrition)
+	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER - nutrition)
 	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 

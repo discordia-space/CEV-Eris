@@ -75,7 +75,7 @@
 
 		handle_medical_side_effects()
 
-		if(life_tick % 3 == 1)	//Upadated every 3 life ticks, lots of for loops in this
+		if(life_tick % 3)	//Upadated every 3 life ticks, lots of for loops in this
 			for(var/obj/item/organ/external/E in organs)
 				E.update_limb_efficiency()
 

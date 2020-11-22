@@ -190,9 +190,13 @@
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
-	max_nutrition = 400 * (stomach_efficiency / 100)
+	max_nutrition = MOB_BASE_MAX_HUNGER * (stomach_efficiency / 100)
 	if(nutrition > 0 && stat != 2)
-		nutrition = max(0, nutrition - (species.hunger_factor * (100 / stomach_efficiency)))
+		if(stomach_efficiency <= 0)
+			nutrition = 0
+		else
+			nutrition = max(0, nutrition - (species.hunger_factor * (100 / stomach_efficiency)))
+
 	if(stomach_efficiency <= 0)
 		for(var/mob/living/M in stomach_contents)
 			M.loc = loc
