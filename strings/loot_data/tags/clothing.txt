@@ -249,9 +249,9 @@
 /obj/item/clothing/gloves/stungloves    blacklisted=0    spawn_value=0.983294   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=1    spawn_value=1.61183   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=1    spawn_value=1.61183   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.6187   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=1    spawn_value=1.08647   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=1    spawn_value=1.08647   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.08958   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots

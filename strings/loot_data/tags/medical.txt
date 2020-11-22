@@ -40,5 +40,4 @@
 /obj/item/stack/medical/advanced/ointment    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/medical/splint    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/nanopaste    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/bodybag/cryobag    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/bodybag    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
