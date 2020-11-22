@@ -1,51 +1,47 @@
 /proc/get_artwork_crew_name()
-	var/list/art_description_crew_name = "Error"
-	var/datum/mind/target_mind
-
-	var/list/candidates = SSticker.minds.Copy()//From contract.dm assasinate code
-	while(candidates.len)
-		target_mind = pick(candidates)
-		var/mob/living/carbon/human/H = target_mind.current
-		if(!istype(H) || !isOnStationLevel(H))
-			candidates -= target_mind
+	var/list/names = list()
+	var/art_description_crew_name = "Error"
+	var/datum/mind/target_mind //From contract.dm assasinate code
+	for(var/mob/living/carbon/human/H in (GLOB.human_mob_list & GLOB.player_list))
+		if(!isOnStationLevel(H))
 			continue
-		art_description_crew_name = target_mind.current.real_name
-		break
-
+		names.Add(target_mind.current.real_name)
+	if(names.len)
+		art_description_crew_name = pick(names)
 	return art_description_crew_name
+
+GLOBAL_LIST_INIT(art_description_types, file2list("strings/artist_strings/names/art_types.txt"))
+GLOBAL_LIST_INIT(art_description_locations, file2list("strings/artist_strings/descriptions/art_locations.txt"))
+GLOBAL_LIST_INIT(art_description_locations_descriptors, file2list("strings/artist_strings/descriptions/art_locations_descriptors.txt"))
+GLOBAL_LIST_INIT(art_description_locations_specifics, file2list("strings/artist_strings/descriptions/art_locations_specifics.txt"))
+GLOBAL_LIST_INIT(art_description_objectssubjects, file2list("strings/artist_strings/names/art_objectsubject.txt"))
+GLOBAL_LIST_INIT(art_description_subject_actions, file2list("strings/artist_strings/descriptions/art_subject_actions.txt"))
+GLOBAL_LIST_INIT(art_description_object_actions, file2list("strings/artist_strings/descriptions/art_object_actions.txt"))
+GLOBAL_LIST_INIT(art_description_objectsubject_actions, file2list("strings/artist_strings/descriptions/art_objectsubject_actions.txt"))
+GLOBAL_LIST_INIT(art_description_objectsubject_actions_present, file2list("strings/artist_strings/descriptions/art_objectsubject_actions_present.txt"))
+GLOBAL_LIST_INIT(art_description_objectsubject_states, file2list("strings/artist_strings/descriptions/art_objectsubject_states.txt"))
+GLOBAL_LIST_INIT(art_description_style_descriptors, file2list("strings/artist_strings/descriptions/art_style_descriptors.txt"))
+GLOBAL_LIST_INIT(art_description_themes, file2list("strings/artist_strings/descriptions/art_themes.txt"))
 
 //For Artist project,
 /proc/get_artwork_description()
-	var/list/art_description_types = file2list("strings/artist_strings/names/art_types.txt")
 	//var/list/art_description_object_creatures_plural = file2list("strings/artist_strings/name/art_ceatures_names_plural.txt")
-	var/list/art_description_locations = file2list("strings/artist_strings/descriptions/art_locations.txt")
-	var/list/art_description_locations_descriptors = file2list("strings/artist_strings/descriptions/art_locations_descriptors.txt")
-	var/list/art_description_locations_specifics = file2list("strings/artist_strings/descriptions/art_locations_specifics.txt")
-	var/list/art_description_objectssubjects = file2list("strings/artist_strings/names/art_objectsubject.txt")
-	var/list/art_description_subject_actions = file2list("strings/artist_strings/descriptions/art_subject_actions.txt")
-	var/list/art_description_object_actions = file2list("strings/artist_strings/descriptions/art_object_actions.txt")
-	var/list/art_description_objectsubject_actions = file2list("strings/artist_strings/descriptions/art_objectsubject_actions.txt")
-	var/list/art_description_objectsubject_actions_present = file2list("strings/artist_strings/descriptions/art_objectsubject_actions_present.txt")
-	var/list/art_description_objectsubject_states = file2list("strings/artist_strings/descriptions/art_objectsubject_states.txt")
-	var/list/art_description_style_descriptors = file2list("strings/artist_strings/descriptions/art_style_descriptors.txt")
-	var/list/art_description_themes = file2list("strings/artist_strings/descriptions/art_themes.txt")
-
-	var/object = pick(pick(art_description_objectssubjects),get_artwork_crew_name())
-	var/subject = pick(pick(art_description_objectssubjects),get_artwork_crew_name())
-	var/object_action = pick(art_description_object_actions)
-	var/subject_action = pick(art_description_subject_actions)
-	var/objectsubject_action = pick(art_description_objectsubject_actions)
-	var/objectsubject_action_present = pick(art_description_objectsubject_actions_present)
-	var/objectsubject_state = pick(art_description_objectsubject_states)
-	var/location = pick(art_description_locations)
-	var/location_descriptors = pick(art_description_locations_descriptors)
-	var/location_specific = pick(art_description_locations_specifics)
-	var/art_style_descriptor = pick(art_description_style_descriptors)
-	var/art_theme = pick(art_description_themes)
+	var/object = pick(pick(GLOB.art_description_objectssubjects),get_artwork_crew_name())
+	var/subject = pick(pick(GLOB.art_description_objectssubjects),get_artwork_crew_name())
+	var/object_action = pick(GLOB.art_description_object_actions)
+	var/subject_action = pick(GLOB.art_description_subject_actions)
+	var/objectsubject_action = pick(GLOB.art_description_objectsubject_actions)
+	var/objectsubject_action_present = pick(GLOB.art_description_objectsubject_actions_present)
+	var/objectsubject_state = pick(GLOB.art_description_objectsubject_states)
+	var/location = pick(GLOB.art_description_locations)
+	var/location_descriptors = pick(GLOB.art_description_locations_descriptors)
+	var/location_specific = pick(GLOB.art_description_locations_specifics)
+	var/art_style_descriptor = pick(GLOB.art_description_style_descriptors)
+	var/art_theme = pick(GLOB.art_description_themes)
 
 	var/description_location = ""
 	if(object != location && subject != location)
-		description_location = "[pick("This","The")] [pick(art_description_types)] [location_descriptors] [location_specific] \a [location]."
+		description_location = "[pick("This","The")] [pick(GLOB.art_description_types)] [location_descriptors] [location_specific] \a [location]."
 
 	var/description_event = ""
 	var/description_event_subject_to_object = ""
@@ -68,24 +64,24 @@
 	else description_event += pick(""," \The [subject] is [objectsubject_state]."," \the [object] is [objectsubject_state].")
 
 	var/description_style = ""
-	description_style = "[pick("If you squint your eyes,","Looking closely enough,")] the [art_style_descriptor] [pick("composition","layout")] of [pick("this","the")] [pick(art_description_types)] [pick("reveals","seems to portray","seems to hide")] the [pick("outline of","shape of","parts of")] \a [pick(art_description_objectssubjects)]."
+	description_style = "[pick("If you squint your eyes,","Looking closely enough,")] the [art_style_descriptor] [pick("composition","layout")] of [pick("this","the")] [pick(GLOB.art_description_types)] [pick("reveals","seems to portray","seems to hide")] the [pick("outline of","shape of","parts of")] \a [pick(GLOB.art_description_objectssubjects)]."
 
 	var/description_theme = ""
-	description_theme = "[pick("This","The")] [pick(art_description_types)] [pick("seems to","appears to")] [pick("portray","suggest","be entirely devoid of","be utterly absent of")] [art_theme]."
+	description_theme = "[pick("This","The")] [pick(GLOB.art_description_types)] [pick("seems to","appears to")] [pick("portray","suggest","be entirely devoid of","be utterly absent of")] [art_theme]."
 
 
 	var/description = "[description_event] [description_location] [pick("",description_style)] [pick("",description_theme)]"
 	return description
 
-/proc/get_statue_description()
-	var/list/art_description_type_actions_statue = file2list("strings/artist_strings/descriptions/art_type_actions_statue.txt")
-	var/list/art_description_sculpting_method_descriptors = file2list("strings/artist_strings/descriptions/art_sculpting_method_descriptors.txt")
-	var/list/art_description_type_ofs_statue = file2list("strings/artist_strings/descriptions/art_type_ofs_statue.txt")
-	var/list/art_description_types_statue = file2list("strings/artist_strings/names/art_types_statue.txt")
+GLOBAL_LIST_INIT(art_description_type_actions_statue, file2list("strings/artist_strings/descriptions/art_type_actions_statue.txt"))
+GLOBAL_LIST_INIT(art_description_sculpting_method_descriptors, file2list("strings/artist_strings/descriptions/art_sculpting_method_descriptors.txt"))
+GLOBAL_LIST_INIT(art_description_type_ofs_statue, file2list("strings/artist_strings/descriptions/art_type_ofs_statue.txt"))
+GLOBAL_LIST_INIT(art_description_types_statue, file2list("strings/artist_strings/names/art_types_statue.txt"))
 
+/proc/get_statue_description()
 	var/description_artwork_statue = ""
-	var/description_artwork_statue_verb = "[pick("This","The")] [pick(art_description_types_statue)] [pick(art_description_type_actions_statue)] [pick("",pick(art_description_type_ofs_statue))]"
-	var/description_artwork_statue_stationary = "[pick(art_description_sculpting_method_descriptors)] [pick("this","the")] [pick(art_description_types_statue)] is [pick(art_description_type_ofs_statue)]"
+	var/description_artwork_statue_verb = "[pick("This","The")] [pick(GLOB.art_description_types_statue)] [pick(GLOB.art_description_type_actions_statue)] [pick("",pick(GLOB.art_description_type_ofs_statue))]"
+	var/description_artwork_statue_stationary = "[pick(GLOB.art_description_sculpting_method_descriptors)] [pick("this","the")] [pick(GLOB.art_description_types_statue)] is [pick(GLOB.art_description_type_ofs_statue)]"
 	description_artwork_statue = pick(description_artwork_statue_verb,description_artwork_statue_stationary)
 
 	var/description_statue = "[description_artwork_statue] [get_artwork_description()]"

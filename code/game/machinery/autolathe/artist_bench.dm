@@ -10,7 +10,7 @@
 	name = "artist's bench"
 	desc = "" //Temporary description.
 	icon = 'icons/obj/machines/autolathe.dmi'
-	icon_state = "protolathe"
+	icon_state = "bench"
 	circuit = /obj/item/weapon/electronics/circuitboard/artist_bench
 	have_disk = FALSE
 	have_reagents = FALSE
@@ -176,7 +176,7 @@
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
 
 	if(full_artwork == "artwork_revolver")
-		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(get_turf(src))
+		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(src)
 
 		var/gun_pattern = pickweight(list(
 			"pistol" = 8 + weight_robustness,
@@ -258,11 +258,11 @@
 		return R
 
 	else if(full_artwork == "artwork_statue")
-		var/obj/structure/artwork_statue/S = new(get_turf(src))
+		var/obj/structure/artwork_statue/S = new(src)
 		return S
 
 	else if(full_artwork == "artwork_oddity")
-		var/obj/item/weapon/oddity/artwork/O = new(get_turf(src))
+		var/obj/item/weapon/oddity/artwork/O = new(src)
 
 		var/oddity_pattern = pickweight(list(
 			"combat" = 8 + weight_robustness + weight_toughness + weight_vigilance,
@@ -308,13 +308,20 @@
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
+	working = TRUE
+	update_icon()
+	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
+		error = "Lost artist."
+		return
 
 	var/obj/artwork = choose_full_art(ins_used, user)
 	var/datum/design/art
 	if(isobj(artwork))
 		art = new()
+		randomize_materialas(artwork)
 		art.build_path = artwork.type
 		art.AssembleDesignInfo(artwork)
+		artwork.forceMove(get_turf(src))
 	else
 		visible_message(SPAN_WARNING("Unknown error."))
 		return
@@ -350,9 +357,9 @@
 		user.sanity.finish_rest()
 
 /obj/machinery/autolathe/artist_bench/can_print(datum/design/design)
-	for(var/rmat in suitable_materials)
+	/*for(var/rmat in suitable_materials)
 		if(stored_material[rmat] < min_mat)
-			return ERR_NOMATERIAL
+			return ERR_NOMATERIAL*/ //EVAN esto es para test
 
 	for(var/rmat in design.materials)
 		if(!(rmat in stored_material))
@@ -378,3 +385,10 @@
 #undef ERR_NOLICENSE
 #undef ERR_PAUSED
 #undef ERR_NOINSIGHT
+
+/obj/machinery/autolathe/artist_bench/proc/randomize_materialas(obj/O)
+	var/material_num = pick(0, suitable_materials.len*2)
+	var/list/new_materials = list()
+	for(var/i in 1 to material_num)
+		LAZYAPLUS(new_materials, pick(suitable_materials), pick(0,2))
+	O.matter = new_materials

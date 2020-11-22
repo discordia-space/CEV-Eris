@@ -276,7 +276,7 @@
 //Editionaly, handle_failure proc will be called for a critical failure roll.
 /obj/item/proc/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	var/obj/item/weapon/tool/T
-	if (istool(src))
+	if(istool(src))
 		T = src
 		T.tool_in_use = TRUE
 
