@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscadd: Body scanners now show the NSA of the patient.
