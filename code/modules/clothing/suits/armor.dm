@@ -441,3 +441,20 @@
 	src.icon_state = "reactiveoff"
 	src.item_state = "reactiveoff"
 	..()
+
+/obj/item/clothing/suit/armor/crusader
+	name = "crusader armor"
+	desc = "God will protect those who belive."
+	icon_state = "crusader_suit"
+	item_state = "crusader_suit"
+	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
+	armor = list(
+		melee = 70,
+		bullet = 50,
+		energy = 30,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	unacidable = TRUE
+	spawn_blacklisted = TRUE

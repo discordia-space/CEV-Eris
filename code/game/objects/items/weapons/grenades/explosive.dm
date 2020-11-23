@@ -22,3 +22,12 @@
 
 /obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/O)
 	explosion(O, devastation_range, heavy_range, weak_range, flash_range)
+
+/obj/item/weapon/grenade/explosive/nt
+	name = "NT OBG \"Holy Grail\""
+	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
+	icon_state = "explosive_nt"
+	item_state = "explosive_nt"
+	heavy_range = 1.5
+	weak_range = 5
+	matter = list(MATERIAL_BIOMATTER = 100)

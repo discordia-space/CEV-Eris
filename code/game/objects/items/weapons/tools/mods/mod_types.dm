@@ -531,6 +531,20 @@
 	)
 	I.prefix = "spiked"
 
+/obj/item/weapon/tool_upgrade/augment/sanctifier
+	name = "sanctifier"
+	icon_state = "sanctifier"
+	desc = "Recomended for crusade against mutants."
+	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_STEEL = 2)
+
+/obj/item/weapon/tool_upgrade/augment/sanctifier/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_SANCTIFY = TRUE
+	)
+	I.prefix = "sanctified"
+
 /obj/item/weapon/tool_upgrade/augment/hammer_addon
 	name = "Flat surface"
 	icon_state = "hammer_addon"

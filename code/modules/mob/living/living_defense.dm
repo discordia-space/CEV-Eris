@@ -27,6 +27,7 @@
 	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
 	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
+	var/sanctified_attack = FALSE
 
 	if(effective_damage <= 0)
 		armor_message(SPAN_NOTICE("Your armor absorbs the blow!"))
@@ -37,7 +38,12 @@
 		sharp = FALSE
 		edge = FALSE
 
-
+	//Check if sanctify aspect true
+	if(ishuman(src) && isitem(used_weapon))
+		var/mob/living/carbon/human/H = src
+		var/obj/item/I = used_weapon
+		if((H.get_organ_efficiency(BP_SPCORE) || mutations.len) && (SANCTIFIED in I.aspects))
+			sanctified_attack = TRUE
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
@@ -56,7 +62,8 @@
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
 		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
-
+		if(sanctified_attack)
+			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
 	else
 		//Pain part of the damage, that simulates impact from armor absorbtion
@@ -68,6 +75,8 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(sanctified_attack)
+			apply_damage(actual_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 		return actual_damage
 	return effective_damage
 
@@ -246,6 +255,8 @@
 					src.pinned += O
 
 /mob/living/proc/embed(obj/item/O, var/def_zone)
+	if(O.wielded)
+		return
 	if(ismob(O.loc))
 		var/mob/living/L = O.loc
 		if(!L.unEquip(O, src))
