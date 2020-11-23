@@ -1,127 +1,126 @@
-/obj/item/clothing/under/assistantformal    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/under/rank/fo_suit    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/assistant    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/bartender/skirt    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/bartender    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/captain    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/cargotech    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/preacher    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/acolyte    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/church/sport    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/church    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/chef    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/clown    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/first_officer    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/hydroponics    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/janitor    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/miner    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/exultant    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/engineer    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/roboticist    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/expedition_overseer    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/scientist    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/chemist    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/moebius_biolab_officer    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/virologist    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medical/blue    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medical/green    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medical/purple    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medical    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/psych    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/paramedic    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/warden/skirt    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/warden    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/security/skirt    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/security    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medspec/skirt    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/medspec    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/inspector    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/det/black    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/det    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/ih_commander/skirt    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/ih_commander    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank/cadet    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rank    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/bluepyjamas    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/redpyjamas    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit/black    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit/purple    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit/green    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/swimsuit    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/black    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/green    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/grey    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/orange    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/pink    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/white    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color/yellow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/color    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/psyche    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/lightblue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/aqua    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/purple    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/lightpurple    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/lightgreen    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/lightbrown    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/brown    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/yellowgreen    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/darkblue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/lightred    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/darkred    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/excelsior    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/turtleneck    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/clothing/under/serbiansuit/brown    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/under/serbiansuit/black    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/under/serbiansuit    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/clothing/under/germansuit    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/pj/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/pj/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/pj    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/waiter/skirt    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/waiter    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/sexyclown    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/owl    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/rainbow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/suit_jacket/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/suit_jacket    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/blackskirt    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/schoolgirl    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/overalls    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/pirate    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/soviet    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/kilt    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/gladiator    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/bride_white    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/captainformal    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/serviceoveralls    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/blazer    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/dress/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/dress/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/dress    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/leisure/white    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/leisure/pullover    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/leisure    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/neon/yellow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/neon/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/neon/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/neon    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/jersey    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/cyber    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/genericb    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/genericw    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/genericr    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts/green    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts/black    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts/grey    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/shorts    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/syndicate    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/item/clothing/under/librarian    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/mime    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/under/punpun    blacklisted=0    spawn_value=10    price_tag=30   100    
+/obj/item/clothing/under/assistantformal    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/fo_suit    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/assistant    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/bartender/skirt    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/bartender    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/captain    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/cargotech    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/preacher    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/acolyte    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/church/sport    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/church    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/chef    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/clown    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/first_officer    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/hydroponics    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/janitor    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/miner    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/exultant    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/engineer    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/roboticist    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/expedition_overseer    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/scientist    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/chemist    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/moebius_biolab_officer    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/virologist    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medical/blue    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medical/green    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medical/purple    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medical    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/psych    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/paramedic    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/warden/skirt    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/warden    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/security/skirt    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/security    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medspec/skirt    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/medspec    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/inspector    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/det/black    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/det    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/ih_commander/skirt    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/ih_commander    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rank/cadet    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/bluepyjamas    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/redpyjamas    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit/purple    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/swimsuit    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/grey    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/orange    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/pink    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/white    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color/yellow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/color    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/psyche    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/lightblue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/aqua    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/purple    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/lightpurple    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/lightgreen    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/lightbrown    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/brown    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/yellowgreen    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/darkblue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/lightred    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/darkred    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/excelsior    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/turtleneck    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/serbiansuit/brown    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/serbiansuit/black    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/serbiansuit    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/germansuit    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/pj/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/pj/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/pj    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/waiter/skirt    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/waiter    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/sexyclown    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/owl    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/rainbow    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/suit_jacket/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/suit_jacket    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/blackskirt    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/schoolgirl    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/overalls    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/pirate    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/soviet    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/kilt    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/gladiator    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/bride_white    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/captainformal    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/serviceoveralls    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/blazer    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/dress/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/dress/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/dress    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/leisure/white    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/leisure/pullover    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/leisure    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/neon/yellow    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/neon/blue    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/neon/red    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/neon    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/jersey    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/cyber    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/genericb    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/genericw    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/genericr    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts/grey    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/shorts    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/syndicate    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/librarian    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/mime    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/punpun    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

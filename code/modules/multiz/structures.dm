@@ -8,9 +8,11 @@
 	opacity = FALSE
 	anchored = TRUE
 	icon = 'icons/obj/stairs.dmi'
+	bad_type = /obj/structure/multiz
 	var/istop = TRUE
 	var/obj/structure/multiz/target
 	var/obj/structure/multiz/targeted_by
+
 /obj/structure/multiz/New()
 	. = ..()
 	for(var/obj/structure/multiz/M in loc)

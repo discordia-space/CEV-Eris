@@ -1,17 +1,17 @@
-/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/bots    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/pods    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/bombard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/satellite/science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/satellite    blacklisted=0    spawn_value=10    price_tag=0   100    
+/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/bots    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/pods    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/bombard    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/satellite/science    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/satellite    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

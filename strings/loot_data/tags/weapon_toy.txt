@@ -1,4 +1,0 @@
-/obj/item/toy/crossbow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/sword    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/katana    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/toy/cultsword    blacklisted=0    spawn_value=10    price_tag=0   100    

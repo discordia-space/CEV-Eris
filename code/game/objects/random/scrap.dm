@@ -18,7 +18,7 @@
 	name = "Random sparse trash"
 	rarity_value = 5
 	tags_to_spawn = list(SPAWN_SCRAP)
-	restricted_tags = list(SPAWN_LARGE_SCRAP)
+	restricted_tags = list(SPAWN_SCRAP_LARGE)
 
 /obj/spawner/scrap/sparse/low_chance
 	name = "low chance random trash"
@@ -30,8 +30,8 @@
 /obj/spawner/scrap/dense
 	name = "Random dense trash"
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_SPAWNER_LARGE_SCRAP
-	tags_to_spawn = list(SPAWN_LARGE_SCRAP)
+	spawn_tags = SPAWN_TAG_SPAWNER_SCRAP_LARGE
+	tags_to_spawn = list(SPAWN_SCRAP_LARGE)
 
 /obj/spawner/scrap/dense/low_chance
 	name = "low chance random trash"
@@ -44,10 +44,10 @@
 	name = "Random beacon trash"
 	spawn_blacklisted = TRUE
 	exclusion_paths = list(/obj/spawner/scrap/beacon)
-	restricted_tags = list(SPAWN_SPAWNER_LARGE_SCRAP)
+	restricted_tags = list(SPAWN_SPAWNER_SCRAP_LARGE)
 	allow_blacklist = TRUE
 	rarity_value = 10
 
 /obj/spawner/scrap/beacon/dense
 	name = "Random dense beacon trash"
-	tags_to_spawn = list(SPAWN_BEACON_SCRAP)
+	tags_to_spawn = list(SPAWN_SCRAP_BEACON)

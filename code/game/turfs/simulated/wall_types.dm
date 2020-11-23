@@ -1,12 +1,15 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, MATERIAL_PLASTEEL, MATERIAL_PLASTEEL) //3strong
 
 /turf/simulated/wall/cult
 	icon_state = "cult"
+
 /turf/simulated/wall/cult/New(var/newloc)
 	..(newloc,"cult","cult2")
+
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
@@ -45,6 +48,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	anchored = TRUE
 	density = TRUE
+	bad_type = /obj/structure/shuttle_part
 
 /obj/structure/shuttle_part/cargo
 	name = "Cargo Transport Shuttle (A5)"

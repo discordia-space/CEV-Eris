@@ -20,9 +20,9 @@
 /obj/structure/reagent_dispensers/Initialize(mapload, bolt=FALSE)
 	. = ..()
 	create_reagents(volume)
-	if (starting_reagent)
+	if(starting_reagent)
 		reagents.add_reagent(starting_reagent, volume)
-	if (!possible_transfer_amounts)
+	if(!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	anchored = bolt
 	AddComponent(/datum/component/plumbing/supply/all, anchored, FALSE)
@@ -114,12 +114,12 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
-	var/modded = FALSE
-	var/obj/item/device/assembly_holder/rig
 	volume = 500
 	starting_reagent = "fuel"
 	price_tag = 50
 	contents_cost = 750
+	var/modded = FALSE
+	var/obj/item/device/assembly_holder/rig
 
 /obj/structure/reagent_dispensers/fueltank/derelict
 	icon_state = "weldtank-derelict"
@@ -274,7 +274,7 @@
 	price_tag = 50
 	contents_cost = 700
 	spawn_blacklisted = TRUE
-	
+
 
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"

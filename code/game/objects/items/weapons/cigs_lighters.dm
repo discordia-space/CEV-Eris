@@ -15,8 +15,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 //For anything that can light stuff on fire
 /obj/item/weapon/flame
-	var/lit = 0
 	heat = 1670
+	bad_type = /obj/item/weapon/flame
+	var/lit = 0
 
 /obj/item/weapon/flame/is_hot()
 	if (lit)
@@ -46,13 +47,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "match_unlit"
-	var/burnt = 0
-	var/smoketime = 5
 	w_class = ITEM_SIZE_TINY
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
+	var/burnt = 0
+	var/smoketime = 5
 
 /obj/item/weapon/flame/match/Process()
 	if(isliving(loc))
@@ -96,6 +97,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "smokable item"
 	desc = "You're not sure what this is. You should probably ahelp it."
 	body_parts_covered = 0
+	bad_type = /obj/item/clothing/mask/smokable
 	var/lit = 0
 	var/icon_on
 	var/icon_off
@@ -462,11 +464,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "zippo"
 	item_state = "zippo"
 
-/obj/item/weapon/flame/lighter/random/New()
+/obj/item/weapon/flame/lighter/random
+
+/obj/item/weapon/flame/lighter/random/Initialize(mapload)
+	. = ..()
 	icon_state = "lighter-[pick("r","c","y","g")]"
 	item_state = icon_state
 	base_state = icon_state
-	..()
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(!base_state)

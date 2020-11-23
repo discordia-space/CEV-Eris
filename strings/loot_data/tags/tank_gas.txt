@@ -1,11 +1,11 @@
-/obj/item/weapon/tank/oxygen/red    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tank/oxygen/yellow    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tank/oxygen    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tank/anesthetic    blacklisted=0    spawn_value=3.33333    price_tag=50   100    
-/obj/item/weapon/tank/air    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tank/plasma    blacklisted=0    spawn_value=3.33333    price_tag=75   100    
-/obj/item/weapon/tank/emergency_oxygen/engi    blacklisted=0    spawn_value=5    price_tag=50   100    
-/obj/item/weapon/tank/emergency_oxygen/double    blacklisted=0    spawn_value=4    price_tag=50   100    
-/obj/item/weapon/tank/emergency_oxygen/nitrogen    blacklisted=0    spawn_value=6.66667    price_tag=50   100    
-/obj/item/weapon/tank/emergency_oxygen    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tank/nitrogen    blacklisted=0    spawn_value=3.33333    price_tag=50   100    
+/obj/item/weapon/tank/oxygen/red    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/oxygen/yellow    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/oxygen    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/anesthetic    blacklisted=0    spawn_value=3.15468   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/air    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/plasma    blacklisted=0    spawn_value=3.13725   spawn_price=75   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/emergency_oxygen/engi    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/emergency_oxygen/double    blacklisted=0    spawn_value=3.74546   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/emergency_oxygen/nitrogen    blacklisted=0    spawn_value=5.98839   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/emergency_oxygen    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tank/nitrogen    blacklisted=0    spawn_value=3.15468   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

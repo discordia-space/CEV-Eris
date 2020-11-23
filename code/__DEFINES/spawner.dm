@@ -31,11 +31,11 @@
 //Items - tools
 #define SPAWN_TOOL "tool"
 #define SPAWN_JUNK_TOOL "junk_tool"
-#define SPAWN_ADVANCED_TOOL "advanced_tool"
+#define SPAWN_TOOL_ADVANCED "tool_advanced"
 #define SPAWN_OS_TOOL "os_tool"
 
 #define SPAWN_TAG_TOOL "obj,item,tool"
-#define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,advanced_tool"
+#define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,tool_advanced"
 #define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,onestar"
 #define SPAWN_TAG_TOOL_TAG_JUNK "obj,item,tool,junk_tool,junk"
 
@@ -54,13 +54,13 @@
 
 //	Items - upgrades
 #define SPAWN_TOOL_UPGRADE "tool_upgrade"
-#define SPAWN_RARE_TOOL_UPGRADE "rare_tool_upgrade"
+#define SPAWN_TOOL_UPGRADE_RARE "tool_upgrade_rare"
 #define SPAWN_GUN_UPGRADE "gun_upgrade"
 
 #define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool_upgrade"
-#define SPAWN_TAG_RARE_TOOL_UPGRADE "obj,item,tool_upgrade,rare_tool_upgrade"
-#define SPAWN_TAG_RARE_TOOL_UPGRADE_OS "obj,item,tool_upgrade,rare_tool_upgrade,item_tech_os,onestar"
-#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
+#define SPAWN_TAG_TOOL_UPGRADE_RARE "obj,item,tool_upgrade,tool_upgrade_rare"
+#define SPAWN_TAG_TOOL_UPGRADE_RARE_OS "obj,item,tool_upgrade,tool_upgrade_rare,item_tech_os,onestar"
+#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade,guns"
 
 //items - one star
 #define SPAWN_ITEM_TECH_OS "item_tech_os"
@@ -130,34 +130,34 @@
 
 #define SPAWN_TAG_XENOARCH_ITEM "obj,item,xenoarch"
 #define SPAWN_TAG_XENOARCH_ITEM_FOSSIL "obj,item,fossil,xenoarch"
-#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,gun_energy,xenoarch"
+#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,guns,gun_energy,xenoarch"
 
 //  MINES
 #define SPAWN_MINE "mine"
-#define SPAWN_ITEM_MINE "item_mine"
-#define SPAWN_STUCTURE_MINE "structure_mine"
+#define SPAWN_MINE_ITEM "mine_item"
+#define SPAWN_STUCTURE_MINE "mine_structure"
 
-#define SPAWN_TAG_ITEM_MINE "obj,item,mine,item_mine"
-#define SPAWN_TAG_STUCTURE_MINE "obj,structure,mine,structure_mine"
+#define SPAWN_TAG_MINE_ITEM "obj,item,mine,mine_item"
+#define SPAWN_TAG_MINE_STUCTURE "obj,structure,mine,mine_structure"
 
 //traps
 #define SPAWN_TRAP_ARMED "trap_armed"
-#define SPAWN_WIRE_TRAP "wire_trap"
+#define SPAWN_TRAP_WIRE "trap_wire"
 
 #define SPAWN_TAG_TRAP_ARMED "obj,item,trap_armed"
-#define SPAWN_TAG_STRUCTURE_TRAP_ARMED_WIRE "obj,structure,trap_armed,wire_trap"
+#define SPAWN_TAG_TRAP_ARMED_WIRE "obj,structure,trap_armed,trap_wire"
 
 //	Items - powercells
 #define SPAWN_POWERCELL "powercell"
-#define SPAWN_SMALL_POWERCELL "small_powercell"
-#define SPAWN_MEDIUM_POWERCELL "medium_powercell"
-#define SPAWN_LARGE_POWERCELL "large_powercell"
+#define SPAWN_POWERCELL_SMALL "powercell_small"
+#define SPAWN_POWERCELL_MEDIUM "powercell_medium"
+#define SPAWN_POWERCELL_LARGE "powercell_large"
 
 #define SPAWN_TAG_POWERCELL "obj,item,powercell"
-#define SPAWN_TAG_SMALL_POWERCELL "obj,item,powercell,small_powercell"
-#define SPAWN_TAG_MEDIUM_POWERCELL "obj,item,powercell,medium_powercell"
-#define SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO "obj,item,powercell,medium_powercell,ammo_ih,ammo_common"
-#define SPAWN_TAG_LARGE_POWERCELL "obj,item,powercell,large_powercell"
+#define SPAWN_TAG_POWERCELL_SMALL "obj,item,powercell,powercell_small"
+#define SPAWN_TAG_POWERCELL_MEDIUM "obj,item,powercell,powercell_medium"
+#define SPAWN_TAG_POWERCELL_MEDIUM_IH_AMMO "obj,item,powercell,powercell_medium,ammo_ih,ammo_common"
+#define SPAWN_TAG_POWERCELL_LARGE "obj,item,powercell,powercell_large"
 
 //	Items - GUNS
 #define SPAWN_GUN "gun"
@@ -165,12 +165,13 @@
 #define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
 
-#define SPAWN_TAG_GUN "obj,item,gun"
-#define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy"
-#define SPAWN_TAG_GUN_ENERGY_CHAMALEON "obj,item,gun,gun_energy,contraband,chamaleon"
-#define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile"
-#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun"
-#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun"
+#define SPAWN_TAG_GUN "obj,item,gun,guns"
+#define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy,guns"
+#define SPAWN_TAG_GUN_ENERGY_CHAMALEON "obj,item,gun,gun_energy,contraband,chamaleon,guns"
+#define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile,guns"
+#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun,guns"
+#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun,guns"
+#define SPAWN_TAG_GUN_ENERGY_BOTANICAL "obj,item,gun,gun_energy,guns,botanical"
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammmo_storage"
@@ -178,11 +179,11 @@
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
 #define SPAWN_AMMO_COMMON "ammo_common"
 
-#define SPAWN_TAG_AMMO "obj,item,gun,ammo,ammmo_storage"
-#define SPAWN_TAG_AMMO_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_common"
-#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
-#define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
-#define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammmo_storage,ammo_ih"
+#define SPAWN_TAG_AMMO "obj,item,guns,ammo,ammmo_storage"
+#define SPAWN_TAG_AMMO_COMMON "obj,item,guns,ammo,ammmo_storage,ammmo_storage_common"
+#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,guns,ammo,ammmo_storage,ammmo_storage_shotgun"
+#define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,guns,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
+#define SPAWN_TAG_AMMO_IH "obj,item,guns,ammo,ammmo_storage,ammo_ih"
 
 //	Items - contraband
 #define SPAWN_CONTRABAND "contraband"
@@ -195,10 +196,10 @@
 #define SPAWN_TOY "toy"
 #define SPAWN_PLUSHIE "toy_plushie"
 #define SPAWN_FIGURE "toy_figure"
-#define SPAWN_TOY_WEAPON "weapon_toy"
+#define SPAWN_TOY_WEAPON "toy_weapon"
 
 #define SPAWN_TAG_TOY "obj,item,toy"
-#define SPAWN_TAG_TOY_WEAPON "obj,item,toy,weapon_toy"
+#define SPAWN_TAG_TOY_WEAPON "obj,item,toy,toy_weapon"
 #define SPAWN_TAG_PLUSHIE "obj,item,toy,toy_plushie"
 #define SPAWN_TAG_STRUCTURE_PLUSHIE "obj,structure,toy_plushie"
 #define SPAWN_TAG_FIGURE "obj,item,toy,toy_figure"
@@ -206,7 +207,7 @@
 //items - utility
 #define SPAWN_ITEM_UTILITY "utility"
 
-#define SPAWN_TAG_ITEM_UTILITY "obj,item,toy,utility"
+#define SPAWN_TAG_ITEM_UTILITY "obj,item,utility"
 
 //	Items - CLOTHING
 #define SPAWN_CLOTHING "clothing"
@@ -216,7 +217,6 @@
 #define SPAWN_HOLSTER "holster"
 #define SPAWN_SHOES "shoes"
 #define SPAWN_GLOVES "gloves"
-#define SPAWN_GLOVES_INSULATED "insulated_gloves"
 #define SPAWN_CLOTHING_UNDER "under"
 #define SPAWN_CLOTHING_HEAD "head"
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
@@ -234,7 +234,7 @@
 #define SPAWN_TAG_SHOES "obj,item,clothing,shoes"
 #define SPAWN_TAG_SHOES_CHAMALEON "obj,item,clothing,shoes,contraband,chamaleon"
 #define SPAWN_TAG_GLOVES "obj,item,clothing,gloves"
-#define SPAWN_TAG_GLOVES_INSULATED "obj,item,clothing,gloves,insulated_gloves,utility_item"
+#define SPAWN_TAG_GLOVES_INSULATED "obj,item,clothing,gloves,item_utility"
 #define SPAWN_TAG_GLOVES_CHAMALEON "obj,item,clothing,gloves,chamaleon,contraband"
 #define SPAWN_TAG_CLOTHING_UNDER "obj,item,clothing,under"
 #define SPAWN_TAG_CLOTHING_UNDER_CHAMALEON "obj,item,clothing,under,contraband,chamaleon"
@@ -289,12 +289,14 @@
 #define SPAWN_TAG_MEDICAL "obj,item,medical"
 
 // ITEMS - MEDICINE
-#define SPAWN_MEDICINE_COMMON "medicine_common"
 #define SPAWN_MEDICINE "medicine"
+#define SPAWN_MEDICINE_COMMON "medicine_common"
+#define SPAWN_MEDICINE_ADVANCED "medicine_advanced"
 
 #define SPAWN_TAG_MEDICINE "obj,item,medicine,medical"
 #define SPAWN_TAG_MEDICINE_COMMON "obj,item,medicine,medicine_common,medical"
 #define SPAWN_TAG_MEDICINE_CONTRABAND "obj,item,medicine,medical,contraband"
+#define SPAWN_TAG_MEDICINE_ADVANCED "obj,item,medicine,medicine_advanced,medical"
 
 //ITEMS - BEAKER
 #define SPAWN_TAG_VIAL "obj,item,beaker,vial,science,medical"
@@ -346,9 +348,11 @@
 // ITEM - GRENADES
 #define SPAWN_TAG_GRENADE "obj,item,grenade"
 
-#define SPAWN_TAG_GRENADE_CLEANER "obj,item,grenade,grenade_cleaner,utility_item"
+#define SPAWN_TAG_GRENADE_CLEANER "obj,item,grenade,grenade_cleaner,item_utility"
 
 //	MECH
+#define SPAWN_MECH "mech"
+
 #define SPAWN_MECH_PREMADE "mech_premade"
 #define SPAWN_MECH_QUIPMENT "mech_equipment"
 
@@ -363,31 +367,31 @@
 
 //	Structures
 #define SPAWN_STRUCTURE "structure"
-#define SPAWN_STRUCTURE_COMMON "common_structure"
+#define SPAWN_STRUCTURE_COMMON "structure_common"
 
 #define SPAWN_TAG_STRUCTURE "obj,structure"
-#define SPAWN_TAG_STRUCTURE_COMMON "obj,structure,common_structure"
+#define SPAWN_TAG_STRUCTURE_COMMON "obj,structure,structure_common"
 
 // Structures - ClOSET
 #define SPAWN_CLOSET "closet"
 #define SPAWN_WARDROBE "wardrobe"
-#define SPAWN_TECHNICAL_CLOSET "technical_closet"
-#define SPAWN_RANDOM_CLOSET "random_closet"
-#define SPAWN_LASERTAG_CLOSET "lasertag_closet"
-#define SPAWN_BOMB_CLOSET "bomb_closet"
-#define SPAWN_COFFIN_CLOSET "coffin_closet"
-#define SPAWN_CLOSET_SECURE "secure_closet"//secure
+#define SPAWN_CLOSET_TECHNICAL "closet_technical"
+#define SPAWN_CLOSET_RANDOM "closet_random"
+#define SPAWN_CLOSET_LASERTAG "closet_lasertag"
+#define SPAWN_CLOSET_BOMB "closet_bomb"
+#define SPAWN_CLOSET_COFFIN "closet_coffin"
+#define SPAWN_CLOSET_SECURE "closet_secure"//secure
 
 #define SPAWN_TAG_CLOSET "obj,structure,closet"
 #define SPAWN_TAG_CLOSET_OS "obj,structure,closet,onestar"
-#define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,secure_closet"//secure
-#define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,technical_closet"
+#define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,closet_secure"//secure
+#define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,closet_technical"
 #define SPAWN_TAG_WARDROBE "obj,structure,closet,wardrobe"
-#define SPAWN_TAG_RANDOM_CLOSET "obj,structure,closet,random_closet"
-#define SPAWN_TAG_RANDOM_SECURE_CLOSET "obj,structure,closet,random_closet,secure_closet"
-#define SPAWN_TAG_LASERTAG_CLOSET "obj,structure,closet,lasertag_closet"
-#define SPAWN_TAG_BOMB_CLOSET "obj,structure,closet,bomb_closet"
-#define SPAWN_TAG_COFFIN_CLOSET "obj,structure,closet,coffin_closet"
+#define SPAWN_TAG_RANDOM_CLOSET "obj,structure,closet,closet_random"
+#define SPAWN_TAG_RANDOM_SECURE_CLOSET "obj,structure,closet,closet_random,closet_secure"
+#define SPAWN_TAG_CLOSET_LASERTAG "obj,structure,closet,closet_lasertag"
+#define SPAWN_TAG_CLOSET_BOMB "obj,structure,closet,closet_bomb"
+#define SPAWN_TAG_CLOSET_COFFIN "obj,structure,closet,closet_coffin"
 
 // Structures - SALVAGEABLE
 #define SPAWN_SALVAGEABLE "structure_salvageable"
@@ -411,12 +415,12 @@
 
 // Structures - scrap
 #define SPAWN_SCRAP "structure_scrap"
-#define SPAWN_LARGE_SCRAP "structure_large_scrap"
-#define SPAWN_BEACON_SCRAP "structure_beacon_scrap"
+#define SPAWN_SCRAP_LARGE "structure_scrap_large"
+#define SPAWN_SCRAP_BEACON "structure_scrap_beacon"
 
 #define SPAWN_TAG_SCRAP "obj,structure,structure_scrap"
-#define SPAWN_TAG_LARGE_SCRAP "obj,structure,structure_scrap,structure_large_scrap"
-#define SPAWN_TAG_BEACON_SCRAP "obj,structure,structure_scrap,structure_beacon_scrap"
+#define SPAWN_TAG_LARGE_SCRAP "obj,structure,structure_scrap,structure_scrap_large"
+#define SPAWN_TAG_BEACON_SCRAP "obj,structure,structure_scrap,structure_scrap_beacon"
 
 
 //-encounters
@@ -435,31 +439,31 @@
 
 //	Mobs
 #define SPAWN_MOB "mob"
-#define SPAWN_HOSTILE_MOB "hostile_mob"
-#define SPAWN_FRIENDLY_MOB "friendly_mob"
+#define SPAWN_MOB_HOSTILE "mob_hostile"
+#define SPAWN_MOB_FRIENDLY "mob_friendly"
 #define SPAWN_SLIME "slime"
 #define SPAWN_MOB_OS_CUSTODIAN "os_custodian"
 #define SPAWN_MOB_ROOMBA "roomba"
 #define SPAWN_MOB_HIVEMIND "hivemind"
 
-#define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
-#define SPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
+#define SPAWN_TAG_MOB_HOSTILE "mob,mob_hostile"
+#define SPAWN_TAG_MOB_FRIENDLY "mob,mob_friendly"
 #define SPAWN_TAG_SLIME "mob,slime"
-#define SPAWN_TAG_MOB_OS_CUSTODIAN "mob,hostile_mob,os_custodian,onestar"
-#define SPAWN_TAG_MOB_HIVEMIND "mob,hostile_mob,hivemind"
-#define SPAWN_TAG_MOB_ROOMBA "mob,hostile_mob,roomba,onestar"
+#define SPAWN_TAG_MOB_OS_CUSTODIAN "mob,mob_hostile,os_custodian,onestar"
+#define SPAWN_TAG_MOB_HIVEMIND "mob,mob_hostile,hivemind"
+#define SPAWN_TAG_MOB_ROOMBA "mob,mob_hostile,roomba,onestar"
 
 // MOBS - ROACH
-#define SPAWN_ROACH "mob_roach"
-#define SPAWN_NANITE_ROACH "nanite_roach"
+#define SPAWN_ROACH "roach"
+#define SPAWN_ROACH_NANITE "roach_nanite"
 
-#define SPAWN_TAG_ROACH "mob,hostile_mob,mob_roach"
-#define SPAWN_TAG_NANITE_ROACH "mob,hostile_mob,mob_roach,nanite_roach"
+#define SPAWN_TAG_ROACH "mob,mob_hostile,roach"
+#define SPAWN_TAG_ROACH_NANITE "mob,mob_hostile,roach,roach_nanite"
 
 //MOBS - SLIMES
-#define SPAWN_SPIDER "mob_spider"
+#define SPAWN_SPIDER "spider"
 
-#define SPAWN_TAG_SPIDER "mob,hostile_mob,mob_spider"
+#define SPAWN_TAG_SPIDER "mob,mob_hostile,spider"
 
 //EFFECTS
 #define SPAWN_FLORA "flora"
@@ -482,12 +486,12 @@
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
 #define SPAWN_SPAWNER_MOB "spawner_mob"
 #define SPAWN_SPAWNER_SCRAP "spawner_scrap"
-#define SPAWN_SPAWNER_LARGE_SCRAP "spawner_large_scrap"
+#define SPAWN_SPAWNER_SCRAP_LARGE "spawner_scrap_large"
 
 #define SPAWN_TAG_SPAWNER_ENCOUNER "spawner,spawner_encounter"
 #define SPAWN_TAG_SPAWNER_MOB "spawner,spawner_mob"
 #define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
-#define SPAWN_TAG_SPAWNER_LARGE_SCRAP "spawner,spawner_scrap,spawner_large_scrap"
+#define SPAWN_TAG_SPAWNER_SCRAP_LARGE "spawner,spawner_scrap,spawner_scrap_large"
 
 // FACTION KEYWORDS
 #define SPAWN_ASTERS "asters"

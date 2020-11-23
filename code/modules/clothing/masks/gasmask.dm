@@ -22,7 +22,7 @@
 		rad = 0
 	)
 	price_tag = 20
-	style = 0
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new

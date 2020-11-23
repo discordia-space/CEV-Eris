@@ -3,8 +3,8 @@
 /obj/item
 	var/wielded = FALSE //Whether or not it's wielded.
 	var/wieldsound = 'sound/weapons/thudswoosh.ogg' //Generic sound. Replace it with a special one if you have one.
-	var/unwieldsound = null //If you want it to make a sound when you unwield, put one here.
-	var/wielded_icon = null //The item state used when it's weilded. Guns are snowflakey and have their own shit for this. This is for non guns.
+	var/unwieldsound //If you want it to make a sound when you unwield, put one here.
+	var/wielded_icon //The item state used when it's weilded. Guns are snowflakey and have their own shit for this. This is for non guns.
 	var/force_unwielded = 0 //If you have a specific force for it being weilded.
 	var/force_wielded = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
 
@@ -115,6 +115,10 @@
 			return TRUE
 	return FALSE
 
+
+/obj/item/weapon/twohanded
+	bad_type = /obj/item/weapon/twohanded
+	spawn_tags = null
 
 /obj/item/weapon/twohanded/offhand
 	name = "offhand"

@@ -36,10 +36,9 @@
 
 /obj/item/weapon/ore/strangerock/New(loc, var/inside_item_type = 0)
 	..(loc)
-
 	//method = rand(0,2)
 	if(inside_item_type)
-		inside = new/obj/item/weapon/archaeological_find(src, new_item_type = inside_item_type)
+		inside = new/obj/item/weapon/archaeological_find(src, inside_item_type)
 		if(!inside)
 			inside = locate() in contents
 
@@ -85,7 +84,8 @@
 	spawn_blacklisted = TRUE
 	var/find_type = 0
 
-/obj/item/weapon/archaeological_find/New(loc, var/new_item_type)
+/obj/item/weapon/archaeological_find/Initialize(mapload, new_item_type)
+	. = ..()
 	if(new_item_type)
 		find_type = new_item_type
 	else
@@ -528,7 +528,7 @@
 		if(talkative)
 			new_item.talking_atom = new(new_item)
 
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 	else if(talkative)
 		src.talking_atom = new(src)

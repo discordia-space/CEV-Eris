@@ -1,15 +1,16 @@
-/obj/item/robot_parts/robot_component/armour/exosuit/radproof    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/robot_parts/robot_component/armour/exosuit/em    blacklisted=0    spawn_value=10    price_tag=550   100    
-/obj/item/robot_parts/robot_component/armour/exosuit/combat    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/robot_parts/robot_component/armour/exosuit    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/mech_equipment/mounted_system/taser/ion    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/mounted_system/taser/laser    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/mounted_system/taser/plasma    blacklisted=1    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/mounted_system/taser    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/mounted_system/rcd    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/mounted_system/extinguisher    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/sleeper    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/clamp    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/light    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/catapult    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/mech_equipment/drill    blacklisted=0    spawn_value=10    price_tag=200   100    
+/obj/item/robot_parts/robot_component/armour/exosuit/radproof    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/robot_parts/robot_component/armour/exosuit/em    blacklisted=0    spawn_value=7.84907   spawn_price=550   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/robot_parts/robot_component/armour/exosuit/combat    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/robot_parts/robot_component/armour/exosuit    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/taser/ion    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/taser/laser    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/taser/plasma    blacklisted=1    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/taser    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/ballistic/pk    blacklisted=1    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/rcd    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/mounted_system/extinguisher    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/sleeper    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/clamp    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/light    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/catapult    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/mech_equipment/drill    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing

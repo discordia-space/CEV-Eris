@@ -276,6 +276,7 @@
 	desc = "A broken necklace that has a blue crystal as a trinket."
 	icon_state = "broken_necklace"
 	origin_tech = list(TECH_BLUESPACE = 9)
+	spawn_frequency = 0//unique
 	oddity_stats = list(
 		STAT_COG = 9,
 		STAT_VIG = 9,
@@ -310,7 +311,7 @@
 		new /obj/item/bluespace_dust(user.loc)
 		new /obj/item/bluespace_dust(T)
 		GLOB.bluespace_gift -= 1
-		bluespace_entropy(50,T)	
+		bluespace_entropy(50,T)
 		qdel(src)
 
 /obj/item/weapon/oddity/broken_necklace/throw_impact(atom/movable/hit_atom)
@@ -326,6 +327,6 @@
 		if(prob(1))
 			new /obj/item/bluespace_dust(T)
 			GLOB.bluespace_gift -= 1
-			bluespace_entropy(50,T)	
+			bluespace_entropy(50,T)
 			qdel(src)
 

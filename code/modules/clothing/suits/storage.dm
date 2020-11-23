@@ -13,8 +13,7 @@
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/storage/Destroy()
-	qdel(pockets)
-	pockets = null
+	QDEL_NULL(pockets)
 	. = ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
@@ -37,6 +36,7 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
+	bad_type = /obj/item/clothing/suit/storage/toggle
 	var/icon_open
 	var/icon_closed
 	verb/toggle()

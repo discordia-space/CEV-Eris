@@ -150,7 +150,7 @@
 	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
 	rarity_value = 14.28
-	spawn_tags = SPAWN_TAG_BOMB_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_BOMB
 
 
 /obj/structure/closet/bombcloset/populate_contents()

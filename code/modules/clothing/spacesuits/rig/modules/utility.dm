@@ -24,6 +24,7 @@
 	selectable = 1
 	toggleable = 0
 	disruptive = 0
+	bad_type = /obj/item/rig_module/device
 
 
 	var/device_type
@@ -404,7 +405,7 @@
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
 	var/datum/autodoc/autodoc_processor
 	var/autodoc_type = /datum/autodoc
-	var/turf/wearer_loc = null
+	var/turf/wearer_loc
 
 /obj/item/rig_module/autodoc/Initialize()
 	. = ..()

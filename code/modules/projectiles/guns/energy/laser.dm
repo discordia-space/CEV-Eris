@@ -42,6 +42,7 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
+	spawn_tags = null
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
@@ -99,6 +100,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = FALSE
+	spawn_blacklisted = TRUE//antag_item_targets
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"

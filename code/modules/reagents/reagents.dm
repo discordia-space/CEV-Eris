@@ -15,9 +15,9 @@
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/datum/reagents/holder = null
+	var/datum/reagents/holder
 	var/reagent_state = SOLID
-	var/list/data = null
+	var/list/data
 	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0
@@ -31,10 +31,10 @@
 	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
-	var/glass_icon_state = null
-	var/glass_name = null
-	var/glass_desc = null
-	var/glass_center_of_mass = null
+	var/glass_icon_state
+	var/glass_name
+	var/glass_desc
+	var/glass_center_of_mass
 	var/color = "#000000"
 	var/color_weight = 1
 	var/sanity_gain = 0

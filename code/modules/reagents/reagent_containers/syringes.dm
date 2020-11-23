@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////
 /// Syringes.
 ////////////////////////////////////////////////////////////////////////////////
 #define SYRINGE_DRAW 0
@@ -147,7 +147,7 @@
 				var/mob/living/L = target
 				var/injtime = time - (user.stats.getStat(STAT_BIO)*0.375) // 375 was choosen to make a steady increase on speed from 0 being default time and 80 being 0, even if its never really 0
 				if(injtime < 10) injtime=10 //should make the "fastest" injection take at least 10
-				
+
 				//Injecting through a hardsuit takes longer due to needing to find a port.
 				// Handling errors and injection duration
 				var/mob/living/carbon/human/H = target
@@ -161,7 +161,7 @@
 							to_chat(user, SPAN_WARNING("Injection port on [target]'s suit is refusing your [src]."))
 							// I think rig is advanced enough for this, and people will learn what causes this error
 							if(RIG)
-								playsound(src.loc, 'sound/machines/buzz-two.ogg', 30, 1 -3)
+								playsound(src.loc, 'sound/machines/buzz-two.ogg', 30, 1, -3)
 								RIG.visible_message("\icon[RIG]\The [RIG] states \"Attention: User of this suit appears to be synthetic origin\".")
 							return
 					// check without message
@@ -219,8 +219,7 @@
 			to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
 
 
-
-/obj/item/weapon/reagent_containers/syringe/update_icon(A)
+/obj/item/weapon/reagent_containers/syringe/update_icon()
 	..()
 	cut_overlays()
 
@@ -310,6 +309,7 @@
 	name = "blitzshell syringe"
 	desc = "A blitzshell syringe."
 	breakable = FALSE
+	spawn_tags = null
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
 	name = "lethal injection syringe"

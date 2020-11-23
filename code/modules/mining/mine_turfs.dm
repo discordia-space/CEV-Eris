@@ -313,7 +313,7 @@
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/weapon/X
 	if(prob_clean)
-		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/weapon/archaeological_find(src, F.find_type)
 	else
 		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)

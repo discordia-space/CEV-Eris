@@ -17,13 +17,16 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
 
+/obj/item/weapon/gun/energy/taser/carbine/mounted
+	bad_type = /obj/item/weapon/gun/energy/taser/carbine/mounted
+	spawn_tags = null
+
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST
-	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -33,13 +36,16 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 
+/obj/item/weapon/gun/energy/ionrifle/mounted
+	bad_type = /obj/item/weapon/gun/energy/ionrifle/mounted
+	spawn_tags = null
+
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 2
-	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -48,6 +54,11 @@
 	holding_type = /obj/item/weapon/gun/energy/laser/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 26, MATERIAL_SILVER = 5)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+
+/obj/item/weapon/gun/energy/laser/mounted
+	bad_type = /obj/item/weapon/gun/energy/laser/mounted/mech
+	spawn_tags = null
+
 /obj/item/weapon/gun/energy/laser/mounted/mech
 	name = "\improper CH-PS \"Immolator\" laser"
 	use_external_power = TRUE
@@ -69,13 +80,16 @@
 /obj/item/weapon/gun/energy/plasmacutter
 	bad_type = /obj/item/weapon/gun/energy/plasmacutter
 
+/obj/item/weapon/gun/energy/plasmacutter/mounted
+	bad_type = /obj/item/weapon/gun/energy/plasmacutter/mounted
+	spawn_tags = null
+
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	twohanded = FALSE
 	self_recharge = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/get_hardpoint_maptext()
 	return "[get_ammo()]/[ammo_magazine.max_ammo]"
@@ -99,6 +113,9 @@
 	matter = list(MATERIAL_PLASTEEL = 60)
 	spawn_blacklisted = TRUE
 
+/obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted
+	bad_type = /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted
+
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
 	name = 	"SA \"VJP\""
 	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
@@ -107,7 +124,7 @@
 	init_firemodes = list(
 		list(mode_name="spit fire",  burst=15, burst_delay=0.8, move_delay=15,  icon="burst")
 		)
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
 	. = ..()

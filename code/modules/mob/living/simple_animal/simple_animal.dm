@@ -7,7 +7,7 @@
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-
+	bad_type = /mob/living/simple_animal
 	var/datum/component/spawner/nest
 
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob

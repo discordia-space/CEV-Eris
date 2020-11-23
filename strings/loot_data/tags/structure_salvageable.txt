@@ -1,15 +1,15 @@
-/obj/structure/salvageable/machine    blacklisted=0    spawn_value=13    price_tag=0   100    
-/obj/structure/salvageable/computer    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13    price_tag=0   100    
-/obj/structure/salvageable/implant_container    blacklisted=0    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/data    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/server    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/personal    blacklisted=0    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/bliss    blacklisted=0    spawn_value=1.3    price_tag=0   100    
-/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
+/obj/structure/salvageable/machine    blacklisted=0    spawn_value=13   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/computer    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/implant_container    blacklisted=0    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/data    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/server    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/personal    blacklisted=0    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/bliss    blacklisted=0    spawn_value=1.3   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -21,7 +21,7 @@
 	item_flags = COVER_PREVENT_MANIPULATION
 	siemens_coefficient = 0.9
 	price_tag = 50
-	style = 0
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
