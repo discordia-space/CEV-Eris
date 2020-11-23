@@ -632,3 +632,26 @@
 	UPGRADE_ITEMFLAGPLUS = LOUD
 	)
 	I.prefix = "hydraulic"
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod
+	name = "Weird Revolver"
+	desc = "This is an artistically-made tool mod."
+	icon_state = "artmod_1"
+	spawn_frequency = 0
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
+	. = ..()
+	name = get_weapon_name(capitalize = TRUE)
+	icon_state = "artmod_[rand(1,16)]"
+
+	var/sanity_value = 0.2 + pick(0,0.1,0.2)
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	var/obj/randomcatcher/CATCH = new(src)
+	var/obj/item/weapon/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade = max(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
+	spawn_type = CATCH.get_item(spawn_type)
+	spawn_type.TransferComponents(src)
+	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
+	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
+		tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
+	QDEL_NULL(spawn_type)
+	QDEL_NULL(CATCH)

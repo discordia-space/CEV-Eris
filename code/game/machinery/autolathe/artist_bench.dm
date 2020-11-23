@@ -156,7 +156,8 @@
 	return pickweight(list(
 		"artwork_revolver" = weight_artwork_revolver,
 		"artwork_statue" = weight_artwork_statue,
-		"artwork_oddity" = weight_artwork_oddity
+		"artwork_oddity" = weight_artwork_oddity,
+		"artwork_toolmod" = weight_artwork_toolmod
 	))
 
 /obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/carbon/human/user)
@@ -299,6 +300,9 @@
 
 		return O
 
+	else if(full_artwork == "artwork_toolmod")
+		var/obj/item/weapon/tool_upgrade/artwork_tool_mod/TM = new(src)
+		return TM
 	else
 		return "ERR_ARTWORK"
 

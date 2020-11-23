@@ -8,6 +8,7 @@
 
 #define COMPONENT_INCOMPATIBLE 1
 #define COMPONENT_NOTRANSFER 2
+#define COMPONENT_TRANSFER 3
 
 // How multiple components of the exact same type are handled in the same datum
 

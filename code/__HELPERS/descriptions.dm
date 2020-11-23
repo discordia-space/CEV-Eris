@@ -79,10 +79,9 @@ GLOBAL_LIST_INIT(art_description_type_ofs_statue, file2list("strings/artist_stri
 GLOBAL_LIST_INIT(art_description_types_statue, file2list("strings/artist_strings/names/art_types_statue.txt"))
 
 /proc/get_statue_description()
-	var/description_artwork_statue = ""
 	var/description_artwork_statue_verb = "[pick("This","The")] [pick(GLOB.art_description_types_statue)] [pick(GLOB.art_description_type_actions_statue)] [pick("",pick(GLOB.art_description_type_ofs_statue))]"
 	var/description_artwork_statue_stationary = "[pick(GLOB.art_description_sculpting_method_descriptors)] [pick("this","the")] [pick(GLOB.art_description_types_statue)] is [pick(GLOB.art_description_type_ofs_statue)]"
-	description_artwork_statue = pick(description_artwork_statue_verb,description_artwork_statue_stationary)
+	var/description_artwork_statue = pick(description_artwork_statue_verb,description_artwork_statue_stationary)
 
 	var/description_statue = "[description_artwork_statue] [get_artwork_description()]"
 	return description_statue
