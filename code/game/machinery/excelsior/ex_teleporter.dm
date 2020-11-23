@@ -331,7 +331,7 @@ var/global/excelsior_last_draft = 0
 		return
 
 	visible_message("\the [src] blinks, refusing [affecting].")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 /obj/machinery/complant_teleporter/proc/teleport_out(var/mob/living/affecting, var/mob/living/user)
 	flick("teleporting", src)
 	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))

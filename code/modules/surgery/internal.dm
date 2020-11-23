@@ -88,7 +88,7 @@
 	// Organs
 	if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/internal/organ = I
-		
+
 		var/o_a =  (organ.gender == PLURAL) ? "" : "a "
 
 		if(organ.unique_tag)
@@ -242,13 +242,14 @@
 			else
 				I.forceMove(drop_location())
 
-		if(istype(I, /obj/item/organ_module))
+		else if(istype(I, /obj/item/organ_module))
 			if(I == module)
 				var/obj/item/organ_module/M = I
 				M.remove(src)
 			else
 				I.forceMove(drop_location())
-
+		else
+			I.forceMove(drop_location())
 		if(owner)
 			owner.update_implants()
 
