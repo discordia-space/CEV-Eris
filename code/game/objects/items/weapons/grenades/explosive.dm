@@ -25,7 +25,7 @@
 
 /obj/item/weapon/grenade/explosive/nt
 	name = "NT OBG \"Holy Grail\""
-	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
+	desc = "There's an inscription along the bands. \'And the Lord spake, saying: First shalt thou take out the Holy Pin. Then, shalt thou count to three, no more, no less. Three shall be the number thou shalt count, and the number of the counting shall be three. Four shalt thou not count, nor either count thou two, excepting that thou then proceed to three. Five is right out! Once the number three, being the third number, be reached, then lobbest thou thy Holy Hand Grenade of Antioch towards thou foe, who being naughty in my sight, shall snuff it.\'"
 	icon_state = "explosive_nt"
 	item_state = "explosive_nt"
 	heavy_range = 1.5

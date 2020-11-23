@@ -10,7 +10,7 @@
 	armor_penetration = ARMOR_PEN_DEEP
 	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
-	price_tag = 750
+	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
 
 /obj/item/weapon/tool/sword/nt/longsword
@@ -21,7 +21,7 @@
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_EXTREME
 	w_class = ITEM_SIZE_SMALL
-	price_tag = 2000
+	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
 
 
@@ -34,7 +34,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	armor_penetration = ARMOR_PEN_MASSIVE
 	aspects = list(SANCTIFIED)
-	price_tag = 500
+	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
 
 /obj/item/weapon/tool/sword/nt/halberd
@@ -47,7 +47,7 @@
 	armor_penetration = ARMOR_PEN_MASSIVE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	price_tag = 1500
+	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 
 /obj/item/weapon/tool/sword/nt/scourge
@@ -61,7 +61,7 @@
 	var/armor_penetration_extended = ARMOR_PEN_HALF
 	var/extended = FALSE
 	w_class = ITEM_SIZE_BULKY
-	price_tag = 2000
+	price_tag = 1000
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
 
 /obj/item/weapon/tool/sword/nt/scourge/attack_self(mob/user)

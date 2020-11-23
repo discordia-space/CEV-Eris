@@ -1180,7 +1180,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee
 	disk_name = "NeoTheology Armory - Melee Weapons"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_blacklisted = TRUE
 	rarity_value = 50
 	license = -1
 	designs = list(
