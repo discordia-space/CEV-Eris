@@ -1071,6 +1071,7 @@
 /obj/item/device/camera/siliconcam/robot_camera
 /obj/item/device/camera/siliconcam/drone_camera
 /obj/item/device/camera/siliconcam
+/obj/item/device/am_shielding_container
 /obj/item/device
 /obj/item/target/syndicate
 /obj/item/target/alien

@@ -349,7 +349,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/storage/box/lights    obj,item,storage,box,junk    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/data_disk/basic    obj,item,storage,box    blacklisted=0    spawn_value=8.44231   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/data_disk    obj,item,storage,box    blacklisted=0    spawn_value=3.10144   spawn_price=175   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/headset/church    obj,item,storage,box    blacklisted=0    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/headset/church    obj,item,storage,box    blacklisted=1    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/headset    obj,item,storage,box    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/donut/empty    obj,item,storage,box    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/donut    obj,item,storage,box    blacklisted=0    spawn_value=4.59176   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2349,7 +2349,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/device/toner    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/camera_film    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/camera    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/am_shielding_container    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/makeshift_centrifuge    obj,item,divice    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/makeshift_electrolyser    obj,item,divice    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/destTagger    obj,item,divice    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

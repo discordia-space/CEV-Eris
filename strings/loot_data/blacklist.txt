@@ -34,6 +34,7 @@
 /obj/item/weapon/tool/chainofcommand
 /obj/item/weapon/tool/weldingtool/onestar
 /obj/item/weapon/storage/box/chemimp
+/obj/item/weapon/storage/box/headset/church
 /obj/item/weapon/storage/box/syndicate
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 /obj/item/weapon/storage/box/syndie_kit/imp_compress

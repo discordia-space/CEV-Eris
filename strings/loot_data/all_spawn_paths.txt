@@ -2348,7 +2348,6 @@
 /obj/item/device/toner
 /obj/item/device/camera_film
 /obj/item/device/camera
-/obj/item/device/am_shielding_container
 /obj/item/device/makeshift_centrifuge
 /obj/item/device/makeshift_electrolyser
 /obj/item/device/destTagger
