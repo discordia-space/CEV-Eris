@@ -51,7 +51,7 @@
 				hard_blacklist_data  << "[path]"
 			continue
 
-		spawn_tags = splittext(initial(A.spawn_tags), ",")
+		spawn_tags = params2list(initial(A.spawn_tags))
 		if(!spawn_tags.len)
 			if(generate_files)
 				hard_blacklist_data  << "[path]"
@@ -280,7 +280,7 @@
 	var/atom/movable/A
 	for(var/path in paths)
 		A = path
-		var/list/spawn_tags = splittext(initial(A.spawn_tags), ",")
+		var/list/spawn_tags = params2list(initial(A.spawn_tags))
 		for(var/tag in spawn_tags)
 			if(tag in local_tags)
 				continue
