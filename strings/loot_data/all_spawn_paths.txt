@@ -1534,8 +1534,6 @@
 /obj/item/organ/internal/mmi_holder
 /obj/item/organ/external/head
 /obj/item/organ/external/stump
-/obj/item/organ/external/robotic/limb
-/obj/item/organ/external/robotic/tiny
 /obj/item/organ/external/robotic/l_arm
 /obj/item/organ/external/robotic/r_arm
 /obj/item/organ/external/robotic/l_leg

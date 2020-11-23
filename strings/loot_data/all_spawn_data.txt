@@ -1535,8 +1535,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/organ/internal/mmi_holder    obj,item,organ,organ_internal,organ_organic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/head    obj,item,organ,organ_external,organ_organic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/stump    obj,item,organ,organ_external,organ_organic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/organ/external/robotic/limb    obj,item,organ,organ_external,organ_prosthetic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/organ/external/robotic/tiny    obj,item,organ,organ_external,organ_prosthetic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/l_arm    obj,item,organ,organ_external,organ_prosthetic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/r_arm    obj,item,organ,organ_external,organ_prosthetic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/l_leg    obj,item,organ,organ_external,organ_prosthetic    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -940,6 +940,8 @@
 /obj/item/stack/refined_scrap
 /obj/item/stack
 /obj/item/organ/internal
+/obj/item/organ/external/robotic/limb
+/obj/item/organ/external/robotic/tiny
 /obj/item/organ/external/robotic/asters
 /obj/item/organ/external/robotic/serbian
 /obj/item/organ/external/robotic/frozen_star
