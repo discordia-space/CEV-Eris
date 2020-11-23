@@ -1,5 +1,5 @@
 //like orange but only checks north/south/east/west for one step
-proc/cardinalrange(var/center)
+/proc/cardinalrange(center)
 	var/list/things = list()
 	for(var/direction in cardinal)
 		var/turf/T = get_step(center, direction)
@@ -15,12 +15,12 @@ proc/cardinalrange(var/center)
 	icon_state = "shield"
 	anchored = TRUE
 	density = TRUE
-	dir = 1
+	dir = NORTH
 	use_power = NO_POWER_USE//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 
-	var/obj/machinery/power/am_control_unit/control_unit = null
+	var/obj/machinery/power/am_control_unit/control_unit
 	var/processing = 0//To track if we are in the update list or not, we need to be when we are damaged and if we ever
 	var/stability = 100//If this gets low bad things tend to happen
 	var/efficiency = 1//How many cores this core counts for when doing power processing, plasma in the air and stability could affect this
@@ -74,8 +74,8 @@ proc/cardinalrange(var/center)
 
 
 /obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0))	return 1
-	return 0
+	if(air_group || (height==0))	return TRUE
+	return FALSE
 
 
 /obj/machinery/am_shielding/Process()
@@ -86,7 +86,7 @@ proc/cardinalrange(var/center)
 
 
 /obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
-	return 0
+	return FALSE
 
 
 /obj/machinery/am_shielding/ex_act(severity)
@@ -101,10 +101,10 @@ proc/cardinalrange(var/center)
 	return
 
 
-/obj/machinery/am_shielding/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/am_shielding/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != ARMOR_BULLET)
 		stability -= Proj.force/2
-	return 0
+	return FALSE
 
 
 /obj/machinery/am_shielding/update_icon()
@@ -126,17 +126,16 @@ proc/cardinalrange(var/center)
 		stability -= W.force/2
 		check_stability()
 	..()
-	return
 
 
 
 //Call this to link a detected shilding unit to the controller
-/obj/machinery/am_shielding/proc/link_control(var/obj/machinery/power/am_control_unit/AMC)
+/obj/machinery/am_shielding/proc/link_control(obj/machinery/power/am_control_unit/AMC)
 	if(!istype(AMC))	return 0
 	if(control_unit && control_unit != AMC) return 0//Already have one
 	control_unit = AMC
 	control_unit.add_shielding(src,1)
-	return 1
+	return TRUE
 
 
 //Scans cards for shields or the control unit and if all there it
@@ -145,7 +144,7 @@ proc/cardinalrange(var/center)
 		var/machine = locate(/obj/machinery, get_step(loc, direction))
 		if(!machine) return 0//Need all for a core
 		if(!istype(machine, /obj/machinery/am_shielding) && !istype(machine, /obj/machinery/power/am_control_unit))	return 0
-	return 1
+	return TRUE
 
 
 /obj/machinery/am_shielding/proc/setup_core()
@@ -154,7 +153,6 @@ proc/cardinalrange(var/center)
 	if(!control_unit)	return
 	control_unit.linked_cores.Add(src)
 	control_unit.reported_core_efficiency += efficiency
-	return
 
 
 /obj/machinery/am_shielding/proc/shutdown_core()
@@ -162,31 +160,28 @@ proc/cardinalrange(var/center)
 	if(!control_unit)	return
 	control_unit.linked_cores.Remove(src)
 	control_unit.reported_core_efficiency -= efficiency
-	return
 
 
-/obj/machinery/am_shielding/proc/check_stability(var/injecting_fuel = 0)
+/obj/machinery/am_shielding/proc/check_stability(injecting_fuel = 0)
 	if(stability > 0) return
 	if(injecting_fuel && control_unit)
 		control_unit.exploding = 1
 	if(src)
 		qdel(src)
-	return
 
 
-/obj/machinery/am_shielding/proc/recalc_efficiency(var/new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
+/obj/machinery/am_shielding/proc/recalc_efficiency(new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
 	if(!control_unit || !processing) return
 	if(stability < 50)
 		new_efficiency /= 2
 	control_unit.reported_core_efficiency += (new_efficiency - efficiency)
 	efficiency = new_efficiency
-	return
 
 
 
 /obj/item/device/am_shielding_container
 	name = "packaged antimatter reactor section"
-	desc = "A small storage unit containing an antimatter reactor section.  To use it, place it near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
+	desc = "A small storage unit containing an antimatter reactor section. To use it, place it near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"
@@ -196,11 +191,11 @@ proc/cardinalrange(var/center)
 	throw_speed = 1
 	throw_range = 2
 	matter = list(MATERIAL_STEEL = 3)
+	spawn_tags = null
 
-/obj/item/device/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
+/obj/item/device/am_shielding_container/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/tool/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 		return
 	..()
-	return
