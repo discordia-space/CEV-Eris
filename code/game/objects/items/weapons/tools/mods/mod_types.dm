@@ -640,7 +640,7 @@
 	icon_state = "randomizer"
 	matter = list(MATERIAL_PLASMA = 4, MATERIAL_URANIUM = 4)
 	rarity_value = 80
-	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
 /obj/item/weapon/tool_upgrade/augment/randomizer/New()
 	..()
