@@ -447,6 +447,7 @@
 	desc = "God will protect those who belive."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
+	slowdown = 0.3
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 70,

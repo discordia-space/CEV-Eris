@@ -75,18 +75,16 @@
 
 /obj/item/weapon/tool/sword/nt/scourge/proc/extend()
 	extended = TRUE
-	force = force_extended
-	armor_penetration = armor_penetration_extended
+	force += (force_extended - initial(force))
+	armor_penetration += (armor_penetration_extended - initial(armor_penetration))
 	slot_flags = null
 	w_class = ITEM_SIZE_HUGE
 	update_icon()
 
 /obj/item/weapon/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
-	force = initial(force)
-	armor_penetration = initial(armor_penetration)
-	slot_flags = initial(slot_flags)
 	w_class = initial(w_class)
+	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
 /obj/item/weapon/tool/sword/nt/scourge/update_icon()
