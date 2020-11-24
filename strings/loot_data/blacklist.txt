@@ -417,6 +417,7 @@
 /mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/in_work
 /mob/living/bot/miningonestar/resources
+/obj/structure/closet/crate/miningcar
 /obj/structure/closet/coffin/spawnercorpse
 /obj/structure/closet/thunderdome/tdred
 /obj/structure/closet/thunderdome/tdgreen

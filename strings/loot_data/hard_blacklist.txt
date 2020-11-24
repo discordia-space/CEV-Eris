@@ -101,6 +101,11 @@
 /obj/item/weapon/storage/internal
 /obj/item/weapon/storage/toolbox
 /obj/item/weapon/storage
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape
 /obj/item/weapon/reagent_containers/glass/paint/red
 /obj/item/weapon/reagent_containers/glass/paint/yellow
 /obj/item/weapon/reagent_containers/glass/paint/green
@@ -1149,7 +1154,9 @@
 /obj/item/assembly
 /obj/item/voice_changer
 /obj/item/noslipmodule
+/obj/item/rig_module/device
 /obj/item/rig_module/vision
+/obj/item/rig_module
 /obj/item/ai_verbs
 /obj/item/underwear/socks
 /obj/item/underwear/top
@@ -2522,7 +2529,6 @@
 /obj/structure/closet/lasertag
 /obj/structure/closet/cabinet
 /obj/structure/closet/gimmick
-/obj/structure/closet/random/spareparts
 /obj/structure/closet/random
 /obj/structure/closet/onestar
 /obj/structure/closet/syndicate

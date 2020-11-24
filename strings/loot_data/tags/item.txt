@@ -251,6 +251,7 @@
 /obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/fiber    blacklisted=0    spawn_value=3.16193   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/glue    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/advanced    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -567,11 +568,6 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random    blacklisted=0    spawn_value=3.19412   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites    blacklisted=0    spawn_value=2.42087   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites    blacklisted=1    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace    blacklisted=1    spawn_value=4.44811   spawn_price=303   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/large    blacklisted=0    spawn_value=2.41976   spawn_price=21.2   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2401,7 +2397,6 @@
 /obj/item/taperoll    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/device/drill    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/device/rcd    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module/device    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/grenade_launcher    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/egun    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/energy_blade    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2424,7 +2419,6 @@
 /obj/item/rig_module/vision/multi    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/thermal    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/nvg    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=12.8104   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing

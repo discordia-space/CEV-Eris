@@ -273,6 +273,7 @@
 /obj/item/weapon/tool/surgicaldrill
 /obj/item/weapon/tool/tape_roll/web
 /obj/item/weapon/tool/tape_roll/fiber
+/obj/item/weapon/tool/tape_roll/glue
 /obj/item/weapon/tool/tape_roll
 /obj/item/weapon/tool/weldingtool/improvised
 /obj/item/weapon/tool/weldingtool/advanced
@@ -589,11 +590,6 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 /obj/item/weapon/reagent_containers/glass/beaker/large
@@ -2449,7 +2445,6 @@
 /obj/item/rig_module/device/anomaly_scanner
 /obj/item/rig_module/device/orescanner
 /obj/item/rig_module/device/rcd
-/obj/item/rig_module/device
 /obj/item/rig_module/grenade_launcher
 /obj/item/rig_module/mounted/egun
 /obj/item/rig_module/mounted/taser
@@ -2482,7 +2477,6 @@
 /obj/item/rig_module/vision/nvg
 /obj/item/rig_module/vision/sechud
 /obj/item/rig_module/vision/medhud
-/obj/item/rig_module
 /obj/item/ammo_magazine/ammobox/pistol/practice
 /obj/item/ammo_magazine/ammobox/pistol/hv
 /obj/item/ammo_magazine/ammobox/pistol/rubber
@@ -2696,6 +2690,7 @@
 /obj/structure/closet/l3closet
 /obj/structure/closet/random/miscellaneous
 /obj/structure/closet/random/tech
+/obj/structure/closet/random/spareparts
 /obj/structure/closet/random/milsupply
 /obj/structure/closet/random/medsupply
 /obj/structure/closet/random/hostilemobs/beacon

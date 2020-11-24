@@ -22,7 +22,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/loot_min = 6
 	var/loot_max = 12
 	var/list/loot_tags = list(
-		SPAWN_MATERIAL_BUILDING_ROD,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
 		SPAWN_MATERIAL_JUNK
 	)
@@ -118,7 +117,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		make_big_loot()
 
 	var/amt = rand(loot_min, loot_max)
-	var/list/junk_tags = list(SPAWN_MATERIAL_BUILDING_ROD,SPAWN_JUNK,SPAWN_CLEANABLE,SPAWN_MATERIAL_JUNK)
+	var/list/junk_tags = list(SPAWN_JUNK,SPAWN_CLEANABLE,SPAWN_MATERIAL_JUNK)
 	for(var/x in 1 to amt)
 		var/rare = FALSE
 		var/rare_items_amt = rand(1,2)
@@ -382,7 +381,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MEDICAL,
 		SPAWN_SURGERY_TOOL,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_MATERIAL_BUILDING_ROD,
+
 		SPAWN_MATERIAL_JUNK
 	)
 
@@ -406,7 +405,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_GUN_UPGRADE,
 		SPAWN_POUCH,
 		SPAWN_MATERIAL_BUILDING = 2,
-		SPAWN_MATERIAL_BUILDING_ROD,
 		SPAWN_JUNK = 2, SPAWN_CLEANABLE = 2,
 		SPAWN_ORE,SPAWN_MATERIAL_JUNK = 2
 	)
@@ -421,7 +419,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_JUNKFOOD,
 		SPAWN_BOOZE,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_MATERIAL_BUILDING_ROD,SPAWN_MATERIAL_JUNK
+		SPAWN_MATERIAL_JUNK
 	)
 
 /obj/structure/scrap_spawner/guns
@@ -493,7 +491,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_tags = list(
 		SPAWN_ITEM,
 		SPAWN_JUNK = 2, SPAWN_CLEANABLE,
-		SPAWN_ORE, SPAWN_MATERIAL_BUILDING_ROD,
+		SPAWN_ORE,
 		SPAWN_MATERIAL_JUNK = 2
 	)
 	restricted_tags = list(SPAWN_MATERIAL_RESOURCES, SPAWN_ORGAN_ORGANIC)
