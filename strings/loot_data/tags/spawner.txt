@@ -153,7 +153,6 @@
 /obj/spawner/science/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/science    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/scrap/sparse    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/spawner/scrap/dense    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/scrap/beacon/dense    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/scrap/beacon    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/scrap    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

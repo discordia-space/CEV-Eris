@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 100
 	loot_tags = list(
 		SPAWN_GUN,
-		SPAWN_AMMO,
+		SPAWN_AMMO_S,
 		SPAWN_KNIFE,
 		SPAWN_HOLSTER,
 		SPAWN_GUN_UPGRADE,
