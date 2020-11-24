@@ -157,7 +157,7 @@
 	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
 	while(resting < max_resting && insight >= 100)
 		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))//Temporary description.
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))
 		else
 			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 			pick_desires()
@@ -240,7 +240,7 @@
 		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
 	if(owner.stats.getPerk(PERK_ARTIST))
-		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats.")) //Temporary description
+		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats."))
 	else
 		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)

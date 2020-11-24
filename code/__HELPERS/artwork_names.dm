@@ -2,9 +2,8 @@
 GLOBAL_LIST_INIT(art_weapon_first_names, file2list("strings/artist_strings/names/art_weapon_first.txt"))
 GLOBAL_LIST_INIT(art_weapon_second_names, file2list("strings/artist_strings/names/art_weapon_second.txt"))
 
-
-GLOBAL_LIST_INIT(art_locations, file2list("strings/artist_strings/names/art_weapon_first.txt"))
-GLOBAL_LIST_INIT(art_description_object_creatures_plural, file2list("strings/artist_strings/names/art_ceatures_names_plural.txt"))
+GLOBAL_LIST_INIT(art_locations, file2list("strings/artist_strings/names/art_locations.txt"))
+GLOBAL_LIST_INIT(art_description_object_creatures_plural, file2list("strings/artist_strings/names/art_creatures_names_plural.txt"))
 
 //When you need something simple (for random Artist Artwork)
 /proc/get_weapon_name(capitalize = FALSE)

@@ -71,3 +71,7 @@
 	new/obj/item/clothing/mask/gas/plaguedoctor(src)
 	new/obj/item/clothing/gloves/color/green(src)
 	new/obj/item/clothing/gloves/color/rainbow(src)
+	new/obj/item/weapon/storage/backpack/clown(src)
+	new/obj/item/clothing/shoes/clown_shoes(src)
+	new/obj/item/clothing/under/rank/clown(src)
+	new/obj/item/clothing/mask/gas/clown_hat(src)

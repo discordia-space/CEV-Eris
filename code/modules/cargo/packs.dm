@@ -1411,7 +1411,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Actor Costumes"
-	access = access_artist
+	access = access_theatre
 	group = "Miscellaneous"
 
 /datum/supply_pack/randomised/guns

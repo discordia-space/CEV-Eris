@@ -94,7 +94,7 @@
 
 /obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
 	if(strange_item)
-		to_chat(user, SPAN_NOTICE("There's already \a [strange_item] inside [src].")) //Temporary description
+		to_chat(user, SPAN_NOTICE("There's already \a [strange_item] inside [src]."))
 		return
 
 	if(!inserted_oddity && istype(user))
@@ -116,7 +116,7 @@
 	inserted_oddity.forceMove(src)
 	strange_item = inserted_oddity
 	inspiration = C
-	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src].")) //Temporary description.
+	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src]."))
 	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/remove_oddity(mob/living/user)
@@ -124,7 +124,7 @@
 		return
 
 	strange_item.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [strange_item] from the model stand in [src].")) //Temporary description.
+	to_chat(usr, SPAN_NOTICE("You remove \the [strange_item] from the model stand in [src]."))
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_hands(strange_item)
@@ -322,7 +322,7 @@
 	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
 
 	if(ins_used < min_insight)
-		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
+		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
 	flick("[initial(icon_state)]_work", src)
 	working = TRUE

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver
 	name = "Weird Revolver"
-	desc = "This is an artistically-made revolver."//Temporary description
+	desc = "This is an artistically-made revolver."
 	icon = 'icons/obj/guns/projectile/artwork_revolver.dmi'
 	icon_state = "artwork_revolver_1"
 	item_state = "artwork_revolver_1"
@@ -15,7 +15,7 @@
 	spawn_frequency = 0
 
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/proc/get_round_desc()
-	desc = initial(desc) + " Uses [caliber] rounds." //Temporary description//Temporary description
+	desc = initial(desc) + " Uses [caliber] rounds."
 
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)

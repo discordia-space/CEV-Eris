@@ -471,6 +471,10 @@
 	icon_state = "Theatre"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/eris/crew_quarters/clownoffice
+	name = "Clown Office"
+	icon_state = "erisblue"
+
 /area/eris/crew_quarters/library
  	name = "\improper Library"
  	icon_state = "library"
