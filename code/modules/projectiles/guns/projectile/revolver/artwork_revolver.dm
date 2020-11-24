@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver
 	name = "Weird Revolver"
-	desc = "This is an artistically-made revolver. On the revolver is "//Temporary description
+	desc = "This is an artistically-made revolver."//Temporary description
 	icon = 'icons/obj/guns/projectile/artwork_revolver.dmi'
 	icon_state = "artwork_revolver_1"
 	item_state = "artwork_revolver_1"
@@ -14,8 +14,12 @@
 	recoil_buildup = 30 //Arbitrary value
 	spawn_frequency = 0
 
+/obj/item/weapon/gun/projectile/revolver/artwork_revolver/proc/get_round_desc()
+	desc = initial(desc) + " Uses [caliber] rounds." //Temporary description//Temporary description
+
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
+	get_round_desc()
 
 	var/random_icon = rand(1,5)
 	icon_state = "artwork_revolver_[random_icon]"
@@ -33,7 +37,5 @@
 	recoil_buildup += rand(-(recoil_buildup / 5),(recoil_buildup / 5))
 
 	price_tag += rand(-1000,2500)//Sellable to either the Cargo Console or to people onboard the Eris, Temporary value
-
-	desc += " [get_gun_description()] Uses [caliber] rounds." //Temporary description
 
 	. = ..()

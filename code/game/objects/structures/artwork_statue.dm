@@ -1,6 +1,6 @@
 /obj/structure/artwork_statue
 	name = "Weird Statue"
-	desc = "An object of art, depicting a scene."
+	desc = "a work of art that reflects the ideas of its creator."
 	icon = 'icons/obj/structures/artwork_statue.dmi'
 	icon_state = "artwork_statue_1"
 	density = TRUE
@@ -8,8 +8,7 @@
 
 /obj/structure/artwork_statue/Initialize()
 	. = ..()
-	name = get_weapon_name(capitalize = TRUE)
-	desc = get_statue_description()
+	name = get_artwork_name(TRUE)
 	icon_state = "artwork_statue_[rand(1,6)]"
 
 	var/sanity_value = 2 + rand(0,2)

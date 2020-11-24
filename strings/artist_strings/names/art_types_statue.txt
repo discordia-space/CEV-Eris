@@ -1,7 +1,0 @@
-artwork
-carving
-sculpture
-statue
-engraving
-piece
-work

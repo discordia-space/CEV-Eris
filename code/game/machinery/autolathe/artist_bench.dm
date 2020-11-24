@@ -255,7 +255,7 @@
 				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
 				)
-
+		R.get_round_desc()
 		return R
 
 	else if(full_artwork == "artwork_statue")
@@ -312,8 +312,7 @@
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
-	working = TRUE
-	update_icon()
+	flick("[initial(icon_state)]_work", src)
 	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
 		error = "Lost artist."
 		return
@@ -343,6 +342,10 @@
 	//	if(!Adjacent(user))
 	//		return
 
+	consume_materials(art)
+	if(isitem(artwork))
+		user.put_in_hands(artwork)
+	user.sanity.insight -= ins_used
 	if(!user.stats.getPerk(PERK_ARTIST))
 		var/list/stat_change = list()
 
@@ -352,18 +355,14 @@
 
 		for(var/stat in stat_change)
 			user.stats.changeStat(stat, stat_change[stat])
-
-	consume_materials(art)
-	if(isitem(artwork))
-		user.put_in_hands(artwork)
-	user.sanity.insight -= ins_used
-	if(user.stats.getPerk(PERK_ARTIST) && user.sanity.resting)
+		to_chat(user, SPAN_WARNING("To create this work of art you have sacrificed a part of yourself."))
+	else if(user.sanity.resting)
 		user.sanity.finish_rest()
 
 /obj/machinery/autolathe/artist_bench/can_print(datum/design/design)
 	/*for(var/rmat in suitable_materials)
 		if(stored_material[rmat] < min_mat)
-			return ERR_NOMATERIAL*/ //EVAN esto es para test
+			return ERR_NOMATERIAL*///EVAN
 
 	for(var/rmat in design.materials)
 		if(!(rmat in stored_material))
@@ -391,8 +390,9 @@
 #undef ERR_NOINSIGHT
 
 /obj/machinery/autolathe/artist_bench/proc/randomize_materialas(obj/O)
-	var/material_num = pick(0, suitable_materials.len*2)
+	/*var/material_num = pick(0, suitable_materials.len)
 	var/list/new_materials = list()
 	for(var/i in 1 to material_num)
-		LAZYAPLUS(new_materials, pick(suitable_materials), pick(0,2))
-	O.matter = new_materials
+		LAZYAPLUS(new_materials, pick(suitable_materials), pick(0,1,1,1,2,3))
+	O.matter = new_materials*///EVAN ESTO ES PARA TEST
+	O.matter = null

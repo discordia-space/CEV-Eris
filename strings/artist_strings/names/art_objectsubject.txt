@@ -86,10 +86,6 @@ hivemind tyrant
 scientist
 engineer
 shitsec
-security
-ironhammer operative
-ironhammer commander
-ironhammer investigator
 detective
 criminal
 officer

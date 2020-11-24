@@ -1,5 +1,5 @@
-roaches 
-carps 
+roaches
+carps
 bears
 cockroaches
 spiders
@@ -74,14 +74,10 @@ americans
 creatures
 men
 gods
-hivemind tyrants
+hiveminds
 scientists
 engineers
 shitsecs
-security
-ironhammer operatives
-ironhammer commanders
-ironhammer investigators
 detectives
 criminals
 officers
@@ -103,3 +99,4 @@ dwarves
 halfling
 orcs
 moths
+blobs

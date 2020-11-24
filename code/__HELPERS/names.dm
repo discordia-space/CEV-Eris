@@ -197,15 +197,3 @@ var/syndicate_code_response//Code response for traitors.
 			code_phrase += ", "
 
 	return code_phrase
-
-//When you need something simple (for random Artist Artwork)
-/proc/get_weapon_name(capitalize = FALSE)
-	var/first_name = pick(GLOB.art_weapon_first_names)
-	var/second_name = pick(GLOB.art_weapon_second_names)
-
-	if(capitalize)
-		first_name = capitalize(first_name)
-		second_name = capitalize(second_name)
-
-	var/weapon_name = "\improper [first_name] [second_name]"
-	return weapon_name
