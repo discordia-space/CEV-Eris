@@ -5,7 +5,7 @@
 
 	//spawn_values
 	price_tag = 0
-	spawn_tags = SPAWN_TAG_ITEM
+	//spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
 	spawn_frequency = 10
 	bad_type = /obj/item

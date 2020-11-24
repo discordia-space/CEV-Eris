@@ -39,7 +39,7 @@
 /obj/item/weapon/storage/box/lights    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/data_disk/basic    blacklisted=0    spawn_value=8.44231   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/data_disk    blacklisted=0    spawn_value=3.10144   spawn_price=175   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/headset/church    blacklisted=0    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/headset/church    blacklisted=1    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/headset    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/donut/empty    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/donut    blacklisted=0    spawn_value=4.59176   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing

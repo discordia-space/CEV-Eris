@@ -24,6 +24,7 @@
 	selectable = 1
 	toggleable = 0
 	disruptive = 0
+	bad_type = /obj/item/rig_module/device
 
 
 	var/device_type

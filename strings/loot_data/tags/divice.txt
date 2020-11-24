@@ -180,7 +180,6 @@
 /obj/item/device/toner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/camera_film    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/camera    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/am_shielding_container    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/makeshift_centrifuge    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/makeshift_electrolyser    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/destTagger    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
