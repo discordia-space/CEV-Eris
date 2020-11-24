@@ -652,6 +652,7 @@
 	spawn_type.TransferComponents(src)
 	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
 	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
-		tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
+		if(isnum(tool_comp.tool_upgrades[upgrade]))
+			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
 	QDEL_NULL(spawn_type)
 	QDEL_NULL(CATCH)

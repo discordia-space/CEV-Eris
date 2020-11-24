@@ -4,6 +4,7 @@
 #define ERR_NOREAGENT "no reagent"
 #define ERR_NOLICENSE "no license"
 #define ERR_PAUSED "paused"
+#define ERR_NOINSIGHT "no insight"
 
 
 /obj/machinery/autolathe
@@ -67,7 +68,8 @@
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
-		ERR_PAUSED = "**Construction Paused**"
+		ERR_PAUSED = "**Construction Paused**",
+		ERR_NOINSIGHT = "Not enough insight."
 	)
 
 	var/tmp/datum/wires/autolathe/wires
@@ -880,6 +882,7 @@
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
 #undef ERR_PAUSED
+#undef ERR_NOINSIGHT
 
 // A version with some materials already loaded, to be used on map spawn
 /obj/machinery/autolathe/loaded

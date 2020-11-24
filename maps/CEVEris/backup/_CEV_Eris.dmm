@@ -96438,7 +96438,7 @@
 	req_access = newlist()
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ehK" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -97401,7 +97401,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ejL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -98622,7 +98622,7 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "emH" = (
 /obj/structure/plasticflaps/mining,
 /turf/simulated/floor/plating/under,
@@ -99057,7 +99057,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "enM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -100526,7 +100526,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "erj" = (
 /turf/simulated/wall/r_wall,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing{
@@ -100541,13 +100541,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erm" = (
 /obj/structure/multiz/stairs/active{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ern" = (
 /obj/structure/sign/department/morgue{
 	pixel_x = -32
@@ -100562,7 +100562,7 @@
 /area/eris/medical/surgery)
 "ero" = (
 /turf/simulated/wall,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erp" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/soviet,
@@ -100570,7 +100570,7 @@
 /obj/item/clothing/head/ushanka,
 /obj/item/clothing/head/ushanka,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erq" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/holoposter{
@@ -100602,7 +100602,7 @@
 /obj/item/clothing/glasses/monocle,
 /obj/item/clothing/glasses/monocle,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ers" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
@@ -100665,14 +100665,14 @@
 /obj/item/clothing/mask/gas/monkeymask,
 /obj/item/clothing/mask/gas/monkeymask,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erx" = (
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ery" = (
 /obj/landmark/join/start/actor,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erz" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -100684,7 +100684,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erA" = (
 /obj/structure/table/standard,
 /obj/random/pack/tech_loot/low_chance,
@@ -100725,7 +100725,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -100745,7 +100745,7 @@
 /obj/item/device/synthesized_instrument/guitar,
 /obj/item/device/synthesized_instrument/synthesizer,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erF" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -100753,7 +100753,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erG" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -100761,7 +100761,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erH" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -100769,14 +100769,14 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -100800,7 +100800,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -104390,7 +104390,7 @@
 "ezg" = (
 /obj/machinery/camera/network/third_section,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezh" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/structure/disposalpipe/segment,
@@ -104419,7 +104419,7 @@
 /obj/item/clothing/head/flatcap,
 /obj/machinery/camera/network/third_section,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -104453,7 +104453,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezn" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/shoes/black,
@@ -104474,7 +104474,7 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -104510,7 +104510,7 @@
 	pixel_y = -23
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -106767,7 +106767,7 @@
 /obj/item/clothing/mask/gas/mime,
 /obj/item/clothing/under/mime,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "eDR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,

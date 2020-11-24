@@ -15,7 +15,7 @@
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
-		access_eva, access_external_airlocks, access_change_cargo
+		access_eva, access_external_airlocks, access_change_cargo, access_artist
 	)
 	ideal_character_age = 40
 	stat_modifiers = list(
@@ -188,7 +188,7 @@ Character Expectations:<br>\
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
-	access = list(access_maint_tunnels, access_theatre, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station, access_artist)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/artist
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed

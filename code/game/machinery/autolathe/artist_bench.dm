@@ -4,11 +4,11 @@
 #define ERR_NOREAGENT "no reagent"
 #define ERR_NOLICENSE "no license"
 #define ERR_PAUSED "paused"
-#define ERR_NOINSIGHT = "no insight"
+#define ERR_NOINSIGHT "no insight"
 
 /obj/machinery/autolathe/artist_bench
 	name = "artist's bench"
-	desc = "" //Temporary description.
+	desc = "Insert wood, steel, glass, plasteel, plastic and a bit of your soul to create a beautiful work of art."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "bench"
 	circuit = /obj/item/weapon/electronics/circuitboard/artist_bench
@@ -85,7 +85,7 @@
 			var/mob/living/carbon/human/H = usr
 			var/ins_used = 0
 			if(H.stats.getPerk(PERK_ARTIST) && H.sanity.insight > 40)
-				ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight]","Insight Used") as null|num
+				ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight > 100 ? 100 : H.sanity.insight]","Insight Used") as null|num
 			else
 				ins_used = H.sanity.insight
 			create_art(ins_used, H)
@@ -313,9 +313,12 @@
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
 	flick("[initial(icon_state)]_work", src)
+	working = TRUE
 	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
 		error = "Lost artist."
+		working = FALSE
 		return
+	working = FALSE
 
 	var/obj/artwork = choose_full_art(ins_used, user)
 	var/datum/design/art
@@ -360,9 +363,12 @@
 		user.sanity.finish_rest()
 
 /obj/machinery/autolathe/artist_bench/can_print(datum/design/design)
-	/*for(var/rmat in suitable_materials)
+	if(working)
+		return "isworking"
+
+	for(var/rmat in suitable_materials)
 		if(stored_material[rmat] < min_mat)
-			return ERR_NOMATERIAL*///EVAN
+			return ERR_NOMATERIAL
 
 	for(var/rmat in design.materials)
 		if(!(rmat in stored_material))
@@ -390,9 +396,8 @@
 #undef ERR_NOINSIGHT
 
 /obj/machinery/autolathe/artist_bench/proc/randomize_materialas(obj/O)
-	/*var/material_num = pick(0, suitable_materials.len)
+	var/material_num = pick(0, suitable_materials.len)
 	var/list/new_materials = list()
 	for(var/i in 1 to material_num)
 		LAZYAPLUS(new_materials, pick(suitable_materials), pick(0,1,1,1,2,3))
-	O.matter = new_materials*///EVAN ESTO ES PARA TEST
-	O.matter = null
+	O.matter = new_materials

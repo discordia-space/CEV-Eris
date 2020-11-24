@@ -8338,6 +8338,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
+"ata" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "atb" = (
 /turf/simulated/wall,
 /area/eris/maintenance/fueltankstorage)
@@ -93148,12 +93154,12 @@
 /area/eris/maintenance/section4deck1central)
 "ehJ" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Theatre";
-	req_access = newlist()
+/obj/machinery/door/airlock/glass_mining{
+	name = "Artist office";
+	req_access = list(43)
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ehK" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -94089,10 +94095,6 @@
 /area/eris/maintenance/section4deck1central)
 "ejK" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
-	name = "Theatre Maintenance";
-	req_access = list(43)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -94102,8 +94104,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/maintenance_cargo{
+	name = "Artist office Maintenance";
+	req_access = list(43)
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ejL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -95291,7 +95297,7 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "emH" = (
 /obj/structure/plasticflaps/mining,
 /turf/simulated/floor/plating/under,
@@ -95706,17 +95712,17 @@
 /area/eris/rnd/research)
 "enL" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
-	name = "Theatre Maintenance";
-	req_access = list(43)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock/maintenance_cargo{
+	name = "Artist office Maintenance";
+	req_access = list(50)
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "enM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -97162,7 +97168,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "erj" = (
 /turf/simulated/wall/r_wall,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing{
@@ -97176,13 +97182,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erm" = (
 /obj/structure/multiz/stairs/active{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ern" = (
 /obj/structure/sign/department/morgue{
 	pixel_x = -32
@@ -97196,7 +97202,7 @@
 /area/eris/medical/surgery)
 "ero" = (
 /turf/simulated/wall,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erp" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/soviet,
@@ -97204,7 +97210,7 @@
 /obj/item/clothing/head/ushanka,
 /obj/item/clothing/head/ushanka,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erq" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/holoposter{
@@ -97213,30 +97219,6 @@
 /obj/landmark/join/start/assistant,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
-"err" = (
-/obj/structure/closet/wardrobe/color/pink,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/reagent_containers/spray/waterflower,
-/obj/item/weapon/reagent_containers/spray/waterflower,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/device/pda/clown,
-/obj/item/device/pda/clown,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/glasses/monocle,
-/obj/item/clothing/glasses/monocle,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
 "ers" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
@@ -97297,14 +97279,14 @@
 /obj/item/clothing/mask/gas/monkeymask,
 /obj/item/clothing/mask/gas/monkeymask,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erx" = (
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ery" = (
 /obj/landmark/join/start/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erz" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -97316,7 +97298,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erA" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -97355,7 +97337,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -97368,14 +97350,9 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck1central)
 "erE" = (
-/obj/structure/table/rack,
-/obj/item/device/synthesized_instrument/violin,
-/obj/item/device/synthesized_instrument/trumpet,
-/obj/item/device/synthesized_instrument/guitar/multi,
-/obj/item/device/synthesized_instrument/guitar,
-/obj/item/device/synthesized_instrument/synthesizer,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/obj/machinery/autolathe/artist_bench,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "erF" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -97383,7 +97360,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erG" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -97391,7 +97368,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erH" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -97399,14 +97376,15 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -97429,7 +97407,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -100041,6 +100019,10 @@
 /area/eris/storage/primary)
 "exl" = (
 /obj/machinery/camera/network/third_section,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 8
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/fitness)
 "exm" = (
@@ -100895,8 +100877,11 @@
 /area/eris/maintenance/section2deck1port)
 "ezg" = (
 /obj/machinery/camera/network/third_section,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezh" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/structure/disposalpipe/segment,
@@ -100923,7 +100908,7 @@
 /obj/item/clothing/head/flatcap,
 /obj/machinery/camera/network/third_section,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -100955,7 +100940,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezn" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/shoes/color/black,
@@ -100975,7 +100960,7 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -101009,7 +100994,7 @@
 	pixel_y = -23
 	},
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "ezr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -103155,15 +103140,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"eDQ" = (
-/obj/structure/closet,
-/obj/item/clothing/gloves/color/green,
-/obj/item/clothing/gloves/color/rainbow,
-/obj/item/clothing/gloves/color/light_brown,
-/obj/item/clothing/mask/gas/mime,
-/obj/item/clothing/under/mime,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
 "eDR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
@@ -105089,6 +105065,10 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"khm" = (
+/obj/structure/closet/secure_closet/personal/artist,
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "klx" = (
 /obj/machinery/holomap{
 	dir = 1;
@@ -105221,6 +105201,18 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
+"lBj" = (
+/obj/structure/table/rack,
+/obj/item/device/synthesized_instrument/violin,
+/obj/item/device/synthesized_instrument/trumpet,
+/obj/item/device/synthesized_instrument/guitar/multi,
+/obj/item/device/synthesized_instrument/guitar,
+/obj/item/device/synthesized_instrument/synthesizer,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "lCK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -105230,8 +105222,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_cargo{
-	name = "Cargo Maintenance";
-	req_access = list(50)
+	name = "Artist office Maintenance";
+	req_access = list(43)
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -105381,6 +105373,10 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"nan" = (
+/obj/structure/closet/wardrobe/color/pink/artist,
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "ncx" = (
 /obj/effect/shuttle_landmark/merc/medbay,
 /turf/space,
@@ -283662,7 +283658,7 @@ alb
 alb
 alb
 aaa
-abF
+erj
 erj
 ero
 ero
@@ -283864,10 +283860,10 @@ abF
 abF
 abF
 aaa
-abF
 erj
 erp
 erw
+lBj
 erE
 emG
 erX
@@ -284066,9 +284062,9 @@ abF
 abF
 abF
 aaa
-abF
 erj
 ezj
+erx
 erx
 erx
 emG
@@ -284268,9 +284264,9 @@ abF
 abF
 abF
 aaa
-abF
 erj
-err
+nan
+erx
 ery
 erF
 enL
@@ -284470,9 +284466,9 @@ abF
 abF
 abF
 aaa
-abF
 erj
-eDQ
+khm
+ata
 erx
 erG
 emG

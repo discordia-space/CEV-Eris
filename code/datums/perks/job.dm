@@ -16,8 +16,8 @@
 
 /datum/perk/job/artist
 	name = "Artist"
-	desc = "" //Evan Temporary Description
-	icon_state = "venus" //https://game-icons.net/1x1/delapouite/venus-of-willendorf.html#download
+	desc = "You have a lot of expertise in making works of art. You gain double insight from all sources but can only level \
+			up by creating works of art."
 	var/old_max_insight = INFINITY
 	var/old_max_resting = INFINITY
 	var/old_insight_rest_gain_multiplier = 1
