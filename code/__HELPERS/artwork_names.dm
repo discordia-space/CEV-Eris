@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(art_description_object_creatures_plural, file2list("strings/art
 
 /proc/get_travel_actios()
 	GLOB.art_locations |= list("[get_art_mob_places()]")
-	return "the [get_artwork_crew_name()]s trip to the [GLOB.art_locations]"
+	return "the [get_artwork_crew_name()]s trip to the [pick(GLOB.art_locations)]"
 
 /proc/get_art_mob_places()
 	var/list/mobs_places = list("cave", "hideout", "nest")
