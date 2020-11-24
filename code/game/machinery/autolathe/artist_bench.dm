@@ -134,24 +134,36 @@
 	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used)
-	var/weight_artwork_statue = 8
-	var/weight_artwork_weapon = 8
-	var/weight_artwork_oddity = 8
-	var/weight_artwork_revolver = 8
-	var/weight_artwork_tool = 8
-	var/weight_artwork_toolmod = 8
-	var/weight_artwork_gunmod = 8
+	var/list/LStats = list()
 
-	if(ins_used >= 80)//Arbitrary values
+	if(inspiration && user.stats.getPerk(PERK_ARTIST))
+		LStats = inspiration.calculate_statistics()
+
+	var/weight_artwork_statue = 8 + LStats[STAT_TGH]
+	var/weight_artwork_weapon = 8 + LStats[STAT_ROB]
+	var/weight_artwork_oddity = 8 + max(LStats[STAT_COG], LStats[STAT_BIO])
+	var/weight_artwork_revolver = 8 + LStats[STAT_VIG]
+	var/weight_artwork_tool = 8 + LStats[STAT_MEC]
+	var/weight_artwork_toolmod = 8 + LStats[STAT_MEC]
+	var/weight_artwork_gunmod = 8 + LStats[STAT_MEC]
+
+	if(ins_used >= 85)//Arbitrary values
 		weight_artwork_weapon += 2
 		weight_artwork_revolver += 2
-	else if(ins_used >= 60)
+	if(ins_used >= 70)
+		weight_artwork_weapon += 1
+		weight_artwork_revolver += 1
 		weight_artwork_oddity += 2
 		weight_artwork_gunmod += 2
-	else
-		weight_artwork_statue += 2
+	if(ins_used >= 55)
+		weight_artwork_weapon += 1
+		weight_artwork_revolver += 1
+		weight_artwork_oddity += 1
+		weight_artwork_gunmod += 1
 		weight_artwork_tool += 2
 		weight_artwork_toolmod += 2
+	else
+		weight_artwork_statue += 4
 
 	return pickweight(list(
 		"artwork_revolver" = weight_artwork_revolver,
