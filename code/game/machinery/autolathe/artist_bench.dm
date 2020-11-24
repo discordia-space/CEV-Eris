@@ -133,7 +133,7 @@
 	inspiration = null
 	SSnano.update_uis(src)
 
-/obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used)
+/obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used, mob/living/carbon/human/user)
 	var/list/LStats = list()
 
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
@@ -173,7 +173,7 @@
 	))
 
 /obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/carbon/human/user)
-	var/full_artwork = choose_base_art(ins_used)
+	var/full_artwork = choose_base_art(ins_used, user)
 	var/list/LStats = list()
 
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
