@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: slowdown of the atom subsystem.
-  - tweak: items without any specific tag can no longer be spawned in maint.
-  - tweak: scraps piles no longer guarantee a rare item, instead they guarantee a
-      no junk item.
