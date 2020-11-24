@@ -656,3 +656,7 @@
 			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
 	QDEL_NULL(spawn_type)
 	QDEL_NULL(CATCH)
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
+	. = ..()
+	. += max(., rand(-100, 200))

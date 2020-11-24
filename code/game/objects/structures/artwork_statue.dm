@@ -21,3 +21,7 @@
 			set_anchored(!anchored)
 		return
 	. = ..()
+
+/obj/structure/artwork_statue/get_item_cost(export)
+	. = ..()
+	. += max(., rand(-50, 450))
