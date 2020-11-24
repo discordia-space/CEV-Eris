@@ -50,5 +50,5 @@
 	name = "tactical balaclava"
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
-	item_state = "balaclava"
+	item_state = "swatclava"
 	rarity_value = 10
