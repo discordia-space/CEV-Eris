@@ -14,7 +14,7 @@
 	var/top_price
 	var/low_price
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
-	var/list/should_be_include_tag = list()//TODO
+	var/list/should_be_include_tags = list()//TODO
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
 	var/allow_aditional_object = TRUE
@@ -157,7 +157,7 @@
 	return pick_spawn(candidates)
 
 /obj/spawner/proc/valid_candidates()
-	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths)
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths, should_be_include_tags)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)

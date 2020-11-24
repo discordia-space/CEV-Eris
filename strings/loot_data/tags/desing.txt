@@ -12,7 +12,6 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards    blacklisted=0    spawn_value=3.78817   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/security    blacklisted=0    spawn_value=15.63   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.4006   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo    blacklisted=0    spawn_value=4.67335   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing

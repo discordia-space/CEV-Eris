@@ -48,22 +48,24 @@
 	return FALSE
 
 /obj/item/organ/external/robotic/proc/can_activate()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/proc/activate()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/proc/deactivate(emergency = TRUE)
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/limb
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = ITEM_SIZE_NORMAL
+	bad_type = /obj/item/organ/external/robotic/limb
 
 /obj/item/organ/external/robotic/tiny
 	min_broken_damage = 15
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/organ/external/robotic/tiny
 
 
 /obj/item/organ/external/robotic/l_arm
