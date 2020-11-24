@@ -104553,6 +104553,18 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"eWR" = (
+/obj/structure/table/rack,
+/obj/item/device/synthesized_instrument/violin,
+/obj/item/device/synthesized_instrument/trumpet,
+/obj/item/device/synthesized_instrument/guitar/multi,
+/obj/item/device/synthesized_instrument/guitar,
+/obj/item/device/synthesized_instrument/synthesizer,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "eZp" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/toolbox/electrical,
@@ -105065,10 +105077,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
-"khm" = (
-/obj/structure/closet/secure_closet/personal/artist,
-/turf/simulated/floor/wood,
-/area/eris/quartermaster/artistoffice)
 "klx" = (
 /obj/machinery/holomap{
 	dir = 1;
@@ -105201,18 +105209,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
-"lBj" = (
-/obj/structure/table/rack,
-/obj/item/device/synthesized_instrument/violin,
-/obj/item/device/synthesized_instrument/trumpet,
-/obj/item/device/synthesized_instrument/guitar/multi,
-/obj/item/device/synthesized_instrument/guitar,
-/obj/item/device/synthesized_instrument/synthesizer,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/eris/quartermaster/artistoffice)
 "lCK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -105373,10 +105369,6 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
-"nan" = (
-/obj/structure/closet/wardrobe/color/pink/artist,
-/turf/simulated/floor/wood,
-/area/eris/quartermaster/artistoffice)
 "ncx" = (
 /obj/effect/shuttle_landmark/merc/medbay,
 /turf/space,
@@ -106046,6 +106038,10 @@
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"unx" = (
+/obj/structure/closet/secure_closet/personal/artist,
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "uqX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -106066,6 +106062,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
+"uuT" = (
+/obj/structure/closet/wardrobe/color/pink/artist,
+/turf/simulated/floor/wood,
+/area/eris/quartermaster/artistoffice)
 "uvI" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -283863,7 +283863,7 @@ aaa
 erj
 erp
 erw
-lBj
+eWR
 erE
 emG
 erX
@@ -284265,7 +284265,7 @@ abF
 abF
 aaa
 erj
-nan
+uuT
 erx
 ery
 erF
@@ -284467,7 +284467,7 @@ abF
 abF
 aaa
 erj
-khm
+unx
 ata
 erx
 erG
