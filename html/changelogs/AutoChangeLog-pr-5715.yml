@@ -1,0 +1,4 @@
+author: TheShown911
+delete-after: true
+changes:
+  - bugfix: carrion organs you buy will not disappear if there isn't enough space.
