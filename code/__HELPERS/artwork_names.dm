@@ -79,3 +79,11 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 /obj/proc/make_art_rewview()
 	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encourages")
 	desc += " A [pick(GLOB.art_style)] a work of art [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
+
+/obj/item/weapon/gun/projectile/make_art_rewview()
+	desc += " [get_art_gun_desc(src)]"
+	desc += " Uses [caliber] rounds."
+
+/proc/get_art_gun_desc(obj/O)
+	var/list/type_of_design = list("cyberpunk", "outdated", "modern", "futuristic", "rustic")
+	return "It is made mainly of [O.get_random_material()] and has a [pick(type_of_design)] design."
