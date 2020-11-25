@@ -24,16 +24,15 @@
 		get_stats = statistics
 	else
 		return COMPONENT_INCOMPATIBLE
-	if(!isnull(stats))
-		switch(stats[STAT_MEC])
-			if(1 to 3)
-				power = 1
-			if(3 to 5)
-				power = 2
-			if(5 to 7)
-				power = 3
-			if(7 to INFINITY)
-				power = 4
+	switch(stats[STAT_MEC])
+		if(1 to 3)
+			power = 1
+		if(3 to 5)
+			power = 2
+		if(5 to 7)
+			power = 3
+		if(7 to INFINITY)
+			power = 4
 
 /datum/component/inspiration/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
