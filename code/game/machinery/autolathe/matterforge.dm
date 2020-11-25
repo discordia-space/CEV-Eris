@@ -280,7 +280,7 @@
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
 	if(I.GetComponent(/datum/component/inspiration))
 		GET_COMPONENT_FROM(comp, /datum/component/inspiration, I)
-		if(comp.power > 0)
+		if(comp.get_power() > 0)
 			user.drop_item(I)
 			I.forceMove(src)
 			if(power_source)
@@ -340,7 +340,7 @@
 	var/datum/component/inspiration/artifact = power_source.GetComponent(/datum/component/inspiration)
 	var/gained_mats = 0
 	for(var/mat in total_material_gained)
-		var/added_mats = artifact.power * total_material_gained[mat] * lst[mat]
+		var/added_mats = artifact.get_power() * total_material_gained[mat] * lst[mat]
 		if(added_mats + stored_material[MATERIAL_COMPRESSED_MATTER] > storage_capacity)
 			added_mats = storage_capacity - stored_material[MATERIAL_COMPRESSED_MATTER]
 		var/leftover_mats = (added_mats + stored_material[MATERIAL_COMPRESSED_MATTER]) - storage_capacity
@@ -348,7 +348,7 @@
 		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
 		gained_mats += added_mats
 		if(leftover_mats == 0)
-			used_sheets = (added_mats / artifact.power) / lst[mat]
+			used_sheets = (added_mats / artifact.get_power()) / lst[mat]
 		else
 			used_sheets = total_material_gained[mat]
 	if(istype(eating, /obj/item/stack))

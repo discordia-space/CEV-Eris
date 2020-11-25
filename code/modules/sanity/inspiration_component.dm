@@ -74,4 +74,5 @@
 		return get_stats.Invoke()
 
 /datum/component/inspiration/proc/get_power()
-	return power
+	var/list/L = calculate_statistics()
+	return L[STAT_MEC]
