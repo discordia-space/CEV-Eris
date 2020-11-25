@@ -633,7 +633,7 @@
 	)
 	I.prefix = "hydraulic"
 	
-// Randomizes a bunch of weapon stats on application - can be re-rolled by re-applying it, but runs the risk of destroying the toolmod
+// Randomizes a bunch of weapon stats on application - stats are set on creation of the item to prevent people from re-rolling until they get what they want
 /obj/item/weapon/tool_upgrade/augment/randomizer
 	name = "BSL \"Randomizer\" tool polish"
 	desc = "This unidentified tar-like liquid warps and bends reality around it. Applying it to a tool may have unexpected results."
