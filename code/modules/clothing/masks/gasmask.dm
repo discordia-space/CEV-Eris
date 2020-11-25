@@ -82,6 +82,7 @@
 	var/list/options = list()
 	options["True Form"] = "artist"
 	options["The clown"] = "clown"
+	options["The mime"] = "mime"
 	options["The Feminist"] = "sexyclown"
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"

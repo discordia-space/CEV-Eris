@@ -79,6 +79,7 @@
 /obj/item/weapon/pen/reagent
 /obj/item/weapon/pen/chameleon
 /obj/item/weapon/oddity/techno
+/obj/item/weapon/oddity/artwork
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
@@ -231,7 +232,6 @@
 /obj/item/clothing/head/surgery/purple
 /obj/item/clothing/head/surgery/blue
 /obj/item/clothing/head/surgery/green
-/obj/item/clothing/head/surgery
 /obj/item/clothing/gloves/chameleon
 /obj/item/clothing/gloves/security/ironhammer
 /obj/item/clothing/gloves/latex/nitrile
@@ -417,6 +417,7 @@
 /mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/in_work
 /mob/living/bot/miningonestar/resources
+/obj/structure/closet/crate/miningcar
 /obj/structure/closet/coffin/spawnercorpse
 /obj/structure/closet/thunderdome/tdred
 /obj/structure/closet/thunderdome/tdgreen

@@ -1,6 +1,6 @@
 /obj/structure/artwork_statue
 	name = "Weird Statue"
-	desc = "a work of art that reflects the ideas of its creator."
+	desc = "A work of art that reflects the ideas of its creator."
 	icon = 'icons/obj/structures/artwork_statue.dmi'
 	icon_state = "artwork_statue_1"
 	density = TRUE
@@ -13,11 +13,6 @@
 
 	var/sanity_value = 2 + rand(0,2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
-
-/obj/structure/artwork_statue/proc/get_sculpting_desc()
-	var/rmatter = get_random_material_of(src)
-	if(rmatter)
-		desc += " [pick(GLOB.art_sculpting_method)] [rmatter]"
 
 /obj/structure/artwork_statue/attackby(obj/item/I, mob/living/user)
 	if(I.has_quality(QUALITY_BOLT_TURNING))

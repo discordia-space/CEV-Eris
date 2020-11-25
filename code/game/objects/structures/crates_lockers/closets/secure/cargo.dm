@@ -39,7 +39,7 @@
 	req_access = list(access_merchant)
 	access_occupy = list(access_artist)
 	icon_state = "cargo"
-	spawn_blacklisted = TRUE
+	spawn_frequency = 0
 
 /obj/structure/closet/secure_closet/personal/artist/populate_contents()
 	new/obj/item/clothing/suit/artist(src)
@@ -53,7 +53,6 @@
 	new/obj/item/weapon/electronics/circuitboard/artist_bench(src)
 
 /obj/structure/closet/wardrobe/color/pink/artist
-	spawn_blacklisted = TRUE
 
 /obj/structure/closet/wardrobe/color/pink/artist/populate_contents()
 	new/obj/item/clothing/under/mime(src)

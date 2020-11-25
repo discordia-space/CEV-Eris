@@ -139,37 +139,37 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_artwork_statue = 8 + LStats[STAT_TGH]
+	var/weight_artwork_statue = 10 + LStats[STAT_TGH]
 	var/weight_artwork_weapon = 8 + LStats[STAT_ROB]
-	var/weight_artwork_oddity = 8 + max(LStats[STAT_COG], LStats[STAT_BIO])
-	var/weight_artwork_revolver = 8 + LStats[STAT_VIG]
+	var/weight_artwork_oddity = 7 + max(LStats[STAT_COG], LStats[STAT_BIO])
+	var/weight_artwork_revolver = 7 + LStats[STAT_VIG]
 	var/weight_artwork_tool = 8 + LStats[STAT_MEC]
 	var/weight_artwork_toolmod = 8 + LStats[STAT_MEC]
-	var/weight_artwork_gunmod = 8 + LStats[STAT_MEC]
+	var/weight_artwork_gunmod = 8 + LStats[STAT_COG]
 
 	if(ins_used >= 85)//Arbitrary values
 		weight_artwork_weapon += 2
 		weight_artwork_revolver += 2
 	if(ins_used >= 70)
-		weight_artwork_weapon += 1
-		weight_artwork_revolver += 1
+		weight_artwork_weapon += 0.5
+		weight_artwork_revolver += 0.5
 		weight_artwork_oddity += 2
 		weight_artwork_gunmod += 2
 	if(ins_used >= 55)
-		weight_artwork_weapon += 1
-		weight_artwork_revolver += 1
+		weight_artwork_weapon += 0.5
+		weight_artwork_revolver += 0.5
 		weight_artwork_oddity += 1
 		weight_artwork_gunmod += 1
-		weight_artwork_tool += 2
-		weight_artwork_toolmod += 2
+		weight_artwork_tool += 3
+		weight_artwork_toolmod += 3
 	else
 		weight_artwork_statue += 4
 
 	return pickweight(list(
 		"artwork_revolver" = weight_artwork_revolver,
-		"artwork_statue" = weight_artwork_statue,
 		"artwork_oddity" = weight_artwork_oddity,
-		"artwork_toolmod" = weight_artwork_toolmod
+		"artwork_toolmod" = weight_artwork_toolmod,
+		"artwork_statue" = weight_artwork_statue
 	))
 
 /obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/carbon/human/user)
@@ -272,7 +272,6 @@
 
 	else if(full_artwork == "artwork_statue")
 		var/obj/structure/artwork_statue/S = new(src)
-		S.get_sculpting_desc()
 		return S
 
 	else if(full_artwork == "artwork_oddity")
@@ -310,7 +309,6 @@
 
 		O.oddity_stats = oddity_stats
 		O.AddComponent(/datum/component/inspiration, O.oddity_stats, O.perk)
-
 		return O
 
 	else if(full_artwork == "artwork_toolmod")
@@ -340,7 +338,6 @@
 		randomize_materialas(artwork)
 		art.build_path = artwork.type
 		art.AssembleDesignInfo(artwork)
-		artwork.forceMove(get_turf(src))
 	else
 		visible_message(SPAN_WARNING("Unknown error."))
 		return
@@ -355,17 +352,17 @@
 		QDEL_NULL(art)
 		return
 
-	//	if(!Adjacent(user))
-	//		return
+	artwork.make_art_rewview()
+	artwork.forceMove(get_turf(src))
 
 	consume_materials(art)
-	if(isitem(artwork))
+	if(isitem(artwork) && Adjacent(user))
 		user.put_in_hands(artwork)
 	user.sanity.insight -= ins_used
 	if(!user.stats.getPerk(PERK_ARTIST))
 		var/list/stat_change = list()
 
-		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
+		var/stat_pool = rand(4,10) //Arbitrary value for how much to remove the stats by, from sanity_mob
 		while(stat_pool--)
 			LAZYAPLUS(stat_change, pick(ALL_STATS), -1)
 

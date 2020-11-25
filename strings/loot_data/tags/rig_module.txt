@@ -1,6 +1,5 @@
 /obj/item/rig_module/device/drill    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/device/rcd    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module/device    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/grenade_launcher    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/egun    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/energy_blade    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -23,4 +22,3 @@
 /obj/item/rig_module/vision/multi    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/thermal    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/nvg    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
