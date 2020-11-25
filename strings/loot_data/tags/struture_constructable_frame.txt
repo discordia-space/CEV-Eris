@@ -1,1 +1,0 @@
-/obj/machinery/constructable_frame/machine_frame    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing

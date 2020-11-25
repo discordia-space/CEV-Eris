@@ -61,7 +61,9 @@
 /obj/item/weapon/storage/pouch/holding
 /obj/item/weapon/storage/backpack/chameleon
 /obj/item/weapon/storage/bag/trash/holding
+/obj/item/weapon/storage/belt/utility/neotheology
 /obj/item/weapon/storage/belt/tactical/ironhammer
+/obj/item/weapon/storage/belt/tactical/neotheology
 /obj/item/weapon/storage/belt/champion
 /obj/item/weapon/storage/belt/holding
 /obj/item/weapon/storage/bsdm/permanent
