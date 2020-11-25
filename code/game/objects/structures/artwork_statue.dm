@@ -14,6 +14,11 @@
 	var/sanity_value = 2 + rand(0,2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
+/obj/structure/artwork_statue/proc/get_sculpting_desc()
+	var/rmatter = get_random_material_of(src)
+	if(rmatter)
+		desc += " [pick(GLOB.art_sculpting_method)] [rmatter]"
+
 /obj/structure/artwork_statue/attackby(obj/item/I, mob/living/user)
 	if(I.has_quality(QUALITY_BOLT_TURNING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, STAT_MEC))
