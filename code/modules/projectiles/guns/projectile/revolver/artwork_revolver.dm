@@ -14,12 +14,8 @@
 	recoil_buildup = 30 //Arbitrary value
 	spawn_frequency = 0
 
-/obj/item/weapon/gun/projectile/revolver/artwork_revolver/proc/get_round_desc()
-	desc = initial(desc) + " Uses [caliber] rounds."
-
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
-	get_round_desc()
 
 	var/random_icon = rand(1,5)
 	icon_state = "artwork_revolver_[random_icon]"

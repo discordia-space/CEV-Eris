@@ -267,7 +267,6 @@
 				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
 				)
-		R.get_round_desc()
 		return R
 
 	else if(full_artwork == "artwork_statue")
@@ -342,6 +341,7 @@
 		visible_message(SPAN_WARNING("Unknown error."))
 		return
 	var/err = can_print(art, ins_used)
+	//err = ERR_OK //for debug
 	if(err != ERR_OK)
 		if(err in error_messages)
 			error = error_messages[err]
@@ -352,7 +352,7 @@
 		QDEL_NULL(art)
 		return
 
-	artwork.make_art_rewview()
+	artwork.make_art_review()
 	artwork.forceMove(get_turf(src))
 
 	consume_materials(art)

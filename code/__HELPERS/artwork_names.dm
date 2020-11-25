@@ -20,12 +20,11 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 		first_name = capitalize(first_name)
 		second_name = capitalize(second_name)
 
-	var/weapon_name = "\improper [first_name] [second_name]"
-	return weapon_name
+	return "\improper [first_name] [second_name]"
 
 /proc/get_artwork_crew_name(only_first_name = FALSE, only_last_name = FALSE)
 	var/list/names = list()
-	var/art_description_crew_name = "Who?"
+	var/art_crew_name = "Who?"
 	for(var/mob/living/carbon/human/H in (GLOB.human_mob_list & GLOB.player_list))
 		if(!isOnStationLevel(H))
 			continue
@@ -36,8 +35,8 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 		else
 			names.Add(H.real_name)
 	if(names.len)
-		art_description_crew_name = pick(names)
-	return art_description_crew_name
+		art_crew_name = pick(names)
+	return art_crew_name
 
 /proc/get_artwork_name(capitalize=FALSE)
 	var/option = pick(1,2,3)
@@ -55,11 +54,11 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 
 /proc/get_art_secret_name()
 	var/list/adjectives = list("big", "terrifying", "mysterious", "fantastic", "secret", "haunting", "mysteriouss")
-	return "the [pick(adjectives)] secret of [get_artwork_crew_name(TRUE)]"
+	return "the [pick(adjectives)] secret of [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]"
 
 /proc/get_travel_actios()
 	GLOB.art_locations |= list("[get_art_mob_places()]")
-	return "the [get_artwork_crew_name(TRUE)]s [pick("trip","journey")] to the [pick(GLOB.art_locations)]"
+	return "the [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]s [pick("trip","journey")] to the [pick(GLOB.art_locations)]"
 
 /proc/get_art_mob_places()
 	var/list/mobs_places = list("cave", "hideout", "nest")
@@ -67,20 +66,20 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 
 /proc/get_art_of_name()
 	var/list/nouns = list("heart", "soul", "honor", "beauty", "feet", "true face", "true form")
-	return "the [pick(nouns)] of [get_artwork_crew_name(TRUE)]"
+	return "the [pick(nouns)] of [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]"
 
 /obj/proc/get_random_material()
 	var/list/nmatter = get_matter()
-	return nmatter ? pick(nmatter) : null
+	return nmatter ? pickweight(nmatter) : null
 
 /obj/proc/get_sculpting_method()
 	return "[pick(GLOB.art_sculpting_method)] [get_random_material()]"
 
-/obj/proc/make_art_rewview()
+/obj/proc/make_art_review()
 	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encourages")
 	desc += " A [pick(GLOB.art_style)] a work of art [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
 
-/obj/item/weapon/gun/projectile/make_art_rewview()
+/obj/item/weapon/gun/projectile/make_art_review()
 	desc += " [get_art_gun_desc(src)]"
 	desc += " Uses [caliber] rounds."
 
