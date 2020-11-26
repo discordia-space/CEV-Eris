@@ -451,9 +451,9 @@
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 70,
-		bullet = 50,
+		bullet = 30,
 		energy = 30,
-		bomb = 0,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
