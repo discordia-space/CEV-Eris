@@ -1,0 +1,5 @@
+author: Garen7
+delete-after: true
+changes:
+  - rscadd: Adds an excelsior hud to the excelsior voidsuit helmet which only works
+      for excelsior
