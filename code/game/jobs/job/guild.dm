@@ -183,7 +183,7 @@ Character Expectations:<br>\
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 1
+	total_positions = 3
 	spawn_positions = 1
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
@@ -193,7 +193,7 @@ Character Expectations:<br>\
 	outfit_type = /decl/hierarchy/outfit/job/cargo/artist
 	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
 	stat_modifiers = list(
-		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
+		STAT_TGH = 30,
 	)
 
 	perks = list(PERK_ARTIST)

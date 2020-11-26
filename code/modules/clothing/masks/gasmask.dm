@@ -77,22 +77,15 @@
 	icon_state = "artist"
 	item_state = "artist_hat"
 	spawn_frequency = 0
+	var/list/states = list("True Form" = "artist", "The clown" = "clown",
+	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
+	"The Rainbow Color" = "rainbow", "The monkey" = "monkeymask", "The Owl" = "owl")
 
 /obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)
-	var/list/options = list()
-	options["True Form"] = "artist"
-	options["The clown"] = "clown"
-	options["The mime"] = "mime"
-	options["The Feminist"] = "sexyclown"
-	options["The Madman"] = "joker"
-	options["The Rainbow Color"] ="rainbow"
-	options["The monkey"] = "monkeymask"
-	options["The Owl"] = "owl"
-
-	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
+	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in states
 
 	if(src && choice && !user.incapacitated() && Adjacent(user))
-		icon_state = options[choice]
+		icon_state = states[choice]
 		to_chat(user, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
 		return TRUE
 
