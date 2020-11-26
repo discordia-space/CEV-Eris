@@ -204,9 +204,14 @@ Character Expectations:<br>\
 							 /datum/computer_file/program/wordprocessor,
 							 /datum/computer_file/program/reports)
 
-	description = ""//Temporary description
+	description = "You are a creative soul aboard this vessel. You have been conscripted by the Aster's Guild to create masterful works of art to be sold at mind-boggling prices... and something about the CEV Eris and it's doomed journey sparks the fire of creation within you.<br>\
+	You do not gain desires like other members of the crew. Instead, you stop gaining insight once you max out at 100 points.<br>\
+	You can gain desires by spending this insight at your Artist's Bench to build a work of art, this art you create vary wildly in type, quality, and (most importantly, in the eyes of the Merchant) value. Sell your artwork to the unwashed masses, or give you work to the merchant to sell for a profit."
 
-	loyalties = ""//Temporary description
+	duties = "Create masterful works of art."
+
+	loyalties = "You are loyal to your soul, first and foremost. You are fascinated by this cursed ship, and want to mold this interest into your works of art.<br>\
+	Your second loyalty is to the merchant and the Aster's Guild as a whole. After all, they're the ones giving you housing, payment, and materials to create your art."
 
 /obj/landmark/join/start/artist
 	name = "Guild Artist"

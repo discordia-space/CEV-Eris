@@ -139,31 +139,31 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_artwork_statue = 10 + LStats[STAT_TGH]
+	var/weight_artwork_statue = 20 + LStats[STAT_TGH]
 	var/weight_artwork_weapon = 8 + LStats[STAT_ROB]
-	var/weight_artwork_oddity = 7 + max(LStats[STAT_COG], LStats[STAT_BIO])
-	var/weight_artwork_revolver = 7 + LStats[STAT_VIG]
+	var/weight_artwork_oddity = 8 + max(LStats[STAT_COG], LStats[STAT_BIO])
+	var/weight_artwork_revolver = 8 + LStats[STAT_VIG]
 	var/weight_artwork_tool = 8 + LStats[STAT_MEC]
 	var/weight_artwork_toolmod = 8 + LStats[STAT_MEC]
 	var/weight_artwork_gunmod = 8 + LStats[STAT_COG]
 
 	if(ins_used >= 85)//Arbitrary values
+		weight_artwork_weapon += 8
+		weight_artwork_revolver += 8
+	if(ins_used >= 70)
 		weight_artwork_weapon += 2
 		weight_artwork_revolver += 2
-	if(ins_used >= 70)
-		weight_artwork_weapon += 0.5
-		weight_artwork_revolver += 0.5
-		weight_artwork_oddity += 2
-		weight_artwork_gunmod += 2
+		weight_artwork_oddity += 8
+		weight_artwork_gunmod += 8
 	if(ins_used >= 55)
-		weight_artwork_weapon += 0.5
-		weight_artwork_revolver += 0.5
-		weight_artwork_oddity += 1
-		weight_artwork_gunmod += 1
-		weight_artwork_tool += 3
-		weight_artwork_toolmod += 3
+		weight_artwork_weapon += 2
+		weight_artwork_revolver += 2
+		weight_artwork_oddity += 4
+		weight_artwork_gunmod += 4
+		weight_artwork_tool += 12
+		weight_artwork_toolmod += 12
 	else
-		weight_artwork_statue += 4
+		weight_artwork_statue += 12
 
 	return pickweight(list(
 		"artwork_revolver" = weight_artwork_revolver,
@@ -408,7 +408,7 @@
 /obj/machinery/autolathe/artist_bench/proc/randomize_materialas(obj/O)
 	var/material_num = pick(0, suitable_materials.len)
 	var/list/new_materials = list()
-	LAZYAPLUS(new_materials, pick(suitable_materials), 1)
+	LAZYAPLUS(new_materials, pick(suitable_materials), 3)
 	for(var/i in 1 to material_num)
 		LAZYAPLUS(new_materials, pick(suitable_materials), rand(0,2))
 	O.matter = new_materials

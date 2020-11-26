@@ -339,3 +339,7 @@
 	name = get_weapon_name(capitalize = TRUE)
 	icon_state = "artwork_[rand(1,6)]"
 	. = ..()
+
+/obj/item/weapon/oddity/artwork/get_item_cost(export)
+	. = ..()
+	. += rand(50, 300)

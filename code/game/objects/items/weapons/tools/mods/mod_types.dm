@@ -659,4 +659,4 @@
 
 /obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
 	. = ..()
-	. += max(., rand(-100, 200))
+	. += max(., rand(-100, 350))

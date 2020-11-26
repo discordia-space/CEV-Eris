@@ -24,4 +24,4 @@
 
 /obj/structure/artwork_statue/get_item_cost(export)
 	. = ..()
-	. += max(., rand(-50, 450))
+	. += max(., rand(1, 500))

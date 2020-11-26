@@ -32,6 +32,8 @@
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	recoil_buildup += rand(-(recoil_buildup / 5),(recoil_buildup / 5))
 
-	price_tag += rand(-1000,2500)//Sellable to either the Cargo Console or to people onboard the Eris, Temporary value
-
 	. = ..()
+
+/obj/item/weapon/gun/projectile/revolver/artwork_revolver/get_item_cost(export)
+	. = ..()
+	. += rand(-1000,2500)
