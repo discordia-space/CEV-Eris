@@ -311,7 +311,7 @@
 		return O
 
 	else if(full_artwork == "artwork_toolmod")
-		var/obj/item/weapon/tool_upgrade/artwork_tool_mod/TM = new(src)
+		var/obj/item/weapon/tool_upgrade/artwork_tool_mod/TM = new(src, ins_used)
 		return TM
 	else
 		return "ERR_ARTWORK"
