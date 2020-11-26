@@ -4,7 +4,7 @@
 	units_requested = 10 MINUTES
 	based_time = TRUE
 	var/area/target_area
-	var/timer	
+	var/timer
 
 /datum/individual_objective/disturbance/assign()
 	..()
@@ -89,7 +89,9 @@
 /datum/individual_objective/tribalism/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
-	return pick_faction_item(L)
+	if(locate(/obj/item/device/techno_tribalism))
+		return pick_faction_item(L)
+	return FALSE
 
 /datum/individual_objective/tribalism/assign()
 	..()
@@ -97,7 +99,7 @@
 	desc = "It is time to greater sacrifice. Put \the [target] in Techno-Tribalism Enforcer."
 	RegisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM, .proc/task_completed)
 
-/datum/individual_objective/tribalism/task_completed(obj/item/I) 
+/datum/individual_objective/tribalism/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 
