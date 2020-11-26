@@ -481,7 +481,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 10
 	loot_tags = list(SPAWN_CLOTHING)
 	restricted_tags = list(SPAWN_VOID_SUIT)
-	rare_loot = list(SPAWN_VOID_SUIT)
+	rare_loot = list(SPAWN_RARE_ITEM,SPAWN_VOID_SUIT)
 
 /obj/structure/scrap_spawner/poor
 	icontype = "poor"
