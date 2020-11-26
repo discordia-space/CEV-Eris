@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/tags_amt = max(round(loot_tags_copy.len*0.3),min_tags)
 		for(var/y in 1 to tags_amt)
 			true_loot_tags += pickweight_n_take(loot_tags_copy)
-		var/list/candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, null, null, TRUE)
+		var/list/candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, null, null, TRUE)
 		if(SPAWN_ITEM in true_loot_tags)
 			var/top_price = CHEAP_ITEM_PRICE
 			true_loot_tags = list()
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				top_price = 2000
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
-			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
+			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
 		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[loot_path]
@@ -481,6 +481,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 10
 	loot_tags = list(SPAWN_CLOTHING)
 	restricted_tags = list(SPAWN_VOID_SUIT)
+	rare_loot = list(SPAWN_VOID_SUIT)
 
 /obj/structure/scrap_spawner/poor
 	icontype = "poor"
