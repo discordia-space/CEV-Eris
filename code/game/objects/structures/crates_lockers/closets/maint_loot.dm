@@ -55,13 +55,12 @@
 /obj/structure/closet/random/spareparts
 	name = "\improper spare parts closet"
 	desc = "Somewhat old closet with spare parts in it."
-	icon_state = "eng"//bad icon
-	icon_door = "eng_secure_door"
+	icon_state = "eng"
+	icon_door = "eng_secure"
 	old_chance = 10
 	rarity_value = 50
-	bad_type = /obj/structure/closet/random/spareparts//bad icon
 
-/obj/structure/closet/random/tech/populate_contents()
+/obj/structure/closet/random/spareparts/populate_contents()
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -79,6 +78,7 @@
 	new /obj/spawner/lathe_disk/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+
 
 
 
