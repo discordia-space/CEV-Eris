@@ -21,3 +21,4 @@
 /obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.89757   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/crusader    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
