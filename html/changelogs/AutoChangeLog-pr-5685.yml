@@ -1,6 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - rscadd: Added 4 new organs - stomatch, mucles, nerves and blood vessels.
-  - balance: pain from brute, burn and tox damage lowered.
-  - bugfix: fixed a runtime with bones.
