@@ -50,21 +50,12 @@
 /obj/item/organ/internal/proc/get_process_eficiency(process_define)
 	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
 
-/obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
-	if(BP_IS_ROBOTIC(src))
-		damage = between(0, src.damage + (amount * 0.8), max_damage)
-	else
-		damage = between(0, src.damage + amount, max_damage)
-
-	if(!silent && (amount > 5 || prob(10)))
-		var/obj/item/organ/external/parent = get_limb()
-		if(parent)
-			var/degree = ""
-			if(is_bruised())
-				degree = " a lot"
-			if(damage < 5)
-				degree = " a bit"
-			owner_custom_pain("Something inside your [parent.name] hurts[degree].", amount)
+/obj/item/organ/internal/take_damage(amount, silent)	//Deals damage to the organ itself
+	damage = between(0, src.damage + (amount * (100 / parent.limb_efficiency)), max_damage)
+	if(!(BP_IS_ROBOTIC(src)))
+		//only show this if the organ is not robotic
+		if(owner && parent && amount > 0 && !silent)
+			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_ROBOTIC(src) || !owner || owner.chem_effects[CE_TOXIN] || owner.is_asystole())
