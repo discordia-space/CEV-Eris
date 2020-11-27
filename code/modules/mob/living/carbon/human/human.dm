@@ -1008,7 +1008,7 @@ var/list/rank_prefix = list(\
 	var/list/data = list()
 
 	data["style"] = get_total_style()
-	data["min_style"] = MIN_HUMAN_SYLE
+	data["min_style"] = MIN_HUMAN_STYLE
 	data["max_style"] = MAX_HUMAN_STYLE
 	data["sanity"] = sanity.level
 	data["sanity_max_level"] = sanity.max_level
