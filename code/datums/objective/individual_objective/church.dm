@@ -8,7 +8,9 @@
 /datum/individual_objective/bad_technology/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
-	return pick_faction_item(L)
+	if(locate(/obj/item/weapon/tool/sword/nt_sword))
+		return pick_faction_item(L)
+	return FALSE
 
 /datum/individual_objective/bad_technology/assign()
 	..()

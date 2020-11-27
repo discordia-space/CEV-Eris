@@ -139,6 +139,7 @@
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
 
+#define MOB_BASE_MAX_HUNGER 400
 
 //Time of Death constants
 //Used with a list in preference datums to track times of death
