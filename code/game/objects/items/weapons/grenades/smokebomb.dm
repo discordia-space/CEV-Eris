@@ -31,6 +31,13 @@
 		B.health -= damage
 		B.update_icon()
 	sleep(80)
-	icon_state = "grenade_off"
+	icon_state = initial(icon_state) + "_off"
 	desc = "[initial(desc)] It has already been used."
 	return
+
+/obj/item/weapon/grenade/smokebomb/nt
+	name = "NT SG \"Holy Fog\""
+	desc = "Smoke grenade, used to create a cloud of smoke providing cover and hiding movement."
+	icon_state = "smokegrenade_nt"
+	item_state = "smokegrenade_nt"
+	matter = list(MATERIAL_BIOMATTER = 75)

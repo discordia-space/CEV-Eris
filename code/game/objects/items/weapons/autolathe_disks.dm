@@ -417,7 +417,7 @@
 
 		/datum/design/autolathe/device/headset_church
 	)
-	
+
 // Ironhammer
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/security
 	disk_name = "Ironhammer Miscellaneous Pack"
@@ -1177,6 +1177,23 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee
+	disk_name = "NeoTheology Armory - Melee Weapons"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/sword/nt_sword,
+		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/autolathe/sword/nt_dagger,
+		/datum/design/autolathe/sword/nt_halberd,
+		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/autolathe/shield/nt_shield,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
 	disk_name = "Frozen Star - Cassad Plasma Rifle"
 	icon_state = "frozenstar"
@@ -1201,9 +1218,33 @@
 		/datum/design/autolathe/ammo/dart_mag,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades
+	disk_name = "NeoTheology Armory - Grenades Pack"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = 12
+	designs = list(
+		/datum/design/autolathe/grenade/nt_explosive = 3,
+		/datum/design/autolathe/grenade/nt_flashbang,
+		/datum/design/autolathe/grenade/nt_frag = 2,
+		/datum/design/autolathe/grenade/nt_smokebomb
+	)
+
 // ARMOR
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader
+	disk_name = "NeoTheology Armory - Crusader Armor"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 12 // one of the more common advanced disks
+	license = 6 // 6 pieces, or 3 sets if you use helm + vest
+	designs = list(
+		/datum/design/autolathe/helmet/crusader,
+		/datum/design/autolathe/armor/crusader
+	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"
