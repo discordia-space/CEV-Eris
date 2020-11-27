@@ -1,4 +1,0 @@
-author: Garen7
-delete-after: true
-changes:
-  - bugfix: Fixed negative style working like it was positive
