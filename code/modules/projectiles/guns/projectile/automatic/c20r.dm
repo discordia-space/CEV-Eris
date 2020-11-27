@@ -25,7 +25,7 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.5 //7.5 with regular lethal ammo, 15 with HV, seems legit
 	zoom_factor = 0.4
-	recoil_buildup = 3
+	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
 	rarity_value = 19.2
 

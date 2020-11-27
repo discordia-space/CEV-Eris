@@ -19,7 +19,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	recoil_buildup = 6
+	recoil_buildup = 1
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.45
 	zoom_factor = 0.2

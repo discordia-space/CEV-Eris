@@ -19,7 +19,7 @@
 	price_tag = 1200
 	rarity_value = 19.2
 	damage_multiplier = 1.2
-	recoil_buildup = 4
+	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 

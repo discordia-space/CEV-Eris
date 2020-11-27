@@ -18,7 +18,7 @@
 	price_tag = 2000
 	damage_multiplier = 0.6
 	penetration_multiplier = 0.5 // 7.5 lethal
-	recoil_buildup = 7
+	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 	rarity_value = 32

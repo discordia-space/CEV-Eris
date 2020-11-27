@@ -18,7 +18,7 @@
 	zoom_factor = 0.8 // double as IH_heavy
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.9
-	recoil_buildup = 8
+	recoil_buildup = 1.3
 	one_hand_penalty = 15 //automatic rifle level
 	silenced = TRUE
 	init_firemodes = list(
