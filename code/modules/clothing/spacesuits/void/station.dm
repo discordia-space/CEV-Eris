@@ -83,7 +83,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
-	rarity_value = 10.11
+	spawn_blacklisted = TRUE
 
 //Medical
 /obj/item/clothing/head/space/void/medical
