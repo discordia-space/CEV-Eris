@@ -136,6 +136,7 @@
 	var/list/has_process = list(    // which required-process checks are conducted and defalut organs for them.
 		OP_HEART =    /obj/item/organ/internal/heart,
 		OP_LUNGS =    /obj/item/organ/internal/lungs,
+		OP_STOMACH =  /obj/item/organ/internal/stomach,
 		OP_LIVER =    /obj/item/organ/internal/liver,
 		OP_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		BP_BRAIN =    /obj/item/organ/internal/brain,

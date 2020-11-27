@@ -116,6 +116,11 @@
 		to_chat(user, SPAN_WARNING("This tool does not use [T.use_power_cost?"fuel":"power"]!"))
 		return FALSE
 
+	if(tool_upgrades[UPGRADE_SANCTIFY])
+		if(SANCTIFIED in T.aspects)
+			to_chat(user, SPAN_WARNING("This tool already sanctified!"))
+			return FALSE
+
 	if(tool_upgrades[UPGRADE_CELLPLUS])
 		if(!(T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small))
 			to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
@@ -192,6 +197,8 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply_values_tool(obj/item/weapon/tool/T)
+	if(tool_upgrades[UPGRADE_SANCTIFY])
+		T.aspects += list(SANCTIFIED)
 	if(tool_upgrades[UPGRADE_PRECISION])
 		T.precision += tool_upgrades[UPGRADE_PRECISION]
 	if(tool_upgrades[UPGRADE_WORKSPEED])
@@ -318,7 +325,9 @@
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
 /datum/component/item_upgrade/proc/on_examine(mob/user)
-	if(tool_upgrades[UPGRADE_PRECISION] > 0)
+	if(tool_upgrades[UPGRADE_SANCTIFY])
+		to_chat(user, SPAN_NOTICE("Does additional burn damage to mutants."))
+	if (tool_upgrades[UPGRADE_PRECISION] > 0)
 		to_chat(user, SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
 	else if(tool_upgrades[UPGRADE_PRECISION] < 0)
 		to_chat(user, SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))

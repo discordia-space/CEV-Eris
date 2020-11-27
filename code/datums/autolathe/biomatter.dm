@@ -151,6 +151,9 @@
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
 //[MISC]
+/datum/design/bioprinter/storage/sheath
+	name = "sheath"
+	build_path = /obj/item/weapon/storage/sheath
 
 /datum/design/bioprinter/leather/cash_bag
 	name = "Cash Bag"
@@ -160,6 +163,61 @@
 /datum/design/autolathe/gun/plasma/martyr
 	name = "NT PR \"Martyr\""
 	build_path = /obj/item/weapon/gun/energy/plasma/martyr
+
+//[MELEE]
+/datum/design/autolathe/sword/nt_sword
+	name = "NT Shortsword"
+	build_path = /obj/item/weapon/tool/sword/nt
+
+/datum/design/autolathe/sword/nt_longsword
+	name = "NT Longsword"
+	build_path = /obj/item/weapon/tool/sword/nt/longsword
+
+/datum/design/autolathe/sword/nt_dagger
+	name = "NT Dagger"
+	build_path = /obj/item/weapon/tool/knife/dagger/nt
+
+/datum/design/autolathe/sword/nt_halberd
+	name = "NT Halberd"
+	build_path = /obj/item/weapon/tool/sword/nt/halberd
+
+/datum/design/autolathe/sword/nt_scourge
+	name = "NT Scourge"
+	build_path = /obj/item/weapon/tool/sword/nt/scourge
+
+/datum/design/autolathe/shield/nt_shield
+	name = "NT Shield"
+	build_path = /obj/item/weapon/shield/riot/nt
+
+/datum/design/autolathe/tool_upgrade/sanctifier
+	name = "sanctifier"
+	build_path = /obj/item/weapon/tool_upgrade/augment/sanctifier
+
+//[GRENADES]
+/datum/design/autolathe/grenade/nt_smokebomb
+	name = "NT SG \"Holy Fog\""
+	build_path = /obj/item/weapon/grenade/smokebomb/nt
+
+/datum/design/autolathe/grenade/nt_frag
+	name = "NT DFG \"Holy Thunder\""
+	build_path = /obj/item/weapon/grenade/frag/nt
+
+/datum/design/autolathe/grenade/nt_flashbang
+	name = "NT FBG \"Holy Light\""
+	build_path = /obj/item/weapon/grenade/flashbang/nt
+
+/datum/design/autolathe/grenade/nt_explosive
+	name = "NT OBG \"Holy Grail\""
+	build_path = /obj/item/weapon/grenade/explosive/nt
+
+//[CRUSADE]
+/datum/design/autolathe/armor/crusader
+	name = "crusader armor"
+	build_path = /obj/item/clothing/suit/armor/crusader
+
+/datum/design/autolathe/helmet/crusader
+	name = "crusader helmet"
+	build_path = /obj/item/clothing/head/armor/helmet/crusader
 
 //[MED]
 /datum/design/bioprinter/medical
