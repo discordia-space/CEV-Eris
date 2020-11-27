@@ -307,6 +307,12 @@ default behaviour is:
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
+/mob/living/proc/get_limb_efficiency(bodypartdefine)
+	return 100
+
+/mob/living/proc/get_specific_organ_efficiency(process_define, parent_organ_tag)
+	return 100
+
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 /mob/get_contents()

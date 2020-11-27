@@ -65,7 +65,7 @@
 		/obj/item/weapon/rcd
 	)
 	helmet = /obj/item/clothing/head/space/void/engineering
-	rarity_value = 10.1
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -108,7 +108,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
-	rarity_value = 10.11
+	spawn_blacklisted = TRUE
 
 //Medical
 /obj/item/clothing/head/space/void/medical
@@ -194,7 +194,7 @@
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
-	rarity_value = 40
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
