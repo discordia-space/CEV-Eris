@@ -97,6 +97,16 @@
 		STAT_VIG = 6,
 	)
 	rarity_value = 18
+	
+/obj/item/weapon/oddity/common/photo_crime
+	name = "crime scene photo"
+	desc = "It is unclear whether this is a victim of suicide or murder. His face is frozen in a look of agony and terror, and you shudder to think at what his last moments might have been."
+	icon_state = "photo_crime"
+	oddity_stats = list(
+		STAT_COG = 7,
+		STAT_VIG = 7,
+	)
+	rarity_value = 23
 
 /obj/item/weapon/oddity/common/old_newspaper
 	name = "old newspaper"
@@ -160,6 +170,16 @@
 		STAT_ROB = 5,
 		STAT_VIG = 5,
 	)
+	
+/obj/item/weapon/oddity/common/book_unholy
+	name = "unholy book"
+	desc = "The writings inside entail some strange ritual. Pages have been torn out or smudged to illegibility."
+	icon_state = "book_skull"
+	oddity_stats = list(
+		STAT_COG = 7,
+		STAT_MEC = 7,
+	)
+	rarity_value = 24
 
 /obj/item/weapon/oddity/common/old_money
 	name = "old money"
@@ -240,6 +260,42 @@
 	oddity_stats = list(
 		STAT_VIG = 9,
 	)
+	
+/obj/item/weapon/oddity/common/disk
+	name = "broken design disk"
+	desc = "This disk is corrupted and completely unusable. It has a hand-drawn picture of some strange mechanism on it - looking at it for too long makes your head hurt."
+	icon_state = "disc"
+	oddity_stats = list(
+		STAT_MEC = 9,
+	)
+	
+/obj/item/weapon/oddity/common/mirror
+	name = "cracked mirror"
+	desc = "A thousand mirror images stare back at you as you examine the trinket. What if you're the reflection, staring back out at the real world? At the real you?"
+	icon_state = "mirror"
+	oddity_stats = list(
+		STAT_COG = 4,
+		STAT_VIG = 4,
+	)
+	rarity_value = 8
+
+/obj/item/weapon/oddity/common/lighter
+	name = "rusted lighter"
+	desc = "This zippo ligher has been rusted shut. It smells faintly of sulphur and blood."
+	icon_state = "syndicate_lighter"
+	oddity_stats = list(
+		STAT_TGH = 9,
+	)
+
+/obj/item/weapon/oddity/common/device
+	name = "odd device"
+	desc = "Something about this gadget both disturbs and interests you. It's manufacturer's name has been mostly smudged away, but you can see a strange mechanism as their logo."
+	icon_state = "device"
+	oddity_stats = list(
+		STAT_MEC = 8,
+		STAT_COG = 8,
+	)
+	rarity_value = 19
 
 /obj/item/weapon/oddity/common/old_radio
 	name = "old radio"
