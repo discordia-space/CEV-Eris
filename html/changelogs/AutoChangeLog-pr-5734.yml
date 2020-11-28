@@ -1,0 +1,5 @@
+author: genessee596
+delete-after: true
+changes:
+  - balance: Randomizer toolmod can now only knock up your damage by 5 points, instead
+      of the previous 20.
