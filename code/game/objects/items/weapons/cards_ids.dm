@@ -16,6 +16,7 @@
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
+	bad_type = /obj/item/weapon/card
 	spawn_blacklisted = TRUE
 	var/list/files = list()
 
@@ -23,10 +24,10 @@
 	name = "data disk"
 	desc = "A disk of data."
 	icon_state = "data"
+	item_state = "card-id"
 	var/function = "storage"
 	var/data = "null"
 	var/special
-	item_state = "card-id"
 
 /obj/item/weapon/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -214,6 +215,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()
@@ -225,6 +227,7 @@ var/const/NO_EMAG_ACT = -50
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Synthetic"
+	spawn_tags = null
 
 /obj/item/weapon/card/id/synthetic/New()
 	access = get_all_station_access() + access_synth
@@ -237,6 +240,8 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	registered_name = "Administrator"
 	assignment = "Administrator"
+	spawn_blacklisted = TRUE
+
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()

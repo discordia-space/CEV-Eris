@@ -1,4 +1,4 @@
-/obj/item/weapon/beartrap/makeshift/armed    blacklisted=0    spawn_value=4.5045    price_tag=0   100    
-/obj/item/weapon/beartrap/armed    blacklisted=0    spawn_value=3.003    price_tag=0   100    
-/obj/item/device/assembly/mousetrap/armed    blacklisted=0    spawn_value=8    price_tag=0   100    
-/obj/structure/wire_splicing    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/beartrap/makeshift/armed    blacklisted=0    spawn_value=4.5045   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/beartrap/armed    blacklisted=0    spawn_value=3.003   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly/mousetrap/armed    blacklisted=0    spawn_value=8   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/wire_splicing    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

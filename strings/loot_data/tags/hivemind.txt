@@ -1,7 +1,7 @@
-/mob/living/simple_animal/hostile/hivemind/resurrected    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/stinger    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/bomber    blacklisted=0    spawn_value=4    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/hiborg    blacklisted=0    spawn_value=1    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/himan    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/mechiver    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/phaser    blacklisted=0    spawn_value=5    price_tag=0   100    
+/mob/living/simple_animal/hostile/hivemind/resurrected    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/stinger    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/bomber    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/hiborg    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/himan    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/mechiver    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/phaser    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

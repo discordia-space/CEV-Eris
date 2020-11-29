@@ -52,7 +52,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "miningcar"
 	density = TRUE
-
+	spawn_blacklisted = TRUE
 // Flags.
 
 /obj/item/stack/flag

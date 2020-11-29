@@ -5,6 +5,8 @@
 	name = "map object"
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "object"
+	bad_type = /obj/effect/overmap
+	spawn_tags = null
 	var/list/map_z = list()
 
 	var/list/generic_waypoints = list()    //waypoints that any shuttle can use

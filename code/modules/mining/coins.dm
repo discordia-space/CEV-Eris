@@ -12,7 +12,8 @@
 	var/string_attached
 	var/sides = 2
 
-/obj/item/weapon/coin/New()
+/obj/item/weapon/coin/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 

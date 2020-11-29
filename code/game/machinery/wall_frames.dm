@@ -4,6 +4,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire_bitem"
 	flags = CONDUCT
+	bad_type = /obj/item/frame
 	var/build_machine_type
 	var/build_floormachine_type
 	var/refund_amt = 2

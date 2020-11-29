@@ -38,7 +38,7 @@
 		CRASH("Gender datum was null; key was '[(skipjumpsuit && skipface) ? PLURAL : gender]'")
 
 	msg += "<EM>[src.name]</EM>"
-	if(species.name != "Human")
+	if(species.name != SPECIES_HUMAN)
 		msg += ", a <b><font color='[species.flesh_color]'>[species.name]</font></b>"
 	msg += "!\n"
 
@@ -208,19 +208,6 @@
 		msg += "[T.He] [T.is] covered in some liquid.\n"
 	if(on_fire)
 		msg += "<span class='warning'>[T.He] [T.is] on fire!.</span>\n"
-
-	/*
-	msg += "<span class='warning'>"
-	if(nutrition < 100)
-		msg += "[T.He] [T.is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		/*if(usr.nutrition < 100)
-			msg += "[T.He] [T.is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
-		msg += "[T.He] [T.is] quite chubby.\n"
-
-	msg += "</span>"
-	*/
 
 	if(species.show_ssd && (!species.has_process[BP_BRAIN] || has_brain()) && stat != DEAD)
 		if(!key)

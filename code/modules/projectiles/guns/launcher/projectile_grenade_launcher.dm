@@ -20,6 +20,5 @@
     max_shells = 3
     recoil_buildup = 20
     twohanded = TRUE
-    spawn_tags = SPAWN_TAG_GUN_PROJECTILE
     rarity_value = 30
     accompanying_object = /obj/item/ammo_casing/grenade/frag

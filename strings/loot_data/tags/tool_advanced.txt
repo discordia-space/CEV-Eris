@@ -1,0 +1,11 @@
+/obj/item/weapon/tool/crowbar/pneumatic    blacklisted=0    spawn_value=3.8329   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/omnitool    blacklisted=0    spawn_value=1.0101   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/diamonddrill/rig    blacklisted=1    spawn_value=1.02774   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/diamonddrill    blacklisted=0    spawn_value=1.02774   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/chain    blacklisted=0    spawn_value=1.02774   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/hyper    blacklisted=0    spawn_value=1.01947   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/screwdriver/combi_driver    blacklisted=0    spawn_value=2.00597   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/fiber    blacklisted=0    spawn_value=3.16193   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/weldingtool/advanced    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wirecutters/armature    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wrench/big_wrench    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

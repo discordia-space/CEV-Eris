@@ -7,8 +7,9 @@
 /*
  * Classic Baton
  */
- /obj/item/weapon/melee
+/obj/item/weapon/melee
 	bad_type = /obj/item/weapon/melee
+	spawn_tags = SPAWN_TAG_WEAPON
 
 /obj/item/weapon/melee/classic_baton
 	name = "police baton"
@@ -20,7 +21,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
-/obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/weapon/melee/classic_baton/attack(mob/M, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
@@ -42,11 +43,11 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	force = 3
-	var/on = FALSE
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
+	var/on = FALSE
 
 
-/obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
+/obj/item/weapon/melee/telebaton/attack_self(mob/user)
 	on = !on
 	if(on)
 		user.visible_message(
@@ -88,7 +89,7 @@
 
 	return
 
-/obj/item/weapon/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
+/obj/item/weapon/melee/telebaton/attack(mob/target, mob/living/user)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))

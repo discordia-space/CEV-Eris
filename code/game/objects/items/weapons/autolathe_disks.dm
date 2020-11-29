@@ -37,7 +37,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools
 	disk_name = "Asters Basic Tool Pack"
 	icon_state = "guild"
-	rarity_value = 5
+	rarity_value = 5.5
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = -1
 	designs = list(
@@ -68,7 +68,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc
 	disk_name = "Asters Miscellaneous Pack"
 	icon_state = "guild"
-	rarity_value = 3
+	rarity_value = 3.5
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = -1
 	designs = list(
@@ -102,7 +102,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices
 	disk_name = "Asters Devices and Instruments"
 	icon_state = "guild"
-	rarity_value = 2.5
+	rarity_value = 3
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
@@ -129,7 +129,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
 	disk_name = "Asters Robustcells"
 	icon_state = "guild"
-	rarity_value = 2.5
+	rarity_value = 3
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
@@ -146,7 +146,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/components
 	disk_name = "Technomancers ARK-034 Components"
 	icon_state = "technomancers"
-	rarity_value = 3.5
+	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 20
 	designs = list(
@@ -171,7 +171,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools
 	disk_name = "Technomancers IJIRO-451 Advanced Tools"
 	icon_state = "technomancers"
-	rarity_value = 5
+	rarity_value = 11
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 10
 	designs = list(
@@ -199,7 +199,7 @@
 	disk_name = "Technomancers ESPO-830 Circuits"
 	icon_state = "technomancers"
 	spawn_tags = SPAWN_TAG_DESING_COMMON
-	rarity_value = 5
+	rarity_value = 5.5
 	license = 10
 	designs = list(
 		/datum/design/autolathe/circuit/airlockmodule = 0,
@@ -226,7 +226,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
 	disk_name = "Technomancers LAT-018 Logistics"
 	icon_state = "technomancers"
-	rarity_value = 3.5
+	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
@@ -241,7 +241,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical
 	disk_name = "Moebius Medical Designs"
 	icon_state = "moebius"
-	rarity_value = 4
+	rarity_value = 4.5
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 20
 	designs = list(
@@ -279,7 +279,7 @@
 	disk_name = "Moebius Computer Parts"
 	icon_state = "moebius"
 	spawn_tags = SPAWN_TAG_DESING_COMMON
-	rarity_value = 4
+	rarity_value = 4.5
 	license = 20
 	designs = list(
 		/datum/design/autolathe/computer_part/frame_pda,
@@ -416,31 +416,6 @@
 		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/autolathe/device/headset_church
-	)
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
-	disk_name = "NeoTheology Circuit Pack"
-	icon_state = "neotheology"
-
-	license = -1
-	designs = list(
-		/datum/design/autolathe/circuit/bioprinter,
-		/datum/design/autolathe/circuit/solidifier,
-
-		/datum/design/autolathe/circuit/cloner,
-		/datum/design/autolathe/circuit/reader,
-		/datum/design/autolathe/circuit/biocan,
-
-		/datum/design/autolathe/circuit/bioreactor_platform,
-		/datum/design/autolathe/circuit/bioreactor_unloader,
-		/datum/design/autolathe/circuit/bioreactor_biotank,
-		/datum/design/autolathe/circuit/bioreactor_port,
-		/datum/design/autolathe/circuit/bioreactor_metrics,
-		/datum/design/autolathe/circuit/bioreactor_loader,
-
-		/datum/design/autolathe/circuit/biogen,
-		/datum/design/autolathe/circuit/biogen_port,
-		/datum/design/autolathe/circuit/biogen_console,
 	)
 
 // Ironhammer
@@ -1202,6 +1177,23 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee
+	disk_name = "NeoTheology Armory - Melee Weapons"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/sword/nt_sword,
+		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/autolathe/sword/nt_dagger,
+		/datum/design/autolathe/sword/nt_halberd,
+		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/autolathe/shield/nt_shield,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
 	disk_name = "Frozen Star - Cassad Plasma Rifle"
 	icon_state = "frozenstar"
@@ -1226,7 +1218,33 @@
 		/datum/design/autolathe/ammo/dart_mag,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades
+	disk_name = "NeoTheology Armory - Grenades Pack"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = 12
+	designs = list(
+		/datum/design/autolathe/grenade/nt_explosive = 3,
+		/datum/design/autolathe/grenade/nt_flashbang,
+		/datum/design/autolathe/grenade/nt_frag = 2,
+		/datum/design/autolathe/grenade/nt_smokebomb
+	)
+
 // ARMOR
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
+	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader
+	disk_name = "NeoTheology Armory - Crusader Armor"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 12 // one of the more common advanced disks
+	license = 6 // 6 pieces, or 3 sets if you use helm + vest
+	designs = list(
+		/datum/design/autolathe/helmet/crusader,
+		/datum/design/autolathe/armor/crusader
+	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"

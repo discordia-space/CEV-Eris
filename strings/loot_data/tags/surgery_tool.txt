@@ -1,10 +1,10 @@
-/obj/item/weapon/tool/bonesetter    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/cautery    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/hemostat    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/retractor    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/saw/circular/advanced    blacklisted=1    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/tool/saw/circular    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/scalpel/advanced    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/tool/scalpel/laser    blacklisted=0    spawn_value=3.33333    price_tag=20   100    
-/obj/item/weapon/tool/scalpel    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=10    price_tag=20   100    
+/obj/item/weapon/tool/bonesetter    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/cautery    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hemostat    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/retractor    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/circular/advanced    blacklisted=1    spawn_value=4.5764   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/circular    blacklisted=0    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/scalpel/advanced    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/scalpel/laser    blacklisted=0    spawn_value=3.13959   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/scalpel    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing

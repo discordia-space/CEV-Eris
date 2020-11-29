@@ -16,6 +16,7 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 20, MATERIAL_GLASS = 5)
 	spawn_tags = SPAWN_TAG_RIG_MODULE
 	rarity_value = 5
+	bad_type = /obj/item/rig_module
 
 	var/damage = 0
 	var/obj/item/weapon/rig/holder

@@ -1,2 +1,1 @@
-/obj/spawner/pack/rare/low_chance    blacklisted=0    spawn_value=1    price_tag=1   100    
-/obj/spawner/pack/rare    blacklisted=0    spawn_value=1    price_tag=1   100    
+/obj/spawner/pack/rare    blacklisted=0    spawn_value=1   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

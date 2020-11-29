@@ -1,6 +1,7 @@
-/obj/item/weapon/plantspray/weeds    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/weapon/plantspray/pests/old/carbaryl    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/weapon/plantspray/pests/old/lindane    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/weapon/plantspray/pests/old/phosmet    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/weapon/plantspray/pests/old    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/weapon/plantspray/pests    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/item/weapon/gun/energy/floragun    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/weeds    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/pests/old/carbaryl    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/pests/old/lindane    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/pests/old/phosmet    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/pests/old    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/plantspray/pests    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

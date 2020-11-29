@@ -1,244 +1,244 @@
-/obj/item/weapon/reagent_containers/food/snacks/unajerky    blacklisted=0    spawn_value=10    price_tag=120   100    
-/obj/item/weapon/reagent_containers/food/snacks/brainburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/ghostburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/human/burger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/human/kabob    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/human    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/monkeyburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/fishburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofuburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/roburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/roburgerbig    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/xenoburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/clownburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/mimeburger    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/spellburger    blacklisted=0    spawn_value=10    price_tag=49.9   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellyburger/slime    blacklisted=0    spawn_value=10    price_tag=35   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellyburger/cherry    blacklisted=0    spawn_value=10    price_tag=35   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellyburger    blacklisted=0    spawn_value=10    price_tag=35   100    
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger    blacklisted=0    spawn_value=10    price_tag=89.9   100    
-/obj/item/weapon/reagent_containers/food/snacks/superbiteburger    blacklisted=0    spawn_value=10    price_tag=139   100    
-/obj/item/weapon/reagent_containers/food/snacks/toastedsandwich    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/grilledcheese    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/jellysandwich    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/snacks/cookie    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/chocolatebar    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/chocolateegg    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy_corn    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/chaos    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/normal    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/jelly    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/mec    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/bio    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/donut    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/fortunecookie    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candiedapple    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/chawanmushi    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/cracker    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/friedegg    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofurkey    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/carp    blacklisted=0    spawn_value=10    price_tag=200   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/human    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/monkey    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/spider    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/reagent_containers/food/snacks/fishfingers    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/omelette    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/waffles    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/eggplantparm    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/soylentgreen    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/soylenviridians    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/wingfangchu    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/kabob    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/monkeykabob    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofukabob    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/cubancarp    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/fries    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/spagetti    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/cheesyfries    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/enchiladas    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/taco    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/monkeysdelight    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/fishandchips    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/rofflewaffles    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/stew    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/stewedsoymeat    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/boiledrice    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/ricepudding    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/pastatomato    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatballspagetti    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/spesslaw    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/carrotfries    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/appletart    blacklisted=0    spawn_value=10    price_tag=25   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/sliceable    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/margherita    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/bananabread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/bread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/creamcheesebread    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/braincake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/limecake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/applecake    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/slice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/poppypretzel    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/baguette    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/cherry    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/slime    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/twobread    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatballsoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/slimesoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/bloodsoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/clownstears    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/vegetablesoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/nettlesoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mysterysoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/wishsoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/hotchili    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/coldchili    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/tomatosoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/milosoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/beetsoup    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatpie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofupie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/plump_pie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/xemeatpie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/applepie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/cherrypie    blacklisted=0    spawn_value=10    price_tag=40   100    
-/obj/item/weapon/reagent_containers/food/snacks/boiledegg    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/donkpocket    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/sausage    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/muffin    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/tossedsalad    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/validsalad    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/dionaroast    blacklisted=0    spawn_value=10    price_tag=250   100    
-/obj/item/weapon/reagent_containers/food/snacks/csandwich    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/reagent_containers/food/snacks/fruit_slice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/green    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/mime    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/orange    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/rainbow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/red    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg/yellow    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/egg    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/breadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/aesirsalad    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofu    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/stuffing    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/tomatomeat    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatball    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/kampferburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/panzerburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/jagerburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/seucheburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/bigroachburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/fuhrerburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/kaiserburger    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/amanita_pie    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/syndicake    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/soydope    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/badrecipe    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatsteak    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/spacylibertyduff    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/amanitajelly    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/boiledslimecore    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mint    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mre/can    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mre    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mre_paste    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mre_cracker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatbreadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/xenomeatbreadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/bananabreadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/tofubreadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/carrotcakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/braincakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/cheesecakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/plaincakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/orangecakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/limecakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/chocolatecakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/cheesewedge    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/birthdaycakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/watermelonslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/applecakeslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/pumpkinpieslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/margheritaslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/meatpizzaslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/vegetablepizzaslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/dough    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/doughslice    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/bun    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/rawcutlet    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/cutlet    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/rawmeatball    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/flatbread    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/weapon/reagent_containers/food/snacks/rawsticks    blacklisted=0    spawn_value=10    price_tag=30   100    
+/obj/item/weapon/reagent_containers/food/snacks/unajerky    blacklisted=0    spawn_value=8.27871   spawn_price=120   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/brainburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/ghostburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/human/burger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/human/kabob    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/human    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cheeseburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/monkeyburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fishburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofuburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/roburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/roburgerbig    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/xenoburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/clownburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mimeburger    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/spellburger    blacklisted=0    spawn_value=8.5484   spawn_price=49.9   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellyburger/slime    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellyburger/cherry    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellyburger    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger    blacklisted=0    spawn_value=8.36557   spawn_price=89.9   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/superbiteburger    blacklisted=0    spawn_value=8.23519   spawn_price=139   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/toastedsandwich    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/grilledcheese    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cookie    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/chocolatebar    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/chocolateegg    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy_corn    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/chaos    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/normal    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/jelly    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/mec    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/bio    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donut    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fortunecookie    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candiedapple    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/chawanmushi    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cracker    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/friedegg    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofurkey    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/carp    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/corgi    blacklisted=1    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/human    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/monkey    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/spider/hunter    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/spider    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat/xenomeat    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meat    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fishfingers    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/omelette    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/waffles    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/eggplantparm    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/soylentgreen    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/soylenviridians    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/wingfangchu    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/kabob    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/monkeykabob    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofukabob    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cubancarp    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fries    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/spagetti    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cheesyfries    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/enchiladas    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/taco    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/monkeysdelight    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fishandchips    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/rofflewaffles    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/stew    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/stewedsoymeat    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/boiledrice    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/ricepudding    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/pastatomato    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatballspagetti    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/spesslaw    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/carrotfries    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/appletart    blacklisted=0    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sliceable    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/margherita    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/xenomeatbread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/bananabread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/bread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/creamcheesebread    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/braincake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/limecake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/applecake    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/poppypretzel    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/baguette    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/cherry    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/slime    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jelliedtoast    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/twobread    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatballsoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/slimesoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/bloodsoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/clownstears    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/vegetablesoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/nettlesoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mysterysoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/wishsoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/hotchili    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/coldchili    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tomatosoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/milosoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/beetsoup    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatpie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofupie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/plump_pie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/xemeatpie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/applepie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cherrypie    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/boiledegg    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/sausage    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/muffin    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tossedsalad    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/validsalad    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/dionaroast    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/csandwich    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fruit_slice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/mime    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/orange    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/purple    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/rainbow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg/yellow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/egg    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/breadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/aesirsalad    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofu    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/stuffing    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tomatomeat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatball    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/kampferburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/panzerburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/jagerburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/seucheburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/bigroachburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/fuhrerburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/kaiserburger    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/amanita_pie    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/syndicake    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/soydope    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/badrecipe    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatsteak    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/spacylibertyduff    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/amanitajelly    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/boiledslimecore    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mint    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mre/can    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mre    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mre_paste    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mre_cracker    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatbreadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/xenomeatbreadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/bananabreadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tofubreadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/carrotcakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/braincakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cheesecakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/plaincakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/orangecakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/limecakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/chocolatecakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cheesewedge    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/birthdaycakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/creamcheesebreadslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/watermelonslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/applecakeslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/pumpkinpieslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/margheritaslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/meatpizzaslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/vegetablepizzaslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/dough    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/doughslice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/bun    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/rawcutlet    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/cutlet    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/rawmeatball    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/flatbread    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/rawsticks    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

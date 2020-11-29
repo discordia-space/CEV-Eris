@@ -48,9 +48,9 @@
 
 
 	//Variables used for tool degradation
-	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	health = 0		// Health of a tool.
 	max_health = 1000
+	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
 	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
 	var/isBroken = FALSE
@@ -81,15 +81,13 @@
 		cell = new suitable_cell(src)
 
 	if(use_fuel_cost)
-		var/datum/reagents/R = new/datum/reagents(max_fuel)
-		reagents = R
-		R.my_atom = src
-		R.add_reagent("fuel", max_fuel)
+		create_reagents(max_fuel)
+		reagents.add_reagent("fuel", max_fuel)
 
-	if (use_stock_cost)
+	if(use_stock_cost)
 		stock = max_stock
 
-	if (max_health)
+	if(max_health)
 		health = max_health
 
 	update_icon()
@@ -476,7 +474,7 @@
 	if(istype(loc, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/AD = loc
 		AD.take_out_wedged_item()
-	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1 -3)
+	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1, -3)
 	isBroken = TRUE
 	return
 

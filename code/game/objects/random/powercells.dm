@@ -12,14 +12,14 @@
 /obj/spawner/powercell/small
 	name = "random powercell"
 	icon_state = "battery-green"
-	tags_to_spawn = list(SPAWN_SMALL_POWERCELL)
+	tags_to_spawn = list(SPAWN_POWERCELL_SMALL)
 
 /obj/spawner/powercell/medium
 	name = "random powercell"
 	icon_state = "battery-green"
-	tags_to_spawn = list(SPAWN_MEDIUM_POWERCELL)
+	tags_to_spawn = list(SPAWN_POWERCELL_MEDIUM)
 
 /obj/spawner/powercell/large
 	name = "random powercell"
 	icon_state = "battery-green"
-	tags_to_spawn = list(SPAWN_LARGE_POWERCELL)
+	tags_to_spawn = list(SPAWN_POWERCELL_LARGE)

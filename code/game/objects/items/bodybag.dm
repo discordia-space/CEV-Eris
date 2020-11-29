@@ -81,7 +81,7 @@
             icon_state = "bodybag_full"
         else
             icon_state = "bodybag_closed"
-				
+
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \

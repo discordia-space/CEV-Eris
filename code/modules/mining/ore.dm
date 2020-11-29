@@ -98,7 +98,8 @@
 	rarity_value = 10
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/ore/New()
+/obj/item/weapon/ore/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 

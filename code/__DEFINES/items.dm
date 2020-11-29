@@ -19,6 +19,8 @@
 
 #define UPGRADE_MAXUPGRADES "max_upgrades"
 
+#define UPGRADE_SANCTIFY "sanctify"
+
 #define UPGRADE_SHARP "sharp"
 
 #define UPGRADE_COLOR "color"

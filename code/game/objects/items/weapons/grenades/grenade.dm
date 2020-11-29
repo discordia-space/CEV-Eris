@@ -59,6 +59,7 @@
 	icon_state = initial(icon_state) + "_active"
 	active = 1
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	update_icon()
 
 	if(variance)
 		det_time *= RAND_DECIMAL(1-variance, 1+variance)

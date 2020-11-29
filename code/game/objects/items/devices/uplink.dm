@@ -281,10 +281,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	icon = 'icons/obj/supplybeacon.dmi'
 	desc = "A bulky machine used for teleporting in supplies from a benefactor."
 	icon_state = "beacon"
-	var/obj/item/device/uplink/hidden/uplink
-	var/telecrystals = 100
 	density = TRUE
 	anchored = TRUE
+	var/obj/item/device/uplink/hidden/uplink
+	var/telecrystals = 100
 	var/owner_roles //Can be a list of roles or a single role
 
 /obj/structure/uplink/New()

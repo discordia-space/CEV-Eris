@@ -1,5 +1,5 @@
-/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
+/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

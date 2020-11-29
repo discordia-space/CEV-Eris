@@ -27,8 +27,6 @@
 	var/pipes_opened = FALSE
 	var/pipes_cleanness = 100
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_biotank
-
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
 	. = ..()

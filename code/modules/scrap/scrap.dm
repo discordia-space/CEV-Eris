@@ -39,6 +39,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
 	var/rare_item_chance = 70
 	var/rare_item = FALSE
+	var/prob_make_old = 80
 
 /obj/structure/scrap_spawner/proc/make_cube()
 	try_make_loot() //don't have a cube without materials
@@ -105,7 +106,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		else
 			big_item = CATCH.get_item(/obj/spawner/pack/junk_machine)
 		big_item.forceMove(src)
-		if(prob(70))
+		if(prob(prob_make_old))
 			big_item.make_old()
 		qdel(CATCH)
 
@@ -134,23 +135,17 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			true_loot_tags += pickweight_n_take(loot_tags_copy)
 		var/list/candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, null, null, TRUE)
 		if(SPAWN_ITEM in true_loot_tags)
-			var/top_price = 800
+			var/top_price = CHEAP_ITEM_PRICE
+			true_loot_tags = list()
+			var/list/tags = SSspawn_data.lowkeyrandom_tags.Copy()
+			var/new_tags_amt = max(round(tags.len*0.10),1)
+			for(var/i in 1 to new_tags_amt)
+				true_loot_tags += pick_n_take(tags)
 			if(rare)
 				top_price = 2000
-			candidates -= SSspawn_data.spawns_upper_price(candidates, top_price)
-			var/list/old_tags = SSspawn_data.take_tags(candidates)
-			old_tags -= list(SPAWN_OBJ)
-			var/new_tags_amt = max(round(old_tags.len*0.10),1)
-			true_loot_tags = list()
-			for(var/i in 1 to new_tags_amt)
-				true_loot_tags += pick_n_take(old_tags)
-			if(rare)
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
-		if(rare)
-			var/top = CLAMP(round(candidates.len*0.3),1 ,7)
-			candidates = SSspawn_data.only_top_candidates(candidates, top) //top 7
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
 		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[loot_path]
@@ -162,7 +157,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				new thing(src)
 
 	for(var/obj/item/loot in contents)
-		if(prob(70))
+		if(prob(prob_make_old))
 			loot.make_old()
 		if(istype(loot, /obj/item/weapon/reagent_containers/food/snacks))
 			var/obj/item/weapon/reagent_containers/food/snacks/S = loot
@@ -407,8 +402,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_POWERCELL,
 		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,SPAWN_DESING_COMMON,SPAWN_COMPUTER_HARDWERE,
-		SPAWN_TOOL, SPAWN_DIVICE,
-		SPAWN_GLOVES_INSULATED, SPAWN_JETPACK, SPAWN_ITEM_UTILITY,SPAWN_TOOL_UPGRADE,SPAWN_TOOLBOX,SPAWN_VOID_SUIT,
+		SPAWN_TOOL, SPAWN_DIVICE, SPAWN_JETPACK, SPAWN_ITEM_UTILITY,SPAWN_TOOL_UPGRADE,SPAWN_TOOLBOX,SPAWN_VOID_SUIT,
 		SPAWN_GUN_UPGRADE,
 		SPAWN_POUCH,
 		SPAWN_MATERIAL_BUILDING = 2,
@@ -469,7 +463,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_DESING_COMMON,
 		SPAWN_COMPUTER_HARDWERE,
 		SPAWN_TOOL, SPAWN_DIVICE,
-		SPAWN_GLOVES_INSULATED,
 		SPAWN_JETPACK,
 		SPAWN_ITEM_UTILITY,
 		SPAWN_TOOL_UPGRADE,

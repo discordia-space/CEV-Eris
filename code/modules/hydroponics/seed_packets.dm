@@ -6,7 +6,7 @@ var/global/list/plant_seed_sprites = list()
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 	w_class = ITEM_SIZE_SMALL
-
+	bad_type = /obj/item/seeds
 	var/seed_type
 	var/datum/seed/seed
 	var/modified = 0
@@ -74,6 +74,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = null
 
 /obj/item/seeds/random/New()
+	..()
 	seed = plant_controller.create_random_seed()
 	seed_type = seed.name
 	update_seed()

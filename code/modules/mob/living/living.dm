@@ -307,6 +307,12 @@ default behaviour is:
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
+/mob/living/proc/get_limb_efficiency(bodypartdefine)
+	return 100
+
+/mob/living/proc/get_specific_organ_efficiency(process_define, parent_organ_tag)
+	return 100
+
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 /mob/get_contents()
@@ -424,7 +430,7 @@ default behaviour is:
 	disabilities = 0
 
 	// fix blindness and deafness
-	blinded = 0
+	blinded = FALSE
 	eye_blind = 0
 	eye_blurry = 0
 	ear_deaf = 0

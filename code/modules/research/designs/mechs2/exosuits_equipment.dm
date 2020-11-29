@@ -39,6 +39,10 @@
 	name = "mounted laser gun"
 	build_path = /obj/item/mech_equipment/mounted_system/taser/laser
 
+/datum/design/research/item/exosuit/weapon/pk
+	name = "mounted rigged PK"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
+
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
 	name = "hydraulic clamp"

@@ -165,6 +165,12 @@
 		selected_system = null
 		selected_hardpoint = null
 
+/mob/living/exosuit/get_active_hand()
+	var/obj/item/mech_equipment/ME = selected_system
+	if(istype(ME))
+		return ME.get_effective_obj()
+	return ..()
+
 /mob/living/exosuit/proc/check_enter(var/mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE

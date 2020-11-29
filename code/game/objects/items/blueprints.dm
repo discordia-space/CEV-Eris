@@ -4,6 +4,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "blueprints"
 	attack_verb = list("attacked", "bapped", "hit")
+	spawn_blacklisted = TRUE//antag_item_targets
 	var/const/AREA_ERRNONE = 0
 	var/const/AREA_STATION = 1
 	var/const/AREA_SPACE =   2

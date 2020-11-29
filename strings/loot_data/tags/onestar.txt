@@ -1,68 +1,67 @@
-/obj/item/weapon/tank/onestar_regenerator    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/item/weapon/tool/crowbar/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/medmultitool    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.42857    price_tag=25   100    
-/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/tool_upgrade/augment/holding_tank    blacklisted=1    spawn_value=6.66667    price_tag=200   100    
-/obj/item/weapon/tool_upgrade/augment/ai_tool    blacklisted=1    spawn_value=2    price_tag=200   100    
-/obj/item/weapon/tool_upgrade/augment/repair_nano    blacklisted=1    spawn_value=6.66667    price_tag=200   100    
-/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    spawn_value=2.52143    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    spawn_value=1.17647    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    spawn_value=1.68067    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba    blacklisted=0    spawn_value=2.77778    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
+/obj/item/weapon/tank/onestar_regenerator    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/crowbar/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=8.27136   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/medmultitool    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=8.27136   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.4006   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool_upgrade/augment/holding_tank    blacklisted=1    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool_upgrade/augment/ai_tool    blacklisted=1    spawn_value=1.91201   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool_upgrade/augment/repair_nano    blacklisted=1    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    spawn_value=1.17647   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba    blacklisted=0    spawn_value=2.77778   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

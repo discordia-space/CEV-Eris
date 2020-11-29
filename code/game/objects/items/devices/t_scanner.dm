@@ -22,8 +22,7 @@
 	var/scan_range = 1
 
 	//TODO: Make devices have cell support as an inherent behaviour
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/weapon/cell/small //Ready, Make devices have cell support as an inherent behaviour
 	var/active_power_usage = 25 //Watts
 
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
@@ -51,16 +50,6 @@
 	var/global/list/overlay_cache = list() //cache recent overlays
 	var/datum/event_source //When listening for movement, this is the source we're listening to
 	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
-
-
-/obj/item/device/t_scanner/get_cell()
-	return cell
-
-/obj/item/device/t_scanner/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-		update_icon()
 
 /obj/item/device/t_scanner/update_icon()
 	icon_state = "t-ray[enabled]"
@@ -160,17 +149,9 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	ui_interact(user)
 	//set_enabled(!enabled)
 
-/obj/item/device/t_scanner/New()
-	.=..()
-	cell = new suitable_cell(src)
-
-/obj/item/device/t_scanner/Created()
-	.=..()
-	QDEL_NULL(cell)
-
 //Alt click provides a rapid way to turn it on and off
 /obj/item/device/t_scanner/AltClick(var/mob/M)
-	if (loc == M)
+	if(loc == M)
 		set_enabled(!enabled)
 
 /obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
@@ -204,7 +185,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	if(href_list["setPower"]) //setting power to 0 is redundant anyways
 		var/new_setting = between(1, text2num(href_list["setPower"]), 7)
 		scan_range = new_setting
-		if (active)
+		if(active)
 			update_overlay()
 	playsound(loc, 'sound/machines/machine_switch.ogg', 40, 1, -2)
 	add_fingerprint(usr)
@@ -212,37 +193,26 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 		ui_interact(usr)
 
 
-/obj/item/device/t_scanner/examine(var/mob/user)
-	.=..()
-	if (cell)
-		to_chat(user, SPAN_NOTICE("The power meter reads [round(cell.percent(),0.1)]%"))
-	else
-		to_chat(user, SPAN_WARNING("No power cell is installed and it can't function!"))
-
-
-
-
 /************************************
 	STATE MANAGEMENT
 ************************************/
 /obj/item/device/t_scanner/Process()
-	if(enabled)
-		if(!cell || !cell.checked_use(get_power_cost()))
-			set_enabled(FALSE)
-			return //Ran out of power
+	if(enabled && !cell_use_check(get_power_cost()))
+		set_enabled(FALSE)
+		return //Ran out of power
 
 
-/obj/item/device/t_scanner/proc/set_enabled(var/targetstate)
+/obj/item/device/t_scanner/proc/set_enabled(targetstate)
 	//Check power here#
-	if (targetstate == FALSE && enabled)
+	if(targetstate == FALSE && enabled)
 		playsound(loc, turn_on_sound, 55, 1,-2)
 	enabled = FALSE
-	if (targetstate == TRUE)
-		if(cell && cell.checked_use(active_power_usage*(scan_range+2)*CELLRATE))
+	if(targetstate == TRUE)
+		if(cell_use_check(active_power_usage*(scan_range+2)*CELLRATE))
 			enabled = TRUE
 			playsound(loc, turn_on_sound, 55, 1, -2)
 
-	if (enabled)
+	if(enabled)
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
@@ -251,8 +221,8 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 /obj/item/device/t_scanner/proc/check_active(var/targetstate = TRUE)
 	//First of all, check if its being turned off. This is simpler
-	if (!targetstate)
-		if (!active)
+	if(!targetstate)
+		if(!active)
 			//If we were just turned off, but we were already inactive, then we don't need to do anything
 			return
 
@@ -264,30 +234,27 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 		var/can_activate = TRUE
 
 		//First we must be enabled
-		if (!enabled)
+		if(!enabled)
 			can_activate = FALSE
 
 		//Secondly, we must be held in someone's hands
-		else if (!check_location())
+		else if(!check_location())
 			can_activate = FALSE
 
 		//Thirdly, we need a client to display to
-		else if (!user_client)
+		else if(!user_client)
 			//The client may not be set if the user logged out and in again
 			set_client() //Try re-setting it
-			if (!user_client)
+			if(!user_client)
 				can_activate = FALSE
 
-		if (!can_activate)
+		if(!can_activate)
 			//We failed the above, what now
-			if (active)
+			if(active)
 				set_inactive()
 
-			return
-
-		else
-			if (!active)
-				set_active()
+		else if(!active)
+			set_active()
 
 
 
@@ -305,12 +272,12 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 
 //Called in any situation where the user might change
-/obj/item/device/t_scanner/proc/set_user(var/mob/living/newuser)
-	if (current_user == newuser)
+/obj/item/device/t_scanner/proc/set_user(mob/living/newuser)
+	if(current_user == newuser)
 		return //Do nothing
 
 	//If there's an existing user we may need to unregister them first
-	if (current_user)
+	if(current_user)
 		unset_client()
 
 	//Actually set it
@@ -321,7 +288,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 
 /obj/item/device/t_scanner/proc/set_client()
-	if (!current_user || !current_user.client)
+	if(!current_user || !current_user.client)
 		return FALSE
 
 	user_client = current_user.client
@@ -333,7 +300,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 
 /obj/item/device/t_scanner/proc/unset_client()
-	if (event_source)
+	if(event_source)
 		GLOB.moved_event.unregister(event_source, src)
 		event_source = null
 	if(user_client)
@@ -352,10 +319,10 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	//In this case, this means it must be held in the hands of a mob
 
 	//This is a seperate proc so that it can be overridden later. For example to allow for scanners embedded in other things
-	if (!ismob(loc))
+	if(!ismob(loc))
 		return FALSE
 
-	if (!is_held())
+	if(!is_held())
 		return FALSE
 
 	return TRUE
@@ -367,23 +334,13 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	return current_user
 
 
-
-
-
-
-
 //Returns an estimate of how long the scanner will run on its current remaining battery
 /obj/item/device/t_scanner/proc/get_lifetime()
-	if (!cell || cell.empty())
+	if(!cell || cell.is_empty())
 		return "00:00"
 
 	var/numseconds = cell.charge / get_power_cost()
 	return time2text(numseconds*10, "mm:ss") //time2text takes deciseconds, so the amounts are tenfold
-
-
-
-
-
 
 
 //Whenever the scanner is equipped to a slot or dropped on the ground or deleted, set the user appropriately
@@ -406,15 +363,4 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 //How much power we use when enabled. Based on scan range
 /obj/item/device/t_scanner/proc/get_power_cost()
-
 	return active_power_usage*(2+(scan_range*0.8))*CELLRATE
-
-/obj/item/device/t_scanner/MouseDrop(over_object)
-	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-	else
-		return ..()
-
-/obj/item/device/t_scanner/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
