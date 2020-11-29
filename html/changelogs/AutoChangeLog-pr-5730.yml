@@ -1,7 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - tweak: NT Acolyte stats have been reworked to have them be more combat and cleaning
-      oriented.
-  - balance: NT armors are no longer spaceproof. Their armor values have been buffed
-      to accomodate.
