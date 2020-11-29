@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscadd: Adds a service artifact, a Bonsai tree that yields crops in exchange for
+      alcohol.

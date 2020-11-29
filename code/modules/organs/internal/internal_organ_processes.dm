@@ -31,11 +31,16 @@
 
 /mob/living/carbon/human/get_specific_organ_efficiency(process_define, parent_organ_tag)
 	var/effective_efficiency = 0
-	var/obj/item/organ/external/parent_organ = get_organ(parent_organ_tag)
-	for(var/organ in parent_organ.internal_organs)
-		var/obj/item/organ/internal/I = organ
-		if(process_define in I.organ_efficiency)
-			effective_efficiency += I.get_process_eficiency(process_define)
+	var/obj/item/organ/external/parent_organ
+	if(isorgan(parent_organ_tag))
+		parent_organ = parent_organ_tag
+	else
+		parent_organ = get_organ(parent_organ_tag)
+	if(parent_organ)
+		for(var/organ in parent_organ.internal_organs)
+			var/obj/item/organ/internal/I = organ
+			if(process_define in I.organ_efficiency)
+				effective_efficiency += I.get_process_eficiency(process_define)
 	
 	return effective_efficiency
 

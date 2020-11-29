@@ -54,5 +54,6 @@
 	new /obj/item/clothing/under/rank/church/sport(src)
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-	new /obj/item/clothing/suit/space/void/agrolyte(src)
+	new /obj/item/clothing/suit/armor/agrolyte(src)
+	new /obj/item/clothing/head/armor/agrolyte(src)
 	new /obj/item/clothing/gloves/botanic_leather(src)
