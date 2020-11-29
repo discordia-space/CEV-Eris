@@ -34,15 +34,15 @@
 //[CLOTHES, ARMOR AND ACCESORIES]
 /datum/design/bioprinter/nt_clothes/acolyte_armor
 	name = "NT Acolyte Armor"
-	build_path = /obj/item/clothing/suit/space/void/acolyte
+	build_path = /obj/item/clothing/suit/armor/acolyte
 
 /datum/design/bioprinter/nt_clothes/agrolyte_armor
 	name = "NT Agrolyte Armor"
-	build_path = /obj/item/clothing/suit/space/void/agrolyte
+	build_path = /obj/item/clothing/suit/armor/agrolyte
 
 /datum/design/bioprinter/nt_clothes/custodian_armor
 	name = "NT Custodian Armor"
-	build_path = /obj/item/clothing/suit/space/void/custodian
+	build_path = /obj/item/clothing/suit/armor/custodian
 
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
