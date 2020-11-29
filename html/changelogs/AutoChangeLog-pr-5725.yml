@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: The rig teleport module has been removed from the loot tables, hopefully.
