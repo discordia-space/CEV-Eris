@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: Robot limbs now have breakable bones
+  - balance: Robot limbs now break off or explode when they take too much brute damage
