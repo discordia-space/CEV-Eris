@@ -47,7 +47,7 @@
 			new /obj/item/clothing/head/collectable/kitty(get_turf(src))
 			qdel(src)
 
-/obj/item/weapon/reagent_containers/enricher/afterattack(obj/target, mob/user, var/flag)
+/obj/item/weapon/maneki_neko/afterattack(obj/target, mob/user, var/flag)
 	if(user.a_intent == I_HURT)
 		playsound(src, "shatter", 70, 1)
 		new /obj/item/clothing/head/collectable/kitty(get_turf(src))
