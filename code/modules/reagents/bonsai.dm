@@ -51,5 +51,6 @@
 					"chili",
 					"mushrooms",
 					"wheat",
+					"potato",
 					"rice")]
 				S.harvest(get_turf(src),0,0,1)
