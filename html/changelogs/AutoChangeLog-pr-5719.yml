@@ -1,9 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: the actor now works for the Guild.
-  - rscadd: artist bench, an autolate that allows you to create works of art.
-  - rscadd: artist outfit.
-  - tweak: The actor's office has been remodeled to be habitable.
-  - rscadd: perk artist.
-  - rscadd: works of art produced on the artist bench.
