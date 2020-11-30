@@ -2,9 +2,9 @@
 	name = "personal closet"
 	desc = "It's a secure locker for personnel."
 	req_access = list(access_all_personal_lockers)
-	var/registered_name = null
-	var/list/access_occupy = list()
 	icon_state = "secure"
+	var/registered_name
+	var/list/access_occupy = list()
 
 /obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
 	var/obj/item/weapon/card/id/id_card = user.GetIdCard()

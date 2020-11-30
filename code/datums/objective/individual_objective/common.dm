@@ -109,7 +109,7 @@
 
 /datum/individual_objective/gift/assign()
 	..()
-	RegisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_HUMAN_ODDITY_LEVEL_UP, .proc/task_completed)
 
 /datum/individual_objective/gift/task_completed(mob/living/carbon/human/H, obj/item/O)
 	if(mind_holder == H) return
@@ -119,7 +119,7 @@
 
 /datum/individual_objective/gift/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP)
+	UnregisterSignal(mind_holder, COMSIG_HUMAN_ODDITY_LEVEL_UP)
 	..()
 
 /datum/individual_objective/protector

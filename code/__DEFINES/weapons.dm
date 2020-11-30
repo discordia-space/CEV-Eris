@@ -17,6 +17,7 @@
 #define ARMOR_PEN_MODERATE			15
 #define ARMOR_PEN_DEEP				20
 #define ARMOR_PEN_EXTREME			25
+#define ARMOR_PEN_MASSIVE			30
 #define ARMOR_PEN_HALF				50
 
 //Resistance values, used on floors, windows, airlocks, girders, and similar hard targets.

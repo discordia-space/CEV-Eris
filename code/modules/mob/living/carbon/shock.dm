@@ -9,9 +9,9 @@
 
 	src.traumatic_shock = 			\
 	1	* src.getOxyLoss() + 		\
-	0.7	* src.getToxLoss() + 		\
-	1.5	* src.getFireLoss() + 		\
-	1.2	* src.getBruteLoss() + 		\
+	0.5	* src.getToxLoss() + 		\
+	1	* src.getFireLoss() + 		\
+	1	* src.getBruteLoss() + 		\
 	1.7	* src.getCloneLoss() + 		\
 	2	* src.halloss + 			\
 	-1	* src.analgesic

@@ -73,6 +73,7 @@
 /obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/fiber    blacklisted=0    spawn_value=3.16193   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/glue    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/advanced    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

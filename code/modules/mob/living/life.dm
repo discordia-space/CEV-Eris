@@ -51,9 +51,6 @@
 		//Check if we're on fire
 		handle_fire()
 
-		//stuff in the stomach
-		handle_stomach()
-
 		update_pulling()
 
 		for(var/obj/item/weapon/grab/G in src)
@@ -87,9 +84,6 @@
 	return
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	return
-
-/mob/living/proc/handle_stomach()
 	return
 
 /mob/living/proc/update_pulling()

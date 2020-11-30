@@ -36,6 +36,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 
 
 
@@ -1007,7 +1008,7 @@ var/list/rank_prefix = list(\
 	var/list/data = list()
 
 	data["style"] = get_total_style()
-	data["min_style"] = MIN_HUMAN_SYLE
+	data["min_style"] = MIN_HUMAN_STYLE
 	data["max_style"] = MAX_HUMAN_STYLE
 	data["sanity"] = sanity.level
 	data["sanity_max_level"] = sanity.max_level
@@ -1526,7 +1527,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/should_have_process(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(OP_HEART, OP_LUNGS))
+	if(organ_check in list(OP_HEART, OP_LUNGS, OP_STOMACH))
 		affecting = organs_by_name[BP_CHEST]
 	else if(organ_check in list(OP_LIVER, OP_KIDNEYS))
 		affecting = organs_by_name[BP_GROIN]

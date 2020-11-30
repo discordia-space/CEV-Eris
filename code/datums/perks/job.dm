@@ -14,6 +14,32 @@
 		holder.sanity.death_view_multiplier *= 2
 	..()
 
+/datum/perk/job/artist
+	name = "Artist"
+	desc = "You have a lot of expertise in making works of art. You gain double insight from all sources but can only level \
+			up by creating works of art."
+	var/old_max_insight = INFINITY
+	var/old_max_resting = INFINITY
+	var/old_insight_rest_gain_multiplier = 1
+
+/datum/perk/job/artist/assign(mob/living/carbon/human/H)
+	..()
+	old_max_insight = holder.sanity.max_insight
+	old_max_resting = holder.sanity.max_resting
+	old_insight_rest_gain_multiplier = holder.sanity.insight_rest_gain_multiplier
+	holder.sanity.max_insight = 100
+	holder.sanity.insight_gain_multiplier *= 2
+	holder.sanity.max_resting = 1
+	holder.sanity.insight_rest_gain_multiplier = 0
+
+/datum/perk/job/artist/remove()
+	holder.sanity.max_insight += old_max_insight - 100
+	holder.sanity.insight_gain_multiplier *= 0.5
+	holder.sanity.max_resting += old_max_resting - 1
+	holder.sanity.insight_rest_gain_multiplier += old_insight_rest_gain_multiplier
+	..()
+
+
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
