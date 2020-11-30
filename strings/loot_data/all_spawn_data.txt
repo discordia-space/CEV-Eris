@@ -92,6 +92,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/electronics/circuitboard/supplycomp    obj;item;electronics    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/comm_monitor    obj;item;electronics    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/comm_server    obj;item;electronics    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/artist_bench    obj;item;electronics    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/slot_machine    obj;item;electronics    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/biogenerator    obj;item;electronics    blacklisted=0    spawn_value=6.46158   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/chemmaster    obj;item;electronics    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -274,6 +275,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/tool/surgicaldrill    obj;item;tool;surgery_tool;medical    blacklisted=0    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/web    obj;item;tool;junk_tool;junk    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll/fiber    obj;item;tool;tool_advanced    blacklisted=0    spawn_value=3.16193   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/glue    obj;item;tool    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/tape_roll    obj;item;tool    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/improvised    obj;item;tool;junk_tool;junk    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/weldingtool/advanced    obj;item;tool;tool_advanced    blacklisted=0    spawn_value=3.95241   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -590,11 +592,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=3.19412   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=2.42087   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites    obj;item;beaker;vial;science;medical    blacklisted=1    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/beaker/vial/vape    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/vial    obj;item;beaker;vial;science;medical    blacklisted=0    spawn_value=4.69318   spawn_price=20.3   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace    obj;item;junk    blacklisted=1    spawn_value=4.44811   spawn_price=303   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/large    obj;item;junk    blacklisted=0    spawn_value=2.41976   spawn_price=21.2   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -959,6 +956,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/oddity/common/old_radio    obj;item;oddity    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/paper_bundle    obj;item;oddity    blacklisted=0    spawn_value=6.25   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/techno    obj;item;oddity    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/artwork    obj;item;oddity    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/secdocs    obj;item;oddity    blacklisted=1    spawn_value=7.29982   spawn_price=5000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools    obj;item;desing;desing_common    blacklisted=0    spawn_value=14.4971   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc    obj;item;desing;desing_common    blacklisted=0    spawn_value=20.4167   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1637,7 +1635,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/head/surgery/purple    obj;item;clothing;head    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/surgery/blue    obj;item;clothing;head    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/surgery/green    obj;item;clothing;head    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/head/surgery    obj;item;clothing;head    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/mindreader    obj;item;clothing;head    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/centhat    obj;item;clothing;head    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hairflower    obj;item;clothing;head    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2450,7 +2447,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/rig_module/device/anomaly_scanner    rig_module_common    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/device/orescanner    rig_module_common    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/device/rcd    obj;item;rig_module    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module/device    obj;item;rig_module    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/grenade_launcher    obj;item;rig_module    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/egun    obj;item;rig_module    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/mounted/taser    rig_module_common    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2483,7 +2479,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/rig_module/vision/nvg    obj;item;rig_module    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/sechud    rig_module_common    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/vision/medhud    rig_module_common    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module    obj;item;rig_module    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/practice    obj;item;guns;ammo;ammmo_storage;ammmo_storage_common    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/hv    obj;item;guns;ammo;ammmo_storage;ammmo_storage_common    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/rubber    obj;item;guns;ammo;ammmo_storage;ammmo_storage_common    blacklisted=0    spawn_value=12.8104   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2671,7 +2666,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/structure/closet/crate/serbcrate_gray    obj;structure;closet    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/crate/germancrate    obj;structure;closet    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/crate/critter    obj;structure;closet    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/closet/crate/miningcar    obj;structure;closet    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/miningcar    obj;structure;closet    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/crate    obj;structure;closet    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/coffin/spawnercorpse    obj;structure;closet;closet_coffin    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/athletic_mixed    obj;structure;closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2697,6 +2692,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/structure/closet/l3closet    obj;structure;closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/random/miscellaneous    obj;structure;closet;closet_random    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/random/tech    obj;structure;closet;closet_random    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/spareparts    obj;structure;closet;closet_random    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/random/milsupply    obj;structure;closet;closet_random    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/random/medsupply    obj;structure;closet;closet_random    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/random/hostilemobs/beacon    obj;structure;closet;closet_random    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2790,6 +2786,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/structure/closet/wall_mounted/emcloset    obj;structure;closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/wall_mounted/firecloset    obj;structure;closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/wall_mounted    obj;structure;closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/pink/artist    obj;structure;closet;wardrobe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/wardrobe/color/pink    obj;structure;closet;wardrobe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/wardrobe/color/black    obj;structure;closet;wardrobe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/closet/wardrobe/color/green    obj;structure;closet;wardrobe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

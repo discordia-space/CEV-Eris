@@ -8338,6 +8338,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
+"ata" = (
+/obj/structure/closet,
+/obj/item/clothing/gloves/color/green,
+/obj/item/clothing/gloves/color/rainbow,
+/obj/item/clothing/gloves/color/light_brown,
+/obj/item/clothing/mask/gas/mime,
+/obj/item/clothing/under/mime,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/clownoffice)
 "atb" = (
 /turf/simulated/wall,
 /area/eris/maintenance/fueltankstorage)
@@ -28208,7 +28217,7 @@
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "bmT" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -29585,7 +29594,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "bqa" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -33624,8 +33633,8 @@
 "bzI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_mining{
-	name = "Cargo Bay";
-	req_access = list(50)
+	name = "Artist's office";
+	req_access = list(44)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -33639,7 +33648,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/cargo,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "bzJ" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	id_tag = "engeve_access_console";
@@ -33727,7 +33736,7 @@
 	opacity = 0
 	},
 /turf/simulated/floor/plating,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "bzO" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -48417,9 +48426,14 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section2)
 "cgQ" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/item/weapon/contraband/poster/placed{
+	icon_state = "poster6";
+	pixel_x = -32;
+	tag = "icon-poster6"
+	},
+/obj/structure/flora/pottedplant/random,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "cgR" = (
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled/steel,
@@ -48487,7 +48501,7 @@
 /area/eris/command/fo)
 "chd" = (
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "che" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -48501,7 +48515,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "chf" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 8;
@@ -48526,7 +48540,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "chi" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -48656,8 +48670,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -48681,8 +48695,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chy" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
@@ -48784,21 +48798,22 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chI" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/obj/landmark/join/start/artist,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chJ" = (
 /obj/item/modular_computer/console/preset/civilian/professional{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -48850,13 +48865,14 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "chT" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/tool/crowbar,
-/obj/item/clothing/glasses/welding,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/obj/structure/table/rack,
+/obj/item/device/synthesized_instrument/violin,
+/obj/item/device/synthesized_instrument/trumpet,
+/obj/item/device/synthesized_instrument/guitar/multi,
+/obj/item/device/synthesized_instrument/guitar,
+/obj/item/device/synthesized_instrument/synthesizer,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chU" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
@@ -48880,8 +48896,8 @@
 	pixel_x = -3;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "chW" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -48914,8 +48930,8 @@
 "chZ" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "cia" = (
 /obj/structure/catwalk,
 /turf/simulated/open,
@@ -52835,13 +52851,12 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/cryo)
 "crA" = (
-/obj/structure/table/standard,
-/obj/machinery/recharger,
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/storage)
+/obj/machinery/autolathe/artist_bench,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "crB" = (
 /obj/structure/sign/department/dock{
 	pixel_y = 32
@@ -53387,10 +53402,10 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapel)
 "ctb" = (
-/obj/structure/table/rack/shelf,
 /obj/machinery/camera/network/third_section,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/structure/closet/secure_closet/personal/artist,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "ctc" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -53486,12 +53501,12 @@
 /turf/simulated/wall/r_wall,
 /area/eris/command/meo)
 "ctp" = (
-/obj/structure/table/rack/shelf,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/structure/closet/wardrobe/color/pink/artist,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "ctq" = (
 /obj/structure/table/rack/shelf,
 /obj/machinery/firealarm{
@@ -53501,8 +53516,12 @@
 	dir = 8;
 	pixel_x = 22
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/item/clothing/under/soviet,
+/obj/item/clothing/head/ushanka,
+/obj/item/clothing/suit/monkeysuit,
+/obj/item/clothing/mask/gas/monkeymask,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/quartermaster/artistoffice)
 "ctr" = (
 /turf/simulated/wall/r_wall,
 /area/eris/quartermaster/office)
@@ -53742,7 +53761,7 @@
 	req_access = null
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "ctY" = (
 /obj/structure/lattice,
 /obj/structure/railing,
@@ -55182,7 +55201,7 @@
 	pixel_x = -27
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/storage)
+/area/eris/quartermaster/artistoffice)
 "cxu" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock,
@@ -97166,7 +97185,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "erj" = (
 /turf/simulated/wall/r_wall,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing{
@@ -97200,15 +97219,7 @@
 /area/eris/medical/surgery)
 "ero" = (
 /turf/simulated/wall,
-/area/eris/crew_quarters/clownoffice)
-"erp" = (
-/obj/structure/table/rack,
-/obj/item/clothing/under/soviet,
-/obj/item/clothing/under/soviet,
-/obj/item/clothing/head/ushanka,
-/obj/item/clothing/head/ushanka,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
+/area/eris/quartermaster/artistoffice)
 "erq" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/holoposter{
@@ -97217,30 +97228,6 @@
 /obj/landmark/join/start/assistant,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
-"err" = (
-/obj/structure/closet/wardrobe/color/pink,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/bikehorn,
-/obj/item/weapon/reagent_containers/spray/waterflower,
-/obj/item/weapon/reagent_containers/spray/waterflower,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/item/device/pda/clown,
-/obj/item/device/pda/clown,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/glasses/monocle,
-/obj/item/clothing/glasses/monocle,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
 "ers" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
@@ -97291,23 +97278,20 @@
 /area/eris/maintenance/section3deck1central)
 "erw" = (
 /obj/structure/table/rack,
-/obj/item/weapon/contraband/poster/placed{
-	icon_state = "poster6";
-	pixel_x = -32;
-	tag = "icon-poster6"
-	},
-/obj/item/clothing/suit/monkeysuit,
-/obj/item/clothing/suit/monkeysuit,
-/obj/item/clothing/mask/gas/monkeymask,
-/obj/item/clothing/mask/gas/monkeymask,
+/obj/item/clothing/under/soviet,
+/obj/item/clothing/under/soviet,
+/obj/item/clothing/head/ushanka,
+/obj/item/clothing/head/ushanka,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "erx" = (
-/turf/simulated/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/clownoffice)
-"ery" = (
-/obj/landmark/join/start/actor,
-/turf/simulated/floor/carpet/gaycarpet,
+/obj/structure/table/rack,
+/obj/item/clothing/under/kilt,
+/obj/item/clothing/under/kilt,
+/obj/item/clothing/head/flatcap,
+/obj/item/clothing/head/flatcap,
+/obj/machinery/camera/network/third_section,
+/turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "erz" = (
 /obj/machinery/power/apc{
@@ -100919,15 +100903,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"ezj" = (
-/obj/structure/table/rack,
-/obj/item/clothing/under/kilt,
-/obj/item/clothing/under/kilt,
-/obj/item/clothing/head/flatcap,
-/obj/item/clothing/head/flatcap,
-/obj/machinery/camera/network/third_section,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
 "ezk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -103159,15 +103134,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"eDQ" = (
-/obj/structure/closet,
-/obj/item/clothing/gloves/color/green,
-/obj/item/clothing/gloves/color/rainbow,
-/obj/item/clothing/gloves/color/light_brown,
-/obj/item/clothing/mask/gas/mime,
-/obj/item/clothing/under/mime,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/clownoffice)
 "eDR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
@@ -104581,6 +104547,19 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"eWR" = (
+/obj/structure/table/rack,
+/obj/item/weapon/contraband/poster/placed{
+	icon_state = "poster6";
+	pixel_x = -32;
+	tag = "icon-poster6"
+	},
+/obj/item/clothing/suit/monkeysuit,
+/obj/item/clothing/suit/monkeysuit,
+/obj/item/clothing/mask/gas/monkeymask,
+/obj/item/clothing/mask/gas/monkeymask,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/clownoffice)
 "eZp" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/toolbox/electrical,
@@ -104930,6 +104909,18 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"iUE" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/quartermaster/storage)
 "iXv" = (
 /obj/effect/shuttle_landmark/merc/engine,
 /turf/space,
@@ -105133,6 +105124,9 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
+"kLT" = (
+/turf/simulated/floor/carpet/gaycarpet,
+/area/eris/crew_quarters/clownoffice)
 "kUI" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -105316,6 +105310,9 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"mAA" = (
+/turf/simulated/wall,
+/area/eris/crew_quarters/clownoffice)
 "mBD" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -105420,6 +105417,30 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"nnj" = (
+/obj/structure/closet/wardrobe/color/pink,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/bikehorn,
+/obj/item/weapon/reagent_containers/spray/waterflower,
+/obj/item/weapon/reagent_containers/spray/waterflower,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/item/device/pda/clown,
+/obj/item/device/pda/clown,
+/obj/item/clothing/mask/gas/plaguedoctor,
+/obj/item/clothing/mask/gas/plaguedoctor,
+/obj/item/clothing/glasses/monocle,
+/obj/item/clothing/glasses/monocle,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/clownoffice)
 "nqt" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -105729,6 +105750,25 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/surgery)
+"qWY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/quartermaster/storage)
 "qZg" = (
 /obj/structure/table/standard,
 /obj/machinery/door/window/eastright,
@@ -106154,6 +106194,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"vjw" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/quartermaster/artistoffice)
 "vkt" = (
 /obj/machinery/door/window/eastright{
 	name = "Research Desk";
@@ -106210,6 +106255,9 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
+"vAE" = (
+/turf/simulated/wall/r_wall,
+/area/eris/crew_quarters/clownoffice)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -169534,13 +169582,13 @@ auG
 aaa
 abF
 bbk
-cgO
-cgO
-cgO
+erj
+erj
+erj
 bzN
-cgO
-cgO
-cgO
+erj
+erj
+erj
 cOy
 cix
 cix
@@ -169736,13 +169784,13 @@ aad
 aaa
 abF
 abF
-cgO
+erj
 cgQ
 bmS
 bpZ
 ctX
 cxt
-bgH
+ero
 cMt
 ciB
 ciB
@@ -169938,13 +169986,13 @@ aad
 aaa
 abF
 abF
-cgO
+erj
 ctb
 chd
 chu
 chH
 chT
-bgH
+ero
 bgH
 bAN
 bAN
@@ -170140,13 +170188,13 @@ aaa
 aaa
 abF
 abF
-cgO
+erj
 ctp
 che
 chx
 chI
 chV
-bAN
+vjw
 ciC
 ciC
 ciD
@@ -170342,13 +170390,13 @@ aaa
 aaa
 abF
 abF
-cgO
+erj
 ctq
 chh
 crA
 chJ
 chZ
-bAN
+vjw
 ciC
 ciC
 cjE
@@ -170544,13 +170592,13 @@ aaa
 aaa
 bVX
 bVX
-cgO
-bgH
+erj
+ero
 bzI
-bgH
-bAN
-bAN
-bgH
+ero
+vjw
+vjw
+ero
 cCj
 cjl
 cjI
@@ -171151,8 +171199,8 @@ aaa
 bVX
 cap
 cgO
-cgY
-qZr
+iUE
+qWY
 bgH
 cEJ
 cgY
@@ -283667,11 +283715,11 @@ alb
 alb
 aaa
 abF
-erj
-ero
-ero
-ero
-ero
+vAE
+mAA
+mAA
+mAA
+mAA
 erX
 blY
 aLZ
@@ -283869,9 +283917,9 @@ abF
 abF
 aaa
 abF
-erj
-erp
+vAE
 erw
+eWR
 erE
 emG
 erX
@@ -284071,10 +284119,10 @@ abF
 abF
 aaa
 abF
-erj
-ezj
+vAE
 erx
-erx
+kLT
+kLT
 emG
 erX
 blY
@@ -284273,9 +284321,9 @@ abF
 abF
 aaa
 abF
-erj
-err
-ery
+vAE
+nnj
+kLT
 erF
 enL
 exs
@@ -284475,9 +284523,9 @@ abF
 abF
 aaa
 abF
-erj
-eDQ
-erx
+vAE
+ata
+kLT
 erG
 emG
 erX
@@ -284676,9 +284724,9 @@ abF
 abF
 abF
 aaa
-erj
-erj
-erj
+vAE
+vAE
+vAE
 erz
 erH
 emG
@@ -284878,11 +284926,11 @@ abF
 abF
 abF
 aaa
-erj
+vAE
 ezg
 ehJ
-erx
-erx
+kLT
+kLT
 emG
 erX
 blY
@@ -285080,12 +285128,12 @@ abF
 abF
 abF
 aaa
-erj
+vAE
 erl
-erj
+vAE
 ezm
 erI
-ero
+mAA
 enU
 boS
 eqI
@@ -285282,12 +285330,12 @@ enI
 enI
 abF
 aaa
-erj
+vAE
 erm
-erj
+vAE
 ezn
 ezq
-ero
+mAA
 erP
 bma
 bmU
@@ -285484,12 +285532,12 @@ sJL
 enI
 aaa
 aaa
-erj
-erj
-erj
+vAE
+vAE
+vAE
 erC
 erK
-ero
+mAA
 erO
 cNH
 cNH
@@ -285688,10 +285736,10 @@ aaa
 aaa
 dXi
 aCh
-ero
-ero
+mAA
+mAA
 ejK
-ero
+mAA
 erO
 cNH
 cNH

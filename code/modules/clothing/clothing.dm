@@ -11,7 +11,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
-	var/list/species_restricted = null				// Only these species can wear this kit.
+	var/list/species_restricted				// Only these species can wear this kit.
 	var/gunshot_residue								// Used by forensics.
 	var/initial_name = "clothing"					// For coloring
 

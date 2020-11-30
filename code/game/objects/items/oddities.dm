@@ -23,23 +23,22 @@
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
+	var/prob_perk = 100
 
 /obj/item/weapon/oddity/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	if(!perk)
+		perk = get_oddity_perk(prob_perk)
 
 	if(oddity_stats)
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
-		AddComponent(/datum/component/inspiration, oddity_stats)
-	if(!perk)
-		perk = pick(subtypesof(/datum/perk/oddity))
+		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
-/obj/item/weapon/oddity/examine(user)
-	..()
-	if(perk)
-		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+/proc/get_oddity_perk(chance=100)
+	if(prob(chance))
+		return pick(subtypesof(/datum/perk/oddity))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
@@ -386,3 +385,17 @@
 			bluespace_entropy(50,T)
 			qdel(src)
 
+//A randomized oddity with random stats, meant for artist job project
+/obj/item/weapon/oddity/artwork
+	name = "Strange Device"
+	desc = "You can't find out how to turn it on. Maybe it's already working?"
+	icon_state = "artwork_1"
+
+/obj/item/weapon/oddity/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	icon_state = "artwork_[rand(1,6)]"
+	. = ..()
+
+/obj/item/weapon/oddity/artwork/get_item_cost(export)
+	. = ..()
+	. += rand(50, 300)

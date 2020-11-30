@@ -646,7 +646,7 @@
 	UPGRADE_ITEMFLAGPLUS = LOUD
 	)
 	I.prefix = "hydraulic"
-	
+
 // Randomizes a bunch of weapon stats on application - stats are set on creation of the item to prevent people from re-rolling until they get what they want
 /obj/item/weapon/tool_upgrade/augment/randomizer
 	name = "BSL \"Randomizer\" tool polish"
@@ -669,3 +669,31 @@
 	UPGRADE_COLOR = "#3366ff"
 	)
 	I.prefix = "theoretical"
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod
+	name = "Weird Revolver"
+	desc = "This is an artistically-made tool mod."
+	icon_state = "artmod_1"
+	spawn_frequency = 0
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
+	. = ..()
+	name = get_weapon_name(capitalize = TRUE)
+	icon_state = "artmod_[rand(1,16)]"
+	var/sanity_value = 0.2 + pick(0,0.1,0.2)
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	var/obj/randomcatcher/CATCH = new(src)
+	var/obj/item/weapon/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade = max(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
+	spawn_type = CATCH.get_item(spawn_type)
+	spawn_type.TransferComponents(src)
+	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
+	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
+		if(isnum(tool_comp.tool_upgrades[upgrade]))
+			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
+	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
+	QDEL_NULL(spawn_type)
+	QDEL_NULL(CATCH)
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
+	. = ..()
+	. += max(., rand(-100, 350))
