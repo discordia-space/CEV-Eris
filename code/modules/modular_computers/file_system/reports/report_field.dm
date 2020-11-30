@@ -126,7 +126,7 @@ Basic field subtypes.
 /datum/report_field/number/module/ask_value(mob/user)
 	var/input_value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
 
-	if(value < 0)
+	if(input_value < 0)
 		to_chat(user,SPAN_WARNING("Value has to be positive."))
 		return
 	var/obj/item/weapon/card/id/held_card = user.GetIdCard()
