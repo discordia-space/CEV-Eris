@@ -5,6 +5,7 @@
 #define ERR_NOLICENSE "no license"
 #define ERR_PAUSED "paused"
 #define ERR_NOINSIGHT "no insight"
+#define MAX_STAT_VALUE 12
 
 /obj/machinery/autolathe/artist_bench
 	name = "artist's bench"
@@ -196,9 +197,9 @@
 			"magnum" = 8 + weight_vigilance,
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + weight_vigilance,
+			"sniper" = 8 + weight_vigilance + weight_cognition,
 			"gyro" = 8 + weight_robustness + weight_mechanical,
-			"cap" = 8,
+			"cap" = 8 + weight_biology,
 			"rocket" = 8 + weight_vigilance + weight_toughness,
 			"grenade" = 8 + weight_vigilance + weight_toughness
 		))
@@ -275,36 +276,17 @@
 
 	else if(full_artwork == "artwork_oddity")
 		var/obj/item/weapon/oddity/artwork/O = new(src)
-
-		var/oddity_pattern = pickweight(list(
-			"combat" = 8 + weight_robustness + weight_toughness + weight_vigilance,
-			"craft" = 8 + weight_mechanical + weight_cognition + weight_biology,
-			"mix" = 4 + weight_mechanical + weight_cognition + weight_biology + weight_robustness + weight_toughness + weight_vigilance //Arbitrary value chance
-			))
-
-		var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)//May not be nessecary
-		switch(oddity_pattern)//Arbitrary values
-			if("combat")
-				oddity_stats = list(
-					STAT_TGH = rand(6,12),
-					STAT_ROB = rand(6,12),
-					STAT_VIG = rand(6,12),
-				)
-			if("craft")
-				oddity_stats = list(
-					STAT_COG = rand(6,12),
-					STAT_BIO = rand(6,12),
-					STAT_MEC = rand(6,12),
-				)
-			if("mix")
-				oddity_stats = list(
-					STAT_TGH = rand(3, 9),
-					STAT_ROB = rand(3, 9),
-					STAT_VIG = rand(3, 9),
-					STAT_COG = rand(3, 9),
-					STAT_BIO = rand(3, 9),
-					STAT_MEC = rand(3, 9),
-				)
+		var/list/oddity_stats = list(STAT_MEC = rand(0,1), STAT_COG = rand(0,1), STAT_BIO = rand(0,1), STAT_ROB = rand(0,1), STAT_TGH = rand(0,1), STAT_VIG = rand(0,1))//May not be nessecary
+		var/stats_amt = 3
+		if(ins_used >= 85)//Arbitrary values
+			stats_amt += 3
+		if(ins_used >= 70)
+			stats_amt += 3
+		if(ins_used >= 55)
+			stats_amt += 3//max = 3*4*2+6 = 30 points, min 3*4+6 = 18
+		for(var/i in 1 to stats_amt)
+			var/stat = pick(ALL_STATS)
+			oddity_stats[stat] = min(MAX_STAT_VALUE, oddity_stats[stat]+rand(1,2))
 
 		O.oddity_stats = oddity_stats
 		O.AddComponent(/datum/component/inspiration, O.oddity_stats, O.perk)
@@ -318,7 +300,7 @@
 
 /obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/carbon/human/user)
 	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
-
+	//ins_used = max(ins_used, min_insight)//debug
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
@@ -397,13 +379,6 @@
 
 	return ERR_OK
 
-#undef ERR_OK
-#undef ERR_NOTFOUND
-#undef ERR_NOMATERIAL
-#undef ERR_NOREAGENT
-#undef ERR_NOLICENSE
-#undef ERR_PAUSED
-#undef ERR_NOINSIGHT
 
 /obj/machinery/autolathe/artist_bench/proc/randomize_materialas(obj/O)
 	var/material_num = pick(0, suitable_materials.len)
@@ -412,3 +387,13 @@
 	for(var/i in 1 to material_num)
 		LAZYAPLUS(new_materials, pick(suitable_materials), rand(0,2))
 	O.matter = new_materials
+
+
+#undef ERR_OK
+#undef ERR_NOTFOUND
+#undef ERR_NOMATERIAL
+#undef ERR_NOREAGENT
+#undef ERR_NOLICENSE
+#undef ERR_PAUSED
+#undef ERR_NOINSIGHT
+#undef MAX_STAT_VALUE
