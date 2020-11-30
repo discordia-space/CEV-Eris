@@ -2206,7 +2206,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/device/lighting/toggleable/lamp/green    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting/toggleable/lamp    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting/toggleable/lantern    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/lighting/toggleable    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lightreplacer    obj;item;divice    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/megaphone    obj;item;divice    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
