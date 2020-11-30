@@ -16,7 +16,7 @@
 /obj/item/rig_module/electrowarfare_suite    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/power_sink    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/stealth_field    blacklisted=1    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module/teleporter    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/teleporter    blacklisted=1    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/self_destruct/small    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/self_destruct    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/storage    blacklisted=0    spawn_value=50   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

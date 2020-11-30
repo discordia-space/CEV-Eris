@@ -102,6 +102,9 @@
 /obj/item/clothing/head/armor/faceshield/altyn    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/riot_hud    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/steelpot    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/acolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/agrolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/custodian    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/petehat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/slime    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/xenom    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -253,9 +256,6 @@
 /obj/item/clothing/suit/space/void/merc/equipped    blacklisted=1    spawn_value=0.617126   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/space/void/merc/boxed    blacklisted=1    spawn_value=0.617126   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=0.61813   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/engineering/equipped    blacklisted=1    spawn_value=8.30469   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/space/void/engineering    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/mining    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
@@ -299,6 +299,9 @@
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/crusader    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/acolyte    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/agrolyte    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/custodian    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.08228   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1605,6 +1605,9 @@
 /obj/item/clothing/head/armor/faceshield/altyn
 /obj/item/clothing/head/armor/riot_hud
 /obj/item/clothing/head/armor/steelpot
+/obj/item/clothing/head/armor/acolyte
+/obj/item/clothing/head/armor/agrolyte
+/obj/item/clothing/head/armor/custodian
 /obj/item/clothing/head/collectable/petehat
 /obj/item/clothing/head/collectable/slime
 /obj/item/clothing/head/collectable/xenom
@@ -1756,9 +1759,6 @@
 /obj/item/clothing/suit/space/void/merc/equipped
 /obj/item/clothing/suit/space/void/merc/boxed
 /obj/item/clothing/suit/space/void/merc
-/obj/item/clothing/suit/space/void/acolyte
-/obj/item/clothing/suit/space/void/agrolyte
-/obj/item/clothing/suit/space/void/custodian
 /obj/item/clothing/suit/space/void/engineering/equipped
 /obj/item/clothing/suit/space/void/engineering
 /obj/item/clothing/suit/space/void/mining
@@ -1802,6 +1802,9 @@
 /obj/item/clothing/suit/armor/heavy
 /obj/item/clothing/suit/armor/reactive
 /obj/item/clothing/suit/armor/crusader
+/obj/item/clothing/suit/armor/acolyte
+/obj/item/clothing/suit/armor/agrolyte
+/obj/item/clothing/suit/armor/custodian
 /obj/item/clothing/suit/storage/vest/merc
 /obj/item/clothing/suit/storage/vest/insulated
 /obj/item/clothing/suit/storage/vest/chestrig

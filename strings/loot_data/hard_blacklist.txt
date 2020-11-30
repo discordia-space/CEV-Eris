@@ -137,7 +137,6 @@
 /obj/item/weapon/reagent_containers/glass/bottle
 /obj/item/weapon/reagent_containers/glass/solution_tray
 /obj/item/weapon/reagent_containers/glass
-/obj/item/weapon/reagent_containers/enricher
 /obj/item/weapon/reagent_containers/spray/luminol
 /obj/item/weapon/reagent_containers/spray/cleaner/drone
 /obj/item/weapon/reagent_containers/spray/cleaner
@@ -216,6 +215,8 @@
 /obj/item/weapon/reagent_containers/blood/OMinus
 /obj/item/weapon/reagent_containers/blood
 /obj/item/weapon/reagent_containers/atomic_distillery
+/obj/item/weapon/reagent_containers/bonsai
+/obj/item/weapon/reagent_containers/enricher
 /obj/item/weapon/reagent_containers/borghypo/medical
 /obj/item/weapon/reagent_containers/borghypo/rescue
 /obj/item/weapon/reagent_containers/borghypo/service
@@ -965,9 +966,6 @@
 /obj/item/clothing/head/space/void/excelsior
 /obj/item/clothing/head/space/void/SCAF
 /obj/item/clothing/head/space/void/merc
-/obj/item/clothing/head/space/void/acolyte
-/obj/item/clothing/head/space/void/agrolyte
-/obj/item/clothing/head/space/void/custodian
 /obj/item/clothing/head/space/void/engineering
 /obj/item/clothing/head/space/void/mining
 /obj/item/clothing/head/space/void/medical

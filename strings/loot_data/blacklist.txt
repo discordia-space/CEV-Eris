@@ -136,6 +136,7 @@
 /obj/item/weapon/gun/projectile/revolver/capgun
 /obj/item/weapon/rig/combat/ironhammer/equipped
 /obj/item/weapon/rig/combat/ironhammer
+/obj/item/weapon/rig/light/ninja
 /obj/item/weapon/rig/ce/equipped
 /obj/item/weapon/rig/ce
 /obj/item/weapon/ore/hydrogen
@@ -203,6 +204,9 @@
 /obj/item/clothing/head/chameleon
 /obj/item/clothing/head/armor/helmet/thunderdome
 /obj/item/clothing/head/armor/helmet/crusader
+/obj/item/clothing/head/armor/acolyte
+/obj/item/clothing/head/armor/agrolyte
+/obj/item/clothing/head/armor/custodian
 /obj/item/clothing/head/collectable/petehat
 /obj/item/clothing/head/collectable/slime
 /obj/item/clothing/head/collectable/xenom
@@ -249,9 +253,6 @@
 /obj/item/clothing/suit/space/void/SCAF
 /obj/item/clothing/suit/space/void/merc/equipped
 /obj/item/clothing/suit/space/void/merc/boxed
-/obj/item/clothing/suit/space/void/acolyte
-/obj/item/clothing/suit/space/void/agrolyte
-/obj/item/clothing/suit/space/void/custodian
 /obj/item/clothing/suit/space/void/engineering/equipped
 /obj/item/clothing/suit/space/void/engineering
 /obj/item/clothing/suit/space/void/mining
@@ -264,6 +265,9 @@
 /obj/item/clothing/suit/space/syndicate
 /obj/item/clothing/suit/chameleon
 /obj/item/clothing/suit/armor/crusader
+/obj/item/clothing/suit/armor/acolyte
+/obj/item/clothing/suit/armor/agrolyte
+/obj/item/clothing/suit/armor/custodian
 /obj/item/clothing/suit/storage/toggle/club
 /obj/item/clothing/suit/storage/neotheosports
 /obj/item/clothing/suit/storage/te_coat
@@ -421,6 +425,7 @@
 /obj/item/device/encryptionkey
 /obj/item/device/gps/traitor
 /obj/item/rig_module/stealth_field
+/obj/item/rig_module/teleporter
 /obj/item/ammo_magazine/ammobox/pistol/practice
 /obj/item/ammo_magazine/ammobox/pistol/hv
 /obj/item/mech_equipment/mounted_system/taser/plasma

@@ -1374,7 +1374,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/rig/hazard/equipped    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/rig/hazard    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/rig/light/hacker    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/rig/light/ninja    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/rig/light/ninja    obj;item;space_suit;rig_suit    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/rig/light/stealth    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/rig/light    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/rig/merc/empty    obj;item;space_suit;rig_suit    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1606,6 +1606,9 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/head/armor/faceshield/altyn    obj;item;clothing;head;helmet    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/riot_hud    obj;item;clothing;head;helmet    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/steelpot    obj;item;clothing;head;helmet    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/acolyte    obj;item;clothing;head;helmet    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/agrolyte    obj;item;clothing;head;helmet    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/custodian    obj;item;clothing;head;helmet    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/petehat    obj;item;clothing;head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/slime    obj;item;clothing;head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/xenom    obj;item;clothing;head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1757,9 +1760,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/suit/space/void/merc/equipped    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=0.617126   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/space/void/merc/boxed    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=0.617126   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/merc    obj;item;clothing;suit;space_suit;void_suit    blacklisted=0    spawn_value=0.61813   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/acolyte    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/agrolyte    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/custodian    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/engineering/equipped    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.30469   spawn_price=110   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/space/void/engineering    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/mining    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
@@ -1803,6 +1803,9 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/suit/armor/heavy    obj;item;clothing;armor    blacklisted=0    spawn_value=3.64991   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/reactive    obj;item;clothing;armor    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/crusader    obj;item;clothing;armor    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/acolyte    obj;item;clothing;armor    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/agrolyte    obj;item;clothing;armor    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/custodian    obj;item;clothing;armor    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/merc    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=1.08228   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/insulated    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=1.59291   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/chestrig    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2477,7 +2480,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/rig_module/electrowarfare_suite    obj;item;rig_module    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/power_sink    obj;item;rig_module;rig_module_common    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/stealth_field    obj;item;rig_module    blacklisted=1    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/rig_module/teleporter    obj;item;rig_module    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/teleporter    obj;item;rig_module    blacklisted=1    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/self_destruct/small    obj;item;rig_module    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/self_destruct    obj;item;rig_module    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/rig_module/storage    obj;item;rig_module;rig_module_common    blacklisted=0    spawn_value=50   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
