@@ -476,6 +476,7 @@
 
 					to_chat(usr, SPAN_WARNING("You have disassembled the SMES EMP shielding!"))
 					emp_shield.forceMove(get_turf(user))
+					emp_shield = null
 					return
 
 				if (has_electronics==1)
