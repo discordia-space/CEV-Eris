@@ -471,7 +471,7 @@
 				if (emp_shield)
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						return
-					if (!do_after(usr, 20 SECONDS, src)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
+					if (!do_after(usr, 10 SECONDS, src))
 						return
 
 					to_chat(usr, SPAN_WARNING("You have disassembled the SMES EMP shielding!"))
