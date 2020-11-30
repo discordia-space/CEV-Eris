@@ -48,6 +48,10 @@
 	l_pocket = /obj/item/weapon/bikehorn
 	backpack_contents = list(/obj/item/weapon/bananapeel = 1, /obj/item/weapon/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/weapon/stamp/clown = 1, /obj/item/weapon/handcuffs/fake = 1)
 
+/decl/hierarchy/outfit/job/cargo/artist/post_equip(var/mob/living/carbon/human/H)
+	..()
+	H.mutations.Add(CLUMSY)
+
 /decl/hierarchy/outfit/job/cargo/artist/clown
 	name = OUTFIT_JOB_NAME("Guild Clown")
 	uniform = /obj/item/clothing/under/rank/clown
@@ -61,7 +65,3 @@
 	backpack_overrides[/decl/backpack_outfit/backpack] = /obj/item/weapon/storage/backpack/clown
 	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/weapon/storage/backpack/satchel/leather
 
-
-/decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)
-	..()
-	H.mutations.Add(CLUMSY)
