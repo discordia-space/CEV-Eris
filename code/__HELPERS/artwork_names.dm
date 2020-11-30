@@ -8,8 +8,10 @@ GLOBAL_LIST_INIT(art_locations, file2list("strings/artist_strings/descriptors/ar
 
 GLOBAL_LIST_INIT(art_sculpting_method, file2list("strings/artist_strings/descriptors/art_sculpting_method.txt"))
 
-GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_style.txt"))
+GLOBAL_LIST_INIT(art_styles, file2list("strings/artist_strings/descriptors/art_style.txt"))
 
+
+GLOBAL_LIST_INIT(art_types, file2list("strings/artist_strings/descriptors/art_types.txt"))
 
 //When you need something simple (for random Artist Artwork)
 /proc/get_weapon_name(capitalize = FALSE)
@@ -81,7 +83,7 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 
 /obj/proc/make_art_review()
 	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encourages")
-	desc += " A [pick(GLOB.art_style)] work of art [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
+	desc += " A [pick(GLOB.art_styles)] [pick(GLOB.art_types)] [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
 
 /obj/item/weapon/gun/projectile/make_art_review()
 	desc += " [get_art_gun_desc(src)]"
