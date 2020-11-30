@@ -193,15 +193,15 @@
 		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(src)
 
 		var/gun_pattern = pickweight(list(
-			"pistol" = 8 + weight_robustness,
-			"magnum" = 8 + weight_vigilance,
-			"shotgun" = 8 + weight_robustness,
+			"pistol" = 12 + weight_robustness,
+			"magnum" = 12 + weight_vigilance,
+			"shotgun" = 12 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + weight_vigilance + weight_cognition,
-			"gyro" = 8 + weight_robustness + weight_mechanical,
+			"sniper" = 8 + max(weight_vigilance + weight_cognition),
+			"gyro" = 8 + weight_mechanical,
 			"cap" = 8 + weight_biology,
-			"rocket" = 8 + weight_vigilance + weight_toughness,
-			"grenade" = 8 + weight_vigilance + weight_toughness
+			"rocket" = 8 + weight_toughness,
+			"grenade" = 8 + weight_toughness
 		))
 
 		switch(gun_pattern)
@@ -300,7 +300,7 @@
 
 /obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/carbon/human/user)
 	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
-	//ins_used = max(ins_used, min_insight)//debug
+	ins_used = max(ins_used, min_insight)//debug
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
@@ -323,7 +323,7 @@
 		visible_message(SPAN_WARNING("Unknown error."))
 		return
 	var/err = can_print(art, ins_used)
-	//err = ERR_OK //for debug
+	err = ERR_OK //for debug
 	if(err != ERR_OK)
 		if(err in error_messages)
 			error = error_messages[err]
@@ -333,7 +333,7 @@
 		qdel(artwork)
 		QDEL_NULL(art)
 		return
-
+	artwork.price_tag += ins_used
 	artwork.make_art_review()
 	artwork.forceMove(get_turf(src))
 

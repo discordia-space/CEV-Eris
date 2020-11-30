@@ -184,7 +184,7 @@ Character Expectations:<br>\
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 3
-	spawn_positions = 1
+	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
