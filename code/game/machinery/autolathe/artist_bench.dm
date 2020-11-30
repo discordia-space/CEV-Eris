@@ -300,7 +300,7 @@
 
 /obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/carbon/human/user)
 	ins_used = CLAMP(ins_used, 0, user.sanity.insight)
-	ins_used = max(ins_used, min_insight)//debug
+	//ins_used = max(ins_used, min_insight)//debug
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
@@ -323,7 +323,7 @@
 		visible_message(SPAN_WARNING("Unknown error."))
 		return
 	var/err = can_print(art, ins_used)
-	err = ERR_OK //for debug
+	//err = ERR_OK //for debug
 	if(err != ERR_OK)
 		if(err in error_messages)
 			error = error_messages[err]
