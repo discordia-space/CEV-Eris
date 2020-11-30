@@ -532,9 +532,9 @@
 	I.prefix = "spiked"
 
 /obj/item/weapon/tool_upgrade/augment/sanctifier
-	name = "sanctifier"
+	name = "NT 'Sanctifier' tool blessing"
 	icon_state = "sanctifier"
-	desc = "Recomended for crusade against mutants."
+	desc = "This odd piece of equipment can be applied to any tool or melee weapon, causing the object to deal extra burn damage to mutants and carrions."
 	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_STEEL = 2)
 
 /obj/item/weapon/tool_upgrade/augment/sanctifier/New()
@@ -664,7 +664,7 @@
 	UPGRADE_HEALTH_THRESHOLD = rand(-10,10),
 	UPGRADE_WORKSPEED = rand(-1,3),
 	UPGRADE_PRECISION = rand(-20,20),
-	UPGRADE_FORCE_MOD = rand(-20,20),
+	UPGRADE_FORCE_MOD = rand(-5,5),
 	UPGRADE_BULK = rand(-1,2),
 	UPGRADE_COLOR = "#3366ff"
 	)

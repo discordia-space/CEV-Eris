@@ -59,6 +59,10 @@
 				oddity_stats[STAT_MEC] += 1
 				oddity_stats[STAT_VIG] += 3
 				oddity_stats[STAT_COG] += 1
+			else if(GLOB.all_faction_items[W] == GLOB.department_civilian)
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_COG] += 2
 			else
 				crash_with("[W], incompatible department")
 
