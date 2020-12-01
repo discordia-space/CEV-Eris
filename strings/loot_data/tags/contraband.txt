@@ -1,3 +1,4 @@
+/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.70194   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/tool/knife/butterfly    blacklisted=0    spawn_value=3.80213   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/knife/switchblade    blacklisted=0    spawn_value=3.19478   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/pill_bottle/happy    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -10,7 +11,6 @@
 /obj/item/weapon/material/butterflyblade    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/butterflyhandle    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/wirerod    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.70194   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

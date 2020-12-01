@@ -391,6 +391,7 @@
 	icon_state = "artwork_1"
 	price_tag = 200
 	prob_perk = 0//no perks for artwork oddities
+	spawn_frequency = 0
 
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
