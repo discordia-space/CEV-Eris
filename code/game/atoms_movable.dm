@@ -398,10 +398,10 @@
 	return step(AM, newdir)
 
 //We're changing zlevel
-/atom/movable/proc/onTransitZ(old_z, new_z)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+/atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
+	/*SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
 	for(var/atom/movable/AM in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		AM.onTransitZ(old_z,new_z)
+		AM.onTransitZ(old_z,new_z)*/ 
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
