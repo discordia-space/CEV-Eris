@@ -88,6 +88,7 @@
 		/obj/item/weapon/soap,
 		/obj/item/weapon/reagent_containers/spray/cleaner
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -128,6 +129,7 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/taperoll/medical
 	)
+	rarity_value = 15
 
 /obj/item/weapon/storage/belt/medical/emt
 	name = "EMT utility belt"
@@ -188,6 +190,7 @@
 		/obj/item/weapon/tool/knife/neotritual,
 		/obj/item/weapon/gun/energy/crossbow
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

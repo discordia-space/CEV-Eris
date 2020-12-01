@@ -2211,7 +2211,6 @@
 /obj/item/device/lighting/toggleable/lamp/green
 /obj/item/device/lighting/toggleable/lamp
 /obj/item/device/lighting/toggleable/lantern
-/obj/item/device/lighting/toggleable
 /obj/item/device/lighting
 /obj/item/device/lightreplacer
 /obj/item/device/megaphone
