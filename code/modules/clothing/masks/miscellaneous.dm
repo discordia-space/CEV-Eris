@@ -251,7 +251,7 @@
 	item_state = "bandskull"
 
 /obj/item/clothing/mask/gnome
-	name = "gnome beard"
+	name = "tactical beard"
 	desc = "The fancy looking beard."
 	icon_state = "gnome_beard"
 	item_state = "gnome_beard"
