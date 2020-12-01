@@ -17,16 +17,13 @@
 	have_reagents = FALSE
 	have_recycling = FALSE
 	have_design_selector = FALSE
-	var/min_insight = 40
-	var/datum/component/inspiration/inspiration
-
-	var/obj/item/weapon/oddity/strange_item //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
-	var/list/strange_item_stats = list()
-
-	categories = list("Create Artwork") //Temporary name.
+	categories = list("Artwork")
 
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
 	var/min_mat = 20
+	var/min_insight = 40
+	var/datum/component/inspiration/inspiration
+	var/obj/item/oddity
 
 /obj/machinery/autolathe/artist_bench/ui_data()
 	var/list/data = list()
@@ -42,8 +39,8 @@
 			var/list/LF = list("name" = stat, "level" = LE[stat])
 			L.Add(list(LF))
 
-		data["strange_item_name"] = strange_item.name
-		data["strange_item_stats"] = L
+		data["oddity_name"] = oddity.name
+		data["oddity_stats"] = L
 
 	return data
 
@@ -74,8 +71,8 @@
 
 	usr.set_machine(src)
 
-	if(href_list["strange_item_name"])
-		if(strange_item)
+	if(href_list["oddity_name"])
+		if(oddity)
 			remove_oddity(usr)
 		else
 			insert_oddity(usr)
@@ -94,8 +91,8 @@
 		return FALSE
 
 /obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
-	if(strange_item)
-		to_chat(user, SPAN_NOTICE("There's already \a [strange_item] inside [src]."))
+	if(oddity)
+		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
 		return
 
 	if(!inserted_oddity && istype(user))
@@ -115,22 +112,22 @@
 		user.unEquip(inserted_oddity, src)
 
 	inserted_oddity.forceMove(src)
-	strange_item = inserted_oddity
+	oddity = inserted_oddity
 	inspiration = C
 	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src]."))
 	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/remove_oddity(mob/living/user)
-	if(!strange_item)
+	if(!oddity)
 		return
 
-	strange_item.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [strange_item] from the model stand in [src]."))
+	oddity.forceMove(drop_location())
+	to_chat(usr, SPAN_NOTICE("You remove \the [oddity] from the model stand in [src]."))
 
 	if(istype(user) && Adjacent(user))
-		user.put_in_hands(strange_item)
+		user.put_in_hands(oddity)
 
-	strange_item = null
+	oddity = null
 	inspiration = null
 	SSnano.update_uis(src)
 
