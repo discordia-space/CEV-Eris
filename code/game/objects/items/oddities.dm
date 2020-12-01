@@ -28,17 +28,16 @@
 /obj/item/weapon/oddity/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
-	if(!perk)
-		perk = get_oddity_perk(prob_perk)
+	if(!perk && prob(prob_perk))
+		perk = get_oddity_perk()
 
 	if(oddity_stats)
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
-/proc/get_oddity_perk(chance=100)
-	if(prob(chance))
-		return pick(subtypesof(/datum/perk/oddity))
+/proc/get_oddity_perk()
+	return pick(subtypesof(/datum/perk/oddity))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
@@ -391,6 +390,7 @@
 	desc = "You can't find out how to turn it on. Maybe it's already working?"
 	icon_state = "artwork_1"
 	price_tag = 200
+	prob_perk = 0//no perks for artwork oddities
 
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
