@@ -694,7 +694,7 @@
 	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
 	QDEL_NULL(spawn_type)
 	QDEL_NULL(CATCH)
-	price_tag += rand(0, 500)
+	price_tag += rand(0, 1000)
 
 /obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
 	. = ..()
