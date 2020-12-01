@@ -8,6 +8,7 @@
 
 #define COMPONENT_INCOMPATIBLE 1
 #define COMPONENT_NOTRANSFER 2
+#define COMPONENT_TRANSFER 3
 
 // How multiple components of the exact same type are handled in the same datum
 
@@ -74,7 +75,7 @@
 #define COMSIG_STAT "current_stat"							   //current stat
 #define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
 #define COMSING_AUTOPSY "human_autopsy"						  //from obj/item/weapon/autopsy_scanner/attack()
-#define COMSIG_HUMAN_LEVEL_UP "human_level_up"
+#define COMSIG_HUMAN_ODDITY_LEVEL_UP "human_oddity_level_up"
 #define COMSING_HUMAN_EQUITP "human_equip_item"				   //from human/equip_to_slot()
 #define COMSIG_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
 #define COMSIG_HUMAN_SANITY "human_sanity"						//from /datum/sanity/proc/onLife()

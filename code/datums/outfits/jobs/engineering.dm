@@ -16,7 +16,6 @@
 	name = OUTFIT_JOB_NAME("Technomancer Exultant")
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/exultant
-	head = /obj/item/clothing/head/hardhat/white
 	suit = /obj/item/clothing/suit/storage/te_coat
 	l_ear = /obj/item/device/radio/headset/heads/ce
 	id_type = /obj/item/weapon/card/id/ce
@@ -27,7 +26,6 @@
 	head = /obj/item/clothing/head/armor/helmet/technomancer
 	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/vest/insulated
-	head = /obj/item/clothing/head/armor/helmet/technomancer
 	id_type = /obj/item/weapon/card/id/engie
 	pda_type = /obj/item/modular_computer/pda/engineering
 

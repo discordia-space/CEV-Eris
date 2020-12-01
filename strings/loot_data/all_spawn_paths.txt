@@ -91,6 +91,7 @@
 /obj/item/weapon/electronics/circuitboard/supplycomp
 /obj/item/weapon/electronics/circuitboard/comm_monitor
 /obj/item/weapon/electronics/circuitboard/comm_server
+/obj/item/weapon/electronics/circuitboard/artist_bench
 /obj/item/weapon/electronics/circuitboard/slot_machine
 /obj/item/weapon/electronics/circuitboard/biogenerator
 /obj/item/weapon/electronics/circuitboard/chemmaster
@@ -959,6 +960,7 @@
 /obj/item/weapon/oddity/common/old_radio
 /obj/item/weapon/oddity/common/paper_bundle
 /obj/item/weapon/oddity/techno
+/obj/item/weapon/oddity/artwork
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc
@@ -1652,7 +1654,6 @@
 /obj/item/clothing/head/surgery/purple
 /obj/item/clothing/head/surgery/blue
 /obj/item/clothing/head/surgery/green
-/obj/item/clothing/head/surgery
 /obj/item/clothing/head/mindreader
 /obj/item/clothing/head/centhat
 /obj/item/clothing/head/hairflower
@@ -2805,6 +2806,7 @@
 /obj/structure/closet/wall_mounted/emcloset
 /obj/structure/closet/wall_mounted/firecloset
 /obj/structure/closet/wall_mounted
+/obj/structure/closet/wardrobe/color/pink/artist
 /obj/structure/closet/wardrobe/color/pink
 /obj/structure/closet/wardrobe/color/black
 /obj/structure/closet/wardrobe/color/green

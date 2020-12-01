@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - balance: The chameleon projector now requires an item have a minimum pixel count
-      to their icon.
