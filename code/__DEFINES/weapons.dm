@@ -61,7 +61,7 @@
 #define WEAPON_NORMAL		list(mode_name="standard", icon="semi")
 #define WEAPON_CHARGE		list(mode_name="charge mode", mode_type = /datum/firemode/charge, icon="charge")
 
-#define MAX_ACCURACY_OFFSET  30 //It's both how big gun recoil can build up, and how hard you can miss
+#define MAX_ACCURACY_OFFSET  45 //It's both how big gun recoil can build up, and how hard you can miss
 #define RECOIL_REDUCTION_TIME 1 SECOND
 
 #define VIG_OVERCHARGE_GEN 0.05
