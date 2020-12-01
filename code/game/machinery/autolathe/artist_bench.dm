@@ -137,26 +137,23 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_artwork_statue = 20 + LStats[STAT_TGH]
-	var/weight_artwork_weapon = 8 + LStats[STAT_ROB]
-	var/weight_artwork_oddity = 8 + max(LStats[STAT_COG], LStats[STAT_BIO])
-	var/weight_artwork_revolver = 8 + LStats[STAT_VIG]
-	var/weight_artwork_tool = 8 + LStats[STAT_MEC]
-	var/weight_artwork_toolmod = 8 + LStats[STAT_MEC]
-	var/weight_artwork_gunmod = 8 + LStats[STAT_COG]
+	var/weight_artwork_statue = 20
+	var/weight_artwork_revolver = 1 + LStats[STAT_VIG] * 2
+	var/weight_artwork_weapon = 1 + max(LStats[STAT_ROB], LStats[STAT_TGH]) * 2
+	var/weight_artwork_oddity = 1 + max(LStats[STAT_COG], LStats[STAT_BIO]) * 2
+	var/weight_artwork_tool = 2 + LStats[STAT_MEC] * 2
+	var/weight_artwork_toolmod = 2 + LStats[STAT_MEC] * 2
+	var/weight_artwork_gunmod = 2 + LStats[STAT_COG] * 2
 
 	if(ins_used >= 85)//Arbitrary values
-		weight_artwork_weapon += 8
-		weight_artwork_revolver += 8
+		weight_artwork_revolver += 9
+		weight_artwork_weapon += 9
 	if(ins_used >= 70)
-		weight_artwork_weapon += 2
-		weight_artwork_revolver += 2
-		weight_artwork_oddity += 8
+		weight_artwork_revolver += 4
+		weight_artwork_weapon += 4
+		weight_artwork_oddity += 13
 		weight_artwork_gunmod += 8
 	if(ins_used >= 55)
-		weight_artwork_weapon += 2
-		weight_artwork_revolver += 2
-		weight_artwork_oddity += 4
 		weight_artwork_gunmod += 4
 		weight_artwork_tool += 12
 		weight_artwork_toolmod += 12
