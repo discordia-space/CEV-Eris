@@ -841,6 +841,9 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+	var/turf/T = get_turf(src)
+	if(T)
+		update_z(T.z)
 
 /mob/living/Destroy()
 	qdel(stats)
