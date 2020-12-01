@@ -49,6 +49,10 @@
 #define OP_NERVE         "nerve"
 #define OP_BLOOD_VESSEL  "blood vessel"
 
+// Extra organs
+#define OP_KIDNEY_LEFT    "left kidney"
+#define OP_KIDNEY_RIGHT   "right kidney"
+
 // Carrion organ processes
 #define OP_MAW       "carrion maw"
 #define OP_SPINNERET "carrion spinneret"

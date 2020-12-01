@@ -1529,7 +1529,7 @@ var/list/rank_prefix = list(\
 	var/obj/item/organ/external/affecting
 	if(organ_check in list(OP_HEART, OP_LUNGS, OP_STOMACH))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(OP_LIVER, OP_KIDNEYS))
+	else if(organ_check in list(OP_LIVER, OP_KIDNEYS, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (BP_IS_ROBOTIC(affecting)))
