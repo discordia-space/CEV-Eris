@@ -74,3 +74,6 @@
 	new/obj/item/clothing/shoes/clown_shoes(src)
 	new/obj/item/clothing/under/rank/clown(src)
 	new/obj/item/clothing/mask/gas/clown_hat(src)
+	new/obj/item/clothing/under/gnome(src)
+	new/obj/item/clothing/mask/gnome(src)
+	new/obj/item/clothing/head/collectable/gnome(src)
