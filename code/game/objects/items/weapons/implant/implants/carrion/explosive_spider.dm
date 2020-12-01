@@ -12,9 +12,10 @@
 	..()
 	if(wearer)
 		src.uninstall()
-		visible_message(SPAN_WARNING("[src] pops out of [wearer] and flashes brightly!"))
+		visible_message(SPAN_DANGER("[src] pops out of [wearer] and flashes brightly!"))
 	else
-		visible_message(SPAN_WARNING("[src] flashes brightly!"))
+		visible_message(SPAN_DANGER("[src] flashes brightly!"))
+	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)
 	src.set_light(3,3, COLOR_ORANGE)
 	spawn(det_time)
 		src?.prime()
