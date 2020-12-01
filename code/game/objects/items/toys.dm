@@ -24,7 +24,7 @@
 
 	//spawn_values
 	bad_type = /obj/item/toy
-	spawn_tags = SPAWN_TAG_TOY
+	spawn_tags = SPAWN_TAG_ITEM_TOY
 
 /*
  * Balloons

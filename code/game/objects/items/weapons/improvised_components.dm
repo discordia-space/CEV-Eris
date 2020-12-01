@@ -7,7 +7,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/butterflyhandle
 	name = "concealed knife grip"
@@ -17,7 +17,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/wirerod
 	name = "wired rod"
@@ -32,7 +32,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user)
 	..()

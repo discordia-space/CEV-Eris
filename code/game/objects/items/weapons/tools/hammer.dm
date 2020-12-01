@@ -28,7 +28,7 @@
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
 	max_upgrades = 5
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	rarity_value = 32
 
 /obj/item/weapon/tool/hammer/powered_hammer //to be made into proper two-handed tool as small "powered" hammer doesn't make sense
@@ -94,7 +94,7 @@
 	degradation = 5 //This one breaks REALLY fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 30
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/hammer/charge
 	name = "charge hammer"
