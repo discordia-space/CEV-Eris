@@ -16,7 +16,7 @@
 /obj/item/weapon/gun/projectile/automatic/z8    blacklisted=0    spawn_value=7.36638   spawn_price=3760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
 /obj/item/weapon/gun/projectile/automatic/zoric    blacklisted=0    spawn_value=2.8242   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97131   spawn_price=4520   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=4.29166   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.33928   spawn_price=4220   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/m12
@@ -1312,8 +1312,6 @@
 /obj/item/weapon/melee/energy/blade/organ_module    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/melee/energy/blade    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/melee/toolbox_maul    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/beartrap/makeshift/armed    blacklisted=0    spawn_value=4.5045   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/beartrap/armed    blacklisted=0    spawn_value=3.003   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/weldpack/canister    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner    blacklisted=0    spawn_value=3.74546   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/grenade/chem_grenade/cleaner    blacklisted=0    spawn_value=3.74546   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1590,6 +1588,7 @@
 /obj/item/clothing/head/collectable/hardhat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/thunderdome    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/swat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/gnome    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/visor    blacklisted=0    spawn_value=2.40708   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/blue    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/orange    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1899,6 +1898,7 @@
 /obj/item/clothing/mask/bandana/camo    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana/skull    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gnome    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/assistantformal    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/rank/fo_suit    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2015,6 +2015,7 @@
 /obj/item/clothing/under/genericb    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/genericw    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/genericr    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/gnome    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2295,7 +2296,6 @@
 /obj/item/device/scanner/mining    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly/igniter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly/infra    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/assembly/mousetrap/armed    blacklisted=0    spawn_value=8   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly/mousetrap    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly/prox_sensor    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly/signaler    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

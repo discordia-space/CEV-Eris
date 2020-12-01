@@ -1634,6 +1634,7 @@
 /obj/item/clothing/head/collectable/hardhat
 /obj/item/clothing/head/collectable/thunderdome
 /obj/item/clothing/head/collectable/swat
+/obj/item/clothing/head/collectable/gnome
 /obj/item/clothing/head/hardhat/visor
 /obj/item/clothing/head/hardhat/blue
 /obj/item/clothing/head/hardhat/orange
@@ -1943,6 +1944,7 @@
 /obj/item/clothing/mask/bandana/camo
 /obj/item/clothing/mask/bandana/skull
 /obj/item/clothing/mask/bandana
+/obj/item/clothing/mask/gnome
 /obj/item/clothing/under/assistantformal
 /obj/item/clothing/under/chameleon
 /obj/item/clothing/under/rank/fo_suit
@@ -2059,6 +2061,7 @@
 /obj/item/clothing/under/genericb
 /obj/item/clothing/under/genericw
 /obj/item/clothing/under/genericr
+/obj/item/clothing/under/gnome
 /obj/item/clothing/under/shorts/red
 /obj/item/clothing/under/shorts/green
 /obj/item/clothing/under/shorts/blue
