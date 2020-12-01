@@ -45,21 +45,23 @@
 	required_stat = STAT_MEC
 
 
+/obj/item/organ/external/proc/get_total_occupied_volume()
+	. = 0
+	for(var/obj/item/item in implants)
+		if(istype(item, /obj/item/weapon/implant) || istype(item, /obj/item/organ_module))
+			continue
+
+		. += item.w_class
+
+	for(var/organ_inside in internal_organs)
+		var/obj/item/organ/internal/internal = organ_inside
+		. += internal.specific_organ_size
 
 /obj/item/organ/external/proc/can_add_item(obj/item/I, mob/living/user)
 	if(!istype(I))
 		return FALSE
 
-	var/total_volume = 0	//Used for internal organs and cavity implants
-	for(var/obj/item/item in implants)
-		if(istype(item, /obj/item/weapon/implant) || istype(item, /obj/item/organ_module))
-			continue
-
-		total_volume += item.w_class
-
-	for(var/organ_inside in internal_organs)
-		var/obj/item/organ/internal/internal = organ_inside
-		total_volume += internal.specific_organ_size
+	var/total_volume = get_total_occupied_volume()	//Used for internal organs and cavity implants
 
 	// "Organ modules"
 	// TODO: ditch them

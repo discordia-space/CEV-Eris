@@ -63,6 +63,24 @@
 				hard_blacklist_data  << "[path]"
 			continue
 
+		/* //this works but is unnecessary for now.
+		//icon check
+		var/icon/icon_to_check = icon(initial(A.icon), initial(A.icon_state), initial(A.dir))
+		var/icon_check = FALSE
+		if(isicon(icon_to_check))
+			for(var/y = 0 to icon_to_check.Width())
+				if(icon_check)
+					break
+				for(var/x = 0 to icon_to_check.Height())
+					if(icon_to_check.GetPixel(x, y))
+						icon_check = TRUE
+						break
+		if(!icon_check)
+			if(generate_files)
+				hard_blacklist_data  << "[path]"
+			continue
+		*/ //this works but is unnecessary for now.
+
 		//frequency
 		//frequency = initial(A.spawn_frequency)
 		//all_spawn_by_frequency["[frequency]"] += list(path)

@@ -10,6 +10,7 @@
 /obj/item/clothing/glasses/hud/security/jensenshades    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/hud/security    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/hud/broken    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/excelsior    blacklisted=1    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/powered/meson    blacklisted=0    spawn_value=4.40549   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/powered/night    blacklisted=0    spawn_value=4.40549   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/powered/science    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

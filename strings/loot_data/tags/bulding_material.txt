@@ -2,7 +2,6 @@
 /obj/item/weapon/material/shard/shrapnel    blacklisted=0    spawn_value=40   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/shard/plasma    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/shard    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/stack/rods/random    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/material/plastic/random    blacklisted=0    spawn_value=9.70777   spawn_price=2   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/material/steel/random    blacklisted=0    spawn_value=5.46417   spawn_price=2   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/material/plasteel/random    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

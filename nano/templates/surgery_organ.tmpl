@@ -16,6 +16,14 @@
 						<div class="content">{{:helper.displayBar(organ.health, 0, organ.max_damage, !organ.damage ? 'good' : 'bad', organ.health + " / " + organ.max_damage)}}</div>
 					</section>
 					{{/if}}
+					{{if organ.processes.length}}
+							<div class="display">
+							{{for organ.processes}}
+							<span class="label">{{:value.title}}:</span>
+							<div class="content">{{:value.efficiency}}</div>
+							{{/for}}
+							</div>
+					{{/if}}
 					{{for organ.conditions :condition:condition_i}}
 					<section>
 						<span class="label">{{:condition.name}}:</span>
@@ -55,6 +63,7 @@
 						{{data.health = Math.round((data.max_damage - data.damage) * 10) / 10;}}
 						{{data.brute_dam = Math.round(data.brute_dam * 10) / 10;}}
 						{{data.burn_dam = Math.round(data.burn_dam * 10) / 10;}}
+						{{data.limb_efficiency = Math.round(data.limb_efficiency * 10) / 10;}}
 						<div class="content">{{:helper.displayBar(data.health, 0, data.max_damage, (data.damage > (data.max_damage / 2)) ? 'bad' : 'good', data.health + " / " + data.max_damage)}}</div>
 					</section>
 					<section>
@@ -65,9 +74,32 @@
 						<span class="label">Burn:</span>
 						<div class="content">{{:helper.displayBar(data.burn_dam, 0, data.max_damage, 'bad', data.burn_dam + "")}}</div>
 					</section>
+					<section>
+						<span class="label">Efficiency:</span>
+						<div class="content">
+							<div style="color:green">{{:data.limb_efficiency}}</div>
+						</div>
+					</section>
 				{{else}}
 					<section>{{:helper.link('Diagnose', null, {'command' : 'diagnose'})}}</section> 
 				{{/if}}
+			</article>
+		</div>
+		<div class="display">
+			<header><h3>Volume</h3></header>
+			<article>
+				<section>
+					<span class="label">Occupied space:</span>
+					{{if data.occupied_volume > data.max_volume}}
+						<div class="content">
+							<div style="color:red">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+						</div>
+					{{else}}
+						<div class="content">
+							<div style="color:green">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+						</div>
+					{{/if}}
+				</section>
 			</article>
 		</div>
 		{{if data.diagnosed && data.conditions.length}}

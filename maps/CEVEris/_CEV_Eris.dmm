@@ -43583,11 +43583,6 @@
 	icon_state = "0-4"
 	},
 /obj/effect/floor_decal/industrial/warning,
-/obj/structure/table/rack,
-/obj/item/device/von_krabin,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Von-Krabin"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bVE" = (
@@ -44128,10 +44123,10 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/hallway/side/section3port)
 "bWS" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 8;
-	name = "Mixing"
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
 "bWT" = (
@@ -44152,13 +44147,14 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/security/inspectors_office)
 "bWV" = (
-/obj/machinery/meter,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	tag = "icon-map (NORTH)";
-	dir = 1
+/obj/machinery/atmospherics/omni/filter{
+	tag_east = 1;
+	tag_south = 5;
+	tag_west = 2;
+	use_power = 0
 	},
 /turf/simulated/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
@@ -44455,8 +44451,8 @@
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
 "bXJ" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	name = "Mix to Space"
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
@@ -46729,7 +46725,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4central)
 "cdg" = (
-/obj/structure/closet/bombcloset,
+/obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "cdh" = (
@@ -46755,11 +46751,11 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clothingstorage)
 "cdl" = (
-/obj/structure/closet/bombcloset,
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/pipedispenser,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "cdm" = (
@@ -47735,7 +47731,7 @@
 "cfl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/ignition{
-	id = "toxin_chamber2";
+	id = "toxin_chamber1";
 	pixel_y = -5
 	},
 /obj/machinery/button/remote/blast_door{
@@ -48517,9 +48513,8 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/quartermaster/artistoffice)
 "chf" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 8;
-	name = "Chamber to Port"
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
@@ -49280,13 +49275,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/command/fo)
-"ciX" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 4;
-	name = "Port to Chamber"
-	},
-/turf/simulated/floor/tiled/white/danger,
-/area/eris/rnd/mixing)
 "ciY" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
@@ -49462,10 +49450,12 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/atmoscontrol)
 "cjv" = (
-/obj/machinery/computer/general_air_control{
+/obj/machinery/computer/general_air_control/large_tank_control{
 	dir = 8;
 	frequency = 1430;
-	name = "Mixing Chamber Monitor";
+	input_tag = "toxins1_in";
+	name = "Mixing Chamber 1 Monitor";
+	output_tag = "toxins1_out";
 	sensors = list("toxins_mixing_1" = "Mixing Chamber - 1")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
@@ -49891,10 +49881,12 @@
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "ckv" = (
-/obj/machinery/computer/general_air_control{
+/obj/machinery/computer/general_air_control/large_tank_control{
 	dir = 8;
 	frequency = 1430;
-	name = "Mixing Chamber Monitor";
+	input_tag = "toxins2_in";
+	name = "Mixing Chamber 2 Monitor";
+	output_tag = "toxins2_out";
 	sensors = list("toxins_mixing_2" = "Mixing Chamber - 2")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
@@ -50042,6 +50034,9 @@
 "ckP" = (
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/structure/table/reinforced,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckQ" = (
@@ -50055,10 +50050,11 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "ckR" = (
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/clothing/head/welding,
-/obj/structure/table/reinforced,
+/obj/structure/table/rack,
+/obj/item/device/von_krabin,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Von-Krabin"
+	},
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckS" = (
@@ -50291,11 +50287,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/closet/bombcloset,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "clA" = (
@@ -50320,8 +50316,8 @@
 /turf/simulated/open,
 /area/eris/rnd/chargebay)
 "clC" = (
-/obj/machinery/portable_atmospherics/canister,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/closet/bombcloset,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "clD" = (
@@ -50818,7 +50814,9 @@
 	dir = 8;
 	external_pressure_bound = 0;
 	external_pressure_bound_default = 0;
+	frequency = 1430;
 	icon_state = "map_vent_in";
+	id_tag = "toxins1_out";
 	initialize_directions = 1;
 	internal_pressure_bound = 4000;
 	internal_pressure_bound_default = 4000;
@@ -51133,8 +51131,8 @@
 "cnB" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
-	frequency = 1443;
-	id = "air_in";
+	frequency = 1430;
+	id = "toxins1_in";
 	use_power = 1
 	},
 /obj/machinery/shield_diffuser,
@@ -51505,7 +51503,7 @@
 /area/eris/maintenance/section4deck3port)
 "cot" = (
 /obj/machinery/sparker{
-	id = "toxin_chamber2";
+	id = "toxin_chamber1";
 	pixel_y = -21
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
@@ -67581,7 +67579,7 @@
 /area/shuttle/mining/station)
 "daN" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "daO" = (
@@ -70023,7 +70021,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dgq" = (
@@ -75534,10 +75532,10 @@
 /area/eris/maintenance/section3deck4starboard)
 "dsx" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
 	},
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dsy" = (
@@ -77019,7 +77017,7 @@
 	dir = 6
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dvY" = (
@@ -79422,8 +79420,8 @@
 /area/eris/medical/medbay)
 "dBK" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dBL" = (
@@ -79432,7 +79430,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dBM" = (
@@ -79875,10 +79873,10 @@
 /area/eris/medical/reception)
 "dCL" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 9
 	},
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dCM" = (
@@ -79887,7 +79885,7 @@
 	dir = 5
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dCN" = (
@@ -80165,15 +80163,6 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
-"dDv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/obj/machinery/meter,
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/simulated/floor/plating,
-/area/eris/rnd/mixing)
 "dDw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -91918,9 +91907,8 @@
 	},
 /area/shuttle/research/station)
 "eeP" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
 /obj/machinery/camera/network/research_outpost,
+/obj/machinery/doppler_array,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "6,15"
 	},
@@ -105706,6 +105694,11 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"qcf" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
+/turf/simulated/floor/plating,
+/area/eris/rnd/mixing)
 "qcs" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
@@ -105921,6 +105914,14 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"sss" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
+/turf/simulated/floor/plating,
+/area/eris/rnd/mixing)
 "ssB" = (
 /obj/structure/closet/crate/medical,
 /obj/spawner/firstaid,
@@ -106076,6 +106077,24 @@
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"uga" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8;
+	external_pressure_bound = 0;
+	external_pressure_bound_default = 0;
+	frequency = 1430;
+	icon_state = "map_vent_in";
+	id_tag = "toxins2_out";
+	initialize_directions = 1;
+	internal_pressure_bound = 4000;
+	internal_pressure_bound_default = 4000;
+	pressure_checks = 2;
+	pressure_checks_default = 2;
+	pump_direction = 0;
+	use_power = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/eris/rnd/mixing)
 "uiz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	tag = "icon-intact (SOUTHWEST)";
@@ -106331,6 +106350,12 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck2starboard)
+"wAI" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/eris/rnd/mixing)
 "wEJ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -106352,6 +106377,16 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemstor)
+"wYi" = (
+/obj/machinery/atmospherics/unary/outlet_injector{
+	dir = 8;
+	frequency = 1430;
+	id = "toxins2_in";
+	use_power = 1
+	},
+/obj/machinery/shield_diffuser,
+/turf/simulated/floor/reinforced/airless,
+/area/eris/rnd/mixing)
 "wYD" = (
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
@@ -213598,15 +213633,15 @@ abF
 abF
 daN
 bWW
-bXI
+wAI
 bZY
 cfl
 chf
-ciX
+chf
 cjv
 ckc
 ckv
-ciX
+chf
 chf
 clQ
 cmy
@@ -213802,15 +213837,15 @@ daN
 daN
 daN
 dgp
-daN
-dgp
-dgp
+qcf
+sss
+sss
 dvX
 dBL
 dCM
-dgp
-dDv
-daN
+sss
+sss
+qcf
 dgp
 daN
 daN
@@ -214004,15 +214039,15 @@ abF
 abF
 abF
 aMH
-daN
+qcf
 cmM
 cnB
 cot
-daN
+qcf
 cqo
-cnB
-cmM
-daN
+wYi
+uga
+qcf
 aMH
 abF
 abF
@@ -214206,15 +214241,15 @@ aaa
 aaa
 abF
 abF
-daN
+qcf
 cmN
 cnA
 cou
-daN
+qcf
 cou
 crk
 cmN
-daN
+qcf
 abF
 abF
 abF
@@ -214408,15 +214443,15 @@ aad
 aad
 aad
 aad
-daN
+qcf
 dUy
-daN
+qcf
 dsx
 dBK
 dCL
-daN
+qcf
 dUz
-daN
+qcf
 aad
 aad
 aad
