@@ -404,4 +404,4 @@
 	GET_COMPONENT(comp_insp, /datum/component/inspiration)
 	var/list/true_stats = comp_insp.calculate_statistics()
 	for(var/stat in true_stats)
-		. += true_stats[stat] * 10
+		. += true_stats[stat] * 50
