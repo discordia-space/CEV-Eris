@@ -193,13 +193,13 @@
 		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(src)
 
 		var/gun_pattern = pickweight(list(
-			"pistol" = 12 + weight_robustness,
-			"magnum" = 12 + weight_vigilance,
-			"shotgun" = 12 + weight_robustness,
+			"pistol" = 16 + weight_robustness,
+			"magnum" = 8 + weight_vigilance,
+			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
 			"sniper" = 8 + max(weight_vigilance + weight_cognition),
 			"gyro" = 8 + weight_mechanical,
-			"cap" = 8 + weight_biology,
+			"cap" = 16 + weight_biology,
 			"rocket" = 8 + weight_toughness,
 			"grenade" = 8 + weight_toughness
 		))
@@ -208,22 +208,22 @@
 
 			if("pistol") //From havelock.dm, Arbitrary Values
 				R.caliber = pick(CAL_PISTOL, CAL_35A)
-				R.damage_multiplier = 1.4
-				R.penetration_multiplier = 1.4
-				R.recoil_buildup = 18
+				R.damage_multiplier = 1.2 + rand(-5,5)/10
+				R.penetration_multiplier = 1.2 + rand(-5,5)/10
+				R.recoil_buildup = 18 + rand(-3,3)
 
 			if("magnum") //From consul.dm, Arbitrary values
 				R.caliber = CAL_MAGNUM
-				R.damage_multiplier = 1.35
-				R.penetration_multiplier = 1.5
-				R.recoil_buildup = 35
+				R.damage_multiplier = 1.2 + rand(-5,5)/10
+				R.penetration_multiplier = 1.2 + rand(-5,5)/10
+				R.recoil_buildup = 35 + rand(-5,5)
 
 			if("shotgun") //From bull.dm, Arbitrary values
 				R.caliber = CAL_SHOTGUN
-				R.damage_multiplier = 0.8
-				R.penetration_multiplier = 0.75
-				R.recoil_buildup = 1.2 //from sawnoff.dm
-				R.one_hand_penalty = 10
+				R.damage_multiplier = 0.8 + rand(-2,2)/10
+				R.penetration_multiplier = 0.75 + rand(-3,3)/10
+				R.recoil_buildup = 1.2 + rand(-2,2)/10//from sawnoff.dm
+				R.one_hand_penalty = 12 + rand(-2,3)
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 				R.fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
@@ -239,8 +239,8 @@
 				R.caliber = CAL_ANTIM
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-				R.one_hand_penalty = 15 //From sniper.dm, Temporary values
-				R.recoil_buildup = 90
+				R.one_hand_penalty = 15 + rand(-3,5) //From sniper.dm, Temporary values
+				R.recoil_buildup = 90 + rand(-10,10)
 
 			if("gyro")//From gyropistol.dm, Arbitrary values
 				R.caliber = CAL_70
@@ -253,15 +253,15 @@
 				R.caliber = CAL_ROCKET
 				R.fire_sound = 'sound/effects/bang.ogg'
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 //From ak47.dm, temporary values
-				R.recoil_buildup = 15
+				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
+				R.recoil_buildup = 15 + rand(-3,3)
 
 			if("grenade")
 				R.caliber = CAL_GRENADE
 				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 //from sniper.dm, Temporary values
-				R.recoil_buildup = 20 //from projectile_grenade_launcher.dm
+				R.one_hand_penalty = 15 + rand(-2,3)//from sniper.dm, Temporary values
+				R.recoil_buildup = 20 + rand(-5,5) //from projectile_grenade_launcher.dm
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
