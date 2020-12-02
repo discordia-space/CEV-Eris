@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: ethanol (parent) no longer increases sanity.
