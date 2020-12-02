@@ -110,7 +110,7 @@
 	new /obj/item/clothing/accessory/badge/warden(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
-	new /obj/item/clothing/suit/armor/vest/full/ironhammer(src)
+	new /obj/item/clothing/suit/armor/vest/ironhammer(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
