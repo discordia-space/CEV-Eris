@@ -1,5 +1,6 @@
 /obj/item/weapon/implant/carrion_spider/flashbang
 	name = "flashbang spider"
+	desc = "A spider filled with some sort of liquid, it feels warm."
 	icon_state = "spiderling_flashbang"
 	spider_price = 15
 	var/det_time = 2 SECONDS
@@ -7,9 +8,10 @@
 /obj/item/weapon/implant/carrion_spider/flashbang/activate()
 	..()
 	if(wearer)
-		wearer.apply_damage(10, BURN, part)
-		to_chat(wearer, SPAN_DANGER("You feel an uncomfortable heat build up within you!"))
-		visible_message(SPAN_WARNING("[wearer] suddenly turns brighter and brighter!"))
+		wearer.apply_damage(15, BURN, part)
+		src.uninstall()
+		to_chat(wearer, SPAN_WARNING("You feel an uncomfortable heat build up within [part]!"))
+		visible_message(SPAN_DANGER("[src] crawls out of [wearer] and flashes brightly!"))
 	else
 		visible_message(SPAN_DANGER("[src] flashes brightly!"))
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)

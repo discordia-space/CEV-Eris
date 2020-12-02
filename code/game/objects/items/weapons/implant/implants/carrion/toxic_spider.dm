@@ -9,8 +9,10 @@
 /obj/item/weapon/implant/carrion_spider/toxicbomb/activate()
 	..()
 	if(wearer)
+		wearer.apply_damage(10, BRUTE, part)
 		src.uninstall()
-		visible_message(SPAN_DANGER("[src] pops out of [wearer] and flashes brightly!"))
+		to_chat(wearer, SPAN_WARNING("You feel something moving within [part]!"))
+		visible_message(SPAN_DANGER("[src] crawls out of [wearer] and flashes brightly!"))
 	else
 		visible_message(SPAN_DANGER("[src] flashes brightly!"))
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)
@@ -27,4 +29,3 @@
 	S.set_up(gas_storage, 10, 100, location)
 	S.start()
 	die()
-	..()
