@@ -192,7 +192,7 @@
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
 			"sniper" = 8 + max(weight_vigilance + weight_cognition),
-			"gyro" = 8 + weight_mechanical,
+			"gyro" = 1 + weight_mechanical,
 			"cap" = 16 + weight_biology,
 			"rocket" = 8 + weight_toughness,
 			"grenade" = 8 + weight_toughness
