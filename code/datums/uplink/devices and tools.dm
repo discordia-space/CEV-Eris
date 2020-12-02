@@ -42,6 +42,11 @@
 	name = "Heavy Armor Vest"
 	item_cost = 6
 	path = /obj/item/clothing/suit/storage/vest/merc
+	
+/datum/uplink_item/item/tools/full_heavy_vest
+	name = "Fullbody Heavy Armor Vest"
+	item_cost = 8
+	path = /obj/item/clothing/suit/storage/vest/merc/full
 
 /datum/uplink_item/item/tools/heavy_helmet
 	name = "Heavy Armor Helmet"
