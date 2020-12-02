@@ -120,4 +120,5 @@
 	name = "resuscitator bottle"
 	desc = "A small bottle. Contains your last hope to survive."
 	icon_state = "bottle"
+	spawn_blacklisted = TRUE
 	preloaded_reagents = list("resuscitator" = 60)

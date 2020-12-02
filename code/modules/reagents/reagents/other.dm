@@ -512,16 +512,28 @@
 	description = "Incredibly rare cardiac stimulant."
 	reagent_state = LIQUID
 	color = "#A0522D"
-	metabolism = 0.5
+	metabolism = 1
 	overdose = REAGENTS_OVERDOSE
-	scannable = 1
-	affects_dead = 1
+	scannable = TRUE
+	affects_dead = TRUE
 
 /datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.health <= HEALTH_THRESHOLD_CRIT)
-		M.adjustBrainLoss(-5)
-		M.adjustOxyLoss(-20 * removed)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.stat == DEAD)
-				H.resuscitate()
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
+		if(heart)
+			heart.damage += 0.5
+			if(prob(30))
+				to_chat(H, SPAN_DANGER("Your heart twitching insane!"))
+		if(H.stat == DEAD)
+			H.resuscitate()
+
+/datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
+	. = ..()
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
+		if(heart)
+			heart.die()

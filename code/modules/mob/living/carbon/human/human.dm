@@ -1598,13 +1598,16 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/resuscitate()
 
-	if(!is_asystole() || has_organ(OP_HEART) || has_organ(BP_BRAIN))
+	if(!is_asystole() && has_organ(OP_HEART, check_usablility = TRUE) && has_organ(BP_BRAIN, check_usablility = TRUE))
 		return 0
 
 	if(world.time >= (timeofdeath + NECROZTIME))
 		return 0
 
-	visible_message(SPAN_NOTICE("\The [src] twitches a bit as [gender == FEMALE ? "her" : "his"] heart restarts!"))
+	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
+	var/oxyLoss = getOxyLoss()
+	if(oxyLoss > 40)
+		setOxyLoss(40)
 	pulse = PULSE_NORM
 	handle_pulse()
 	tod = null
