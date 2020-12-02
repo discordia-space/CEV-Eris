@@ -1,12 +1,12 @@
 /obj/item/weapon/reagent_containers/enricher
 	name = "Molitor-Riedel Enricher"
-	desc = "Produces universal donor blood if you inject it with nutrients, outputs it in packet ready to use."
+	desc = "Produces incredibly rare cardiac stimulant if you inject it with nutrients, outputs it in bottles ready to use."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "enricher"
 	item_state = "enricher"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120,200)
-	volume = 200
+	possible_transfer_amounts = list(5,10,15,25,30,60,120,240)
+	volume = 240
 	w_class = ITEM_SIZE_HUGE
 	reagent_flags = OPENCONTAINER
 	price_tag = 20000
@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
-	var/blood_amount = 0
+	var/resuscitator_amount = 0
 
 /obj/item/weapon/reagent_containers/enricher/New()
 	..()
@@ -40,16 +40,18 @@
 				var/datum/reagent/organic/nutriment/N = reagent
 				reagent_amount = N.volume
 				N.remove_self(reagent_amount)
-				blood_amount += reagent_amount
+				resuscitator_amount += (reagent_amount / 4)
 			else
 				reagent_amount = reagent.volume
 				reagent.remove_self(reagent_amount) //Purge useless reagents out
 
-		if(blood_amount)
-			var/obj/item/weapon/reagent_containers/blood/empty/blood_pack = new /obj/item/weapon/reagent_containers/blood/empty(get_turf(src))
-			blood_pack.reagents.add_reagent("blood", blood_amount, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
-			blood_amount = 0
-			visible_message(SPAN_NOTICE("[src] drop [blood_pack]."))
+		if(resuscitator_amount)
+			var/obj/item/weapon/reagent_containers/glass/bottle/bottle = new /obj/item/weapon/reagent_containers/glass/bottle(get_turf(src))
+			bottle.reagents.add_reagent("resuscitator", resuscitator_amount)
+			bottle.name = "resuscitator bottle"
+			resuscitator_amount = 0
+			bottle.update_icon()
+			visible_message(SPAN_NOTICE("[src] drop [bottle]."))
 		else
 			visible_message("\The [src] beeps, \"Not enough nutriment to produce blood.\".")
 	else

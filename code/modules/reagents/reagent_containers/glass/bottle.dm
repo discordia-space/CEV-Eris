@@ -115,3 +115,9 @@
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	preloaded_reagents = list("adminordrazine" = 60)
+
+/obj/item/weapon/reagent_containers/glass/bottle/resuscitator
+	name = "resuscitator bottle"
+	desc = "A small bottle. Contains your last hope to survive."
+	icon_state = "bottle"
+	preloaded_reagents = list("resuscitator" = 60)

@@ -1595,3 +1595,29 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/set_remoteview(var/atom/A)
 	remoteview_target = A
 	reset_view(A)
+
+/mob/living/carbon/human/proc/resuscitate()
+	if(world.time >= (timeofdeath + NECROZTIME))
+		return 0
+
+	if(!is_asystole() || has_organ(OP_HEART) || has_organ(BP_BRAIN))
+		return 0
+
+	visible_message(SPAN_NOTICE("\The [src] twitches a bit as [gender == FEMALE ? "her" : "his"] heart restarts!"))
+	pulse = PULSE_NORM
+	handle_pulse()
+	tod = null
+	timeofdeath = 0
+	stat = UNCONSCIOUS
+	jitteriness += 3 SECONDS
+	updatehealth()
+	if(mind)
+		for(var/mob/observer/ghost/G in GLOB.player_list)
+			if(G.can_reenter_corpse && G.mind == mind)
+				if(alert("Do you want to enter your body!","Resuscitate","OH YES","No, I'm autist") == "OH YES")
+					G.reenter_corpse()
+					switch_from_dead_to_living_mob_list()
+					break
+				else
+					break
+	return 1
