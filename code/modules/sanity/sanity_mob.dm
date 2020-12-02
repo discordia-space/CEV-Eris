@@ -304,7 +304,10 @@
 	changeLevel(-R.sanityloss * multiplier)
 
 /datum/sanity/proc/onReagent(datum/reagent/E, multiplier)
-	changeLevel(E.sanity_gain_ingest * multiplier)
+	var/sanity_gain = E.sanity_gain_ingest
+	if(E.id == "ethanol")
+		sanity_gain /= 5
+	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			if(multiplier <= 1 )
