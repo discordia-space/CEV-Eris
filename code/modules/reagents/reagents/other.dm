@@ -518,9 +518,10 @@
 	affects_dead = 1
 
 /datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustBrainLoss(-5)
-	M.adjustOxyLoss(-20 * removed)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.stat == DEAD)
-			H.resuscitate()
+	if(M.health <= HEALTH_THRESHOLD_CRIT)
+		M.adjustBrainLoss(-5)
+		M.adjustOxyLoss(-20 * removed)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.stat == DEAD)
+				H.resuscitate()
