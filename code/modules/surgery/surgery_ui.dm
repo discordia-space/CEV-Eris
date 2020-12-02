@@ -140,6 +140,7 @@
 		var/icon/ic = new(implant.icon, implant.icon_state)
 		usr << browse_rsc(ic, "[implant.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
 		implant_data["icon_data"] = "[implant.icon_state].png"
+		implant_data["processes"] = list()
 
 		var/list/actions_list = list()
 
