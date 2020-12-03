@@ -1,6 +1,6 @@
 /obj/item/weapon/implant/carrion_spider/flashbang
 	name = "flashbang spider"
-	desc = "A spider filled with some sort of liquid, it feels warm."
+	desc = "A spider filled with some sort of glossy liquid, it emits a constant unpleasant noise."
 	icon_state = "spiderling_flashbang"
 	spider_price = 15
 	var/det_time = 2 SECONDS
