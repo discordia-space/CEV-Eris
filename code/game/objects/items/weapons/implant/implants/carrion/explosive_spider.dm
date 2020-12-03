@@ -1,6 +1,6 @@
 /obj/item/weapon/implant/carrion_spider/explosive
 	name = "explosive spider"
-	desc = "A spider that's bulgy, like it's about to blow on someone. Better not put it in your pants."
+	desc = "A large, glowing spider, about the size of your fist. It's undulating and emitting a soft ticking noise."
 	icon_state = "spiderling_explosive"
 	spider_price = 40
 	var/devastation_range = -1
