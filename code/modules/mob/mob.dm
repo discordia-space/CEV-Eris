@@ -1276,3 +1276,6 @@ mob/proc/yank_out_object()
 /mob/proc/set_stat(var/new_stat)
 	. = stat != new_stat
 	stat = new_stat
+
+/mob/proc/ssd_check()
+	return !client && !teleop

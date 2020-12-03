@@ -33,7 +33,6 @@
 	..()
 
 /obj/item/weapon/maneki_neko/Process()
-	..()
 	for(var/list/mob/living/carbon/human/affected in oviewers(affect_radius, src))
 		followers |= affected
 

@@ -465,7 +465,7 @@
 					R.metabolism = initial(R.metabolism)
 					break
 
-/datum/reagent/other/arectine 
+/datum/reagent/other/arectine
 	name = "Arectine"
 	id = "arectine"
 	description = "Makes user emit light."
@@ -505,3 +505,35 @@
 /datum/reagent/other/rejuvenating_agent/touch_obj(obj/O)
 	if(istype(O))
 		O.make_young()
+
+/datum/reagent/resuscitator
+	name = "Resuscitator"
+	id = "resuscitator"
+	description = "Incredibly rare cardiac stimulant."
+	reagent_state = LIQUID
+	color = "#A0522D"
+	metabolism = 1
+	overdose = REAGENTS_OVERDOSE
+	scannable = TRUE
+	affects_dead = TRUE
+
+/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
+		if(heart)
+			heart.damage += 0.5
+			if(prob(30))
+				to_chat(H, SPAN_DANGER("Your heart twitching insane!"))
+		if(H.stat == DEAD)
+			H.resuscitate()
+
+/datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
+	. = ..()
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
+		if(heart)
+			heart.die()
