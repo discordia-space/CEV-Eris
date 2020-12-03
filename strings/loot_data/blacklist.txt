@@ -1,3 +1,4 @@
+/obj/item/weapon/gun/projectile/gyropistol
 /obj/item/weapon/gun/projectile/revolver/capgun
 /obj/item/weapon/gun/energy/chameleon
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
