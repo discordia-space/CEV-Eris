@@ -1,0 +1,7 @@
+author: DarkLevel - code, Matt - code(resuscitator base).
+delete-after: true
+changes:
+  - rscadd: resuscitator reagent
+  - balance: Molitor-Riedel Enricher now produce resuscitator.
+  - bugfix: maneki neko now will work properly.
+  - bugfix: sanctifier is no longer spawns in maintenances.
