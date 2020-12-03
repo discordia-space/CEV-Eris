@@ -1,6 +1,6 @@
 /obj/item/weapon/implant/carrion_spider/explosive
 	name = "explosive spider"
-	desc = "A spider that's ready to bites the dust."
+	desc = "A spider that's about to blow the dust."
 	icon_state = "spiderling_explosive"
 	spider_price = 40
 	var/devastation_range = -1
