@@ -19,6 +19,7 @@
 	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
+	recoil_buildup = 7
 	one_hand_penalty = 10 //compact shotgun level
 	burst_delay = null
 	fire_delay = null
