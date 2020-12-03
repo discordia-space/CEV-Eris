@@ -419,9 +419,9 @@
 
 /obj/item/organ/internal/carrion/spinneret/proc/make_nest()
 	set category = "Carrion"
-	set name = "Make a spider nest (30)"
+	set name = "Make a spider nest (30, 1)"
 
-	if (owner.check_ability(30,TRUE))
+	if (owner.check_ability(30,TRUE, 1))
 		new /obj/structure/spider_nest(owner.loc)
 
 /obj/structure/spider_nest
@@ -444,7 +444,7 @@
 		playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 		spawn_spider()
 		attack_animation(user)
-		visible_message(SPAN_WARNING("[src] bursts open!"))
+		visible_message(SPAN_WARNING("\The [src] bursts open!"))
 		qdel(src)
 
 /obj/structure/spider_nest/bullet_act(obj/item/projectile/P, def_zone)
