@@ -1,7 +1,7 @@
 /obj/spawner/ammo
 	name = "random ammunition"
 	icon_state = "ammo-green"
-	tags_to_spawn = list(SPAWN_AMMO)
+	tags_to_spawn = list(SPAWN_AMMO_S)
 
 /obj/spawner/ammo/low_chance
 	name = "low chance random ammunition"

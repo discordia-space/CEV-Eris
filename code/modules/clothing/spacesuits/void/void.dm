@@ -103,11 +103,7 @@
 			boots.canremove = 0
 
 	if(helmet)
-		if(H.head)
-			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
-		else if(H.equip_to_slot_if_possible(helmet, slot_head))
-			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = 0
+		toggle_helmet()
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.

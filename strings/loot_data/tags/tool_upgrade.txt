@@ -25,8 +25,10 @@
 /obj/item/weapon/tool_upgrade/augment/holding_tank    blacklisted=1    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/expansion    blacklisted=0    spawn_value=1.60511   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/spikes    blacklisted=0    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool_upgrade/augment/sanctifier    blacklisted=0    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/hammer_addon    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/dampener    blacklisted=0    spawn_value=3.09588   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/ai_tool    blacklisted=1    spawn_value=1.91201   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/repair_nano    blacklisted=1    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool_upgrade/augment/hydraulic    blacklisted=1    spawn_value=5.78   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool_upgrade/augment/randomizer    blacklisted=0    spawn_value=1.21505   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -18,6 +18,7 @@ var/global/list/ships 	= list() // List of ships in the game.
 var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/excel_hud_users          = list() // List of all entities using an excelsior HUD.
 var/global/list/hud_icon_reference       = list()
 
 
@@ -30,9 +31,9 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
 var/runtime_diary
-var/diary              
+var/diary
 var/world_qdel_log
-var/href_logfile       
+var/href_logfile
 var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"

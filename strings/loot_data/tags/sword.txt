@@ -1,3 +1,7 @@
+/obj/item/weapon/tool/sword/nt/longsword    blacklisted=1    spawn_value=2.84909   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/sword/nt/halberd    blacklisted=1    spawn_value=2.87996   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/sword/nt/scourge    blacklisted=1    spawn_value=2.85714   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/sword/nt    blacklisted=1    spawn_value=2.91151   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/sword/katana/nano    blacklisted=1    spawn_value=1.29343   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/sword/katana    blacklisted=0    spawn_value=2.20379   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/sword    blacklisted=0    spawn_value=3.04171   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

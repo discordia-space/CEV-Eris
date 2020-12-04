@@ -67,7 +67,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	l_pocket = /obj/item/device/flash
 	uniform = /obj/item/clothing/under/rank/security
-	suit = /obj/item/clothing/suit/armor/vest/ironhammer
+	suit = /obj/item/clothing/suit/armor/vest/full/ironhammer
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	head = /obj/item/clothing/head/armor/helmet/ironhammer

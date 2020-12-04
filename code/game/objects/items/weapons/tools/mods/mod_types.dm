@@ -531,6 +531,21 @@
 	)
 	I.prefix = "spiked"
 
+/obj/item/weapon/tool_upgrade/augment/sanctifier
+	name = "NT 'Sanctifier' tool blessing"
+	icon_state = "sanctifier"
+	desc = "This odd piece of equipment can be applied to any tool or melee weapon, causing the object to deal extra burn damage to mutants and carrions."
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_STEEL = 2)
+
+/obj/item/weapon/tool_upgrade/augment/sanctifier/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_SANCTIFY = TRUE
+	)
+	I.prefix = "sanctified"
+
 /obj/item/weapon/tool_upgrade/augment/hammer_addon
 	name = "Flat surface"
 	icon_state = "hammer_addon"
@@ -632,3 +647,54 @@
 	UPGRADE_ITEMFLAGPLUS = LOUD
 	)
 	I.prefix = "hydraulic"
+
+// Randomizes a bunch of weapon stats on application - stats are set on creation of the item to prevent people from re-rolling until they get what they want
+/obj/item/weapon/tool_upgrade/augment/randomizer
+	name = "BSL \"Randomizer\" tool polish"
+	desc = "This unidentified tar-like liquid warps and bends reality around it. Applying it to a tool may have unexpected results."
+	icon_state = "randomizer"
+	matter = list(MATERIAL_PLASMA = 4, MATERIAL_URANIUM = 4)
+	rarity_value = 80
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
+
+/obj/item/weapon/tool_upgrade/augment/randomizer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_DEGRADATION_MULT = rand(-1,10),
+	UPGRADE_HEALTH_THRESHOLD = rand(-10,10),
+	UPGRADE_WORKSPEED = rand(-1,3),
+	UPGRADE_PRECISION = rand(-20,20),
+	UPGRADE_FORCE_MOD = rand(-5,5),
+	UPGRADE_BULK = rand(-1,2),
+	UPGRADE_COLOR = "#3366ff"
+	)
+	I.prefix = "theoretical"
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod
+	name = "Weird Revolver"
+	desc = "This is an artistically-made tool mod."
+	icon_state = "artmod_1"
+	spawn_frequency = 0
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
+	. = ..()
+	name = get_weapon_name(capitalize = TRUE)
+	icon_state = "artmod_[rand(1,16)]"
+	var/sanity_value = 0.2 + pick(0,0.1,0.2)
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	var/obj/randomcatcher/CATCH = new(src)
+	var/obj/item/weapon/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade = max(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
+	spawn_type = CATCH.get_item(spawn_type)
+	spawn_type.TransferComponents(src)
+	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
+	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
+		if(isnum(tool_comp.tool_upgrades[upgrade]))
+			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
+	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
+	QDEL_NULL(spawn_type)
+	QDEL_NULL(CATCH)
+
+/obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
+	. = ..()
+	. += max(., rand(-100, 350))

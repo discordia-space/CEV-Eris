@@ -33,9 +33,6 @@
 			//Mutations and radiation
 			handle_mutations_and_radiation()
 
-			//Chemicals in the body
-			handle_chemicals_in_body()
-
 			//Blood
 			handle_blood()
 
@@ -48,11 +45,11 @@
 		if(environment)
 			handle_environment(environment)
 
+		//Chemicals in the body
+		handle_chemicals_in_body()
+
 		//Check if we're on fire
 		handle_fire()
-
-		//stuff in the stomach
-		handle_stomach()
 
 		update_pulling()
 
@@ -71,6 +68,11 @@
 
 		handle_regular_hud_updates()
 
+	var/turf/T = get_turf(src)
+	if(T)
+		if(registered_z != T.z)
+			update_z(T.z)
+
 /mob/living/proc/handle_breathing()
 	return
 
@@ -87,9 +89,6 @@
 	return
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	return
-
-/mob/living/proc/handle_stomach()
 	return
 
 /mob/living/proc/update_pulling()

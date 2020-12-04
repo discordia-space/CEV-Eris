@@ -9,5 +9,5 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap
-	spawn_tags = SPAWN_TAG_TOY
+	spawn_tags = SPAWN_TAG_ITEM_TOY
 	spawn_blacklisted = TRUE

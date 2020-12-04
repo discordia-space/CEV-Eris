@@ -504,3 +504,21 @@
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/head/armor/helmet/crusader
+	name = "crusader helmet"
+	desc = "May God guide you."
+	icon_state = "crusader_hemet"
+	item_state = "crusader_hemet"
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
+	armor = list(
+		melee = 70,
+		bullet = 30,
+		energy = 30,
+		bomb = 30,
+		bio = 0,
+		rad = 0
+	)
+	unacidable = TRUE
+	spawn_blacklisted = TRUE

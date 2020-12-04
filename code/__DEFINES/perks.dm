@@ -34,3 +34,6 @@
 #define PERK_TOXIC_REVENGER /datum/perk/oddity/toxic_revenger
 #define PERK_ABSOLUTE_GRAB /datum/perk/oddity/absolute_grab
 #define PERK_SURE_STEP /datum/perk/oddity/sure_step
+
+//job perks
+#define PERK_ARTIST /datum/perk/job/artist

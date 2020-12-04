@@ -248,7 +248,9 @@
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
-		"species_organs" = H.species.has_process //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
+		"species_organs" = H.species.has_process, //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
+		"NSA" = max(0, H.metabolism_effects.get_nsa()),
+		"NSA_threshold" = H.metabolism_effects.nsa_threshold
 		)
 	return occupant_data
 
@@ -276,6 +278,7 @@
 	dat += text("[]\tRadiation Level %: []</font><br>", ("<font color='[occ["rads"] < 10  ? "blue" : "red"]'>"), occ["rads"])
 	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", ("<font color='[occ["cloneloss"] < 1  ? "blue" : "red"]'>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", ("<font color='[occ["brainloss"] < 1  ? "blue" : "red"]'>"), occ["brainloss"])
+	dat += text("[]\tNeural System Accumulation: []/[]</font><br>", ("<font color='[occ["NSA"] < occ["NSA_threshold"]  ? "blue" : "red"]'>"), occ["NSA"], occ["NSA_threshold"])
 	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 

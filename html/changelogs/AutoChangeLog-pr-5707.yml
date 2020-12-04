@@ -1,4 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Shrapnel is now properly removed from the body during extraction surgery.

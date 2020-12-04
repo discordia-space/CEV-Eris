@@ -64,4 +64,4 @@
 	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
 	degradation = 4 //Gets worse with use
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL

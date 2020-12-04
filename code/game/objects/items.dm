@@ -5,7 +5,7 @@
 
 	//spawn_values
 	price_tag = 0
-	spawn_tags = SPAWN_TAG_ITEM
+	//spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
 	spawn_frequency = 10
 	bad_type = /obj/item
@@ -43,6 +43,7 @@
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
 	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
+	var/list/aspects = list()
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
