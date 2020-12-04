@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
 	name = "Excelsior machine gun"
-	desc = ""
+	desc = "Whatever happens, we have the Maxim gun, and they have not."
 	icon = 'icons/obj/guns/projectile/maxim.dmi'
 	icon_state = "maxim"
 	item_state = "maxim"
@@ -29,8 +29,7 @@
 		list(mode_name="long bursts",  burst=8, burst_delay=1, move_delay=8,  icon="burst"),
 		list(mode_name="suppressing fire",  burst=16, burst_delay=1, move_delay=11,  icon="burst")
 		)
-
-
+	twohanded = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/maxim/update_icon()
 	..()
@@ -41,9 +40,3 @@
 		icon_state = initial(icon_state)
 		set_item_state()
 	return
-
-/obj/item/weapon/gun/projectile/automatic/maxim/special_check(mob/user)
-	if(!(user.get_active_hand() == src && user.get_inactive_hand() == null))
-		to_chat(user, SPAN_WARNING("You can't fire \the [src] with [user.get_inactive_hand()] in the other hand."))
-		return FALSE
-	return ..()
