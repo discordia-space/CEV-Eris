@@ -8,9 +8,9 @@
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
-	style = STYLE_LOW
 	rarity_value = 10
 	var/hanging = 0
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)
 	if(!usr.incapacitated())

@@ -16,7 +16,7 @@
 	siemens_coefficient = 0.8
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 30
-	style = STYLE_LOW
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/head/hardhat/visor
 	name = "visored hard hat"

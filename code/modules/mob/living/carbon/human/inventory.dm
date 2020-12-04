@@ -441,7 +441,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/style_factor = 1
 	var/actual_style = get_total_style()
 	if(actual_style >= 0)
-		style_factor += 0.2 * actual_style/MAX_HUMAN_STYLE
+		style_factor += STYLE_MODIFIER * actual_style/MAX_HUMAN_STYLE
 	else
-		style_factor -= 0.2 * actual_style/MIN_HUMAN_STYLE
+		style_factor -= STYLE_MODIFIER * actual_style/MIN_HUMAN_STYLE
 	return style_factor

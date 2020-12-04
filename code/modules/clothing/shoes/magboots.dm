@@ -8,7 +8,7 @@
 	action_button_name = "Toggle Magboots"
 	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
-	style = STYLE_NONE
+	style = STYLE_NEG_LOW
 	spawn_blacklisted = TRUE
 	var/magpulse = 0
 	var/mag_slow = 3

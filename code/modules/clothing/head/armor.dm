@@ -16,7 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	rarity_value = 10
-	style = 0
+	style = STYLE_NEG_HIGH
 
 /*
  * Helmets
