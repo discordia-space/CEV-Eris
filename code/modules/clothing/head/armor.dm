@@ -217,7 +217,7 @@
 	desc = "Standard-issue Ironhammer ballistic helmet with a basic HUD included, covers the operator's entire face."
 	icon_state = "ironhammer_full"
 	armor = list(
-		melee = 40,
+		melee = 30,
 		bullet = 60,
 		energy = 25,
 		bomb = 25,
