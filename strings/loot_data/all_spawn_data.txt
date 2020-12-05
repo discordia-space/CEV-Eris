@@ -7,7 +7,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/projectile/automatic/c20r    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=4.42317   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
 /obj/item/weapon/gun/projectile/automatic/dallas    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.22148   spawn_price=7040   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/c10x24
 /obj/item/weapon/gun/projectile/automatic/drozd    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.43997   spawn_price=2760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
-/obj/item/weapon/gun/projectile/automatic/maxim    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.22342   spawn_price=6980   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/maxim
+/obj/item/weapon/gun/projectile/automatic/maxim    obj;item;gun;guns;gun_projectile    blacklisted=1    spawn_value=7.22342   spawn_price=6980   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/maxim
 /obj/item/weapon/gun/projectile/automatic/molly    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=5.15705   spawn_price=2460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
 /obj/item/weapon/gun/projectile/automatic/sol    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=3.64016   spawn_price=2960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/ihclrifle
 /obj/item/weapon/gun/projectile/automatic/straylight    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=6.52126   spawn_price=2160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
@@ -2582,7 +2582,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/ammo_magazine/lrifle/highvelocity    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=7.80059   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/lrifle/rubber    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=7.80059   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/lrifle    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=7.80059   spawn_price=660   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/maxim    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=7.52068   spawn_price=1980   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/maxim    obj;item;guns;ammo;ammmo_storage    blacklisted=1    spawn_value=7.52068   spawn_price=1980   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/slpistol/practice    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=11.2167   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/slpistol/hv    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=1.21573   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/slpistol/rubber    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
