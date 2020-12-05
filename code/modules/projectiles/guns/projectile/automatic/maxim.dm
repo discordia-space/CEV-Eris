@@ -30,6 +30,7 @@
 		list(mode_name="suppressing fire",  burst=16, burst_delay=1, move_delay=11,  icon="burst")
 		)
 	twohanded = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/maxim/update_icon()
 	..()
