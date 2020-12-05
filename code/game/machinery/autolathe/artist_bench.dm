@@ -201,7 +201,7 @@
 		switch(gun_pattern)
 
 			if("pistol") //From havelock.dm, Arbitrary Values
-				R.caliber = pick(CAL_PISTOL, CAL_35A)
+				R.caliber = pick(CAL_PISTOL)
 				R.damage_multiplier = 1.2 + rand(-5,5)/10
 				R.penetration_multiplier = 1.2 + rand(-5,5)/10
 				R.recoil_buildup = 18 + rand(-3,3)
@@ -238,7 +238,7 @@
 
 			if("gyro")//From gyropistol.dm, Arbitrary values
 				R.caliber = CAL_70
-				R.recoil_buildup = 0.1
+				R.recoil_buildup = 0.1 * rand(1,20)
 
 			if("cap")
 				R.caliber = CAL_CAP
