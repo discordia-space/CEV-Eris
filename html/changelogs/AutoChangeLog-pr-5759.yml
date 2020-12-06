@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: Attempting to put a brain in an MMI now informs the brain they're being
+      MMI'd, and informs the user if the brain is no longer playing.
