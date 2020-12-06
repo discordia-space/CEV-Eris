@@ -1610,7 +1610,6 @@ var/list/rank_prefix = list(\
 		setOxyLoss(40)
 	pulse = PULSE_NORM
 	handle_pulse()
-	tod = null
 	timeofdeath = 0
 	stat = UNCONSCIOUS
 	jitteriness += 3 SECONDS

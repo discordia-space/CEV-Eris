@@ -444,7 +444,6 @@ default behaviour is:
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 		GLOB.living_mob_list += src
-		tod = null
 		timeofdeath = 0
 
 	// restore us to conciousness

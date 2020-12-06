@@ -90,7 +90,7 @@
 	if(prob(80))
 		M.adjustBrainLoss(2)
 	if(strength)
-		if(issmall(M)) 
+		if(issmall(M))
 			M.adjustToxLoss(strength)
 		else
 			M.adjustToxLoss(strength)
@@ -197,7 +197,7 @@
 	M.adjustOxyLoss(0.6 * effect_multiplier)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
-	M.tod = stationtime2text()
+	M.timeofdeath = stationtime2text()
 	M.add_chemical_effect(CE_NOPULSE, 1)
 
 /datum/reagent/toxin/zombiepowder/Destroy()
@@ -502,7 +502,7 @@
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(strength, 0)
-	if(issmall(M)) 
+	if(issmall(M))
 		M.adjustToxLoss(strength * 2)
 	else
 		M.adjustToxLoss(strength)

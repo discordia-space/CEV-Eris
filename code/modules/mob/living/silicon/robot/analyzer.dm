@@ -47,8 +47,8 @@
 			user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]")
 			user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
 			user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-			if(M.tod && M.stat == DEAD)
-				user.show_message("\blue Time of Disable: [M.tod]")
+			if(M.timeofdeath && M.stat == DEAD)
+				user.show_message("\blue Time of Disable: [worldtime2stationtime(M.timeofdeath)]")
 			var/mob/living/silicon/robot/H = M
 			var/list/damaged = H.get_damaged_components(1,1,1)
 			user.show_message("\blue Localized Damage:",1)
