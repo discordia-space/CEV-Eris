@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: The health analyzer, and modular computer health application, now show
-      the times of death of an individual again.
