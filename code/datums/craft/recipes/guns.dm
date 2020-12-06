@@ -24,11 +24,10 @@
 	name = "handmade Revolver"
 	result = /obj/item/weapon/gun/projectile/revolver/handmade
 	steps = list(
-		list(
-			, 2),
+		list(/obj/item/gun_parts, 2),//no work
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -40,7 +39,7 @@
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -52,7 +51,7 @@
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -64,7 +63,7 @@
 		list(/obj/item/gun_parts, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -76,7 +75,7 @@
 		list(/obj/item/gun_parts, 5),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 15, MATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -88,7 +87,7 @@
 		list(/obj/item/gun_parts, 4),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC),
 		list(/obj/item/weapon/stock_parts/micro_laser , 4),
 		list(QUALITY_SCREW_DRIVING, 10)

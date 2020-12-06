@@ -21,7 +21,7 @@
 	var/max_grenades = 5 //holds this + one in the chamber
 
 //revolves the magazine, allowing players to choose between multiple grenade types
-/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user as mob)
+/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user)
 	playsound(user, 'sound/weapons/shotgunpump.ogg', 60, 1)
 
 	var/obj/item/weapon/grenade/next
@@ -49,9 +49,7 @@
 	if(!G.loadable)
 		to_chat(user, SPAN_WARNING("\The [G] doesn't seem to fit in \the [src]!"))
 		return
-
-	if(grenades.len >= max_grenades)
-		to_chat(user, SPAN_WARNING("\The [src] is full."))
+	if(!chek_grenades(user))
 		return
 	user.remove_from_mob(G)
 	G.forceMove(src)
@@ -59,6 +57,12 @@
 	user.visible_message("\The [user] inserts \a [G] into \the [src].", SPAN_NOTICE("You insert \a [G] into \the [src]."))
 	pump(user)
 	update_icon()
+
+/obj/item/weapon/gun/launcher/grenade/proc/chek_grenades(mob/user)
+	. = TRUE
+	if(grenades.len >= max_grenades)
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
+		return FALSE
 
 /obj/item/weapon/gun/launcher/grenade/proc/unload(mob/user)
 	if(grenades.len)
@@ -161,7 +165,7 @@
 	update_charge()
 
 /obj/item/weapon/gun/launcher/grenade/makeshif
-	name = "makeshift China lake"
+	name = "makeshift grenade launcher"
 	desc = "Your own, homemade, China Lake."
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'
 	icon_state = "riotgun"
@@ -171,3 +175,9 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	force = 5
 	max_grenades = 0
+
+/obj/item/weapon/gun/launcher/grenade/makeshif/chek_grenades(mob/user)
+	. = TRUE
+	if(grenades.len > max_grenades)
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
+		return FALSE
