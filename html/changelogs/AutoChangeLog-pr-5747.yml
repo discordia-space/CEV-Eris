@@ -1,0 +1,5 @@
+author: Harrivchaw
+delete-after: true
+changes:
+  - tweak: Grenade-like spiders (Toxic, Explosive, Flashbang) now emit more obvious
+      tell-tale signs before activating
