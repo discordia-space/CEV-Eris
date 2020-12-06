@@ -16,18 +16,20 @@
 
 /obj/item/craft/proc/update()
 	desc = recipe.get_description(step)
-
+	step = recipe.get_actual_step()
 
 /obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
-	if (user && istype(loc, /turf))
+	if(user && istype(loc, /turf))
 		user.face_atom(src) //Look at what you're doing please
 
-	if(recipe.try_step(step+1, I, user, src)) //First step is
-		++step
-		if(recipe.is_compelete(step+1))
-			recipe.spawn_result(src, user)
-		else
+	if(recipe.try_step(step, I, user, src)) //First step is
+		var/datum/craft_step/CS = recipe.steps[step]
+		if(CS.completed)
+			++step
 			update()
+		else if(recipe.is_compelete(step+1))
+			recipe.spawn_result(src, user)
+
 		return TRUE //Returning true here will prevent afterattack effects for ingredients and tools used on us
 
 	return FALSE

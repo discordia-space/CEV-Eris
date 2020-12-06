@@ -7,7 +7,7 @@
 /datum/craft_recipe/gun
 	category = "Guns"
 	icon_state = "gun_frame"//EVAN CHANGE IT
-	time = 100
+	time = 50
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun/pistol

@@ -30,10 +30,10 @@
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
 	M.Created(user)
-	switch (C.recipe.dir_type)
-		if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+	switch(C.recipe.dir_type)
+		if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 			M.dir = user.dir
-		if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+		if(CRAFT_TOWARD_USER)  // spawn the result towards the user
 			M.dir = reverse_dir[user.dir]
 		else  // spawn the result in its default direction
 			M.dir = C.recipe.dir_default
@@ -45,18 +45,20 @@
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
 	var/atom/A = result
-	.+="[initial(A.desc)]<br>"
-	for(var/item in steps)
-		if(pass_steps > 0)
-			--pass_steps
+	. += "[initial(A.desc)]<br>"
+	for(var/datum/craft_step/CS in steps)
+		//if(pass_steps > 0)
+		//	--pass_steps
+		//	continue
+		if(CS.completed)
 			continue
-		var/datum/craft_step/CS = item
+		CS.make_desc()
 		. += CS.desc
 	return jointext(., "<br>")
 
 
 /datum/craft_recipe/proc/can_build(mob/living/user, var/turf/T)
-	if (!T)
+	if(!T)
 		return FALSE
 
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
@@ -66,12 +68,11 @@
 		else
 			//Prevent building dense things in turfs that already contain dense objects
 			var/atom/A = result
-			if (initial(A.density))
+			if(initial(A.density))
 				for (var/atom/movable/AM in T)
-					if (AM != user && AM.density)
+					if(AM != user && AM.density)
 						to_chat(user, SPAN_WARNING("You can't build here, it's blocked by [AM]!"))
 						return FALSE
-
 	return TRUE
 
 
@@ -123,10 +124,10 @@
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
-		switch (dir_type)
-			if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+		switch(dir_type)
+			if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 				CR.dir = user.dir
-			if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+			if(CRAFT_TOWARD_USER)  // spawn the result towards the user
 				CR.dir = reverse_dir[user.dir]
 			else  // spawn the result in its default direction
 				CR.dir = dir_default
@@ -138,3 +139,11 @@
 	else
 		user.put_in_hands(CR)
 	return CR
+
+/datum/craft_recipe/proc/get_actual_step(mob/living/user)
+	var/step_num = 1
+	for(var/datum/craft_step/CS in steps)
+		if(!CS.completed)
+			return step_num
+		step_num++
+	return step_num
