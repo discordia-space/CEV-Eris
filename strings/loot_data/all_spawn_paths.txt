@@ -8,6 +8,7 @@
 /obj/item/weapon/gun/projectile/automatic/drozd
 /obj/item/weapon/gun/projectile/automatic/maxim
 /obj/item/weapon/gun/projectile/automatic/molly
+/obj/item/weapon/gun/projectile/automatic/motherfucker
 /obj/item/weapon/gun/projectile/automatic/sol
 /obj/item/weapon/gun/projectile/automatic/straylight
 /obj/item/weapon/gun/projectile/automatic/sts35
@@ -25,7 +26,9 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
+/obj/item/weapon/gun/projectile/shotgun/slidebarrel
 /obj/item/weapon/gun/projectile/boltgun/serbian
+/obj/item/weapon/gun/projectile/boltgun/handmade
 /obj/item/weapon/gun/projectile/boltgun
 /obj/item/weapon/gun/projectile/dartgun
 /obj/item/weapon/gun/projectile/heavysniper
@@ -45,6 +48,7 @@
 /obj/item/weapon/gun/projectile/revolver/capgun
 /obj/item/weapon/gun/projectile/revolver/consul
 /obj/item/weapon/gun/projectile/revolver/deckard
+/obj/item/weapon/gun/projectile/revolver/handmade
 /obj/item/weapon/gun/projectile/revolver/havelock
 /obj/item/weapon/gun/projectile/revolver/mateba
 /obj/item/weapon/gun/projectile/revolver
@@ -56,6 +60,7 @@
 /obj/item/weapon/gun/energy/ionrifle
 /obj/item/weapon/gun/energy/laser/practice/xenoarch
 /obj/item/weapon/gun/energy/laser/practice
+/obj/item/weapon/gun/energy/laser/makeshift
 /obj/item/weapon/gun/energy/laser/xenoarch
 /obj/item/weapon/gun/energy/laser
 /obj/item/weapon/gun/energy/plasma/stranger
@@ -96,6 +101,7 @@
 /obj/item/weapon/gun/energy/xray
 /obj/item/weapon/gun/launcher/grenade/underslung
 /obj/item/weapon/gun/launcher/grenade/lenar
+/obj/item/weapon/gun/launcher/grenade/makeshif
 /obj/item/weapon/gun/launcher/grenade
 /obj/item/weapon/gun/launcher/crossbow/RCD
 /obj/item/weapon/gun/launcher/crossbow

@@ -234,3 +234,20 @@
 		)
 	one_hand_penalty = 5
 	twohanded = TRUE
+
+/obj/item/weapon/gun/energy/laser/makeshift
+	name = "makeshift laser carbine"
+	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
+	icon = 'icons/obj/guns/energy/laser.dmi'
+	icon_state = "laser"//evan, TODO
+	item_state = "laser"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15)
+	zoom_factor = 0
+	charge_cost = 100 //worst lightfall
+	fire_delay = 10 //ditto
+	price_tag = 500
+	init_firemodes = list(
+		WEAPON_NORMAL
+	)
+	spawn_blacklisted = TRUE

@@ -160,7 +160,7 @@
 	overlays.Cut()
 	update_charge()
 
-/obj/item/weapon/gun/launcher/grenade/makeshiftgl
+/obj/item/weapon/gun/launcher/grenade/makeshif
 	name = "makeshift China lake"
 	desc = "Your own, homemade, China Lake."
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'

@@ -9,6 +9,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/projectile/automatic/drozd    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.43997   spawn_price=2760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/automatic/maxim    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.22342   spawn_price=6980   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/maxim
 /obj/item/weapon/gun/projectile/automatic/molly    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=5.15705   spawn_price=2460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
+/obj/item/weapon/gun/projectile/automatic/motherfucker    obj;item;gun;guns;gun_projectile    blacklisted=1    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/automatic/sol    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=3.64016   spawn_price=2960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/ihclrifle
 /obj/item/weapon/gun/projectile/automatic/straylight    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=6.52126   spawn_price=2160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
 /obj/item/weapon/gun/projectile/automatic/sts35    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=1.00404   spawn_price=3960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
@@ -26,7 +27,9 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    obj;item;gun;guns;gun_projectile;shotgun    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    obj;item;gun;guns;gun_projectile;shotgun    blacklisted=0    spawn_value=3.69287   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel    obj;item;gun;guns;gun_projectile;shotgun    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/slidebarrel    obj;item;gun;guns;gun_projectile;shotgun    blacklisted=1    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/boltgun/serbian    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=1.95297   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/boltgun/handmade    obj;item;gun;guns;gun_projectile    blacklisted=1    spawn_value=7.75008   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/boltgun    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.57339   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/dartgun    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=8.19395   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/chemdart
 /obj/item/weapon/gun/projectile/heavysniper    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.29982   spawn_price=5000   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -46,6 +49,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/projectile/revolver/capgun    obj;item;toy    blacklisted=1    spawn_value=8.40263   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/revolver/consul    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=8.90436   spawn_price=1700   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/revolver/deckard    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=6.45521   spawn_price=3100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/revolver/handmade    obj;item;gun;guns;gun_projectile    blacklisted=1    spawn_value=8.33476   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/revolver/havelock    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=3.70999   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/revolver/mateba    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.64694   spawn_price=3000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/revolver    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.75132   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -57,6 +61,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/energy/ionrifle    obj;item;gun;guns;gun_energy    blacklisted=0    spawn_value=3.63745   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/practice/xenoarch    obj;item;gun;guns;gun_energy;xenoarcheology    blacklisted=1    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/practice    obj;item;gun;guns;gun_energy    blacklisted=0    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser/makeshift    obj;item;gun;guns;gun_energy    blacklisted=1    spawn_value=6.76575   spawn_price=603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/xenoarch    obj;item;gun;guns;gun_energy;xenoarcheology    blacklisted=1    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser    obj;item;gun;guns;gun_energy    blacklisted=0    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/plasma/stranger    obj;item;gun;guns;gun_energy    blacklisted=1    spawn_value=7.29747   spawn_price=5051   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
@@ -97,6 +102,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/energy/xray    obj;item;gun;guns;gun_energy    blacklisted=0    spawn_value=7.34586   spawn_price=4103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/launcher/grenade/underslung    obj;item;gun;guns    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/grenade/lenar    obj;item;gun;guns    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/launcher/grenade/makeshif    obj;item;gun;guns    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/grenade    obj;item;gun;guns    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/crossbow/RCD    obj;item;gun;guns    blacklisted=0    spawn_value=2.08333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/crossbow    obj;item;gun;guns    blacklisted=0    spawn_value=2.08333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

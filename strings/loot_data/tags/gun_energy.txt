@@ -6,6 +6,7 @@
 /obj/item/weapon/gun/energy/ionrifle    blacklisted=0    spawn_value=3.63745   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/practice    blacklisted=0    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser/makeshift    blacklisted=1    spawn_value=6.76575   spawn_price=603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser    blacklisted=0    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/plasma/stranger    blacklisted=1    spawn_value=7.29747   spawn_price=5051   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small

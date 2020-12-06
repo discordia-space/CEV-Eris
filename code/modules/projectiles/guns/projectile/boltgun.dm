@@ -101,7 +101,7 @@
 	wielded_item_state = "_doble_wood"
 	rarity_value = 48
 
-/obj/item/weapon/gun/projectile/boltgun/handmaderifle
+/obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
 	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
 	icon_state = "boltgun_hand"
@@ -109,15 +109,11 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
 	slot_flags = SLOT_BACK
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_delay = 17 // abit more than the serbian one
 	damage_multiplier = 1
 	penetration_multiplier  = 1
 	recoil_buildup = 40 //same as AMR
-	handle_casings = HOLD_CASINGS
-	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'

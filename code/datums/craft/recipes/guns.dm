@@ -1,4 +1,3 @@
-
 /obj/item/gun_parts//evan, termina esto
 	name = "gun part"
 	desc = "una parte de arma"
@@ -23,7 +22,7 @@
 
 /datum/craft_recipe/gun/handmaderevolver
 	name = "handmade Revolver"
-	result = /obj/item/weapon/gun/projectile/revolver/handmaderevolver
+	result = /obj/item/weapon/gun/projectile/revolver/handmade
 	steps = list(
 		list(
 			, 2),
@@ -36,7 +35,7 @@
 
 /datum/craft_recipe/gun/handmaderifle
 	name = "handmade bolt action rifle"
-	result = /obj/item/weapon/gun/projectile/boltgun/handmaderifle
+	result = /obj/item/weapon/gun/projectile/boltgun/handmade
 	steps = list(
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
@@ -48,7 +47,7 @@
 
 /datum/craft_recipe/gun/makeshiftgl
 	name = "makeshift china lake"
-	result = /obj/item/weapon/gun/launcher/grenade/makeshiftgl
+	result = /obj/item/weapon/gun/launcher/grenade/makeshif
 	steps = list(
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
@@ -60,7 +59,7 @@
 
 /datum/craft_recipe/gun/slidebarrelshotgun
 	name = "slide barrel Shotgun"
-	result = /obj/item/weapon/gun/projectile/shotgun/slidebarrelshotgun
+	result = /obj/item/weapon/gun/projectile/shotgun/slidebarrel
 	steps = list(
 		list(/obj/item/gun_parts, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
@@ -84,7 +83,7 @@
 
 /datum/craft_recipe/gun/makeshiftlaser
 	name = "makeshift laser carbine"
-	result = /obj/item/weapon/gun/energy/makeshiftlaser
+	result = /obj/item/weapon/gun/energy/laser/makeshift
 	steps = list(
 		list(/obj/item/gun_parts, 4),
 		list(QUALITY_ADHESIVE, 15, 70),

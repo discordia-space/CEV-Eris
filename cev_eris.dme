@@ -2271,7 +2271,6 @@
 #include "code\modules\projectiles\guns\energy\decloner.dm"
 #include "code\modules\projectiles\guns\energy\egun.dm"
 #include "code\modules\projectiles\guns\energy\floragun.dm"
-#include "code\modules\projectiles\guns\energy\handmade.dm"
 #include "code\modules\projectiles\guns\energy\ionrifle.dm"
 #include "code\modules\projectiles\guns\energy\laser.dm"
 #include "code\modules\projectiles\guns\energy\lasersmg.dm"

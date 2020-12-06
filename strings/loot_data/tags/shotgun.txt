@@ -8,5 +8,6 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=3.69287   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/slidebarrel    blacklisted=1    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27228   spawn_price=2551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
