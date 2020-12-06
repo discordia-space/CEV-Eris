@@ -210,3 +210,8 @@
 	name = "Sure Step"
 	desc = " You are more likely to avoid traps."
 	icon_state = "mantrap"
+
+/datum/perk/oddity/market_prof
+	name = "Market Professional"
+	desc = "Just by looking at the item you can know how much it cost."
+	icon_state = "market_prof"

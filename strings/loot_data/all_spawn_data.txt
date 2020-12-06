@@ -39,7 +39,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/gun/projectile/clarissa    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=5.21802   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/colt    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=8.95708   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/giskard    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=9.14537   spawn_price=860   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
-/obj/item/weapon/gun/projectile/gyropistol    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.45067   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
+/obj/item/weapon/gun/projectile/gyropistol    obj;item;gun;guns;gun_projectile    blacklisted=1    spawn_value=0.966916   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
 /obj/item/weapon/gun/projectile/lamia    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=5.14804   spawn_price=2660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/magnum
 /obj/item/weapon/gun/projectile/mandella    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=7.54973   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/cspistol
 /obj/item/weapon/gun/projectile/mk58/wood    obj;item;gun;guns;gun_projectile    blacklisted=0    spawn_value=3.67033   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
@@ -2597,8 +2597,8 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/ammo_magazine/slmagnum    obj;item;guns;ammo;ammmo_storage;ammo_ih    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/sllrifle    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.19395   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/caps    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75/empty    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75/empty    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=0.982529   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=0.97899   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/pellet    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/beanbag    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/empty    obj;item;guns;ammo;ammmo_storage    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing

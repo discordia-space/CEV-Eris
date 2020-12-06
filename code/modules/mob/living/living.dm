@@ -444,7 +444,6 @@ default behaviour is:
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 		GLOB.living_mob_list += src
-		tod = null
 		timeofdeath = 0
 
 	// restore us to conciousness
@@ -841,6 +840,9 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+	var/turf/T = get_turf(src)
+	if(T)
+		update_z(T.z)
 
 /mob/living/Destroy()
 	qdel(stats)

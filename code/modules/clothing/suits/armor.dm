@@ -9,7 +9,7 @@
 	siemens_coefficient = 0.6
 	price_tag = 200
 	rarity_value = 20
-	style = STYLE_LOW
+	style = STYLE_NEG_HIGH
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
@@ -35,6 +35,23 @@
 		MATERIAL_PLASTEEL = 1, //Small plasteel cost since it's better than a handmade vest, which only costs steel
 	)
 
+/obj/item/clothing/suit/armor/vest/full
+	name = "full armor"
+	desc = "A generic armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
+	icon_state = "armor_fullbody"
+	blood_overlay_type = "armor"
+	rarity_value = 30 // little bit rarer than just vests
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
+	matter = list(
+		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
+		MATERIAL_PLASTEEL = 1,
+	)
+	
+/obj/item/clothing/suit/armor/vest/full/security
+	name = "full security armor"
+	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
+	icon_state = "armor_security_fullbody"
+
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	icon_state = "armor_security"
@@ -56,6 +73,11 @@
 	name = "operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
+	
+/obj/item/clothing/suit/armor/vest/full/ironhammer
+	name = "full operator armor"
+	desc = "An armored vest painted in Ironhammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
+	icon_state = "armor_ironhammer_fullbody"
 
 /obj/item/clothing/suit/armor/vest/handmade
 	name = "handmade armor vest"
@@ -71,6 +93,13 @@
 	)
 	price_tag = 150
 	rarity_value = 15
+	
+/obj/item/clothing/suit/armor/vest/handmade/full
+	name = "full handmade armor vest"
+	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
+	icon_state = "armor_handmade_fullbody"
+	rarity_value = 20 // bit rarer than the version without kneepads
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
 
 /obj/item/clothing/suit/armor/greatcoat
 	name = "armored coat"
@@ -125,6 +154,16 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
+/obj/item/clothing/suit/armor/flak/full
+	name = "full flakvest vest"
+	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
+	icon_state = "flakvest_fullbody"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
+	rarity_value = 25 // rarer than version without pads
+
+/obj/item/clothing/suit/armor/flak/full/green
+	name = "full green flakvest vest"
+	icon_state = "flakvest_green_fullbody"
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -148,6 +187,17 @@
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
 	rarity_value = 50
+	
+/obj/item/clothing/suit/armor/bulletproof/full
+	name = "full bulletproof vest"
+	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
+	icon_state = "bulletproof_fullbody"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	rarity_value = 55
+	matter = list(
+		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
+		MATERIAL_PLASTEEL = 3,
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
@@ -189,6 +239,21 @@
 /obj/item/clothing/suit/armor/bulletproof/serbian/tan
 	name = "tan platecarrier vest"
 	icon_state = "platecarrier_tan"
+	
+/obj/item/clothing/suit/armor/bulletproof/serbian/full
+	name = "full black platecarrier vest"
+	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
+	icon_state = "platecarrier_fullbody"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	rarity_value = 45
+	
+/obj/item/clothing/suit/armor/bulletproof/serbian/full/green
+	name = "full green platecarrier vest"
+	icon_state = "platecarrier_green_fullbody"
+	
+/obj/item/clothing/suit/armor/bulletproof/serbian/full/tan
+	name = "full tan platecarrier vest"
+	icon_state = "platecarrier_tan_fullbody"
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "ablative armor vest"
@@ -280,7 +345,7 @@
 	equip_delay = 2 SECONDS
 	price_tag = 250
 	rarity_value = 25
-	style = STYLE_NONE
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -348,6 +413,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	bad_type = /obj/item/clothing/suit/storage/vest
+	style = STYLE_NEG_HIGH
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
@@ -364,6 +430,13 @@
 		bio = 0,
 		rad = 0
 	)
+	
+/obj/item/clothing/suit/storage/vest/merc/full
+	name = "full heavy armor vest"
+	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
+	icon_state = "mercwebvest_fullbody"
+	rarity_value = 95
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated

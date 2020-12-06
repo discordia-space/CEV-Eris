@@ -1,13 +1,9 @@
-/obj/item/weapon/gun/projectile/automatic/motherfucker
-/obj/item/weapon/gun/projectile/shotgun/slidebarrel
-/obj/item/weapon/gun/projectile/boltgun/handmade
+/obj/item/weapon/gun/projectile/gyropistol
 /obj/item/weapon/gun/projectile/revolver/capgun
-/obj/item/weapon/gun/projectile/revolver/handmade
 /obj/item/weapon/gun/energy/chameleon
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 /obj/item/weapon/gun/energy/taser/mounted
 /obj/item/weapon/gun/energy/laser/practice/xenoarch
-/obj/item/weapon/gun/energy/laser/makeshift
 /obj/item/weapon/gun/energy/laser/xenoarch
 /obj/item/weapon/gun/energy/plasma/stranger
 /obj/item/weapon/gun/energy/plasma/mounted

@@ -16,6 +16,10 @@
 /datum/design/autolathe/clothing/generic_vest
 	name = "armor vest"
 	build_path = /obj/item/clothing/suit/armor/vest
+	
+/datum/design/autolathe/clothing/generic_vest_full
+	name = "fullbody armor vest"
+	build_path = /obj/item/clothing/suit/armor/vest/full
 
 /datum/design/autolathe/clothing/generic_vest_security // Unused ATM
 	name = "security armor"
@@ -26,6 +30,10 @@
 /datum/design/autolathe/clothing/bulletproof_vest_generic
 	name = "bulletproof vest"
 	build_path = /obj/item/clothing/suit/armor/bulletproof
+	
+/datum/design/autolathe/clothing/bulletproof_vest_generic_full
+	name = "fullbody bulletproof vest"
+	build_path = /obj/item/clothing/suit/armor/bulletproof/full
 
 /datum/design/autolathe/clothing/bulletproof_helmet_generic
 	name = "bulletproof helmet"
@@ -54,6 +62,10 @@
 /datum/design/autolathe/clothing/ih_vest_basic
 	name = "operator armor"
 	build_path = /obj/item/clothing/suit/armor/vest/ironhammer
+	
+/datum/design/autolathe/clothing/ih_vest_basic_full
+	name = "fullbody operator armor"
+	build_path = /obj/item/clothing/suit/armor/vest/full/ironhammer
 
 /datum/design/autolathe/clothing/ih_vest_full
 	name = "full bulletproof suit"

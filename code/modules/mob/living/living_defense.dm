@@ -45,7 +45,7 @@
 	if(ishuman(src) && isitem(used_weapon))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = used_weapon
-		if((H.get_organ_efficiency(BP_SPCORE) || mutations.len) && (SANCTIFIED in I.aspects))
+		if((H.has_organ(BP_SPCORE) || mutations.len) && (SANCTIFIED in I.aspects))
 			sanctified_attack = TRUE
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
