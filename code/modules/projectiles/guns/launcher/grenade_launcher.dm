@@ -14,11 +14,11 @@
 	throw_distance = 7
 	release_force = 5
 
+	zoom_factor = 2
+	twohanded = TRUE
 	var/obj/item/weapon/grenade/chambered
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
-	zoom_factor = 2
-	twohanded = TRUE
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user as mob)
@@ -107,6 +107,7 @@
 	max_grenades = 0
 	safety = FALSE
 	twohanded = FALSE
+
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return
 
@@ -158,3 +159,15 @@
 /obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
 	update_charge()
+
+/obj/item/weapon/gun/launcher/grenade/makeshiftgl
+	name = "makeshift China lake"
+	desc = "Your own, homemade, China Lake."
+	icon = 'icons/obj/guns/launcher/riotgun.dmi'
+	icon_state = "riotgun"
+	item_state = "riotgun"
+	w_class = ITEM_SIZE_BULKY
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	force = 5
+	max_grenades = 0

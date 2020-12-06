@@ -6,14 +6,14 @@
 	item_state = "revolver"
 	caliber = CAL_MAGNUM
 	force = WEAPON_FORCE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/magnum
-	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rev_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rev_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 2000 //avasarala of revolver world

@@ -23,10 +23,10 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 1600
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
-	var/bolt_open = 0
-	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
+	var/bolt_open = 0
+	var/item_suffix = ""
 
 /obj/item/weapon/gun/projectile/boltgun/update_icon()
 	..()
@@ -100,3 +100,28 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	rarity_value = 48
+
+/obj/item/weapon/gun/projectile/boltgun/handmaderifle
+	name = "handmade bolt action rifle"
+	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
+	icon_state = "boltgun_hand"
+	item_suffix  = "_hand"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	wielded_item_state = "_doble_hand"
+	w_class = ITEM_SIZE_HUGE
+	force = WEAPON_FORCE_ROBUST
+	slot_flags = SLOT_BACK
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	fire_delay = 17 // abit more than the serbian one
+	damage_multiplier = 1
+	penetration_multiplier  = 1
+	recoil_buildup = 40 //same as AMR
+	handle_casings = HOLD_CASINGS
+	load_method = SINGLE_CASING|SPEEDLOADER
+	max_shells = 5
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
+	price_tag = 800
+	one_hand_penalty = 30 //don't you dare to one hand this
+	sharp = FALSE //no bayonet here
+	spawn_blacklisted = TRUE
