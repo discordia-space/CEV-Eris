@@ -1,0 +1,5 @@
+author: Garen7
+delete-after: true
+changes:
+  - balance: Rebalances style to favor vanity gear over powergaming gear
+  - tweak: Gunfire residue no longer makes things less stylish
