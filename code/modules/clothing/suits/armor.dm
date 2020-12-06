@@ -9,7 +9,7 @@
 	siemens_coefficient = 0.6
 	price_tag = 200
 	rarity_value = 20
-	style = STYLE_LOW
+	style = STYLE_NEG_HIGH
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
@@ -345,7 +345,7 @@
 	equip_delay = 2 SECONDS
 	price_tag = 250
 	rarity_value = 25
-	style = STYLE_NONE
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -413,6 +413,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	bad_type = /obj/item/clothing/suit/storage/vest
+	style = STYLE_NEG_HIGH
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc

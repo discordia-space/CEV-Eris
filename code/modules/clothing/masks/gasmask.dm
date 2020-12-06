@@ -22,7 +22,7 @@
 		rad = 0
 	)
 	price_tag = 20
-	style = STYLE_NONE
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new
@@ -44,6 +44,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	body_parts_covered = HEAD|FACE|EYES
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -95,6 +96,7 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 	rarity_value = 20
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 	var/list/options = list()
@@ -121,6 +123,7 @@
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -134,6 +137,7 @@
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"

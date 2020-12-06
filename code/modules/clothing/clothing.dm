@@ -1,3 +1,5 @@
+#define STYLE_NEG_HIGH -2
+#define STYLE_NEG_LOW -1
 #define STYLE_NONE 0
 #define STYLE_LOW 1
 #define STYLE_HIGH 2
@@ -50,8 +52,6 @@
 /obj/item/clothing/proc/get_style()
 	var/real_style = style
 	if(blood_DNA)
-		real_style -= 1
-	if(gunshot_residue)
 		real_style -= 1
 	return real_style
 
@@ -318,6 +318,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	bad_type = /obj/item/clothing/head
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
+	style = STYLE_HIGH
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
@@ -565,6 +566,7 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
+	style = STYLE_HIGH
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()

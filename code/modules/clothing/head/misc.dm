@@ -15,7 +15,6 @@
 	desc = "Smells nice."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
-	style = STYLE_LOW
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -141,7 +140,6 @@
 	desc = "Yarr."
 	icon_state = "bandana"
 	flags_inv = BLOCKHEADHAIR
-	style = STYLE_LOW
 	rarity_value = 3.5
 
 /obj/item/clothing/head/bowler
@@ -149,7 +147,6 @@
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	body_parts_covered = 0
-	style = STYLE_LOW
 
 //stylish bs12 hats
 
@@ -173,7 +170,6 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
-	style = STYLE_HIGH
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
@@ -184,7 +180,6 @@
 	name = "fez"
 	icon_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
-	style = STYLE_LOW
 
 //end bs12 hats
 
