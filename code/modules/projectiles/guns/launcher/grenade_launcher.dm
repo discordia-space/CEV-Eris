@@ -164,7 +164,7 @@
 	overlays.Cut()
 	update_charge()
 
-/obj/item/weapon/gun/launcher/grenade/makeshif
+/obj/item/weapon/gun/launcher/grenade/makeshift
 	name = "makeshift grenade launcher"
 	desc = "Your own, homemade, China Lake."
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'
@@ -176,7 +176,7 @@
 	force = 5
 	max_grenades = 0
 
-/obj/item/weapon/gun/launcher/grenade/makeshif/chek_grenades(mob/user)
+/obj/item/weapon/gun/launcher/grenade/makeshift/chek_grenades(mob/user)
 	. = TRUE
 	if(grenades.len > max_grenades)
 		to_chat(user, SPAN_WARNING("\The [src] is full."))

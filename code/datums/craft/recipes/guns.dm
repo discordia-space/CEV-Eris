@@ -7,7 +7,7 @@
 /datum/craft_recipe/gun
 	category = "Guns"
 	icon_state = "gun_frame"//EVAN CHANGE IT
-	time = 50
+	time = 25
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun/pistol
@@ -15,9 +15,9 @@
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
-		list(QUALITY_SCREW_DRIVING, 10, 70,"time" = 3),
+		list(QUALITY_SCREW_DRIVING, 10),
 	)
 
 /datum/craft_recipe/gun/handmaderevolver
@@ -45,8 +45,8 @@
 	)
 
 /datum/craft_recipe/gun/makeshiftgl
-	name = "makeshift china lake"
-	result = /obj/item/weapon/gun/launcher/grenade/makeshif
+	name = "makeshift grenade launcher"
+	result = /obj/item/weapon/gun/launcher/grenade/makeshift
 	steps = list(
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),

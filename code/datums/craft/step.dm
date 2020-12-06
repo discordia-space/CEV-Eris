@@ -17,7 +17,7 @@
 	var/tool_name
 
 
-/datum/craft_step/New(var/list/params, var/datum/craft_recipe/parent)
+/datum/craft_step/New(list/params, datum/craft_recipe/parent)
 	var/max_params = 2
 	if(ispath(params))
 		reqed_type = params
@@ -90,7 +90,7 @@
 		msg
 	)
 
-/datum/craft_step/proc/apply(obj/item/I, mob/living/user, atom/target = null, var/datum/craft_recipe/recipe)
+/datum/craft_step/proc/apply(obj/item/I, mob/living/user, atom/target, datum/craft_recipe/recipe)
 	. = TRUE
 	if(building)
 		return
@@ -251,7 +251,7 @@
 				if(MA.material && (MA.material.name == reqed_material))
 					return I
 
-/datum/craft_step/proc/is_valid_to_consume(var/obj/item/I, var/mob/living/user)
+/datum/craft_step/proc/is_valid_to_consume(obj/item/I, mob/living/user)
 	var/holder = I.get_holding_mob()
 	//Next we must check if we're actually allowed to submit it
 	if(!holder)
