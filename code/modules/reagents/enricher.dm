@@ -53,9 +53,9 @@
 			bottle.update_icon()
 			visible_message(SPAN_NOTICE("[src] drop [bottle]."))
 		else
-			visible_message("\The [src] beeps, \"Not enough nutriment to produce blood.\".")
+			visible_message("\The [src] beeps, \"Not enough nutriment to produce resuscitator.\".")
 	else
-		visible_message("\The [src] beeps, \"Insufficient reagents to produce blood.\".")
+		visible_message("\The [src] beeps, \"Insufficient reagents to produce resuscitator.\".")
 
 /obj/item/weapon/reagent_containers/enricher/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)
