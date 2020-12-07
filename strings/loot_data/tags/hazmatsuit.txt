@@ -1,5 +1,5 @@
-/obj/item/clothing/suit/space/bomb/security    blacklisted=1    spawn_value=2.66829   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/space/bomb    blacklisted=0    spawn_value=2.66829   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/space/bomb/security    blacklisted=1    spawn_value=2.66934   spawn_price=290   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/space/bomb    blacklisted=0    spawn_value=2.66934   spawn_price=290   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/general    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/virology    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/security    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -8,4 +8,4 @@
 /obj/item/clothing/suit/bio_suit/cmo    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/radiation    blacklisted=0    spawn_value=3.95257   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/radiation    blacklisted=0    spawn_value=3.95605   spawn_price=95   prob_accompanying_obj=100    accompanying_objs=nothing

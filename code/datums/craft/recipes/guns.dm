@@ -17,7 +17,7 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
-		list(QUALITY_SCREW_DRIVING, 10),
+		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
 /datum/craft_recipe/gun/handmaderevolver

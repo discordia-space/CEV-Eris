@@ -18,8 +18,8 @@
 /obj/item/clothing/shoes/reinforced/medical    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/shoes/reinforced    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/shoes/workboots    blacklisted=0    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/shoes/magboots/merc    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/shoes/magboots    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/magboots/merc    blacklisted=1    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/magboots    blacklisted=1    spawn_value=8.77352   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/shoes/syndigaloshes    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/shoes/mime    blacklisted=0    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/shoes/sandal/marisa    blacklisted=1    spawn_value=6.33829   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -30,7 +30,9 @@
 /obj/item/organ/internal/eyes    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/internal/heart/open    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/internal/heart    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/organ/internal/kidneys    blacklisted=0    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/kidney/left    blacklisted=0    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/kidney/right    blacklisted=0    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/kidney    blacklisted=0    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/internal/liver    blacklisted=0    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/internal/lungs/long    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/internal/lungs    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing

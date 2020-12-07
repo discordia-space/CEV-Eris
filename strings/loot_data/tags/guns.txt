@@ -100,7 +100,7 @@
 /obj/item/weapon/gun/energy/xray    blacklisted=0    spawn_value=7.34586   spawn_price=4103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/launcher/grenade/underslung    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/grenade/lenar    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/launcher/grenade/makeshif    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/launcher/grenade/makeshift    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/grenade    blacklisted=0    spawn_value=7.5895   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/crossbow/RCD    blacklisted=0    spawn_value=2.08333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/launcher/crossbow    blacklisted=0    spawn_value=2.08333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
