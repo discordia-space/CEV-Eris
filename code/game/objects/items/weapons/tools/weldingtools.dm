@@ -55,7 +55,7 @@
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 4
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it

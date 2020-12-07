@@ -45,15 +45,20 @@
 	var/mob/living/carbon/human/owner
 
 	var/sanity_passive_gain_multiplier = 1
-	var/insight_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
 	var/level_change = 0
 
 	var/insight
+	var/max_insight = INFINITY
+	var/insight_passive_gain_multiplier = 1
+	var/insight_gain_multiplier = 1
 	var/insight_rest = 0
+	var/max_insight_rest = INFINITY
+	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
+	var/max_resting = INFINITY
 
 	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
 	var/list/desires = list()
@@ -83,6 +88,21 @@
 	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
+/datum/sanity/proc/give_insight(value)
+	var/new_value = value
+	if(value > 0)
+		new_value = max(0, value * insight_gain_multiplier)
+	insight = min(insight + new_value, max_insight)
+
+/datum/sanity/proc/give_resting(value)
+	resting = min(resting + value, max_resting)
+
+/datum/sanity/proc/give_insight_rest(value)
+	var/new_value = value
+	if(value > 0)
+		new_value = max(0, value * insight_rest_gain_multiplier)
+	insight_rest += new_value
+
 /datum/sanity/proc/onLife()
 	handle_breakdowns()
 	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
@@ -95,7 +115,7 @@
 		affect += handle_area()
 		affect -= handle_view()
 	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
-	handle_insight()
+	handle_Insight()
 	handle_level()
 	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
@@ -127,21 +147,24 @@
 		if(!B.update())
 			breakdowns -= B
 
-/datum/sanity/proc/handle_insight()
+/datum/sanity/proc/handle_Insight()
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
-			if(H)
-				if(H.sanity.level > 60)
-					moralist_factor += 0.02
-	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier
-	while(insight >= 100)
-		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+			if(H.sanity.level > 60)
+				moralist_factor += 0.02
+	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
+	while(resting < max_resting && insight >= 100)
+		give_resting(1)
+		if(owner.stats.getPerk(PERK_ARTIST))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))
+		else
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+			pick_desires()
+			insight -= 100
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
-		++resting
-		pick_desires()
-		insight -= 100
+
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
@@ -198,7 +221,7 @@
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
 		amount /= 16
-	insight_rest += amount
+	give_insight_rest(amount)
 	if(insight_rest >= 100)
 		insight_rest = 0
 		finish_rest()
@@ -213,9 +236,13 @@
 	for(var/stat in stat_change)
 		owner.stats.changeStat(stat, stat_change[stat])
 
-	INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
+	if(!owner.stats.getPerk(PERK_ARTIST))
+		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
-	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
+	if(owner.stats.getPerk(PERK_ARTIST))
+		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats."))
+	else
+		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	owner.pick_individual_objective()
 	resting = 0
@@ -229,18 +256,16 @@
 		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 		if(!O)
 			return
-		var/datum/component/inspiration/I = O.GetComponent(/datum/component/inspiration) // If it's a valid inspiration, it should have this component. If not, runtime
+		GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
 		var/list/L = I.calculate_statistics()
 		for(var/stat in L)
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
-		if(istype(O, /obj/item/weapon/oddity))
-			var/obj/item/weapon/oddity/OD = O
-			if(OD.perk)
-				owner.stats.addPerk(OD.perk)
+		if(I.perk)
+			owner.stats.addPerk(I.perk)
 		for(var/mob/living/carbon/human/H in viewers(owner))
-			SEND_SIGNAL(H, COMSIG_HUMAN_LEVEL_UP, owner, O)
+			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -256,11 +281,11 @@
 			switch(effect_prob)
 				if(1 to 25)
 					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
-				if(26 to 50)
+				if(25 to 50)
 					M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
-				if(51 to 75)
+				if(50 to 75)
 					penalty *= -1
-				if(76 to 100)
+				if(75 to 100)
 					penalty *= 0
 		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
 			setLevel(0)
@@ -279,7 +304,10 @@
 	changeLevel(-R.sanityloss * multiplier)
 
 /datum/sanity/proc/onReagent(datum/reagent/E, multiplier)
-	changeLevel(E.sanity_gain_ingest * multiplier)
+	var/sanity_gain = E.sanity_gain_ingest
+	if(E.id == "ethanol")
+		sanity_gain /= 5
+	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			if(multiplier <= 1 )
@@ -338,7 +366,7 @@
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
-	
+
 	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
 		if(get_turf(S) in view(get_turf(owner)))
 			S.reg_break(owner)

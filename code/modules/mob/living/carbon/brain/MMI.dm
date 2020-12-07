@@ -42,12 +42,22 @@
 		else if(!B.brainmob)
 			to_chat(user, "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain.")
 			return
+		var/mob/living/carbon/brain/BM = B.brainmob
+		if(!BM.client)
+			for(var/mob/observer/ghost/G in GLOB.player_list)
+				if(G.can_reenter_corpse && G.mind == BM.mind)
+					if(alert(G, "Somebody is attempting to put your brain in an MMI. Would you like to return to it?","Become brain","OH YES","No") == "OH YES")
+						G.reenter_corpse()
+						break
+			if(!BM.client)
+				to_chat(user, SPAN_WARNING("\The [src] indicates that \the [B] is unresponsive."))
+				return
 
 		for(var/mob/V in viewers(src, null))
 			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
 
-		brainmob = O:brainmob
-		O:brainmob = null
+		brainmob = B.brainmob
+		B.brainmob = null
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0

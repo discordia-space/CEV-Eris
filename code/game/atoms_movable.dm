@@ -388,6 +388,7 @@
 			// if we wasn't on map OR our Z coord was changed
 			if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
 				update_plane()
+				onTransitZ(get_z(oldloc, get_z(loc)))
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
@@ -395,6 +396,20 @@
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
 	AM.set_glide_size(glide_size_override)
 	return step(AM, newdir)
+
+//We're changing zlevel
+/atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
+	/*SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	for(var/atom/movable/AM in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
+		AM.onTransitZ(old_z,new_z)*/ 
+
+/mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
+	if (registered_z != new_z)
+		if (registered_z)
+			SSmobs.mob_living_by_zlevel[registered_z] -= src
+		if (new_z)
+			SSmobs.mob_living_by_zlevel[new_z] += src
+		registered_z = new_z
 
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()

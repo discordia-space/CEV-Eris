@@ -85,6 +85,9 @@
 
 /mob/living/carbon/superior_animal/New()
 	..()
+
+	GLOB.superior_animal_list += src
+
 	if(!icon_living)
 		icon_living = icon_state
 	if(!icon_dead)
@@ -105,6 +108,7 @@
 			create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
+	GLOB.superior_animal_list -= src
 	. = ..()
 
 /mob/living/carbon/superior_animal/u_equip(obj/item/W)

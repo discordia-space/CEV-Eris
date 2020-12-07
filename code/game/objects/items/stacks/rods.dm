@@ -18,7 +18,7 @@
 /obj/item/stack/rods/random
 	rand_min = 2
 	rand_max = 30
-	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING_ROD
+	spawn_tags = SPAWN_TAG_ORE_TAG_JUNK
 	rarity_value = 10
 
 /obj/item/stack/rods/cyborg

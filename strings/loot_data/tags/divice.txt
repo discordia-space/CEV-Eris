@@ -29,7 +29,6 @@
 /obj/item/device/lighting/toggleable/lamp/green    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting/toggleable/lamp    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting/toggleable/lantern    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/lighting/toggleable    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lighting    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/lightreplacer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/megaphone    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing

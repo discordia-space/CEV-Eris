@@ -56,8 +56,8 @@
 		return
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
-	H.sanity.insight += insight_reward
-	H.sanity.insight_rest += insight_reward/2
+	H.sanity.give_insight(insight_reward)
+	H.sanity.give_insight_rest(insight_reward/2)
 	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()

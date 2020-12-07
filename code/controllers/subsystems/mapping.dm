@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(mapping)
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
-	world.maxz++
+	world.incrementMaxZ()
 	GLOB.maps_data.overmap_z = world.maxz
 	var/list/turfs = list()
 	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))

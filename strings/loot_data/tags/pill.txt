@@ -1,2 +1,0 @@
-/obj/item/weapon/storage/pill_bottle/happy    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/pill_bottle/zoom    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

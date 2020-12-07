@@ -17,7 +17,7 @@
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
 	rarity_value = 3
-	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
 
 /obj/structure/closet/emcloset/populate_contents()
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
@@ -62,7 +62,7 @@
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "fire"
 	rarity_value = 1.5
-	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
 
 
 /obj/structure/closet/firecloset/populate_contents()
@@ -84,7 +84,7 @@
 	icon_state = "eng"
 	icon_door = "eng_tool"
 	rarity_value = 1.5
-	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
 
 /obj/structure/closet/toolcloset/populate_contents()
 	if(prob(40))

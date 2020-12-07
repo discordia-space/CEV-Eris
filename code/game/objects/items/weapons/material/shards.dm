@@ -1,5 +1,4 @@
 // Glass shards
-
 /obj/item/weapon/material/shard
 	name = "shard"
 	icon = 'icons/obj/shards.dmi'
@@ -15,16 +14,16 @@
 	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
-	spawn_tags = SPAWN_TAG_MATERIAL_JUNK
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING_JUNK
 	rarity_value = 6
 	var/amount = 0
 
 /obj/item/weapon/material/shard/New(newloc, material_key, _amount)
-	if (_amount)
+	if(_amount)
 		amount = max(round(_amount, 0.01), 0.01) //We won't ever need to physically represent less than 1% of a material unit
 	.=..()
 	//Material will be set during the parent callstack
-	if (!material)
+	if(!material)
 		qdel(src)
 		return
 

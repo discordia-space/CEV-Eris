@@ -333,3 +333,7 @@ proc/establish_db_connection()
 		return setup_database_connection()
 	else
 		return 1
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
