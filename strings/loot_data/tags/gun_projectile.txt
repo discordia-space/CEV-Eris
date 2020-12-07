@@ -1,10 +1,10 @@
 /obj/item/weapon/gun/projectile/automatic/lmg/pk    blacklisted=0    spawn_value=7.27124   spawn_price=5660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
 /obj/item/weapon/gun/projectile/automatic/lmg    blacklisted=0    spawn_value=7.27124   spawn_price=5660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
 /obj/item/weapon/gun/projectile/automatic/ak47/fs    blacklisted=0    spawn_value=4.393   spawn_price=3660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
-/obj/item/weapon/gun/projectile/automatic/ak47    blacklisted=0    spawn_value=7.34263   spawn_price=4160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
+/obj/item/weapon/gun/projectile/automatic/ak47    blacklisted=1    spawn_value=7.34263   spawn_price=4160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
 /obj/item/weapon/gun/projectile/automatic/atreides    blacklisted=0    spawn_value=4.44597   spawn_price=1960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
 /obj/item/weapon/gun/projectile/automatic/c20r    blacklisted=0    spawn_value=4.42317   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
-/obj/item/weapon/gun/projectile/automatic/dallas    blacklisted=0    spawn_value=7.22148   spawn_price=7040   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/c10x24
+/obj/item/weapon/gun/projectile/automatic/dallas    blacklisted=0    spawn_value=0.96295   spawn_price=7040   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/c10x24
 /obj/item/weapon/gun/projectile/automatic/drozd    blacklisted=0    spawn_value=7.43997   spawn_price=2760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/automatic/maxim    blacklisted=0    spawn_value=7.22342   spawn_price=6980   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/maxim
 /obj/item/weapon/gun/projectile/automatic/molly    blacklisted=0    spawn_value=5.15705   spawn_price=2460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg

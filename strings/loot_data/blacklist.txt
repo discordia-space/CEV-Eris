@@ -1,3 +1,4 @@
+/obj/item/weapon/gun/projectile/automatic/ak47
 /obj/item/weapon/gun/projectile/automatic/motherfucker
 /obj/item/weapon/gun/projectile/shotgun/slidebarrel
 /obj/item/weapon/gun/projectile/boltgun/handmade

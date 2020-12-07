@@ -53,8 +53,8 @@
 /obj/item/weapon/reagent_containers/glass/beaker/fuel    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker/silicon    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/glass/beaker    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/rag    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/glass/bucket    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/rag    blacklisted=0    spawn_value=4.69413   spawn_price=20.1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/bucket    blacklisted=0    spawn_value=4.6855   spawn_price=22   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/food/drinks/flask/barflask    blacklisted=0    spawn_value=4.7619   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda    blacklisted=0    spawn_value=2.43902   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola    blacklisted=0    spawn_value=2.43902   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing

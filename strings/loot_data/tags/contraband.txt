@@ -11,9 +11,9 @@
 /obj/item/weapon/material/butterflyblade    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/butterflyhandle    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/material/wirerod    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=1.93791   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/glasses/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/shoes/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=1.9375   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=1.9413   spawn_price=32.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/shoes/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing

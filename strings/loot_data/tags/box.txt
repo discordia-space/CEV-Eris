@@ -2,7 +2,7 @@
 /obj/item/weapon/storage/box/survival/extended    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/survival    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/gloves    blacklisted=0    spawn_value=4.43576   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/masks    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/masks    blacklisted=0    spawn_value=4.56903   spawn_price=77   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/syringes    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/syringegun    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=13.9685   spawn_price=144.2   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -18,7 +18,7 @@
 /obj/item/weapon/storage/box/incendiary    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/trackimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/chemimp    blacklisted=1    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=4.47984   spawn_price=210   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=4.47698   spawn_price=217   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/drinkingglasses    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/cdeathalarm_kit    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/condimentbottles    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -72,6 +72,6 @@
 /obj/item/weapon/storage/box/PDAs    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/gun_upgrades    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/bloodpacks    blacklisted=0    spawn_value=7.9719   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/solution_trays    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/solution_trays    blacklisted=0    spawn_value=4.51537   spawn_price=140.14   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/samplebags    blacklisted=0    spawn_value=4.64165   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/briefcase/crimekit    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
