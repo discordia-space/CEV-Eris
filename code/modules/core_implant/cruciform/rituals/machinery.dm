@@ -56,7 +56,7 @@
 		return FALSE
 
 	for(var/_material in forge.needed_material)
-		if(!(_material in  forge.stored_material))
+		if(!(_material in forge.stored_material))
 			fail("[forge] does not have a [_material] to produce cruciform.", user, C)
 			return FALSE
 
