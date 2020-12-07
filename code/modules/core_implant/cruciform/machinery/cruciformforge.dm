@@ -54,22 +54,9 @@
 		eat(user, I)
 		return
 
-/obj/machinery/neotheology/cruciformforge/attack_hand(mob/user)
-	if(..())
-		return TRUE
-
-	if(working)
-		to_chat(user, SPAN_WARNING("[src] is working!"))
-		return
-
+/obj/machinery/neotheology/cruciformforge/proc/produce()
 	for(var/_material in needed_material)
-		if(!(_material in  stored_material))
-			to_chat(user, SPAN_WARNING("[src] does not have a [_material] to produce cruciform."))
-			return
-
-		if(needed_material[_material] > stored_material[_material])
-			to_chat(user, SPAN_WARNING("[src] does not have enough [_material] to produce cruciform."))
-			return
+		stored_material[_material] -= needed_material[_material]
 
 	use_power(power_cost)
 	working = TRUE
