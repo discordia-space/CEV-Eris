@@ -50,6 +50,7 @@
 	if(istype(I, /obj/item/stack))
 		eat(user, I)
 		return
+	. = ..()
 
 /obj/machinery/neotheology/cruciformforge/proc/produce()
 	for(var/_material in needed_material)
