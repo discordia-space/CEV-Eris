@@ -34,7 +34,7 @@
 		stored_material[_material] = rand(1, 10)
 
 /obj/machinery/neotheology/cruciformforge/examine(user)
-	..()
+	. = ..()
 
 	var/list/matter_count_need = list()
 	for(var/_material in needed_material)
