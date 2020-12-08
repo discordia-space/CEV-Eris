@@ -818,7 +818,6 @@
 /obj/item/modular_computer
 /obj/item/rocket_engine
 /obj/item/craft
-/obj/item/gun_parts
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/medical/advanced
 /obj/item/stack/medical
@@ -1090,6 +1089,7 @@
 /obj/item/device/von_krabin
 /obj/item/device/scanner
 /obj/item/device/assembly
+/obj/item/device/onetankbomb
 /obj/item/device/electronic_assembly/implant
 /obj/item/device/nanite_container
 /obj/item/device/smokescreen

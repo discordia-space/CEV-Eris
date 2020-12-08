@@ -78,7 +78,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/ammo/ihs = 15,
 					/obj/spawner/ammo/lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
-					/obj/spawner/cloth/holster = 8
+					/obj/spawner/cloth/holster = 8,
+					/obj/spawner/gun_parts = 20
 				))
 
 /obj/spawner/pack/gun_loot/low_chance

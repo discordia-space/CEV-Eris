@@ -4,6 +4,7 @@
 	icon ='icons/obj/crafts.dmi'
 	icon_state = "gun"
 	spawn_tags = SPAWN_TAG_GUN_PART
+	price_tag = 300
 
 /datum/craft_recipe/gun
 	category = "Guns"

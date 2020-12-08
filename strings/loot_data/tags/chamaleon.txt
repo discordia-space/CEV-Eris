@@ -1,5 +1,7 @@
 /obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.70194   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/storage/backpack/chameleon    blacklisted=1    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=1.9375   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/chameleon    blacklisted=1    spawn_value=1.9413   spawn_price=32.5   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/glasses/chameleon    blacklisted=1    spawn_value=1.94207   spawn_price=31   prob_accompanying_obj=100    accompanying_objs=nothing

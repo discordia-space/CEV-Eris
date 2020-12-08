@@ -150,7 +150,6 @@
 /obj/item/device/scanner/xenobio    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/scanner/mining/advanced    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/scanner/mining    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/device/onetankbomb    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly_holder/timer_igniter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/assembly_holder    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/device/uv_light    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

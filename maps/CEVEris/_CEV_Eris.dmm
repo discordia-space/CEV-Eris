@@ -11987,7 +11987,8 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/hallway/side/eschangarb)
 "aCe" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aCf" = (
@@ -20960,7 +20961,8 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section4deck5port)
 "aXS" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aXT" = (
@@ -73825,11 +73827,12 @@
 /area/eris/security/checkpoint/supply)
 "dow" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/firstaid/low_chance,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dox" = (
@@ -88008,6 +88011,7 @@
 "dVR" = (
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dVS" = (
@@ -88352,10 +88356,10 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck1starboard)
 "dWv" = (
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dWw" = (
