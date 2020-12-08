@@ -1,5 +1,5 @@
 /obj/item/weapon/tank/onestar_regenerator    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.4006   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.39934   spawn_price=29   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

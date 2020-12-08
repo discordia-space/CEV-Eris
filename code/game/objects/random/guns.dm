@@ -45,3 +45,6 @@
 	name = "low chance random shotgun"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 75
+
+/obj/spawner/gun_parts
+	tags_to_spawn = list(SPAWN_GUN_PART)

@@ -1,8 +1,9 @@
-/obj/item/gun_parts//evan, termina esto
+/obj/item/gun_part//evan, termina esto
 	name = "gun part"
 	desc = "una parte de arma"
 	icon ='icons/obj/crafts.dmi'
 	icon_state = "gun"
+	spawn_tags = SPAWN_TAG_GUN_PART
 
 /datum/craft_recipe/gun
 	category = "Guns"
@@ -24,7 +25,7 @@
 	name = "handmade Revolver"
 	result = /obj/item/weapon/gun/projectile/revolver/handmade
 	steps = list(
-		list(/obj/item/gun_parts, 2),//no work
+		list(/obj/item/gun_part, 2),//no work
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -36,7 +37,7 @@
 	name = "handmade bolt action rifle"
 	result = /obj/item/weapon/gun/projectile/boltgun/handmade
 	steps = list(
-		list(/obj/item/gun_parts, 2),
+		list(/obj/item/gun_part, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -48,7 +49,7 @@
 	name = "makeshift grenade launcher"
 	result = /obj/item/weapon/gun/launcher/grenade/makeshift
 	steps = list(
-		list(/obj/item/gun_parts, 2),
+		list(/obj/item/gun_part, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -60,7 +61,7 @@
 	name = "slide barrel Shotgun"
 	result = /obj/item/weapon/gun/projectile/shotgun/slidebarrel
 	steps = list(
-		list(/obj/item/gun_parts, 3),
+		list(/obj/item/gun_part, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -72,7 +73,7 @@
 	name = "HM Motherfucker .35 \"Punch Hole\""
 	result = /obj/item/weapon/gun/projectile/automatic/motherfucker
 	steps = list(
-		list(/obj/item/gun_parts, 5),
+		list(/obj/item/gun_part, 5),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -84,7 +85,7 @@
 	name = "makeshift laser carbine"
 	result = /obj/item/weapon/gun/energy/laser/makeshift
 	steps = list(
-		list(/obj/item/gun_parts, 4),
+		list(/obj/item/gun_part, 4),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),

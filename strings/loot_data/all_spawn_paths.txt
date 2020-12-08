@@ -695,7 +695,6 @@
 /obj/item/weapon/storage/secure/briefcase/money
 /obj/item/weapon/storage/secure/briefcase
 /obj/item/weapon/storage/secure/safe
-/obj/item/weapon/storage/secure
 /obj/item/weapon/storage/toolbox/emergency
 /obj/item/weapon/storage/toolbox/mechanical
 /obj/item/weapon/storage/toolbox/electrical
@@ -2203,12 +2202,8 @@
 /obj/item/remains/lizard
 /obj/item/bodybag/cryobag
 /obj/item/bodybag
-/obj/item/device/kit/suit
 /obj/item/device/kit/paint/powerloader/flames_red
 /obj/item/device/kit/paint/powerloader/flames_blue
-/obj/item/device/kit/paint/powerloader
-/obj/item/device/kit/paint
-/obj/item/device/kit
 /obj/item/device/slimelight
 /obj/item/device/aicard
 /obj/item/device/binoculars

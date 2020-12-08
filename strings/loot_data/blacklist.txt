@@ -356,6 +356,7 @@
 /obj/item/clothing/accessory/badge/warden
 /obj/item/clothing/accessory/badge/hos
 /obj/item/clothing/accessory/badge/marshal
+/obj/item/device/slimelight
 /obj/item/device/mental_imprinter
 /obj/item/device/powersink
 /obj/item/device/spy_bug

@@ -124,6 +124,7 @@
 /obj/item/weapon/storage/internal/updating
 /obj/item/weapon/storage/internal
 /obj/item/weapon/storage/pouch
+/obj/item/weapon/storage/secure
 /obj/item/weapon/storage/sheath
 /obj/item/weapon/storage/toolbox
 /obj/item/weapon/storage
@@ -1061,6 +1062,10 @@
 /obj/item/gene_vial
 /obj/item/glass_jar
 /obj/item/latexballon
+/obj/item/device/kit/suit
+/obj/item/device/kit/paint/powerloader
+/obj/item/device/kit/paint
+/obj/item/device/kit
 /obj/item/device/last_shelter
 /obj/item/device/lighting/toggleable/drone
 /obj/item/device/lighting/toggleable

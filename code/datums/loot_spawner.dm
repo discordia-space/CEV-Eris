@@ -227,6 +227,10 @@
 		else if(ispath(path, /obj/item/weapon/reagent_containers/glass))
 			var/obj/item/weapon/reagent_containers/glass/G = path
 			. += initial(G.volume)/100
+		else if(ispath(path, /obj/item/weapon/computer_hardware/hard_drive/portable/design))
+			var/obj/item/weapon/computer_hardware/hard_drive/portable/design/D = path
+			if(initial(D.license) > 0)
+				. += initial(D.license) * 2
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()

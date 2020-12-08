@@ -381,10 +381,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MEDICAL,
 		SPAWN_SURGERY_TOOL,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-
 		SPAWN_MATERIAL_JUNK
 	)
-
 
 /obj/structure/scrap_spawner/vehicle
 	icontype = "vehicle"
