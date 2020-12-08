@@ -60,18 +60,18 @@
 	working = TRUE
 	start_working = world.time
 	flick_anim(WORK)
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/neotheology/cruciformforge/Process()
 	if(!working)
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSmachines, src)
 		return
 
 	if(world.time >= (start_working + work_time))
 		flick_anim(DONE)
 		new spawn_type(get_turf(src))
 		working = FALSE
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/neotheology/cruciformforge/proc/eat(mob/living/user, obj/item/eating)
 
