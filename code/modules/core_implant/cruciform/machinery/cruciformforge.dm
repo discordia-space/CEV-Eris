@@ -17,7 +17,6 @@
 	var/working = FALSE
 	var/start_working
 	var/work_time = 30 SECONDS
-	var/paused = FALSE
 	var/storage_capacity = 50
 	var/list/stored_material = list()
 	var/list/needed_material = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTEEL = 5, MATERIAL_GOLD = 2)
@@ -37,17 +36,15 @@
 /obj/machinery/neotheology/cruciformforge/examine(user)
 	..()
 
-	var/matter_count = "Need materials:"
+	var/list/matter_count_need = list()
 	for(var/_material in needed_material)
-		matter_count += " [needed_material[_material]] [_material]"
-	matter_count += "."
+		matter_count_need += "[needed_material[_material]] [_material]"
 
-	matter_count += "\nIt contains:"
+	var/list/matter_count = list()
 	for(var/_material in stored_material)
 		matter_count += " [stored_material[_material]] [_material]"
-	matter_count += "."
 
-	to_chat(user, SPAN_NOTICE(matter_count))
+	to_chat(user, SPAN_NOTICE("Need materials: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)]."))
 
 /obj/machinery/neotheology/cruciformforge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack))
@@ -92,87 +89,47 @@
 	if(is_robot_module(eating))
 		return FALSE
 
-	if(!istype(eating, /obj/item/stack))
-		to_chat(user, SPAN_WARNING("[src] does not support material recycling."))
+	if(!istype(eating, /obj/item/stack/material))
+		to_chat(user, SPAN_WARNING("[src] does not support this type of recycling."))
 		return FALSE
 
 	if(!length(eating.get_matter()))
 		to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 		return FALSE
 
-	var/filltype = 0       // Used to determine message.
 	var/total_used = 0     // Amount of material used.
-	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
-	var/list/total_material_gained = list()
+	var/obj/item/stack/material/stack = eating
+	var/material = stack.default_type
 
-	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
-		var/list/_matter = O.get_matter()
-		if(_matter)
-			for(var/material in _matter)
-				if(!(material in needed_material))
-					to_chat(user, SPAN_WARNING("[src] does not support [material] recycle."))
-					continue
+	if(!(material in needed_material))
+		to_chat(user, SPAN_WARNING("[src] does not support [material] recycle."))
+		return FALSE
 
-				if(!(material in stored_material))
-					stored_material[material] = 0
+	if(stored_material[material] >= storage_capacity)
+		to_chat(user, SPAN_WARNING("The [src] are full of [material]."))
+		return FALSE
 
-				if(!(material in total_material_gained))
-					total_material_gained[material] = 0
+	if(stored_material[material] + stack.amount > storage_capacity)
+		total_used = storage_capacity - stored_material[material]
 
-				if(stored_material[material] + total_material_gained[material] >= storage_capacity)
-					continue
-
-				var/total_material = _matter[material]
-
-				//If it's a stack, we eat multiple sheets.
-				if(istype(O, /obj/item/stack))
-					var/obj/item/stack/material/stack = O
-					total_material *= stack.get_amount()
-
-				if(stored_material[material] + total_material > storage_capacity)
-					total_material = storage_capacity - stored_material[material]
-					filltype = 1
-				else
-					filltype = 2
-
-				total_material_gained[material] += total_material
-				total_used += total_material
-				mass_per_sheet += O.matter[material]
-
-	if(!filltype)
-		to_chat(user, SPAN_NOTICE("\The [src] is full or this thing isn't suitable for this autolathe type."))
-		return
-
-	// Determine what was the main material
-	var/main_material
-	var/main_material_amt = 0
-
-	for(var/material in total_material_gained)
-		stored_material[material] += total_material_gained[material]
-		if(total_material_gained[material] > main_material_amt)
-			main_material_amt = total_material_gained[material]
-			main_material = material
-
-	if(istype(eating, /obj/item/stack))
-		flick_anim(LOAD) // Play insertion animation.
-		var/obj/item/stack/stack = eating
-		var/used_sheets = min(stack.get_amount(), round(total_used/mass_per_sheet))
-
-		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
-
-		if(!stack.use(used_sheets))
-			qdel(stack)	// Protects against weirdness
 	else
-		flick_anim(LOAD) // Play insertion animation.
-		to_chat(user, SPAN_NOTICE("You recycle \the [eating] in \the [src]."))
-		qdel(eating)
+		total_used = stack.amount
+
+
+	stored_material[material] += total_used
+
+	if(!stack.use(total_used))
+		qdel(stack)	// Protects against weirdness
+
+	flick_anim(LOAD) // Play insertion animation.
+
+	to_chat(user, SPAN_NOTICE("You add [total_used] of [stack]\s to \the [src]."))
+
 
 /obj/machinery/neotheology/cruciformforge/proc/flick_anim(var/animation)
 
 	if(animation == WORK)
-		icon_state = "[initial(icon_state)]_start"
-		update_icon()
-		spawn(8)
+		flick("[initial(icon_state)]_start", src)
 		icon_state = "[initial(icon_state)]_work"
 		update_icon()
 
@@ -181,9 +138,7 @@
 		return
 
 	if(animation == DONE)
-		icon_state = "[initial(icon_state)]_finish"
-		update_icon()
-		spawn(8)
+		flick("[initial(icon_state)]_finish", src)
 		icon_state = "[initial(icon_state)]"
 		update_icon()
 
