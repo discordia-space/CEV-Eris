@@ -15,7 +15,7 @@
 	var/power_cost = 250
 
 	var/working = FALSE
-	var/start_working = null
+	var/start_working
 	var/work_time = 30 SECONDS
 	var/paused = FALSE
 	var/storage_capacity = 50
