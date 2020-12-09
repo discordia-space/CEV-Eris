@@ -46,43 +46,42 @@ SUBSYSTEM_DEF(trade)
 		weightstationlist.Remove(station_instance)
 	init_stations_by_list(stations2init)
 
-/datum/controller/subsystem/trade/proc/
-	collect_trade_stations()
-		. = list()
-		for(var/path in subtypesof(/datum/trade_station))
-			var/datum/trade_station/s = new path()
-			if(!s.spawn_always && s.spawn_probability)
-				.[s] = s.spawn_probability
-			else
-				qdel(s)
+/datum/controller/subsystem/trade/proc/collect_trade_stations()
+	. = list()
+	for(var/path in subtypesof(/datum/trade_station))
+		var/datum/trade_station/s = new path()
+		if(!s.spawn_always && s.spawn_probability)
+			.[s] = s.spawn_probability
+		else
+			qdel(s)
 
-	collect_spawn_always()
-		. = list()
-		for(var/path in subtypesof(/datum/trade_station))
-			var/datum/trade_station/s = new path()
-			if(s.spawn_always)
-				. += s
-			else
-				qdel(s)
+/datum/controller/subsystem/trade/proc/collect_spawn_always()
+	. = list()
+	for(var/path in subtypesof(/datum/trade_station))
+		var/datum/trade_station/s = new path()
+		if(s.spawn_always)
+			. += s
+		else
+			qdel(s)
 
-	init_station(stype)
-		var/datum/trade_station/station
-		if(istype(stype, /datum/trade_station))
-			station = stype
-			if(!station.name)
-				station.init_src()
-		else if(ispath(stype, /datum/trade_station))
-			station = new stype(TRUE)
-		if(station?.linked_with)
-			init_stations_by_list(station.linked_with)
-		. = station
+/datum/controller/subsystem/trade/proc/init_station(stype)
+	var/datum/trade_station/station
+	if(istype(stype, /datum/trade_station))
+		station = stype
+		if(!station.name)
+			station.init_src()
+	else if(ispath(stype, /datum/trade_station))
+		station = new stype(TRUE)
+	if(station?.linked_with)
+		init_stations_by_list(station.linked_with)
+	. = station
 
-	init_stations_by_list(list/L)
-		. = list()
-		for(var/i in try_json_decode(L))
-			var/a = init_station(i)
-			if(a)
-				. += a
+/datum/controller/subsystem/trade/proc/init_stations_by_list(list/L)
+	. = list()
+	for(var/i in try_json_decode(L))
+		var/a = init_station(i)
+		if(a)
+			. += a
 
 //Returns cost of an existing object including contents
 /datum/controller/subsystem/trade/proc/get_cost(atom/movable/target)
