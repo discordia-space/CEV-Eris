@@ -1,5 +1,6 @@
+#define TRADE_SYSTEM_IC_NAME "Asters Automated Trading System"
 SUBSYSTEM_DEF(trade)
-	name = "Asters Automated Trading System"
+	name = "Trade"
 	priority = SS_PRIORITY_SUPPLY
 	flags = SS_NO_FIRE
 
@@ -38,14 +39,14 @@ SUBSYSTEM_DEF(trade)
 	var/list/stations2init = collect_spawn_always()
 
 	while(trade_stations_budget && length(weightstationlist))
-		var/datum/trade_station/s = pickweight(weightstationlist)
-		if(istype(s))
-			stations2init += s
-		s.cost_trade_stations_budget()
-		weightstationlist.Remove(s)
+		var/datum/trade_station/station_instanse = pickweight(weightstationlist)
+		if(istype(station_instanse))
+			stations2init += station_instanse
+			station_instanse.cost_trade_stations_budget()
+		weightstationlist.Remove(station_instanse)
 	init_stations_by_list(stations2init)
 
-/datum/controller/subsystem/trade/proc
+/datum/controller/subsystem/trade/proc/
 	collect_trade_stations()
 		. = list()
 		for(var/path in subtypesof(/datum/trade_station))
@@ -139,7 +140,7 @@ SUBSYSTEM_DEF(trade)
 
 	if(account)
 		var/datum/money_account/A = account
-		var/datum/transaction/T = new(points, account.get_name(), "Exports", "Asters Automated Trading System")
+		var/datum/transaction/T = new(points, account.get_name(), "Exports", TRADE_SYSTEM_IC_NAME)
 		T.apply_to(A)
 
 
@@ -153,8 +154,6 @@ SUBSYSTEM_DEF(trade)
 		if(AM.anchored || !istype(AM, offer_type))
 			continue
 		. += AM
-
-
 
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station)
 	var/list/exported = assess_offer(beacon, station)
@@ -214,11 +213,11 @@ SUBSYSTEM_DEF(trade)
 	var/obj/structure/closet/crate/C
 	var/list/sl = shoplist2list(shoppinglist)
 	var/count_of_all = collect_counts_from(sl)
-	cost = collect_price_for_list(sl)
+	var/price_for_all = collect_price_for_list(sl)
 	if(count_of_all > 1 && count_of_all)
-		cost += station.commision
+		price_for_all += station.commision
 		C = beacon.drop(/obj/structure/closet/crate)
-	if(get_account_credits(account) < cost)
+	if(get_account_credits(account) < price_for_all)
 		return
 	for(var/t in sl)
 		var/tcount = get_2d_matrix_cell(sl, t, "count")
@@ -230,7 +229,7 @@ SUBSYSTEM_DEF(trade)
 			var/indix = i[2]
 			if(indix && cat)
 				station.set_good_amount(cat, indix, max(0, station.get_good_amount(cat, indix) - tcount))
-	charge_to_account(account.account_number, account.get_name(), "Purchase", name, cost)
+	charge_to_account(account.account_number, account.get_name(), "Purchase", name, price_for_all)
 
 /datum/controller/subsystem/trade/proc/sell_thing(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, atom/movable/thing, datum/trade_station/station)
 	if(QDELETED(beacon) || !istype(beacon) || !account || !istype(thing) || !istype(station))

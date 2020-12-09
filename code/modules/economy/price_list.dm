@@ -846,73 +846,11 @@
 
 
 // Cakes //
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake
+/obj/item/weapon/reagent_containers/food/snacks/slice
 	price_tag = 10
 
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/braincake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/limecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/applecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie
-	price_tag = 10
-
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/get_item_cost(export)
+	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
 // Misc //
 
@@ -981,7 +919,10 @@
 /obj/item/bluespace_crystal
 	price_tag = 500
 
-
+/obj/item/weapon/storage/get_item_cost(export)
+	. = ..()
+	for(var/atom/movable/i in src)
+		. += SStrade.get_new_cost(i)
 
 /obj/machinery
 	price_tag = 100
@@ -1091,7 +1032,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/price_tag = 1500
 
-/obj/item/weapon/storage/briefcase/inflatable/price_tag = 50
+/obj/item/weapon/storage/briefcase/price_tag = 50
 
 /obj/item/inflatable/price_tag = 40
 
