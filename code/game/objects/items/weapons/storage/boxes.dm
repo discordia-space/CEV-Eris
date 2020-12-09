@@ -595,3 +595,22 @@
 /obj/item/weapon/storage/box/headset/church/populate_contents()
 	for(var/i in 1 to 7)
 		new /obj/item/device/encryptionkey/headset_church(src)
+
+/obj/item/weapon/storage/box/happy_meal
+	name = "McRonalds' Robust Meal"
+	desc = "This is typical Robust Meal from McRonalds... And you almost feel smell of delicious food from it. Wait! It must have toy inside! Unpack it now!"
+	icon_state = "happy_meal"
+
+/obj/item/weapon/storage/box/happy_meal/New()
+	..()
+	var/list/things2spawn = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,
+		/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/weapon/reagent_containers/food/snacks/fishandchips
+	)
+	if(prob(1))
+		things2spawn += /obj/item/clothing/head/kitty
+	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
+	for(var/path in things2spawn)
+		new path(src)

@@ -1,5 +1,6 @@
+#define TRADE_SYSTEM_IC_NAME "Asters Automated Trading System"
 SUBSYSTEM_DEF(trade)
-	name = "Asters Automated Trading System"
+	name = "Trade"
 	priority = SS_PRIORITY_SUPPLY
 	flags = SS_NO_FIRE
 
@@ -38,14 +39,14 @@ SUBSYSTEM_DEF(trade)
 	var/list/stations2init = collect_spawn_always()
 
 	while(trade_stations_budget && length(weightstationlist))
-		var/datum/trade_station/s = pickweight(weightstationlist)
-		if(istype(s))
-			stations2init += s
-		s.cost_trade_stations_budget()
-		weightstationlist.Remove(s)
+		var/datum/trade_station/station_instanse = pickweight(weightstationlist)
+		if(istype(station_instanse))
+			stations2init += station_instanse
+			station_instanse.cost_trade_stations_budget()
+		weightstationlist.Remove(station_instanse)
 	init_stations_by_list(stations2init)
 
-/datum/controller/subsystem/trade/proc
+/datum/controller/subsystem/trade/proc/
 	collect_trade_stations()
 		. = list()
 		for(var/path in subtypesof(/datum/trade_station))
@@ -115,34 +116,6 @@ SUBSYSTEM_DEF(trade)
 		markup += trade_station.markup
 	. *= markup
 
-/datum/controller/subsystem/trade/proc/sell(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account)
-	if(QDELETED(beacon))
-		return
-
-	var/points = 0
-
-	for(var/atom/movable/AM in beacon.get_objects())
-		if(AM.anchored)
-			continue
-
-		var/export_cost = get_export_cost(AM) * 1.25
-		if(!export_cost)
-			continue
-
-		points += export_cost
-		qdel(AM)
-
-	if(!points)
-		return
-
-	beacon.activate()
-
-	if(account)
-		var/datum/money_account/A = account
-		var/datum/transaction/T = new(points, account.get_name(), "Exports", "Asters Automated Trading System")
-		T.apply_to(A)
-
-
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_type = station.offer_type)
 	if(QDELETED(beacon) || !station)
 		return
@@ -153,8 +126,6 @@ SUBSYSTEM_DEF(trade)
 		if(AM.anchored || !istype(AM, offer_type))
 			continue
 		. += AM
-
-
 
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station)
 	var/list/exported = assess_offer(beacon, station)
@@ -176,69 +147,55 @@ SUBSYSTEM_DEF(trade)
 
 	station.generate_offer()
 
-/datum/controller/subsystem/trade/proc/collect_counts_from(list/m)
+/datum/controller/subsystem/trade/proc/collect_counts_from(list/shopList)
 	. = 0
-	if(islist(m))
-		for(var/n in m)
-			var/list/c = m[n]
-			for(var/t in c)
-				var/tcount = c[t]
-				if(isnum(tcount))
-					. += tcount
+	for(var/categoryName in shopList)
+		var/category = shopList[categoryName]
+		if(length(category))
+			for(var/path in category)
+				. += category[path]
 
-/datum/controller/subsystem/trade/proc/collect_price_for_list(list/m)
+/datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList)
 	. = 0
-	for(var/t in m)
-		if(ispath(t))
-			. += get_import_cost(t) * get_2d_matrix_cell(m, t, "count")
+	for(var/categoryName in shopList)
+		var/category = shopList[categoryName]
+		if(length(category))
+			for(var/path in category)
+				. += get_import_cost(path) * category[path]
 
-/datum/controller/subsystem/trade/proc/shoplist2list(list/m)
-	if(islist(m))
-		. = list()
-		var/list/dot = .
-		for(var/i in m)
-			var/list/il = m[i]
-			for(var/b in il)
-				var/list/trade_packet
-				if(dot.Find(b))
-					trade_packet = dot[b]
-					if(trade_packet.Find("count"))
-						trade_packet["count"] += il[b]
-				else
-					dot[b] = list("count" = il[b], "index" = list(i, il.Find(b)))
-
-/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/beacon, datum/money_account/account, list/shoppinglist, datum/trade_station/station)
-	if(QDELETED(beacon) || !account || !recursiveLen(shoppinglist) || !istype(station))
+/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, datum/trade_station/station)
+	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList) || !istype(station))
 		return
 
 	var/obj/structure/closet/crate/C
-	var/list/sl = shoplist2list(shoppinglist)
-	var/count_of_all = collect_counts_from(sl)
-	cost = collect_price_for_list(sl)
-	if(count_of_all > 1 && count_of_all)
-		cost += station.commision
-		C = beacon.drop(/obj/structure/closet/crate)
-	if(get_account_credits(account) < cost)
+	var/count_of_all = collect_counts_from(shopList)
+	var/price_for_all = collect_price_for_list(shopList)
+	if(isnum(count_of_all) && count_of_all > 1)
+		price_for_all += station.commision
+		C = senderBeacon.drop(/obj/structure/closet/crate)
+	if(price_for_all && get_account_credits(account) < price_for_all)
 		return
-	for(var/t in sl)
-		var/tcount = get_2d_matrix_cell(sl, t, "count")
-		for(var/i in 1 to tcount)
-			C ? new t(C) : beacon.drop(t)
-		var/list/i = get_2d_matrix_cell(sl, t, "index")
-		if(length(i) >= 2)
-			var/cat = i[1]
-			var/indix = i[2]
-			if(indix && cat)
-				station.set_good_amount(cat, indix, max(0, station.get_good_amount(cat, indix) - tcount))
-	charge_to_account(account.account_number, account.get_name(), "Purchase", name, cost)
 
-/datum/controller/subsystem/trade/proc/sell_thing(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, atom/movable/thing, datum/trade_station/station)
-	if(QDELETED(beacon) || !istype(beacon) || !account || !istype(thing) || !istype(station))
+	for(var/categoryName in shopList)
+		var/list/shoplist_category = shopList[categoryName]
+		var/list/assortiment_category = station.assortiment[categoryName]
+		if(length(shoplist_category) && length(assortiment_category))
+			for(var/pathOfGood in shoplist_category)
+				var/count_of_good = shoplist_category[pathOfGood] //in shoplist
+				var/index_of_good = assortiment_category.Find(pathOfGood) //in assortiment
+				for(var/i in 1 to count_of_good)
+					istype(C) ? new pathOfGood(C) : senderBeacon.drop(pathOfGood)
+				if(isnum(index_of_good))
+					station.set_good_amount(categoryName, index_of_good, max(0, station.get_good_amount(categoryName, index_of_good) - count_of_good))
+	charge_to_account(account.account_number, account.get_name(), "Purchase", station.name, price_for_all)
+
+/datum/controller/subsystem/trade/proc/sell_thing(obj/machinery/trade_beacon/sending/senderBeacon, datum/money_account/account, atom/movable/thing, datum/trade_station/station)
+	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !istype(thing) || !istype(station))
 		return
 	
 	var/cost = get_export_cost(thing)
 
 	qdel(thing)
-	beacon.activate()
+	senderBeacon.activate()
 
-	charge_to_account(account.account_number, account.get_name(), "Selling", name, -cost)
+	charge_to_account(account.account_number, account.get_name(), "Selling", station.name, -cost)
