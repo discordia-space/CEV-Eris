@@ -818,6 +818,9 @@
 /obj/item/modular_computer
 /obj/item/rocket_engine
 /obj/item/craft
+/obj/item/part
+/obj/item/craft_frame/guns
+/obj/item/craft_frame
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/medical/advanced
 /obj/item/stack/medical

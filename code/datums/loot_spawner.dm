@@ -342,3 +342,45 @@
 	candidates |= include
 	candidates = removeNullsFromList(candidates)
 	return candidates
+
+/datum/controller/subsystem/spawn_data/proc/sort_paths_by_rarity(list/paths, invert_value=FALSE)
+	//if(!paths || !paths.len) //NOPE
+		//return
+	var/list/copy_paths = paths.Copy()
+	var/list/things = list()
+	for(var/path in paths)
+		var/max_value = -INFINITY
+		if(invert_value)
+			max_value = INFINITY
+		var/selected_path
+		if(!copy_paths.len)
+			break
+		for(var/actual_path in copy_paths)
+			var/actual_value = get_spawn_value(actual_path)
+			if((!invert_value && actual_value > max_value) || (invert_value && (actual_value < max_value)))
+				max_value = actual_value
+				selected_path = actual_path
+		copy_paths -= selected_path
+		things += selected_path
+	return things
+
+/datum/controller/subsystem/spawn_data/proc/sort_paths_by_price(list/paths, invert_value=FALSE)
+	//if(!paths || !paths.len) //NOPE
+		//return
+	var/list/copy_paths = paths.Copy()
+	var/list/things = list()
+	for(var/path in paths)
+		var/max_value = INFINITY
+		if(invert_value)
+			max_value = -INFINITY
+		var/selected_path
+		if(!copy_paths.len)
+			break
+		for(var/actual_path in copy_paths)
+			var/actual_value = get_spawn_price(actual_path)
+			if((!invert_value && actual_value < max_value) || (invert_value && (actual_value > max_value)))
+				max_value = actual_value
+				selected_path = actual_path
+		copy_paths -= selected_path
+		things += selected_path
+	return things

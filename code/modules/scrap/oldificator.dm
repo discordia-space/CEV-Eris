@@ -327,7 +327,7 @@
 	if (.)
 		salvage_num = max(1, salvage_num - pick(1, 2, 3))
 */
-/obj/item/gun_part/make_old()
+/obj/item/part/gun/make_old()
 	return
 
 /mob/living/exosuit

@@ -1435,7 +1435,7 @@
 /obj/item/weapon/fossil/plant    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/talkingcrystal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/vampiric    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/gun_part    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/part/gun    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/cut    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/yellow    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/blue    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

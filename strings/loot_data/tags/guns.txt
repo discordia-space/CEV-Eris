@@ -137,7 +137,7 @@
 /obj/item/weapon/gun_upgrade/mechanism/psionic_catalyst    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun_upgrade/scope/watchman    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun_upgrade/scope/killer    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/gun_part    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/part/gun    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=12.8104   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -257,3 +257,12 @@
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
+
+/datum/craft_recipe/guns_craft_frame
+	name = "Gun assembly."
+	result = /obj/item/craft_frame/guns
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 10)
+	)
+	related_stats = list(STAT_MEC)

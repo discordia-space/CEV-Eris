@@ -287,15 +287,15 @@
 	bluespace_entropy(3, get_turf(src))
 
 /obj/item/weapon/storage/pouch/gun_part
-	name = "baton sheath"//evan, temp name
-	desc = "Can hold a baton, or indeed most weapon shafts."//evan, temp desc
+	name = "part pouch"
+	desc = "Can hold gun parts and armor parts."
 	icon_state = "baton_holster"//evan, temp sprite
 	item_state = "baton_holster"
 	rarity_value = 33
 
 	storage_slots = 10
-	max_w_class = ITEM_SIZE_BULKY
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/gun_part,
+		/obj/item/part,
 		)
