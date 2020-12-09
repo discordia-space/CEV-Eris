@@ -39,11 +39,11 @@ SUBSYSTEM_DEF(trade)
 	var/list/stations2init = collect_spawn_always()
 
 	while(trade_stations_budget && length(weightstationlist))
-		var/datum/trade_station/station_instanse = pickweight(weightstationlist)
-		if(istype(station_instanse))
-			stations2init += station_instanse
-			station_instanse.cost_trade_stations_budget()
-		weightstationlist.Remove(station_instanse)
+		var/datum/trade_station/station_instance = pickweight(weightstationlist)
+		if(istype(station_instance))
+			stations2init += station_instance
+			station_instance.cost_trade_stations_budget()
+		weightstationlist.Remove(station_instance)
 	init_stations_by_list(stations2init)
 
 /datum/controller/subsystem/trade/proc/
