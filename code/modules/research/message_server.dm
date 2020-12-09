@@ -195,10 +195,10 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 
 	//Only one can exist in the world!
-/obj/machinery/blackbox_recorder/New()
-	if(blackbox)
-		if(istype(blackbox,/obj/machinery/blackbox_recorder))
-			qdel(src)
+/obj/machinery/blackbox_recorder/Initialize(mapload, d)
+	. = ..()
+	if(blackbox && istype(blackbox,/obj/machinery/blackbox_recorder))
+		return INITIALIZE_HINT_QDEL
 	blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()

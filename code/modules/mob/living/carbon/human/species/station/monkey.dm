@@ -10,7 +10,7 @@
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
 	language = null
 	default_language = LANGUAGE_MONKEY
-	greater_form = "Human"
+	greater_form = SPECIES_HUMAN
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
 	show_ssd = null
@@ -31,6 +31,7 @@
 	total_health = 75
 	brute_mod = 1.5
 	burn_mod = 1.5
+	lower_sanity_process = TRUE
 
 	spawn_flags = IS_RESTRICTED
 

@@ -1,1 +1,0 @@
-/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    4.44444  150     100

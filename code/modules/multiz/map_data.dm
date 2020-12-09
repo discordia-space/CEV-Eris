@@ -99,7 +99,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
 						/datum/job/technomancer,
 						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
-						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/actor,
+						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/artist,
 						/datum/job/chaplain, /datum/job/acolyte, /datum/job/janitor, /datum/job/hydro,
 						/datum/job/scientist, /datum/job/roboticist,
 						/datum/job/ai, /datum/job/cyborg,
@@ -130,16 +130,17 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_RESEARCH = list(access_rd, access_change_ids, access_change_research),
 		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids, access_change_engineering),
 		ACCESS_REGION_COMMAND = list(access_change_ids),
-		ACCESS_REGION_GENERAL = list(access_change_ids, 
-										access_change_cargo, 
-										access_change_club, 
-										access_change_engineering, 
-										access_change_medbay, 
+		ACCESS_REGION_GENERAL = list(access_change_ids,
+										access_change_cargo,
+										access_change_club,
+										access_change_engineering,
+										access_change_medbay,
 										access_change_nt,
 										access_change_research,
 										access_change_sec),
 		ACCESS_REGION_SUPPLY = list(access_change_ids, access_change_cargo),
-		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids, access_change_nt)
+		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids, access_change_nt),
+		ACCESS_REGION_CLUB = list(access_change_ids, access_change_club)
 	)
 
 	//HOLOMAP
@@ -242,7 +243,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
-		world.maxz++
+		world.incrementMaxZ()
 		empty_levels = list(world.maxz)
 
 		add_z_level(world.maxz, world.maxz, 1)

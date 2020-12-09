@@ -139,6 +139,7 @@
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
 
+#define MOB_BASE_MAX_HUNGER 400
 
 //Time of Death constants
 //Used with a list in preference datums to track times of death
@@ -198,3 +199,4 @@
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
+#define NECROZTIME 	(5 MINUTES)

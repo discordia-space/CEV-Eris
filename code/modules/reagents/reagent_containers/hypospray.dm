@@ -15,6 +15,7 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	preloaded_reagents = list("bicaridine" = 40)
+	//spawn_blacklisted = TRUE//antag_item_targets?
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
@@ -35,7 +36,7 @@
 				to_chat(user, SPAN_WARNING("Injection port on [M]'s suit is refusing your [src]."))
 				// I think rig is advanced enough for this, and people will learn what causes this error
 				if(RIG)
-					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1 -3)
+					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
 					RIG.visible_message("\icon[RIG]\The [RIG] states \"Attention: User of this suit appears to be synthetic origin\".")
 				return
 		// check without message
@@ -95,6 +96,7 @@
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
 	preloaded_reagents = list("inaprovaline" = 5)
+	spawn_blacklisted = FALSE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
@@ -103,7 +105,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	cut_overlays()
-	if(reagents.total_volume > 0)
+	if(reagents && reagents.total_volume > 0)
 		icon_state = initial(icon_state)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
 		filling_overlay.color = reagents.get_color()

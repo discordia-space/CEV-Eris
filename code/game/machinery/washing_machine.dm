@@ -55,12 +55,14 @@
 
 //A washing machine cleans away most of the bad effects of old clothes
 //Armor penalties and name/desc changes are left
-/obj/machinery/washing_machine/proc/wash(var/atom/A)
+/obj/machinery/washing_machine/proc/wash(atom/A)
 	A.clean_blood()
-	if (istype(A, /obj/item))
-		var/obj/item/I = A
-		I.decontaminate()
-	A.make_young()
+	if(isobj(A))
+		var/obj/O = A
+		if(istype(A, /obj/item))
+			var/obj/item/I = A
+			I.decontaminate()
+		O.make_young()
 
 /obj/machinery/washing_machine/Process()
 	if(tick > 0 && (state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING)))
@@ -155,7 +157,7 @@
 			..()
 	else if(is_type_in_list(W, allowed_types))
 		if(contents.len < 10)
-			if ( state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR) )
+			if( state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR) )
 				user.unEquip(W, src)
 				state = WASHSTATE_FULLOPENDOOR
 			else

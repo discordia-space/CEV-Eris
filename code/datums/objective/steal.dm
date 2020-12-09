@@ -33,7 +33,8 @@
 		"an Random wave radio" = /obj/item/device/radio/random_radio,
 		"the Sword of Truth" = /obj/item/weapon/tool/sword/nt_sword,
 		"the Last Shelter" = /obj/item/device/last_shelter,
-		"an Atomic Distillery" = /obj/item/weapon/reagent_containers/atomic_distillery
+		"an Atomic Distillery" = /obj/item/weapon/reagent_containers/atomic_distillery,
+		"the Laurelin bonsai" = /obj/item/weapon/reagent_containers/bonsai
 	)
 
 	var/global/possible_items_special[] = list(

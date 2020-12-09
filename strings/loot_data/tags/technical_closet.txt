@@ -1,4 +1,0 @@
-/obj/structure/closet/emcloset/legacy    blacklisted=0    33.3333  0     100
-/obj/structure/closet/emcloset    blacklisted=0    33.3333  0     100
-/obj/structure/closet/firecloset    blacklisted=0    66.6667  0     100
-/obj/structure/closet/toolcloset    blacklisted=0    66.6667  0     100

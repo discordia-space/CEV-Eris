@@ -1,4 +1,0 @@
-/obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    3.33333  40     100
-/obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    3.33333  40     100
-/obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    20  40     100
-/obj/item/ammo_magazine/ammobox/pistol    blacklisted=0    3.33333  40     100

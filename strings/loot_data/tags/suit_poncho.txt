@@ -1,2 +1,2 @@
-/obj/item/clothing/suit/poncho/tactical    blacklisted=0    1.25  30     100
-/obj/item/clothing/suit/poncho    blacklisted=0    20  30     100
+/obj/item/clothing/suit/poncho/tactical    blacklisted=0    spawn_value=1.22633   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.281   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing

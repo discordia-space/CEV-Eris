@@ -6,8 +6,9 @@
 	has_sensor = 0
 	price_tag = 50
 
-/obj/item/clothing/under/turtleneck/New()
-	if (prob(50))
+/obj/item/clothing/under/turtleneck/Initialize(mapload, ...)
+	. = ..()
+	if(prob(50))
 		name = "black turtleneck"
 		icon_state = "blackturtle"
 

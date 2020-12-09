@@ -6,6 +6,9 @@ Packs are meant to be send mainly to junkpiles, but can be placed on map as well
 They generally give more random result and can provide more divercity in spawn.
 */
 
+/obj/spawner/pack
+	bad_type = /obj/spawner/pack
+
 /obj/spawner/pack/cloth
 	name = "Random cloth supply"
 	icon_state = "armor-red"
@@ -98,6 +101,7 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "low chance rare loot"
 	icon_state = "box-orange-low"
 	spawn_nothing_percentage = 70
+	spawn_frequency = 0
 
 
 //The pack to surpass them all. This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.

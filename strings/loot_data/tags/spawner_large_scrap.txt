@@ -1,1 +1,0 @@
-/obj/spawner/scrap/dense    blacklisted=0    10  50     100

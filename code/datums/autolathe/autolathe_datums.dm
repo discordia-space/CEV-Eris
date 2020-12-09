@@ -23,12 +23,16 @@
 
 
 //These procs are used in subtypes for assigning names and descriptions dynamically
-/datum/design/proc/AssembleDesignInfo()
+/datum/design/proc/AssembleDesignInfo(atom/temp_atom)
 	if(build_path)
-		var/atom/temp_atom = Fabricate(null, 1, null)
+		var/delete_atom = FALSE
+		if(!temp_atom)
+			temp_atom = Fabricate(null, 1, null)
+			delete_atom = TRUE
 		AssembleDesignName(temp_atom)
 		AssembleDesignMaterials(temp_atom)
-		qdel(temp_atom)
+		if(delete_atom)
+			qdel(temp_atom)
 
 	AssembleDesignTime()
 	AssembleDesignDesc()

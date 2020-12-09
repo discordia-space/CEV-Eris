@@ -17,7 +17,7 @@
 	var/datum/poster/design
 	rarity_value = 10
 	bad_type = /obj/item/weapon/contraband/poster
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
@@ -79,7 +79,7 @@
 		return
 
 /obj/item/weapon/contraband/poster/proc/roll_and_drop()
-	anchored = 0
+	anchored = FALSE
 	pixel_x = 0
 	pixel_y = 0
 	icon = initial(icon)

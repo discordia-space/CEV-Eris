@@ -8,6 +8,7 @@
 
 /obj/item/ai_verbs
 	name = "AI verb holder"
+	spawn_tags = null
 
 /obj/item/ai_verbs/verb/hardsuit_interface()
 	set category = "Hardsuit"
@@ -34,7 +35,7 @@
 	disruptive = 0
 	activates_on_touch = 1
 	rarity_value = 2
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 	engage_string = "Eject AI"
 	activate_string = "Enable Dataspike"
@@ -242,7 +243,7 @@
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
 	rarity_value = 3.5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/datum/research/files
 
 /obj/item/rig_module/datajack/New()
@@ -348,7 +349,7 @@
 	interface_name = "niling d-sink"
 	interface_desc = "Colloquially known as a power siphon, this module drains power through the suit hands into the suit battery."
 	rarity_value = 3.5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/atom/interfaced_with // Currently draining power from this device.
 	var/total_power_drained = 0
 	var/drain_loc

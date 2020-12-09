@@ -173,3 +173,7 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 #define MIN_TEMPERATURE -40
 
 ////////////////////////////////////////////
+
+
+//AUTOLATHE
+#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)

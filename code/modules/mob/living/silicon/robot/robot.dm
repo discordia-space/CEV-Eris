@@ -198,7 +198,7 @@
 	if(drain_check)
 		return TRUE
 
-	if(!cell || cell.empty())
+	if(!cell || cell.is_empty())
 		return FALSE
 
 	// Actual amount to drain from cell, using CELLRATE
@@ -1051,7 +1051,7 @@
 		return FALSE
 
 	// Power cell is empty.
-	if(cell.empty())
+	if(cell.is_empty())
 		return FALSE
 
 	var/power_use = (amount * CYBORG_POWER_USAGE_MULTIPLIER) / power_efficiency

@@ -33,7 +33,7 @@
 						"[user] loosens \the [src]'s casters.", \
 						"<span class='notice'> You loosen \the [src]. Now it can be pulled somewhere else.</span>", \
 						"<span class='italics'>You hear ratchet.</span>")
-					src.anchored = 0
+					src.anchored = FALSE
 	else
 		..()
 

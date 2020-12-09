@@ -1,2 +1,0 @@
-/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    10  50     100
-/obj/item/clothing/gloves/insulated    blacklisted=0    6.0241  200     100

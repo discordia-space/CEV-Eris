@@ -1,9 +1,0 @@
-/mob/living/carbon/superior_animal/roach/roachling    blacklisted=1    20  100     100
-/mob/living/carbon/superior_animal/roach/hunter    blacklisted=0    8.88889  200     100
-/mob/living/carbon/superior_animal/roach/fuhrer    blacklisted=0    1.11111  150     100
-/mob/living/carbon/superior_animal/roach/kaiser    blacklisted=1    1  150     100
-/mob/living/carbon/superior_animal/roach/support    blacklisted=0    8.88889  150     100
-/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    4.44444  150     100
-/mob/living/carbon/superior_animal/roach/tank    blacklisted=0    4.44444  150     100
-/mob/living/carbon/superior_animal/roach/toxic    blacklisted=0    4.44444  150     100
-/mob/living/carbon/superior_animal/roach    blacklisted=0    20  150     100

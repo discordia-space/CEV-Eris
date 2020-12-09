@@ -52,7 +52,7 @@
 	. = ..()
 
 
-/obj/item/weapon/storage/deferred/rations //DO this before merging 
+/obj/item/weapon/storage/deferred/rations //DO this before merging
 	name = "infantryman's rations kit"
 	icon_state = "irp_box"
 	item_state = "irp_box"
@@ -242,7 +242,7 @@
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/head/soft/green2soft = 1,
 	/obj/item/clothing/suit/armor/bulletproof/serbian/green = 1,
-	/obj/item/clothing/head/armor/altyn = 1,
+	/obj/item/clothing/head/armor/faceshield/altyn = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1)
@@ -255,7 +255,7 @@
 	/obj/item/clothing/under/serbiansuit/brown = 1,
 	/obj/item/clothing/head/soft/tan2soft = 1,
 	/obj/item/clothing/suit/armor/bulletproof/serbian/tan = 1,
-	/obj/item/clothing/head/armor/altyn/brown = 1,
+	/obj/item/clothing/head/armor/faceshield/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown = 1)
@@ -267,7 +267,7 @@
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/black = 1,
 	/obj/item/clothing/suit/armor/bulletproof/serbian = 1,
-	/obj/item/clothing/head/armor/altyn/black = 1,
+	/obj/item/clothing/head/armor/faceshield/altyn/black = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
@@ -280,7 +280,7 @@
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/suit/armor/flak/green = 1,
-	/obj/item/clothing/head/armor/altyn/maska = 1,
+	/obj/item/clothing/head/armor/faceshield/altyn/maska = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,

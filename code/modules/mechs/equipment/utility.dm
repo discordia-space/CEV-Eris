@@ -331,6 +331,7 @@
 	max_water = 4000 //Good is gooder
 	icon_state = "mech_exting"
 	overlaylist = list()
+	spawn_frequency = 0
 
 /obj/item/weapon/extinguisher/mech/get_hardpoint_maptext()
 	return "[reagents.total_volume]/[max_water]"

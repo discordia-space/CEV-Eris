@@ -166,6 +166,8 @@
 			return "Supply"
 		if(ACCESS_REGION_CHURCH) //Neotheo
 			return "NeoTheology"
+		if(ACCESS_REGION_CLUB) //service
+			return "Club"
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()

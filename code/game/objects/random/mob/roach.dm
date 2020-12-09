@@ -25,4 +25,4 @@
 
 // For Scrap Beacon
 /obj/spawner/mob/roaches/cluster/beacon
-	tags_to_spawn = list(SPAWN_NANITE_ROACH)
+	tags_to_spawn = list(SPAWN_ROACH_NANITE)

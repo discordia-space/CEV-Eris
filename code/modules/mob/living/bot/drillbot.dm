@@ -22,6 +22,7 @@
 
 /mob/living/bot/miningonestar/Destroy()
 	loot = null
+	. = ..()
 
 /mob/living/bot/miningonestar/death()
 	loot.forceMove(loc)

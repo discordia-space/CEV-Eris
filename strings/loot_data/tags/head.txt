@@ -1,159 +1,149 @@
-/obj/item/clothing/head/festive    blacklisted=0    10  30     100
-/obj/item/clothing/head/space/bomb/security    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/bomb    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/capspace    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/santahat    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/emergency    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/syndicate    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/combat/ironhammer    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/combat    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/hazard    blacklisted=1    5  100     100
-/obj/item/clothing/head/space/rig/light    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/merc    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/industrial    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/ce    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/eva    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/hazmat    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig/medical    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/rig    blacklisted=1    10  100     100
-/obj/item/clothing/head/space/anomaly    blacklisted=1    10  100     100
-/obj/item/clothing/head/chameleon    blacklisted=1    2  30     100
-/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle    blacklisted=0    18.018  100     100
-/obj/item/clothing/head/armor/helmet/visor    blacklisted=0    15.015  100     100
-/obj/item/clothing/head/armor/helmet/merchelm    blacklisted=0    20  500     100
-/obj/item/clothing/head/armor/helmet/dermal    blacklisted=0    2  100     100
-/obj/item/clothing/head/armor/helmet/ironhammer    blacklisted=0    2  100     100
-/obj/item/clothing/head/armor/helmet/technomancer    blacklisted=0    20  500     100
-/obj/item/clothing/head/armor/helmet/handmade    blacklisted=0    20  75     100
-/obj/item/clothing/head/armor/helmet/thunderdome    blacklisted=1    20  100     100
-/obj/item/clothing/head/armor/helmet    blacklisted=0    20  100     100
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg    blacklisted=0    10  600     100
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full    blacklisted=0    10  500     100
-/obj/item/clothing/head/armor/bulletproof    blacklisted=0    10  400     100
-/obj/item/clothing/head/armor/laserproof    blacklisted=0    4  325     100
-/obj/item/clothing/head/armor/riot    blacklisted=0    4  150     100
-/obj/item/clothing/head/armor/riot_hud    blacklisted=0    10  300     100
-/obj/item/clothing/head/armor/steelpot    blacklisted=0    10  100     100
-/obj/item/clothing/head/armor/altyn/brown    blacklisted=0    2  100     100
-/obj/item/clothing/head/armor/altyn/black    blacklisted=0    2  100     100
-/obj/item/clothing/head/armor/altyn/maska    blacklisted=0    1  100     100
-/obj/item/clothing/head/armor/altyn    blacklisted=0    2  100     100
-/obj/item/clothing/head/collectable/petehat    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/slime    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/xenom    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/chef    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/paper    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/tophat    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/captain    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/police    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/beret    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/welding    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/flatcap    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/pirate    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/kitty    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/rabbitears    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/wizard    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/hardhat    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/thunderdome    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable/swat    blacklisted=1    10  1000     100
-/obj/item/clothing/head/collectable    blacklisted=1    10  1000     100
-/obj/item/clothing/head/hardhat/visor    blacklisted=0    2.5  30     100
-/obj/item/clothing/head/hardhat/blue    blacklisted=0    10  30     100
-/obj/item/clothing/head/hardhat/orange    blacklisted=0    10  30     100
-/obj/item/clothing/head/hardhat/red    blacklisted=0    10  30     100
-/obj/item/clothing/head/hardhat/white    blacklisted=0    10  30     100
-/obj/item/clothing/head/hardhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/chefhat    blacklisted=1    10  30     100
-/obj/item/clothing/head/caphat/cap    blacklisted=1    10  30     100
-/obj/item/clothing/head/caphat/formal    blacklisted=1    10  30     100
-/obj/item/clothing/head/caphat/hop    blacklisted=1    10  30     100
-/obj/item/clothing/head/caphat    blacklisted=1    10  30     100
-/obj/item/clothing/head/chaplain_hood    blacklisted=1    10  30     100
-/obj/item/clothing/head/nun_hood    blacklisted=1    10  30     100
-/obj/item/clothing/head/preacher    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/sec/navy/officer    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/sec/navy/hos    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/sec/navy/warden    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/sec/navy    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/sec    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/engineering    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/purple    blacklisted=1    10  30     100
-/obj/item/clothing/head/beret/german    blacklisted=1    8  30     100
-/obj/item/clothing/head/beret    blacklisted=1    10  30     100
-/obj/item/clothing/head/surgery/purple    blacklisted=1    10  30     100
-/obj/item/clothing/head/surgery/blue    blacklisted=1    10  30     100
-/obj/item/clothing/head/surgery/green    blacklisted=1    10  30     100
-/obj/item/clothing/head/surgery    blacklisted=1    10  30     100
-/obj/item/clothing/head/mindreader    blacklisted=0    10  30     100
-/obj/item/clothing/head/centhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/hairflower    blacklisted=0    10  30     100
-/obj/item/clothing/head/powdered_wig    blacklisted=0    10  30     100
-/obj/item/clothing/head/that    blacklisted=0    10  30     100
-/obj/item/clothing/head/mailman    blacklisted=0    10  30     100
-/obj/item/clothing/head/plaguedoctorhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/hasturhood    blacklisted=0    10  30     100
-/obj/item/clothing/head/nursehat    blacklisted=0    10  30     100
-/obj/item/clothing/head/syndicatefake    blacklisted=0    10  30     100
-/obj/item/clothing/head/bandana/green    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/bandana/orange    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/bandana    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/cardborg    blacklisted=0    10  30     100
-/obj/item/clothing/head/justice/blue    blacklisted=0    10  30     100
-/obj/item/clothing/head/justice/yellow    blacklisted=0    10  30     100
-/obj/item/clothing/head/justice/green    blacklisted=0    10  30     100
-/obj/item/clothing/head/justice/pink    blacklisted=0    10  30     100
-/obj/item/clothing/head/justice    blacklisted=0    10  30     100
-/obj/item/clothing/head/rabbitears    blacklisted=0    10  30     100
-/obj/item/clothing/head/flatcap    blacklisted=0    10  30     100
-/obj/item/clothing/head/pirate    blacklisted=0    10  30     100
-/obj/item/clothing/head/hgpiratecap    blacklisted=0    10  30     100
-/obj/item/clothing/head/bowler    blacklisted=0    10  30     100
-/obj/item/clothing/head/bowlerhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/beaverhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/boaterhat    blacklisted=0    10  30     100
-/obj/item/clothing/head/fedora    blacklisted=0    10  30     100
-/obj/item/clothing/head/feathertrilby    blacklisted=0    10  30     100
-/obj/item/clothing/head/fez    blacklisted=0    10  30     100
-/obj/item/clothing/head/witchwig    blacklisted=0    10  30     100
-/obj/item/clothing/head/chicken    blacklisted=0    10  30     100
-/obj/item/clothing/head/bearpelt    blacklisted=0    10  30     100
-/obj/item/clothing/head/xenos    blacklisted=0    10  30     100
-/obj/item/clothing/head/philosopher_wig    blacklisted=0    10  30     100
-/obj/item/clothing/head/gladiator    blacklisted=0    10  30     100
-/obj/item/clothing/head/welding    blacklisted=0    10  30     100
-/obj/item/clothing/head/cakehat    blacklisted=0    10  30     100
-/obj/item/clothing/head/ushanka    blacklisted=0    6.0024  30     100
-/obj/item/clothing/head/pumpkinhead    blacklisted=0    10  30     100
-/obj/item/clothing/head/kitty    blacklisted=0    2  30     100
-/obj/item/clothing/head/richard    blacklisted=0    10  30     100
-/obj/item/clothing/head/soft/red    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/blue    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/green    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/yellow    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/grey    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/orange    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/mime    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/purple    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/rainbow    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/sec/corp    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/sec    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/green2soft    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/tan2soft    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/sec2soft    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/sarge2soft    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft/medical    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/soft    blacklisted=0    28.5714  30     100
-/obj/item/clothing/head/lightrig/hacker    blacklisted=0    10  30     100
-/obj/item/clothing/head/lightrig    blacklisted=0    10  30     100
-/obj/item/clothing/head/bio_hood/general    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood/virology    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood/security    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood/janitor    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood/scientist    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood/cmo    blacklisted=0    10  50     100
-/obj/item/clothing/head/bio_hood    blacklisted=0    10  50     100
-/obj/item/clothing/head/radiation    blacklisted=0    10  50     100
-/obj/item/clothing/head/warden    blacklisted=0    10  30     100
-/obj/item/clothing/head/det/grey    blacklisted=0    10  30     100
-/obj/item/clothing/head/det    blacklisted=0    10  30     100
-/obj/item/clothing/head/HoS    blacklisted=0    2  30     100
+/obj/item/clothing/head/festive    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/bomb/security    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/bomb    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/capspace    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/santahat    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/emergency    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/syndicate    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/space/anomaly    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle    blacklisted=0    spawn_value=13.245   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/visor    blacklisted=0    spawn_value=11.5473   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/merchelm    blacklisted=0    spawn_value=12.9888   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/dermal    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/ironhammer    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/technomancer    blacklisted=0    spawn_value=12.9888   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/handmade    blacklisted=0    spawn_value=14.5453   spawn_price=75   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/thunderdome    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/crusader    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet    blacklisted=0    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg    blacklisted=0    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/bulletproof    blacklisted=0    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/laserproof    blacklisted=0    spawn_value=3.63479   spawn_price=325   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/faceshield/riot    blacklisted=0    spawn_value=3.67971   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/faceshield/altyn/brown    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/faceshield/altyn/black    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/faceshield/altyn/maska    blacklisted=0    spawn_value=0.980392   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/faceshield/altyn    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/riot_hud    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/steelpot    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/acolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/agrolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/custodian    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/petehat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/slime    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/xenom    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/chef    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/paper    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/tophat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/captain    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/police    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/beret    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/welding    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/flatcap    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/pirate    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/kitty    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/rabbitears    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/wizard    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/hardhat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/thunderdome    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/swat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/gnome    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat/visor    blacklisted=0    spawn_value=2.40708   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat/blue    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat/orange    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat/red    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat/white    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hardhat    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chefhat    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/caphat/cap    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/caphat/formal    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/caphat/hop    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/caphat    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chaplain_hood    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/nun_hood    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/preacher    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/sec/navy/officer    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/sec/navy/hos    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/sec/navy/warden    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/sec/navy    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/sec    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/engineering    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/purple    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret/german    blacklisted=1    spawn_value=7.12044   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beret    blacklisted=1    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/surgery/purple    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/surgery/blue    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/surgery/green    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/mindreader    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/centhat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hairflower    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/powdered_wig    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/that    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/mailman    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/plaguedoctorhat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hasturhood    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/nursehat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/syndicatefake    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bandana/green    blacklisted=0    spawn_value=19.8253   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bandana/orange    blacklisted=0    spawn_value=19.8253   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bandana    blacklisted=0    spawn_value=19.8253   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/cardborg    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/justice/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/justice/yellow    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/justice/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/justice/pink    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/justice    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/rabbitears    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/flatcap    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/pirate    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/hgpiratecap    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bowler    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bowlerhat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/beaverhat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/boaterhat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/fedora    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/feathertrilby    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/fez    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/witchwig    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/chicken    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bearpelt    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/xenos    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/philosopher_wig    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/gladiator    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/welding    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/cakehat    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/ushanka    blacklisted=0    spawn_value=5.51355   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/pumpkinhead    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/kitty    blacklisted=0    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/richard    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/red    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/blue    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/green    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/yellow    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/grey    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/orange    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/mime    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/purple    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/rainbow    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/sec/corp    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/sec    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/green2soft    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/tan2soft    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/sec2soft    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/sarge2soft    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft/medical    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/soft    blacklisted=0    spawn_value=20.0919   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/general    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/virology    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/security    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/janitor    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/scientist    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood/cmo    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/bio_hood    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/radiation    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/warden    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/det/grey    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/det    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/HoS    blacklisted=0    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

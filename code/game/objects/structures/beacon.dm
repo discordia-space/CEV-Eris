@@ -9,6 +9,7 @@
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_STRANGEBEACON
 	var/nosignal = FALSE
+	var/entropy_value = 6
 
 /obj/structure/strangebeacon/attack_hand(mob/living/user as mob)
 	if(nosignal == FALSE)
@@ -34,6 +35,7 @@
 		var/drop_type = pick(supply_drop_random_loot_types())
 		new /datum/random_map/droppod/supply(null, drop_x, drop_y, drop_z, supplied_drop = drop_type) // Splat.
 		nosignal = TRUE
+		bluespace_entropy(entropy_value, get_turf(src))
 
 /obj/structure/strangebeacon/pods/attack_hand(mob/living/user as mob)
 	addtimer(CALLBACK(src, .proc/call_droppod), rand(100,300))

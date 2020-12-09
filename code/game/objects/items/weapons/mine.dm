@@ -6,9 +6,9 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
-	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	layer = BELOW_MOB_LAYER //fixed the wrong layer - Plasmatik
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_ITEM_MINE
+	spawn_tags = SPAWN_TAG_MINE_ITEM
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
@@ -67,7 +67,17 @@
 
 	update_icon()
 
-/obj/item/weapon/mine/attack_hand(mob/user as mob)
+/obj/item/weapon/mine/attack_hand(mob/user)
+	for(var/datum/antagonist/A in user.mind.antagonist)
+		if(A.id == ROLE_EXCELSIOR_REV && deployed)
+			user.visible_message(
+				SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
+				)
+			deployed = FALSE
+			anchored = FALSE
+			armed = FALSE
+			update_icon()
+			return
 	if (deployed)
 		user.visible_message(
 				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
@@ -79,7 +89,8 @@
 				SPAN_DANGER("you attempts to pick up the [src] only to hear a beep as it explodes in your hands!")
 				)
 			explode()
-	.=..()
+			return
+	. =..()
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
@@ -111,8 +122,11 @@
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
+			for(var/datum/antagonist/A in AM.mind.antagonist)
+				if(A.id == ROLE_EXCELSIOR_REV)
+					return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
-			if(prob(true_prob_explode) && !is_excelsior(AM))
+			if(prob(true_prob_explode))
 				explode()
 				return
 	.=..()

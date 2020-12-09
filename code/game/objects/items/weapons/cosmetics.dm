@@ -27,7 +27,8 @@
 /obj/item/weapon/lipstick/random
 	name = "lipstick"
 
-/obj/item/weapon/lipstick/random/New()
+/obj/item/weapon/lipstick/random/Initialize(mapload)
+	. = ..()
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 
@@ -79,7 +80,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 	item_state = "purplecomb"
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 	rarity_value = 12.5
 
 /obj/item/weapon/haircomb/attack_self(mob/user)

@@ -294,11 +294,12 @@
 
 	required_technologies = list(/datum/technology/mech_weaponry_modules)
 	required_tech_levels = list()
-	cost = 4000
+	cost = 5000
 
 	unlocks_designs = list(
 			/datum/design/research/item/exosuit/weapon/plasma,
-			/datum/design/research/item/exosuit/weapon/laser
+			/datum/design/research/item/exosuit/weapon/laser,
+			/datum/design/research/item/exosuit/weapon/pk
 		)
 
 //AI BRANCH_________________________________________________________________________________________________________________________________________________
