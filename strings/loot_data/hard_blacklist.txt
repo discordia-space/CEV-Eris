@@ -817,10 +817,10 @@
 /obj/item/modular_computer/telescreen
 /obj/item/modular_computer
 /obj/item/rocket_engine
-/obj/item/craft
 /obj/item/part
 /obj/item/craft_frame/guns
 /obj/item/craft_frame
+/obj/item/craft
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/medical/advanced
 /obj/item/stack/medical
@@ -979,6 +979,7 @@
 /obj/item/clothing/head/space/void/security
 /obj/item/clothing/head/space/void/atmos
 /obj/item/clothing/head/space/void/science
+/obj/item/clothing/head/space/void/riggedvoidsuit
 /obj/item/clothing/head/space/void/wizard
 /obj/item/clothing/head/space/void
 /obj/item/clothing/head/space/rig/combat/ironhammer

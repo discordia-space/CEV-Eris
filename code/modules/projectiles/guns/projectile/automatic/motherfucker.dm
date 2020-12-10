@@ -2,7 +2,7 @@
 	name = "HM Motherfucker .35 \"Punch Hole\""
 	desc = "A 6 barrel, pump action carbine, shakes like the devil. but will turn anything in a 90º from you in swiss cheese."
 	icon = 'icons/obj/guns/projectile/motherfucker.dmi'
-	icon_state = "motherfucker"
+	icon_state = "motherfucker"//evan, temp icon
 	item_state = "motherfucker"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST

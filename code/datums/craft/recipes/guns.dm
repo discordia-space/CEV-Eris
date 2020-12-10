@@ -1,11 +1,10 @@
 /datum/craft_recipe/gun
 	category = "Guns"
-	icon_state = "gun_frame"//EVAN CHANGE IT
 	time = 25
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun/pistol
-	name = "handmade gun"
+	name = "Handmade gun"
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
@@ -15,10 +14,10 @@
 	)
 
 /datum/craft_recipe/gun/handmaderevolver
-	name = "handmade Revolver"
+	name = "Handmade Revolver"
 	result = /obj/item/weapon/gun/projectile/revolver/handmade
 	steps = list(
-		list(/obj/item/part/gun, 2),//no work
+		list(/obj/item/part/armor, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -27,10 +26,10 @@
 	)
 
 /datum/craft_recipe/gun/handmaderifle
-	name = "handmade bolt action rifle"
+	name = "Handmade bolt action rifle"
 	result = /obj/item/weapon/gun/projectile/boltgun/handmade
 	steps = list(
-		list(/obj/item/part/gun, 2),
+		list(/obj/item/part/armor, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),

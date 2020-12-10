@@ -44,6 +44,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/tool_upgrade = 30,
 					/obj/spawner/toolbox = 5,
 					/obj/spawner/voidsuit = 3,
+					/obj/spawner/armor_parts = 3,
 					/obj/spawner/gun_upgrade = 2
 				))
 

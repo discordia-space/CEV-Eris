@@ -47,7 +47,7 @@
 /obj/spawner/gun_parts
 	name = "random gun part"
 	icon_state = "gun-black"
-	tags_to_spawn = list(SPAWN_GUN_PART)
+	tags_to_spawn = list(SPAWN_PART_GUN)
 
 /obj/spawner/gun_parts/low_chance
 	name = "low chance random gun part"

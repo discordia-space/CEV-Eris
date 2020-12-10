@@ -1435,6 +1435,7 @@
 /obj/item/weapon/fossil/plant    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/talkingcrystal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/vampiric    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/part/armor    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/part/gun    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/cut    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/yellow    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1739,6 +1740,7 @@
 /obj/item/clothing/suit/space/void/security    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=5.50439   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.88131   spawn_price=1427   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/riggedvoidsuit    blacklisted=1    spawn_value=8.21478   spawn_price=149   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=8.21874   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/bomb/security    blacklisted=1    spawn_value=2.66829   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1828,6 +1830,7 @@
 /obj/item/clothing/suit/storage/drive_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/violet_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/bomj    blacklisted=0    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/scavengerarmor    blacklisted=1    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/general    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/virology    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/security    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing

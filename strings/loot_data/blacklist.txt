@@ -273,6 +273,7 @@
 /obj/item/clothing/suit/space/void/security/equipped
 /obj/item/clothing/suit/space/void/security
 /obj/item/clothing/suit/space/void/science
+/obj/item/clothing/suit/space/void/riggedvoidsuit
 /obj/item/clothing/suit/space/void/wizard
 /obj/item/clothing/suit/space/bomb/security
 /obj/item/clothing/suit/space/syndicate
@@ -285,6 +286,7 @@
 /obj/item/clothing/suit/storage/neotheosports
 /obj/item/clothing/suit/storage/te_coat
 /obj/item/clothing/suit/storage/surgical_apron
+/obj/item/clothing/suit/storage/scavengerarmor
 /obj/item/clothing/suit/apron
 /obj/item/clothing/suit/neotheology_jacket
 /obj/item/clothing/suit/neotheology_coat

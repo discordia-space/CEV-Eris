@@ -12,6 +12,7 @@
 /obj/item/clothing/suit/space/void/security    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=5.50439   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.88131   spawn_price=1427   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/riggedvoidsuit    blacklisted=1    spawn_value=8.21478   spawn_price=149   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=8.21874   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/storage/vest/merc/full    blacklisted=0    spawn_value=1.02683   spawn_price=244   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -56,5 +57,6 @@
 /obj/item/clothing/suit/storage/drive_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/violet_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/bomj    blacklisted=0    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/scavengerarmor    blacklisted=1    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/poncho/tactical    blacklisted=0    spawn_value=1.2253   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.1222   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing

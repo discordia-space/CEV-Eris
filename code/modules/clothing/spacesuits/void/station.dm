@@ -275,4 +275,43 @@
 	rarity_value = 50
 	spawn_blacklisted = TRUE
 
+/obj/item/clothing/head/space/void/riggedvoidsuit
+	name = "makeshift armored Helmet"
+	desc = "A makeshift armored helmet you can see the glue holding it, just close enough to be airtight."
+	icon_state = "scav_helmet"//evan, temp icon
+	item_state = "scav_helmet"//evan, temp icon
+	slowdown = 2
+	item_state_slots = list(
+		slot_l_hand_str = "assaulthelm",//evan, temp icon
+		slot_r_hand_str = "assaulthelm",//evan, temp icon
+		)
+
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	light_overlay = "helmet_light_dual"
+	siemens_coefficient = 0.8
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit
+	name = "makeshift armored voidsuit"
+	desc = "A makeshift armored voidsuit you can see the glue holding it, just close enough to be airtight."
+	icon_state = "scav_suit"//evan, temp icon
+	item_state = "scav_suit"//evan, temp icon
+	siemens_coefficient = 0.4
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	siemens_coefficient = 0.8
+	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
+	spawn_blacklisted = TRUE
 

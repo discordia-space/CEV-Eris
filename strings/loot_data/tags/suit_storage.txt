@@ -40,3 +40,4 @@
 /obj/item/clothing/suit/storage/drive_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/violet_jacket    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/bomj    blacklisted=0    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/scavengerarmor    blacklisted=1    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing

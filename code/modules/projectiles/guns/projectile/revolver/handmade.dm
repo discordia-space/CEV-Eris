@@ -2,7 +2,7 @@
 	name = "Handmade revolver"
 	desc = "Handmade revolver, made from gun parts. and some duct tap, will it even hold up?"
 	icon = 'icons/obj/guns/projectile/deckard.dmi'
-	icon_state = "deckard"
+	icon_state = "deckard"//evan, temp icon
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	max_shells = 5

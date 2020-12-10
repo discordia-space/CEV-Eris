@@ -12,5 +12,6 @@
 /obj/item/clothing/suit/space/void/security    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=5.50439   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.88131   spawn_price=1427   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/riggedvoidsuit    blacklisted=1    spawn_value=8.21478   spawn_price=149   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=8.21874   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots

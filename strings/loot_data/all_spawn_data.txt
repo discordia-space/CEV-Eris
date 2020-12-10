@@ -1482,7 +1482,8 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/modular_computer/console/preset/civilian    obj;machinery    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/modular_computer/console/preset/trade    obj;machinery    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/modular_computer/console    obj;machinery    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/part/gun    obj;item;part;guns;gun_part    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/part/armor    obj;item;part;gun_armor;clothing    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/part/gun    obj;item;part;guns;part_gun    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/cut    obj;item;item_utility    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/yellow    obj;item;item_utility    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/blue    obj;item;item_utility    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1786,6 +1787,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/suit/space/void/security    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/atmos    obj;item;clothing;suit;space_suit;void_suit    blacklisted=0    spawn_value=5.50439   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/science    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=1.88131   spawn_price=1427   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/riggedvoidsuit    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.21478   spawn_price=149   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/wizard    obj;item;clothing;suit;space_suit;void_suit    blacklisted=1    spawn_value=8.21087   spawn_price=151   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void    obj;item;clothing;suit;space_suit;void_suit    blacklisted=0    spawn_value=8.21874   spawn_price=147   prob_accompanying_obj=100    accompanying_objs=/obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/bomb/security    obj;item;clothing;hazmatsuit    blacklisted=1    spawn_value=2.66829   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1875,6 +1877,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/clothing/suit/storage/drive_jacket    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/violet_jacket    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=5.47262   spawn_price=41   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/bomj    obj;item;clothing;suit;suit_storage    blacklisted=0    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/scavengerarmor    obj;item;clothing;suit;suit_storage    blacklisted=1    spawn_value=8.59589   spawn_price=43   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/general    obj;item;clothing;hazmatsuit    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/virology    obj;item;clothing;hazmatsuit    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/bio_suit/security    obj;item;clothing;hazmatsuit    blacklisted=0    spawn_value=8.33033   spawn_price=101   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2921,9 +2924,9 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/structure/scrap_spawner/food/large/beacon    obj;structure;structure_scrap;structure_scrap_beacon    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/food/large    obj;structure;structure_scrap;structure_scrap_large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/food    obj;structure;structure_scrap    blacklisted=0    spawn_value=17.331   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns/large/beacon    obj;structure;structure_scrap;structure_scrap_beacon    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns/large    obj;structure;structure_scrap;structure_scrap_large    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns    obj;structure;structure_scrap    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large/beacon    obj;structure;structure_scrap;structure_scrap_beacon    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large    obj;structure;structure_scrap;structure_scrap_large    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns    obj;structure;structure_scrap    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science/large/beacon    obj;structure;structure_scrap;structure_scrap_beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science/large    obj;structure;structure_scrap;structure_scrap_large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science    obj;structure;structure_scrap    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -3127,6 +3130,8 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/spawner/voidsuit/damaged/low_chance    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/voidsuit/damaged    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/voidsuit    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/armor_parts/low_chance    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/armor_parts    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/biome_spawner_obj/low_chance    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/biome_spawner_obj    spawner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/mob/biome_spawner_mob/low_chance    spawner;spawner_mob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

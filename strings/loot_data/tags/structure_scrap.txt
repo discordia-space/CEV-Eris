@@ -8,9 +8,9 @@
 /obj/structure/scrap_spawner/food/large/beacon    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/food    blacklisted=0    spawn_value=17.331   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science/large/beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/structure/scrap_spawner/science    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

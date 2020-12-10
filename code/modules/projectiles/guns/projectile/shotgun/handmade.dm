@@ -2,7 +2,7 @@
 	name = "slide barrel shotgun"
 	desc = "Made out of trash, but rather special on its design"
 	icon = 'icons/obj/guns/projectile/slideshotgun.dmi'
-	icon_state = "slideshotgun"
+	icon_state = "slideshotgun"//evan, temp icon
 	item_state = "slideshotgun"
 	max_shells = 1
 	caliber = CAL_SHOTGUN
