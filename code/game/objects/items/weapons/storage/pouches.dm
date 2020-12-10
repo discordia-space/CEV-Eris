@@ -44,7 +44,7 @@
 	desc = "Can hold anything in it, but only about once."
 	icon_state = "small_generic"
 	item_state = "small_generic"
-	matter = list(MATERIAL_BIOMATTER = 9)
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 3)
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
 	max_w_class = ITEM_SIZE_SMALL
@@ -55,7 +55,7 @@
 	desc = "Can hold anything in it, but only about twice."
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
-	matter = list(MATERIAL_BIOMATTER = 24)
+	matter = list(MATERIAL_BIOMATTER = 24, MATERIAL_STEEL = 6 )
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
@@ -66,7 +66,7 @@
 	desc = "A mini satchel. Can hold a fair bit, but it won't fit in your pocket"
 	icon_state = "large_generic"
 	item_state = "large_generic"
-	matter = list(MATERIAL_BIOMATTER = 39)
+	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 9 )
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
@@ -79,7 +79,7 @@
 	desc = "Can hold medical equipment. But only about three pieces of it."
 	icon_state = "medical_supply"
 	item_state = "medical_supply"
-	matter = list(MATERIAL_BIOMATTER = 9)
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 3
@@ -107,7 +107,7 @@
 	desc = "Can hold small engineering tools. But only about three pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
-	matter = list(MATERIAL_BIOMATTER = 9)
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
 	storage_slots = 3
@@ -139,7 +139,7 @@
 	desc = "Can hold engineering equipment. But only about two pieces of it."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
-	matter = list(MATERIAL_BIOMATTER = 9)
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 2
@@ -167,7 +167,7 @@
 	desc = "Can hold ammo magazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	item_state = "ammo"
-	matter = list(MATERIAL_BIOMATTER = 39)
+	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 3 )
 	rarity_value = 33
 
 	storage_slots = 3
@@ -184,7 +184,7 @@
 	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes or rockets."
 	icon_state = "flare"
 	item_state = "flare"
-	matter = list(MATERIAL_BIOMATTER = 14)
+	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
 	rarity_value = 14
 
 	storage_slots = 5
