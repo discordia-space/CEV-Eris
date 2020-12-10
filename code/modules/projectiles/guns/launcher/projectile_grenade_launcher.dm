@@ -20,5 +20,4 @@
     max_shells = 3
     recoil_buildup = 20
     twohanded = TRUE
-    rarity_value = 30
     accompanying_object = /obj/item/ammo_casing/grenade/frag

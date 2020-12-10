@@ -57,8 +57,7 @@
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
 	twohanded = TRUE
-	rarity_value = 48
-
+	rarity_value = GUN_BASE_RARITY_VALUE+30//no price tag,then high rarirty
 	var/obj/item/bolt
 	var/tension = 0                         // Current draw on the bow.
 	var/max_tension = 5                     // Highest possible tension.
@@ -311,6 +310,7 @@
 	icon_state = "rxb"
 	slot_flags = null
 	draw_time = 5
+	spawn_blacklisted = TRUE
 	var/stored_matter = 0
 	var/max_stored_matter = 60
 	var/boltcost = 5

@@ -25,7 +25,6 @@
 	)
 	var/consume_cell = FALSE
 	price_tag = 2500
-	rarity_value = 20
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()

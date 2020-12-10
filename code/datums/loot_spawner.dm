@@ -123,12 +123,17 @@
 		//spawn_value//
 		var/spawn_value = get_spawn_value(path)
 		//all_spawn_value_by_path[path] = spawn_value
-		//blacklisted//
-		//blacklisted = initial(A.spawn_blacklisted)
-		//if(blacklisted)
-		//	all_spawn_blacklist += path
 
 		//tags//
+		/*
+		if(generate_files && ispath(path, /obj/item/weapon/gun))
+			var/tag_data_i
+			if(price > CHEAP_GUN_PRICE)
+				tag_data_i = file("[file_dir_tags]gun_expensive.txt")
+			else
+				tag_data_i = file("[file_dir_tags]gun_cheap.txt")
+			tag_data_i  << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
+		*/
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
 			if(ispath(path, /obj/item) && tag != SPAWN_OBJ &&!initial(A.density) && ISINRANGE(price, 1, CHEAP_ITEM_PRICE) && !lowkeyrandom_tags.Find(tag))
@@ -143,9 +148,20 @@
 				blacklist_paths_data << "[path]"
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
+	if(is_special_spawn(npath))
+		return get_special_spawn_value(npath)
 	var/atom/movable/A = npath
 	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))
 	return spawn_value
+
+/datum/controller/subsystem/spawn_data/proc/is_special_spawn(npath)
+	. = FALSE
+	if(ispath(npath, /obj/item/weapon/gun))
+		return TRUE
+
+/datum/controller/subsystem/spawn_data/proc/get_special_spawn_value(npath)
+	var/atom/movable/A = npath
+	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
 	var/atom/movable/A = path

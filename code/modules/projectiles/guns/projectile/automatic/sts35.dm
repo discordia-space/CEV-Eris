@@ -23,7 +23,6 @@
 	damage_multiplier = 1.2
 	recoil_buildup = 8
 	one_hand_penalty = 15 //automatic rifle level
-	rarity_value = 96
 
 
 	init_firemodes = list(

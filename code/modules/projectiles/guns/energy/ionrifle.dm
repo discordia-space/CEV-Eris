@@ -17,7 +17,6 @@
 	projectile_type = /obj/item/projectile/ion
 	one_hand_penalty = 5
 	twohanded = TRUE
-	rarity_value = 24
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess

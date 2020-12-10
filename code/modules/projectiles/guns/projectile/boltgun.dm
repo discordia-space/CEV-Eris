@@ -25,6 +25,7 @@
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
+	spawn_blacklisted = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
 
@@ -99,7 +100,7 @@
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
-	rarity_value = 48
+	spawn_blacklisted = FALSE
 
 /obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"

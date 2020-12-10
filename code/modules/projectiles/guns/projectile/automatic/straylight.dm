@@ -16,7 +16,6 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 8)
 	price_tag = 1400
-	rarity_value = 12
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.65	 //made with rubber rounds in mind. For lethality refer to Wintermute. Still quite lethal if you manage to land most shots.
 	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.

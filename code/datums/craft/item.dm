@@ -70,7 +70,7 @@
 	var/list/paths = list()
 
 /obj/item/craft_frame/guns
-	name = "Gun assembly"
+	name = "gun assembly"
 	desc = "Add some weapon parts to complete this, use your knowledge of mechanics and create a gun."//EVAN TEMP DESCK
 	matter = list(MATERIAL_PLASTEEL = 5)
 	suitable_part = /obj/item/part/gun

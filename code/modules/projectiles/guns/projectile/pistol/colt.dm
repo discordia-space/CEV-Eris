@@ -14,7 +14,6 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.5
 	recoil_buildup = 17
-	rarity_value = 8
 
 
 /obj/item/weapon/gun/projectile/colt/update_icon()

@@ -6,7 +6,7 @@
 /obj/spawner/gun/cheap
 	name = "random cheap gun"
 	icon_state = "gun-grey"
-	top_price = 1700
+	top_price = CHEAP_GUN_PRICE
 
 /obj/spawner/gun/cheap/low_chance
 	name = "low chance random cheap gun"
@@ -16,7 +16,7 @@
 /obj/spawner/gun/normal
 	name = "random normal gun"
 	icon_state = "gun-green"
-	low_price = 1700
+	low_price = CHEAP_GUN_PRICE
 
 /obj/spawner/gun/normal/low_chance
 	name = "low chance random normal gun"

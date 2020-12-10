@@ -25,7 +25,7 @@
 	hud_actions = list()
 	bad_type = /obj/item/weapon/gun
 	spawn_tags = SPAWN_TAG_GUN
-	rarity_value = 10
+	rarity_value = GUN_BASE_RARITY_VALUE
 	spawn_frequency = 10
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun

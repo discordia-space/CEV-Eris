@@ -69,7 +69,6 @@
 	fire_delay = 8
 	price_tag = 3000
 	zoom_factor = null
-	rarity_value = 12
 
 	init_firemodes = list(
 		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),

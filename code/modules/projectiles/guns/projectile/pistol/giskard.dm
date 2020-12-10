@@ -19,7 +19,6 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
-	rarity_value = 8
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

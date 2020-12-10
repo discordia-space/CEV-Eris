@@ -1,4 +1,6 @@
-/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=8.40263   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=14.2857   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/lasertag/blue    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/lasertag/red    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/toy/balloon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/toy/blink    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/toy/spinningtoy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

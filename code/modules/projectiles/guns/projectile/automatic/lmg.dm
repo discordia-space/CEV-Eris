@@ -2,8 +2,7 @@
 	name = "L6 SAW"
 	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. This one is unmarked."
 	icon = 'icons/obj/guns/projectile/l6.dmi'
-	var/icon_base
-	icon_base = "l6"
+	var/icon_base = "l6"
 	icon_state = "l6closed-empty"
 	item_state = "l6closedmag"
 	w_class = ITEM_SIZE_HUGE
@@ -24,6 +23,7 @@
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	recoil_buildup = 3.5
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
+	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
 		FULL_AUTO_600,
@@ -88,6 +88,7 @@
 	icon_base = "pk"
 	icon_state = "pkclosed-empty"
 	item_state = "pkclosedmag"
+	spawn_blacklisted = FALSE
 
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"

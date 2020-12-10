@@ -1,3 +1,14 @@
+#define CHEAP_ITEM_PRICE 800
+
+//guns defines
+#define GUN_BASE_RARITY_VALUE 5
+
+#define CHEAP_GUN_PRICE 1700
+
+#define GUN_PRICE_DIVISOR 100
+//end guns
+
+//biomes defines
 #define LOOT_LEVEL_VERY_LOW 4000
 
 #define LOOT_LEVEL_LOW 8000
@@ -522,8 +533,6 @@
 #define SPAWN_MOEBIUS "moebius"
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
-
-#define CHEAP_ITEM_PRICE 800
 
 
 #define SPAWN_CLOWN "clown"

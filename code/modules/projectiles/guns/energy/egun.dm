@@ -10,7 +10,6 @@
 	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
 	price_tag = 2500
-	rarity_value = 8
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -44,7 +43,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 2)
 	price_tag = 1000
-	rarity_value = 8
 	modifystate = null
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small

@@ -1,7 +1,9 @@
+/obj/item/weapon/gun/projectile/automatic/lmg
 /obj/item/weapon/gun/projectile/automatic/ak47
 /obj/item/weapon/gun/projectile/automatic/motherfucker
 /obj/item/weapon/gun/projectile/shotgun/slidebarrel
 /obj/item/weapon/gun/projectile/boltgun/handmade
+/obj/item/weapon/gun/projectile/boltgun
 /obj/item/weapon/gun/projectile/gyropistol
 /obj/item/weapon/gun/projectile/revolver/capgun
 /obj/item/weapon/gun/projectile/revolver/handmade
@@ -22,6 +24,9 @@
 /obj/item/weapon/gun/energy/psychic
 /obj/item/weapon/gun/energy/shrapnel/mounted
 /obj/item/weapon/gun/energy/xray/xenoarch
+/obj/item/weapon/gun/launcher/crossbow/RCD
+/obj/item/weapon/gun/matter/launcher/nt_sprayer
+/obj/item/weapon/gun/matter/launcher/reclaimer
 /obj/item/weapon/tank/onestar_regenerator
 /obj/item/weapon/paper/manifest
 /obj/item/weapon/paper/monitorkey
