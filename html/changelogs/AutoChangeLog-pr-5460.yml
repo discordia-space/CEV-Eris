@@ -1,0 +1,16 @@
+author: AlexMorgan3817
+delete-after: true
+changes:
+  - tweak: McRonalds now buy not roaches, but their meat.
+  - bugfix: fixed that special offers wasn't able to be fulfilled in some situations
+  - bugfix: special offers won't able to request 0 from 0 things
+  - bugfix: fixed freezing of UI after first buy
+  - rscadd: You can now sell things to trade stations
+  - rscadd: Trade beacons now on activation not just animated, but have sparks. If
+      you will be on tile where goods will "land", you will be injured.
+  - rscadd: Now you can't farm crates for free, if you buy goods with crates you will
+      pay for crate as commision
+  - rscadd: Added cat ears that can be bought in McRonalds together with Chocola cake
+  - rscadd: You can now input how many goods you want to add in cart.
+  - spellcheck: Fixed typos on GBT 'Suit Up'
+  - spellcheck: FSMS 'Kaida' fixed unfinished descri
