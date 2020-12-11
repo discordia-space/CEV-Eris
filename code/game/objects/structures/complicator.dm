@@ -1,5 +1,5 @@
 /obj/structure/complicator
-	name = "Reality Complicator"
+	name = "\improper Reality Complicator"
 	desc = "A weird device of unknown origin. A note on the side says 'Do not press.'"
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "complicator"
@@ -30,7 +30,7 @@
 		visible_message(SPAN_DANGER("\the [user] presses \the [src]!"))
 		user.apply_effect((rand_points/10),IRRADIATE)
 	else
-		to_chat(user, SPAN_WARNING("The [src] needs some time to reload!"))
+		to_chat(user, SPAN_WARNING("\The [src] needs some time to reload!"))
 
 /obj/structure/complicator/attackby(obj/item/I, mob/living/user, params)
 	if(nt_sword_attack(I, user))
