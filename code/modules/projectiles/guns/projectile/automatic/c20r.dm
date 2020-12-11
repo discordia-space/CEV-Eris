@@ -19,9 +19,9 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 6)
 	price_tag = 1800
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sfrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sfrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
 	penetration_multiplier = 1.5 //7.5 with regular lethal ammo, 15 with HV, seems legit
 	zoom_factor = 0.4

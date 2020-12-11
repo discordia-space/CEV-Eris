@@ -114,9 +114,11 @@
 				all_accompanying_obj_by_path[path] += list(initial(E.suitable_cell))
 		else if(ispath(path, /obj/item/weapon/gun/projectile))
 			var/obj/item/weapon/gun/projectile/P = A
-			if(initial(P.magazine_type))
+			if(initial(P.magazine_type) && ((initial(P.load_method) & MAGAZINE) || (initial(P.load_method) & SPEEDLOADER)))
 				all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
-
+			else if(initial(P.ammo_type) && (initial(P.max_shells)) && (initial(P.load_method) & SINGLE_CASING))
+				for(var/i in 1 to min(initial(P.max_shells),10))//max 10 ammo
+					all_accompanying_obj_by_path[path] += list(initial(P.ammo_type))
 		//price//
 		var/price = get_spawn_price(path)
 

@@ -8,31 +8,31 @@
 /obj/item/weapon/gun/projectile/automatic/drozd    blacklisted=0    spawn_value=3.06748   spawn_price=2760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/automatic/maxim    blacklisted=0    spawn_value=1.3369   spawn_price=6980   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/maxim
 /obj/item/weapon/gun/projectile/automatic/molly    blacklisted=0    spawn_value=3.37838   spawn_price=2460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
-/obj/item/weapon/gun/projectile/automatic/motherfucker    blacklisted=1    spawn_value=12.5   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/automatic/motherfucker    blacklisted=1    spawn_value=10   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol, /obj/item/ammo_casing/pistol,/obj/item/ammo_casing/pistol
 /obj/item/weapon/gun/projectile/automatic/sol    blacklisted=0    spawn_value=2.89017   spawn_price=2960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/ihclrifle
 /obj/item/weapon/gun/projectile/automatic/straylight    blacklisted=0    spawn_value=3.7594   spawn_price=2160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/smg
 /obj/item/weapon/gun/projectile/automatic/sts35    blacklisted=0    spawn_value=2.24215   spawn_price=3960   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
 /obj/item/weapon/gun/projectile/automatic/vintorez    blacklisted=0    spawn_value=1.97628   spawn_price=4560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
-/obj/item/weapon/gun/projectile/automatic/wintermute    blacklisted=0    spawn_value=1.41643   spawn_price=4060   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
+/obj/item/weapon/gun/projectile/automatic/wintermute    blacklisted=0    spawn_value=2.19298   spawn_price=4060   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
 /obj/item/weapon/gun/projectile/automatic/z8    blacklisted=0    spawn_value=2.34742   spawn_price=3760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
 /obj/item/weapon/gun/projectile/automatic/zoric    blacklisted=0    spawn_value=3.26797   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
-/obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=1.99203   spawn_price=4520   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=4   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=5   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=6.66667   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=1.97628   spawn_price=4560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag, /obj/item/ammo_casing/grenade/frag,/obj/item/ammo_casing/grenade/frag
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=3.73134   spawn_price=2180   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun,/obj/item/ammo_casing/shotgun
+/obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.6729   spawn_price=1640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun,/obj/item/ammo_casing/shotgun
+/obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=6.32911   spawn_price=1080   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/beanbag, /obj/item/ammo_casing/shotgun/beanbag, /obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag
 /obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=2.11864   spawn_price=4220   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/m12
-/obj/item/weapon/gun/projectile/shotgun/bull    blacklisted=0    spawn_value=4   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet    blacklisted=0    spawn_value=5.88235   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=5.88235   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=5.88235   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=5.88235   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/shotgun/slidebarrel    blacklisted=1    spawn_value=13.3333   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/boltgun/serbian    blacklisted=0    spawn_value=4.7619   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/boltgun/handmade    blacklisted=1    spawn_value=7.69231   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/boltgun    blacklisted=1    spawn_value=4.7619   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/dartgun    blacklisted=0    spawn_value=15.1515   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/chemdart
-/obj/item/weapon/gun/projectile/heavysniper    blacklisted=0    spawn_value=1.81818   spawn_price=5000   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/rpg    blacklisted=0    spawn_value=1.17647   spawn_price=8000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/bull    blacklisted=0    spawn_value=3.78788   spawn_price=2140   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun, /obj/item/ammo_casing/shotgun,/obj/item/ammo_casing/shotgun
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet    blacklisted=0    spawn_value=5.74713   spawn_price=1240   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/pellet,/obj/item/ammo_casing/shotgun/pellet
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=5.74713   spawn_price=1240   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/flash,/obj/item/ammo_casing/shotgun/flash
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=5.74713   spawn_price=1240   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/pellet,/obj/item/ammo_casing/shotgun/pellet
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=5.74713   spawn_price=1240   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag
+/obj/item/weapon/gun/projectile/shotgun/slidebarrel    blacklisted=1    spawn_value=12.987   spawn_price=270   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun
+/obj/item/weapon/gun/projectile/boltgun/serbian    blacklisted=0    spawn_value=3.62319   spawn_price=2260   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
+/obj/item/weapon/gun/projectile/boltgun/handmade    blacklisted=1    spawn_value=5.10204   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
+/obj/item/weapon/gun/projectile/boltgun    blacklisted=1    spawn_value=3.62319   spawn_price=2260   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/lrifle
+/obj/item/weapon/gun/projectile/dartgun    blacklisted=0    spawn_value=8.62069   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/chemdart
+/obj/item/weapon/gun/projectile/heavysniper    blacklisted=0    spawn_value=1.81159   spawn_price=5020   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/antim
+/obj/item/weapon/gun/projectile/rpg    blacklisted=0    spawn_value=1.17371   spawn_price=8020   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/rocket
 /obj/item/weapon/gun/projectile/avasarala    blacklisted=0    spawn_value=4.23729   spawn_price=1860   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/magnum
 /obj/item/weapon/gun/projectile/clarissa/makarov    blacklisted=0    spawn_value=4.62963   spawn_price=1660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/clarissa    blacklisted=0    spawn_value=5.10204   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
@@ -45,9 +45,9 @@
 /obj/item/weapon/gun/projectile/mk58    blacklisted=0    spawn_value=4.62963   spawn_price=1660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/olivaw    blacklisted=0    spawn_value=6.41026   spawn_price=1060   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/paco    blacklisted=0    spawn_value=4.42478   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
-/obj/item/weapon/gun/projectile/revolver/consul    blacklisted=0    spawn_value=4.54545   spawn_price=1700   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/revolver/deckard    blacklisted=0    spawn_value=2.77778   spawn_price=3100   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/revolver/handmade    blacklisted=1    spawn_value=13.3333   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/revolver/havelock    blacklisted=0    spawn_value=7.14286   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/revolver/mateba    blacklisted=0    spawn_value=2.85714   spawn_price=3000   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/projectile/revolver    blacklisted=0    spawn_value=4   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/revolver/consul    blacklisted=0    spawn_value=4.20168   spawn_price=1880   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slmagnum
+/obj/item/weapon/gun/projectile/revolver/deckard    blacklisted=0    spawn_value=2.6455   spawn_price=3280   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slmagnum
+/obj/item/weapon/gun/projectile/revolver/handmade    blacklisted=1    spawn_value=10.7527   spawn_price=430   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slmagnum
+/obj/item/weapon/gun/projectile/revolver/havelock    blacklisted=0    spawn_value=6.32911   spawn_price=1080   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slpistol
+/obj/item/weapon/gun/projectile/revolver/mateba    blacklisted=0    spawn_value=2.71739   spawn_price=3180   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slmagnum
+/obj/item/weapon/gun/projectile/revolver    blacklisted=0    spawn_value=3.73134   spawn_price=2180   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/slmagnum

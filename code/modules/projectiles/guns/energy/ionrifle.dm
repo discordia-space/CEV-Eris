@@ -9,7 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 200
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)

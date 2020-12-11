@@ -297,5 +297,5 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/part,
+		/obj/item/part, /obj/item/weapon/stock_parts, /obj/item/weapon/electronics
 		)

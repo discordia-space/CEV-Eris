@@ -7,8 +7,6 @@
 	var/projectile_cost = 1
 	var/projectile_type
 
-	bad_type = /obj/item/weapon/gun/matter
-
 /obj/item/weapon/gun/matter/attackby(obj/item/I, mob/user)
 	var/obj/item/stack/material/M = I
 	if(istype(M) && M.material.name == matter_type)

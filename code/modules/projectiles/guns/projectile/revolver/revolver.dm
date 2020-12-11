@@ -11,6 +11,7 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/magnum
+	magazine_type = /obj/item/ammo_magazine/slmagnum
 	unload_sound = 'sound/weapons/guns/interact/rev_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rev_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/rev_cock.ogg'
@@ -43,7 +44,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/gun/projectile/revolver/load_ammo(var/obj/item/A, mob/user)
+/obj/item/weapon/gun/projectile/revolver/load_ammo(obj/item/A, mob/user)
 	chamber_offset = 0
 	return ..()
 

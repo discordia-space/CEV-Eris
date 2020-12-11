@@ -9,7 +9,7 @@
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_COVERT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
-	ammo_type = "/obj/item/ammo_casing/srifle"
+	ammo_type = /obj/item/ammo_casing/srifle
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle

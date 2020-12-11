@@ -11,12 +11,12 @@
 	max_shells = 2
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
+	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1200

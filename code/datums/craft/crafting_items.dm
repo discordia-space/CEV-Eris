@@ -136,8 +136,19 @@
 	SSnano.update_uis(src)
 
 /obj/item/craft_frame/proc/make_obj(obj/O, mob/user)
-	O.forceMove(get_turf(src))
+	var/turf/T = get_turf(src)
+	O.forceMove(T)
 	user.put_in_hands(O)
+	if(istype(O, /obj/item/weapon/gun/projectile))
+		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[O.type]
+		var/atom/movable/aditional_obj
+		if(islist(aditional_objects) && aditional_objects.len)
+			for(var/thing in aditional_objects)
+				var/atom/movable/AM = thing
+				if(!prob(initial(AM.prob_aditional_object)))
+					continue
+				aditional_obj = new thing (T)
+		user.put_in_hands(aditional_obj)
 	to_chat(user, SPAN_NOTICE("You have used [src] to craft a [O.name]."))
 	spawn(1)
 		if(!QDELETED(src))
