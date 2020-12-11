@@ -5,6 +5,7 @@
 	icon_state = "artwork_statue_1"
 	density = TRUE
 	spawn_frequency = 0
+	price_tag = 500
 
 /obj/structure/artwork_statue/Initialize()
 	. = ..()
@@ -13,6 +14,7 @@
 
 	var/sanity_value = 2 + rand(0,2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	price_tag += rand(0,5000)
 
 /obj/structure/artwork_statue/attackby(obj/item/I, mob/living/user)
 	if(I.has_quality(QUALITY_BOLT_TURNING))
@@ -24,4 +26,5 @@
 
 /obj/structure/artwork_statue/get_item_cost(export)
 	. = ..()
-	. += max(., rand(1, 500))
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100

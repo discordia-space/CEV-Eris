@@ -85,7 +85,7 @@
 	icon_state = "armor_handmade"
 	armor = list(
 		melee = 30,
-		bullet = 20,
+		bullet = 25,
 		energy = 15,
 		bomb = 10,
 		bio = 0,
@@ -423,14 +423,14 @@
 	item_state = "mercwebvest"
 	rarity_value = 90
 	armor = list(
-		melee = 55,
-		bullet = 55,
-		energy = 55,
+		melee = 50,
+		bullet = 50,
+		energy = 50,
 		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
-	
+
 /obj/item/clothing/suit/storage/vest/merc/full
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."

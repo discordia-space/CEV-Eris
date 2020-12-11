@@ -939,7 +939,7 @@ Checks if a list has the same entries and values as an element of big.
 	. = 0
 	if(istext(L))
 		L = try_json_decode(L)
-	else if(length(L))
+	if(length(L))
 		. += length(L)
 		for(var/list/i in L)
 			if(islist(i))

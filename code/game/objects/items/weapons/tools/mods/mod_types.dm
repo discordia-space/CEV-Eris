@@ -676,6 +676,7 @@
 	desc = "This is an artistically-made tool mod."
 	icon_state = "artmod_1"
 	spawn_frequency = 0
+	price_tag = 200
 
 /obj/item/weapon/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
 	. = ..()
@@ -694,7 +695,9 @@
 	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
 	QDEL_NULL(spawn_type)
 	QDEL_NULL(CATCH)
+	price_tag += rand(0, 1000)
 
 /obj/item/weapon/tool_upgrade/artwork_tool_mod/get_item_cost(export)
 	. = ..()
-	. += max(., rand(-100, 350))
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
