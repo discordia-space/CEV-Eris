@@ -30,7 +30,8 @@
 	steps = list(
 		list(/obj/item/clothing/suit/storage/hazardvest, 1, "time" = 30),
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
-		list(/obj/item/stack/cable_coil, 4)
+		list(/obj/item/part/armor, 2),
+		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/clothing/armorvest/fullbody
@@ -38,7 +39,7 @@
 	result = /obj/item/clothing/suit/armor/vest/handmade/full
 	steps = list(
 		list(/obj/item/clothing/suit/armor/vest/handmade, 1, "time" = 30),
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(/obj/item/part/armor, 4),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
