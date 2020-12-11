@@ -147,6 +147,42 @@
 /datum/design/bioprinter/satchel
 	name = "Leather Satchel"
 	build_path = /obj/item/weapon/storage/backpack/satchel
+	
+/datum/design/bioprinter/small_generic
+	name= "Small generic pouch"
+	build_path = /obj/item/weapon/storage/pouch/small_generic
+
+/datum/design/bioprinter/medium_generic
+	name= "Medium generic pouch"
+	build_path = /obj/item/weapon/storage/pouch/medium_generic
+
+/datum/design/bioprinter/large_generic
+	name= "Large generic pouch"
+	build_path = /obj/item/weapon/storage/pouch/large_generic
+
+/datum/design/bioprinter/medical_supply
+	name= "Medical supply pouch"
+	build_path = /obj/item/weapon/storage/pouch/medical_supply
+
+/datum/design/bioprinter/engineering_tools
+	name= "Engineering tools pouch"
+	build_path = /obj/item/weapon/storage/pouch/engineering_tools
+
+/datum/design/bioprinter/engineering_supply
+	name= "Engineering supply pouch"
+	build_path = /obj/item/weapon/storage/pouch/engineering_supply
+
+/datum/design/bioprinter/ammo
+	name= "Ammo pouch"
+	build_path = /obj/item/weapon/storage/pouch/ammo
+
+/datum/design/bioprinter/tubular
+	name= "Tubular pouch"
+	build_path = /obj/item/weapon/storage/pouch/tubular
+
+/datum/design/bioprinter/tubular/vial
+	name= "Vial pouch"
+	build_path = /obj/item/weapon/storage/pouch/tubular/vial
 
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
