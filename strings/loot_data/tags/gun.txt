@@ -16,7 +16,7 @@
 /obj/item/weapon/gun/projectile/automatic/z8    blacklisted=0    spawn_value=7.36638   spawn_price=3760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
 /obj/item/weapon/gun/projectile/automatic/zoric    blacklisted=0    spawn_value=2.8242   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97131   spawn_price=4520   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=4.29166   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.33928   spawn_price=4220   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/m12
@@ -35,7 +35,7 @@
 /obj/item/weapon/gun/projectile/clarissa    blacklisted=0    spawn_value=5.21802   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/colt    blacklisted=0    spawn_value=8.95708   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/giskard    blacklisted=0    spawn_value=9.14537   spawn_price=860   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
-/obj/item/weapon/gun/projectile/gyropistol    blacklisted=0    spawn_value=7.45067   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
+/obj/item/weapon/gun/projectile/gyropistol    blacklisted=1    spawn_value=0.966916   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
 /obj/item/weapon/gun/projectile/lamia    blacklisted=0    spawn_value=5.14804   spawn_price=2660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/magnum
 /obj/item/weapon/gun/projectile/mandella    blacklisted=0    spawn_value=7.54973   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/cspistol
 /obj/item/weapon/gun/projectile/mk58/wood    blacklisted=0    spawn_value=3.67033   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol

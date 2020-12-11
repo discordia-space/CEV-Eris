@@ -25,7 +25,7 @@
 		STAT_VIG = 10
 	)
 
-	perks = list(/datum/perk/merchant, /datum/perk/deep_connection)
+	perks = list(/datum/perk/merchant, /datum/perk/deep_connection, /datum/perk/oddity/market_prof)
 
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
@@ -184,7 +184,7 @@ Character Expectations:<br>\
 	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 3
-	spawn_positions = 1
+	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)

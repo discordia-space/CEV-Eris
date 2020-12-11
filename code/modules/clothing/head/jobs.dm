@@ -67,7 +67,6 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	body_parts_covered = 0
-	style = STYLE_LOW
 	spawn_blacklisted = TRUE
 
 //Security

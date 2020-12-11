@@ -8,8 +8,10 @@ GLOBAL_LIST_INIT(art_locations, file2list("strings/artist_strings/descriptors/ar
 
 GLOBAL_LIST_INIT(art_sculpting_method, file2list("strings/artist_strings/descriptors/art_sculpting_method.txt"))
 
-GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_style.txt"))
+GLOBAL_LIST_INIT(art_styles, file2list("strings/artist_strings/descriptors/art_style.txt"))
 
+
+GLOBAL_LIST_INIT(art_types, file2list("strings/artist_strings/descriptors/art_types.txt"))
 
 //When you need something simple (for random Artist Artwork)
 /proc/get_weapon_name(capitalize = FALSE)
@@ -27,6 +29,8 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 	var/art_crew_name = "Who?"
 	for(var/mob/living/carbon/human/H in (GLOB.human_mob_list & GLOB.player_list))
 		if(!isOnStationLevel(H))
+			continue
+		if(H.mind && player_is_antag(H.mind))
 			continue
 		if(only_first_name)
 			names.Add(H.first_name && H.first_name)
@@ -57,8 +61,12 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 	return "the [pick(adjectives)] secret of [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]"
 
 /proc/get_travel_actios()
-	GLOB.art_locations |= list("[get_art_mob_places()]")
-	return "the [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]s [pick("trip","journey")] to the [pick(GLOB.art_locations)]"
+	var/location
+	if(prob(50))
+		location = get_art_mob_places()
+	else
+		location = pick(GLOB.art_locations)
+	return "the [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]s [pick("trip","journey")] to the [location]"
 
 /proc/get_art_mob_places()
 	var/list/mobs_places = list("cave", "hideout", "nest")
@@ -77,7 +85,7 @@ GLOBAL_LIST_INIT(art_style, file2list("strings/artist_strings/descriptors/art_st
 
 /obj/proc/make_art_review()
 	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encourages")
-	desc += " A [pick(GLOB.art_style)] work of art [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
+	desc += " A [pick(GLOB.art_styles)] [pick(GLOB.art_types)] [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
 
 /obj/item/weapon/gun/projectile/make_art_review()
 	desc += " [get_art_gun_desc(src)]"

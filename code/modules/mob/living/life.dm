@@ -33,9 +33,6 @@
 			//Mutations and radiation
 			handle_mutations_and_radiation()
 
-			//Chemicals in the body
-			handle_chemicals_in_body()
-
 			//Blood
 			handle_blood()
 
@@ -47,6 +44,9 @@
 		//Handle temperature/pressure differences between body and environment
 		if(environment)
 			handle_environment(environment)
+
+		//Chemicals in the body
+		handle_chemicals_in_body()
 
 		//Check if we're on fire
 		handle_fire()
@@ -67,6 +67,11 @@
 		update_lying_buckled_and_verb_status()
 
 		handle_regular_hud_updates()
+
+	var/turf/T = get_turf(src)
+	if(T)
+		if(registered_z != T.z)
+			update_z(T.z)
 
 /mob/living/proc/handle_breathing()
 	return

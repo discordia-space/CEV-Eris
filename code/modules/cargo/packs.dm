@@ -412,13 +412,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/cakes
 	name = "Party Cakes"
-	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,)
+	contains = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake
+	)
 	cost = 2000
 	containertype = /obj/structure/closet/crate
 	crate_name = "Party Cake Box"

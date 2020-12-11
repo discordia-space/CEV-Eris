@@ -482,6 +482,7 @@
 	ammo_type = /obj/item/ammo_casing/a75
 	multiple_sprites = 1
 	max_ammo = 4
+	rarity_value = 100
 
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = 0

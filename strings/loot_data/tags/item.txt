@@ -16,7 +16,7 @@
 /obj/item/weapon/gun/projectile/automatic/z8    blacklisted=0    spawn_value=7.36638   spawn_price=3760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/srifle
 /obj/item/weapon/gun/projectile/automatic/zoric    blacklisted=0    spawn_value=2.8242   spawn_price=2560   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/msmg
 /obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97131   spawn_price=4520   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=4.29166   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.33928   spawn_price=4220   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/m12
@@ -35,7 +35,7 @@
 /obj/item/weapon/gun/projectile/clarissa    blacklisted=0    spawn_value=5.21802   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/colt    blacklisted=0    spawn_value=8.95708   spawn_price=1460   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
 /obj/item/weapon/gun/projectile/giskard    blacklisted=0    spawn_value=9.14537   spawn_price=860   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
-/obj/item/weapon/gun/projectile/gyropistol    blacklisted=0    spawn_value=7.45067   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
+/obj/item/weapon/gun/projectile/gyropistol    blacklisted=1    spawn_value=0.966916   spawn_price=2640   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/a75
 /obj/item/weapon/gun/projectile/lamia    blacklisted=0    spawn_value=5.14804   spawn_price=2660   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/magnum
 /obj/item/weapon/gun/projectile/mandella    blacklisted=0    spawn_value=7.54973   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/cspistol
 /obj/item/weapon/gun/projectile/mk58/wood    blacklisted=0    spawn_value=3.67033   spawn_price=1760   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/pistol
@@ -1050,7 +1050,6 @@
 /obj/item/weapon/oddity/common/old_radio    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/paper_bundle    blacklisted=0    spawn_value=6.25   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/techno    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/oddity/artwork    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/secdocs    blacklisted=1    spawn_value=7.29982   spawn_price=5000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools    blacklisted=0    spawn_value=14.4971   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc    blacklisted=0    spawn_value=20.4167   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1590,6 +1589,7 @@
 /obj/item/clothing/head/collectable/hardhat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/thunderdome    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/swat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/gnome    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/visor    blacklisted=0    spawn_value=2.40708   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/blue    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/orange    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -1899,6 +1899,7 @@
 /obj/item/clothing/mask/bandana/camo    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana/skull    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gnome    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/assistantformal    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/rank/fo_suit    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2015,6 +2016,7 @@
 /obj/item/clothing/under/genericb    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/genericw    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/genericr    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/under/gnome    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/red    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/under/shorts/blue    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2543,8 +2545,8 @@
 /obj/item/ammo_magazine/slmagnum    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/sllrifle    blacklisted=0    spawn_value=8.19395   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/caps    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75/empty    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75/empty    blacklisted=0    spawn_value=0.982529   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75    blacklisted=0    spawn_value=0.97899   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/pellet    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/beanbag    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/empty    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing

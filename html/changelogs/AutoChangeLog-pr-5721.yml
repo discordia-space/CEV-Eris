@@ -1,6 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: common rig modules can now be spawned in maint.
-  - bugfix: Various items that should be spawned in maint are now actually spawned
-      in maint.

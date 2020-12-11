@@ -156,13 +156,13 @@
 				moralist_factor += 0.02
 	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
 	while(resting < max_resting && insight >= 100)
+		give_resting(1)
 		if(owner.stats.getPerk(PERK_ARTIST))
 			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))
 		else
 			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 			pick_desires()
 			insight -= 100
-		give_resting(1)
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
@@ -304,7 +304,10 @@
 	changeLevel(-R.sanityloss * multiplier)
 
 /datum/sanity/proc/onReagent(datum/reagent/E, multiplier)
-	changeLevel(E.sanity_gain_ingest * multiplier)
+	var/sanity_gain = E.sanity_gain_ingest
+	if(E.id == "ethanol")
+		sanity_gain /= 5
+	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			if(multiplier <= 1 )

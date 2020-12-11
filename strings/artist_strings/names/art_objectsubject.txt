@@ -21,7 +21,7 @@ floorbot
 drillbot
 ed-209
 farmbot
-cleanbot 
+cleanbot
 medbot
 captain
 slime

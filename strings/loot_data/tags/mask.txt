@@ -58,3 +58,4 @@
 /obj/item/clothing/mask/bandana/camo    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana/skull    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/bandana    blacklisted=0    spawn_value=5.12793   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gnome    blacklisted=0    spawn_value=8.61916   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing

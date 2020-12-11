@@ -87,8 +87,8 @@
 /obj/item/ammo_magazine/slmagnum    blacklisted=0    spawn_value=13.7831   spawn_price=180   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/sllrifle    blacklisted=0    spawn_value=8.19395   spawn_price=160   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/caps    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75/empty    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/a75    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75/empty    blacklisted=0    spawn_value=0.982529   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/ammo_magazine/a75    blacklisted=0    spawn_value=0.97899   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/pellet    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/beanbag    blacklisted=0    spawn_value=8.10214   spawn_price=220   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/m12/empty    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -49,6 +49,7 @@
 /obj/item/clothing/head/collectable/hardhat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/thunderdome    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/collectable/swat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/collectable/gnome    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/visor    blacklisted=0    spawn_value=2.40708   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/blue    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/hardhat/orange    blacklisted=0    spawn_value=8.66246   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing

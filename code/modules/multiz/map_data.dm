@@ -243,7 +243,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
-		world.maxz++
+		world.incrementMaxZ()
 		empty_levels = list(world.maxz)
 
 		add_z_level(world.maxz, world.maxz, 1)
