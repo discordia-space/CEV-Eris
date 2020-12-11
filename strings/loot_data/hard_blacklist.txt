@@ -300,6 +300,7 @@
 /obj/item/weapon/pen/robopen
 /obj/item/weapon/oddity/common
 /obj/item/weapon/oddity/broken_necklace
+/obj/item/weapon/oddity/artwork
 /obj/item/weapon/oddity
 /obj/item/weapon/inflatable_duck
 /obj/item/weapon/twohanded/offhand

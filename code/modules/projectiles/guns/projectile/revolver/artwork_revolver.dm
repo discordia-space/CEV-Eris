@@ -8,7 +8,7 @@
 	max_shells = 7
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4) //Arbitrary values
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
-	price_tag = 2500 //Temporary value
+	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
 	penetration_multiplier = 1.4
 	recoil_buildup = 30 //Arbitrary value
@@ -31,9 +31,11 @@
 	damage_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	recoil_buildup += rand(-(recoil_buildup / 5),(recoil_buildup / 5))
-
+	price_tag += rand(0, 2500)
 	. = ..()
 
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/get_item_cost(export)
 	. = ..()
-	. += rand(-1000,2500)
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
+	. += damage_multiplier * penetration_multiplier * 100
