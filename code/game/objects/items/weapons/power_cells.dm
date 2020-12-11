@@ -319,7 +319,7 @@
 
 /obj/item/weapon/cell/large/moebius/nuclear/infinite
 	name = "BSL \"Nullcell 99999L\""
-	desc = "Bluespace League branded rechargeable L-standardized power cell. This strange piece of technology has the tag 'Made in Finland' on the back. It never seems to run out of charge."
+	desc = "Bluespace League branded rechargeable L-standardized power cell. This strange piece of technology has the tag 'Made in Space Finland' on the back. It never seems to run out of charge."
 	icon_state = "infinite_b"
 	autorecharge_rate = 1 // charges 100% of itself every tick
 	bad_type = /obj/item/weapon/cell/large/moebius/nuclear/infinite // really shouldn't spawn in maint, or anywhere else
@@ -328,7 +328,7 @@
 
 /obj/item/weapon/cell/medium/moebius/nuclear/infinite
 	name = "BSL \"Nullcell 9999L\""
-	desc = "Bluespace League branded rechargeable M-standardized power cell. This strange piece of technology has the tag 'Made in Finland' on the back. It never seems to run out of charge."
+	desc = "Bluespace League branded rechargeable M-standardized power cell. This strange piece of technology has the tag 'Made in Space Finland' on the back. It never seems to run out of charge."
 	icon_state = "infinite_m"
 	autorecharge_rate = 1
 	bad_type = /obj/item/weapon/cell/medium/moebius/nuclear/infinite
@@ -337,7 +337,7 @@
 	
 /obj/item/weapon/cell/small/moebius/nuclear/infinite
 	name = "BSL \"Nullcell 999L\""
-	desc = "Bluespace League branded rechargeable S-standardized power cell. This strange piece of technology has the tag 'Made in Finland' on the back. It never seems to run out of charge."
+	desc = "Bluespace League branded rechargeable S-standardized power cell. This strange piece of technology has the tag 'Made in Space Finland' on the back. It never seems to run out of charge."
 	icon_state = "infinite_s"
 	autorecharge_rate = 1
 	bad_type = /obj/item/weapon/cell/small/moebius/nuclear/infinite
