@@ -44,7 +44,7 @@
 	for(var/_material in stored_material)
 		matter_count += " [stored_material[_material]] [_material]"
 
-	to_chat(user, SPAN_NOTICE("Need materials: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)]."))
+	to_chat(user, SPAN_NOTICE("Materials required: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)]."))
 
 /obj/machinery/neotheology/cruciformforge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack))
