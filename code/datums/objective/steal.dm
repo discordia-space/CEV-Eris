@@ -28,7 +28,6 @@
 		"Von-Krabin Stimulator" = /obj/item/device/von_krabin,
 		"Molitor-Riedel Enricher" = /obj/item/weapon/reagent_containers/enricher,
 		"an Ancient Maneki Neko" = /obj/item/weapon/maneki_neko,
-		"a Reality Complicator" = /obj/item/weapon/complicator,
 		"a Techno-Tribalism Enforcer" = /obj/item/device/techno_tribalism,
 		"an Random wave radio" = /obj/item/device/radio/random_radio,
 		"the Sword of Truth" = /obj/item/weapon/tool/sword/nt_sword,

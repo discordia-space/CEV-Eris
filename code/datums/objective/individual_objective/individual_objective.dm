@@ -86,7 +86,7 @@
 		return TRUE
 	return FALSE
 
-/datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE)
+/datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE, strict_type=/obj/item)
 	var/list/valid_targets = list()
 	for(var/obj/item/faction_item in GLOB.all_faction_items)
 		if(faction_item in valid_targets)
@@ -96,6 +96,8 @@
 		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		if(!locate(faction_item.type))
+			continue
+		if(!istype(faction_item, strict_type))
 			continue
 		valid_targets += faction_item
 	if(valid_targets.len)
