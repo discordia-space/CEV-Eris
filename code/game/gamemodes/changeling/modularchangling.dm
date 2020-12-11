@@ -77,7 +77,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/maw
 	name = "Carrion Maw"
 	desc = "Unlocks and expands your jaw, giving you the ability to spit acid and call upon spiders."
-	genomecost = 5
+	genomecost = 0
 	organpath = /obj/item/organ/internal/carrion/maw
 
 /datum/power/carrion/spinneret
