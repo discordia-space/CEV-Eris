@@ -32,9 +32,9 @@
 	var/list/options = list()
 	options["generic"] = "technohelmet_void"
 	options["visor"] = "technohelmet_void_visor"
-	options["googles"] = "technohelmet_void_googles"
+	options["goggles"] = "technohelmet_void_goggles"
 
-	var/choice = input(M,"What kind of eyeglass node do you want to look through?","Adjust visor") as null|anything in options
+	var/choice = input(M,"What kind of eyeglass do you want to look through?","Adjust visor") as null|anything in options
 
 	if(src && choice && !M.incapacitated() && Adjacent(M))
 		icon_state = options[choice]
