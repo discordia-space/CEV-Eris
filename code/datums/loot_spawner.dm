@@ -88,7 +88,7 @@
 
 		//rarity//
 		//rarity = initial(A.rarity_value)
-		ASSERT(initial(A.rarity_value) >= 1)
+		//ASSERT(initial(A.rarity_value) >= 1)
 		//all_spawn_by_rarity["[rarity]"] += list(path)
 		//all_spawn_rarity_by_path[path] = rarity
 
@@ -130,7 +130,7 @@
 		/*
 		if(generate_files && ispath(path, /obj/item/weapon/gun))
 			var/tag_data_i
-			if(price > CHEAP_GUN_PRICE)
+			if(price > GUN_CHEAP_PRICE)
 				tag_data_i = file("[file_dir_tags]gun_expensive.txt")
 			else
 				tag_data_i = file("[file_dir_tags]gun_cheap.txt")
@@ -153,17 +153,41 @@
 	if(is_special_spawn(npath))
 		return get_special_spawn_value(npath)
 	var/atom/movable/A = npath
-	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))
-	return spawn_value
+	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))
 
 /datum/controller/subsystem/spawn_data/proc/is_special_spawn(npath)
 	. = FALSE
 	if(ispath(npath, /obj/item/weapon/gun))
 		return TRUE
+	else if(ispath(npath, /obj/item/weapon/cell))
+		return TRUE
 
 /datum/controller/subsystem/spawn_data/proc/get_special_spawn_value(npath)
 	var/atom/movable/A = npath
-	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
+	if(ispath(npath, /obj/item/weapon/gun))
+		return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
+	else if(ispath(npath, /obj/item/weapon/cell))
+		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath)+(log(10,max(get_spawn_price(A),1))))
+	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))//same from get_spawn_value()
+
+/datum/controller/subsystem/spawn_data/proc/get_special_rarty_value(npath)
+	var/atom/movable/A = npath
+	. = initial(A.rarity_value)
+	if(ispath(npath, /obj/item/weapon/cell))
+		var/obj/item/weapon/cell/C = npath
+		var/bonus = 0
+		var/autorecharging_factor = 3
+		if(ispath(npath, /obj/item/weapon/cell/large))
+			bonus += (initial(C.maxcharge)/CELL_LARGE_BASE_CHARGE)**1.1
+		else if(ispath(npath, /obj/item/weapon/cell/medium))
+			bonus += (initial(C.maxcharge)/CELL_MEDIUM_BASE_CHARGE)**3.5
+			autorecharging_factor += 2.5
+		else if(ispath(npath, /obj/item/weapon/cell/small))
+			bonus += (initial(C.maxcharge)/CELL_SMALL_BASE_CHARGE)**1.8
+			autorecharging_factor += 1.5
+		if(initial(C.autorecharging))
+			bonus *= autorecharging_factor
+		. += bonus
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
 	var/atom/movable/A = path

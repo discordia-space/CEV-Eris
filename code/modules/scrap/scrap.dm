@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(tags)
 			if(rare)
-				top_price = CHEAP_GUN_PRICE
+				top_price = GUN_CHEAP_PRICE
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))

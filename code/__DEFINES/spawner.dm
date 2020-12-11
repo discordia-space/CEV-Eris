@@ -2,11 +2,16 @@
 
 //guns defines
 #define GUN_BASE_RARITY_VALUE 5
-
-#define CHEAP_GUN_PRICE 1700
-
+#define GUN_CHEAP_PRICE 1700
 #define GUN_PRICE_DIVISOR 100
 //end guns
+
+//cells
+#define CELL_BASE_RARITY_VALUE 2
+#define CELL_LARGE_BASE_CHARGE 1000
+#define CELL_MEDIUM_BASE_CHARGE 600
+#define CELL_SMALL_BASE_CHARGE 100
+//#define CELL_PRICE_DIVISOR 50
 
 //biomes defines
 #define LOOT_LEVEL_VERY_LOW 4000
