@@ -277,6 +277,8 @@
 /obj/item/clothing/suit/space/bomb/security
 /obj/item/clothing/suit/space/syndicate
 /obj/item/clothing/suit/chameleon
+/obj/item/clothing/suit/armor/vest/handmade/full
+/obj/item/clothing/suit/armor/vest/handmade
 /obj/item/clothing/suit/armor/crusader
 /obj/item/clothing/suit/armor/acolyte
 /obj/item/clothing/suit/armor/agrolyte
@@ -445,9 +447,9 @@
 /obj/item/ammo_magazine/ammobox/pistol/hv
 /obj/item/mech_equipment/mounted_system/taser/plasma
 /obj/item/mech_equipment/mounted_system/ballistic/pk
-/mob/living/carbon/superior_animal/roach/roachling
 /mob/living/carbon/superior_animal/roach/bluespace
 /mob/living/carbon/superior_animal/roach/kaiser
+/mob/living/carbon/superior_animal/roach/roachling
 /mob/living/bot/miningonestar/resources/agressive/with_support
 /mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/in_work

@@ -285,8 +285,8 @@
 /obj/item/clothing/suit/armor/vest/detective    blacklisted=0    spawn_value=4.48676   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/vest/warden    blacklisted=0    spawn_value=2.66407   spawn_price=344   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/vest/ironhammer    blacklisted=0    spawn_value=4.48676   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/armor/vest/handmade/full    blacklisted=0    spawn_value=4.51297   spawn_price=144   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/armor/vest/handmade    blacklisted=0    spawn_value=5.82806   spawn_price=144   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/handmade/full    blacklisted=1    spawn_value=4.51297   spawn_price=144   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/handmade    blacklisted=1    spawn_value=5.82806   spawn_price=144   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/vest    blacklisted=0    spawn_value=4.48676   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/greatcoat/ironhammer    blacklisted=0    spawn_value=1.59302   spawn_price=594   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/greatcoat/serbian_overcoat    blacklisted=0    spawn_value=1.59302   spawn_price=594   prob_accompanying_obj=100    accompanying_objs=nothing
