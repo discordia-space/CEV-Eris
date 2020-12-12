@@ -157,11 +157,7 @@
 
 /datum/controller/subsystem/spawn_data/proc/is_special_spawn(npath)
 	. = FALSE
-	if(ispath(npath, /obj/item/weapon/gun))
-		return TRUE
-	else if(ispath(npath, /obj/item/weapon/cell))
-		return TRUE
-	else if(ispath(npath, /obj/item/weapon/stock_parts))
+	if(ispath(npath, /obj/item/weapon/gun) || ispath(npath, /obj/item/weapon/cell) || ispath(npath, /obj/item/weapon/stock_parts))
 		return TRUE
 
 /datum/controller/subsystem/spawn_data/proc/get_special_spawn_value(npath)
