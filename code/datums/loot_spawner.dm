@@ -161,12 +161,14 @@
 		return TRUE
 	else if(ispath(npath, /obj/item/weapon/cell))
 		return TRUE
+	else if(ispath(npath, /obj/item/weapon/stock_parts))
+		return TRUE
 
 /datum/controller/subsystem/spawn_data/proc/get_special_spawn_value(npath)
 	var/atom/movable/A = npath
 	if(ispath(npath, /obj/item/weapon/gun))
 		return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
-	else if(ispath(npath, /obj/item/weapon/cell))
+	else if(ispath(npath, /obj/item/weapon/cell) || ispath(npath, /obj/item/weapon/stock_parts))
 		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath)+(log(10,max(get_spawn_price(A),1))))
 	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))//same from get_spawn_value()
 
@@ -188,6 +190,9 @@
 		if(initial(C.autorecharging))
 			bonus *= autorecharging_factor
 		. += bonus
+	else if(ispath(npath, /obj/item/weapon/stock_parts))
+		var/obj/item/weapon/stock_parts/SP = npath
+		. *= initial(SP.rating)**1.5
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
 	var/atom/movable/A = path
