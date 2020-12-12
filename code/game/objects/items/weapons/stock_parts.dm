@@ -321,7 +321,7 @@
 	origin_tech = list(TECH_POWER = 6, TECH_MATERIAL = 6)
 	rating = 100 // rating doesn't really matter past a certain point - this makes autolathes print stuff at 1/5th the normal cost (item that costs 5 steel now costs 1 steel)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 3, MATERIAL_PLASMA = 1)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/stock_parts/capacitor/debug
 
 /obj/item/weapon/stock_parts/scanning_module/debug
 	name = "bluespace scanning module"
@@ -330,7 +330,7 @@
 	origin_tech = list(TECH_MAGNET = 6)
 	rating = 100
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 1)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/stock_parts/scanning_module/debug
 
 /obj/item/weapon/stock_parts/manipulator/debug
 	name = "bluespace yocto-manipulator"
@@ -339,7 +339,7 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3)
 	rating = 100
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 1)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/stock_parts/manipulator/debug
 
 /obj/item/weapon/stock_parts/micro_laser/debug
 	name = "bluespace yocto-laser"
@@ -348,7 +348,7 @@
 	origin_tech = list(TECH_MAGNET = 6)
 	rating = 100
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 1)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/stock_parts/micro_laser/debug
 
 /obj/item/weapon/stock_parts/matter_bin/debug
 	name = "bluespace matter bin"
@@ -357,7 +357,7 @@
 	origin_tech = list(TECH_MATERIAL = 6)
 	rating = 100
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 1)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/stock_parts/matter_bin/debug
 
 // Subspace stock parts
 /obj/item/weapon/stock_parts/subspace
