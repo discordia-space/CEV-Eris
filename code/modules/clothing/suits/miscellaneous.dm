@@ -388,4 +388,4 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO
-	flags_inv = HIDEJUMPSUIT
+	
