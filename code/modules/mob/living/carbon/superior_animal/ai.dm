@@ -1,17 +1,9 @@
-
-//NOTE: Don't use this proc for finding specific mobs or a very certain object; ultilize GLOBs instead of view()
 /mob/living/carbon/superior_animal/proc/getObjectsInView()
 	objectsInView = objectsInView || view(src, viewRange)
 	return objectsInView
 
-//Use this for all mobs per zlevel, get_dist() checked
 /mob/living/carbon/superior_animal/proc/getPotentialTargets()
-	var/list/list_to_return = new
-	for(var/atom/thing in SSmobs.mob_living_by_zlevel[((get_turf(src)).z)])
-		if(get_dist(src, thing) <= viewRange)
-			list_to_return += thing
-
-	return list_to_return
+	return hearers(src, viewRange)
 
 /mob/living/carbon/superior_animal/proc/findTarget()
 	var/list/filteredTargets = new
@@ -39,7 +31,7 @@
 		loseTarget()
 		return
 
-	if ((get_dist(src, target_mob) >= viewRange) || src.z != target_mob.z)
+	if (!(target_mob in getPotentialTargets()))
 		loseTarget()
 		return
 
@@ -68,7 +60,7 @@
 		for (var/obj/structure/window/obstacle in src.loc) // To destroy directional windows that are on the creature's tile
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return
-
+		
 		for (var/obj/machinery/door/window/obstacle in src.loc) // To destroy windoors that are on the creature's tile
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return

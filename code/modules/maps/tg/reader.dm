@@ -109,8 +109,7 @@ var/global/use_preloader = FALSE
 				if(cropMap)
 					continue
 				else
-					while(world.maxz < zcrd) //create a new z_level if needed
-						world.incrementMaxZ()
+					world.maxz = zcrd //create a new z_level if needed
 				if(!no_changeturf)
 					WARNING("Z-level expansion occurred without no_changeturf set, this may cause problems")
 

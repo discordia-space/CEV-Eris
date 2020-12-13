@@ -47,7 +47,7 @@
 			if(!busy && prob(30))
 				//first, check for potential food nearby to cocoon
 				var/list/cocoonTargets = new
-				for(var/mob/living/C in getPotentialTargets())
+				for(var/mob/living/C in getObjectsInView())
 					if(C.stat != CONSCIOUS)
 						cocoonTargets += C
 

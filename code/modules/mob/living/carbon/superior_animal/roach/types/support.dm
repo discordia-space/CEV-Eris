@@ -42,9 +42,6 @@
 
 	gas_sac.add_reagent("blattedin", 1)
 
-	if(!target_mob)
-		return
-
 	if(prob(7))
 		gas_attack()
 
