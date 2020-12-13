@@ -15,6 +15,9 @@
 //stock-parts
 #define STOCK_PARTS_BASE_RARITY_VALUE 10
 
+//clothing
+#define CLOTH_PRICE_DIVISOR 50
+
 //biomes defines
 #define LOOT_LEVEL_VERY_LOW 4000
 

@@ -13,4 +13,4 @@
 /obj/item/weapon/fossil/plant    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/talkingcrystal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/vampiric    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/mask/gas/poltergeist    blacklisted=1    spawn_value=8.92529   spawn_price=16   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/mask/gas/poltergeist    blacklisted=1    spawn_value=9.68992   spawn_price=16   prob_accompanying_obj=100    accompanying_objs=nothing
