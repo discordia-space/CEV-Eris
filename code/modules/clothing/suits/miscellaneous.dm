@@ -373,3 +373,19 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/punkvest
+	name = "punk vest"
+	desc = "What are you looking punk?"
+	icon_state = "punkvest"
+	item_state = "punkvest"
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO
+	flags_inv = HIDEJUMPSUIT
