@@ -2392,6 +2392,10 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
+"afW" = (
+/obj/spawner/mob/roaches/cluster,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section3deck5port)
 "afX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -11850,6 +11854,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"aBK" = (
+/obj/spawner/oddities/low_chance,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section3deck5port)
 "aBL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15475,6 +15483,14 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"aLp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/railing{
+	tag = "icon-railing0 (EAST)";
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4port)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -19499,6 +19515,9 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"aUH" = (
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/chapelritualroom)
 "aUI" = (
 /obj/machinery/meter{
 	frequency = 1443;
@@ -27830,6 +27849,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"bmd" = (
+/obj/machinery/door/airlock/maintenance_common{
+	req_access = list(27)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/neotheology/chapelritualroom)
 "bme" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30622,6 +30648,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
+"bsO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/neotheology/cruciformforge,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/neotheology/chapelritualroom)
 "bsP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -33288,13 +33321,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"byQ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
-	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
 "byR" = (
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapelritualroom)
@@ -43798,10 +43824,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3port)
-"bWf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4port)
 "bWg" = (
 /obj/structure/multiz/ladder/up,
 /turf/simulated/floor/tiled/techmaint,
@@ -105448,13 +105470,6 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
-"nfq" = (
-/obj/machinery/camera/network/third_section{
-	dir = 4
-	},
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapelritualroom)
 "nlx" = (
 /obj/machinery/light,
 /obj/machinery/holomap{
@@ -118897,10 +118912,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alg
+alg
+alg
+alg
 alg
 asp
 aze
@@ -119099,10 +119114,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alg
+atX
+avv
+aBK
 alg
 atj
 azf
@@ -119301,11 +119316,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
 alg
-alg
-alg
-alg
+avv
+afW
+avv
+avL
 avk
 azh
 avN
@@ -119503,9 +119518,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
 alg
-apt
+avv
+avv
 avv
 avL
 avp
@@ -119705,9 +119720,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
 alg
-atX
+apt
+apt
 avv
 avL
 awQ
@@ -119907,8 +119922,8 @@ aqW
 aaa
 aaa
 aaa
-aaa
 alg
+apt
 apt
 avv
 avN
@@ -120109,8 +120124,8 @@ aqW
 dLB
 dLB
 aaa
-aaa
 alg
+apt
 apt
 avv
 avN
@@ -159299,7 +159314,7 @@ bUG
 bVa
 bVB
 bVL
-bWf
+aLp
 clU
 cgk
 bUG
@@ -159501,7 +159516,7 @@ bUG
 bUG
 bUG
 bUG
-bUG
+ccO
 bcF
 cmv
 bUG
@@ -160106,10 +160121,10 @@ cIS
 cIS
 cIS
 aaa
-bUG
-bWh
-ccO
-bWh
+ccU
+ccU
+ccU
+bmd
 ccU
 ccU
 ccU
@@ -160309,10 +160324,10 @@ bWn
 cIS
 aaa
 ccU
-ccU
-ccU
-byQ
-ccU
+aUH
+clY
+byR
+bsO
 cBm
 cxB
 ccU
@@ -160512,9 +160527,9 @@ cIS
 aaa
 ccU
 avK
-nfq
 onJ
-cqc
+onJ
+bQx
 bQx
 bQx
 cqc
