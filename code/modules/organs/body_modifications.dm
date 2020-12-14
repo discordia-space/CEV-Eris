@@ -68,7 +68,7 @@ var/global/list/modifications_types = list(
 		else if(P)
 			var/datum/job/J = SSjob.GetJob(P.job_high)
 			if(!J || !department_specific.Find(J.department))
-				to_chat(usr, "This body-mod does not match your department. J:[J?"Found":"Not Found"]")
+				to_chat(usr, "This body-mod does not match your department.")
 				return FALSE
 
 	if(!allow_nt && H?.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))

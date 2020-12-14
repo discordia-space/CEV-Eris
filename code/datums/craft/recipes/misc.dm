@@ -295,3 +295,4 @@
 /datum/craft_recipe/makeshift_arm/right
 	name = "Makeshift prosthetic right arm"
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
+
