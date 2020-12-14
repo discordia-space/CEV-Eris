@@ -97,6 +97,14 @@
 	name = "\"Moebius\" Groin"
 	default_description = /datum/organ_description/groin
 
+/obj/item/organ/external/robotic/moebius/torso
+	name = "\"Moebius\" Torso"
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/moebius/head
+	name = "\"Moebius\" Head"
+	default_description = /datum/organ_description/head
+
 /obj/item/organ/external/robotic/excelsior
 	name = "Excelsior"
 	desc = "Plasma reinforced black prosthesis designed for heavy combat."
