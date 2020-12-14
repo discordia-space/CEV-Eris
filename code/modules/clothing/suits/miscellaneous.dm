@@ -388,4 +388,34 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO
-	
+
+/obj/item/clothing/suit/storage/toggle/windbreaker
+	name = "windbreaker"
+	desc = "The latest TX-corp model to keep you out of the wind and rain. Why, then, is it needed in space?"
+	icon_state = "windbreaker_open"
+	item_state = "windbreaker" //Is this even used for anything?
+	icon_open = "windbreaker_open"
+	icon_closed = "windbreaker"
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 0,
+		bomb = 0,
+		bio = 30,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/punkvest/cyber
+	name = "cyberpunk vest"
+	desc = "Only the coolest cyberpunks wear this."
+	icon_state = "cyberpunk"
+	item_state = "cyberpunk"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

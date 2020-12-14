@@ -98,3 +98,13 @@
 	display_name = "punk vest"
 	path = /obj/item/clothing/suit/punkvest
 	cost = 1
+
+/datum/gear/suit/punkvest
+	display_name = "windbreaker"
+	path = /obj/item/clothing/suit/storage/toggle/windbreaker
+	cost = 1
+
+/datum/gear/suit/punkvest
+	display_name = "cyberpunk vest"
+	path = /obj/item/clothing/suit/punkvest/cyber
+	cost = 1
