@@ -30688,6 +30688,10 @@
 "bsS" = (
 /turf/simulated/wall,
 /area/eris/hallway/side/section3port)
+"bsT" = (
+/obj/machinery/power/eotp,
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/chapelritualroom)
 "bsU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -160732,7 +160736,7 @@ bid
 byR
 onJ
 bQx
-bQx
+bsT
 bQx
 bQx
 bWP
