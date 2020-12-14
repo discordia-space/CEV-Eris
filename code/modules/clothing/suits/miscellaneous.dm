@@ -391,7 +391,7 @@
 
 /obj/item/clothing/suit/storage/toggle/windbreaker
 	name = "windbreaker"
-	desc = "The latest TX-corp model to keep you out of the wind and rain. Why, then, is it needed in space?"
+	desc = "A dark blue jacket with black highlights. You can't think of any reason why someone would need a windbreaker in space, but the jacket looks cool either way. As an added bonus, it looks fairly resistant to stains and caustic chemicals."
 	icon_state = "windbreaker_open"
 	item_state = "windbreaker" //Is this even used for anything?
 	icon_open = "windbreaker_open"
