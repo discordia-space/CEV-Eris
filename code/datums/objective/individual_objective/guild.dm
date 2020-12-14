@@ -16,7 +16,7 @@
 	desc = "Sold \the [target] item of other faction via cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
-/datum/individual_objective/repossession/task_completed(atom/movable/AM) 
+/datum/individual_objective/repossession/task_completed(atom/movable/AM)
 	if(target.type == AM.type)
 		..(1)
 
@@ -26,7 +26,7 @@
 	..()
 
 /datum/individual_objective/museum
-	name = "It Belongs to Museum"
+	name = "It Belongs in a Museum"
 	desc = "Ensure that 3-4 oddities were sold via cargo."
 	req_department = list(DEPARTMENT_GUILD)
 
@@ -36,7 +36,7 @@
 	desc = "Ensure that [units_requested] oddities were sold via cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
-/datum/individual_objective/museum/task_completed(atom/movable/AM) 
+/datum/individual_objective/museum/task_completed(atom/movable/AM)
 	if(AM.GetComponent(/datum/component/inspiration))
 		..(1)
 
@@ -85,7 +85,7 @@
 	desc = "A friend of yours on the other side on trade teleporter is waiting for a [target]. Ensure it will be sold via cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
-/datum/individual_objective/order/task_completed(atom/movable/AM) 
+/datum/individual_objective/order/task_completed(atom/movable/AM)
 	if(AM.type == target.type)
 		completed()
 
@@ -127,7 +127,7 @@
 		return
 	units_completed = 0
 	for(var/obj/item/I in target.contents)
-		units_completed += I.get_item_cost() 
+		units_completed += I.get_item_cost()
 	if(units_completed < price_target)
 		completed()
 

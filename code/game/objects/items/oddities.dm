@@ -28,17 +28,16 @@
 /obj/item/weapon/oddity/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
-	if(!perk)
-		perk = get_oddity_perk(prob_perk)
+	if(!perk && prob(prob_perk))
+		perk = get_oddity_perk()
 
 	if(oddity_stats)
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
-/proc/get_oddity_perk(chance=100)
-	if(prob(chance))
-		return pick(subtypesof(/datum/perk/oddity))
+/proc/get_oddity_perk()
+	return pick(subtypesof(/datum/perk/oddity))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
@@ -96,7 +95,7 @@
 		STAT_VIG = 6,
 	)
 	rarity_value = 18
-	
+
 /obj/item/weapon/oddity/common/photo_crime
 	name = "crime scene photo"
 	desc = "It is unclear whether this is a victim of suicide or murder. His face is frozen in a look of agony and terror, and you shudder to think at what his last moments might have been."
@@ -169,7 +168,7 @@
 		STAT_ROB = 5,
 		STAT_VIG = 5,
 	)
-	
+
 /obj/item/weapon/oddity/common/book_unholy
 	name = "unholy book"
 	desc = "The writings inside entail some strange ritual. Pages have been torn out or smudged to illegibility."
@@ -259,7 +258,7 @@
 	oddity_stats = list(
 		STAT_VIG = 9,
 	)
-	
+
 /obj/item/weapon/oddity/common/disk
 	name = "broken design disk"
 	desc = "This disk is corrupted and completely unusable. It has a hand-drawn picture of some strange mechanism on it - looking at it for too long makes your head hurt."
@@ -267,7 +266,7 @@
 	oddity_stats = list(
 		STAT_MEC = 9,
 	)
-	
+
 /obj/item/weapon/oddity/common/mirror
 	name = "cracked mirror"
 	desc = "A thousand mirror images stare back at you as you examine the trinket. What if you're the reflection, staring back out at the real world? At the real you?"
@@ -390,6 +389,9 @@
 	name = "Strange Device"
 	desc = "You can't find out how to turn it on. Maybe it's already working?"
 	icon_state = "artwork_1"
+	price_tag = 200
+	prob_perk = 0//no perks for artwork oddities
+	spawn_frequency = 0
 
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
@@ -398,4 +400,9 @@
 
 /obj/item/weapon/oddity/artwork/get_item_cost(export)
 	. = ..()
-	. += rand(50, 300)
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
+	GET_COMPONENT(comp_insp, /datum/component/inspiration)
+	var/list/true_stats = comp_insp.calculate_statistics()
+	for(var/stat in true_stats)
+		. += true_stats[stat] * 50

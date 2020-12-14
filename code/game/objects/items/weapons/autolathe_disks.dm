@@ -378,6 +378,16 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
+		
+		/datum/design/bioprinter/small_generic,
+		/datum/design/bioprinter/medium_generic,
+		/datum/design/bioprinter/large_generic,
+		/datum/design/bioprinter/medical_supply,
+		/datum/design/bioprinter/engineering_tools,
+		/datum/design/bioprinter/engineering_supply,
+		/datum/design/bioprinter/ammo,
+		/datum/design/bioprinter/tubular,
+		/datum/design/bioprinter/tubular/vial,
 
    		/datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag

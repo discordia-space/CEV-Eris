@@ -77,15 +77,15 @@
 /datum/individual_objective/danger/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
-	return pick_faction_item(L)
+	return pick_faction_item(L, strict_type = /obj)
 
 /datum/individual_objective/danger/assign()
 	..()
-	target = pick_faction_item(mind_holder)
+	target = pick_faction_item(mind_holder, strict_type = /obj)
 	desc = "\The [target] is clear danger to ship and crew. Destroy it with any means possible."
 	RegisterSignal(mind_holder, COMSIG_OBJ_FACTION_ITEM_DESTROY, .proc/task_completed)
 
-/datum/individual_objective/danger/task_completed(obj/item/I) 
+/datum/individual_objective/danger/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 

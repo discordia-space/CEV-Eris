@@ -183,7 +183,7 @@ Character Expectations:<br>\
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 3
+	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"

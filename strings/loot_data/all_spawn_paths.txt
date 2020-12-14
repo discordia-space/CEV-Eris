@@ -1072,7 +1072,6 @@
 /obj/item/weapon/oddity/common/old_radio
 /obj/item/weapon/oddity/common/paper_bundle
 /obj/item/weapon/oddity/techno
-/obj/item/weapon/oddity/artwork
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc

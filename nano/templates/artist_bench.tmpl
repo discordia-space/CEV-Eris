@@ -24,18 +24,18 @@ Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
 	<div class="block">
 		<div class="item">
 			<div class="itemContentWide">
-			Model Oddity:
-			{{if data.strange_item_name}}
-				<b>{{:data.strange_item_name ? data.strange_item_name :'data strange_item_name'}}</b>
+			Model Oddity: 
+			{{if data.oddity_name}}
+				<b>{{:data.oddity_name ? data.oddity_name :'data oddity_name'}}</b>
 			{{else}}
 				none
 			{{/if}}
 			</div>
-			<div class="itemlabelNarrow">{{:helper.link(data.strange_item ? 'remove' : 'insert', 'remove', {'strange_item_name' : 1}, null, 'statusValue')}}</div>
-			{{if data.strange_item_stats}}
+			<div class="itemlabelNarrow">{{:helper.link(data.oddity_name ? 'remove' : 'insert', 'remove', {'oddity_name' : 1}, null, 'statusValue')}}</div>
+			{{if data.oddity_stats}}
 				<div class="itemContentWide">
 					<header>Model Oddity Stats:</header>
-					{{for data.strange_item_stats}}
+					{{for data.oddity_stats}}
 						<div class="itemContentWide">
 						{{if value.level >= 10}}
 							<span style="color:gold;"><b>Overwhelming</b></span> aspect of 
