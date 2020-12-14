@@ -378,7 +378,7 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-		
+
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
@@ -1205,7 +1205,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_firstaid
-	disk_name = "NeoTheology Armory - NeoTheoligan Medkit"
+	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	license = 12

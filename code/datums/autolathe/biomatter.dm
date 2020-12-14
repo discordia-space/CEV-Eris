@@ -147,7 +147,7 @@
 /datum/design/bioprinter/satchel
 	name = "Leather Satchel"
 	build_path = /obj/item/weapon/storage/backpack/satchel
-	
+
 /datum/design/bioprinter/small_generic
 	name= "Small generic pouch"
 	build_path = /obj/item/weapon/storage/pouch/small_generic
@@ -201,7 +201,7 @@
 	build_path = /obj/item/weapon/gun/energy/plasma/martyr
 
 /datum/design/autolathe/firstaid/nt
-	name = "NeoTheoligan Medkit"
+	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
 
 //[MELEE]

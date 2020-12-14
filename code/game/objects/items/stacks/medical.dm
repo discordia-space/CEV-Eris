@@ -509,8 +509,8 @@
 		return
 
 /obj/item/stack/medical/advanced/bruise_pack/nt
-	name = "NeoTheoligan Bruisepack"
-	singular_name = "NeoTheoligan Bruisepack"
+	name = "NeoTheologian Bruisepack"
+	singular_name = "NeoTheologian Bruisepack"
 	desc = "An advanced bruisepack for severe injuries. Created by will of God."
 	icon_state = "nt_traumakit"
 	heal_brute = 10
@@ -524,8 +524,8 @@
 	..()
 
 /obj/item/stack/medical/advanced/ointment/nt
-	name = "NeoTheoligan Burnpack"
-	singular_name = "NeoTheoligan Burnpack"
+	name = "NeoTheologian Burnpack"
+	singular_name = "NeoTheologian Burnpack"
 	desc = "An advanced treatment kit for severe burns. Created by will of God."
 	icon_state = "nt_burnkit"
 	heal_brute = 10

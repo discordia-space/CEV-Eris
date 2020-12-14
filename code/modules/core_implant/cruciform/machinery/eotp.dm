@@ -10,7 +10,7 @@ var/global/obj/machinery/power/eotp/eotp
 
 /obj/machinery/power/eotp
 	name = "Eye of the Protector"
-	desc = "He observe, he protecs."
+	desc = "He observe, he protects."
 	icon = 'icons/obj/eotp.dmi'
 	icon_state = "Eye_of_the_Protector"
 
