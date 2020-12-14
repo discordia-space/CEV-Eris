@@ -38,7 +38,7 @@
 
 	if(src && choice && !M.incapacitated() && Adjacent(M))
 		icon_state = options[choice]
-		to_chat(M, "You adjust your helmet's eyeglass mode to [choice].")
+		to_chat(M, "You change your helmet's eyeglass mode to [choice].")
 		update_icon()
 		update_wear_icon()
 		usr.update_action_buttons()
@@ -299,4 +299,3 @@
 	helmet = /obj/item/clothing/head/space/void/science
 	rarity_value = 50
 	spawn_blacklisted = TRUE
-
