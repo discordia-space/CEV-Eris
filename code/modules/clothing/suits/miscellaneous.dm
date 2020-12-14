@@ -408,7 +408,7 @@
 
 /obj/item/clothing/suit/punkvest/cyber
 	name = "cyberpunk vest"
-	desc = "Only the coolest cyberpunks wear this."
+	desc = "A red vest with golden streaks. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
 	icon_state = "cyberpunk"
 	item_state = "cyberpunk"
 	armor = list(
