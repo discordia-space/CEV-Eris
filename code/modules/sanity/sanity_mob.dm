@@ -397,4 +397,36 @@
 				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
 		return
 
+/datum/sanity/proc/positive_breakdown()
+
+	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
+
+	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
+		if(get_turf(M) in view(get_turf(owner)))
+			M.reg_break(owner)
+
+	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
+		if(get_turf(S) in view(get_turf(owner)))
+			S.reg_break(owner)
+
+	var/list/possible_results
+
+	possible_results = subtypesof(/datum/breakdown/positive)
+
+	for(var/datum/breakdown/B in breakdowns)
+		possible_results -= B.type
+
+	while(possible_results.len)
+		var/breakdown_type = pick(possible_results)
+		var/datum/breakdown/B = new breakdown_type(src)
+
+		if(!B.can_occur())
+			possible_results -= breakdown_type
+			qdel(B)
+			continue
+
+		if(B.occur())
+			breakdowns += B
+		return
+
 #undef SANITY_PASSIVE_GAIN

@@ -200,6 +200,10 @@
 	name = "NT PR \"Martyr\""
 	build_path = /obj/item/weapon/gun/energy/plasma/martyr
 
+/datum/design/autolathe/firstaid/nt
+	name = "NeoTheoligan Medkit"
+	build_path = /obj/item/weapon/storage/firstaid/nt
+
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword
 	name = "NT Shortsword"

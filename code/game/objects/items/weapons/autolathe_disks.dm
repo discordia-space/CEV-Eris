@@ -1192,16 +1192,25 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 50
-	license = -1
+	license = 20
 	designs = list(
 		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/autolathe/sword/nt_longsword = 3,
 		/datum/design/autolathe/sword/nt_dagger,
-		/datum/design/autolathe/sword/nt_halberd,
-		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/autolathe/sword/nt_halberd = 3,
+		/datum/design/autolathe/sword/nt_scourge = 2,
 		/datum/design/autolathe/shield/nt_shield,
 		/datum/design/bioprinter/storage/sheath,
 		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_firstaid
+	disk_name = "NeoTheology Armory - NeoTheoligan Medkit"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	license = 12
+	designs = list(
+		/datum/design/autolathe/firstaid/nt = 3
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
