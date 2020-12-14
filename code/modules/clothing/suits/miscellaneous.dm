@@ -376,7 +376,7 @@
 
 /obj/item/clothing/suit/punkvest
 	name = "punk vest"
-	desc = "What are you looking punk?"
+	desc = "What are you looking at, punk?"
 	icon_state = "punkvest"
 	item_state = "punkvest"
 	armor = list(
