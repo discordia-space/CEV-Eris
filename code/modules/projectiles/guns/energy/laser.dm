@@ -236,11 +236,15 @@
 /obj/item/weapon/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"
 	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
-	icon = 'icons/obj/guns/energy/laser.dmi'
-	icon_state = "laser"//evan, TODO
-	item_state = "laser"
+	icon = 'icons/obj/guns/energy/makeshift_carbine.dmi'
+	icon_state = "makeshift"//evan, TODO
+	item_state = "makeshift"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15)
+	item_charge_meter = TRUE
+	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_NORMAL
 	zoom_factor = 0
 	charge_cost = 100 //worst lightfall
 	fire_delay = 10 //ditto
