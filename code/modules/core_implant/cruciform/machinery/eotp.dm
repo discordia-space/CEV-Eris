@@ -185,7 +185,7 @@ var/global/obj/machinery/power/eotp/eotp
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
 
 	for(var/disciple in disciples)
-		to_chat(disciple, SPAN_NOTICE("The miracle has occurred! The [src] protects us all!"))
+		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))
 
 
 #undef ARMAMENTS
