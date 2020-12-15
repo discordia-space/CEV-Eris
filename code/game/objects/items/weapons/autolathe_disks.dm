@@ -1243,6 +1243,8 @@
 	rarity_value = 50
 	license = -1
 	designs = list(
+		/datum/design/autolathe/sword/nt_sword,
+		/datum/design/autolathe/sword/nt_dagger,
 		/datum/design/autolathe/shield/nt_shield,
 		/datum/design/bioprinter/storage/sheath,
 		/datum/design/autolathe/tool_upgrade/sanctifier
