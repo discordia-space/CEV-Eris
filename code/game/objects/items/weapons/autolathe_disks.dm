@@ -1192,6 +1192,7 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 50
+	price_tag = 1000
 	license = -1
 	designs = list(
 		/datum/design/autolathe/sword/nt_sword,
@@ -1254,6 +1255,7 @@
 	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
+	price_tag = 1000
 	license = -1
 	designs = list(
 		/datum/design/autolathe/firstaid/nt
@@ -1305,6 +1307,7 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 12 // one of the more common advanced disks
+	price_tag = 1000
 	license = -1
 	designs = list(
 		/datum/design/autolathe/helmet/crusader,

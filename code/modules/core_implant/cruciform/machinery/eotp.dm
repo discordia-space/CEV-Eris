@@ -153,7 +153,7 @@ var/global/obj/machinery/power/eotp/eotp
 		if(!preacher)
 			preacher = pick(disciples)
 
-		to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in the [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+		to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
 		for(var/disciple in disciples)
