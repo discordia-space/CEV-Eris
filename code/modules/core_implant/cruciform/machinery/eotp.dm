@@ -174,7 +174,7 @@ var/global/obj/machinery/power/eotp/eotp
 			if(ishuman(disciple))
 				var/mob/living/carbon/human/H = disciple
 				if(H.stats)
-					to_chat(H, SPAN_NOTICE("You feel the gaze of the [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
+					to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
 					H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
 
 	else if(type_release == MATERIAL_REWARD)
