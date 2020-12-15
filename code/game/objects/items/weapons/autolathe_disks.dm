@@ -1188,17 +1188,61 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee
-	disk_name = "NeoTheology Armory - Melee Weapons"
+	disk_name = "NeoTheology Armory - Basic Melee Weapons"
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 50
-	license = 20
+	license = -1
 	designs = list(
 		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_longsword = 3,
 		/datum/design/autolathe/sword/nt_dagger,
-		/datum/design/autolathe/sword/nt_halberd = 3,
-		/datum/design/autolathe/sword/nt_scourge = 2,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/longsword
+	disk_name = "NeoTheology Armory - NT Longsword"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/scourge
+	disk_name = "NeoTheology Armory - NT Scourge"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/halberd
+	disk_name = "NeoTheology Armory - NT Halberd"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/sword/nt_halberd,
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/tool_upgrade/sanctifier
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/shield
+	disk_name = "NeoTheology Armory - NT Shield"
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	license = -1
+	designs = list(
 		/datum/design/autolathe/shield/nt_shield,
 		/datum/design/bioprinter/storage/sheath,
 		/datum/design/autolathe/tool_upgrade/sanctifier
@@ -1208,9 +1252,9 @@
 	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/firstaid/nt = 3
+		/datum/design/autolathe/firstaid/nt
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
@@ -1242,11 +1286,11 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 50
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/grenade/nt_explosive = 3,
+		/datum/design/autolathe/grenade/nt_explosive,
 		/datum/design/autolathe/grenade/nt_flashbang,
-		/datum/design/autolathe/grenade/nt_frag = 2,
+		/datum/design/autolathe/grenade/nt_frag,
 		/datum/design/autolathe/grenade/nt_smokebomb
 	)
 
@@ -1259,7 +1303,7 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	rarity_value = 12 // one of the more common advanced disks
-	license = 6 // 6 pieces, or 3 sets if you use helm + vest
+	license = -1
 	designs = list(
 		/datum/design/autolathe/helmet/crusader,
 		/datum/design/autolathe/armor/crusader

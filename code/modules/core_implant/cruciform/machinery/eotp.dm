@@ -22,21 +22,18 @@ var/global/obj/machinery/power/eotp/eotp
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-	var/list/rewards = list(ARMAMENTS = 60, ALERT = 30, INSPIRATION = 70, ODDITY = 40, STAT_BUFF = 50, MATERIAL_REWARD = 90)
+	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
 
-	var/list/materials = list(/obj/item/stack/material/platinum/random = 40,
-									/obj/item/stack/material/steel/random = 70,
-									/obj/item/stack/material/gold/random = 15,
-									/obj/item/stack/material/uranium/random = 10,
-									/obj/item/stack/material/plasma/random = 20,
-									/obj/item/stack/material/plastic/random = 50,
-									/obj/item/stack/material/plasteel/random = 30,
-									/obj/item/stack/material/wood/random = 60,
-									/obj/item/stack/material/glass/random = 60,
-									/obj/item/stack/material/biomatter/random = 50,
-									/obj/item/stack/material/silver/random = 20)
-	var/list/disk_types = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee = 50, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades = 20,
-							/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader = 20, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_firstaid = 40)
+	var/list/materials = list(/obj/item/stack/material/gold = 60,
+							/obj/item/stack/material/uranium = 30,
+							/obj/item/stack/material/plasma = 30,
+							/obj/item/stack/material/diamond = 30,
+							/obj/item/stack/material/plasteel = 120,
+							/obj/item/stack/material/silver = 60)
+	var/list/disk_types = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/longsword, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/scourge,
+							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/halberd,
+							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/shield, /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader,
+							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_firstaid)
 
 	var/list/mob/living/carbon/human/scanned = list()
 	var/max_power = 100
@@ -142,7 +139,7 @@ var/global/obj/machinery/power/eotp/eotp
 				if(ishuman(disciple))
 					var/mob/living/carbon/human/H = disciple
 					if(H.sanity)
-						H.sanity.level += 20
+						H.sanity.changeLevel(20)
 			return
 
 		for(var/disciple in disciples)
@@ -167,7 +164,7 @@ var/global/obj/machinery/power/eotp/eotp
 						H.sanity.positive_breakdown()
 
 	else if(type_release == ODDITY)
-		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/common))
+		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
 
@@ -182,7 +179,9 @@ var/global/obj/machinery/power/eotp/eotp
 
 	else if(type_release == MATERIAL_REWARD)
 		var/materials_reward = pick(materials)
-		var/obj/item/_item = new materials_reward(get_turf(src))
+		var/reward_min_amount = materials[materials_reward]
+		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
+		_item.amount = rand(reward_min_amount, _item.max_amount)
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
 
 	for(var/disciple in disciples)
