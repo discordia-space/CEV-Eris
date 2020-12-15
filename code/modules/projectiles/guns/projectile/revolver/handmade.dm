@@ -1,8 +1,8 @@
 /obj/item/weapon/gun/projectile/revolver/handmade
-	name = "Handmade revolver"
+	name = "handmade revolver"
 	desc = "Handmade revolver, made from gun parts. and some duct tap, will it even hold up?"
-	icon = 'icons/obj/guns/projectile/deckard.dmi'
-	icon_state = "deckard"//evan, temp icon
+	icon = 'icons/obj/guns/projectile/handmade_revolver.dmi'
+	icon_state = "handmade_revolver"//evan, temp icon
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	max_shells = 5
