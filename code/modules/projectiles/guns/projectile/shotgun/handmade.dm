@@ -32,5 +32,4 @@
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded -= AC
 			chambered = AC
-	update_icon()
 	..()
