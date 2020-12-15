@@ -135,7 +135,7 @@ var/global/obj/machinery/power/eotp/eotp
 					break
 		if(!antagonist_area)
 			for(var/disciple in disciples)
-				to_chat(disciple, SPAN_NOTICE("You can sleep safely. God protects you with his eye."))
+				to_chat(disciple, SPAN_NOTICE("You feel a wave of calm pass over you. The Angels are watching with their benevolent Eye."))
 				if(ishuman(disciple))
 					var/mob/living/carbon/human/H = disciple
 					if(H.sanity)
