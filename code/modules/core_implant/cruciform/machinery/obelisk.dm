@@ -92,7 +92,7 @@
 			eotp.scanned |= mob
 			if(I && I.active && I.wearer)
 				eotp.addObservation(20)
-			else if (is_carrion(mob))
+			else if(is_carrion(mob))
 				eotp.removeObservation(20)
 			else
 				eotp.addObservation(10)
