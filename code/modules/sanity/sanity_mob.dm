@@ -360,7 +360,7 @@
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
-/datum/sanity/proc/breakdown()
+/datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
@@ -372,46 +372,12 @@
 			S.reg_break(owner)
 
 	var/list/possible_results
-	if(prob(positive_prob) && positive_prob_multiplier > 0)
+	if((prob(positive_prob) && positive_prob_multiplier > 0) || positive_breakdown)
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)
 	else
 		possible_results = subtypesof(/datum/breakdown/common)
-
-	for(var/datum/breakdown/B in breakdowns)
-		possible_results -= B.type
-
-	while(possible_results.len)
-		var/breakdown_type = pick(possible_results)
-		var/datum/breakdown/B = new breakdown_type(src)
-
-		if(!B.can_occur())
-			possible_results -= breakdown_type
-			qdel(B)
-			continue
-
-		if(B.occur())
-			breakdowns += B
-			for(var/mob/living/carbon/human/H in viewers(owner))
-				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
-		return
-
-/datum/sanity/proc/positive_breakdown()
-
-	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
-
-	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
-		if(get_turf(M) in view(get_turf(owner)))
-			M.reg_break(owner)
-
-	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
-		if(get_turf(S) in view(get_turf(owner)))
-			S.reg_break(owner)
-
-	var/list/possible_results
-
-	possible_results = subtypesof(/datum/breakdown/positive)
 
 	for(var/datum/breakdown/B in breakdowns)
 		possible_results -= B.type

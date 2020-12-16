@@ -156,12 +156,13 @@ var/global/obj/machinery/power/eotp/eotp
 		to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
+		var/positive_breakdown = TRUE
 		for(var/disciple in disciples)
 			if(ishuman(disciple))
 				var/mob/living/carbon/human/H = disciple
 				if(H.sanity)
 					if(prob(50))
-						H.sanity.positive_breakdown()
+						H.sanity.breakdown(positive_breakdown)
 
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/nt))
