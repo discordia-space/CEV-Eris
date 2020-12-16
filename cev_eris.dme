@@ -2308,6 +2308,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\lmg.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\maxim.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\molly.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\slaught_o_matic.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sol.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\straylight.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sts35.dm"

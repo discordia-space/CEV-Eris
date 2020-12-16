@@ -1003,6 +1003,7 @@
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 10,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
@@ -1026,6 +1027,7 @@
 					/obj/item/weapon/tool/knife/tacknife = 5)
 
 	prices = list(
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 199,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300,
