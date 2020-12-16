@@ -231,6 +231,14 @@
 	else if(!istype(I,/obj/item/weapon/rcd) && !istype(I, /obj/item/weapon/reagent_containers))
 		if(!I.force)
 			return attack_hand(user)
+
+		if(I.wallbreaker)
+			take_damage((I.force * wallbreaker_mod))
+			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
+			playsound(src, 'sound/effects/impacts/thud_break.ogg', 70, 7)
+			user.do_attack_animation(src)
+			return
+
 		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)

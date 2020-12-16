@@ -81,6 +81,8 @@
 	var/list/item_upgrades = list()
 	var/max_upgrades = 3
 
+	var/wallbreaker = FALSE //TIME TO BREAK THE WALL!
+
 /obj/item/Initialize()
 	if(islist(armor))
 		armor = getArmor(arglist(armor))

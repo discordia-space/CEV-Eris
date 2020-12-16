@@ -419,6 +419,14 @@
 	if(!istype(I,/obj/item/weapon/rcd) && !istype(I, /obj/item/weapon/reagent_containers))
 		if(!I.force)
 			return attack_hand(user)
+
+		if(I.wallbreaker)
+			take_damage((I.force * 5))
+			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
+			playsound(src, 'sound/effects/impacts/thud_break.ogg', 70, 7)
+			user.do_attack_animation(src)
+			return
+
 		var/dam_threshhold = 150 //Integrity of Steel
 		var/dam_prob = min(100,60*1.5) //60 is hardness of steel
 		if(dam_prob < 100 && I.force > (dam_threshhold/10))

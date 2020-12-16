@@ -71,6 +71,13 @@
 	//Attempting to damage girders
 	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack it
 	if (usr.a_intent == I_HURT && user.Adjacent(src))
+		if(I.wallbreaker)
+			take_damage((I.force * 10))
+			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
+			playsound(src, 'sound/effects/impacts/thud_break.ogg', 70, 7)
+			user.do_attack_animation(src)
+			return
+
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
 			var/calc_damage = (I.force*I.structure_damage_factor) - resistance

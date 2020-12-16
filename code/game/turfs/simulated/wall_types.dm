@@ -1,11 +1,13 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+	wallbreaker_mod = 0.5
 
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, MATERIAL_PLASTEEL, MATERIAL_PLASTEEL) //3strong
 
 /turf/simulated/wall/cult
 	icon_state = "cult"
+	wallbreaker_mod = 0
 
 /turf/simulated/wall/cult/New(var/newloc)
 	..(newloc,"cult","cult2")
@@ -118,6 +120,7 @@
 /turf/simulated/wall/untinted/onestar
 	icon_state = "onestar_standard"
 	icon_base_override = "onestar_standard"
+	wallbreaker_mod = 0.5
 
 
 /turf/simulated/wall/untinted/onestar/New(var/newloc)
@@ -128,6 +131,7 @@
 	icon_state = "onestar_reinforced"
 	icon_base_override = "onestar_standard"
 	icon_base_reinf_override = "onestar_reinforced"
+	wallbreaker_mod = 0
 
 /turf/simulated/wall/untinted/onestar_reinforced/New(var/newloc)
 	..(newloc, MATERIAL_STEEL,MATERIAL_STEEL)

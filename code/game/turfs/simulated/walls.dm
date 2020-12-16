@@ -21,6 +21,7 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
+	var/wallbreaker_mod = 2
 
 	/*
 		If set, these vars will be used instead of the icon base taken from the material.

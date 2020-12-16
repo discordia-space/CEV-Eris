@@ -152,3 +152,31 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
+
+/obj/item/weapon/tool/hammer/ironhammer
+	name = "Tacticool Hammer  \"Tactical Hammer\"  Sledgehammer"
+	desc = "A special heavy hammer issued to IHS units for tactical breaches."
+	icon_state = "ironhammer"
+	item_state = "ironhammer"
+	wielded_icon = "ironhammer_doble"
+	force_unwielded = WEAPON_FORCE_ROBUST
+	force_wielded = WEAPON_FORCE_BRUTAL
+	armor_penetration = ARMOR_PEN_EXTREME
+	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
+	w_class = ITEM_SIZE_SMALL
+	slot_flags = SLOT_BACK
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_COMBAT = 1, TECH_MATERIAL = 1)
+	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 20)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/obj/item/weapon/tool/hammer/ironhammer/wield(mob/living/user)
+	..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/rob_stat = H.stats.getStat(STAT_ROB)
+		if(rob_stat >= STAT_LEVEL_EXPERT)
+			wallbreaker = TRUE
+
+/obj/item/weapon/tool/hammer/ironhammer/unwield(mob/living/user)
+	..()
+	wallbreaker = FALSE

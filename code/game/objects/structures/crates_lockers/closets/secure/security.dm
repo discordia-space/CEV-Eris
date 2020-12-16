@@ -80,6 +80,7 @@
 	new /obj/item/clothing/accessory/badge/hos(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
+	new /obj/item/weapon/tool/hammer/ironhammer(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -111,6 +112,7 @@
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
 	new /obj/item/clothing/suit/armor/vest/ironhammer(src)
+	new /obj/item/weapon/tool/hammer/ironhammer(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
@@ -136,6 +138,7 @@
 	new	/obj/item/weapon/gun/projectile/paco(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
+	new /obj/item/weapon/tool/hammer/ironhammer(src)
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
