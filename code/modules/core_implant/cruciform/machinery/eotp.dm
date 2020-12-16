@@ -158,9 +158,8 @@ var/global/obj/machinery/power/eotp/eotp
 		for(var/disciple in disciples)
 			if(ishuman(disciple))
 				var/mob/living/carbon/human/H = disciple
-				if(H.sanity)
-					if(prob(50))
-						H.sanity.breakdown(positive_breakdown)
+				if(H.sanity && prob(50))
+					H.sanity.breakdown(positive_breakdown)
 
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/nt))

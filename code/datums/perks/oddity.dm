@@ -244,8 +244,6 @@
 		return
 	initial_time = world.time
 	for(var/mob/living/L in viewers(holder, 7))
-		if(!L)
-			continue
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(H.stat == DEAD || !(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)))
