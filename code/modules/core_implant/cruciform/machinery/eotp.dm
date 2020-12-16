@@ -145,10 +145,8 @@ var/global/obj/machinery/power/eotp/eotp
 		for(var/disciple in disciples)
 			if(ishuman(disciple))
 				var/mob/living/carbon/human/H = disciple
-				if(H.mind)
-					var/assigned_job = H.mind.assigned_job
-					if(istype(assigned_job, /datum/job/chaplain))
-						preacher = H
+				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
+					preacher = H
 
 		if(!preacher)
 			preacher = pick(disciples)
