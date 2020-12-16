@@ -119,26 +119,42 @@
 						{{else}}
 							{{:helper.link(value.name, 'null', {'firemode' : value.index})}}
 						{{/if}}
+						<i> {{:value.desc}}</i>
 						</h4>
 						<br>
-						<div class="itemLabel">
-						Rounds per burst: 
-						</div>
-							<div class="itemContent">
-								{{:value.burst}}
+						{{if value.projectile_name}}
+							<div class="itemLabel">
+							New Projectile Override: 
 							</div>
-						<div class="itemLabel">
-						Fire delay: 
-						</div>
-							<div class="itemContent">
-								{{:value.fire_delay}} ms
+								<div class="itemContent">
+									{{:value.projectile_name}}
+								</div>
+						{{/if}}
+						{{if value.burst}}
+							<div class="itemLabel">
+							Rounds per burst: 
 							</div>
-						<div class="itemLabel">
-						Movement delay: 
-						</div>
-							<div class="itemContent">
-								{{:value.move_delay}} ms
+								<div class="itemContent">
+									{{:value.burst}}
+								</div>
+							
+						{{/if}}
+						{{if value.fire_delay}}
+							<div class="itemLabel">
+							Fire delay: 
 							</div>
+								<div class="itemContent">
+									{{:value.fire_delay}} ms
+								</div>
+						{{/if}}
+						{{if value.move_delay}}
+							<div class="itemLabel">
+							Movement delay: 
+							</div>
+								<div class="itemContent">
+									{{:value.move_delay}} ms
+								</div>
+						{{/if}}
 					</div>
 				</div>
 			{{/for}}

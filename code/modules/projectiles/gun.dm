@@ -661,6 +661,8 @@
 				"index" = i,
 				"current" = (i == sel_mode),
 				"name" = F.name,
+				"desc" = F.desc,
+				"projectile_name" = initial(F.settings["projectile_type"].name),
 				"burst" = F.settings["burst"],
 				"fire_delay" = F.settings["fire_delay"],
 				"move_delay" = F.settings["move_delay"],
