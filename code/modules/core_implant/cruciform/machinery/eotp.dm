@@ -78,7 +78,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/obj/item/weapon/implant/core_implant/I = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
 			eotp.removeObservation(20)
-		else if (is_carrion(H))
+		else if(is_carrion(H))
 			eotp.addObservation(20)
 		else
 			eotp.removeObservation(10)
