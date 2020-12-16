@@ -53,7 +53,7 @@ var/global/obj/machinery/power/eotp/eotp
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/power/eotp/examine(user)
 	..()
