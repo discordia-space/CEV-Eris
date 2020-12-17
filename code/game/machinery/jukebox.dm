@@ -285,7 +285,7 @@
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
-		visible_message("<span class='danger'>\The [src] makes a fizzling sound.</span>")
+		visible_message(SPAN_DANGER("\The [src] makes a fizzling sound."))
 		update_icon()
 		return 1
 
