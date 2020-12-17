@@ -163,7 +163,7 @@
 	force_wielded = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_EXTREME
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 20)
