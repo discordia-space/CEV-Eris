@@ -104585,6 +104585,10 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"fzi" = (
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4;
@@ -205994,7 +205998,7 @@ cil
 czL
 dXT
 cil
-cjM
+fzi
 cBa
 etr
 anJ
