@@ -1193,6 +1193,7 @@
 	license = -1
 	spawn_blacklisted = TRUE
 	price_tag = 1000
+	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/melee
 	disk_name = "NeoTheology Armory - Basic Melee Weapons"
@@ -1351,4 +1352,3 @@
 		/datum/design/autolathe/clothing/ih_helmet_full,
 		/datum/design/autolathe/clothing/ih_vest_full
 	)
-
