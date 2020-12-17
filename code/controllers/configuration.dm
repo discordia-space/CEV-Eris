@@ -225,7 +225,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/static/regex/ic_filter_regex //For the cringe filter.
 
-	var/disable_cat_points = FALSE // Disable all karma functions and unlock karma jobs by default
 	var/generate_loot_data = FALSE //for loot rework
 
 /datum/configuration/New()
@@ -733,9 +732,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ruins_start")
 					config.start_location = "space ruins"
-
-				if("disable_cat_points")
-					config.disable_cat_points = TRUE
 
 				if("generate_loot_data")
 					config.generate_loot_data = TRUE
