@@ -6,3 +6,4 @@
 	req_components = list(
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
+

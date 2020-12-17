@@ -119,6 +119,7 @@
 
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
+			user.visible_message("<span class='warning'>[user] has [panel_open ? "" : "un"]screwed [src]'s maintenance pannel[panel_open ? " back" : ""].</span>", "<span class='notice'>You [panel_open ? "" : "un"]screw [src]'s maintenance panel[panel_open ? " back" : ""].</span>")
 			panel_open = !panel_open
 			update_icon()
 		if(QUALITY_WIRE_CUTTING)
@@ -314,7 +315,7 @@
 		start_stop_song()
 	updateDialog()
 
-// Advance to the next track - Don't start playing it unless we were already playing
+// Un-advance to the previous track - Don't start playing it unless we were already playing
 /obj/machinery/media/jukebox/proc/PrevTrack()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
@@ -323,3 +324,4 @@
 	if(playing)
 		start_stop_song()
 	updateDialog()
+

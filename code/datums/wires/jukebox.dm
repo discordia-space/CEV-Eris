@@ -73,3 +73,4 @@
 			if(IsIndexCut(WIRE_SPEEDDOWN))
 				newfreq *= 0.5
 			A.freq = newfreq
+

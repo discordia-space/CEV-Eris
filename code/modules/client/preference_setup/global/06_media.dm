@@ -51,3 +51,4 @@
 						user.update_music()
 			return TOPIC_REFRESH
 	return ..()
+
