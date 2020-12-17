@@ -64,7 +64,7 @@
 	dislocated = -1
 
 	w_class = ITEM_SIZE_BULKY
-	max_volume = ITEM_SIZE_GARGANTUAN
+	max_volume = ITEM_SIZE_COLOSSAL
 
 	joint = "hip"
 	amputation_point = "lumbar"
@@ -84,7 +84,7 @@
 	vital = TRUE
 
 	w_class = ITEM_SIZE_NORMAL
-	max_volume = ITEM_SIZE_BULKY
+	max_volume = ITEM_SIZE_GARGANTUAN
 
 	joint = "jaw"
 	amputation_point = "neck"

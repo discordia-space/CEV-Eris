@@ -87,7 +87,9 @@
 	else if(default_description)
 		set_description(new default_description)
 
-	make_base_internal_organs()
+	spawn(1)	//Last organs to be made, last organs in the UI
+		make_base_internal_organs()
+
 	..(holder)
 
 	if(istype(holder))

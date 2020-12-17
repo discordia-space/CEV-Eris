@@ -5,6 +5,10 @@
 	organ_efficiency = list(OP_EYES = 100)
 	parent_organ_base = BP_HEAD
 	price_tag = 100
+	blood_req = 2
+	max_blood_storage = 10
+	oxygen_req = 1
+	nutriment_req = 1
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES

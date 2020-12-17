@@ -78,6 +78,16 @@
 		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
 			for(var/obj/item/organ/external/E in organs)
 				E.update_limb_efficiency()
+			total_blood_req = 0
+			total_oxygen_req = 0
+			total_nutriment_req = 0
+			for(var/obj/item/organ/internal/I in internal_organs)
+				if(BP_IS_ROBOTIC(I))
+					continue
+				total_blood_req += I.blood_req
+				total_oxygen_req += I.oxygen_req
+				total_nutriment_req += (I.nutriment_req / 1000)
+			total_oxygen_req = min(total_oxygen_req, 100)
 
 		if(!client)
 			species.handle_npc(src)
