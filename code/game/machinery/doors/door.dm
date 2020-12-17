@@ -198,6 +198,7 @@
 	return
 
 /obj/machinery/door/attack_hand(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(allowed(user) && operable())
 		if(density)
 			open()
@@ -517,5 +518,4 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
-
 
