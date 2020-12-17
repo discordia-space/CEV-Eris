@@ -154,8 +154,8 @@
 		T.stop()
 
 /obj/item/weapon/tool/hammer/ironhammer
-	name = "Tacticool Hammer  \"Tactical Hammer\"  Sledgehammer"
-	desc = "A special heavy hammer issued to IHS units for tactical breaches."
+	name = "FS \"Ironhammer\" Breaching Hammer"
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls in about eight swings, and can take down reinforced walls in about fifty swings. However, this tool requires significant strength to use efficiently."
 	icon_state = "ironhammer"
 	item_state = "ironhammer"
 	wielded_icon = "ironhammer_doble"
