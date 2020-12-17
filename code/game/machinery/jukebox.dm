@@ -270,7 +270,7 @@
 
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
-	src.visible_message("<span class='danger'>\the [src] blows apart!</span>", 1)
+	src.visible_message(SPAN_DANGER("\the [src] blows apart!"), 1)
 
 	explosion(src.loc, 0, 0, 1, rand(1,2), 1)
 
