@@ -6,7 +6,7 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_COFFIN_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_COFFIN
 	bad_type = /obj/structure/closet/coffin
 	var/mob/living/occupant = null
 

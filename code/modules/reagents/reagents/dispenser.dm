@@ -314,9 +314,9 @@
 	color = "#DB5008"
 	metabolism = REM * 2
 	touch_met = 50 // It's acid!
+	reagent_type = "Acid"
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
-	reagent_type = "Acid"
 
 /datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))

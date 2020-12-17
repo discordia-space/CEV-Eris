@@ -1,1 +1,0 @@
-/obj/structure/computerframe    blacklisted=0    10  0     100

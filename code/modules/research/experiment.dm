@@ -1,5 +1,5 @@
 // Contains everything related to earning research points
-#define AUTOPSY_WEAPON_PAMT rand(5,10) * 200 // 1000-2000 points for random weapon
+#define AUTOPSY_WEAPON_PAMT rand(1,5) * 20 // 50-100 points for random weapon
 #define ARTIFACT_PAMT rand(5,10) * 1000 // 5000-10000 points for random artifact
 
 GLOBAL_LIST_EMPTY(explosion_watcher_list)

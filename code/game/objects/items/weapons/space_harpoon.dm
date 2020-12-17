@@ -13,6 +13,7 @@
 	price_tag = 4000
 	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
 	spawn_blacklisted = TRUE
+	var/entropy_value = 2
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
@@ -20,6 +21,7 @@
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	var/Using = FALSE				//If its being used
+	var/range = 10
 
 /obj/item/weapon/bluespace_harpoon/Initialize()
 	. = ..()
@@ -35,7 +37,9 @@
 		cell = null
 		update_icon()
 
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user)
+	if(get_dist(A, user) > range)
+		return ..()
 	if(istype(A, /obj/item/weapon/storage/))
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
@@ -75,20 +79,20 @@
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
 
 
-/obj/item/weapon/bluespace_harpoon/proc/teleport(var/turf/source, var/turf/target)
+/obj/item/weapon/bluespace_harpoon/proc/teleport(turf/source, turf/target)
 	for(var/atom/movable/AM in source)
 		if(istype(AM, /mob/shadow))
 			continue
 		if(!AM.anchored)
 			if(prob(offset_chance))
-				AM.forceMove(get_turf(pick(orange(teleport_offset,source))))
+				go_to_bluespace(source, entropy_value, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
-				AM.forceMove(target)
+				go_to_bluespace(source, entropy_value, TRUE, AM, target)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
 
-/obj/item/weapon/bluespace_harpoon/verb/change_fire_mode(mob/user as mob)
+/obj/item/weapon/bluespace_harpoon/verb/change_fire_mode(mob/user)
 	set name = "Change fire mode"
 	set category = "Object"
 	set src in oview(1)
@@ -118,7 +122,7 @@
 		src.cell = C
 
 /obj/item/weapon/bluespace_harpoon/mounted
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 	var/charge_cost = 100
 	var/charge_tick = 0
 	var/recharge_time = 4
@@ -154,6 +158,7 @@
 	name = "OR BSD \"Blauerraumharpune\""
 	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
 	icon_state = "harpoon-mounted-blitz-1"
+	spawn_tags = null
 
 /obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
 	icon_state = "harpoon-mounted-blitz-[mode]"

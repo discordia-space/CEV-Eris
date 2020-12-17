@@ -1,4 +1,4 @@
-/obj/item/stack/material/diamond/random    blacklisted=0    1.11111  100     100
-/obj/item/stack/material/uranium/random    blacklisted=0    1.11111  50     100
-/obj/item/stack/material/gold/random    blacklisted=0    2.22222  50     100
-/obj/item/stack/material/silver/random    blacklisted=0    2.22222  40     100
+/obj/item/stack/material/diamond/random    blacklisted=0    spawn_value=1.08696   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/material/uranium/random    blacklisted=0    spawn_value=1.09052   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/material/gold/random    blacklisted=0    spawn_value=2.14137   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/material/silver/random    blacklisted=0    spawn_value=2.14583   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing

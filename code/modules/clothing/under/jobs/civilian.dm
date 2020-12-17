@@ -1,7 +1,4 @@
 //Alphabetical order of civilian jobs.
-/obj/item/clothing/under/rank
-	spawn_blacklisted = TRUE
-
 /obj/item/clothing/under/rank/assistant
 	desc = "Filled with hatred and envy."
 	name = "assistant's uniform"
@@ -62,6 +59,13 @@
 	name = "chef's uniform"
 	icon_state = "chef"
 	item_state = "w_suit"
+
+/obj/item/clothing/under/rank/artist
+	name = "Jester's Garments"
+	desc = "The bright colors are almost distracting."
+	icon_state = "artist"
+	item_state = "artist"
+	spawn_frequency = 0
 
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"

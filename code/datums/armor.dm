@@ -2,7 +2,7 @@
 
 /proc/getArmor(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	. = locate(ARMORID)
-	if (!.)
+	if(!.)
 		. = new /datum/armor(melee, bullet, energy, bomb, bio, rad)
 
 /datum/armor
@@ -40,7 +40,7 @@
 	return vars[rating]
 
 /datum/armor/proc/getList()
-	return list("melee" = melee, "bullet" = bullet, "energy" = energy, "bomb" = bomb, "bio" = bio, "rad" = rad)
+	return list(ARMOR_MELEE = melee, ARMOR_BULLET = bullet, ARMOR_ENERGY = energy, ARMOR_BOMB = bomb, ARMOR_BIO = bio, ARMOR_RAD = rad)
 
 /datum/armor/proc/attachArmor(datum/armor/AA)
 	return getArmor(melee+AA.melee, bullet+AA.bullet, energy+AA.energy, bomb+AA.bomb, bio+AA.bio, rad+AA.rad)

@@ -40,6 +40,12 @@
 	desc = "Moebius General"
 	region = ACCESS_REGION_RESEARCH
 
+//same as above but the MBO can assign it
+/datum/access/moebius_medical
+	id = access_moebius
+	desc = "Moebius General"
+	region = ACCESS_REGION_MEDBAY
+
 /var/const/access_morgue = 6
 /datum/access/morgue
 	id = access_morgue
@@ -140,7 +146,7 @@
 /datum/access/chapel_office
 	id = access_chapel_office
 	desc = "Chapel Office"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CHURCH
 
 /var/const/access_tech_storage = 23
 /datum/access/tech_storage
@@ -158,25 +164,25 @@
 /datum/access/bar
 	id = access_bar
 	desc = "Bar"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CLUB
 
 /var/const/access_janitor = 26
 /datum/access/janitor
 	id = access_janitor
 	desc = "Custodial Closet"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CHURCH
 
 /var/const/access_crematorium = 27
 /datum/access/crematorium
 	id = access_crematorium
 	desc = "Crematorium"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CHURCH
 
 /var/const/access_kitchen = 28
 /datum/access/kitchen
 	id = access_kitchen
 	desc = "Kitchen"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CLUB
 
 /var/const/access_robotics = 29
 /datum/access/robotics
@@ -218,7 +224,7 @@
 /datum/access/hydroponics
 	id = access_hydroponics
 	desc = "Hydroponics"
-	region = ACCESS_REGION_GENERAL
+	region = ACCESS_REGION_CHURCH
 
 /var/const/access_manufacturing = 36
 /datum/access/manufacturing
@@ -226,29 +232,25 @@
 	desc = "Manufacturing"
 	access_type = ACCESS_TYPE_NONE
 
-/var/const/access_cmo = 37
-/datum/access/cmo
-	id = access_cmo
-	desc = "Moebius Biolab Officer"
-	region = ACCESS_REGION_COMMAND
+// /var/const/free_access_id = 37
 
-/var/const/access_virology = 38
+// /var/const/free_access_id = 38
+
+/var/const/access_virology = 39
 /datum/access/virology
 	id = access_virology
 	desc = "Virology"
 	region = ACCESS_REGION_MEDBAY
 
-/var/const/access_change_medbay = 39
-/datum/access/change_medbay
-	id = access_change_medbay
-	desc = "Medbay Change IDs"
+/var/const/access_cmo = 40
+/datum/access/cmo
+	id = access_cmo
+	desc = "Moebius Biolab Officer"
 	region = ACCESS_REGION_MEDBAY
 
-/var/const/access_change_engineering = 40
-/datum/access/change_engineering
-	id = access_change_engineering
-	desc = "Engineering Change IDs"
-	region = ACCESS_REGION_ENGINEERING
+// /var/const/free_access_id = 39
+
+// /var/const/free_access_id = 40
 
 /var/const/access_merchant = 41
 /datum/access/merchant
@@ -268,11 +270,11 @@
 	desc = "Theatre"
 	region = ACCESS_REGION_GENERAL
 
-/var/const/access_change_research = 44
-/datum/access/change_research
-	id = access_change_research
-	desc = "Research Change IDs"
-	region = ACCESS_REGION_RESEARCH
+/var/const/access_artist = 44
+/datum/access/artist_office
+	id = access_artist
+	desc = "Guild Artist"
+	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_surgery = 45
 /datum/access/surgery
@@ -280,17 +282,9 @@
 	desc = "Surgery"
 	region = ACCESS_REGION_MEDBAY
 
-/var/const/access_change_cargo = 46
-/datum/access/change_cargo
-	id = access_change_cargo
-	desc = "Cargo Change IDs"
-	region = ACCESS_REGION_SUPPLY
+// /var/const/free_access_id = 46
 
-/var/const/access_change_nt = 47
-/datum/access/change_nt
-	id = access_change_nt
-	desc = "NT Change IDs"
-	region = ACCESS_REGION_CHURCH
+// /var/const/free_access_id = 47
 
 /var/const/access_mining = 48
 /datum/access/mining
@@ -310,11 +304,7 @@
 	desc = "Cargo Office"
 	region = ACCESS_REGION_SUPPLY
 
-/var/const/access_change_sec = 51
-/datum/access/change_sec
-	id = access_change_sec
-	desc = "Security Change IDs"
-	region = ACCESS_REGION_SECURITY
+// /var/const/free_access_id = 51
 
 // /var/const/free_access_id = 52
 
@@ -414,11 +404,7 @@
 	desc = "Paramedic's Office"
 	region = ACCESS_REGION_MEDBAY
 
-/var/const/access_change_club = 69
-/datum/access/change_club
-	id = access_change_club
-	desc = "Club Change IDs"
-	region = ACCESS_REGION_GENERAL
+// /var/const/free_access_id = 69
 
 /**************
 * NeoTheology *
@@ -459,8 +445,50 @@
 	desc = "NeoTheology Inquisitor"
 	region = ACCESS_REGION_CHURCH
 
+/****************
+* Access Change *
+*****************/
+/var/const/access_change_medbay = 80
+/datum/access/change_medbay
+	id = access_change_medbay
+	desc = "Medbay Change IDs"
+	region = ACCESS_REGION_MEDBAY
 
+/var/const/access_change_engineering = 81
+/datum/access/change_engineering
+	id = access_change_engineering
+	desc = "Engineering Change IDs"
+	region = ACCESS_REGION_ENGINEERING
 
+/var/const/access_change_research = 82
+/datum/access/change_research
+	id = access_change_research
+	desc = "Research Change IDs"
+	region = ACCESS_REGION_RESEARCH
+
+/var/const/access_change_cargo = 83
+/datum/access/change_cargo
+	id = access_change_cargo
+	desc = "Cargo Change IDs"
+	region = ACCESS_REGION_SUPPLY
+
+/var/const/access_change_nt = 84
+/datum/access/change_nt
+	id = access_change_nt
+	desc = "NT Change IDs"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_change_sec = 85
+/datum/access/change_sec
+	id = access_change_sec
+	desc = "Security Change IDs"
+	region = ACCESS_REGION_SECURITY
+
+/var/const/access_change_club = 86
+/datum/access/change_club
+	id = access_change_club
+	desc = "Club Change IDs"
+	region = ACCESS_REGION_CLUB
 
 /******************
 * Central Command *

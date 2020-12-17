@@ -10,19 +10,19 @@
 	anchored = TRUE
 	spawn_frequency = 10 //as /obj/structure/computerframe
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_CONSTRUCTABLE_FRAME
+	spawn_tags = SPAWN_TAG_MACHINE_FRAME
 	bad_type = /obj/machinery/constructable_frame
 
 /obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
 	icon_state = "box_0"
 	matter = list(MATERIAL_STEEL = 8)
-	var/base_state = "box"			//base icon for creating subtypes of machine frame
-	var/list/components = null
-	var/list/req_components = null
-	var/list/req_component_names = null
-	var/state = STATE_NONE
 	frame_type = FRAME_DEFAULT
+	var/base_state = "box"			//base icon for creating subtypes of machine frame
+	var/list/components
+	var/list/req_components
+	var/list/req_component_names
+	var/state = STATE_NONE
 
 /obj/machinery/constructable_frame/machine_frame/examine(mob/user)
 	. = ..()

@@ -28,8 +28,7 @@
 	var/locked = 1			//if the turret's behaviour control access is locked
 	var/controllock = 0		//if the turret responds to control panels
 
-	var/installation = /obj/item/weapon/gun/energy/gun		//the type of weapon installed
-	var/gun_charge = 0		//the charge of the gun inserted
+	var/obj/item/weapon/gun/energy/installation = /obj/item/weapon/gun/energy/gun	//the weapon that's installed. Store as path to initialize a new gun on creation.
 	var/projectile	//holder for bullettype
 	var/eprojectile	//holder for the shot when emagged
 	var/reqpower = 500		//holder for power needed
@@ -108,18 +107,18 @@
 /obj/machinery/porta_turret/Destroy()
 	qdel(spark_system)
 	spark_system = null
+	QDEL_NULL(installation)
 	. = ..()
 
 /obj/machinery/porta_turret/proc/setup()
-	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
-	//var/obj/item/ammo_casing/shottype = E.projectile_type
-
-	projectile = initial(E.projectile_type)
-	eprojectile = projectile
-	shot_sound = initial(E.fire_sound)
-	eshot_sound = shot_sound
-
-	weapon_setup(installation)
+	if(ispath(installation))
+		weapon_setup(installation)
+		installation = new installation	//All energy-based weapons are applicable
+	else
+		eprojectile = installation.projectile_type
+		eshot_sound = installation.fire_sound
+	projectile = installation.projectile_type
+	shot_sound = installation.fire_sound
 
 /obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
 	switch(guntype)
@@ -297,9 +296,8 @@ var/list/turret_icons
 					if(prob(70))
 						to_chat(user, SPAN_NOTICE("You remove the turret and salvage some components."))
 						if(installation)
-							var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-							Gun.cell.charge = gun_charge
-							Gun.update_icon()
+							installation.forceMove(loc)
+							installation = null
 						if(prob(50))
 							new /obj/item/stack/material/steel(loc, rand(1,4))
 						if(prob(50))
@@ -360,33 +358,34 @@ var/list/turret_icons
 			else
 				to_chat(user, SPAN_NOTICE("Access denied."))
 
-		else if((QUALITY_PULSING in I.tool_qualities) && (debugopen))
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PULSING, FAILCHANCE_NORMAL,  required_stat = STAT_COG))
-				registered_names.Cut()
-				registered_names = list()
-				to_chat(user, SPAN_NOTICE("You access the debug board and reset the turret's access list."))
+		else if(QUALITY_PULSING in I.tool_qualities)
+			if(debugopen)
+				if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PULSING, FAILCHANCE_NORMAL,  required_stat = STAT_COG))
+					registered_names.Cut()
+					registered_names = list()
+					to_chat(user, SPAN_NOTICE("You access the debug board and reset the turret's access list."))
 
-		else if((QUALITY_PULSING in I.tool_qualities) && (!debugopen))
-			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD,  required_stat = STAT_COG))
-				if((TOOL_USE_SUCCESS) && (isLocked(user)))
-					locked = 0
-					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader, unlocking the access panel with a satisfying click."))
-					updateUsrDialog()
-				else if((TOOL_USE_SUCCESS) && (!isLocked(user)))
-					locked = 1
-					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader and the access panel's locking lugs snap shut."))
-					updateUsrDialog()
-				else if((TOOL_USE_FAIL) && (!overridden) && (min(prob(35 - STAT_COG), 5)))
-					enabled = 1
-					hackfail = 1
-					user.visible_message(
-						SPAN_DANGER("[user] tripped the security protocol on the [src]! Run!"),
-						SPAN_DANGER("You trip the security protocol! Run!")
-					)
-					sleep(300)
-					hackfail = 0
-				else
-					to_chat(user, SPAN_WARNING("You fail to hack the ID reader, but avoid tripping the security protocol."))
+			else
+				if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD,  required_stat = STAT_COG))
+					if((TOOL_USE_SUCCESS) && (isLocked(user)))
+						locked = 0
+						to_chat(user, SPAN_NOTICE("You manage to hack the ID reader, unlocking the access panel with a satisfying click."))
+						updateUsrDialog()
+					else if((TOOL_USE_SUCCESS) && (!isLocked(user)))
+						locked = 1
+						to_chat(user, SPAN_NOTICE("You manage to hack the ID reader and the access panel's locking lugs snap shut."))
+						updateUsrDialog()
+					else if((TOOL_USE_FAIL) && (!overridden) && (min(prob(35 - STAT_COG), 5)))
+						enabled = 1
+						hackfail = 1
+						user.visible_message(
+							SPAN_DANGER("[user] tripped the security protocol on the [src]! Run!"),
+							SPAN_DANGER("You trip the security protocol! Run!")
+						)
+						sleep(300)
+						hackfail = 0
+					else
+						to_chat(user, SPAN_WARNING("You fail to hack the ID reader, but avoid tripping the security protocol."))
 
 
 		else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
@@ -405,7 +404,7 @@ var/list/turret_icons
 			else
 				switch(I.use_tool_extended(user, src, WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_VERY_HARD,  required_stat = STAT_MEC))
 					if(TOOL_USE_SUCCESS)
-						to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
+						to_chat(user, SPAN_NOTICE("You disconnect the turret's security protocol override!"))
 						overridden = 1
 						req_one_access.Cut()
 						req_one_access = list(access_occupy)
@@ -771,11 +770,10 @@ var/list/turret_icons
 	name = "turret frame"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_frame"
-	density=1
-	var/target_type = /obj/machinery/porta_turret	// The type we intend to build
+	density = TRUE
 	var/build_step = 0			//the current step in the building process
 	var/finish_name="turret"	//the name applied to the product turret
-	var/installation = null		//the gun type installed
+	var/obj/item/weapon/gun/energy/installation		//the gun type installed
 	var/gun_charge = 0			//the gun charge of the gun type installed
 
 
@@ -847,10 +845,11 @@ var/list/turret_icons
 					to_chat(user, SPAN_NOTICE("You weld the turret's armor down."))
 
 					//The final step: create a full turret
-					var/obj/machinery/porta_turret/Turret = new target_type(loc)
+					var/obj/machinery/porta_turret/Turret = new /obj/machinery/porta_turret(loc)
 					Turret.name = finish_name
 					Turret.installation = installation
-					Turret.gun_charge = gun_charge
+					installation.forceMove(Turret)
+					installation = null
 					Turret.enabled = 0
 					Turret.setup()
 
@@ -892,17 +891,13 @@ var/list/turret_icons
 
 				if(isrobot(user))
 					return
-				var/obj/item/weapon/gun/energy/E = I //typecasts the item to an energy gun
 				if(!user.unEquip(I))
 					to_chat(user, SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]"))
 					return
-				installation = I.type //installation becomes I.type
-				gun_charge = E.cell.charge //the gun's charge is stored in gun_charge
+				installation = I //We store the gun for the turret to use
+				installation.forceMove(src) //We physically store it inside of us until the construction is complete.
 				to_chat(user, SPAN_NOTICE("You add [I] to the turret."))
-				target_type = /obj/machinery/porta_turret
-
 				build_step = 4
-				qdel(I) //delete the gun :(
 				return
 
 			//attack_hand() removes the gun
@@ -948,18 +943,17 @@ var/list/turret_icons
 			if(!installation)
 				return
 			build_step = 3
-
-			var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-			Gun.cell.charge = gun_charge
-			Gun.update_icon()
+			installation.forceMove(loc)
 			installation = null
-			gun_charge = 0
-			to_chat(user, SPAN_NOTICE("You remove [Gun] from the turret frame."))
-
+			to_chat(user, SPAN_NOTICE("You remove [installation] from the turret frame."))
 		if(5)
 			to_chat(user, SPAN_NOTICE("You remove the prox sensor from the turret frame."))
 			new /obj/item/device/assembly/prox_sensor(loc)
 			build_step = 4
+
+/obj/machinery/porta_turret_construct/Destroy()
+	QDEL_NULL(installation)
+	.=..()
 
 /obj/machinery/porta_turret_construct/attack_ai()
 	return

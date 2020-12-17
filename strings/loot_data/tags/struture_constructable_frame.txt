@@ -1,1 +1,0 @@
-/obj/machinery/constructable_frame/machine_frame    blacklisted=0    10  100     100

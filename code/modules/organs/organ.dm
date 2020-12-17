@@ -4,11 +4,12 @@
 	germ_level = 0
 	matter = list(MATERIAL_BIOMATTER = 20)
 	bad_type = /obj/item/organ
+	spawn_tags = SPAWN_TAG_ORGAN
 
 	// Strings.
 	var/surgery_name					// A special name that replaces item name in surgery messages
 	var/organ_tag = "organ"				// Unique identifier.
-	var/parent_organ = BP_CHEST			// Organ holding this object.
+	var/parent_organ_base = BP_CHEST	// Base organ holding this object.
 	var/dead_icon
 
 	// Status tracking.
@@ -56,7 +57,7 @@
 		max_damage = min_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]
@@ -67,8 +68,8 @@
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 
-		if(parent_organ)
-			replaced(holder.get_organ(parent_organ))
+		if(parent_organ_base)
+			replaced(holder.get_organ(parent_organ_base))
 		else
 			replaced_mob(holder)
 
@@ -106,7 +107,7 @@
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
 		return 0
 	return ..()
 
@@ -186,7 +187,6 @@
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
-		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 		//spread germs
 		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
@@ -266,10 +266,8 @@
 		src.damage = between(0, src.damage + amount, max_damage)
 
 		//only show this if the organ is not robotic
-		if(owner && parent_organ && amount > 0)
-			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-			if(parent && !silent)
-				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+		if(owner && parent && amount > 0 && !silent)
+			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
@@ -291,7 +289,7 @@
 		return parent
 
 	if(owner)
-		return owner.get_organ(parent_organ)
+		return owner.get_organ(parent_organ_base)
 
 	else if(istype(loc, /obj/item/organ/external))
 		return loc

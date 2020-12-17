@@ -4,9 +4,10 @@
 	flags = 0 //doesn't protect eyes because it's a monocle, duh
 	prescription = TRUE
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
-	var/list/icon/current = list() //the current hud icons
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 0.5)
 	price_tag = 200
+	bad_type = /obj/item/clothing/glasses/hud
+	var/list/icon/current = list() //the current hud icons
 
 /obj/item/clothing/glasses/proc/process_hud(mob/M)
 	if(hud)
@@ -61,3 +62,25 @@
 
 /obj/item/clothing/glasses/hud/broken/process_hud(mob/M)
 	process_broken_hud(M, 1)
+
+
+/obj/item/clothing/glasses/hud/excelsior
+	name = "Excelsior HUD"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their opinion on communism."
+	icon_state = "excelhud"
+	body_parts_covered = 0
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/glasses/hud/excelsior/process_hud(mob/M)
+	if(is_excelsior(M))
+		process_excel_hud(M)
+
+/obj/item/clothing/glasses/hud/excelsior/equipped(mob/M)
+	. = ..()
+
+	var/mob/living/carbon/human/H = M
+	if(!istype(H) || H.glasses != src)
+		return
+
+	if(!is_excelsior(H))
+		to_chat(H, SPAN_WARNING("The hud fails to activate, a built-in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))

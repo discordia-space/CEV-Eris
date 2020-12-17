@@ -14,9 +14,8 @@
 	melee_damage_upper = 7 //Weaker than hunter
 	rarity_value = 22.5
 
-/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
 	. = ..()
-
 	if(isliving(A))
 		var/mob/living/L = A
 		if(istype(L) && prob(25))

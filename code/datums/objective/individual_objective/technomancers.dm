@@ -4,7 +4,7 @@
 	units_requested = 10 MINUTES
 	based_time = TRUE
 	var/area/target_area
-	var/timer	
+	var/timer
 
 /datum/individual_objective/disturbance/assign()
 	..()
@@ -22,6 +22,7 @@
 		timer = world.time
 	if(check_for_completion())
 		completed()
+		target_area.local_bluespace_entropy -= 50
 
 /datum/individual_objective/disturbance/completed()
 	if(completed) return
@@ -98,7 +99,7 @@
 	desc = "It is time to greater sacrifice. Put \the [target] in Techno-Tribalism Enforcer."
 	RegisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM, .proc/task_completed)
 
-/datum/individual_objective/tribalism/task_completed(obj/item/I) 
+/datum/individual_objective/tribalism/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 

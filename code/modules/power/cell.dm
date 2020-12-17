@@ -61,7 +61,7 @@
 	if(drain_check)
 		return TRUE
 
-	if(empty())
+	if(is_empty())
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
@@ -91,7 +91,7 @@
 
 	last_charge_status = charge_status
 
-/obj/item/weapon/cell/proc/empty()
+/obj/item/weapon/cell/proc/is_empty()
 	if(charge <= 0)
 		return TRUE
 	return FALSE
@@ -177,7 +177,7 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (empty())
+	if(is_empty())
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)

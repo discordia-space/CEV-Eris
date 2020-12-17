@@ -56,32 +56,40 @@
 		M.eye_blind = max(M.eye_blind, 5)
 
 
-
 //Now applying sound
 	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 		if(ear_safety <= 0)
 			stat_def *= 5
 			if ((prob(14) || (M == loc && prob(70))))
 				M.adjustEarDamage(rand(1, 10))
+				M.confused = max(M.confused,8)
 			else
 				M.adjustEarDamage(rand(0, 5))
 				M.ear_deaf = max(M.ear_deaf,15)
+				M.confused = max(M.confused,8)
+		else
+			stat_def *= 2
+			M.confused = max(M.confused,4)
 
 	else if(get_dist(M, T) <= 5)
-		if(!ear_safety)
+		if(ear_safety <= 0)
 			stat_def *= 4
 			M.adjustEarDamage(rand(0, 3))
 			M.ear_deaf = max(M.ear_deaf,10)
+			M.confused = max(M.confused,6)
+		else
+			M.confused = max(M.confused,2)
 
 	else if(!ear_safety)
 		stat_def *= 2
 		M.adjustEarDamage(rand(0, 1))
 		M.ear_deaf = max(M.ear_deaf,5)
+		M.confused = max(M.confused,5)
 
 	//This really should be in mob not every check
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if (E && E.damage >= E.min_bruised_damage)
 			to_chat(M, SPAN_DANGER("Your eyes start to burn badly!"))
 	if (M.ear_damage >= 15)
@@ -94,3 +102,10 @@
 	M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
 	M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
 	M.update_icons()
+
+/obj/item/weapon/grenade/flashbang/nt
+	name = "NT FBG \"Holy Light\""
+	desc = "An old \"NanoTrasen\" flashbang granade, modified to spread the light of god."
+	icon_state = "flashbang_nt"
+	item_state = "flashbang_nt"
+	matter = list(MATERIAL_BIOMATTER = 75)

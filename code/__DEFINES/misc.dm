@@ -37,6 +37,7 @@
 #define SPECIALROLE_HUD 7 // AntagHUD image.
 #define  STATUS_HUD_OOC 8 // STATUS_HUD without virus DB check for someone being ill.
 #define        LIFE_HUD 9 // STATUS_HUD that only reports dead or alive
+#define   EXCELSIOR_HUD 10 // Used by excelsior to see who else is excel
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 

@@ -40,10 +40,13 @@
 		/obj/item/weapon/rcd
 	)
 	helmet = /obj/item/clothing/head/space/void/engineering
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	accompanying_object = null
+	spawn_blacklisted = TRUE
 
 //Mining rig
 /obj/item/clothing/head/space/void/mining
@@ -80,6 +83,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
+	spawn_blacklisted = TRUE
 
 //Medical
 /obj/item/clothing/head/space/void/medical
@@ -121,10 +125,11 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
-	rarity_value = 18
+	rarity_value = 8.7
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
+	accompanying_object = null
 	spawn_blacklisted = TRUE
 
 	//Security
@@ -164,11 +169,12 @@
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
-	rarity_value = 40
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	accompanying_object = null
 	spawn_blacklisted = TRUE
 
 //Atmospherics Rig (BS12)

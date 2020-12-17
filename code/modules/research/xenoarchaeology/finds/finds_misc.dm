@@ -8,7 +8,8 @@
 	spawn_tags = SPAWN_TAG_XENOARCH_ITEM
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/talkingcrystal/New()
+/obj/item/weapon/talkingcrystal/Initialize(mapload)
+	. = ..()
 	src.talking_atom = new (src)
 	if(prob(50))
 		icon_state = "talk_crystal2"

@@ -17,8 +17,8 @@
 	var/last_produce = 0
 	var/cooldown = 15 MINUTES
 
-/obj/item/biosyphon/New()
-	..()
+/obj/item/biosyphon/Initialize()
+	. = ..()
 	GLOB.all_faction_items[src] = GLOB.department_security
 	START_PROCESSING(SSobj, src)
 

@@ -20,6 +20,8 @@
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
+	rarity_value = 100
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/gyropistol/update_icon()
 	..()

@@ -134,7 +134,7 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_OS_PROSTHETIC
+	spawn_tags = SPAWN_TAG_PROSTHETIC_OS
 	bad_type = /obj/item/organ/external/robotic/one_star
 	price_tag = 900
 

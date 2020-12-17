@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    2.52143  0     100
-/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    1.17647  0     100
-/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    1.68067  0     100
-/mob/living/simple_animal/hostile/roomba    blacklisted=0    2.77778  0     100
+/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    spawn_value=1.17647   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba    blacklisted=0    spawn_value=2.77778   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

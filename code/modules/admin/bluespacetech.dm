@@ -85,7 +85,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	universal_understand = TRUE
 	status_flags = GODMODE
 	var/fall_override = TRUE
-	var/mob/original_body = null
+	var/mob/original_body
 
 /mob/living/carbon/human/bst/can_inject(mob/user, error_msg, target_zone)
 	to_chat(user, span("alert", "The [src] disarms you before you can inject them."))
@@ -177,8 +177,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /obj/item/weapon/storage/backpack/holding/bst
 	worn_access = TRUE
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/device/radio/headset/ert/bst
 	name = "bluespace technician's headset"
@@ -186,8 +185,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	translate_binary = TRUE
 	translate_hive = TRUE
 	keyslot1 = new /obj/item/device/encryptionkey/binary
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
 	if(!usr)
@@ -211,8 +209,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	siemens_coefficient = 0
 	cold_protection = FULL_BODY
 	heat_protection = FULL_BODY
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/clothing/under/assistantformal/bst/attack_hand()
 	if(!usr)
@@ -228,8 +225,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/clothing/gloves/color/white/bst/attack_hand()
 	if(!usr)
@@ -246,8 +242,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_MAJOR
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
 	set name = "Change Vision Mode"
@@ -282,8 +277,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of black shoes with extra grip. The letters 'BST' are stamped on the side."
 	icon_state = "black"
 	item_flags = NOSLIP
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/clothing/shoes/color/black/bst/attack_hand()
 	if(!usr)
@@ -299,11 +293,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /obj/item/weapon/card/id/bst
 	icon_state = "centcom"
 	desc = "An ID straight from Central Command. This one looks highly classified."
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
-/obj/item/weapon/card/id/bst/New()
-		access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+/obj/item/weapon/card/id/bst/Initialize(mapload)
+	. = ..()
+	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 
 /obj/item/weapon/card/id/bst/attack_hand()
 	if(!usr)
@@ -316,8 +310,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /obj/item/weapon/storage/belt/utility/full/bst
 	storage_slots = 14
-	spawn_blacklisted = TRUE
-	rarity_value = 100
+	spawn_frequency = 0
 
 /obj/item/weapon/storage/belt/utility/full/bst/populate_contents()
 	..()

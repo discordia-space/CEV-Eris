@@ -1,0 +1,11 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: the odditys created by the artist are less powerful.
+  - tweak: the locations in the names of the statues are more varied.
+  - tweak: now the prices of artworks are set when initializing the object and are
+      generally more expensive.
+  - tweak: now there can only be two artists in the round.
+  - tweak: now artistic oddities have no perk.
+  - tweak: artwork guns now have sprite inhand.
+  - tweak: perk artist increased insight gain by 150% instead of 200%.

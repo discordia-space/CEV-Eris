@@ -23,7 +23,7 @@
 	var/stats_buff = list(STAT_BIO, STAT_COG, STAT_MEC)
 	var/list/mob/living/carbon/human/currently_affected = list()
 
-/obj/item/von_krabin/New()
+/obj/item/device/von_krabin/New()
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_moebius
 

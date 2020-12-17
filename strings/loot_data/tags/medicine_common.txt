@@ -1,4 +1,6 @@
-/obj/item/weapon/reagent_containers/syringe/inaprovaline    blacklisted=0    10  20     100
-/obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    10  20     100
-/obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    6.66667  20     100
-/obj/item/stack/medical/ointment    blacklisted=0    20  10     100
+/obj/item/weapon/reagent_containers/syringe/inaprovaline    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    spawn_value=6.13458   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/bruise_pack/handmade    blacklisted=1    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/bruise_pack    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/medical/ointment    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

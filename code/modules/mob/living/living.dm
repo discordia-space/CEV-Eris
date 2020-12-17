@@ -307,6 +307,12 @@ default behaviour is:
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
+/mob/living/proc/get_limb_efficiency(bodypartdefine)
+	return 100
+
+/mob/living/proc/get_specific_organ_efficiency(process_define, parent_organ_tag)
+	return 100
+
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 /mob/get_contents()
@@ -424,7 +430,7 @@ default behaviour is:
 	disabilities = 0
 
 	// fix blindness and deafness
-	blinded = 0
+	blinded = FALSE
 	eye_blind = 0
 	eye_blurry = 0
 	ear_deaf = 0
@@ -438,7 +444,6 @@ default behaviour is:
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 		GLOB.living_mob_list += src
-		tod = null
 		timeofdeath = 0
 
 	// restore us to conciousness
@@ -835,6 +840,9 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+	var/turf/T = get_turf(src)
+	if(T)
+		update_z(T.z)
 
 /mob/living/Destroy()
 	qdel(stats)

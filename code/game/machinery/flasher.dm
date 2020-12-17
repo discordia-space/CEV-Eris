@@ -86,7 +86,7 @@
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
-			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+			var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 			if(!E)
 				return
 			if(E.is_bruised() && prob(E.damage + 50))

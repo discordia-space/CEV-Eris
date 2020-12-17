@@ -67,7 +67,6 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	body_parts_covered = 0
-	style = 1
 	spawn_blacklisted = TRUE
 
 //Security
@@ -101,25 +100,30 @@
 	icon_state = "beret_purple"
 	spawn_blacklisted = TRUE
 
+/obj/item/clothing/head/beret/artist
+	name = "Feathered Beret"
+	desc = "Fit for artists, frenchmen, and eccentric military officers across the cosmos."
+	icon_state = "beret_artist"
+	item_state = "beret_artist"
+	spawn_frequency = 0
+
 //Medical
 /obj/item/clothing/head/surgery
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_green"
 	flags_inv = BLOCKHEADHAIR
+	bad_type = /obj/item/clothing/head/surgery
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."
 	icon_state = "surgcap_purple"
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/surgery/blue
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is baby blue."
 	icon_state = "surgcap_blue"
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/surgery/green
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is dark green."
 	icon_state = "surgcap_green"
-	spawn_blacklisted = TRUE

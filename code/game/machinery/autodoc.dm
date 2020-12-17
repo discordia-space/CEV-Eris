@@ -1,7 +1,4 @@
 /obj/machinery/autodoc
-	var/mob/living/carbon/occupant
-	var/datum/autodoc/autodoc_processor
-	var/locked
 	name = "Autodoc"
 	icon = 'icons/obj/autodoc.dmi'
 	icon_state = "powered_off"
@@ -11,6 +8,9 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
+	var/mob/living/carbon/occupant
+	var/datum/autodoc/autodoc_processor
+	var/locked
 
 /obj/machinery/autodoc/New()
 	. = ..()

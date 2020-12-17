@@ -8,11 +8,13 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	throw_speed = 3
 	throw_range = 10
+	spawn_tags = SPAWN_TAG_ITEM
 	var/obj/item/weapon/pen/haspen		//The stored pen.
 	var/obj/item/weapon/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/clipboard/New()
+/obj/item/weapon/clipboard/Initialize(mapload)
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/clipboard/update_icon()

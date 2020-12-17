@@ -27,7 +27,7 @@
 
 /obj/spawner/encouter/coffin
 	allow_blacklist = TRUE
-	tags_to_spawn = list(SPAWN_COFFIN_CLOSET)
+	tags_to_spawn = list(SPAWN_CLOSET_COFFIN)
 
 /obj/spawner/encouter/omnius
 	tags_to_spawn = list(SPAWN_OMINOUS)

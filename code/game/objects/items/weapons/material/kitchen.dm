@@ -1,5 +1,6 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
+	bad_type = /obj/item/weapon/material/kitchen
 
 /*
  * Utensils
@@ -13,16 +14,17 @@
 	edge = TRUE
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
+	bad_type = /obj/item/weapon/material/kitchen/utensil
+	spawn_tags = SPAWN_TAG_ITEM
 	var/loaded      //Descriptive string for currently loaded food object.
 	var/scoop_food = 1
-	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 	create_reagents(5)
-	return
 
 /obj/item/weapon/material/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))

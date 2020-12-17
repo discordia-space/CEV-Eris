@@ -1,0 +1,10 @@
+/mob/living/carbon/superior_animal/roach/roachling    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/hunter    blacklisted=0    spawn_value=7.37951   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/bluespace    blacklisted=1    spawn_value=13.9352   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/fuhrer    blacklisted=0    spawn_value=1.08488   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/kaiser    blacklisted=1    spawn_value=0.978702   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/support    blacklisted=0    spawn_value=7.44818   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/tank    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/toxic    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach    blacklisted=0    spawn_value=13.9352   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing

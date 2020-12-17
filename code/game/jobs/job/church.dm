@@ -82,10 +82,10 @@
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
 	stat_modifiers = list(
-	STAT_MEC = 25,
 	STAT_BIO = 10,
-	STAT_VIG = 10,
-	STAT_TGH = 5,
+	STAT_VIG = 20,
+	STAT_TGH = 15,
+	STAT_ROB = 5
 	)
 
 	core_upgrades = list(

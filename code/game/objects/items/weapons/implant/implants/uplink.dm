@@ -2,6 +2,7 @@
 	name = "uplink"
 	desc = "Summon things."
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
 	var/activation_emote
 
 /obj/item/weapon/implant/uplink/New(var/loc, var/amount)

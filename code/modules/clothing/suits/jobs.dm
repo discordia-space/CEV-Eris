@@ -20,6 +20,24 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/artist
+	name = "Complicated Vest"
+	desc = "The tubes don't even do anything."
+	icon_state = "artist"
+	item_state = "artist_armor"
+	blood_overlay_type = "armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	rarity_value = 0
+	armor = list(
+		melee = 5,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	spawn_frequency = 0
+
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"

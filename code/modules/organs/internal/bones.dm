@@ -2,12 +2,16 @@
 	name = "bone"
 	icon_state = "bone_braces"
 	desc = "You have got a bone to pick with this"
-	organ_tag = BP_B_CHEST
+	organ_efficiency = list(OP_BONE = 100)
 	price_tag = 100
 	force = WEAPON_FORCE_NORMAL
+	max_damage = 100
 	var/broken_description = ""
 	var/reinforced = FALSE
 
+/obj/item/organ/internal/bone/Initialize()
+    . = ..()
+    src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
 /obj/item/organ/internal/bone/proc/fracture()
 	if(owner)
@@ -36,7 +40,7 @@
 
 /obj/item/organ/internal/bone/proc/reinforce()
 	if(!reinforced) //Just in case
-		organ_efficiency += 33
+		organ_efficiency[OP_BONE] += 33
 		reinforced = TRUE
 		name = "reinforced [name]"
 		icon_state = "reinforced_[icon_state]"
@@ -44,45 +48,38 @@
 /obj/item/organ/internal/bone/chest
 	name = "ribcage"
 	icon_state = "ribcage"
-	organ_tag = BP_B_CHEST
-	parent_organ = BP_CHEST
+	parent_organ_base = BP_CHEST
 
 /obj/item/organ/internal/bone/groin
 	name = "pelvis"
 	icon_state = "pelvis"
-	organ_tag = BP_B_GROIN
-	parent_organ = BP_GROIN
+	parent_organ_base = BP_GROIN
 
 /obj/item/organ/internal/bone/head
 	name = "skull"
 	icon_state = "skull"
-	organ_tag = BP_B_HEAD
-	parent_organ = BP_HEAD
+	parent_organ_base = BP_HEAD
 
 /obj/item/organ/internal/bone/r_arm
 	name = "right humerus"
 	icon_state = "right_arm"
-	organ_tag = BP_B_R_ARM
-	parent_organ = BP_R_ARM
+	parent_organ_base = BP_R_ARM
 
 /obj/item/organ/internal/bone/l_arm
 	name = "left humerus"
 	icon_state = "left_arm"
-	organ_tag = BP_B_L_ARM
-	parent_organ = BP_L_ARM
+	parent_organ_base = BP_L_ARM
 
 /obj/item/organ/internal/bone/r_leg
 	name = "right femur"
 	icon_state = "right_leg"
-	organ_tag = BP_B_R_LEG
-	parent_organ = BP_R_LEG
+	parent_organ_base = BP_R_LEG
 	force = WEAPON_FORCE_PAINFUL
 
 /obj/item/organ/internal/bone/l_leg
 	name = "left femur"
 	icon_state = "left_leg"
-	organ_tag = BP_B_L_LEG
-	parent_organ = BP_L_LEG
+	parent_organ_base = BP_L_LEG
 	force = WEAPON_FORCE_PAINFUL
 
 //Robotic limb variants
