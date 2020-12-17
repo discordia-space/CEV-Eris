@@ -31024,7 +31024,7 @@
 "btG" = (
 /obj/structure/table/standard,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/melee,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "btH" = (

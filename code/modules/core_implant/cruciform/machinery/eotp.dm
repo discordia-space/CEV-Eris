@@ -30,10 +30,7 @@ var/global/obj/machinery/power/eotp/eotp
 							/obj/item/stack/material/diamond = 30,
 							/obj/item/stack/material/plasteel = 120,
 							/obj/item/stack/material/silver = 60)
-	var/list/disk_types = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/longsword, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/scourge,
-							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/halberd,
-							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee/shield, /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader,
-							/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_firstaid)
+	var/list/disk_types = list()
 
 	var/list/mob/living/carbon/human/scanned = list()
 	var/max_power = 100
@@ -53,6 +50,7 @@ var/global/obj/machinery/power/eotp/eotp
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
+	disk_types =  subtypesof(/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt)
 
 /obj/machinery/power/eotp/examine(user)
 	..()
@@ -153,12 +151,11 @@ var/global/obj/machinery/power/eotp/eotp
 		to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
-		var/positive_breakdown = TRUE
 		for(var/disciple in disciples)
 			if(ishuman(disciple))
 				var/mob/living/carbon/human/H = disciple
 				if(H.sanity && prob(50))
-					H.sanity.breakdown(positive_breakdown)
+					H.sanity.breakdown(TRUE)
 
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/nt))
