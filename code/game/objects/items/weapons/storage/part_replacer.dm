@@ -14,3 +14,23 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 100
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 2)
+
+/obj/item/weapon/storage/part_replacer/debugparts
+	bad_type = /obj/item/weapon/storage/part_replacer/debugparts
+	
+/obj/item/weapon/storage/part_replacer/debugparts/populate_contents()
+	new /obj/item/weapon/stock_parts/capacitor/debug(src)
+	new /obj/item/weapon/stock_parts/capacitor/debug(src)
+	new /obj/item/weapon/stock_parts/capacitor/debug(src)
+	new /obj/item/weapon/stock_parts/scanning_module/debug(src)
+	new /obj/item/weapon/stock_parts/scanning_module/debug(src)
+	new /obj/item/weapon/stock_parts/scanning_module/debug(src)
+	new /obj/item/weapon/stock_parts/manipulator/debug(src)
+	new /obj/item/weapon/stock_parts/manipulator/debug(src)
+	new /obj/item/weapon/stock_parts/manipulator/debug(src)
+	new /obj/item/weapon/stock_parts/micro_laser/debug(src)
+	new /obj/item/weapon/stock_parts/micro_laser/debug(src)
+	new /obj/item/weapon/stock_parts/micro_laser/debug(src)
+	new /obj/item/weapon/stock_parts/matter_bin/debug(src)
+	new /obj/item/weapon/stock_parts/matter_bin/debug(src)
+	new /obj/item/weapon/stock_parts/matter_bin/debug(src)
