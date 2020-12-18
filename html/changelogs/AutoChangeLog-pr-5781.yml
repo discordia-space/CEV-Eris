@@ -1,0 +1,4 @@
+author: StiffRobot
+delete-after: true
+changes:
+  - tweak: Read ID Card verb was removed, its code got merged with examine

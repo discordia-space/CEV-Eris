@@ -16,15 +16,14 @@
 
 /obj/item/weapon/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
-
 	var/random_icon = rand(1,5)
 	icon_state = "artwork_revolver_[random_icon]"
 	item_state = "artwork_revolver_[random_icon]"
+	set_item_state("_[random_icon]")
 	caliber = pick(CAL_MAGNUM,CAL_PISTOL)
 	max_shells += rand(-2,7)
 
-	var/sanity_value = 0.2 + pick(0,0.1,0.2)
-	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
 
 	//var/gun_pattern = pick("pistol","magnum","shotgun","rifle","sniper","gyro","cap","rocket","grenade")
 
