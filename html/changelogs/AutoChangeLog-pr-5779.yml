@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscadd: You can now craft makeshift prosthetics
+  - rscadd: Moebius can now opt in to a full body prosthesis through character loadouts.
