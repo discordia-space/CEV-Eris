@@ -122,8 +122,8 @@
 	return TRUE
 
 /datum/individual_objective/proc/update_faction_score()
-	if(mind_holder.client)
-		mind_holder.client.individual_objectives_completed++
+	if(owner)
+		owner.individual_objectives_completed++
 	if(req_cruciform || (DEPARTMENT_CHURCH in req_department))
 		GLOB.neotheology_objectives_completed++
 	else if(DEPARTMENT_SECURITY in req_department)

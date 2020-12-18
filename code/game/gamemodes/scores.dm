@@ -1,4 +1,3 @@
-GLOBAL_VAR_INIT(score_crewscore, 1000)
 #define MAX_FACTION_SCORE 1000
 
 //moebius
@@ -41,6 +40,10 @@ GLOBAL_VAR_INIT(captured_or_dead_antags_score, 0)
 
 GLOBAL_VAR_INIT(ironhammer_operative_dead, 0)
 GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
+
+
+GLOBAL_VAR_INIT(ironhammer_escaped_antagonists, 0)
+GLOBAL_VAR_INIT(ironhammer_escaped_antagonists_score, 0)
 
 //Neotheology_score
 GLOBAL_VAR_INIT(neotheology_score, 0)
@@ -101,33 +104,15 @@ GLOBAL_VAR_INIT(score_technomancer_objectives, 0)
 GLOBAL_VAR_INIT(technomancer_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
-/client
+/datum/mind
 	var/individual_objectives_completed = 0
 	var/contracts_completed = 0
+
+/client
 	var/survive = FALSE
 	var/escaped = FALSE
-	var/roun_score = 0
-	var/cat_points = 0
-	var/cat_points_spent = 0
-	var/cat_points_tab = 0
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
-	//Thresholds for Score Ratings
-	#define SINGULARITY_DESERVES_BETTER -3500
-	#define SINGULARITY_FODDER -3000
-	#define ALL_FIRED -2500
-	#define WASTE_OF_OXYGEN -2000
-	#define HEAP_OF_SCUM -1500
-	#define LAB_MONKEYS -1000
-	#define UNDESIREABLES -500
-	#define SERVANTS_OF_SCIENCE 500
-	#define GOOD_BUNCH 1000
-	#define MACHINE_THIRTEEN 1500
-	#define PROMOTIONS_FOR_EVERYONE 2000
-	#define AMBASSADORS_OF_DISCOVERY 3000
-	#define PRIDE_OF_SCIENCE 4000
-	#define NANOTRANSEN_FINEST 5000
-
 	// Score Calculation and Display
 	var/list/guild_fingerprints = new
 	for(var/datum/mind/M in SSticker.minds)
@@ -146,6 +131,8 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 				var/area/A = get_area(M.current)
 				if(istype(A, /area/eris/security/prison) || istype(A, /area/eris/security/brig) || M.current.restrained())
 					GLOB.captured_or_dead_antags++
+				else if(isOnAdminLevel(M.current))
+					GLOB.ironhammer_escaped_antagonists++
 			else if(M.assigned_job && M.assigned_job.department == DEPARTMENT_GUILD && ishuman(M.current))
 				var/mob/living/carbon/human/H = M.current
 				guild_fingerprints += H.get_full_print()
@@ -172,7 +159,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		if(A.fire || A.atmosalm)
 			GLOB.area_fireloss++
 		if(!A.apc)
-			GLOB.area_powerloss++ 
+			GLOB.area_powerloss++
 			continue
 		for(var/obj/item/weapon/cell/C in A.apc.contents)
 			if(C.charge < min_charge)
@@ -230,11 +217,11 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.neotheology_score = GLOB.initial_neotheology_score + GLOB.score_neotheology_faction_item_loss + GLOB.neotheology_objectives_score + GLOB.score_mess + GLOB.grup_ritual_score + GLOB.biomatter_score + GLOB.new_neothecnology_convert_score
 
 
-	//Moebius score 
+	//Moebius score
 	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
 	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
 	GLOB.score_crew_dead -=	GLOB.crew_dead * 25 // ~200
-	GLOB.score_research_point_gained = min(round(GLOB.research_point_gained/20), 500) // or /100? review it
+	GLOB.score_research_point_gained = min(round(GLOB.research_point_gained/200), 500) // or GLOB.research_point_gained/1000? review it
 	GLOB.score_moebius_autopsies_mobs = GLOB.moebius_autopsies_mobs.len * 15 // ~75
 
 	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead + GLOB.score_research_point_gained + GLOB.score_moebius_autopsies_mobs
@@ -245,6 +232,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.score_antag_contracts -= GLOB.completed_antag_contracts * 30
 	GLOB.ironhammer_operative_dead_score -= GLOB.ironhammer_operative_dead * 50
 	GLOB.captured_or_dead_antags_score = 100 * GLOB.captured_or_dead_antags
+	GLOB.ironhammer_escaped_antagonists_score -= GLOB.ironhammer_escaped_antagonists * 100
 
 	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts + GLOB.ironhammer_operative_dead_score + GLOB.captured_or_dead_antags_score
 
@@ -257,15 +245,11 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score + GLOB.guild_profit_score
 
 
-	// Show the score - might add "ranks" later
-	//to_chat(world, "<b>The crew's final score is:</b>")
-	//to_chat(world, "<b><font size='4'>[GLOB.score_crewscore]</font></b>")
 	for(var/mob/E in GLOB.player_list)
-		//if(E.client && !E.get_preference(PREFTOGGLE_DISABLE_SCOREBOARD))
 		E.scorestats()
 
 /proc/get_color_score(msg, score, maxscore=MAX_FACTION_SCORE)
-	if(score>maxscore*0.5)
+	if(score >= maxscore*0.5)
 		return "<font color='green'>[msg]</font>"
 	return "<font color='red'>[msg]</font>"
 
@@ -283,113 +267,127 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	return "<font color='red'>[msg]</font>"
 
 /mob/proc/scorestats()
-	var/dat = "<b>Round Statistics and Score</b><br><hr>"
+	var/dat = "<b>Faction Scores</b><br><hr><br>"
+
 	//ironhammer
 	dat += {"
-	<b><u>Faction Scores</u></b><br>
 	<u>Ironhammer scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_ironhammer_score)]<br>
-	<b>Faction item perdidos:</b> [GLOB.ironhammer_faction_item_loss] ([to_score_color(GLOB.score_ironhammer_faction_item_loss)] Points)<br>
-	<b>Faction Objectives:</b> [GLOB.ironhammer_objectives_completed] ([to_score_color(GLOB.ironhammer_objectives_score)] Points)<br>
-	<b>contratos completados:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
-	<b>antags capturados o asesinados:</b> [GLOB.captured_or_dead_antags] ([to_score_color(GLOB.captured_or_dead_antags_score)] Points)<br>
-	<b>operativos muertos:</b> [GLOB.ironhammer_operative_dead] ([to_score_color(GLOB.ironhammer_operative_dead_score)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.ironhammer_score, MAX_FACTION_SCORE)] Points<br>
+	<b>Lost faction items:</b> [GLOB.ironhammer_faction_item_loss] ([to_score_color(GLOB.score_ironhammer_faction_item_loss)] Points)<br>
+	<b>Faction objectives completed:</b> [GLOB.ironhammer_objectives_completed] ([to_score_color(GLOB.ironhammer_objectives_score)] Points)<br>
+	<b>Antagonist contracts completed:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
+	<b>Antagonists killed or captured:</b> [GLOB.captured_or_dead_antags] ([to_score_color(GLOB.captured_or_dead_antags_score)] Points)<br>
+	<b>Scaped Antagonists:</b> [GLOB.ironhammer_escaped_antagonists] ([to_score_color(GLOB.ironhammer_escaped_antagonists_score)] Points)<br>
+	<b>IH operatives killed:</b> [GLOB.ironhammer_operative_dead] ([to_score_color(GLOB.ironhammer_operative_dead_score)] Points)<br>
+	<b>Final Ironhammer score:</b> [get_color_score(GLOB.ironhammer_score, GLOB.ironhammer_score)] Points<br><br>
 	"}
+
 	//moebius
 	dat += {"
-	<b><u>Faction Scores</u></b><br>
-	<u>moebius scores</u><br>
+	<u>Moebius scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_moebius_score)]<br>
-	<b>Faction item perdidos:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
-	<b>Faction Objectives:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
-	<b>tripulacion muerta:</b> [GLOB.crew_dead] ([to_score_color(GLOB.score_crew_dead)] Points)<br>
-	<b>research poitns ganados:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
-	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
+	<b>Lost faction items:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
+	<b>Faction objectives completed:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
+	<b>Dead crew:</b> [GLOB.crew_dead] ([to_score_color(GLOB.score_crew_dead)] Points)<br>
+	<b>Research poitns gained:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
+	<b>Autopsies performed:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
+	<b>Final Moebius score:</b> [get_color_score(GLOB.moebius_score, GLOB.moebius_score)] Points<br><br>
 	"}
+
 	//nt
 	dat += {"
-	<b><u>Faction Scores</u></b><br>
-	<u>neotechnology scores</u><br>
+	<u>Neotechnology scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
-	<b>Faction item perdidos:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
-	<b>Faction Objectives:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
-	<b>areas sucias:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
-	<b>Biomateria producida:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
+	<b>Lost faction items:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
+	<b>Faction objectives completed:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
+	<b>dirty areass:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
+	<b>Biomatter produced:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
 	<b>conversiones hecas:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.neotheology_score, MAX_FACTION_SCORE)] Points<br>
+	<b>Group rituals performed:</b> [GLOB.grup_ritual_performed] ([to_score_color(GLOB.grup_ritual_score)] Points)<br>
+	<b>Final Neotechnology score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
 	"}
-	//guid
+
+	//guild
 	dat += {"
-	<b><u>Faction Scores</u></b><br>
-	<u>giuld scores</u><br>
+	<u>Guild scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_guild_score)]<br>
-	<b>Faction item perdidos:</b> [GLOB.guild_faction_item_loss] ([to_score_color(GLOB.score_guild_faction_item_loss)] Points)<br>
-	<b>Faction Objectives:</b> [GLOB.guild_objectives_completed] ([to_score_color(GLOB.guild_objectives_score)] Points)<br>
-	<b>profit outpost:</b> [GLOB.supply_profit] ([to_score_color(GLOB.guild_profit_score)] Points)<br>
-	<b>Tripulacion items repartidos:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.guild_score, MAX_FACTION_SCORE)] Points<br>
+	<b>Lost faction items:</b> [GLOB.guild_faction_item_loss] ([to_score_color(GLOB.score_guild_faction_item_loss)] Points)<br>
+	<b>Faction objectives completed:</b> [GLOB.guild_objectives_completed] ([to_score_color(GLOB.guild_objectives_score)] Points)<br>
+	<b>Profit outpost:</b> [GLOB.supply_profit] ([to_score_color(GLOB.guild_profit_score)] Points)<br>
+	<b>Crew with items distributed by the Guild:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
+	<b>Final Guild score:</b> [get_color_score(GLOB.guild_score, GLOB.guild_score)] Points<br><br><br>
 	"}
+
 	//Technomancers
 	dat += {"
 	<u>Technomancers scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_technomancer_score)]<br>
-	<b>Faction Objectives:</b> [GLOB.technomancer_objectives_completed] ([to_score_color(GLOB.score_technomancer_objectives)] Points)<br>
+	<b>Faction objectives completed:</b> [GLOB.technomancer_objectives_completed] ([to_score_color(GLOB.score_technomancer_objectives)] Points)<br>
 	<b>All smes chargered:</b> [GLOB.all_smes_powered ? "Yes" : "No"] ([to_score_color(GLOB.score_smes_powered)] Points)<br>
-	<b>Alcance del escudo:</b> [GLOB.field_radius] ([to_score_color(GLOB.score_ship_shield)] Points)<br>
-	<b>Faction item perdidos:</b> [GLOB.technomancer_faction_item_loss] ([to_score_color(GLOB.score_technomancer_faction_item_loss)] Points)<br>
-	<b>Areas sin energia:</b> [GLOB.area_powerloss] ([to_score_color(GLOB.score_powerloss)] Points)<br>
-	<b>Areas con problemas atmosfericos:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.technomancer_score, MAX_FACTION_SCORE)] Points<br>
+	<b>Ship shield range:</b> [GLOB.field_radius] ([to_score_color(GLOB.score_ship_shield)] Points)<br>
+	<b>Lost faction items:</b> [GLOB.technomancer_faction_item_loss] ([to_score_color(GLOB.score_technomancer_faction_item_loss)] Points)<br>
+	<b>Unpowered areas:</b> [GLOB.area_powerloss] ([to_score_color(GLOB.score_powerloss)] Points)<br>
+	<b>Areas with atmospheric problems:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
+	<b>Final Technomancers score:</b> [get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)] Points<br><br>
 	"}
 
-	var/score_rating = "The Aristocrats!"
-	switch(GLOB.score_crewscore)
-		if(-99999 to SINGULARITY_DESERVES_BETTER) score_rating = 					"Even the Singularity Deserves Better"
-		if(SINGULARITY_DESERVES_BETTER+1 to SINGULARITY_FODDER) score_rating = 		"Singularity Fodder"
-		if(SINGULARITY_FODDER+1 to ALL_FIRED) score_rating = 						"You're All Fired"
-		if(ALL_FIRED+1 to WASTE_OF_OXYGEN) score_rating = 							"A Waste of Perfectly Good Oxygen"
-		if(WASTE_OF_OXYGEN+1 to HEAP_OF_SCUM) score_rating = 						"A Wretched Heap of Scum and Incompetence"
-		if(HEAP_OF_SCUM+1 to LAB_MONKEYS) score_rating = 							"Outclassed by Lab Monkeys"
-		if(LAB_MONKEYS+1 to UNDESIREABLES) score_rating = 							"The Undesirables"
-		if(UNDESIREABLES+1 to SERVANTS_OF_SCIENCE-1) score_rating = 				"Ambivalently Average"
-		if(SERVANTS_OF_SCIENCE to GOOD_BUNCH-1) score_rating = 						"Skillful Servants of Science"
-		if(GOOD_BUNCH to MACHINE_THIRTEEN-1) score_rating = 						"Best of a Good Bunch"
-		if(MACHINE_THIRTEEN to PROMOTIONS_FOR_EVERYONE-1) score_rating = 			"Lean Mean Machine Thirteen"
-		if(PROMOTIONS_FOR_EVERYONE to AMBASSADORS_OF_DISCOVERY-1) score_rating = 	"Promotions for Everyone"
-		if(AMBASSADORS_OF_DISCOVERY to PRIDE_OF_SCIENCE-1) score_rating = 			"Ambassadors of Discovery"
-		if(PRIDE_OF_SCIENCE to NANOTRANSEN_FINEST-1) score_rating = 				"The Pride of Science Itself"
-		if(NANOTRANSEN_FINEST to INFINITY) score_rating = 							"Nanotrasen's Finest"
+	dat += "<br><hr>"
+	dat += "<b><u>Personal Score</u></b><br><hr>"
+	var/objectives_score = mind.individual_objectives_completed * 20
+	var/contracts_score = mind.contracts_completed * 20
+	var/survive_score = 0
+	var/scaped_score = 0
+	if(client.survive)
+		survive_score += 300
+		if(client.escaped)
+			scaped_score += 200
 
-	dat += "<b><u>RATING:</u></b> [score_rating]<br><hr>"
-
-	
-	dat += "<b>Personal Score</b><br><hr>"
+	var/final_score = objectives_score + contracts_score + survive_score + scaped_score
+	var/max_personal_score = 1000
 
 	dat += {"
-	<b>Personal Objectives completed:</b> [client.individual_objectives_completed] ([to_score_color(client.individual_objectives_completed * 10)] Points)<br>"
-	<b>Contratos de de antag completados:</b> [client.contracts_completed] ([to_score_color(client.individual_objectives_completed * 20)] Points)<br>"
-	<b>sobrevir:</b> [client.survive ? "Yes" : "No"] ([to_score_color(300)] Points)<br>
-	<b>escaped:</b> [client.escaped ? "Yes" : "No"] ([to_score_color(200)] Points)<br>"
-	<b>catpoitns enviados:</b> [client.cat_points_tab] ([to_score_color(client.cat_points_tab * 5)] Points)<br>"
-	<b>catpoitns recibidos:</b> [client.cat_points_spent] ([to_score_color(client.cat_points_spent * 10)] Points)<br>"
+	<b>Personal Objectives completed:</b> [mind.individual_objectives_completed] ([to_score_color(objectives_score)] Points)<br>
+	<b>Antagonist contracts completed:</b> [mind.contracts_completed] ([to_score_color(contracts_score)] Points)<br>
+	<b>Survive:</b> [client.survive ? "Yes" : "No"] ([to_score_color(survive_score)] Points)<br>
+	<b>Escape:</b> [client.escaped ? "Yes" : "No"] ([to_score_color(scaped_score)] Points)<br>
+	<b>Final personal score:</b> [get_color_score(final_score, final_score, max_personal_score)] Points<br><br>
 	"}
+
+	if(is_scored_departmen())
+		final_score += get_faction_score()
+		max_personal_score += MAX_FACTION_SCORE
+
+	dat += "<br><hr>"
+	dat += "<b><u>Your total score is:</u></b> [get_color_score(final_score, final_score, max_personal_score)] Points<br>"
 
 	src << browse(dat, "window=roundstats;size=500x600")
 
-#undef SINGULARITY_DESERVES_BETTER
-#undef SINGULARITY_FODDER
-#undef ALL_FIRED
-#undef WASTE_OF_OXYGEN
-#undef HEAP_OF_SCUM
-#undef LAB_MONKEYS
-#undef UNDESIREABLES
-#undef SERVANTS_OF_SCIENCE
-#undef GOOD_BUNCH
-#undef MACHINE_THIRTEEN
-#undef PROMOTIONS_FOR_EVERYONE
-#undef AMBASSADORS_OF_DISCOVERY
-#undef PRIDE_OF_SCIENCE
-#undef NANOTRANSEN_FINEST
+/mob/proc/get_faction_score()
+	if(mind && mind.assigned_job && mind.assigned_job.department)
+		if(mind.assigned_job.department == DEPARTMENT_MEDICAL || mind.assigned_job.department == DEPARTMENT_SCIENCE)
+			return GLOB.moebius_score
+		else if(mind.assigned_job.department == DEPARTMENT_SECURITY)
+			return GLOB.ironhammer_score
+		else if(mind.assigned_job.department == DEPARTMENT_ENGINEERING)
+			return GLOB.technomancer_score
+		else if(mind.assigned_job.department == DEPARTMENT_GUILD)
+			return GLOB.guild_score
+		else if(mind.assigned_job.department == DEPARTMENT_CHURCH)
+			return GLOB.neotheology_score
 
+/mob/proc/is_scored_departmen()
+	. = FALSE
+	if(mind && mind.assigned_job && mind.assigned_job.department)
+		switch(mind.assigned_job.department)
+			if(DEPARTMENT_MEDICAL)
+				. = TRUE
+			if(DEPARTMENT_SCIENCE)
+				. = TRUE
+			if(DEPARTMENT_SECURITY)
+				. = TRUE
+			if(DEPARTMENT_ENGINEERING)
+				. = TRUE
+			if(DEPARTMENT_GUILD)
+				. = TRUE
+			if(DEPARTMENT_CHURCH)
+				. = TRUE
