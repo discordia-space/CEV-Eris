@@ -66,7 +66,11 @@ var/global/list/modifications_types = list(
 				to_chat(usr, "This body-mod does not match your chosen department.")
 				return FALSE
 		else if(P)
-			var/datum/job/J = SSjob.GetJob(P.job_high)
+			var/datum/job/J
+			if(ASSISTANT_TITLE in P.job_low)
+				J = SSjob.GetJob(ASSISTANT_TITLE)
+			else
+				J = SSjob.GetJob(P.job_high)
 			if(!J || !department_specific.Find(J.department))
 				to_chat(usr, "This body-mod does not match your highest-priority department.")
 				return FALSE
