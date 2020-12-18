@@ -63,12 +63,12 @@ var/global/list/modifications_types = list(
 		if(H && H.mind)
 			var/department = H.mind.assigned_job.department
 			if(!department || !department_specific.Find(department))
-				to_chat(usr, "This body-mod does not match your department.")
+				to_chat(usr, "This body-mod does not match your chosen department.")
 				return FALSE
 		else if(P)
 			var/datum/job/J = SSjob.GetJob(P.job_high)
 			if(!J || !department_specific.Find(J.department))
-				to_chat(usr, "This body-mod does not match your department.")
+				to_chat(usr, "This body-mod does not match your highest-priority department.")
 				return FALSE
 
 	if(!allow_nt && H?.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
@@ -138,25 +138,21 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/asters
 	id = "prosthesis_asters"
 	replace_limb = /obj/item/organ/external/robotic/asters
-	department_specific = list(DEPARTMENT_GUILD, DEPARTMENT_CIVILIAN)
 	icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 
 /datum/body_modification/limb/prosthesis/serbian
 	id = "prosthesis_serbian"
 	replace_limb = /obj/item/organ/external/robotic/serbian
-	department_specific = list(DEPARTMENT_CIVILIAN)
 	icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 
 /datum/body_modification/limb/prosthesis/frozen_star
 	id = "prosthesis_frozen_star"
 	replace_limb = /obj/item/organ/external/robotic/frozen_star
-	department_specific = list(DEPARTMENT_SECURITY, DEPARTMENT_CIVILIAN)
 	icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 
 /datum/body_modification/limb/prosthesis/technomancer
 	id = "prosthesis_technomancer"
 	replace_limb = /obj/item/organ/external/robotic/technomancer
-	department_specific = list(DEPARTMENT_ENGINEERING, DEPARTMENT_CIVILIAN)
 	icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 
 /datum/body_modification/limb/prosthesis/moebius
@@ -169,7 +165,6 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/makeshift
 	id = "prosthesis_makeshift"
 	replace_limb = /obj/item/organ/external/robotic/makeshift
-	department_specific = list(DEPARTMENT_CIVILIAN)
 	icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
 
 /datum/body_modification/limb/mutation/New()
