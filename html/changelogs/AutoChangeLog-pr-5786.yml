@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: Now odditys lose their perk on first use.
+  - tweak: Odditys now have a 60% chance to have an associated perk.
