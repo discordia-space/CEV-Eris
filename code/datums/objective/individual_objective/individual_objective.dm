@@ -6,9 +6,10 @@
 		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
 		if(!IO.can_assign(src))
 			continue
-		valid_objectives[npath] = 10/IO.rarity
+		var/multiplier = 10
 		if(!IO.limited_antag && (IO.req_department.len || IO.req_cruciform))
-			valid_objectives[npath] = 20/IO.rarity //priorize faction objectives
+			multiplier *= 2 //priorize faction objectives
+		valid_objectives[npath] = multiplier/IO.rarity
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
