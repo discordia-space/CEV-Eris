@@ -29,10 +29,10 @@ Procs:
 **	Includes all the helper procs and basic tech processing.  **
 ***************************************************************/
 
-/datum/research/proc/adjust_research_points(varlue)
-	if(varlue > 0)
-		GLOB.research_point_gained += varlue
-	research_points += varlue
+/datum/research/proc/adjust_research_points(value)
+	if(value > 0)
+		GLOB.research_point_gained += value
+	research_points += value
 
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
 	var/list/known_designs = list()			//List of available designs (at base reliability).
