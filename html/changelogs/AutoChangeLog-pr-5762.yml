@@ -1,0 +1,4 @@
+author: TermService
+delete-after: true
+changes:
+  - bugfix: The door flickers if you do not have access but you click on it
