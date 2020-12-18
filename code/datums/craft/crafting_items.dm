@@ -21,20 +21,23 @@
 /obj/item/part/armor
 	name = "armor part"
 	desc = "Spare part for clothing."
-	icon = 'icons/obj/crafts.dmi'
-	icon_state = "clothing"
+	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
 	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/part/gun
 	name = "gun part"
 	desc = "Spare part of a gun."
-	icon_state = "gun"//evan, temp icon
+	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	matter = list(MATERIAL_PLASTEEL = 1)
 
+/obj/item/part/gun/New()
+	. = ..()
+	icon_state = "gun_part_[rand(1,6)]"
+
 /obj/item/craft_frame
-	name = "Item assembly"
+	name = "item assembly"
 	desc = "Debug item"
 	icon ='icons/obj/crafts.dmi'
 	icon_state = "gun_frame"//evan, temp icon

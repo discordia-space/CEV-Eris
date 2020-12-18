@@ -2,8 +2,8 @@
 	name = "pouch"
 	desc = "Can hold various things."
 	icon = 'icons/inventory/pockets/icon.dmi'
-	icon_state = "pouch"
-	item_state = "pouch"
+	//icon_state = "pouch" //TODO
+	//item_state = "pouch" //TODO
 
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT //Pouches can be worn on belt

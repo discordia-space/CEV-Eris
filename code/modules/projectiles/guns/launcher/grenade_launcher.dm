@@ -167,9 +167,9 @@
 /obj/item/weapon/gun/launcher/grenade/makeshift
 	name = "makeshift grenade launcher"
 	desc = "Your own, homemade, China Lake."
-	icon = 'icons/obj/guns/launcher/riotgun.dmi'
-	icon_state = "riotgun"
-	item_state = "riotgun"
+	icon = 'icons/obj/guns/launcher/makeshift.dmi'
+	icon_state = "makeshift"
+	item_state = "makeshift"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
