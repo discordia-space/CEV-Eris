@@ -45,6 +45,7 @@
 
 //Common - you can find those everywhere
 /obj/item/weapon/oddity/common
+	prob_perk = 60
 	bad_type = /obj/item/weapon/oddity/common
 	spawn_blacklisted = FALSE
 

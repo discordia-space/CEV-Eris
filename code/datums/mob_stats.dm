@@ -116,10 +116,12 @@
 
 /// The main, public proc to add a perk to a mob. Accepts a path or a stringified path.
 /datum/stat_holder/proc/addPerk(perkType)
+	. = FALSE
 	if(!getPerk(perkType))
 		var/datum/perk/P = new perkType
 		perks += P
 		P.assign(holder)
+		. = TRUE
 
 
 /// The main, public proc to remove a perk from a mob. Accepts a path or a stringified path.
