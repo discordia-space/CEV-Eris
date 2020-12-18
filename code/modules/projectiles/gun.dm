@@ -657,16 +657,26 @@
 		for(var/i = 1 to firemodes.len)
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
-			firemodes_info += list(list(
+			var/list/firemode_info = list(
 				"index" = i,
 				"current" = (i == sel_mode),
 				"name" = F.name,
 				"desc" = F.desc,
-				"projectile_name" = initial(F.settings["projectile_type"].name),
 				"burst" = F.settings["burst"],
 				"fire_delay" = F.settings["fire_delay"],
 				"move_delay" = F.settings["move_delay"],
-				))
+				)
+			if(F.settings["projectile_type"])
+				var/proj_path = F.settings["projectile_type"]
+				var/obj/item/projectile/P = new proj_path
+				firemode_info["projectile_name"] = P.name
+				var/list/projectile_damages = list()
+				for(var/damage in P.damage_types)
+					var/list/dam_types = list("name" = damage, "dam_amt" = P.damage_types[damage])
+					projectile_damages[++projectile_damages.len] = dam_types
+				firemode_info["projectile_damages"] = projectile_damages
+				qdel(P)
+			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 
 	if(item_upgrades.len)
