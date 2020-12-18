@@ -361,7 +361,7 @@
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
-/datum/sanity/proc/breakdown()
+/datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
@@ -373,7 +373,7 @@
 			S.reg_break(owner)
 
 	var/list/possible_results
-	if(prob(positive_prob) && positive_prob_multiplier > 0)
+	if((prob(positive_prob) && positive_prob_multiplier > 0) || positive_breakdown)
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)

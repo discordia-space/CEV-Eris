@@ -1392,9 +1392,9 @@
 	icon_state = "teomat"
 	vendor_department = DEPARTMENT_CHURCH
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)
-	contraband = list(/obj/item/weapon/implant/core_implant/cruciform = 3, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee = 1, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades = 1)
+	contraband = list(/obj/item/weapon/implant/core_implant/cruciform = 3)
 	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 250,
-				/obj/item/weapon/implant/core_implant/cruciform = 1000, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee = 1000, /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades = 2000)
+				/obj/item/weapon/implant/core_implant/cruciform = 1000)
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"

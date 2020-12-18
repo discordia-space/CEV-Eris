@@ -50,6 +50,8 @@ var/list/disciples = list()
 	if(is_carrion(wearer))
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
+		if(eotp)
+			eotp.addObservation(200)
 		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
@@ -58,6 +60,8 @@ var/list/disciples = list()
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
+	if(eotp)
+		eotp.addObservation(50)
 	return TRUE
 
 
@@ -65,6 +69,8 @@ var/list/disciples = list()
 	if(!active || !wearer)
 		return
 	disciples.Remove(wearer)
+	if(eotp)
+		eotp.removeObservation(50)
 	..()
 
 /obj/item/weapon/implant/core_implant/cruciform/Process()
