@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/slaught_o_matic
-	name = ".35 slaught-O-matic"
-	desc = "A very cheap self-defence single use automatic pistol. Now less 90% metal. Uses .35 Auto rounds."
+	name = "FS HG .35 Auto \"Slaught-o-Matic\""
+	desc = "This disposable plastic handgun is mass-produced by Frozen Star for civilian use. It often is used by street urchin, thugs, or terrorists on a budget. For what it's worth, it's not an awful handgun - but you only get one magazine before the gun locks up and becomes useless."
 	icon = 'icons/obj/guns/projectile/slaught_o_matic.dmi'
 	icon_state = "slaught"
 	item_state = "slaught"
@@ -30,8 +30,8 @@
 	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
 
 	init_firemodes = list(
-		list(mode_name="full auto 300",  mode_type = /datum/firemode/automatic, fire_delay=2, icon="burst"),
-		list(mode_name="full auto 800",  mode_type = /datum/firemode/automatic, fire_delay=0.8, icon="auto")
+		FULL_AUTO_300,
+		FULL_AUTO_800
 		)
 
 /obj/item/weapon/gun/projectile/automatic/slaught_o_matic/Initialize()
@@ -53,7 +53,7 @@
 	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/automatic/slaught_o_matic/load_ammo(obj/item/A, mob/user)
-	to_chat(user, SPAN_WARNING("You can't reload a disposable gun"))
+	to_chat(user, SPAN_WARNING("You try to reload the handgun, but the magazine that's already loaded won't come out!"))
 
 /obj/item/weapon/gun/projectile/automatic/slaught_o_matic/unload_ammo(mob/user, var/allow_dump=1)
-	to_chat(user, SPAN_WARNING("You can't unload a disposable gun"))
+	to_chat(user, SPAN_WARNING("You try to take out the handgun's magazine, but it won't budge!"))
