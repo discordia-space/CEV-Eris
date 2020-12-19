@@ -516,7 +516,7 @@
 	heal_brute = 10
 	automatic_charge_overlays = FALSE
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_BIOMATTER = 20)
+	matter = list(MATERIAL_BIOMATTER = 3)
 	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/stack/medical/advanced/bruise_pack/nt/update_icon()
@@ -531,7 +531,7 @@
 	heal_brute = 10
 	automatic_charge_overlays = FALSE
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_BIOMATTER = 20)
+	matter = list(MATERIAL_BIOMATTER = 3)
 	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/stack/medical/advanced/ointment/nt/update_icon()
