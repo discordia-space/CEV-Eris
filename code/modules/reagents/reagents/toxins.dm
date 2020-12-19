@@ -197,7 +197,7 @@
 	M.adjustOxyLoss(0.6 * effect_multiplier)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
-	M.timeofdeath = stationtime2text()
+	M.timeofdeath = world.time
 	M.add_chemical_effect(CE_NOPULSE, 1)
 
 /datum/reagent/toxin/zombiepowder/Destroy()
