@@ -27639,13 +27639,11 @@
 /area/eris/rnd/lab)
 "blz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/scalpel,
-/obj/item/weapon/tool/saw/circular,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/item/weapon/tool/hemostat,
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "blA" = (
