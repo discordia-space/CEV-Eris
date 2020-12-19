@@ -1,4 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Body prosthesis is now not limited by faction again

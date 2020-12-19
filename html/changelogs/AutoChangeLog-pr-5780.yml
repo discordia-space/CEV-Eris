@@ -1,7 +1,0 @@
-author: DarkLevel - coding; Armolitskiy - sprites (NeoTheoligan Medkit); CeUvi - sprites
-  (Eye of the Protector), Techbro from Eris - sprites (NT oddity).
-delete-after: true
-changes:
-  - rscadd: Eye of the Protector
-  - rscadd: NeoTheologian Medkit
-  - rscadd: NT oddity
