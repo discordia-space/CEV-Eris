@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscadd: The misc tools in robotics surgery bay have been replaced with a surgical
+      medkit.
