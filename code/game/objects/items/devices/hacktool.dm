@@ -1,4 +1,5 @@
 /obj/item/weapon/tool/multitool/hacktool
+	spawn_blacklisted = TRUE//traitor item
 	var/is_hacking = 0
 	var/max_known_targets
 

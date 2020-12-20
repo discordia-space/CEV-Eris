@@ -1,33 +1,33 @@
-/mob/living/carbon/slime    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/carbon/superior_animal/roach/roachling    blacklisted=1    spawn_value=20    price_tag=100   100    
-/mob/living/carbon/superior_animal/roach/hunter    blacklisted=0    spawn_value=8.88889    price_tag=200   100    
-/mob/living/carbon/superior_animal/roach/bluespace    blacklisted=1    spawn_value=20    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/fuhrer    blacklisted=0    spawn_value=1.11111    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/kaiser    blacklisted=1    spawn_value=1    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/support    blacklisted=0    spawn_value=8.88889    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    spawn_value=4.44444    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/tank    blacklisted=0    spawn_value=4.44444    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach/toxic    blacklisted=0    spawn_value=4.44444    price_tag=150   100    
-/mob/living/carbon/superior_animal/roach    blacklisted=0    spawn_value=20    price_tag=150   100    
-/mob/living/carbon/superior_animal/giant_spider/hunter    blacklisted=0    spawn_value=1.33333    price_tag=0   100    
-/mob/living/carbon/superior_animal/giant_spider/nurse    blacklisted=0    spawn_value=1.33333    price_tag=0   100    
-/mob/living/carbon/superior_animal/giant_spider    blacklisted=0    spawn_value=2.66667    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/resurrected    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/stinger    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/bomber    blacklisted=0    spawn_value=4    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/hiborg    blacklisted=0    spawn_value=1    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/himan    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/mechiver    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/hivemind/phaser    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    spawn_value=2.52143    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    spawn_value=1.17647    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    spawn_value=1.68067    price_tag=0   100    
-/mob/living/simple_animal/hostile/roomba    blacklisted=0    spawn_value=2.77778    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143    price_tag=0   100    
-/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10    price_tag=0   100    
-/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/effect/spider/spiderling    blacklisted=0    spawn_value=20    price_tag=0   100    
+/mob/living/carbon/slime    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/roachling    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/hunter    blacklisted=0    spawn_value=7.37951   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/bluespace    blacklisted=1    spawn_value=13.9352   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/fuhrer    blacklisted=0    spawn_value=1.08488   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/kaiser    blacklisted=1    spawn_value=0.978702   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/support    blacklisted=0    spawn_value=7.44818   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/tank    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach/toxic    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/roach    blacklisted=0    spawn_value=13.9352   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/giant_spider/hunter    blacklisted=0    spawn_value=1.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/giant_spider/nurse    blacklisted=0    spawn_value=1.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/carbon/superior_animal/giant_spider    blacklisted=0    spawn_value=2.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/resurrected    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/stinger    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/bomber    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/hiborg    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/himan    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/mechiver    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/hivemind/phaser    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/slayer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/boomba    blacklisted=0    spawn_value=1.17647   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba/gun_ba    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/roomba    blacklisted=0    spawn_value=2.77778   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian/chef    blacklisted=0    spawn_value=1.68067   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian/engineer    blacklisted=0    spawn_value=2.52143   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/simple_animal/hostile/onestar_custodian    blacklisted=0    spawn_value=4.20168   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/bot/miningonestar/resources    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/spider/spiderling    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

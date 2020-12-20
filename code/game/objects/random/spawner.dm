@@ -11,9 +11,10 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
-	var/top_price = null
-	var/low_price = null
+	var/top_price
+	var/low_price
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
+	var/list/should_be_include_tags = list()//TODO
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
 	var/allow_aditional_object = TRUE
@@ -26,7 +27,6 @@
 	//BIOME SPAWNERS
 	var/obj/landmark/loot_biomes/biome
 	var/biome_spawner = FALSE
-	var/biome_type = /obj/landmark/loot_biomes/obj
 	var/spawn_count = 0
 	var/latejoin = FALSE
 	var/check_density = TRUE //for find smart spawn
@@ -34,9 +34,14 @@
 
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
-	..()
+	. = ..()
+	price_tag = 0
 	allow_aditional_object = with_aditional_object
-	if(!latejoin && !prob(spawn_nothing_percentage))
+	if(!prob(spawn_nothing_percentage))
+		if(biome_spawner && !biome)
+			find_biome()
+		if(latejoin)
+			return INITIALIZE_HINT_LATELOAD
 		var/list/spawns = spawn_item()
 		if(spawns.len)
 			burrow()
@@ -44,13 +49,12 @@
 				post_spawn(spawns)
 			if(biome)
 				biome.price_tag += price_tag
-			post_spawn(spawns)
 
-	return latejoin ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_QDEL
 
 /obj/spawner/LateInitialize()
 	..()
-	if(!prob(spawn_nothing_percentage) && latejoin)
+	if(latejoin)
 		var/list/spawns = spawn_item()
 		if(spawns.len)
 			burrow()
@@ -58,15 +62,21 @@
 				post_spawn(spawns)
 			if(biome)
 				biome.price_tag += price_tag
-			post_spawn(spawns)
 	qdel(src)
+
+/obj/spawner/proc/check_biome_spawner()
+	. = FALSE
+	if(biome_spawner && biome)
+		. = TRUE
+
+
+/obj/spawner/proc/burrow()
+	return FALSE
 
 // creates the random item
 /obj/spawner/proc/spawn_item()
 	var/list/points_for_spawn = list()
 	var/list/spawns = list()
-	if(!biome)
-		find_biome()
 	if(spread_range && istype(loc, /turf))
 		points_for_spawn = find_smart_point()
 	else
@@ -99,63 +109,39 @@
 					price_tag += AMAO.get_item_cost()
 	return spawns
 
-/obj/spawner/proc/check_biome_type()
-	.=FALSE
-	if(biome && istype(biome, biome_type))
-		.=TRUE
-
 /obj/spawner/proc/find_biome()
-	var/distance = INFINITY
-	var/new_distance
-	if(GLOB.loot_biomes.len)
-		for(var/obj/landmark/loot_biomes/biome_candidate in GLOB.loot_biomes)
-			new_distance = get_dist(src, biome_candidate)
-			if(new_distance > biome_candidate.range)
-				continue
-			if(biome_candidate.z != z)
-				continue
-			if(get_area(src) != get_area(biome_candidate))
-				continue
-			if(check_biome_type() && !istype(biome_candidate, biome_type))
-				continue
-			if(new_distance > distance)
-				if(check_biome_type())
-					continue
-				if(!(!check_biome_type() && istype(biome_candidate, biome_type)))
-					continue
-				if(!check_biome_type() && !istype(biome_candidate, biome_type))
-					continue
-			distance = new_distance
-			biome = biome_candidate
-	if(biome_spawner && biome)
-		var/count = 1
-		if(istype(src, /obj/spawner/traps))
-			biome.spawner_trap_count++
-			count = biome.spawner_trap_count
-		else if(istype(src, /obj/spawner/mob))
-			biome.spawner_mob_count++
-			count = biome.spawner_mob_count
-		if(check_biome_type())
-			tags_to_spawn = biome.tags_to_spawn
-			allow_blacklist = biome.allow_blacklist
-			exclusion_paths = biome.exclusion_paths
-			restricted_tags = biome.restricted_tags
-			top_price = biome.top_price
-			low_price = biome.low_price
-			min_amount = max(1, biome.min_amount / count)
-			max_amount = min(biome.max_amount, max(3, biome.max_amount / count))
-			if(use_biome_range)
-				spread_range = biome.range
-				loc = biome.loc
+	var/turf/T = get_turf(src)
+	if(T && T.biome)
+		biome = T.biome
+	if(check_biome_spawner())
+		update_biome_vars()
+
+/obj/spawner/proc/update_tags()
+	biome.update_tags()
+	tags_to_spawn = biome.tags_to_spawn
+
+/obj/spawner/proc/update_biome_vars()
+	update_tags()
+	tags_to_spawn = biome.tags_to_spawn
+	allow_blacklist = biome.allow_blacklist
+	exclusion_paths = biome.exclusion_paths
+	restricted_tags = biome.restricted_tags
+	top_price = min(biome.top_price, max(biome.cap_price - biome.price_tag, 0))
+	low_price = biome.low_price
+	min_amount = biome.min_loot_amount
+	max_amount = biome.max_loot_amount
+	if(use_biome_range)
+		spread_range = biome.range
+		loc = biome.loc
 
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
-	if(biome)
-		biome.update()
-	if(biome_spawner && biome && biome.price_tag >= biome.cap_price)
-		return
+	if(check_biome_spawner())
+		update_tags()
+		if(biome.price_tag + price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
+			return
 	var/list/candidates = valid_candidates()
-	if(biome_spawner && biome && biome.allowed_only_top)
+	if(check_biome_spawner() && (istype(src, /obj/spawner/traps) || istype(src, /obj/spawner/mob)))
 		var/count = 1
 		if(istype(src, /obj/spawner/traps))
 			count = biome.spawner_trap_count
@@ -171,7 +157,7 @@
 	return pick_spawn(candidates)
 
 /obj/spawner/proc/valid_candidates()
-	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths)
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths, should_be_include_tags)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
@@ -183,31 +169,24 @@
 	return
 
 /proc/check_spawn_point(turf/T, check_density=FALSE)
-	.=TRUE
-	if(T.density || T.is_wall || (T.is_hole && !T.is_solid_structure()))
-		if(check_density && !turf_clear(T))
-			return FALSE
-		.=FALSE
+	. = TRUE
+	if(T.density  || T.is_wall || (T.is_hole && !T.is_solid_structure()))
+		. = FALSE
+	if(check_density && !turf_clear(T))
+		. = FALSE
 
 /obj/spawner/proc/find_smart_point()
 	var/list/points_for_spawn = list()
 	for(var/turf/T in trange(spread_range, loc))
+		if(check_biome_spawner() && !(T in biome.spawn_turfs))
+			continue
 		if(!check_spawn_point(T, check_density))
 			continue
-		if(check_density && !turf_clear(T))
-			continue
-		if(biome_spawner && biome)
-			if(get_area(src) != get_area(biome))
-				continue
-			if(get_dist(src, T) > biome.range)
-				continue
-			if(biome.check_room && !check_room(T, biome))
-				continue
 		points_for_spawn += T
 	return points_for_spawn
 
 /proc/check_room(atom/movable/source, atom/movable/target)
-	.=TRUE
+	. = TRUE
 	var/ndist = get_dist(source, target)
 	var/turf/current = source
 	for(var/i in 1 to ndist)
@@ -223,17 +202,14 @@
 
 /obj/randomcatcher/proc/get_item(type, with_aditional_object=FALSE)
 	new type(src, with_aditional_object)
-	if (contents.len)
+	if(contents.len)
 		. = pick(contents)
 	else
-		return null
+		return
 
 /obj/randomcatcher/proc/get_items(type, with_aditional_object=FALSE)
 	new type(src, with_aditional_object)
-	if (contents.len)
+	if(contents.len)
 		return contents
 	else
-		return null
-
-/obj/spawner/proc/burrow()
-	return FALSE
+		return

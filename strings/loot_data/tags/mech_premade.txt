@@ -1,12 +1,12 @@
-/mob/living/exosuit/premade/random/normal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/random/boring    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/random/extra    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/random    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/combat/slayer    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/mob/living/exosuit/premade/combat    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/mob/living/exosuit/premade/heavy    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/light    blacklisted=0    spawn_value=10    price_tag=0   100    
-/mob/living/exosuit/premade/powerloader/flames_red    blacklisted=1    spawn_value=6.66667    price_tag=0   100    
-/mob/living/exosuit/premade/powerloader/flames_blue    blacklisted=1    spawn_value=6.66667    price_tag=0   100    
-/mob/living/exosuit/premade/powerloader/firefighter    blacklisted=0    spawn_value=5    price_tag=0   100    
-/mob/living/exosuit/premade/powerloader    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
+/mob/living/exosuit/premade/random/normal    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/random/boring    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/random/extra    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/random    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/combat/slayer    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/combat    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/heavy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/light    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader/flames_red    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader/flames_blue    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader/firefighter    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

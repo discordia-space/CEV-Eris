@@ -1,209 +1,205 @@
-/obj/item/device/kit/suit    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/kit/paint/powerloader/flames_red    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/kit/paint/powerloader/flames_blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/kit/paint/powerloader    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/kit/paint    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/kit    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/slimelight    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/aicard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/binoculars    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/camera_bug    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/chameleon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/debugger    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/flash    blacklisted=0    spawn_value=4    price_tag=300   100    
-/obj/item/device/floor_painter/mech_painter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/floor_painter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/holowarrant    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/flare    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/undark    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/red    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/yellow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick/random    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/glowstick    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable/drone    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable/flashlight/pen    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/device/lighting/toggleable/flashlight/heavy    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/device/lighting/toggleable/flashlight/seclite    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/device/lighting/toggleable/flashlight    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/device/lighting/toggleable/lamp/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable/lamp    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable/lantern    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lightreplacer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/megaphone    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mental_imprinter    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/mind_fryer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/paicard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/pipe_painter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/powersink    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spy_bug    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spy_monitor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/spy    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/syndicate    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/binary    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_sec    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_eng    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_rob    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_med    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_sci    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_com    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/captain    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/ai_integrated    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/rd    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/hos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/ce    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/cmo    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/hop    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/merchant    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/heads/preacher    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_cargo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/headset_service    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/ia    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/church    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset/ert    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/headset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/beacon/bacon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/beacon/explosion_watcher    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/beacon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/electropack    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/off    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/phone/medbay    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/phone    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio/exosuit    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/radio    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spy_sensor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/suit_cooling_unit    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/t_scanner    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/device/taperecorder/empty    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/taperecorder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/batterer    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/transfer_valve    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/uplink/hidden    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/uplink    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/violin    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/hailer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/viro    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/engineering    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/security    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/detective    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/warden    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/janitor    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/science    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/clown    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads/hop    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads/hos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads/ce    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads/cmo    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads/rd    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/heads    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/captain    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/cargo    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/quartermaster    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/shaftminer    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/syndicate    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/chaplain    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/lawyer    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/botanist    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/roboticist    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/clear    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/chef    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/bar    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/atmos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/chemist    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/ai/pai    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda/ai    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/pda    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/syndicate    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/binary    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_sec    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_eng    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_rob    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_med    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_church    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_sci    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_moebius    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_com    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/captain    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/ai_integrated    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/rd    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/moebius    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/hos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/ce    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/cmo    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/hop    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/merchant    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/preacher    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads/admin    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/heads    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_cargo    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/headset_service    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey/entertainment    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/encryptionkey    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/device/scanner/gas    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/device/scanner/health    blacklisted=0    spawn_value=6.0024    price_tag=0   100    
-/obj/item/device/scanner/mass_spectrometer/adv    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/item/device/scanner/mass_spectrometer    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/scanner/plant    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/scanner/price    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/item/device/scanner/reagent/adv    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/scanner/reagent    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/scanner/xenobio    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/scanner/mining/advanced    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/scanner/mining    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/onetankbomb    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly_holder/timer_igniter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/assembly_holder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/uv_light    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/device/eftpos    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronic_assembly/medium    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronic_assembly/large    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronic_assembly/drone    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronic_assembly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated/integrated_circuit_printer/upgraded    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated/integrated_circuit_printer/debug    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated/integrated_circuit_printer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated/wirer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated/debugger    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics/integrated    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/electronics    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mmi/digital/posibrain    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mmi/digital/robot    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mmi/digital    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mmi/radio_enabled    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/mmi    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/robotanalyzer    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/toner    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/camera_film    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/camera    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/am_shielding_container    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/makeshift_centrifuge    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/makeshift_electrolyser    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/destTagger    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/science_tool    blacklisted=0    spawn_value=6.25    price_tag=0   100    
-/obj/item/device/gps/science    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/gps/engineering    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/gps/mining    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/gps/traitor    blacklisted=1    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/gps/locator    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/gps    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/item/device/measuring_tape    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/ano_scanner    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/core_sampler    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/depth_scanner    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/beacon_locator    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/shield_diffuser    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spaceflare    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument/guitar/multi    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument/guitar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument/synthesizer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument/trumpet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument/violin    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/synthesized_instrument    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/antibody_scanner    blacklisted=0    spawn_value=2    price_tag=0   100    
+/obj/item/device/kit/suit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/kit/paint/powerloader/flames_red    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/kit/paint/powerloader/flames_blue    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/kit/paint/powerloader    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/kit/paint    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/kit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/slimelight    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/aicard    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/binoculars    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/camera_bug    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/chameleon    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/debugger    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/flash    blacklisted=0    spawn_value=3.63939   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/floor_painter/mech_painter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/floor_painter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/holowarrant    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/flare    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/undark    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/red    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/blue    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/orange    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/yellow    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick/random    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/glowstick    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/flashlight/pen    blacklisted=0    spawn_value=14.8898   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/flashlight/heavy    blacklisted=0    spawn_value=14.251   spawn_price=104   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/flashlight/seclite    blacklisted=0    spawn_value=14.8898   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/flashlight    blacklisted=0    spawn_value=14.8898   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/lamp/green    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/lamp    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting/toggleable/lantern    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lighting    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/lightreplacer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/megaphone    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mental_imprinter    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mind_fryer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/paicard    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pipe_painter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/powersink    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/spy_bug    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/spy_monitor    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/spy    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/uplink    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/uplink    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/syndicate    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/binary    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_sec    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_eng    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_rob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_med    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_sci    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_com    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/captain    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/ai_integrated    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/rd    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/hos    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/ce    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/cmo    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/hop    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/merchant    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/heads/preacher    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_cargo    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/headset_service    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/ia    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/church    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset/ert    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/headset    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/beacon/bacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/beacon/explosion_watcher    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/beacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/electropack    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/off    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/phone/medbay    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio/phone    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/radio    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/spy_sensor    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/suit_cooling_unit    blacklisted=0    spawn_value=8.12442   spawn_price=203.5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/t_scanner    blacklisted=0    spawn_value=3.74307   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/taperecorder/empty    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/taperecorder    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/batterer    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/transfer_valve    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/uplink/hidden    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/uplink    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/violin    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/hailer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/medical    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/viro    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/engineering    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/security    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/detective    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/warden    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/janitor    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/science    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/clown    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads/hop    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads/hos    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads/ce    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads/cmo    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads/rd    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/heads    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/captain    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/cargo    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/quartermaster    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/shaftminer    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/syndicate    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/chaplain    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/lawyer    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/botanist    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/roboticist    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/clear    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/chef    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/bar    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/atmos    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/chemist    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/ai/pai    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda/ai    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/pda    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/syndicate    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/binary    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_sec    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_eng    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_rob    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_med    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_church    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_sci    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_moebius    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_com    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/captain    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/ai_integrated    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/rd    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/moebius    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/hos    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/ce    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/cmo    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/hop    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/merchant    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/preacher    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads/admin    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/heads    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_cargo    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/headset_service    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey/entertainment    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/encryptionkey    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/gas    blacklisted=0    spawn_value=3.74307   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/health    blacklisted=0    spawn_value=5.44188   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/mass_spectrometer/adv    blacklisted=0    spawn_value=0.983129   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/mass_spectrometer    blacklisted=0    spawn_value=1.93364   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/plant    blacklisted=0    spawn_value=1.93364   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/price    blacklisted=0    spawn_value=3.74307   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/reagent/adv    blacklisted=0    spawn_value=1.93364   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/reagent    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/xenobio    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/mining/advanced    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/scanner/mining    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/onetankbomb    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly_holder/timer_igniter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/assembly_holder    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/uv_light    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/eftpos    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronic_assembly/medium    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronic_assembly/large    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronic_assembly/drone    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronic_assembly    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated/integrated_circuit_printer/upgraded    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated/integrated_circuit_printer/debug    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated/integrated_circuit_printer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated/wirer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated/debugger    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics/integrated    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/electronics    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mmi/digital/posibrain    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mmi/digital/robot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mmi/digital    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mmi/radio_enabled    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/mmi    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/robotanalyzer    blacklisted=0    spawn_value=1.93364   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/toner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/camera_film    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/camera    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/makeshift_centrifuge    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/makeshift_electrolyser    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/destTagger    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/science_tool    blacklisted=0    spawn_value=6.25   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps/science    blacklisted=0    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps/engineering    blacklisted=0    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps/mining    blacklisted=0    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps/traitor    blacklisted=1    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps/locator    blacklisted=0    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/gps    blacklisted=0    spawn_value=6.66667   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/measuring_tape    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/ano_scanner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/core_sampler    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/depth_scanner    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/beacon_locator    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/shield_diffuser    blacklisted=0    spawn_value=8.53533   spawn_price=52   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/spaceflare    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument/guitar/multi    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument/guitar    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument/synthesizer    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument/trumpet    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument/violin    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/synthesized_instrument    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/device/antibody_scanner    blacklisted=0    spawn_value=2   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

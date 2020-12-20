@@ -7,7 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
-	bad_type = /obj/structure/closet
+	//bad_type = /obj/structure/closet
 	spawn_tags = SPAWN_TAG_CLOSET
 	var/locked = FALSE
 	var/broken = FALSE
@@ -46,21 +46,20 @@
 
 /obj/structure/closet/Initialize(mapload)
 	..()
-
 	populate_contents()
 	update_icon()
 	hack_require = rand(6,8)
 
 	//If closet is spawned in maints, chance of getting rusty content is increased.
-	if (in_maintenance())
+	if(in_maintenance())
 		old_chance = old_chance + 20
 
-	if (prob(old_chance))
+	if(prob(old_chance))
 		make_old()
 
-	if (old_chance)
-		for (var/atom/thing in contents)
-			if (prob(old_chance))
+	if(old_chance)
+		for(var/obj/thing in contents)
+			if(prob(old_chance))
 				thing.make_old()
 
 	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
@@ -311,7 +310,7 @@
 			qdel(src)
 		if(2)
 			if(prob(50))
-				for (var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(src.loc)
 					A.ex_act(severity + 1)
 				qdel(src)
@@ -350,7 +349,7 @@
 
 /obj/structure/closet/attackby(obj/item/I, mob/user)
 
-	if (istype(I, /obj/item/weapon/gripper))
+	if(istype(I, /obj/item/weapon/gripper))
 		//Empty gripper attacks will call attack_AI
 		return 0
 
@@ -425,7 +424,7 @@
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
 			return
-		if (C.use(1))
+		if(C.use(1))
 			to_chat(user, SPAN_NOTICE("You rig [src]."))
 			rigged = TRUE
 			return
@@ -452,18 +451,18 @@
 			if(hack_stage < hack_require)
 
 				var/obj/item/weapon/tool/T = I
-				if (istype(T) && T.item_flags & SILENT)
+				if(istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
-				else if (istype(T) && T.item_flags & LOUD)
+				else if(istype(T) && T.item_flags & LOUD)
 					playsound(src.loc, 'sound/items/glitch.ogg', 500, 1, 10) //Loud tools can hack it LOUDLY
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
 
-				if (istype(T) && T.item_flags & HONKING)
+				if(istype(T) && T.item_flags & HONKING)
 					playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 				//Cognition can be used to speed up the proccess
-				if (prob (user.stats.getStat(STAT_COG)))
+				if(prob (user.stats.getStat(STAT_COG)))
 					hack_stage = hack_require
 					to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
 				else

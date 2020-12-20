@@ -52,6 +52,8 @@
 	var/list/embedded = list()			// Currently implanted objects that can be pulled out
 	var/max_size = 0
 
+	var/limb_efficiency = 100			// Limb efficiency modified by limbs internal organs
+
 	var/list/drop_on_remove
 
 	var/obj/item/organ_module/active/module
@@ -85,7 +87,7 @@
 	else if(default_description)
 		set_description(new default_description)
 
-	make_bones()
+	make_base_internal_organs()
 	..(holder)
 
 	if(istype(holder))
@@ -199,8 +201,16 @@
 	..()
 	SSnano.update_uis(src)
 
+/obj/item/organ/external/proc/make_base_internal_organs()
+	if(is_stump(src))
+		return
+	make_bones()
+	make_nerves()
+	make_muscles()
+	make_blood_vessels()
+
 /obj/item/organ/external/proc/make_bones()
-	if(default_bone_type && !is_stump(src))
+	if(default_bone_type)
 		var/obj/item/organ/internal/bone/bone
 		if(nature < MODIFICATION_SILICON)
 			bone = new default_bone_type
@@ -210,6 +220,39 @@
 
 		bone?.replaced(src)
 
+/obj/item/organ/external/proc/make_nerves()
+	var/obj/item/organ/internal/nerve/nerve
+	if(nature < MODIFICATION_SILICON)
+		nerve = new /obj/item/organ/internal/nerve
+	else
+		nerve = new /obj/item/organ/internal/nerve/robotic
+
+	nerve?.replaced(src)
+
+/obj/item/organ/external/proc/make_muscles()
+	var/obj/item/organ/internal/muscle/muscle
+	if(nature < MODIFICATION_SILICON)
+		muscle = new /obj/item/organ/internal/muscle
+	else
+		muscle = new /obj/item/organ/internal/muscle/robotic
+
+	muscle?.replaced(src)
+
+/obj/item/organ/external/proc/make_blood_vessels()
+	var/obj/item/organ/internal/blood_vessel/blood_vessel
+	if(nature < MODIFICATION_SILICON)	//No robotic blood vesseles
+		blood_vessel = new /obj/item/organ/internal/blood_vessel
+
+	blood_vessel?.replaced(src)
+
+/obj/item/organ/external/proc/update_limb_efficiency()
+	limb_efficiency = 0
+	limb_efficiency += owner.get_specific_organ_efficiency(OP_NERVE, organ_tag) + owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
+	if(BP_IS_ROBOTIC(src))
+		limb_efficiency = limb_efficiency / 2
+		return 
+	limb_efficiency = (limb_efficiency + owner.get_specific_organ_efficiency(OP_BLOOD_VESSEL, organ_tag)) / 3
+	
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
 		if(BP_L_ARM)
@@ -268,12 +311,12 @@
 	return
 
 /obj/item/organ/external/proc/get_tally()
-	if(is_broken())
-		return 3
+	if(is_broken() && !(status & ORGAN_SPLINTED))
+		. += 3
 	else if(status & (ORGAN_MUTATED|ORGAN_DEAD))
-		return 3
+		. += 3
 	// malfunctioning only happens intermittently so treat it as a broken limb when it procs
-	else if(is_malfunctioning())
+	if(is_malfunctioning())
 		if(prob(10))
 			owner.visible_message("\The [owner]'s [name] [pick("twitches", "shudders")] and sparks!")
 			var/datum/effect/effect/system/spark_spread/spark_system = new ()
@@ -282,13 +325,15 @@
 			spark_system.start()
 			spawn(10)
 				qdel(spark_system)
-		return 2
-	else if(is_dislocated())
-		return 1
-	else if(status & ORGAN_SPLINTED)
-		return 0.5
-	else
-		return tally
+		. += 2
+	if(is_dislocated())
+		. += 1
+	if(status & ORGAN_SPLINTED)
+		. += 0.5
+
+	. += (-(limb_efficiency / 100 - 1) * 3)	//0 at 100 efficiency, -1.5 at 150, +1.5 at 50
+
+	. += tally
 
 /obj/item/organ/external/proc/is_dislocated()
 	if(dislocated > 0)
@@ -453,13 +498,15 @@ This function completely restores a damaged organ to perfect condition.
 	else
 		..()
 
-//Handles bones untill a specific bone porcess is made.
+//Handles bones.
 /obj/item/organ/external/proc/handle_bones()
 	if(!(status & ORGAN_BROKEN))
 		perma_injury = 0
 
 	if(!is_stump())
-		if(!get_bone() && !(owner.status_flags & REBUILDING_ORGANS))
+		if(!get_bone())
+			if(owner && (owner.status_flags & REBUILDING_ORGANS))
+				return
 			for(var/obj/item/organ/external/limb in children)
 				limb.droplimb(FALSE, DROPLIMB_EDGE)
 			droplimb(FALSE, DROPLIMB_BLUNT)
@@ -777,12 +824,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
 	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	return config.bones_can_break && !BP_IS_ROBOTIC(src) && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+	return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
-	if(BP_IS_ROBOTIC(src))
-		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
 	var/obj/item/organ/internal/bone/bone = get_bone()

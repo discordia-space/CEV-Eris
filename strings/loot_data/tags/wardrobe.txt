@@ -1,19 +1,20 @@
-/obj/structure/closet/wardrobe/color/pink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/black    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/yellow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/grey    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/mixed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/pjs    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/tactical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/sec    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/science_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/robotics_black    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/chemistry_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/virology_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/medic_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/chaplain_black    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/engineering_yellow    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe    blacklisted=1    spawn_value=10    price_tag=0   100    
+/obj/structure/closet/wardrobe/color/pink/artist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/pink    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/black    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/green    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/orange    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/yellow    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/white    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/grey    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/mixed    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/pjs    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/tactical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/sec    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/science_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/robotics_black    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/chemistry_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/virology_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/medic_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/chaplain_black    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/engineering_yellow    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

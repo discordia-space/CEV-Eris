@@ -79,8 +79,14 @@
 	icon_state = "plant-26"
 	layer = ABOVE_MOB_LAYER
 
-//newbushes
+/obj/structure/flora/pottedplant/random/Initialize(mapload)
+	. = ..()
+	var/new_icon = rand(1,26)
+	if(new_icon < 10)
+		new_icon = "0[new_icon]"
+	icon_state = "plant-[new_icon]"
 
+//newbushes
 /obj/structure/flora/ausbushes
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'

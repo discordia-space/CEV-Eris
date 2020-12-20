@@ -83,11 +83,11 @@
 		var/state = electrolysis(beaker, separation_beaker, convertion_coefficient)
 		if(!state)
 			on = FALSE
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1 -3)
+			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
 			visible_message("\icon[src]\The [src] buzzes indicating that error has occured.")
 		else if(state == -1)
 			on = FALSE
-			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 			visible_message("\icon[src]\The [src] pings indicating that process is complete.")
 		update_icon()
 		SSnano.update_uis(src)

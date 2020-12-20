@@ -1,8 +1,8 @@
-/obj/item/weapon/tool/crowbar/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/medmultitool    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    spawn_value=10    price_tag=20   100    
+/obj/item/weapon/tool/crowbar/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=8.27136   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/medmultitool    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=8.27136   spawn_price=123   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=8.43792   spawn_price=71   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

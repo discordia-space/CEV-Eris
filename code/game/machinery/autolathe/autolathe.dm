@@ -1,12 +1,10 @@
-#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
-
-
 #define ERR_OK 0
 #define ERR_NOTFOUND "not found"
 #define ERR_NOMATERIAL "no material"
 #define ERR_NOREAGENT "no reagent"
 #define ERR_NOLICENSE "no license"
 #define ERR_PAUSED "paused"
+#define ERR_NOINSIGHT "no insight"
 
 
 /obj/machinery/autolathe
@@ -24,12 +22,12 @@
 
 	var/build_type = AUTOLATHE
 
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null
+	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk
 
 	var/list/stored_material = list()
-	var/obj/item/weapon/reagent_containers/glass/container = null
+	var/obj/item/weapon/reagent_containers/glass/container
 
-	var/unfolded = null
+	var/unfolded
 	var/show_category
 	var/list/categories
 
@@ -42,10 +40,10 @@
 
 	var/working = FALSE
 	var/paused = FALSE
-	var/error = null
+	var/error
 	var/progress = 0
 
-	var/datum/computer_file/binary/design/current_file = null
+	var/datum/computer_file/binary/design/current_file
 	var/list/queue = list()
 	var/queue_max = 8
 
@@ -63,16 +61,18 @@
 	var/have_design_selector = TRUE
 
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
+	var/list/suitable_materials //List that limits autolathes to eating mats only in that list.
 
 	var/global/list/error_messages = list(
 		ERR_NOLICENSE = "Not enough license points left.",
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
-		ERR_PAUSED = "**Construction Paused**"
+		ERR_PAUSED = "**Construction Paused**",
+		ERR_NOINSIGHT = "Not enough insight."
 	)
 
-	var/tmp/datum/wires/autolathe/wires = null
+	var/tmp/datum/wires/autolathe/wires
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flicker_overlay/image_load
@@ -209,7 +209,7 @@
 	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 600, 700)
@@ -512,6 +512,10 @@
 				if(material in unsuitable_materials)
 					continue
 
+				if(suitable_materials)
+					if(!(material in suitable_materials))
+						continue
+
 				if(!(material in stored_material))
 					stored_material[material] = 0
 
@@ -647,7 +651,7 @@
 /obj/machinery/autolathe/proc/print_post()
 	flick("[initial(icon_state)]_finish", src)
 	if(!current_file && !queue.len)
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
@@ -685,7 +689,7 @@
 					return ERR_NOREAGENT
 
 
-	if (paused)
+	if(paused)
 		return ERR_PAUSED
 
 	return ERR_OK
@@ -762,7 +766,7 @@
 	if(!(material in stored_material))
 		return
 
-	if (!amount)
+	if(!amount)
 		return
 
 	var/material/M = get_material_by_name(material)
@@ -774,11 +778,11 @@
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
-	if (whole_amount)
+	if(whole_amount)
 		var/obj/item/stack/material/S = new M.stack_type(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
-		if (whole_amount <= S.max_amount)
+		if(whole_amount <= S.max_amount)
 			S.amount = whole_amount
 			S.update_strings()
 			S.update_icon()
@@ -788,7 +792,7 @@
 			//And how many sheets leftover for this stack
 			S.amount = whole_amount % S.max_amount
 
-			if (!S.amount)
+			if(!S.amount)
 				qdel(S)
 
 			for(var/i = 0; i < fullstacks; i++)
@@ -798,7 +802,7 @@
 				MS.update_icon()
 
 	//And if there's any remainder, we eject that as a shard
-	if (remainder)
+	if(remainder)
 		new /obj/item/weapon/material/shard(drop_location(), material, _amount = remainder)
 
 	//The stored material gets the amount (whole+remainder) subtracted
@@ -877,8 +881,8 @@
 #undef ERR_NOMATERIAL
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
-#undef SANITIZE_LATHE_COST
-
+#undef ERR_PAUSED
+#undef ERR_NOINSIGHT
 
 // A version with some materials already loaded, to be used on map spawn
 /obj/machinery/autolathe/loaded

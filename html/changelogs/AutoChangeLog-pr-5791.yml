@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: The chemistry shutters now extend to the windows added in the extension.

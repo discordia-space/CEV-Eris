@@ -18,7 +18,7 @@
 			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
-				for(var/mob/living/carbon/C in getObjectsInView())
+				for(var/mob/living/carbon/C in getPotentialTargets())
 					if ((C.stat == DEAD) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
 						eatTargets += C
 
@@ -36,7 +36,7 @@
 					stop_automated_movement = 1
 					src.visible_message(SPAN_NOTICE("\The [src] begins to eat \the [eat_target]."))
 					walk(src,0)
-					spawn(3000) // how much time it takes to it a corpse, in tenths of second 
+					spawn(3000) // how much time it takes to it a corpse, in tenths of second
 					    // Set to 5 minutes to let the crew enough time to get the corpse
 						// Several roaches eating at the same time do not speed up the process
 						// If disturbed the roach has to start back from 0

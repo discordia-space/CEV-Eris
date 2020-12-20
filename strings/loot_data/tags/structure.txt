@@ -1,665 +1,258 @@
-/obj/machinery/constructable_frame/machine_frame    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/structure/window/basic/full    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/basic    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/plasmabasic/full    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/plasmabasic    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/full    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/plasma/full    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/plasma    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/tinted/frosted    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/tinted    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/polarized/full    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/polarized    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/crescent    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/bioreactor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/holowindow/disappearing    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced/holowindow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/reinforced    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window/shuttle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/window    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/signpost    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/showcase    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/window    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/heater    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/platform    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/propulsion/burst/left    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/propulsion/burst/right    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/propulsion/burst    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/propulsion    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine/router    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle/engine    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plasticflaps/mining    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plasticflaps    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/artilleryplaceholder/decorative    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/artilleryplaceholder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryofeed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/barricade    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/AIcore/deactivated    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/AIcore    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/computerframe    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/body_bag/cryobag    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/structure/closet/body_bag    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/crate/secure/weapon    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/plasma    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/gear    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/hydrosec/prelocked    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/hydrosec    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/bin    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/large/reinforced    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/large    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/scisecurecrate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/woodseccrate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure/loot    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/secure    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/plastic    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/structure/closet/crate/internals    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/trashcart    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/medical    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/rcd    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/solar    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/freezer/rations    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/freezer    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/bin    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/radiation    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/large    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/hydroponics    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/scicrate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/serbcrate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/serbcrate_gray    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/germancrate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/critter    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate/miningcar    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/crate    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/closet/coffin/spawnercorpse    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/athletic_mixed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/boxinggloves    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/masks    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/lasertag/red    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/structure/closet/lasertag/blue    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/structure/closet/gimmick/russian    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/structure/closet/thunderdome/tdred    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/thunderdome/tdgreen    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/thunderdome    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/oldstyle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/gmcloset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/chefcloset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/jcloset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/custodial    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/acolyte    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet/general    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet/virology    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet/security    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet/janitor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet/scientist    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/l3closet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/random/miscellaneous    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/random/tech    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/structure/closet/random/spareparts    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/structure/closet/random/milsupply    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/structure/closet/random/medsupply    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/random/hostilemobs/beacon    blacklisted=1    spawn_value=16.6667    price_tag=0   100    
-/obj/structure/closet/random/hostilemobs    blacklisted=1    spawn_value=8    price_tag=0   100    
-/obj/structure/closet/secure_closet/rare_loot    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/closet/secure_closet/bar    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/cargotech    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/engineering_personal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/hydroponics/public    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/hydroponics    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/agrolyte    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/doctor    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/paramedic    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/scientist    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/security    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/patient    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/cabinet    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal/miner    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/personal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/quartermaster    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/chaplain    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/engineering_chief    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/CMO    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/RD    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/captains    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/hop    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/preacher    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced/hos    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/reinforced    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/engineering_electrical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/engineering_welding    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer/kitchen/mining    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer/kitchen    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer/meat    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer/fridge    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer/money    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/freezer    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/medicine    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/anesthetics    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/animal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/chemical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/warden    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/medspec    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/detective    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/injection    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/brig    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/courtroom    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet/xenoarchaeologist    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/secure_closet    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/malf/suits    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/structure/closet/malf    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier1    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier2    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/normal/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/normal    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/special/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/special    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/mineral/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/mineral    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar/tier3    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/syndicate/personal    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/closet/syndicate/suit    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/closet/syndicate/nuclear    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/closet/emcloset/legacy    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/closet/emcloset    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/closet/firecloset    blacklisted=0    spawn_value=66.6667    price_tag=0   100    
-/obj/structure/closet/toolcloset    blacklisted=0    spawn_value=66.6667    price_tag=0   100    
-/obj/structure/closet/radiation    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/bombcloset/security    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/structure/closet/bombcloset    blacklisted=0    spawn_value=7.0028    price_tag=0   100    
-/obj/structure/closet/self_pacification    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wall_mounted/emcloset/escape_pods    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wall_mounted/emcloset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wall_mounted/firecloset    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wall_mounted    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/pink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/black    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/yellow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/grey    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/color/mixed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/pjs    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/tactical    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/sec    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/science_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/robotics_black    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/chemistry_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/virology_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/medic_white    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/chaplain_black    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe/engineering_yellow    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/wardrobe    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/excavation    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/firedoor_assembly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/foamedmetal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/ian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/drone    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/carp    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/plushie/beepsky    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/uplink/mercenary    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/barsign    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/map/left    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/map/right    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/map    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/maltesefalcon/left    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/maltesefalcon/right    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double/maltesefalcon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/double    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/securearea    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/biohazard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/electricshock    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/examroom    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/vacuum    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/deathsposal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/pods    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/fire    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/nosmoking_1    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/nosmoking_2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/redcross    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/greencross    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/goldenplaque    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/kiddieplaque    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmosplaque    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/chemistry    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/botany    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions/science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions/engineering    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions/security    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions/evac    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/directions    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_co2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_n2o    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_plasma    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_n2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_o2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_air    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/atmos_waste    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/deck1    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/deck2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/deck3    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/deck4    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/sec1    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/sec2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/sec3    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/sec4    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/nanotrasen    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/biohazard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/corrosives    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/explosives    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/flammables    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/laserhazard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/danger    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/magnetics    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/opticals    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/radiation    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/secure    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/electrical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/cryogenics    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/canisters    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/oxidants    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew/memetic    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/signnew    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/medbay    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/virology    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/chem    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/gene    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/morgue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/operational    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/sci    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/xenolab    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/anomaly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/dock    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/rnd    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/robo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/toxins    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/toxin_res    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/eva    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/ass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/bar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/biblio    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/chapel    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/bridge    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/telecoms    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/conference_room    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/ai    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/cargo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/mail    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/miner_dock    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/cargo_dock    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/eng    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/engine    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/gravi    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/atmos    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/shield    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/drones    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/interrogation    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/commander    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/armory    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department/prison    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/department    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/ironhammer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/one_star    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/one_star_old    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/frozenstar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/moebius    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/neotheology    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/neotheology_old    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/neotheology_cross/gold    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/neotheology_cross    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/astersguild    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/technomancers    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/excelsior    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction/excelsior_old    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/faction    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/derelict1    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign/derelict2    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sign    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/bots    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/pods    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon/bombard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/strangebeacon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bedsheetbin    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bs_crystal_structure    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/burrow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/catwalk    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open/bed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open/privacy    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open/shower/engineering    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open/shower/security    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open/shower    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/open    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/black    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/curtain    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cyberplant    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/displaycase    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_com    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_sec    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_eng    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_min    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_atmo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_research    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_med    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_mai    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_cargo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_command    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_engi    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_med    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_rnd    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_sec    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_common    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_maint_int    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_ext    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_fre    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_hatch    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_mhatch    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/door_assembly_highsecurity    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly/multi_tile    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/door_assembly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/e_chair    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/janicart    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/shuttle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/brown    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/red    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/teal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/black    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/purp    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/beige    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy/lime    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/comfy    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/office/light    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/office/dark    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/office    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/wood/wings    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/wood    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom/wood/wings    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom/wood    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom/bar_special    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom/onestar/red    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom/onestar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/custom    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/wheelchair    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair/holochair    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/chair    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/psych    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/padded    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/alien    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed/roller    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bed    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/extinguisher_cabinet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/fireaxecabinet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/tree/pine/xmas    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/tree/pine    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/tree/dead    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/tree    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/grass/brown    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/grass/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/grass/both    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/grass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/bush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/pottedplant    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/reedbush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/leafybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/palebush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/stalkybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/grassybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/fernybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/sunnybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/genericbush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/pointybush    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/lavendergrass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/ywflowers    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/brflowers    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/ppflowers    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/sparsegrass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes/fullgrass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora/ausbushes    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/flora    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/girder/displaced    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/girder/low    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/girder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/grille/broken    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/grille/cult    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/grille    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/inflatable/wall    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/inflatable/door    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/inflatable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/janitorialcart    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/kitchenspike    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/lattice    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/low_wall/onestar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/low_wall    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/medical_stand/anesthetic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/structure/medical_stand    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/structure/mine/mine_no_primer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/mine/mine_scraps    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/mirror/antag    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/mirror    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/mopbucket    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/morgue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/m_tray    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/crematorium    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/c_tray    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/device/piano    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/device    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/noticeboard/anomaly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/noticeboard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ominous    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/railing/grey    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/railing    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/safe/floor    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/safe    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/salvageable/machine    blacklisted=0    spawn_value=13    price_tag=0   100    
-/obj/structure/salvageable/computer    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13    price_tag=0   100    
-/obj/structure/salvageable/implant_container    blacklisted=0    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/data    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/server    blacklisted=0    spawn_value=8.125    price_tag=0   100    
-/obj/structure/salvageable/personal    blacklisted=0    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/bliss    blacklisted=0    spawn_value=1.3    price_tag=0   100    
-/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/satellite/science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/satellite    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/dispenser/oxygen    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/dispenser/plasma    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/structure/dispenser    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/structure/target_stake    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/transit_tube/station    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/transit_tube    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/transit_tube_pod    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/undies_wardrobe    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/toilet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/urinal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sink/kitchen    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sink/puddle    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/sink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/windoor_assembly    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/wire_splicing    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/mule    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/corgi    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/cow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/goat    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/cat/bones    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/cat    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal/chick    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate/animal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/largecrate    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle_part/cargo    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle_part/escpod    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle_part/mining    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle_part/science    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/shuttle_part    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/reagent_dispensers/biomatter/large    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/biomatter    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/watertank/derelict    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/watertank/huge/derelict    blacklisted=1    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/watertank/huge    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/watertank    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/fueltank/derelict    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/fueltank/huge/derelict    blacklisted=1    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/fueltank/huge    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/structure/reagent_dispensers/fueltank    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/peppertank    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/water_cooler    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/beerkeg    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/cahorsbarrel    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/structure/reagent_dispensers/virusfood    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/acid    blacklisted=1    spawn_value=10    price_tag=5   100    
-/obj/structure/reagent_dispensers/bidon/advanced    blacklisted=0    spawn_value=1.66667    price_tag=5   100    
-/obj/structure/reagent_dispensers/bidon    blacklisted=0    spawn_value=6.66667    price_tag=5   100    
-/obj/structure/reagent_dispensers/coolanttank    blacklisted=0    spawn_value=10    price_tag=5   100    
-/obj/structure/biomatter_tank    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/holostool    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/holohoop    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase/manuals/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase/manuals/engineering    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase/manuals/research_and_development    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase/manuals/xenoarchaeology    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase/manuals    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bookcase    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/exosuit_wreckage/powerloader    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/exosuit_wreckage/random    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/exosuit_wreckage    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/heavy_vehicle_frame    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/ore_box    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/ladder/up/deepmaint    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/ladder/up    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/ladder/burrow_hole    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/ladder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/stairs/enter/bottom    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/stairs/enter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/stairs/active/bottom    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/stairs/active    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz/stairs    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/multiz    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/spider_nest    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/fuel_port    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/filingcabinet/chestdrawer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/filingcabinet/filingcabinet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/filingcabinet/security    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/filingcabinet/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/filingcabinet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/yellow    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/green    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/pink    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/orange    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/cyan    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable/white    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/cable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/end_cap    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/fuel_chamber    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/particle_emitter/center    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/particle_emitter/left    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/particle_emitter/right    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/particle_emitter    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator/power_box    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/particle_accelerator    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/droppod_door    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalconstruct    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalholder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/segment    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/up    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/down    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/junction/yjunction    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/junction    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/tagger/partial    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/tagger    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction/wildcard/flipped    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction/wildcard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction/untagged/flipped    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction/untagged    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction/flipped    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/sortjunction    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/trunk    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe/broken    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposalpipe    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/disposaloutlet    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/bigDelivery    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/boulder    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/crystal    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/scrap_spawner/large    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/medical/large/beacon    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/medical/large    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/medical    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle/large/beacon    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle    blacklisted=0    spawn_value=6.0024    price_tag=0   100    
-/obj/structure/scrap_spawner/food/large/beacon    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/food    blacklisted=0    spawn_value=17.331    price_tag=0   100    
-/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/science/large/beacon    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/science    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth/large/beacon    blacklisted=0    spawn_value=8.67303    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth/large    blacklisted=0    spawn_value=8.67303    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/large/beacon    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/large    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/structure/beacon    blacklisted=0    spawn_value=30.03    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/structure    blacklisted=0    spawn_value=30.03    price_tag=0   100    
-/obj/structure/scrap_spawner/poor    blacklisted=0    spawn_value=40    price_tag=0   100    
-/obj/structure/scrap_spawner    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_beacon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/scrap_cube    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/synthesized_instrument/synthesizer/piano    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/synthesized_instrument/synthesizer/minimoog    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/synthesized_instrument/synthesizer    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/synthesized_instrument    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/standard    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/steel    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/marble    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/reinforced    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/steel_reinforced    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/woodentable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/gamblingtable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/glass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/plasmaglass    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/holotable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/holo_woodentable    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/bar_special    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/onestar    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/rack/shelf    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table/rack    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/table    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/machinery/constructable_frame/machine_frame    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/computerframe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/body_bag/cryobag    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/body_bag    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/weapon    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/plasma    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/gear    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/hydrosec/prelocked    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/hydrosec    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/bin    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/large/reinforced    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/large    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/scisecurecrate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/woodseccrate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure/loot    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/secure    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/plastic    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/internals    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/trashcart    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/medical    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/rcd    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/solar    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/freezer/rations    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/freezer    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/bin    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/radiation    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/large    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/hydroponics    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/scicrate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/serbcrate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/serbcrate_gray    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/germancrate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/critter    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate/miningcar    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/crate    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/coffin/spawnercorpse    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/athletic_mixed    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/boxinggloves    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/masks    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/lasertag/red    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/lasertag/blue    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/gimmick/russian    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/thunderdome/tdred    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/thunderdome/tdgreen    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/thunderdome    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/oldstyle    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/gmcloset    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/chefcloset    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/jcloset    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/custodial    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/acolyte    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet/general    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet/virology    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet/security    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet/janitor    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet/scientist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/l3closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/miscellaneous    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/tech    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/spareparts    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/milsupply    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/medsupply    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/hostilemobs/beacon    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/random/hostilemobs    blacklisted=1    spawn_value=8   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/rare_loot    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/bar    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/cargotech    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/engineering_personal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/hydroponics/public    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/hydroponics    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/agrolyte    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/doctor    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/paramedic    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/scientist    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/security    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/patient    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/cabinet    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal/miner    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/personal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/quartermaster    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/chaplain    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/engineering_chief    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/CMO    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/RD    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/captains    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/hop    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/preacher    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced/hos    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/reinforced    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/engineering_electrical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/engineering_welding    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer/kitchen/mining    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer/kitchen    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer/meat    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer/fridge    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer/money    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/freezer    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/medicine    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/anesthetics    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/animal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/chemical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/warden    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/medspec    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/detective    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/injection    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/brig    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/courtroom    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet/xenoarchaeologist    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/secure_closet    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/malf/suits    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/malf    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier1    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier2    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/normal/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/normal    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/special/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/special    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/mineral/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/mineral    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/medical/empty    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3/medical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/onestar/tier3    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/syndicate/personal    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/syndicate/suit    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/syndicate/nuclear    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/emcloset/legacy    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/emcloset    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/firecloset    blacklisted=0    spawn_value=66.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/toolcloset    blacklisted=0    spawn_value=66.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/radiation    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/bombcloset/security    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/bombcloset    blacklisted=0    spawn_value=7.0028   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/self_pacification    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wall_mounted/emcloset/escape_pods    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wall_mounted/emcloset    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wall_mounted/firecloset    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wall_mounted    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/pink/artist    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/pink    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/black    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/green    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/orange    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/yellow    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/white    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/grey    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/color/mixed    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/pjs    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/tactical    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/sec    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/science_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/robotics_black    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/chemistry_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/virology_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/medic_white    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/chaplain_black    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe/engineering_yellow    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/wardrobe    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/excavation    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/ian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/drone    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/carp    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/plushie/beepsky    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/bots    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/pods    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon/bombard    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/strangebeacon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/ironhammer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/medical    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/technomancer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/cryopod_spawner/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/mine/mine_no_primer    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/mine/mine_scraps    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous/emitter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous/teleporter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ominous    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/machine    blacklisted=0    spawn_value=13   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/computer    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/autolathe    blacklisted=0    spawn_value=13   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/implant_container    blacklisted=0    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/data    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/server    blacklisted=0    spawn_value=8.125   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/personal    blacklisted=0    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/bliss    blacklisted=0    spawn_value=1.3   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/satellite/science    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/satellite    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/dispenser/oxygen    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/dispenser/plasma    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/dispenser    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/wire_splicing    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/biomatter/large    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/biomatter    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/derelict    blacklisted=1    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/huge/derelict    blacklisted=1    spawn_value=3.06729   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank/huge    blacklisted=0    spawn_value=3.06729   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/watertank    blacklisted=0    spawn_value=8.1294   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/derelict    blacklisted=1    spawn_value=7.75008   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/huge/derelict    blacklisted=1    spawn_value=3.01167   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank/huge    blacklisted=0    spawn_value=3.01167   spawn_price=1600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/fueltank    blacklisted=0    spawn_value=7.75008   spawn_price=800   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/peppertank    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/water_cooler    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/beerkeg    blacklisted=1    spawn_value=7.76695   spawn_price=750   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/cahorsbarrel    blacklisted=1    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/virusfood    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/acid    blacklisted=1    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/bidon/advanced    blacklisted=0    spawn_value=1.64747   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/bidon    blacklisted=0    spawn_value=6.36984   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/reagent_dispensers/coolanttank    blacklisted=0    spawn_value=9.34669   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/ore_box    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical/large/beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle/large/beacon    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food/large/beacon    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food    blacklisted=0    spawn_value=17.331   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science/large/beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth/large/beacon    blacklisted=0    spawn_value=8.67303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth/large    blacklisted=0    spawn_value=8.67303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/large/beacon    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/large    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/structure/beacon    blacklisted=0    spawn_value=30.03   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/structure    blacklisted=0    spawn_value=30.03   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor    blacklisted=0    spawn_value=40   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -146,6 +146,9 @@
 	..()
 
 //secborg stun baton module
+/obj/item/weapon/melee/baton/robot
+	bad_type = /obj/item/weapon/melee/baton/robot
+
 /obj/item/weapon/melee/baton/robot/attack_self(mob/user)
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc

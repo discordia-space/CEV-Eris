@@ -1,7 +1,7 @@
 //Closets full of loot, they should be placed in maints
 /obj/structure/closet/random
 	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_RANDOM_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_RANDOM
 	rarity_value = 10
 	bad_type = /obj/structure/closet/random
 	spawn_blacklisted = FALSE
@@ -56,11 +56,11 @@
 	name = "\improper spare parts closet"
 	desc = "Somewhat old closet with spare parts in it."
 	icon_state = "eng"
-	icon_door = "eng_secure_door"
+	icon_door = "eng_secure"
 	old_chance = 10
 	rarity_value = 50
 
-/obj/structure/closet/random/tech/populate_contents()
+/obj/structure/closet/random/spareparts/populate_contents()
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -78,6 +78,7 @@
 	new /obj/spawner/lathe_disk/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+
 
 
 
@@ -146,7 +147,7 @@
 	req_access = list(access_cent_specops) //You are suppose to hack it
 	icon_state = "syndicate"
 	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_TAG_RANDOM_SECURE_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_SECURE_RANDOM
 	rarity_value = 100
 
 /obj/structure/closet/secure_closet/rare_loot/populate_contents()

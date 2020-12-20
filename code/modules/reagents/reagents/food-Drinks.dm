@@ -682,7 +682,7 @@
 	// Coffee is really bad for you with busted kidneys.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/kidneys/K = H.random_organ_by_process(OP_KIDNEYS)
+		var/obj/item/organ/internal/kidney/K = H.random_organ_by_process(OP_KIDNEYS)
 		if(istype(K))
 			if(K.is_bruised())
 				M.adjustToxLoss(0.1)

@@ -6,7 +6,7 @@
 	anchored = TRUE
 	random_rotation = 0
 
-	New(location,main = "#FFFFFF",shade = "#000000",var/type = "rune")
+	New(location,main = "#FFFFFF",shade = "#000000",var/type = "graffiti")
 		..()
 		loc = location
 

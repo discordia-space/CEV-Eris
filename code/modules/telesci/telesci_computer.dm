@@ -1,3 +1,5 @@
+#define UNAVAILABLE_Z_LEVELS list(6, 7)
+
 /obj/machinery/computer/telescience
 	name = "\improper Telepad Control Console"
 	desc = "Used to teleport objects to and from the telescience telepad."
@@ -206,6 +208,10 @@
 			if(sending)
 				source = dest
 				dest = target
+			
+			if((sending && (dest.z in UNAVAILABLE_Z_LEVELS)) || ((target.z in UNAVAILABLE_Z_LEVELS) && !sending))
+				temp_msg = "ERROR: Sector is unavailable."
+				return
 
 			flick("pad-beam", telepad)
 			playsound(telepad.loc, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
@@ -358,3 +364,5 @@
 		return message
 	else
 		return copytext(message, 1, length + 1)
+
+#undef UNAVAILABLE_Z_LEVELS

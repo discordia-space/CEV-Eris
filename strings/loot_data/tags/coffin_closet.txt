@@ -1,1 +1,0 @@
-/obj/structure/closet/coffin/spawnercorpse    blacklisted=1    spawn_value=10    price_tag=0   100    

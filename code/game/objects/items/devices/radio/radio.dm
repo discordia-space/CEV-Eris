@@ -30,19 +30,6 @@ var/global/list/default_medbay_channels = list(
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
-
-	var/on = TRUE // 0 for off
-	var/last_transmission
-	var/frequency = PUB_FREQ //common chat
-	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
-	var/canhear_range = 3 // the range which mobs can hear this radio from
-	var/datum/wires/radio/wires = null
-	var/b_stat = 0
-	var/broadcasting = 0
-	var/listening = 1
-	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
-	var/subspace_transmission = 0
-	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
@@ -50,6 +37,19 @@ var/global/list/default_medbay_channels = list(
 	w_class = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+
+	var/on = TRUE // 0 for off
+	var/last_transmission
+	var/frequency = PUB_FREQ //common chat
+	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
+	var/canhear_range = 3 // the range which mobs can hear this radio from
+	var/datum/wires/radio/wires
+	var/b_stat = 0
+	var/broadcasting = 0
+	var/listening = 1
+	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
+	var/subspace_transmission = 0
+	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 

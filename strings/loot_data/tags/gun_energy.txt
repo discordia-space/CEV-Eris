@@ -1,56 +1,46 @@
-/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=4    price_tag=0   100    
-/obj/item/weapon/gun/energy/taser/carbine/mounted/mech    blacklisted=1    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/taser/carbine/mounted    blacklisted=0    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/taser/carbine    blacklisted=0    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/taser/mounted/cyborg    blacklisted=1    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/taser/mounted    blacklisted=1    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/taser    blacklisted=0    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/ionrifle/mounted/mech    blacklisted=1    spawn_value=4.16667    price_tag=3000   100    
-/obj/item/weapon/gun/energy/ionrifle/mounted    blacklisted=0    spawn_value=4.16667    price_tag=3000   100    
-/obj/item/weapon/gun/energy/ionrifle    blacklisted=0    spawn_value=4.16667    price_tag=3000   100    
-/obj/item/weapon/gun/energy/laser/mounted/mech    blacklisted=1    spawn_value=8.33333    price_tag=2500   100    
-/obj/item/weapon/gun/energy/laser/mounted/blitz    blacklisted=1    spawn_value=8.33333    price_tag=2500   100    
-/obj/item/weapon/gun/energy/laser/mounted    blacklisted=1    spawn_value=8.33333    price_tag=2500   100    
-/obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=8.33333    price_tag=1000   100    
-/obj/item/weapon/gun/energy/laser/practice    blacklisted=0    spawn_value=8.33333    price_tag=1000   100    
-/obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=8.33333    price_tag=2500   100    
-/obj/item/weapon/gun/energy/laser    blacklisted=0    spawn_value=8.33333    price_tag=2500   100    
-/obj/item/weapon/gun/energy/plasmacutter/mounted/mech    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/gun/energy/plasmacutter/mounted    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/gun/energy/plasma/stranger    blacklisted=1    spawn_value=10    price_tag=5000   100    
-/obj/item/weapon/gun/energy/plasma/mounted/blitz    blacklisted=1    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/mounted    blacklisted=1    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/destroyer    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/cassad    blacklisted=0    spawn_value=8.33333    price_tag=3000   100    
-/obj/item/weapon/gun/energy/plasma/brigador    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/martyr    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/gun/energy/plasma    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/crossbow/ninja    blacklisted=0    spawn_value=10    price_tag=2500   100    
-/obj/item/weapon/gun/energy/crossbow/largecrossbow    blacklisted=0    spawn_value=10    price_tag=4000   100    
-/obj/item/weapon/gun/energy/crossbow    blacklisted=0    spawn_value=10    price_tag=2500   100    
-/obj/item/weapon/gun/energy/decloner    blacklisted=0    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/gun/mounted    blacklisted=1    spawn_value=12.5    price_tag=2500   100    
-/obj/item/weapon/gun/energy/gun/martin    blacklisted=0    spawn_value=12.5    price_tag=1000   100    
-/obj/item/weapon/gun/energy/gun/nuclear    blacklisted=1    spawn_value=12.5    price_tag=4000   100    
-/obj/item/weapon/gun/energy/gun    blacklisted=0    spawn_value=12.5    price_tag=2500   100    
-/obj/item/weapon/gun/energy/floragun    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/weapon/gun/energy/retro    blacklisted=0    spawn_value=10    price_tag=2000   100    
-/obj/item/weapon/gun/energy/captain/xenoarch    blacklisted=1    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/captain    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/lasercannon/mounted    blacklisted=1    spawn_value=10    price_tag=3000   100    
-/obj/item/weapon/gun/energy/lasercannon    blacklisted=0    spawn_value=10    price_tag=3000   100    
-/obj/item/weapon/gun/energy/psychic/lasercannon    blacklisted=1    spawn_value=10    price_tag=6000   100    
-/obj/item/weapon/gun/energy/psychic    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/gun/energy/lasersmg    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/weapon/gun/energy/lasertag/blue    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/gun/energy/lasertag/red    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/gun/energy/mindflayer    blacklisted=0    spawn_value=10    price_tag=3000   100    
-/obj/item/weapon/gun/energy/nt_svalinn    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=5    price_tag=2500   100    
-/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=5    price_tag=2500   100    
-/obj/item/weapon/gun/energy/sniperrifle    blacklisted=0    spawn_value=10    price_tag=5000   100    
-/obj/item/weapon/gun/energy/stunrevolver    blacklisted=0    spawn_value=10    price_tag=1500   100    
-/obj/item/weapon/gun/energy/temperature    blacklisted=0    spawn_value=10    price_tag=1500   100    
-/obj/item/weapon/gun/energy/toxgun    blacklisted=0    spawn_value=10    price_tag=2500   100    
-/obj/item/weapon/gun/energy/xray/xenoarch    blacklisted=1    spawn_value=10    price_tag=4000   100    
-/obj/item/weapon/gun/energy/xray    blacklisted=0    spawn_value=10    price_tag=4000   100    
+/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.70194   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/taser/carbine    blacklisted=0    spawn_value=7.50591   spawn_price=2103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/taser/mounted/cyborg    blacklisted=1    spawn_value=7.51821   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/taser/mounted    blacklisted=1    spawn_value=7.51821   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/taser    blacklisted=0    spawn_value=7.50591   spawn_price=2103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/ionrifle    blacklisted=0    spawn_value=3.63745   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser/practice    blacklisted=0    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/laser    blacklisted=0    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/plasma/stranger    blacklisted=1    spawn_value=7.29747   spawn_price=5051   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/plasma/mounted    blacklisted=1    spawn_value=7.32428   spawn_price=4500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/plasma/destroyer    blacklisted=0    spawn_value=7.31902   spawn_price=4603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/plasma/cassad    blacklisted=0    spawn_value=6.45504   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/plasma/brigador    blacklisted=0    spawn_value=7.32166   spawn_price=4551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/plasma/martyr    blacklisted=0    spawn_value=7.84858   spawn_price=551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/plasma    blacklisted=0    spawn_value=7.31902   spawn_price=4603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/crossbow/ninja    blacklisted=0    spawn_value=7.46383   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/crossbow/largecrossbow    blacklisted=0    spawn_value=7.35183   spawn_price=4000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/crossbow    blacklisted=0    spawn_value=7.46383   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/decloner    blacklisted=0    spawn_value=7.50591   spawn_price=2103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/gun/mounted    blacklisted=1    spawn_value=8.77352   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/gun/martin    blacklisted=0    spawn_value=9.07309   spawn_price=1051   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/gun/nuclear    blacklisted=1    spawn_value=8.61916   spawn_price=4000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/gun    blacklisted=0    spawn_value=8.76004   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/floragun    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/retro    blacklisted=0    spawn_value=7.50591   spawn_price=2103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/captain/xenoarch    blacklisted=1    spawn_value=7.32428   spawn_price=4500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/captain    blacklisted=1    spawn_value=7.32428   spawn_price=4500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/lasercannon/mounted    blacklisted=1    spawn_value=7.41998   spawn_price=3000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/lasercannon    blacklisted=0    spawn_value=7.41192   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/psychic/lasercannon    blacklisted=1    spawn_value=7.25398   spawn_price=6103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/psychic    blacklisted=1    spawn_value=8.32443   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/lasersmg    blacklisted=0    spawn_value=7.6672   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/lasertag/blue    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/lasertag/red    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/mindflayer    blacklisted=0    spawn_value=7.41192   spawn_price=3103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/nt_svalinn    blacklisted=0    spawn_value=7.67955   spawn_price=1051   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27228   spawn_price=2551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/sniperrifle    blacklisted=0    spawn_value=7.2951   spawn_price=5103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/stunrevolver    blacklisted=0    spawn_value=7.58115   spawn_price=1551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/temperature    blacklisted=0    spawn_value=7.57293   spawn_price=1603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/toxgun    blacklisted=0    spawn_value=7.45408   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/xray/xenoarch    blacklisted=1    spawn_value=7.34586   spawn_price=4103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/xray    blacklisted=0    spawn_value=7.34586   spawn_price=4103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium

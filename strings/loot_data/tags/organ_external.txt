@@ -1,34 +1,31 @@
-/obj/item/organ/external/head    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/stump    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/limb    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/tiny    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/l_arm    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/r_arm    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/l_leg    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/r_leg    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/groin    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/robotic/frozen_star/l_arm    blacklisted=0    spawn_value=10    price_tag=450   100    
-/obj/item/organ/external/robotic/frozen_star/r_arm    blacklisted=0    spawn_value=10    price_tag=450   100    
-/obj/item/organ/external/robotic/frozen_star/l_leg    blacklisted=0    spawn_value=10    price_tag=450   100    
-/obj/item/organ/external/robotic/frozen_star/r_leg    blacklisted=0    spawn_value=10    price_tag=450   100    
-/obj/item/organ/external/robotic/technomancer/l_arm    blacklisted=0    spawn_value=10    price_tag=700   100    
-/obj/item/organ/external/robotic/technomancer/r_arm    blacklisted=0    spawn_value=10    price_tag=700   100    
-/obj/item/organ/external/robotic/technomancer/l_leg    blacklisted=0    spawn_value=10    price_tag=700   100    
-/obj/item/organ/external/robotic/technomancer/r_leg    blacklisted=0    spawn_value=10    price_tag=700   100    
-/obj/item/organ/external/robotic/moebius/l_arm    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/external/robotic/moebius/r_arm    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/external/robotic/moebius/l_leg    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/external/robotic/moebius/r_leg    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/external/robotic/moebius/groin    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/external/robotic/excelsior/l_arm    blacklisted=1    spawn_value=10    price_tag=600   100    
-/obj/item/organ/external/robotic/excelsior/r_arm    blacklisted=1    spawn_value=10    price_tag=600   100    
-/obj/item/organ/external/robotic/excelsior/l_leg    blacklisted=1    spawn_value=10    price_tag=600   100    
-/obj/item/organ/external/robotic/excelsior/r_leg    blacklisted=1    spawn_value=10    price_tag=600   100    
-/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/chest    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/groin    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/external/unbreakable    blacklisted=0    spawn_value=10    price_tag=500   100    
+/obj/item/organ/external/head    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/stump    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/l_arm    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/r_arm    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/l_leg    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/r_leg    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/groin    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/frozen_star/l_arm    blacklisted=0    spawn_value=7.90313   spawn_price=450   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/frozen_star/r_arm    blacklisted=0    spawn_value=7.90313   spawn_price=450   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/frozen_star/l_leg    blacklisted=0    spawn_value=7.90313   spawn_price=450   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/frozen_star/r_leg    blacklisted=0    spawn_value=7.90313   spawn_price=450   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/technomancer/l_arm    blacklisted=0    spawn_value=7.78507   spawn_price=700   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/technomancer/r_arm    blacklisted=0    spawn_value=7.78507   spawn_price=700   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/technomancer/l_leg    blacklisted=0    spawn_value=7.78507   spawn_price=700   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/technomancer/r_leg    blacklisted=0    spawn_value=7.78507   spawn_price=700   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/moebius/l_arm    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/moebius/r_arm    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/moebius/l_leg    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/moebius/r_leg    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/moebius/groin    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/excelsior/l_arm    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/excelsior/r_arm    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/excelsior/l_leg    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/excelsior/r_leg    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/chest    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/groin    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/unbreakable    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

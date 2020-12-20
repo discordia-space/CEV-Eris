@@ -1,174 +1,161 @@
-/obj/item/weapon/electronics/airalarm    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/electronics/firealarm    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/electronics/circuitboard/cryopodcontrol    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/robotstoragecontrol    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/atmoscontrol    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/broken    blacklisted=0    spawn_value=12.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/aicore    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/air_management/tank_control    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/air_management/supermatter_core    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/air_management/injector_control    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/air_management    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/message_monitor    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/aiupload    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/borgupload    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/med_data    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/scan_consolenew    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/communications    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/teleporter    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/secure_data    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/atmos_alert    blacklisted=0    spawn_value=7.5188    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pod    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/robotics    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/drone_control    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/arcade/battle    blacklisted=0    spawn_value=7.5188    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/arcade/orion_trail    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/arcade    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/turbine_control    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/solar_control    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/powermonitor    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/olddoor    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/syndicatedoor    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/swfdoor    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/prisoner    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/rdservercontrol    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/operating    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/curefab    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/splicer    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/centrifuge    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/helm    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/nav    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/ordercomp    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shuttle/mining    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shuttle/engineering    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shuttle/research    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/aifixer    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/area_atmos    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/prison_shuttle    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/engines    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/guestpass    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/holodeckcontrol    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/rdconsole    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/stationalert    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/supplycomp    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/comm_monitor    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/comm_server    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/slot_machine    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/biogenerator    blacklisted=0    spawn_value=7.5188    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chemmaster    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chem_heater    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chemical_dispenser/industrial    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chemical_dispenser/soda    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chemical_dispenser/beer    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/chemical_dispenser    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/electrolyzer    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/clonepod    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/clonescanner    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/bluespacerelay    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsiorshieldwallgen    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsiorautolathe    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsiorreconstructor    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/diesel    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsior_boombox    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsior_teleporter    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/excelsior_turret    blacklisted=1    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/mech_recharger    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/sleeper    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/mindswapper    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/miningdrill    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/miningdrillbrace    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/cloner    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/reader    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/biocan    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/biogen    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/biogen_port    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/biogen_console    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_platform    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_unloader    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_biotank    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_port    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_metrics    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_loader    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/solidifier    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/neotheology/bioprinter    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pacman/super    blacklisted=0    spawn_value=10    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pacman/mrs    blacklisted=0    spawn_value=10    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pacman/scrap    blacklisted=0    spawn_value=10    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pacman    blacklisted=0    spawn_value=10    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/smes    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/batteryrack    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/apc    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/antigrav    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/breakerbox    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/recharge_station    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/repair_station    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/recharger    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/rdserver    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/destructive_analyzer    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/autolathe    blacklisted=0    spawn_value=20    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/protolathe    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/circuit_imprinter    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/mechfab    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/teleporterstation    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/teleporterhub    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/ntnet_relay    blacklisted=0    spawn_value=2.5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shield_generator    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shield_diffuser    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/shieldwallgen    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/smelter    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/sorter    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/receiver    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/hub    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/relay    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/bus    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/processor    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/server    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telecomms/broadcaster    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/unary_atmos/heater    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/unary_atmos/cooler    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/unary_atmos/engine    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/unary_atmos    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/vending    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/bssilk_cons    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/bssilk_hub    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/holomap    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem/engineering    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem/utility    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem/medical    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem/weapons    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem/advweapons    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/exosystem    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/reagentgrinder    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/industrial_grinder    blacklisted=0    spawn_value=10    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/pile_ripper    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/recycler    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telesci_pad    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/telesci_console    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/trade_beacon/receiving    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/trade_beacon    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/circuitboard/sending_beacon    blacklisted=0    spawn_value=5    price_tag=150   100    
-/obj/item/weapon/electronics/airlock/secure    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/electronics/airlock    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/safeguard    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/oneHuman    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/protectStation    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/prototypeEngineOffline    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/teleporterOffline    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/quarantine    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/oxygen    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/freeform    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/reset    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/purge    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/asimov    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/eris    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/corp    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/drone    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/paladin    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/tyrant    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/freeformcore    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/syndicate    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/robocop    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/antimov    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/ai_module/broken    blacklisted=0    spawn_value=2.5    price_tag=0   100    
-/obj/item/weapon/electronics/tracker    blacklisted=0    spawn_value=5    price_tag=0   100    
+/obj/item/weapon/electronics/airalarm    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/firealarm    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/cryopodcontrol    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/robotstoragecontrol    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/atmoscontrol    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/broken    blacklisted=0    spawn_value=9.82696   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/aicore    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/air_management/tank_control    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/air_management/supermatter_core    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/air_management/injector_control    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/air_management    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/message_monitor    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/aiupload    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/borgupload    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/med_data    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/scan_consolenew    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/communications    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/teleporter    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/secure_data    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/atmos_alert    blacklisted=0    spawn_value=6.46158   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pod    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/robotics    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/drone_control    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/arcade/battle    blacklisted=0    spawn_value=6.46158   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/arcade/orion_trail    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/arcade    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/turbine_control    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/solar_control    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/powermonitor    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/olddoor    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/syndicatedoor    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/swfdoor    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/prisoner    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/rdservercontrol    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/operating    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/curefab    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/splicer    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/centrifuge    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/helm    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/nav    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/ordercomp    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shuttle/mining    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shuttle/engineering    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shuttle/research    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/aifixer    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/area_atmos    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/prison_shuttle    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/engines    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/guestpass    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/holodeckcontrol    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/rdconsole    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/stationalert    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/supplycomp    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/comm_monitor    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/comm_server    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/artist_bench    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/slot_machine    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/biogenerator    blacklisted=0    spawn_value=6.46158   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chemmaster    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chem_heater    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chemical_dispenser/industrial    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chemical_dispenser/soda    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chemical_dispenser/beer    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/chemical_dispenser    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/electrolyzer    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/clonepod    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/clonescanner    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/bluespacerelay    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsiorshieldwallgen    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsiorautolathe    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsiorreconstructor    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/diesel    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsior_boombox    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsior_teleporter    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/excelsior_turret    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/mech_recharger    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/sleeper    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/mindswapper    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/miningdrill    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/miningdrillbrace    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pacman/super    blacklisted=0    spawn_value=8.21282   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pacman/mrs    blacklisted=0    spawn_value=8.21282   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pacman/scrap    blacklisted=0    spawn_value=8.21282   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pacman    blacklisted=0    spawn_value=8.21282   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/smes    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/batteryrack    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/apc    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/antigrav    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/breakerbox    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/recharge_station    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/repair_station    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/recharger    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/rdserver    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/destructive_analyzer    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/autolathe    blacklisted=0    spawn_value=13.9352   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/protolathe    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/circuit_imprinter    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/mechfab    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/teleporterstation    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/teleporterhub    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/ntnet_relay    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shield_generator    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shield_diffuser    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/shieldwallgen    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/smelter    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/sorter    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/receiver    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/hub    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/relay    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/bus    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/processor    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/server    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telecomms/broadcaster    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/unary_atmos/heater    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/unary_atmos/cooler    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/unary_atmos/engine    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/unary_atmos    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/vending    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/bssilk_cons    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/bssilk_hub    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/holomap    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem/engineering    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem/utility    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem/medical    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem/weapons    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem/advweapons    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/exosystem    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/reagentgrinder    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/industrial_grinder    blacklisted=0    spawn_value=8.21282   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/pile_ripper    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/recycler    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telesci_pad    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/telesci_console    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/trade_beacon/receiving    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/trade_beacon    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/sending_beacon    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/airlock/secure    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/airlock    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/safeguard    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/oneHuman    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/protectStation    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/prototypeEngineOffline    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/teleporterOffline    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/quarantine    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/oxygen    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/freeform    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/reset    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/purge    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/asimov    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/eris    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/corp    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/drone    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/paladin    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/tyrant    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/freeformcore    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/syndicate    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/robocop    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/antimov    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/ai_module/broken    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/tracker    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

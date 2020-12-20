@@ -1,14 +1,14 @@
-/obj/item/rig_module/device/flash    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/device/healthscanner    blacklisted=0    spawn_value=40    price_tag=0   100    
-/obj/item/rig_module/device/anomaly_scanner    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/device/orescanner    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/mounted/taser    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/item/rig_module/ai_container    blacklisted=0    spawn_value=50    price_tag=0   100    
-/obj/item/rig_module/datajack    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/rig_module/power_sink    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/rig_module/storage    blacklisted=0    spawn_value=50    price_tag=0   100    
-/obj/item/rig_module/chem_dispenser/ninja    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/maneuvering_jets    blacklisted=0    spawn_value=80    price_tag=0   100    
-/obj/item/rig_module/vision/meson    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/vision/sechud    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module/vision/medhud    blacklisted=0    spawn_value=20    price_tag=0   100    
+/obj/item/rig_module/device/flash    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/device/healthscanner    blacklisted=0    spawn_value=40   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/device/anomaly_scanner    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/device/orescanner    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/mounted/taser    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/ai_container    blacklisted=0    spawn_value=50   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/datajack    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/power_sink    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/storage    blacklisted=0    spawn_value=50   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/chem_dispenser/ninja    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/maneuvering_jets    blacklisted=0    spawn_value=50   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/vision/meson    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/vision/sechud    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/rig_module/vision/medhud    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

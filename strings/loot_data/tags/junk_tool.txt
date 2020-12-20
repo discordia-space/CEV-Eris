@@ -1,12 +1,13 @@
-/obj/item/weapon/tool/crowbar/improvised    blacklisted=0    spawn_value=50    price_tag=20   100    
-/obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.125    price_tag=20   100    
-/obj/item/weapon/tool/saw/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
-/obj/item/weapon/tool/shiv    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
-/obj/item/weapon/tool/shovel/improvised    blacklisted=0    spawn_value=20    price_tag=20   100    
-/obj/item/weapon/tool/broken_bottle    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/nailstick    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=50    price_tag=20   100    
-/obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=25    price_tag=20   100    
-/obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    spawn_value=16.6667    price_tag=20   100    
-/obj/item/weapon/tool/wrench/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
+/obj/item/weapon/tool/crowbar/improvised    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.00291   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/mace/makeshift    blacklisted=0    spawn_value=3.19478   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/shiv    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/shovel/improvised    blacklisted=0    spawn_value=15.8704   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/broken_bottle    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/nailstick    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    spawn_value=13.6967   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wrench/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

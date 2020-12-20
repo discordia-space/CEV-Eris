@@ -8,7 +8,6 @@
 	broken = FALSE
 	locked = TRUE
 	secure = TRUE
-	var/large = 1
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200
 	spawn_tags = SPAWN_TAG_CLOSET_SECURE

@@ -1,36 +1,36 @@
-/obj/item/clothing/glasses/sunglasses/sechud/tactical    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses/sechud    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses/blindfold/tape    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses/blindfold    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses/prescription    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses/big    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/sunglasses    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/glasses/hud/health    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/glasses/hud/security/jensenshades    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/glasses/hud/security    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/glasses/hud/broken    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/glasses/hud    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/glasses/powered/meson    blacklisted=0    spawn_value=5    price_tag=500   100    
-/obj/item/clothing/glasses/powered/night    blacklisted=0    spawn_value=5    price_tag=500   100    
-/obj/item/clothing/glasses/powered/science    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/powered/thermal/syndi    blacklisted=1    spawn_value=2    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/onestar    blacklisted=1    spawn_value=1    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/plain/monocle    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/plain/eyepatch    blacklisted=0    spawn_value=1.25    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/plain/jensen    blacklisted=0    spawn_value=1.25    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/plain    blacklisted=0    spawn_value=1.25    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal/lens    blacklisted=1    spawn_value=1.25    price_tag=1000   100    
-/obj/item/clothing/glasses/powered/thermal    blacklisted=0    spawn_value=1.25    price_tag=1000   100    
-/obj/item/clothing/glasses/eyepatch    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/glasses/monocle    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/regular/scanners    blacklisted=0    spawn_value=2    price_tag=30   100    
-/obj/item/clothing/glasses/regular/goggles/black    blacklisted=0    spawn_value=2.5    price_tag=30   100    
-/obj/item/clothing/glasses/regular/goggles    blacklisted=0    spawn_value=2.5    price_tag=30   100    
-/obj/item/clothing/glasses/regular/hipster    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/regular    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/threedglasses    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/gglasses    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/bullet_proof_ironhammer    blacklisted=0    spawn_value=5    price_tag=30   100    
-/obj/item/clothing/glasses/welding/superior    blacklisted=0    spawn_value=1    price_tag=30   100    
-/obj/item/clothing/glasses/welding    blacklisted=0    spawn_value=10    price_tag=30   100    
+/obj/item/clothing/glasses/sunglasses/sechud/tactical    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses/sechud    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses/blindfold/tape    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses/blindfold    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses/prescription    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses/big    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/sunglasses    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/health    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/security/jensenshades    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/security    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/broken    blacklisted=0    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/hud/excelsior    blacklisted=1    spawn_value=4.4841   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/meson    blacklisted=0    spawn_value=4.40549   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/night    blacklisted=0    spawn_value=4.40549   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/science    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/syndi    blacklisted=1    spawn_value=1.88679   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/onestar    blacklisted=1    spawn_value=0.970874   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/plain/monocle    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/plain/eyepatch    blacklisted=0    spawn_value=1.20482   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/plain/jensen    blacklisted=0    spawn_value=1.20482   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/plain    blacklisted=0    spawn_value=1.20482   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal/lens    blacklisted=1    spawn_value=1.20482   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/powered/thermal    blacklisted=0    spawn_value=1.20482   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/eyepatch    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/monocle    blacklisted=0    spawn_value=4.62919   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/regular/scanners    blacklisted=0    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/regular/goggles/black    blacklisted=0    spawn_value=2.41097   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/regular/goggles    blacklisted=0    spawn_value=2.41097   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/regular/hipster    blacklisted=0    spawn_value=4.64165   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/regular    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/threedglasses    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/gglasses    blacklisted=0    spawn_value=4.64165   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/bullet_proof_ironhammer    blacklisted=0    spawn_value=4.65612   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/welding/superior    blacklisted=0    spawn_value=0.985444   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/glasses/welding    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

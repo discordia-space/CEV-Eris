@@ -2,6 +2,8 @@
 	name = "exosuit chassis"
 	icon_state = "loader_body"
 	gender = NEUTER
+	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	matter = list(MATERIAL_STEEL = 20)
 
 	var/mech_health = 300
 	var/obj/item/weapon/cell/cell
@@ -17,8 +19,6 @@
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
 	var/climb_time = 25
-	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
-	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mech_component/chassis/New()
 	..()

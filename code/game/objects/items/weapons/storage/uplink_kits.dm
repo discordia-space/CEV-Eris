@@ -78,6 +78,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
+	bad_type = /obj/item/weapon/storage/box/syndie_kit
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom

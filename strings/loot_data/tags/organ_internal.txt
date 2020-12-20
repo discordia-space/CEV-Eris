@@ -1,39 +1,45 @@
-/obj/item/organ/internal/carrion/core    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/carrion/chemvessel    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/carrion/maw    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/carrion/spinneret    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/carrion    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/brain/slime    blacklisted=0    spawn_value=10    price_tag=900   100    
-/obj/item/organ/internal/brain/golem    blacklisted=0    spawn_value=10    price_tag=900   100    
-/obj/item/organ/internal/brain    blacklisted=0    spawn_value=10    price_tag=900   100    
-/obj/item/organ/internal/appendix    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/item/organ/internal/bone/chest/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/chest    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/groin/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/groin    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/head/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/head    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/r_arm/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/r_arm    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/l_arm/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/l_arm    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/r_leg/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/r_leg    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/l_leg/robotic    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone/l_leg    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/bone    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/borer    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/eyes/oneeye/right    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/eyes/oneeye    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/eyes/heterohromia    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/eyes    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/organ/internal/heart/open    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/organ/internal/heart    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/organ/internal/kidneys    blacklisted=0    spawn_value=10    price_tag=600   100    
-/obj/item/organ/internal/liver    blacklisted=0    spawn_value=10    price_tag=900   100    
-/obj/item/organ/internal/lungs/long    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/internal/lungs    blacklisted=0    spawn_value=10    price_tag=300   100    
-/obj/item/organ/internal/cell    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/optical_sensor    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/mmi_holder/posibrain    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/organ/internal/mmi_holder    blacklisted=0    spawn_value=10    price_tag=500   100    
+/obj/item/organ/internal/carrion/core    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/carrion/chemvessel    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/carrion/maw    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/carrion/spinneret    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/carrion    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/brain/slime    blacklisted=0    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/brain/golem    blacklisted=0    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/brain    blacklisted=0    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/appendix    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/blood_vessel    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/chest/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/chest    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/groin/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/groin    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/head/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/head    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/r_arm/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/r_arm    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/l_arm/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/l_arm    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/r_leg/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/r_leg    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/l_leg/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone/l_leg    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/bone    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/borer    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/eyes/oneeye/right    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/eyes/oneeye    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/eyes/heterohromia    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/eyes    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/heart/open    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/heart    blacklisted=0    spawn_value=7.69231   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/kidneys    blacklisted=0    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/liver    blacklisted=0    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/lungs/long    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/lungs    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/cell    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/optical_sensor    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/mmi_holder/posibrain    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/mmi_holder    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/muscle/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/muscle    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/nerve/robotic    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/nerve    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/internal/stomach    blacklisted=0    spawn_value=7.78507   spawn_price=700   prob_accompanying_obj=100    accompanying_objs=nothing

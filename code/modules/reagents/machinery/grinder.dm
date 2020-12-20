@@ -343,9 +343,9 @@
 	unacidable = 1
 	rarity_value = 25
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
+	reagent_flags = REFILLABLE | DRAINABLE
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(5,10,30,60)
-	reagent_flags = REFILLABLE | DRAINABLE
 
 /obj/item/weapon/storage/makeshift_grinder/Initialize(mapload, ...)
 	. = ..()

@@ -1,127 +1,130 @@
-/obj/item/weapon/paper/manifest    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/monitorkey    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/autopsy_report    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/carbon    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/crumpled/bloody    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/crumpled/neo/bloody    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/crumpled/neo    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/crumpled    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/neopaper    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/court    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/toxin    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/courtroom    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/hydroponics    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/djstation    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/jobs    blacklisted=1    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/sop    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/self_pacification    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/gravity_gen    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/solar    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/artifact_info    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper/virus_report    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/paper    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/weapon/electronics/circuitboard/broken    blacklisted=0    spawn_value=12.5    price_tag=150   100    
-/obj/item/weapon/newspaper    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/tool/crowbar/improvised    blacklisted=0    spawn_value=50    price_tag=20   100    
-/obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.125    price_tag=20   100    
-/obj/item/weapon/tool/hammer/mace/makeshift    blacklisted=0    spawn_value=3.33333    price_tag=20   100    
-/obj/item/weapon/tool/saw/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
-/obj/item/weapon/tool/shiv    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
-/obj/item/weapon/tool/shovel/improvised    blacklisted=0    spawn_value=20    price_tag=20   100    
-/obj/item/weapon/tool/broken_bottle    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/nailstick    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=50    price_tag=20   100    
-/obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=25    price_tag=20   100    
-/obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    spawn_value=16.6667    price_tag=20   100    
-/obj/item/weapon/tool/wrench/improvised    blacklisted=0    spawn_value=33.3333    price_tag=20   100    
-/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=20    price_tag=10   100    
-/obj/item/weapon/storage/box/lights/mixed    blacklisted=0    spawn_value=15.015    price_tag=0   100    
-/obj/item/weapon/reagent_containers/glass/beaker/bluespace    blacklisted=1    spawn_value=5    price_tag=300   100    
-/obj/item/weapon/reagent_containers/glass/beaker/large    blacklisted=0    spawn_value=2.5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/noreact    blacklisted=1    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/bowl    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone    blacklisted=1    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/tungsten    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/sodium    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/lithium    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/water    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/fuel    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker/silicon    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/beaker    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/rag    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/bucket    blacklisted=0    spawn_value=5    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask    blacklisted=0    spawn_value=5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda    blacklisted=0    spawn_value=2.5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola    blacklisted=0    spawn_value=2.5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass    blacklisted=0    spawn_value=5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/jar    blacklisted=0    spawn_value=5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/blood/empty    blacklisted=0    spawn_value=5    price_tag=50   100    
-/obj/item/weapon/reagent_containers/dropper/industrial    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/dropper    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/pill/floorpill    blacklisted=0    spawn_value=25    price_tag=20   100    
-/obj/item/weapon/pen/crayon/red    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/orange    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/yellow    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/green    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/blue    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/purple    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/mime    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon/rainbow    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/crayon    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/blue    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/red    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/multi    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/invisible    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/reagent/sleepy    blacklisted=1    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/reagent/paralysis    blacklisted=1    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/reagent    blacklisted=1    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen/chameleon    blacklisted=1    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/pen    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/caution/cone    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/caution    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/bananapeel    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/c_tube    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/wrapping_paper    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/material/shard/shrapnel/scrap    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/material/shard/shrapnel    blacklisted=0    spawn_value=40    price_tag=0   100    
-/obj/item/weapon/material/shard/plasma    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/material/shard    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/implanter    blacklisted=0    spawn_value=16.6667    price_tag=0   100    
-/obj/item/weapon/corncob    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/ore/glass    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/folder/blue    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/folder/red    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/folder/yellow    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/folder/cyan    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/folder    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/stack/rods/random    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/item/stack/material/cardboard    blacklisted=0    spawn_value=15.015    price_tag=5   100    
-/obj/item/trash/raisins    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/candy    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/cheesie    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/chips    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/popcorn    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/sosjerky    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/syndi_cakes    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/waffles    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/plate    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/snack_bowl    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/pistachios    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/semki    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/tray    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/candle    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/liquidfood    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/tastybread    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/mre    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/mre_paste    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/mre_candy    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/mre_can    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash/material/metal    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/item/trash/material/circuit    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/trash/material/device    blacklisted=0    spawn_value=25    price_tag=0   100    
-/obj/item/trash/cigbutt/cigarbutt    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/trash/cigbutt    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
-/obj/item/trash/broken_robot_part    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/trash    blacklisted=0    spawn_value=5    price_tag=0   100    
+/obj/item/weapon/paper/manifest    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/monitorkey    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/autopsy_report    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/carbon    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/crumpled/bloody    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/crumpled/neo/bloody    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/crumpled/neo    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/crumpled    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/neopaper    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/court    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/toxin    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/courtroom    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/hydroponics    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/djstation    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/jobs    blacklisted=1    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/sop    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/self_pacification    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/gravity_gen    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/solar    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/artifact_info    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper/virus_report    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/paper    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/broken    blacklisted=0    spawn_value=9.82696   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/newspaper    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/crowbar/improvised    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.00291   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/hammer/mace/makeshift    blacklisted=0    spawn_value=3.19478   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/saw/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/shiv    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/shovel/improvised    blacklisted=0    spawn_value=15.8704   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/broken_bottle    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/nailstick    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/tape_roll/web    blacklisted=0    spawn_value=30.2936   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    spawn_value=13.6967   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/tool/wrench/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=16.6667   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/bulbs    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/tubes    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/mixed    blacklisted=0    spawn_value=15.015   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/bluespace    blacklisted=1    spawn_value=4.44811   spawn_price=303   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/large    blacklisted=0    spawn_value=2.41976   spawn_price=21.2   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/noreact    blacklisted=1    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/bowl    blacklisted=0    spawn_value=4.68637   spawn_price=21.8   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone    blacklisted=1    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/sulphuric    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/tungsten    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/sodium    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/lithium    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/water    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/fuel    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker/silicon    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/beaker    blacklisted=0    spawn_value=4.69178   spawn_price=20.6   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/rag    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/glass/bucket    blacklisted=0    spawn_value=4.69461   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask    blacklisted=0    spawn_value=4.7619   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda    blacklisted=0    spawn_value=2.43902   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola    blacklisted=0    spawn_value=2.43902   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass    blacklisted=0    spawn_value=4.7619   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/jar    blacklisted=0    spawn_value=4.7619   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/blood/empty    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/dropper/industrial    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/dropper    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/pill/floorpill    blacklisted=0    spawn_value=18.8643   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/red    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/orange    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/yellow    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/green    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/blue    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/purple    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/mime    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon/rainbow    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/crayon    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/blue    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/red    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/multi    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/invisible    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/reagent/sleepy    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/reagent/paralysis    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/reagent    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen/chameleon    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/pen    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/caution/cone    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/caution    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/bananapeel    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/c_tube    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/wrapping_paper    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/material/shard/shrapnel/scrap    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/material/shard/shrapnel    blacklisted=0    spawn_value=40   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/material/shard/plasma    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/material/shard    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/implanter    blacklisted=0    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/corncob    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/ore/glass    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/folder/blue    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/folder/red    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/folder/yellow    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/folder/cyan    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/folder    blacklisted=0    spawn_value=20   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/rods/random    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/stack/material/cardboard    blacklisted=0    spawn_value=13.5889   spawn_price=5   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/raisins    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/candy    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/cheesie    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/chips    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/popcorn    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/sosjerky    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/syndi_cakes    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/waffles    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/plate    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/snack_bowl    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/pistachios    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/semki    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/tray    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/candle    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/liquidfood    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/tastybread    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/mre    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/mre_paste    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/mre_candy    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/mre_can    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/material/metal    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/material/circuit    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/material/device    blacklisted=0    spawn_value=25   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/cigbutt/cigarbutt    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/cigbutt    blacklisted=0    spawn_value=28.5714   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash/broken_robot_part    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/trash    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

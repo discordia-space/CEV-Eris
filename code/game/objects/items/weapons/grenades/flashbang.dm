@@ -102,3 +102,10 @@
 	M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
 	M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
 	M.update_icons()
+
+/obj/item/weapon/grenade/flashbang/nt
+	name = "NT FBG \"Holy Light\""
+	desc = "An old \"NanoTrasen\" flashbang granade, modified to spread the light of god."
+	icon_state = "flashbang_nt"
+	item_state = "flashbang_nt"
+	matter = list(MATERIAL_BIOMATTER = 75)

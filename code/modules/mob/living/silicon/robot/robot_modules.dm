@@ -70,7 +70,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
 	..()
-	if (!istype(R))
+	if(!istype(R))
 		return
 
 	R.module = src
@@ -113,9 +113,9 @@ var/global/list/robot_modules = list(
 	//A quick hack to stop robot modules running out of power
 	//Later they'll be wired to the robot's central battery once we code functionality for that
 	//Setting it to infinity causes errors, so just a high number is fine
-	for (var/obj/item/I in modules)
+	for(var/obj/item/I in modules)
 		if(!istype(I, /obj/item/weapon/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
-			for (var/obj/item/weapon/cell/C in I)
+			for(var/obj/item/weapon/cell/C in I)
 				C.charge = 999999999
 	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 

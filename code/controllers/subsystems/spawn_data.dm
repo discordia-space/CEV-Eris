@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(spawn_data)
 	name = "Spawn Data"
 	init_order = INIT_ORDER_SPAWN_DATA
 	flags = SS_NO_FIRE
+	var/list/lowkeyrandom_tags = list()
 	var/list/all_spawn_by_tag = list()
 	var/list/all_accompanying_obj_by_path = list()
 

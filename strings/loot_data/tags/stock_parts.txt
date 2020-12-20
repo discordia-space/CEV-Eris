@@ -1,42 +1,42 @@
-/obj/item/weapon/stock_parts/console_screen    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor/adv    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor/super    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor/excelsior    blacklisted=1    spawn_value=6.66667    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor/alien_capacitor    blacklisted=1    spawn_value=6.66667    price_tag=100   100    
-/obj/item/weapon/stock_parts/capacitor    blacklisted=0    spawn_value=6.66667    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/adv    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/phasic    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/excelsior    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module/alien    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/scanning_module    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/nano    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/pico    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/excelsior    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator/alien    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/manipulator    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/high    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/ultra    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/excelsior    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser/alien    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/micro_laser    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/adv    blacklisted=0    spawn_value=4    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/super    blacklisted=0    spawn_value=2.22222    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/excelsior    blacklisted=1    spawn_value=13.3333    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.5    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin/alien    blacklisted=1    spawn_value=13.3333    price_tag=100   100    
-/obj/item/weapon/stock_parts/matter_bin    blacklisted=0    spawn_value=13.3333    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/ansible    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/filter    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/amplifier    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/treatment    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/analyzer    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/crystal    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/subspace/transmitter    blacklisted=0    spawn_value=14.0056    price_tag=100   100    
-/obj/item/weapon/stock_parts/smes_coil/weak    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/weapon/stock_parts/smes_coil/super_capacity    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/smes_coil/super_io    blacklisted=0    spawn_value=2    price_tag=100   100    
-/obj/item/weapon/stock_parts/smes_coil    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
+/obj/item/weapon/stock_parts/console_screen    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/adv    blacklisted=0    spawn_value=1.91201   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/super    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/excelsior    blacklisted=1    spawn_value=5.68115   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor/alien_capacitor    blacklisted=1    spawn_value=5.62488   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/capacitor    blacklisted=0    spawn_value=5.88235   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/adv    blacklisted=0    spawn_value=3.09588   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/phasic    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/excelsior    blacklisted=1    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module/alien    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/scanning_module    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/nano    blacklisted=0    spawn_value=3.09588   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/pico    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/excelsior    blacklisted=1    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator/alien    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/manipulator    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/high    blacklisted=0    spawn_value=3.09588   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/ultra    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/excelsior    blacklisted=1    spawn_value=7.93521   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser/alien    blacklisted=1    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/micro_laser    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/adv    blacklisted=0    spawn_value=3.66287   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/super    blacklisted=0    spawn_value=2.10628   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/excelsior    blacklisted=1    spawn_value=9.89897   spawn_price=400   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin/alien    blacklisted=1    spawn_value=9.72938   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/matter_bin    blacklisted=0    spawn_value=10.5263   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/ansible    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/filter    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/amplifier    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/treatment    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/analyzer    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/crystal    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/subspace/transmitter    blacklisted=0    spawn_value=10.9409   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/smes_coil/weak    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/smes_coil/super_capacity    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/smes_coil/super_io    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/stock_parts/smes_coil    blacklisted=0    spawn_value=3.09588   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing

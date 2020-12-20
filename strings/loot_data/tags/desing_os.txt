@@ -1,1 +1,1 @@
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.42857    price_tag=25   100    
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.4006   spawn_price=25   prob_accompanying_obj=100    accompanying_objs=nothing

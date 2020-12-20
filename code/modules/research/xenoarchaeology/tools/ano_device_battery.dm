@@ -1,4 +1,3 @@
-
 /obj/item/weapon/anobattery
 	name = "Anomaly power battery"
 	icon = 'icons/obj/xenoarchaeology.dmi'

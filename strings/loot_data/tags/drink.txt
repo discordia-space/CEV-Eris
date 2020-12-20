@@ -1,29 +1,29 @@
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/starkist    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle    blacklisted=0    spawn_value=10    price_tag=15   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/space_up    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/tonic    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer    blacklisted=0    spawn_value=50    price_tag=80   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale    blacklisted=0    spawn_value=7.14286    price_tag=80   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka    blacklisted=0    spawn_value=14.2857    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/patron    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager    blacklisted=0    spawn_value=7.14286    price_tag=150   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine    blacklisted=0    spawn_value=7.14286    price_tag=250   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac    blacklisted=0    spawn_value=7.14286    price_tag=250   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth    blacklisted=0    spawn_value=7.14286    price_tag=250   100    
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine    blacklisted=0    spawn_value=7.14286    price_tag=250   100    
+/obj/item/weapon/reagent_containers/food/drinks/cans/cola    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/starkist    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle    blacklisted=0    spawn_value=8.94767   spawn_price=15   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/space_up    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/tonic    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer    blacklisted=0    spawn_value=25.6207   spawn_price=80   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale    blacklisted=0    spawn_value=6.28809   spawn_price=80   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/gin    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/rum    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka    blacklisted=0    spawn_value=10.8979   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/patron    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager    blacklisted=0    spawn_value=6.18196   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/wine    blacklisted=0    spawn_value=6.09833   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac    blacklisted=0    spawn_value=6.09833   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth    blacklisted=0    spawn_value=6.09833   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine    blacklisted=0    spawn_value=6.09833   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -1,1 +1,0 @@
-/obj/item/stack/rods/random    blacklisted=0    spawn_value=10    price_tag=1   100    

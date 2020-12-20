@@ -18,10 +18,11 @@
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
+	spawn_blacklisted = TRUE///obj/item/weapon/hand_tele
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/portal_type = /obj/effect/portal
-	var/portal_fail_chance = null
+	var/portal_fail_chance
 	var/cell_charge_per_attempt = 33
 	var/entropy_value = 2  //for bluespace entropy
 
@@ -97,8 +98,9 @@
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
-	var/calibration_required = TRUE
 	entropy_value = 4 //for bluespace entropy
+	spawn_blacklisted = FALSE
+	var/calibration_required = TRUE
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
 	..()
