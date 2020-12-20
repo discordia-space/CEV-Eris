@@ -25,7 +25,7 @@
 	if(wearer.has_brain_worms() || is_carrion(wearer) || wearer.mind || ishuman(wearer))
 		to_chat(owner_mob, SPAN_DANGER("A strong mind inside this creature prevents activation"))
 		return
-	if(last_use + 2 MINUTES > world.time)
+	if(last_use + cooldown > world.time)
 		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 5 minutes to regenerate."))
 		return
 
