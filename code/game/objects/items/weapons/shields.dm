@@ -31,7 +31,9 @@
 
 /obj/item/weapon/shield
 	name = "shield"
+	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 0, bio = 0, rad = 0)
 	var/base_block_chance = 50
+	var/slowdown_time = 1
 
 /obj/item/weapon/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
@@ -47,6 +49,12 @@
 
 /obj/item/weapon/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
+
+/obj/item/weapon/shield/attack(mob/M, mob/user)
+	if(isliving(M))
+		var/mob/living/L = M
+		L.slowdown += slowdown_time
+	return ..()
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
