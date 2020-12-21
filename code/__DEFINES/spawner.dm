@@ -533,7 +533,4 @@
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
 
-#define CHEAP_ITEM_PRICE 800
-
-
 #define SPAWN_CLOWN "clown"
