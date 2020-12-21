@@ -13,7 +13,7 @@
 	price_tag = 1600
 	rarity_value = 13.74
 	can_dual = 1
-	damage_multiplier = 1.45
+	damage_multiplier = 1.95
 	penetration_multiplier = 1.35
 	recoil_buildup = 33
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'

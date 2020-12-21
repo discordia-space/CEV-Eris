@@ -27,6 +27,7 @@
 	price_tag = 2500
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
+	damage_multiplier = 1.15
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
 	.=..()
