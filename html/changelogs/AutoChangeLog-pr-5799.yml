@@ -1,0 +1,5 @@
+author: Bloodpriest
+delete-after: true
+changes:
+  - imageadd: resprited idle and dead sprites, added moving animation for Kampfer,
+      Panzer, Seuche, Jager and Gestrahlte roaches.
