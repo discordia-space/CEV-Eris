@@ -179,12 +179,9 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
-	if(twohanded)
-		if(!wielded)
-			if (world.time >= recentwield + 1 SECONDS)
-				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
-				recentwield = world.time
-			return FALSE
+	
+	if(!twohanded_check(M))
+		return FALSE
 
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -212,6 +209,15 @@
 			if(rigged > TRUE)
 				explosion(get_turf(src), 1, 2, 3, 3)
 				qdel(src)
+			return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/proc/twohanded_check(user)
+	if(twohanded)
+		if(!wielded)
+			if (world.time >= recentwield + 1 SECONDS)
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				recentwield = world.time
 			return FALSE
 	return TRUE
 
