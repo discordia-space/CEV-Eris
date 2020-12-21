@@ -24,7 +24,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
-	damage_multiplier = 3
+	damage_multiplier = 1.6
 
 	init_firemodes = list(
 		FULL_AUTO_400,

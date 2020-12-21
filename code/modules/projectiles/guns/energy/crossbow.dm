@@ -16,7 +16,7 @@
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500
-	damage_multiplier = 2.2
+	damage_multiplier = 1.5
 
 /obj/item/weapon/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
