@@ -80,13 +80,10 @@
 
 	safety = FALSE//just whynot
 	restrict_safety = TRUE//so syringe gun doesn't contents any safety shit
-
+	rarity_value = GUN_BASE_RARITY_VALUE+5
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/weapon/syringe_cartridge/next
-
-/obj/item/weapon/gun/launcher/syringe/New()
-	..()
 
 /obj/item/weapon/gun/launcher/syringe/consume_next_projectile()
 	if(next)
@@ -144,3 +141,4 @@
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"
 	max_darts = 5
+	rarity_value = GUN_BASE_RARITY_VALUE*15

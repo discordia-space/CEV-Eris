@@ -21,7 +21,6 @@
 	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
-	rarity_value = 32
 
 	init_firemodes = list(
 		FULL_AUTO_300,

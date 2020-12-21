@@ -25,7 +25,7 @@
 	hud_actions = list()
 	bad_type = /obj/item/weapon/gun
 	spawn_tags = SPAWN_TAG_GUN
-	rarity_value = 10
+	rarity_value = GUN_BASE_RARITY_VALUE
 	spawn_frequency = 10
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
@@ -42,7 +42,7 @@
 
 	var/muzzle_flash = 3
 	var/dual_wielding
-	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
+	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE

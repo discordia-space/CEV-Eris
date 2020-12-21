@@ -1,5 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted
+/obj/item/weapon/gun/projectile/automatic/maxim
 /obj/item/weapon/gun/projectile/automatic
 /obj/item/weapon/gun/projectile/shotgun
 /obj/item/weapon/gun/projectile/handmade_pistol
@@ -123,7 +124,9 @@
 /obj/item/weapon/storage/firstaid
 /obj/item/weapon/storage/internal/updating
 /obj/item/weapon/storage/internal
+/obj/item/weapon/storage/part_replacer/debugparts
 /obj/item/weapon/storage/pouch
+/obj/item/weapon/storage/secure
 /obj/item/weapon/storage/sheath
 /obj/item/weapon/storage/toolbox
 /obj/item/weapon/storage
@@ -157,6 +160,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/capsaicin
 /obj/item/weapon/reagent_containers/glass/bottle/frostoil
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
+/obj/item/weapon/reagent_containers/glass/bottle/resuscitator
 /obj/item/weapon/reagent_containers/glass/bottle/robot/inaprovaline
 /obj/item/weapon/reagent_containers/glass/bottle/robot/antitoxin
 /obj/item/weapon/reagent_containers/glass/bottle/robot
@@ -278,6 +282,8 @@
 /obj/item/weapon/reagent_containers/syringe/blitzshell
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
+/obj/item/weapon/reagent_containers/syringe/large/antitoxin
+/obj/item/weapon/reagent_containers/syringe/large/dexalin_plus
 /obj/item/weapon/reagent_containers/syringe/large
 /obj/item/weapon/reagent_containers/syringe/hyperzine
 /obj/item/weapon/reagent_containers/syringe/stim/mbr
@@ -301,6 +307,7 @@
 /obj/item/weapon/oddity/common
 /obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/artwork
+/obj/item/weapon/oddity/nt
 /obj/item/weapon/oddity
 /obj/item/weapon/inflatable_duck
 /obj/item/weapon/twohanded/offhand
@@ -329,6 +336,7 @@
 /obj/item/weapon/cartridge/syndicate
 /obj/item/weapon/cartridge
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 /obj/item/weapon/computer_hardware
 /obj/item/weapon/autopsy_scanner
@@ -450,6 +458,9 @@
 /obj/item/weapon/shield/energy
 /obj/item/weapon/shield
 /obj/item/weapon/pai_cable
+/obj/item/weapon/cell/large/moebius/nuclear/infinite
+/obj/item/weapon/cell/medium/moebius/nuclear/infinite
+/obj/item/weapon/cell/small/moebius/nuclear/infinite
 /obj/item/weapon/cell
 /obj/item/weapon/rcd/borg
 /obj/item/weapon/rcd/mounted
@@ -465,6 +476,11 @@
 /obj/item/weapon/staff/gentcane
 /obj/item/weapon/staff/stick
 /obj/item/weapon/staff
+/obj/item/weapon/stock_parts/capacitor/debug
+/obj/item/weapon/stock_parts/scanning_module/debug
+/obj/item/weapon/stock_parts/manipulator/debug
+/obj/item/weapon/stock_parts/micro_laser/debug
+/obj/item/weapon/stock_parts/matter_bin/debug
 /obj/item/weapon/stock_parts/subspace
 /obj/item/weapon/stock_parts
 /obj/item/weapon/melee/baton/robot
@@ -963,6 +979,7 @@
 /obj/item/organ/external/robotic/moebius
 /obj/item/organ/external/robotic/excelsior
 /obj/item/organ/external/robotic/one_star
+/obj/item/organ/external/robotic/makeshift
 /obj/item/organ/external/robotic
 /obj/item/organ/external
 /obj/item/organ
@@ -1060,6 +1077,9 @@
 /obj/item/gene_vial
 /obj/item/glass_jar
 /obj/item/latexballon
+/obj/item/device/kit/suit
+/obj/item/device/kit/paint/powerloader
+/obj/item/device/kit/paint
 /obj/item/device/last_shelter
 /obj/item/device/lighting/toggleable/drone
 /obj/item/device/lighting/toggleable
@@ -1154,6 +1174,8 @@
 /obj/item/tape/research
 /obj/item/tape/medical
 /obj/item/tape
+/obj/item/structure/complicator
+/obj/item/structure
 /obj/item/inflatable/wall
 /obj/item/inflatable/door/torn
 /obj/item/inflatable/door
@@ -1885,6 +1907,7 @@
 /obj/machinery/power/port_gen/pacman
 /obj/machinery/power/port_gen
 /obj/machinery/power/biogenerator_core
+/obj/machinery/power/eotp
 /obj/machinery/power/nt_obelisk
 /obj/machinery/power/supermatter/shard
 /obj/machinery/power/supermatter
@@ -2351,6 +2374,7 @@
 /obj/machinery/neotheology/cloner
 /obj/machinery/neotheology/biomass_container
 /obj/machinery/neotheology/reader
+/obj/machinery/neotheology/cruciformforge
 /obj/machinery/neotheology
 /obj/machinery/dnaforensics
 /obj/machinery/microscope
@@ -2502,6 +2526,7 @@
 /obj/machinery/disease2/incubator
 /obj/machinery/disease2/isolator
 /obj/machinery/disease2
+/obj/structure/artwork_statue
 /obj/structure/window/basic/full
 /obj/structure/window/basic
 /obj/structure/window/plasmabasic/full
@@ -2555,7 +2580,6 @@
 /obj/structure/uplink/mercenary
 /obj/structure/uplink
 /obj/structure/nt_pedestal
-/obj/structure/artwork_statue
 /obj/structure/sign/double/barsign
 /obj/structure/sign/double/map/left
 /obj/structure/sign/double/map/right
@@ -2679,6 +2703,7 @@
 /obj/structure/bs_crystal_structure
 /obj/structure/burrow
 /obj/structure/catwalk
+/obj/structure/complicator
 /obj/structure/cryopod_spawner
 /obj/structure/curtain/open/bed
 /obj/structure/curtain/open/privacy

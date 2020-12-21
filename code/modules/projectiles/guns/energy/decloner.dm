@@ -6,7 +6,7 @@
 	item_state = "decloner"
 	fire_sound = 'sound/weapons/pulse3.ogg'
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
-	can_dual = 1
+	can_dual = TRUE
 	projectile_type = /obj/item/projectile/energy/declone
 	charge_cost = 100
 	matter = list(MATERIAL_STEEL = 20)

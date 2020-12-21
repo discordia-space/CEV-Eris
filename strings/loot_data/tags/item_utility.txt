@@ -20,5 +20,5 @@
 /obj/item/stack/cable_coil/white    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil/random    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/stack/cable_coil    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=5.29072   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=9.09091   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=4.80769   spawn_price=210   prob_accompanying_obj=100    accompanying_objs=nothing

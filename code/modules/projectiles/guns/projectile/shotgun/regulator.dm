@@ -14,4 +14,3 @@
 	penetration_multiplier = 0.9
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
-	rarity_value = 20

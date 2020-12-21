@@ -8,7 +8,7 @@
 	charge_meter = TRUE
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ENGINEERING = 4)
 	charge_cost = 50
@@ -23,11 +23,10 @@
 		list(mode_name="stun", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
 		list(mode_name="blast", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
-	var/consume_cell = FALSE
-	price_tag = 2500
-	rarity_value = 20
-	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 	damage_multiplier = 1.15
+	price_tag = 2500
+	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
+	var/consume_cell = FALSE
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
 	.=..()

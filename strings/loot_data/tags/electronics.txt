@@ -73,6 +73,7 @@
 /obj/item/weapon/electronics/circuitboard/excelsior_boombox    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/excelsior_teleporter    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/excelsior_turret    blacklisted=1    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/jukebox    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/mech_recharger    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/sleeper    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/mindswapper    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing

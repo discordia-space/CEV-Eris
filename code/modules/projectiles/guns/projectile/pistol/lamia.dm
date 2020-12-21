@@ -7,7 +7,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
-	can_dual = 1
+	can_dual = TRUE
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
@@ -17,9 +17,9 @@
 	price_tag = 2400
 	rarity_value = 16
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.1
 	penetration_multiplier = 1.4
 	recoil_buildup = 21

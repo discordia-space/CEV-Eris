@@ -12,4 +12,3 @@
 	damage_multiplier = 1.65
 	penetration_multiplier = 1.65
 	recoil_buildup = 40
-	rarity_value = 12

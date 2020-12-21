@@ -1,4 +1,7 @@
-/obj/item/weapon/gun/projectile/automatic/maxim
+/obj/item/weapon/gun/projectile/automatic/lmg
+/obj/item/weapon/gun/projectile/automatic/ak47
+/obj/item/weapon/gun/projectile/boltgun/serbian
+/obj/item/weapon/gun/projectile/boltgun
 /obj/item/weapon/gun/projectile/gyropistol
 /obj/item/weapon/gun/projectile/revolver/capgun
 /obj/item/weapon/gun/energy/chameleon
@@ -17,6 +20,9 @@
 /obj/item/weapon/gun/energy/psychic
 /obj/item/weapon/gun/energy/shrapnel/mounted
 /obj/item/weapon/gun/energy/xray/xenoarch
+/obj/item/weapon/gun/launcher/crossbow/RCD
+/obj/item/weapon/gun/matter/launcher/nt_sprayer
+/obj/item/weapon/gun/matter/launcher/reclaimer
 /obj/item/weapon/tank/onestar_regenerator
 /obj/item/weapon/paper/manifest
 /obj/item/weapon/paper/monitorkey
@@ -91,6 +97,7 @@
 /obj/item/weapon/storage/bsdm/permanent
 /obj/item/weapon/storage/bsdm
 /obj/item/weapon/storage/firstaid/surgery/traitor
+/obj/item/weapon/storage/firstaid/nt
 /obj/item/weapon/storage/pouch/holding
 /obj/item/weapon/storage/toolbox/syndicate
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
@@ -104,13 +111,19 @@
 /obj/item/weapon/pen/reagent
 /obj/item/weapon/pen/chameleon
 /obj/item/weapon/oddity/techno
+/obj/item/weapon/oddity/nt/seal
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior_weapons
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/melee
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/longsword
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/scourge
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/halberd
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/shield
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/firstaid
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/grenades
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/crusader
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih
 /obj/item/weapon/cell/large/potato
@@ -133,6 +146,7 @@
 /obj/item/weapon/stock_parts/matter_bin/one_star
 /obj/item/weapon/stock_parts/matter_bin/alien
 /obj/item/weapon/tool_upgrade/augment/holding_tank
+/obj/item/weapon/tool_upgrade/augment/sanctifier
 /obj/item/weapon/tool_upgrade/augment/ai_tool
 /obj/item/weapon/tool_upgrade/augment/repair_nano
 /obj/item/weapon/tool_upgrade/augment/hydraulic
@@ -188,6 +202,8 @@
 /obj/item/modular_computer/console/preset/trade
 /obj/item/modular_computer/console
 /obj/item/stack/medical/bruise_pack/handmade
+/obj/item/stack/medical/advanced/bruise_pack/nt
+/obj/item/stack/medical/advanced/ointment/nt
 /obj/item/organ/external/robotic/excelsior/l_arm
 /obj/item/organ/external/robotic/excelsior/r_arm
 /obj/item/organ/external/robotic/excelsior/l_leg
@@ -349,6 +365,7 @@
 /obj/item/clothing/accessory/badge/warden
 /obj/item/clothing/accessory/badge/hos
 /obj/item/clothing/accessory/badge/marshal
+/obj/item/device/slimelight
 /obj/item/device/mental_imprinter
 /obj/item/device/powersink
 /obj/item/device/spy_bug
@@ -431,9 +448,9 @@
 /obj/item/ammo_magazine/ammobox/pistol/hv
 /obj/item/mech_equipment/mounted_system/taser/plasma
 /obj/item/mech_equipment/mounted_system/ballistic/pk
-/mob/living/carbon/superior_animal/roach/roachling
 /mob/living/carbon/superior_animal/roach/bluespace
 /mob/living/carbon/superior_animal/roach/kaiser
+/mob/living/carbon/superior_animal/roach/roachling
 /mob/living/bot/miningonestar/resources/agressive/with_support
 /mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/in_work

@@ -15,7 +15,6 @@
 	damage_multiplier = 0.9
 	charge_cost = 50
 	price_tag = 2500
-	rarity_value = 12
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -61,7 +60,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
@@ -69,7 +68,6 @@
 	damage_multiplier = 1.1
 	charge_cost = 100
 	price_tag = 2000
-	rarity_value = 10
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -87,7 +85,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam
 	zoom_factor = 0
 	damage_multiplier = 1

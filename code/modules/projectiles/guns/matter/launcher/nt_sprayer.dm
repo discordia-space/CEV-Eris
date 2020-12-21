@@ -14,6 +14,7 @@
 	)
 	projectile_cost = 0.5
 	projectile_type = /obj/item/weapon/arrow/neotheo/cleansing
+	spawn_blacklisted = TRUE
 
 
 /obj/item/weapon/arrow/neotheo
