@@ -53,7 +53,7 @@
 /obj/item/weapon/shield/attack(mob/M, mob/user)
 	if(isliving(M))
 		var/mob/living/L = M
-		if(!(L.slowdown >= slowdown_time * 3))
+		if(L.slowdown < slowdown_time * 3)
 			L.slowdown += slowdown_time
 	return ..()
 
@@ -209,5 +209,4 @@
 		set_light(1.5, 1.5, COLOR_LIGHTING_BLUE_BRIGHT)
 	else
 		set_light(0)
-
 
