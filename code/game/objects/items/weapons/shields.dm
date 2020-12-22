@@ -53,7 +53,8 @@
 /obj/item/weapon/shield/attack(mob/M, mob/user)
 	if(isliving(M))
 		var/mob/living/L = M
-		L.slowdown += slowdown_time
+		if(!(L.slowdown >= slowdown_time * 3))
+			L.slowdown += slowdown_time
 	return ..()
 
 /obj/item/weapon/shield/riot
