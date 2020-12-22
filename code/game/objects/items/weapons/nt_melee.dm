@@ -39,7 +39,7 @@
 
 /obj/item/weapon/tool/spear/halberd
 	name = "NT Halberd"
-	desc = "A saint looking halberd, for emergency situation."
+	desc = "This weapon of ancient design appears to be a spear-axe hybrid. It saw a lot of use back in the Dark Ages back on Earth - in more recent times, NeoTheoligan crusaders of the elite variety tend to carry this weapon into battle due to it's fantastic armor-piercing capabilities. Additionally, due to the halberd being so long, you can attack enemies from up to a tile away with it - twice as far as most other weapons can."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
