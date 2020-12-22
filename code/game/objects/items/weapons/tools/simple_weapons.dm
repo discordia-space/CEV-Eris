@@ -206,7 +206,7 @@
 	icon_state = "spearglass0"
 	wielded_icon = "spearglass1"
 	name = "spear"
-	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	desc = "A spiky bit of material tied onto a metal pole with some wire. It's an insult to spears across the galaxy - but it can still do some nasty damage and has some decent armor-piercing capabilities. Spears like these are often seen in the hands of vagrants, muggers, or desperate militias. Due to this weapon - if you could call it that - being so long, you're able to attack enemies from up to a tile away."
 	force = WEAPON_FORCE_PAINFUL
 	armor_penetration = ARMOR_PEN_MODERATE // It's a SPEAR!
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
