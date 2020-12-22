@@ -37,16 +37,17 @@
 	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
 
-/obj/item/weapon/tool/sword/nt/halberd
+/obj/item/weapon/tool/spear/halberd
 	name = "NT Halberd"
 	desc = "A saint looking halberd, for emergency situation."
+	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
 	force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_MASSIVE
-	w_class = ITEM_SIZE_HUGE
-	slot_flags = SLOT_BACK
+	aspects = list(SANCTIFIED)
+	spawn_blacklisted = TRUE
 	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 

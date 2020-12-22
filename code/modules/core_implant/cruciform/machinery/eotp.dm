@@ -51,6 +51,7 @@ var/global/obj/machinery/power/eotp/eotp
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
+	disk_reward_update()
 
 /obj/machinery/power/eotp/examine(user)
 	..()

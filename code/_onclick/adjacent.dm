@@ -25,13 +25,13 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(var/atom/neighbor, var/atom/target = null)
+/turf/Adjacent(var/atom/neighbor, var/atom/target = null, var/distance = 1)
 	var/turf/T0 = get_turf(neighbor)
 
 	if(T0 == src)
 		return TRUE
 
-	if(get_dist(src, T0) > 1 || (src.z != T0.z))
+	if(get_dist(src, T0) > distance || (src.z != T0.z))
 		return FALSE
 
 	// Non diagonal case
@@ -84,7 +84,7 @@ Quick adjacency (to turf):
 	Note: Multiple-tile objects are created when the bound_width and bound_height are creater than the tile size.
 	This is not used in stock /tg/station currently.
 */
-/atom/movable/Adjacent(var/atom/neighbor)
+/atom/movable/Adjacent(var/atom/neighbor, var/distance = 1)
 	if(neighbor == loc)
 		return TRUE
 	if(!isturf(loc))
@@ -92,7 +92,7 @@ Quick adjacency (to turf):
 	for(var/turf/T in locs)
 		if(isnull(T))
 			continue
-		if(T.Adjacent(neighbor, src))
+		if(T.Adjacent(neighbor, src, distance))
 			return TRUE
 	return FALSE
 

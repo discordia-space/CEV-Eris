@@ -200,3 +200,24 @@
 	max_upgrades = 2
 	tool_qualities = list(QUALITY_HAMMERING = 5)
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/tool/spear //spear
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "spearglass0"
+	wielded_icon = "spearglass1"
+	name = "spear"
+	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	force = WEAPON_FORCE_PAINFUL
+	armor_penetration = ARMOR_PEN_MODERATE // It's a SPEAR!
+	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
+	throw_speed = 3
+	edge = TRUE
+	sharp = TRUE
+	tool_qualities = list(QUALITY_CUTTING = 10)
+	origin_tech = list(TECH_COMBAT = 1)
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	embed_mult = 1.5
+	attack_distance = 2
