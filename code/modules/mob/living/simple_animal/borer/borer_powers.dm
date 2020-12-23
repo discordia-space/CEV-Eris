@@ -263,7 +263,7 @@
 
 	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
 	to_chat(M, SPAN_DANGER("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
-	M.Weaken(10)
+	M.Paralyse(10)
 
 	used_dominate = world.time
 
