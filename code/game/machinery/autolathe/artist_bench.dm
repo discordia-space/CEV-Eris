@@ -174,8 +174,6 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_mechanical = 0 + LStats[STAT_MEC]
-	var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
 	var/weight_toughness = 0 + LStats[STAT_TGH]
@@ -191,8 +189,6 @@
 			"magnum" = 8 + weight_vigilance,
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + max(weight_vigilance + weight_cognition),
-			"gyro" = 1 + weight_mechanical,
 			"cap" = 16 + weight_biology,
 			"rocket" = 8 + weight_toughness,
 			"grenade" = 8 + weight_toughness
@@ -228,17 +224,6 @@
 			//No gun currently uses CAL_357 far as I know
 			//	if("revolver")
 			//		caliber = pick(CAL_357)
-
-			if("sniper")//From sniper.dm, Arbitrary values
-				R.caliber = CAL_ANTIM
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5) //From sniper.dm, Temporary values
-				R.recoil_buildup = 90 + rand(-10,10)
-
-			if("gyro")//From gyropistol.dm, Arbitrary values
-				R.caliber = CAL_70
-				R.recoil_buildup = 0.1 * rand(1,20)
 
 			if("cap")
 				R.caliber = CAL_CAP
