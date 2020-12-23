@@ -1419,9 +1419,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/randomised/guns
 	num_contained = 4
 	contains = list(/obj/spawner/gun/cheap,
-                /obj/spawner/gun/normal,
-                /obj/spawner/gun/energy_cheap,
-                /obj/spawner/gun/shotgun)
+					/obj/spawner/gun/cheap,
+					/obj/spawner/gun/cheap,
+					/obj/spawner/gun/cheap)
 	name = "Surplus Weaponry"
 	cost = 5000
 	crate_name = "Surplus Weapons Crate"
@@ -1430,14 +1430,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/ammo
 	num_contained = 8
-	contains = list(/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo)
+	contains = list(/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+				)
 	name = "Surplus Ammo"
 	cost = 1500
 	crate_name = "Surplus Ammo Crate"
