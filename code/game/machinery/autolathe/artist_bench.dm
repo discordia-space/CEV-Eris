@@ -178,7 +178,7 @@
 //	var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
-	var/weight_toughness = 0 + LStats[STAT_TGH]
+//	var/weight_toughness = 0 + LStats[STAT_TGH]
 	var/weight_vigilance = 0 + LStats[STAT_VIG]
 
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
@@ -192,8 +192,6 @@
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
 			"cap" = 16 + weight_biology,
-			"rocket" = 8 + weight_toughness,
-			"grenade" = 8 + weight_toughness
 		))
 
 		switch(gun_pattern)
@@ -229,20 +227,6 @@
 
 			if("cap")
 				R.caliber = CAL_CAP
-
-			if("rocket")//From RPG.dm, Arbitrary values
-				R.caliber = CAL_ROCKET
-				R.fire_sound = 'sound/effects/bang.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
-				R.recoil_buildup = 15 + rand(-3,3)
-
-			if("grenade")
-				R.caliber = CAL_GRENADE
-				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-2,3)//from sniper.dm, Temporary values
-				R.recoil_buildup = 20 + rand(-5,5) //from projectile_grenade_launcher.dm
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
