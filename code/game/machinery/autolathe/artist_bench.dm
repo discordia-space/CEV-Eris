@@ -174,6 +174,8 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
+//	var/weight_mechanical = 0 + LStats[STAT_MEC]
+//	var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
 	var/weight_toughness = 0 + LStats[STAT_TGH]
