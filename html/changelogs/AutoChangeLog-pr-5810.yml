@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscdel: Removes the ability to hack the jukebox for meme songs
