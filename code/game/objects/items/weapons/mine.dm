@@ -1,6 +1,6 @@
 /obj/item/weapon/mine
-	name = "Excelsior Mine"
-	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others, unless they have a Pulse tool nearby"
+	name = "Proximity Mine"
+	desc = "An anti-personnel mine. Unleashes shrapnel on those unlucky enough to step on them."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_BULKY
@@ -30,12 +30,17 @@
 /obj/item/weapon/mine/ignite_act()
 	explode()
 
+/obj/item/weapon/mine/ex_act()
+	explode()
+
+/obj/item/weapon/mine/bullet_act()
+	explode()
+
 /obj/item/weapon/mine/proc/explode()
 	var/turf/T = get_turf(src)
+	qdel(src)
 	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
 	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
-	if(src)
-		qdel(src)
 
 /obj/item/weapon/mine/update_icon()
 	overlays.Cut()
@@ -94,7 +99,7 @@
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
-		
+
 		if (deployed)
 			user.visible_message(
 			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
@@ -122,9 +127,6 @@
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
-			for(var/datum/antagonist/A in AM.mind.antagonist)
-				if(A.id == ROLE_EXCELSIOR_REV)
-					return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
 				explode()
