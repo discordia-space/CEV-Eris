@@ -334,7 +334,7 @@
 
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
-	rarity_value = 1.25
+	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/obj/item/weapon/tank/jetpack/rig/jets
 

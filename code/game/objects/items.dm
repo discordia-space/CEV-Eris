@@ -159,6 +159,11 @@
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.stats.getPerk(PERK_MARKET_PROF))
+			message += SPAN_NOTICE("\nThis item cost: [price_tag == null ? 0 : price_tag][CREDITS]")
+
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)

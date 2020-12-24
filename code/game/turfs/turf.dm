@@ -236,15 +236,13 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/contains_dense_objects()
+/turf/proc/contains_dense_objects(unincludehumans)
 	if(density)
 		return 1
 	for(var/atom/A in src)
-		if(A.density && !(A.flags & ON_BORDER))
+		if(A.density && !(A.flags & ON_BORDER) && (unincludehumans && !ishuman(A)))
 			return 1
 	return 0
-
-
 
 /turf/get_footstep_sound(var/mobtype)
 
@@ -257,7 +255,6 @@ var/const/enterloopsanity = 100
 		sound =  footstep_sound("floor")
 
 	return sound
-
 
 /turf/simulated/floor/get_footstep_sound(var/mobtype)
 

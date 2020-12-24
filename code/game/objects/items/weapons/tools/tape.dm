@@ -22,7 +22,7 @@
 	max_stock = 30
 	alpha = 150
 	rarity_value = 2
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/tape_roll/fiber
 	name = "fiber tape"
@@ -35,13 +35,13 @@
 	spawn_frequency = 8
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
-	
+
 /obj/item/weapon/tool/tape_roll/glue
 	name = "superglue"
 	desc = "A bucket of milky white fluid. Can be used to stick things together, but unlike tape, it cannot be used to seal things."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "glue"
-	tool_qualities = list(QUALITY_ADHESIVE = 40, QUALITY_CAUTERIZING = 5) // Better than duct tape, but can't seal things and is mostly used in crafting - also, it's glue, so it can be used as an extremely shitty way of sealing wounds 
+	tool_qualities = list(QUALITY_ADHESIVE = 40, QUALITY_CAUTERIZING = 5) // Better than duct tape, but can't seal things and is mostly used in crafting - also, it's glue, so it can be used as an extremely shitty way of sealing wounds
 	matter = list(MATERIAL_BIOMATTER = 30)
 	worksound = NO_WORKSOUND
 

@@ -56,8 +56,8 @@
 		return
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
-	H.sanity.insight += insight_reward
-	H.sanity.insight_rest += insight_reward/2
+	H.sanity.give_insight(insight_reward)
+	H.sanity.give_insight_rest(insight_reward/2)
 	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()
@@ -86,7 +86,7 @@
 		return TRUE
 	return FALSE
 
-/datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE)
+/datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE, strict_type=/obj/item)
 	var/list/valid_targets = list()
 	for(var/obj/item/faction_item in GLOB.all_faction_items)
 		if(faction_item in valid_targets)
@@ -96,6 +96,8 @@
 		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		if(!locate(faction_item.type))
+			continue
+		if(!istype(faction_item, strict_type))
 			continue
 		valid_targets += faction_item
 	if(valid_targets.len)

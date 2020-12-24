@@ -10,7 +10,7 @@
 	anchored = TRUE
 	spawn_frequency = 10 //as /obj/structure/computerframe
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_CONSTRUCTABLE_FRAME
+	spawn_tags = SPAWN_TAG_MACHINE_FRAME
 	bad_type = /obj/machinery/constructable_frame
 
 /obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.

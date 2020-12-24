@@ -445,9 +445,9 @@
 
 	if(stat & NOPOWER)
 		return
-	else if(istype(I, /obj/item/clothing/suit/space))
+	else if(istype(I, /obj/item/clothing/suit))
 		load(I, user, LOAD_SLOT_SUIT)
-	else if(istype(I, /obj/item/clothing/head/space))
+	else if(istype(I, /obj/item/clothing/head))
 		load(I, user, LOAD_SLOT_HELMET)
 	else if(istype(I, /obj/item/clothing/mask))
 		load(I, user, LOAD_SLOT_MASK)
@@ -483,13 +483,16 @@
 
 
 /obj/machinery/suit_storage_unit/nt
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/acolyte
+	SUIT_TYPE = /obj/item/clothing/suit/armor/acolyte
+	HELMET_TYPE = /obj/item/clothing/head/armor/acolyte
 
 /obj/machinery/suit_storage_unit/nt/agrolyte
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/agrolyte
+	SUIT_TYPE = /obj/item/clothing/suit/armor/agrolyte
+	HELMET_TYPE  = /obj/item/clothing/head/armor/agrolyte
 
 /obj/machinery/suit_storage_unit/nt/custodian
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/custodian
+	SUIT_TYPE = /obj/item/clothing/suit/armor/custodian
+	HELMET_TYPE = /obj/item/clothing/head/armor/custodian
 
 
 /obj/machinery/suit_storage_unit/mining

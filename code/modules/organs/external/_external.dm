@@ -824,12 +824,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
 	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	return config.bones_can_break && !BP_IS_ROBOTIC(src) && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+	return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
-	if(BP_IS_ROBOTIC(src))
-		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
 	var/obj/item/organ/internal/bone/bone = get_bone()

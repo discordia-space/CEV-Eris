@@ -1,8 +1,8 @@
-/obj/item/weapon/reagent_containers/glass/replenishing    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.6478   spawn_price=1103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=6.48699   spawn_price=2603   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/gun/energy/captain/xenoarch    blacklisted=1    spawn_value=7.32428   spawn_price=4500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/energy/xray/xenoarch    blacklisted=1    spawn_value=7.34586   spawn_price=4103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/reagent_containers/glass/replenishing    blacklisted=1    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/ore/strangerock    blacklisted=1    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/archaeological_find    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/fossil/base    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

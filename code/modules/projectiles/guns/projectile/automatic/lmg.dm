@@ -22,7 +22,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 3.5
+	recoil_buildup = 1.9
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 
 	init_firemodes = list(

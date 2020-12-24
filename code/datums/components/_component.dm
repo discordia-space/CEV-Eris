@@ -164,7 +164,7 @@
 	return
 
 /datum/component/proc/PostTransfer()
-	return COMPONENT_INCOMPATIBLE //Do not support transfer by default as you must properly support it
+	return COMPONENT_NOTRANSFER //Do not support transfer by default as you must properly support it
 
 /datum/component/proc/_GetInverseTypeList(our_type = type)
 	//we can do this one simple trick
@@ -293,7 +293,7 @@
 	target.parent = src
 	var/result = target.PostTransfer()
 	switch(result)
-		if(COMPONENT_INCOMPATIBLE)
+		if(COMPONENT_NOTRANSFER)
 			var/c_type = target.type
 			qdel(target)
 			CRASH("Incompatible [c_type] transfer attempt to a [type]!")

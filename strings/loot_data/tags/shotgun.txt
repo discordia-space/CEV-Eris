@@ -1,7 +1,5 @@
-/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27228   spawn_price=2551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
 /obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97131   spawn_price=4520   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=4.29166   spawn_price=2000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479   spawn_price=1500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316   spawn_price=1000   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.33928   spawn_price=4220   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_magazine/m12
@@ -10,3 +8,5 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=3.69287   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=7.64574   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27228   spawn_price=2551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small

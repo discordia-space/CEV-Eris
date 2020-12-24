@@ -1,4 +1,0 @@
-/obj/item/weapon/storage/pill_bottle/happy    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/pill_bottle/zoom    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/syringe/drugs    blacklisted=0    spawn_value=1.94928   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/reagent_containers/syringe/drugs_recreational    blacklisted=0    spawn_value=2.42125   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing

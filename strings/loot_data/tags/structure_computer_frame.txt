@@ -1,1 +1,0 @@
-/obj/structure/computerframe    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

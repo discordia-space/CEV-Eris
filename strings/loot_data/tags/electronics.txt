@@ -53,6 +53,7 @@
 /obj/item/weapon/electronics/circuitboard/supplycomp    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/comm_monitor    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/comm_server    blacklisted=0    spawn_value=2.37101   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/electronics/circuitboard/artist_bench    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/slot_machine    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/biogenerator    blacklisted=0    spawn_value=6.46158   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/electronics/circuitboard/chemmaster    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing

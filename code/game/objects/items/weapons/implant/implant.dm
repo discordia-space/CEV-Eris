@@ -72,7 +72,7 @@
 	wearer = target
 	implanted = TRUE
 	if(affected)
-		affected.implants += src
+		affected.implants |= src
 		part = affected
 		SSnano.update_uis(affected) // Update surgery UI window, if any
 

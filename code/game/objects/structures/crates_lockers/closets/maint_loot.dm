@@ -1,7 +1,7 @@
 //Closets full of loot, they should be placed in maints
 /obj/structure/closet/random
 	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_RANDOM_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_RANDOM
 	rarity_value = 10
 	bad_type = /obj/structure/closet/random
 	spawn_blacklisted = FALSE
@@ -147,7 +147,7 @@
 	req_access = list(access_cent_specops) //You are suppose to hack it
 	icon_state = "syndicate"
 	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_TAG_RANDOM_SECURE_CLOSET
+	spawn_tags = SPAWN_TAG_CLOSET_SECURE_RANDOM
 	rarity_value = 100
 
 /obj/structure/closet/secure_closet/rare_loot/populate_contents()

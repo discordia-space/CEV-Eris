@@ -20,7 +20,7 @@
 	item_state = "nt_longsword"
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_EXTREME
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
 

@@ -98,7 +98,6 @@
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in baby blue."
 	icon_state = "scrubsblue"
 	item_state = "b_suit"
-	style = STYLE_LOW
 
 /obj/item/clothing/under/rank/medical/green
 	name = "medical scrubs"

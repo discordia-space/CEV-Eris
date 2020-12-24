@@ -197,20 +197,22 @@
 	take_damage(damage)
 	return
 
-/obj/machinery/door/attack_hand(mob/user as mob)
-	if(src.allowed(user) && operable())
-		if(src.density)
+/obj/machinery/door/attack_hand(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(allowed(user) && operable())
+		if(density)
 			open()
 		else
 			close()
-		return
+	else
+		do_animate("deny")
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+/obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
 		return
 	..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 
 	//Harm intent overrides other actions
@@ -516,5 +518,4 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
-
 

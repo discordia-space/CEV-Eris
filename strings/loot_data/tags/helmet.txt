@@ -6,6 +6,7 @@
 /obj/item/clothing/head/armor/helmet/technomancer    blacklisted=0    spawn_value=12.9888   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/helmet/handmade    blacklisted=0    spawn_value=14.5453   spawn_price=75   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/helmet/thunderdome    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/helmet/crusader    blacklisted=1    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/helmet    blacklisted=0    spawn_value=14.2857   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg    blacklisted=0    spawn_value=7.82586   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -18,3 +19,6 @@
 /obj/item/clothing/head/armor/faceshield/altyn    blacklisted=0    spawn_value=1.92308   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/riot_hud    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/head/armor/steelpot    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/acolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/agrolyte    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/head/armor/custodian    blacklisted=1    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
