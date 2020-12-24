@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: Fixes deepmaint disabling the ship's nuke
