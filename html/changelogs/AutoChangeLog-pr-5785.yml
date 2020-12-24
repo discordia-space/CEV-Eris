@@ -1,6 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - rscadd: Blood/Oxygen/Nutriment requirements/
-  - balance: nerves are capped at 50% agony damage reduction
-  - balance: Some extrenal organs have extra space.
