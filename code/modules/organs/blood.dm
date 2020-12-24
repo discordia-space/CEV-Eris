@@ -1,11 +1,6 @@
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
-//Blood levels. These are percentages based on the species blood_volume far.
-var/const/BLOOD_VOLUME_SAFE =    85
-var/const/BLOOD_VOLUME_OKAY =    75
-var/const/BLOOD_VOLUME_BAD =     60
-var/const/BLOOD_VOLUME_SURVIVE = 40
 
 /mob/living/carbon
 	var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
@@ -277,7 +272,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 /mob/living/carbon/human/get_blood_oxygenation()
 	var/blood_volume = get_blood_circulation()
 	if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
-		return min(blood_volume, BLOOD_VOLUME_SURVIVE)
+		return min(blood_volume, total_blood_req)
 
 	if(!need_breathe())
 		return blood_volume

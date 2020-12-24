@@ -6,7 +6,12 @@
 	var/list/owner_verbs = list()
 	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
-	var/specific_organ_size = 1  // Space organs take up in weight calculations, unaffected by w_class for balance reasons
+	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
+	var/max_blood_storage = 0	//How much blood an organ stores. Base is 5 * blood_req, so the organ can survive without blood for 5 ticks beofre taking damage (+ blood supply of blood vessels)
+	var/current_blood = 100	//How much blood is currently in the organ
+	var/blood_req = 0	//How much blood an organ takes to funcion
+	var/nutriment_req = 0	//Controls passive nutriment loss
+	var/oxygen_req = 0	//If oxygen reqs are not satisfied, get debuff and brain starts taking damage
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()
@@ -14,6 +19,7 @@
 
 /obj/item/organ/internal/Process()
 	..()
+	handle_blood()
 	handle_regeneration()
 
 /obj/item/organ/internal/removed_mob()
@@ -57,11 +63,45 @@
 		if(owner && parent && amount > 0 && !silent)
 			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
+/obj/item/organ/internal/proc/handle_blood()
+	if(BP_IS_ROBOTIC(src) || !owner)
+		return
+	if(OP_BLOOD_VESSEL in organ_efficiency && !(owner.status_flags & BLEEDOUT))
+		current_blood = min(current_blood + 5, max_blood_storage)	//Blood vessels get an extra flat 5 blood regen
+	if(!blood_req)
+		return
+
+	if(owner.status_flags & BLEEDOUT)
+		current_blood = max(current_blood - blood_req, 0)
+		if(!current_blood)	//When all blood is lost, take blood from blood vessels
+			var/obj/item/organ/internal/BV
+			for(var/organ in shuffle(parent.internal_organs))
+				var/obj/item/organ/internal/I = organ
+				if(OP_BLOOD_VESSEL in I.organ_efficiency)
+					BV = I
+					break
+			if(BV)
+				BV.current_blood = max(BV.current_blood - blood_req, 0)
+			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost, 
+				take_damage(rand(2,5), prob(95))	//95% chance to not warn them, damage will proc on every organ in the limb
+
+		return
+
+	current_blood = min(current_blood + blood_req, max_blood_storage)
+
 /obj/item/organ/internal/proc/handle_regeneration()
-	if(!damage || BP_IS_ROBOTIC(src) || !owner || owner.chem_effects[CE_TOXIN] || owner.is_asystole())
+	if(!damage || BP_IS_ROBOTIC(src) || !owner || owner.chem_effects[CE_TOXIN] || owner.is_asystole() || !current_blood)
 		return
 	if(damage < 0.1*max_damage)
+		owner.adjustNutrition(-(nutriment_req * 10))
 		heal_damage(0.1)
+
+/obj/item/organ/internal/examine(mob/user)
+	. = ..()
+	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
+		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
+	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT)
+		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()

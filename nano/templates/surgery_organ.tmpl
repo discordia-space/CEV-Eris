@@ -9,13 +9,26 @@
 			<div style ='float: left; height: 32px; width: 32px; margin: 4px' class='statusDisplayItem'><img src= {{:organ.icon_data}} height=32 width=32></div>
 			<article>
 				{{if data.diagnosed}}
-					{{if data.diagnosed && organ.max_damage}}
+					{{if organ.show_oxy}}
+					<section>
+						<span class="label">Oxygen:</span>
+						{{data.oxygen = Math.round((data.owner_oxymax - data.owner_oxyloss) * 10) / 10;}}
+						<div class="content">{{:helper.displayBar(data.oxygen, 0, data.owner_oxymax, 'average', data.oxygen + " / " + data.owner_oxymax)}}</div>
+					</section>
+					{{/if}}
+					{{if organ.max_damage}}
 					<section>
 						<span class="label">Health:</span>
 						{{organ.health = Math.round((organ.max_damage - organ.damage) * 10) / 10;}}
 						<div class="content">{{:helper.displayBar(organ.health, 0, organ.max_damage, !organ.damage ? 'good' : 'bad', organ.health + " / " + organ.max_damage)}}</div>
 					</section>
 					{{/if}}
+					{{if organ.max_blood}}
+					<section>
+						<span class="label">Blood:</span>
+						<div class="content">{{:helper.displayBar(organ.stored_blood, 0, organ.max_blood, 'bad', organ.stored_blood + " / " + organ.max_blood)}}</div>
+					</section>
+					{{/if}}			
 					{{if organ.processes.length}}
 							<div class="display">
 							{{for organ.processes}}
