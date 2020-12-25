@@ -1003,7 +1003,7 @@
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
-					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 10,
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
