@@ -122,13 +122,13 @@
 		if(health < maxHealth)
 			adjustBruteLoss(-1)
 
-		if(host.reagents.has_reagent("sugar"))
+		if(host.reagents.has_reagent("mindbreaker"))
 			if(!docile)
-				to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
+				to_chat(get_borer_control(), SPAN_DANGER("An evasive mind altering drug has entered your host's blood, forcing you into docility."))
 				docile = TRUE
 		else
 			if(docile)
-				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
+				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the evasive drug leaves your host's blood."))
 				docile = FALSE
 
 		if(chemicals < 250)
