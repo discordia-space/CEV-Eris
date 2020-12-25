@@ -1027,7 +1027,7 @@
 					/obj/item/weapon/tool/knife/tacknife = 5)
 
 	prices = list(
-					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 199,
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300,
