@@ -29,7 +29,7 @@
 		STAT_MEC = 20
 	)
 
-
+	perks = list(PERK_SURVIVOR)
 
 /datum/antagonist/mercenary/equip()
 	var/mob/living/L = owner.current
@@ -51,6 +51,9 @@
 	//the missingg parrt was antag's stats!
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
+
+	for(var/perk in perks)
+		L.stats.addPerk(perk)
 
 	create_id("Soldier")
 	..()
