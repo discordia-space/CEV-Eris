@@ -24,12 +24,11 @@
 	zoom_factor = 0.4
 	recoil_buildup = 2
 	one_hand_penalty = 15 //automatic rifle level
-	damage_multiplier = 1.5
 
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay = 3, move_delay=4, icon="burst", damage_multiplier = -1.2)
+		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
