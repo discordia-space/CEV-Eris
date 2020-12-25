@@ -23,7 +23,6 @@
 	var/item_suffix = ""
 	zoom_factor = 2
 	twohanded = TRUE
-	damage_multiplier = 2
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
