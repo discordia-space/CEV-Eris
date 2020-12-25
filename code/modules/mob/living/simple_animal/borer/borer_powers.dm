@@ -85,7 +85,7 @@
 	// It's harder for a borer to infest NTs
 	if(is_neotheology_disciple(M))
 		to_chat(src, SPAN_DANGER("A nanofiber mesh implant inside [M]'s head tries to cut you off on your way in. You can work around it, but it will take time."))
-		infestation_delay *= 3
+		infestation_delay *= 5 SECONDS
 
 	// Borer gets host abilities before actually getting inside the host
 	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
@@ -231,12 +231,12 @@
 /mob/living/simple_animal/borer/proc/paralyze_victim()
 	set category = "Abilities"
 	set name = "Paralyze Victim"
-	set desc = "Freeze the limbs of a potential host with supernatural fear."
+	set desc = "Knockout a potential host with your poisonous dart."
 
 	if(src.stat)
 		return
 
-	if(world.time - used_dominate < 150)
+	if(world.time - used_dominate < 350)
 		to_chat(src, "You cannot use that ability again so soon.")
 		return
 
@@ -247,7 +247,7 @@
 
 		choices += C
 
-	if(world.time - used_dominate < 150)
+	if(world.time - used_dominate < 350)
 		to_chat(src, "You cannot use that ability again so soon.")
 		return
 
@@ -259,9 +259,9 @@
 		to_chat(src, "You cannot infest someone who is already infested!")
 		return
 
-	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
-	to_chat(M, SPAN_DANGER("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
-	M.Paralyse(10)
+	to_chat(src, SPAN_WARNING("You you spit a poison dart at [M] freezing their limbs and putting them to sleep."))
+	to_chat(M, SPAN_DANGER("You feel a tiny prick on your neck and blackout immediately after."))
+	M.Paralyse(30)
 
 	used_dominate = world.time
 
