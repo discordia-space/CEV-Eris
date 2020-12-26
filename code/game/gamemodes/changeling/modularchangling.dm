@@ -36,6 +36,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 4
 	spiderpath = /obj/item/weapon/implant/carrion_spider/healing
 
+/datum/power/carrion/blight_spider
+	name = "Blight spider"
+	desc = "Evolves a spider filled with a sickening venom."
+	genomecost = 7
+	spiderpath = /obj/item/weapon/implant/carrion_spider/blight
+
 /datum/power/carrion/breeding_spider
 	name = "Breeding spider"
 	desc = "Creates a spider carrying eggs, when it will be put inside a dead host and activated, the eggs will give birth to many lesser ones of your kin."
@@ -47,6 +53,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	desc = "Creates an expensive spider that makes a small explosion."
 	genomecost = 10
 	spiderpath = /obj/item/weapon/implant/carrion_spider/explosive
+
+/datum/power/carrion/spark_spider
+	name = "Spark spider"
+	desc = "Creates a spider that makes a small spark."
+	genomecost = 10
+	spiderpath = /obj/item/weapon/implant/carrion_spider/spark
 
 /datum/power/carrion/toxic_spider
 	name = "Toxin bomb spider"
@@ -74,11 +86,11 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 3
 	spiderpath = /obj/item/weapon/implant/carrion_spider/identity
 
-/datum/power/carrion/signal_spider
-	name = "Electrocurrent spider"
-	desc = "Creates a spider that can pulse wires in machines."
-	genomecost = 2
-	spiderpath = /obj/item/weapon/implant/carrion_spider/signal
+/datum/power/carrion/smooth_spider
+	name = "Smooth spider"
+	desc = "Evolves a spider of pure horror."
+	genomecost = 3
+	spiderpath = /obj/item/weapon/implant/carrion_spider/smooth
 
 /datum/power/carrion/maw
 	name = "Carrion Maw"

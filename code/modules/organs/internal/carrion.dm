@@ -279,6 +279,25 @@
 		to_chat(owner, SPAN_WARNING("You can't eat nothing."))
 		return
 
+	if(istype(food, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/grab = food
+		var/mob/living/carbon/human/H = grab.affecting
+		if(istype(H))
+			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
+			if(E.is_stump())
+				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
+				return
+
+			visible_message(SPAN_DANGER("\The [owner] bites into \the [H]'s \the [E] and starts tearing it off!"))
+			if(do_after(owner, 5 SECONDS, H))
+				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
+				playsound(loc, 'sound/voice/shriek1.ogg', 50)
+				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s \the [E]!"))
+				return
+		else
+			to_chat(owner, SPAN_WARNING("You can only tear limbs off of humanoids!"))	
+			return
+
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		var/geneticpointgain = 0
 		var/chemgain = 0
@@ -348,9 +367,9 @@
 		return
 
 	if(owner.check_ability(30))
-		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
-			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8) //Same trick as with the fuhrer
+			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8) //Same trick as with the fuhrer
 		visible_message(SPAN_DANGER("[owner] emits a frightening screech as you feel the ground tramble!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows())
 			for(var/i = 1, i <= 4 ,i++) //4 per burrow
@@ -412,8 +431,22 @@
 	organ_efficiency = list(OP_SPINNERET = 100)
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/spinneret/proc/make_nest,
-		/obj/item/organ/internal/carrion/spinneret/proc/bloodpurge
+		/obj/item/organ/internal/carrion/spinneret/proc/bloodpurge,
+		/obj/item/organ/internal/carrion/spinneret/proc/make_stickyweb
 	)
+
+/obj/item/organ/internal/carrion/spinneret/proc/make_stickyweb()
+	set category = "Carrion"
+	set name = "Make a web (5)"
+
+	if(locate(/obj/effect/spider/stickyweb) in get_turf(src))
+		to_chat(owner, SPAN_WARNING("There is alredy web on the floor!"))
+		return
+
+	if(owner.check_ability(5,TRUE))
+		visible_message(SPAN_NOTICE("\The [owner] begins to secrete a sticky substance."))
+		new /obj/effect/spider/stickyweb(get_turf(src))
+		update_openspace()
 
 /obj/item/organ/internal/carrion/spinneret/proc/bloodpurge()
 	set category = "Carrion"
