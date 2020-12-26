@@ -49,14 +49,9 @@
 
 	var/turf/AtomTurf = get_turf(A)
 	var/turf/UserTurf = get_turf(user)
-	var/turf/turf_tele
-	if(mode)
-		turf_tele = AtomTurf
-	else
-		turf_tele = UserTurf
-	if(turf_tele.density)
-		to_chat(user, SPAN_WARNING("Teleporting there would \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
-
+	if(AtomTurf.density || UserTurf.density)
+		to_chat(user, SPAN_WARNING("Wall detected. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
+		return //No actual telefragging, wasn't allowed to do that at the time
 	if(!Using)
 		Using = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
