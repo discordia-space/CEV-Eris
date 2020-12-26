@@ -1598,16 +1598,22 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/resuscitate()
 
-	if(!is_asystole() && has_organ(OP_HEART, check_usablility = TRUE) && has_organ(BP_BRAIN, check_usablility = TRUE))
-		return 0
 
+
+	var/obj/item/organ/external/head/head = organs_by_name[BP_HEAD]
+
+	if(!has_organ(BP_HEAD) || !is_path_in_list(/obj/item/organ/internal/heart, internal_organs) || !is_path_in_list(/obj/item/organ/internal/brain, head.internal_organs))
+		visible_message(SPAN_WARNING("\The [src] shakes!"))
+		return 
 	if(world.time >= (timeofdeath + NECROZTIME))
-		return 0
+		return 
 
 	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
 	var/oxyLoss = getOxyLoss()
 	if(oxyLoss > 40)
 		setOxyLoss(40)
+	if(toxloss > 30)
+		setToxLoss(15)	//toxins don't heals without chemicals, chemicals don't work with corpses
 	pulse = PULSE_NORM
 	handle_pulse()
 	timeofdeath = 0
@@ -1623,4 +1629,3 @@ var/list/rank_prefix = list(\
 					break
 				else
 					break
-	return 1
