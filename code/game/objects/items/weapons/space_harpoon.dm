@@ -46,6 +46,10 @@
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
 		return ..()
+	if(mode)
+		var/turf/T = get_turf(A)
+		if(T.contains_dense_objects(TRUE))
+			return ..()
 	if(!Using)
 		Using = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
