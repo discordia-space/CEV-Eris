@@ -1602,7 +1602,9 @@ var/list/rank_prefix = list(\
 
 	var/obj/item/organ/external/head/head = organs_by_name[BP_HEAD]
 
-	if(!has_organ(BP_HEAD) || !is_path_in_list(/obj/item/organ/internal/heart, internal_organs) || !is_path_in_list(/obj/item/organ/internal/brain, head.internal_organs))
+	var/obj/item/organ/internal/heart/H = random_organ_by_process(OP_HEART)
+
+	if(!has_organ(BP_HEAD) || !H || !is_path_in_list(/obj/item/organ/internal/brain, head.internal_organs))
 		visible_message(SPAN_WARNING("\The [src] shakes!"))
 		return 
 	if(world.time >= (timeofdeath + NECROZTIME))
@@ -1612,8 +1614,6 @@ var/list/rank_prefix = list(\
 	var/oxyLoss = getOxyLoss()
 	if(oxyLoss > 40)
 		setOxyLoss(40)
-	if(toxloss > 30)
-		setToxLoss(15)	//toxins don't heals without chemicals, chemicals don't work with corpses
 	pulse = PULSE_NORM
 	handle_pulse()
 	timeofdeath = 0
