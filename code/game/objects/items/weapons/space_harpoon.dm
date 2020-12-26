@@ -46,10 +46,17 @@
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
 		return ..()
+
+	var/turf/AtomTurf = get_turf(A)
+	var/turf/UserTurf = get_turf(user)
+	var/turf/turf_tele
 	if(mode)
-		var/turf/T = get_turf(A)
-		if(T.contains_dense_objects(TRUE))
-			return ..()
+		turf_tele = AtomTurf
+	else
+		turf_tele = UserTurf
+	if(turf_tele.density)
+		to_chat(user, SPAN_WARNING("Teleporting there would \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
+
 	if(!Using)
 		Using = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
@@ -60,24 +67,21 @@
 			if(!user || !A || user.machine)
 				return
 			if(transforming)
-				to_chat(user, SPAN_WARNING("You can't fire \the [src] while transforming!"))
+				to_chat(user, SPAN_WARNING("You can't fire \the [src] while it is transforming!"))
 				return
 
 			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 			user.visible_message(SPAN_WARNING("\The [user] fires \the [src]!"))
-			to_chat(user,SPAN_WARNING("You fire from [src]"))
+			to_chat(user,SPAN_WARNING("You fire \the [src]"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(4, 1, A)
 			s.start()
 
-			var/turf/AtomTurf = get_turf(A)
-			var/turf/UserTurf = get_turf(user)
-
 			if(mode)
-				teleport(UserTurf, AtomTurf)
+				teleport(user, UserTurf, AtomTurf)
 			else
-				teleport(AtomTurf, UserTurf)
+				teleport(user, AtomTurf, UserTurf)
 		else
 			to_chat(user, SPAN_WARNING("Error, do not move!"))
 			Using = FALSE
@@ -85,7 +89,7 @@
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
 
 
-/obj/item/weapon/bluespace_harpoon/proc/teleport(turf/source, turf/target)
+/obj/item/weapon/bluespace_harpoon/proc/teleport(mob/user, turf/source, turf/target)
 	for(var/atom/movable/AM in source)
 		if(istype(AM, /mob/shadow))
 			continue
@@ -94,6 +98,9 @@
 				go_to_bluespace(source, entropy_value, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
 				go_to_bluespace(source, entropy_value, TRUE, AM, target)
+				if(AM == user && isliving(AM) && target.density)
+					var/mob/living/L = AM
+					L.gib()
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
