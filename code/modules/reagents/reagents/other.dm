@@ -522,7 +522,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
-		if(heart)
+		if(heart && !BP_IS_ROBOTIC(heart))
 			heart.damage += 0.5
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart twitching insane!"))
@@ -535,5 +535,5 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
-		if(heart)
+		if(heart && !BP_IS_ROBOTIC(heart))
 			heart.die()
