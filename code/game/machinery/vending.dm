@@ -1184,7 +1184,7 @@
 
 		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
 		/obj/item/stack/medical/advanced/bruise_pack = 200, /obj/item/stack/medical/advanced/ointment = 200,
-		/obj/item/stack/nanopaste = 300,
+		/obj/item/stack/nanopaste = 1000,
 
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 100, /obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 150, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 300,

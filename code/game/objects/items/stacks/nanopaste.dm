@@ -4,13 +4,13 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/stack/items.dmi'
 	icon_state = "nanopaste"
-	matter = list(MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 0.1, MATERIAL_STEEL = 1)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
 	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
-	price_tag = 15
+	price_tag = 80
 	spawn_tags = SPAWN_TAG_MEDICINE
-	rarity_value = 20
+	rarity_value = 40
 
 
 /obj/item/stack/nanopaste/attack(mob/living/M, mob/user)
