@@ -49,8 +49,14 @@
 
 	var/turf/AtomTurf = get_turf(A)
 	var/turf/UserTurf = get_turf(user)
-	if(AtomTurf.density || UserTurf.density)
-		to_chat(user, SPAN_WARNING("Wall detected. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
+	var/dense_check
+	switch(mode)
+		if(MODE_TRANSMIT)
+			dense_check = AtomTurf.contains_dense_objects(TRUE)
+		if(MODE_RECEIVE)
+			dense_check = UserTurf.contains_dense_objects(TRUE)
+	if(dense_check)
+		to_chat(user, SPAN_WARNING("Dense content detected on receiving terrain. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
 		return //No actual telefragging, wasn't allowed to do that at the time
 	if(!Using)
 		Using = TRUE
@@ -73,10 +79,11 @@
 			s.set_up(4, 1, A)
 			s.start()
 
-			if(mode)
-				teleport(user, UserTurf, AtomTurf)
-			else
-				teleport(user, AtomTurf, UserTurf)
+			switch(mode)
+				if(MODE_TRANSMIT)
+					teleport(UserTurf, AtomTurf)
+				if(MODE_RECEIVE)
+					teleport(AtomTurf, UserTurf)
 		else
 			to_chat(user, SPAN_WARNING("Error, do not move!"))
 			Using = FALSE
@@ -84,7 +91,7 @@
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
 
 
-/obj/item/weapon/bluespace_harpoon/proc/teleport(mob/user, turf/source, turf/target)
+/obj/item/weapon/bluespace_harpoon/proc/teleport(turf/source, turf/target)
 	for(var/atom/movable/AM in source)
 		if(istype(AM, /mob/shadow))
 			continue
@@ -93,9 +100,6 @@
 				go_to_bluespace(source, entropy_value, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
 				go_to_bluespace(source, entropy_value, TRUE, AM, target)
-				if(AM == user && isliving(AM) && target.density)
-					var/mob/living/L = AM
-					L.gib()
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
