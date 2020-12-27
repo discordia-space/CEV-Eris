@@ -1611,7 +1611,7 @@ var/list/rank_prefix = list(\
 		setOxyLoss(20)
 
 	if(health <= (HEALTH_THRESHOLD_DEAD - oxyLoss))
-		visible_message(SPAN_WARNING("\The [src] twitches a bit as their heart restarts! But he still to wounded to live."))
+		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life!"))
 		timeofdeath = 0
 		return 0
 
