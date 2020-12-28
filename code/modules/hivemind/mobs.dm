@@ -360,7 +360,7 @@
 	speed = 7
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
-	rarity_value = 100
+	rarity_value = 75
 
 	speak = list("They grow up so fast.",
 				"Come out, come out, wherever you are.",
@@ -435,6 +435,7 @@
 	mob_size = MOB_MEDIUM
 	speed = 8
 	ability_cooldown = 20 SECONDS
+	rarity_value = 75
 	//internals
 	var/fake_dead = FALSE
 	var/fake_dead_wait_time = 0
@@ -575,7 +576,8 @@
 	attacktext = "crushed"
 	ability_cooldown = 1 MINUTES
 	speak_chance = 8
-	speed = 10
+	speed = 8
+	rarity_value = 125
 	//internals
 	var/pilot						//Yes, there's no pilot, so we just use var
 	var/mob/living/passenger
@@ -799,6 +801,7 @@
 	malfunction_chance = 0
 	mob_size = MOB_MEDIUM
 	ability_cooldown = 2 MINUTES
+	rarity_value = 90
 	//internals
 	var/can_use_special_ability = TRUE
 	var/list/my_copies = list()
