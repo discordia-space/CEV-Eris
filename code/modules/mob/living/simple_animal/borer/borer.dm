@@ -104,10 +104,10 @@
 		if(ishuman(host))
 			verbs += abilities_in_host
 			return
-		for(var/abilitie in abilities_in_host)
-			if(istype(abilitie, /mob/living/carbon/human))
+		for(var/ability in abilities_in_host)
+			if(istype(ability, /mob/living/carbon/human))
 				continue
-			verbs += abilitie
+			verbs += ability
 		return
 
 	// Re-grant some of the abilities, depending on the situation
@@ -118,10 +118,10 @@
 			verbs += abilities_in_host
 			Stat()
 			return
-		for(var/abilitie in abilities_in_host)
-			if(istype(abilitie, /mob/living/carbon/human))
+		for(var/ability in abilities_in_host)
+			if(istype(ability, /mob/living/carbon/human))
 				continue
-			verbs += abilitie
+			verbs += ability
 	else
 
 		host.verbs += abilities_in_control
@@ -182,7 +182,7 @@
 		if(eta_status)
 			stat(null, eta_status)
 
-	if (client.statpanel == "Status")
+	if (client?.statpanel == "Status")
 		stat("Evolution Level", borer_level)
 		stat("Chemicals", host ? "[chemicals] / [max_chemicals_inhost]" : "[chemicals] / [max_chemicals]")
 		if(host)
