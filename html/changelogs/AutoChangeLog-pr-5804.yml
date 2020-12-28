@@ -1,6 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - balance: Something moving over a chameleon projection now disables the projection
-  - balance: Removes the cigarette butt from being the default projection of a cham
-      projector
