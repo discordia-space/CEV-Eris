@@ -250,7 +250,7 @@
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			created_machine.icon = new_icon
-			var/prefix = pick("warped", "altered", "modified", "upgraded", "abnormal")
+			var/prefix = pick("Warped", "Altered", "Modified", "Upgraded", "Abnormal")
 			created_machine.name = "[prefix] [subject.name]"
 			created_machine.pixel_x = subject.pixel_x
 			created_machine.pixel_y = subject.pixel_y
