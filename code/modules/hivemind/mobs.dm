@@ -242,7 +242,7 @@
 	malfunction_chance = 5
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 
+	speed = 5
 
 	speak = list(
 				"A stitch in time saves nine!",
