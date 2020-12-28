@@ -296,11 +296,11 @@
 //CORE-GENERATOR
 //generate evopoints, spread weeds
 /obj/machinery/hivemind_machine/node
-	name = "processing core"
+	name = "Processing Core"
 	desc = "Its cold eye seeks to dominate what it surveys."
 	icon_state = "core"
-	max_health = 420 //will last a bit more
-	resistance = RESISTANCE_TOUGH //use actual weapons you grease monkeys, wielded crowbar will actually be enough to make small dents
+	max_health = 420
+	resistance = RESISTANCE_TOUGH
 	can_regenerate = FALSE
 	wireweeds_required = FALSE
 	//internals
@@ -331,7 +331,7 @@
 
 	//self-defense protocol setting
 	var/list/possible_sdps = subtypesof(/datum/hivemind_sdp)
-	if(hive_mind_ai.evo_level > 6) //emergency jump will show up after a longer time
+	if(hive_mind_ai.evo_level > 6) //level required to be able to teleport away
 		possible_sdps -= /datum/hivemind_sdp/emergency_jump
 	var/picked_sdp = pick(possible_sdps)
 	SDP = new picked_sdp(src)
@@ -409,13 +409,13 @@
 //TURRET
 //shooting the target with toxic goo
 /obj/machinery/hivemind_machine/turret
-	name = "projector"
+	name = "Projector"
 	desc = "This mass of machinery is topped with some sort of nozzle."
 	max_health = 220
-	resistance = RESISTANCE_IMPROVED  //primary weapon of the hive, should have some kind of armour
+	resistance = RESISTANCE_IMPROVED
 	icon_state = "turret"
 	cooldown_time = 5 SECONDS
-	spawn_weight  =	60
+	spawn_weight  =	55
 	var/proj_type = /obj/item/projectile/goo
 
 
@@ -439,13 +439,14 @@
 //MOB PRODUCER
 //spawns mobs from list
 /obj/machinery/hivemind_machine/mob_spawner
-	name = "assembler"
+	name = "Assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
 	max_health = 260
-	resistance = RESISTANCE_IMPROVED //similary to the turret, primary defence of the hive
+	resistance = RESISTANCE_IMPROVED
 	icon_state = "spawner"
-	cooldown_time = 25 SECONDS  //shorter cooldown
-	spawn_weight  =	50 //more common than earlier
+	cooldown_time = 25 SECONDS
+	spawn_weight  =	60
+	density = FALSE //So mobs can walk over it
 	var/mob_to_spawn
 	var/mob_amount = 4
 
@@ -455,8 +456,7 @@
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
-	//TL;DR - Assembler can now spawn multiple types of mobs
+	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob according to their rarity_value
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()
 	if(!..())
@@ -493,7 +493,7 @@
 //MACHINE PREACHER
 //creepy radio talk, it's okay if they have no sense sometimes
 /obj/machinery/hivemind_machine/babbler
-	name = "jammer"
+	name = "Jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
 	max_health = 100
 	evo_level_required = 3 //it's better to wait a bit
@@ -561,12 +561,12 @@
 //SHRIEKER
 //this machine just stuns enemies
 /obj/machinery/hivemind_machine/screamer
-	name = "tormentor"
+	name = "Tormentor"
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
 	icon_state = "head"
 	max_health = 100
 	evo_level_required = 3
-	cooldown_time = 30 SECONDS
+	cooldown_time = 20 SECONDS
 	spawn_weight  =	35
 
 
@@ -596,7 +596,7 @@
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
-			H.Weaken(5) //it was 8 earlier, 5 is better. No one likes being stunned for so long
+			H.Weaken(5)
 			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
 			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
@@ -609,12 +609,12 @@
 //MIND BREAKER
 //Talks with people in attempt to persuade them doing something.
 /obj/machinery/hivemind_machine/supplicant
-	name = "whisperer"
+	name = "Whisperer"
 	desc = "A small pulsating orb with no apparent purpose. It emits an almost inaudible whisper."
 	max_health = 80
 	icon_state = "orb"
 	evo_level_required = 2
-	cooldown_time = 1 MINUTES //there are a lot of players, lets make it a bit more common.
+	cooldown_time = 1 MINUTES
 	global_cooldown = TRUE
 	spawn_weight  =	20
 	var/list/join_quotes = list(
@@ -649,7 +649,7 @@
 //PSI-MODULATOR
 //sends hallucinations to target
 /obj/machinery/hivemind_machine/distractor
-	name = "psi-modulator"
+	name = "Psi-Modulator"
 	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
 	max_health = 110
 	icon_state = "psy"
