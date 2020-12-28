@@ -173,12 +173,12 @@
 			if(istype(door, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/A = door
 				if(A.locked)
-					if(prob(60))
+					if(prob(75))
 						A.unlock()
 					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
 			if(door.density)
-				door.take_damage(rand(25, 40))
+				door.take_damage(rand(30, 70))
 				return FALSE
 
 	return TRUE
