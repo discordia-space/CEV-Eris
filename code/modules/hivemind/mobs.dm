@@ -796,7 +796,7 @@
 	icon_state = "phaser-1"
 	health = 160
 	maxHealth = 160
-	attack_text = "warps"
+	attacktext = "warps"
 	speak_chance = 0
 	malfunction_chance = 0
 	mob_size = MOB_MEDIUM
