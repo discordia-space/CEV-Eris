@@ -31,6 +31,7 @@
 
 /obj/item/organ/internal/carrion
 	max_damage = 90 //resilient
+	scanner_hidden = TRUE //sneaky
 
 /obj/item/organ/internal/carrion/chemvessel
 	name = "chemical vessel"
@@ -107,7 +108,8 @@
 			list(
 				"name" = initial(S.name),
 				"location" = "[S.loc]([T.x]:[T.y]:[T.z])",
-				"spider" = "\ref[item]"
+				"spider" = "\ref[item]",
+				"implanted" = S.wearer
 			)
 		)
 
@@ -125,6 +127,11 @@
 		var/obj/item/weapon/implant/carrion_spider/activated_spider = locate(href_list["activate_spider"]) in active_spiders
 		if(activated_spider)
 			activated_spider.activate()
+	
+	if(href_list["pop_out_spider"])
+		var/obj/item/weapon/implant/carrion_spider/activated_spider = locate(href_list["pop_out_spider"]) in active_spiders
+		if(activated_spider)
+			activated_spider.uninstall()
 
 	if(href_list["activate_all"])
 		for(var/spider in active_spiders)
@@ -222,39 +229,36 @@
 	set category = "Carrion"
 	set name = "Regenerative Stasis (20)"
 
-	if(!owner.stat && alert("Are you sure you wish to fake our death?",,"Yes","No") == "No")
+	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
 		return
 
 	if(!(owner.check_ability(20)))
 		return
 
-	to_chat(owner, SPAN_NOTICE("You will attempt to regenerate your form."))
-	var/geneticpoints_lost = 0
-	var/obj/item/organ/internal/carrion/maw/H = owner.random_organ_by_process(OP_MAW)
-	if(!H)
-		geneticpoints_lost +=4
-		to_chat(owner, SPAN_NOTICE("Your missing maw caused a leak of genetic material."))
+	to_chat(owner, SPAN_NOTICE("We will attempt to regenerate our form."))
+
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
-	owner.timeofdeath = world.time
-	src.geneticpoints -= geneticpoints_lost
-	var/last_owner = owner
+	owner.timeofdeath = stationtime2text()
 
-	spawn(rand(1 MINUTES, 3 MINUTES))
-		if(last_owner == owner)
-			owner.rejuvenate()
-			for(var/limb_tag in owner.species.has_limbs)
-				var/obj/item/organ/external/E = owner.get_organ(limb_tag)
-				if(E.is_stump())
-					qdel(E)
-					var/datum/organ_description/OD = owner.species.has_limbs[limb_tag]
-					OD.create_organ(owner)
+	addtimer(CALLBACK(src, .proc/carrion_revive), rand(1 MINUTES, 3 MINUTES))
 
-			owner.status_flags &= ~(FAKEDEATH)
-			owner.update_lying_buckled_and_verb_status()
-			owner.update_icons()
-			to_chat(owner, SPAN_NOTICE("You have regenerated."))
+/obj/item/organ/internal/carrion/core/proc/carrion_revive()
+	if(!owner)
+		return
+
+	owner.rejuvenate()
+	for(var/limb_tag in owner.species.has_limbs)
+		var/obj/item/organ/external/E = owner.get_organ(limb_tag)
+		if(E.is_stump())
+			qdel(E)
+			var/datum/organ_description/OD = owner.species.has_limbs[limb_tag]
+			OD.create_organ(owner)
+	owner.status_flags &= ~FAKEDEATH
+	owner.update_lying_buckled_and_verb_status()
+	owner.update_icons()
+	to_chat(owner, SPAN_NOTICE("You have regenerated."))
 
 /obj/item/organ/internal/carrion/maw
 	name = "carrion maw"
@@ -312,29 +316,20 @@
 			if(BP_IS_ROBOTIC(O))
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
-			else if(istype(O, /obj/item/organ/internal/carrion))
-				owner.carrion_hunger += 3
-				geneticpointgain = 4
-				chemgain = 50
-				taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				geneticpointgain = 3
-				chemgain = 20
+				chemgain = 10
 				taste_description = "internal organs are delicious"
 			else
 				geneticpointgain = 2
-				chemgain = 15
+				chemgain = 5
 				taste_description = "limbs are satisfying"
 
 		else if(istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/human))
 			geneticpointgain = 2
-			chemgain = 15
+			chemgain = 5
 			taste_description = "human meat is satisfying"
 
-		else if(istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat)) //No spider meat, as carrions can spawn spiders
-			geneticpointgain = 1
-			chemgain = 10
-			taste_description = "roach meat is okay"
 		else
 			chemgain = 5
 			owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems

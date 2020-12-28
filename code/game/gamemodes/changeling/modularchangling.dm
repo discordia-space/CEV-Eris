@@ -57,7 +57,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/spark_spider
 	name = "Spark spider"
 	desc = "Creates a spider that makes a small spark."
-	genomecost = 10
+	genomecost = 1
 	spiderpath = /obj/item/weapon/implant/carrion_spider/spark
 
 /datum/power/carrion/toxic_spider
@@ -94,13 +94,13 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/maw
 	name = "Carrion Maw"
-	desc = "Unlocks and expands your jaw, giving you the ability to spit acid and call upon spiders."
+	desc = "Unlocks and expands your jaw, giving you the ability to spit acid, call upon spiders and tear off limbs."
 	genomecost = 0
 	organpath = /obj/item/organ/internal/carrion/maw
 
 /datum/power/carrion/spinneret
 	name = "Carrion Spinneret"
-	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest and filter your blood from all chemicals."
+	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest, filter your blood from all chemicals and make webs."
 	genomecost = 7
 	organpath = /obj/item/organ/internal/carrion/spinneret
 
