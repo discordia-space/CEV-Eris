@@ -95,6 +95,7 @@
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
+	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_GLASS = 1)
 	rarity_value = 50
 
 /obj/item/weapon/gun_upgrade/barrel/excruciator/New()
