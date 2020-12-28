@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: The value of the contents of surplus weapon and ammo crates from guild,
+      is now more or less equivalent to the cost of the crate.
