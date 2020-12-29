@@ -46,7 +46,7 @@
 		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
 		MATERIAL_PLASTEEL = 1,
 	)
-	
+
 /obj/item/clothing/suit/armor/vest/full/security
 	name = "full security armor"
 	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
@@ -73,7 +73,7 @@
 	name = "operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
-	
+
 /obj/item/clothing/suit/armor/vest/full/ironhammer
 	name = "full operator armor"
 	desc = "An armored vest painted in Ironhammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
@@ -93,7 +93,7 @@
 	)
 	price_tag = 150
 	rarity_value = 15
-	
+
 /obj/item/clothing/suit/armor/vest/handmade/full
 	name = "full handmade armor vest"
 	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
@@ -187,7 +187,7 @@
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
 	rarity_value = 50
-	
+
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
@@ -239,18 +239,18 @@
 /obj/item/clothing/suit/armor/bulletproof/serbian/tan
 	name = "tan platecarrier vest"
 	icon_state = "platecarrier_tan"
-	
+
 /obj/item/clothing/suit/armor/bulletproof/serbian/full
 	name = "full black platecarrier vest"
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	rarity_value = 45
-	
+
 /obj/item/clothing/suit/armor/bulletproof/serbian/full/green
 	name = "full green platecarrier vest"
 	icon_state = "platecarrier_green_fullbody"
-	
+
 /obj/item/clothing/suit/armor/bulletproof/serbian/full/tan
 	name = "full tan platecarrier vest"
 	icon_state = "platecarrier_tan_fullbody"
@@ -524,8 +524,8 @@
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 70,
-		bullet = 30,
-		energy = 30,
+		bullet = 50,
+		energy = 50,
 		bomb = 30,
 		bio = 0,
 		rad = 0

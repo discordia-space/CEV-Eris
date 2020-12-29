@@ -17,7 +17,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 1200
-	damage_multiplier = 1.2
+	damage_multiplier = 0.8
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)

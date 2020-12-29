@@ -33,6 +33,8 @@
 	data["limb_efficiency"] = limb_efficiency
 	data["occupied_volume"] = get_total_occupied_volume()
 	data["max_volume"] = max_volume
+	data["owner_oxyloss"] = owner.getOxyLoss()
+	data["owner_oxymax"] = 100 - owner.total_oxygen_req
 
 	data["conditions"] = get_conditions()
 	data["diagnosed"] = diagnosed
@@ -59,6 +61,10 @@
 		organ_data["max_damage"] = organ.max_damage
 		organ_data["status"] = organ.get_status_data()
 		organ_data["conditions"] = organ.get_conditions()
+		organ_data["stored_blood"] = organ.current_blood
+		organ_data["max_blood"] = organ.max_blood_storage
+		if(BP_BRAIN in organ.organ_efficiency)
+			organ_data["show_oxy"] = TRUE
 
 		var/list/processes = list()
 		for(var/efficiency in organ.organ_efficiency)

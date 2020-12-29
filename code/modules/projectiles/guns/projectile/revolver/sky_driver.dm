@@ -12,7 +12,7 @@
 	magazine_type = /obj/item/ammo_magazine/slpistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 20000
-	damage_multiplier = 1.5
+	damage_multiplier = 1.1
 	penetration_multiplier = 20
 	pierce_multiplier = 5
 	recoil_buildup = 50

@@ -13,7 +13,10 @@
 	hud_indicator = "excelsior"
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
-	verbs = list(/datum/faction/excelsior/proc/communicate_verb)
+	verbs = list(/datum/faction/excelsior/proc/communicate_verb,
+				/datum/faction/excelsior/proc/summon_stash)
+
+	var/stash_holder = null
 
 
 /datum/faction/excelsior/print_success_extra()
@@ -40,36 +43,8 @@
 	return extra_text
 /datum/faction/excelsior/create_objectives()
 	objectives.Cut()
-
-
-	//Create the Excelsior Stash
-	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
-
-	var/list/L = list()
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in GLOB.landmarks_list)
-		L.Add(S)
-
-	L = shuffle(L)
-
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in L)
-		if(!S.is_visible())
-			landmark = S
-			break
-
-	if(!landmark)
-		return FALSE
-
-
-	var/turf/LM = landmark.get_loc()
-
-	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(LM)
-	new /obj/item/weapon/electronics/circuitboard/excelsiorautolathe(LM)
-	new /obj/item/weapon/electronics/circuitboard/excelsior_teleporter(LM)
-
 	for (var/datum/antagonist/A in members)
-		to_chat(A.owner.current, SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]"))
-		A.owner.store_memory("Excelsior stash. [landmark.navigation]")
-
+		to_chat(A.owner.current, SPAN_NOTICE("You may summon your required materials using the \"summon stash\" command."))
 
 	.=..()
 
@@ -87,3 +62,31 @@
 		return
 
 	F.communicate(usr)
+
+/datum/faction/excelsior/proc/summon_stash()
+
+	set name = "Summon stash"
+	set category = "Cybernetics"
+
+	if(!ishuman(usr))
+		return
+
+	var/datum/faction/excelsior/F = get_faction_by_id(FACTION_EXCELSIOR)
+
+	if(!F)
+		return
+
+	if(F.stash_holder)
+		to_chat(usr, SPAN_NOTICE("The stash has already been summoned by \"[F.stash_holder]\""))
+		return
+
+	var/mob/living/carbon/human/H = usr
+
+	var/obj/item/weapon/storage/deferred/stash/sack/stash = new
+
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(stash)
+	new /obj/item/weapon/electronics/circuitboard/excelsiorautolathe(stash)
+	new /obj/item/weapon/electronics/circuitboard/excelsior_teleporter(stash)
+
+	H.put_in_hands(stash)
+	F.stash_holder = H.real_name

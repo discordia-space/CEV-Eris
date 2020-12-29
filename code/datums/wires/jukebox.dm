@@ -1,7 +1,6 @@
 // Jukebox
 #define WIRE_MAIN_POWER1 1
 #define WIRE_POWER 2
-#define WIRE_JUKEBOX_HACK 4
 #define WIRE_SPEEDUP 8
 #define WIRE_SPEEDDOWN 16
 #define WIRE_REVERSE 32
@@ -13,7 +12,7 @@
 /datum/wires/jukebox
 	random = TRUE
 	holder_type = /obj/machinery/media/jukebox
-	wire_count = 11
+	wire_count = 10
 
 /datum/wires/jukebox/CanUse(mob/user)
 	var/obj/machinery/media/jukebox/A = holder
@@ -36,8 +35,6 @@
 		if(WIRE_MAIN_POWER1)
 			holder.visible_message("<span class='notice'>The power light flickers.</span>")
 			A.shock(usr, 90)
-		if(WIRE_JUKEBOX_HACK)
-			holder.visible_message("<span class='notice'>The parental guidance light flickers.</span>")
 		if(WIRE_REVERSE)
 			holder.visible_message("<span class='notice'>The data light blinks ominously.</span>")
 		if(WIRE_SPEEDUP)
@@ -62,9 +59,6 @@
 		if(WIRE_MAIN_POWER1)
 			// TODO - Actually make machine electrified or something.
 			A.shock(usr, 90)
-
-		if(WIRE_JUKEBOX_HACK)
-			A.set_hacked(!mend)
 
 		if(WIRE_SPEEDUP, WIRE_SPEEDDOWN, WIRE_REVERSE)
 			var/newfreq = IsIndexCut(WIRE_REVERSE) ? -1 : 1;

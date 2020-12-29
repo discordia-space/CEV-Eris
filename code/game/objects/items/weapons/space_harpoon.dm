@@ -40,6 +40,8 @@
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user)
 	if(get_dist(A, user) > range)
 		return ..()
+	if(!(A in view(user)))
+		return ..()
 	if(istype(A, /obj/item/weapon/storage/))
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))

@@ -40,6 +40,7 @@
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/hud/security/process_hud(mob/M)
 	process_sec_hud(M, 1)

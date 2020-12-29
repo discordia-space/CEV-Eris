@@ -26,7 +26,6 @@
 	damage_multiplier = 1.15
 	price_tag = 2500
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
-	var/consume_cell = FALSE
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
 	.=..()
@@ -37,7 +36,6 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 	return .
-
 
 
 /obj/item/weapon/gun/energy/shrapnel/mounted
@@ -51,4 +49,3 @@
 	consume_cell = FALSE
 	cell_type = /obj/item/weapon/cell/small/high //Two shots
 	spawn_blacklisted = TRUE
-

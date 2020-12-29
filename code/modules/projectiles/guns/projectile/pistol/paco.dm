@@ -18,7 +18,7 @@
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	damage_multiplier = 1.8
+	damage_multiplier = 1.5
 	penetration_multiplier = 0.9
 	recoil_buildup = 10
 	gun_tags = list(GUN_SILENCABLE)
