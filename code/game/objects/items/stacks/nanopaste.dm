@@ -37,20 +37,25 @@
 
 		if(S)
 			if(BP_IS_ROBOTIC(S))
+				if(!S.get_damage())
+					to_chat(user, SPAN_NOTICE("There is nothing to fix here."))
+					return
+				for(var/datum/wound/W in S.wounds)
+					if(W.internal)
+						return
+					if(amount <= 0)
+						break
+					if(!do_mob(user, M, W.damage/5) && use(1))
+						to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+						break
+					if(!use(1))
+						to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
+						return
+					W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 20))
+					to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+				S.update_damages()
 				if(S.get_damage())
-					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-					if(use(1))
-						S.heal_damage(15, 15, TRUE)
-
-
-					user.visible_message(
-						"<span class='notice'>\The [user] applies some nanite paste at[user != M ? " \the [M]'s" : " \the"][S.name] with \the [src].</span>",
-						"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.name].</span>"
-					)
-				else
-					to_chat(user, SPAN_NOTICE("Nothing to fix here."))
+					to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+					return
 			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src, TRUE))
-					return
-			else
-				to_chat(user, SPAN_NOTICE("Nothing to fix in here.")) //back to the original
