@@ -76,23 +76,14 @@
 *****************************/
 /datum/click_handler/fullauto
 	var/atom/target = null
-	var/firing = FALSE
 	var/obj/item/weapon/gun/reciever //The thing we send firing signals to.
 	//Todo: Make this work with callbacks
 
 /datum/click_handler/fullauto/Click()
 	return TRUE //Doesn't work with normal clicks
 
-/datum/click_handler/fullauto/proc/start_firing()
-	firing = TRUE
-	while (firing && target)
-		do_fire()
-		sleep(0.5) //Keep spamming events every frame as long as the button is held
-	stop_firing()
-
 //Next loop will notice these vars and stop shooting
 /datum/click_handler/fullauto/proc/stop_firing()
-	firing = FALSE
 	target = null
 	if(reciever)
 		reciever.cursor_check()
@@ -100,42 +91,33 @@
 /datum/click_handler/fullauto/proc/do_fire()
 	reciever.afterattack(target, owner.mob, FALSE)
 
-/datum/click_handler/fullauto/MouseDown(object,location,control,params)
+/datum/click_handler/fullauto/MouseDown(object, location, control, params)
 	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
 		return FALSE
-	
+
 	object = resolve_world_target(object)
-	if (object)
+	if(object)
 		target = object
-		owner.mob.face_atom(target)
-		spawn()
-			start_firing()
-		return FALSE
+		while(target)
+			owner.mob.face_atom(target)
+			do_fire()
+			sleep(reciever.burst_delay)		
 	return TRUE
 
-/datum/click_handler/fullauto/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+/datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)
-	if (src_location && firing)
-		target = src_location //This var contains the thing the user is hovering over, oddly
-		owner.mob.face_atom(target)
+	if(src_location)
+		target = src_location
 		return FALSE
 	return TRUE
 
-/datum/click_handler/fullauto/MouseUp(object,location,control,params)
+/datum/click_handler/fullauto/MouseUp(object, location, control, params)
 	stop_firing()
 	return TRUE
 
 /datum/click_handler/fullauto/Destroy()
-	stop_firing()//Without this it keeps firing in an infinite loop when deleted
+	stop_firing() //Without this it keeps firing in an infinite loop when deleted
 	.=..()
-
-
-
-
-
-
-
-
 
 /datum/click_handler/human/mob_check(mob/living/carbon/human/user)
 	if(ishuman(user))

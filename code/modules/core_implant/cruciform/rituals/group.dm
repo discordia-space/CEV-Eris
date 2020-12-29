@@ -27,6 +27,8 @@
 	var/obj/machinery/power/nt_obelisk/O
 	O = O // "unused variable" yourself
 	O.stat_buff = stat_buff
+	if(eotp)
+		eotp.addObservation(25)
 
 /datum/ritual/group/cruciform/mechanical
 	name = "Mechanical"

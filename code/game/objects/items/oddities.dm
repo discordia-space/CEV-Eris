@@ -20,6 +20,7 @@
 
 	//You choose what stat can be increased, and a maximum value that will be added to this stat
 	//The minimum is defined above. The value of change will be decided by random
+	var/random_stats = TRUE
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
@@ -32,8 +33,9 @@
 		perk = get_oddity_perk()
 
 	if(oddity_stats)
-		for(var/stat in oddity_stats)
-			oddity_stats[stat] = rand(1, oddity_stats[stat])
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
 /proc/get_oddity_perk()
@@ -45,6 +47,7 @@
 
 //Common - you can find those everywhere
 /obj/item/weapon/oddity/common
+	prob_perk = 60
 	bad_type = /obj/item/weapon/oddity/common
 	spawn_blacklisted = FALSE
 
@@ -406,3 +409,21 @@
 	var/list/true_stats = comp_insp.calculate_statistics()
 	for(var/stat in true_stats)
 		. += true_stats[stat] * 50
+
+//NT Oddities
+/obj/item/weapon/oddity/nt
+	bad_type = /obj/item/weapon/oddity/nt
+	spawn_blacklisted = TRUE
+	random_stats = FALSE
+
+/obj/item/weapon/oddity/nt/seal
+	name = "High Inquisitor's Seal"
+	desc = "An honorary badge given to the most devout of NeoTheologian preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
+	icon_state = "nt_seal"
+	oddity_stats = list(
+		STAT_COG = 12,
+		STAT_VIG = 12,
+		STAT_ROB = 8
+	)
+	price_tag = 8000
+	perk = /datum/perk/nt_oddity/holy_light

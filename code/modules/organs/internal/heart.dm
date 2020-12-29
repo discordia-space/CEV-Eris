@@ -6,6 +6,8 @@
 	dead_icon = "heart-off"
 	price_tag = 1000
 	specific_organ_size = 2
+	oxygen_req = 10
+	nutriment_req = 10
 	var/open
 
 /obj/item/organ/internal/heart/open
