@@ -26,6 +26,7 @@
 	damage_multiplier = 1.15
 	price_tag = 2500
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
+	var/consume_cell = FALSE
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
 	.=..()
