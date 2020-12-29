@@ -187,8 +187,8 @@ There are important things regarding this file:
 	name = "slug"
 	icon_state = "slug"
 	damage_types = list(BRUTE = 54)
+	agony = 6
 	armor_penetration = 15
-	knockback = 1
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/beanbag
@@ -230,10 +230,10 @@ There are important things regarding this file:
 	name = "shrapnel"
 	icon_state = "birdshot-1"
 	damage_types = list(BRUTE = 10)
+	agony = 2
 	pellets = 8
 	range_step = 1
 	spread_step = 10
-	knockback = 1
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
