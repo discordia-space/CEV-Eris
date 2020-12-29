@@ -190,6 +190,7 @@ There are important things regarding this file:
 	agony = 6
 	armor_penetration = 15
 	step_delay = 1.1
+	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
@@ -200,6 +201,7 @@ There are important things regarding this file:
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
+	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
@@ -234,6 +236,7 @@ There are important things regarding this file:
 	pellets = 8
 	range_step = 1
 	spread_step = 10
+	knockback = 0
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
