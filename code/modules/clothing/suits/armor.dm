@@ -517,7 +517,7 @@
 
 /obj/item/clothing/suit/armor/crusader
 	name = "crusader armor"
-	desc = "God will protect those who belive."
+	desc = "God will protect those who believe."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
 	slowdown = 0.3

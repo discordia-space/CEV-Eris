@@ -525,7 +525,7 @@
 		if(heart)
 			heart.damage += 0.5
 			if(prob(30))
-				to_chat(H, SPAN_DANGER("Your heart twitching insane!"))
+				to_chat(H, SPAN_DANGER("Your heart twitches insanely!"))
 		if(H.stat == DEAD)
 			H.resuscitate()
 
