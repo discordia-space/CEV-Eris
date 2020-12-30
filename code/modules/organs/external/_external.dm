@@ -88,6 +88,7 @@
 		set_description(new default_description)
 
 	make_base_internal_organs()
+
 	..(holder)
 
 	if(istype(holder))

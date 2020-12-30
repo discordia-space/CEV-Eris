@@ -90,7 +90,7 @@
 
 	// Blood loss or liver damage make you lose nutriments
 	var/blood_volume = get_blood_volume()
-	if(blood_volume < BLOOD_VOLUME_SAFE || (liver_efficiency < BRUISED_2_EFFICIENCY))
+	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || (liver_efficiency < BRUISED_2_EFFICIENCY))
 		if(nutrition >= 300)
 			adjustNutrition(-10)
 		else if(nutrition >= 200)
@@ -100,10 +100,6 @@
 /mob/living/carbon/human/proc/heart_process()
 	handle_pulse()
 	handle_heart_blood()
-
-	if(get_blood_oxygenation() < BLOOD_VOLUME_SURVIVE)
-		if(chem_effects[CE_STABLE] || prob(60))
-			adjustBrainLoss(0.5)
 
 /mob/living/carbon/human/proc/handle_pulse()
 	var/roboheartcheck = TRUE //Check if all hearts are robotic
@@ -118,7 +114,7 @@
 	if(life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
-		if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
+		if(round(vessel.get_reagent_amount("blood")) <= total_blood_req + BLOOD_VOLUME_BAD_MODIFIER)	//how much blood do we have
 			pulse  = PULSE_THREADY	//not enough :(
 
 		if(status_flags & FAKEDEATH || chem_effects[CE_NOPULSE])
@@ -128,45 +124,52 @@
 
 /mob/living/carbon/human/proc/handle_heart_blood()
 	var/heart_efficiency = get_organ_efficiency(OP_HEART)
-	if(stat == DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
+	if(stat == DEAD || bodytemperature <= 170)	//Dead or cryosleep people do not pump the blood.
 		return
 
 	var/blood_volume_raw = vessel.get_reagent_amount("blood")
 	var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
 
-	// Damaged heart virtually reduces the blood volume, as the blood isn't
-	// being pumped properly anymore.
-	if(heart_efficiency < BROKEN_2_EFFICIENCY)
-		blood_volume *= 0.3
-	else if(heart_efficiency < BRUISED_2_EFFICIENCY)
-		blood_volume *= 0.6
-	else if(heart_efficiency < 100)
-		blood_volume *= 0.8
+	// Damaged heart virtually reduces the blood volume, as the blood isn't being pumped properly anymore.
+	if(heart_efficiency <= 100)	//flat scaling up to 100
+		blood_volume *= heart_efficiency / 100
+	else	//half scaling at over 100
+		blood_volume *= 1 + ((heart_efficiency - 100) / 200)
 
 	//Effects of bloodloss
-	switch(blood_volume)
+	var/blood_safe = total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER
+	var/blood_okay = total_blood_req + BLOOD_VOLUME_OKAY_MODIFIER
+	var/blood_bad = total_blood_req + BLOOD_VOLUME_BAD_MODIFIER
 
-		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-			if(prob(1))
-				to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
-			if(getOxyLoss() < 20)
-				adjustOxyLoss(3)
-		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-			eye_blurry = max(eye_blurry,6)
-			if(getOxyLoss() < 50)
-				adjustOxyLoss(10)
-			adjustOxyLoss(1)
-			if(prob(15))
-				Paralyse(rand(1,3))
-				to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
-		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
-			adjustOxyLoss(5)
-			adjustToxLoss(3)
-			if(prob(15))
-				to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
-		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
-			death()
+	if(blood_volume < total_blood_req)
+		status_flags |= BLEEDOUT
+		if(prob(15))
+			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy"))
+
+	else if(blood_volume < blood_bad)
+		adjustOxyLoss(5)
+		adjustToxLoss(3)
+		if(prob(15))
+			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+
+	else if(blood_volume < blood_okay)
+		eye_blurry = max(eye_blurry,6)
+		if(getOxyLoss() < 50)
+			adjustOxyLoss(10)
+		adjustOxyLoss(1)
+		if(prob(15))
+			Paralyse(rand(1,3))
+			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+
+	else if(blood_volume < blood_safe)
+		if(prob(1))
+			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
+		if(getOxyLoss() < 20)
+			adjustOxyLoss(3)
+
+	if(blood_volume > total_blood_req)	
+		status_flags &= ~BLEEDOUT
 
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
@@ -175,8 +178,8 @@
 		if(CE_BLOODRESTORE in chem_effects)
 			B.volume += chem_effects[CE_BLOODRESTORE]
 
-	// Blood loss or liver damage make you lose nutriments
-	if(blood_volume < BLOOD_VOLUME_SAFE || heart_efficiency < BRUISED_2_EFFICIENCY)
+	// Blood loss or heart damage make you lose nutriments
+	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || heart_efficiency < BRUISED_2_EFFICIENCY)
 		if(nutrition >= 300)
 			nutrition -= 10
 		else if(nutrition >= 200)
@@ -185,13 +188,34 @@
 
 /mob/living/carbon/human/proc/lung_process()
 	var/lung_efficiency = get_organ_efficiency(OP_LUNGS)
-	if(lung_efficiency < BRUISED_2_EFFICIENCY)
+	var/internal_oxygen = 100 - oxyloss
+
+	internal_oxygen *= lung_efficiency
+
+	if(internal_oxygen < total_oxygen_req)
+		if(prob(1))
+			Weaken(1.5 SECONDS)
+			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!."), SPAN_DANGER("AIR! I NEED MORE AIR!"))
+			var/i
+			for(i = 1; i <= 5; i++)	//gasps 5 times
+				spawn(i)
+					emote("gasp")
+
 		if(prob(2))
 			spawn emote("me", 1, "coughs up blood!")
 			drip_blood(10)
+
 		if(prob(4))
 			spawn emote("me", 1, "gasps for air!")
 			losebreath += 15
+
+		if(prob(15))
+			var/heavy_spot = pick("chest", "skin", "brain")
+			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
+
+	if(internal_oxygen < (total_oxygen_req / 10))
+		if(prob(20))
+			adjustBrainLoss(1)
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
@@ -200,7 +224,7 @@
 		if(stomach_efficiency <= 0)
 			nutrition = 0
 		else
-			nutrition = max(0, nutrition - (species.hunger_factor * (100 / stomach_efficiency)))
+			adjustNutrition(-(total_nutriment_req * (stomach_efficiency/100)))
 
 	if(stomach_efficiency <= 0)
 		for(var/mob/living/M in stomach_contents)

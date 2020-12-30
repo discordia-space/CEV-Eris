@@ -34,6 +34,3 @@
 	new /obj/item/weapon/cell/small(src)
 	new /obj/item/weapon/tool/sword/nt/longsword(src)
 	new /obj/item/weapon/tool/knife/dagger/nt(src)
-	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_melee(src)
-	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_grenades(src)
-	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/crusader(src)

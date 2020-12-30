@@ -27639,13 +27639,11 @@
 /area/eris/rnd/lab)
 "blz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/scalpel,
-/obj/item/weapon/tool/saw/circular,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/item/weapon/tool/hemostat,
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "blA" = (
@@ -30688,6 +30686,10 @@
 "bsS" = (
 /turf/simulated/wall,
 /area/eris/hallway/side/section3port)
+"bsT" = (
+/obj/machinery/power/eotp,
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/chapelritualroom)
 "bsU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -31017,6 +31019,12 @@
 /obj/structure/plasticflaps/mining,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/disposaldrop)
+"btG" = (
+/obj/structure/table/standard,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/melee,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/bioreactor)
 "btH" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_medical{
@@ -68115,6 +68123,14 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "chemcounter";
+	name = "Pharmacy Counter Shutters";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/medical/chemistry)
 "dch" = (
@@ -68424,6 +68440,14 @@
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
 	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "chemcounter";
+	name = "Pharmacy Counter Shutters";
 	opacity = 0
 	},
 /turf/simulated/floor/plating,
@@ -75211,17 +75235,17 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
+/obj/machinery/door/window/westright{
+	name = "Chemistry Desk";
+	req_access = list(33)
+	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 2;
+	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
 	opacity = 0
-	},
-/obj/machinery/door/window/westright{
-	name = "Chemistry Desk";
-	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
@@ -101937,11 +101961,6 @@
 /obj/machinery/camera/network/third_section,
 /turf/simulated/floor/hull,
 /area/space)
-"eBl" = (
-/obj/structure/table/standard,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/neotheology/bioreactor)
 "eBm" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4;
@@ -126031,7 +126050,7 @@ ayM
 azW
 aCn
 bUI
-eBl
+btG
 ccZ
 ccZ
 cgo
@@ -160767,7 +160786,7 @@ bid
 byR
 onJ
 bQx
-bQx
+bsT
 bQx
 bQx
 bWP

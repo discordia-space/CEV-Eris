@@ -56,7 +56,7 @@
 "bd" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
 "be" = (/obj/structure/table/rack,/obj/spawner/science,/obj/spawner/science,/obj/spawner/science,/obj/spawner/science/low_chance,/obj/spawner/science/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bf" = (/obj/structure/table/rack,/obj/item/weapon/pinpointer/nukeop,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
-"bg" = (/obj/machinery/nuclearbomb{r_code = "LOLNO"; eris_ship_bomb = 1},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
+"bg" = (/obj/machinery/nuclearbomb,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bh" = (/obj/structure/table/rack,/obj/spawner/pack/rare,/obj/spawner/pack/rare,/obj/spawner/pack/rare,/obj/spawner/pack/rare/low_chance,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bi" = (/obj/structure/table/rack,/obj/spawner/material/resources/rare,/obj/spawner/material/resources/rare,/obj/spawner/material/resources/rare,/obj/spawner/material/resources/rare,/obj/spawner/material/resources/rare/low_chance,/obj/spawner/material/resources/rare/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bj" = (/obj/machinery/vending/engineering,/turf/simulated/floor/plating,/area/deepmaint)

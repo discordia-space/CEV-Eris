@@ -8,6 +8,7 @@
 	reload_delay = 30
 	ammo_mag = "box"
 	matter = list(MATERIAL_CARDBOARD = 1)
+	bad_type = /obj/item/ammo_magazine/ammobox
 
 /obj/item/ammo_magazine/ammobox/resolve_attackby(atom/A, mob/user)
 	if(isturf(A) && locate(/obj/item/ammo_casing) in A || istype(A, /obj/item/ammo_casing))

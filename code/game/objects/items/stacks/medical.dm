@@ -507,3 +507,33 @@
 			else
 				use(1)
 		return
+
+/obj/item/stack/medical/advanced/bruise_pack/nt
+	name = "NeoTheologian Bruisepack"
+	singular_name = "NeoTheologian Bruisepack"
+	desc = "An advanced bruisepack for severe injuries. Created by will of God."
+	icon_state = "nt_traumakit"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3)
+	origin_tech = list(TECH_BIO = 4)
+
+/obj/item/stack/medical/advanced/bruise_pack/nt/update_icon()
+	icon_state = "[initial(icon_state)][amount]"
+	..()
+
+/obj/item/stack/medical/advanced/ointment/nt
+	name = "NeoTheologian Burnpack"
+	singular_name = "NeoTheologian Burnpack"
+	desc = "An advanced treatment kit for severe burns. Created by will of God."
+	icon_state = "nt_burnkit"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3)
+	origin_tech = list(TECH_BIO = 4)
+
+/obj/item/stack/medical/advanced/ointment/nt/update_icon()
+	icon_state = "[initial(icon_state)][amount]"
+	..()

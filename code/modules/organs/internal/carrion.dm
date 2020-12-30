@@ -233,7 +233,7 @@
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
-	owner.timeofdeath = stationtime2text()
+	owner.timeofdeath = world.time
 	var/last_owner = owner
 
 	spawn(rand(1 MINUTES, 3 MINUTES))
