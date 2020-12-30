@@ -77,12 +77,11 @@
 				continue
 			var/list/content
 			var/list/category_content_tag = (categoryName.Find("tags") ? categoryName["tags"] : null)
-			if(istext(categoryName))
-				if(islist(assortiment[categoryName]))
-					content = assortiment[categoryName]
-				else
-					content = list()
-				content.Add(SSspawn_data.valid_candidates(category_content_tag,,TRUE))
+			if(islist(assortiment[categoryName]))
+				content = assortiment[categoryName]
+			else
+				content = list()
+			content.Add(SSspawn_data.valid_candidates(category_content_tag,,TRUE))
 
 			if(istext(new_category_name) && islist(content))
 				var/categoryName_index = assortiment.Find(categoryName)
