@@ -16,6 +16,7 @@
 							/datum/design/research/item/part/basic_micro_laser,
 							/datum/design/research/item/part/basic_matter_bin,
 							/datum/design/research/circuit/arcade_battle,
+							/datum/design/research/circuit/jukebox,
 							/datum/design/research/circuit/arcade_orion_trail,
 							/datum/design/research/circuit/autolathe,
 							/datum/design/research/item/light_replacer,

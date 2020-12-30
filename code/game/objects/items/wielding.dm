@@ -27,7 +27,7 @@
 	if(sf)
 		name = copytext(name,1,sf)
 	else //something went wrong
-		name = "[initial(name)]"
+		name = "[initial(name)]"//Returns name from compile-time instead of name with changes that've happened since
 	update_unwield_icon()
 	update_icon()
 	if(user)
@@ -55,13 +55,14 @@
 		force = force_wielded
 	else //This will give items wielded 30% more damage. This is balanced by the fact you cannot use your other hand.
 		force = (force * 1.3) //Items that do 0 damage will still do 0 damage though.
-	name = "wielded [name]"
+	var/original_name = name //Else using [initial(name)] for the name of object returns compile-time name without any changes that've happened to the object's name
+	name = "[name] (Wielded)"
 	update_wield_icon()
 	update_icon()//Legacy
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
-	user.visible_message(SPAN_WARNING("[user] grabs \the [initial(name)] with both hands."))
+	user.visible_message(SPAN_WARNING("[user] grabs \the [original_name] with both hands."))
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
 	var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~

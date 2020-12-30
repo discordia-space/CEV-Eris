@@ -1,4 +1,4 @@
-var/command_name = null
+var/command_name
 /proc/command_name()
 	if (command_name)
 		return command_name

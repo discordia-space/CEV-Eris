@@ -70,3 +70,10 @@
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	can_hold_knife = TRUE
 	rarity_value = 50
+
+/obj/item/clothing/shoes/artist_shoes
+	name = "Pointy Shoes"
+	desc = "They're actually quite comfortable."
+	icon_state = "artist"
+	item_state = "artist_shoes"
+	spawn_frequency = 0

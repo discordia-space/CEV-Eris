@@ -991,6 +991,10 @@
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
 
+/area/eris/quartermaster/artistoffice
+	name = "\improper Guild Artist Office"
+	icon_state = "erisyellow"
+
 /area/eris/quartermaster/storage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
@@ -1003,7 +1007,6 @@
 /area/eris/quartermaster/disposaldrop
 	name = "Disposal and Delivery"
 	icon_state = "erisred"
-
 
 /area/eris/quartermaster/hangarsupply
 	name = "Supply Shuttle Hangar"

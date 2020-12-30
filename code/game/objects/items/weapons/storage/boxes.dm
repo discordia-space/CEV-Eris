@@ -27,8 +27,6 @@
 	item_state = "box"
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE + 1
-	var/foldable = /obj/item/stack/material/cardboard	//If set, can be folded (when empty) into the set object.
-	var/illustration = "writing"
 	contained_sprite = TRUE
 	health = 20
 	bad_type = /obj/item/weapon/storage/box
@@ -36,6 +34,8 @@
 	spawn_tags = SPAWN_TAG_BOX
 	rarity_value = 20
 	spawn_frequency = 10
+	var/foldable = /obj/item/stack/material/cardboard	//If set, can be folded (when empty) into the set object.
+	var/illustration = "writing"
 	var/initial_amount = 0
 	var/spawn_type
 
@@ -379,8 +379,6 @@
 	new /obj/item/weapon/implanter(src)
 	new /obj/item/weapon/implantpad(src)
 
-
-
 /obj/item/weapon/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
@@ -612,7 +610,6 @@
 	initial_amount = 14
 	spawn_type = /obj/item/weapon/light/tube
 
-
 /obj/item/weapon/storage/box/lights/mixed/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
@@ -647,7 +644,29 @@
 	illustration = "disk"
 	initial_amount = 7
 	spawn_type = /obj/item/device/encryptionkey/headset_church
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/headset/church/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
+
+/obj/item/weapon/storage/box/happy_meal
+	name = "McRonalds' Robust Meal"
+	desc = "This is typical Robust Meal from McRonalds... And you almost feel smell of delicious food from it. Wait! It must have toy inside! Unpack it now!"
+	icon_state = "happy_meal"
+
+/obj/item/weapon/storage/box/happy_meal/New()
+	..()
+	var/list/things2spawn = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,
+		/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/weapon/reagent_containers/food/snacks/fishandchips
+	)
+/*someday...
+	if(prob(1))
+		things2spawn += /obj/item/clothing/head/kitty
+*/
+	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
+	for(var/path in things2spawn)
+		new path(src)

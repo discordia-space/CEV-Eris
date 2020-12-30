@@ -60,12 +60,16 @@
 				var/mob/living/carbon/superior_animal/animal = A
 				if(animal.stat != DEAD) //got roach, spider, maybe bear
 					animal.take_overall_damage(damage)
+					if(animal.stat == DEAD)
+						eotp.addObservation(5)
 					if(!--to_fire)
 						return
 			else if(istype(A, /mob/living/simple_animal/hostile))
 				var/mob/living/simple_animal/hostile/animal = A
 				if(animal.stat != DEAD) //got bear or something
 					animal.take_overall_damage(damage)
+					if(animal.stat == DEAD)
+						eotp.addObservation(1)
 					if(!--to_fire)
 						return
 			else if(istype(A, /obj/effect/plant))
@@ -84,6 +88,14 @@
 	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
 		var/obj/item/weapon/implant/core_implant/I = mob.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+		if(!(mob in eotp.scanned))
+			eotp.scanned |= mob
+			if(I && I.active && I.wearer)
+				eotp.addObservation(20)
+			else if(is_carrion(mob))
+				eotp.removeObservation(20)
+			else
+				eotp.addObservation(10)
 		if(I && I.active && I.wearer)
 			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
 				mob.stats.addPerk(/datum/perk/sanityboost)

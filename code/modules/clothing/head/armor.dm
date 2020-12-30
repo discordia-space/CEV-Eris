@@ -16,7 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	rarity_value = 10
-	style = 0
+	style = STYLE_NEG_HIGH
 
 /*
  * Helmets
@@ -133,7 +133,7 @@
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
 		melee = 30,
-		bullet = 50,
+		bullet = 55,
 		energy = 25,
 		bomb = 25,
 		bio = 0,
@@ -217,9 +217,9 @@
 	desc = "Standard-issue Ironhammer ballistic helmet with a basic HUD included, covers the operator's entire face."
 	icon_state = "ironhammer_full"
 	armor = list(
-		melee = 40,
+		melee = 30,
 		bullet = 60,
-		energy = 35,
+		energy = 25,
 		bomb = 25,
 		bio = 0,
 		rad = 0
@@ -504,3 +504,21 @@
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/head/armor/helmet/crusader
+	name = "crusader helmet"
+	desc = "May God guide you."
+	icon_state = "crusader_hemet"
+	item_state = "crusader_hemet"
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
+	armor = list(
+		melee = 70,
+		bullet = 50,
+		energy = 50,
+		bomb = 30,
+		bio = 0,
+		rad = 0
+	)
+	unacidable = TRUE
+	spawn_blacklisted = TRUE

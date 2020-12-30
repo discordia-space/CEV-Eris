@@ -53,7 +53,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-/obj/item/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
+/obj/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
 	. = FALSE
 	if(!istype(I, /obj/item/weapon/tool/sword/nt_sword))
 		return FALSE

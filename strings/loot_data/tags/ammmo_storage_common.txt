@@ -1,4 +1,0 @@
-/obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=12.8104   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/ammo_magazine/ammobox/pistol    blacklisted=0    spawn_value=3.04821   spawn_price=640   prob_accompanying_obj=100    accompanying_objs=nothing

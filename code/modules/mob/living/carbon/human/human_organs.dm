@@ -126,7 +126,7 @@
 		if(!E || !(E.functions & BODYPART_GRASP) || (E.status & ORGAN_SPLINTED))
 			continue
 
-		if(E.is_broken() || E.is_dislocated())
+		if(E.is_broken() || E.is_dislocated() || E.limb_efficiency < 50)
 			switch(E.body_part)
 				if(ARM_LEFT)
 					if(!l_hand)
@@ -138,7 +138,12 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			if(E.limb_efficiency < 50)
+				var/emote_2 = pick("unable to grasp it", "unable to feel it", "too weak to hold it")
+				emote("me", 1, "drops what they were holding in their [E.name], [emote_2]!")
+
+			else
+				emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
@@ -188,7 +193,7 @@
 /mob/living/carbon/human/proc/random_organ_by_process(organ_process)
 	if(organ_list_by_process(organ_process).len)
 		return pick(organ_list_by_process(organ_process))
-	return
+	return	FALSE
 
 // basically has_limb()
 /mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
@@ -251,3 +256,9 @@
 				E.status &= ~ORGAN_BROKEN
 				return TRUE
 	return FALSE
+/mob/living/carbon/human/get_limb_efficiency(bodypartdefine)
+	var/obj/item/organ/external/E = get_organ(bodypartdefine)
+	if(E)
+		return E.limb_efficiency
+	return 0
+

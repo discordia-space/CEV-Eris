@@ -9,6 +9,7 @@
 
 	brightness_on = 5 //luminosity when on
 	turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
+	bad_type = /obj/item/device/lighting/toggleable
 
 /obj/item/device/lighting/toggleable/update_icon()
 	if(on)

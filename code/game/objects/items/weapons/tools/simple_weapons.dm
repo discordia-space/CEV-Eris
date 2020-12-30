@@ -16,7 +16,7 @@
 	max_upgrades = 1 //it's not even a tool
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/nailstick
 	name = "nailed stick"
@@ -32,7 +32,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	max_upgrades = 5
 	tool_qualities = list(QUALITY_HAMMERING = 10)
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/hatchet
 	name = "hatchet"

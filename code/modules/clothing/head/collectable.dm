@@ -130,3 +130,10 @@
 	name = "collectable SWAT helmet"
 	desc = "Now you can be in the Deathsquad too!"
 	icon_state = "swat"
+
+/obj/item/clothing/head/collectable/gnome
+	name = "gnome hat"
+	desc = "Why do gnomes come out of our toilet? Maybe they're searching for money?"
+	icon_state = "gnome_hat"
+	spawn_blacklisted = FALSE
+	body_parts_covered = 0

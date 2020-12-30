@@ -3,12 +3,14 @@
 /obj/item/weapon/oddity/common/photo_landscape    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/photo_coridor    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/photo_eyes    blacklisted=0    spawn_value=5.55556   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/photo_crime    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_newspaper    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/paper_crumpled    blacklisted=0    spawn_value=5.55556   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/paper_omega    blacklisted=0    spawn_value=3.7037   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/book_eyes    blacklisted=0    spawn_value=3.33333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/book_omega    blacklisted=0    spawn_value=5.55556   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/book_bible    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/book_unholy    blacklisted=0    spawn_value=4.16667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_money    blacklisted=0    spawn_value=12.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/healthscanner    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_pda    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -16,6 +18,10 @@
 /obj/item/weapon/oddity/common/teddy    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_knife    blacklisted=0    spawn_value=4.54545   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_id    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/disk    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/mirror    blacklisted=0    spawn_value=12.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/lighter    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/oddity/common/device    blacklisted=0    spawn_value=5.26316   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/old_radio    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/common/paper_bundle    blacklisted=0    spawn_value=6.25   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/oddity/techno    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

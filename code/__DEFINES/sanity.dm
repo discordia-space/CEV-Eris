@@ -1,6 +1,7 @@
 //for style
-#define MAX_HUMAN_STYLE 14
-#define MIN_HUMAN_SYLE -10
+#define MAX_HUMAN_STYLE 10
+#define MIN_HUMAN_STYLE -10
+#define STYLE_MODIFIER 0.20
 
 //for desires
 #define TASTE_SOUR "sour drink"
@@ -45,7 +46,7 @@ var/global/list/all_types_food = list(SWEET_FOOD,
 									VEGAN_FOOD,
 									VEGETARIAN_FOOD,
 									CHEESE_FOOD,
-									SALTY_FOOD, 
+									SALTY_FOOD,
 									SPICY_FOOD, // more about well spiced not necessarely HOT spicy
 									FLOURY_FOOD, //baked goods
 									UMAMI_FOOD, //mostly for shrroms but also some fried and other small foods

@@ -1,7 +1,5 @@
 /obj/item/organ/external/head    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/stump    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/organ/external/robotic/limb    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/organ/external/robotic/tiny    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/l_arm    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/r_arm    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/organ/external/robotic/l_leg    blacklisted=0    spawn_value=7.87465   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing

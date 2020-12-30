@@ -1208,6 +1208,7 @@ window "mainwindow"
 		is-visible = false
 		saved-params = ""
 
+
 window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
@@ -1381,6 +1382,14 @@ window "rpane"
 		command = ".winset \"rpanewindow.left=infowindow\""
 		group = "rpanemode"
 		button-type = pushbox
+	elem "mediapanel"
+		type = BROWSER
+		pos = 392,25
+		size = 1x1
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "browserwindow"
 	elem "browserwindow"

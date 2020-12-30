@@ -20,26 +20,26 @@
 
 	//You choose what stat can be increased, and a maximum value that will be added to this stat
 	//The minimum is defined above. The value of change will be decided by random
+	var/random_stats = TRUE
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
+	var/prob_perk = 100
 
 /obj/item/weapon/oddity/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	if(!perk && prob(prob_perk))
+		perk = get_oddity_perk()
 
 	if(oddity_stats)
-		for(var/stat in oddity_stats)
-			oddity_stats[stat] = rand(1, oddity_stats[stat])
-		AddComponent(/datum/component/inspiration, oddity_stats)
-	if(!perk)
-		perk = pick(subtypesof(/datum/perk/oddity))
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = rand(1, oddity_stats[stat])
+		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
-/obj/item/weapon/oddity/examine(user)
-	..()
-	if(perk)
-		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+/proc/get_oddity_perk()
+	return pick(subtypesof(/datum/perk/oddity))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
@@ -47,6 +47,7 @@
 
 //Common - you can find those everywhere
 /obj/item/weapon/oddity/common
+	prob_perk = 60
 	bad_type = /obj/item/weapon/oddity/common
 	spawn_blacklisted = FALSE
 
@@ -97,6 +98,16 @@
 		STAT_VIG = 6,
 	)
 	rarity_value = 18
+
+/obj/item/weapon/oddity/common/photo_crime
+	name = "crime scene photo"
+	desc = "It is unclear whether this is a victim of suicide or murder. His face is frozen in a look of agony and terror, and you shudder to think at what his last moments might have been."
+	icon_state = "photo_crime"
+	oddity_stats = list(
+		STAT_COG = 7,
+		STAT_VIG = 7,
+	)
+	rarity_value = 23
 
 /obj/item/weapon/oddity/common/old_newspaper
 	name = "old newspaper"
@@ -160,6 +171,16 @@
 		STAT_ROB = 5,
 		STAT_VIG = 5,
 	)
+
+/obj/item/weapon/oddity/common/book_unholy
+	name = "unholy book"
+	desc = "The writings inside entail some strange ritual. Pages have been torn out or smudged to illegibility."
+	icon_state = "book_skull"
+	oddity_stats = list(
+		STAT_COG = 7,
+		STAT_MEC = 7,
+	)
+	rarity_value = 24
 
 /obj/item/weapon/oddity/common/old_money
 	name = "old money"
@@ -240,6 +261,42 @@
 	oddity_stats = list(
 		STAT_VIG = 9,
 	)
+
+/obj/item/weapon/oddity/common/disk
+	name = "broken design disk"
+	desc = "This disk is corrupted and completely unusable. It has a hand-drawn picture of some strange mechanism on it - looking at it for too long makes your head hurt."
+	icon_state = "disc"
+	oddity_stats = list(
+		STAT_MEC = 9,
+	)
+
+/obj/item/weapon/oddity/common/mirror
+	name = "cracked mirror"
+	desc = "A thousand mirror images stare back at you as you examine the trinket. What if you're the reflection, staring back out at the real world? At the real you?"
+	icon_state = "mirror"
+	oddity_stats = list(
+		STAT_COG = 4,
+		STAT_VIG = 4,
+	)
+	rarity_value = 8
+
+/obj/item/weapon/oddity/common/lighter
+	name = "rusted lighter"
+	desc = "This zippo ligher has been rusted shut. It smells faintly of sulphur and blood."
+	icon_state = "syndicate_lighter"
+	oddity_stats = list(
+		STAT_TGH = 9,
+	)
+
+/obj/item/weapon/oddity/common/device
+	name = "odd device"
+	desc = "Something about this gadget both disturbs and interests you. It's manufacturer's name has been mostly smudged away, but you can see a strange mechanism as their logo."
+	icon_state = "device"
+	oddity_stats = list(
+		STAT_MEC = 8,
+		STAT_COG = 8,
+	)
+	rarity_value = 19
 
 /obj/item/weapon/oddity/common/old_radio
 	name = "old radio"
@@ -330,3 +387,43 @@
 			bluespace_entropy(50,T)
 			qdel(src)
 
+//A randomized oddity with random stats, meant for artist job project
+/obj/item/weapon/oddity/artwork
+	name = "Strange Device"
+	desc = "You can't find out how to turn it on. Maybe it's already working?"
+	icon_state = "artwork_1"
+	price_tag = 200
+	prob_perk = 0//no perks for artwork oddities
+	spawn_frequency = 0
+
+/obj/item/weapon/oddity/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	icon_state = "artwork_[rand(1,6)]"
+	. = ..()
+
+/obj/item/weapon/oddity/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
+	GET_COMPONENT(comp_insp, /datum/component/inspiration)
+	var/list/true_stats = comp_insp.calculate_statistics()
+	for(var/stat in true_stats)
+		. += true_stats[stat] * 50
+
+//NT Oddities
+/obj/item/weapon/oddity/nt
+	bad_type = /obj/item/weapon/oddity/nt
+	spawn_blacklisted = TRUE
+	random_stats = FALSE
+
+/obj/item/weapon/oddity/nt/seal
+	name = "High Inquisitor's Seal"
+	desc = "An honorary badge given to the most devout of NeoTheologian preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
+	icon_state = "nt_seal"
+	oddity_stats = list(
+		STAT_COG = 12,
+		STAT_VIG = 12,
+		STAT_ROB = 8
+	)
+	price_tag = 8000
+	perk = /datum/perk/nt_oddity/holy_light

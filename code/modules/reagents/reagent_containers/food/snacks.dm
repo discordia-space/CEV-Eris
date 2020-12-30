@@ -117,10 +117,13 @@
 	if(iscarbon(M))
 		//TODO: replace with standard_feed_mob() call.
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/human/H = M
+		var/fullness_modifier = 1
+		if(istype(H))
+			fullness_modifier = 100 / H.get_organ_efficiency(OP_STOMACH)
+		var/fullness = (C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)) * fullness_modifier
 		if(C == user)								//If you're eating it yourself
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = M
+			if(istype(H))
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -166,7 +169,6 @@
 				var/amount_eaten = min(reagents.total_volume, bitesize)
 				var/list/sanity_vars = get_sanity_gain(M)
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
-				var/mob/living/carbon/human/H = M
 				if(istype(H))
 					H.sanity.onEat(src, sanity_vars[1], sanity_vars[2])
 				bitecount++
