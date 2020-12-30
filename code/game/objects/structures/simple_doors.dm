@@ -172,10 +172,10 @@
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
-	..(newloc, "iron")
+	..(newloc, MATERIAL_IRON)
 
 /obj/structure/simple_door/silver/New(var/newloc,var/material_name)
-	..(newloc, "silver")
+	..(newloc, MATERIAL_SILVER)
 
 /obj/structure/simple_door/gold/New(var/newloc,var/material_name)
 	..(newloc, "gold")

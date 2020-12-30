@@ -245,7 +245,7 @@
 			return
 
 	if(anchored && !isturf(loc))
-		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == "glass" || I.get_material_name() == "rglass"))
+		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == MATERIAL_GLASS || I.get_material_name() == MATERIAL_RGLASS))
 			var/obj/item/stack/material/S = I
 			if(S.use(2))
 				glass_type = I.type
