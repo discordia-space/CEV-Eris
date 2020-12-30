@@ -25,8 +25,11 @@
 	if(wearer.has_brain_worms() || is_carrion(wearer) || wearer.mind || ishuman(wearer))
 		to_chat(owner_mob, SPAN_DANGER("A strong mind inside this creature prevents activation"))
 		return
+	if(wearer.mob_classification == CLASSIFICATION_SYNTHETIC)
+		to_chat(owner_mob, SPAN_DANGER("This creature is robotic, you can't control it"))
+		return
 	if(last_use + cooldown > world.time)
-		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 5 minutes to regenerate."))
+		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 2 minutes to regenerate."))
 		return
 
 	var/datum/mind/owner_mind = owner_mob.mind
@@ -64,4 +67,3 @@
 	if(wearer_last && host_brain)
 		host_brain.mind?.transfer_to(wearer_last)
 		qdel(host_brain)
-

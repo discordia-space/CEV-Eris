@@ -73,6 +73,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/mindboil
 
+/datum/power/carrion/talking_spider
+	name = "Talking spider"
+	desc = "Creates a spider that can highjack someones vocal cords, giving you the ability to talk through them."
+	genomecost = 5
+	spiderpath = /obj/item/weapon/implant/carrion_spider/talking
+
 /datum/power/carrion/observer_spider
 	name = "Observer spider"
 	desc = "Creates a spider with a large monocular eye, useful for spying on others."
