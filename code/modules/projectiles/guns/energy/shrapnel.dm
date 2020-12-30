@@ -23,7 +23,6 @@
 		list(mode_name="stun", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
 		list(mode_name="blast", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
-	damage_multiplier = 1.15
 	price_tag = 2500
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 	var/consume_cell = FALSE
