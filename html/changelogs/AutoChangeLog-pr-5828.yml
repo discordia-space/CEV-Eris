@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: solidifier no longer crashes the server.
