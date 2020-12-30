@@ -210,7 +210,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
 	GLOB.score_mess -= GLOB.dirt_areas * 25 //~250
-	GLOB.biomatter_score = round(min(GLOB.biomatter_neothecnology_amt/10, 350)) //350
+	GLOB.biomatter_score = round(GLOB.biomatter_neothecnology_amt/50) //350?  //target_max~350//
 	GLOB.grup_ritual_score += GLOB.grup_ritual_performed * 5
 	GLOB.new_neothecnology_convert_score = GLOB.new_neothecnology_convert * 50 // ~150-300
 
@@ -221,7 +221,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
 	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
 	GLOB.score_crew_dead -=	GLOB.crew_dead * 25 // ~200
-	GLOB.score_research_point_gained = min(round(GLOB.research_point_gained/200), 500) // or GLOB.research_point_gained/1000? review it
+	GLOB.score_research_point_gained = round(GLOB.research_point_gained/200) // or GLOB.research_point_gained/1000? review it //target_max~500//
 	GLOB.score_moebius_autopsies_mobs = GLOB.moebius_autopsies_mobs.len * 15 // ~75
 
 	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead + GLOB.score_research_point_gained + GLOB.score_moebius_autopsies_mobs
@@ -239,7 +239,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	//Guild score
 	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss // ~-300
 	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25 // ~100
-	GLOB.guild_profit_score	= min(round(GLOB.supply_profit/50), 500) // ? review it
+	GLOB.guild_profit_score	= round(GLOB.supply_profit/50) // ? review it //target_max~500//
 	GLOB.guild_shared_gears_score = GLOB.guild_shared_gears * 30 // ~150-300
 
 	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score + GLOB.guild_profit_score
