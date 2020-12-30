@@ -16,6 +16,8 @@
 	recoil_buildup = 17
 	rarity_value = 8
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 
 /obj/item/weapon/gun/projectile/colt/update_icon()
 	..()

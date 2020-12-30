@@ -22,6 +22,8 @@
 	penetration_multiplier = 1.7
 	recoil_buildup = 19
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 
 /obj/item/weapon/gun/projectile/mandella/update_icon()
 	..()

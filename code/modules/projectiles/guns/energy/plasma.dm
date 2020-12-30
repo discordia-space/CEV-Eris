@@ -76,6 +76,8 @@
 		list(mode_name="melt", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, charge_cost=20, icon="kill", projectile_color = "#00AAFF"),
 	)
 
+	spawn_tags = SPAWN_TAG_FS_ENERGY
+
 /obj/item/weapon/gun/energy/plasma/cassad/update_icon()
 	..()
 	set_item_state(null, back = TRUE)
