@@ -3,6 +3,7 @@
 	icon_states = "ship"
 	spawn_probability = 0
 	start_discovered = TRUE
+	spawn_always = TRUE
 	markup = 0.5
 	forced_overmap_zone = list(
 		list(15, 20),

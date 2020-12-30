@@ -44,7 +44,7 @@
 			/obj/item/ammo_magazine/m12
 		),
 		category_data("Projectiles", list(SPAWN_FS_PROJECTILE)),
-		category_data("Shotguns", list(SPANW_FS_SHOTGUN)),
+		category_data("Shotguns", list(SPAWN_FS_SHOTGUN)),
 		category_data("Energy", list(SPAWN_FS_ENERGY)),/* = list(
 			/obj/item/weapon/gun/energy/gun,
 			/obj/item/weapon/gun/energy/gun/martin,

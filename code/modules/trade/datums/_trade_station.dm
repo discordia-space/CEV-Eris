@@ -68,9 +68,13 @@
 		SStrade.discovered_stations += src
 
 /datum/trade_station/proc/AssembleAssortiment()
-	for(var/categoryName in assortiment)
+	for(var/list/categoryName in assortiment)
 		if(categoryName?.len >= 2) // ?. len and not checking islist() cuz only lists have var/len and ?. check it's isnull
-			var/new_category_name = (categoryName.Find("name") ? categoryName["name"] : continue)
+			var/new_category_name
+			if(categoryName.Find("name"))
+				new_category_name = categoryName["name"]
+			else
+				continue
 			var/list/content
 			var/list/category_content_tag = (categoryName.Find("tags") ? categoryName["tags"] : null)
 			if(istext(categoryName))
@@ -78,9 +82,13 @@
 					content = assortiment[categoryName]
 				else
 					content = list()
-				content += valid_candidates(category_content_tag,,TRUE)
+				content.Add(SSspawn_data.valid_candidates(category_content_tag,,TRUE))
 
 			if(istext(new_category_name) && islist(content))
+				var/categoryName_index = assortiment.Find(categoryName)
+				assortiment.Remove(categoryName)
+
+				assortiment.Insert(categoryName_index, new_category_name)
 				assortiment[new_category_name] = content
 
 /datum/trade_station/proc/update_tick()
