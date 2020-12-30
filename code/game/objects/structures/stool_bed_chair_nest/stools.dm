@@ -30,7 +30,7 @@ var/global/list/stool_cache = list() //haha stool
 	update_icon()
 
 /obj/item/weapon/stool/padded/New(var/newloc, var/new_material)
-	..(newloc, "steel", MATERIAL_CARPET)
+	..(newloc, MATERIAL_STEEL, MATERIAL_CARPET)
 
 /obj/item/weapon/stool/update_icon()
 	// Prep icon.

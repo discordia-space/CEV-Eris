@@ -52,7 +52,7 @@
 	S.cell.update_icon()
 	S.update_icon()
 	new /obj/effect/decal/cleanable/ash (src.loc)
-	var/atom/movable/overlay/animation = null
+	var/atom/movable/overlay/animation
 	animation = new(loc)
 	animation.icon_state = "blank"
 	animation.icon =  'icons/mob/mob.dmi'

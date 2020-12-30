@@ -6,7 +6,7 @@
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	can_dual = 1
+	can_dual = TRUE
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
