@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: Using the Harpoon to teleport onto a wall now telefrags you.
