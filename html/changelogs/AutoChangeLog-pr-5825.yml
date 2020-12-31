@@ -1,0 +1,7 @@
+author: Omni44
+delete-after: true
+changes:
+  - rscadd: Excruciator disk
+  - rscadd: Excruciator's cost
+  - balance: rebalanced ammo pouches
+  - tweak: fixes light on NT helmets.
