@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/clarissa
-	name = "FS HG .35 Auto \"Clarissa\""
+	name = "auto-loading pistol"
 	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto mags."
 
 	icon = 'icons/obj/guns/projectile/clarissa.dmi'
@@ -30,7 +30,6 @@
 
 	rarity_value = 16
 	price_tag = 1200
-	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/clarissa/update_icon()
 	..()
@@ -51,6 +50,9 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
+/obj/item/weapon/gun/projectile/clarissa/clarissa
+	name = "FS HG .35 Auto \"Clarissa\""
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/clarissa/makarov
 	name = "Excelsior .35 Auto \"Makarov\""

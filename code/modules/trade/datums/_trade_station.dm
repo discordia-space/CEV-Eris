@@ -85,7 +85,7 @@
 
 			if(istext(new_category_name) && islist(content))
 				var/categoryName_index = assortiment.Find(categoryName)
-				assortiment.Remove(categoryName)
+				assortiment.Cut(categoryName_index, categoryName_index + 1)
 
 				assortiment.Insert(categoryName_index, new_category_name)
 				assortiment[new_category_name] = content
