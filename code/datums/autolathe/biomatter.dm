@@ -204,6 +204,10 @@
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
 
+/datum/design/autolathe/excruciator
+	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	build_path = /obj/item/weapon/gun_upgrade/barrel/excruciator
+
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword
 	name = "NT Shortsword"
