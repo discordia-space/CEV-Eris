@@ -1,5 +1,5 @@
-/obj/item/weapon/gun/projectile/clarissa
-	name = "auto-loading pistol"
+/obj/item/weapon/gun/projectile/selfload
+	name = "self-loading pistol"
 	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto mags."
 
 	icon = 'icons/obj/guns/projectile/clarissa.dmi'
@@ -31,7 +31,7 @@
 	rarity_value = 16
 	price_tag = 1200
 
-/obj/item/weapon/gun/projectile/clarissa/update_icon()
+/obj/item/weapon/gun/projectile/selfload/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -50,11 +50,11 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/clarissa/clarissa
+/obj/item/weapon/gun/projectile/selfload/clarissa
 	name = "FS HG .35 Auto \"Clarissa\""
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/clarissa/makarov
+/obj/item/weapon/gun/projectile/selfload/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/makarov.dmi'

@@ -225,7 +225,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/weapon/gun/projectile/clarissa,
+		/obj/item/weapon/gun/projectile/selfload,
 		/obj/item/weapon/gun/projectile/colt,
 		/obj/item/weapon/gun/projectile/avasarala,
 		/obj/item/weapon/gun/projectile/giskard,
