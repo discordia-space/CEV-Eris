@@ -1,5 +1,4 @@
 
-#define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
 
 #define ERR_OK 0
 #define ERR_NOTFOUND "not found"
@@ -511,7 +510,6 @@
 #undef ERR_OK
 #undef ERR_NOTFOUND
 #undef ERR_NOMATERIAL
-#undef SANITIZE_LATHE_COST
 #undef ERR_PAUSED
 
 /obj/machinery/matter_nanoforge/proc/update_desc(var/stored_mats)
