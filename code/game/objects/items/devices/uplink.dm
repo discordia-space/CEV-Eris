@@ -122,7 +122,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT)\
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT, ROLES_CONTRACT_VIEWONLY)\
 	                                     : !!length(owner_roles & ROLES_CONTRACT)
 	data += nanoui_data
 
