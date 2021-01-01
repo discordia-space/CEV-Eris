@@ -48,6 +48,19 @@
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
 		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+	var/strength
+	switch(get_power())
+		if(1)
+			strength = "a weak catalyst power"
+		if(2)
+			strength = "a normal catalyst power"
+		if(3)
+			strength = "a medium catalyst power"
+		if(4)
+			strength = "a strong catalyst power"
+		else
+			strength = "no catalyst power"
+	to_chat(user, SPAN_NOTICE("This item has [strength]"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()
@@ -58,17 +71,15 @@
 
 /datum/component/inspiration/proc/get_power() // used to determine how powerful the artifact is for the matterforge
 	var/power = 0
-	if(istype(parent,/obj/item/weapon/oddity))
-		var/obj/item/weapon/oddity/O = parent
-		if(O.perk)
-			var/list/L = calculate_statistics()
-			switch(L[STAT_MEC])
-				if(1 to 3)
-					power = 1
-				if(3 to 5)
-					power = 2
-				if(5 to 7)
-					power = 3
-				if(7 to INFINITY)
-					power = 4
+	if(perk)
+		var/list/L = calculate_statistics()
+		switch(L[STAT_MEC])
+			if(1 to 3)
+				power = 1
+			if(3 to 5)
+				power = 2
+			if(5 to 7)
+				power = 3
+			if(7 to INFINITY)
+				power = 4
 	return power
