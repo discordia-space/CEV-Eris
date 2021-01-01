@@ -1,3 +1,8 @@
+#define CHAMELEON_MIN_PIXELS 32
+
+GLOBAL_LIST_INIT(champroj_blacklist, list(/obj/item/weapon/disk/nuclear))
+GLOBAL_LIST_INIT(champroj_whitelist, list())
+
 /obj/item/device/chameleon
 	name = "chameleon projector"
 	desc = "This is chameleion projector. Chose an item and activate projector. You're beautiful!"
@@ -10,37 +15,16 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
+	suitable_cell = /obj/item/weapon/cell/small
 	var/can_use = 1
-	var/obj/effect/dummy/chameleon/active_dummy = null
-	var/saved_item = /obj/item/trash/cigbutt
-	var/saved_icon = 'icons/inventory/face/icon.dmi'
-	var/saved_icon_state = "cigbutt"
+	var/obj/effect/dummy/chameleon/active_dummy
+	var/saved_item
+	var/saved_icon
+	var/saved_icon_state
 	var/saved_overlays
 
 	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
 	var/move_cost = 4 //how much charge is consumed per movement
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
-
-/obj/item/device/chameleon/Initialize()
-	.=..()
-	if(. && !cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-/obj/item/device/chameleon/get_cell()
-	return cell
-
-/obj/item/device/chameleon/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-
-/obj/item/device/chameleon/examine(mob/user)
-	..()
-	if(cell)
-		to_chat(user, SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent())]%\""))
-	else
-		to_chat(user, SPAN_WARNING("\The [src] has no cell."))
 
 /obj/item/device/chameleon/dropped()
 	disrupt()
@@ -50,37 +34,46 @@
 	disrupt()
 	..()
 
-/obj/item/device/chameleon/attack_self()
-	toggle()
+/obj/item/device/chameleon/attack_self(mob/user)
+	if(cell_check(tick_cost,user))
+		toggle()
 
 /obj/item/device/chameleon/Process()
-	if(active_dummy)
-		if(cell)
-			cell.checked_use(tick_cost)
-
-/obj/item/device/chameleon/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell,usr))
-		cell = null
-	else
-		return ..()
-
-/obj/item/device/chameleon/attackby(var/obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
-		return
-	..()
+	if(active_dummy && !cell_use_check(tick_cost))
+		toggle()
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
 	if (istype(target, /obj/item/weapon/storage)) return
 	if(!proximity) return
 	if(!active_dummy)
-		if(istype(target,/obj/item) && !istype(target, /obj/item/weapon/disk/nuclear))
+		if(scan_item(target))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			to_chat(user, SPAN_NOTICE("Scanned [target]."))
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
+			return
+		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+
+/obj/item/device/chameleon/proc/scan_item(var/obj/item/I)
+	if(!istype(I))
+		return FALSE
+	if(GLOB.champroj_blacklist.Find(I.type))
+		return FALSE
+	if(GLOB.champroj_whitelist.Find(I.type))
+		return TRUE
+	var/icon/icon_to_check = icon(I.icon, I.icon_state, I.dir)
+	var/total_pixels = 0
+	for(var/y = 0 to icon_to_check.Width())
+		for(var/x = 0 to icon_to_check.Height())
+			if(icon_to_check.GetPixel(x, y))
+				total_pixels++
+	if(total_pixels < CHAMELEON_MIN_PIXELS)
+		GLOB.champroj_blacklist.Add(I.type)
+		return FALSE
+	GLOB.champroj_whitelist.Add(I.type)
+	return TRUE
 
 /obj/item/device/chameleon/proc/toggle()
 	if(!can_use || !saved_item) return
@@ -190,3 +183,8 @@
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
 	. = ..()
+
+/obj/effect/dummy/chameleon/Crossed(AM as mob|obj)
+	if(isobj(AM) || isliving(AM))
+		master.disrupt()
+	..()

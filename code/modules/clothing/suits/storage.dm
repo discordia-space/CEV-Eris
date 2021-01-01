@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
-	bad_types = /obj/item/clothing/suit/storage
+	bad_type = /obj/item/clothing/suit/storage
 	spawn_tags = SPAWN_TAG_CLOTHING_SUIT_STORAGE
 	rarity_value = 10
 	var/obj/item/weapon/storage/internal/pockets
@@ -13,8 +13,7 @@
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/storage/Destroy()
-	qdel(pockets)
-	pockets = null
+	QDEL_NULL(pockets)
 	. = ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
@@ -37,6 +36,7 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
+	bad_type = /obj/item/clothing/suit/storage/toggle
 	var/icon_open
 	var/icon_closed
 	verb/toggle()

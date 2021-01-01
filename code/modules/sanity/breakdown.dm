@@ -13,8 +13,8 @@
 	var/end_time
 	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/finished = FALSE //if the objetives were fulfilled.
-	var/insight_reward	//Amount of isight for fulfilling the objetives.
+	var/finished = FALSE //if the objectives were fulfilled.
+	var/insight_reward	//Amount of isight for fulfilling the objectives.
 	var/is_negative = FALSE
 
 	var/restore_sanity_pre
@@ -32,7 +32,7 @@
 	return !!name
 
 /datum/breakdown/proc/update()
-	if(finished || (duration && world.time > end_time))
+	if(finished || (duration && world.time > end_time) || holder.owner.stat == DEAD)
 		conclude()
 		return FALSE
 	return TRUE
@@ -74,7 +74,7 @@
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(insight_reward)
 		if(finished)
-			holder.insight += insight_reward
+			holder.give_insight(insight_reward)
 			if(restore_sanity_post)
 				holder.restoreLevel(restore_sanity_post)
 		else if(is_negative)

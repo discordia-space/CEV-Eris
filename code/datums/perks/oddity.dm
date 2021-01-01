@@ -51,12 +51,14 @@
 
 /datum/perk/oddity/space_asshole/assign(mob/living/carbon/human/H)
 	..()
-	holder.mob_bomb_defense += 25
-	holder.falls_mod -= 0.4
+	if(holder)
+		holder.mob_bomb_defense += 25
+		holder.falls_mod -= 0.4
 
 /datum/perk/oddity/space_asshole/remove()
-	holder.mob_bomb_defense -= 25
-	holder.falls_mod += 0.4
+	if(holder)
+		holder.mob_bomb_defense -= 25
+		holder.falls_mod += 0.4
 	..()
 
 /datum/perk/oddity/parkour
@@ -66,10 +68,12 @@
 
 /datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
 	..()
-	holder.mod_climb_delay -= 0.5
+	if(holder)
+		holder.mod_climb_delay -= 0.5
 
 /datum/perk/oddity/parkour/remove()
-	holder.mod_climb_delay += 0.5
+	if(holder)
+		holder.mod_climb_delay += 0.5
 	..()
 
 /datum/perk/oddity/charming_personality
@@ -80,10 +84,12 @@
 
 /datum/perk/oddity/charming_personality/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity_damage -= 2
+	if(holder)
+		holder.sanity_damage -= 2
 
 /datum/perk/oddity/charming_personality/remove()
-	holder.sanity_damage += 2
+	if(holder)
+		holder.sanity_damage += 2
 	..()
 
 /datum/perk/oddity/horrible_deeds
@@ -94,10 +100,12 @@
 
 /datum/perk/oddity/horrible_deeds/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity_damage += 2
+	if(holder)
+		holder.sanity_damage += 2
 
 /datum/perk/oddity/horrible_deeds/remove()
-	holder.sanity_damage -= 2
+	if(holder)
+		holder.sanity_damage -= 2
 	..()
 
 /datum/perk/oddity/chaingun_smoker
@@ -125,10 +133,12 @@
 
 /datum/perk/oddity/quiet_as_mouse/assign(mob/living/carbon/human/H)
 	..()
-	holder.noise_coeff -= 0.5
+	if(holder)
+		holder.noise_coeff -= 0.5
 
 /datum/perk/oddity/quiet_as_mouse/remove()
-	holder.noise_coeff += 0.5
+	if(holder)
+		holder.noise_coeff += 0.5
 	..()
 
 /datum/perk/oddity/balls_of_plasteel
@@ -151,10 +161,12 @@
 
 /datum/perk/oddity/ass_of_concrete/assign(mob/living/carbon/human/H)
 	..()
-	holder.mob_bump_flag = HEAVY
+	if(holder)
+		holder.mob_bump_flag = HEAVY
 
 /datum/perk/oddity/ass_of_concrete/remove()
-	holder.mob_bump_flag = ~HEAVY
+	if(holder)
+		holder.mob_bump_flag = ~HEAVY
 	..()
 
 /datum/perk/oddity/toxic_revenger
@@ -198,3 +210,43 @@
 	name = "Sure Step"
 	desc = " You are more likely to avoid traps."
 	icon_state = "mantrap"
+
+/datum/perk/oddity/market_prof
+	name = "Market Professional"
+	desc = "Just by looking at the item you can know how much it cost."
+	icon_state = "market_prof"
+
+///////////////////////////////////////
+//////// NT ODDITYS PERKS /////////////
+///////////////////////////////////////
+
+/datum/perk/nt_oddity
+	gain_text = "God chose you to expand his will."
+
+/datum/perk/nt_oddity/holy_light
+	name = "Holy Light"
+	desc = "You have been touched by the divine. You now provide a weak healing aura, healing both brute and burn damage to any NeoThelogists nearby as well as yourself."
+	icon_state = "third_eye"  //https://game-icons.net/1x1/lorc/third-eye.html
+	var/healing_power = 0.1
+	var/cooldown = 1 SECONDS // Just to make sure that perk don't go berserk.
+	var/initial_time
+
+/datum/perk/nt_oddity/holy_light/assign(mob/living/carbon/human/H)
+	..()
+	initial_time = world.time
+
+/datum/perk/nt_oddity/holy_light/on_process()
+	if(!..())
+		return
+	if(!holder.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		return
+	if(world.time < initial_time + cooldown)
+		return
+	initial_time = world.time
+	for(var/mob/living/L in viewers(holder, 7))
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.stat == DEAD || !(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)))
+				continue
+			H.adjustBruteLoss(-healing_power)
+			H.adjustFireLoss(-healing_power)

@@ -6,6 +6,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 	model = "asters"
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/asters
 
 /obj/item/organ/external/robotic/serbian
 	name = "\"Serbian Arms\""
@@ -13,6 +14,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
 	price_tag = 600
+	bad_type = /obj/item/organ/external/robotic/serbian
 
 //In game prostheses
 /obj/item/organ/external/robotic/frozen_star
@@ -21,6 +23,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
 	price_tag = 450
+	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
 	name = "\"Frozen Star\" Left Arm"
@@ -44,6 +47,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 	price_tag = 700
+	bad_type = /obj/item/organ/external/robotic/technomancer
 
 /obj/item/organ/external/robotic/technomancer/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
@@ -71,26 +75,35 @@
 	max_damage = 60
 	min_broken_damage = 40
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/moebius
 
 /obj/item/organ/external/robotic/moebius/l_arm
-	name = "Technomancer \"Homebrew\" Left Arm"
+	name = "\"Moebius\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/moebius/r_arm
-	name = "Technomancer \"Homebrew\" Right Arm"
+	name = "\"Moebius\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/moebius/l_leg
-	name = "Technomancer \"Homebrew\" Left Leg"
+	name = "\"Moebius\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/moebius/r_leg
-	name = "Technomancer \"Homebrew\" Right Leg"
+	name = "\"Moebius\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/moebius/groin
-	name = "Technomancer \"Homebrew\" Groin"
+	name = "\"Moebius\" Groin"
 	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/moebius/torso
+	name = "\"Moebius\" Torso"
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/moebius/head
+	name = "\"Moebius\" Head"
+	default_description = /datum/organ_description/head
 
 /obj/item/organ/external/robotic/excelsior
 	name = "Excelsior"
@@ -103,6 +116,7 @@
 	min_broken_damage = 45
 	price_tag = 600
 	spawn_blacklisted = TRUE
+	bad_type = /obj/item/organ/external/robotic/excelsior
 
 /obj/item/organ/external/robotic/excelsior/l_arm
 	default_description = /datum/organ_description/arm/left
@@ -128,8 +142,8 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_OS_PROSTHETIC
-	bad_types = /obj/item/organ/external/robotic/one_star
+	spawn_tags = SPAWN_TAG_PROSTHETIC_OS
+	bad_type = /obj/item/organ/external/robotic/one_star
 	price_tag = 900
 
 /obj/item/organ/external/robotic/one_star/l_arm
@@ -143,3 +157,26 @@
 
 /obj/item/organ/external/robotic/one_star/r_leg
 	default_description = /datum/organ_description/leg/right
+
+/obj/item/organ/external/robotic/makeshift
+	name = "Makeshift"
+	desc = "Rust, rods, and bolts. A barely functional prosthetic made of whatever could be scavenged from maintenance."
+	force_icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
+	armor = list(melee = 10, bullet = 10, energy = 10, bomb = -5, bio = 100, rad = 100)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
+	min_broken_damage = 30
+	min_malfunction_damage = 15
+	bad_type = /obj/item/organ/external/robotic/makeshift
+
+/obj/item/organ/external/robotic/makeshift/l_arm
+	default_description = /datum/organ_description/arm/left
+
+/obj/item/organ/external/robotic/makeshift/r_arm
+	default_description = /datum/organ_description/arm/right
+
+/obj/item/organ/external/robotic/makeshift/l_leg
+	default_description = /datum/organ_description/leg/left
+
+/obj/item/organ/external/robotic/makeshift/r_leg
+	default_description = /datum/organ_description/leg/right
+

@@ -1,5 +1,5 @@
 /datum/trade_station/fs_factory
-	name_pool = list("FSMS 'Kaida'" = "Frozen Star Manufacturing Station 'Kaida'. It ")
+	name_pool = list("FSMS 'Kaida'" = "Frozen Star Manufacturing Station 'Kaida'. Maybe they have an extra batch of weapon?")
 	markup = 0.5
 	assortiment = list(
 		"Projectiles" = list(

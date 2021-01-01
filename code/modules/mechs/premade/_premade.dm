@@ -9,7 +9,7 @@
 	spawn_tags = SPAWN_TAG_MECH
 	spawn_frequency = 10
 	rarity_value = 10
-	bad_types = "/mob/living/exosuit/premade"
+	bad_type = /mob/living/exosuit/premade
 
 	var/exosuit_color
 	var/decal
@@ -185,8 +185,8 @@
 // Used for spawning/debugging.
 /mob/living/exosuit/premade/random/normal
 
-/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
 	..(newloc, source_frame, FALSE, TRUE)
 
-/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
 	..(newloc, source_frame, TRUE)

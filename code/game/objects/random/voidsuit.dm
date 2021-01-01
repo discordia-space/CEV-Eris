@@ -20,5 +20,5 @@
 	spawn_nothing_percentage = 75
 
 /obj/spawner/voidsuit/post_spawn(list/spawns)
-	for (var/obj/item/clothing/suit/space/void/suit in spawns)
+	for(var/obj/item/clothing/suit/space/void/suit in spawns)
 		suit.create_breaches(pick(BRUTE, BURN), rand(10, 50))

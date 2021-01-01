@@ -84,10 +84,14 @@
 	..()
 
 /obj/item/weapon/weaponparts
-	var/part_color = ""
 	name = "weaponpart"
 	desc = "how did you get it?"
 	icon = 'icons/obj/weaponparts.dmi'
+	bad_type = /obj/item/weapon/weaponparts
+	var/part_color = ""
+
+/obj/item/weapon/weaponparts/heavysniper
+	bad_type = /obj/item/weapon/weaponparts/heavysniper
 
 /obj/item/weapon/weaponparts/heavysniper/stock
 	name = "sniper stock"

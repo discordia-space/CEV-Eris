@@ -188,7 +188,7 @@
 				var/obj/item/weapon/virusdish/dish = new (loc)
 				dish.virus2 = virus[ID].getcopy()
 	stop()
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 	visible_message("\icon[src]\The [src] pings indicating that cycle is complete.")
 
 /obj/machinery/centrifuge/Topic(href, href_list)

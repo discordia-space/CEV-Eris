@@ -531,7 +531,7 @@
 /obj/structure/window/plasmabasic
 	name = "plasma window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
-	basestate = "pwindow"
+
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmaglass
@@ -543,6 +543,7 @@
 /obj/structure/window/plasmabasic/full
 	dir = SOUTH|EAST
 	icon = 'icons/obj/structures/windows.dmi'
+	basestate = "pwindow"
 	icon_state = "plasmawindow_mask"
 	alpha = 150
 	maxhealth = 200
@@ -581,7 +582,7 @@
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "rpwindow"
+	basestate = "plasmarwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
@@ -593,6 +594,7 @@
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
 	icon = 'icons/obj/structures/windows.dmi'
+	basestate = "rpwindow"
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
 	maxhealth = 250

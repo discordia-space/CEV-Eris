@@ -12,8 +12,6 @@
 	layer = LOW_OBJ_LAYER
 	var/dir_input = WEST
 	var/dir_output = NORTH
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_loader
-
 
 /obj/machinery/multistructure/bioreactor_part/loader/Initialize()
 	. = ..()

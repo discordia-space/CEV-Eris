@@ -22,7 +22,7 @@
 	matter = list(MATERIAL_BIOMATTER = 1)
 	contained_sprite = TRUE
 	spawn_tags = SPAWN_JUNK
-	rarity_value = 3.33
+	rarity_value = 3.5
 
 
 	var/info		//What's actually written on the paper.
@@ -481,6 +481,7 @@
 	return
 
 /obj/item/weapon/paper/crumpled/neo/bloody
-	icon_state = "paper_neo_crumpled_bloodied"
+	icon_state = "paper_neo_crumpled_bloodied" //todo fix sprite
+	spawn_blacklisted = TRUE
 
 #undef MAX_FIELDS

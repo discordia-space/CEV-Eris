@@ -23,8 +23,8 @@
 	force = NONE
 
 	//spawn_values
-	bad_types = /obj/item/toy
-	spawn_tags = SPAWN_TAG_TOY
+	bad_type = /obj/item/toy
+	spawn_tags = SPAWN_TAG_ITEM_TOY
 
 /*
  * Balloons
@@ -35,11 +35,11 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
+	preloaded_reagents = list()
 
 /obj/item/toy/balloon/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
+	create_reagents(10)
+	..()
 
 /obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -125,6 +125,7 @@
 		)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
 
 	examine(mob/user)
@@ -240,9 +241,10 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
+	var/active = 0
 
 	attack_self(mob/user)
 		src.active = !( src.active )
@@ -276,6 +278,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /*
  * Snap pops
@@ -320,14 +323,9 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
+	flags // TODO??
+	preloaded_reagents = list("water" = 10)
 	var/empty = 0
-	flags
-
-/obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
 	return
@@ -404,6 +402,7 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
+	bad_type = /obj/item/toy/prize
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
@@ -486,7 +485,7 @@
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
 	spawn_tags = SPAWN_TAG_FIGURE
-	bad_types = "/obj/item/toy/figure"
+	bad_type = /obj/item/toy/figure
 
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -569,7 +568,7 @@
 	anchored = FALSE
 	density = TRUE
 	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
-	bad_types = "/obj/structure/plushie"
+	bad_type = /obj/structure/plushie
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -613,7 +612,7 @@
 	desc = "A very generic small plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
-	bad_types = "/obj/item/toy/plushie"
+	bad_type = /obj/item/toy/plushie
 	spawn_tags = SPAWN_TAG_PLUSHIE
 
 /obj/item/toy/plushie/attack_self(mob/user)
@@ -655,6 +654,7 @@
 	item_state = "cultblade"
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /obj/item/weapon/inflatable_duck
 	name = "inflatable duck"

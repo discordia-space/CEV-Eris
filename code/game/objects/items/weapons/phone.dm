@@ -11,3 +11,4 @@
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
+	spawn_tags = SPAWN_TAG_ITEM

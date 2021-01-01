@@ -7,7 +7,7 @@
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 120
-	bad_types = /obj/item/stack/material
+	bad_type = /obj/item/stack/material
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material
@@ -197,8 +197,8 @@
 /obj/item/stack/material/platinum/random
 	rand_min = 1
 	rand_max = 10
-	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
-	rarity_value = 30
+	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	//rarity_value = 45
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -321,8 +321,8 @@
 /obj/item/stack/material/glass/plasmaglass/random
 	rand_min = 3
 	rand_max = 30
-	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
-	rarity_value = 30
+	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	//rarity_value = 50
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"

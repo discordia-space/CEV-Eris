@@ -26,6 +26,7 @@
 		death()
 	. = ..() //Handles stuff like environment
 	lying = FALSE // Fuck off, carp.
+	handle_vision()
 
 /mob/living/exosuit/get_cell()
 	return body?.get_cell()
@@ -113,6 +114,11 @@
 	if(head)
 		sight = head.get_sight()
 		see_invisible = head.get_invisible()
-	if(body && (body.pilot_coverage < 100 || body.transparent_cabin))
+	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed)
 		sight &= ~BLIND
 
+/mob/living/exosuit/additional_sight_flags()
+	return sight
+
+/mob/living/exosuit/additional_see_invisible()
+	return see_invisible

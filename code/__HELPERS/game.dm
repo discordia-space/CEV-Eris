@@ -174,11 +174,9 @@
 			if (!mobs[M])
 				mobs[M] = TRUE
 
-	for(var/o in GLOB.hearing_objects)
-		var/obj/O = o
-		if(O && O.loc && hearturfs[O.locs[1]])
-			if (!objs[O])
-				objs[O] = TRUE
+	for(var/obj in GLOB.hearing_objects)
+		if(get_turf(obj) in hearturfs)
+			objs |= obj
 
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
@@ -247,7 +245,7 @@
 				return 0
 	return 1
 
-proc/isInSight(atom/A, atom/B)
+/proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
@@ -295,20 +293,6 @@ proc/isInSight(atom/A, atom/B)
 		i++
 	return candidates
 
-// Same as above but for alien candidates.
-
-/proc/get_alien_candidates()
-	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
-	var/i = 0
-	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in GLOB.player_list)
-			if(ROLE_XENOMORPH in G.client.prefs.be_special_role)
-				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
-					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-						candidates += G.key
-		i++
-	return candidates
-
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
 	if(!isobj(O))	O = new /obj/screen/text()
 	O.maptext = maptext
@@ -334,7 +318,7 @@ proc/isInSight(atom/A, atom/B)
 		for(var/client/C in show_to)
 			C.images -= I
 
-datum/projectile_data
+/datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time

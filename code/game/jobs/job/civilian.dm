@@ -13,7 +13,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
-	access = list(access_bar, access_kitchen, access_maint_tunnels)
+	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club)
 	initial_balance = 3000
 	wage = WAGE_NONE // Makes his own money
 	stat_modifiers = list(
@@ -74,32 +74,6 @@
 	name = "Club Worker"
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
-
-/datum/job/actor
-	title = "Actor"
-	flag = ACTOR
-	department = DEPARTMENT_CIVILIAN
-	department_flag = SERVICE
-	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
-	supervisors = "the First Officer"
-	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
-	access = list(access_maint_tunnels, access_theatre)
-
-	outfit_type = /decl/hierarchy/outfit/job/service/actor/clown
-	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
-	stat_modifiers = list(
-		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
-	)
-
-	loyalties = LOYALTY_CIVILIAN
-
-/obj/landmark/join/start/actor
-	name = "Actor"
-	icon_state = "player-grey"
-	join_tag = /datum/job/actor
 
 
 

@@ -3,12 +3,12 @@
 	name = "large parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
-	var/obj/wrapped = null
 	density = TRUE
-	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	var/examtext = null
+	var/obj/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/label_y
 	var/label_x
@@ -117,9 +117,9 @@
 	name = "small parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrate3"
-	var/obj/item/wrapped = null
-	var/sortTag = null
-	var/examtext = null
+	var/obj/item/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/tag_x
 

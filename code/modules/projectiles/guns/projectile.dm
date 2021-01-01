@@ -13,7 +13,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
 	recoil_buildup = 1
-	bad_types = /obj/item/weapon/gun/projectile
+	bad_type = /obj/item/weapon/gun/projectile
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 
 	var/caliber = CAL_357		//determines which casings will fit
@@ -29,7 +29,7 @@
 
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside
-	var/ammo_type = null		//the type of ammo that the gun comes preloaded with
+	var/ammo_type		//the type of ammo that the gun comes preloaded with
 	var/list/loaded = list()	//stored ammo
 
 	//For MAGAZINE guns

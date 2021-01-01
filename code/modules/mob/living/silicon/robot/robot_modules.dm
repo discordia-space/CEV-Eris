@@ -14,11 +14,13 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module
 	name = "robot module"
+	desc = "This is a robot module parent class. You shouldn't see this description"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = 100
 	item_state = "electronic"
 	flags = CONDUCT
+	bad_type = /obj/item/weapon/robot_module
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
@@ -66,12 +68,9 @@ var/global/list/robot_modules = list(
 	)
 
 
-
-	desc = "This is a robot module parent class. You shouldn't see this description"
-
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
 	..()
-	if (!istype(R))
+	if(!istype(R))
 		return
 
 	R.module = src
@@ -102,20 +101,21 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/weapon/robot_module/Initialize()
+	. = ..()
 	for(var/obj/item/I in modules)
 		I.canremove = 0
 		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
-	for (var/obj/item/weapon/tool/T in modules)
+	for(var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
 	//A quick hack to stop robot modules running out of power
 	//Later they'll be wired to the robot's central battery once we code functionality for that
 	//Setting it to infinity causes errors, so just a high number is fine
-	for (var/obj/item/I in modules)
+	for(var/obj/item/I in modules)
 		if(!istype(I, /obj/item/weapon/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
-			for (var/obj/item/weapon/cell/C in I)
+			for(var/obj/item/weapon/cell/C in I)
 				C.charge = 999999999
 	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
@@ -548,6 +548,10 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/material/cyborg/steel/M = new (src)
 	M.synths = list(metal)
 	src.modules += M
+
+	var/obj/item/stack/material/cyborg/glass/G = new (src)
+	G.synths = list(glass)
+	src.modules += G
 
 	var/obj/item/stack/rods/cyborg/Ro = new /obj/item/stack/rods/cyborg(src)
 	Ro.synths = list(metal)

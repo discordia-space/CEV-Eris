@@ -38,7 +38,7 @@
 		CRASH("Gender datum was null; key was '[(skipjumpsuit && skipface) ? PLURAL : gender]'")
 
 	msg += "<EM>[src.name]</EM>"
-	if(species.name != "Human")
+	if(species.name != SPECIES_HUMAN)
 		msg += ", a <b><font color='[species.flesh_color]'>[species.name]</font></b>"
 	msg += "!\n"
 
@@ -209,20 +209,7 @@
 	if(on_fire)
 		msg += "<span class='warning'>[T.He] [T.is] on fire!.</span>\n"
 
-	/*
-	msg += "<span class='warning'>"
-	if(nutrition < 100)
-		msg += "[T.He] [T.is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		/*if(usr.nutrition < 100)
-			msg += "[T.He] [T.is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
-		msg += "[T.He] [T.is] quite chubby.\n"
-
-	msg += "</span>"
-	*/
-
-	if(species.show_ssd && (!species.has_organ[BP_BRAIN] || has_brain()) && stat != DEAD)
+	if(species.show_ssd && (!species.has_process[BP_BRAIN] || has_brain()) && stat != DEAD)
 		if(!key)
 			msg += "<span class='deadsay'>[T.He] [T.is] [species.show_ssd]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
 		else if(!client)
@@ -258,9 +245,8 @@
 				wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [part_display_name]. It has [temp.get_wounds_desc()]!</span>\n"
 			continue
 		else if(temp.wounds.len > 0 || temp.open)
-			if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
-				var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]
-				wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [parent.name].</span><br>"
+			if(temp.is_stump() && temp.parent)
+				wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.parent.name].</span><br>"
 			else
 				wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].</span><br>"
 			if(temp.status & ORGAN_BLEEDING)

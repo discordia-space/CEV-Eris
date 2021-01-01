@@ -4,7 +4,7 @@
 	icon_state = "ore2"
 	w_class = ITEM_SIZE_SMALL
 	rarity_value = 25
-	bad_types = /obj/item/weapon/ore
+	bad_type = /obj/item/weapon/ore
 	spawn_tags = SPAWN_TAG_ORE
 	var/datum/geosample/geologic_data
 	var/material
@@ -88,6 +88,7 @@
 	icon_state = "ore_hydrogen"
 	material = MATERIAL_MHYDROGEN
 	rarity_value = 50
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/ore/slag
 	name = "Slag"
@@ -97,7 +98,8 @@
 	rarity_value = 10
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/ore/New()
+/obj/item/weapon/ore/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 

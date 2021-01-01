@@ -6,6 +6,9 @@ Packs are meant to be send mainly to junkpiles, but can be placed on map as well
 They generally give more random result and can provide more divercity in spawn.
 */
 
+/obj/spawner/pack
+	bad_type = /obj/spawner/pack
+
 /obj/spawner/pack/cloth
 	name = "Random cloth supply"
 	icon_state = "armor-red"
@@ -72,8 +75,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/knife = 6,
 					/obj/spawner/ammo = 15,
 					/obj/spawner/ammo/shotgun = 15,
-					/obj/spawner/ammo_ihs = 15,
-					/obj/spawner/ammo_lowcost = 18,
+					/obj/spawner/ammo/ihs = 15,
+					/obj/spawner/ammo/lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
 					/obj/spawner/cloth/holster = 8
 				))
@@ -88,7 +91,8 @@ They generally give more random result and can provide more divercity in spawn.
 /obj/spawner/pack/rare
 	name = "rare loot"
 	icon_state = "box-orange"
-	rarity_value = 20
+	rarity_value = 100
+	spawn_tags = SPAWN_TAG_RARE_ITEM
 
 /obj/spawner/pack/rare/item_to_spawn()
 	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too
@@ -97,6 +101,7 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "low chance rare loot"
 	icon_state = "box-orange-low"
 	spawn_nothing_percentage = 70
+	spawn_frequency = 0
 
 
 //The pack to surpass them all. This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.

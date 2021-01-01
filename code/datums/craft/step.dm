@@ -93,10 +93,15 @@
 		return
 	building = TRUE
 
-	if(reqed_material && istype(I, /obj/item/stack/material))
-		var/obj/item/stack/material/M = I
-		if(M.get_default_type() != reqed_material)
-			to_chat(user, "Wrong material!")
+	if(reqed_material)
+		if(istype(I, /obj/item/stack/material))
+			var/obj/item/stack/material/M = I
+			if(M.get_default_type() != reqed_material)
+				to_chat(user, "Wrong material!")
+				building = FALSE
+				return
+		else
+			to_chat(user, "This isn't a material stack!")
 			building = FALSE
 			return
 

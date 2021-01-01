@@ -16,8 +16,8 @@
 	var/ruined = 0
 	var/datum/poster/design
 	rarity_value = 10
-	bad_types = /obj/item/weapon/contraband/poster
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	bad_type = /obj/item/weapon/contraband/poster
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
@@ -29,7 +29,7 @@
 /obj/item/weapon/contraband/poster/placed
 	icon_state = "random"
 	anchored = TRUE
-	spawn_frequency = 0
+	spawn_tags = null
 	New(turf/loc)
 		if(icon_state != "random")
 			for(var/datum/poster/new_design in GLOB.poster_designs)
@@ -79,7 +79,7 @@
 		return
 
 /obj/item/weapon/contraband/poster/proc/roll_and_drop()
-	anchored = 0
+	anchored = FALSE
 	pixel_x = 0
 	pixel_y = 0
 	icon = initial(icon)

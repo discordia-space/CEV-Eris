@@ -69,7 +69,7 @@
 				continue
 			M.ingested.remove_reagent(R.id, effect_multiplier * effect)
 
-/datum/reagent/carbon/touch_turf(var/turf/T)
+/datum/reagent/carbon/touch_turf(turf/T)
 	if(!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if (!dirtoverlay)
@@ -116,9 +116,18 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
+/datum/reagent/ethanol/on_mob_add(mob/living/L)
+	..()
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
+
+/datum/reagent/ethanol/on_mob_delete(mob/living/L)
+	..()
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 	return
 
 /datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
@@ -198,7 +207,7 @@
 	M.adjust_fire_stacks(0.4 / 12)
 	M.adjustToxLoss(0.2 * effect_multiplier)
 
-/datum/reagent/toxin/hydrazine/touch_turf(var/turf/T)
+/datum/reagent/toxin/hydrazine/touch_turf(turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	remove_self(volume)
 	return TRUE
@@ -287,7 +296,7 @@
 					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
 
 
-/datum/reagent/metal/radium/touch_turf(var/turf/T)
+/datum/reagent/metal/radium/touch_turf(turf/T)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
@@ -305,9 +314,9 @@
 	color = "#DB5008"
 	metabolism = REM * 2
 	touch_met = 50 // It's acid!
+	reagent_type = "Acid"
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
-	reagent_type = "Acid"
 
 /datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))

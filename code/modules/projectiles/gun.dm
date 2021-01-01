@@ -23,7 +23,7 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	hud_actions = list()
-	bad_types = /obj/item/weapon/gun
+	bad_type = /obj/item/weapon/gun
 	spawn_tags = SPAWN_TAG_GUN
 	rarity_value = 10
 	spawn_frequency = 10
@@ -226,11 +226,11 @@
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
 
-		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+		if(H.r_hand == src && isgun(H.l_hand))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
 
-		else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+		else if(H.l_hand == src && isgun(H.r_hand))
 			off_hand = H.r_hand
 			dual_wielding = TRUE
 		else
@@ -286,7 +286,7 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier)
+		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.2)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -418,7 +418,7 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = init_offset
-	if(user.calc_recoil())
+	if(user.recoil)
 		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
@@ -527,11 +527,11 @@
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
 			hud_actions += action
-			if(istype(src.loc, /mob))
+			if(ismob(src.loc))
 				var/mob/user = src.loc
 				user.client.screen += action
 	else
-		if(istype(src.loc, /mob))
+		if(ismob(src.loc))
 			var/mob/user = src.loc
 			user.client.screen -= action
 		hud_actions -= action
@@ -555,6 +555,7 @@
 	return set_firemode(sel_mode)
 
 /obj/item/weapon/gun/proc/set_firemode(index)
+	refresh_upgrades()
 	if(index > firemodes.len)
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]

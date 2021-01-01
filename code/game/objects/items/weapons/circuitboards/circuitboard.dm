@@ -8,7 +8,7 @@
 	spawn_tags = SPAWN_TAG_ELECTRONICS
 	rarity_value = 20
 	spawn_frequency = 10
-	bad_types = /obj/item/weapon/electronics
+	bad_type = /obj/item/weapon/electronics
 
 /obj/item/weapon/electronics/circuitboard
 	name = "circuit board"
@@ -26,7 +26,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 15
-	bad_types = /obj/item/weapon/electronics/circuitboard
+	bad_type = /obj/item/weapon/electronics/circuitboard
 
 	var/build_path
 	var/frame_type = FRAME_DEFAULT

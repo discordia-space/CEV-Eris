@@ -31,9 +31,6 @@
 #define ui_storage1 "9,0"//"CENTER+1:16,SOUTH:5"
 #define ui_storage2 "CENTER+2:16,SOUTH:5"
 
-#define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
-#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
-
 #define ui_inv1 "CENTER-1,SOUTH:5"			//borgs
 #define ui_inv2 "CENTER,SOUTH:5"			//borgs
 #define ui_inv3 "CENTER+1,SOUTH:5"			//borgs
@@ -73,10 +70,6 @@
 #define ui_fire "EAST-1:28,NORTH-3:25"
 #define ui_oxygen "EAST-1:28,NORTH-4:23"
 #define ui_pressure "EAST-1:28,NORTH-5:21"
-
-#define ui_alien_toxin "EAST-1:28,NORTH-2:25"
-#define ui_alien_fire "EAST-1:28,NORTH-3:25"
-#define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
 
 //Middle right (status indicators)
 #define ui_nutrition "EAST-1:28,CENTER-2:11"

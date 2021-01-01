@@ -77,7 +77,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/maw
 	name = "Carrion Maw"
 	desc = "Unlocks and expands your jaw, giving you the ability to spit acid and call upon spiders."
-	genomecost = 5
+	genomecost = 0
 	organpath = /obj/item/organ/internal/carrion/maw
 
 /datum/power/carrion/spinneret
@@ -382,8 +382,8 @@ var/list/datum/power/carrion/powerinstances = list()
 
 	if (Thepower.organpath)
 		var/obj/item/organ/internal/organ = new Thepower.organpath
-		var/obj/item/organ/external/parentorgan =  owner.get_organ(organ.parent_organ)
-		parentorgan.add_item(organ, owner)
+		var/obj/item/organ/external/parentorgan =  owner.get_organ(organ.parent_organ_base)
+		parentorgan.add_item(organ, owner, FALSE)
 
 	if(Thepower.spiderpath)
 		spiderlist |= Thepower.spiderpath

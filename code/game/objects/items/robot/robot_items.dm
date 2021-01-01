@@ -6,8 +6,8 @@
 //Might want to move this into several files later but for now it works here
 // Consider changing this to a child of the stun baton class. ~Z
 /obj/item/borg
-	bad_types = /obj/item/borg
-	spawn_frequency = 0
+	bad_type = /obj/item/borg
+	spawn_tags = null
 
 /obj/item/borg/stun
 	name = "electrified arm"

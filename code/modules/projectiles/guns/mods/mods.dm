@@ -4,13 +4,13 @@
 	price_tag = 100
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
-	bad_types = "/obj/item/weapon/gun_upgrade"
+	bad_type = /obj/item/weapon/gun_upgrade
 
 /obj/item/weapon/gun_upgrade/barrel
-	bad_types = /obj/item/weapon/gun_upgrade/barrel
+	bad_type = /obj/item/weapon/gun_upgrade/barrel
 
 /obj/item/weapon/gun_upgrade/muzzle
-	bad_types = /obj/item/weapon/gun_upgrade/muzzle
+	bad_type = /obj/item/weapon/gun_upgrade/muzzle
 
 //Silences the weapon, reduces damage multiplier slightly, Legacy port.
 /obj/item/weapon/gun_upgrade/muzzle/silencer
@@ -90,13 +90,14 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
-//For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns.
+//For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns or Eye of the Protector.
 /obj/item/weapon/gun_upgrade/barrel/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
+	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_GLASS = 1)
 	rarity_value = 50
- 
+
 /obj/item/weapon/gun_upgrade/barrel/excruciator/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
@@ -108,7 +109,7 @@
 	I.req_gun_tags = list(GUN_ENERGY)
 
 /obj/item/weapon/gun_upgrade/trigger
-	bad_types = /obj/item/weapon/gun_upgrade/trigger
+	bad_type = /obj/item/weapon/gun_upgrade/trigger
 
 //Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay. Acquired through loot spawns
 /obj/item/weapon/gun_upgrade/trigger/dangerzone
@@ -144,7 +145,7 @@
 	I.gun_loc_tag = GUN_TRIGGER
 
 /obj/item/weapon/gun_upgrade/mechanism
-	bad_types = "/obj/item/weapon/gun_upgrade/mechanism"
+	bad_type = /obj/item/weapon/gun_upgrade/mechanism
 
 //Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/mechanism/overshooter
@@ -214,7 +215,7 @@
 	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/weapon/gun_upgrade/underbarrel
-	bad_types = /obj/item/weapon/gun_upgrade/underbarrel
+	bad_type = /obj/item/weapon/gun_upgrade/underbarrel
 
 /obj/item/weapon/storage/box/gun_upgrades
 	name = "Big box of gun fun"
@@ -354,7 +355,7 @@
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/weapon/gun_upgrade/trigger/boom
-	name = "Syndicate \"Self Desturct\" trigger"
+	name = "Syndicate \"Self Destruct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for enegry weapon."
 	icon_state = "Boom"
 	spawn_blacklisted = TRUE
@@ -370,7 +371,7 @@
 	I.req_gun_tags = list(GUN_ENERGY)
 
 /obj/item/weapon/gun_upgrade/scope
-	bad_types = /obj/item/weapon/gun_upgrade/scope
+	bad_type = /obj/item/weapon/gun_upgrade/scope
 
 /obj/item/weapon/gun_upgrade/scope/watchman
 	name = "Frozen Star \"Watchman\" scope"
@@ -389,7 +390,7 @@
 	I.req_gun_tags = list(GUN_SCOPE)
 
 /obj/item/weapon/gun_upgrade/scope/killer
-	name = "Syndicate \"Proffesional Killer\" scope"
+	name = "Syndicate \"Contract Killer\" scope"
 	desc = "Scope used for sniping from large distances."
 	icon_state = "Killer"
 	spawn_blacklisted = TRUE

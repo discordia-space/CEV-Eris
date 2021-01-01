@@ -49,12 +49,13 @@
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
 	icon_state = "ghettowelder"
 	item_state = "ghettowelder"
-	rarity_value = 3
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 4
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it
@@ -94,4 +95,3 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
-

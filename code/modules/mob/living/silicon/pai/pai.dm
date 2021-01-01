@@ -54,8 +54,8 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/secHUD = 0			// Toggles whether the Security HUD is active or not
-	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
+	var/secHUD = FALSE			// Toggles whether the Security HUD is active or not
+	var/medHUD = FALSE			// Toggles whether the Medical  HUD is active or not
 
 	var/medical_cannotfind = 0
 	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
@@ -245,7 +245,7 @@
 	if(istype(card.loc,/obj/item/rig_module))
 		to_chat(src, "There is no room to unfold inside this rig module. You're good and stuck.")
 		return 0
-	else if(istype(card.loc,/mob))
+	else if(ismob(card.loc))
 		var/mob/holder = card.loc
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder

@@ -24,6 +24,7 @@
 	selectable = 1
 	toggleable = 0
 	disruptive = 0
+	bad_type = /obj/item/rig_module/device
 
 
 	var/device_type
@@ -37,7 +38,7 @@
 	interface_desc = "Shows an informative health readout when used on a subject."
 	device_type = /obj/item/device/scanner/health
 	rarity_value = 2.5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"
@@ -63,7 +64,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/ano_scanner
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 
 /obj/item/rig_module/device/orescanner
@@ -76,7 +77,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/scanner/mining
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 
 /obj/item/rig_module/device/rcd
@@ -158,7 +159,7 @@
 		list("radium",        "radium",        0, 20)
 		)
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
 
@@ -209,7 +210,7 @@
 	if(!charge)
 		return 0
 
-	var/chems_to_use = 10
+	var/chems_to_use = 5
 	if(charge.charges <= 0)
 		to_chat(H, SPAN_DANGER("Insufficient chems!"))
 		return 0
@@ -333,8 +334,8 @@
 
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
-	rarity_value = 1.25
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	rarity_value = 2
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/obj/item/weapon/tank/jetpack/rig/jets
 
 /obj/item/rig_module/maneuvering_jets/engage()
@@ -404,7 +405,7 @@
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
 	var/datum/autodoc/autodoc_processor
 	var/autodoc_type = /datum/autodoc
-	var/turf/wearer_loc = null
+	var/turf/wearer_loc
 
 /obj/item/rig_module/autodoc/Initialize()
 	. = ..()
@@ -457,6 +458,7 @@
 
 	interface_name = "Hardsuit Cape"
 	interface_desc = "A generic cape for a hardsuit."
+	rarity_value = 80
 
 /obj/item/rig_module/cape/te
 	name = "technomancer cape"
@@ -467,3 +469,4 @@
 
 	interface_name = "Technomancer Cape"
 	interface_desc = "A grand yet hardy cape."
+	rarity_value = 100

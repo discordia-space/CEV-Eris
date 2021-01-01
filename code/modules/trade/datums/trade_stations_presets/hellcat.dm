@@ -20,7 +20,7 @@
 			/obj/item/weapon/gun/energy/gun/martin,
 			/obj/item/weapon/gun/energy/laser,
 		),
-		"Projectile weapon" = list(
+		"Ballistic weapon" = list(
 			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw,
@@ -46,7 +46,6 @@
 			/obj/item/clothing/suit/armor/vest,
 			/obj/item/clothing/suit/armor/vest/security,
 			/obj/item/clothing/suit/armor/vest/detective,
-			/obj/item/clothing/suit/storage/vest,
 			/obj/item/clothing/head/armor/helmet,
 			/obj/item/clothing/suit/armor/bulletproof,
 			/obj/item/clothing/suit/armor/laserproof,

@@ -20,7 +20,7 @@
 
 	return mobs
 
-/proc/random_hair_style(gender, species = "Human")
+/proc/random_hair_style(gender, species = SPECIES_HUMAN)
 	var/h_style = "Bald"
 
 	var/datum/species/mob_species = all_species[species]
@@ -30,7 +30,7 @@
 
 	return h_style
 
-/proc/random_facial_hair_style(gender, species = "Human")
+/proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 	var/f_style = "Shaved"
 	var/datum/species/mob_species = all_species[species]
 	var/list/valid_facialhairstyles = mob_species.get_facial_hair_styles(gender)
@@ -38,14 +38,14 @@
 		f_style = pick(valid_facialhairstyles)
 		return f_style
 
-/proc/sanitize_name(name, species = "Human", max_length = MAX_NAME_LEN)
+/proc/sanitize_name(name, species = SPECIES_HUMAN, max_length = MAX_NAME_LEN)
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, max_length)
 
-/proc/random_name(gender, species = "Human")
+/proc/random_name(gender, species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
@@ -59,7 +59,7 @@
 	else
 		return current_species.get_random_name(gender)
 
-/proc/random_first_name(gender, species = "Human")
+/proc/random_first_name(gender, species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
@@ -73,7 +73,7 @@
 	else
 		return current_species.get_random_first_name(gender)
 
-/proc/random_last_name(species = "Human")
+/proc/random_last_name(species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
@@ -150,7 +150,7 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object=null, var/addition=null)
+/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object, var/addition)
 	if(user && ismob(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 	if(target && ismob(target))
@@ -211,10 +211,10 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user)
 		return 0
-	var/atom/target_loc = null
+	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
 
@@ -288,7 +288,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /proc/is_carrion(mob/living/carbon/human/H)
-	if(istype(H) && H.internal_organs_by_name[BP_SPCORE])
+	if(istype(H) && (H.organ_list_by_process(BP_SPCORE)).len)
 		return TRUE
 
 	return FALSE
@@ -372,9 +372,9 @@ Proc for attack log creation, because really why not
 			if((M.stat != DEAD) || (!M.client))
 				continue
 			//They need a brain!
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(H.should_have_organ(BP_BRAIN) && !H.has_brain())
+				if(H.should_have_process(BP_BRAIN) && !H.has_brain())
 					continue
 			if(M.ckey == find_key)
 				selected = M
@@ -401,6 +401,6 @@ Proc for attack log creation, because really why not
 	. = ..()
 	if(.)
 		return .
-	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	var/obj/item/organ/internal/eyes/eyes = random_organ_by_process(OP_EYES)
 	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
 		return eyes.get_colourmatrix()

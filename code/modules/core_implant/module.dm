@@ -22,6 +22,8 @@
 /datum/core_module/proc/GetAccess()
 	return access.Copy()
 
+/datum/core_module/proc/on_implant_uninstall()
+
 
 //ACTIVATABLE
 

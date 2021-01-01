@@ -411,7 +411,7 @@ meteor_act
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
+/mob/living/carbon/human/embed(var/obj/O, var/def_zone)
 	if(!def_zone) ..()
 
 	var/obj/item/organ/external/affecting = get_organ(def_zone)

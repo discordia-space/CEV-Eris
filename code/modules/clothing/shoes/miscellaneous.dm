@@ -49,8 +49,8 @@
 	force = NONE
 	rarity_value = 14.3
 	//	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
-	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
+	var/footstep = 1	//used for squeeks whilst walking
 
 /obj/item/clothing/shoes/clown_shoes/handle_movement(turf/walking, running)
 	if(running)

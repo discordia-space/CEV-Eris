@@ -2,8 +2,8 @@
 	name = "Sword of Truth"
 	desc = "Sword made out of a unknown alloy, humming from an unknown power source."
 	icon = 'icons/obj/faction_item.dmi'
-	icon_state = "nt_sword"
-	item_state = "nt_sword"
+	icon_state = "nt_sword_truth"
+	item_state = "nt_sword_truth"
 	slot_flags = FALSE
 	origin_tech = list(TECH_COMBAT = 5, TECH_POWER = 4, TECH_MATERIAL = 8)
 	price_tag = 20000
@@ -11,6 +11,21 @@
 	spawn_blacklisted = TRUE
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
+
+/obj/item/weapon/tool/sword/nt_sword/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_church
+
+/obj/item/weapon/tool/sword/nt_sword/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
+/obj/item/weapon/tool/sword/nt_sword/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
 
 /obj/item/weapon/tool/sword/nt_sword/wield(mob/living/user)
 	..()
@@ -71,7 +86,7 @@
 	anchored = TRUE
 	density = TRUE
 	breakable = FALSE
-	var/obj/item/weapon/tool/sword/nt_sword/sword = null
+	var/obj/item/weapon/tool/sword/nt_sword/sword
 
 /obj/structure/nt_pedestal/New(var/loc, var/turf/anchor)
 	..()
@@ -122,27 +137,3 @@
 
 /obj/structure/nt_pedestal/update_icon()
 	icon_state = "nt_pedestal[sword?"1":"0"]"
-
-/obj/item/weapon/storage/pouch/nt_sheath
-	name = "Sword of Truth sheath"
-	desc = "Can hold a Sword of Truth."
-	icon = 'icons/obj/faction_item.dmi'
-	icon_state = "nt_sheath0"
-	item_state = "nt_sheath0"
-	slot_flags = SLOT_BELT
-	price_tag = 1000
-	spawn_frequency = 0
-	spawn_blacklisted = TRUE
-	storage_slots = 1
-	max_w_class = ITEM_SIZE_BULKY
-
-	can_hold = list(
-		/obj/item/weapon/tool/sword/nt_sword
-		)
-
-	sliding_behavior = TRUE
-
-/obj/item/weapon/storage/pouch/nt_sheath/update_icon()
-	icon_state = "nt_sheath[contents.len?"1":"0"]"
-	item_state = "nt_sheath[contents.len?"1":"0"]"
-	..()

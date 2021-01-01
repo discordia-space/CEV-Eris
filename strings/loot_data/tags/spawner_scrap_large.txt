@@ -1,0 +1,1 @@
+/obj/spawner/scrap/dense    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

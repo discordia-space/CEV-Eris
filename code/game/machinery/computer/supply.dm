@@ -9,7 +9,7 @@
 	light_color = COLOR_LIGHTING_ORANGE_MACHINERY
 	req_access = list(access_cargo)
 	circuit = /obj/item/weapon/electronics/circuitboard/supplycomp
-	var/temp = null
+	var/temp
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
 	var/can_order_contraband = FALSE

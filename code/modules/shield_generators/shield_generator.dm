@@ -48,15 +48,17 @@
 	// The shield mode flags which should be enabled on this generator by default
 
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
-									MODEFLAG_PHOTONIC,
-									MODEFLAG_NONHUMANS,
-									MODEFLAG_HUMANOIDS,
-									MODEFLAG_ANORGANIC,
-									MODEFLAG_ATMOSPHERIC,
-									MODEFLAG_BYPASS,
-									MODEFLAG_OVERCHARGE,
-									MODEFLAG_MODULATE,
-									MODEFLAG_EM)
+							MODEFLAG_PHOTONIC,
+							MODEFLAG_NONHUMANS,
+							MODEFLAG_HUMANOIDS,
+							MODEFLAG_ANORGANIC,
+							MODEFLAG_ATMOSPHERIC,
+							MODEFLAG_HULL,
+							MODEFLAG_BYPASS,
+							MODEFLAG_OVERCHARGE,
+							MODEFLAG_MODULATE,
+							MODEFLAG_MULTIZ,
+							MODEFLAG_EM)
 		// The modes that this shield generator can ever use. Override to create less-able subtypes
 		// By default, multiz and hull are restricted to the hull generator
 
@@ -71,7 +73,9 @@
 	var/report_delay = 20 SECONDS //We will wait this amount of time after taking a hit before sending a report.
 	var/report_scheduled = FALSE //
 
-
+	var/list/tendrils = list()
+	var/list/tendril_dirs = list(NORTH, EAST, WEST)
+	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
 /obj/machinery/power/shield_generator/update_icon()
@@ -80,7 +84,16 @@
 		icon_state = "generator1"
 	else
 		icon_state = "generator0"
+	if (tendrils_deployed)
+		for (var/D in tendril_dirs)
+			var/I = image(icon,"capacitor_connected", dir = D)
+			overlays += I
 
+	for (var/obj/machinery/shield_conduit/S in tendrils)
+		if (running)
+			S.icon_state = "conduit_1"
+		else
+			S.icon_state = "conduit_0"
 
 
 
@@ -103,6 +116,7 @@
 
 
 /obj/machinery/power/shield_generator/Destroy()
+	toggle_tendrils(FALSE)
 	shutdown_field()
 	field_segments = null
 	damaged_segments = null
@@ -165,6 +179,8 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
+			if (locate(/obj/effect/shield) in T)
+				continue
 			isFloor = TRUE
 			for(var/turf/TN in orange(1, T))
 				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
@@ -209,6 +225,8 @@
 	upkeep_power_usage = 0
 	power_usage = 0
 
+	if (!anchored)
+		return
 	if(offline_for)
 		offline_for = max(0, offline_for - 1)
 		if (offline_for <= 0)
@@ -279,7 +297,7 @@
 		wrench(user, O)
 		return
 
-	if(istype(O, /obj/item/weapon/tool))
+	if(istool(O))
 		return src.attack_hand(user)
 
 
@@ -360,7 +378,8 @@
 /obj/machinery/power/shield_generator/Topic(href, href_list)
 	if(..())
 		return 1
-
+	if(!anchored)
+		return
 	//Doesn't respond while disabled
 	if(offline_for)
 		return
@@ -526,9 +545,9 @@
 
 /obj/machinery/power/shield_generator/proc/get_logs()
 	var/list/all_logs = list()
-	for(var/entry in event_log)
+	for(var/i = event_log.len; i > 1; i--)
 		all_logs.Add(list(list(
-			"entry" = entry
+			"entry" = event_log[i]
 		)))
 	return all_logs
 
@@ -721,6 +740,119 @@
 		if (event_log.len > max_log_entries)
 			event_log.Cut(1,2)
 
+/obj/machinery/shield_conduit
+	name = "shield conduit"
+	icon = 'icons/obj/machines/shielding.dmi'
+	icon_state = "conduit_0"
+	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
+	density = TRUE
+	anchored = FALSE //Will be set true just after deploying
+	var/obj/machinery/power/shield_generator/generator
+
+/obj/machinery/shield_conduit/proc/connect(gen)
+	generator = gen
+
+/obj/machinery/shield_conduit/Destroy()
+	if(generator)
+		generator.toggle_tendrils(FALSE)
+		if(generator.running != SHIELD_OFF && !generator.emergency_shutdown)
+			generator.offline_for += 300 
+			generator.shutdown_field()
+			generator.emergency_shutdown = TRUE
+			generator.log_event(EVENT_DISABLED, generator)
+	. = ..()
+
+/obj/machinery/power/shield_generator/wrench(user, obj/item/I)
+	if(running != SHIELD_OFF)
+		to_chat(usr, SPAN_NOTICE("Generator has to be toggled off first!"))
+		return
+	if(tendrils_deployed)
+		to_chat(usr, SPAN_NOTICE("Retract conduits first!"))
+		return
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		if(anchored)
+			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+			toggle_tendrils(FALSE)
+			anchored = FALSE
+		else
+			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
+			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+			anchored = TRUE
+		return
+
+/obj/machinery/power/shield_generator/verb/toggle_tendrils_verb()
+	set category = "Object"
+	set name = "Toggle conduits"
+	set src in view(1)
+
+	if(running != SHIELD_OFF)
+		to_chat(usr, SPAN_NOTICE("Generator has to be toggled off first!"))
+		return
+	toggle_tendrils()
+
+/obj/machinery/power/shield_generator/proc/toggle_tendrils(on = null)
+	var/target_state
+	if (!isnull(on))
+		target_state = on
+	else
+		target_state = tendrils_deployed ? FALSE : TRUE //Otherwise we're toggling
+
+	if (target_state == tendrils_deployed)
+		return
+	//If we're extending them
+	if (target_state == TRUE)
+		for (var/D in tendril_dirs)
+			var/turf/T = get_step(src, D)
+			var/obj/machinery/shield_conduit/SC = locate(/obj/machinery/shield_conduit) in T
+			if(SC)
+				continue
+			if (!turf_clear(T))
+				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
+				playsound(src.loc, "/sound/machines/buzz-two", 100, 1, 5)
+				tendrils_deployed = FALSE
+				update_icon()
+				return FALSE
+
+		//Now deploy
+		for (var/D in tendril_dirs)
+			var/turf/T = get_step(src, D)
+			var/obj/machinery/shield_conduit/SC = locate(/obj/machinery/shield_conduit) in T
+			if(!SC) SC = new(T)
+			SC.connect(src)
+			tendrils.Add(SC)
+			SC.face_atom(src)
+			SC.anchored = TRUE
+		tendrils_deployed = TRUE
+		update_icon()
+
+		allowed_modes |= MODEFLAG_MULTIZ
+		allowed_modes |= MODEFLAG_HULL
+
+		to_chat(usr, SPAN_NOTICE("You deployed [src] conduits."))
+		return TRUE
+
+	else if (target_state == FALSE)
+		for (var/obj/machinery/shield_conduit/SC in tendrils)
+			tendrils.Remove(SC)
+			qdel(SC)
+		tendrils_deployed = FALSE
+		update_icon()
+
+		allowed_modes.Remove(MODEFLAG_MULTIZ)
+		allowed_modes.Remove(MODEFLAG_HULL)
+		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
+		return FALSE
+	
+	mode_list = list()
+	for(var/st in subtypesof(/datum/shield_mode/))
+		var/datum/shield_mode/SM = new st()
+		if (locate(SM.mode_flag) in allowed_modes)
+			mode_list.Add(SM)
+
+	//Enable all modes in the default modes list
+	for (var/DM in default_modes)
+		toggle_flag(DM)
 
 #undef EVENT_DAMAGE_PHYSICAL
 #undef EVENT_DAMAGE_EM

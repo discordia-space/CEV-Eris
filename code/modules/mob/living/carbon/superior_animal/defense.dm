@@ -117,15 +117,13 @@
 		if (2)
 			b_loss += 60
 			f_loss += 60
-			ear_damage += 30
-			ear_deaf += 120
+			adjustEarDamage(30,120)
 
 		if (3)
 			b_loss += 30
 			if (prob(50))
 				Paralyse(1)
-			ear_damage += 15
-			ear_deaf += 60
+			adjustEarDamage(15,60)
 
 	adjustBruteLoss(b_loss)
 	adjustFireLoss(f_loss)
@@ -138,7 +136,7 @@
 		return
 
 	if(stat == DEAD)
-		blinded = 1
+		blinded = TRUE
 		silent = 0
 	else
 		updatehealth()
@@ -146,13 +144,13 @@
 		handle_weakened()
 		if(health <= 0)
 			death()
-			blinded = 1
+			blinded = TRUE
 			silent = 0
 			return 1
 
 		if(paralysis && paralysis > 0)
 			handle_paralysed()
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 			if(halloss > 0)
 				adjustHalLoss(-3)
@@ -160,7 +158,7 @@
 		if(sleeping)
 			adjustHalLoss(-3)
 			sleeping = max(sleeping-1, 0)
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 		else if(resting)
 			if(halloss > 0)

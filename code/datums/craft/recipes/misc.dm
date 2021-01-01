@@ -46,6 +46,16 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/bone_braces
+	name = "bone braces"
+	result = /obj/item/bone_brace
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 20, 50),
+		list(QUALITY_WIRE_CUTTING, 10, 120)
+	)
+	related_stats = list(STAT_COG, STAT_BIO, STAT_MEC)
+
 /datum/craft_recipe/plastic_bag
 	name = "plastic bag"
 	result = /obj/item/weapon/storage/bag/plastic
@@ -246,4 +256,43 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10)
 	)
-	variation_type = CRAFT_VARIATION
+	related_stats = list(STAT_COG)
+
+/datum/craft_recipe/makeshift_leg
+	name = "Makeshift prosthetic left leg"
+	result = /obj/item/organ/external/robotic/makeshift/l_leg
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_WELDING, 10, 10),
+		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(/obj/item/weapon/stock_parts/manipulator, 1),
+		list(QUALITY_PULSING, 10, 10),
+		list(/obj/item/weapon/reagent_containers/glass/bucket, 1)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/makeshift_leg/right
+	name = "Makeshift prosthetic right leg"
+	result = /obj/item/organ/external/robotic/makeshift/r_leg
+
+/datum/craft_recipe/makeshift_arm
+	name = "Makeshift prosthetic left arm"
+	result = /obj/item/organ/external/robotic/makeshift/l_arm
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_WELDING, 10, 10),
+		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(/obj/item/weapon/stock_parts/manipulator, 1),
+		list(QUALITY_PULSING, 10, 10),
+		list(/obj/item/weapon/tool/knife/hook, 1)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/makeshift_arm/right
+	name = "Makeshift prosthetic right arm"
+	result = /obj/item/organ/external/robotic/makeshift/r_arm
+

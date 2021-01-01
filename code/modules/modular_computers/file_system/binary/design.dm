@@ -2,7 +2,7 @@
 /datum/computer_file/binary/design
 	filetype = "CD" // Construction Design
 	size = 4
-	var/datum/design/design = null
+	var/datum/design/design
 	var/copy_protected = FALSE
 	var/point_cost = 0 	//Point cost of the design.
 
@@ -37,9 +37,9 @@
 /datum/computer_file/binary/design/proc/set_point_cost(cost)
 	if (isnull(cost))
 		point_cost = 1
-	else 
+	else
 		point_cost = cost
-	
+
 	if(point_cost)
 		set_copy_protection(TRUE)
 

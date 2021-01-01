@@ -105,8 +105,8 @@ var/global/list/stool_cache = list() //haha stool
 		padding_material.place_sheet(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool))
+/obj/item/weapon/stool/attackby(obj/item/weapon/W, mob/user)
+	if(istool(W))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			dismantle()
 			qdel(src)
@@ -150,7 +150,7 @@ var/global/list/stool_cache = list() //haha stool
 	icon_state = "stool_base"
 
 /obj/item/weapon/stool/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool))
+	if(istool(W))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			dismantle()
 			qdel(src)

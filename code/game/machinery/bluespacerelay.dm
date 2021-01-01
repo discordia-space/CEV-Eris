@@ -21,9 +21,9 @@
 
 
 /obj/machinery/bluespacerelay/update_icon()
-	if(on)
+	if(on && (icon_state != initial(icon_state)))
 		icon_state = initial(icon_state)
-	else
+	else if(icon_state != "[initial(icon_state)]_off")
 		icon_state = "[initial(icon_state)]_off"
 
 /obj/machinery/bluespacerelay/proc/update_power()

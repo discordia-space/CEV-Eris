@@ -5,7 +5,7 @@
 	icon_state = "energy"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
-	bad_types = /obj/item/weapon/gun/energy
+	bad_type = /obj/item/weapon/gun/energy
 	spawn_tags = SPAWN_TAG_GUN_ENERGY
 
 	recoil_buildup = 0.5 //energy weapons have little to no recoil
@@ -30,7 +30,9 @@
 	var/overcharge_timer //Holds ref to the timer used for overcharging
 	var/overcharge_rate = 1 //Base overcharge additive rate for the gun
 	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
-	var/overcharge_max = 10
+	var/overcharge_max = 5
+
+	bad_type = /obj/item/weapon/gun/energy
 
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()

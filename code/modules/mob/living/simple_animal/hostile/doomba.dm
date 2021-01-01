@@ -84,7 +84,7 @@
 
 /obj/spawner/mob/roomba
 	name = "random roomba"
-	icon_state = "hostilemob-black"
+	icon_state = "hostilemob-blue"
 	alpha = 128
 	tags_to_spawn = list(SPAWN_MOB_ROOMBA,SPAWN_MOB_OS_CUSTODIAN)
 

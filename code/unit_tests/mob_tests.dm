@@ -19,8 +19,8 @@
 
 datum/unit_test/human_breath
 	name = "MOB: Human Suffocates in Space"
-	var/starting_oxyloss = null
-	var/ending_oxyloss = null
+	var/starting_oxyloss
+	var/ending_oxyloss
 	var/mob/living/carbon/human/H
 	async = 1
 
@@ -84,7 +84,7 @@ proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living
 // TODO: Need to make sure I didn't just recreate the wheel here.
 
 proc/damage_check(var/mob/living/M, var/damage_type)
-	var/loss = null
+	var/loss
 
 	switch(damage_type)
 		if(BRUTE)
@@ -184,7 +184,7 @@ datum/unit_test/mob_damage/start_test()
 
 	// Now generate the message for this test.
 
-	var/expected_msg = null
+	var/expected_msg
 
 	switch(expected_vulnerability)
 		if(STANDARD)

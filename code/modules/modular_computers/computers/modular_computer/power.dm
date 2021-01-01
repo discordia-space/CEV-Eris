@@ -9,7 +9,7 @@
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.
 /obj/item/modular_computer/proc/battery_power(power_usage = 0)
 	apc_powered = FALSE
-	if(!cell || cell.empty())
+	if(!cell || cell.is_empty())
 		return FALSE
 	if(cell.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && cell.charge))
 		return TRUE

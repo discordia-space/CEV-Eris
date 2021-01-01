@@ -1,11 +1,6 @@
 /****************************************************
 				BLOOD SYSTEM
 ****************************************************/
-//Blood levels. These are percentages based on the species blood_volume far.
-var/const/BLOOD_VOLUME_SAFE =    85
-var/const/BLOOD_VOLUME_OKAY =    75
-var/const/BLOOD_VOLUME_BAD =     60
-var/const/BLOOD_VOLUME_SURVIVE = 40
 
 /mob/living/carbon
 	var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
@@ -62,11 +57,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if(in_stasis)
 		return
 
-	if(!species.has_organ[BP_HEART])
+	if(!species.has_process[OP_HEART])
 		return
 
-	var/obj/item/organ/internal/heart/H = internal_organs_by_name[BP_HEART]
-	if(!H)	//not having a heart is bad for health
+
+	if(!organ_list_by_process(OP_HEART).len)	//not having a heart is bad for health - true
 		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
 
@@ -277,7 +272,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 /mob/living/carbon/human/get_blood_oxygenation()
 	var/blood_volume = get_blood_circulation()
 	if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
-		return min(blood_volume, BLOOD_VOLUME_SURVIVE)
+		return min(blood_volume, total_blood_req)
 
 	if(!need_breathe())
 		return blood_volume
@@ -299,22 +294,30 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 	return 100
 
 /mob/living/carbon/human/get_blood_circulation()
-	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]
+	var/heart_efficiency = get_organ_efficiency(OP_HEART)
+	var/robo_check = TRUE	//check if all hearts are robotic
+	var/open_check = FALSE  //check if any heart is open
+	for(var/obj/item/organ/internal/heart/heart in organ_list_by_process(OP_HEART))
+		if(!(BP_IS_ROBOTIC(heart)))
+			robo_check = FALSE
+		if(heart.open)
+			open_check = TRUE
+
 	var/blood_volume = get_blood_volume()
-	if(!heart || (heart.pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !BP_IS_ROBOTIC(heart)))
+	if( heart_efficiency <= 0 || (pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !robo_check))
 		blood_volume *= 0.25
 	else
 		var/pulse_mod = 1
-		switch(heart.pulse)
+		switch(pulse)
 			if(PULSE_SLOW)
 				pulse_mod *= 0.9
 			if(PULSE_FAST)
 				pulse_mod *= 1.1
 			if(PULSE_2FAST, PULSE_THREADY)
 				pulse_mod *= 1.25
-		blood_volume *= max(0.3, (1-(heart.damage / heart.max_damage))) * pulse_mod
+		blood_volume *= max(0.3, (1-((100 - heart_efficiency) / 100))) * pulse_mod
 
-	if(heart && !heart.open && chem_effects[CE_BLOODCLOT])
+	if(!open_check && chem_effects[CE_BLOODCLOT])
 		blood_volume *= max(0, 1-chem_effects[CE_BLOODCLOT])
 
 	return min(blood_volume, 100)

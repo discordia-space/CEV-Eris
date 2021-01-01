@@ -14,6 +14,11 @@
 	//Active emote/pose
 	var/pose
 
+	//Values from all base organs should add up to this
+	var/total_blood_req = 40
+	var/total_oxygen_req = 50
+	var/total_nutriment_req = DEFAULT_HUNGER_FACTOR
+
 	var/datum/reagents/metabolism/bloodstr
 	var/datum/reagents/metabolism/ingested
 	var/datum/reagents/metabolism/touching
@@ -26,10 +31,11 @@
 	var/cpr_time = 1
 	nutrition = 400//Carbon
 
+	var/is_watching = TRUE  //used for remote viewing of multiz structures
 
 	var/obj/item/weapon/tank/internal //Human/Monkey
 
 
-	bad_types = /mob/living/carbon
+	bad_type = /mob/living/carbon
 	//TODO: move to brain
 

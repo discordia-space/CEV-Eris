@@ -18,11 +18,11 @@
 //Now it just finds if the tile is blocked by anything solid.
 /proc/turf_clear(turf/T)
 	if (T.density)
-		return 0
+		return FALSE
 	for(var/atom/A in T)
 		if(A.density)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /proc/clear_interior(var/turf/T)
 	if (turf_clear(T))

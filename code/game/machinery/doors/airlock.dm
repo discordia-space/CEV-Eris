@@ -1047,7 +1047,7 @@ There are 9 wires.
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/weapon/tool))
+	if(istool(I))
 		return src.attack_hand(user)
 	else if(istype(I, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
@@ -1215,7 +1215,7 @@ There are 9 wires.
 						next_beep_at = world.time + SecondsToTicks(10)
 					close_door_at = world.time + 6
 					return
-				if(istype(AM, /obj/item/weapon/tool))
+				if(istool(AM))
 					var/obj/item/weapon/tool/T = AM
 					if(T.w_class >= ITEM_SIZE_NORMAL)
 						operating = TRUE

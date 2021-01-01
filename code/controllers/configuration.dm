@@ -28,9 +28,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
@@ -167,6 +164,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
 
+	var/start_location = "asteroid" // Start location defaults to asteroid.
+
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
@@ -197,7 +196,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
-	var/aliens_allowed = 0
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
 	var/looc_allowed = 1
@@ -206,7 +204,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/starlight = "#ffffff"	// null if turned off
 
-	var/list/ert_species = list("Human")
+	var/list/ert_species = list(SPECIES_HUMAN)
 
 	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
@@ -226,6 +224,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_key
 
 	var/static/regex/ic_filter_regex //For the cringe filter.
+
+	var/generate_loot_data = FALSE //for loot rework
 
 /datum/configuration/New()
 	fill_storyevents_list()
@@ -357,15 +357,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if ("allow_vote_mode")
 					config.allow_vote_mode = 1
 
-				if ("allow_admin_jump")
-					config.allow_admin_jump = 1
-
-				if("allow_admin_rev")
-					config.allow_admin_rev = 1
-
-				if ("allow_admin_spawning")
-					config.allow_admin_spawning = 1
-
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
 
@@ -446,7 +437,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-			
+
 				if ("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
@@ -486,9 +477,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("allow_metadata")
 					config.allow_Metadata = 1
-
-				if ("aliens_allowed")
-					config.aliens_allowed = 1
 
 				if ("objectives_disabled")
 					config.objectives_disabled = 1
@@ -690,7 +678,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
-						config.ert_species += "Human"
+						config.ert_species += SPECIES_HUMAN
 
 				if("use_cortical_stacks")
 					config.use_cortical_stacks = 1
@@ -726,8 +714,29 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
+
+
+				if("random_start")
+					var/list/startlist = list(
+						"asteroid",
+						"abandoned fortress",
+						"space ruins")
+					var/pick = rand(1, startlist.len)
+					config.start_location = startlist[pick]
+
+				if("asteroid_start")
+					config.start_location = "asteroid"
+
+				if("fortress_start")
+					config.start_location = "abandoned fortress"
+
+				if("ruins_start")
+					config.start_location = "space ruins"
+				if("generate_loot_data")
+					config.generate_loot_data = TRUE
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
+
 
 		else if(type == "game_options")
 			if(!value)

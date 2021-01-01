@@ -19,7 +19,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1000
 	rarity_value = 16
-	recoil_buildup = 20
+	recoil_buildup = 12
 	one_hand_penalty = 15 //full sized shotgun level
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()

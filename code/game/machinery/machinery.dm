@@ -117,6 +117,7 @@ Class Procs:
 	var/obj/item/weapon/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
+
 /obj/machinery/Initialize(mapload, d=0)
 	. = ..()
 	if(d)
@@ -149,17 +150,12 @@ Class Procs:
 	switch(severity)
 		if(1)
 			qdel(src)
-			return
 		if(2)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
-				return
 		if(3)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
-				return
-		else
-	return
 
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
@@ -202,11 +198,11 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
@@ -226,7 +222,7 @@ Class Procs:
 	if(ispath(circuit))
 		circuit = new circuit
 
-	if (!component_parts)
+	if(!component_parts)
 		component_parts = list()
 	if(circuit)
 		component_parts += circuit
@@ -283,7 +279,7 @@ Class Procs:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-	if (electrocute_mob(user, get_area(src), src, 0.7))
+	if(electrocute_mob(user, get_area(src), src, 0.7))
 		var/area/temp_area = get_area(src)
 		if(temp_area)
 			var/obj/machinery/power/apc/temp_apc = temp_area.get_apc()

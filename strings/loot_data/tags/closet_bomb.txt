@@ -1,0 +1,2 @@
+/obj/structure/closet/bombcloset/security    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/closet/bombcloset    blacklisted=0    spawn_value=7.0028   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

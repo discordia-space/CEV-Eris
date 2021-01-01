@@ -59,19 +59,21 @@
 	icon_state = initial(icon_state) + "_active"
 	active = 1
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+	update_icon()
 
 	if(variance)
 		det_time *= RAND_DECIMAL(1-variance, 1+variance)
 
 	spawn(det_time)
-		prime()
+		prime(user)
 		return
 
 
-/obj/item/weapon/grenade/proc/prime()
+/obj/item/weapon/grenade/proc/prime(mob/user as mob)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
+		user.hud_used.updatePlaneMasters(user)
 
 
 /obj/item/weapon/grenade/attackby(obj/item/I, mob/user as mob)

@@ -3,13 +3,15 @@
 /obj/item/weapon/storage/box/samplebags
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
-	New()
-		for(var/i=0, i<7, i++)
-			var/obj/item/weapon/evidencebag/S = new(src)
-			S.name = "sample bag"
-			S.desc = "a bag for holding research samples."
-		..()
-		return
+	initial_amount = 7
+	spawn_type = /obj/item/weapon/evidencebag
+
+/obj/item/weapon/storage/box/samplebags/populate_contents()
+	for(var/i in 1 to initial_amount)
+		var/obj/item/weapon/evidencebag/S = new(src)
+		S.name = "sample bag"
+		S.desc = "a bag for holding research samples."
+
 
 //////////////////////////////////////////////////////////////////
 

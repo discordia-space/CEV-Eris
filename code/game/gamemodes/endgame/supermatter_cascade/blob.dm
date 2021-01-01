@@ -46,17 +46,17 @@
 				if(A)
 					if(isliving(A))
 						qdel(A)
-					else if(istype(A,/mob)) // Observers, AI cameras.
+					else if(ismob(A)) // Observers, AI cameras.
 						continue
 					else
 						qdel(A)
 			T.ChangeTurf(type)
 
-/turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
+/turf/unsimulated/wall/supermatter/attack_generic(mob/user)
 	if(istype(user))
 		return attack_hand(user)
 
-/turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
+/turf/unsimulated/wall/supermatter/attack_robot(mob/user)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else

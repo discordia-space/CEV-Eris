@@ -4,7 +4,7 @@
 
 /datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class)
 	..(max, parent_mob)
-	
+
 	metabolism_class = met_class
 	if(istype(parent_mob))
 		parent = parent_mob
@@ -51,17 +51,18 @@
 	for(var/i in nerve_system_accumulations)
 		if(findtext(i, tag, 1, 0) == 1)
 			nerve_system_accumulations.Remove(i)
-		
+
 
 /datum/metabolism_effects/proc/get_nsa_value(tag)
 	if(nerve_system_accumulations[tag])
 		return nerve_system_accumulations[tag]
 
 /datum/metabolism_effects/proc/get_nsa()
+	SEND_SIGNAL(parent, COMSING_NSA, nsa_current)
 	return nsa_current
 
 /datum/metabolism_effects/proc/get_nsa_target()
-	var/accumulatedNSA
+	var/accumulatedNSA = 0
 	for(var/tag in nerve_system_accumulations)
 		accumulatedNSA += nerve_system_accumulations[tag]
 	return accumulatedNSA
@@ -115,7 +116,7 @@
 /datum/metabolism_effects/proc/check_reagent(datum/reagent/R, metabolism_class)
 	present_reagent_ids += R.id
 
-	//Nerve System Accumulation 
+	//Nerve System Accumulation
 	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "[R.id]_[metabolism_class]")
 
 	// Withdrawals
@@ -146,6 +147,8 @@
 			new_reagent.max_dose = R.max_dose
 			addiction_list.Add(new_reagent)
 			addiction_list[new_reagent] = 0
+			for(var/mob/living/carbon/human/H in viewers(parent))
+				SEND_SIGNAL(H, COMSIG_CARBON_ADICTION, parent, R)
 
 	if(is_type_in_list(R, addiction_list))
 		for(var/addiction in addiction_list)
@@ -157,7 +160,7 @@
 /datum/metabolism_effects/proc/process()
 	process_withdrawals()
 	handle_nsa()
-	
+
 	if(addiction_tick == 6)
 		addiction_tick = 1
 		process_addictions()

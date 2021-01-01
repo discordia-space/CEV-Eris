@@ -174,7 +174,7 @@ var/last_chew = 0
 
 /obj/item/weapon/handcuffs/cyborg
 	dispenser = 1
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/handcuffs/cyborg/afterattack(atom/A, mob/user, proximity)
 	if (istype(A,/obj/item/weapon/handcuffs))

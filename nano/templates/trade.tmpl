@@ -77,17 +77,17 @@
 							<td>Price
 							<td>Available
 							<td>Cart
+							<td>Sell
 						{{for data.goods}}
-							{{if value.amount_available}}
-								<tr>
-									<td>{{:value.name}}
-									<td>{{:value.price}}
-									<td>{{:value.amount_available}}
-									<td>
-										{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
-										<div class="link {{if value.count == 0}}disabled{{else}}selected{{/if}}">{{:value.count}}</div>
-										{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-							{{/if}}
+							<tr>
+								<td>{{:value.name}}
+								<td>{{:value.price}}
+								<td>{{:value.amount_available}}
+								<td>
+									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
+									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
+									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
+								<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
 						{{/for}}
 					</table>
 				{{else}}
@@ -96,7 +96,8 @@
 			{{/if}}
 		</div>
 		Cart:<br>
-		{{:helper.link(data.total, null, {"PRG_receive" : 1}, data.total ? null : 'disabled')}}{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
+		{{:helper.link(data.total, "cart", {"PRG_receive" : 1}, data.total ? null : 'disabled')}}{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
+		Commission for packing: {{:data.commision}}
 	{{else}}
 		<div class='nanoMap' style='padding: 100px 200px;'>
 			Please pick trade station.

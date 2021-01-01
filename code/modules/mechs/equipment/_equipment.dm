@@ -6,7 +6,7 @@
 	icon_state = ""
 	matter = list(MATERIAL_STEEL = 40)
 	force = 10
-	bad_types = /obj/item/mech_equipment
+	bad_type = /obj/item/mech_equipment
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10
 	spawn_frequency = 10
@@ -68,7 +68,7 @@
 /obj/item/mech_equipment/mounted_system
 	var/holding_type
 	var/obj/item/holding
-	bad_types = /obj/item/mech_equipment/mounted_system
+	bad_type = /obj/item/mech_equipment/mounted_system
 
 /obj/item/mech_equipment/mounted_system/attack_self(var/mob/user)
 	. = ..()

@@ -3,17 +3,47 @@ Title: Jukebox UI
 Used In File(s): \code\game\machinery\jukebox.dm
  -->
 
-<H3><span class="white">Current track:</span> <span class="average">{{:data.current_track}}</span></H3>
-<div>
-    {{:helper.link('Play' , 'play', {'play' : 1}, data.playing == 1 ? 'disabled' : null, null)}}
-    {{:helper.link('Stop' , 'stop', {'stop' : 1}, data.playing == 0 ? 'disabled' : null, null)}}
+<div class='statusDisplay'>
+	<div class="item">
+		<div class="itemLabel">Currently Playing:</div>
+		{{if data.playing && data.current_track }}
+			<div class="itemContent"><b>{{:data.current_track.title}}</b> by <i>{{:data.current_track.artist ? data.current_track.artist : "Unknown"}}</i></div>
+		{{else}}
+			<div class="itemContent">Stopped</div>
+		{{/if}}
+	</div>
+	<div class="item">
+		<div class="itemContent">
+			{{:helper.displayBar(data.percent, 0, 1, 'good')}}
+		</div>
+		<div class="itemLabel">
+		    {{:helper.link('Play' , 'play', {'play' : 1}, data.playing == 1 ? 'disabled' : null, null)}}
+		    {{:helper.link('Stop' , 'stop', {'stop' : 1}, data.playing == 0 ? 'disabled' : null, null)}}
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabel">{{:helper.link('Volume',	'volume-on', {'volume' : 1})}}</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.volume, 0, 1, (data.volume < .25) ? 'bad' : (data.volume < .75) ? 'average' : 'good')}}
+		</div>
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">Loop Mode:</div>
+	<div class="itemContent">
+	    {{:helper.link('Next',		'triangle-1-e',		{'loopmode' : 1}, data.loop_mode == 1 ? 'disabled' : null, null)}}
+	    {{:helper.link('Random',	'shuffle',			{'loopmode' : 2}, data.loop_mode == 2 ? 'disabled' : null, null)}}
+	    {{:helper.link('Repeat',	'arrowrefresh-1-w',	{'loopmode' : 3}, data.loop_mode == 3 ? 'disabled' : null, null)}}
+	    {{:helper.link('Once',		'arrowstop-1-e',	{'loopmode' : 4}, data.loop_mode == 4 ? 'disabled' : null, null)}}
+	</div>
 </div>
 
 <H3><span class="white">Available tracks:</span></H3>
 <div class="itemContent">
     {{for data.tracks}}
         <div class="item">
-            {{:helper.link( value.track, 'gear', {'change_track' : 1, 'title' : value.track}, value.track == data.current_track ? 'disabled' : null, null)}}    
+            {{:helper.link(value.title, 'gear', {'change_track' : value.ref}, data.current_track_ref == value.ref ? 'disabled' : null, null)}}
         </div>
     {{/for}}
 </div>

@@ -27,7 +27,7 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(reagents.total_volume)
+	if(reagents && reagents.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state][get_filling_state()]")
 		filling.color = reagents.get_color()
 		add_overlay(filling)
@@ -73,7 +73,7 @@
 	icon_state = "mixingbowl"
 	matter = list(MATERIAL_STEEL = 2)
 	volume = 180
-	amount_per_transfer_from_this = 10	
+	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,180)
 	unacidable = FALSE
 
@@ -105,6 +105,28 @@
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	preloaded_reagents = list("sacid" = 60)
 
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape
+	name = "vape vial"
+	desc = "A small plastic vial."
+	icon_state = "vial_plastic"
+	matter = list(MATERIAL_PLASTIC = 1)
+	spawn_tags = null
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
+	name = "berry vape vial"
+	preloaded_reagents = list("nicotine" = 20, "berryjuice" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon
+	name = "lemon vape vial"
+	preloaded_reagents = list("nicotine" = 20, "lemonjuice" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana
+	name= "banana vape vial"
+	preloaded_reagents = list("nicotine" = 20, "banana" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine
+	name = "nicotine vape vial"
+	preloaded_reagents = list("nicotine" = 30)
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."

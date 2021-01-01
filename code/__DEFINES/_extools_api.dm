@@ -39,7 +39,7 @@
 	var/completed = FALSE
 	var/result = ""
 	var/callback_context = GLOBAL_PROC
-	var/callback_proc = null
+	var/callback_proc
 	var/__id = 0
 
 /datum/promise/New()

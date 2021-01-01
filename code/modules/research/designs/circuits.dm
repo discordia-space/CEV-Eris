@@ -29,6 +29,12 @@
 	sort_string = "MABAA"
 	category = CAT_MISC
 
+/datum/design/research/circuit/jukebox
+	name = "jukebox"
+	build_path = /obj/item/weapon/electronics/circuitboard/jukebox
+	sort_string = "MABBA"
+	category = CAT_MISC
+
 /datum/design/research/circuit/secdata
 	name = "security records console"
 	build_path = /obj/item/weapon/electronics/circuitboard/secure_data
@@ -94,6 +100,24 @@
 	build_path = /obj/item/weapon/electronics/circuitboard/chemical_dispenser
 	sort_string = "FAHAC"
 	category = CAT_MEDI
+
+/datum/design/research/circuit/chemical_dispenser_industrial
+	name = "Industrial Chemical Dispenser"
+	build_path = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/industrial
+	sort_string = "FAHAD"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/chemical_dispenser_soda
+	name = "Soda Chemical Dispenser"
+	build_path = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/soda
+	sort_string = "FAHAE"
+	category = CAT_MISC
+
+/datum/design/research/circuit/chemical_dispenser_beer
+	name = "Beer Chemical Dispenser"
+	build_path = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/beer
+	sort_string = "FAHAF"
+	category = CAT_MISC
 
 /datum/design/research/circuit/teleconsole
 	name = "teleporter control console"
@@ -213,6 +237,7 @@
 	name = "recharger"
 	build_path = /obj/item/weapon/electronics/circuitboard/recharger
 	sort_string = "HACAD"
+	category = CAT_POWER
 
 /datum/design/research/circuit/atmosalerts
 	name = "atmosphere alert console"
@@ -316,7 +341,7 @@
 	name = "biogenerator"
 	build_path = /obj/item/weapon/electronics/circuitboard/biogenerator
 	sort_string = "KBAAA"
-	category = CAT_MACHINE
+	category = CAT_MEDI
 
 /datum/design/research/circuit/miningdrill
 	name = "mining drill head"
@@ -381,7 +406,7 @@
 	name = "NTNet Quantum Relay"
 	build_path = /obj/item/weapon/electronics/circuitboard/ntnet_relay
 	sort_string = "WAAAA"
-
+	category = CAT_TCOM
 
 // Shield Generators
 /datum/design/research/circuit/shield
@@ -442,4 +467,4 @@
 	name = "experimental mind swapper"
 	build_path = /obj/item/weapon/electronics/circuitboard/mindswapper
 	sort_string = "WAAAA"
-	category = CAT_MACHINE
+	category = CAT_MEDI

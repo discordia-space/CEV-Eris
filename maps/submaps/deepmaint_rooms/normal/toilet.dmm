@@ -11,14 +11,15 @@
 "k" = (/obj/structure/table/rack,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
 "l" = (/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
 "m" = (/obj/structure/toilet{dir = 4},/obj/machinery/light{dir = 1},/obj/spawner/pack/rare/low_chance,/obj/spawner/pack/rare/low_chance,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
-"n" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"n" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "o" = (/obj/structure/table/rack,/obj/spawner/pack/gun_loot,/obj/spawner/pack/gun_loot/low_chance,/obj/spawner/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
 "p" = (/obj/structure/toilet{dir = 4},/obj/machinery/light{dir = 1},/obj/spawner/oddities/low_chance,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "q" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "r" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/structure/mirror{dir = 8; pixel_x = 28; pixel_y = 0},/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
-"s" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
-"t" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"s" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
+"t" = (/obj/landmark/loot_biomes/mob/roach/room{range = 6},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "u" = (/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"v" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 
 (1,1,1) = {"
 aaaaaaaaaaa
@@ -26,9 +27,9 @@ cbbbdbbbbbe
 abfhijbkkba
 abbbiibllga
 abmhinbokba
-abbbiibbbba
+abbbitbbbba
 abphiiqqrba
-sbbbiitqrba
+sbbbiivqrba
 abphiuqqrba
 cbbbdbbbbbe
 aaaaaaaaaaa

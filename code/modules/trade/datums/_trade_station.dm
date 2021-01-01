@@ -1,7 +1,6 @@
 #define good_data(nam, rand_list) list("name" = nam, "amount_range" = rand_list)
 #define custom_good_name(nam) good_data(nam, null)
 #define custom_good_amount_range(rand_list) good_data(null, rand_list)
-
 /datum/trade_station
 	var/name
 	var/desc
@@ -15,6 +14,7 @@
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
 	var/list/linked_with //trade 'stations' or 'station' that must spawn with //list or path
+	var/commision = 200 //Cost of trading more than one thing or cost for crate
 
 	var/list/forced_overmap_zone //list(list(minx, maxx), list(miny, maxy))
 	var/ovemap_opacity = 0
