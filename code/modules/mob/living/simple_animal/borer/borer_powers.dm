@@ -111,7 +111,7 @@
 
 	if(sight & SEE_MOBS)
 		sight &= ~SEE_MOBS
-		to_chat(src, SPAN_NOTICE("You cannot see living being throug walls for now."))
+		to_chat(src, SPAN_NOTICE("You cannot see living being through walls for now."))
 		return
 
 	host = M
@@ -288,7 +288,7 @@
 			return
 
 	if(M.has_brain_worms())
-		to_chat(src, "You cannot palyze someone who is already infested!")
+		to_chat(src, "You cannot paralyze someone who is already infested!")
 		return
 
 	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
