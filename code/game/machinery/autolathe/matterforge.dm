@@ -79,7 +79,7 @@
 		for(var/req_mats in ui_mats)
 			total_mat += req_mats["req"]
 		for(var/dmat in design_object.materials)
-			total_mat = total_mat +  ((1 - lst[dmat]) * 10) * 2
+			total_mat = total_mat + ((1 - lst[dmat]) * 10) * 2
 		saved_mat["req"] = total_mat
 		saved_mat["name"] = MATERIAL_COMPRESSED_MATTER
 		ui_mats = list(1)
@@ -188,9 +188,9 @@
 		return TRUE
 	matter_assoc_list()
 	user.set_machine(src)
-	ui_interact(user)
 	if(!design_list.len)
 		get_designs()
+	ui_interact(user)
 
 /obj/machinery/matter_nanoforge/Topic(href, href_list)
 	if(..())
@@ -278,15 +278,14 @@
 		return 1
 
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
-	if(I.GetComponent(/datum/component/inspiration))
-		GET_COMPONENT_FROM(comp, /datum/component/inspiration, I)
-		if(comp.get_power() > 0)
-			user.drop_item(I)
-			I.forceMove(src)
-			if(power_source)
-				power_source.forceMove(loc)
-			power_source = I
-			return
+	GET_COMPONENT_FROM(comp, /datum/component/inspiration, I)
+	if(comp && comp.get_power() > 0)
+		user.drop_item(I)
+		I.forceMove(src)
+		if(power_source)
+			power_source.forceMove(loc)
+		power_source = I
+		return
 
 	if(power_source)
 		matter_assoc_list()	
@@ -383,7 +382,7 @@
 		var/datum/design/design = picked_design
 
 		for(var/rmat in design.materials)
-			if(!(stored_material[MATERIAL_COMPRESSED_MATTER] >= 0))
+			if(stored_material[MATERIAL_COMPRESSED_MATTER] <= 0)
 				return ERR_NOMATERIAL
 
 			if(stored_material[MATERIAL_COMPRESSED_MATTER] < SANITIZE_LATHE_COST(design.materials[rmat]))
