@@ -15486,8 +15486,8 @@
 "aLp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	dir = 4
+	dir = 4;
+	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
@@ -61577,8 +61577,7 @@
 /turf/simulated/floor/plating,
 /area/eris/command/bridge)
 "cLY" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/machinery/matter_nanoforge,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
 "cLZ" = (
@@ -104738,8 +104737,8 @@
 /area/eris/engineering/construction)
 "gGt" = (
 /obj/item/modular_computer/console/preset/engineering/power{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
