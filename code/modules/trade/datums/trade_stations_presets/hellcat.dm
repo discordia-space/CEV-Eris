@@ -35,7 +35,6 @@
 			/obj/item/weapon/grenade/smokebomb,
 			/obj/item/weapon/grenade/chem_grenade/incendiary,
 			/obj/item/weapon/grenade/flashbang,
-
 			/obj/item/ammo_magazine/ammobox/magnum,
 			/obj/item/ammo_magazine/lrifle,
 			/obj/item/ammo_magazine/smg,
@@ -45,8 +44,6 @@
 		"Armor" = list(
 			/obj/item/clothing/head/armor/riot_hud,
 			/obj/item/clothing/suit/armor/vest,
-			/obj/item/clothing/suit/armor/vest/security,
-			/obj/item/clothing/suit/armor/vest/detective,
 			/obj/item/clothing/head/armor/helmet,
 			/obj/item/clothing/suit/armor/bulletproof,
 			/obj/item/clothing/suit/armor/laserproof,
