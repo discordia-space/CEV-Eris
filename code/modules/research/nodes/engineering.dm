@@ -268,10 +268,7 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/stick,
-							/datum/design/research/item/weapon/toolmod/heatsink,
-							/datum/design/research/item/weapon/toolmod/plating,
-							/datum/design/research/item/weapon/toolmod/guard,
+	unlocks_designs = list(
 							/datum/design/research/item/weapon/toolmod/plasmablock,
 							/datum/design/research/item/weapon/toolmod/rubbermesh
 							)
@@ -289,13 +286,7 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/ergonomicgrip,
-							/datum/design/research/item/weapon/toolmod/ratchet,
-							/datum/design/research/item/weapon/toolmod/redpaint,
-							/datum/design/research/item/weapon/toolmod/whetstone,
-							/datum/design/research/item/weapon/toolmod/dblade,
-							/datum/design/research/item/weapon/toolmod/oxyjet,
-							/datum/design/research/item/weapon/toolmod/motor,
+	unlocks_designs = list(
 							/datum/design/research/item/weapon/toolmod/antistaining,
 							/datum/design/research/item/weapon/toolmod/booster,
 							/datum/design/research/item/weapon/toolmod/injector
@@ -314,10 +305,7 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/laserguide,
-							/datum/design/research/item/weapon/toolmod/stabilizedgrip,
-							/datum/design/research/item/weapon/toolmod/magbit,
-							/datum/design/research/item/weapon/toolmod/portedbarrel,
+	unlocks_designs = list(
 							/datum/design/research/item/weapon/toolmod/compensatedbarrel,
 							/datum/design/research/item/weapon/toolmod/vibcompensator
 							)
@@ -335,11 +323,7 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/cellmount,
-							/datum/design/research/item/weapon/toolmod/fueltank,
-							/datum/design/research/item/weapon/toolmod/expansion,
-							/datum/design/research/item/weapon/toolmod/spikes,
-							/datum/design/research/item/weapon/toolmod/hammeraddon,
+	unlocks_designs = list(
 							/datum/design/research/item/weapon/toolmod/hydraulic
 							)
 
