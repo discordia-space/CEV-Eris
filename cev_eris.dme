@@ -2305,6 +2305,7 @@
 #include "code\modules\projectiles\guns\matter\launcher\nt_sprayer.dm"
 #include "code\modules\projectiles\guns\matter\launcher\reclaimer.dm"
 #include "code\modules\projectiles\guns\mods\mods.dm"
+#include "code\modules\projectiles\guns\mods\research_mods.dm"
 #include "code\modules\projectiles\guns\projectile\automatic.dm"
 #include "code\modules\projectiles\guns\projectile\boltgun.dm"
 #include "code\modules\projectiles\guns\projectile\dartgun.dm"
