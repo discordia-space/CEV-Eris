@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: The surgery UI on amputated limbs now works again.
