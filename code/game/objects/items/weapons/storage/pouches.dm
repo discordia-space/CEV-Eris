@@ -167,7 +167,7 @@
 	desc = "Can hold ammo magazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	item_state = "ammo"
-	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 3 )
+	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 3

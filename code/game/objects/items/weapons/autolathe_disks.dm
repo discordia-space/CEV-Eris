@@ -1284,6 +1284,13 @@
 		/datum/design/autolathe/grenade/nt_frag,
 		/datum/design/autolathe/grenade/nt_smokebomb
 	)
+	
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/excruciator
+	disk_name = "NeoTheology Armory - NT \"EXCRUCIATOR\" giga lens"
+	icon_state = "neotheology"
+	designs = list(
+		/datum/design/autolathe/excruciator
+	)
 
 // ARMOR
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
