@@ -67,7 +67,7 @@
 
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
-	desc = "Streamlined, sleek, and sterile"
+	desc = "Streamlined, sleek, and sterile."
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 	model = "moebius"
 	bad_type = /obj/item/organ/external/robotic/moebius
