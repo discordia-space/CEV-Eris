@@ -332,7 +332,7 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	. += (-(limb_efficiency / 100 - 1) * 3)	//0 at 100 efficiency, -1.5 at 150, +1.5 at 50
+	. += (-(limb_efficiency / 100 - 1) * 1.5)	//0 at 100 efficiency, -0.75 at 150, +0.75 at 50
 
 	. += tally
 
