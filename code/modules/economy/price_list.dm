@@ -988,7 +988,7 @@
 	for(var/obj/item/ammo_casing/i in stored_ammo)
 		. += i.get_item_cost(export)
 
-/obj/item/ammo_casing/price_tag = 20
+/obj/item/ammo_casing/price_tag = 0
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = ..() * amount
