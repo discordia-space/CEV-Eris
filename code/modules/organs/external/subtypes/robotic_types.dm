@@ -65,6 +65,18 @@
 	name = "Technomancer \"Homebrew\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
+/obj/item/organ/external/robotic/technomancer/groin
+	name = "\"Technomancer\" Groin"
+	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/technomancer/torso
+	name = "\"Technomancer\" Torso"
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/technomancer/head
+	name = "\"Technomancer\" Head"
+	default_description = /datum/organ_description/head
+
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
 	desc = "Streamlined, sleek, and sterile."
