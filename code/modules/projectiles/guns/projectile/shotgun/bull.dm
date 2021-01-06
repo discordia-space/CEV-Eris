@@ -4,6 +4,7 @@
 			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
 	icon = 'icons/obj/guns/projectile/bull.dmi'
 	icon_state = "bull"
+	item_state = "bull"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 7
