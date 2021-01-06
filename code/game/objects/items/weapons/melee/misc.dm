@@ -8,9 +8,9 @@
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
-	var/reinforced = FALSE
-	var/obj/item/weapon/storage/toolbox/toolbox = null
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
+	var/reinforced = FALSE
+	var/obj/item/weapon/storage/toolbox/toolbox
 	New()
 		..()
 		if(!toolbox)

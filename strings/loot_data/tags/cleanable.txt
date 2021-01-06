@@ -1,51 +1,50 @@
-/obj/effect/decal/cleanable/roach_egg_remains    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/spiderling_remains    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/crayon    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/xeno    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno/up    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno/down    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno/body    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno/limb    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno/core    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/xeno    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/up    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/down    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/body    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/limb    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/core    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/robot/limb    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/robot/up    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/robot/down    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs/robot    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/gibs    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/xtracks    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/splatter/animated    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/splatter    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/drip    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/writing    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/oil/streak    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/oil    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/tracks/footprints    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/tracks/wheels    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood/tracks    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/blood    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/liquid_fuel    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/mucus    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/generic    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/ash    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/greenglow    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/dirt    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/flour    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/cobweb    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/molten_item    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/cobweb2    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/vomit    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/tomato_smudge    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/egg_smudge    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/pie_smudge    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/fruit_smudge    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/rubble    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/solid_biomass    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/carrion_puddle    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/spider/stickyweb    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/effect/decal/cleanable/roach_egg_remains    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/spiderling_remains    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/crayon    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/xeno    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno/up    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno/down    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno/body    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno/limb    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno/core    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/xeno    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/up    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/down    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/body    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/limb    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/core    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/robot/limb    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/robot/up    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/robot/down    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs/robot    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/gibs    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/xtracks    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/splatter/animated    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/splatter    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/drip    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/writing    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/oil/streak    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/oil    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/tracks/footprints    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/tracks/wheels    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood/tracks    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/blood    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/liquid_fuel    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/mucus    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/generic    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/ash    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/dirt    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/flour    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/cobweb    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/molten_item    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/cobweb2    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/vomit    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/tomato_smudge    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/egg_smudge    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/pie_smudge    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/fruit_smudge    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/rubble    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/solid_biomass    blacklisted=0    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/decal/cleanable/carrion_puddle    blacklisted=1    spawn_value=18.1818   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/effect/spider/stickyweb    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

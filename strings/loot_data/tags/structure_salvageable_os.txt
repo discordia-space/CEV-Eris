@@ -1,7 +1,7 @@
-/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5    price_tag=0   100    
-/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
-/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697    price_tag=0   100    
-/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939    price_tag=0   100    
+/obj/structure/salvageable/os/machine    blacklisted=1    spawn_value=6.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/computer    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/implant_container    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/data    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/server    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console    blacklisted=1    spawn_value=1.9697   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/salvageable/os/console_broken    blacklisted=1    spawn_value=3.93939   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

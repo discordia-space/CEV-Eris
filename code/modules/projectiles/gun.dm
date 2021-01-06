@@ -286,7 +286,7 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier)
+		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.2)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -418,7 +418,7 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = init_offset
-	if(user.calc_recoil())
+	if(user.recoil)
 		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
@@ -555,6 +555,7 @@
 	return set_firemode(sel_mode)
 
 /obj/item/weapon/gun/proc/set_firemode(index)
+	refresh_upgrades()
 	if(index > firemodes.len)
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]

@@ -1,25 +1,27 @@
-/obj/item/clothing/suit/armor/vest/security    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/suit/armor/vest/detective    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/suit/armor/vest/warden    blacklisted=0    spawn_value=2.85714    price_tag=350   100    
-/obj/item/clothing/suit/armor/vest/ironhammer    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/suit/armor/vest/handmade    blacklisted=0    spawn_value=6.66667    price_tag=150   100    
-/obj/item/clothing/suit/armor/vest    blacklisted=0    spawn_value=5    price_tag=200   100    
-/obj/item/clothing/suit/armor/greatcoat/ironhammer    blacklisted=0    spawn_value=1.66667    price_tag=600   100    
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat    blacklisted=0    spawn_value=1.66667    price_tag=600   100    
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown    blacklisted=0    spawn_value=1.66667    price_tag=600   100    
-/obj/item/clothing/suit/armor/greatcoat/german_overcoat    blacklisted=0    spawn_value=1.66667    price_tag=600   100    
-/obj/item/clothing/suit/armor/greatcoat    blacklisted=0    spawn_value=1.66667    price_tag=600   100    
-/obj/item/clothing/suit/armor/flak/green    blacklisted=0    spawn_value=5.55556    price_tag=200   100    
-/obj/item/clothing/suit/armor/flak    blacklisted=0    spawn_value=5.55556    price_tag=200   100    
-/obj/item/clothing/suit/armor/bulletproof/ironhammer    blacklisted=0    spawn_value=2    price_tag=500   100    
-/obj/item/clothing/suit/armor/bulletproof/serbian/green    blacklisted=0    spawn_value=2.5    price_tag=400   100    
-/obj/item/clothing/suit/armor/bulletproof/serbian/tan    blacklisted=0    spawn_value=2.5    price_tag=400   100    
-/obj/item/clothing/suit/armor/bulletproof/serbian    blacklisted=0    spawn_value=2.5    price_tag=400   100    
-/obj/item/clothing/suit/armor/bulletproof    blacklisted=0    spawn_value=2    price_tag=500   100    
-/obj/item/clothing/suit/armor/laserproof    blacklisted=0    spawn_value=1.53846    price_tag=650   100    
-/obj/item/clothing/suit/armor/heavy/red    blacklisted=0    spawn_value=4    price_tag=250   100    
-/obj/item/clothing/suit/armor/heavy/green    blacklisted=0    spawn_value=4    price_tag=250   100    
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer    blacklisted=0    spawn_value=2    price_tag=500   100    
-/obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=2    price_tag=500   100    
-/obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=4    price_tag=250   100    
-/obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=5    price_tag=200   100    
+/obj/item/clothing/suit/armor/vest/security    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/detective    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/warden    blacklisted=0    spawn_value=2.6631   spawn_price=355   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/ironhammer    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest/handmade    blacklisted=0    spawn_value=5.81722   spawn_price=155   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/vest    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/greatcoat/ironhammer    blacklisted=0    spawn_value=1.59282   spawn_price=605   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat    blacklisted=0    spawn_value=1.59282   spawn_price=605   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown    blacklisted=0    spawn_value=1.59282   spawn_price=605   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/greatcoat/german_overcoat    blacklisted=0    spawn_value=1.59282   spawn_price=605   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/greatcoat    blacklisted=0    spawn_value=1.59282   spawn_price=605   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/flak/green    blacklisted=0    spawn_value=4.92326   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/flak    blacklisted=0    spawn_value=4.92326   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/bulletproof/ironhammer    blacklisted=0    spawn_value=1.89741   spawn_price=505   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/bulletproof/serbian/green    blacklisted=0    spawn_value=2.34701   spawn_price=405   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/bulletproof/serbian/tan    blacklisted=0    spawn_value=2.34701   spawn_price=405   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/bulletproof/serbian    blacklisted=0    spawn_value=2.34701   spawn_price=405   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/bulletproof    blacklisted=0    spawn_value=1.89741   spawn_price=505   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/laserproof    blacklisted=0    spawn_value=1.47457   spawn_price=655   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer    blacklisted=0    spawn_value=1.89757   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.89757   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/crusader    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/acolyte    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/agrolyte    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/custodian    blacklisted=1    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing

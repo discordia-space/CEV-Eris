@@ -1,3 +1,6 @@
+/obj/machinery/acting
+	bad_type = /obj/machinery/acting
+
 /obj/machinery/acting/wardrobe
 	name = "wardrobe dispenser"
 	desc = "A machine that dispenses holo-clothing for those in need."

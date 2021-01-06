@@ -5,12 +5,13 @@
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
-	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	//spawn_blacklisted = TRUE//antag_item_targets??
 	var/mob/living/silicon/ai/carded_ai
+	var/flush
 
-/obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
+/obj/item/device/aicard/attack(mob/living/silicon/decoy/M, mob/user)
 	if (!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else

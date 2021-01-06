@@ -65,7 +65,7 @@
 
 		//Organs and blood
 		handle_organs()
-		porcess_internal_ograns()
+		process_internal_ograns()
 		handle_blood()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
@@ -74,6 +74,20 @@
 		handle_pain()
 
 		handle_medical_side_effects()
+
+		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
+			for(var/obj/item/organ/external/E in organs)
+				E.update_limb_efficiency()
+			total_blood_req = 0
+			total_oxygen_req = 0
+			total_nutriment_req = 0
+			for(var/obj/item/organ/internal/I in internal_organs)
+				if(BP_IS_ROBOTIC(I))
+					continue
+				total_blood_req += I.blood_req
+				total_oxygen_req += I.oxygen_req
+				total_nutriment_req += (I.nutriment_req / 1000)
+			total_oxygen_req = min(total_oxygen_req, 100)
 
 		if(!client)
 			species.handle_npc(src)
@@ -145,15 +159,15 @@
 	//Vision
 	var/obj/item/organ/vision
 	if(species.vision_organ)
-		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes. 
+		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes.
 
 	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
-		eye_blind =  0
-		blinded =    0
+		eye_blind = 0
+		blinded = FALSE
 		eye_blurry = 0
 	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
-		eye_blind =  1
-		blinded =    1
+		eye_blind = 1
+		blinded = TRUE
 		eye_blurry = 1
 	else
 		//blindness
@@ -251,7 +265,7 @@
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
+			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
 					to_chat(src, SPAN_WARNING("Your hair falls out."))
 					h_style = "Bald"
@@ -348,7 +362,7 @@
 /mob/living/carbon/human/proc/handle_breath_lungs(datum/gas_mixture/breath)
 	if(!breath)
 		return FALSE
-	//vars - feel free to modulate if you want more effects that are not gained with efficiency 
+	//vars - feel free to modulate if you want more effects that are not gained with efficiency
 	var/breath_type = species.breath_type ? species.breath_type : "oxygen"
 	var/poison_type = species.poison_type ? species.poison_type : "plasma"
 	var/exhale_type = species.exhale_type ? species.exhale_type : 0
@@ -769,10 +783,6 @@
 		else //heal in the dark
 			heal_overall_damage(1,1)
 
-	// nutrition decrease
-	if (nutrition > 0 && stat != 2)
-		nutrition = max (0, nutrition - species.hunger_factor)
-
 	// TODO: stomach and bloodstream organ.
 	handle_trace_chems()
 
@@ -790,14 +800,14 @@
 	if(species.show_ssd && !client && !teleop)
 		Sleeping(2)
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
-		blinded = 1
+		blinded = TRUE
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
 		if(species.has_process[BP_BRAIN] && !has_brain()) //No brain = death
 			death()
-			blinded = 1
+			blinded = TRUE
 			silent = 0
 			return 1
 		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
@@ -810,7 +820,7 @@
 				stats.removePerk(PERK_UNFINISHED_DELIVERY)
 			else
 				death()
-				blinded = 1
+				blinded = TRUE
 				silent = 0
 				return 1
 
@@ -828,7 +838,7 @@
 			setHalLoss(species.total_health-1)
 
 		if(paralysis || sleeping)
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 			adjustHalLoss(-3)
 
@@ -957,24 +967,6 @@
 		var/turf/T = loc
 		if(T.get_lumcount() == 0)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-
-/mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
-				stomach_contents.Remove(M)
-				continue
-			if(iscarbon(M)|| isanimal(M))
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(SSair.times_fired%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjustNutrition(10)
-
 
 /mob/living/carbon/human/handle_shock()
 	..()
@@ -1152,6 +1144,14 @@
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
+
+	if (BITTEST(hud_updateflag, EXCELSIOR_HUD))
+		var/image/holder = hud_list[EXCELSIOR_HUD]
+		holder.icon_state = "hudblank"
+		if(is_excelsior(src))
+			holder.icon_state = "hudexcelsior"
+		hud_list[EXCELSIOR_HUD] = holder
+
 	hud_updateflag = 0
 
 /mob/living/carbon/human/handle_silent()

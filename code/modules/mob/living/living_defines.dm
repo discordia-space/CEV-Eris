@@ -8,8 +8,8 @@
 
 	var/hud_updateflag = 0
 
-	var/life_cycles_before_sleep = 120
-	var/life_cycles_before_scan = 100
+	var/life_cycles_before_sleep = 30
+	var/life_cycles_before_scan = 20
 
 	var/stasis = FALSE
 	var/AI_inactive = FALSE
@@ -45,7 +45,6 @@
 	var/list/datum/action/actions = list()
 	var/step_count = 0
 
-	var/tod // Time of death
 	var/update_slimes = 1
 	var/silent 		// Can't talk. Value goes down every life proc.
 	var/on_fire = 0 //The "Are we on fire?" var
@@ -69,8 +68,7 @@
 
 	//Used in living/recoil.dm
 	var/recoil = 0 //What our current recoil level is
-	var/last_recoil_update = 0 //When our last recoil update was
-	var/recoil_timer //Holds the timer ID
+	var/recoil_reduction_timer
 	var/falls_mod = 1
 	var/mob_bomb_defense = 0	// protection from explosives
 	var/mod_climb_delay = 1 // delay for climb

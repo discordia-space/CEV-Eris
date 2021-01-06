@@ -296,8 +296,8 @@
 /obj/effect/suspension_field
 	name = "energy field"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	anchored = TRUE
 	var/field_type = "chlorine"
 
 /obj/effect/suspension_field/Destroy()

@@ -28,18 +28,7 @@
 	to_chat(usr, SPAN_NOTICE("It grants access to the following areas:"))
 	for (var/A in temp_access)
 		to_chat(usr, SPAN_NOTICE("[get_access_desc(A)]."))
-
-/obj/item/weapon/card/id/guest/read()
-	if (world.time > expiration_time)
-		to_chat(usr, SPAN_NOTICE("This pass expired at [worldtime2stationtime(expiration_time)]."))
-	else
-		to_chat(usr, SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)]."))
-
-	to_chat(usr, SPAN_NOTICE("It grants access to following areas:"))
-	for (var/A in temp_access)
-		to_chat(usr, SPAN_NOTICE("[get_access_desc(A)]."))
 	to_chat(usr, SPAN_NOTICE("Issuing reason: [reason]."))
-	return
 
 /////////////////////////////////////////////
 //Guest pass terminal////////////////////////

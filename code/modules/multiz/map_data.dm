@@ -99,7 +99,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
 						/datum/job/technomancer,
 						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
-						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/actor,
+						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/artist,
 						/datum/job/chaplain, /datum/job/acolyte, /datum/job/janitor, /datum/job/hydro,
 						/datum/job/scientist, /datum/job/roboticist,
 						/datum/job/ai, /datum/job/cyborg,
@@ -243,7 +243,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
-		world.maxz++
+		world.incrementMaxZ()
 		empty_levels = list(world.maxz)
 
 		add_z_level(world.maxz, world.maxz, 1)

@@ -1,55 +1,26 @@
 /mob/living/proc/handle_recoil(var/obj/item/weapon/gun/G)
+	deltimer(recoil_reduction_timer)
 	if(G.one_hand_penalty)//If the gun has a two handed penalty and is not weilded.
 		if(!G.wielded)
 			recoil += G.one_hand_penalty //Then the one hand penalty wil lbe added to the recoil.
 	if(G.recoil_buildup)
 		recoil += G.recoil_buildup
-		update_recoil(G)
+		update_recoil()
 
-/mob/living/proc/calc_reduction()
-	return max(BASE_ACCURACY_REGEN + stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
-
-//Called to get current recoil value
 /mob/living/proc/calc_recoil()
-	if(!recoil || !last_recoil_update)
-		return 0
-	var/time = world.time - last_recoil_update
-	if(time)
-		//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
-		var/timed_reduction = min(time**2, 400)
-		recoil -= timed_reduction * calc_reduction()
-		if(recoil <= 0)
-			recoil = 0
-			last_recoil_update = 0
-		else
-			last_recoil_update = world.time
-	return recoil
+	recoil -= 300
+	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 1 SECONDS, TIMER_STOPPABLE)
 
-/mob/living/proc/calc_timer()
-	if(recoil <= 0)
-		return 0
-	return round(1+((recoil/10)/calc_reduction()))
-
-//Called after setting recoil
-/mob/living/proc/update_recoil(var/obj/item/weapon/gun/G)
 	if(recoil <= 0)
 		recoil = 0
-		last_recoil_update = 0
-	else
-		if(last_recoil_update)
-			calc_recoil()
-		else
-			last_recoil_update = world.time
-	deltimer(recoil_timer)
-	recoil_timer = null
-	update_recoil_cursor(G)
-
-/mob/living/proc/update_recoil_cursor()
+		deltimer(recoil_reduction_timer)
+	
 	update_cursor()
-	var/timer = calc_timer()
-	if(timer > 0)
-		deltimer(recoil_timer)
-		recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), timer, TIMER_STOPPABLE)
+
+//Called after setting recoil
+/mob/living/proc/update_recoil()
+	update_cursor()
+	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 1 SECONDS, TIMER_STOPPABLE)
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
@@ -57,7 +28,7 @@
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = min(round(calc_recoil()), MAX_ACCURACY_OFFSET)
+		var/offset = min(round(recoil), MAX_ACCURACY_OFFSET)
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base

@@ -1,7 +1,7 @@
-/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    spawn_value=10    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket    blacklisted=0    spawn_value=5    price_tag=10   100    
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    spawn_value=20    price_tag=30   100    
+/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    spawn_value=8.84875   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    spawn_value=9.09091   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket    blacklisted=0    spawn_value=4.7619   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    spawn_value=15.439   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

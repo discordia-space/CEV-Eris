@@ -24,7 +24,7 @@
 
 	//spawn_values
 	bad_type = /obj/item/toy
-	spawn_tags = SPAWN_TAG_TOY
+	spawn_tags = SPAWN_TAG_ITEM_TOY
 
 /*
  * Balloons
@@ -323,9 +323,9 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
+	flags // TODO??
 	preloaded_reagents = list("water" = 10)
 	var/empty = 0
-	flags
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
 	return
@@ -402,6 +402,7 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
+	bad_type = /obj/item/toy/prize
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas

@@ -117,10 +117,13 @@
 	if(iscarbon(M))
 		//TODO: replace with standard_feed_mob() call.
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/human/H = M
+		var/fullness_modifier = 1
+		if(istype(H))
+			fullness_modifier = 100 / H.get_organ_efficiency(OP_STOMACH)
+		var/fullness = (C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)) * fullness_modifier
 		if(C == user)								//If you're eating it yourself
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = M
+			if(istype(H))
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -166,7 +169,6 @@
 				var/amount_eaten = min(reagents.total_volume, bitesize)
 				var/list/sanity_vars = get_sanity_gain(M)
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
-				var/mob/living/carbon/human/H = M
 				if(istype(H))
 					H.sanity.onEat(src, sanity_vars[1], sanity_vars[2])
 				bitecount++
@@ -2986,37 +2988,42 @@
 	var/open = 0 // Is the box open?
 	var/ismessy = 0 // Fancy mess on the lid
 	var/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pizza // Content pizza
+	var/type_pizza
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
 
-/obj/item/pizzabox/update_icon()
+/obj/item/pizzabox/Initialize(mapload)
+	. = ..()
+	if(type_pizza)
+		pizza = new type_pizza(src)
 
+/obj/item/pizzabox/update_icon()
 	overlays = list()
 
 	// Set appropriate description
-	if( open && pizza )
+	if(open && pizza )
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > 0 )
+	else if(boxes.len > 0 )
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
 		var/toptag = topbox.boxtag
-		if( toptag != "" )
+		if(toptag != "" )
 			desc = "[desc] The box on top has a tag, it reads: '[toptag]'."
 	else
 		desc = "A box suited for pizzas."
 
-		if( boxtag != "" )
+		if(boxtag != "" )
 			desc = "[desc] The box has a tag, it reads: '[boxtag]'."
 
 	// Icon states and overlays
-	if( open )
-		if( ismessy )
+	if(open )
+		if(ismessy )
 			icon_state = "pizzabox_messy"
 		else
 			icon_state = "pizzabox_open"
 
-		if( pizza )
+		if(pizza )
 			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
 			overlays += pizzaimg
@@ -3025,15 +3032,15 @@
 	else
 		// Stupid code because byondcode sucks
 		var/doimgtag = 0
-		if( boxes.len > 0 )
+		if(boxes.len > 0 )
 			var/obj/item/pizzabox/topbox = boxes[boxes.len]
-			if( topbox.boxtag != "" )
+			if(topbox.boxtag != "" )
 				doimgtag = 1
 		else
-			if( boxtag != "" )
+			if(boxtag != "" )
 				doimgtag = 1
 
-		if( doimgtag )
+		if(doimgtag )
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = boxes.len * 3
 			overlays += tagimg
@@ -3042,7 +3049,7 @@
 
 /obj/item/pizzabox/attack_hand( mob/user as mob )
 
-	if( open && pizza )
+	if(open && pizza )
 		user.put_in_hands( pizza )
 
 		to_chat(user, SPAN_WARNING("You take \the [src.pizza] out of \the [src]."))
@@ -3050,8 +3057,8 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
-		if( user.get_inactive_hand() != src )
+	if(boxes.len > 0 )
+		if(user.get_inactive_hand() != src )
 			..()
 			return
 
@@ -3067,28 +3074,28 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > 0 )
+	if(boxes.len > 0 )
 		return
 
 	open = !open
 
-	if( open && pizza )
+	if(open && pizza )
 		ismessy = 1
 
 	update_icon()
 
 /obj/item/pizzabox/attackby( obj/item/I as obj, mob/user as mob )
-	if( istype(I, /obj/item/pizzabox/) )
+	if(istype(I, /obj/item/pizzabox/) )
 		var/obj/item/pizzabox/box = I
 
-		if( !box.open && !src.open )
+		if(!box.open && !src.open )
 			// Make a list of all boxes to be added
 			var/list/boxestoadd = list()
 			boxestoadd += box
 			for(var/obj/item/pizzabox/i in box.boxes)
 				boxestoadd += i
 
-			if( (boxes.len+1) + boxestoadd.len <= 5 )
+			if((boxes.len+1) + boxestoadd.len <= 5 )
 				user.drop_from_inventory(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
@@ -3104,9 +3111,9 @@
 
 		return
 
-	if( istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
+	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza) ) // Long ass fucking object name
 
-		if( src.open )
+		if(src.open )
 			user.drop_from_inventory(I, src)
 			src.pizza = I
 
@@ -3117,15 +3124,15 @@
 			to_chat(user, SPAN_WARNING("You try to push \the [I] through the lid but it doesn't work!"))
 		return
 
-	if( istype(I, /obj/item/weapon/pen/) )
+	if(istype(I, /obj/item/weapon/pen/) )
 
-		if( src.open )
+		if(src.open )
 			return
 
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
-		if( boxes.len > 0 )
+		if(boxes.len > 0 )
 			boxtotagto = boxes[boxes.len]
 
 		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", 1, 30)
@@ -3134,20 +3141,20 @@
 		return
 	..()
 
-/obj/item/pizzabox/margherita/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
+/obj/item/pizzabox/margherita
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 	boxtag = "Margherita Deluxe"
 
-/obj/item/pizzabox/vegetable/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza(src)
+/obj/item/pizzabox/vegetable
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	boxtag = "Gourmet Vegatable"
 
-/obj/item/pizzabox/mushroom/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza(src)
+/obj/item/pizzabox/mushroom
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 	boxtag = "Mushroom Special"
 
-/obj/item/pizzabox/meat/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+/obj/item/pizzabox/meat
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 	boxtag = "Meatlover's Supreme"
 
 

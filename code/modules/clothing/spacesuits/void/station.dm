@@ -5,6 +5,7 @@
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
 	icon_state = "technohelmet_void"
 	item_state = "technohelmet_void"
+	light_overlay = "technohelmet_light"
 	item_state_slots = list(
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",
@@ -18,6 +19,30 @@
 		rad = 100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/head/space/void/engineering/verb/toggle_eyeglass()
+	set name = "Adjust Eyeglass node"
+	set category = "Object"
+	set src in usr
+
+	if(!isliving(loc))
+		return
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["generic"] = "technohelmet_void"
+	options["visor"] = "technohelmet_void_visor"
+	options["goggles"] = "technohelmet_void_goggles"
+
+	var/choice = input(M,"What kind of eyeglass do you want to look through?","Adjust visor") as null|anything in options
+
+	if(src && choice && !M.incapacitated() && Adjacent(M))
+		icon_state = options[choice]
+		to_chat(M, "You change your helmet's eyeglass mode to [choice].")
+		update_icon()
+		update_wear_icon()
+		usr.update_action_buttons()
+		return 1
 
 /obj/item/clothing/suit/space/void/engineering
 	name = "Technomancer voidsuit"
@@ -40,10 +65,13 @@
 		/obj/item/weapon/rcd
 	)
 	helmet = /obj/item/clothing/head/space/void/engineering
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	accompanying_object = null
+	spawn_blacklisted = TRUE
 
 //Mining rig
 /obj/item/clothing/head/space/void/mining
@@ -80,6 +108,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
+	spawn_blacklisted = TRUE
 
 //Medical
 /obj/item/clothing/head/space/void/medical
@@ -121,10 +150,11 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
-	rarity_value = 18
+	rarity_value = 8.7
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
+	accompanying_object = null
 	spawn_blacklisted = TRUE
 
 	//Security
@@ -164,11 +194,12 @@
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
-	rarity_value = 40
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	accompanying_object = null
 	spawn_blacklisted = TRUE
 
 //Atmospherics Rig (BS12)
@@ -268,5 +299,3 @@
 	helmet = /obj/item/clothing/head/space/void/science
 	rarity_value = 50
 	spawn_blacklisted = TRUE
-
-

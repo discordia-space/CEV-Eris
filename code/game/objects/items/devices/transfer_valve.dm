@@ -3,13 +3,13 @@
 	desc = "Regulates the transfer of air between two tanks"
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "valve_1"
+	flags = PROXMOVE
 	var/obj/item/weapon/tank/tank_one
 	var/obj/item/weapon/tank/tank_two
 	var/obj/item/device/attached_device
-	var/mob/attacher = null
+	var/mob/attacher
 	var/valve_open = 0
 	var/toggle = 1
-	flags = PROXMOVE
 
 /obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
 

@@ -43,7 +43,7 @@
 
 	if ((CLUMSY in user.mutations) && prob(50))
 		. = list()
-		
+
 		user.visible_message(SPAN_NOTICE("\The [user] runs \the [scanner] over the floor."))
 		. += span("highlight", "<b>Scan results for the floor:</b>")
 		. += span("highlight", "Overall Status: Healthy")
@@ -106,8 +106,8 @@
 	dat += span("highlight", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
 	dat += span("highlight", "    Damage Specifics: <font color='#0080ff'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
 	dat += span("highlight", "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)")
-	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		dat += span("highlight", "Time of Death: [M.tod]")
+	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
+		dat += span("highlight", "Time of Death: [worldtime2stationtime(M.timeofdeath)]")
 	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1, 1)
@@ -200,9 +200,9 @@
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
-			if((blood_percent <= BLOOD_VOLUME_SAFE) && (blood_percent > BLOOD_VOLUME_BAD))
+			if((blood_percent <= H.total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER) && (blood_percent > H.total_blood_req + BLOOD_VOLUME_BAD_MODIFIER))
 				dat += SPAN_DANGER("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='highlight'>Type: [blood_type]")
-			else if(blood_percent <= BLOOD_VOLUME_BAD)
+			else if(blood_percent <= H.total_blood_req + BLOOD_VOLUME_BAD_MODIFIER)
 				dat += SPAN_DANGER("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='highlight'>Type: [blood_type]")
 			else
 				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")

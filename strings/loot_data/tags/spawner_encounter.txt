@@ -1,8 +1,8 @@
-/obj/spawner/encouter/mine    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/miningbot    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/strangebeacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/cryopod    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/satellite    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/coffin    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/omnius    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/spawner/encouter/mine    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/miningbot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/strangebeacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/cryopod    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/satellite    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/coffin    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/omnius    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -29,7 +29,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/carbon/human/verb/suit_storage_equip()
 	set name = "suit-storage-equip"
 	set hidden = 1
-	
+
 	var/obj/item/I = get_active_hand()
 	if(I)
 		if(src.s_store)
@@ -45,7 +45,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/carbon/human/verb/bag_equip()
 	set name = "bag-equip"
 	set hidden = 1
-	
+
 	var/obj/item/I = get_active_hand()
 	var/potential = src.get_inactive_hand()
 	if(!I && !src.back)
@@ -414,17 +414,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_max_w_class()
 	var/get_max_w_class = 0
-	for(var/obj/item/clothing/C in get_equipped_items(TRUE))
-		if(C)
-			if(C.w_class > ITEM_SIZE_TINY)
-				get_max_w_class = C.w_class
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C.w_class > get_max_w_class)
+			get_max_w_class = C.w_class
 	return get_max_w_class
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
 	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C)
-			style_factor += C.get_style()
+		style_factor += C.get_style()
 	if(restrained())
 		style_factor -= 1
 	if(feet_blood_DNA)
@@ -433,15 +431,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor -= 1
 	if(style_factor > MAX_HUMAN_STYLE)
 		style_factor = MAX_HUMAN_STYLE
-	else if(style_factor < MIN_HUMAN_SYLE)
-		style_factor = MIN_HUMAN_SYLE
+	else if(style_factor < MIN_HUMAN_STYLE)
+		style_factor = MIN_HUMAN_STYLE
 	return style_factor
 
 /mob/living/carbon/human/proc/get_style_factor()
 	var/style_factor = 1
 	var/actual_style = get_total_style()
 	if(actual_style >= 0)
-		style_factor += 0.2 * actual_style/MAX_HUMAN_STYLE
-	else 
-		style_factor -= 0.2 * actual_style/MAX_HUMAN_STYLE
+		style_factor += STYLE_MODIFIER * actual_style/MAX_HUMAN_STYLE
+	else
+		style_factor -= STYLE_MODIFIER * actual_style/MIN_HUMAN_STYLE
 	return style_factor

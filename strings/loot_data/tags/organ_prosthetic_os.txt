@@ -1,4 +1,4 @@
-/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
+/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=7.71948   spawn_price=900   prob_accompanying_obj=100    accompanying_objs=nothing

@@ -35,15 +35,27 @@
 #define ARMOR_BIO			"bio"
 #define ARMOR_RAD			"rad"
 
+//Blood levels. These are percentages based on the species blood_volume
+#define BLOOD_VOLUME_SAFE_MODIFIER    45
+#define BLOOD_VOLUME_OKAY_MODIFIER    35
+#define BLOOD_VOLUME_BAD_MODIFIER     20
 
 // Organ processes
-#define OP_EYES     "eyes"
-#define OP_HEART    "heart"
-#define OP_LUNGS    "lungs"
-#define OP_LIVER    "liver"
-#define OP_KIDNEYS  "kidneys"
-#define OP_APPENDIX "appendix"
-#define OP_BONE "bone"
+#define OP_EYES          "eyes"
+#define OP_HEART         "heart"
+#define OP_LUNGS         "lungs"
+#define OP_LIVER         "liver"
+#define OP_KIDNEYS       "kidneys"
+#define OP_APPENDIX      "appendix"
+#define OP_STOMACH       "stomach"
+#define OP_BONE          "bone"
+#define OP_MUSCLE        "muscle"
+#define OP_NERVE         "nerve"
+#define OP_BLOOD_VESSEL  "blood vessel"
+
+// Extra organs
+#define OP_KIDNEY_LEFT    "left kidney"
+#define OP_KIDNEY_RIGHT   "right kidney"
 
 // Carrion organ processes
 #define OP_MAW       "carrion maw"

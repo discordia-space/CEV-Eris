@@ -1,0 +1,9 @@
+/obj/structure/scrap_spawner/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth/large    blacklisted=0    spawn_value=8.67303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/large    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/structure    blacklisted=0    spawn_value=30.03   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

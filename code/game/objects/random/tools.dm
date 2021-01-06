@@ -2,15 +2,15 @@
 	name = "random tool"
 	icon_state = "tool-grey"
 	spawn_nothing_percentage = 15
-	tags_to_spawn = list(SPAWN_TOOL, SPAWN_DIVICE, SPAWN_GLOVES_INSULATED, SPAWN_JETPACK, SPAWN_ITEM_UTILITY)
-	restricted_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE, SPAWN_JUNK, SPAWN_JUNK_TOOL)
+	tags_to_spawn = list(SPAWN_TOOL, SPAWN_DIVICE, SPAWN_JETPACK, SPAWN_ITEM_UTILITY)
+	restricted_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE)
 	include_paths = list(/obj/spawner/pack/rare)
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/spawner/tool/post_spawn(list/spawns)
 	if (isturf(loc))
-		for (var/obj/O in spawns)
-			if (!istype(O, /obj/spawner) && prob(20))
+		for(var/obj/O in spawns)
+			if(!istype(O, /obj/spawner) && prob(20))
 				O.make_old()
 
 /obj/spawner/tool/low_chance
@@ -21,7 +21,7 @@
 /obj/spawner/tool/advanced
 	name = "random advanced tool"
 	icon_state = "tool-orange"
-	tags_to_spawn = list(SPAWN_ADVANCED_TOOL)
+	tags_to_spawn = list(SPAWN_TOOL_ADVANCED)
 
 /obj/spawner/tool/advanced/low_chance
 	name = "low chance advanced tool"

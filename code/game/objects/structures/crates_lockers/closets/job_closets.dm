@@ -79,6 +79,7 @@
 	new /obj/item/weapon/mop(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
+	new /obj/item/weapon/tool/knife/dagger/nt(src)
 
 /obj/structure/closet/custodial
 	name = "custodial closet"
@@ -96,7 +97,8 @@
 	new /obj/item/weapon/storage/belt/utility/neotheology(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/suit/space/void/custodian(src)
+	new /obj/item/clothing/suit/armor/custodian(src)
+	new /obj/item/clothing/head/armor/custodian(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/clothing/head/beret/purple(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
@@ -115,6 +117,7 @@
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 	new /obj/item/weapon/gun/energy/nt_svalinn(src)
 	new /obj/item/weapon/cell/small(src)
+	new /obj/item/weapon/tool/knife/dagger/nt(src)
 
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
@@ -136,6 +139,10 @@
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/under/rank/church/sport(src)
 	new /obj/item/clothing/suit/storage/neotheosports(src)
-	new /obj/item/clothing/suit/space/void/acolyte(src)
+	new /obj/item/clothing/head/armor/acolyte(src)
+	new /obj/item/clothing/suit/armor/acolyte(src)
 	new /obj/item/weapon/gun/energy/nt_svalinn(src)
 	new /obj/item/weapon/cell/small(src)
+	new /obj/item/weapon/storage/sheath(src)
+	new /obj/item/weapon/tool/sword/nt(src)
+	new /obj/item/weapon/tool/knife/dagger/nt(src)

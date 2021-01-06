@@ -29,6 +29,12 @@
 	sort_string = "MABAA"
 	category = CAT_MISC
 
+/datum/design/research/circuit/jukebox
+	name = "jukebox"
+	build_path = /obj/item/weapon/electronics/circuitboard/jukebox
+	sort_string = "MABBA"
+	category = CAT_MISC
+
 /datum/design/research/circuit/secdata
 	name = "security records console"
 	build_path = /obj/item/weapon/electronics/circuitboard/secure_data

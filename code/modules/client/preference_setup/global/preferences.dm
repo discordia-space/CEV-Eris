@@ -211,6 +211,16 @@ var/list/_client_preferences_by_type
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
 
+/datum/client_preference/play_jukebox
+	description ="Play jukebox music"
+	key = "SOUND_JUKEBOX"
+
+/datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
+	if(new_value == GLOB.PREF_NO)
+		preference_mob.stop_all_music()
+	else
+		preference_mob.update_music()
+
 /********************
 * General Staff Preferences *
 ********************/

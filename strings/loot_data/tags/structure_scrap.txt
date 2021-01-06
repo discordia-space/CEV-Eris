@@ -1,25 +1,25 @@
-/obj/structure/scrap_spawner/large    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/medical/large/beacon    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/medical/large    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/medical    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle/large/beacon    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    spawn_value=6.66667    price_tag=0   100    
-/obj/structure/scrap_spawner/vehicle    blacklisted=0    spawn_value=6.0024    price_tag=0   100    
-/obj/structure/scrap_spawner/food/large/beacon    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/food    blacklisted=0    spawn_value=17.331    price_tag=0   100    
-/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1    price_tag=0   100    
-/obj/structure/scrap_spawner/science/large/beacon    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853    price_tag=0   100    
-/obj/structure/scrap_spawner/science    blacklisted=0    spawn_value=4    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth/large/beacon    blacklisted=0    spawn_value=8.67303    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth/large    blacklisted=0    spawn_value=8.67303    price_tag=0   100    
-/obj/structure/scrap_spawner/cloth    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/large/beacon    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/large    blacklisted=0    spawn_value=33.3333    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/structure/beacon    blacklisted=0    spawn_value=30.03    price_tag=0   100    
-/obj/structure/scrap_spawner/poor/structure    blacklisted=0    spawn_value=30.03    price_tag=0   100    
-/obj/structure/scrap_spawner/poor    blacklisted=0    spawn_value=40    price_tag=0   100    
-/obj/structure/scrap_spawner    blacklisted=0    spawn_value=13.3333    price_tag=0   100    
+/obj/structure/scrap_spawner/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical/large/beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/medical    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle/large/beacon    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/vehicle    blacklisted=0    spawn_value=6.0024   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food/large/beacon    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food/large    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/food    blacklisted=0    spawn_value=17.331   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large/beacon    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns/large    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/guns    blacklisted=0    spawn_value=1   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science/large/beacon    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science/large    blacklisted=0    spawn_value=4.66853   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/science    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth/large/beacon    blacklisted=0    spawn_value=8.67303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth/large    blacklisted=0    spawn_value=8.67303   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/cloth    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/large/beacon    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/large    blacklisted=0    spawn_value=33.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/structure/beacon    blacklisted=0    spawn_value=30.03   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor/structure    blacklisted=0    spawn_value=30.03   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner/poor    blacklisted=0    spawn_value=40   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/structure/scrap_spawner    blacklisted=0    spawn_value=13.3333   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

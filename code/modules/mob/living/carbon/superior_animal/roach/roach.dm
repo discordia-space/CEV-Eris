@@ -46,6 +46,6 @@
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
-	if (.)
+	if(.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
 			F.distress_call()

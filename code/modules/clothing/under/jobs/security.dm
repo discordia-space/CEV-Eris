@@ -115,7 +115,6 @@
 	desc = "It's a jumpskirt worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
 	icon_state = "hos_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	style = 1
 
 /obj/item/clothing/head/HoS
 	name = "Ironhammer Commander Hat"

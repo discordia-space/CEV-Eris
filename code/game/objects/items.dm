@@ -5,11 +5,12 @@
 
 	//spawn_values
 	price_tag = 0
-	spawn_tags = SPAWN_TAG_ITEM
+	//spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
-	spawn_frequency = 10 //MAX
+	spawn_frequency = 10
 	bad_type = /obj/item
 
+	pass_flags = PASSTABLE
 	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
@@ -21,7 +22,6 @@
 	var/hitsound
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
-	pass_flags = PASSTABLE
 
 	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
@@ -43,6 +43,7 @@
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
 	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
+	var/list/aspects = list()
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
@@ -112,15 +113,12 @@
 	switch(severity)
 		if(1)
 			qdel(src)
-			return
 		if(2)
 			if(prob(50))
 				qdel(src)
-				return
 		if(3)
 			if(prob(5))
 				qdel(src)
-				return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -160,6 +158,11 @@
 
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.stats.getPerk(PERK_MARKET_PROF))
+			message += SPAN_NOTICE("\nThis item cost: [price_tag == null ? 0 : price_tag][CREDITS]")
 
 	return ..(user, distance, "", message)
 

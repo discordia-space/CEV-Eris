@@ -519,7 +519,7 @@ proc/is_blind(A)
 		if(isgun(belt) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.name != SPECIES_HUMAN)
 			threatcount += 2
 
 	if(check_records || check_arrest)
@@ -642,7 +642,10 @@ proc/is_blind(A)
 	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
 
 /mob/proc/weight_coeff()
-	return get_max_w_class()/(ITEM_SIZE_TITANIC)
+	. = 0
+	var/max_w_class = get_max_w_class()
+	if(max_w_class > ITEM_SIZE_TINY)
+		return max_w_class/(ITEM_SIZE_TITANIC)
 
 /mob/proc/get_accumulated_vision_handlers()
 	var/result[2]

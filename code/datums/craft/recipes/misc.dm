@@ -320,4 +320,3 @@
 		list(QUALITY_SCREW_DRIVING, 10, 20)
 	)
 	related_stats = list(STAT_MEC)
-`

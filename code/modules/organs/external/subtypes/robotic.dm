@@ -3,11 +3,11 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	dislocated = -1
-	cannot_break = 1
 	nature = MODIFICATION_SILICON
 	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 20, bio = 100, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2) // Multiplied by w_class
 	spawn_tags = SPAWN_TAG_PROSTHETIC
+	bad_type = /obj/item/organ/external/robotic
 	var/min_malfunction_damage = 20 // Any more damage than that and you start getting nasty random malfunctions
 
 /obj/item/organ/external/robotic/get_cache_key()
@@ -47,22 +47,24 @@
 	return FALSE
 
 /obj/item/organ/external/robotic/proc/can_activate()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/proc/activate()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/proc/deactivate(emergency = TRUE)
-	return 1
+	return TRUE
 
 /obj/item/organ/external/robotic/limb
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = ITEM_SIZE_NORMAL
+	bad_type = /obj/item/organ/external/robotic/limb
 
 /obj/item/organ/external/robotic/tiny
 	min_broken_damage = 15
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/organ/external/robotic/tiny
 
 
 /obj/item/organ/external/robotic/l_arm

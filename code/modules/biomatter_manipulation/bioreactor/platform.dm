@@ -13,9 +13,6 @@
 	active_power_usage = 400
 	var/make_glasswalls_after_creation = FALSE
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_platform
-
-
 /obj/machinery/multistructure/bioreactor_part/platform/Initialize()
 	. = ..()
 	update_icon()
@@ -37,7 +34,7 @@
 					victim.forceMove(MS_bioreactor.misc_output)
 					continue
 				//if our target has hazard protection, apply damage based on the protection percentage.
-				var/hazard_protection = victim.getarmor(null, "bio")
+				var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
 				var/damage = CLONE_DAMAGE_PER_TICK - (CLONE_DAMAGE_PER_TICK * (hazard_protection/100))
 				victim.apply_damage(damage, CLONE, used_weapon = "Biological")
 				

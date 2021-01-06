@@ -138,7 +138,7 @@
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
 		//create a transaction log entry
-		var/datum/transaction/T = new(amount*-1, target_name, purpose, terminal_id)
+		var/datum/transaction/T = new(-amount, target_name, purpose, terminal_id)
 		return T.apply_to(D)
 
 	return FALSE

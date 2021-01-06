@@ -770,10 +770,10 @@ var/list/turret_icons
 	name = "turret frame"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_frame"
-	density=1
+	density = TRUE
 	var/build_step = 0			//the current step in the building process
 	var/finish_name="turret"	//the name applied to the product turret
-	var/obj/item/weapon/gun/energy/installation = null		//the gun type installed
+	var/obj/item/weapon/gun/energy/installation		//the gun type installed
 	var/gun_charge = 0			//the gun charge of the gun type installed
 
 

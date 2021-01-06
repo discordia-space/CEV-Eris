@@ -1,0 +1,1 @@
+/mob/living/carbon/superior_animal/roach/nanite    blacklisted=0    spawn_value=4.05251   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing

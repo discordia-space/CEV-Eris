@@ -11,6 +11,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 0.8 //slightly weaker due to sawn-off barrels
-	recoil_buildup = 1.2 //gonna have solid grip on those, point-blank shots adviced
+	recoil_buildup = 15 //gonna have solid grip on those, point-blank shots adviced
 	one_hand_penalty = 10 //compact shotgun level
 	rarity_value = 24

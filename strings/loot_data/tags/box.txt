@@ -1,79 +1,77 @@
-/obj/item/weapon/storage/box/disks    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/survival/extended    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/survival    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/gloves    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/masks    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syringes    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syringegun    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/weapon/storage/box/bodybags    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/injectors    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/sniperammo    blacklisted=0    spawn_value=1.25    price_tag=0   100    
-/obj/item/weapon/storage/box/flashbangs    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/teargas    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/storage/box/emps    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/frag    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/explosive    blacklisted=0    spawn_value=1.42857    price_tag=0   100    
-/obj/item/weapon/storage/box/smokes    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/anti_photons    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/incendiary    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/trackimp    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/chemimp    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
-/obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/drinkingglasses    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/cdeathalarm_kit    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/storage/box/condimentbottles    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/cups    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/donkpockets    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/sinpockets    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/monkeycubes    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/ids    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/handcuffs    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/mousetraps    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/pillbottles    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/snappops    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=20    price_tag=10   100    
-/obj/item/weapon/storage/box/autoinjectors    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/lights/bulbs    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/lights/tubes    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/lights/mixed    blacklisted=0    spawn_value=15.015    price_tag=0   100    
-/obj/item/weapon/storage/box/lights    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/data_disk/basic    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/data_disk    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
-/obj/item/weapon/storage/box/headset/church    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/headset    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/donut/empty    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/donut    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndicate    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/imp_freedom    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/imp_compress    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/imp_explosive    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/imp_spying    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/imp_uplink    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/space    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/chameleon    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/clerical    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/spy    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/dartgun    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/pistol    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/c20r    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/revolver    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/sts35    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/pug    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/toxin    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/cigarette    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/ewar_voice    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/spy_sensor    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit/randomstim    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/syndie_kit    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/holobadge    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/swabs    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/evidence    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/fingerprints    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/PDAs    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/gun_upgrades    blacklisted=1    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/bloodpacks    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/storage/box/solution_trays    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/samplebags    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/briefcase/crimekit    blacklisted=0    spawn_value=5    price_tag=50   100    
+/obj/item/weapon/storage/box/disks    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/survival/extended    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/survival    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/gloves    blacklisted=0    spawn_value=4.43576   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/masks    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syringes    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syringegun    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=13.9685   spawn_price=144.2   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/bodybags    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/injectors    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/flashbangs    blacklisted=0    spawn_value=1.59887   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/teargas    blacklisted=0    spawn_value=1.90559   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/emps    blacklisted=0    spawn_value=1.60262   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/frag    blacklisted=0    spawn_value=1.60511   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/explosive    blacklisted=0    spawn_value=1.38311   spawn_price=200   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/smokes    blacklisted=0    spawn_value=4.4647   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/anti_photons    blacklisted=0    spawn_value=1.60262   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/incendiary    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/trackimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/chemimp    blacklisted=1    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=4.47984   spawn_price=210   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/drinkingglasses    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/cdeathalarm_kit    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/condimentbottles    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/cups    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/donkpockets    blacklisted=0    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/sinpockets    blacklisted=0    spawn_value=4.59176   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/monkeycubes    blacklisted=0    spawn_value=4.50936   spawn_price=150   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/ids    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/handcuffs    blacklisted=0    spawn_value=7.8129   spawn_price=630   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/mousetraps    blacklisted=0    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/pillbottles    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/snappops    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=16.6667   spawn_price=10   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/autoinjectors    blacklisted=0    spawn_value=8.23308   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/bulbs    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/tubes    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights/mixed    blacklisted=0    spawn_value=15.015   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/lights    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/data_disk/basic    blacklisted=0    spawn_value=8.44231   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/data_disk    blacklisted=0    spawn_value=3.10144   spawn_price=175   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/headset/church    blacklisted=1    spawn_value=4.79729   spawn_price=7   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/headset    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/donut/empty    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/donut    blacklisted=0    spawn_value=4.59176   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndicate    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/imp_freedom    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/imp_compress    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/imp_explosive    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/imp_spying    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/imp_uplink    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/space    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/chameleon    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/clerical    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/spy    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/dartgun    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/pistol    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/c20r    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/revolver    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/sts35    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/pug    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/toxin    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/cigarette    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/ewar_voice    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/spy_sensor    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/syndie_kit/randomstim    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/holobadge    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/swabs    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/evidence    blacklisted=0    spawn_value=4.64165   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/fingerprints    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/PDAs    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/gun_upgrades    blacklisted=1    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/bloodpacks    blacklisted=0    spawn_value=7.9719   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/solution_trays    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/samplebags    blacklisted=0    spawn_value=4.64165   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/briefcase/crimekit    blacklisted=0    spawn_value=4.60851   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing

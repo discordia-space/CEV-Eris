@@ -24,6 +24,8 @@
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
 	glove_type = /obj/item/clothing/gloves/rig/light
 
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
 

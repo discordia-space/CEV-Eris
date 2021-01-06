@@ -1,216 +1,215 @@
-/obj/spawner/ammo/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/shotgun/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/shotgun    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/ihs/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/ihs    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/lowcost/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo/lowcost    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/ammo    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/booze/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/booze    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/boxes/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/boxes    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/electronics/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/electronics    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/tech/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/tech    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/wardrobe/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/wardrobe    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/maintloot/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/maintloot/beacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet/maintloot    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/closet    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/masks/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/masks    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/armor/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/armor    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/suit/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/suit    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/hazmatsuit/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/hazmatsuit    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/under/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/under    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/helmet/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/helmet    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/head/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/head    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/gloves/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/gloves    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/glasses/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/glasses    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/shoes/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/shoes    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/backpack/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/backpack    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/belt/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/belt    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/holster/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth/holster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/cloth    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/contraband/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/contraband    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c50    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c100    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c500    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c1000    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c5000    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits/c10000    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/credits    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/mine    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/miningbot    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/strangebeacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/cryopod    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/satellite    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/coffin    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter/omnius    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/encouter    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit/damaged/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit/damaged    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit_equipment/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/exosuit_equipment    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/flora/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/flora    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rations/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rations    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junkfood/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junkfood/rotten/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junkfood/rotten    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junkfood    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pizza/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pizza    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/soda/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/soda    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun_upgrade/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun_upgrade    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/cheap/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/cheap    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/normal/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/normal    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/energy_cheap/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/energy_cheap    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/shotgun/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun/shotgun    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/gun    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junk/nondense    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junk/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/junk    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/lathe_disk/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/lathe_disk/advanced/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/lathe_disk/advanced    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/lathe_disk    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/building/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/building    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/resources/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/resources/rare/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/resources/rare    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/resources    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/ore/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material/ore    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/material    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/medical/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/medical    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/medical_lowcost/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/medical_lowcost    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/firstaid/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/firstaid    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/knife/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/knife    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/oddities/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/oddities    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/cloth/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/cloth    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/tech_loot/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/tech_loot/onestar    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/tech_loot    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/gun_loot/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/gun_loot    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/machine/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/machine    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/junk_machine/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/junk_machine/beacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack/junk_machine    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pack    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pouch/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/pouch    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/powercell/small    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/powercell/medium    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/powercell/large    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/powercell    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/prothesis_one_star    blacklisted=0    spawn_value=1.25    price_tag=1   100    
-/obj/spawner/lowkeyrandom/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/lowkeyrandom    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig/damaged/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig/damaged    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig_module/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig_module/rare/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig_module/rare    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/rig_module    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/science/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/science    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/scrap/sparse    blacklisted=0    spawn_value=20    price_tag=50   100    
-/obj/spawner/scrap/dense    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/spawner/scrap/beacon/dense    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/spawner/scrap/beacon    blacklisted=1    spawn_value=10    price_tag=50   100    
-/obj/spawner/scrap    blacklisted=0    spawn_value=10    price_tag=50   100    
-/obj/spawner/structures/common/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/structures/common    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/structures/os    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/structures    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/surgery_tool/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/surgery_tool    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tank/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tank    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/techpart/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/techpart    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool_upgrade/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool_upgrade/rare/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool_upgrade/rare    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool_upgrade    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool/advanced/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool/advanced/onestar/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool/advanced/onestar    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool/advanced    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/tool    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/toolbox/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/toolbox    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/toy/figure    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/toy/plushie    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/toy    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/voidsuit/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/voidsuit/damaged/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/voidsuit/damaged    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/voidsuit    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/biome_spawner_obj    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/biome_spawner_mob/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/biome_spawner_mob    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster/beacon    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roaches    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster/rainbow    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime/rainbow    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/slime    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/cluster/low_chance    blacklisted=1    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders/cluster    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/spiders    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/assembled    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob/roomba    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/mob    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps/biome_spawner_trap/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps/biome_spawner_trap    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps/wire_splicing/low_chance    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps/wire_splicing    blacklisted=0    spawn_value=10    price_tag=1   100    
-/obj/spawner/traps    blacklisted=0    spawn_value=10    price_tag=1   100    
+/obj/spawner/ammo/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/shotgun/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/shotgun    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/ihs/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/ihs    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/lowcost/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo/lowcost    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/ammo    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/booze/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/booze    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/boxes/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/boxes    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/electronics/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/electronics    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/tech/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/tech    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/wardrobe/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/wardrobe    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/maintloot/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/maintloot/beacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet/maintloot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/closet    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/masks/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/masks    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/armor/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/armor    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/suit/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/suit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/hazmatsuit/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/hazmatsuit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/under/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/under    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/helmet/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/helmet    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/head/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/head    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/gloves/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/gloves    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/glasses/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/glasses    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/shoes/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/shoes    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/backpack/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/backpack    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/belt/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/belt    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/holster/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth/holster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/cloth    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/contraband/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/contraband    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c50    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c100    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c500    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c1000    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c5000    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits/c10000    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/credits    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/mine    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/miningbot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/strangebeacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/cryopod    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/satellite    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/coffin    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter/omnius    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/encouter    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit/damaged/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit/damaged    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit_equipment/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/exosuit_equipment    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/flora/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/flora    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rations/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rations    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junkfood/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junkfood/rotten/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junkfood/rotten    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junkfood    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pizza/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pizza    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/soda/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/soda    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun_upgrade/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun_upgrade    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/cheap/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/cheap    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/normal/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/normal    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/energy_cheap/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/energy_cheap    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/shotgun/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun/shotgun    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/gun    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junk/nondense    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junk/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/junk    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lathe_disk/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lathe_disk/advanced/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lathe_disk/advanced    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lathe_disk    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/building/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/building    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/resources/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/resources/rare/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/resources/rare    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/resources    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/ore/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material/ore    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/material    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/medical/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/medical    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/medical_lowcost/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/medical_lowcost    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/firstaid/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/firstaid    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/knife/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/knife    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/oddities/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/oddities    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/cloth/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/cloth    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/tech_loot/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/tech_loot/onestar    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/tech_loot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/gun_loot/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/gun_loot    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/machine/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/machine    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/junk_machine/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/junk_machine/beacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pack/junk_machine    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pouch/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/pouch    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/powercell/small    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/powercell/medium    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/powercell/large    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/powercell    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/prothesis_one_star    blacklisted=0    spawn_value=1.25   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lowkeyrandom/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/lowkeyrandom    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig/damaged/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig/damaged    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig_module/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig_module/rare/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig_module/rare    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/rig_module    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/science/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/science    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/scrap/sparse    blacklisted=0    spawn_value=14.9277   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/scrap/beacon/dense    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/scrap/beacon    blacklisted=1    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/scrap    blacklisted=0    spawn_value=8.54776   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/structures/common/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/structures/common    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/structures/os    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/structures    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/surgery_tool/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/surgery_tool    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tank/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tank    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/techpart/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/techpart    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool_upgrade/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool_upgrade/rare/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool_upgrade/rare    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool_upgrade    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool/advanced/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool/advanced/onestar/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool/advanced/onestar    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool/advanced    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/tool    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/toolbox/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/toolbox    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/toy/figure    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/toy/plushie    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/toy    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/voidsuit/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/voidsuit/damaged/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/voidsuit/damaged    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/voidsuit    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/biome_spawner_obj/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/biome_spawner_obj    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/biome_spawner_mob/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/biome_spawner_mob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster/beacon    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roaches    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster/rainbow    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime/rainbow    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/slime    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/cluster/low_chance    blacklisted=1    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders/cluster    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/spiders    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/assembled    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob/roomba    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/mob    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps/biome_spawner_trap/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps/biome_spawner_trap    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps/wire_splicing/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps/wire_splicing    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/spawner/traps    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

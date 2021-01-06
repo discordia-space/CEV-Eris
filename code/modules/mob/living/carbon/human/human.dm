@@ -36,6 +36,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 
 
 
@@ -1007,7 +1008,7 @@ var/list/rank_prefix = list(\
 	var/list/data = list()
 
 	data["style"] = get_total_style()
-	data["min_style"] = MIN_HUMAN_SYLE
+	data["min_style"] = MIN_HUMAN_STYLE
 	data["max_style"] = MAX_HUMAN_STYLE
 	data["sanity"] = sanity.level
 	data["sanity_max_level"] = sanity.max_level
@@ -1060,7 +1061,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 	if(!dna)
 		if(!new_species)
-			new_species = "Human"
+			new_species = SPECIES_HUMAN
 	else
 		if(!new_species)
 			new_species = dna.species
@@ -1069,7 +1070,7 @@ var/list/rank_prefix = list(\
 
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
-		new_species = "Human"
+		new_species = SPECIES_HUMAN
 
 	if(species)
 
@@ -1526,9 +1527,9 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/should_have_process(var/organ_check)
 
 	var/obj/item/organ/external/affecting
-	if(organ_check in list(OP_HEART, OP_LUNGS))
+	if(organ_check in list(OP_HEART, OP_LUNGS, OP_STOMACH))
 		affecting = organs_by_name[BP_CHEST]
-	else if(organ_check in list(OP_LIVER, OP_KIDNEYS))
+	else if(organ_check in list(OP_LIVER, OP_KIDNEYS, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT))
 		affecting = organs_by_name[BP_GROIN]
 
 	if(affecting && (BP_IS_ROBOTIC(affecting)))
@@ -1594,3 +1595,32 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/set_remoteview(var/atom/A)
 	remoteview_target = A
 	reset_view(A)
+
+/mob/living/carbon/human/proc/resuscitate()
+
+	if(!is_asystole() && has_organ(OP_HEART, check_usablility = TRUE) && has_organ(BP_BRAIN, check_usablility = TRUE))
+		return 0
+
+	if(world.time >= (timeofdeath + NECROZTIME))
+		return 0
+
+	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
+	var/oxyLoss = getOxyLoss()
+	if(oxyLoss > 40)
+		setOxyLoss(40)
+	pulse = PULSE_NORM
+	handle_pulse()
+	timeofdeath = 0
+	stat = UNCONSCIOUS
+	jitteriness += 3 SECONDS
+	updatehealth()
+	switch_from_dead_to_living_mob_list()
+	if(mind)
+		for(var/mob/observer/ghost/G in GLOB.player_list)
+			if(G.can_reenter_corpse && G.mind == mind)
+				if(alert("Do you want to enter your body?","Resuscitate","OH YES","No, I'm autist") == "OH YES")
+					G.reenter_corpse()
+					break
+				else
+					break
+	return 1

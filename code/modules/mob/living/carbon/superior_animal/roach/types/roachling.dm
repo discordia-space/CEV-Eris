@@ -12,7 +12,6 @@
 	melee_damage_upper = 5
 	spawn_blacklisted = TRUE
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
 	meat_amount = 1
 
 	probability_egg_laying = 0
