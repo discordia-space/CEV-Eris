@@ -47,6 +47,9 @@
 		iconstring += "_s"
 		itemstring += "_s"
 
+	if (wielded)
+		itemstring += "_doble"
+
 	icon_state = iconstring
 	set_item_state(itemstring)
 

@@ -4,7 +4,6 @@
 			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
 	icon = 'icons/obj/guns/projectile/bull.dmi'
 	icon_state = "bull"
-	item_state = "bull"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 7
@@ -91,7 +90,16 @@
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 
-
 /obj/item/weapon/gun/projectile/shotgun/bull/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if(wielded)
+		itemstring += "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
 	overlays.Cut()
 	update_charge()
