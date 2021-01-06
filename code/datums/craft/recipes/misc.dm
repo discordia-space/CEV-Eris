@@ -249,7 +249,7 @@
 	)
 	variation_type = CRAFT_VARIATION
 
-/datum/craft_recipe/pipe
+`/datum/craft_recipe/pipe
 	name = "Smoking pipe"
 	result = /obj/item/clothing/mask/smokable/pipe
 	steps = list(
@@ -258,15 +258,52 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/makeshift_leg
+	name = "Makeshift prosthetic left leg"
+	result = /obj/item/organ/external/robotic/makeshift/l_leg
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_WELDING, 10, 10),
+		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(/obj/item/weapon/stock_parts/manipulator, 1),
+		list(QUALITY_PULSING, 10, 10),
+		list(/obj/item/weapon/reagent_containers/glass/bucket, 1)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/makeshift_leg/right
+	name = "Makeshift prosthetic right leg"
+	result = /obj/item/organ/external/robotic/makeshift/r_leg
+
+/datum/craft_recipe/makeshift_arm
+	name = "Makeshift prosthetic left arm"
+	result = /obj/item/organ/external/robotic/makeshift/l_arm
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_WELDING, 10, 10),
+		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(/obj/item/weapon/stock_parts/manipulator, 1),
+		list(QUALITY_PULSING, 10, 10),
+		list(/obj/item/weapon/tool/knife/hook, 1)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/makeshift_arm/right
+	name = "Makeshift prosthetic right arm"
+	result = /obj/item/organ/external/robotic/makeshift/r_arm
+
 /datum/craft_recipe/emp_shield_apc
 	name = "APC EMP shield"
 	result = /obj/item/stock_part/emp_shield/apc
 	steps = list(
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL, "time" = 0),
-		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 20),
+		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 0),
 		list(QUALITY_BOLT_TURNING, 10, 60),
 		list(/obj/item/stack/cable_coil, 10, "time" = 20),
-		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_SCREW_DRIVING, 10, 20)
 	)
 	related_stats = list(STAT_MEC)
@@ -279,7 +316,8 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_URANIUM, "time" = 30),
 		list(QUALITY_WELDING, 10, 60),
 		list(/obj/item/stack/cable_coil, 30, "time" = 20),
-		list(QUALITY_WIRE_CUTTING, 10, 10),
+		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_SCREW_DRIVING, 10, 20)
 	)
 	related_stats = list(STAT_MEC)
+`
