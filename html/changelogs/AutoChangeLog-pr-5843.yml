@@ -1,4 +1,0 @@
-author: Kurgis
-delete-after: true
-changes:
-  - bugfix: Fixed a broken pixel offset on acolyte armor.
