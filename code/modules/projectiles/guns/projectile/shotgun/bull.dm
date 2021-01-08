@@ -91,7 +91,16 @@
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 
-
 /obj/item/weapon/gun/projectile/shotgun/bull/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if(wielded)
+		itemstring += "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
 	overlays.Cut()
 	update_charge()
