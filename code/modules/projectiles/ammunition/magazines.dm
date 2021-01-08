@@ -400,6 +400,10 @@
 	multiple_sprites = 1
 	rarity_value = 6.66
 
+/obj/item/ammo_magazine/slpistol/empty
+	icon_state = "slpistol"
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/slpistol/practice
 	name = "speed loader (.35 Special practice)"
 	icon_state = "slpistol_p"
@@ -430,6 +434,10 @@
 	multiple_sprites = 1
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
+
+/obj/item/ammo_magazine/slmagnum/empty
+	icon_state = "slmagnum"
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/slmagnum/practice
 	name = "speed loader (.40 Magnum practice)"
