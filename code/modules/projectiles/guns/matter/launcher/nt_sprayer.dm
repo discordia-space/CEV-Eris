@@ -9,8 +9,8 @@
 	matter_type = MATERIAL_BIOMATTER
 
 	init_firemodes = list(
-		list(mode_name="clean", projectile_type=/obj/item/weapon/arrow/neotheo/cleansing, icon="stun"),
-		list(mode_name="de-weed", projectile_type=/obj/item/weapon/arrow/neotheo/weedkiller, icon="kill"),
+		list(mode_name="clean", mode_desc="A slippery cleaning foam, perfect for annoying others", projectile_type=/obj/item/weapon/arrow/neotheo/cleansing, icon="stun"),
+		list(mode_name="de-weed", mode_desc="Antifungal, Antifloral, all round Herbicide", projectile_type=/obj/item/weapon/arrow/neotheo/weedkiller, icon="kill"),
 	)
 	projectile_cost = 0.5
 	projectile_type = /obj/item/weapon/arrow/neotheo/cleansing

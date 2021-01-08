@@ -33,14 +33,15 @@
 	data["limb_efficiency"] = limb_efficiency
 	data["occupied_volume"] = get_total_occupied_volume()
 	data["max_volume"] = max_volume
-	data["owner_oxyloss"] = owner.getOxyLoss()
-	data["owner_oxymax"] = 100 - owner.total_oxygen_req
 
 	data["conditions"] = get_conditions()
 	data["diagnosed"] = diagnosed
 
-	if(owner && !cannot_amputate)
-		data["amputate_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/amputate : /datum/surgery_step/amputate
+	if(owner)
+		data["owner_oxyloss"] = owner.getOxyLoss()
+		data["owner_oxymax"] = 100 - owner.total_oxygen_req
+		if(!cannot_amputate)
+			data["amputate_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/amputate : /datum/surgery_step/amputate
 
 	data["insert_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/insert_item/robotic : /datum/surgery_step/insert_item
 
@@ -73,7 +74,7 @@
 					"title" = "[capitalize(efficiency)] efficiency",
 					"efficiency" = organ.organ_efficiency[efficiency],
 					)
-				) 
+				)
 		organ_data["processes"] = processes
 
 		var/list/actions_list = list()

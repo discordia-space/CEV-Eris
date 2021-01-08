@@ -259,8 +259,8 @@
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
-				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
-				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
+				list(mode_name="Single shot", mode_desc="fire one barrel at a time", burst=1, icon="semi"),
+				list(mode_name="Triple barrel",mode_desc="fire three barrels at once", burst=3, icon="auto"),
 				)
 		return R
 
