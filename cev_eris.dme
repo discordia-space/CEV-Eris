@@ -1559,6 +1559,7 @@
 #include "code\modules\core_implant\cruciform\rituals\machinery.dm"
 #include "code\modules\core_implant\cruciform\rituals\priest.dm"
 #include "code\modules\customitems\item_spawning.dm"
+#include "code\modules\cyberspace\_setup.dm"
 #include "code\modules\detectivework\footprints.dm"
 #include "code\modules\detectivework\forensics.dm"
 #include "code\modules\detectivework\microscope\dnascanner.dm"
