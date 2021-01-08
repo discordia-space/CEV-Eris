@@ -592,6 +592,12 @@
 	else
 		user.update_cursor()
 
+/obj/item/weapon/gun/proc/get_total_damage_adjust()
+	var/val = 0
+	for(var/i in proj_damage_adjust)
+		val += proj_damage_adjust[i]
+	return val
+
 
 //Finds the current firemode and calls update on it. This is called from a few places:
 //When firemode is changed
@@ -652,26 +658,33 @@
 	data["recoil_buildup"] = recoil_buildup
 	data["recoil_buildup_max"] = initial(recoil_buildup)*10
 
+	data += ui_data_projectile(get_dud_projectile())
+
 	if(firemodes.len)
 		var/list/firemodes_info = list()
 		for(var/i = 1 to firemodes.len)
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
-			firemodes_info += list(list(
+			var/list/firemode_info = list(
 				"index" = i,
 				"current" = (i == sel_mode),
 				"name" = F.name,
+				"desc" = F.desc,
 				"burst" = F.settings["burst"],
 				"fire_delay" = F.settings["fire_delay"],
 				"move_delay" = F.settings["move_delay"],
-				))
+				)
+			if(F.settings["projectile_type"])
+				var/proj_path = F.settings["projectile_type"]
+				var/list/proj_data = ui_data_projectile(new proj_path)
+				firemode_info += proj_data
+			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
-
 
 	return data
 
@@ -683,6 +696,21 @@
 		sel_mode = text2num(href_list["firemode"])
 		set_firemode(sel_mode)
 		return 1
+
+//Returns a projectile that's not for active usage.
+/obj/item/weapon/gun/proc/get_dud_projectile()
+	return null
+
+/obj/item/weapon/gun/proc/ui_data_projectile(var/obj/item/projectile/P)
+	if(!P)
+		return list()
+	var/list/data = list()
+	data["projectile_name"] = P.name
+	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
+	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
+	qdel(P)
+	return data
+
 
 /obj/item/weapon/gun/refresh_upgrades()
 	//First of all, lets reset any var that could possibly be altered by an upgrade
