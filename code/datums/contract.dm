@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		"a Straylight sub machine gun" = /obj/item/weapon/gun/projectile/automatic/straylight,
 		"a Sol carbine" = /obj/item/weapon/gun/projectile/automatic/sol,
 		"a Colt handgun" = /obj/item/weapon/gun/projectile/colt,
-		"a Lenar granade launcher" = /obj/item/weapon/gun/launcher/grenade/lenar,
+		"a Lenar grenade launcher" = /obj/item/weapon/gun/launcher/grenade/lenar,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a cruciform" = /obj/item/weapon/implant/core_implant/cruciform,
 		"the station blueprints" = /obj/item/blueprints,
