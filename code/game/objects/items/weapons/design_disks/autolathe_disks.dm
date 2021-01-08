@@ -101,7 +101,7 @@
 	but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - \
 	such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing.\""}
 	icon_state = "excelsior"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = -1
 	designs = list(
@@ -115,7 +115,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric
 	disk_name = "Serbian Arms - .40 Zoric SMG"
 	icon_state = "serbian"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/zoric = 3, // "SA SMG .40 \"Zoric\""
@@ -138,7 +138,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk
 	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova MG"
 	icon_state = "serbian"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(
@@ -150,7 +150,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
 	disk_name = "PAR - .25 Dallas"
 	icon_state = "black"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(

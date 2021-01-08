@@ -3,7 +3,7 @@
 	disk_name = "Moebius Medical Designs"
 	icon_state = "moebius"
 	rarity_value = 4.5
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/gun/syringe_gun,
@@ -39,7 +39,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/computer
 	disk_name = "Moebius Computer Parts"
 	icon_state = "moebius"
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	rarity_value = 4.5
 	license = 20
 	designs = list(
@@ -74,7 +74,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun
 	disk_name = "Moebius Scientifica - Z-H P Artemis Dartgun"
 	icon_state = "moebius"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
