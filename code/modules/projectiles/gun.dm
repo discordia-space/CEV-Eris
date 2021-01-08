@@ -11,7 +11,7 @@
 		slot_back_str   = "back",
 		slot_s_store_str= "onsuit",
 		)
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL
@@ -42,7 +42,7 @@
 
 	var/muzzle_flash = 3
 	var/dual_wielding
-	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
+	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
