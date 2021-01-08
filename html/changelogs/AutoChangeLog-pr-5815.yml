@@ -1,0 +1,5 @@
+author: DarkLevel
+delete-after: true
+changes:
+  - balance: Serbians now spawns with SURVIVOR perk
+  - code_imp: Add perks value to antags
