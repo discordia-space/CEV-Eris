@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_DATA = 3) // Most design disks end up being 64 to 128 GQ
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
 	license = -1
-	spawn_tags = SPAWN_TAG_DESING
+	spawn_tags = SPAWN_TAG_DESIGN
 	rarity_value = 25
 	var/list/designs = list()
 
