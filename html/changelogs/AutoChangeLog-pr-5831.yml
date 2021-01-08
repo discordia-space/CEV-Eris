@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - balance: Items purchased via the supply shuttle are now only resellable to the
-      supply shuttle for 40% base value, unless processed
