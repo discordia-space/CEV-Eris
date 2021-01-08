@@ -19,7 +19,7 @@
 	. = ..()
 	if( isliving(target) && !issilicon(target) )
 		var/mob/living/L = target
-		L.damage_through_armor(5, TOX, attack_flag = ARMOR_RAD)
+		L.damage_through_armor(10, TOX, attack_flag = ARMOR_ENERGY)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
 		goo.name = "Electrolyzed goo"
