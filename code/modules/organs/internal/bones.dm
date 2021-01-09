@@ -37,7 +37,7 @@
 	if(BP_IS_ROBOTIC(src))
 		if(parent.status & ORGAN_BROKEN)
 			actions_list.Add(list(list(
-				"name" = "Mend",
+				"name" = "Mend break",
 				"organ" = "\ref[src]",
 				"step" = /datum/surgery_step/robotic/fix_bone
 			)))
