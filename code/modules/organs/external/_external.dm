@@ -334,7 +334,7 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	. += max(-(limb_efficiency / 100 - 1)/2, MAX_MUSCLE_SPEED)
+	. += max(-(limb_efficiency / 100 - 1)/4, MAX_MUSCLE_SPEED)
 
 	. += tally
 
