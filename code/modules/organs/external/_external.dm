@@ -334,10 +334,7 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	var/muscle_eff = -(limb_efficiency / 100 - 1)/2
-	var/muscle_tally = max(muscle_eff, MAX_MUSCLE_SPEED)	//0 at 100 efficiency, -1.5 at 150, +1.5 at 50
-
-	. += muscle_tally
+	. += max(-(limb_efficiency / 100 - 1)/2, MAX_MUSCLE_SPEED)
 
 	. += tally
 
