@@ -136,12 +136,13 @@
 
 /datum/surgery_step/robotic/fix_bone
 	required_tool_quality = QUALITY_WELDING
+	target_organ_type = /obj/item/organ/internal
 	allowed_tools = list(/obj/item/stack/nanopaste = 100)
 
 	duration = 6 SECONDS
 
 /datum/surgery_step/robotic/fix_bone/can_use(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
-	. = BP_IS_ROBOTIC(organ) && organ.is_open() && (organ.parent.status & ORGAN_BROKEN)
+	. = ..() && organ.is_open() && (organ.parent.status & ORGAN_BROKEN)
 
 	// Otherwise, it will just immediately fracture again
 	if(. && organ.parent.should_fracture())
