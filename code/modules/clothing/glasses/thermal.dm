@@ -31,6 +31,15 @@
 	. = ..()
 	overlay = global_hud.thermal
 
+/obj/item/clothing/glasses/powered/thermal/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_THERMAL = TRUE
+		)
+	I.gun_loc_tag = GUN_MECHANISM
+	I.req_gun_tags = list(GUN_AMR)
+
 /obj/item/clothing/glasses/powered/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."

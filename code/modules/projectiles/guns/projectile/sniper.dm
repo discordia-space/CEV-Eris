@@ -147,3 +147,7 @@
 		damage_multiplier = (damage_multiplier_scoped + initial(damage_multiplier))
 	else
 		refresh_upgrades()
+
+/obj/item/weapon/gun/heavysniper/generate_guntags()
+	..()
+	gun_tags |= GUN_AMR

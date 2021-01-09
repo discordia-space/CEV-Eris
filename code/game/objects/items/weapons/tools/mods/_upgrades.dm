@@ -289,6 +289,8 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
+	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
+		G.vision_flags = SEE_MOBS
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
