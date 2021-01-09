@@ -25,7 +25,7 @@
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
-	var/damage_multiplier_scoped
+	var/damage_multiplier_scoped = 1.15
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
@@ -141,3 +141,9 @@
 		qdel(W)
 		qdel(src)
 
+/obj/item/weapon/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
+	..()
+	if(zoom)
+		damage_multiplier = (damage_multiplier_scoped + initial(damage_multiplier))
+	else
+		refresh_upgrades()
