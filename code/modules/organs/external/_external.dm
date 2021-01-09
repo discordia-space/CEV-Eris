@@ -251,9 +251,9 @@
 	limb_efficiency += owner.get_specific_organ_efficiency(OP_NERVE, organ_tag) + owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
 	if(BP_IS_ROBOTIC(src))
 		limb_efficiency = limb_efficiency / 2
-		return 
+		return
 	limb_efficiency = (limb_efficiency + owner.get_specific_organ_efficiency(OP_BLOOD_VESSEL, organ_tag)) / 3
-	
+
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
 		if(BP_L_ARM)
@@ -311,6 +311,8 @@
 			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
 	return
 
+#define MAX_MUSCLE_SPEED -0.25
+
 /obj/item/organ/external/proc/get_tally()
 	if(is_broken() && !(status & ORGAN_SPLINTED))
 		. += 3
@@ -332,7 +334,10 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	. += (-(limb_efficiency / 100 - 1) * 3)	//0 at 100 efficiency, -1.5 at 150, +1.5 at 50
+	var/muscle_eff = -(limb_efficiency / 100 - 1)/2
+	var/muscle_tally = max(muscle_eff, MAX_MUSCLE_SPEED)	//0 at 100 efficiency, -1.5 at 150, +1.5 at 50
+
+	. += muscle_tally
 
 	. += tally
 
