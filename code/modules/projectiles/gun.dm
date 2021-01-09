@@ -77,6 +77,10 @@
 	var/proj_step_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 
+	var/darkness_view = 0
+	var/vision_flags = 0
+	var/see_invisible_gun = -1
+
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -746,3 +750,14 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
+
+/obj/item/weapon/gun/zoom(tileoffset, viewsize)
+	..()
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/H = usr
+	if(zoom)
+		H.using_scope = src
+	else
+		H.using_scope = null
+

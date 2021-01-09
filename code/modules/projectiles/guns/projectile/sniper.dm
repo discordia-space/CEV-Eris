@@ -23,6 +23,9 @@
 	var/item_suffix = ""
 	zoom_factor = 2
 	twohanded = TRUE
+	darkness_view = 7
+	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
+	var/damage_multiplier_scoped
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
@@ -137,3 +140,4 @@
 				user.equip_to_slot_if_possible(HS, equip_slot)
 		qdel(W)
 		qdel(src)
+
