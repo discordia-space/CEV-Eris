@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - rscdel: Removed .70 and .60, grenades and rockets from artist revolvers.
