@@ -62,73 +62,21 @@
 		organ_data["max_damage"] = organ.max_damage
 		organ_data["status"] = organ.get_status_data()
 		organ_data["conditions"] = organ.get_conditions()
+
 		organ_data["stored_blood"] = organ.current_blood
 		organ_data["max_blood"] = organ.max_blood_storage
 		if(BP_BRAIN in organ.organ_efficiency)
 			organ_data["show_oxy"] = TRUE
-
-		var/list/processes = list()
-		for(var/efficiency in organ.organ_efficiency)
-			processes += list(
-				list(
-					"title" = "[capitalize(efficiency)] efficiency",
-					"efficiency" = organ.organ_efficiency[efficiency],
-					)
-				)
-		organ_data["processes"] = processes
+		organ_data["processes"] = organ.get_process_data()
 
 		var/list/actions_list = list()
-
 		if(can_remove_item(organ))
-			var/list/remove_action = list(
-				"name" = "Extract",
-				"target" = "\ref[organ]",
-				"step" = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
-			)
-
-			actions_list.Add(list(remove_action))
-
-		var/list/connect_action
-
-		if(BP_IS_ROBOTIC(organ))
-			connect_action = list(
-				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Connect" : "Disconnect",
-				"organ" = "\ref[organ]",
-				"step" = /datum/surgery_step/robotic/connect_organ
-			)
-		else if(istype(organ, /obj/item/organ/internal/bone))
-			var/obj/item/organ/internal/bone/B = organ
-			connect_action = list(
-				"name" = (organ.parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
-				"organ" = "\ref[organ]",
-				"step" = (organ.parent.status & ORGAN_BROKEN) ? /datum/surgery_step/mend_bone : /datum/surgery_step/break_bone
-			)
-			if(!(organ.parent.status & ORGAN_BROKEN))
-				var/list/replace_bone_action = list(
-					"name" = "Replace",
-					"organ" = "\ref[organ]",
-					"step" = /datum/surgery_step/replace_bone
-				)
-
-				actions_list.Add(list(replace_bone_action))
-			else if(!(B.reinforced)) //Bone must be broken and not reinforced
-				var/list/reinforce_bone_action = list(
-					"name" = "Reinforce",
-					"organ" = "\ref[organ]",
-					"step" = /datum/surgery_step/reinforce_bone
-				)
-
-				actions_list.Add(list(reinforce_bone_action))
-
-		else
-			connect_action = list(
-				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
-				"organ" = "\ref[organ]",
-				"step" = (organ.status & ORGAN_CUT_AWAY) ? /datum/surgery_step/attach_organ : /datum/surgery_step/detach_organ
-			)
-
-
-		actions_list.Add(list(connect_action))
+			actions_list.Add(list(list(
+					"name" = "Extract",
+					"target" = "\ref[organ]",
+					"step" = BP_IS_ROBOTIC(organ) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
+				)))
+		actions_list.Add(organ.get_actions())
 		organ_data["actions"] = actions_list
 
 		contents_list.Add(list(organ_data))
@@ -150,7 +98,6 @@
 		implant_data["processes"] = list()
 
 		var/list/actions_list = list()
-
 		if(can_remove_item(implant))
 			var/list/remove_action = list(
 				"name" = "Extract",
