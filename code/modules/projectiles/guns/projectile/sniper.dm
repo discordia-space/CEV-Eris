@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/heavysniper
 	name = "SA AMR \"Hristov\""
-	desc = "A portable anti-armour rifle, fitted with a scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells. Alt click it to access the chamber."
+	desc = "A portable anti-armour rifle, fitted with a night-vision scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease, but suffers from overpenetration at close range. Fires armor piercing .60 shells. Can be upgraded using thermal glasses."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
@@ -145,7 +145,7 @@
 /obj/item/weapon/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
 	..()
 	if(zoom)
-		damage_multiplier = (damage_multiplier_scoped + initial(damage_multiplier))
+		damage_multiplier += damage_multiplier_scoped
 	else
 		refresh_upgrades()
 

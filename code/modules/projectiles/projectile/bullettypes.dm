@@ -177,10 +177,42 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 50
-	stun = 3
-	weaken = 3
+	stun = 1
+	weaken = 1
 	penetrating = 5
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+
+/obj/item/projectile/bullet/antim/emp
+	damage_types = list(BRUTE = 60)
+	armor_penetration = 40
+	stun = 1
+	weaken = 1
+	penetrating = 4
+
+/obj/item/projectile/bullet/antim/emp/on_hit(atom/target)
+	empulse(target, 1, 1)
+	return TRUE
+
+/obj/item/projectile/bullet/antim/uranium
+	damage_types = list(BRUTE = 65)
+	armor_penetration = 100
+	irradiate = 240
+
+/obj/item/projectile/bullet/antim/breach
+	damage_types = list(BRUTE = 60)
+	armor_penetration = 40
+	knockback = 2
+	agony = 40
+	penetrating = 0
+	var/tiles_passed
+
+/obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
+	var/tiles_passed = distance*30
+	return ROUND_PROB(tiles_passed)
+
+/obj/item/projectile/bullet/antim/breach/get_structure_damage()
+	return tiles_passed
+
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun

@@ -114,7 +114,7 @@
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
-			irradiate += damage_type[IRRADIATE]
+			irradiate += newdamages[IRRADIATE]
 			continue
 		damage_types[damage_type] += newdamages[damage_type]
 

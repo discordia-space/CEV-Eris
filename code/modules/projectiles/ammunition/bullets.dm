@@ -116,7 +116,7 @@
 
 /obj/item/ammo_casing/antim
 	name = "shell casing"
-	desc = "A .60 Anti-Material shell."
+	desc = "A .60 Anti-Material \"Penetrator\" shell."
 	icon_state = "lcasing"
 	spent_icon = "lcasing-spent"
 	caliber = CAL_ANTIM
@@ -125,6 +125,36 @@
 	maxamount = 5
 
 /obj/item/ammo_casing/antim/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/emp
+	name = "shell casing"
+	desc = "A .60 Anti-Material \"Lightning Bolt\" shell."
+	icon_state = "lcasing"
+	spent_icon = "lcasing-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/emp
+
+/obj/item/ammo_casing/antim/emp/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/uranium
+	name = "shell casing"
+	desc = "A .60 Anti-Material \"Meltdown\" shell."
+	icon_state = "lcasing"
+	spent_icon = "lcasing-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/uranium
+
+/obj/item/ammo_casing/antim/uranium/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/breach
+	name = "shell casing"
+	desc = "A .60 Anti-Material \"Breacher\" shell."
+	icon_state = "lcasing"
+	spent_icon = "lcasing-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/breach
+
+/obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
 
 //// .50 Shotgun ////

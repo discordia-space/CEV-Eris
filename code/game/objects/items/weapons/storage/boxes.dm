@@ -248,6 +248,48 @@
 	for(var/obj/item/ammo_casing/temp_casing in src)
 		temp_casing.update_icon()
 
+/obj/item/weapon/storage/box/sniperammo/emp
+	name = "box of .60 EMP Anti Material shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not quite able to make sense of.<br>WARNING: Live EMP ammunition. Misuse may result in serious injury or death."
+	illustration = "ammo"
+	rarity_value = 80
+	initial_amount = 1
+	spawn_type = /obj/item/ammo_casing/antim/emp/prespawned
+	spawn_tags = SPAWN_TAG_AMMO
+
+/obj/item/weapon/storage/box/sniperammo/emp/populate_contents()
+	new spawn_type(src)
+	for(var/obj/item/ammo_casing/temp_casing in src)
+		temp_casing.update_icon()
+
+/obj/item/weapon/storage/box/sniperammo/uranium
+	name = "box of .60 Depleted uranium Anti Material shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live Depleted Uranium ammunition. Misuse may result in serious injury or death."
+	illustration = "ammo"
+	rarity_value = 80
+	initial_amount = 1
+	spawn_type = /obj/item/ammo_casing/antim/uranium/prespawned
+	spawn_tags = SPAWN_TAG_AMMO
+
+/obj/item/weapon/storage/box/sniperammo/uranium/populate_contents()
+	new spawn_type(src)
+	for(var/obj/item/ammo_casing/temp_casing in src)
+		temp_casing.update_icon()
+
+/obj/item/weapon/storage/box/sniperammo/breach
+	name = "box of .60 Breaching Anti Material shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
+	illustration = "ammo"
+	rarity_value = 80
+	initial_amount = 1
+	spawn_type = /obj/item/ammo_casing/antim/breach/prespawned
+	spawn_tags = SPAWN_TAG_AMMO
+
+/obj/item/weapon/storage/box/sniperammo/breach/populate_contents()
+	new spawn_type(src)
+	for(var/obj/item/ammo_casing/temp_casing in src)
+		temp_casing.update_icon()
+
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs"
 	desc = "A box containing 7 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
