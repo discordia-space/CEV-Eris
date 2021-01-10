@@ -734,6 +734,9 @@
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
+	darkness_view = initial(darkness_view)
+	vision_flags = initial(vision_flags)
+	see_invisible_gun = initial(see_invisible_gun)
 	initialize_scope()
 	initialize_firemodes()
 

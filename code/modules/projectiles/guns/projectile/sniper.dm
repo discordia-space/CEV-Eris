@@ -25,7 +25,8 @@
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
-	var/damage_multiplier_scoped = 1.15
+	var/damage_multiplier_scoped = 0.15
+	gun_tags = list(GUN_AMR, GUN_SCOPE)
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
@@ -148,6 +149,8 @@
 	else
 		refresh_upgrades()
 
-/obj/item/weapon/gun/heavysniper/generate_guntags()
-	..()
-	gun_tags |= GUN_AMR
+/obj/item/weapon/gun/projectile/heavysniper/toggle_scope(mob/living/carbon/human/H)
+	. = ..()
+	if(zoom)
+		H.update_sight()
+		to_chat(world, "<b>AREAS WITHOUT AN APC:</b>")
