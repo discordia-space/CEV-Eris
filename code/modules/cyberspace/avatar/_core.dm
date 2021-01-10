@@ -7,9 +7,9 @@ GLOBAL_LIST_EMPTY(CyberSpaceAtoms)
 	SetOwner(nOwner)
 
 /datum/CyberSpaceAvatar/proc/SetOwner(atom/nOwner)
-	Owner = nOwner
-	if(Owner)
+	if(nOwner)
 		GLOB.CyberSpaceAtoms |= Owner
 	else
 		GLOB.CyberSpaceAtoms -= Owner
+	Owner = nOwner
 	UpdateIcon(TRUE)

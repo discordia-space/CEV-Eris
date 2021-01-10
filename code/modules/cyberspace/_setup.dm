@@ -1,5 +1,5 @@
 #include "defines.dm"
-#include "cybespace_hider.dm"
+#include "cyberspace_hider.dm"
 
 #include "avatar/_core.dm"
 #include "avatar/icon.dm"

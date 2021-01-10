@@ -2,7 +2,7 @@
 	var/tmp/image/Icon
 	var/color = CYBERSPACE_MAIN_COLOR
 
-/datum/CyberSpaceAvatar/proc/UpdateIcon(forced)
+/datum/CyberSpaceAvatar/proc/UpdateIcon(forced) //handle underlays, icon and overlays in separated icons 
 	if(Owner)
 		if(!istype(Owner))
 			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner])")
@@ -17,7 +17,6 @@
 		if(forced)
 			for(var/mob/viewer in GLOB.CyberSpaceViewers)
 				viewer.client && ShowToClient(viewer.client)
-
 
 /datum/CyberSpaceAvatar/proc/SetColor(value)
 	color = value

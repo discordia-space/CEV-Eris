@@ -11,7 +11,8 @@
 
 /atom/update_icon()
 	. = ..()
-	CyberAvatar?.UpdateIcon()
+	if(istype(CyberAvatar))
+		CyberAvatar.UpdateIcon()
 
 /datum/CyberSpaceAvatar/Destroy()
 	GLOB.moved_event.unregister(Owner, src, /datum/CyberSpaceAvatar/proc/UpdateIcon)
