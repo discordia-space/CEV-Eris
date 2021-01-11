@@ -206,6 +206,7 @@ There are important things regarding this file:
 	penetrating = 0
 	step_delay = 0.6
 	hitscan = FALSE
+	nocap_walls = TRUE
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
 	var/tiles_passed = distance
@@ -213,7 +214,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return ..() * get_tiles_passed(distance) 
+	return ..() * 30000000 * get_tiles_passed(distance) 
 
 
 
