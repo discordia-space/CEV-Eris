@@ -198,7 +198,7 @@
 	path = /obj/item/weapon/storage/box/sniperammo
 
 /datum/uplink_item/item/ammo/sniperammo/emp
-	name = ".60 Anti material \"Lightning Bolt\""
+	name = ".60 Anti material \"Blackout\""
 	desc = "A box full of .60 AMR EMP shells. EMP shells release an electromagnetic pulse on impact. Have 5 shells inside."
 	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo/emp

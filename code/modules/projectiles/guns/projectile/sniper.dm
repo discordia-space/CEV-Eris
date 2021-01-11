@@ -149,8 +149,5 @@
 	else
 		refresh_upgrades()
 
-/obj/item/weapon/gun/projectile/heavysniper/toggle_scope(mob/living/carbon/human/H)
-	. = ..()
-	if(zoom)
-		H.update_sight()
-		to_chat(world, "<b>AREAS WITHOUT AN APC:</b>")
+
+	

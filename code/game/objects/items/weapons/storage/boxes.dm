@@ -235,7 +235,7 @@
 	rarity_value = 50
 
 /obj/item/weapon/storage/box/sniperammo
-	name = "box of .60 Anti Material shells"
+	name = "box of .60 \"Penetrator\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
@@ -249,7 +249,7 @@
 		temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/sniperammo/emp
-	name = "box of .60 EMP Anti Material shells"
+	name = "box of .60 \"Blackout\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not quite able to make sense of.<br>WARNING: Live EMP ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
@@ -263,8 +263,8 @@
 		temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/sniperammo/uranium
-	name = "box of .60 Depleted uranium Anti Material shells"
-	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live Depleted Uranium ammunition. Misuse may result in serious injury or death."
+	name = "box of .60 \"Meltdown\" Anti Material shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live depleted uranium ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
 	initial_amount = 1
@@ -277,7 +277,7 @@
 		temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/sniperammo/breach
-	name = "box of .60 Breaching Anti Material shells"
+	name = "box of .60 \"Breacher\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80

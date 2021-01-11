@@ -194,24 +194,28 @@ There are important things regarding this file:
 	return TRUE
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 65)
+	damage_types = list(BRUTE = 67)
 	armor_penetration = 100
-	irradiate = 240
+	irradiate = 180
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 60)
+	damage_types = list(BRUTE = 30)
 	armor_penetration = 40
 	knockback = 2
 	agony = 40
 	penetrating = 0
-	var/tiles_passed
+	step_delay = 0.6
+	hitscan = FALSE
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
-	var/tiles_passed = distance*30
+	var/tiles_passed = distance
 	return ROUND_PROB(tiles_passed)
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
-	return tiles_passed
+	var/distance = get_dist(loc, starting)
+	return ..() * get_tiles_passed(distance) 
+
+
 
 
 //Shotguns .50

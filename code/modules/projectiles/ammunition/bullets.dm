@@ -115,7 +115,7 @@
 //// .60 ////
 
 /obj/item/ammo_casing/antim
-	name = "shell casing"
+	name = "\"Penetrator\" shell casing"
 	desc = "A .60 Anti-Material \"Penetrator\" shell."
 	icon_state = "lcasing"
 	spent_icon = "lcasing-spent"
@@ -128,8 +128,8 @@
 	amount = 5
 
 /obj/item/ammo_casing/antim/emp
-	name = "shell casing"
-	desc = "A .60 Anti-Material \"Lightning Bolt\" shell."
+	name = "\"Blackout\" shell casing"
+	desc = "A .60 Anti-Material \"Blackout\" shell."
 	icon_state = "lcasing"
 	spent_icon = "lcasing-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/emp
@@ -138,7 +138,7 @@
 	amount = 5
 
 /obj/item/ammo_casing/antim/uranium
-	name = "shell casing"
+	name = "\"Meltdown\" shell casing"
 	desc = "A .60 Anti-Material \"Meltdown\" shell."
 	icon_state = "lcasing"
 	spent_icon = "lcasing-spent"
@@ -148,7 +148,7 @@
 	amount = 5
 
 /obj/item/ammo_casing/antim/breach
-	name = "shell casing"
+	name = "\"Breacher\" shell casing"
 	desc = "A .60 Anti-Material \"Breacher\" shell."
 	icon_state = "lcasing"
 	spent_icon = "lcasing-spent"
