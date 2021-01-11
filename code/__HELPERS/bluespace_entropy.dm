@@ -137,6 +137,7 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 		S.maxHealth = S.maxHealth/1.5
 		S.health = S.maxHealth
 		S.empy_cell = TRUE
+	log_and_message_admins("Stranger spawned: [jumplink(T)]")
 
 /proc/bluespace_roaches(turf/T, minor_distortion)
 	var/list/areas = list()

@@ -355,8 +355,8 @@
 	var/turf/T = get_turf(src)
 	if(T)
 		bluespace_entropy(80,T)
-		GLOB.bluespace_gift -= 1
 		new /obj/item/bluespace_dust(T)
+	GLOB.bluespace_gift -= 1
 	. = ..()
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
