@@ -97,7 +97,7 @@
 			continue
 		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items[faction_item]))
 			continue
-		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && is_neotheology_disciple(H))
 			continue
 		if(!locate(faction_item.type))
 			continue
@@ -113,11 +113,12 @@
 		return FALSE
 	if(!L || !L.mind || (L.mind && player_is_antag(L.mind)))
 		return FALSE
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(!C && req_cruciform)
-		return FALSE
-	if(C && !allow_cruciform)
-		return FALSE
+	if(is_neotheology_disciple(L))
+		if(!allow_cruciform)
+			return FALSE
+	else
+		if(req_cruciform)
+			return FALSE
 	if(req_department.len && (!L.mind.assigned_job || !(L.mind.assigned_job.department in req_department)))
 		return FALSE
 	return TRUE
