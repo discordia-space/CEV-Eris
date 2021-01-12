@@ -6,13 +6,13 @@
 	icon_state = "boltgun"
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
-	force = 23
+	force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
-	damage_multiplier = 1.2
+	damage_multiplier = 1.4
 	penetration_multiplier  = 1.5
 	recoil_buildup = 40 //same as AMR
 	handle_casings = HOLD_CASINGS
@@ -97,6 +97,8 @@
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
+	force = 23
+	damage_multiplier = 1.2
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
