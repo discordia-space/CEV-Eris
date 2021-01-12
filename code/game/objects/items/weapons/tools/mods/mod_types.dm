@@ -339,7 +339,7 @@
 //Doesn't work onlarger things like crowbars and drills
 /obj/item/weapon/tool_upgrade/refinement/stabilized_grip
 	name = "gyrostabilized grip"
-	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand."
+	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand, or more precise shooting with one hand."
 	icon_state = "stabilizing"
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 	matter = list(MATERIAL_PLASTIC = 3)
