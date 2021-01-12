@@ -289,7 +289,16 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
-
+	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
+		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		G.sharp = TRUE
+	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
+		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
+	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
+		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
+	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
+		G.one_hand_penalty += weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
+	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]

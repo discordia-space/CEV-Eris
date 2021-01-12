@@ -88,6 +88,19 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	max_upgrades = 3
 
+/obj/item/weapon/tool/knife/tacknife/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_BAYONET = TRUE,
+		GUN_UPGRADE_MELEEDAMAGE = 5,
+		GUN_UPGRADE_MELEEPENETRATION = 15,
+		GUN_UPGRADE_DAMAGE_MULT = 0.9,
+		GUN_UPGRADE_ONEHANDPENALTY = 2
+		)
+	I.gun_loc_tag = GUN_UNDERBARREL
+	I.req_gun_tags = list(GUN_BAYONET_SLOT)
+
 /obj/item/weapon/tool/knife/dagger
 	name = "dagger"
 	desc = "A sharp implement; difference between this and a knife is it is sharp on both sides. Good for finding holes in armor and exploiting them."

@@ -47,6 +47,7 @@
 #define GUN_UPGRADE_CHARGECOST "chargecost_mult"
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
+#define GUN_UPGRADE_ONEHANDPENALTY "onehandpenalty_mult"
 
 //Int additive
 #define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
@@ -60,6 +61,8 @@
 #define GUN_UPGRADE_DAMAGE_HALLOSS "hallucination_damage"
 #define GUN_UPGRADE_DAMAGE_RADIATION "radiation_damage"
 #define GUN_UPGRADE_DAMAGE_PSY "psy_damage"
+#define GUN_UPGRADE_MELEEDAMAGE "melee_damage"
+#define GUN_UPGRADE_MELEEPENETRATION "melee_penetration"
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 #define GUN_UPGRADE_ZOOM "zoom"
@@ -73,6 +76,7 @@
 #define GUN_UPGRADE_FULLAUTO "full auto"
 #define GUN_UPGRADE_EXPLODE "self destruct"
 #define GUN_UPGRADE_RIGGED "rigged"
+#define GUN_UPGRADE_BAYONET "bayonet"
 
 //Location Tag defines
 
@@ -91,6 +95,7 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
+#define GUN_BAYONET_SLOT "bayonet slot"
 
 #define GUN_CALIBRE_35 "caliber .35"
 

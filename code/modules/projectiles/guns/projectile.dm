@@ -364,7 +364,7 @@
 	max_shells = initial(max_shells)
 	..()
 
-/obj/item/weapon/gun/projectile/generate_guntags()
+/obj/item/weapon/gun/projectile/generate_guntags(obj/item/weapon/gun/projectile/B)
 	..()
 	gun_tags |= GUN_PROJECTILE
 	switch(caliber)
@@ -373,3 +373,4 @@
 		//Others to be implemented when needed
 	if(max_shells)
 		gun_tags |= GUN_INTERNAL_MAG
+
