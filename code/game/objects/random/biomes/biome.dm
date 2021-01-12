@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	turf_list = list()
 	spawn_turfs = list()
 	var/turf/source = get_turf(src)
-	for(var/turf/T in trange(range, source))
+	for(var/turf/T in RANGE_TURFS(range, source))
 		T.update_biome(src)
 
 /obj/landmark/loot_biomes/proc/update_price()

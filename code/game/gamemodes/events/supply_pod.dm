@@ -57,7 +57,7 @@
 
 		var/nearspace = FALSE
 		//We'll try not to cause breaches by dropping it somewhere sufficiently far from space
-		for (var/u in trange(5, T))
+		for (var/u in RANGE_TURFS(5, T))
 			//We test each tile within a radius of 4
 			var/turf/U = u
 			if (turf_is_external(U))
