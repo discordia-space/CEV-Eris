@@ -6,12 +6,13 @@
 	icon_state = "boltgun"
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
+	force = 23
+	armor_penetration = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
-	damage_multiplier = 1.4
+	damage_multiplier = 1.2
 	penetration_multiplier  = 1.5
 	recoil_buildup = 40 //same as AMR
 	handle_casings = HOLD_CASINGS

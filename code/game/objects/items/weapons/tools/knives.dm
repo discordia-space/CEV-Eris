@@ -99,7 +99,7 @@
 		GUN_UPGRADE_OFFSET = 4
 		)
 	I.gun_loc_tag = GUN_UNDERBARREL
-	I.req_gun_tags = list(GUN_BAYONET_SLOT)
+	I.req_gun_tags = list(SLOT_BAYONET)
 
 /obj/item/weapon/tool/knife/dagger
 	name = "dagger"

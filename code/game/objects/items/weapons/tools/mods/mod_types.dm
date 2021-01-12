@@ -349,7 +349,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_PEN_MULT = 0.8,
-		GUN_UPGRADE_ONEHANDPENALTY = 0.2
+		GUN_UPGRADE_ONEHANDPENALTY = 0.3
 		)
 	I.gun_loc_tag = GUN_GRIP
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_GRIP)

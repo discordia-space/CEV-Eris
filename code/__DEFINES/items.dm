@@ -95,7 +95,6 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
-#define GUN_BAYONET_SLOT "bayonet slot"
 
 #define GUN_CALIBRE_35 "caliber .35"
 
