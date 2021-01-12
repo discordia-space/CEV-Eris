@@ -741,12 +741,12 @@
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
 
-/obj/item/weapon/gun/proc/generate_guntags(obj/item/weapon/gun/B)
+/obj/item/weapon/gun/proc/generate_guntags()
 	if(one_hand_penalty)
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
-	if(istype(B, obj/item/weapon/gun/projectile/boltgun)
-		return
+	if(sharp)
+		return FALSE
 	else
-		gun_tags |= GUN_BAYONET
+		gun_tags |= GUN_BAYONET_SLOT
