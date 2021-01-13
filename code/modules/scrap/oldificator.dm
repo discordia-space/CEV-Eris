@@ -13,6 +13,8 @@
 
 /datum/component/oldficator/proc/make_young()
 	for(var/V in all_vars)
+		if(istype(parent.vars[V], /datum) || ismob(parent.vars[V]) || isHUDobj(parent.vars[V]) || isobj(parent.vars[V]))
+			continue	// Best not to mess with by-reference variables
 		parent.vars[V] = all_vars[V]
 	var/obj/O = parent
 	if(isitem(parent))
