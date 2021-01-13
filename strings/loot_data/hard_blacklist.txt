@@ -335,10 +335,6 @@
 /obj/item/weapon/cartridge/captain
 /obj/item/weapon/cartridge/syndicate
 /obj/item/weapon/cartridge
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
-/obj/item/weapon/computer_hardware
 /obj/item/weapon/autopsy_scanner
 /obj/item/weapon/flame/candle
 /obj/item/weapon/flame/match
@@ -495,6 +491,10 @@
 /obj/item/weapon/tray
 /obj/item/weapon/energy_net
 /obj/item/weapon/weldpack
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt
+/obj/item/weapon/computer_hardware
 /obj/item/weapon/grenade/anti_photon
 /obj/item/weapon/grenade/chem_grenade/large
 /obj/item/weapon/grenade/chem_grenade/metalfoam
@@ -976,6 +976,7 @@
 /obj/item/organ/external/robotic/serbian
 /obj/item/organ/external/robotic/frozen_star
 /obj/item/organ/external/robotic/technomancer
+/obj/item/organ/external/robotic/moebius/reinforced
 /obj/item/organ/external/robotic/moebius
 /obj/item/organ/external/robotic/excelsior
 /obj/item/organ/external/robotic/one_star
@@ -1206,6 +1207,7 @@
 /obj/item/pizzabox
 /obj/item/bluespace_crystal/artificial
 /obj/item/bluespace_crystal
+/obj/item/ammo_magazine/ammobox
 /obj/item/ammo_magazine/magnum/practice
 /obj/item/ammo_magazine/magnum/hv
 /obj/item/ammo_magazine/ihclrifle/hv

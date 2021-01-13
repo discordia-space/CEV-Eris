@@ -1,3 +1,4 @@
+/obj/spawner/ammo/low_cost    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/ammo/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/ammo/shotgun/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/spawner/ammo/shotgun    blacklisted=0    spawn_value=10   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

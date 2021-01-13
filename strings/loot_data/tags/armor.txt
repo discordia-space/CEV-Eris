@@ -30,7 +30,7 @@
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer    blacklisted=0    spawn_value=1.66945   spawn_price=495   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.66945   spawn_price=495   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.34448   spawn_price=245   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=4.1876   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=1.85598   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/crusader    blacklisted=1    spawn_value=4.1876   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/acolyte    blacklisted=1    spawn_value=4.1876   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/agrolyte    blacklisted=1    spawn_value=4.1876   spawn_price=194   prob_accompanying_obj=100    accompanying_objs=nothing
