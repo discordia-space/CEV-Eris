@@ -241,9 +241,9 @@
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	if(Proj.nocap_walls)
-		var/damage = proj_damage
+		damage = proj_damage
 	else
-		var/damage = min(proj_damage, 100)
+		damage = min(proj_damage, 100)
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 

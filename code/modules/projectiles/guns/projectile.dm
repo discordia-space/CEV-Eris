@@ -372,4 +372,5 @@
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
 	if(max_shells)
-		gun_tags |= GUN_INTERNAL_MAG
+		if(max_shells > 1)
+			gun_tags |= GUN_INTERNAL_MAG

@@ -185,12 +185,13 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim/emp
 	damage_types = list(BRUTE = 60)
 	armor_penetration = 40
-	stun = 1
-	weaken = 1
+	stun = 0
+	weaken = 0
 	penetrating = 4
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target)
-	empulse(target, 1, 1)
+	empulse(target, 0, 0)
+	empulse(target, 0, 0)
 	return TRUE
 
 /obj/item/projectile/bullet/antim/uranium
@@ -214,7 +215,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return 30000000 * get_tiles_passed(distance) 
+	return 10 * get_tiles_passed(distance) 
 
 
 
