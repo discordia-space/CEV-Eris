@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: You can now fix robot bones, using a welding tool, or some nanopaste.
