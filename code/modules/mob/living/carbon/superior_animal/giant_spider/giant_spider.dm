@@ -34,10 +34,11 @@
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt
 
-	var/poison_per_bite = 5
-	var/poison_type = "pararein"
 	pass_flags = PASSTABLE
 	faction = "spiders"
+
+	var/poison_per_bite = 5
+	var/poison_type = "pararein"
 
 /mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)

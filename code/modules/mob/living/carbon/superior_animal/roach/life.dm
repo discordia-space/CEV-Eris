@@ -2,6 +2,26 @@
 #define EATING_TARGET 2
 #define LAYING_EGG 3
 
+/mob/living/carbon/superior_animal/roach/proc/is_food(mob/living/L)
+	if(istype(L, /mob/living/carbon/human) || istype(L, /mob/living/carbon/superior_animal))
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/superior_animal/roach/targets_in_range(dist = 7)
+	. = ..()
+	if(.)
+		return TRUE
+	for(var/mob/living/L in hearers_list)
+		if(is_food(L) && L.stat == DEAD)
+			return TRUE
+
+	/*for(var/mob/living/L in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		if((L.faction != faction))
+			return TRUE
+		if(is_food(L) && L.stat == DEAD)
+			return TRUE*/
+	return FALSE
+
 /mob/living/carbon/superior_animal/roach/proc/GiveUp(var/C)
 	spawn(100)
 		if(busy == MOVING_TO_TARGET)
@@ -18,12 +38,13 @@
 			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
-				for(var/mob/living/carbon/C in getPotentialTargets())
-					if ((C.stat == DEAD) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
-						eatTargets += C
+				if(!AI_inactive)//post targets_in_range
+					for(var/mob/living/carbon/C in getPotentialTargets())
+						if(C.stat == DEAD && is_food(C))
+							eatTargets += C
 
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
-				if (eat_target)
+				if(eat_target)
 					busy = MOVING_TO_TARGET
 					set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 					walk_to(src, eat_target, 1, move_to_delay)
@@ -35,7 +56,6 @@
 					busy = EATING_TARGET
 					stop_automated_movement = 1
 					src.visible_message(SPAN_NOTICE("\The [src] begins to eat \the [eat_target]."))
-					walk(src,0)
 					spawn(3000) // how much time it takes to it a corpse, in tenths of second
 					    // Set to 5 minutes to let the crew enough time to get the corpse
 						// Several roaches eating at the same time do not speed up the process
@@ -46,14 +66,14 @@
 								var/mob/living/carbon/M = eat_target
 
 								if((M.stat == DEAD)) // Don't try to eat something that is alive
-									if ((istype(M, /mob/living/carbon/human)) && (M.icon)) // Eating a human
+									if((istype(M, /mob/living/carbon/human)) && (M.icon)) // Eating a human
 										// Icon check is to check if another roach has already finished eating this human
 
 										var/mob/living/carbon/human/H = M
 
 										// Process Cruciform
 										var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform, FALSE)
-										if (CI)
+										if(CI)
 											var/mob/N = CI.wearer
 											CI.name = "[N]'s Cruciform"
 											CI.uninstall()
@@ -71,7 +91,7 @@
 										// Get fed
 										fed += rand(4,6)
 
-									else if (istype(M, /mob/living/carbon/superior_animal) && (M.icon)) // Eating a spider or roach
+									else if(istype(M, /mob/living/carbon/superior_animal) && (M.icon)) // Eating a spider or roach
 
 										// Gib victim
 										M.gib(null, FALSE)
@@ -88,7 +108,7 @@
 							busy = 0
 							stop_automated_movement = 0
 
-			else if (!busy && prob(probability_egg_laying)) // chance to lay an egg
+			else if(!busy && prob(probability_egg_laying)) // chance to lay an egg
 				if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 					busy = LAYING_EGG
 					src.visible_message(SPAN_NOTICE("\The [src] begins to lay an egg."))

@@ -1,11 +1,10 @@
 /mob/living/carbon/superior_animal/proc/check_AI_act()
-	if ((stat != CONSCIOUS) || !canmove || resting || lying || stasis || AI_inactive)
+	if((stat != CONSCIOUS) || !canmove || resting || lying || stasis || AI_inactive)
 		stance = HOSTILE_STANCE_IDLE
 		target_mob = null
-		walk(src, 0)
-		return
+		return FALSE
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/superior_animal/Life()
 	. = ..()
@@ -17,7 +16,7 @@
 
 	//CONSCIOUS UNCONSCIOUS DEAD
 
-	if (!check_AI_act())
+	if(!check_AI_act())
 		return
 
 	switch(stance)
@@ -25,7 +24,7 @@
 			if (!busy) // if not busy with a special task
 				stop_automated_movement = 0
 			target_mob = findTarget()
-			if (target_mob)
+			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
 
 		if(HOSTILE_STANCE_ATTACK)

@@ -74,5 +74,6 @@
 	var/mod_climb_delay = 1 // delay for climb
 	var/noise_coeff = 1 //noise coefficient
 
+	var/list/hearers_list
 	spawn_frequency = 10
 	bad_type = /mob/living

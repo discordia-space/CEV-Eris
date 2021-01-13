@@ -34,7 +34,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/proc/FindTarget()
 	var/atom/T = null
 	stop_automated_movement = 0
-	for(var/atom/A in ListTargets(vision_range))
+	var/list/ListTargets = hearers_list || ListTargets(vision_range)
+	for(var/atom/A in ListTargets)
 
 		if(A == src)
 			continue
@@ -186,10 +187,9 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	. = ..()
 	if(!stasis && !AI_inactive)
 		if(!.)
-			walk(src, 0)
-			return 0
+			return FALSE
 		if(client)
-			return 0
+			return FALSE
 
 		if(!stat)
 			switch(stance)

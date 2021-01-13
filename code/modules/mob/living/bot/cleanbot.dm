@@ -57,13 +57,14 @@
 	return
 
 /mob/living/bot/cleanbot/Life()
-	..()
+	. = ..()
 
 	if(!on)
 		return
 
 	if(client)
 		return
+
 	if(cleaning)
 		return
 

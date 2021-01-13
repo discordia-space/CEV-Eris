@@ -405,11 +405,11 @@
 		AM.onTransitZ(old_z,new_z)*/
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
-	if (registered_z != new_z)
-		if (registered_z)
+	if(registered_z != new_z)
+		if(registered_z)
 			SSmobs.mob_living_by_zlevel[registered_z] -= src
-		if (new_z)
-			SSmobs.mob_living_by_zlevel[new_z] += src
+		if(new_z)
+			SSmobs.mob_living_by_zlevel[new_z] |= src
 		registered_z = new_z
 
 // if this returns true, interaction to turf will be redirected to src instead

@@ -42,7 +42,7 @@
 	loot = new A
 
 /mob/living/bot/miningonestar/resources/agressive/Life()
-	..()
+	. = ..()
 	if(health <= 0)
 		death()
 		return
@@ -76,7 +76,7 @@
 		new /mob/living/bot/miningonestar/resources/agressive ( locate( get_step(src, pick(NORTH, WEST, EAST, SOUTH) ) ))
 
 /mob/living/bot/miningonestar/resources/in_work/Life()
-	..()
+	. = ..()
 	if(health <= 0)
 		death()
 		return

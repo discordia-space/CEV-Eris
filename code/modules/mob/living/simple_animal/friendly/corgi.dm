@@ -40,7 +40,7 @@
 	spawn_frequency = 0//unique
 
 /mob/living/simple_animal/corgi/Life()
-	..()
+	. = ..()
 
 	if(!stat && !resting && !buckled)
 		if(prob(1))
@@ -132,7 +132,7 @@
 	..()
 
 /mob/living/simple_animal/corgi/Lisa/Life()
-	..()
+	. = ..()
 
 	if(!stat && !resting && !buckled)
 		turns_since_scan++

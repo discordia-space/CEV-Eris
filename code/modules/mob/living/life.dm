@@ -4,20 +4,7 @@
 
 	. = FALSE
 	..()
-	if(config.enable_mob_sleep)
-		if(life_cycles_before_scan > 0)
-			life_cycles_before_scan--
-		else
-			if(check_surrounding_area(7))
-				activate_ai()
-				life_cycles_before_scan = 3
-
-		if(life_cycles_before_sleep)
-			life_cycles_before_sleep--
-
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
-			AI_inactive = TRUE
-
+	hearers_list = null
 
 	if(!stasis)
 		if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
@@ -27,6 +14,22 @@
 		var/datum/gas_mixture/environment = loc.return_air()
 
 		if(stat != DEAD)
+
+			if(config.enable_mob_sleep)
+				if(!AI_inactive)
+					if(life_cycles_before_sleep)
+						life_cycles_before_sleep--
+
+					if(life_cycles_before_sleep < 1)
+						AI_inactive = TRUE
+						life_cycles_before_scan = 0
+				if(life_cycles_before_scan > 0)
+					life_cycles_before_scan--
+				else if(AI_inactive && !client)
+					life_cycles_before_scan = 3
+					if(check_surrounding_area())
+						activate_ai()
+
 			//Breathing, if applicable
 			handle_breathing()
 

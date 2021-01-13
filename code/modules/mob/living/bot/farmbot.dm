@@ -112,7 +112,7 @@
 	..()
 
 /mob/living/bot/farmbot/Life()
-	..()
+	. = ..()
 	if(!on)
 		return
 	if(emagged && prob(1))

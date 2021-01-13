@@ -3,6 +3,28 @@
 #define MOVING_TO_TARGET 3
 #define SPINNING_COCOON 4
 
+/mob/living/carbon/superior_animal/giant_spider/proc/mob_is_cocoonTarget(mob/living/L)
+	if(L.stat != CONSCIOUS)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/superior_animal/giant_spider/nurse/targets_in_range(dist = 7)
+	. = ..()
+	if(.)
+		return TRUE
+	for(var/mob/living/M in hearers_list)
+		if(mob_is_cocoonTarget(M))
+			return TRUE
+
+	/*
+	for(var/mob/living/L in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		if((L.faction != faction))
+			return TRUE
+		if(mob_is_cocoonTarget(L))
+			return TRUE
+	*/
+	return FALSE
+
 //nursemaids - these create webs and eggs
 /mob/living/carbon/superior_animal/giant_spider/nurse
 	name = "Kouchiku Spider"
@@ -40,19 +62,20 @@
 				stop_automated_movement = 0
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/Life()
-	..()
+	. = ..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
 			//30% chance to stop wandering and do something
 			if(!busy && prob(30))
 				//first, check for potential food nearby to cocoon
 				var/list/cocoonTargets = new
-				for(var/mob/living/C in getPotentialTargets())
-					if(C.stat != CONSCIOUS)
-						cocoonTargets += C
+				if(!AI_inactive)//post targets_in_range
+					for(var/mob/living/C in getPotentialTargets())
+						if(mob_is_cocoonTarget(C))
+							cocoonTargets += C
 
 				cocoon_target = safepick(nearestObjectsInList(cocoonTargets,src,1))
-				if (cocoon_target)
+				if(cocoon_target)
 					busy = MOVING_TO_TARGET
 					set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 					walk_to(src, cocoon_target, 1, move_to_delay)
@@ -95,7 +118,7 @@
 								cocoonTargets += O
 
 						cocoon_target = safepick(cocoonTargets)
-						if (cocoon_target)
+						if(cocoon_target)
 							busy = MOVING_TO_TARGET
 							stop_automated_movement = 1
 							set_glide_size(DELAY2GLIDESIZE(move_to_delay))
@@ -107,7 +130,6 @@
 					busy = SPINNING_COCOON
 					src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [cocoon_target]."))
 					stop_automated_movement = 1
-					walk(src,0)
 					spawn(50)
 						if(busy == SPINNING_COCOON)
 							if(cocoon_target && istype(cocoon_target.loc, /turf) && get_dist(src,cocoon_target) <= 1)

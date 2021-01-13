@@ -32,7 +32,7 @@
 	access_scanner.req_one_access = req_one_access.Copy()
 
 /mob/living/bot/Life()
-	..()
+	. = ..()
 	if(health <= 0)
 		death()
 		return

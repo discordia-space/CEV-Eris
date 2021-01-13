@@ -34,7 +34,7 @@
 	var/temperature_alert = 0
 	var/in_stasis = 0
 	var/pulse = PULSE_NORM
-	var/global/list/overlays_cache = null
+	var/global/list/overlays_cache
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0

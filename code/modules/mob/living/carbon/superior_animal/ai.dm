@@ -1,4 +1,3 @@
-
 //NOTE: Don't use this proc for finding specific mobs or a very certain object; ultilize GLOBs instead of view()
 /mob/living/carbon/superior_animal/proc/getObjectsInView()
 	objectsInView = objectsInView || view(src, viewRange)
@@ -9,8 +8,8 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return //We're contained inside something, a locker perhaps.
-	return hearers(src, viewRange)
-
+	hearers_list = hearers_list || hearers(src, viewRange)
+	return hearers_list
 
 	/* There was an attempt at optimization, but it was unsanitized, and was more expensive than just checking hearers.
 	var/list/list_to_return = new
@@ -24,11 +23,11 @@
 	var/list/filteredTargets = new
 
 	for(var/atom/O in getPotentialTargets())
-		if (isValidAttackTarget(O))
+		if(isValidAttackTarget(O))
 			filteredTargets += O
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
-		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
+		if((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
 	return safepick(nearestObjectsInList(filteredTargets, src, acceptableTargetDistance))
@@ -54,7 +53,6 @@
 
 /mob/living/carbon/superior_animal/proc/loseTarget()
 	stop_automated_movement = 0
-	walk(src, 0)
 	target_mob = null
 	stance = HOSTILE_STANCE_IDLE
 

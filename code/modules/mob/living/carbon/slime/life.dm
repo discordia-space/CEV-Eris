@@ -5,9 +5,9 @@
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
-	..()
+	. = ..()
 
-	if(stat != DEAD)
+	if(.)
 		handle_nutrition()
 
 		if (!client)
