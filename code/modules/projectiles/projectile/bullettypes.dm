@@ -214,7 +214,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return ..() * 30000000 * get_tiles_passed(distance) 
+	return 30000000 * get_tiles_passed(distance) 
 
 
 
