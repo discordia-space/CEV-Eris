@@ -730,6 +730,10 @@
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
+	force = initial(force)
+	armor_penetration = initial(armor_penetration)
+	sharp = initial(sharp)
+	attack_verb = list()
 	initialize_scope()
 	initialize_firemodes()
 
@@ -746,7 +750,5 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
-	if(sharp)
-		return FALSE
-	else
+	if(!sharp)
 		gun_tags |= SLOT_BAYONET

@@ -371,5 +371,5 @@
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
-	if(max_shells)
+	if(max_shells > 1) // so the 
 		gun_tags |= GUN_INTERNAL_MAG

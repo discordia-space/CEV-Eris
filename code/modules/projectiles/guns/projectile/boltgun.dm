@@ -98,7 +98,6 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	damage_multiplier = 1.2
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
