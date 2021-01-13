@@ -211,7 +211,7 @@
 
 /datum/uplink_item/item/ammo/sniperammo/breach
 	name = ".60 Anti material \"Breacher\""
-	desc = "A box full of .60 AMR breaching shells, designed not to pierce, but to destroy structures from a distance. Close-ranged shots have less destructive power. Have 5 shells inside."
+	desc = "A box full of low velocity .60 AMR breaching shells, designed not to pierce, but to destroy structures from a distance. Close-ranged shots have less destructive power. Have 5 shells inside."
 	item_cost = 3
 	path = /obj/item/weapon/storage/box/sniperammo/breach
 

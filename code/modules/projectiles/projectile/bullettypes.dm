@@ -197,12 +197,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim/uranium
 	damage_types = list(BRUTE = 67)
 	armor_penetration = 100
-	irradiate = 180
+	irradiate = 180 // decent against radproof armor as well
 
 /obj/item/projectile/bullet/antim/breach
 	damage_types = list(BRUTE = 30)
 	armor_penetration = 40
-	knockback = 2
 	agony = 40
 	penetrating = 0
 	step_delay = 0.6
@@ -215,10 +214,16 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return 10 * get_tiles_passed(distance) 
+	return 50 * get_tiles_passed(distance)
 
 
-
+/obj/item/projectile/bullet/antim/breach/on_hit(atom/target)
+	explosion(target, 0, 0, 0)
+	if (ishuman(target))
+		var/mob/living/carbon/human/H = target
+		spawn(1 SECONDS)
+		explosion(H, 0, 0, 0)
+		return TRUE
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
