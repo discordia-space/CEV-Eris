@@ -2,6 +2,7 @@
 	if((stat != CONSCIOUS) || !canmove || resting || lying || stasis || AI_inactive)
 		stance = HOSTILE_STANCE_IDLE
 		target_mob = null
+		walk(src, 0)
 		return FALSE
 
 	return TRUE

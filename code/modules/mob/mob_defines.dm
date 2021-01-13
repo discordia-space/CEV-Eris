@@ -3,6 +3,7 @@
 	layer = 4
 	animate_movement = 2
 	flags = PROXMOVE
+	bad_type = /mob
 	var/datum/mind/mind
 
 	movement_handlers = list(
@@ -109,8 +110,8 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/datum/hud/hud_used
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/list/grabbed_by = list()
+	var/list/requests = list()
 
 	var/in_throw_mode = 0
 
@@ -199,7 +200,5 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	///The z level this mob is currently registered in
 	var/registered_z
-
-	bad_type = /mob
 
 	var/list/additional_vision_handlers = list() //Basically a list of atoms from which additional vision data is retrieved

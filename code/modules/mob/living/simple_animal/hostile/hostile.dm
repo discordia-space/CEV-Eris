@@ -187,6 +187,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	. = ..()
 	if(!stasis && !AI_inactive)
 		if(!.)
+			walk(src, 0)
 			return FALSE
 		if(client)
 			return FALSE

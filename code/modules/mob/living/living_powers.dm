@@ -50,14 +50,5 @@
 		if((L.faction != faction) && (get_dist(src, L) <= dist))
 			return TRUE
 	*/
-	/*
-	for(var/mob/living/exosuit/M in GLOB.mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
-			return TRUE
-	*/
-	/*
-	for(var/mob/living/L in range(dist, src))
-		if((L.faction != faction))
-			return TRUE
-	*/
+
 	return FALSE

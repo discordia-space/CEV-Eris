@@ -2,6 +2,9 @@
 	see_in_dark = 2
 	see_invisible = SEE_INVISIBLE_LIVING
 
+	spawn_frequency = 10
+	bad_type = /mob/living
+
 	//Health and life related vars
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
@@ -75,5 +78,3 @@
 	var/noise_coeff = 1 //noise coefficient
 
 	var/list/hearers_list
-	spawn_frequency = 10
-	bad_type = /mob/living

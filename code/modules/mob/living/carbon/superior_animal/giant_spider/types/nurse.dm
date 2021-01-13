@@ -108,7 +108,7 @@
 									update_openspace()
 								busy = 0
 								stop_automated_movement = 0
-					else
+					else if(!AI_inactive)
 						//fourthly, cocoon any nearby items so those pesky pinkskins can't use them
 						var/list/nearestObjects = nearestObjectsInList(getObjectsInView(),src,1)
 						for(var/obj/O in nearestObjects)
@@ -130,6 +130,7 @@
 					busy = SPINNING_COCOON
 					src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [cocoon_target]."))
 					stop_automated_movement = 1
+					walk(src,0)
 					spawn(50)
 						if(busy == SPINNING_COCOON)
 							if(cocoon_target && istype(cocoon_target.loc, /turf) && get_dist(src,cocoon_target) <= 1)

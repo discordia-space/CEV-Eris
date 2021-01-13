@@ -55,6 +55,7 @@
 	stop_automated_movement = 0
 	target_mob = null
 	stance = HOSTILE_STANCE_IDLE
+	walk(src, 0)
 
 /mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
 	if (isliving(O))

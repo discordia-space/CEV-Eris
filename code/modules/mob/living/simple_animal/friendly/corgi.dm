@@ -138,18 +138,15 @@
 		turns_since_scan++
 		if(turns_since_scan > 15)
 			turns_since_scan = 0
-			var/alone = 1
-			var/ian = 0
+			var/alone = TRUE
+			var/ian
 			for(var/mob/M in oviewers(7, src))
 				if(istype(M, /mob/living/simple_animal/corgi/Ian))
 					if(M.client)
-						alone = 0
+						alone = FALSE
 						break
 					else
 						ian = M
-				else
-					alone = 0
-					break
 			if(alone && ian && puppies < 4)
 				if(near_camera(src) || near_camera(ian))
 					return
