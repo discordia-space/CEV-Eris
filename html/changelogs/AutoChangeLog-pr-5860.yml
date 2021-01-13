@@ -1,0 +1,7 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: Cleaning a voidsuit now also youngifys the helmet, tank, and boots
+  - bugfix: Cleaning your voidsuit in the washing machine no longer deletes magboots
+      attached post spawn
+  - bugfix: Rigs no longer eat your shoes and gloves when unequipping the rigsuit.
