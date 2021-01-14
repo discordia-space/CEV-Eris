@@ -405,3 +405,103 @@
 		)
 	I.gun_loc_tag = GUN_SCOPE
 	I.req_gun_tags = list(GUN_SCOPE)
+
+//Trash mods, for putting on old guns
+
+/obj/item/weapon/gun_upgrade/trigger/faulty
+	name = "Faulty Trigger"
+	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably."
+	icon_state = "Cop_block"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/weapon/gun_upgrade/trigger/faulty/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = RAND_DECIMAL(1.2,3),
+		GUN_UPGRADE_FIRE_DELAY_MULT = RAND_DECIMAL(1.1,1.8)
+	)
+	I.destroy_on_removal = TRUE
+	I.removal_time *= RAND_DECIMAL(1.1,4)
+	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.gun_loc_tag = GUN_TRIGGER
+
+/obj/item/weapon/gun_upgrade/barrel/faulty
+	name = "Warped Barrel"
+	desc = "Extreme heat has warped this barrel off-target"
+	icon_state = "Forged_barrel"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/weapon/gun_upgrade/barrel/faulty/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_OFFSET = rand(5,15),
+		GUN_UPGRADE_PEN_MULT = RAND_DECIMAL(0.4,0.9),
+		GUN_UPGRADE_DAM_MULT = RAND_DECIMAL(0.4,0.9),
+	)
+	I.destroy_on_removal = TRUE
+	I.removal_time *= RAND_DECIMAL(1.1,4)
+	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.gun_loc_tag = GUN_BARREL
+
+/obj/item/weapon/gun_upgrade/muzzle/faulty
+	name = "Failed Makeshift Silencer"
+	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon."
+	icon_state = "Silencer"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/weapon/gun_upgrade/muzzle/faulty/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_PEN_MULT = RAND_DECIMAL(0.4,0.9),
+		GUN_UPGRADE_STEPDELAY_MULT = RAND_DECIMAL(1.2,1.8),
+	)
+	I.destroy_on_removal = TRUE
+	I.removal_time *= RAND_DECIMAL(1.1,4)
+	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.gun_loc_tag = GUN_MUZZLE
+
+/obj/item/weapon/gun_upgrade/mechanism/faulty
+	name = "Unknown Clockwork Mechanism"
+	desc = "You're not sure if this is incredibly genius, or incredibly stupid."
+	icon_state = "Weintraub"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/weapon/gun_upgrade/mechanism/faulty/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = RAND_DECIMAL(0.5, 5),
+	)
+	I.destroy_on_removal = TRUE
+	I.removal_time *= RAND_DECIMAL(1.1,4)
+	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.gun_loc_tag = GUN_MECHANISM
+
+/obj/item/weapon/gun_upgrade/scope/faulty
+	name = "Misaligned sights"
+	desc = "Some bad knocks have changed the angling on the sights of this weapon."
+	icon_state = "Watchman"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/weapon/gun_upgrade/scope/faulty/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_OFFSET = rand(3,6),
+	)
+	I.destroy_on_removal = TRUE
+	I.removal_time *= RAND_DECIMAL(1.1,4)
+	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.gun_loc_tag = GUN_SCOPE
+
+#define TRASH_GUNMODS list(/obj/item/weapon/gun_upgrade/trigger/faulty, /obj/item/weapon/gun_upgrade/barrel/faulty, \
+		/obj/item/weapon/gun_upgrade/muzzle/faulty, /obj/item/weapon/gun_upgrade/mechanism/faulty, \
+		/obj/item/weapon/gun_upgrade/scope/faulty)
