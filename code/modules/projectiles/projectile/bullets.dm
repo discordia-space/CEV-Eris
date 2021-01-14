@@ -36,10 +36,11 @@
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
 	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	if(istype(A, /mob/living/exosuit))
-		return 1 //exosuits have their own penetration handling
 	var/damage = damage_types[BRUTE]
 	if(ismob(A))
+		if(istype(A, /mob/living/exosuit))
+			return TRUE //exosuits have their own penetration handling
+
 		if(!mob_passthrough_check)
 			return 0
 		if(iscarbon(A))

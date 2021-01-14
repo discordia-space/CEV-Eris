@@ -58,15 +58,15 @@
 	walk(src, 0)
 
 /mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
-	if (isliving(O))
+	if(isliving(O))
 		var/mob/living/L = O
-		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
-			return
-		return 1
-
-	if (istype(O, /mob/living/exosuit))
-		var/mob/living/exosuit/M = O
-		return isValidAttackTarget(M.pilots[1])
+		if(!istype(O, /mob/living/exosuit))
+			if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
+				return 	FALSE
+		else
+			var/mob/living/exosuit/M = L
+			return isValidAttackTarget(M.pilots[1])
+		return TRUE
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))

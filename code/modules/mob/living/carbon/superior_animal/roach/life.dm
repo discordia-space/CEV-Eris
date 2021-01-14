@@ -14,12 +14,6 @@
 	for(var/mob/living/L in hearers_list)
 		if(is_food(L) && L.stat == DEAD)
 			return TRUE
-
-	/*for(var/mob/living/L in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
-		if((L.faction != faction))
-			return TRUE
-		if(is_food(L) && L.stat == DEAD)
-			return TRUE*/
 	return FALSE
 
 /mob/living/carbon/superior_animal/roach/proc/GiveUp(var/C)

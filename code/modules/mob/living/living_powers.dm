@@ -45,7 +45,7 @@
 		if (M.z == src.z && get_dist(src, M) <= dist)
 			return TRUE
 
-	/*
+	/*old system
 	for(var/mob/living/L in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
 		if((L.faction != faction) && (get_dist(src, L) <= dist))
 			return TRUE

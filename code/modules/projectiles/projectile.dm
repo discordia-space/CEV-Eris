@@ -819,7 +819,7 @@
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
-	if(isliving(A) || istype(A, /mob/living/exosuit) || istype(A, /obj/vehicle))
+	if(isliving(A) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1
