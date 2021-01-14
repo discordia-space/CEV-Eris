@@ -411,7 +411,7 @@
 /obj/item/weapon/gun_upgrade/trigger/faulty
 	name = "Faulty Trigger"
 	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably."
-	icon_state = "Cop_block"
+	icon_state = "Cop_Block"
 	spawn_blacklisted = TRUE
 	price_tag = 0
 
@@ -419,12 +419,12 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = RAND_DECIMAL(1.2,3),
-		GUN_UPGRADE_FIRE_DELAY_MULT = RAND_DECIMAL(1.1,1.8)
+		GUN_UPGRADE_RECOIL = rand(12,30)/10,
+		GUN_UPGRADE_FIRE_DELAY_MULT = rand(11,18)/10
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= RAND_DECIMAL(1.1,4)
-	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.removal_time *= rand(10.14)/10
+	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_TRIGGER
 
 /obj/item/weapon/gun_upgrade/barrel/faulty
@@ -439,18 +439,18 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_OFFSET = rand(5,15),
-		GUN_UPGRADE_PEN_MULT = RAND_DECIMAL(0.4,0.9),
-		GUN_UPGRADE_DAM_MULT = RAND_DECIMAL(0.4,0.9),
+		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
+		GUN_UPGRADE_DAMAGE_MULT = rand(4,9)/10,
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= RAND_DECIMAL(1.1,4)
-	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.removal_time *= rand(10.14)/10
+	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_BARREL
 
 /obj/item/weapon/gun_upgrade/muzzle/faulty
 	name = "Failed Makeshift Silencer"
 	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon."
-	icon_state = "Silencer"
+	icon_state = "silencer"
 	spawn_blacklisted = TRUE
 	price_tag = 0
 
@@ -458,12 +458,12 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = RAND_DECIMAL(0.4,0.9),
-		GUN_UPGRADE_STEPDELAY_MULT = RAND_DECIMAL(1.2,1.8),
+		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
+		GUN_UPGRADE_STEPDELAY_MULT = rand(12,18)/10,
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= RAND_DECIMAL(1.1,4)
-	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.removal_time *= rand(10.14)/10
+	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_MUZZLE
 
 /obj/item/weapon/gun_upgrade/mechanism/faulty
@@ -477,11 +477,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = RAND_DECIMAL(0.5, 5),
+		GUN_UPGRADE_RECOIL = rand(5, 50)/10,
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= RAND_DECIMAL(1.1,4)
-	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.removal_time *= rand(10.14)/10
+	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/weapon/gun_upgrade/scope/faulty
@@ -498,8 +498,8 @@
 		GUN_UPGRADE_OFFSET = rand(3,6),
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= RAND_DECIMAL(1.1,4)
-	I.removal_difficulty *= RAND_DECIMAL(0.5, 1.5)
+	I.removal_time *= rand(10.14)/10
+	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_SCOPE
 
 #define TRASH_GUNMODS list(/obj/item/weapon/gun_upgrade/trigger/faulty, /obj/item/weapon/gun_upgrade/barrel/faulty, \
