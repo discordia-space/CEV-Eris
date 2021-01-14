@@ -183,11 +183,11 @@ There are important things regarding this file:
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 60)
+	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
 	stun = 0
 	weaken = 0
-	penetrating = 4
+	penetrating = 1
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target)
 	empulse(target, 0, 0)
@@ -195,18 +195,19 @@ There are important things regarding this file:
 	return TRUE
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 67)
+	damage_types = list(BRUTE = 65)
 	armor_penetration = 100
-	irradiate = 180 // decent against radproof armor as well
+	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 20)
 	armor_penetration = 40
 	agony = 40
 	penetrating = 0
 	step_delay = 0.6
 	hitscan = FALSE
-	nocap_walls = TRUE
+	nocap_structures = TRUE 
+	kill_count = 30
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
 	var/tiles_passed = distance
@@ -214,16 +215,20 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return 50 * get_tiles_passed(distance)
+	return  20 * get_tiles_passed(distance)
 
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target)
-	explosion(target, 0, 0, 0)
-	if (ishuman(target))
+	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		spawn(1 SECONDS)
-		explosion(H, 0, 0, 0)
+		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 100, 2, 1, 10)
 		return TRUE
+	else
+		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+		if(!istype(target, /obj/machinery/door))
+			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 2, 0)
+			return TRUE
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun

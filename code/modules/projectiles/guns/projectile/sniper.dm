@@ -25,7 +25,7 @@
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
-	var/damage_multiplier_scoped = 0.15
+	var/extra_damage_mult_scoped = 0.10
 	gun_tags = list(GUN_AMR, GUN_SCOPE)
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
@@ -145,7 +145,7 @@
 /obj/item/weapon/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
 	..()
 	if(zoom)
-		damage_multiplier += damage_multiplier_scoped
+		damage_multiplier += extra_damage_mult_scoped
 	else
 		refresh_upgrades()
 
