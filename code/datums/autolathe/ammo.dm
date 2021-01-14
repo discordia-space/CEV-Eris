@@ -22,17 +22,21 @@
 
 // Shotgun mags
 
-/datum/design/autolathe/ammo/m12beanbag
+/datum/design/autolathe/ammo/m12/beanbag
 	name = "ammo drum (.50 beanbag)"
 	build_path = /obj/item/ammo_magazine/m12/beanbag
 
-/datum/design/autolathe/ammo/m12pellet
+/datum/design/autolathe/ammo/m12/pellet
 	name = "ammo drum (.50 pellet)"
 	build_path = /obj/item/ammo_magazine/m12/pellet
 
-/datum/design/autolathe/ammo/m12slug
+/datum/design/autolathe/ammo/m12/slug
 	name = "ammo drum (.50 slug)"
 	build_path = /obj/item/ammo_magazine/m12
+
+/datum/design/autolathe/ammo/m12/empty
+	name = "ammo drum (.50 empty)"
+	build_path = /obj/item/ammo_magazine/m12/empty
 
 // .35 Speed Loaders
 
@@ -213,7 +217,7 @@
 	build_path = /obj/item/ammo_magazine/ammobox/srifle
 
 /datum/design/autolathe/ammo/srifle_ammobox/rubber
-	name = "ammunition box (.20 Rifle practice)"
+	name = "ammunition box (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle/rubber
 
 /datum/design/autolathe/ammo/srifle_ammobox_small

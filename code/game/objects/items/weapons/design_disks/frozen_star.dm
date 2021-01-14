@@ -1,27 +1,16 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo
-	disk_name = "Frozen Star Nonlethal Magazines Pack"
+	disk_name = "Frozen Star Less-than-lethal Rounds Pack"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	rarity_value = 20
 	license = 20
 	designs = list(
-		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
-		//pistol mags
-		/datum/design/autolathe/ammo/magazine_pistol/rubber,
-		/datum/design/autolathe/ammo/mg_magnum/rubber,
-		/datum/design/autolathe/ammo/cspistol/rubber,
-		//speed loaders
-		/datum/design/autolathe/ammo/sl_pistol/rubber,
-		/datum/design/autolathe/ammo/sl_magnum/rubber,
-		//smg mags
-		/datum/design/autolathe/ammo/smg/rubber,
-		//magnum smg mags
-		/datum/design/autolathe/ammo/msmg/rubber,
-		//rifles
-		/datum/design/autolathe/ammo/srifle/rubber,
-		/datum/design/autolathe/ammo/ihclrifle/rubber,
-		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/pistol_ammobox/rubber = 4,
+		/datum/design/autolathe/ammo/sl_magnum/rubber = 4,
+		/datum/design/autolathe/ammo/clrifle_ammobox_small/rubber = 4,
+		/datum/design/autolathe/ammo/srifle_ammobox_small/rubber = 4,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber = 4,
 		//shells
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
@@ -29,31 +18,49 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo
-	disk_name = "Frozen Star Lethal Magazines Pack"
+	disk_name = "Frozen Star Lethal Rounds Pack"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 20
 	designs = list(
 		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 		//pistol mags
-		/datum/design/autolathe/ammo/magazine_pistol,
-		/datum/design/autolathe/ammo/mg_magnum,
-		/datum/design/autolathe/ammo/cspistol,
-		//speed loaders
-		/datum/design/autolathe/ammo/sl_pistol,
-		/datum/design/autolathe/ammo/sl_magnum,
-		//smg mags
-		/datum/design/autolathe/ammo/smg,
-		//magnum smg mags
-		/datum/design/autolathe/ammo/msmg,
-		//rifles
-		/datum/design/autolathe/ammo/srifle,
-		/datum/design/autolathe/ammo/ihclrifle,
-		/datum/design/autolathe/ammo/lrifle,
+		/datum/design/autolathe/ammo/pistol_ammobox = 4,
+		/datum/design/autolathe/ammo/sl_magnum = 4,
+		/datum/design/autolathe/ammo/clrifle_ammobox_small = 4,
+		/datum/design/autolathe/ammo/srifle_ammobox_small = 4,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small = 4,
 		//shells
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/ammo/shotgun,
 	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_magazines
+	disk_name = "Frozen Star Magazines Pack"
+	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
+	rarity_value = 20
+	license = 20
+	designs = list(
+		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
+		//Pistols
+		/datum/design/autolathe/ammo/magazine_pistol/empty,
+		/datum/design/autolathe/ammo/magazine_hpistol/empty,
+		/datum/design/autolathe/ammo/mg_magnum/empty,
+		//Speedloaders
+		/datum/design/autolathe/ammo/sl_pistol/empty,
+		/datum/design/autolathe/ammo/sl_magnum/empty,
+		//SMG
+		/datum/design/autolathe/ammo/smg/empty,
+		/datum/design/autolathe/ammo/msmg/emtpy,
+		//Rifles
+		/datum/design/autolathe/ammo/srifle/empty,
+		/datum/design/autolathe/ammo/ihclrifle/empty,
+		/datum/design/autolathe/ammo/lrifle/empty,
+		//Shotgun
+		/datum/design/autolathe/ammo/m12/empty
+	)
+
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms
 	disk_name = "Frozen Star .35 and .40 Ammunition"
@@ -265,9 +272,9 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/bojevic = 3, // "SA SG \"Bojevic\""
-		/datum/design/autolathe/ammo/m12beanbag, // Never add tazershells, for love of god
-		/datum/design/autolathe/ammo/m12pellet,
-		/datum/design/autolathe/ammo/m12slug,
+		/datum/design/autolathe/ammo/m12/beanbag, // Never add tazershells, for love of god
+		/datum/design/autolathe/ammo/m12/pellet,
+		/datum/design/autolathe/ammo/m12/slug,
 		)
 
 // SMGs
