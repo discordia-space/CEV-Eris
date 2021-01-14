@@ -7,7 +7,7 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/pistol_ammobox/rubber = 4,
-		/datum/design/autolathe/ammo/sl_magnum/rubber = 4,
+		/datum/design/autolathe/ammo/magnum_ammobox/rubber = 4,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small/rubber = 4,
 		/datum/design/autolathe/ammo/srifle_ammobox_small/rubber = 4,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber = 4,
@@ -26,7 +26,7 @@
 		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 		//pistol mags
 		/datum/design/autolathe/ammo/pistol_ammobox = 4,
-		/datum/design/autolathe/ammo/sl_magnum = 4,
+		/datum/design/autolathe/ammo/magnum_ammobox = 4,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small = 4,
 		/datum/design/autolathe/ammo/srifle_ammobox_small = 4,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small = 4,

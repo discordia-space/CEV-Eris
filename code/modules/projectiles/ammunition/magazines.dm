@@ -401,7 +401,7 @@
 	rarity_value = 6.66
 
 /obj/item/ammo_magazine/slpistol/empty
-	icon_state = "slpistol"
+	icon_state = "slpistol_l"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/slpistol/practice
@@ -436,7 +436,7 @@
 	rarity_value = 5
 
 /obj/item/ammo_magazine/slmagnum/empty
-	icon_state = "slmagnum"
+	icon_state = "slmagnum_l"
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/slmagnum/practice
