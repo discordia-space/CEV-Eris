@@ -405,3 +405,19 @@
 		)
 	I.gun_loc_tag = GUN_SCOPE
 	I.req_gun_tags = list(GUN_SCOPE)
+
+/obj/item/weapon/gun_upgrade/mechanism/gravcharger
+	name = "Makeshift bullet time generator"
+	desc = "When attached to a gun, this device bends time and space to create a localized microgravity field around each bullet, with peculiar results"
+	icon_state = "gravbarrel"
+	rarity_value = 20
+
+/obj/item/weapon/gun_upgrade/mechanism/gravcharger/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_STEPDELAY_MULT = 10, // bullets fly 10 times slower than a regular bullet. this is intended.
+		GUN_UPGRADE_PIERC_MULT = 3
+		)
+	I.gun_loc_tag = GUN_MECHANISM
+	I.req_gun_tags = list(GUN_PROJECTILE)
