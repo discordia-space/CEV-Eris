@@ -81,9 +81,9 @@
 					walk_to(src, cocoon_target, 1, move_to_delay)
 					GiveUp(cocoon_target) //give up if we can't reach target
 					return
-
+				var/turf/T = get_turf(src)
 				//second, spin a sticky spiderweb on this tile
-				if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
+				if(!(locate(/obj/effect/spider/stickyweb) in T))
 					busy = SPINNING_WEB
 					src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
 					stop_automated_movement = 1
@@ -96,7 +96,7 @@
 							stop_automated_movement = 0
 				else
 					//third, lay an egg cluster there
-					if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
+					if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in T))
 						busy = LAYING_EGGS
 						src.visible_message(SPAN_NOTICE("\The [src] begins to lay a cluster of eggs."))
 						stop_automated_movement = 1
