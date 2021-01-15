@@ -115,7 +115,7 @@
 
 	return update_damstate()
 
-/obj/item/organ/external/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+/obj/item/organ/external/heal_damage(brute, burn, robo_repair = 0)
 	if(BP_IS_ROBOTIC(src) && !robo_repair)
 		return
 
@@ -129,10 +129,6 @@
 			burn = W.heal_damage(burn)
 		else
 			brute = W.heal_damage(brute)
-
-	if(internal)
-		status &= ~ORGAN_BROKEN
-		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
 	src.update_damages()
