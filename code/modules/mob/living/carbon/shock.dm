@@ -40,7 +40,7 @@
 	for(var/obj/item/organ/external/organ in organs)
 		value += organ.burn_dam
 		value += organ.brute_dam
-		value *= (get_specific_organ_efficiency(OP_NERVE, organ.organ_tag)/100)
+		value *= max((get_specific_organ_efficiency(OP_NERVE, organ.organ_tag)/100), 0.5)
 	return value
 
 /mob/living/carbon/proc/handle_shock()
