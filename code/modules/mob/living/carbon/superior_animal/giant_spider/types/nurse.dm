@@ -108,7 +108,7 @@
 									update_openspace()
 								busy = 0
 								stop_automated_movement = 0
-					else if(!AI_inactive)
+					else
 						//fourthly, cocoon any nearby items so those pesky pinkskins can't use them
 						var/list/nearestObjects = nearestObjectsInList(getObjectsInView(),src,1)
 						for(var/obj/O in nearestObjects)
