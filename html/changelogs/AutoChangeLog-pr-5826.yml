@@ -1,0 +1,14 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: New attack text for Phasers
+  - tweak: Hivemobs names are now same as their code names, and changed some of their
+      descriptions. Hive is also now announced later. Rarity value of mobs is now
+      also changed
+  - balance: Hivemind shockwave cooldown is greater, tormentor cooldown is shorter.
+      Goo also deals less tox damage now.  Assemblers are no longer dense, mobs can
+      move through them. Mechiver has less HP and deals a bit less damage via its
+      special ability. Wires now deal more damage to doors and have a higher chance
+      of unbolting them
+  - sounddel: removed outbreak7.ogg from hivemind announcement
+  - code_imp: Removed/edited some comments I left
