@@ -4,7 +4,7 @@
 	icon_state = "bluespaceroach"
 	maxHealth = 25
 	health = 25
-
+	meat_type = /obj/item/bluespace_crystal
 	melee_damage_lower = 3
 	melee_damage_upper = 10
 	sanity_damage = 1
