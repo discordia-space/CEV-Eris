@@ -336,4 +336,4 @@ proc/establish_db_connection()
 
 /world/proc/incrementMaxZ()
 	maxz++
-	SSmobs.MaxZChanged()
+	//SSmobs.MaxZChanged()

@@ -8,11 +8,11 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 	process_proc = /mob/proc/Life
 
 	var/list/mob_list
-	var/list/mob_living_by_zlevel[][]
+	//var/list/mob_living_by_zlevel[][]
 
 /datum/controller/subsystem/processing/mobs/PreInit()
 	mob_list = processing // Simply setups a more recognizable var name than "processing"
-	MaxZChanged()
+	/*MaxZChanged()
 
 /datum/controller/subsystem/processing/mobs/proc/MaxZChanged()
 	if(!islist(mob_living_by_zlevel))
@@ -21,3 +21,4 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 	while(mob_living_by_zlevel.len < world.maxz)
 		mob_living_by_zlevel.len++
 		mob_living_by_zlevel[mob_living_by_zlevel.len] = list()
+*/
