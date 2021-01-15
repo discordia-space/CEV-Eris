@@ -45,8 +45,8 @@
 			. = TRUE
 
 		//Handle temperature/pressure differences between body and environment
-		if(environment)
-			handle_environment(environment)
+		//if(environment) all "handle environment" procs have their own check.
+		handle_environment(environment)
 
 		//Chemicals in the body
 		handle_chemicals_in_body()
@@ -96,9 +96,8 @@
 	return
 
 /mob/living/proc/update_pulling()
-	if(pulling)
-		if(incapacitated())
-			stop_pulling()
+	if(pulling && incapacitated())
+		stop_pulling()
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()

@@ -327,15 +327,15 @@
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
 
 	if(!on_fire)
-		return 1
+		return TRUE
 	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
-		return 1
+		return TRUE
 
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
 	if(G.gas["oxygen"] < 1)
 		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
-		return 1
+		return TRUE
 
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
