@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - balance: VIG now has a much lower influence on AP than before
