@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/box/shotgunammo/slug    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/shotgunammo/beanbags    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/shotgunammo/practiceshells    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=14.8058   spawn_price=104   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=14.6693   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.16435   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.16435   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=15.1468   spawn_price=40   prob_accompanying_obj=100    accompanying_objs=nothing

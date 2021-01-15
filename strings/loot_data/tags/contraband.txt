@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.84172   spawn_price=103   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
+/obj/item/weapon/gun/energy/chameleon    blacklisted=1    spawn_value=3.84615   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
 /obj/item/weapon/tool/knife/butterfly    blacklisted=0    spawn_value=3.80213   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/tool/knife/switchblade    blacklisted=0    spawn_value=3.19478   spawn_price=20   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/pill_bottle/happy    blacklisted=0    spawn_value=4   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

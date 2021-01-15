@@ -9,4 +9,4 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=4.54545   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/pellet,/obj/item/ammo_casing/shotgun/pellet
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=4.54545   spawn_price=1200   prob_accompanying_obj=100    accompanying_objs=/obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag
 /obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=3.33333   spawn_price=2500   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=3.27761   spawn_price=2551   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small
+/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=3.27869   spawn_price=2550   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small

@@ -165,17 +165,17 @@
 	if(ispath(npath, /obj/item/weapon/cell))
 		var/obj/item/weapon/cell/C = npath
 		var/bonus = 0
-		var/autorecharging_factor = 3
+		var/autorecharging_factor = 3.7
 		if(ispath(npath, /obj/item/weapon/cell/large))
-			bonus += (initial(C.maxcharge)/CELL_LARGE_BASE_CHARGE)**1.1
+			bonus += (initial(C.maxcharge)/CELL_LARGE_BASE_CHARGE)**1.2
 		else if(ispath(npath, /obj/item/weapon/cell/medium))
-			bonus += (initial(C.maxcharge)/CELL_MEDIUM_BASE_CHARGE)**3.5
-			autorecharging_factor += 2.5
+			bonus += (initial(C.maxcharge)/CELL_MEDIUM_BASE_CHARGE)**3.6
+			autorecharging_factor += 3
 		else if(ispath(npath, /obj/item/weapon/cell/small))
-			bonus += (initial(C.maxcharge)/CELL_SMALL_BASE_CHARGE)**1.8
-			autorecharging_factor += 1.5
+			bonus += (initial(C.maxcharge)/CELL_SMALL_BASE_CHARGE)**1.9
+			autorecharging_factor += 2
 		if(initial(C.autorecharging))
-			bonus *= autorecharging_factor
+			bonus *= autorecharging_factor * (initial(C.autorecharge_rate)/BASE_AUTORECHARGE_RATE) * (initial(C.recharge_time)/BASE_RECHARGE_TIME)
 		. += bonus
 	else if(ispath(npath, /obj/item/weapon/stock_parts))
 		var/obj/item/weapon/stock_parts/SP = npath
@@ -245,13 +245,6 @@
 					. += get_spawn_price(initial(V.boots))
 				if(initial(V.helmet))
 					. += get_spawn_price(initial(V.helmet))
-		else if(ispath(path, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = path
-			if(initial(C.price_tag))
-				var/bonus = initial(C.maxcharge)/(initial(C.price_tag)*2)
-				if(initial(C.autorecharging))
-					bonus *= 2
-				. += bonus
 		else if(ispath(path, /obj/item/device))
 			if(. == 0)
 				. += 1 //for pure random spawner (/obj/spawner/lowkeyrandom)

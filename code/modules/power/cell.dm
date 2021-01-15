@@ -26,8 +26,8 @@
 	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
-	var/autorecharge_rate = 0.03
-	var/recharge_time = 4 //How often nuclear cells will recharge
+	var/autorecharge_rate = BASE_AUTORECHARGE_RATE//0.03
+	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
