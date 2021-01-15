@@ -22,7 +22,7 @@
 /mob/living/carbon/superior_animal/proc/findTarget()
 	var/list/filteredTargets = new
 
-	for(var/atom/O in getPotentialTargets())
+	for(var/atom/movable/O in getPotentialTargets())
 		if(isValidAttackTarget(O))
 			filteredTargets += O
 
@@ -57,21 +57,21 @@
 	stance = HOSTILE_STANCE_IDLE
 	walk(src, 0)
 
-/mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
+/mob/living/carbon/superior_animal/proc/isValidAttackTarget(atom/movable/O)
 	if(isliving(O))
 		var/mob/living/L = O
 		if(!istype(O, /mob/living/exosuit))
-			if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
+			if((!attack_same && (L.faction == src.faction)) || (L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (L in friends))
 				return 	FALSE
 		else
 			var/mob/living/exosuit/M = L
-			return isValidAttackTarget(M.pilots[1])
+			return isValidAttackTarget(M.get_mob())
 		return TRUE
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))
 
-		for (var/obj/structure/window/obstacle in src.loc) // To destroy directional windows that are on the creature's tile
+		for(var/obj/structure/window/obstacle in src.loc) // To destroy directional windows that are on the creature's tile
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return
 

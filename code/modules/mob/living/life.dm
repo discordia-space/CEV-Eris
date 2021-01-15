@@ -109,7 +109,7 @@
 			stat = UNCONSCIOUS
 		else
 			stat = CONSCIOUS
-		return 1
+		return TRUE
 
 //this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
