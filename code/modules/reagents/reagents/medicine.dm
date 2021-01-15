@@ -15,7 +15,7 @@
 
 /datum/reagent/medicine/inaprovaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
-	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 15 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/medicine/inaprovaline/sleeper
@@ -192,7 +192,7 @@
 	metabolism = 0.02
 
 /datum/reagent/medicine/paracetamol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
+	M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/medicine/paracetamol/overdose(mob/living/carbon/M, alien)
 	..()
@@ -211,7 +211,7 @@
 	nerve_system_accumulations = 40
 
 /datum/reagent/medicine/tramadol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 130 )
+	M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/medicine/tramadol/overdose(mob/living/carbon/M, alien)
 	..()
@@ -233,7 +233,7 @@
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.add_chemical_effect(CE_PAINKILLER, 65)
 	M.druggy = max(M.druggy, 10)
 
 /datum/reagent/medicine/oxycodone/overdose(mob/living/carbon/M, alien)
@@ -268,7 +268,7 @@
 	M.adjust_hallucination(-10)
 	M.add_chemical_effect(CE_MIND, 2)
 	M.adjustToxLoss(0.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
-	M.add_chemical_effect(CE_PAINKILLER, 40)
+	M.add_chemical_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
