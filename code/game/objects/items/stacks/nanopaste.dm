@@ -58,4 +58,4 @@
 					to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
 					return
 			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+				do_surgery(H,user,src, TRUE)
