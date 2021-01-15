@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: Prosthesis now feel pain in the same way that organic limbs do
+  - balance: Pain now scales on the quality of your nerves
