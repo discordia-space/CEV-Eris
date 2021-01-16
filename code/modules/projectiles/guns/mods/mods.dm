@@ -407,7 +407,7 @@
 	I.req_gun_tags = list(GUN_SCOPE)
 
 /obj/item/weapon/gun_upgrade/mechanism/gravcharger
-	name = "Makeshift bullet time generator"
+	name = "makeshift bullet time generator"
 	desc = "When attached to a gun, this device bends time and space to create a localized microgravity field around each bullet, with peculiar results"
 	icon_state = "gravbarrel"
 	rarity_value = 20
