@@ -174,11 +174,11 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_mechanical = 0 + LStats[STAT_MEC]
-	var/weight_cognition = 0 + LStats[STAT_COG]
+//	var/weight_mechanical = 0 + LStats[STAT_MEC]
+//	var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
-	var/weight_toughness = 0 + LStats[STAT_TGH]
+//	var/weight_toughness = 0 + LStats[STAT_TGH]
 	var/weight_vigilance = 0 + LStats[STAT_VIG]
 
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
@@ -191,11 +191,7 @@
 			"magnum" = 8 + weight_vigilance,
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + max(weight_vigilance + weight_cognition),
-			"gyro" = 1 + weight_mechanical,
 			"cap" = 16 + weight_biology,
-			"rocket" = 8 + weight_toughness,
-			"grenade" = 8 + weight_toughness
 		))
 
 		switch(gun_pattern)
@@ -229,38 +225,13 @@
 			//	if("revolver")
 			//		caliber = pick(CAL_357)
 
-			if("sniper")//From sniper.dm, Arbitrary values
-				R.caliber = CAL_ANTIM
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5) //From sniper.dm, Temporary values
-				R.recoil_buildup = 90 + rand(-10,10)
-
-			if("gyro")//From gyropistol.dm, Arbitrary values
-				R.caliber = CAL_70
-				R.recoil_buildup = 0.1 * rand(1,20)
-
 			if("cap")
 				R.caliber = CAL_CAP
 
-			if("rocket")//From RPG.dm, Arbitrary values
-				R.caliber = CAL_ROCKET
-				R.fire_sound = 'sound/effects/bang.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
-				R.recoil_buildup = 15 + rand(-3,3)
-
-			if("grenade")
-				R.caliber = CAL_GRENADE
-				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-2,3)//from sniper.dm, Temporary values
-				R.recoil_buildup = 20 + rand(-5,5) //from projectile_grenade_launcher.dm
-
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
-				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
-				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
+				list(mode_name="Single shot", mode_desc="fire one barrel at a time", burst=1, icon="semi"),
+				list(mode_name="Triple barrel",mode_desc="fire three barrels at once", burst=3, icon="auto"),
 				)
 		return R
 

@@ -3,6 +3,7 @@
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	item_state = "acolyte"
+	flags_inv = BLOCKHEADHAIR
 	action_button_name = "Toggle Helmet Light"
 	light_overlay = "helmet_light"
 	brightness_on = 4
@@ -39,6 +40,7 @@
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
 	item_state = "botanist"
+	flags_inv = BLOCKHEADHAIR
 	action_button_name = "Toggle Helmet Light"
 	light_overlay = "helmet_light"
 	brightness_on = 4
@@ -75,6 +77,7 @@
 	icon_state = "custodian"
 	item_state = "custodian"
 	action_button_name = "Toggle Helmet Light"
+	flags_inv = BLOCKHEADHAIR
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	armor = list(

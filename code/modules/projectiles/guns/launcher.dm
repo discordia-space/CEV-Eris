@@ -3,7 +3,7 @@
 	desc = "A device that launches things."
 	icon = 'icons/obj/guns/launcher.dmi'
 	w_class = ITEM_SIZE_HUGE
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 
 	muzzle_flash = 0

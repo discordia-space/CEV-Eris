@@ -32,6 +32,35 @@
 	if(prob(25))
 		parent.release_restraints()
 
+/obj/item/organ/internal/bone/get_actions()
+	var/list/actions_list = list()
+	if(BP_IS_ROBOTIC(src))
+		if(parent.status & ORGAN_BROKEN)
+			actions_list.Add(list(list(
+				"name" = "Mend break",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/robotic/fix_bone
+			)))
+	else
+		actions_list.Add(list(list(
+			"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
+			"organ" = "\ref[src]",
+			"step" = (parent.status & ORGAN_BROKEN) ? /datum/surgery_step/mend_bone : /datum/surgery_step/break_bone
+		)))
+		if(parent.status & ORGAN_BROKEN)
+			actions_list.Add(list(list(
+					"name" = "Reinforce",
+					"organ" = "\ref[src]",
+					"step" = /datum/surgery_step/reinforce_bone
+				)))
+		actions_list.Add(list(list(
+				"name" = "Replace",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/replace_bone
+			)))
+
+	return actions_list
+
 /obj/item/organ/internal/bone/proc/mend()
 	parent.status &= ~ORGAN_BROKEN
 	parent.status &= ~ORGAN_SPLINTED

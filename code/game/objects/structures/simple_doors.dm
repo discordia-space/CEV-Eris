@@ -172,28 +172,28 @@
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
-	..(newloc, "iron")
+	..(newloc, MATERIAL_IRON)
 
 /obj/structure/simple_door/silver/New(var/newloc,var/material_name)
-	..(newloc, "silver")
+	..(newloc, MATERIAL_SILVER)
 
 /obj/structure/simple_door/gold/New(var/newloc,var/material_name)
-	..(newloc, "gold")
+	..(newloc, MATERIAL_GOLD)
 
 /obj/structure/simple_door/uranium/New(var/newloc,var/material_name)
-	..(newloc, "uranium")
+	..(newloc, MATERIAL_URANIUM)
 
 /obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
-	..(newloc, "sandstone")
+	..(newloc, MATERIAL_SANDSTONE)
 
 /obj/structure/simple_door/plasma/New(var/newloc,var/material_name)
-	..(newloc, "plasma")
+	..(newloc, MATERIAL_PLASMA)
 
 /obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
-	..(newloc, "diamond")
+	..(newloc, MATERIAL_DIAMOND)
 
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 
 /obj/structure/simple_door/resin/New(var/newloc,var/material_name)
-	..(newloc, "resin")
+	..(newloc, MATERIAL_RESIN)

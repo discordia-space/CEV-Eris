@@ -52,7 +52,7 @@
 	fire_sound_text = "a metallic click"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	recoil_buildup = 0
-	silenced = 1
+	silenced = TRUE
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0

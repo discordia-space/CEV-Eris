@@ -31,19 +31,26 @@
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/bojevic/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
 	overlays.Cut()
 	icon_state = "[initial(icon_state)]"
+
+	if(wielded)
+		itemstring += "_doble"
+
 	if(ammo_magazine)
 		overlays += "m12[ammo_magazine.ammo_color]"
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		itemstring += "_mag"
+
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		overlays += "slide"
-	if(wielded)//I hate this snowflake bullshit but I don't feel like messing with it.
-		if(ammo_magazine)
-			item_state = wielded_item_state + "_mag"
-		else
-			item_state = wielded_item_state
-	else
-		item_state = initial(item_state)
+
+	icon_state = iconstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/shotgun/bojevic/Initialize()
 	. = ..()

@@ -215,7 +215,7 @@
 /datum/breakdown/negative/hysteric
 	name = "Hysteric"
 	duration = 1.5 MINUTES
-	delay = 30 SECONDS
+	delay = 60 SECONDS
 	restore_sanity_post = 50
 
 	start_messages = list(
