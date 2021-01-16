@@ -12,15 +12,15 @@
 	//if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
 	if(species && (species.flags & NO_BREATHE)) return
 
-	var/datum/gas_mixture/breath = null
+	var/datum/gas_mixture/breath
 
 	//First, check if we can breathe at all
 	if(health < HEALTH_THRESHOLD_CRIT && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
 		losebreath++
 
-	if(losebreath>0) //Suffocating so do not take a breath
+	if(losebreath > 0) //Suffocating so do not take a breath
 		losebreath--
-		if (prob(10)) //Gasp per 10 ticks? Sounds about right.
+		if(prob(10)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
 	else
 		//Okay, we can breathe, now check if we can get air
@@ -31,21 +31,23 @@
 	handle_breath(breath)
 	handle_post_breath(breath)
 
-/mob/living/carbon/proc/get_breath_from_internal(var/volume_needed=BREATH_VOLUME) //hopefully this will allow overrides to specify a different default volume without breaking any cases where volume is passed in.
+/mob/living/carbon/proc/get_breath_from_internal(volume_needed=BREATH_VOLUME) //hopefully this will allow overrides to specify a different default volume without breaking any cases where volume is passed in.
 	if(internal)
-		if (!contents.Find(internal))
-			internal = null
-		if (!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
-			internal = null
 		if(HUDneed.Find("internal"))
 			var/obj/screen/HUDelm = HUDneed["internal"]
 			HUDelm.update_icon()
+		if(!contents.Find(internal))
+			internal = null
+			return
+		if(!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
+			internal = null
+			return
 		if(internal)
 			return internal.remove_air_volume(volume_needed)
-	return null
+	return
 
 /mob/living/carbon/proc/get_breath_from_environment(volume_needed=BREATH_VOLUME)
-	var/datum/gas_mixture/breath = null
+	var/datum/gas_mixture/breath
 
 	var/datum/gas_mixture/environment
 	if(loc)
@@ -62,14 +64,12 @@
 			var/datum/gas_mixture/filtered = M.filter_air(breath)
 			loc.assume_air(filtered)
 		return breath
-	return null
+	return
 
 //Handle possble chem smoke effect
 /mob/living/carbon/proc/handle_chemical_smoke(datum/gas_mixture/environment)
 	if(species && environment.return_pressure() < species.breath_pressure/5)
 		return //pressure is too low to even breathe in.
-	if(wear_mask && (wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in loc)
 		if(smoke.reagents && smoke.reagents.total_volume)

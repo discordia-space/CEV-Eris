@@ -86,7 +86,7 @@
 			heal_overall_damage(1,1)
 
 	// nutrition decrease
-	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
-		nutrition = max (0, nutrition - hunger_factor)
+	if(hunger_factor && nutrition > 0 && stat != DEAD)
+		nutrition = max(0, nutrition - hunger_factor)
 
 	updatehealth()
