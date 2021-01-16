@@ -173,13 +173,13 @@
 
 	return 1
 
-/mob/living/carbon/superior_animal/adjustBruteLoss(var/amount)
+/mob/living/carbon/superior_animal/adjustBruteLoss(amount)
 	. = ..()
 	if(overkill_gib && (amount >= overkill_gib) && (getBruteLoss() >= maxHealth*2))
 		if(bodytemperature > T0C)
 			gib()
 
-/mob/living/carbon/superior_animal/adjustFireLoss(var/amount)
+/mob/living/carbon/superior_animal/adjustFireLoss(amount)
 	. = ..()
 	if(overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
@@ -293,19 +293,21 @@
 			bad_environment = TRUE
 			adjustBruteLoss(2)
 
-	if(overkill_dust && (getFireLoss() >= maxHealth*2))
-		if(bodytemperature >= max_bodytemperature*1.5)
+	if(bodytemperature > max_bodytemperature)
+		if(bodytemperature >= max_bodytemperature*1.5 && overkill_dust && getFireLoss() >= maxHealth*2)
 			dust()
 			return
-
-	if((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature))
+		bad_environment = TRUE
+		adjustFireLoss(5)
+		updatehealth()
+	else if(bodytemperature < min_bodytemperature)
 		bad_environment = TRUE
 		adjustFireLoss(5)
 		updatehealth()
 
 
 	//If we're unable to breathe, lets get out of here
-	if(can_burrow && !stat && bad_environment)
+	if(bad_environment && can_burrow && !stat)
 		evacuate()
 
 /mob/living/carbon/superior_animal/handle_breath(datum/gas_mixture/breath)
