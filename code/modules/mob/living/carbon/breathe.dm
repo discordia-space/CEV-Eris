@@ -42,8 +42,7 @@
 		if(!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
 			internal = null
 			return
-		if(internal)
-			return internal.remove_air_volume(volume_needed)
+		return internal.remove_air_volume(volume_needed)
 	return
 
 /mob/living/carbon/proc/get_breath_from_environment(volume_needed=BREATH_VOLUME)
