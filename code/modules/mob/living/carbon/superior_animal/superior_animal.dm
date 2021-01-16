@@ -102,9 +102,9 @@
 
 /mob/living/carbon/superior_animal/Initialize(var/mapload)
 	.=..()
-	if (mapload && can_burrow)
+	if(mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
-		if (prob(extra_burrow_chance))
+		if(prob(extra_burrow_chance))
 			create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
@@ -123,19 +123,18 @@
 /mob/living/carbon/superior_animal/update_icons()
 	. = ..()
 	transform = null
-	if (stat == DEAD)
+	if(stat == DEAD)
 		icon_state = icon_dead
-	else if ((stat == UNCONSCIOUS) || resting || lying)
-		if (icon_rest)
+	else if((stat == UNCONSCIOUS) || resting || lying)
+		if(icon_rest)
 			icon_state = icon_rest
 		else
-			if (icon_living)
-				icon_state = icon_living
+			icon_state = icon_living
 			var/matrix/M = matrix()
 			M.Turn(180)
 			//M.Translate(1,-6)
 			transform = M
-	else if (icon_living)
+	else
 		icon_state = icon_living
 
 
