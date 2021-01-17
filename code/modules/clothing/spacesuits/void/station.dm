@@ -19,7 +19,31 @@
 		rad = 100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+/*
+/obj/item/clothing/head/space/void/engineering/verb/toggle_eyeglass()
+	set name = "Adjust Eyeglass node"
+	set category = "Object"
+	set src in usr
 
+	if(!isliving(loc))
+		return
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["generic"] = "technohelmet_void"
+	options["visor"] = "technohelmet_void_visor"
+	options["goggles"] = "technohelmet_void_goggles"
+
+	var/choice = input(M,"What kind of eyeglass do you want to look through?","Adjust visor") as null|anything in options
+
+	if(src && choice && !M.incapacitated() && Adjacent(M))
+		icon_state = options[choice]
+		to_chat(M, "You change your helmet's eyeglass mode to [choice].")
+		update_icon()
+		update_wear_icon()
+		usr.update_action_buttons()
+		return 1
+*/
 /obj/item/clothing/suit/space/void/engineering
 	name = "Technomancer voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
