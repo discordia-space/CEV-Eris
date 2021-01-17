@@ -140,3 +140,19 @@
 	display_name = "Type-34C Semi-Enclosed Headwear"
 	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	cost = 2
+
+/datum/gear/head/padded_cap/color_presets
+	display_name = "padded cap, color presets"
+	path = /obj/item/clothing/head/armor/padded
+	allowed_roles = list("Moebius Roboticist", "Guild Technician", "Technomancer", "Technomancer Exultant", ASSISTANT_TITLE)
+	cost = 2
+
+/datum/gear/head/padded_cap/color_presets/New()
+	..()
+	var/padded_cap = list(
+		"Black"		=	/obj/item/clothing/head/armor/padded,
+		"Green"		=	/obj/item/clothing/head/armor/padded/green,
+		"Brown"		=	/obj/item/clothing/head/armor/padded/brown,
+		"Gray"		=	/obj/item/clothing/head/armor/padded/gray,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(padded_cap)

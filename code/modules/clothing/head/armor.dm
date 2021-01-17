@@ -522,3 +522,32 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/armor/padded
+	name = "black padded cap"
+	desc = "Protects the head from damage while you are in the exoskeleton."
+	icon_state = "padded_cap"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEEARS|BLOCKHAIR
+	siemens_coefficient = 1
+	armor = list(
+		melee = 15,
+		bullet = 15,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/armor/padded/green
+	name = "green padded cap"
+	icon_state = "padded_cap_green"
+
+/obj/item/clothing/head/armor/padded/brown
+	name = "brown padded cap"
+	icon_state = "padded_cap_brown"
+
+/obj/item/clothing/head/armor/padded/gray
+	name = "gray padded cap"
+	icon_state = "padded_cap_gray"
+
