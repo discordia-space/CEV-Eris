@@ -25,6 +25,10 @@
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 
+/datum/uplink_item/item/stealth_items/chameleon_kit/New()
+	..()
+	antag_roles |= ROLE_CARRION
+
 /datum/uplink_item/item/stealth_items/voice
 	name = "Voice Changer"
 	item_cost = 5
