@@ -141,18 +141,18 @@
 	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	cost = 2
 
-/datum/gear/head/padded_cap/color_presets
-	display_name = "padded cap, color presets"
-	path = /obj/item/clothing/head/armor/padded
+/datum/gear/head/tanker_helmet/color_presets
+	display_name = "tanker helmet, color presets"
+	path = /obj/item/clothing/head/armor/helmet/tanker
 	allowed_roles = list("Moebius Roboticist", "Guild Technician", "Technomancer", "Technomancer Exultant", ASSISTANT_TITLE)
 	cost = 2
 
-/datum/gear/head/padded_cap/color_presets/New()
+/datum/gear/head/tanker_helmet/color_presets/New()
 	..()
-	var/padded_cap = list(
-		"Black"		=	/obj/item/clothing/head/armor/padded,
-		"Green"		=	/obj/item/clothing/head/armor/padded/green,
-		"Brown"		=	/obj/item/clothing/head/armor/padded/brown,
-		"Gray"		=	/obj/item/clothing/head/armor/padded/gray,
+	var/tanker_helmet = list(
+		"Black"		=	/obj/item/clothing/head/armor/helmet/tanker,
+		"Green"		=	/obj/item/clothing/head/armor/helmet/tanker/green,
+		"Brown"		=	/obj/item/clothing/head/armor/helmet/tanker/brown,
+		"Gray"		=	/obj/item/clothing/head/armor/helmet/tanker/gray,
 	)
-	gear_tweaks += new /datum/gear_tweak/path(padded_cap)
+	gear_tweaks += new /datum/gear_tweak/path(tanker_helmet)

@@ -523,10 +523,10 @@
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
 
-/obj/item/clothing/head/armor/padded
-	name = "black padded cap"
+/obj/item/clothing/head/armor/helmet/tanker
+	name = "black tanker helmet"
 	desc = "Protects the head from damage while you are in the exoskeleton."
-	icon_state = "padded_cap"
+	icon_state = "tanker_helmet"
 	item_flags = THICKMATERIAL
 	flags_inv = HIDEEARS|BLOCKHAIR
 	siemens_coefficient = 1
@@ -539,15 +539,15 @@
 		rad = 0
 	)
 
-/obj/item/clothing/head/armor/padded/green
-	name = "green padded cap"
-	icon_state = "padded_cap_green"
+/obj/item/clothing/head/armor/helmet/tanker/green
+	name = "green tanker helmet"
+	icon_state = "tanker_helmet_green"
 
-/obj/item/clothing/head/armor/padded/brown
-	name = "brown padded cap"
-	icon_state = "padded_cap_brown"
+/obj/item/clothing/head/armor/helmet/tanker/brown
+	name = "brown tanker helmet"
+	icon_state = "tanker_helmet_brown"
 
-/obj/item/clothing/head/armor/padded/gray
-	name = "gray padded cap"
-	icon_state = "padded_cap_gray"
+/obj/item/clothing/head/armor/helmet/tanker/gray
+	name = "gray tanker helmet"
+	icon_state = "tanker_helmet_gray"
 
