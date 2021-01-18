@@ -522,3 +522,32 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/armor/helmet/tanker
+	name = "black tanker helmet"
+	desc = "Protects the head from damage while you are in the exoskeleton."
+	icon_state = "tanker_helmet"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEEARS|BLOCKHAIR
+	siemens_coefficient = 1
+	armor = list(
+		melee = 15,
+		bullet = 15,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/armor/helmet/tanker/green
+	name = "green tanker helmet"
+	icon_state = "tanker_helmet_green"
+
+/obj/item/clothing/head/armor/helmet/tanker/brown
+	name = "brown tanker helmet"
+	icon_state = "tanker_helmet_brown"
+
+/obj/item/clothing/head/armor/helmet/tanker/gray
+	name = "gray tanker helmet"
+	icon_state = "tanker_helmet_gray"
+
