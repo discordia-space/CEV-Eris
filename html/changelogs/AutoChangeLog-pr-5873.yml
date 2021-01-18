@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: Fixes good borers who never take control of people from preventing the
+      death of their host through a runtime error.
