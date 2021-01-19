@@ -371,5 +371,5 @@
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
-	if(max_shells > 1) // so the 
+	if(max_shells > 2) // so the overshooter can't be attached to the AMR and double-barrel anymore
 		gun_tags |= GUN_INTERNAL_MAG
