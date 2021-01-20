@@ -1,6 +1,0 @@
-/obj/item/weapon/storage/box/shotgunammo/slug    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/shotgunammo/blanks    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/shotgunammo/beanbags    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/shotgunammo/buckshot    blacklisted=0    spawn_value=7.50188   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/shotgunammo/flashshells    blacklisted=0    spawn_value=2.5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/shotgunammo/practiceshells    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

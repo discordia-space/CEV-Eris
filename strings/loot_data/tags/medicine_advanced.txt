@@ -1,4 +1,0 @@
-/obj/item/stack/medical/advanced/bruise_pack/nt    blacklisted=1    spawn_value=8.4903   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/stack/medical/advanced/bruise_pack    blacklisted=0    spawn_value=8.50092   spawn_price=58   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/stack/medical/advanced/ointment/nt    blacklisted=1    spawn_value=8.45129   spawn_price=68   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/stack/medical/advanced/ointment    blacklisted=0    spawn_value=8.50092   spawn_price=58   prob_accompanying_obj=100    accompanying_objs=nothing
