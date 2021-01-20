@@ -160,7 +160,7 @@ the data returned by the get_special_rarty_value() proc
 		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
 	else if(ispath(npath, /obj/item/clothing))
 		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath) + (get_spawn_price(A)/CLOTH_PRICE_DIVISOR))
-	return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath) + log(10,max(get_spawn_price(A),1)))//same from get_spawn_value()
+	return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath) + log(10,max(get_spawn_price(A),1)))
 
 /*get_special_rarty_value()
 increases the rarity value of items
