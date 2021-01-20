@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ENGINEERING = 4)
-	charge_cost = 24
+	charge_cost = 25
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/bullet/shotgun
@@ -19,8 +19,8 @@
 	fire_delay = 12 //Equivalent to a pump then fire time
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	init_firemodes = list(
-		list(mode_name="Buckshot", mode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=25, icon="kill"),
-		list(mode_name="Hurt", mode_desc="Fires a frag synth-shell", projectile_type=/obj/item/projectile/bullet/grenade/frag/weak, charge_cost=1000, icon="stun"),
+		list(mode_name="Buckshot", mode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=50, icon="kill"),
+		list(mode_name="Hurt", mode_desc="Fires a frag synth-shell", projectile_type=/obj/item/projectile/bullet/grenade/frag/weak, charge_cost=1000, icon="grenade"),
 		list(mode_name="Blast", mode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
 	var/consume_cell = TRUE
@@ -30,8 +30,8 @@
 	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
-	.=..()
-	if(!cell) return
+	if(!cell) return null
+	if(!ispath(projectile_type)) return null
 	if(consume_cell && !cell.checked_use(charge_cost))
 		visible_message(SPAN_WARNING("\The [cell] of \the [src] burns out!"))
 		qdel(cell)
@@ -39,7 +39,8 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		return new projectile_type(src)
-	return
+	else
+		return new projectile_type(src)
 
 
 
