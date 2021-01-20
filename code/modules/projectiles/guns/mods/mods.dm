@@ -486,7 +486,7 @@
 
 /obj/item/weapon/gun_upgrade/scope/faulty
 	name = "Misaligned sights"
-	desc = "Some bad knocks have changed the angling on the sights of this weapon."
+	desc = "Some bad knocks have changed the angling on the sights of this weapon. This causes the attached weapon to suffer from decreased accuracy."
 	icon_state = "Watchman"
 	spawn_blacklisted = TRUE
 	price_tag = 0
