@@ -468,7 +468,7 @@
 
 /obj/item/weapon/gun_upgrade/mechanism/faulty
 	name = "Unknown Clockwork Mechanism"
-	desc = "You're not sure if this is incredibly genius, or incredibly stupid."
+	desc = "It's really not clear what this modification actually does. It appears to effect the attached weapon's recoil, but if it actually helps or hinders the weapon is unclear."
 	icon_state = "Weintraub"
 	spawn_blacklisted = TRUE
 	price_tag = 0
