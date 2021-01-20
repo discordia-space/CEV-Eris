@@ -76,6 +76,8 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
+	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
+	var/penetrating_adjust = 0 // What addional penetartion is added to a projectile (for bullet types that have no initial penetration)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -295,6 +297,7 @@
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
+			P.adjust_ricochet(noricochet)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)

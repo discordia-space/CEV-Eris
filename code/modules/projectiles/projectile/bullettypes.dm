@@ -46,7 +46,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle
 	damage_types = list(BRUTE = 25)
 	armor_penetration = 25
-	penetrating = 2
+	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -64,7 +64,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle/hv
 	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
-	penetrating = 4
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
@@ -97,7 +96,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/clrifle/hv
 	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
-	penetrating = 2
 	step_delay = 0.75
 	can_ricochet = TRUE
 
@@ -131,7 +129,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/lrifle/hv
 	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
-	penetrating = 2
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
@@ -179,7 +176,7 @@ There are important things regarding this file:
 	armor_penetration = 50
 	stun = 3
 	weaken = 3
-	penetrating = 5
+	penetrating = 1
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 //Shotguns .50

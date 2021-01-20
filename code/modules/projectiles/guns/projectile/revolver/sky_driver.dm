@@ -12,11 +12,12 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 20000
 	damage_multiplier = 1.1
-	penetration_multiplier = 20
-	pierce_multiplier =  5
+	pierce_multiplier =  20
 	recoil_buildup = 50
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
+	noricochet = TRUE
+	penetrating_adjust = 3
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
