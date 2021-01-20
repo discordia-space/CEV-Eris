@@ -326,6 +326,7 @@
 //Higher speed than normal
 //Slighly higher speaking chance
 //Appears from hive spawner and Mechiver
+//Appears rarely than bomber or stinger
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/lobber
@@ -347,6 +348,7 @@
 	projectiletype = /obj/item/projectile/goo/weak //what projectile it uses. Since ranged_cooldown is 2 short seconds, it's better to have a weaker projectile
 	projectilesound = 'sound/effects/blobattack.ogg'
 	ranged_cooldown = 2 SECONDS
+	rarity_value = 50
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
 	speed = 8
