@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscdel: The honk trigger has been removed.
+  - balance: The shunt now only gives an additional 50% damage

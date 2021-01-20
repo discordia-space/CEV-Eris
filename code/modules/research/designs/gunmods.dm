@@ -19,11 +19,6 @@
 	sort_string = "GAAAD"
 	category = CAT_GUNMODS
 
-/datum/design/research/item/weapon/gunmod/honker
-	build_path = /obj/item/weapon/gun_upgrade/trigger/honker
-	sort_string = "GAAAE"
-	category = CAT_GUNMODS
-
 /datum/design/research/item/weapon/gunmod/toxin_coater
 	build_path = /obj/item/weapon/gun_upgrade/barrel/toxin_coater
 	sort_string = "GAAAF"

@@ -145,7 +145,6 @@
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/gunmod/battery_shunt,
 							/datum/design/research/item/weapon/gunmod/overdrive,
-							/datum/design/research/item/weapon/gunmod/honker,
 							/datum/design/research/item/weapon/gunmod/toxin_coater,
 							/datum/design/research/item/weapon/gunmod/isotope_diffuser,
 							/datum/design/research/item/weapon/gunmod/psionic_catalyst
