@@ -449,7 +449,7 @@
 
 /obj/item/weapon/gun_upgrade/muzzle/faulty
 	name = "Failed Makeshift Silencer"
-	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon."
+	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon. This causes the attached weapon to suffer from weaker armor penetration."
 	icon_state = "silencer"
 	spawn_blacklisted = TRUE
 	price_tag = 0
