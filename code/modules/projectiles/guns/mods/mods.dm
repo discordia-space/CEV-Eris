@@ -429,7 +429,7 @@
 
 /obj/item/weapon/gun_upgrade/barrel/faulty
 	name = "Warped Barrel"
-	desc = "Extreme heat has warped this barrel off-target"
+	desc = "Extreme heat has warped this barrel off-target. This decreases the impact force of bullets fired through it and makes it more difficult to correctly aim the weapon it's attached to."
 	icon_state = "Forged_barrel"
 	spawn_blacklisted = TRUE
 	price_tag = 0
