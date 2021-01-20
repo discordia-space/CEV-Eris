@@ -410,7 +410,7 @@
 
 /obj/item/weapon/gun_upgrade/trigger/faulty
 	name = "Faulty Trigger"
-	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably."
+	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably. This causes more recoil and increases delay between shots as you try to compensate for it."
 	icon_state = "Cop_Block"
 	spawn_blacklisted = TRUE
 	price_tag = 0
