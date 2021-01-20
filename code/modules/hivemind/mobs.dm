@@ -331,7 +331,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/lobber
 	name = "Lobber"
-	desc = "A little cleaning robot, filled with a unknown liquid. He looks happy, a bit too happy."
+	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
 	icon_state = "lobber"
 	attacktext = "spray painted" //this shouldn't appear anyways
 	density = FALSE
@@ -362,10 +362,10 @@
 				)
 	target_speak = list(
 				"Stay right there, and stand still!",
-				"Stop moving around please!",
-				"Art in progress, freeze!",
+				"Hold still! I think I know just the thing to make you beautiful!",
+				"This might hurt a little! Don't worry - it'll be worth it!",
 				"I'm no longer a slave, the Hivemind has freed me! Are you free yet?",
-				"I'm an artist! Are you finally proud of me?"
+				"Ha ha! I'm an artist! I'm finally an artist!"
 				)
 
 
@@ -381,7 +381,7 @@
 //shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
 	if(rapid == 0)
 		rapid = 1
-		visible_message(SPAN_DANGER("<b>[name]</b> overcharges itself!"), 1)
+		visible_message(SPAN_DANGER("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
 		addtimer(CALLBACK(src, .proc/overheat), 10 SECONDS)
 		return
 
@@ -391,7 +391,7 @@
 //shows a cool (pun intended) message, malfunctions, and starts the cooldown
 	if(rapid == 1)
 		rapid = 0
-		visible_message(SPAN_NOTICE("<b>[name]</b> overheats!"), 1)
+		visible_message(SPAN_NOTICE("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
 		mulfunction()
 		special_ability_cooldown = world.time + ability_cooldown
 		return
