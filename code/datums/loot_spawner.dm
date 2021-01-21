@@ -152,23 +152,23 @@
 /*get_spawn_value()
 this proc calculates the spawn value of the objects based on factors such as
 their frequency, their rarity value, their price and
-the data returned by the get_special_rarty_value() proc
+the data returned by the get_special_rarity_value() proc
 */
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
 	var/atom/movable/A = npath
 	if(ispath(npath, /obj/item/weapon/gun))
-		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
+		return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
 	else if(ispath(npath, /obj/item/clothing))
-		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath) + (get_spawn_price(A)/CLOTH_PRICE_DIVISOR))
-	return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath) + log(10,max(get_spawn_price(A),1)))
+		return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath) + (get_spawn_price(A)/CLOTH_PRICE_DIVISOR))
+	return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath) + log(10,max(get_spawn_price(A),1)))
 
-/*get_special_rarty_value()
+/*get_special_rarity_value()
 increases the rarity value of items
 depending on certain determining factors,
 for example, the rarity value of power cells increases with their max_charge,
 the value of stock parts increases with the rating.
 */
-/datum/controller/subsystem/spawn_data/proc/get_special_rarty_value(npath)
+/datum/controller/subsystem/spawn_data/proc/get_special_rarity_value(npath)
 	var/atom/movable/A = npath
 	. = initial(A.rarity_value)
 	if(ispath(npath, /obj/item/weapon/cell))
