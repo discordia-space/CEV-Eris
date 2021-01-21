@@ -53,7 +53,7 @@
 				to_chat(user, SPAN_NOTICE("You secure the safety bolts."))
 			else
 				consume_cell = TRUE
-				to_chat(user, SPAN_NOTICE("You loosen the safety bolts."))
+				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
 
 
 /obj/item/weapon/gun/energy/shrapnel/mounted
@@ -74,4 +74,3 @@
 		list(mode_name="Beanbag", mode_desc="Fires a beanbag synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
 		list(mode_name="Blast", mode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
-
