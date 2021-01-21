@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/shrapnel
 	name = "OR SDF \"Shellshock\" energy shotgun"
-	desc = "An Oberth Republic Self Defence Force design, this mat-fab shotgun tends to burn through cells with use. The matter contained in empty cells can be converted directly into ammunition, as well."
+	desc = "An Oberth Republic Self Defence Force design, this mat-fab shotgun tends to burn through cells with use. The matter contained in empty cells can be converted directly into ammunition as well, if the safety bolts are loosened."
 	icon = 'icons/obj/guns/energy/shrapnel.dmi'
 	icon_state = "eshotgun"
 	item_charge_meter = TRUE
@@ -42,6 +42,14 @@
 	else
 		return new projectile_type(src)
 
+/obj/item/weapon/gun/energy/shrapnel/attacky(obj/item/I, mob/user)
+	..()
+	if(I.has_quality(QUALITY_BOLT_TURNING))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			if(consume_cell)
+				consume_cell = FALSE
+			else
+				consume_cell = TRUE
 
 
 /obj/item/weapon/gun/energy/shrapnel/mounted
