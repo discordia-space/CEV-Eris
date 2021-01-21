@@ -1,6 +1,0 @@
-author: DarkLevel
-delete-after: true
-changes:
-  - balance: reducing minimal oxyloss of resuscitator
-  - bugfix: fixing resuscitator organs check.
-  - code_imp: Stasis now re-update death time
