@@ -1597,17 +1597,25 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
+	var/obj/item/organ/internal/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/brain_organ = random_organ_by_process(BP_BRAIN)
 
-	if(!is_asystole() && has_organ(OP_HEART, check_usablility = TRUE) && has_organ(BP_BRAIN, check_usablility = TRUE))
+	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
 		return 0
 
 	if(world.time >= (timeofdeath + NECROZTIME))
 		return 0
 
-	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
 	var/oxyLoss = getOxyLoss()
-	if(oxyLoss > 40)
-		setOxyLoss(40)
+	if(oxyLoss > 20)
+		setOxyLoss(20)
+
+	if(health <= (HEALTH_THRESHOLD_DEAD - oxyLoss))
+		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life!"))
+		timeofdeath = 0
+		return 0
+
+	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
 	pulse = PULSE_NORM
 	handle_pulse()
 	timeofdeath = 0
