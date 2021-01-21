@@ -39,17 +39,21 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		return new projectile_type(src)
+	else if(!consume_cell && !cell.checked_use(charge_cost))
+		return null
 	else
 		return new projectile_type(src)
 
-/obj/item/weapon/gun/energy/shrapnel/attacky(obj/item/I, mob/user)
+/obj/item/weapon/gun/energy/shrapnel/attackby(obj/item/I, mob/user)
 	..()
 	if(I.has_quality(QUALITY_BOLT_TURNING))
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			if(consume_cell)
 				consume_cell = FALSE
+				to_chat(user, SPAN_NOTICE("You secure the safety bolts."))
 			else
 				consume_cell = TRUE
+				to_chat(user, SPAN_NOTICE("You loosen the safety bolts."))
 
 
 /obj/item/weapon/gun/energy/shrapnel/mounted
