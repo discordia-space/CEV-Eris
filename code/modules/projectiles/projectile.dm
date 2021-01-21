@@ -123,9 +123,6 @@
 		can_ricochet = FALSE
 		return
 
-/obj/item/projectile/proc/adjust_wallpen(penetrating_adjust)
-	penetrating = initial(penetrating) + penetrating_adjust
-
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
