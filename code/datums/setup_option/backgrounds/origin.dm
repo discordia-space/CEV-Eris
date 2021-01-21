@@ -207,3 +207,4 @@
         STAT_VIG = 10,
         STAT_COG = -5
     )
+    
