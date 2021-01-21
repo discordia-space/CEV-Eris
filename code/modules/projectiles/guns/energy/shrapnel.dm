@@ -50,7 +50,7 @@
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			if(consume_cell)
 				consume_cell = FALSE
-				to_chat(user, SPAN_NOTICE("You secure the safety bolts."))
+				to_chat(user, SPAN_NOTICE("You secure the safety bolts, preventing the weapon from destroying empty cells for use as ammuniton."))
 			else
 				consume_cell = TRUE
 				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
