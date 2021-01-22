@@ -379,8 +379,8 @@
 /mob/living/simple_animal/hostile/hivemind/lobber/special_ability()
 //if rapid is 0, swiches rapid to be 1,
 //shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
-	if(rapid == 0)
-		rapid = 1
+	if(rapid == FALSE)
+		rapid = TRUE
 		visible_message(SPAN_DANGER("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
 		addtimer(CALLBACK(src, .proc/overheat), 10 SECONDS)
 		return
@@ -389,8 +389,8 @@
 /mob/living/simple_animal/hostile/hivemind/lobber/proc/overheat()
 //upon activating overheat, if rapid is 1, switches rapid to be 0,
 //shows a cool (pun intended) message, malfunctions, and starts the cooldown
-	if(rapid == 1)
-		rapid = 0
+	if(rapid == TRUE)
+		rapid = FALSE
 		visible_message(SPAN_NOTICE("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
 		mulfunction()
 		special_ability_cooldown = world.time + ability_cooldown
