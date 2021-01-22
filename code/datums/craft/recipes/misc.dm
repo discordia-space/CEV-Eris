@@ -249,7 +249,7 @@
 	)
 	variation_type = CRAFT_VARIATION
 
-`/datum/craft_recipe/pipe
+/datum/craft_recipe/pipe
 	name = "Smoking pipe"
 	result = /obj/item/clothing/mask/smokable/pipe
 	steps = list(
@@ -298,7 +298,7 @@
 
 /datum/craft_recipe/emp_shield_apc
 	name = "APC EMP shield"
-	result = /obj/item/stock_part/emp_shield/apc
+	result = /obj/item/emp_shield/apc
 	steps = list(
 		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 0),
 		list(QUALITY_BOLT_TURNING, 10, 60),
@@ -310,7 +310,7 @@
 
 /datum/craft_recipe/emp_shield_smes
 	name = "SMES EMP shield"
-	result = /obj/item/stock_part/emp_shield/smes
+	result = /obj/item/emp_shield/smes
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL, "time" = 0),
 		list(CRAFT_MATERIAL, 5, MATERIAL_URANIUM, "time" = 30),

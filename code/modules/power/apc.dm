@@ -61,7 +61,7 @@
 /obj/machinery/power/apc/hyper/critical
 	is_critical = 1
 
-/obj/item/stock_part/emp_shield/apc
+/obj/item/emp_shield/apc
 	name = "APC EMP shield"
 	desc = "Device that would save your APC from electromagnetic pulses. Probably. \nAttention! The manufacturer takes no responsibility for any harm caused by this device."
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_URANIUM = 1)
@@ -74,7 +74,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(access_engine_equip)
-	var/obj/item/stock_part/emp_shield/apc/emp_shield
+	var/obj/item/emp_shield/apc/emp_shield
 	var/need_sound
 	var/area/area
 	var/areastring
@@ -578,7 +578,7 @@
 
 		if(ABORT_CHECK)
 			return
-	if (istype(I, /obj/item/stock_part/emp_shield/apc) && opened && terminal != null)
+	if (istype(I, /obj/item/emp_shield/apc) && opened && terminal != null)
 		if(emp_shield)
 			to_chat(user, SPAN_NOTICE("You can't add more EMP shielding to this APC!"))
 			return

@@ -58,7 +58,7 @@
 	matter = list(MATERIAL_STEEL = 4)
 	origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2, TECH_MATERIAL = 2)
 
-/obj/item/stock_part/emp_shield/smes
+/obj/item/emp_shield/smes
 	name = "SMES EMP shield"
 	desc = "Device that would save your SMES from electromagnetic pulses. Probably. \nAttention! The manufacturer takes no responsibility for any harm caused by this device."
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_URANIUM = 3)
@@ -385,7 +385,7 @@
 				RefreshParts()
 			else
 				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))
-		else if (istype(W, /obj/item/stock_part/emp_shield/smes))
+		else if (istype(W, /obj/item/emp_shield/smes))
 			if(emp_shield)
 				to_chat(user, SPAN_NOTICE("You can't add more EMP shielding to this SMES unit!"))
 				return
