@@ -382,7 +382,6 @@
 				user.drop_item()
 				component_parts += W
 				W.loc = src
-				RefreshParts()
 			else
 				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))
 		else if (istype(W, /obj/item/emp_shield/smes))
@@ -399,10 +398,7 @@
 				to_chat(usr, SPAN_NOTICE("You install the EMP shield into the SMES unit."))
 				user.drop_item()
 				emp_shield = W
-				emp_shield.loc = src
-				component_parts += W
-				
-				RefreshParts()			
+				emp_shield.loc = src		
 
 // SMESes that power ship sections
 // Output enabled,  partially charged
