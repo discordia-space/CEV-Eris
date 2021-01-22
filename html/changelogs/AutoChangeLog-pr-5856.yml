@@ -1,0 +1,13 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: Completing the Technomancer's "Disturbance" objective reduces global entropy.
+  - tweak: the narrator's events related to bluespace increase global entropy.
+  - tweak: bluespace cockroach teleports create sparks.
+  - tweak: the Stranger is a bit more powerful as a minor event.
+  - tweak: portals produce a little more entropy.
+  - tweak: destroying the gitf bluespace produces much more entropy.
+  - tweak: creating the bluespace gift produces reduces entropy a bit more.
+  - rscadd: admins are informed about where the Stranger spawned.
+  - tweak: bluespace roaches now have bluespace crystals instead of roach meat.
+  - tweak: trade beacons generate entropy when used.
