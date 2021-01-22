@@ -398,7 +398,7 @@
 				to_chat(usr, SPAN_NOTICE("You install the EMP shield into the SMES unit."))
 				user.drop_item()
 				emp_shield = W
-				emp_shield.loc = src		
+				emp_shield.forceMove(src)		
 
 // SMESes that power ship sections
 // Output enabled,  partially charged

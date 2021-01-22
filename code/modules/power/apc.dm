@@ -591,7 +591,7 @@
 		to_chat(usr, SPAN_NOTICE("You install the EMP shield into the [src]."))
 		user.drop_item()
 		emp_shield = I
-		emp_shield.loc = src
+		emp_shield.forceMove(src)
 		RefreshParts()		
 		return
 
