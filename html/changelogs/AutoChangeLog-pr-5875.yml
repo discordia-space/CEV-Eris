@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: reworked the shellshock to be able to shoot grenades, as well as being
+      able to trade an emty cell for another shot
