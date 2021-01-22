@@ -125,7 +125,7 @@
 	var/global/list/status_overlays_environ
 
 /obj/machinery/power/apc/updateDialog()
-	if (stat & (BROKEN|MAINT))
+	if(stat & (BROKEN|MAINT))
 		return
 	..()
 
@@ -173,14 +173,14 @@
 
 	// offset 28 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
+	if(building)
 		set_dir(ndir)
 	tdir = dir		// to fix Vars bug
 	set_dir(SOUTH)
 
 	pixel_x = (tdir & 3)? 0 : (tdir == 4 ? 28 : -28)
 	pixel_y = (tdir & 3)? (tdir ==1 ? 28 : -28) : 0
-	if (building==0)
+	if(building==0)
 		init()
 	else
 		area = get_area(src)
@@ -256,17 +256,17 @@
 		if(opened)
 			if(has_electronics && terminal)
 				to_chat(user, "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
-			else if (!has_electronics && terminal)
+			else if(!has_electronics && terminal)
 				to_chat(user, "There are some wires but no any electronics.")
-			else if (has_electronics && !terminal)
+			else if(has_electronics && !terminal)
 				to_chat(user, "Electronics installed but not wired.")
-			else /* if (!has_electronics && !terminal) */
+			else /* if(!has_electronics && !terminal) */
 				to_chat(user, "There is no electronics nor connected wires.")
 
 		else
-			if (stat & MAINT)
+			if(stat & MAINT)
 				to_chat(user, "The cover is closed. Something wrong with it: it doesn't work.")
-			else if (hacker)
+			else if(hacker)
 				to_chat(user, "The cover is locked.")
 			else
 				to_chat(user, "The cover is closed.")
@@ -275,7 +275,7 @@
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-	if (!status_overlays)
+	if(!status_overlays)
 		status_overlays = 1
 		status_overlays_lock = new
 		status_overlays_charging = new
@@ -407,7 +407,7 @@
 		else if(charging == 2)
 			update_overlay |= APC_UPOVERLAY_CHARGEING2
 
-		if (!equipment)
+		if(!equipment)
 			update_overlay |= APC_UPOVERLAY_EQUIPMENT0
 		else if(equipment == 1)
 			update_overlay |= APC_UPOVERLAY_EQUIPMENT1
@@ -451,7 +451,7 @@
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 
 /obj/machinery/power/apc/attackby(obj/item/I, mob/user)
-	if (issilicon(user) && get_dist(src,user)>1)
+	if(issilicon(user) && get_dist(src,user)>1)
 		return attack_hand(user)
 	add_fingerprint(user)
 
@@ -468,10 +468,10 @@
 
 		if(QUALITY_PRYING)
 			if(opened)
-				if (emp_shield)
-					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+				if(emp_shield)
+					if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						return
-					if (!do_after(usr, 10 SECONDS, src))
+					if(!do_after(usr, 10 SECONDS, src))
 						return
 
 					to_chat(usr, SPAN_WARNING("You have disassembled the SMES EMP shielding!"))
@@ -479,14 +479,14 @@
 					emp_shield = null
 					return
 
-				if (has_electronics==1)
-					if (terminal)
+				if(has_electronics==1)
+					if(terminal)
 						to_chat(user, SPAN_WARNING("Disconnect wires first."))
 						return
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if (has_electronics==1)
+					if(has_electronics==1)
 						has_electronics = 0
-						if ((stat & BROKEN))
+						if((stat & BROKEN))
 							user.visible_message(\
 								SPAN_WARNING("[user.name] has broken the power control board inside [name]!"),\
 								SPAN_NOTICE("You broke the charred power control board and remove the remains."),
@@ -499,7 +499,7 @@
 						return
 			if(opened!=2) //cover isn't removed
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if (opened == 1)
+					if(opened == 1)
 						opened = 0
 						update_icon()
 					else if(!((stat & BROKEN) || hacker))
@@ -518,7 +518,7 @@
 					to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 					return
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+					if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
@@ -531,17 +531,17 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (cell && opened)
+			if(cell && opened)
 				to_chat(user, SPAN_WARNING("Close the APC first."))
 				return
 			var/used_sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if(opened)
-					if (has_electronics==1 && terminal)
+					if(has_electronics==1 && terminal)
 						has_electronics = 2
 						stat &= ~MAINT
 						to_chat(user, "You screw the circuit electronics into place.")
-					else if (has_electronics==2)
+					else if(has_electronics==2)
 						has_electronics = 1
 						stat |= MAINT
 						to_chat(user, "You unfasten the electronics.")
@@ -560,7 +560,7 @@
 		if(QUALITY_WELDING)
 			if(opened && has_electronics==0 && !terminal)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					if (emagged || (stat & BROKEN) || opened==2)
+					if(emagged || (stat & BROKEN) || opened==2)
 						new /obj/item/stack/material/steel(loc)
 						user.visible_message(\
 							SPAN_WARNING("[src] has been cut apart by [user.name] with the weldingtool."),\
@@ -578,14 +578,14 @@
 
 		if(ABORT_CHECK)
 			return
-	if (istype(I, /obj/item/emp_shield/apc) && opened && terminal != null)
+	if(istype(I, /obj/item/emp_shield/apc) && opened && terminal != null)
 		if(emp_shield)
 			to_chat(user, SPAN_NOTICE("You can't add more EMP shielding to this APC!"))
 			return
 		else
-			if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+			if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 				return
-			if (!do_after(user, 30 SECONDS, src))
+			if(!do_after(user, 30 SECONDS, src))
 				return
 
 		to_chat(usr, SPAN_NOTICE("You install the EMP shield into the [src]."))
@@ -595,10 +595,10 @@
 		RefreshParts()		
 		return
 
-	if (istype(I, /obj/item/weapon/gripper))//Gripper can extract cell
+	if(istype(I, /obj/item/weapon/gripper))//Gripper can extract cell
 		var/obj/item/weapon/gripper/Gri = I
 		if(opened && cell)
-			if (Gri.grip_item(cell, user))
+			if(Gri.grip_item(cell, user))
 				cell.add_fingerprint(user)
 				cell.update_icon()
 				cell = null
@@ -608,11 +608,11 @@
 				update_icon()
 				return
 
-	if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
+	if(istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		if(cell)
 			to_chat(user, "There is a power cell already installed.")
 			return
-		if (stat & MAINT)
+		if(stat & MAINT)
 			to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
 			return
 		if(I.w_class != ITEM_SIZE_NORMAL)
@@ -627,9 +627,9 @@
 			SPAN_NOTICE("You insert the power cell."))
 		chargecount = 0
 		update_icon()
-	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
+	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
 		toggle_lock(user)
-	else if (istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
+	else if(istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
 			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
@@ -642,9 +642,9 @@
 							"You start adding cables to the APC frame...")
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 20, src))
-			if (C.amount >= 10 && !terminal && opened && has_electronics != 2)
+			if(C.amount >= 10 && !terminal && opened && has_electronics != 2)
 				var/obj/structure/cable/N = T.get_cable_node()
-				if (prob(50) && electrocute_mob(usr, N, N))
+				if(prob(50) && electrocute_mob(usr, N, N))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
@@ -657,7 +657,7 @@
 				make_terminal()
 				terminal.connect_to_network()
 
-	else if (istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
+	else if(istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
 		user.visible_message(SPAN_WARNING("[user.name] inserts the power control board into [src]."), \
 							"You start to insert the power control board into the frame...")
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -667,13 +667,13 @@
 				to_chat(user, SPAN_NOTICE("You place the power control board inside the frame."))
 				qdel(I)
 
-	else if (istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
+	else if(istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
 		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
 
-	else if (istype(I, /obj/item/frame/apc) && opened && emagged)
+	else if(istype(I, /obj/item/frame/apc) && opened && emagged)
 		emagged = FALSE
-		if (opened==2)
+		if(opened==2)
 			opened = 1
 		user.visible_message(\
 			SPAN_WARNING("[user.name] has replaced the damaged APC frontal panel with a new one."),\
@@ -681,8 +681,8 @@
 		qdel(I)
 		update_icon()
 
-	else if (istype(I, /obj/item/frame/apc) && opened && ((stat & BROKEN) || hacker))
-		if (has_electronics)
+	else if(istype(I, /obj/item/frame/apc) && opened && ((stat & BROKEN) || hacker))
+		if(has_electronics)
 			to_chat(user, SPAN_WARNING("You cannot repair this APC until you remove the electronics still inside."))
 			return
 		user.visible_message(SPAN_WARNING("[user.name] replaces the damaged APC frame with a new one."),\
@@ -697,11 +697,11 @@
 			if(hacker && hacker.hacked_apcs && (src in hacker.hacked_apcs))
 				hacker.hacked_apcs -= src
 				hacker = null
-			if (opened==2)
+			if(opened==2)
 				opened = 1
 			update_icon()
 	else
-		if (((stat & BROKEN) || hacker) \
+		if(((stat & BROKEN) || hacker) \
 				&& !opened \
 				&& I.force >= 5 \
 				&& I.w_class >= ITEM_SIZE_NORMAL \
@@ -712,9 +712,9 @@
 				"You hear bang")
 			update_icon()
 		else
-			if (issilicon(user))
+			if(issilicon(user))
 				return attack_hand(user)
-			if (!opened && wiresexposed && \
+			if(!opened && wiresexposed && \
 				((QUALITY_PULSING in I.tool_qualities) || \
 				(QUALITY_WIRE_CUTTING in I.tool_qualities) || \
 				(QUALITY_CUTTING in I.tool_qualities) || \
@@ -727,7 +727,7 @@
 // attack with hand - remove cell (if cover open) or interact with the APC
 
 /obj/machinery/power/apc/emag_act(var/remaining_charges, var/mob/user)
-	if (!(emagged || hacker))		// trying to unlock with an emag card
+	if(!(emagged || hacker))		// trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "You must close the cover to swipe an ID card.")
 		else if(wiresexposed)
@@ -736,7 +736,7 @@
 			to_chat(user, "Nothing happens.")
 		else
 			flick("apc-spark", src)
-			if (do_after(user,6,src))
+			if(do_after(user,6,src))
 				if(prob(50))
 					emagged = TRUE
 					locked = FALSE
@@ -747,7 +747,7 @@
 				return TRUE
 
 /obj/machinery/power/apc/attack_hand(mob/user)
-//	if (!can_use(user)) This already gets called in interact() and in topic()
+//	if(!can_use(user)) This already gets called in interact() and in topic()
 //		return
 	if(!user)
 		return
@@ -883,7 +883,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
@@ -902,14 +902,14 @@
 		area.power_light = (lighting > 1)
 		area.power_equip = (equipment > 1)
 		area.power_environ = (environ > 1)
-//		if (area.name == "AI Chamber")
+//		if(area.name == "AI Chamber")
 //			spawn(10)
 //				world << " [area.name] [area.power_equip]"
 	else
 		area.power_light = 0
 		area.power_equip = 0
 		area.power_environ = 0
-//		if (area.name == "AI Chamber")
+//		if(area.name == "AI Chamber")
 //			world << "[area.power_equip]"
 	area.power_change()
 
@@ -918,7 +918,7 @@
 
 
 /obj/machinery/power/apc/proc/can_use(mob/user, var/loud = 0) //used by attack_hand() and Topic()
-	if (user.stat)
+	if(user.stat)
 		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
 		return FALSE
 	if(!user.client)
@@ -934,7 +934,7 @@
 		to_chat(user, SPAN_WARNING("You must stand to use [src]!"))
 		return FALSE
 	autoflag = 5
-	if (issilicon(user))
+	if(issilicon(user))
 		var/permit = 0 // Malfunction variable. If AI hacks APC it can control it even without AI control wire.
 		var/mob/living/silicon/ai/AI = user
 		var/mob/living/silicon/robot/robot = user
@@ -949,10 +949,10 @@
 				to_chat(user, SPAN_DANGER("\The [src] have AI control disabled!"))
 			return FALSE
 	else
-		if (!in_range(src, user) || !istype(loc, /turf))
+		if(!in_range(src, user) || !istype(loc, /turf))
 			return FALSE
 	var/mob/living/carbon/human/H = user
-	if (istype(H) && prob(H.getBrainLoss()))
+	if(istype(H) && prob(H.getBrainLoss()))
 		to_chat(user, SPAN_DANGER("You momentarily forget how to use [src]."))
 		return FALSE
 	return TRUE
@@ -969,7 +969,7 @@
 		to_chat(usr, "You must unlock the panel to use this!")
 		return TRUE
 
-	if (href_list["lock"])
+	if(href_list["lock"])
 		coverlocked = !coverlocked
 
 	else if( href_list["reboot"] )
@@ -977,38 +977,38 @@
 		update_icon()
 		update()
 
-	else if (href_list["breaker"])
+	else if(href_list["breaker"])
 		toggle_breaker()
 
-	else if (href_list["cmode"])
+	else if(href_list["cmode"])
 		chargemode = !chargemode
 		if(!chargemode)
 			charging = 0
 			update_icon()
 
-	else if (href_list["eqp"])
+	else if(href_list["eqp"])
 		var/val = text2num(href_list["eqp"])
 		equipment = setsubsystem(val)
 		update_icon()
 		update()
 
-	else if (href_list["lgt"])
+	else if(href_list["lgt"])
 		var/val = text2num(href_list["lgt"])
 		lighting = setsubsystem(val)
 		update_icon()
 		update()
 
-	else if (href_list["env"])
+	else if(href_list["env"])
 		var/val = text2num(href_list["env"])
 		environ = setsubsystem(val)
 		update_icon()
 		update()
 
-	else if (href_list["overload"])
+	else if(href_list["overload"])
 		if(issilicon(usr))
 			overload_lighting()
 
-	else if (href_list["toggleaccess"])
+	else if(href_list["toggleaccess"])
 		if(issilicon(usr))
 			if(emagged || (stat & (BROKEN|MAINT)))
 				to_chat(usr, "The APC does not respond to the command.")
@@ -1026,7 +1026,7 @@
 /obj/machinery/power/apc/proc/ion_act()
 	if(prob(3))
 		locked = 1
-		if (cell.charge > 0)
+		if(cell.charge > 0)
 			cell.charge = 0
 			cell.corrupt()
 			update_icon()
@@ -1190,7 +1190,7 @@
 		force_update = 0
 		queue_icon_update()
 		update()
-	else if (last_ch != charging)
+	else if(last_ch != charging)
 		queue_icon_update()
 
 /obj/machinery/power/apc/proc/update_channels()
@@ -1265,19 +1265,19 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 	switch(severity)
 		if(1)
 			//set_broken() //now qdel() do what we need
-			if (cell)
+			if(cell)
 				cell.ex_act(1) // more lags woohoo
 			qdel(src)
 			return
 		if(2)
-			if (prob(50))
+			if(prob(50))
 				set_broken()
-				if (cell && prob(50))
+				if(cell && prob(50))
 					cell.ex_act(2)
 		if(3)
-			if (prob(25))
+			if(prob(25))
 				set_broken()
-				if (cell && prob(25))
+				if(cell && prob(25))
 					cell.ex_act(3)
 	return
 
