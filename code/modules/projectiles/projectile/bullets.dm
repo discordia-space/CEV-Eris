@@ -17,7 +17,7 @@
 		shake_camera(L, 1, 1, 0.5)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
-	if(mob_pierce > 0 && damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]))
+	if(damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]*penetrating))
 		mob_passthrough_check = 1
 	else
 		var/obj/item/weapon/grab/G = locate() in target_mob

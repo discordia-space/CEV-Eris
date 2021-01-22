@@ -48,7 +48,6 @@ There are important things regarding this file:
 	armor_penetration = 25
 	penetrating = 1
 	can_ricochet = TRUE
-	mob_pierce = 1
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
@@ -84,7 +83,6 @@ There are important things regarding this file:
 	penetrating = 1
 	sharp = TRUE
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
-	mob_pierce = 1
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
@@ -118,7 +116,6 @@ There are important things regarding this file:
 	armor_penetration = 20
 	penetrating = 1
 	can_ricochet = TRUE
-	mob_pierce = 1
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
@@ -180,7 +177,6 @@ There are important things regarding this file:
 	stun = 3
 	weaken = 3
 	penetrating = 1
-	mob_pierce = 1
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 //Shotguns .50

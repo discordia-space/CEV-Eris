@@ -46,7 +46,6 @@
 	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
-	var/mob_pierce = 0 // if greater than zero, the projectile will have a chance to pass through mobs
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
 
 	//Effects
