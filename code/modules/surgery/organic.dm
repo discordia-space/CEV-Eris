@@ -446,12 +446,12 @@
 		SPAN_NOTICE("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.stopBleeding()
-	organ.take_damage(0, max(tool.force/5, tool.force/(user.stats.getStat(STAT_BIO)/STAT_LEVEL_BASIC)), sharp=TRUE, edge=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
+	organ.take_damage(0, max(tool.force/5, tool.force/(user.stats.getStat(STAT_BIO)/STAT_LEVEL_BASIC))) //So it's a bad idea to remove shrapnel with a chainsaw
 
 /datum/surgery_step/close_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips, burning across [organ.get_surgery_name()] with \the [tool]!"),
 		SPAN_WARNING("Your hand slips, char-grilling the flesh in [organ.get_surgery_name()] with \the [tool]!")
 	)
-	organ.take_damage(0, tool.force*1.5, sharp=TRUE, edge=TRUE)
+	organ.take_damage(0, tool.force*1.5)
 
