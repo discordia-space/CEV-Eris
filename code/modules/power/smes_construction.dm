@@ -50,7 +50,7 @@
 	rating = 3
 	rarity_value = 50
 
-/obj/item/stock_part/emp_shield
+/obj/item/emp_shield
 	name = "machinery emp shielding"
 	desc = "Weird metal box full of wires. This one looks salvaged."
 	icon = 'icons/obj/assemblies.dmi' //placeholder for now
