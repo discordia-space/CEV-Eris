@@ -377,7 +377,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/special_ability()
-//if rapid is 0, swiches rapid to be 1,
+//if rapid is FALSE, swiches rapid to be TRUE, combined with the overheat proc this is like an on/off switch
 //shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
 	if(rapid == FALSE)
 		rapid = TRUE
@@ -387,7 +387,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/proc/overheat()
-//upon activating overheat, if rapid is 1, switches rapid to be 0,
+//upon activating overheat, if rapid is TRUE, switches rapid to be FALSE,
 //shows a cool (pun intended) message, malfunctions, and starts the cooldown
 	if(rapid == TRUE)
 		rapid = FALSE
