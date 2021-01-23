@@ -39,6 +39,9 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/pistol/s
+	damage_types = list(BRUTE = 25)
+
 //Carbines and rifles
 
 // .20 rifle
@@ -76,6 +79,9 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/srifle/s
+	damage_types = list(BRUTE = 22)
+
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
@@ -111,6 +117,9 @@ There are important things regarding this file:
 	sharp = FALSE
 	can_ricochet = TRUE
 
+/obj/item/projectile/bullet/clrifle/s
+	damage_types = list(BRUTE = 24)
+
 // .30 rifle
 
 /obj/item/projectile/bullet/lrifle
@@ -143,6 +152,9 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/lrifle/s
+	damage_types = list(BRUTE = 25)
+
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	damage_types = list(BRUTE = 34)
@@ -173,8 +185,24 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/magnum/s
+	damage_types = list(BRUTE = 30)
+
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
+	damage_types = list(BRUTE = 70)
+	armor_penetration = 50
+	stun = 3
+	weaken = 3
+	penetrating = 5
+	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+
+/obj/item/projectile/bullet/antim/s
+	damage_types = list(BRUTE = 63)
+
+/obj/item/projectile/bullet/antim/owo
+	name = "Neko Neko!!!"
+	icon_state = "rubber"
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 50
 	stun = 3
@@ -191,6 +219,9 @@ There are important things regarding this file:
 	knockback = 1
 	step_delay = 1.1
 
+/obj/item/projectile/bullet/shotgun/s
+	damage_types = list(BRUTE = 48)
+
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
 	icon_state = "buckshot"
@@ -200,6 +231,16 @@ There are important things regarding this file:
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
+
+/obj/item/projectile/bullet/shotgun/beanbag/s
+	damage_types = list(BRUTE = 9)
+	agony = 55
+
+/obj/item/projectile/bullet/shotgun/beanbag/bd
+	name = "dragon slug"
+	icon_state = "bd"
+	damage_types = list(BRUTE = 25)	//getting slapped with rod hurts
+	agony = 80
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
@@ -238,6 +279,9 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
+
+/obj/item/projectile/bullet/pellet/shotgun/s
+	damage_types = list(BRUTE = 9)
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
