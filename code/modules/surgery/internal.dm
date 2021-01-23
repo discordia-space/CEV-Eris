@@ -33,7 +33,7 @@
 	organ.add_item(tool, user)
 	if(BP_IS_ORGANIC(organ))
 		playsound(get_turf(organ), 'sound/effects/squelch1.ogg', 50, 1)
-
+	
 /datum/surgery_step/insert_item/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
