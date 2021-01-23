@@ -102,16 +102,16 @@
 
 	switch(dice)
 		if(-99 to 8)
-			piles = 1
-		if(8 to 16)
 			piles = 2
+		if(8 to 16)
+			piles = 4
 		if(16 to 24)
 			boxxes = 1
 		if(24 to 32)
-			piles = 1
+			piles = 2
 			boxxes = 1
 		if(32 to 40)
-			piles = 2
+			piles = 4
 			boxxes = 1
 		if(40 to 48)
 			boxxes = 2
