@@ -35,14 +35,14 @@
 	caliber = CAL_PISTOL
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
 
-/obj/item/ammo_casing/pistol/s
+/obj/item/ammo_casing/pistol/scrap
 	desc = "An old .35 Auto bullet casing."
 	icon_state = "pistol_c_s"
 	spent_icon = "pistol_c_s-spent"
 	caliber = CAL_PISTOL
-	projectile_type = /obj/item/projectile/bullet/pistol/s
+	projectile_type = /obj/item/projectile/bullet/pistol/scrap
 
-/obj/item/ammo_casing/pistol/s/prespawned
+/obj/item/ammo_casing/pistol/scrap/prespawned
 	amount = 15
 
 //// .40 ////
@@ -82,14 +82,14 @@
 	caliber = CAL_MAGNUM
 	projectile_type = /obj/item/projectile/bullet/magnum/rubber
 
-/obj/item/ammo_casing/magnum/s
+/obj/item/ammo_casing/magnum/scrap
 	desc = "An old .40 Magnum bullet casing."
 	caliber = CAL_MAGNUM
 	icon_state = "magnum_c_s"
 	spent_icon = "magnum_c_s-spent"
-	projectile_type = /obj/item/projectile/bullet/magnum/s
+	projectile_type = /obj/item/projectile/bullet/magnum/scrap
 
-/obj/item/ammo_casing/magnum/s/prespawned
+/obj/item/ammo_casing/magnum/scrap/prespawned
 	amount = 6
 
 //// .20 ////
@@ -129,14 +129,14 @@
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/rubber
 
-/obj/item/ammo_casing/srifle/s
+/obj/item/ammo_casing/srifle/scrap
 	desc = "An old .20 Rifle bullet casing."
 	icon_state = "srifle_c_s"
 	spent_icon = "srifle_c_s-spent"
 	caliber = CAL_SRIFLE
-	projectile_type = /obj/item/projectile/bullet/srifle/s
+	projectile_type = /obj/item/projectile/bullet/srifle/scrap
 
-/obj/item/ammo_casing/srifle/s/prespawned
+/obj/item/ammo_casing/srifle/scrap/prespawned
 	amount = 10
 
 //// .25 ////
@@ -180,14 +180,14 @@
 	projectile_type = /obj/item/projectile/bullet/clrifle/rubber
 	is_caseless = TRUE
 
-/obj/item/ammo_casing/clrifle/s
+/obj/item/ammo_casing/clrifle/scrap
 	desc = "An old .25 Caseless Rifle bullet casing."
 	icon_state = "clrifle_c_s"
 	spent_icon = "clrifle_c_s-spent"
 	caliber = CAL_CLRIFLE
-	projectile_type = /obj/item/projectile/bullet/clrifle/s
+	projectile_type = /obj/item/projectile/bullet/clrifle/scrap
 
-/obj/item/ammo_casing/clrifle/s/prespawned
+/obj/item/ammo_casing/clrifle/scrap/prespawned
 	amount = 10
 
 //// .30 ////
@@ -227,14 +227,14 @@
 	caliber = CAL_LRIFLE
 	projectile_type = /obj/item/projectile/bullet/lrifle/rubber
 
-/obj/item/ammo_casing/lrifle/s
+/obj/item/ammo_casing/lrifle/scrap
 	desc = "An old .30 rifle bullet casing."
 	icon_state = "lrifle_c_s"
 	spent_icon = "lrifle_c_s-spent"
 	caliber = CAL_LRIFLE
-	projectile_type = /obj/item/projectile/bullet/lrifle/s
+	projectile_type = /obj/item/projectile/bullet/lrifle/scrap
 
-/obj/item/ammo_casing/lrifle/s/prespawned
+/obj/item/ammo_casing/lrifle/scrap/prespawned
 	amount = 10
 
 //// .60 ////
@@ -258,26 +258,15 @@
 /obj/item/ammo_casing/antim/prespawned
 	amount = 5
 
-/obj/item/ammo_casing/antim/s
+/obj/item/ammo_casing/antim/scrap
 	name = "shell casing"
 	desc = "An old .60 Anti-Material shell."
 	icon_state = "atmr_s"
 	spent_icon = "atmr_s-spent"
-	projectile_type = /obj/item/projectile/bullet/antim/s
+	projectile_type = /obj/item/projectile/bullet/antim/scrap
 	maxamount = 5
 
-/obj/item/ammo_casing/antim/s/prespawned
-	amount = 5
-
-/obj/item/ammo_casing/antim/owo	//admeme spawn only... please
-	name = "Neko Bullet"
-	desc = "UWU shoots you across the station."
-	icon_state = "atmr_s"
-	spent_icon = "atmr_s-spent"
-	projectile_type = /obj/item/projectile/bullet/antim/owo
-	maxamount = 5
-
-/obj/item/ammo_casing/antim/owo/prespawned
+/obj/item/ammo_casing/antim/scrap/prespawned
 	amount = 5
 
 //// .50 Shotgun ////
@@ -301,16 +290,16 @@
 /obj/item/ammo_casing/shotgun/prespawned
 	amount = 5
 
-/obj/item/ammo_casing/shotgun/s
+/obj/item/ammo_casing/shotgun/scrap
 	name = "old shotgun slug"
 	desc = "An older .50 slug."
 	icon_state = "s-shell_s"
 	spent_icon = "s-shell_s-spent"
 	caliber = CAL_SHOTGUN
-	projectile_type = /obj/item/projectile/bullet/shotgun/s
+	projectile_type = /obj/item/projectile/bullet/shotgun/scrap
 	maxamount = 5
 
-/obj/item/ammo_casing/shotgun/s/prespawned
+/obj/item/ammo_casing/shotgun/scrap/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/shotgun/beanbag
@@ -324,25 +313,15 @@
 /obj/item/ammo_casing/shotgun/beanbag/prespawned
 	amount = 5
 
-/obj/item/ammo_casing/shotgun/beanbag/s
+/obj/item/ammo_casing/shotgun/beanbag/scrap
 	name = "Old beanbag shell"
 	desc = "An older .50 beanbag shell."
 	icon_state = "s-shell_rs"
 	spent_icon = "s-shell_rs-spent"
-	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag/s
+	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag/scrap
 	matter = list(MATERIAL_STEEL = 1)
 
-/obj/item/ammo_casing/shotgun/beanbag/s/prespawned
-	amount = 5
-
-/obj/item/ammo_casing/shotgun/beanbag/bd //admeme spawn only... please
-	name = "dragon shell"
-	desc = "A .50 dragon shell. Normally quite bad to be shot with"
-	icon_state = "s-shell_bd"
-	spent_icon = "s-shell_bd-spent"
-	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag/bd
-
-/obj/item/ammo_casing/shotgun/beanbag/bd/prespawned
+/obj/item/ammo_casing/shotgun/beanbag/scrap/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/shotgun/pellet
@@ -356,14 +335,14 @@
 /obj/item/ammo_casing/shotgun/pellet/prespawned
 	amount = 5
 
-/obj/item/ammo_casing/shotgun/pellet/s
+/obj/item/ammo_casing/shotgun/pellet/scrap
 	name = "old shotgun shell"
 	desc = "An older .50 shell."
 	icon_state = "s-shell_ss"
 	spent_icon = "s-shell_ss-spent"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/s
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/scrap
 
-/obj/item/ammo_casing/shotgun/pellet/s/prespawned
+/obj/item/ammo_casing/shotgun/pellet/scrap/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/shotgun/blank

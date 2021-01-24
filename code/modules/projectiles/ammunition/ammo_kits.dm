@@ -88,10 +88,10 @@
 
 	if(piles)
 		for(var/j = 1 to piles)
-			new /obj/item/ammo_casing/pistol/s/prespawned(user.loc)
+			new /obj/item/ammo_casing/pistol/scrap/prespawned(user.loc)
 	if(boxxes)
 		for(var/j = 1 to boxxes)
-			new /obj/item/ammo_magazine/ammobox/pistol/s(user.loc)
+			new /obj/item/ammo_magazine/ammobox/pistol/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,10 +120,10 @@
 
 	if(piles)
 		for(var/j = 1 to piles)
-			new /obj/item/ammo_casing/magnum/s/prespawned(user.loc)
+			new /obj/item/ammo_casing/magnum/scrap/prespawned(user.loc)
 	if(boxxes)
 		for(var/j = 1 to boxxes)
-			new /obj/item/ammo_magazine/ammobox/magnum/s(user.loc)
+			new /obj/item/ammo_magazine/ammobox/magnum/scrap(user.loc)
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -156,26 +156,26 @@
 	if(rifle==1) //srifle
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/srifle/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/srifle/scrap/prespawned(user.loc)
 		if(boxxes)
 			for(var/j = 1 to boxxes)
-				new /obj/item/ammo_magazine/ammobox/srifle_small/s(user.loc)
+				new /obj/item/ammo_magazine/ammobox/srifle_small/scrap(user.loc)
 
 	if(rifle==2) //clrifle
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/clrifle/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/clrifle/scrap/prespawned(user.loc)
 		if(boxxes)
 			for(var/j = 1 to boxxes)
-				new /obj/item/ammo_magazine/ammobox/clrifle_small/s(user.loc)
+				new /obj/item/ammo_magazine/ammobox/clrifle_small/scrap(user.loc)
 
 	if(rifle==3) //lrifle
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/lrifle/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/lrifle/scrap/prespawned(user.loc)
 		if(boxxes)
 			for(var/j = 1 to boxxes)
-				new /obj/item/ammo_magazine/ammobox/lrifle_small/s(user.loc)
+				new /obj/item/ammo_magazine/ammobox/lrifle_small/scrap(user.loc)
 //////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/ammo_kit/proc/spawn_antim(dice = 0, mob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code
@@ -200,10 +200,10 @@
 
 	if(piles)
 		for(var/j = 1 to piles)
-			new /obj/item/ammo_casing/antim/s/prespawned(user.loc)
+			new /obj/item/ammo_casing/antim/scrap/prespawned(user.loc)
 	if(boxxes)
 		for(var/j = 1 to boxxes)
-			new /obj/item/ammo_magazine/ammobox/antim/s(user.loc)
+			new /obj/item/ammo_magazine/ammobox/antim/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -220,14 +220,14 @@
 	if(shotgun==1) //shot
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/shotgun/pellet/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/shotgun/pellet/scrap/prespawned(user.loc)
 
 	if(shotgun==2) //bean
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/shotgun/beanbag/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/shotgun/beanbag/scrap/prespawned(user.loc)
 
 	if(shotgun==3) //slug
 		if(piles)
 			for(var/j = 1 to piles)
-				new /obj/item/ammo_casing/shotgun/s/prespawned(user.loc)
+				new /obj/item/ammo_casing/shotgun/scrap/prespawned(user.loc)
