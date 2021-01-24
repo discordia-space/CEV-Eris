@@ -203,12 +203,15 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim/owo
 	name = "Neko Neko!!!"
 	icon_state = "rubber"
-	damage_types = list(BRUTE = 70)
-	armor_penetration = 50
-	stun = 3
-	weaken = 3
-	penetrating = 5
-	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	damage_types = list(BRUTE = 10)
+	armor_penetration = 100
+	stun = 5
+	weaken = 5
+	penetrating = 0
+	agony = 100
+	embed = FALSE
+	sharp = TRUE
+	hitscan = FALSE //Meme rounds don't need hitscan
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
@@ -239,7 +242,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/beanbag/bd
 	name = "dragon slug"
 	icon_state = "bd"
-	damage_types = list(BRUTE = 25)	//getting slapped with rod hurts
+	damage_types = list(BRUTE = 15)	//getting slapped with rod hurts, but not too much
 	agony = 80
 
 /obj/item/projectile/bullet/shotgun/practice

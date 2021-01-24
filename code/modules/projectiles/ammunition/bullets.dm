@@ -263,7 +263,7 @@
 	desc = "An old .60 Anti-Material shell."
 	icon_state = "atmr_s"
 	spent_icon = "atmr_s-spent"
-	projectile_type = /obj/item/projectile/bullet/antim/owo
+	projectile_type = /obj/item/projectile/bullet/antim/s
 	maxamount = 5
 
 /obj/item/ammo_casing/antim/s/prespawned
@@ -335,7 +335,7 @@
 /obj/item/ammo_casing/shotgun/beanbag/s/prespawned
 	amount = 5
 
-/obj/item/ammo_casing/shotgun/beanbag/bd
+/obj/item/ammo_casing/shotgun/beanbag/bd //admeme spawn only... please
 	name = "dragon shell"
 	desc = "A .50 dragon shell. Normally quite bad to be shot with"
 	icon_state = "s-shell_bd"
