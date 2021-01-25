@@ -38,6 +38,7 @@
 		text = capitalize(sanitize(text))
 		if(!text) 
 			return
+		log_say("Borer said to its host [text]")
 
 		to_chat(src, "You say to your host: [text]")
 		to_chat(B.host_brain, "YOU say to yourself: [text]")
