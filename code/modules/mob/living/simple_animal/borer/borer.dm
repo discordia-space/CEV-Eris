@@ -1,3 +1,8 @@
+#define BORER_EXP_LEVEL_1 20
+#define BORER_EXP_LEVEL_2 40
+#define BORER_EXP_LEVEL_3 80
+#define BORER_EXP_LEVEL_4 160
+#define BORER_EXP_LEVEL_5 320
 /mob/living/simple_animal/borer
 	name = "cortical borer"
 	real_name = "cortical borer"
@@ -267,63 +272,58 @@
 	update_borer_level()
 
 /mob/living/simple_animal/borer/proc/update_borer_level()
-	if((borer_exp >= 20) && (borer_level < 1))
-		borer_level = 1
-		produced_reagents |= list("inaprovaline", "tricordrazine", "synaptizine", "imidazoline", "hyronalin")
-		abilities_in_host |= list(/mob/living/simple_animal/borer/proc/say_host, /mob/living/simple_animal/borer/proc/whisper_host, /mob/living/simple_animal/borer/proc/commune)
-		abilities_standalone |= list(/mob/living/simple_animal/borer/proc/commune)
-		if(host && !controlling)
-			verbs += /mob/living/simple_animal/borer/proc/say_host
-			verbs += /mob/living/simple_animal/borer/proc/whisper_host
-			verbs += /mob/living/simple_animal/borer/proc/commune
-		if(!host)
-			verbs += /mob/living/simple_animal/borer/proc/commune
-		to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level 1, new syntesis reagents and new abilities are now available."))
-		max_chemicals += (borer_level * 10)
-		max_chemicals_inhost = max_chemicals * 5
+	if((borer_exp >= BORER_EXP_LEVEL_1) && (borer_level < 1))
+		var/level = 1
+		var/added_reagents = list("inaprovaline", "tricordrazine", "synaptizine", "imidazoline", "hyronalin")
+		var/abilities_IH = list(/mob/living/simple_animal/borer/proc/say_host, /mob/living/simple_animal/borer/proc/whisper_host, /mob/living/simple_animal/borer/proc/commune)
+		var/abilities_SL = list(/mob/living/simple_animal/borer/proc/commune)
 
-	if((borer_exp >= 40) && (borer_level < 2))
-		borer_level = 2
-		produced_reagents |= list("spaceacillin", "quickclot", "detox", "purger", "arithrazine")
-		abilities_standalone |= list(/mob/living/simple_animal/borer/proc/biograde)
-		abilities_in_control |= list(/mob/living/carbon/human/proc/commune)
-		if(!host)
-			verbs += /mob/living/simple_animal/borer/proc/biograde
-		if(host && controlling && ishuman(host))
-			verbs += /mob/living/carbon/human/proc/commune
-		to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level 2, new syntesis reagents and new abilities are now available."))
-		max_chemicals += (borer_level * 10)
-		max_chemicals_inhost = max_chemicals * 5
+		level_up(level, added_reagents, abilities_IH, abilities_SL)
 
-	if((borer_exp >= 80) && (borer_level < 3))
-		borer_level = 3
-		produced_reagents |= list("meralyne", "dermaline", "dexalinp", "oxycodone", "ryetalyn")
-		abilities_standalone |= list(/mob/living/simple_animal/borer/proc/invisible)
-		if(!host)
-			verbs += /mob/living/simple_animal/borer/proc/invisible
-		to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level 3, new syntesis reagents and new abilities are now available."))
-		max_chemicals += (borer_level * 10)
-		max_chemicals_inhost = max_chemicals * 5
+	if((borer_exp >= BORER_EXP_LEVEL_2) && (borer_level < 2))
+		var/level = 2
+		var/added_reagents = list("spaceacillin", "quickclot", "detox", "purger", "arithrazine")
+		var/abilities_SL = list(/mob/living/simple_animal/borer/proc/biograde)
+		var/abilities_IC = list(/mob/living/carbon/human/proc/commune)
 
-	if((borer_exp >= 160) && (borer_level < 4))
-		borer_level = 4
-		produced_reagents |= list("peridaxon", "rezadone", "ossisine", "kyphotorin", "aminazine")
+		level_up(level, added_reagents, null, abilities_SL, abilities_IC)
+
+	if((borer_exp >= BORER_EXP_LEVEL_3) && (borer_level < 3))
+		var/level = 3
+		var/added_reagents = list("meralyne", "dermaline", "dexalinp", "oxycodone", "ryetalyn")
+		var/abilities_SL = list(/mob/living/simple_animal/borer/proc/invisible)
+
+		level_up(level, added_reagents, null, abilities_SL)
+
+	if((borer_exp >= BORER_EXP_LEVEL_4) && (borer_level < 4))
+		var/level = 4
+		var/added_reagents = list("peridaxon", "rezadone", "ossisine", "kyphotorin", "aminazine")
 		health = 100
 		maxHealth = 100
 		speed = 1
-		to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level 4, new syntesis reagents and new abilities are now available."))
-		max_chemicals += (borer_level * 10)
-		max_chemicals_inhost = max_chemicals * 5
 
-	if((borer_exp >= 320) && (borer_level < 5))
-		borer_level = 5
-		produced_reagents |= list("violence", "steady", "bouncer", "prosurgeon", "cherry drops", "machine binding ritual")
-		abilities_in_host |= list(/mob/living/simple_animal/borer/proc/jumpstart)
-		if(host && !controlling)
-			verbs += /mob/living/simple_animal/borer/proc/jumpstart
-		to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level 5, new syntesis reagents and new abilities are now available."))
-		max_chemicals += (borer_level * 10)
-		max_chemicals_inhost = max_chemicals * 5
+		level_up(level, added_reagents)
+
+	if((borer_exp >= BORER_EXP_LEVEL_5) && (borer_level < 5))
+		var/level = 5
+		var/added_reagents = list("violence", "steady", "bouncer", "prosurgeon", "cherry drops", "machine binding ritual")
+		var/abilities_IH = list(/mob/living/simple_animal/borer/proc/jumpstart)
+
+		level_up(level, added_reagents, abilities_IH)
+
+/mob/living/simple_animal/borer/proc/level_up(level, added_reagents = list(), abilities_IH= list(), abilities_SL= list(), abilities_IC= list())
+	borer_level = level
+
+	produced_reagents += added_reagents
+	abilities_in_host += abilities_IH
+	abilities_standalone += abilities_SL
+	abilities_in_control += abilities_IC
+
+	update_abilities()
+
+	to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
+	max_chemicals += (borer_level * 10)
+	max_chemicals_inhost = max_chemicals * 5
 
 /mob/living/simple_animal/borer/cannot_use_vents()
 	return
