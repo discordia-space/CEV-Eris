@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - balance: Vending machines now fire coins at projectile speeds when hacked, rather
-      than their inventory

@@ -24,7 +24,7 @@
 	var/portal_type = /obj/effect/portal
 	var/portal_fail_chance
 	var/cell_charge_per_attempt = 33
-	var/entropy_value = 2  //for bluespace entropy
+	var/entropy_value = 1  //for bluespace entropy
 
 /obj/item/weapon/hand_tele/Initialize()
 	. = ..()
@@ -73,7 +73,7 @@
 	to_chat(user, SPAN_NOTICE("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
-	P.entropy_value = entropy_value
+	P.entropy_value += entropy_value
 	if(portal_fail_chance)
 		P.failchance = portal_fail_chance
 	src.add_fingerprint(user)
@@ -98,7 +98,7 @@
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
-	entropy_value = 4 //for bluespace entropy
+	entropy_value = 3 //for bluespace entropy
 	spawn_blacklisted = FALSE
 	var/calibration_required = TRUE
 

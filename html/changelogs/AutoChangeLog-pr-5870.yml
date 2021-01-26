@@ -1,4 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: The crafting subtypes of doors, tiles, and chairs are now available again.
