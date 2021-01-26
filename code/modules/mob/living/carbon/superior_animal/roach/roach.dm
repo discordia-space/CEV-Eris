@@ -43,6 +43,11 @@
 	var/fed = 0 // roach gets fed after eating a corpse
 	var/probability_egg_laying = 25 // probability to lay an egg
 
+/mob/living/carbon/superior_animal/roach/New()
+	..()
+
+	add_language(LANGUAGE_ROACH)
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()

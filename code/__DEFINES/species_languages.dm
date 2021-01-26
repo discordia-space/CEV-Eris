@@ -32,6 +32,7 @@
 #define LANGUAGE_ROBOT "Robot Talk"
 #define LANGUAGE_DRONE "Drone Talk"
 #define LANGUAGE_MONKEY "Chimpanzee"
+#define LANGUAGE_ROACH "Roach"
 
 #define LANGUAGE_HIVEMIND "Hivemind"
 #define LANGUAGE_CORTICAL "Cortical Link"

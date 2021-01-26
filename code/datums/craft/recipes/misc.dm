@@ -164,6 +164,19 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/roach_imprinter
+	name = "roach language imprinter"
+	result = /obj/item/device/language_imprinter/roach
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer, 1, "time" = 5),
+		list(/obj/item/weapon/electronics/circuitboard, 1, "time" = 5),
+		list(/obj/item/stack/cable_coil, 5, "time" = 15),
+		list(QUALITY_ADHESIVE, 15, "time" = 20)
+	)
+	related_stats = list(STAT_COG)
+
 /datum/craft_recipe/tray
 	name = "dinner tray"
 	result = /obj/item/weapon/tray
@@ -292,4 +305,3 @@
 /datum/craft_recipe/makeshift_arm/right
 	name = "Makeshift prosthetic right arm"
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
-
