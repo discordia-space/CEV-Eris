@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: fixes wall-penetration related bugs
+  - tweak: bullets fired from the sky driver can no longer ricochet
