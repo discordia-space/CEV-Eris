@@ -15,7 +15,7 @@
 		return ..()
 	M.add_language(language)
 
-	to_chat(user, SPAN_DANGER("The [src] plunges into [M]'s eye!"))
+	to_chat(user, SPAN_DANGER("[src] plunges into [M]'s eye!"))
 	spent = TRUE
 
 /obj/item/device/language_imprinter/roach
