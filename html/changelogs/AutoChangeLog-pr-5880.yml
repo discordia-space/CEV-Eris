@@ -1,8 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - rscadd: Adds emergency self surgery.
-  - rscadd: Stand still, and use a sharp item on the limb with shrapnel in it to remove
-      shrapnel from yourself.
-  - rscadd: Stand still, and use a hot item to cauterize any open wounds on yourself.
-      Useful if you're out of bandages.

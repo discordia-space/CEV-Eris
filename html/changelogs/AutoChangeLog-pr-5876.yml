@@ -1,5 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - rscadd: Added new hivemind mob, the Lobber. A ranged mob that is able to rapidly
-      fire tripling it's output.

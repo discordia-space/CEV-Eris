@@ -1,5 +1,0 @@
-author: DarkLevel
-delete-after: true
-changes:
-  - balance: Reworked NT and IH shields to provide armor increase and lesser knockdown
-      immunity instead of block chance.
