@@ -2,7 +2,7 @@
 //// .35 ////
 /obj/item/ammo_kit
 	name = "Scrap Ammo Kit"
-	desc = "A somewhat jank looking crafting kit. It has a can of signel use tools,cheap pliers, and a box of bullet making materials."
+	desc = "A somewhat jank looking crafting kit. It has a can of single-use tools, cheap pliers and a box of bullet making materials."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "ammo_kit-1"
 	flags = CONDUCT
