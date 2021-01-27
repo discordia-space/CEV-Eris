@@ -296,11 +296,11 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	//nt
 	dat += {"
-	<u>Neotechnology scores</u><br>
+	<u>NeoTheology scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
 	<b>Lost faction items:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
 	<b>Faction objectives completed:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
-	<b>dirty areass:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
+	<b>Dirty areass:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
 	<b>Biomatter produced:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
 	<b>conversiones hecas:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
 	<b>Group rituals performed:</b> [GLOB.grup_ritual_performed] ([to_score_color(GLOB.grup_ritual_score)] Points)<br>
