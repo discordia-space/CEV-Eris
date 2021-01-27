@@ -11,7 +11,7 @@
 /mob/living/carbon/superior_animal/roach/proc/try_tame(var/mob/living/carbon/user, var/obj/item/weapon/reagent_containers/food/snacks/grown/thefood)
 	if(!istype(thefood))
 		return FALSE
-	if(prob(40))
+	if(prob(min(40, 100 - user.stats.getStat(STAT_COG)*2)))
 		visible_message("[src] hesitates for a moment...and then charges at [user]!")
 		return FALSE //Sometimes roach just be like that
 	//fruits and veggies are not there own type, they are all the grown type and contain certain reagents. This is why it didnt work before
@@ -25,12 +25,20 @@
 			visible_message("[src] snaps out of its trance and rushes at [user]!")
 			return FALSE
 		visible_message("[src] bucks around wildly, trying to shake  [user] off!") //YEEEHAW
-		if(prob(40))
-			visible_message("[src] thrashes around and, throws [user] clean off!")
-			user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
-			unbuckle_mob()
-			can_buckle = FALSE
-			return FALSE
+		for(var/datum/language/L in user.languages)
+			if(!L.name == LANGUAGE_ROACH)
+				if(prob(40))
+					visible_message("[src] thrashes around, and throws [user] clean off!")
+					user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+					unbuckle_mob()
+					can_buckle = FALSE
+					return FALSE
+			else if(prob(10))
+				visible_message("[src] thrashes around, and throws [user] clean off, despite their efforts to communicate with [src]!")
+				user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				unbuckle_mob()
+				can_buckle = FALSE
+				return FALSE
 		friends += user
 		visible_message("[src] reluctantly stops thrashing around...")
 		return TRUE
