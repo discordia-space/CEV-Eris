@@ -15,7 +15,6 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
 	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club)
 	initial_balance = 3000
-	perks = list(/datum/perk/oddity/charming_personality)
 	wage = WAGE_NONE // Makes his own money
 	stat_modifiers = list(
 		STAT_ROB = 15,
@@ -52,7 +51,6 @@
 	access = list(access_bar, access_kitchen)
 	initial_balance = 750
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
-	perks = list(/datum/perk/oddity/charming_personality)
 	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
