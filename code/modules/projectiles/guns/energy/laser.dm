@@ -61,7 +61,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
@@ -87,7 +87,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam
 	zoom_factor = 0
 	damage_multiplier = 1

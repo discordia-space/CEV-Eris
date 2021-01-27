@@ -7,6 +7,13 @@
 	item_state = "clarissa"
 
 	w_class = ITEM_SIZE_SMALL
+	can_dual = TRUE
+	silenced = FALSE
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
+	price_tag = 1200
+	rarity_value = 16
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL

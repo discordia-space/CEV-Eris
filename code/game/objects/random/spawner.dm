@@ -13,7 +13,7 @@
 	var/max_amount = 1
 	var/top_price
 	var/low_price
-	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
+	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE) //The tags the item must have to be considered to spawn
 	var/list/should_be_include_tags = list()//TODO
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()

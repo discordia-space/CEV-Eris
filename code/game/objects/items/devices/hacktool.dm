@@ -58,8 +58,8 @@
 
 	to_chat(user, SPAN_NOTICE("You begin hacking \the [target]..."))
 	is_hacking = 1
-	// On average hackin takes ~30 seconds. Fairly small random span to avoid people simply aborting and trying again
-	var/hack_result = do_after(user, (20 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS)), progress = 0)
+	// without any cog, hacking takes 30 seconds. every point of cog lowers the time needed to hack by 0,5 seconds, up to a maximum reduction of 20 seconds.
+	var/hack_result = do_after(user, min(60 SECONDS, 30 SECONDS - min(20 SECONDS, user.stats.getStat(STAT_COG) / 2 SECONDS)) , progress = 0)
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)

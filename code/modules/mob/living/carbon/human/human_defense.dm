@@ -168,6 +168,11 @@ meteor_act
 				if(C.armor.vars[type] > protection)
 					protection = C.armor.vars[type]
 
+	var/obj/item/weapon/shield/shield = has_shield()
+
+	if(shield)
+		protection += shield.armor[type]
+
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -195,6 +200,12 @@ meteor_act
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
+
+/mob/living/carbon/human/proc/has_shield()
+	for(var/obj/item/weapon/shield/shield in list(l_hand, r_hand))
+		if(!shield) continue
+		return shield
+	return FALSE
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
@@ -248,7 +259,7 @@ meteor_act
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(25 + (effective_force * 2)))
-		if(!stat)
+		if(!stat && !(has_shield()))
 			if(headcheck(hit_zone))
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))

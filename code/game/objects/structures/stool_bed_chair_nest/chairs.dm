@@ -117,31 +117,31 @@
 	icon_state = "comfychair_preview"
 
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","leather")
+	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
 
 /obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","carpet")
+	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
 
 /obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","teal")
+	..(newloc,MATERIAL_STEEL,"teal")
 
 /obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","black")
+	..(newloc,MATERIAL_STEEL,"black")
 
 /obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","green")
+	..(newloc,MATERIAL_STEEL,"green")
 
 /obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","purple")
+	..(newloc,MATERIAL_STEEL,"purple")
 
 /obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","blue")
+	..(newloc,MATERIAL_STEEL,"blue")
 
 /obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","beige")
+	..(newloc,MATERIAL_STEEL,"beige")
 
 /obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","lime")
+	..(newloc,MATERIAL_STEEL,"lime")
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
@@ -231,7 +231,7 @@
 	..()
 
 /obj/structure/bed/chair/wood/New(var/newloc)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
 	overlays += I

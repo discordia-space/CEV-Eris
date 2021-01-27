@@ -18,9 +18,9 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	suitable_cell = /obj/item/weapon/cell/small
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy
-	var/saved_item = /obj/item/trash/cigbutt
-	var/saved_icon = 'icons/inventory/face/icon.dmi'
-	var/saved_icon_state = "cigbutt"
+	var/saved_item
+	var/saved_icon
+	var/saved_icon_state
 	var/saved_overlays
 
 	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
@@ -183,3 +183,8 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
 	. = ..()
+
+/obj/effect/dummy/chameleon/Crossed(AM as mob|obj)
+	if(isobj(AM) || isliving(AM))
+		master.disrupt()
+	..()

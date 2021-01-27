@@ -8,7 +8,7 @@
 	icon_state = "mandella"
 	item_state = "mandella"
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	silenced = TRUE
 
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

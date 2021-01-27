@@ -157,6 +157,8 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/technomancer
 	id = "prosthesis_technomancer"
 	replace_limb = /obj/item/organ/external/robotic/technomancer
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
+	department_specific = list(DEPARTMENT_ENGINEERING)
 	icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 
 /datum/body_modification/limb/prosthesis/moebius

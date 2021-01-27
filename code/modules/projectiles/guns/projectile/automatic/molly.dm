@@ -9,6 +9,7 @@
 	item_state = "molly"
 
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = "/obj/item/ammo_casing/pistol"
@@ -51,6 +52,9 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+
+	if (wielded)
+		itemstring += "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)

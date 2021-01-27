@@ -11,7 +11,7 @@
 		slot_back_str   = "back",
 		slot_s_store_str= "onsuit",
 		)
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL
@@ -42,7 +42,7 @@
 
 	var/muzzle_flash = 3
 	var/dual_wielding
-	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
+	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
@@ -76,7 +76,7 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
-
+	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -286,7 +286,7 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.2)
+		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -295,6 +295,7 @@
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
+			P.adjust_ricochet(noricochet)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -592,6 +593,12 @@
 	else
 		user.update_cursor()
 
+/obj/item/weapon/gun/proc/get_total_damage_adjust()
+	var/val = 0
+	for(var/i in proj_damage_adjust)
+		val += proj_damage_adjust[i]
+	return val
+
 
 //Finds the current firemode and calls update on it. This is called from a few places:
 //When firemode is changed
@@ -652,26 +659,33 @@
 	data["recoil_buildup"] = recoil_buildup
 	data["recoil_buildup_max"] = initial(recoil_buildup)*10
 
+	data += ui_data_projectile(get_dud_projectile())
+
 	if(firemodes.len)
 		var/list/firemodes_info = list()
 		for(var/i = 1 to firemodes.len)
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
-			firemodes_info += list(list(
+			var/list/firemode_info = list(
 				"index" = i,
 				"current" = (i == sel_mode),
 				"name" = F.name,
+				"desc" = F.desc,
 				"burst" = F.settings["burst"],
 				"fire_delay" = F.settings["fire_delay"],
 				"move_delay" = F.settings["move_delay"],
-				))
+				)
+			if(F.settings["projectile_type"])
+				var/proj_path = F.settings["projectile_type"]
+				var/list/proj_data = ui_data_projectile(new proj_path)
+				firemode_info += proj_data
+			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
-
 
 	return data
 
@@ -683,6 +697,21 @@
 		sel_mode = text2num(href_list["firemode"])
 		set_firemode(sel_mode)
 		return 1
+
+//Returns a projectile that's not for active usage.
+/obj/item/weapon/gun/proc/get_dud_projectile()
+	return null
+
+/obj/item/weapon/gun/proc/ui_data_projectile(var/obj/item/projectile/P)
+	if(!P)
+		return list()
+	var/list/data = list()
+	data["projectile_name"] = P.name
+	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
+	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
+	qdel(P)
+	return data
+
 
 /obj/item/weapon/gun/refresh_upgrades()
 	//First of all, lets reset any var that could possibly be altered by an upgrade
