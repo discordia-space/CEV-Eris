@@ -24,10 +24,7 @@
 	name = "Chameleon Kit"
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/syndie_kit/chameleon
-
-/datum/uplink_item/item/stealth_items/chameleon_kit/New()
-	..()
-	antag_roles |= ROLE_CARRION
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/voice
 	name = "Voice Changer"
