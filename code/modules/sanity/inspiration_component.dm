@@ -44,11 +44,16 @@
 				aspect = "a <span class='blue'>weak</span>"
 			else
 				continue
-		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		if(!user.stat_check(STAT_COG, STAT_LEVEL_MINIMAL))
+			to_chat(user, SPAN_NOTICE("This item has an aspect of [stat], but you're unsure about it's strength"))
+		else
+			to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
-
+		if(!user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
+			to_chat(user, SPAN_NOTICE("Strange words echo in your head, but you can't quite make sense of what they might mean"))
+		else
+			to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()
 	if(stats)
