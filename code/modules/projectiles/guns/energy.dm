@@ -159,6 +159,9 @@
 		data["max_shots"] = round(C.maxcharge/charge_cost)
 	return data
 
+/obj/item/weapon/gun/energy/get_dud_projectile()
+	return new projectile_type
+
 /obj/item/weapon/gun/energy/refresh_upgrades()
 	//refresh our unique variables before applying upgrades too
 	charge_cost = initial(charge_cost)

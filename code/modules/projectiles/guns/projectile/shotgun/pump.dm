@@ -7,7 +7,7 @@
 	max_shells = 4
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)

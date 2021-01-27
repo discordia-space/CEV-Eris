@@ -749,7 +749,7 @@
 
 /obj/item/weapon/rig/proc/retract()
 	if (wearer)
-		for(var/piece in list("helmet","gauntlets","chest","boots"))
+		for(var/piece in list("helmet","chest","gauntlets","boots"))
 			toggle_piece(piece, wearer, ONLY_RETRACT)
 
 /obj/item/weapon/rig/proc/remove()

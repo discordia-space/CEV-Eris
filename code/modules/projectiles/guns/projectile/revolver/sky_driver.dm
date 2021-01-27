@@ -13,10 +13,11 @@
 	price_tag = 20000
 	damage_multiplier = 1.1
 	penetration_multiplier = 20
-	pierce_multiplier =  5
+	pierce_multiplier = 5
 	recoil_buildup = 50
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
+	noricochet = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()

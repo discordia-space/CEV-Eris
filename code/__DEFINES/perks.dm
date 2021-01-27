@@ -38,3 +38,4 @@
 
 //job perks
 #define PERK_ARTIST /datum/perk/job/artist
+#define PERK_SURVIVOR /datum/perk/survivor

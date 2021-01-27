@@ -349,7 +349,15 @@
 /obj/item/weapon/oddity/broken_necklace/New()
 	..()
 	GLOB.bluespace_gift += 1
-	GLOB.bluespace_entropy -= rand(25, 50)
+	GLOB.bluespace_entropy -= rand(30, 50)
+
+/obj/item/weapon/oddity/broken_necklace/Destroy()
+	var/turf/T = get_turf(src)
+	if(T)
+		bluespace_entropy(80,T)
+		new /obj/item/bluespace_dust(T)
+	GLOB.bluespace_gift -= 1
+	. = ..()
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
 	if(world.time < cooldown)
@@ -365,10 +373,6 @@
 		if(G.affecting)
 			go_to_bluespace(get_turf(user), entropy_value, FALSE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
 	if(prob(1))
-		new /obj/item/bluespace_dust(user.loc)
-		new /obj/item/bluespace_dust(T)
-		GLOB.bluespace_gift -= 1
-		bluespace_entropy(50,T)
 		qdel(src)
 
 /obj/item/weapon/oddity/broken_necklace/throw_impact(atom/movable/hit_atom)
@@ -382,9 +386,6 @@
 			var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
 			go_to_bluespace(T, entropy_value, TRUE, hit_atom, NT)
 		if(prob(1))
-			new /obj/item/bluespace_dust(T)
-			GLOB.bluespace_gift -= 1
-			bluespace_entropy(50,T)
 			qdel(src)
 
 //A randomized oddity with random stats, meant for artist job project

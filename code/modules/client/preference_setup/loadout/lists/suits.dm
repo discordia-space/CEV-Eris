@@ -99,12 +99,12 @@
 	path = /obj/item/clothing/suit/punkvest
 	cost = 1
 
-/datum/gear/suit/punkvest
-	display_name = "windbreaker"
-	path = /obj/item/clothing/suit/storage/toggle/windbreaker
-	cost = 1
+/datum/gear/suit/punkvest/New()
+	..()
+	var/punkvest = list(
+		"Punk"			=	/obj/item/clothing/suit/punkvest,
+		"Cyberpunk"			=	/obj/item/clothing/suit/punkvest/cyber,
+		"Windbreaker"			=	/obj/item/clothing/suit/storage/toggle/windbreaker,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(punkvest)
 
-/datum/gear/suit/punkvest
-	display_name = "cyberpunk vest"
-	path = /obj/item/clothing/suit/punkvest/cyber
-	cost = 1

@@ -6,7 +6,7 @@
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	can_dual = 1
+	can_dual = TRUE
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
@@ -18,8 +18,8 @@
 	penetration_multiplier = 1.2
 	recoil_buildup = 6
 	init_firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
-		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst"),
+		list(mode_name="semiauto", mode_desc="Fire almost as fast as you can pull the trigger", burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
+		list(mode_name="2-round bursts", mode_desc="Not quite the Mozambique method", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/olivaw/update_icon()
