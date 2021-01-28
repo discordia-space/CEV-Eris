@@ -1,5 +1,3 @@
-
-
 #define ERR_OK 0
 #define ERR_NOTFOUND "not found"
 #define ERR_NOMATERIAL "no material"
@@ -21,7 +19,27 @@
 	var/show_category
 	var/list/categories
 
-	var/list/lst = list()
+	var/list/cost_to_convert = list(
+	MATERIAL_IRON = 0.70,
+	MATERIAL_GLASS = 0.50,
+	MATERIAL_STEEL = 0.40,
+	MATERIAL_PLASMAGLASS = 0.70,
+	MATERIAL_DIAMOND = 1,
+	MATERIAL_PLASMA = 0.60,
+	MATERIAL_GOLD = 0.70,
+	MATERIAL_URANIUM = 1,
+	MATERIAL_SILVER = 0.70,
+	MATERIAL_PLASTEEL = 0.70,
+	MATERIAL_PLASTIC = 0.50,
+	MATERIAL_TRITIUM = 1,
+	MATERIAL_PLATINUM = 1,
+	MATERIAL_MHYDROGEN = 1,
+	MATERIAL_WOOD = 0.20,
+	MATERIAL_CLOTH = 0.10,
+	MATERIAL_CARDBOARD = 0.10,
+	MATERIAL_RGLASS = 0.55,
+	MATERIAL_LEATHER = 0.10,
+	MATERIAL_TITANIUM = 0.70)
 
 	var/working = FALSE
 	var/paused = FALSE
@@ -78,7 +96,7 @@
 		for(var/req_mats in ui_mats)
 			total_mat += req_mats["req"]
 		for(var/dmat in design_object.materials)
-			total_mat = total_mat + ((1 - lst[dmat]) * 10) * 2
+			total_mat = total_mat + ((1 - cost_to_convert[dmat]) * 10) * 2
 		saved_mat["req"] = total_mat
 		saved_mat["name"] = MATERIAL_COMPRESSED_MATTER
 		ui_mats = list(1)
@@ -185,7 +203,6 @@
 /obj/machinery/matter_nanoforge/attack_hand(mob/user)
 	if(..())
 		return TRUE
-	matter_assoc_list()
 	user.set_machine(src)
 	if(!design_list.len)
 		get_designs()
@@ -287,7 +304,6 @@
 		return
 
 	if(power_source)
-		matter_assoc_list()	
 		eat(user, I)
 		return
 	else
@@ -329,7 +345,6 @@
 				if(istype(O, /obj/item/stack/material/compressed_matter))
 					to_chat(user, SPAN_NOTICE("You deposit [total_material] compressed matter into \the [src]."))
 					stored_material[MATERIAL_COMPRESSED_MATTER] += total_material
-					update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
 					qdel(eating)
 					return
 				total_material_gained[material] += total_material
@@ -338,15 +353,14 @@
 	var/datum/component/inspiration/artifact = power_source.GetComponent(/datum/component/inspiration)
 	var/gained_mats = 0
 	for(var/mat in total_material_gained)
-		var/added_mats = artifact.get_power() * total_material_gained[mat] * lst[mat]
+		var/added_mats = artifact.get_power() * total_material_gained[mat] * cost_to_convert[mat]
 		if(added_mats + stored_material[MATERIAL_COMPRESSED_MATTER] > storage_capacity)
 			added_mats = storage_capacity - stored_material[MATERIAL_COMPRESSED_MATTER]
 		var/leftover_mats = (added_mats + stored_material[MATERIAL_COMPRESSED_MATTER]) - storage_capacity
 		stored_material[MATERIAL_COMPRESSED_MATTER] += added_mats
-		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
 		gained_mats += added_mats
 		if(leftover_mats == 0)
-			used_sheets = (added_mats / artifact.get_power()) / lst[mat]
+			used_sheets = (added_mats / artifact.get_power()) / cost_to_convert[mat]
 		else
 			used_sheets = total_material_gained[mat]
 	if(istype(eating, /obj/item/stack))
@@ -457,14 +471,14 @@
 			S.update_icon()
 		else
 			//There's too much, how many stacks do we need
-			var/fullstacks = round(whole_amount / S.max_amount)
+			var/fulcost_to_convertacks = round(whole_amount / S.max_amount)
 			//And how many sheets leftover for this stack
 			S.amount = whole_amount % S.max_amount
 
 			if (!S.amount)
 				qdel(S)
 
-			for(var/i = 0; i < fullstacks; i++)
+			for(var/i = 0; i < fulcost_to_convertacks; i++)
 				var/obj/item/stack/material/compressed_matter/MS = new(drop_location())
 				MS.amount = MS.max_amount
 				MS.update_strings()
@@ -501,7 +515,7 @@
 /obj/machinery/matter_nanoforge/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
 	// + 15 base cost for each material then * 2 
-		design.materials[material] += ((1 - lst[material]) * 10) * 2
+		design.materials[material] += ((1 - cost_to_convert[material]) * 10) * 2
 		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]): design.materials[material]
 		stored_material[MATERIAL_COMPRESSED_MATTER] = max(0, stored_material[MATERIAL_COMPRESSED_MATTER] - material_cost)
 
@@ -512,8 +526,10 @@
 #undef ERR_NOMATERIAL
 #undef ERR_PAUSED
 
-/obj/machinery/matter_nanoforge/proc/update_desc(var/stored_mats)
-	desc = "It consumes items and produces compressed matter. It has [stored_mats] Compressed Matter stored."
+/obj/machinery/matter_nanoforge/examine(mob/user, distance, infix, suffix)
+	..()
+	var/stored_mats = stored_material[MATERIAL_COMPRESSED_MATTER]
+	to_chat(user, "It has [stored_mats] of material stored.")
 
 /obj/machinery/matter_nanoforge/ex_act(severity)
 	return 0
@@ -569,26 +585,3 @@
 		image_load_material.color = material.icon_colour
 		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
 		flick("[initial(icon_state)]_load_m", image_load_material)
-
-
-/obj/machinery/matter_nanoforge/proc/matter_assoc_list()
-	lst[MATERIAL_IRON] = 0.70
-	lst[MATERIAL_GLASS] = 0.50
-	lst[MATERIAL_STEEL] = 0.40
-	lst[MATERIAL_PLASMAGLASS] = 0.70
-	lst[MATERIAL_DIAMOND] = 1
-	lst[MATERIAL_PLASMA] = 0.60
-	lst[MATERIAL_GOLD] = 0.70
-	lst[MATERIAL_URANIUM] = 1
-	lst[MATERIAL_SILVER] = 0.70
-	lst[MATERIAL_PLASTEEL] = 0.70
-	lst[MATERIAL_PLASTIC] = 0.50
-	lst[MATERIAL_TRITIUM] = 1
-	lst[MATERIAL_PLATINUM] = 1
-	lst[MATERIAL_MHYDROGEN] = 1
-	lst[MATERIAL_WOOD] = 0.20
-	lst[MATERIAL_CLOTH] = 0.10
-	lst[MATERIAL_CARDBOARD] = 0.10
-	lst[MATERIAL_RGLASS] = 0.55
-	lst[MATERIAL_LEATHER] = 0.10
-	lst[MATERIAL_TITANIUM] = 0.70
