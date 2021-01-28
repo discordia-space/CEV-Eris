@@ -48,7 +48,7 @@
 	rarity_value = 16 // slightly rarer than bulletproof gear
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
-		/datum/design/autolathe/clothing/ablative_vest,
+		/datum/design/autolathe/clothing/ablative_vest_full,
 		/datum/design/autolathe/clothing/ablative_helmet
 	)
 
