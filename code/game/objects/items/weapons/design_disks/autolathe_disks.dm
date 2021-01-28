@@ -166,6 +166,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/retro = 3, //"OS LG \"Cog\""
+		/datum/design/autolathe/cell/medium/high,
 	)
 
 // ARMOR
