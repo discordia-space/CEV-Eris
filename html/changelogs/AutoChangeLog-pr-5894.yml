@@ -1,0 +1,8 @@
+author: Omni44
+delete-after: true
+changes:
+  - rscadd: 2 burst  firemode
+  - rscdel: Charge mode on cog
+  - rscadd: cog's design disk
+  - tweak: cog's matter list
+  - rscadd: burst = 1 to WEAPON_NORMAL firemode
