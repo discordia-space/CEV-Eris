@@ -1,0 +1,5 @@
+author: Omni44
+delete-after: true
+changes:
+  - tweak: added legs and arms coverage to ablative_vest
+  - tweak: made ablative_vest into ablative_vest_full
