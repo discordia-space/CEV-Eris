@@ -341,3 +341,14 @@
 		comp.make_old()
 	updatehealth()
 	*/
+
+/obj/item/weapon/gun/make_old()
+	.=..()
+	if(. && prob(60))
+		var/list/trash_mods = TRASH_GUNMODS
+		while(trash_mods.len)
+			var/trash_mod_path = pick_n_take(trash_mods)
+			var/obj/item/trash_mod = new trash_mod_path
+			if(SEND_SIGNAL(trash_mod, COMSIG_IATTACK, src, null))
+				break
+			qdel(trash_mod)
