@@ -1,0 +1,4 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Cyborgs with the Service module now have access to a mini-synthesizer instrument.
