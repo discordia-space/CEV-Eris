@@ -1,0 +1,6 @@
+author: shazbot194
+delete-after: true
+changes:
+  - rscadd: Added scrap ammo and scrap ammo kits.
+  - rscadd: Added stacking for normal bullets
+  - imageadd: Added unique icons for all ammo
