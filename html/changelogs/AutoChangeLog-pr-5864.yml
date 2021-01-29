@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - rscadd: Old guns can now have faulty weapon mods on them, that require removal.
