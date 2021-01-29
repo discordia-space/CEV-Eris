@@ -259,4 +259,3 @@
 	ammo_type = /obj/item/ammo_casing/antim/scrap
 	max_ammo = 30
 	rarity_value = 1
-	spawn_tags = SPAWN_TAG_AMMO_COMMON
