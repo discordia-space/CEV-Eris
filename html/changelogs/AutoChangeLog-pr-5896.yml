@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: the changelog that says that oddities do not lose their perk is a lie.
