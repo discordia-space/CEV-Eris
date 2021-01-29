@@ -60,8 +60,8 @@
 			spawn_shotgun(dice_roll,user,2)
 		if("slug")
 			spawn_shotgun(dice_roll,user,3)
-
-	qdel(src)	//All used up
+	if(choice)
+		qdel(src)	//All used up
 
 //////////////////////////////////////////////////////////////////////////////////////
 
