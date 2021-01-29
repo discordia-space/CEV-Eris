@@ -210,6 +210,10 @@
 	name = "NT LG \"Lightfall\""
 	build_path = /obj/item/weapon/gun/energy/laser
 
+/datum/design/autolathe/gun/retro
+	name = "OS LG \"Cog\""
+	build_path = /obj/item/weapon/gun/energy/retro
+
 /datum/design/autolathe/gun/ionrifle
 	name = "NT IR \"Halicon\""
 	build_path = /obj/item/weapon/gun/energy/ionrifle

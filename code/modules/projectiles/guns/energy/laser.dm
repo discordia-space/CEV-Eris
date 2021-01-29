@@ -62,17 +62,17 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
-	matter = list(MATERIAL_STEEL = 12)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
 	price_tag = 2000
-	rarity_value = 10
+	rarity_value = 48
 	init_firemodes = list(
 		WEAPON_NORMAL,
-		WEAPON_CHARGE
+		BURST_2_ROUND
 	)
 	twohanded = TRUE
 
