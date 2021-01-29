@@ -1,0 +1,5 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: Added cabinet to medbay examination room
+  - bugfix: fixed scrubber and vent in VIP bar using the wrong pipes
