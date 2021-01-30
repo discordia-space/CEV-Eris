@@ -1,4 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - tweak: Junk .60 ammoboxes should be less frequent now.
