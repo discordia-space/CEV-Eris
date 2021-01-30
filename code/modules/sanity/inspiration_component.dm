@@ -50,7 +50,7 @@
 			to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		if(!user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
+		if(!user.stat_check(STAT_COG, STAT_LEVEL_BASIC))
 			to_chat(user, SPAN_NOTICE("Strange words echo in your head, but you can't quite make sense of what they might mean"))
 		else
 			to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
