@@ -696,6 +696,7 @@
 #include "code\game\machinery\autolathe\artist_bench.dm"
 #include "code\game\machinery\autolathe\autolathe.dm"
 #include "code\game\machinery\autolathe\mechfab.dm"
+#include "code\game\machinery\autolathe\nanoforge.dm"
 #include "code\game\machinery\bots\bots.dm"
 #include "code\game\machinery\bots\mulebot.dm"
 #include "code\game\machinery\camera\camera.dm"

@@ -1,12 +1,3 @@
-#define ERR_OK 0
-#define ERR_NOTFOUND "not found"
-#define ERR_NOMATERIAL "no material"
-#define ERR_NOREAGENT "no reagent"
-#define ERR_NOLICENSE "no license"
-#define ERR_PAUSED "paused"
-#define ERR_NOINSIGHT "no insight"
-
-
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
@@ -69,7 +60,8 @@
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
 		ERR_PAUSED = "**Construction Paused**",
-		ERR_NOINSIGHT = "Not enough insight."
+		ERR_NOINSIGHT = "Not enough insight.",
+		ERR_NOODDITY = "catalyst not found."
 	)
 
 	var/tmp/datum/wires/autolathe/wires
@@ -77,6 +69,11 @@
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flicker_overlay/image_load
 	var/tmp/obj/effect/flicker_overlay/image_load_material
+
+	//for nanoforge and artist bench
+	var/use_oddities = FALSE
+	var/datum/component/inspiration/inspiration
+	var/obj/item/oddity
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
@@ -202,6 +199,18 @@
 	data["queue"] = Q
 	data["queue_max"] = queue_max
 
+	data["use_oddities"] = use_oddities
+
+	if(inspiration)
+		var/list/stats = list()
+		var/list/LE = inspiration.calculate_statistics()
+		for(var/stat in LE)
+			var/list/LF = list("name" = stat, "level" = LE[stat])
+			stats.Add(list(LF))
+
+		data["oddity_name"] = oddity.name
+		data["oddity_stats"] = stats
+
 	return data
 
 
@@ -219,6 +228,7 @@
 		ui.add_template("_reagents", "autolathe_reagents.tmpl")
 		ui.add_template("_designs", "autolathe_designs.tmpl")
 		ui.add_template("_queue", "autolathe_queue.tmpl")
+		ui.add_template("_oddity", "autolathe_oddity.tmpl")
 
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -245,12 +255,23 @@
 		insert_beaker(user, I)
 		return
 
+	if(use_oddities)
+		GET_COMPONENT_FROM(C, /datum/component/inspiration, I)
+		if(C && C.perk)
+			insert_oddity(user, I)
+			return
+
 	user.set_machine(src)
 	ui_interact(user)
 
+/obj/machinery/autolathe/proc/check_user(mob/user)
+	return TRUE
 
 /obj/machinery/autolathe/attack_hand(mob/user)
 	if(..())
+		return TRUE
+
+	if(!check_user(user))
 		return TRUE
 
 	user.set_machine(src)
@@ -361,6 +382,12 @@
 			unfolded = href_list["unfold"]
 		return 1
 
+	if(href_list["oddity_name"])
+		if(oddity)
+			remove_oddity(usr)
+		else
+			insert_oddity(usr)
+		return TRUE
 
 /obj/machinery/autolathe/proc/insert_disk(mob/living/user, obj/item/weapon/computer_hardware/hard_drive/portable/inserted_disk)
 	if(!inserted_disk && istype(user))
@@ -627,6 +654,11 @@
 
 	return disk.find_files_by_type(/datum/computer_file/binary/design)
 
+/obj/machinery/autolathe/proc/icon_off()
+	if(stat & NOPOWER)
+		return TRUE
+	return FALSE
+
 /obj/machinery/autolathe/update_icon()
 	overlays.Cut()
 
@@ -635,7 +667,7 @@
 	if(panel_open)
 		overlays.Add(image(icon, "[icon_state]_panel"))
 
-	if(stat & NOPOWER)
+	if(icon_off())
 		return
 
 	if(working) // if paused, work animation looks awkward.
@@ -663,34 +695,43 @@
 		flick("[initial(icon_state)]_load_m", image_load_material)
 
 
+/obj/machinery/autolathe/proc/check_materials(datum/design/design)
+
+	for(var/rmat in design.materials)
+		if(!(rmat in stored_material))
+			return ERR_NOMATERIAL
+
+		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
+			return ERR_NOMATERIAL
+
+	if(design.chemicals.len)
+		if(!container || !container.is_drawable())
+			return ERR_NOREAGENT
+
+		for(var/rgn in design.chemicals)
+			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
+				return ERR_NOREAGENT
+
+	return ERR_OK
+
 /obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
+
+	if(use_oddities && !oddity)
+		return ERR_NOODDITY
+
+	if(paused)
+		return ERR_PAUSED
+
 	if(progress <= 0)
 		if(!design_file || !design_file.design)
 			return ERR_NOTFOUND
 
 		if(!design_file.check_license())
 			return ERR_NOLICENSE
-
 		var/datum/design/design = design_file.design
-
-		for(var/rmat in design.materials)
-			if(!(rmat in stored_material))
-				return ERR_NOMATERIAL
-
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
-				return ERR_NOMATERIAL
-
-		if(design.chemicals.len)
-			if(!container || !container.is_drawable())
-				return ERR_NOREAGENT
-
-			for(var/rgn in design.chemicals)
-				if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
-					return ERR_NOREAGENT
-
-
-	if(paused)
-		return ERR_PAUSED
+		var/error_mat = check_materials(design)
+		if(error_mat != ERR_OK)
+			return error_mat
 
 	return ERR_OK
 
@@ -875,6 +916,46 @@
 	print_post()
 	next_file()
 
+/obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
+	if(oddity)
+		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
+		return
+
+	if(!inserted_oddity && istype(user))
+		inserted_oddity = user.get_active_hand()
+
+	if(!istype(inserted_oddity))
+		return
+
+	if(!Adjacent(user) || !Adjacent(inserted_oddity))
+		return
+
+	GET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
+	if(!C || !C.perk)
+		return
+
+	if(istype(user) && (inserted_oddity in user))
+		user.unEquip(inserted_oddity, src)
+
+	inserted_oddity.forceMove(src)
+	oddity = inserted_oddity
+	inspiration = C
+	to_chat(user, SPAN_NOTICE("You insert [oddity] in [src]."))
+	SSnano.update_uis(src)
+
+/obj/machinery/autolathe/proc/remove_oddity(mob/living/user)
+	if(!oddity)
+		return
+
+	oddity.forceMove(drop_location())
+	to_chat(usr, SPAN_NOTICE("You remove [oddity] from [src]."))
+
+	if(istype(user) && Adjacent(user))
+		user.put_in_hands(oddity)
+
+	oddity = null
+	inspiration = null
+	SSnano.update_uis(src)
 
 #undef ERR_OK
 #undef ERR_NOTFOUND
