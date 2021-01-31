@@ -49,8 +49,8 @@
 				return
 		stored_material = list()
 		playsound(src.loc, 'sound/sanity/hydraulic.ogg', 50, 1)
-		spawn(5)
-			new /obj/item/stack/material/compressed(drop_location(), compressed_amt)
+		spawn(7)
+			new /obj/item/stack/material/compressed(drop_location(), round(compressed_amt))
 
 /obj/machinery/autolathe/nanoforge/Topic(href, href_list)
 	if(..())
