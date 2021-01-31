@@ -74,6 +74,7 @@
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
 	var/obj/item/oddity
+	var/is_nanoforge = FALSE
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
@@ -84,6 +85,8 @@
 
 	if(have_disk && default_disk)
 		disk = new default_disk(src)
+
+	update_icon()
 
 /obj/machinery/autolathe/Destroy()
 	QDEL_NULL(wires)
@@ -211,6 +214,7 @@
 		data["oddity_name"] = oddity.name
 		data["oddity_stats"] = stats
 
+	data["is_nanoforge"] = is_nanoforge
 	return data
 
 
@@ -229,6 +233,7 @@
 		ui.add_template("_designs", "autolathe_designs.tmpl")
 		ui.add_template("_queue", "autolathe_queue.tmpl")
 		ui.add_template("_oddity", "autolathe_oddity.tmpl")
+		ui.add_template("_nanoforge", "nanoforge_actions.tmpl")
 
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -728,6 +733,7 @@
 
 		if(!design_file.check_license())
 			return ERR_NOLICENSE
+
 		var/datum/design/design = design_file.design
 		var/error_mat = check_materials(design)
 		if(error_mat != ERR_OK)
@@ -943,15 +949,20 @@
 	to_chat(user, SPAN_NOTICE("You insert [oddity] in [src]."))
 	SSnano.update_uis(src)
 
-/obj/machinery/autolathe/proc/remove_oddity(mob/living/user)
+/obj/machinery/autolathe/proc/remove_oddity(mob/living/user, use_perk = FALSE)
 	if(!oddity)
 		return
 
 	oddity.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove [oddity] from [src]."))
+	if(user)
+		if(!use_perk)
+			to_chat(user, SPAN_NOTICE("You remove [oddity] from [src]."))
+		else
+			to_chat(user, SPAN_NOTICE("[src] consumes the perk of [oddity]"))
+			inspiration.perk = null
 
-	if(istype(user) && Adjacent(user))
-		user.put_in_hands(oddity)
+		if(istype(user) && Adjacent(user))
+			user.put_in_hands(oddity)
 
 	oddity = null
 	inspiration = null

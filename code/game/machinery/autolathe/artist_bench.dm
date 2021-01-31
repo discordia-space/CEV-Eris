@@ -262,20 +262,10 @@
 		if(stored_material[rmat] < min_mat)
 			return ERR_NOMATERIAL
 
-	for(var/rmat in design.materials)
-		if(!(rmat in stored_material))
-			return ERR_NOMATERIAL
+	var/error_mat = check_materials(design)
 
-		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
-			return ERR_NOMATERIAL
-
-	if(design.chemicals.len)
-		if(!container || !container.is_drawable())
-			return ERR_NOREAGENT
-
-		for(var/rgn in design.chemicals)
-			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
-				return ERR_NOREAGENT
+	if(error_mat != ERR_OK)
+		return error_mat
 
 	return ERR_OK
 
