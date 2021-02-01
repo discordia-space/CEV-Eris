@@ -315,3 +315,7 @@ var/list/global/cutoff_plant_icons = list()
 			to_chat(usr, SPAN_NOTICE("It looks juicy."))
 		else
 			to_chat(usr, SPAN_NOTICE("It looks a bit dry."))
+
+/obj/effect/plant/is_drawable(allowmobs)
+	. = ..()
+	return TRUE
