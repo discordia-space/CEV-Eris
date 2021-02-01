@@ -319,3 +319,4 @@ var/list/global/cutoff_plant_icons = list()
 /obj/effect/plant/is_drawable(allowmobs)
 	. = ..()
 	return TRUE
+
