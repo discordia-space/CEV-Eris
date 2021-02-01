@@ -28,6 +28,7 @@
 	layer = 3
 	pass_flags = PASSTABLE
 	mouse_opacity = 1
+	reagent_flags = DRAINABLE
 
 	var/health = 5
 	var/max_health = 60
@@ -315,8 +316,3 @@ var/list/global/cutoff_plant_icons = list()
 			to_chat(usr, SPAN_NOTICE("It looks juicy."))
 		else
 			to_chat(usr, SPAN_NOTICE("It looks a bit dry."))
-
-/obj/effect/plant/is_drawable(allowmobs)
-	. = ..()
-	return TRUE
-
