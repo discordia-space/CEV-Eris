@@ -329,7 +329,7 @@
 	desc = "A .50 shell."
 	icon_state = "s-shell_l"
 	spent_icon = "s-shell_l-spent"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
+	projectile_type = /obj/item/projectile/bullet/shotgun/buckshot
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/pellet/prespawned
@@ -340,7 +340,7 @@
 	desc = "An older .50 shell."
 	icon_state = "s-shell_ss"
 	spent_icon = "s-shell_ss-spent"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/scrap
+	projectile_type = /obj/item/projectile/bullet/shotgun/buckshot/scrap
 
 /obj/item/ammo_casing/shotgun/pellet/scrap/prespawned
 	amount = 5

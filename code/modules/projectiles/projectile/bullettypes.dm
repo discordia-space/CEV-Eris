@@ -246,23 +246,26 @@ There are important things regarding this file:
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
 
-//Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
-//Overall less damage than slugs in exchange for more damage at very close range and more embedding
-/obj/item/projectile/bullet/pellet/shotgun
+
+/obj/item/projectile/bullet/shotgun/buckshot
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 10)
-	pellets = 8
-	range_step = 1
-	spread_step = 10
-	knockback = 1
+	damage_types = list(BRUTE = 38 - damage_falloff)
+	armor_penetration = 40
+	step_delay = 5
+	knockback = 0
 
-/obj/item/projectile/bullet/pellet/shotgun/Initialize()
+/obj/item/projectile/bullet/shotgun/buckshot/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
 
-/obj/item/projectile/bullet/pellet/shotgun/scrap
-	damage_types = list(BRUTE = 9)
+/obj/item/projectile/bullet/shotgun/buckshot/scrap
+	damage_types = list(BRUTE = 34)
+
+/obj/item/projectile/bullet/shotgun/buckshot/proc/get_damage(var/distance)
+	var/damage_falloff = round((distance - 1)*3)
+	if(distance > 1)
+		to_chat(world,
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
