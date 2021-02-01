@@ -250,7 +250,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/buckshot
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 38 - damage_falloff)
+	damage_types = list(BRUTE = 38)
 	armor_penetration = 40
 	step_delay = 5
 	knockback = 0
@@ -262,10 +262,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/buckshot/scrap
 	damage_types = list(BRUTE = 34)
 
-/obj/item/projectile/bullet/shotgun/buckshot/proc/get_damage(var/distance)
-	var/damage_falloff = round((distance - 1)*3)
+/obj/item/projectile/bullet/shotgun/buckshot/proc/calculate_falloff(var/distance)
+	var/distance
 	if(distance > 1)
-		to_chat(world,
+		to_chat(world, "<b>AREAS WITHOUT AN APC:</b>")
+	damage_types[BRUTE] -= distance[BRUTE]
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
