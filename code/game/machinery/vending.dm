@@ -852,21 +852,18 @@
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
-
-	for(var/datum/data/vending_product/R in product_records)
-		throw_item = R.get_product(loc)
-		if(!throw_item)
-			continue
-		break
-	if(!throw_item)
-		return 0
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
-	visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
+	var/obj/item/projectile/P = new /obj/item/projectile/coin(get_turf(src))
+	P.shot_from = src
+	playsound(src, \
+		pick('sound/weapons/Gunshot.ogg','sound/weapons/guns/fire/Revolver_fire.ogg','sound/weapons/Gunshot_light.ogg',\
+		'sound/weapons/guns/fire/shotgunp_fire.ogg','sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/lmg_fire.ogg',\
+		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
+		60, 1)
+	P.launch(target)
+	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()

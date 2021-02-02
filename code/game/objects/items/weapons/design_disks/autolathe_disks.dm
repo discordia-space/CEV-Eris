@@ -158,6 +158,16 @@
 		/datum/design/autolathe/ammo/c10x24,
 	)
 
+//The Cog
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/retro
+	disk_name = "OS LG \"Cog\""
+	icon_state = "onestar"
+	rarity_value = 5.5
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/retro = 3, //"OS LG \"Cog\""
+		/datum/design/autolathe/cell/medium/high,
+	)
 
 // ARMOR
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
