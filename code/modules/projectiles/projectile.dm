@@ -124,11 +124,11 @@
 		can_ricochet = FALSE
 		return
 
-/obj/item/projectile/proc/calculate_falloff(proj_falloff)
+/obj/item/projectile/proc/calculate_falloff()
 	var/distance=get_dist(loc, starting)
 	if(distance>2)
-		var/damage_lost = get_tiles_passed(distance)
-		damage_types[BRUTE]-=damage_lost
+		var/damage_lost=(distance-2)
+		damage_types[BRUTE] = round(damage_types[BRUTE]-damage_lost)
 
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
