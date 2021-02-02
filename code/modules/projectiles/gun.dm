@@ -296,6 +296,7 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
+			P.calculate_falloff()
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)

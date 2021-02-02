@@ -254,7 +254,7 @@ There are important things regarding this file:
 	armor_penetration = 40
 	step_delay = 5
 	knockback = 0
-	falloff = 3
+	proj_falloff = 3
 
 /obj/item/projectile/bullet/shotgun/buckshot/Initialize()
 	. = ..()

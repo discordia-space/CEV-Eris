@@ -47,7 +47,7 @@
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
-	var/falloff = 0 // the amount of damage this projectile will lose per tile travelled after the 2-tile range
+	var/proj_falloff = 0 // the amount of damage this projectile will lose per tile travelled after the 2-tile range
 
 	//Effects
 	var/stun = 0
@@ -124,12 +124,12 @@
 		can_ricochet = FALSE
 		return
 
-/obj/item/projectile/proc/calculate_falloff(var/distance, var/falloff)
-	falloff = 0
+/obj/item/projectile/proc/calculate_falloff(proj_falloff)
+	var/distance = get_dist(loc, starting)
+	var/damage_lost = 0
 	if(distance > 2)
-		falloff = (distance - 2) * falloff
-		for(falloff)
-			damage_types[BRUTE] -= falloff[BRUTE]
+		damage_lost = (distance - 2) * proj_falloff
+		damage_types[BRUTE] -= damage_lost[BRUTE]
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
