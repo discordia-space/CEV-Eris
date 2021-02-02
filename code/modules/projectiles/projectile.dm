@@ -125,11 +125,11 @@
 		return
 
 /obj/item/projectile/proc/calculate_falloff(proj_falloff)
-	var/distance = get_dist(loc, starting)
-	var/damage_lost = 0
-	if(distance > 2)
-		damage_lost = (distance - 2) * proj_falloff
-		damage_types[BRUTE] -= damage_lost[BRUTE]
+	var/distance=get_dist(loc, starting)
+	if(distance>2)
+		var/damage_lost = get_tiles_passed(distance)
+		damage_types[BRUTE]-=damage_lost
+
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
