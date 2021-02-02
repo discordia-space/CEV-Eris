@@ -71,11 +71,11 @@
 	if(!inspiration || !inspiration.perk)
 		to_chat(user, SPAN_WARNING("catalyst not found."))
 		return
-	var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, null, null, TRUE, null, nano_disks, null)
-	if(!canidates.len)
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, null, null, TRUE, null, nano_disks, null)
+	if(!candidates.len)
 		to_chat(user, SPAN_WARNING("[src] has reached its maximum capacity."))
 		return
-	var/path = SSspawn_data.pick_spawn(canidates)
+	var/path = SSspawn_data.pick_spawn(candidates)
 	nano_disks += list(path)
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/design/D = new path
 	nanoforge_designs |= D.find_files_by_type(/datum/computer_file/binary/design)
