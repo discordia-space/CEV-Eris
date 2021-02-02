@@ -6,7 +6,7 @@
 	use_oddities = TRUE
 	is_nanoforge = TRUE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
-	var/list/nanofroge_designs = list()
+	var/list/nanoforge_designs = list()
 	var/list/tags_to_spawn = list(SPAWN_DESING)
 	var/list/nano_disks = list()
 
@@ -78,13 +78,13 @@
 	var/path = SSspawn_data.pick_spawn(canidates)
 	nano_disks += list(path)
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/design/D = new path
-	nanofroge_designs |= D.find_files_by_type(/datum/computer_file/binary/design)
+	nanoforge_designs |= D.find_files_by_type(/datum/computer_file/binary/design)
 	remove_oddity(user, TRUE)
 
 /obj/machinery/autolathe/nanoforge/design_list()
 	if(disk)
 		return disk.find_files_by_type(/datum/computer_file/binary/design)
-	return nanofroge_designs
+	return nanoforge_designs
 
 /obj/machinery/autolathe/nanoforge/icon_off()
 	. = ..()
@@ -96,5 +96,5 @@
 /obj/machinery/autolathe/nanoforge/check_user(mob/user)
 	if(user.stats.getPerk(PERK_TECHNOMANCER) || user.stat_check(STAT_MEC, STAT_LEVEL_EXPERT))
 		return TRUE
-	to_chat(user, SPAN_NOTICE("you have not how to make it work [src]"))
+	to_chat(user, SPAN_NOTICE("You don't know how to make this work[src]"))
 	return FALSE
