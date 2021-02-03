@@ -310,6 +310,8 @@
 			E.overcharge_rate *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+		if(weapon_upgrades[GUN_UPGRADE_AGONY_MULT])
+			E.proj_agony_multiplier *= weapon_upgrades[GUN_UPGRADE_AGONY_MULT]
 
 	if(istype(G, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/P = G
