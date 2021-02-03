@@ -34,7 +34,7 @@
 
 /obj/machinery/autolathe/nanoforge/proc/compress_matter(mob/user)
 	if(!inspiration || !inspiration.perk)
-		to_chat(user, SPAN_WARNING("catalyst not found."))
+		to_chat(user, SPAN_WARNING("Catalyst not found."))
 		return
 	var/compressed_amt
 	for(var/mat in stored_material)
@@ -69,7 +69,7 @@
 
 /obj/machinery/autolathe/nanoforge/proc/make_designs(mob/user)
 	if(!inspiration || !inspiration.perk)
-		to_chat(user, SPAN_WARNING("catalyst not found."))
+		to_chat(user, SPAN_WARNING("Catalyst not found."))
 		return
 	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, null, null, TRUE, null, nano_disks, null)
 	if(!candidates.len)
