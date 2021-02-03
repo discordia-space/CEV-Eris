@@ -77,7 +77,7 @@
 	var/proj_step_multiplier = 1
 	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
-
+	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -287,7 +287,7 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.2)
+		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -298,6 +298,7 @@
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
+			P.adjust_ricochet(noricochet)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)

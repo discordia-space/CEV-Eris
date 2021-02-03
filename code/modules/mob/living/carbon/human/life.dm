@@ -32,13 +32,17 @@
 	var/fire_alert = FIRE_ALERT_NONE
 	var/pressure_alert = 0
 	var/temperature_alert = 0
-	var/in_stasis = 0
+	var/in_stasis = FALSE
+	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
+
+	if(in_stasis && (stat == DEAD))
+		timeofdeath = world.time - stasis_timeofdeath
 
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
@@ -1230,3 +1234,12 @@
 		return
 	if(XRAY in mutations)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+
+/mob/living/carbon/human/proc/EnterStasis()
+	in_stasis = TRUE
+	stasis_timeofdeath = world.time - timeofdeath
+
+
+/mob/living/carbon/human/proc/ExitStasis()
+	in_stasis = FALSE
+	stasis_timeofdeath = 0

@@ -3,6 +3,7 @@
 	icon_state = "beacon"
 	anchored = TRUE
 	density = TRUE
+	var/entropy_value = 1
 
 /obj/machinery/trade_beacon/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -15,9 +16,8 @@
 
 /obj/machinery/trade_beacon/proc/activate()
 	flick("[icon_state]_active", src)
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-	spark_system.set_up(5, 0, loc)
-	spark_system.start()
+	do_sparks(5, 0, loc)
+	bluespace_entropy(2, get_turf(src))
 	playsound(loc, "sparks", 50, 1)
 
 /obj/machinery/trade_beacon/sending

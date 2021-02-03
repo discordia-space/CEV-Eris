@@ -40,17 +40,17 @@
 				if(S.get_damage())
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 					if(use(1))
-						S.heal_damage(15, 15, robo_repair = 1)
-					
-					
+						S.heal_damage(15, 15, TRUE)
+
+
 					user.visible_message(
 						"<span class='notice'>\The [user] applies some nanite paste at[user != M ? " \the [M]'s" : " \the"][S.name] with \the [src].</span>",
 						"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.name].</span>"
 					)
 				else
 					to_chat(user, SPAN_NOTICE("Nothing to fix here."))
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("Nothing to fix in here.")) //back to the original

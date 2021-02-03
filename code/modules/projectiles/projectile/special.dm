@@ -171,3 +171,9 @@
 		qdel(src)
 
 
+/obj/item/projectile/coin
+	name = "coin"
+	desc = "Keep the change, ya filthy animal."
+	damage_types = list(BRUTE = 5)
+	embed = 0
+
