@@ -84,7 +84,7 @@
 	stat_modifiers = list(
 	STAT_VIG = 15,
 	STAT_TGH = 15,
-	STAT_ROB = 20
+	STAT_ROB = 15
 	)
 
 	core_upgrades = list(
