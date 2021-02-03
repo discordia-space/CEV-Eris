@@ -141,4 +141,4 @@
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"
 	max_darts = 5
-	rarity_value = GUN_BASE_RARITY_VALUE*15
+	rarity_value = GUN_BASE_RARITY_VALUE+15
