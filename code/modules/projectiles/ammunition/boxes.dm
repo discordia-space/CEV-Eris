@@ -45,7 +45,7 @@
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 30
-	rarity_value = 30
+	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 /obj/item/ammo_magazine/ammobox/pistol/practice
@@ -65,6 +65,12 @@
 	icon_state = "pistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 5
+
+/obj/item/ammo_magazine/ammobox/pistol/scrap
+	name = "ammunition packet (old .35 Auto)"
+	icon_state = "pistol_s"
+	rarity_value = 30
+	ammo_type = /obj/item/ammo_casing/pistol/scrap
 
 //// . 40 ////
 
@@ -90,6 +96,15 @@
 	name = "ammunition packet (.40 Magnum rubber)"
 	icon_state = "magnum_r"
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
+
+/obj/item/ammo_magazine/ammobox/magnum/scrap
+	name = "ammunition packet (old .40 Magnum)"
+	icon_state = "magnum_s"
+	caliber = CAL_MAGNUM
+	ammo_type = /obj/item/ammo_casing/magnum/scrap
+	max_ammo = 30
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 //// . 20 ////
 
@@ -129,6 +144,13 @@
 	name = "ammunition packet (.20 Rifle high-velocity)"
 	icon_state = "srifle_r"
 	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/ammobox/srifle_small/scrap
+	name = "ammunition packet (old .20 Rifle)"
+	icon_state = "srifle_s"
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 //// . 25 CASELESS ////
 
@@ -172,6 +194,13 @@
 	icon_state = "clrifle_r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
+/obj/item/ammo_magazine/ammobox/clrifle_small/scrap
+	name = "ammunition packet (old .25 Caseless Rifle)"
+	icon_state = "clrifle_s"
+	ammo_type = /obj/item/ammo_casing/clrifle/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_COMMON
+
 //// . 30 ////
 /obj/item/ammo_magazine/ammobox/lrifle
 	name = "ammunition box (.30 Rifle lethal)"
@@ -206,6 +235,13 @@
 	icon_state = "lrifle_r"
 	ammo_type = /obj/item/ammo_casing/lrifle/rubber
 
+/obj/item/ammo_magazine/ammobox/lrifle_small/scrap
+	name = "ammunition packet (old .30 Rifle)"
+	icon_state = "lrifle_s"
+	ammo_type = /obj/item/ammo_casing/lrifle/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_COMMON
+
 //// .60 ////
 
 /obj/item/ammo_magazine/ammobox/antim
@@ -217,3 +253,9 @@
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
 
+/obj/item/ammo_magazine/ammobox/antim/scrap
+	name = "ammunition box (old .60 Anti Material)"
+	icon_state = "antim_s"
+	ammo_type = /obj/item/ammo_casing/antim/scrap
+	max_ammo = 30
+	rarity_value = 1

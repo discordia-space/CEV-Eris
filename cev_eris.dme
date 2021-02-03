@@ -2276,6 +2276,7 @@
 #include "code\modules\projectiles\gun_firemode.dm"
 #include "code\modules\projectiles\gun_hud_actions.dm"
 #include "code\modules\projectiles\projectile.dm"
+#include "code\modules\projectiles\ammunition\ammo_kits.dm"
 #include "code\modules\projectiles\ammunition\boxes.dm"
 #include "code\modules\projectiles\ammunition\bullets.dm"
 #include "code\modules\projectiles\ammunition\magazines.dm"

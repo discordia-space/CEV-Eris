@@ -122,7 +122,7 @@
 /datum/perk/oddity/fast_fingers
 	name = "Fast Fingers"
 	desc = "Nothing is safe around your hands. You are a true kleptomaniac. \
-			Taking items off others is without sound and prompts, it's also quicker."
+			Taking items off others is without sound and prompts, it's also quicker, and you can slip pills into drinks unnoticed."
 	icon_state = "robber_hand" // https://game-icons.net/1x1/darkzaitzev/robber-hand.html
 
 /datum/perk/oddity/quiet_as_mouse

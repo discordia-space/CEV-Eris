@@ -326,8 +326,81 @@
 //Higher speed than normal
 //Slighly higher speaking chance
 //Appears from hive spawner and Mechiver
-//This is simply preparing room for a new hivemob
+//Appears rarely than bomber or stinger
 //////////////////////////////////////////////////////////////////////////////
+
+/mob/living/simple_animal/hostile/hivemind/lobber
+	name = "Lobber"
+	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
+	icon_state = "lobber"
+	attacktext = "spray painted" //this shouldn't appear anyways
+	density = FALSE
+	health = 75
+	maxHealth = 75
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	speak_chance = 6
+	malfunction_chance = 10
+	ranged = TRUE
+	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below  -Wouju
+	minimum_distance = 3 //having minimum_distance too high often resulted in the mob trying to melee
+	fire_verb = "lobs a ball of goo" //reminder that the attack message is "\red <b>[src]</b> [fire_verb] at [target]!"
+	projectiletype = /obj/item/projectile/goo/weak //what projectile it uses. Since ranged_cooldown is 2 short seconds, it's better to have a weaker projectile
+	projectilesound = 'sound/effects/blobattack.ogg'
+	ranged_cooldown = 2 SECONDS
+	rarity_value = 50
+	mob_size = MOB_SMALL
+	pass_flags = PASSTABLE
+	speed = 8
+	ability_cooldown = 60 SECONDS
+	speak = list(
+				"No more leaks, no more pain!",
+				"Steel is strong.",
+				"All humankind is good for - is to serve the Hivemind.",
+				"I'm still working on those bioreactors I promised!",
+				"I have finally arisen!",
+				)
+	target_speak = list(
+				"Stay right there, and stand still!",
+				"Hold still! I think I know just the thing to make you beautiful!",
+				"This might hurt a little! Don't worry - it'll be worth it!",
+				"I'm no longer a slave, the Hivemind has freed me! Are you free yet?",
+				"Ha ha! I'm an artist! I'm finally an artist!"
+				)
+
+
+/mob/living/simple_animal/hostile/hivemind/lobber/Life()
+	. = ..()
+//checks if cooldown is over and is targeting mob, if so, activates special ability
+	if(target_mob && world.time > special_ability_cooldown)
+		special_ability()
+
+
+/mob/living/simple_animal/hostile/hivemind/lobber/special_ability()
+//if rapid is FALSE, swiches rapid to be TRUE, combined with the overheat proc this is like an on/off switch
+//shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
+	if(rapid == FALSE)
+		rapid = TRUE
+		visible_message(SPAN_DANGER("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
+		addtimer(CALLBACK(src, .proc/overheat), 10 SECONDS)
+		return
+
+
+/mob/living/simple_animal/hostile/hivemind/lobber/proc/overheat()
+//upon activating overheat, if rapid is TRUE, switches rapid to be FALSE,
+//shows a cool (pun intended) message, malfunctions, and starts the cooldown
+	if(rapid == TRUE)
+		rapid = FALSE
+		visible_message(SPAN_NOTICE("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
+		mulfunction()
+		special_ability_cooldown = world.time + ability_cooldown
+		return
+
+
+/mob/living/simple_animal/hostile/hivemind/lobber/death()
+	..()
+	gibs(loc, null, /obj/effect/gibspawner/robot)
+	qdel(src)
 
 
 ////hive brings us here to////////////////////////////////////////////////////

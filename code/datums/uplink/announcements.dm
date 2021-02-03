@@ -9,11 +9,11 @@
 	if(.)
 		log_and_message_admins("has triggered a falsified [src]", user)
 
-/datum/uplink_item/abstract/announcements/announce/New()
-	..()
+/datum/uplink_item/abstract/announcements/announce
 	name = "Shipwide Announcement"
 	item_cost = 2
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/announce/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
@@ -105,7 +105,7 @@
 	item_cost = 8
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
-	var/datum/shuttle/autodock/multi/antag/mercenary/merc = new /datum/shuttle/autodock/multi/antag/mercenary
-	command_announcement.Announce(merc.arrival_message, merc.announcer || "[boss_name]")
+	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary
+	command_announcement.Announce(initial(merc.arrival_message), initial(merc.announcer) || "[boss_name]")
 	qdel(merc)
 	return 1

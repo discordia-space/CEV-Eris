@@ -18,6 +18,7 @@
 	recoil_buildup = 50
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
+	noricochet = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()

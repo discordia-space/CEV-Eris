@@ -931,9 +931,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		return english_list(descriptors)
 
-	. = ""
-	if((status & ORGAN_CUT_AWAY) && !is_stump() && !(parent && parent.status & ORGAN_CUT_AWAY))
-		. += "tear at [amputation_point] so severe that it hangs by a scrap of flesh"
 	//Normal organic organ damage
 	var/list/wound_descriptors = list()
 	if(open > 1)

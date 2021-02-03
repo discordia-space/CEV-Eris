@@ -76,7 +76,7 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
-
+	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -295,6 +295,7 @@
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
+			P.adjust_ricochet(noricochet)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
