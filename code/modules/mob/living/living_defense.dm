@@ -119,6 +119,9 @@
 	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
 
+	if(P.proj_falloff > 0)
+		P.calculate_falloff()
+
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)

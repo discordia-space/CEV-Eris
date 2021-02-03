@@ -127,7 +127,7 @@
 /obj/item/projectile/proc/calculate_falloff()
 	var/distance=get_dist(loc, starting)
 	if(distance>2)
-		var/damage_lost=(distance-2)
+		var/damage_lost=(distance-2)*proj_falloff
 		damage_types[BRUTE] = round(damage_types[BRUTE]-damage_lost)
 
 
