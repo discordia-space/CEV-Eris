@@ -201,8 +201,8 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 54)
-	armor_penetration = 15
+	damage_types = list(BRUTE = 50)
+	armor_penetration = 10
 	knockback = 1
 	step_delay = 1.1
 
