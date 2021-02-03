@@ -223,12 +223,11 @@ There are important things regarding this file:
 		var/mob/living/carbon/human/H = target
 		spawn(1 SECONDS)
 		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 100, 2, 1, 10)
-		return TRUE
 	else
 		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 		if(!istype(target, /obj/machinery/door))
 			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 2, 0)
-			return TRUE
+	..()
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
