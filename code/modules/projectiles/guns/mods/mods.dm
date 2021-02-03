@@ -191,26 +191,6 @@
 	new /obj/item/weapon/tool_upgrade/refinement/laserguide(src)
 	new /obj/item/weapon/tool_upgrade/augment/ai_tool(src)
 
-/obj/item/weapon/gun_upgrade/barrel/gauss
-	name = "Syndicate \"Gauss Coil\" barrel"
-	desc = "Make bullet pierce through wall and penetrate armors easily, but losing rate of fire and increece recoil."
-	icon_state = "Gauss"
-	spawn_blacklisted = TRUE
-
-/obj/item/weapon/gun_upgrade/barrel/gauss/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.weapon_upgrades = list(
-		GUN_UPGRADE_DAMAGE_BRUTE = 10,
-		GUN_UPGRADE_PEN_MULT = 1.2,
-		GUN_UPGRADE_PIERC_MULT = 1,
-		GUN_UPGRADE_FIRE_DELAY_MULT = 1.4,
-		GUN_UPGRADE_RECOIL = 1.4,
-		)
-	I.removal_time *= 10
-	I.gun_loc_tag = GUN_BARREL
-	I.req_gun_tags = list(GUN_PROJECTILE)
-
 /obj/item/weapon/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for enegry weapon."
