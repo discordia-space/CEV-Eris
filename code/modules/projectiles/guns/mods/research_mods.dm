@@ -80,7 +80,7 @@
 	GUN_UPGRADE_AGONY_MULT = 0.2,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.25,
 	GUN_UPGRADE_FULLAUTO = TRUE,
-	GUN_UPGRADE_CHARGECOST = 0.15)
+	GUN_UPGRADE_CHARGECOST = 0.15,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.25)
 	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
@@ -114,7 +114,6 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 	GUN_UPGRADE_DAMAGE_RADIATION = 30)
-	GUN_UPGRADE_DAMAGE_RADIATION = 5)
 	I.req_gun_tags = list(GUN_PROJECTILE)
 	I.gun_loc_tag = GUN_BARREL
 
@@ -148,9 +147,7 @@
 		GUN_UPGRADE_PEN_MULT = 1.2,
 		GUN_UPGRADE_PIERC_MULT = 1,
 		GUN_UPGRADE_FIRE_DELAY_MULT = 1.4,
-		GUN_UPGRADE_RECOIL = 1.4,
-		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
-		GUN_UPGRADE_RECOIL = 1.2,
+		GUN_UPGRADE_RECOIL = 1.4
 		)
 	I.removal_time *= 10
 	I.gun_loc_tag = GUN_BARREL
