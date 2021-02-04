@@ -51,7 +51,7 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 60)
 	access = list(access_bar, access_kitchen)
 	initial_balance = 750
-	perks = list(/datum/perk/job/club)
+	perks = list(PERK_CLUB)
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
 	stat_modifiers = list(
 		STAT_ROB = 10,
@@ -76,5 +76,4 @@
 	name = "Club Worker"
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
-
 
