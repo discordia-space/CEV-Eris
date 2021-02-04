@@ -5,7 +5,7 @@
 	category = "Agrolyte"
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth
-	name = "Accelerated growth ritual"
+	name = "Accelerated growth"
 	phrase = "Plantae crescere in divinum lumen tua"
 	desc = "This litany boosts the growth of all plants in sight for about ten minutes. "
 	cooldown = TRUE
