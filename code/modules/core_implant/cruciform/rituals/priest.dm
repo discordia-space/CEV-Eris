@@ -255,7 +255,7 @@
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		to_chat(user, SPAN_NOTICE("Your feel the air thrum with an inaudible vibration."))
+		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible vibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
 			to_chat(participant, SPAN_NOTICE("You hear a silent signal..."))

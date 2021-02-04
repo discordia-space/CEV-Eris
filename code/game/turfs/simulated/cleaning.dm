@@ -39,6 +39,12 @@
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
+		if(user && user.stats)
+			if(user.stats.getPerk(/datum/perk/neat))
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					if(H.sanity)
+						H.sanity.changeLevel(0.5)
 	else
 		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.

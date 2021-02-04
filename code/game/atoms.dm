@@ -316,6 +316,13 @@ its easier to just keep the beam vertical.
 				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
 			else
 				to_chat(user, "<span class='danger'>It's empty.</span>")
+
+	if(user && user.stats)
+		if(user.stats.getPerk(/datum/perk/greenthumb))
+			var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
+			var/obj/item/I = P.virtual_scanner
+			I.afterattack(src, user, get_dist(src, user) <= 1)
+
 	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)

@@ -1559,6 +1559,7 @@
 #include "code\modules\core_implant\cruciform\machinery\cruciformforge.dm"
 #include "code\modules\core_implant\cruciform\machinery\eotp.dm"
 #include "code\modules\core_implant\cruciform\machinery\obelisk.dm"
+#include "code\modules\core_implant\cruciform\rituals\agrolyte.dm"
 #include "code\modules\core_implant\cruciform\rituals\base.dm"
 #include "code\modules\core_implant\cruciform\rituals\construction.dm"
 #include "code\modules\core_implant\cruciform\rituals\crusader.dm"

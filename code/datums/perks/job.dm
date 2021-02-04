@@ -190,3 +190,34 @@
 	name = "Sommelier"
 	desc = "You know how to handle even strongest alcohol in the universe."
 	icon_state = "inspiration"
+
+/datum/perk/neat
+	name = "Neat"
+	desc = "You're used to see blood and filth in all its forms. Your motto: a clean ship is the first step to enlightenment. \
+			This perk reduces the total sanity damage you can take from what is happening around you. \
+			You can regain sanity by cleaning."
+	icon_state = "neat" // https://game-icons.net/1x1/delapouite/broom.html
+
+/datum/perk/neat/assign(mob/living/carbon/human/H)
+	..()
+	if(holder)
+		holder.sanity.view_damage_threshold += 20
+
+/datum/perk/neat/remove()
+	if(holder)
+		holder.sanity.view_damage_threshold -= 20
+	..()
+
+/datum/perk/greenthumb
+	name = "Green Thumb"
+	desc = "After growing plants for years you have become a botanical expert. You can get all information about plants, from stats \
+	        to harvest reagents, by examining them. Gathering plants relaxes you and thus restores sanity."
+	icon_state = "greenthumb" // https://game-icons.net/1x1/delapouite/farmer.html
+
+	var/virtual_scanner = new /obj/item/device/scanner/plant
+	//virtual_scanner.set_virtual(TRUE)
+
+/datum/perk/greenthumb/assign(mob/living/carbon/human/H)
+	..()
+	var/obj/item/device/scanner/V = virtual_scanner
+	V.is_virtual = TRUE
