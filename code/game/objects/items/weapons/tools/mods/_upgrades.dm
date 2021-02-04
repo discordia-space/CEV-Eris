@@ -320,7 +320,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
 		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
-		G.one_hand_penalty += weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
+		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
 	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE

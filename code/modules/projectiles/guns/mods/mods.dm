@@ -83,7 +83,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_FIRE_DELAY_MULT = 0.8,
-		GUN_UPGRADE_FORCESAFETY = FALSE,
+		GUN_UPGRADE_FORCESAFETY = FALSE
 		)
 	I.gun_loc_tag = GUN_TRIGGER
 
@@ -98,7 +98,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_FORCESAFETY = TRUE,
+		GUN_UPGRADE_FORCESAFETY = TRUE
 		)
 	I.removal_time *= 10
 	I.gun_loc_tag = GUN_TRIGGER
@@ -201,7 +201,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_EXPLODE = TRUE,
+		GUN_UPGRADE_EXPLODE = TRUE
 		)
 	I.removal_time *= 10
 	I.gun_loc_tag = GUN_TRIGGER
@@ -292,7 +292,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_OFFSET = rand(5,15),
 		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
-		GUN_UPGRADE_DAMAGE_MULT = rand(4,9)/10,
+		GUN_UPGRADE_DAMAGE_MULT = rand(4,9)/10
 	)
 	I.destroy_on_removal = TRUE
 	I.removal_time *= rand(10.14)/10
@@ -311,7 +311,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
-		GUN_UPGRADE_STEPDELAY_MULT = rand(12,18)/10,
+		GUN_UPGRADE_STEPDELAY_MULT = rand(12,18)/10
 	)
 	I.destroy_on_removal = TRUE
 	I.removal_time *= rand(10.14)/10
@@ -329,7 +329,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = rand(5, 50)/10,
+		GUN_UPGRADE_RECOIL = rand(5, 50)/10
 	)
 	I.destroy_on_removal = TRUE
 	I.removal_time *= rand(10.14)/10
@@ -347,7 +347,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_OFFSET = rand(3,6),
+		GUN_UPGRADE_OFFSET = rand(3,6)
 	)
 	I.destroy_on_removal = TRUE
 	I.removal_time *= rand(10.14)/10

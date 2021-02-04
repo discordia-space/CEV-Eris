@@ -23,6 +23,7 @@
 	var/item_suffix = ""
 	zoom_factor = 2
 	twohanded = TRUE
+	no_internal_mag = TRUE
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
