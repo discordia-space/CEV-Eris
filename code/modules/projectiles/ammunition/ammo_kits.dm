@@ -1,7 +1,7 @@
 
 //// .35 ////
 /obj/item/ammo_kit
-	name = "Scrap Ammo Kit"
+	name = "scrap ammo kit"
 	desc = "A somewhat jank looking crafting kit. It has a can of single-use tools, cheap pliers and a box of bullet making materials."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "ammo_kit-1"
@@ -60,8 +60,11 @@
 			spawn_shotgun(dice_roll,user,2)
 		if("slug")
 			spawn_shotgun(dice_roll,user,3)
-
-	qdel(src)	//All used up
+	if(choice)
+		user.visible_message("[user] makes some [choice] rounds out of [src], using up all the materials in it.")
+		qdel(src)	//All used up
+	else
+		to_chat(user, "You reconsider the path of gunsmith.")
 
 //////////////////////////////////////////////////////////////////////////////////////
 
