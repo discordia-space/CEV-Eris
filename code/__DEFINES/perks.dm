@@ -40,3 +40,4 @@
 #define PERK_ARTIST /datum/perk/job/artist
 #define PERK_SURVIVOR /datum/perk/survivor
 #define PERK_TECHNOMANCER /datum/perk/inspiration
+#define PERK_CLUB /datum/perk/job/club

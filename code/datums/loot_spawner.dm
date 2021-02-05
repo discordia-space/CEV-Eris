@@ -223,8 +223,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_lower_price(list/paths, price)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(get_spawn_price(path) < price)
@@ -232,8 +230,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_upper_price(list/paths, price)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(get_spawn_price(path) > price)
@@ -241,8 +237,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/filter_densty(list/paths)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		var/atom/movable/AM = path
@@ -306,7 +300,18 @@
 	local_tags -= exclude
 	return local_tags
 
-/datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE, list/include, list/exclude, list/should_be_include_tags)
+/datum/controller/subsystem/spawn_data/proc/valid_candidates(
+	//public list<path>
+		list/tags,
+		list/bad_tags,
+		allow_blacklist=FALSE,
+		low_price=0,
+		top_price=0,
+		filter_density=FALSE,
+		list/include,
+		list/exclude,
+		list/should_be_include_tags
+	) // Sorry, but otherwise it's unreadable
 	var/list/candidates = spawn_by_tag(tags)
 	candidates -= spawn_by_tag(bad_tags)
 	if(!allow_blacklist)

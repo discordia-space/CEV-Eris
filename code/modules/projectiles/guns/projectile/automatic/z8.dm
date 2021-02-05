@@ -33,6 +33,8 @@
 
 	var/obj/item/weapon/gun/launcher/grenade/underslung/launcher
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 /obj/item/weapon/gun/projectile/automatic/z8/Initialize()
 	. = ..()
 	launcher = new(src)

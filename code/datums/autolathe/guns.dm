@@ -17,11 +17,11 @@
 
 /datum/design/autolathe/gun/clarissa
 	name = "FS HG .35 \"Clarissa\""
-	build_path = /obj/item/weapon/gun/projectile/clarissa
+	build_path = /obj/item/weapon/gun/projectile/selfload/clarissa
 
 /datum/design/autolathe/gun/makarov
 	name = "Excelsior .35 \"Makarov\""
-	build_path = /obj/item/weapon/gun/projectile/clarissa/makarov
+	build_path = /obj/item/weapon/gun/projectile/selfload/makarov
 
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk58\""

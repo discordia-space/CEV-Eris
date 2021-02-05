@@ -57,19 +57,22 @@
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
 	name = "FS AR .30 \"Kalashnikov\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-		 This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-		 This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle, therefore it can fire only in bursts instead of auto-fire."
+			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
+			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
+			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle, therefore it can fire only in bursts instead of auto-fire."
 	icon_state = "AK_wood"
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 3000
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	init_firemodes = list(
-	SEMI_AUTO_NODELAY,
-	BURST_3_ROUND,
-	BURST_5_ROUND
-	)
-
 	item_suffix = "_wood"
 	wielded_item_state = "_doble_wood"
+
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+
+	init_firemodes = list(
+		SEMI_AUTO_NODELAY,
+		BURST_3_ROUND,
+		BURST_5_ROUND
+	)
+
 	rarity_value = 19.2
+	price_tag = 3000
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
