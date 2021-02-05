@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - rscadd: Ported new borer mechanics from Osiris
+  - imageadd: Ported new borer mechanics from Osiris
