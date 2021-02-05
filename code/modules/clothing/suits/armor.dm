@@ -40,6 +40,7 @@
 	desc = "A generic armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_fullbody"
 	blood_overlay_type = "armor"
+	slowdown = 0.3
 	rarity_value = 30 // little bit rarer than just vests
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
 	matter = list(
@@ -160,6 +161,7 @@
 	icon_state = "flakvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
 	rarity_value = 25 // rarer than version without pads
+	slowdown = 0.3
 
 /obj/item/clothing/suit/armor/flak/full/green
 	name = "full green flakvest vest"
@@ -194,6 +196,7 @@
 	icon_state = "bulletproof_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	rarity_value = 55
+	slowdown = 0.3
 	matter = list(
 		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
 		MATERIAL_PLASTEEL = 3,
@@ -205,6 +208,7 @@
 			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	slowdown = 0.3
 	armor = list(
 		melee = 25,
 		bullet = 60,
@@ -246,6 +250,7 @@
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	rarity_value = 45
+	slowdown = 0.3
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/full/green
 	name = "full green platecarrier vest"
