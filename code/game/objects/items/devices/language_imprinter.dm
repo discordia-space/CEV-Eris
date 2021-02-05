@@ -1,6 +1,6 @@
 /obj/item/device/language_imprinter
 	name = "language imprinter"
-	desc = "A device that is applied to an eye to imprint the sol common language to one's mind."
+	desc = "A device that is applied to an eye to imprint the English Common language to one's mind."
 	icon_state = "mental_imprinter"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	spawn_blacklisted = TRUE
