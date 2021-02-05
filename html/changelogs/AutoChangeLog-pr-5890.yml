@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: club personnel now starts with a sanity-recovering aura trait
