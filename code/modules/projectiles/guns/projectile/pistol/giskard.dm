@@ -21,6 +21,8 @@
 	recoil_buildup = 2
 	rarity_value = 8
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()
 

@@ -168,7 +168,7 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/clarissa,
+		/obj/item/weapon/gun/projectile/selfload/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
 		/obj/item/weapon/gun/energy/gun/martin,
 		/obj/item/taperoll
