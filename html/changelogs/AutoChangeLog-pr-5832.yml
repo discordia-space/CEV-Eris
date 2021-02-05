@@ -1,4 +1,0 @@
-author: AlexMorgan3817
-delete-after: true
-changes:
-  - refactor: Trade stations now able to use spawn system to get it's assortiments
