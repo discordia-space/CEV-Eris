@@ -67,7 +67,6 @@
 	if(!can_install(target, affected))
 		to_chat(user, SPAN_WARNING("You can't install [src]."))
 		return
-
 	forceMove(target)
 	wearer = target
 	implanted = TRUE
