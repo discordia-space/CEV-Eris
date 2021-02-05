@@ -1,0 +1,5 @@
+author: Firefox13, Shazbot
+delete-after: true
+changes:
+  - bugfix: Junk ammo craft kit won't delete itself if you leave the ammo selection
+      menu. Also added some feedback to it.
