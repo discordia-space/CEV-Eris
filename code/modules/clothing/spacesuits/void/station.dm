@@ -96,7 +96,7 @@
 		return 1
 
 /obj/item/clothing/suit/space/void/engineeringcursed
-	name = "Cursed technomancer voitsuit"
+	name = "outdated Technomancer voidsuit"
 	desc = "Same purpose as the standard technomancer voidsuit but was rejected by the empress for being unsightly and making the wearer look like a femboy."
 	icon_state = "technosuit"
 	item_state = "technosuit"
