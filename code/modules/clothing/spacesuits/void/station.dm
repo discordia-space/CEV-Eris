@@ -51,7 +51,7 @@
 	spawn_blacklisted = TRUE
 
 //Femboy engineering rig
-/obj/item/clothing/head/space/void/engineeringcursed
+/obj/item/clothing/head/space/void/engineeringold
 	name = "Cursed Technomancer voidsuit helmet"
 	desc = "This visor has a few more options in its shape than its more newer version."
 	icon_state = "technohelmet_void"
