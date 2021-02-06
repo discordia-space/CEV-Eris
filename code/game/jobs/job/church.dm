@@ -30,6 +30,8 @@
 		STAT_COG = 10,
 	)
 
+	perks = list(/datum/perk/channeling)
+
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
 

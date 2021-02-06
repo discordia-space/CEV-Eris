@@ -106,10 +106,16 @@
 
 			if(stat_buff)
 				var/buff_power = disciples.len
+				var/buff_power_channeling = buff_power * 2  // Channeling gives +1 stat point per disciple so it amounts to * 2
+				var/buff_power_nochanneling = buff_power
 				var/message
 				var/prev_stat
 				for(var/stat in ALL_STATS)
 					var/datum/stat_mod/SM = mob.stats.getTempStat(stat, "nt_obelisk")
+					if(mob.stats.getPerk(/datum/perk/channeling))
+						buff_power = buff_power_channeling
+					else
+						buff_power = buff_power_nochanneling
 					if(stat == stat_buff)
 						if(!SM)
 							message = "A wave of dizziness washes over you, and your mind is filled with a sudden insight into [stat]."
