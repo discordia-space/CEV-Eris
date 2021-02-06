@@ -87,7 +87,7 @@ Procs:
 	var/datum/tech/tree = locate(T.tech_type) in researched_tech
 	researched_tech[tree] += T
 	if(!force)
-		adjust_research_points(T.cost)
+		adjust_research_points(-T.cost)
 
 	if(initial) // Initial technologies don't add levels
 		tree.max_level -= 1
