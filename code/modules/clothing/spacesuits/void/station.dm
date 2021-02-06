@@ -53,7 +53,7 @@
 //Femboy engineering rig
 /obj/item/clothing/head/space/void/engineeringcursed
 	name = "Cursed Technomancer voidsuit helmet"
-	desc = "This visor has a few more options in it's shape than its classic counter part."
+	desc = "This visor has a few more options in its shape than its more newer version."
 	icon_state = "technohelmet_void"
 	item_state = "technohelmet_void"
 	light_overlay = "technohelmet_light"
