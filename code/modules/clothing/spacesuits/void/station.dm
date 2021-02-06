@@ -115,7 +115,7 @@
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
-	helmet = /obj/item/clothing/head/space/void/engineeringcursed
+	helmet = /obj/item/clothing/head/space/void/engineeringold
 	spawn_blacklisted = FALSE
 
 /obj/item/clothing/suit/space/void/engineeringold/equipped
