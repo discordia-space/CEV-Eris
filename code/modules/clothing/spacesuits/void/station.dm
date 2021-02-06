@@ -97,7 +97,7 @@
 
 /obj/item/clothing/suit/space/void/engineeringold
 	name = "outdated Technomancer voidsuit"
-	desc = "Same purpose as the standard technomancer voidsuit but was rejected by the empress for being unsightly and making the wearer look like a femboy."
+	desc = "An outdated Technomancer voidsuit that is nearly identical in all properties to its newer version. Nevethless this design was rejected in favour of more streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
