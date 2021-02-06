@@ -130,8 +130,6 @@
 /obj/item/ammo_casing/antim/emp
 	name = "\"Blackout\" shell casing"
 	desc = "A .60 Anti-Material \"Blackout\" shell."
-	icon_state = "ecasing"
-	spent_icon = "ecasing-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/emp
 
 /obj/item/ammo_casing/antim/emp/prespawned
@@ -140,8 +138,6 @@
 /obj/item/ammo_casing/antim/uranium
 	name = "\"Meltdown\" shell casing"
 	desc = "A .60 Anti-Material \"Meltdown\" shell."
-	icon_state = "ucasing"
-	spent_icon = "ucasing-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/uranium
 
 /obj/item/ammo_casing/antim/uranium/prespawned
@@ -150,8 +146,6 @@
 /obj/item/ammo_casing/antim/breach
 	name = "\"Breacher\" shell casing"
 	desc = "A .60 Anti-Material \"Breacher\" shell."
-	icon_state = "bcasing"
-	spent_icon = "bcasing-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/breach
 
 /obj/item/ammo_casing/antim/breach/prespawned

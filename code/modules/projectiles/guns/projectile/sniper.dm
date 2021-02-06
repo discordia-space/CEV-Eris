@@ -4,6 +4,7 @@
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
+	damage_multiplier = 0.9
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
@@ -25,8 +26,9 @@
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
-	var/extra_damage_mult_scoped = 0.10
+	var/extra_damage_mult_scoped = 0.2
 	gun_tags = list(GUN_AMR, GUN_SCOPE)
+	rarity_value = 90
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()

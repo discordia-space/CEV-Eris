@@ -177,22 +177,17 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 50
-	stun = 1
-	weaken = 1
-	penetrating = 5
+	penetrating = 1
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/antim/emp
 	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
-	stun = 0
-	weaken = 0
-	penetrating = 1
 
-/obj/item/projectile/bullet/antim/emp/on_hit(atom/target)
+/obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
+	. = ..()
 	empulse(target, 0, 0)
 	empulse(target, 0, 0)
-	return TRUE
 
 /obj/item/projectile/bullet/antim/uranium
 	damage_types = list(BRUTE = 65)
@@ -206,7 +201,7 @@ There are important things regarding this file:
 	penetrating = 0
 	step_delay = 0.6
 	hitscan = FALSE
-	nocap_structures = TRUE 
+	nocap_structures = TRUE
 	kill_count = 30
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
@@ -218,16 +213,16 @@ There are important things regarding this file:
 	return  20 * get_tiles_passed(distance)
 
 
-/obj/item/projectile/bullet/antim/breach/on_hit(atom/target)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+/obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
 		spawn(1 SECONDS)
-		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 100, 2, 1, 10)
+		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 4, 1, 5)
 	else
 		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 		if(!istype(target, /obj/machinery/door))
-			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 2, 0)
-	..()
+			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
