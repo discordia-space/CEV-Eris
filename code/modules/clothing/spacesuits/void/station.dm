@@ -118,7 +118,7 @@
 	helmet = /obj/item/clothing/head/space/void/engineeringcursed
 	spawn_blacklisted = FALSE
 
-/obj/item/clothing/suit/space/void/engineeringcursed/equipped
+/obj/item/clothing/suit/space/void/engineeringold/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
 	accompanying_object = null
