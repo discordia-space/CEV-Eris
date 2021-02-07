@@ -1,8 +1,59 @@
 // Station voidsuits
+
 //Engineering rig
 /obj/item/clothing/head/space/void/engineering
 	name = "Technomancer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
+	icon_state = "technohelmet_void_old"
+	item_state = "technohelmet_void_old"
+	light_overlay = "technohelmet_light"
+	item_state_slots = list(
+		slot_l_hand_str = "eng_helm",
+		slot_r_hand_str = "eng_helm",
+		)
+	armor = list(
+		melee = 35,
+		bullet = 30,
+		energy = 30,
+		bomb = 40,
+		bio = 100,
+		rad = 100
+	)
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/space/void/engineering
+	name = "Technomancer voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
+	icon_state = "technosuit_old"
+	item_state = "technosuit_old"
+	armor = list(
+		melee = 35,
+		bullet = 30,
+		energy = 30,
+		bomb = 40,
+		bio = 100,
+		rad = 100
+	)
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	extra_allowed = list(
+		/obj/item/weapon/storage/toolbox,
+		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/rcd
+	)
+	helmet = /obj/item/clothing/head/space/void/engineering
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/space/void/engineering/equipped
+	boots = /obj/item/clothing/shoes/magboots
+	tank = /obj/item/weapon/tank/jetpack/oxygen
+	accompanying_object = null
+	spawn_blacklisted = TRUE
+
+//Femboy engineering rig
+/obj/item/clothing/head/space/void/engineeringold
+	name = "outdated Technomancer voidsuit helmet"
+	desc = "This visor has a few more options in its shape than its more newer version."
 	icon_state = "technohelmet_void"
 	item_state = "technohelmet_void"
 	light_overlay = "technohelmet_light"
@@ -44,9 +95,9 @@
 		usr.update_action_buttons()
 		return 1
 
-/obj/item/clothing/suit/space/void/engineering
-	name = "Technomancer voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
+/obj/item/clothing/suit/space/void/engineeringold
+	name = "outdated Technomancer voidsuit"
+	desc = "An outdated Technomancer voidsuit that is nearly identical in all properties to its newer version. Nevethless this design was rejected in favour of more streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
@@ -64,10 +115,10 @@
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
-	helmet = /obj/item/clothing/head/space/void/engineering
-	spawn_blacklisted = TRUE
+	helmet = /obj/item/clothing/head/space/void/engineeringold
+	spawn_blacklisted = FALSE
 
-/obj/item/clothing/suit/space/void/engineering/equipped
+/obj/item/clothing/suit/space/void/engineeringold/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
 	accompanying_object = null
