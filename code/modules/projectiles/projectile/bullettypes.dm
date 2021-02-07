@@ -181,7 +181,7 @@ There are important things regarding this file:
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 50)
+	damage_types = list(BRUTE = 30)
 	armor_penetration = 40
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -210,7 +210,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return  20 * get_tiles_passed(distance)
+	return  22 * get_tiles_passed(distance)
 
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
@@ -219,7 +219,7 @@ There are important things regarding this file:
 		var/mob/living/carbon/H = target
 		spawn(1 SECONDS)
 		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 4, 1, 5)
-	else
+	if(!iscarbon(target))
 		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 		if(!istype(target, /obj/machinery/door))
 			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
