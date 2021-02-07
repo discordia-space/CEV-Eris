@@ -66,7 +66,7 @@
 	icon_state = "declone"
 	nodamage = 1
 	damage_types = list(CLONE = 0)
-	irradiate = 300
+	irradiate = 40
 
 
 /obj/item/projectile/energy/dart
@@ -97,4 +97,5 @@
 /obj/item/projectile/energy/plasma
 	name = "plasma bolt"
 	icon_state = "energy"
-	damage_types = list(TOX = 25)
+	damage_types = list(TOX = 10)
+	irradiate = 30
