@@ -1768,8 +1768,8 @@
 /obj/item/clothing/suit/space/void/merc
 /obj/item/clothing/suit/space/void/engineering/equipped
 /obj/item/clothing/suit/space/void/engineering
-/obj/item/clothing/suit/space/void/engineeringcursed/equipped
-/obj/item/clothing/suit/space/void/engineeringcursed
+/obj/item/clothing/suit/space/void/engineeringold/equipped
+/obj/item/clothing/suit/space/void/engineeringold
 /obj/item/clothing/suit/space/void/mining
 /obj/item/clothing/suit/space/void/medical/equipped
 /obj/item/clothing/suit/space/void/medical
