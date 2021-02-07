@@ -173,12 +173,12 @@
 			if(istype(door, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/A = door
 				if(A.locked)
-					if(prob(60))
+					if(prob(75))
 						A.unlock()
 					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
 			if(door.density)
-				door.take_damage(rand(25, 40))
+				door.take_damage(rand(30, 70))
 				return FALSE
 
 	return TRUE
@@ -250,7 +250,7 @@
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			created_machine.icon = new_icon
-			var/prefix = pick("warped", "altered", "modified", "upgraded", "abnormal")
+			var/prefix = pick("Warped", "Altered", "Modified", "Upgraded", "Abnormal")
 			created_machine.name = "[prefix] [subject.name]"
 			created_machine.pixel_x = subject.pixel_x
 			created_machine.pixel_y = subject.pixel_y

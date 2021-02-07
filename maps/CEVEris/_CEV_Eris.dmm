@@ -15486,8 +15486,8 @@
 "aLp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	dir = 4
+	dir = 4;
+	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
@@ -61243,12 +61243,6 @@
 /obj/item/weapon/storage/box/cdeathalarm_kit,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay)
-"cLg" = (
-/obj/machinery/holoposter{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/white,
-/area/eris/medical/reception)
 "cLh" = (
 /obj/machinery/vending/powermat,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -68855,24 +68849,6 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/wood,
-/area/eris/command/bridgebar)
-"ddH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/wood,
-/area/eris/command/bridgebar)
-"ddI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -104738,8 +104714,8 @@
 /area/eris/engineering/construction)
 "gGt" = (
 /obj/item/modular_computer/console/preset/engineering/power{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -104773,6 +104749,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
+"hpF" = (
+/obj/machinery/holoposter{
+	pixel_x = -32
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/reception)
 "hqB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -105564,6 +105547,15 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemistry)
+"nDY" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "nGz" = (
 /obj/structure/sink{
 	dir = 4;
@@ -105981,6 +105973,15 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"rzv" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "rAv" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -206213,7 +206214,7 @@ cml
 chl
 cqD
 kUI
-cLg
+hpF
 diB
 dzc
 dBO
@@ -245367,8 +245368,8 @@ bPe
 cvI
 czk
 cgb
-ddH
-ded
+rzv
+dee
 dep
 deL
 deL
@@ -245569,8 +245570,8 @@ bPe
 cyP
 czO
 cgb
-ddI
-dee
+nDY
+ded
 dep
 deL
 deL

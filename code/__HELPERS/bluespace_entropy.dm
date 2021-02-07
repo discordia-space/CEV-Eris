@@ -97,9 +97,7 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 			Ttarget = get_random_secure_turf_in_range(Ttarget, 4)
 			if(Ttarget)
 				new /obj/structure/bs_crystal_structure(Ttarget)
-				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-				sparks.set_up(3, 0, Ttarget)
-				sparks.start()
+				do_sparks(3, 0, Ttarget)
 
 /proc/bluespace_gift(turf/T, minor_distortion)
 	var/second_gift = rand(2,10)
@@ -116,18 +114,14 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 		return
 	if(GLOB.bluespace_gift <= 0 && !minor_distortion)
 		new /obj/item/weapon/oddity/broken_necklace(T)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-		sparks.set_up(3, 0, T)
-		sparks.start()
+		do_sparks(3, 0, T)
 		log_and_message_admins("Bluespace gif spawned: [jumplink(T)]") //unique item
 	else
 		second_gift *= 10
 	if(prob(second_gift))
 		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 		new O(T)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-		sparks.set_up(3, 0, T)
-		sparks.start()
+		do_sparks(3, 0, T)
 
 /proc/bluespace_stranger(turf/T, minor_distortion)
 	var/area/A = get_area(T)
@@ -138,12 +132,12 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 		if(newT)
 			T = newT
 	T = get_random_secure_turf_in_range(T, 4)
-	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
+	var/mob/living/simple_animal/hostile/stranger/S = new (T)
 	if(minor_distortion && prob(95))
-		S.maxHealth = S.maxHealth/2
-		S.health = S.health/2
-		S.prob_tele = S.prob_tele/2
+		S.maxHealth = S.maxHealth/1.5
+		S.health = S.maxHealth
 		S.empy_cell = TRUE
+	log_and_message_admins("Stranger spawned: [jumplink(T)]")
 
 /proc/bluespace_roaches(turf/T, minor_distortion)
 	var/list/areas = list()
@@ -187,7 +181,5 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 			Ttarget = get_random_secure_turf_in_range(Ttarget, 5)
 			if(Ttarget)
 				new /obj/spawner/junk(Ttarget)
-				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-				sparks.set_up(3, 0, Ttarget)
-				sparks.start()
+				do_sparks(3, 0, Ttarget)
 

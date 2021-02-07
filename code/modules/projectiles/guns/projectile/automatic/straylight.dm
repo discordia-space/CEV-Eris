@@ -29,6 +29,8 @@
 		SEMI_AUTO_NODELAY
 		)
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 /obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
 	..()
 

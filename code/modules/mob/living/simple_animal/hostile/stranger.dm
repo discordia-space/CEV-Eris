@@ -36,20 +36,18 @@
 	var/empy_cell = FALSE
 	var/prob_tele = 20
 
-/mob/living/simple_animal/hostile/stranger/New()
-	..()
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(3, 0, src.loc)
-	sparks.start()
+/mob/living/simple_animal/hostile/stranger/Initialize(mapload)
+	. = ..()
+	do_sparks(3, 0, src.loc)
 
 /mob/living/simple_animal/hostile/stranger/death()
-	..()
-	var/obj/item/weapon/gun/energy/plasma/stranger/S = new /obj/item/weapon/gun/energy/plasma/stranger(src.loc)
+	. = ..()
+	var/obj/item/weapon/gun/energy/plasma/stranger/S = new (src.loc)
 	S.cell = new S.suitable_cell(S)
-	S.cell.charge = S.cell.maxcharge/2
 	if(empy_cell)
-		S.cell.charge = 0
-	S.cell.update_icon()
+		S.cell.use(S.cell.charge)
+	else
+		S.cell.use(S.cell.maxcharge/2)
 	S.update_icon()
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	var/atom/movable/overlay/animation
@@ -59,9 +57,7 @@
 	animation.master = src
 	flick("dust2-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(3, 0, src.loc)
-	sparks.start()
+	do_sparks(3, 0, src.loc)
 	qdel(src)
 
 /mob/living/simple_animal/hostile/stranger/attack_generic(mob/user, damage, attack_message)
@@ -72,9 +68,10 @@
 		if(target_mob)
 			source = target_mob
 		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_sparks(3, 0, src.loc)
 		do_teleport(src, T)
 		return FALSE
-	.=..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/stranger/attackby(obj/item/W, mob/user, params)
 	if(prob(prob_tele))
@@ -82,10 +79,10 @@
 		if(target_mob)
 			source = target_mob
 		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_sparks(3, 0, src.loc)
 		do_teleport(src, T)
 		return FALSE
-	..()
-
+	. = ..()
 
 /mob/living/simple_animal/hostile/stranger/attack_hand(mob/living/carbon/M)
 	if(M.a_intent != I_HELP && prob(prob_tele))
@@ -93,9 +90,10 @@
 		if(target_mob)
 			source = target_mob
 		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_sparks(3, 0, src.loc)
 		do_teleport(src, T)
 		return FALSE
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/stranger/bullet_act(obj/item/projectile/P, def_zone)
 	if(prob(prob_tele))
@@ -103,9 +101,10 @@
 		if(target_mob)
 			source = target_mob
 		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_sparks(3, 0, src.loc)
 		do_teleport(src, T)
 		return FALSE
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/stranger/Life()
 	. = ..()
@@ -114,6 +113,7 @@
 		if(target_mob)
 			source = target_mob
 		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_sparks(3, 0, src.loc)
 		do_teleport(src, T)
 
 /obj/item/weapon/gun/energy/plasma/stranger
