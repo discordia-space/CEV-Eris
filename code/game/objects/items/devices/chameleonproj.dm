@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_blacklisted = TRUE
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy
 	var/saved_item
