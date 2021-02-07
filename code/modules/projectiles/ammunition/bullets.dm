@@ -280,7 +280,8 @@
 	projectile_type = /obj/item/projectile/bullet/antim/breach
 
 /obj/item/ammo_casing/antim/breach/prespawned
-=======
+	amount = 5
+
 /obj/item/ammo_casing/antim/scrap
 	name = "shell casing"
 	desc = "An old .60 Anti-Material shell."
