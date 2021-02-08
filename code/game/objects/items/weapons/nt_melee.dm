@@ -85,10 +85,10 @@
 	desc = "A saint looking scourge, extreme punisment. Can be extended to hurt more."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
-	force = WEAPON_FORCE_DANGEROUS
-	var/force_extended = WEAPON_FORCE_PAINFUL
-	armor_penetration = ARMOR_PEN_HALF
-	var/armor_penetration_extended = ARMOR_PEN_EXTREME
+	force = WEAPON_FORCE_ROBUST
+	var/force_extended = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MASSIVE
+	var/armor_penetration_extended = ARMOR_PEN_HALF
 	var/extended = FALSE
 	var/agony = 20
 	var/agony_extended = 40
@@ -140,7 +140,7 @@
 
 /obj/item/weapon/tool/sword/nt/pilum
 	name = "NT Pilum"
-	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The speartip usually breaks after being thrown at a target, but it can be welded into shape again."
+	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually breaks after being thrown at a target, but it can be welded into shape again."
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
@@ -167,14 +167,16 @@
 		throwforce = WEAPON_FORCE_HARMLESS
 /obj/item/weapon/tool/sword/nt/pilum/dropped(mob/living/W)
 	embed_mult = 300
+	..()
 
 /obj/item/weapon/tool/sword/nt/pilum/on_embed(mob/user)
+	. = ..()
 		tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/pilum/examine(mob/user)
+	. = ..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
-	. = ..()
 
 /obj/item/weapon/tool/sword/nt/pilum/attackby(obj/item/I, var/mob/user)
 	. = ..()
@@ -194,7 +196,48 @@
 	spawn_blacklisted = TRUE
 	price_tag = 1000
 	base_block_chance = 40
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	var/obj/item/weapon/storage/internal/container
+	var/storage_slots = 3
+	var/max_w_class = ITEM_SIZE_HUGE
+	var/list/can_hold = new/list(
+		/obj/item/weapon/tool/sword/nt/shortsword,
+		/obj/item/weapon/tool/sword/nt/pilum,
+		/obj/item/weapon/tool/knife/dagger/nt,
+		/obj/item/weapon/tool/knife/neotritual,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors,
+		/obj/item/weapon/book/ritual/cruciform,
+		/obj/item/weapon/implant/core_implant/cruciform
+		)
 
+/obj/item/weapon/shield/riot/nt/New()
+	container = new /obj/item/weapon/storage/internal(src)
+	container.storage_slots = storage_slots
+	container.can_hold = can_hold
+	container.max_w_class = max_w_class
+	container.master_item = src
+	.=..()
+
+/obj/item/weapon/shield/riot/nt/proc/handle_attack_hand(mob/user as mob)
+	return container.handle_attack_hand(user)
+
+/obj/item/weapon/shield/riot/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+	return container.handle_mousedrop(user, over_object)
+
+/obj/item/weapon/shield/riot/nt/MouseDrop(obj/over_object)
+	if(container.handle_mousedrop(usr, over_object))
+		return TRUE
+	return ..()
+
+/obj/item/weapon/shield/riot/nt/attack_hand(mob/user as mob)
+	if (loc == user)
+		container.open(user)
+	else
+		container.close_all()
+		..()
+
+	src.add_fingerprint(user)
+	return
 
 /obj/item/weapon/shield/riot/nt/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton) || istype(W, /obj/item/weapon/tool/sword/nt))
@@ -204,3 +247,4 @@
 
 /obj/item/weapon/shield/riot/nt/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
+
