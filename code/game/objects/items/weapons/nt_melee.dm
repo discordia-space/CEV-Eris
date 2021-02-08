@@ -118,10 +118,10 @@
 /obj/item/weapon/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
 	w_class = initial(w_class)
-	force = initial(force)
 	armor_penetration = initial(armor_penetration)
-	agony += initial(agony)
+	agony = initial(agony)
 	slot_flags = initial(slot_flags)
+	refresh_upgrades()
 	update_icon()
 
 /obj/item/weapon/tool/sword/nt/scourge/update_icon()
@@ -131,15 +131,12 @@
 		icon_state = initial(icon_state)
 	..()
 
-/obj/item/weapon/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, var/hit_zone)
-	if(isrobot(target))
-		return ..()
-	var/obj/item/organ/external/affecting
+/obj/item/weapon/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
+	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/O = target
-		affecting = O.get_organ(hit_zone)
 		target.stun_effect_act(stun, agony, hit_zone, src)
-
+		O.say(pick("LORD", "MERCY", "SPARE", "ME", "HAVE", "PLEASE"))
 
 /obj/item/weapon/tool/sword/nt/pilum
 	name = "NT Pilum"
@@ -169,8 +166,7 @@
 		force = WEAPON_FORCE_NORMAL
 		throwforce = WEAPON_FORCE_HARMLESS
 /obj/item/weapon/tool/sword/nt/pilum/dropped(mob/living/W)
-	else
-		embed_mult = 300
+	embed_mult = 300
 
 /obj/item/weapon/tool/sword/nt/pilum/on_embed(mob/user)
 		tipbroken = TRUE
