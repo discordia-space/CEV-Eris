@@ -46,11 +46,11 @@
 
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
-	build_path = /obj/item/clothing/suit/neotheology_coat
+	build_path = /obj/item/clothing/suit/storage/neotheology_coat
 
 /datum/design/bioprinter/nt_clothes/acolyte_jacket
 	name = "NT Acolyte Jacket"
-	build_path = /obj/item/clothing/suit/neotheology_jacket
+	build_path = /obj/item/clothing/suit/storage/neotheology_jacket
 
 /datum/design/bioprinter/nt_clothes/sports_jacket
 	name = "NT Sports Jacket"
