@@ -77,6 +77,10 @@
 		STAT_COG = -10
 	)
 
+/datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_LATIN)
+
 
 /datum/category_item/setup_option/background/origin/shimatengoku
 	name = "Shimatengoku"
@@ -93,6 +97,10 @@
 		STAT_VIG = 10,
 		STAT_COG = 5
 	)
+
+/datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_NEOHONGO)
 
 
 /datum/category_item/setup_option/background/origin/hmss_destined
@@ -207,4 +215,4 @@
         STAT_VIG = 10,
         STAT_COG = -5
     )
-    
+

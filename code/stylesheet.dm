@@ -92,6 +92,8 @@ h1.alert, h2.alert		{color: #000000;}
 .serbian				{color: #Ad6f1d}
 .jive					{color: #666666}
 .german					{color: #001FFF}
+.japanese               {color: #993399}
+.latin                  {color: #deb63d}
 
 .interface				{color: #330033;}
 
