@@ -150,6 +150,3 @@
 		damage_multiplier += extra_damage_mult_scoped
 	else
 		refresh_upgrades()
-
-
-	
