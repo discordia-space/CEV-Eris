@@ -211,7 +211,7 @@
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword
 	name = "NT Shortsword"
-	build_path = /obj/item/weapon/tool/sword/nt
+	build_path = /obj/item/weapon/tool/sword/nt/shortsword
 
 /datum/design/autolathe/sword/nt_longsword
 	name = "NT Longsword"
