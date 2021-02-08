@@ -240,8 +240,9 @@
 	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
+	var/damage = 0
 	if(Proj.nocap_structures)
-		var/damage = proj_damage * 3
+		damage = proj_damage * 3
 	else
 		damage = min(proj_damage, 100)
 
