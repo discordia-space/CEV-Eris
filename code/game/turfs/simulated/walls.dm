@@ -241,7 +241,7 @@
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	if(Proj.nocap_structures)
-		damage = proj_damage * 3
+		var/damage = proj_damage * 3
 	else
 		damage = min(proj_damage, 100)
 
