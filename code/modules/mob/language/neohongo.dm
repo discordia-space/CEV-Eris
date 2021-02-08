@@ -15,6 +15,6 @@
 	                 "kuigi", "inku", "fuku", "tetsudo", "suji", "hon", "aka", "ao", "iro", "shikisa", "e", "kawaii", \
 	                 "shishutemu", "irai", "ichi", "kore", "sore", "are", "dore", "jido", "seishiki", "genzai", "miral", "ii", "yoi", \
 	                 "warui", "futui", "wakai", "karui", "tanoshii", "kusai", "kowareru", "kuru", "sawaru", "tatsu", \
-	                 "senpy", "omae", "wa", "mou", "shindeiru", "chan", "oniichan", "oneechan","kawaii", \
+	                 "senpy", "omae", "wa", "mou", "shindeiru", "chan", "oniichan", "oneechan", \
 	                 "hentai", "hime", "iku", "kami", "kareshi", "makeru", "Ryoukai!", "sempai", "totemo")
 
