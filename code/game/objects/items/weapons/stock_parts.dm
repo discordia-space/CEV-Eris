@@ -4,7 +4,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEM_SIZE_SMALL
-	rarity_value = STOCK_PARTS_BASE_RARITY_VALUE
+	rarity_value = 10
 	bad_type = /obj/item/weapon/stock_parts
 	spawn_tags = SPAWN_TAG_STOCK_PARTS
 	var/rating = 1
@@ -29,7 +29,7 @@
 	icon_state = "capacitor"
 	origin_tech = list(TECH_POWER = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
-	rarity_value = STOCK_PARTS_BASE_RARITY_VALUE+5
+	rarity_value = 15
 
 /obj/item/weapon/stock_parts/scanning_module
 	name = "scanning module"
@@ -58,7 +58,7 @@
 	icon_state = "matter_bin"
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	rarity_value = STOCK_PARTS_BASE_RARITY_VALUE-1
+	rarity_value = 9
 
 //Rank 2
 
@@ -345,7 +345,7 @@
 
 // Subspace stock parts
 /obj/item/weapon/stock_parts/subspace
-	rarity_value = STOCK_PARTS_BASE_RARITY_VALUE-2
+	rarity_value = 8
 	bad_type = /obj/item/weapon/stock_parts/subspace
 
 /obj/item/weapon/stock_parts/subspace/ansible

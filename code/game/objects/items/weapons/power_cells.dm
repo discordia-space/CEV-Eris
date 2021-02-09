@@ -72,7 +72,7 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 3)
 	maxcharge = 15000
-	rarity_value = CELL_BASE_RARITY_VALUE+30
+	rarity_value = 32
 
 //Meme cells - for fun and cancer
 
@@ -177,7 +177,7 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	maxcharge = 1000
-	rarity_value = CELL_BASE_RARITY_VALUE+25
+	rarity_value = 27
 
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
@@ -272,7 +272,7 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
-	rarity_value = CELL_BASE_RARITY_VALUE+30
+	rarity_value = 32
 
 /obj/item/weapon/cell/disposable
 	name = "a disposable cell"

@@ -10,17 +10,12 @@
 //end guns
 
 //cells
-
-#define CELL_BASE_RARITY_VALUE 2
 #define CELL_LARGE_BASE_CHARGE 1000
 #define CELL_MEDIUM_BASE_CHARGE 600
 #define CELL_SMALL_BASE_CHARGE 100
 
 #define  BASE_AUTORECHARGE_RATE 0.03
 #define  BASE_RECHARGE_TIME 4
-
-//stock-parts
-#define STOCK_PARTS_BASE_RARITY_VALUE 10
 
 //clothing
 #define CLOTH_PRICE_DIVISOR 50
