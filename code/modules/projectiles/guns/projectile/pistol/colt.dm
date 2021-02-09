@@ -15,6 +15,8 @@
 	damage_multiplier = 1.5
 	recoil_buildup = 17
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 
 /obj/item/weapon/gun/projectile/colt/update_icon()
 	..()

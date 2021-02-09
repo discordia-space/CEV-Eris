@@ -16,3 +16,5 @@
 	damage_multiplier = 1.4 //because pistol round
 	penetration_multiplier = 1.4
 	recoil_buildup = 18
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE

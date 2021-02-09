@@ -205,7 +205,7 @@
 	name = "sidearm crate"
 	desc = "A crate containing six Makarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
+	initial_contents = list(/obj/item/weapon/gun/projectile/selfload/makarov = 6,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/weapon/tool/knife/boot = 6)
 

@@ -25,7 +25,7 @@
 
 	stat_modifiers = list(
 		STAT_TGH = 10,
-		STAT_BIO = 15,
+		STAT_ROB = 20,
 		STAT_VIG = 15,
 		STAT_COG = 10,
 	)
@@ -82,10 +82,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
 	stat_modifiers = list(
-	STAT_BIO = 10,
-	STAT_VIG = 20,
+	STAT_VIG = 15,
 	STAT_TGH = 15,
-	STAT_ROB = 5
+	STAT_ROB = 15
 	)
 
 	core_upgrades = list(
@@ -126,8 +125,8 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/church/gardener
 	stat_modifiers = list(
-		STAT_BIO = 15,
-		STAT_TGH = 15,
+		STAT_BIO = 20,
+		STAT_TGH = 10,
 		STAT_ROB = 10,
 	)
 
@@ -166,7 +165,7 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 15,
-		STAT_BIO = 10,
+		STAT_TGH = 10,
 		STAT_VIG = 15
 	)
 

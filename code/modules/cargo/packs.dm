@@ -157,7 +157,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "FS Handgun Pack"
 	contains = list(/obj/item/weapon/gun/projectile/colt,
 			/obj/item/weapon/gun/projectile/paco,
-			/obj/item/weapon/gun/projectile/clarissa,
+			/obj/item/weapon/gun/projectile/selfload/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/weapon

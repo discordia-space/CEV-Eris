@@ -1,10 +1,3 @@
-#define ERR_OK 0
-#define ERR_NOTFOUND "not found"
-#define ERR_NOMATERIAL "no material"
-#define ERR_NOREAGENT "no reagent"
-#define ERR_NOLICENSE "no license"
-#define ERR_PAUSED "paused"
-#define ERR_NOINSIGHT "no insight"
 #define MAX_STAT_VALUE 12
 
 /obj/machinery/autolathe/artist_bench
@@ -18,12 +11,10 @@
 	have_recycling = FALSE
 	have_design_selector = FALSE
 	categories = list("Artwork")
-
+	use_oddities = TRUE
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
 	var/min_mat = 20
 	var/min_insight = 40
-	var/datum/component/inspiration/inspiration
-	var/obj/item/oddity
 
 /obj/machinery/autolathe/artist_bench/ui_data()
 	var/list/data = list()
@@ -58,25 +49,10 @@
 
 		ui.open()
 
-/obj/machinery/autolathe/artist_bench/attackby(obj/item/I, mob/user)
-	GET_COMPONENT_FROM(C, /datum/component/inspiration, I)
-	if(C && C.perk)
-		insert_oddity(user, I)
-		return
-	. = ..()
 
 /obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
 	if(..())
 		return
-
-	usr.set_machine(src)
-
-	if(href_list["oddity_name"])
-		if(oddity)
-			remove_oddity(usr)
-		else
-			insert_oddity(usr)
-		return TRUE
 
 	if(href_list["create_art"])
 		if(ishuman(usr))
@@ -89,47 +65,6 @@
 			create_art(ins_used, H)
 			return TRUE
 		return FALSE
-
-/obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
-	if(oddity)
-		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
-		return
-
-	if(!inserted_oddity && istype(user))
-		inserted_oddity = user.get_active_hand()
-
-	if(!istype(inserted_oddity))
-		return
-
-	if(!Adjacent(user) || !Adjacent(inserted_oddity))
-		return
-
-	GET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
-	if(!C || !C.perk)
-		return
-
-	if(istype(user) && (inserted_oddity in user))
-		user.unEquip(inserted_oddity, src)
-
-	inserted_oddity.forceMove(src)
-	oddity = inserted_oddity
-	inspiration = C
-	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src]."))
-	SSnano.update_uis(src)
-
-/obj/machinery/autolathe/artist_bench/proc/remove_oddity(mob/living/user)
-	if(!oddity)
-		return
-
-	oddity.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [oddity] from the model stand in [src]."))
-
-	if(istype(user) && Adjacent(user))
-		user.put_in_hands(oddity)
-
-	oddity = null
-	inspiration = null
-	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used, mob/living/carbon/human/user)
 	var/list/LStats = list()
@@ -327,20 +262,10 @@
 		if(stored_material[rmat] < min_mat)
 			return ERR_NOMATERIAL
 
-	for(var/rmat in design.materials)
-		if(!(rmat in stored_material))
-			return ERR_NOMATERIAL
+	var/error_mat = check_materials(design)
 
-		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
-			return ERR_NOMATERIAL
-
-	if(design.chemicals.len)
-		if(!container || !container.is_drawable())
-			return ERR_NOREAGENT
-
-		for(var/rgn in design.chemicals)
-			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
-				return ERR_NOREAGENT
+	if(error_mat != ERR_OK)
+		return error_mat
 
 	return ERR_OK
 
@@ -353,12 +278,4 @@
 		LAZYAPLUS(new_materials, pick(suitable_materials), rand(0,2))
 	O.matter = new_materials
 
-
-#undef ERR_OK
-#undef ERR_NOTFOUND
-#undef ERR_NOMATERIAL
-#undef ERR_NOREAGENT
-#undef ERR_NOLICENSE
-#undef ERR_PAUSED
-#undef ERR_NOINSIGHT
 #undef MAX_STAT_VALUE

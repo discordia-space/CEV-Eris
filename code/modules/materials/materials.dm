@@ -671,6 +671,13 @@ var/list/name_to_material
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
 
+/material/compressed
+	name = MATERIAL_COMPRESSED
+	stack_type = /obj/item/stack/material/compressed
+	icon_colour = "#00E1FF"
+	sheet_singular_name = "cartrigde"
+	sheet_plural_name = "cartridges"
+
 //TODO PLACEHOLDERS:
 /material/leather
 	name = MATERIAL_LEATHER

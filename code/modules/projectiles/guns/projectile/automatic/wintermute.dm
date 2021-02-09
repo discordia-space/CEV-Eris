@@ -30,6 +30,8 @@
 		BURST_3_ROUND
 		)
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 /obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
 	..()
 
