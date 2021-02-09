@@ -225,7 +225,7 @@ the value of stock parts increases with the rating.
 			var/obj/item/weapon/tool/T = path
 			if(initial(T.suitable_cell))
 				. += get_spawn_price(initial(T.suitable_cell))
-		if(ispath(path, /obj/item/weapon/storage))
+		else if(ispath(path, /obj/item/weapon/storage))
 			if(ispath(path, /obj/item/weapon/storage/box))
 				var/obj/item/weapon/storage/box/B = path
 				if(initial(B.initial_amount) > 0 && initial(B.spawn_type))
