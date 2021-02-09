@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "nt_sword_truth"
 	item_state = "nt_sword_truth"
+	force = WEAPON_FORCE_BRUTAL
 	slot_flags = FALSE
 	origin_tech = list(TECH_COMBAT = 5, TECH_POWER = 4, TECH_MATERIAL = 8)
 	price_tag = 20000
@@ -58,6 +59,12 @@
 				var/obj/item/weapon/implant/core_implant/I = M.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 				if(I && I.active && I.wearer)
 					continue
+				M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, 45 SECONDS)
+				M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 45 SECONDS)
+				M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, 45 SECONDS)
+				M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 45 SECONDS)
+				M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 45 SECONDS)
+				M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 45 SECONDS)
 				flashbang_bang(get_turf(src), M, bang_text)
 
 
@@ -65,6 +72,12 @@
 		var/obj/item/weapon/implant/core_implant/I = M.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
 			continue
+		M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, 45 SECONDS)
+		M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 45 SECONDS)
+		M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, 45 SECONDS)
+		M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 45 SECONDS)
+		M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 45 SECONDS)
+		M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 45 SECONDS)
 		flashbang_bang(get_turf(src), M, bang_text)
 
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
@@ -76,6 +89,13 @@
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	last_use = world.time
 	return
+
+/obj/item/weapon/tool/sword/nt_sword/equipped(mob/living/M)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(M))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/structure/nt_pedestal
 	name = "Sword of Truth Pedestal"

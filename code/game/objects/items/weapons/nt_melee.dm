@@ -171,7 +171,7 @@
 
 /obj/item/weapon/tool/sword/nt/pilum/on_embed(mob/user)
 	. = ..()
-		tipbroken = TRUE
+	tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/pilum/examine(mob/user)
 	. = ..()
