@@ -29,10 +29,9 @@
 		hard_crit_threshold += 20
 
 	. = 						\
+	1	* get_limb_damage() + 	\
 	1	* getOxyLoss() + 		\
 	0.5	* getToxLoss() + 		\
-	1	* getFireLoss() + 		\
-	1	* getBruteLoss() + 		\
 	1.5	* getCloneLoss()
 
 
@@ -47,6 +46,15 @@
 
 	last_tick_pain = .
 
+/mob/living/carbon/proc/get_limb_damage()
+	. = getFireLoss() + getBruteLoss()
+
+/mob/living/carbon/human/get_limb_damage()
+	for(var/obj/item/organ/external/organ in organs)
+		. += organ.burn_dam
+		. += organ.brute_dam
+		. *= max((get_specific_organ_efficiency(OP_NERVE, organ.organ_tag)/100), 0.5)
+
 /mob/living/carbon/proc/get_dynamic_pain()
 	. = 1.33 * halloss
 
@@ -57,7 +65,7 @@
 /mob/living/carbon/human/updateshock()
 	..()
 	for(var/obj/item/organ/external/organ in organs)
-		if(organ && (organ.is_broken() || organ.open))
+		if(organ && (organ.is_broken() || (!BP_IS_ROBOTIC(organ) && organ.open)))
 			traumatic_shock += 30
 
 	return traumatic_shock
@@ -75,29 +83,29 @@
 		return
 
 	//Get crit treshold
-	var/soft_crit_threshold = SOFTCRIT_TRAUMATIC_SHOCK + min(stats.getStat(STAT_TGH), 100)
-	var/hard_crit_threshold = HARDCRIT_TRAUMATIC_SHOCK + min(stats.getStat(STAT_TGH), 100)
+	var/soft_crit_threshold = SOFTCRIT_TRAUMATIC_SHOCK + stats.getStat(STAT_TGH)
+	var/hard_crit_threshold = HARDCRIT_TRAUMATIC_SHOCK + stats.getStat(STAT_TGH)
 	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
 		soft_crit_threshold += 20
 		hard_crit_threshold += 20
 
 	//Get shock speed
 	var/shock_stage_speed = 1
-	if(traumatic_shock > hard_crit_threshold + SHOCK_STAGE_BUFFER)
-		shock_stage_speed = 3
-
-	else if(traumatic_shock > soft_crit_threshold + SHOCK_STAGE_BUFFER)
+	if(traumatic_shock > soft_crit_threshold + SHOCK_STAGE_BUFFER)
 		shock_stage_speed = 2
 
 	//Handle shock
+	message_admins(traumatic_shock)
+	message_admins("[shock_stage] 1")
 	if(shock_stage <= traumatic_shock)	//Shock stage slowly climbs to traumatic shock
 		shock_stage = min(shock_stage + shock_stage_speed, traumatic_shock)
+		message_admins("[shock_stage] 2")
 
-		if(shock_stage < traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to half of traumatic shock
-			shock_stage = min(traumatic_shock / 0.4, 160)
+		if(shock_stage < traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to 40% of traumatic shock
+			shock_stage = (traumatic_shock * 0.4)
+			message_admins("[shock_stage] 3")
 
 	else
-		shock_stage = min(shock_stage, 160)
 		shock_stage = max(shock_stage - shock_stage_speed, 0)
 		return
 
@@ -106,14 +114,14 @@
 
 	sanity.onShock(shock_stage)
 
-	if(shock_stage == 12)
+	if(shock_stage == 10)
 		to_chat(src, SPAN_DANGER("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!"))
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
 		stuttering = max(stuttering, 5)
 
-	if(shock_stage == 42)
+	if(shock_stage == 40)
 		to_chat(src, SPAN_DANGER("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 
 	if (shock_stage >= 60)

@@ -30,7 +30,7 @@
 	return TRUE
 
 /obj/item/organ/internal/carrion
-	max_damage = 90 //resilient
+	max_damage = 150 //resilient
 
 /obj/item/organ/internal/carrion/chemvessel
 	name = "chemical vessel"
