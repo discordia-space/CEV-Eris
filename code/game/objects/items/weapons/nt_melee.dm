@@ -73,7 +73,7 @@
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
-	force = WEAPON_FORCE_ROBUST
+	force = 30
 	armor_penetration = ARMOR_PEN_MASSIVE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -86,12 +86,12 @@
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
-	var/force_extended = WEAPON_FORCE_DANGEROUS
+	var/force_extended = 18
 	armor_penetration = ARMOR_PEN_MASSIVE
 	var/armor_penetration_extended = ARMOR_PEN_HALF
 	var/extended = FALSE
 	var/agony = 20
-	var/agony_extended = 40
+	var/agony_extended = 45
 	var/stun = 0
 	w_class = ITEM_SIZE_BULKY
 	price_tag = 1000
@@ -144,15 +144,14 @@
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
-	force = 23
-	force_wielded = 25
+	force = 24
+	force_wielded = 26
 	var/tipbroken = FALSE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT 
 	throwforce = 75 
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
-	embed_mult = 200
 	price_tag = 150
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5,) // easy to mass-produce and arm the faithful
 
@@ -165,6 +164,7 @@
 	if(isBroken)
 		force = WEAPON_FORCE_NORMAL
 		throwforce = WEAPON_FORCE_HARMLESS
+
 /obj/item/weapon/tool/sword/nt/pilum/dropped(mob/living/W)
 	embed_mult = 300
 	..()
@@ -205,9 +205,7 @@
 		/obj/item/weapon/tool/sword/nt/pilum,
 		/obj/item/weapon/tool/knife/dagger/nt,
 		/obj/item/weapon/tool/knife/neotritual,
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors,
 		/obj/item/weapon/book/ritual/cruciform,
-		/obj/item/weapon/implant/core_implant/cruciform
 		)
 
 /obj/item/weapon/shield/riot/nt/New()

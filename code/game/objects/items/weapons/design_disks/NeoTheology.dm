@@ -180,9 +180,10 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	designs = list(
+		/datum/design/autolathe/shield/nt_shield,
+		/datum/design/autolathe/sword/nt_spear,
 		/datum/design/autolathe/sword/nt_sword,
 		/datum/design/autolathe/sword/nt_dagger,
-		/datum/design/autolathe/shield/nt_shield,
 		/datum/design/bioprinter/storage/sheath,
 		/datum/design/autolathe/tool_upgrade/sanctifier
 	)
