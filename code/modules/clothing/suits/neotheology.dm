@@ -23,6 +23,7 @@
 	icon_state = "acolyte"
 	item_state = "acolyte"
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 25, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -60,6 +61,7 @@
 	item_state = "botanist"
 	slowdown = 0
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -96,6 +98,7 @@
 	icon_state = "custodian"
 	item_state = "custodian"
 	matter = list(MATERIAL_PLASTIC = 40, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
 		bullet = 25,
