@@ -1021,7 +1021,8 @@
 					/obj/item/ammo_magazine/ammobox/pistol = 5,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 3,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
-					/obj/item/weapon/tool/knife/tacknife = 5)
+					/obj/item/weapon/tool/knife/tacknife = 5,
+					/obj/item/weapon/storage/box/smokes = 3)
 
 	prices = list(
 					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
@@ -1042,6 +1043,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/weapon/storage/box/smoke = 200,
 					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
@@ -1210,6 +1212,7 @@
 					/obj/item/weapon/handcuffs/zipties = 8,
 					/obj/item/weapon/grenade/flashbang = 8,
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
+					/obj/item/weapon/grenade/smokebomb = 8,
 					/obj/item/device/flash = 8,
 					/obj/item/weapon/reagent_containers/spray/pepper = 8,
 					/obj/item/ammo_magazine/ihclrifle/rubber = 8,
