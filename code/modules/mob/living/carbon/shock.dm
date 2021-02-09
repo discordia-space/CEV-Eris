@@ -95,15 +95,11 @@
 		shock_stage_speed = 2
 
 	//Handle shock
-	message_admins(traumatic_shock)
-	message_admins("[shock_stage] 1")
 	if(shock_stage <= traumatic_shock)	//Shock stage slowly climbs to traumatic shock
 		shock_stage = min(shock_stage + shock_stage_speed, traumatic_shock)
-		message_admins("[shock_stage] 2")
 
 		if(shock_stage < traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to 40% of traumatic shock
 			shock_stage = (traumatic_shock * 0.4)
-			message_admins("[shock_stage] 3")
 
 	else
 		shock_stage = max(shock_stage - shock_stage_speed, 0)
