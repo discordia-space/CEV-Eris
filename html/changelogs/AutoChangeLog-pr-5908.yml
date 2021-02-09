@@ -1,0 +1,4 @@
+author: Wouju
+delete-after: true
+changes:
+  - tweak: Chameleon Projector is now blacklisted from maint.
