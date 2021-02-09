@@ -4,7 +4,6 @@
 #define CHEAP_ITEM_PRICE 800
 
 //guns defines
-#define GUN_BASE_RARITY_VALUE 5
 #define GUN_CHEAP_PRICE 1700
 #define GUN_PRICE_DIVISOR 100
 //end guns

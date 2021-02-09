@@ -57,7 +57,7 @@
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
 	twohanded = TRUE
-	rarity_value = GUN_BASE_RARITY_VALUE+30//no price tag,then high rarirty
+	rarity_value = 35//no price tag,then high rarirty
 
 	var/obj/item/bolt
 	var/tension = 0						// Current draw on the bow.
