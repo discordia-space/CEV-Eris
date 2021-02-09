@@ -138,12 +138,12 @@
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		O.say(pick("LORD", "MERCY", "SPARE", "ME", "HAVE", "PLEASE"))
 
-/obj/item/weapon/tool/sword/nt/pilum
+/obj/item/weapon/tool/sword/nt/spear
 	name = "NT Pilum"
 	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually breaks after being thrown at a target, but it can be welded into shape again."
-	icon_state = "nt_halberd"
-	item_state = "nt_halberd"
-	wielded_icon = "nt_halberd_wielded"
+	icon_state = "nt_spear"
+	item_state = "nt_spear"
+	wielded_icon = "nt_spear_wielded"
 	force = 24
 	force_wielded = 26
 	var/tipbroken = FALSE
@@ -155,7 +155,7 @@
 	price_tag = 150
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5,) // easy to mass-produce and arm the faithful
 
-/obj/item/weapon/tool/sword/nt/pilum/equipped(mob/living/W)
+/obj/item/weapon/tool/sword/nt/spear/equipped(mob/living/W)
 	. = ..()
 	if(is_held() && is_neotheology_disciple(W))
 		embed_mult = 0.1
@@ -165,20 +165,20 @@
 		force = WEAPON_FORCE_NORMAL
 		throwforce = WEAPON_FORCE_HARMLESS
 
-/obj/item/weapon/tool/sword/nt/pilum/dropped(mob/living/W)
+/obj/item/weapon/tool/sword/nt/spear/dropped(mob/living/W)
 	embed_mult = 300
 	..()
 
-/obj/item/weapon/tool/sword/nt/pilum/on_embed(mob/user)
+/obj/item/weapon/tool/sword/nt/spear/on_embed(mob/user)
 	. = ..()
 	tipbroken = TRUE
 
-/obj/item/weapon/tool/sword/nt/pilum/examine(mob/user)
+/obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
 	. = ..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
 
-/obj/item/weapon/tool/sword/nt/pilum/attackby(obj/item/I, var/mob/user)
+/obj/item/weapon/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	. = ..()
 	if (I.has_quality(QUALITY_WELDING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
@@ -202,7 +202,7 @@
 	var/max_w_class = ITEM_SIZE_HUGE
 	var/list/can_hold = new/list(
 		/obj/item/weapon/tool/sword/nt/shortsword,
-		/obj/item/weapon/tool/sword/nt/pilum,
+		/obj/item/weapon/tool/sword/nt/spear,
 		/obj/item/weapon/tool/knife/dagger/nt,
 		/obj/item/weapon/tool/knife/neotritual,
 		/obj/item/weapon/book/ritual/cruciform,

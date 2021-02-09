@@ -235,7 +235,7 @@
 
 /datum/design/autolathe/sword/nt_spear
 	name = "NT Spear"
-	build_path = /obj/item/weapon/tool/sword/nt/pilum
+	build_path = /obj/item/weapon/tool/sword/nt/spear
 
 /datum/design/autolathe/tool_upgrade/sanctifier
 	name = "sanctifier"
