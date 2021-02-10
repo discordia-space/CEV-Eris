@@ -711,12 +711,10 @@
 		if(istype(user)) to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
 		// Users with green thumb perk gain sanity when harvesting plants
-		if(user && user.stats && !harvest_sample)
-			if(user.stats.getPerk(/datum/perk/greenthumb))
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					if(H.sanity)
-						H.sanity.changeLevel(2.5)
+		if(ishuman(user) && user.stats && !harvest_sample)
+			var/mob/living/carbon/human/H = user
+			if(H.stats.getPerk(/datum/perk/greenthumb) && H.sanity)
+				H.sanity.changeLevel(2.5)
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))
