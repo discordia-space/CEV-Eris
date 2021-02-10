@@ -1,9 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - tweak: NT suits now have pockets and some more protection
-  - tweak: the NT armors no longer slow you down
-  - tweak: the NT flashbangs and smoke grenades cost less to produce
-  - tweak: NT armor now properly covers legs and arms
-  - bugfix: some fixes to NT sprites
-  - bugfix: the sheath can now hold the NT longsword

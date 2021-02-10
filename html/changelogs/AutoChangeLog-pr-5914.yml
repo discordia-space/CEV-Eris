@@ -1,4 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: Dirty areas have a lower penalty on the NT score.
