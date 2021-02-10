@@ -73,8 +73,9 @@
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
-	force = 30
+	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MASSIVE
+	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	price_tag = 600
