@@ -218,8 +218,7 @@
 
 /datum/perk/greenthumb/assign(mob/living/carbon/human/H)
 	..()
-	var/obj/item/device/scanner/V = virtual_scanner
-	V.is_virtual = TRUE
+	virtual_scanner.is_virtual = TRUE
 
 /datum/perk/job/club
 	name = "Raising the bar"
