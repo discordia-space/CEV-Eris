@@ -1,5 +1,5 @@
 /obj/item/weapon/mine
-	name = "Proximity Mine"
+	name = "proximity mine"
 	desc = "An anti-personnel mine. Unleashes shrapnel on those unlucky enough to step on them."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
