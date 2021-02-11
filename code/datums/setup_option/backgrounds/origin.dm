@@ -101,7 +101,7 @@
 		STAT_COG = 5
 	)
 
-/datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
+/datum/category_item/setup_option/background/origin/shimatengoku/apply(mob/living/carbon/human/character)
   ..()
   character.add_language(LANGUAGE_NEOHONGO)
 
@@ -218,4 +218,3 @@
         STAT_VIG = 10,
         STAT_COG = -5
     )
-
