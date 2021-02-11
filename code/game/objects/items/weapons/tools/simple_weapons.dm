@@ -141,7 +141,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = 30
+	force = WEAPON_FORCE_DANGEROUS * 1.5
 	armor_penetration = ARMOR_PEN_MODERATE
 	rarity_value = 35
 

@@ -135,7 +135,7 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
-	force = 23
+	force = WEAPON_FORCE_DANGEROUS * 1.15
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_on_qualities = list(QUALITY_DIGGING = 50, QUALITY_DRILLING = 20)

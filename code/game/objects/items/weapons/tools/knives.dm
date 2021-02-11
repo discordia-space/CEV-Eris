@@ -96,7 +96,7 @@
 	icon_state = "dagger"
 	item_state = "dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
-	force = 13
+	force = WEAPON_FORCE_NORMAL * 1.3
 	armor_penetration = ARMOR_PEN_HALF
 	rarity_value = 15
 
