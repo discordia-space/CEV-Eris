@@ -64,6 +64,10 @@
 	if(accepted)
 		working = TRUE
 		start_time = world.time
+		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
+		var/datum/objective/timed/excelsior/M = (locate(/datum/objective/timed/excelsior) in F.objectives)
+		if(M && !M.active)
+			M.start_excel_timer()
 
 		flick(image(icon, "closing"), src)
 

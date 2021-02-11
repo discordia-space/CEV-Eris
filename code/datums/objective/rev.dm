@@ -33,3 +33,19 @@
 		return TRUE
 
 	return FALSE
+
+/datum/objective/timed/excelsior
+	explanation_text = "Expand and grow in power before the ship's systems detect your presence! Detection will occur in []"
+	var/mission_timer = 60 MINUTES
+	var/mission_status = MISSION_STATUS_SETUP
+	var/active = FALSE
+
+/datum/objective/timed/excelsior/proc/start_excel_timer()
+	START_PROCESSING(SSobj, src)
+	active = TRUE
+
+/datum/objective/timed/excelsior/Process()
+	mission_timer -= 1 SECONDS
+	if (mission_timer <= 0)
+		level_nine_announcement()
+		STOP_PROCESSING(SSobj, src)
