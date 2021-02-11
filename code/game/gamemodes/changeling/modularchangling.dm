@@ -75,7 +75,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/talking_spider
 	name = "Talking spider"
-	desc = "Creates a spider that can highjack someones vocal cords, giving you the ability to talk through them."
+	desc = "Creates a spider that can hijack someones vocal cords, giving you the ability to talk through them."
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/talking
 
