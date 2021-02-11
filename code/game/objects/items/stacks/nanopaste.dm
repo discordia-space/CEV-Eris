@@ -48,7 +48,7 @@
 					if(!do_mob(user, M, W.damage/5) && use(1))
 						to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
 						break
-					if(!use(1))
+					if(!can_use(1))
 						to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
 						return
 					W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 20))
