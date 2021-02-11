@@ -214,7 +214,7 @@
 	        to harvest reagents, by examining them. Gathering plants relaxes you and thus restores sanity."
 	icon_state = "greenthumb" // https://game-icons.net/1x1/delapouite/farmer.html
 
-	var/virtual_scanner = new /obj/item/device/scanner/plant
+	var/obj/item/device/scanner/plant/virtual_scanner = new
 
 /datum/perk/greenthumb/assign(mob/living/carbon/human/H)
 	..()
