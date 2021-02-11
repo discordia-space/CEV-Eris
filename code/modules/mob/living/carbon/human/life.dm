@@ -835,12 +835,6 @@
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(halloss >= species.total_health)
-			to_chat(src, SPAN_WARNING("[species.halloss_message_self]"))
-			src.visible_message("<B>[src]</B> [species.halloss_message].")
-			Paralyse(10)
-			setHalLoss(species.total_health-1)
-
 		if(paralysis || sleeping)
 			blinded = TRUE
 			stat = UNCONSCIOUS
