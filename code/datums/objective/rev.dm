@@ -35,9 +35,8 @@
 	return FALSE
 
 /datum/objective/timed/excelsior
-	explanation_text = "Expand and grow in power before the ship's systems detect your presence! Detection will occur in []"
-	var/mission_timer = 60 MINUTES
-	var/mission_status = MISSION_STATUS_SETUP
+	explanation_text = "Expand and grow in power before the ship's systems detect your presence! The detection countdown of 1 Hour starts once you force-implant a new comrade. it is lowered by 8 Minutes for each additional recruit, and increased by 12 Minutes for each completed mandate"
+	var/detect_timer = 60 MINUTES
 	var/active = FALSE
 
 /datum/objective/timed/excelsior/proc/start_excel_timer()
@@ -45,7 +44,13 @@
 	active = TRUE
 
 /datum/objective/timed/excelsior/Process()
-	mission_timer -= 1 SECONDS
-	if (mission_timer <= 0)
+	detect_timer -= 1 SECONDS
+	if(detect_timer <= 0)
 		level_nine_announcement()
 		STOP_PROCESSING(SSobj, src)
+
+/datum/objective/timed/excelsior/proc/on_convert()
+	detect_timer -= 8 MINUTES
+
+/datum/objective/timed/excelsior/proc/mandate_completion()
+	detect_timer += 12 MINUTES
