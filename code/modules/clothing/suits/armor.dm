@@ -481,6 +481,7 @@
 		bio = 0,
 		rad = 0
 	)
+	rarity_value = 50
 	var/active = FALSE
 	var/entropy_value = 2
 

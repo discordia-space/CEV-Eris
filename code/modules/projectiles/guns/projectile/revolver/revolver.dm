@@ -11,9 +11,9 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/magnum
-	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rev_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rev_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 2000 //avasarala of revolver world
@@ -21,7 +21,6 @@
 	damage_multiplier = 1.75
 	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
 	recoil_buildup = 50
-	rarity_value = 9.6
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
@@ -44,7 +43,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/gun/projectile/revolver/load_ammo(var/obj/item/A, mob/user)
+/obj/item/weapon/gun/projectile/revolver/load_ammo(obj/item/A, mob/user)
 	chamber_offset = 0
 	return ..()
 

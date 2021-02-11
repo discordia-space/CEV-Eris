@@ -19,9 +19,9 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
 
@@ -30,6 +30,7 @@
 		SEMI_AUTO_NODELAY,
 		BURST_5_ROUND
 		)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
 	..()
@@ -73,6 +74,6 @@
 		BURST_5_ROUND
 	)
 
-	rarity_value = 19.2
 	price_tag = 3000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	spawn_blacklisted = FALSE

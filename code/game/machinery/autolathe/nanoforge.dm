@@ -7,7 +7,7 @@
 	is_nanoforge = TRUE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
 	var/list/nanoforge_designs = list()
-	var/list/tags_to_spawn = list(SPAWN_DESING)
+	var/list/tags_to_spawn = list(SPAWN_DESIGN)
 	var/list/nano_disks = list()
 
 	var/static/list/matter_to_compressed = list(

@@ -15,7 +15,6 @@
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
-	rarity_value = 12
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -69,7 +68,6 @@
 	damage_multiplier = 1
 	charge_cost = 100
 	price_tag = 2000
-	rarity_value = 48
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		BURST_2_ROUND
