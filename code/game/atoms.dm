@@ -319,8 +319,7 @@ its easier to just keep the beam vertical.
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
-		var/obj/item/I = P.virtual_scanner
-		I.afterattack(src, user, get_dist(src, user) <= 1)
+		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
 	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
 
