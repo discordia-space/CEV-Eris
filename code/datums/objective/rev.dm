@@ -50,7 +50,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /datum/objective/timed/excelsior/proc/on_convert()
-	detect_timer -= 8 MINUTES
+	detect_timer -= 480 SECONDS
 
 /datum/objective/timed/excelsior/proc/mandate_completion()
-	detect_timer += 12 MINUTES
+	detect_timer += 720 SECONDS

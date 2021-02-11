@@ -369,9 +369,14 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	completed = TRUE
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
+		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, 12 minutes have been added to the detection countdown timer.)"))
 
 	excelsior_energy += reward
+	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
+	var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
+	if(E)
+		E.mandate_completion()
+	
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
 
