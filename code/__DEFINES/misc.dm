@@ -185,6 +185,7 @@
 
 //Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base
+#define CRUCIFORM_AGROLYTE /datum/core_module/rituals/cruciform/agrolyte
 #define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
 #define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
 #define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
