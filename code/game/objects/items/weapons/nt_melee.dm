@@ -4,6 +4,7 @@
 	desc = "A saint looking sword, made to do God's work."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
+	bad_type = /obj/item/weapon/tool/sword/nt
 	item_state = "nt_shortsword"
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
@@ -246,4 +247,3 @@
 
 /obj/item/weapon/shield/riot/nt/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
-
