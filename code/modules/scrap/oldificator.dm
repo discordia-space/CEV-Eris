@@ -124,6 +124,11 @@
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("toxin", rand(0, actual_volume - reagents.total_volume))
 
+/obj/item/weapon/reagent_containers/food/snacks/make_old()
+	.=..()
+	if(.)
+		junk_food = TRUE
+
 //Sealed survival food, always edible
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood/make_old()
 	return

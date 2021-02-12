@@ -114,7 +114,7 @@
 	if(!material)
 		return
 	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in trange(1, src) - src)
+	for(var/turf/simulated/wall/W in RANGE_TURFS(1, src) - src)
 		if(!W.material)
 			continue
 		if(propagate)

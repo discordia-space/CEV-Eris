@@ -17,12 +17,14 @@
 	price_tag = 2400
 	rarity_value = 16
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
 	recoil_buildup = 21
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	..()

@@ -84,6 +84,8 @@
 /obj/item/weapon/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
 	w_class = initial(w_class)
+	slot_flags = initial(slot_flags)
+	armor_penetration = initial(armor_penetration)
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 

@@ -281,12 +281,12 @@
 	icon_state = "bomber"
 	density = FALSE
 	speak_chance = 4
-	health = 5
-	maxHealth = 5 //extremely fucking fragile, don't try fighting it in melee though
+	health = 1
+	maxHealth = 1 //extremely fucking fragile, don't try fighting it in melee though
 	malfunction_chance = 1 //1% chance of it exploding, for no reason at all
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 2.5 //explosive, slow, don't ignore it. it can catch up to you
+	speed = 2 //explosive, slow, don't ignore it. it can catch up to you
 	rarity_value = 25
 	speak = list(
 				"WE COME IN PEACE.",

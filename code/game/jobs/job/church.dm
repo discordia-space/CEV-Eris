@@ -25,7 +25,7 @@
 
 	stat_modifiers = list(
 		STAT_TGH = 10,
-		STAT_BIO = 15,
+		STAT_ROB = 20,
 		STAT_VIG = 15,
 		STAT_COG = 10,
 	)
@@ -82,10 +82,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
 	stat_modifiers = list(
-	STAT_BIO = 10,
-	STAT_VIG = 20,
+	STAT_VIG = 15,
 	STAT_TGH = 15,
-	STAT_ROB = 5
+	STAT_ROB = 15
 	)
 
 	core_upgrades = list(
@@ -126,10 +125,16 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/church/gardener
 	stat_modifiers = list(
-		STAT_BIO = 15,
-		STAT_TGH = 15,
+		STAT_BIO = 20,
+		STAT_TGH = 10,
 		STAT_ROB = 10,
 	)
+
+	core_upgrades = list(
+		CRUCIFORM_AGROLYTE
+	)
+
+	perks = list(/datum/perk/greenthumb)
 
 	description = "You are the holy cultivator of the church's plants, and assist in the production of biomatter. All duties of plant growth fall to you, making your role critical.<br>\
 	<br>\
@@ -166,9 +171,11 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 15,
-		STAT_BIO = 10,
+		STAT_TGH = 10,
 		STAT_VIG = 15
 	)
+
+	perks = list(/datum/perk/neat)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
 

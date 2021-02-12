@@ -29,3 +29,4 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
+	rarity_value = 50

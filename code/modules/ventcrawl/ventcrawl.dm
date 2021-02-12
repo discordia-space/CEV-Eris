@@ -182,7 +182,7 @@ var/list/ventcrawl_machinery = list(
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
 	//candrop = 1
-	sight = 0
+	sight &= ~(SEE_TURFS|SEE_OBJS|BLIND)
 	update_sight()
 	if(client)
 		for(var/image/current_image in pipes_shown)

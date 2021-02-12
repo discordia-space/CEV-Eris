@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 5)
 	price_tag = 8000
-	ammo_type = "/obj/item/ammo_casing/rocket"
+	ammo_type = /obj/item/ammo_casing/rocket
 	load_method = SINGLE_CASING
 	handle_casings = EJECT_CASINGS
 	max_shells = 1

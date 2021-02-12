@@ -14,8 +14,8 @@
 
 	var/fire_pressure                                   // Used in fire checks/pressure checks.
 	var/max_w_class = ITEM_SIZE_NORMAL                                 // Hopper intake size.
-	var/max_storage_space = 20                       // Total internal storage size.
-	var/obj/item/weapon/tank/tank = null                // Tank of gas for use in firing the cannon.
+	var/max_storage_space = 20                      // Total internal storage size.
+	var/obj/item/weapon/tank/tank					// Tank of gas for use in firing the cannon.
 
 	var/obj/item/weapon/storage/item_storage
 	var/pressure_setting = 10                           // Percentage of the gas in the tank used to fire the projectile.

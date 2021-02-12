@@ -652,11 +652,13 @@
 
 /obj/item/weapon/storage/box/happy_meal
 	name = "McRonalds' Robust Meal"
-	desc = "This is typical Robust Meal from McRonalds... And you almost feel smell of delicious food from it. Wait! It must have toy inside! Unpack it now!"
+	desc = "This is typical Robust Meal from McRonalds.\
+	And you almost feel smell of delicious food from it.\
+	Wait! It must have toy inside! Unpack it now!"
 	icon_state = "happy_meal"
 
 /obj/item/weapon/storage/box/happy_meal/New()
-	..()
+	. = ..()
 	var/list/things2spawn = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,

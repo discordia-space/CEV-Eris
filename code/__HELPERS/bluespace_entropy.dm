@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 		return
 	var/list/turfs = list()
 	var/turf/picked
-	for(var/turf/T in trange(outer_range, origin))
+	for(var/turf/T in RANGE_TURFS(outer_range, origin))
 		if(!turf_clear(T)) continue
 		if(!T.is_solid_structure()) continue
 		if(T.x >= world.maxx-TRANSITIONEDGE || T.x <= TRANSITIONEDGE)	continue
@@ -67,7 +67,7 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 	if(!origin)
 		return
 	var/list/turfs = list()
-	for(var/turf/T in trange(outer_range, origin))
+	for(var/turf/T in RANGE_TURFS(outer_range, origin))
 	//	if(!(T.z in GLOB.using_map.sealed_levels)) // Picking a turf outside the map edge isn't recommended
 		if(T.x >= world.maxx-TRANSITIONEDGE || T.x <= TRANSITIONEDGE)	continue
 		if(T.y >= world.maxy-TRANSITIONEDGE || T.y <= TRANSITIONEDGE)	continue
