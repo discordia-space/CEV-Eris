@@ -572,7 +572,7 @@
 			if("throw")
 				if(user)
 					var/mob/living/carbon/human/H = user
-					var/throw_target = pick(trange(6, user))
+					var/throw_target = pick(RANGE_TURFS(6, user))
 					to_chat(user, SPAN_DANGER("Your [src] flies away!"))
 					H.unEquip(src)
 					throw_at(throw_target, src.throw_range, src.throw_speed, H)
@@ -582,7 +582,7 @@
 					AD.take_out_wedged_item()
 				else
 					forceMove(get_turf(src))
-				var/throw_target = pick(trange(6, src))
+				var/throw_target = pick(RANGE_TURFS(6, src))
 				throw_at(throw_target, src.throw_range, src.throw_speed)
 				return
 

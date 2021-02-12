@@ -58,7 +58,7 @@
 				L["[com.id] (Inactive)"] = com.locked
 	var/list/turfs = list()
 	var/turf/TLoc = get_turf(src)
-	for(var/turf/T in trange(10, TLoc) - TLoc)
+	for(var/turf/T in RANGE_TURFS(10, TLoc) - TLoc)
 		if(T.x > world.maxx - 8 || T.x < 8) //putting them at the edge is dumb
 			continue
 		if(T.y > world.maxy - 8 || T.y < 8)

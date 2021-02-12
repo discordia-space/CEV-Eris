@@ -177,7 +177,7 @@
 
 /obj/spawner/proc/find_smart_point()
 	var/list/points_for_spawn = list()
-	for(var/turf/T in trange(spread_range, loc))
+	for(var/turf/T in RANGE_TURFS(spread_range, loc))
 		if(check_biome_spawner() && !(T in biome.spawn_turfs))
 			continue
 		if(!check_spawn_point(T, check_density))

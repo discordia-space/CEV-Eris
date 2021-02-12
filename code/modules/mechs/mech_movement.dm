@@ -19,7 +19,7 @@
 //	if(allow_spacemove()) //Handle here
 	// 	return 1
 
-	// for(var/turf/simulated/T in trange(1,src))
+	// for(var/turf/simulated/T in RANGE_TURFS(1,src))
 	// 	if(T.density)
 	// 		return 1
 
