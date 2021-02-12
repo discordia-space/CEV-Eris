@@ -1566,6 +1566,7 @@
 #include "code\modules\core_implant\cruciform\rituals\base.dm"
 #include "code\modules\core_implant\cruciform\rituals\construction.dm"
 #include "code\modules\core_implant\cruciform\rituals\crusader.dm"
+#include "code\modules\core_implant\cruciform\rituals\custodian.dm"
 #include "code\modules\core_implant\cruciform\rituals\group.dm"
 #include "code\modules\core_implant\cruciform\rituals\inquisitor.dm"
 #include "code\modules\core_implant\cruciform\rituals\machinery.dm"

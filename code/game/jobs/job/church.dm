@@ -177,6 +177,10 @@
 		STAT_VIG = 15
 	)
 
+	core_upgrades = list(
+		CRUCIFORM_CUSTODIAN
+	)
+
 	perks = list(/datum/perk/neat)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
