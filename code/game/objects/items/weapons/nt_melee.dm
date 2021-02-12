@@ -1,5 +1,5 @@
 //Warning! If you change icon_state or item_state, make sure you change path for sheath as well. icons/obj/sheath.dmi
-/obj/item/weapon/tool/sword/nt/ // not supposed to be in the game, had to make the shortsword its own type to prevent fucking up the scourge. sorry.
+/obj/item/weapon/tool/sword/nt // not supposed to be in the game, had to make the shortsword its own type to prevent fucking up the scourge. sorry.
 	name = "NT Sword"
 	desc = "A saint looking sword, made to do God's work."
 	icon = 'icons/obj/nt_melee.dmi'
@@ -26,8 +26,8 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
-	force_unwielded = 25
-	force_wielded = 26
+	force = WEAPON_FORCE_DANGEROUS * 1.25
+	force_wielded = WEAPON_FORCE_ROBUST
 	throwforce = WEAPON_FORCE_WEAK
 	armor_penetration = ARMOR_PEN_DEEP
 	spawn_blacklisted = TRUE
@@ -41,7 +41,7 @@
 	desc = "A saint looking longsword, recommended by experianced crusaders."
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
-	force = 30
+	force = WEAPON_FORCE_DANGEROUS * 1.5
 	armor_penetration = ARMOR_PEN_EXTREME
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
@@ -68,7 +68,7 @@
 		embed_mult = initial(embed_mult)
 
 /obj/item/weapon/tool/sword/nt/halberd
-	name = "NT Bipennis"
+	name = "NT Halebarda"
 	desc = "A saint looking halberd, for emergency situation."
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
@@ -87,7 +87,7 @@
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
-	var/force_extended = 18
+	var/force_extended = WEAPON_FORCE_PAINFUL
 	armor_penetration = ARMOR_PEN_MASSIVE
 	var/armor_penetration_extended = ARMOR_PEN_HALF
 	var/extended = FALSE
@@ -145,8 +145,8 @@
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
-	force = 24
-	force_wielded = 26
+	force = WEAPON_FORCE_DANGEROUS * 1.2
+	force_wielded = WEAPON_FORCE_ROBUST
 	var/tipbroken = FALSE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT 
