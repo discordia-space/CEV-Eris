@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: the laser cannon is now less deadly - its charge mode was removed and energy
+      per shot increased(100 instead of 50).
