@@ -1,6 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: The price of the items has a greater weight to determine their spawn frequency.
-  - tweak: rarity values for power cells and stock parts are now determined automatically.
-  - tweak: aadd a lot of items to the spawn blacklist.
