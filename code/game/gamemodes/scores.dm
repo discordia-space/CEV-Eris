@@ -209,7 +209,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	//NeoTheology Modifiers
 	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
-	GLOB.score_mess -= GLOB.dirt_areas * 25 //~250
+	GLOB.score_mess -= GLOB.dirt_areas * 10 //~250
 	GLOB.biomatter_score = round(GLOB.biomatter_neothecnology_amt/50) //350?  //target_max~350//
 	GLOB.grup_ritual_score += GLOB.grup_ritual_performed * 5
 	GLOB.new_neothecnology_convert_score = GLOB.new_neothecnology_convert * 50 // ~150-300

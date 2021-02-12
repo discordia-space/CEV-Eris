@@ -69,7 +69,6 @@
 	fire_delay = 8
 	price_tag = 3000
 	zoom_factor = null
-	rarity_value = 12
 
 	init_firemodes = list(
 		list(mode_name="Burn", mode_desc="A general purpose plasma round, for dealing with native fauna", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),
@@ -106,7 +105,7 @@
 	if(cell)
 		overlays += image(icon, "cell_guild")
 
-/obj/item/weapon/gun/energy/plasma/martyr // or should it be  Zealot
+/obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
 	name = "NT PR \"Martyr\""
 	desc = "A \"NeoTheology\" weapon that uses advanced biomass conversion controllable blasts of energized matter. is a disposable side arm, good enough to save you and be recycled."
 	icon = 'icons/obj/guns/energy/martyr.dmi'

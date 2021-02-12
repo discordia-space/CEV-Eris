@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(tags)
 			if(rare)
-				top_price = 2000
+				top_price = GUN_CHEAP_PRICE
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
@@ -392,14 +392,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	rarity_value = 16.66
 	loot_tags = list(
-		SPAWN_DESING,
+		SPAWN_DESIGN,
 		SPAWN_ELECTRONICS,
 		SPAWN_KNIFE,
 		SPAWN_ITEM,
 		SPAWN_MATERIAL,
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_POWERCELL,
-		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,SPAWN_DESING_COMMON,SPAWN_COMPUTER_HARDWERE,
+		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,SPAWN_DESIGN_COMMON,SPAWN_COMPUTER_HARDWERE,
 		SPAWN_TOOL, SPAWN_DIVICE, SPAWN_JETPACK, SPAWN_ITEM_UTILITY,SPAWN_TOOL_UPGRADE,SPAWN_TOOLBOX,SPAWN_VOID_SUIT,
 		SPAWN_GUN_UPGRADE,
 		SPAWN_POUCH,
@@ -449,7 +449,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/science.dmi'
 	rarity_value = 25
 	loot_tags = list(
-		SPAWN_DESING,
+		SPAWN_DESIGN,
 		SPAWN_ELECTRONICS,
 		SPAWN_KNIFE,
 		SPAWN_ITEM,
@@ -457,7 +457,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_POWERCELL,
 		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,
-		SPAWN_DESING_COMMON,
+		SPAWN_DESIGN_COMMON,
 		SPAWN_COMPUTER_HARDWERE,
 		SPAWN_TOOL, SPAWN_DIVICE,
 		SPAWN_JETPACK,

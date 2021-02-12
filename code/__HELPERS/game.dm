@@ -1,11 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-#define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
-
 /proc/dopage(src, target)
 	var/href_list
 	var/href
@@ -102,7 +96,7 @@
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/turf/T in trange(radius, centerturf))
+	for(var/turf/T in RANGE_TURFS(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx*dx + dy*dy <= rsq)

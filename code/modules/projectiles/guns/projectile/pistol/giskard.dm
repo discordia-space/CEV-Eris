@@ -19,7 +19,6 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
-	rarity_value = 8
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

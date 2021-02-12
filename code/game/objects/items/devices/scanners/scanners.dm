@@ -28,6 +28,7 @@
 
 	var/charge_per_use = 0
 
+	var/is_virtual = FALSE // for non-physical scanner to avoid displaying action messages
 
 
 /obj/item/device/scanner/attack_self(mob/user)
@@ -65,11 +66,17 @@
 		return
 
 	if(is_valid_scan_target(A) && A.simulated)
-		user.visible_message(SPAN_NOTICE("[user] runs \the [src] over \the [A]."), range = 2)
-		if(scan_sound)
-			playsound(src, scan_sound, 30)
+		if(!is_virtual)
+			user.visible_message(SPAN_NOTICE("[user] runs \the [src] over \the [A]."), range = 2)
+			if(scan_sound)
+				playsound(src, scan_sound, 30)
+		else
+			user.visible_message(SPAN_NOTICE("[user] focuses on \the [A] for a moment."), range = 2)
 		if(use_delay && !do_after(user, use_delay, A))
-			to_chat(user, "You stop scanning \the [A] with \the [src].")
+			if(!is_virtual)
+				to_chat(user, "You stop scanning \the [A] with \the [src].")
+			else
+				to_chat(user, "You stop focusing on \the [A].")
 			return
 		scan(A, user)
 		if(!scan_title)

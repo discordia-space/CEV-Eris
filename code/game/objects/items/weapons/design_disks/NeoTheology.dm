@@ -198,7 +198,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion
 	disk_name = "NeoTheology Armory - Dominion Plasma Rifle"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
@@ -209,7 +209,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger
 	disk_name = "NeoTheology Armory - Purger Plasma Rifle"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
@@ -230,7 +230,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis
 	disk_name = "NeoTheology Armory - Nemesis Energy Crossbow"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
@@ -240,7 +240,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
 	disk_name = "NeoTheology Armory - Themis Energy Crossbow"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/large_energy_crossbow = 3, // "NT EC \"Themis\"" - self charging, no cell needed
@@ -249,7 +249,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
 	disk_name = "NeoTheology Armory - Lightfall Laser Gun"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/laser = 3, // "NT LG \"Lightfall\""
@@ -259,7 +259,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye
 	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
@@ -270,7 +270,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon
 	disk_name = "NeoTheology Armory - Halicon Ion Rifle"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 33.33
 	license = 12
 	designs = list(
@@ -281,7 +281,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor
 	disk_name = "NeoTheology Armory - Councelor PDW E"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 17
 	license = 12
 	designs = list(
@@ -302,7 +302,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector
 	disk_name = "NeoTheology Armory - Protector Grenade Launcher"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 15
 	designs = list(
@@ -312,7 +312,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper
 	disk_name = "NeoTheology Armory - .60 Penetrator AMR"
 	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(

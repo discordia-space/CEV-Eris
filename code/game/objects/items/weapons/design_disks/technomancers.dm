@@ -3,7 +3,7 @@
 	disk_name = "Technomancers ARK-034 Components"
 	icon_state = "technomancers"
 	rarity_value = 4
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/part/consolescreen,
@@ -28,7 +28,7 @@
 	disk_name = "Technomancers IJIRO-451 Advanced Tools"
 	icon_state = "technomancers"
 	rarity_value = 11
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/tool/big_wrench,
@@ -54,7 +54,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
 	disk_name = "Technomancers ESPO-830 Circuits"
 	icon_state = "technomancers"
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	rarity_value = 5.5
 	license = 10
 	designs = list(
@@ -83,7 +83,7 @@
 	disk_name = "Technomancers LAT-018 Logistics"
 	icon_state = "technomancers"
 	rarity_value = 4
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/conveyor = 0,

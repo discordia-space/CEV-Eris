@@ -12,21 +12,22 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
-	penetration_multiplier  = 1.5
+	penetration_multiplier = 1.5
 	recoil_buildup = 40 //same as AMR
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
-	ammo_type = /obj/item/ammo_magazine/lrifle
+	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 1600
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
-	var/bolt_open = 0
-	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
+	spawn_blacklisted = TRUE
+	var/bolt_open = 0
+	var/item_suffix = ""
 
 /obj/item/weapon/gun/projectile/boltgun/update_icon()
 	..()
@@ -95,7 +96,7 @@
 			If you’re on a budget, it’s a darn good rifle for just about everything. \
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
-	item_suffix  = "_wood"
+	item_suffix = "_wood"
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"

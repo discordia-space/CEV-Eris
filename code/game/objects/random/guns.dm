@@ -6,8 +6,7 @@
 /obj/spawner/gun/cheap
 	name = "random cheap gun"
 	icon_state = "gun-grey"
-	tags_to_spawn = list(SPAWN_GUN)
-	top_price = 1700
+	top_price = GUN_CHEAP_PRICE
 
 /obj/spawner/gun/cheap/low_chance
 	name = "low chance random cheap gun"
@@ -17,8 +16,7 @@
 /obj/spawner/gun/normal
 	name = "random normal gun"
 	icon_state = "gun-green"
-	low_price = 1700
-	tags_to_spawn = list(SPAWN_GUN)
+	low_price = GUN_CHEAP_PRICE
 
 /obj/spawner/gun/normal/low_chance
 	name = "low chance random normal gun"

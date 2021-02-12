@@ -17,6 +17,8 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_FIRSTAID
 	bad_type = /obj/item/weapon/storage/firstaid
+	var/initial_amount = 0
+	var/spawn_type
 	var/empty = 0
 
 
@@ -26,13 +28,15 @@
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 	rarity_value = 15
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/ointment
 
 /obj/item/weapon/storage/firstaid/fire/populate_contents()
 	icon_state = pick("ointment","firefirstaid")
 
 	if (empty) return
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
 	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
 	new /obj/item/weapon/reagent_containers/pill/kelotane(src) //Replaced ointment with these since they actually work --Errorage
@@ -43,12 +47,13 @@
 /obj/item/weapon/storage/firstaid/regular
 	icon_state = "firstaid"
 	rarity_value = 10
+	initial_amount = 3
+	spawn_type = /obj/item/stack/medical/bruise_pack
 
 /obj/item/weapon/storage/firstaid/regular/populate_contents()
 	if (empty) return
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
@@ -61,14 +66,15 @@
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
 	rarity_value = 15
+	initial_amount = 3
+	spawn_type = /obj/item/weapon/reagent_containers/syringe/antitoxin
 
 /obj/item/weapon/storage/firstaid/toxin/populate_contents()
 	icon_state = pick("antitoxin","antitoxfirstaid2","antitoxfirstaid3")
 
 	if (empty) return
-	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
-	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
-	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
@@ -82,13 +88,13 @@
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 	rarity_value = 15
+	initial_amount = 4
+	spawn_type = /obj/item/weapon/reagent_containers/pill/dexalin
 
 /obj/item/weapon/storage/firstaid/o2/populate_contents()
 	if (empty) return
-	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
-	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
-	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
-	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/weapon/reagent_containers/syringe/inaprovaline(src)
 	new /obj/item/device/scanner/health(src)
@@ -100,12 +106,13 @@
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
 	rarity_value = 30
+	initial_amount = 3
+	spawn_type = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/weapon/storage/firstaid/adv/populate_contents()
 	if (empty) return
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
@@ -118,16 +125,19 @@
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
 	rarity_value = 100
+	initial_amount = 1
+	spawn_type = /obj/item/stack/medical/splint
 
 /obj/item/weapon/storage/firstaid/combat/populate_contents()
 	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/weapon/storage/pill_bottle/bicaridine(src)
 	new /obj/item/weapon/storage/pill_bottle/dermaline(src)
 	new /obj/item/weapon/storage/pill_bottle/dexalin_plus(src)
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
 	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/stack/medical/splint(src)
 
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
@@ -184,12 +194,14 @@
 	icon_state = "nt_kit"
 	item_state = "nt_kit"
 	matter = list(MATERIAL_BIOMATTER = 10)
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/advanced/bruise_pack/nt
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/firstaid/nt/populate_contents()
 	if (empty) return
-	new /obj/item/stack/medical/advanced/bruise_pack/nt(src)
-	new /obj/item/stack/medical/advanced/bruise_pack/nt(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	new /obj/item/stack/medical/advanced/ointment/nt(src)
 	new /obj/item/stack/medical/advanced/ointment/nt(src)
 	new /obj/item/weapon/reagent_containers/syringe/large/antitoxin(src)

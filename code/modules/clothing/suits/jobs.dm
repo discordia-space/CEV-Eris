@@ -105,7 +105,7 @@
 	spawn_blacklisted = TRUE
 
 //Chaplain
-/obj/item/clothing/suit/neotheology_jacket
+/obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
 	desc = "A long, lightly armoured jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
@@ -114,15 +114,15 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 20,
+		bullet = 15,
+		energy = 15,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
 
-/obj/item/clothing/suit/neotheology_coat
+/obj/item/clothing/suit/storage/neotheology_coat
 	name = "preacher coat"
 	desc = "A snugly fitting, lightly armoured brown coat."
 	icon_state = "church_coat"
@@ -146,6 +146,14 @@
 	item_state = "nt_sportsjacket"
 	body_parts_covered = UPPER_TORSO|ARMS
 	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 25,
+		bullet = 10,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 //Chaplain
 /obj/item/clothing/suit/nun

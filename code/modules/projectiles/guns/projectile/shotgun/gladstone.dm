@@ -12,7 +12,6 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
-	rarity_value = 20
 	damage_multiplier = 0.8
 
 	price_tag = 2000

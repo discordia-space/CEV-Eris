@@ -170,14 +170,14 @@
 
 /proc/check_spawn_point(turf/T, check_density=FALSE)
 	. = TRUE
-	if(T.density  || T.is_wall || (T.is_hole && !T.is_solid_structure()))
+	if(T.density || T.is_wall || (T.is_hole && !T.is_solid_structure()))
 		. = FALSE
 	if(check_density && !turf_clear(T))
 		. = FALSE
 
 /obj/spawner/proc/find_smart_point()
 	var/list/points_for_spawn = list()
-	for(var/turf/T in trange(spread_range, loc))
+	for(var/turf/T in RANGE_TURFS(spread_range, loc))
 		if(check_biome_spawner() && !(T in biome.spawn_turfs))
 			continue
 		if(!check_spawn_point(T, check_density))
