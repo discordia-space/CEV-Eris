@@ -1,0 +1,6 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: New Neat perk for Custodians
+  - rscadd: New Green Thumb perk for Agrolytes
+  - rscadd: New Accelerated growth littany for Agrolytes
