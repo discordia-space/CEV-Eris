@@ -369,7 +369,6 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	completed = TRUE
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, 12 minutes have been added to the detection countdown timer.)"))
 
 	excelsior_energy += reward
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
