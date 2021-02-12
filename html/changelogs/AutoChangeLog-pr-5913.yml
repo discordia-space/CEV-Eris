@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: fixed some NT scourge related bugs
