@@ -35,9 +35,11 @@
 	return FALSE
 
 /datum/objective/timed/excelsior
-	explanation_text = "Expand and grow in power before the ship's systems detect your presence! The detection countdown of 1 Hour starts once you force-implant a new comrade. it is lowered by 8 Minutes for each additional recruit, and increased by 12 Minutes for each completed mandate"
 	var/detect_timer = 60 MINUTES
 	var/active = FALSE
+	var/convert_decrease = 8 MINUTES
+	var/mandate_increase = 12 MINUTES
+	explanation_text = "Expand and grow in power before the ship's systems detect your presence! The detection countdown of [time2hours(detect_timer)] Hour starts once you force-implant a new comrade. It is lowered by [time2minutes(convert_decrease)] Minutes for each additional recruit, and increased by [time2minutes(mandate_increase)] Minutes for each completed mandate"
 
 /datum/objective/timed/excelsior/proc/start_excel_timer()
 	START_PROCESSING(SSobj, src)
@@ -50,7 +52,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /datum/objective/timed/excelsior/proc/on_convert()
-	detect_timer -= 480 SECONDS
+	detect_timer -= convert_decrease
 
 /datum/objective/timed/excelsior/proc/mandate_completion()
-	detect_timer += 720 SECONDS
+	detect_timer += mandate_increase
