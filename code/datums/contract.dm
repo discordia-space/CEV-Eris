@@ -368,7 +368,6 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		warning("Mandate completed twice: [name] [desc]")
 	completed = TRUE
 
-	if(user)
 
 	excelsior_energy += reward
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
