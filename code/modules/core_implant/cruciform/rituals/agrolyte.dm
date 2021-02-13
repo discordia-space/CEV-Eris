@@ -57,7 +57,7 @@
 		return FALSE
 
 	to_chat(T, SPAN_NOTICE("You feel slightly better as your pain eases."))
-	to_chat(user, SPAN_NOTICE("You ease the pain of your fellow disciple."))
+	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
 
 	T.add_chemical_effect(CE_PAINKILLER, 15)  // painkiller effect to target
 
@@ -76,7 +76,7 @@
 		return FALSE
 
 	to_chat(T, SPAN_NOTICE("You feel a soothing sensation in your veins."))
-	to_chat(user, SPAN_NOTICE("You stabilize your fellow disciple's health."))
+	to_chat(user, SPAN_NOTICE("You stabilize [T.name]'s health."))
 
 	var/datum/reagents/R = new /datum/reagents(20, null)
 	R.add_reagent("holyinaprovaline", 10)

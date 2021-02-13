@@ -28,8 +28,8 @@
 			// it's a bad moment to go through but after 2 or 3 littany the addiction will be gone
 			// psychiatrist RP opportunity -> think about the sins that led you to this addiction
 
-	to_chat(T, SPAN_NOTICE("You feel slightly better as your pain eases."))
-	to_chat(user, SPAN_NOTICE("You ease the pain of your fellow disciple."))
+	to_chat(T, SPAN_NOTICE("You feel weird as you progress through your addictions."))
+	to_chat(user, SPAN_NOTICE("You help [T.name] get rid of their addictions."))
 
 	T.add_chemical_effect(CE_PAINKILLER, 15)  // painkiller effect to target
 
