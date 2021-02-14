@@ -250,8 +250,8 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/buckshot
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 65)
-	armor_penetration = 0
+	damage_types = list(BRUTE = 60)
+	armor_penetration = 5
 	step_delay = 0.9
 	knockback = 0
 	proj_falloff = 2
