@@ -201,13 +201,13 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 50)
-	armor_penetration = 10
+	damage_types = list(BRUTE = 45)
+	armor_penetration = 20
 	knockback = 1
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/scrap
-	damage_types = list(BRUTE = 48)
+	damage_types = list(BRUTE = 40)
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
@@ -250,18 +250,18 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/buckshot
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 37)
-	armor_penetration = 40
+	damage_types = list(BRUTE = 65)
+	armor_penetration = 0
 	step_delay = 0.8
 	knockback = 0
-	proj_falloff = 3
+	proj_falloff = 2
 
 /obj/item/projectile/bullet/shotgun/buckshot/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/shotgun/buckshot/scrap
-	damage_types = list(BRUTE = 33)
+	damage_types = list(BRUTE = 54)
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
