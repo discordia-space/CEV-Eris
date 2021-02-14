@@ -201,13 +201,13 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 45)
+	damage_types = list(BRUTE = 47)
 	armor_penetration = 20
 	knockback = 1
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/scrap
-	damage_types = list(BRUTE = 40)
+	damage_types = list(BRUTE = 42)
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
