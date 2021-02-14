@@ -1,0 +1,7 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: Nanopaste now requires plasteel, steel, and nanites to construct. It is
+      now considerably more valuable, and considerably rarer.
+  - tweak: Nanopaste, welding, and cabling prosthetics now heals on a wound by wound
+      basis.
