@@ -252,7 +252,7 @@ There are important things regarding this file:
 	icon_state = "birdshot-1"
 	damage_types = list(BRUTE = 65)
 	armor_penetration = 0
-	step_delay = 0.8
+	step_delay = 0.9
 	knockback = 0
 	proj_falloff = 2
 
