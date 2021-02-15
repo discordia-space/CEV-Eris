@@ -53,6 +53,8 @@
 	for(var/obj/item/organ/external/organ in organs)
 		. += organ.burn_dam
 		. += organ.brute_dam
+		if(organ && (organ.is_broken() || (!BP_IS_ROBOTIC(organ) && organ.open)))
+			. += 25
 		. *= max((get_specific_organ_efficiency(OP_NERVE, organ.organ_tag)/100), 0.5)
 
 /mob/living/carbon/proc/get_dynamic_pain()
@@ -60,15 +62,6 @@
 
 /mob/living/carbon/proc/get_painkiller()
 	. = analgesic
-
-// broken or ripped off organs will add quite a bit of pain
-/mob/living/carbon/human/updateshock()
-	..()
-	for(var/obj/item/organ/external/organ in organs)
-		if(organ && (organ.is_broken() || (!BP_IS_ROBOTIC(organ) && organ.open)))
-			traumatic_shock += 30
-
-	return traumatic_shock
 
 /mob/living/carbon/proc/handle_shock()
 	updateshock()
