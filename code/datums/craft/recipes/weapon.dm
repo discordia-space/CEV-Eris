@@ -241,7 +241,7 @@
 
 /datum/craft_recipe/weapon/armgun
 	name = "embedded SMG"
-	result = /obj/item/organ_module/active/simple/armgun
+	result = /obj/item/organ_module/active/simple/armsmg
 	steps = list(
 		list(/obj/item/weapon/gun/projectile/automatic, 1),
 		list(/obj/item/trash/material/metal, "time" = 10),
