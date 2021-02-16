@@ -40,4 +40,4 @@
 	desc = "Smoke grenade, used to create a cloud of smoke providing cover and hiding movement."
 	icon_state = "smokegrenade_nt"
 	item_state = "smokegrenade_nt"
-	matter = list(MATERIAL_BIOMATTER = 75)
+	matter = list(MATERIAL_BIOMATTER = 10)

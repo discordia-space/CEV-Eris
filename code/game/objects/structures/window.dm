@@ -116,7 +116,7 @@
 	//Cache a list of nearby turfs for throwing shards at
 	var/list/turf/nearby
 	if (explode)
-		nearby = (trange(2, src) - get_turf(src))
+		nearby = (RANGE_TURFS(2, src) - get_turf(src))
 
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -481,7 +481,7 @@
 			if(W.anchored && W.density && W.type == src.type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
 				dirs += get_dir(src, W)
 
-	for(var/turf/simulated/wall/T in trange(1, src) - src)
+	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
 		var/T_dir = get_dir(src, T)
 		dirs |= T_dir
 		if(propagate)

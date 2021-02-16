@@ -1,6 +1,7 @@
 /obj/item/device/kit
 	icon_state = "modkit"
 	icon = 'icons/obj/device.dmi'
+	bad_type = /obj/item/device/kit/suit
 	var/new_name = "exosuit"    //What is the variant called?
 	var/new_desc = "An exosuit." //How is the new exosuit described?
 	var/new_icon = "ripley"  //What base icon will the new exosuit use?
@@ -70,13 +71,17 @@
 /obj/item/device/kit/paint
 	name = "exosuit customisation kit"
 	desc = "A kit containing all the needed tools and parts to repaint a exosuit."
-	var/removable = null
+	bad_type = /obj/item/device/kit/paint
+	var/removable
 
 /obj/item/device/kit/paint/examine()
 	. = ..()
 	to_chat(usr, "This kit will add a '[new_name]' decal to a exosuit'.")
 
 // exosuit kits.
+/obj/item/device/kit/paint/powerloader
+	bad_type = /obj/item/device/kit/paint/powerloader
+
 /obj/item/device/kit/paint/powerloader/flames_red
 	name = "\"Firestarter\" exosuit customisation kit"
 	new_name = "red flames"

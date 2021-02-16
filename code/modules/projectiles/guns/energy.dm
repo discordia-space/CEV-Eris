@@ -32,8 +32,6 @@
 	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
 	var/overcharge_max = 5
 
-	bad_type = /obj/item/weapon/gun/energy
-
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
 	if(.)
@@ -158,6 +156,9 @@
 		data["shots_remaining"] = round(C.charge/charge_cost)
 		data["max_shots"] = round(C.maxcharge/charge_cost)
 	return data
+
+/obj/item/weapon/gun/energy/get_dud_projectile()
+	return new projectile_type
 
 /obj/item/weapon/gun/energy/refresh_upgrades()
 	//refresh our unique variables before applying upgrades too

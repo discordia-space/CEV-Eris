@@ -1,1 +1,0 @@
-/obj/spawner/pack/rare    blacklisted=0    spawn_value=1   spawn_price=1   prob_accompanying_obj=100    accompanying_objs=nothing

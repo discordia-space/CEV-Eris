@@ -312,7 +312,7 @@ var/list/name_to_material
 	if(temperature < ignition_point)
 		return 0
 	var/totalPlasma = 0
-	for(var/turf/simulated/floor/target_tile in trange(2, T))
+	for(var/turf/simulated/floor/target_tile in RANGE_TURFS(2, T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -670,6 +670,13 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+
+/material/compressed
+	name = MATERIAL_COMPRESSED
+	stack_type = /obj/item/stack/material/compressed
+	icon_colour = "#00E1FF"
+	sheet_singular_name = "cartrigde"
+	sheet_plural_name = "cartridges"
 
 //TODO PLACEHOLDERS:
 /material/leather

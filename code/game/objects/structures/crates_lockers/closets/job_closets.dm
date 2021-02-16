@@ -132,7 +132,7 @@
 	else
 		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/acolyte(src)
-	new /obj/item/clothing/suit/neotheology_jacket(src)
+	new /obj/item/clothing/suit/storage/neotheology_jacket(src)
 	new /obj/item/weapon/storage/belt/tactical/neotheology(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)

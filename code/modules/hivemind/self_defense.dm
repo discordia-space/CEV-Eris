@@ -49,7 +49,7 @@
 //Emmits an energy wave, that short stuns the enemies and damage them
 /datum/hivemind_sdp/shockwave
 	name = "Shockwave v0.3"
-	cooldown = 5 SECONDS
+	cooldown = 20 SECONDS
 	silent = TRUE
 	var/attack_range = 3
 

@@ -148,7 +148,7 @@
 						to_chat(user, SPAN_NOTICE("You add cables to the frame."))
 				return
 		if(3)
-			if(istype(I, /obj/item/stack/material) && I.get_material_name() == "rglass")
+			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_RGLASS)
 				var/obj/item/stack/RG = I
 				if (RG.get_amount() < 2)
 					to_chat(user, SPAN_WARNING("You need two sheets of glass to put in the glass panel."))

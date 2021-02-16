@@ -14,6 +14,7 @@ data/
 cfg/
 tmp/
 build_log.txt
+strings/loot_data/
 __pycache__
 
 #vscode
