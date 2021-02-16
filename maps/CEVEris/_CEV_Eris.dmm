@@ -106185,6 +106185,10 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"sMx" = (
+/obj/machinery/shield_diffuser,
+/turf/simulated/floor/hull,
+/area/eris/engineering/atmos)
 "sRW" = (
 /obj/machinery/slotmachine,
 /turf/simulated/floor/tiled/steel/bar_light,
@@ -121226,7 +121230,7 @@ aGq
 aGS
 aFc
 aCW
-aad
+sMx
 aad
 aad
 aai

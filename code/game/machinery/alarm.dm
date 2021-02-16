@@ -122,6 +122,9 @@
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
 
+/obj/machinery/alarm/fire_act()
+	return
+
 /obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
