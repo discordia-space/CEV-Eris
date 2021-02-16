@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 
 	for(var/item_type in blueprint.materials)
 		var/t = locate(item_type) in target_turf.contents
-		if(istype(t, /obj/item/stack/))
+		if(istype(t, /obj/item/stack))
 			var/obj/item/stack/S = t
 			S.use(blueprint.materials[item_type])
 		else
