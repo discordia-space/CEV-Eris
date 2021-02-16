@@ -19,7 +19,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	perks = list(/datum/perk/sommelier)
 
-	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
 	description = "You are a privateeer. <br>\
@@ -83,7 +82,6 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	perks = list(/datum/perk/sommelier)
-	ideal_character_age = 50
 
 	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.<br>\
 If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\

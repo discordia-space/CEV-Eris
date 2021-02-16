@@ -17,7 +17,7 @@
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
 		access_eva, access_external_airlocks, access_change_cargo, access_artist
 	)
-	ideal_character_age = 40
+
 	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_COG = 20,

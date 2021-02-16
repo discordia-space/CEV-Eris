@@ -22,7 +22,6 @@
 	var/head_position = FALSE				// Is this position Command?
 	var/department_account_access = FALSE	// Can this position access the department acount, even if they're not a head?
 	var/minimum_character_age = 0
-	var/ideal_character_age = 30
 	var/create_record = 1					// Do we announce/make records for people who spawn on this job?
 	var/list/also_known_languages = list()	// additional chance based languages to all jobs.
 

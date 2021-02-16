@@ -21,8 +21,6 @@
 		access_external_airlocks, access_paramedic, access_research_equipment, access_change_medbay
 	)
 
-	ideal_character_age = 50
-
 	stat_modifiers = list(
 		STAT_BIO = 50,
 		STAT_MEC = 10,
