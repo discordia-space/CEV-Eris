@@ -96,5 +96,5 @@
 /obj/machinery/autolathe/nanoforge/check_user(mob/user)
 	if(user.stats.getPerk(PERK_TECHNOMANCER) || user.stat_check(STAT_MEC, STAT_LEVEL_EXPERT))
 		return TRUE
-	to_chat(user, SPAN_NOTICE("You don't know how to make this work[src]"))
+	to_chat(user, SPAN_NOTICE("You don't know how to make [src] work."))
 	return FALSE
