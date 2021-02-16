@@ -208,6 +208,33 @@
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	build_path = /obj/item/weapon/gun_upgrade/barrel/excruciator
 
+/datum/design/autolathe/cruciform_upgrade
+	build_path = /obj/item/weapon/cruciform_upgrade
+
+/datum/design/autolathe/cruciform_upgrade/natures_blessing
+	name = "Natures blessing"
+	build_path = /obj/item/weapon/cruciform_upgrade/natures_blessing
+
+/datum/design/autolathe/cruciform_upgrade/faiths_shield
+	name = "Faiths shield"
+	build_path = /obj/item/weapon/cruciform_upgrade/faiths_shield
+
+/datum/design/autolathe/cruciform_upgrade/cleansing_presence
+	name = "Cleansing presence"
+	build_path = /obj/item/weapon/cruciform_upgrade/cleansing_presence
+
+/datum/design/autolathe/cruciform_upgrade/martyr_gift
+	name = "Martyr gift"
+	build_path = /obj/item/weapon/cruciform_upgrade/martyr_gift
+
+/datum/design/autolathe/cruciform_upgrade/wrath_of_god
+	name = "Wrath of god"
+	build_path = /obj/item/weapon/cruciform_upgrade/wrath_of_god
+
+/datum/design/autolathe/cruciform_upgrade/speed_of_the_chosen
+	name = "Speed of the chosen"
+	build_path = /obj/item/weapon/cruciform_upgrade/speed_of_the_chosen
+
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword
 	name = "NT Shortsword"

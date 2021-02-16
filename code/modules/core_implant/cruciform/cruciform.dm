@@ -14,6 +14,7 @@ var/list/disciples = list()
 	max_power = 50
 	power_regen = 0.5
 	price_tag = 500
+	var/obj/item/weapon/cruciform_upgrade/upgrade
 
 /obj/item/weapon/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
 	. = ..()
