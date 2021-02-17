@@ -566,7 +566,7 @@
 	icon_state = "head"
 	max_health = 100
 	evo_level_required = 3
-	cooldown_time = 20 SECONDS
+	cooldown_time = 25 SECONDS
 	spawn_weight  =	35
 
 
@@ -595,13 +595,13 @@
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
-		if(prob(100 - H.stats.getStat(STAT_VIG)))
-			H.Weaken(5)
+		if(prob(90 - H.stats.getStat(STAT_VIG)))
+			H.Weaken(6)
 			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
 			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
-		target.Weaken(5)
+		target.Weaken(6)
 		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
