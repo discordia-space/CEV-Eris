@@ -281,11 +281,11 @@
 /obj/machinery/hivemind_machine/emp_act(severity)
 	switch(severity)
 		if(1)
-			take_damage(30)
-			stun(10)
+			take_damage(60)
+			stun(20)
 		if(2)
-			take_damage(10)
-			stun(5)
+			take_damage(30)
+			stun(8)
 	..()
 
 
