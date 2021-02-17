@@ -351,7 +351,8 @@
 			job_desc += "You are in charge of this department."
 	job_desc += "<br>"
 	job_desc += "You answer to <b>[job.supervisors]</b> normally."
-
+	job_desc += "<br>"
+	job_desc += "The Ideal character age for this role is <b>[job.ideal_character_age] years</b>."
 
 
 
