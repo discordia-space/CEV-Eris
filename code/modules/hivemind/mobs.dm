@@ -71,7 +71,7 @@
 //It's second proc, result of our malfunction
 /mob/living/simple_animal/hostile/hivemind/proc/malfunction_result()
 	if(prob(malfunction_chance))
-		apply_damage(rand(5, 15), BURN)
+		apply_damage(rand(5, 30), BURN)
 
 
 //sometimes, players use closets, to staff mobs into it
@@ -136,11 +136,11 @@
 	switch(severity)
 		if(1)
 			if(malfunction_chance < 15)
-				malfunction_chance = 15
+				malfunction_chance = 25
 		if(2)
 			if(malfunction_chance < 25)
-				malfunction_chance = 25
-	health -= 20*severity
+				malfunction_chance = 45
+	health -= 30*severity
 
 
 /mob/living/simple_animal/hostile/hivemind/death()
@@ -159,6 +159,7 @@
 /mob/living/simple_animal/hostile/hivemind/resurrected
 	name = "marionette"
 	malfunction_chance = 10
+	bad_type = /mob/living/simple_animal/hostile/hivemind/resurrected
 
 
 //careful with this proc, it's used to 'transform' corpses into our mobs.
