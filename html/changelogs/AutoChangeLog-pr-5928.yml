@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: Only technomancer or players with a high MEC stat can use the nanoforge.
