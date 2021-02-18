@@ -266,6 +266,9 @@
 			insert_oddity(user, I)
 			return
 
+	if(!check_user(user))
+		return
+
 	user.set_machine(src)
 	ui_interact(user)
 
