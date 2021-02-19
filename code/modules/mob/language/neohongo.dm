@@ -6,7 +6,7 @@
 	space_chance = 80
 	shorthand = "NEO"
 	syllables = list("hai", "iie", "konnichiwa", "arigatou", "gomen nasai", "sumimasen", "shichi", "ashita", \
-	                 "iie", "kinou", "ato do", "kazoku", "shinu", "boto", "sakana", "kyatchi", "mitsukatta", "burijji", \
+	                 "kinou", "ato do", "kazoku", "shinu", "boto", "sakana", "kyatchi", "mitsukatta", "burijji", \
 	                 "nani", "rika", "seikatsu", "chishiki", "Iryujon", "kwaw", "watashiachi", "kesshite", "dangan", \
 	                 "anata wa", "watashi", "ga koko", "de", "mita", "naka", "mottomo", "minikui", "hitodesu", \
 	                 "boruto", "naze", "sayonara", "uemuki", "shitamuki", "tenshi", "mizu", "supesu", "subarashii", \
