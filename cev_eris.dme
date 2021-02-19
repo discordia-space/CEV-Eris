@@ -1786,7 +1786,6 @@
 #include "code\modules\mob\inventory\equip.dm"
 #include "code\modules\mob\inventory\helpers.dm"
 #include "code\modules\mob\inventory\slots.dm"
-#include "code\modules\mob\language\ancient_latin.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\german.dm"
 #include "code\modules\mob\language\jive.dm"

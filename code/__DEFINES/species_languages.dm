@@ -29,7 +29,7 @@
 #define LANGUAGE_JIVE	"Jive"
 #define LANGUAGE_GERMAN "German"
 #define LANGUAGE_NEOHONGO "Neohongo"
-#define LANGUAGE_LATIN "Ancient Latin"
+#define LANGUAGE_LATIN "Latin"
 
 
 #define LANGUAGE_ROBOT "Robot Talk"
