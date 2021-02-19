@@ -234,3 +234,9 @@
 	if(holder)
 		holder.sanity_damage += 2
 	..()
+
+/datum/perk/channeling
+	name = "Channeling"
+	desc = "You know how to channel spiritual energy during rituals. You gain additional skill points \
+			during group rituals and have an increased regeneration of cruciform energy."
+	icon_state = "channeling"

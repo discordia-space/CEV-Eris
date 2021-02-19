@@ -30,6 +30,8 @@
 		STAT_COG = 10,
 	)
 
+	perks = list(/datum/perk/channeling)
+
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
 
@@ -173,6 +175,10 @@
 		STAT_ROB = 15,
 		STAT_TGH = 10,
 		STAT_VIG = 15
+	)
+
+	core_upgrades = list(
+		CRUCIFORM_CUSTODIAN
 	)
 
 	perks = list(/datum/perk/neat)

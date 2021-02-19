@@ -43,3 +43,44 @@
 	// may have been deleted during the duration of the boost
 	if(S) // check if seed still exist otherwise we cannot read null.stats
 		S.set_trait(TRAIT_BOOSTED_GROWTH, 1)
+
+/datum/ritual/cruciform/agrolyte/mercy
+	name = "Hand of mercy"
+	phrase = "Non est verus dolor"
+	desc = "Relieves the pain of a person in front of you."
+	power = 50
+
+/datum/ritual/cruciform/agrolyte/mercy/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/T = get_front_human_in_range(user, 1)
+	if(!T)
+		fail("No target in front of you.", user, C)
+		return FALSE
+
+	to_chat(T, SPAN_NOTICE("You feel slightly better as your pain eases."))
+	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
+
+	T.add_chemical_effect(CE_PAINKILLER, 15)  // painkiller effect to target
+
+	return TRUE
+
+/datum/ritual/cruciform/agrolyte/absolution
+	name = "Absolution of wounds"
+	phrase = "Surge et ambula"
+	desc = "Stabilizes the health of a person in front of you."
+	power = 50
+
+/datum/ritual/cruciform/agrolyte/absolution/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/mob/living/carbon/human/T = get_front_human_in_range(user, 1)
+	if(!T)
+		fail("No target in front of you.", user, C)
+		return FALSE
+
+	to_chat(T, SPAN_NOTICE("You feel a soothing sensation in your veins."))
+	to_chat(user, SPAN_NOTICE("You stabilize [T.name]'s health."))
+
+	var/datum/reagents/R = new /datum/reagents(20, null)
+	R.add_reagent("holyinaprovaline", 10)
+	R.add_reagent("holydexalin", 10)
+	R.trans_to_mob(T, 20, CHEM_BLOOD)
+
+	return TRUE
