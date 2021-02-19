@@ -80,7 +80,7 @@
 		STAT_COG = -10
 	)
 
-/datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
+/datum/category_item/setup_option/background/origin/new_rome/apply(mob/living/carbon/human/character)
   ..()
   character.add_language(LANGUAGE_LATIN)
 
