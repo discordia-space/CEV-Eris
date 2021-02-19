@@ -203,7 +203,7 @@ There are important things regarding this file:
 	icon_state = "slug"
 	damage_types = list(BRUTE = 54)
 	armor_penetration = 15
-	knockback = 1
+	knockback = 2
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/scrap
@@ -255,7 +255,7 @@ There are important things regarding this file:
 	pellets = 8
 	range_step = 1
 	spread_step = 10
-	knockback = 1
+	knockback = 2
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
