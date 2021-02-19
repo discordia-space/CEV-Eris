@@ -1,5 +1,0 @@
-author: Tea-Primoris
-delete-after: true
-changes:
-  - balance: You'll now stumble when firing shotguns (except sawn off) with one hand
-      based on yours robustness.

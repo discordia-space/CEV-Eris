@@ -1,8 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - tweak: Tweaked malfunction proc damage on Hivemind mobs and tweaked EMP damage
-      against Hivemind
-  - balance: Tormentor has a slightly longer stun, chance to resist said stun is bigger
-      and Tormentor has longer cooldown
-  - bugfix: Marionette no longer spawns from Hivemind Assemblers

@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: the ideal character age is now displayed in the occupation description.
