@@ -757,7 +757,7 @@ proc
 		var/flatX2 = flat.Width()
 		var/flatY1 = 1
 		var/flatY2 = flat.Height()
-			
+
 		// Dimensions of overlay being added
 		var/addX1
 		var/addX2
@@ -1042,7 +1042,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 /datum/proc/flicker(iconOrState)
 	// To handle not only state changes in update icon if need
-	. = flick(iconOrState, src)
+	flick(iconOrState, src)
 
 /image/proc/flick_synchronization(datum/D, iconOrState)
 	if(QDELETED(D))
@@ -1054,11 +1054,11 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	if(QDELETED(D))
 		qdel(src)
 		return
-	if(_icon) 
+	if(_icon)
 		icon = _icon
-	if(_state) 
+	if(_state)
 		icon_state = _state
-	if(_overlays) 
+	if(_overlays)
 		overlays = _overlays //Needn't to be copy, byond copy ovelays' list by it self, this why this procs is needed
 
 /image/proc/SyncWithDatum(datum/D)
