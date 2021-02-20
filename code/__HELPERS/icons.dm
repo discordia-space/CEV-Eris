@@ -1042,7 +1042,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 /datum/proc/flicker(iconOrState)
 	// To handle not only state changes in update icon if need
-	. = FLICK(iconOrState, src)
+	. = flick(iconOrState, src)
 
 /image/proc/flick_synchronization(datum/D, iconOrState)
 	if(QDELETED(D))
