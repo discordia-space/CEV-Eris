@@ -42,9 +42,6 @@
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
-
 	icon_state = iconstring
 	set_item_state(itemstring)
 
