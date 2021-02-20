@@ -51,7 +51,7 @@
 //Flashing everyone
 	if(eye_safety < FLASH_PROTECTION_MODERATE)
 		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+			FLICK("e_flash", M.HUDtech["flash"])
 		M.eye_blurry = max(M.eye_blurry, 15)
 		M.eye_blind = max(M.eye_blind, 5)
 

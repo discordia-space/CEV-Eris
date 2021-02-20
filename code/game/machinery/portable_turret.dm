@@ -648,7 +648,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	flick("popup", flick_holder)
+	FLICK("popup", flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -668,7 +668,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	flick("popdown", flick_holder)
+	FLICK("popdown", flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 

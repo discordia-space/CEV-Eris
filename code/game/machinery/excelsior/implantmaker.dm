@@ -65,7 +65,7 @@
 		working = TRUE
 		start_time = world.time
 
-		flick(image(icon, "closing"), src)
+		FLICK(image(icon, "closing"), src)
 
 		update_icon()
 
@@ -73,14 +73,14 @@
 /obj/machinery/complant_maker/Process()
 	if(stat & NOPOWER)
 		if(working)
-			flick(image(icon, "opening"), src)
+			FLICK(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 		return
 
 	if(working && world.time >= start_time + build_time)
 		new /obj/item/weapon/implantcase/excelsior(drop_location())
-		flick(image(icon, "opening"), src)
+		FLICK(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 

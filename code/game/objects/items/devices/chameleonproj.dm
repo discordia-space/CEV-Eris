@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		to_chat(usr, SPAN_NOTICE("You deactivate the [src]."))
 		var/obj/effect/overlay/T = new(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse",T)
+		FLICK("emppulse",T)
 		STOP_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 	else
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		to_chat(usr, SPAN_NOTICE("You activate the [src]."))
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse",T)
+		FLICK("emppulse",T)
 		START_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 

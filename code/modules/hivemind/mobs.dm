@@ -747,11 +747,11 @@
 			return
 		overlays.Cut()
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 			icon_state = "mechiver-chief"
 			overlays += "mechiver-hands"
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 			icon_state = "mechiver-welcome"
 			overlays += "mechiver-wires"
 		hatch_closed = FALSE
@@ -777,9 +777,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(mob/living/target)
 	if(!target_mob && hatch_closed) //when we picking up corpses
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
@@ -792,9 +792,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/proc/release_passenger(var/safely = FALSE)
 	if(passenger)
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 
 		if(ishuman(passenger))
 			if(!safely) //that was stressful

@@ -385,7 +385,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(bootime > world.time) return
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
-		L.flicker()
+		L.flick_light()
 		bootime = world.time + 600
 		return
 	//Maybe in the future we can add more <i>spooky</i> code here!

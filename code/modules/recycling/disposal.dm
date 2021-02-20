@@ -431,7 +431,7 @@
 /obj/machinery/disposal/proc/flush()
 
 	flushing = 1
-	flick("[icon_state]-flush", src)
+	FLICK("[icon_state]-flush", src)
 
 	var/wrapcheck = 0
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
@@ -1473,7 +1473,7 @@
 	// called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(var/obj/structure/disposalholder/H)
 
-	flick("outlet-open", src)
+	FLICK("outlet-open", src)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)
 	sleep(20)	//wait until correct animation frame
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)

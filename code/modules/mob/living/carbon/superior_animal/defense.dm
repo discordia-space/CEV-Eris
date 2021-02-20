@@ -105,7 +105,7 @@
 	..()
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	var/b_loss = null
 	var/f_loss = null

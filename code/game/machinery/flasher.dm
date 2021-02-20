@@ -72,7 +72,7 @@
 		return
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	flick("[base_state]_flash", src)
+	FLICK("[base_state]_flash", src)
 	src.last_flash = world.time
 	use_power(1500)
 
@@ -91,14 +91,14 @@
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
 				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+					FLICK("e_flash", O.HUDtech["flash"])
 				E.damage += rand(1, 5)
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
+					FLICK("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity)

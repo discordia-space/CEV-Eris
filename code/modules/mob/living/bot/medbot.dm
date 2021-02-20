@@ -231,7 +231,7 @@
 			to_chat(user, SPAN_WARNING("You short out [src]'s reagent synthesis circuits."))
 		visible_message(SPAN_WARNING("[src] buzzes oddly!"))
 		playsound(loc, "robot_talk_light", 100, 0, 0)
-		flick("medibot_spark", src)
+		FLICK("medibot_spark", src)
 		patient = null
 		currently_healing = 0
 		emagged = 1

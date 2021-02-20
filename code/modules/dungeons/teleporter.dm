@@ -186,14 +186,14 @@
 				return
 			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
 				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+					FLICK("e_flash", O.HUDtech["flash"])
 
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
+					FLICK("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
 		sleep(1)

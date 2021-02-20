@@ -31,7 +31,7 @@
 		master_node.add_wireweed(child)
 	spawn(1)
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
-		flick("spread_anim", child)
+		FLICK("spread_anim", child)
 		child.forceMove(target_turf)
 		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
 			neighbor.update_neighbors()

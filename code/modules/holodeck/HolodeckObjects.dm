@@ -167,7 +167,7 @@
 			close()
 
 	else if (src.density)
-		flick(text("[]deny", src.base_state), src)
+		FLICK(text("[]deny", src.base_state), src)
 
 	return
 

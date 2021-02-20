@@ -124,7 +124,7 @@
 		return
 
 
-	flick("migniter-spark", src)
+	FLICK("migniter-spark", src)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, src)
 	s.start()

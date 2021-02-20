@@ -1039,3 +1039,34 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+
+/datum/proc/flicker(iconOrState)
+	// To handle not only state changes in update icon if need
+	. = FLICK(iconOrState, src)
+
+/image/proc/flick_synchronization(datum/D, iconOrState)
+	if(QDELETED(D))
+		qdel(src)
+		return
+	return flicker(iconOrState)
+
+/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays)
+	if(QDELETED(D))
+		qdel(src)
+		return
+	if(_icon) 
+		icon = _icon
+	if(_state) 
+		icon_state = _state
+	if(_overlays) 
+		overlays = _overlays //Needn't to be copy, byond copy ovelays' list by it self, this why this procs is needed
+
+/image/proc/SyncWithDatum(datum/D)
+	if(istype(D))
+		GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
+		if(istype(D, /atom))
+			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
+	else
+		CRASH("[D] is not datum, aborting '/image/proc/SyncWithDatum'.")
+
+

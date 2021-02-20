@@ -85,7 +85,7 @@ var/bomb_set
 						overlays -= image(icon, "npanel_open")
 						to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-					flick("nuclearbombc", src)
+					FLICK("nuclearbombc", src)
 				return
 			return
 
@@ -157,7 +157,7 @@ var/bomb_set
 			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		extended = 1
 		if(!src.lighthack)
-			flick("nuclearbombc", src)
+			FLICK("nuclearbombc", src)
 			update_icon()
 	return
 

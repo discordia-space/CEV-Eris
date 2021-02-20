@@ -240,7 +240,7 @@
 		return  // eject_occupant opens the door, so we need to return
 	isopen = !isopen
 
-	flick(isopen ? "anim_open" : "anim_close", door_overlay)
+	FLICK(isopen ? "anim_open" : "anim_close", door_overlay)
 	playsound(src.loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
 
 

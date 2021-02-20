@@ -25,7 +25,7 @@
 /obj/item/device/scanner/plant/scan(atom/A, mob/user)
 	scan_title = "[A] at [get_area(A)]"
 	scan_data = plant_scan_results(A)
-	flick("hydro2", src)
+	FLICK("hydro2", src)
 	show_results(user)
 
 /proc/plant_scan_results(obj/target)

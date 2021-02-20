@@ -90,7 +90,7 @@
 		if(network)
 			network.update = 1
 
-	flick("inject", src)
+	FLICK("inject", src)
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)

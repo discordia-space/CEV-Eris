@@ -52,7 +52,7 @@
 	var/light = A.power_light
 	A.updateicon()
 
-	flick("echair1", src)
+	FLICK("echair1", src)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()

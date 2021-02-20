@@ -207,7 +207,7 @@
 	target_tank.can_anchor = FALSE
 	canister = target_tank
 	platform.MS_bioreactor.metrics_screen.icon_state = "screen_process"
-	flick("screen_activation", platform.MS_bioreactor.metrics_screen)
+	FLICK("screen_activation", platform.MS_bioreactor.metrics_screen)
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 	. = TRUE
 

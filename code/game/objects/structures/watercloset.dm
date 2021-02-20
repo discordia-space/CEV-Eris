@@ -435,7 +435,7 @@
 		var/obj/item/weapon/melee/baton/B = O
 		if(B.cell)
 			if(B.cell.charge > 0 && B.status == 1)
-				flick("baton_active", src)
+				FLICK("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10
 				user.Weaken(10)

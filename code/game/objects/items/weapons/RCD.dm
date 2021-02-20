@@ -165,7 +165,7 @@
 
 	if(!useResource(build_cost, user, 1))
 		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
-		flick("[icon_state]-empty", src)
+		FLICK("[icon_state]-empty", src)
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
@@ -183,7 +183,7 @@
 
 	if(!useResource(build_cost, user))
 		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
-		flick("[icon_state]-empty", src)
+		FLICK("[icon_state]-empty", src)
 		return 0
 
 	if(build_turf)
