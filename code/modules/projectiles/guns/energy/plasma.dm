@@ -102,7 +102,19 @@
 /obj/item/weapon/gun/energy/plasma/brigador/update_icon()
 	overlays.Cut()
 	..()
-	if(cell)
+	overlays.Cut()
+	..()
+
+	if(istype(cell, /obj/item/weapon/cell/small/moebius/nuclear))
+		overlays += image(icon, "cell_nuclear")
+
+	else if(istype(cell, /obj/item/weapon/cell/small/moebius))
+		overlays += image(icon, "cell_moebius")
+
+	else if(istype(cell, /obj/item/weapon/cell/small/excelsior))
+		overlays += image(icon, "cell_excelsior")
+
+	else if(istype(cell, /obj/item/weapon/cell/small))
 		overlays += image(icon, "cell_guild")
 
 /obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
