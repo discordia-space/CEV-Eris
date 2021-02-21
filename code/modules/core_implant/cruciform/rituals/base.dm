@@ -144,7 +144,7 @@
 		fail("[H] don't have a cruciform installed.", user, C)
 		return FALSE
 	if(CI.upgrade)
-		fail("Cruciform already have upgrade installed.", user, C)
+		fail("Cruciform already has an upgrade installed.", user, C)
 		return FALSE
 
 	var/list/L = get_front(user)
