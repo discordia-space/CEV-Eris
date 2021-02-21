@@ -152,7 +152,7 @@
 	var/obj/item/weapon/cruciform_upgrade/CU = locate(/obj/item/weapon/cruciform_upgrade) in L
 
 	if(!CU)
-		fail("There is no cruciform upgrade near.", user, C)
+		fail("There is no cruciform upgrade nearby.", user, C)
 		return FALSE
 
 	if(!(H in L))
