@@ -160,7 +160,7 @@
 		return FALSE
 
 	if(CU.active)
-		fail("Cruciform upgrade already active.", user, C)
+		fail("Cruciform upgrade is already active.", user, C)
 		return FALSE
 
 	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
