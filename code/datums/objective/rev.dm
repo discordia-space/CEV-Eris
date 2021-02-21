@@ -39,6 +39,9 @@
 	var/active = FALSE
 	var/convert_decrease = 8 MINUTES
 	var/mandate_increase = 12 MINUTES
+
+/datum/objective/timed/excelsior/New()
+	..()
 	explanation_text = "Expand and grow in power before the ship's systems detect your presence! The detection countdown of [time2hours(detect_timer)] Hour starts once you force-implant a new comrade. It is lowered by [time2minutes(convert_decrease)] Minutes for each additional recruit, and increased by [time2minutes(mandate_increase)] Minutes for each completed mandate"
 
 /datum/objective/timed/excelsior/proc/start_excel_timer()
