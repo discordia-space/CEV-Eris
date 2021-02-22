@@ -188,7 +188,9 @@
 	power = 20
 
 /datum/ritual/cruciform/base/uninstall_upgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/H = get_victim(user)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
+	var/list/L = get_front(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -196,6 +198,10 @@
 
 	if(!CI.upgrade)
 		fail("Cruciform upgrade is not installed.", user, C)
+		return FALSE
+
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
+		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
 	if(CI.upgrade.uninstall() || CI.upgrade)

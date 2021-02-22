@@ -67,7 +67,7 @@
 
 /obj/item/weapon/cruciform_upgrade/natures_blessing
 	name = "Natures blessing"
-	desc = "Welcome to Harvester."
+	desc = "This upgrade slowly heals and fertilizes all plants near the follower. Useful for Agrolytes."
 	icon_state = "natures_blessing"
 	matter = list(MATERIAL_BIOMATTER = 100, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5)
 
@@ -90,7 +90,7 @@
 
 /obj/item/weapon/cruciform_upgrade/faiths_shield
 	name = "Faiths shield"
-	desc = "Shield my faith."
+	desc = "This upgrade slightly increase follower resistance to Brute and Burn damage from all sources."
 	icon_state = "faiths_shield"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 10)
 	var/shield_mod = 0.1
@@ -107,7 +107,7 @@
 
 /obj/item/weapon/cruciform_upgrade/cleansing_presence
 	name = "Cleansing presence"
-	desc = "Sweep, sweep, sweep!"
+	desc = "This upgrade cleans tiles that the follower walks upon. Will slowly cause space vines and maint-shrooms to wither and die in the follower’s presence. Useful for Custodians."
 	icon_state = "cleansing_presence"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5)
 	var/area_radius = 5
@@ -130,14 +130,14 @@
 
 /obj/item/weapon/cruciform_upgrade/martyr_gift
 	name = "Martyr gift"
-	desc = "Oh no Jeson, a bomb!"
+	desc = "This upgrade upon the death of the follower, causes a large ‘explosion’ that doesn’t damage terrain nor does it damage followers of NT. It will cause massive burns to any non-cruciformed crewmembers or critters within its radius, however; this upgrade will be destroyed upon use, leaving the cruciform un-upgraded when cloned."
 	icon_state = "martyr_gift"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5)
 	var/burn_damage = 50
 
 /obj/item/weapon/cruciform_upgrade/wrath_of_god
 	name = "Wrath of god"
-	desc = "Get crusaded."
+	desc = "This upgrade make the follower deal more damage in melee, but also receive a slightly more damage from all sources."
 	icon_state = "wrath_of_god"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 15)
 	var/damage_mod = 0.2
@@ -163,7 +163,7 @@
 
 /obj/item/weapon/cruciform_upgrade/speed_of_the_chosen
 	name = "Speed of the chosen"
-	desc = "Going fast!"
+	desc = "This upgrade increases movement speed of the follower."
 	icon_state = "speed_of_the_chosen"
 	matter = list(MATERIAL_BIOMATTER = 120, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5)
 	var/speed_increase = 0.5
