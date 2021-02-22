@@ -1040,6 +1040,12 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
 
+/proc/FLICK(state, datum/D)
+	if(istype(D))
+		return D.flicker(state)
+	else
+		CRASH("[D](\ref[D]) is not datum, aborting /proc/FLICK. Additional info: {[json_encode(args)]}")
+
 /datum/proc/flicker(iconOrState)
 	// To handle not only state changes in update icon if need
 	flick(iconOrState, src)
