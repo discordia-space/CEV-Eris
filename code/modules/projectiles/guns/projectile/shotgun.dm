@@ -6,6 +6,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	twohanded = TRUE
+	var/recentpumpmsg = 0 //	Variable to prevent chat message spam
 	var/fired_one_handed = FALSE
 
 /obj/item/weapon/gun/projectile/shotgun/twohanded_check(var/mob/living/user)
