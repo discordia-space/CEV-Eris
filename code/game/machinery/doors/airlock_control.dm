@@ -342,7 +342,7 @@
 		signal.data["command"] = command
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flicker("access_button_cycle", src)
+	flicker("access_button_cycle")
 
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

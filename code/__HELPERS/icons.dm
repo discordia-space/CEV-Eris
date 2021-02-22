@@ -1044,13 +1044,15 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	// To handle not only state changes in update icon if need
 	flick(iconOrState, src)
 
-/image/proc/flick_synchronization(datum/D, iconOrState)
+/image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
 	if(QDELETED(D))
 		qdel(src)
 		return
+	if(isByEvent)
+		GLOB.update_icon_event.register(D, src, .proc/flick_synchronization)
 	return flicker(iconOrState)
 
-/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays)
+/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays, isByEvent = TRUE)
 	if(QDELETED(D))
 		qdel(src)
 		return
@@ -1059,14 +1061,18 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	if(_state)
 		icon_state = _state
 	if(_overlays)
-		overlays = _overlays //Needn't to be copy, byond copy ovelays' list by it self, this why this procs is needed
+		overlays = _overlays //No need to .Copy, byond copy ovelays' list by it self
+	if(isByEvent)
+		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
 
-/image/proc/SyncWithDatum(datum/D)
+/image/proc/SyncWithAtom(atom/D)
 	if(istype(D))
 		GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
-		if(istype(D, /atom))
-			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
+		GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
 	else
 		CRASH("[D] is not datum, aborting '/image/proc/SyncWithDatum'.")
 
-
+/image/proc/BreakSync(datum/D)
+	if(istype(D))
+		GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
+		GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
