@@ -23,6 +23,8 @@
 	recoil_buildup = 10
 	gun_tags = list(GUN_SILENCABLE)
 
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
 /obj/item/weapon/gun/projectile/paco/update_icon()
 	..()
 

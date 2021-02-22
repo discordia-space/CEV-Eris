@@ -843,6 +843,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/hand_labeler(src)
 	src.modules += new /obj/item/weapon/tool/tape_roll(src) //allows it to place flyers
 	src.modules += new /obj/item/weapon/stamp/denied(src) //why was this even a emagged item before smh
+	src.modules += new /obj/item/device/synthesized_instrument/synthesizer
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
 	M.stored_matter = 30

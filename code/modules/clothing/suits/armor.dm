@@ -256,11 +256,12 @@
 	name = "full tan platecarrier vest"
 	icon_state = "platecarrier_tan_fullbody"
 
-/obj/item/clothing/suit/armor/laserproof
-	name = "ablative armor vest"
+/obj/item/clothing/suit/armor/laserproof/full
+	name = "full ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "ablative"
 	item_state = "ablative"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	blood_overlay_type = "armor"
 	slowdown = 0.15
 	rarity_value = 45
@@ -481,6 +482,7 @@
 		bio = 0,
 		rad = 0
 	)
+	rarity_value = 50
 	var/active = FALSE
 	var/entropy_value = 2
 
@@ -525,11 +527,12 @@
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 70,
-		bullet = 30,
-		energy = 30,
+		bullet = 50,
+		energy = 50,
 		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE

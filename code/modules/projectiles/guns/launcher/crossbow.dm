@@ -57,14 +57,15 @@
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
 	twohanded = TRUE
-	rarity_value = GUN_BASE_RARITY_VALUE+30//no price tag,then high rarirty
+	rarity_value = 35//no price tag,then high rarirty
+
 	var/obj/item/bolt
-	var/tension = 0                         // Current draw on the bow.
-	var/max_tension = 5                     // Highest possible tension.
-	var/release_speed = 5                   // Speed per unit of tension.
-	var/obj/item/weapon/cell/large/cell    // Used for firing superheated rods.
-	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
-	var/draw_time = 20							// How long it takes to increase the draw on the bow by one "tension"
+	var/tension = 0						// Current draw on the bow.
+	var/max_tension = 5					// Highest possible tension.
+	var/release_speed = 5				// Speed per unit of tension.
+	var/obj/item/weapon/cell/large/cell	// Used for firing superheated rods.
+	var/current_user					// Used to check if the crossbow has changed hands since being drawn.
+	var/draw_time = 20					// How long it takes to increase the draw on the bow by one "tension"
 
 /obj/item/weapon/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed

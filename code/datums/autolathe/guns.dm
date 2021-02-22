@@ -17,11 +17,11 @@
 
 /datum/design/autolathe/gun/clarissa
 	name = "FS HG .35 \"Clarissa\""
-	build_path = /obj/item/weapon/gun/projectile/clarissa
+	build_path = /obj/item/weapon/gun/projectile/selfload/clarissa
 
 /datum/design/autolathe/gun/makarov
 	name = "Excelsior .35 \"Makarov\""
-	build_path = /obj/item/weapon/gun/projectile/clarissa/makarov
+	build_path = /obj/item/weapon/gun/projectile/selfload/makarov
 
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk58\""
@@ -209,6 +209,10 @@
 /datum/design/autolathe/gun/laser
 	name = "NT LG \"Lightfall\""
 	build_path = /obj/item/weapon/gun/energy/laser
+
+/datum/design/autolathe/gun/retro
+	name = "OS LG \"Cog\""
+	build_path = /obj/item/weapon/gun/energy/retro
 
 /datum/design/autolathe/gun/ionrifle
 	name = "NT IR \"Halicon\""

@@ -21,9 +21,9 @@
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.35
 	penetration_multiplier = 1
-	recoil_buildup = 6
+	recoil_buildup = 1.3
 	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
-	rarity_value = GUN_BASE_RARITY_VALUE+60
+	rarity_value = 65
 
 	init_firemodes = list(
 		FULL_AUTO_400,

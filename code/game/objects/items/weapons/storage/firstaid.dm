@@ -188,6 +188,34 @@
 	new /obj/item/weapon/storage/pill_bottle/prosurgeon(src)
 	make_exact_fit()
 
+/obj/item/weapon/storage/firstaid/nt
+	name = "NeoTheologian Medkit"
+	desc = "A medkit filled with a set of high-end trauma kits and anti-toxins."
+	icon_state = "nt_kit"
+	item_state = "nt_kit"
+	matter = list(MATERIAL_BIOMATTER = 10)
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/advanced/bruise_pack/nt
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/storage/firstaid/nt/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/stack/medical/advanced/ointment/nt(src)
+	new /obj/item/stack/medical/advanced/ointment/nt(src)
+	new /obj/item/weapon/reagent_containers/syringe/large/antitoxin(src)
+	new /obj/item/weapon/reagent_containers/syringe/large/dexalin_plus(src)
+
+/obj/item/weapon/storage/firstaid/nt/update_icon()
+	if(!contents.len)
+		icon_state = "[initial(icon_state)]_empty"
+		item_state = "[initial(item_state)]_empty"
+	else
+		icon_state = "[initial(icon_state)]"
+		item_state = "[initial(item_state)]"
+	..()
+
 /*
  * Pill Bottles
  */

@@ -44,7 +44,20 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/proc/fill(obj/structure/closet/crate/C)
 	for(var/item in contains)
-		var/n_item = new item(C)
+		var/atom/movable/n_item
+		if(ispath(item, /obj/spawner))
+			var/obj/randomcatcher/CATCH = new /obj/randomcatcher
+			n_item = CATCH.get_item(item)
+		else
+			n_item = new item(C)
+		n_item.surplus_tag = TRUE
+		var/list/n_contents = n_item.GetAllContents()
+		for(var/atom/movable/I in n_contents)
+			n_item.surplus_tag = TRUE
+		/*So you can't really just buy crates, then instantly resell them for a potential profit depending on if the crate hasn't had its cost scaled properly.
+		* Yes, there are limits, I could itterate over every content of the item too and set its surplus_tag to TRUE
+		* But that doesn't work with stackables when you can just make a new stack, and gets comp-expensive and not worth it just to spite people getting extra numbers
+		*/
 		if(src.amount && istype(n_item, /obj/item/stack/material/steel))
 			var/obj/item/stack/material/n_sheet = n_item
 			n_sheet.amount = src.amount
@@ -144,7 +157,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "FS Handgun Pack"
 	contains = list(/obj/item/weapon/gun/projectile/colt,
 			/obj/item/weapon/gun/projectile/paco,
-			/obj/item/weapon/gun/projectile/clarissa,
+			/obj/item/weapon/gun/projectile/selfload/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -1419,9 +1432,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/randomised/guns
 	num_contained = 4
 	contains = list(/obj/spawner/gun/cheap,
-                /obj/spawner/gun/normal,
-                /obj/spawner/gun/energy_cheap,
-                /obj/spawner/gun/shotgun)
+					/obj/spawner/gun/cheap,
+					/obj/spawner/gun/cheap,
+					/obj/spawner/gun/cheap)
 	name = "Surplus Weaponry"
 	cost = 5000
 	crate_name = "Surplus Weapons Crate"
@@ -1430,14 +1443,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/ammo
 	num_contained = 8
-	contains = list(/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo,
-				/obj/spawner/ammo)
+	contains = list(/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+			/obj/spawner/ammo/low_cost,
+				)
 	name = "Surplus Ammo"
 	cost = 1500
 	crate_name = "Surplus Ammo Crate"

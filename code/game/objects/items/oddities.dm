@@ -20,6 +20,7 @@
 
 	//You choose what stat can be increased, and a maximum value that will be added to this stat
 	//The minimum is defined above. The value of change will be decided by random
+	var/random_stats = TRUE
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
@@ -32,8 +33,9 @@
 		perk = get_oddity_perk()
 
 	if(oddity_stats)
-		for(var/stat in oddity_stats)
-			oddity_stats[stat] = rand(1, oddity_stats[stat])
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 
 /proc/get_oddity_perk()
@@ -45,6 +47,7 @@
 
 //Common - you can find those everywhere
 /obj/item/weapon/oddity/common
+	prob_perk = 60
 	bad_type = /obj/item/weapon/oddity/common
 	spawn_blacklisted = FALSE
 
@@ -346,7 +349,15 @@
 /obj/item/weapon/oddity/broken_necklace/New()
 	..()
 	GLOB.bluespace_gift += 1
-	GLOB.bluespace_entropy -= rand(25, 50)
+	GLOB.bluespace_entropy -= rand(30, 50)
+
+/obj/item/weapon/oddity/broken_necklace/Destroy()
+	var/turf/T = get_turf(src)
+	if(T)
+		bluespace_entropy(80,T)
+		new /obj/item/bluespace_dust(T)
+	GLOB.bluespace_gift -= 1
+	. = ..()
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
 	if(world.time < cooldown)
@@ -362,10 +373,6 @@
 		if(G.affecting)
 			go_to_bluespace(get_turf(user), entropy_value, FALSE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
 	if(prob(1))
-		new /obj/item/bluespace_dust(user.loc)
-		new /obj/item/bluespace_dust(T)
-		GLOB.bluespace_gift -= 1
-		bluespace_entropy(50,T)
 		qdel(src)
 
 /obj/item/weapon/oddity/broken_necklace/throw_impact(atom/movable/hit_atom)
@@ -379,9 +386,6 @@
 			var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
 			go_to_bluespace(T, entropy_value, TRUE, hit_atom, NT)
 		if(prob(1))
-			new /obj/item/bluespace_dust(T)
-			GLOB.bluespace_gift -= 1
-			bluespace_entropy(50,T)
 			qdel(src)
 
 //A randomized oddity with random stats, meant for artist job project
@@ -406,3 +410,21 @@
 	var/list/true_stats = comp_insp.calculate_statistics()
 	for(var/stat in true_stats)
 		. += true_stats[stat] * 50
+
+//NT Oddities
+/obj/item/weapon/oddity/nt
+	bad_type = /obj/item/weapon/oddity/nt
+	spawn_blacklisted = TRUE
+	random_stats = FALSE
+
+/obj/item/weapon/oddity/nt/seal
+	name = "High Inquisitor's Seal"
+	desc = "An honorary badge given to the most devout of NeoTheologian preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
+	icon_state = "nt_seal"
+	oddity_stats = list(
+		STAT_COG = 12,
+		STAT_VIG = 12,
+		STAT_ROB = 8
+	)
+	price_tag = 8000
+	perk = /datum/perk/nt_oddity/holy_light

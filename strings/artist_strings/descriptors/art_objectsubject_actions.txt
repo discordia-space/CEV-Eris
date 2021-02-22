@@ -1,0 +1,11 @@
+vomiting
+walking
+running
+standing
+sitting
+lying
+fighting
+riding
+flying
+swimming
+floating

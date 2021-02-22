@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/danger_level = 0
 	var/only_top = 1
 	var/range = 7
-	var/can_burrow = FALSE
+	var/can_burrow = TRUE
 	var/min_loot_amount = 1
 	var/max_loot_amount = 1
 	var/min_traps_amount = 8
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	turf_list = list()
 	spawn_turfs = list()
 	var/turf/source = get_turf(src)
-	for(var/turf/T in trange(range, source))
+	for(var/turf/T in RANGE_TURFS(range, source))
 		T.update_biome(src)
 
 /obj/landmark/loot_biomes/proc/update_price()

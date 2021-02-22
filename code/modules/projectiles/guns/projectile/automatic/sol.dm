@@ -16,7 +16,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	recoil_buildup = 5
+	recoil_buildup = 2
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.15
 	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
@@ -25,6 +25,8 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)

@@ -194,8 +194,8 @@
 						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -263,8 +263,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
@@ -364,8 +364,8 @@
 			use(used)
 			update_icon()
 	else
-		if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-			if (do_surgery(H,user,src))
+		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+			if (do_surgery(H,user,src, TRUE))
 				return
 		else
 			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -432,8 +432,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -507,3 +507,33 @@
 			else
 				use(1)
 		return
+
+/obj/item/stack/medical/advanced/bruise_pack/nt
+	name = "NeoTheologian Bruisepack"
+	singular_name = "NeoTheologian Bruisepack"
+	desc = "An advanced bruisepack for severe injuries. Created by will of God."
+	icon_state = "nt_traumakit"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3)
+	origin_tech = list(TECH_BIO = 4)
+
+/obj/item/stack/medical/advanced/bruise_pack/nt/update_icon()
+	icon_state = "[initial(icon_state)][amount]"
+	..()
+
+/obj/item/stack/medical/advanced/ointment/nt
+	name = "NeoTheologian Burnpack"
+	singular_name = "NeoTheologian Burnpack"
+	desc = "An advanced treatment kit for severe burns. Created by will of God."
+	icon_state = "nt_burnkit"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3)
+	origin_tech = list(TECH_BIO = 4)
+
+/obj/item/stack/medical/advanced/ointment/nt/update_icon()
+	icon_state = "[initial(icon_state)][amount]"
+	..()

@@ -8,11 +8,19 @@
 				<div class="itemContentWidest">{{:value.name}}</div>
 				<div class="itemContentWidest" style="line-height: 10px;">
 					{{if value.point_cost > 0}}
-						<font size="1">
-						<div class="{{:data.disk && data.disk.license >= value.point_cost ? "unimportant" : "bad"}}">
-						License point cost: {{:value.point_cost}}
-						</div>
-						</font>
+						{{if !data.disk}}
+							<font size="1">
+							<div class="{{:data.is_nanoforge ? "unimportant" : "bad"}}">
+								License point cost: {{:value.point_cost}}
+							</div>
+							</font>
+						{{else}}
+							<font size="1">
+							<div class="{{:data.disk.license >= value.point_cost ? "unimportant" : "bad"}}">
+								License point cost: {{:value.point_cost}}
+							</div>
+							</font>
+						{{/if}}
 					{{/if}}
 				</div>
 			</div>

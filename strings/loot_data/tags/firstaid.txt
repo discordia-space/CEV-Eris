@@ -1,8 +1,0 @@
-/obj/item/weapon/storage/firstaid/fire    blacklisted=0    spawn_value=5.87081   spawn_price=108   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/regular    blacklisted=0    spawn_value=8.19033   spawn_price=162   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/toxin    blacklisted=0    spawn_value=5.96013   spawn_price=60   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/o2    blacklisted=0    spawn_value=5.91608   spawn_price=80   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/adv    blacklisted=0    spawn_value=3.10168   spawn_price=174   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/combat    blacklisted=0    spawn_value=0.983294   spawn_price=50   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/surgery/traitor    blacklisted=1    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/firstaid/surgery    blacklisted=0    spawn_value=1.11111   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing

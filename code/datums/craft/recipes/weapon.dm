@@ -31,6 +31,16 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/weapon/hook
+	name = "steel meathook"
+	result = /obj/item/weapon/tool/knife/hook
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_HAMMERING, 15, 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
+		list(QUALITY_CUTTING, 10, 10)
+	)
+
 /datum/craft_recipe/weapon/spoon
 	name = "spoon"
 	result = /obj/item/weapon/material/kitchen/utensil/spoon

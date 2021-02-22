@@ -91,6 +91,7 @@
 	set_trait(TRAIT_IDEAL_HEAT,           293)          // Preferred temperature in Kelvin.
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)         // Plant eats this much per tick.
 	set_trait(TRAIT_PLANT_COLOUR,         "#46B543")    // Colour of the plant icon.
+	set_trait(TRAIT_BOOSTED_GROWTH,       1)            // Rate of plant aging process for growth.
 
 	spawn(5)
 		sleep(-1)
@@ -708,6 +709,12 @@
 		if(istype(user)) to_chat(user, SPAN_DANGER("You fail to harvest anything useful."))
 	else
 		if(istype(user)) to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
+
+		// Users with green thumb perk gain sanity when harvesting plants
+		if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb) && !harvest_sample)
+			var/mob/living/carbon/human/H = user
+			if(H.sanity)
+				H.sanity.changeLevel(2.5)
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))

@@ -470,3 +470,21 @@
 	name = "syringe (MENACE)"
 	desc = "Contains awfully potent stimulant. Notorious for its usage by suicide troops."
 	preloaded_reagents = list("menace" = 15)
+
+////////////////////////////////////////////////////////////////////////////////
+/// Large Syringes.
+////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/weapon/reagent_containers/syringe/large/antitoxin
+	name = "large syringe (anti-toxin)"
+	desc = "Contains dylovene - a broad spectrum antitoxin."
+	preloaded_reagents = list("anti_toxin" = 30)
+	matter = list(MATERIAL_BIOMATTER = 5)
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/reagent_containers/syringe/large/dexalin_plus
+	name = "large syringe (dexalin+)"
+	desc = "Contains dexalin plus - a treatment of oxygen deprivation."
+	preloaded_reagents = list("dexalinp" = 30)
+	matter = list(MATERIAL_BIOMATTER = 5)
+	spawn_blacklisted = TRUE

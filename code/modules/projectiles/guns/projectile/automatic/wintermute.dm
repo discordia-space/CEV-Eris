@@ -21,7 +21,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
-	recoil_buildup = 7
+	recoil_buildup = 2
 	one_hand_penalty = 15 //automatic rifle level
 
 	init_firemodes = list(
@@ -29,6 +29,8 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
 	..()

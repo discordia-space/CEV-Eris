@@ -46,11 +46,11 @@
 
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
-	build_path = /obj/item/clothing/suit/neotheology_coat
+	build_path = /obj/item/clothing/suit/storage/neotheology_coat
 
 /datum/design/bioprinter/nt_clothes/acolyte_jacket
 	name = "NT Acolyte Jacket"
-	build_path = /obj/item/clothing/suit/neotheology_jacket
+	build_path = /obj/item/clothing/suit/storage/neotheology_jacket
 
 /datum/design/bioprinter/nt_clothes/sports_jacket
 	name = "NT Sports Jacket"
@@ -147,7 +147,7 @@
 /datum/design/bioprinter/satchel
 	name = "Leather Satchel"
 	build_path = /obj/item/weapon/storage/backpack/satchel
-	
+
 /datum/design/bioprinter/small_generic
 	name= "Small generic pouch"
 	build_path = /obj/item/weapon/storage/pouch/small_generic
@@ -199,6 +199,14 @@
 /datum/design/autolathe/gun/plasma/martyr
 	name = "NT PR \"Martyr\""
 	build_path = /obj/item/weapon/gun/energy/plasma/martyr
+
+/datum/design/autolathe/firstaid/nt
+	name = "NeoTheologian Medkit"
+	build_path = /obj/item/weapon/storage/firstaid/nt
+
+/datum/design/autolathe/excruciator
+	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	build_path = /obj/item/weapon/gun_upgrade/barrel/excruciator
 
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword

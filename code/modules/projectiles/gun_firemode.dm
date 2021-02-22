@@ -7,6 +7,7 @@
 */
 /datum/firemode
 	var/name = "default"
+	var/desc = "The default firemode"
 	var/icon_state
 	var/list/settings = list()
 	var/obj/item/weapon/gun/gun = null
@@ -20,6 +21,8 @@
 		var/propvalue = properties[propname]
 		if(propname == "mode_name")
 			name = propvalue
+		else if(propname == "mode_desc")
+			desc = propvalue
 		else if(propname == "icon")
 			icon_state = properties["icon"]
 		else if(isnull(propvalue))
@@ -49,6 +52,8 @@
 					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
 					if(IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 						gun.vars["fire_delay"] *= IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+		else if(propname == "damage_mult_add")
+			gun.damage_multiplier += settings[propname]
 
 //Called whenever the firemode is switched to, or the gun is picked up while its active
 /datum/firemode/proc/update()

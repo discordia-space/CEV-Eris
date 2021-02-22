@@ -167,7 +167,7 @@
 	desc = "Can hold ammo magazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	item_state = "ammo"
-	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 3 )
+	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 3
@@ -225,7 +225,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/weapon/gun/projectile/clarissa,
+		/obj/item/weapon/gun/projectile/selfload,
 		/obj/item/weapon/gun/projectile/colt,
 		/obj/item/weapon/gun/projectile/avasarala,
 		/obj/item/weapon/gun/projectile/giskard,

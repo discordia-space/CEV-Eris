@@ -149,33 +149,42 @@
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
 
+/*get_spawn_value()
+this proc calculates the spawn value of the objects based on factors such as
+their frequency, their rarity value, their price and
+the data returned by the get_special_rarity_value() proc
+*/
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
 	var/atom/movable/A = npath
 	if(ispath(npath, /obj/item/weapon/gun))
-		return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
-	else if(ispath(npath, /obj/item/weapon/cell) || ispath(npath, /obj/item/weapon/stock_parts))
-		return 10 * initial(A.spawn_frequency)/(get_special_rarty_value(npath)+(log(10,max(get_spawn_price(A),1))))
+		return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath)+(get_spawn_price(A)/GUN_PRICE_DIVISOR))
 	else if(ispath(npath, /obj/item/clothing))
-		return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + (get_spawn_price(A)/CLOTH_PRICE_DIVISOR))
-	return 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))//same from get_spawn_value()
+		return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath) + (get_spawn_price(A)/CLOTH_PRICE_DIVISOR))
+	return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath) + log(10,max(get_spawn_price(A),1)))
 
-/datum/controller/subsystem/spawn_data/proc/get_special_rarty_value(npath)
+/*get_special_rarity_value()
+increases the rarity value of items
+depending on certain determining factors,
+for example, the rarity value of power cells increases with their max_charge,
+the value of stock parts increases with the rating.
+*/
+/datum/controller/subsystem/spawn_data/proc/get_special_rarity_value(npath)
 	var/atom/movable/A = npath
 	. = initial(A.rarity_value)
 	if(ispath(npath, /obj/item/weapon/cell))
 		var/obj/item/weapon/cell/C = npath
 		var/bonus = 0
-		var/autorecharging_factor = 3
+		var/autorecharging_factor = 3.7
 		if(ispath(npath, /obj/item/weapon/cell/large))
-			bonus += (initial(C.maxcharge)/CELL_LARGE_BASE_CHARGE)**1.1
+			bonus += (initial(C.maxcharge)/CELL_LARGE_BASE_CHARGE)**1.2
 		else if(ispath(npath, /obj/item/weapon/cell/medium))
-			bonus += (initial(C.maxcharge)/CELL_MEDIUM_BASE_CHARGE)**3.5
-			autorecharging_factor += 2.5
+			bonus += (initial(C.maxcharge)/CELL_MEDIUM_BASE_CHARGE)**3.6
+			autorecharging_factor += 3
 		else if(ispath(npath, /obj/item/weapon/cell/small))
-			bonus += (initial(C.maxcharge)/CELL_SMALL_BASE_CHARGE)**1.8
-			autorecharging_factor += 1.5
+			bonus += (initial(C.maxcharge)/CELL_SMALL_BASE_CHARGE)**1.9
+			autorecharging_factor += 2
 		if(initial(C.autorecharging))
-			bonus *= autorecharging_factor
+			bonus *= autorecharging_factor * (initial(C.autorecharge_rate)/BASE_AUTORECHARGE_RATE) * (initial(C.recharge_time)/BASE_RECHARGE_TIME)
 		. += bonus
 	else if(ispath(npath, /obj/item/weapon/stock_parts))
 		var/obj/item/weapon/stock_parts/SP = npath
@@ -216,7 +225,7 @@
 			var/obj/item/weapon/tool/T = path
 			if(initial(T.suitable_cell))
 				. += get_spawn_price(initial(T.suitable_cell))
-		if(ispath(path, /obj/item/weapon/storage))
+		else if(ispath(path, /obj/item/weapon/storage))
 			if(ispath(path, /obj/item/weapon/storage/box))
 				var/obj/item/weapon/storage/box/B = path
 				if(initial(B.initial_amount) > 0 && initial(B.spawn_type))
@@ -245,13 +254,6 @@
 					. += get_spawn_price(initial(V.boots))
 				if(initial(V.helmet))
 					. += get_spawn_price(initial(V.helmet))
-		else if(ispath(path, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = path
-			if(initial(C.price_tag))
-				var/bonus = initial(C.maxcharge)/(initial(C.price_tag)*2)
-				if(initial(C.autorecharging))
-					bonus *= 2
-				. += bonus
 		else if(ispath(path, /obj/item/device))
 			if(. == 0)
 				. += 1 //for pure random spawner (/obj/spawner/lowkeyrandom)
@@ -273,8 +275,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_lower_price(list/paths, price)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(get_spawn_price(path) < price)
@@ -282,8 +282,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_upper_price(list/paths, price)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(get_spawn_price(path) > price)
@@ -291,8 +289,6 @@
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/filter_densty(list/paths)
-	//if(!paths || !paths.len || !price) //NOPE
-	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		var/atom/movable/AM = path
@@ -356,7 +352,18 @@
 	local_tags -= exclude
 	return local_tags
 
-/datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE, list/include, list/exclude, list/should_be_include_tags)
+/datum/controller/subsystem/spawn_data/proc/valid_candidates(
+	//public list<path>
+		list/tags,
+		list/bad_tags,
+		allow_blacklist=FALSE,
+		low_price=0,
+		top_price=0,
+		filter_density=FALSE,
+		list/include,
+		list/exclude,
+		list/should_be_include_tags
+	) // Sorry, but otherwise it's unreadable
 	var/list/candidates = spawn_by_tag(tags)
 	candidates -= spawn_by_tag(bad_tags)
 	if(!allow_blacklist)

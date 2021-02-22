@@ -2,129 +2,271 @@
 //// .35 ////
 /obj/item/ammo_casing/pistol
 	desc = "A .35 Auto bullet casing."
+	icon_state = "pistol_c_l"
+	spent_icon = "pistol_c_l-spent"
 	caliber = CAL_PISTOL
 	projectile_type = /obj/item/projectile/bullet/pistol
+	maxamount = 15
+
+/obj/item/ammo_casing/pistol/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
 
 /obj/item/ammo_casing/pistol/hv
 	desc = "A .35 Auto high-velocity bullet casing."
+	icon_state = "pistol_c_hv"
+	spent_icon = "pistol_c_hv-spent"
 	caliber = CAL_PISTOL
 	projectile_type = /obj/item/projectile/bullet/pistol/hv
 
 /obj/item/ammo_casing/pistol/practice
 	desc = "A .35 Auto practice bullet casing."
+	icon_state = "pistol_c_p"
+	spent_icon = "pistol_c_p-spent"
 	caliber = CAL_PISTOL
 	projectile_type = /obj/item/projectile/bullet/pistol/practice
 
 /obj/item/ammo_casing/pistol/rubber
 	desc = "A .35 Auto rubber bullet casing."
+	icon_state = "pistol_c_r"
+	spent_icon = "pistol_c_r-spent"
 	caliber = CAL_PISTOL
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+
+/obj/item/ammo_casing/pistol/scrap
+	desc = "An old .35 Auto bullet casing."
+	icon_state = "pistol_c_s"
+	spent_icon = "pistol_c_s-spent"
+	caliber = CAL_PISTOL
+	projectile_type = /obj/item/projectile/bullet/pistol/scrap
+
+/obj/item/ammo_casing/pistol/scrap/prespawned
+	amount = 15
 
 //// .40 ////
 
 /obj/item/ammo_casing/magnum
 	desc = "A .40 Magnum hollow point bullet casing."
 	caliber = CAL_MAGNUM
+	icon_state = "magnum_c_l"
+	spent_icon = "magnum_c_l-spent"
 	projectile_type = /obj/item/projectile/bullet/magnum
+	maxamount = 6
+
+/obj/item/ammo_casing/magnum/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
 
 /obj/item/ammo_casing/magnum/practice
 	desc = "A .40 Magnum practice bullet casing."
+	icon_state = "magnum_c_p"
+	spent_icon = "magnum_c_p-spent"
 	caliber = CAL_MAGNUM
 	projectile_type = /obj/item/projectile/bullet/magnum/practice
 
 /obj/item/ammo_casing/magnum/hv
 	desc = "A .40 Magnum high-velocity bullet casing."
+	icon_state = "magnum_c_hv"
+	spent_icon = "magnum_c_hv-spent"
 	caliber = CAL_MAGNUM
 	projectile_type = /obj/item/projectile/bullet/magnum/hv
 
 /obj/item/ammo_casing/magnum/rubber
 	desc = "A .40 Magnum rubber bullet casing."
+	icon_state = "magnum_c_r"
+	spent_icon = "magnum_c_r-spent"
 	caliber = CAL_MAGNUM
 	projectile_type = /obj/item/projectile/bullet/magnum/rubber
+
+/obj/item/ammo_casing/magnum/scrap
+	desc = "An old .40 Magnum bullet casing."
+	caliber = CAL_MAGNUM
+	icon_state = "magnum_c_s"
+	spent_icon = "magnum_c_s-spent"
+	projectile_type = /obj/item/projectile/bullet/magnum/scrap
+
+/obj/item/ammo_casing/magnum/scrap/prespawned
+	amount = 6
 
 //// .20 ////
 
 /obj/item/ammo_casing/srifle
 	desc = "A .20 Rifle bullet casing."
+	icon_state = "srifle_c_l"
+	spent_icon = "srifle_c_l-spent"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle
+	maxamount = 10
+
+/obj/item/ammo_casing/srifle/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
 
 /obj/item/ammo_casing/srifle/practice
 	desc = "A .20 Rifle practice bullet casing."
+	icon_state = "srifle_c_p"
+	spent_icon = "srifle_c_p-spent"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/practice
 
 /obj/item/ammo_casing/srifle/hv
 	desc = "A .20 Rifle high-velocity bullet casing."
+	icon_state = "srifle_c_hv"
+	spent_icon = "srifle_c_hv-spent"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/hv
 
 /obj/item/ammo_casing/srifle/rubber
 	desc = "A .20 Rifle rubber bullet casing."
+	icon_state = "srifle_c_r"
+	spent_icon = "srifle_c_r-spent"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/rubber
+
+/obj/item/ammo_casing/srifle/scrap
+	desc = "An old .20 Rifle bullet casing."
+	icon_state = "srifle_c_s"
+	spent_icon = "srifle_c_s-spent"
+	caliber = CAL_SRIFLE
+	projectile_type = /obj/item/projectile/bullet/srifle/scrap
+
+/obj/item/ammo_casing/srifle/scrap/prespawned
+	amount = 10
 
 //// .25 ////
 
 /obj/item/ammo_casing/clrifle
 	desc = "A .25 Caseless Rifle bullet casing."
+	icon_state = "clrifle_c_l"
+	spent_icon = "clrifle_c_l-spent"
 	caliber = CAL_CLRIFLE
 	projectile_type = /obj/item/projectile/bullet/clrifle
 	is_caseless = TRUE
+	maxamount = 10
+
+/obj/item/ammo_casing/clrifle/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
 
 /obj/item/ammo_casing/clrifle/practice
 	desc = "A .25 Caseless Rifle practice bullet casing."
+	icon_state = "clrifle_c_p"
+	spent_icon = "clrifle_c_p-spent"
 	caliber = CAL_CLRIFLE
 	projectile_type = /obj/item/projectile/bullet/clrifle/practice
 	is_caseless = TRUE
 
 /obj/item/ammo_casing/clrifle/hv
 	desc = "A .25 Caseless Rifle high-velocity bullet casing."
+	icon_state = "clrifle_c_hv"
+	spent_icon = "clrifle_c_hv-spent"
 	caliber = CAL_CLRIFLE
 	projectile_type = /obj/item/projectile/bullet/clrifle/hv
 	is_caseless = TRUE
 
 /obj/item/ammo_casing/clrifle/rubber
 	desc = "A .25 Caseless Rifle rubber bullet casing."
+	icon_state = "clrifle_c_r"
+	spent_icon = "clrifle_c_r-spent"
 	caliber = CAL_CLRIFLE
 	projectile_type = /obj/item/projectile/bullet/clrifle/rubber
 	is_caseless = TRUE
+
+/obj/item/ammo_casing/clrifle/scrap
+	desc = "An old .25 Caseless Rifle bullet casing."
+	icon_state = "clrifle_c_s"
+	spent_icon = "clrifle_c_s-spent"
+	caliber = CAL_CLRIFLE
+	projectile_type = /obj/item/projectile/bullet/clrifle/scrap
+
+/obj/item/ammo_casing/clrifle/scrap/prespawned
+	amount = 10
 
 //// .30 ////
 
 /obj/item/ammo_casing/lrifle
 	desc = "A .30 rifle bullet casing."
+	icon_state = "lrifle_c_l"
+	spent_icon = "lrifle_c_l-spent"
 	caliber = CAL_LRIFLE
 	projectile_type = /obj/item/projectile/bullet/lrifle
+	maxamount = 10
+
+/obj/item/ammo_casing/lrifle/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
 
 /obj/item/ammo_casing/lrifle/practice
 	desc = "A .30 rifle practice bullet casing."
+	icon_state = "lrifle_c_p"
+	spent_icon = "lrifle_c_p-spent"
 	caliber = CAL_LRIFLE
 	projectile_type = /obj/item/projectile/bullet/lrifle/practice
 
 /obj/item/ammo_casing/lrifle/hv
 	desc = "A .30 Rifle high-velocity bullet casing."
+	icon_state = "lrifle_c_hv"
+	spent_icon = "lrifle_c_hv-spent"
 	caliber = CAL_LRIFLE
 	projectile_type = /obj/item/projectile/bullet/lrifle/hv
 
 /obj/item/ammo_casing/lrifle/rubber
 	desc = "A .30 Rifle rubber bullet casing."
+	icon_state = "lrifle_c_r"
+	spent_icon = "lrifle_c_r-spent"
 	caliber = CAL_LRIFLE
 	projectile_type = /obj/item/projectile/bullet/lrifle/rubber
+
+/obj/item/ammo_casing/lrifle/scrap
+	desc = "An old .30 rifle bullet casing."
+	icon_state = "lrifle_c_s"
+	spent_icon = "lrifle_c_s-spent"
+	caliber = CAL_LRIFLE
+	projectile_type = /obj/item/projectile/bullet/lrifle/scrap
+
+/obj/item/ammo_casing/lrifle/scrap/prespawned
+	amount = 10
 
 //// .60 ////
 
 /obj/item/ammo_casing/antim
 	name = "shell casing"
 	desc = "A .60 Anti-Material shell."
-	icon_state = "lcasing"
-	spent_icon = "lcasing-spent"
+	icon_state = "atmr"
+	spent_icon = "atmr-spent"
 	caliber = CAL_ANTIM
 	projectile_type = /obj/item/projectile/bullet/antim
 	matter = list(MATERIAL_STEEL = 2)
 	maxamount = 5
 
+/obj/item/ammo_casing/antim/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
+	src.transform = rotation_matrix * 0.5
+
 /obj/item/ammo_casing/antim/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/scrap
+	name = "shell casing"
+	desc = "An old .60 Anti-Material shell."
+	icon_state = "atmr_s"
+	spent_icon = "atmr_s-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/scrap
+	maxamount = 5
+
+/obj/item/ammo_casing/antim/scrap/prespawned
 	amount = 5
 
 //// .50 Shotgun ////
@@ -132,43 +274,82 @@
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
 	desc = "A .50 slug."
-	icon_state = "slshell"
-	spent_icon = "slshell-spent"
+	icon_state = "s-shell_hv"
+	spent_icon = "s-shell_hv-spent"
 	caliber = CAL_SHOTGUN
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	matter = list(MATERIAL_STEEL = 1)
 	maxamount = 5
 
+/obj/item/ammo_casing/shotgun/Initialize()
+	. = ..()
+	var/matrix/rotation_matrix = matrix()
+	rotation_matrix.Turn(round(45 * rand(0, 22) / 2))
+	src.transform = rotation_matrix * 0.75
+
 /obj/item/ammo_casing/shotgun/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/shotgun/scrap
+	name = "old shotgun slug"
+	desc = "An older .50 slug."
+	icon_state = "s-shell_s"
+	spent_icon = "s-shell_s-spent"
+	caliber = CAL_SHOTGUN
+	projectile_type = /obj/item/projectile/bullet/shotgun/scrap
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/scrap/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
 	desc = "A .50 beanbag shell."
-	icon_state = "bshell"
-	spent_icon = "bshell-spent"
+	icon_state = "s-shell_r"
+	spent_icon = "s-shell_r-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/beanbag/prespawned
 	amount = 5
 
+/obj/item/ammo_casing/shotgun/beanbag/scrap
+	name = "Old beanbag shell"
+	desc = "An older .50 beanbag shell."
+	icon_state = "s-shell_rs"
+	spent_icon = "s-shell_rs-spent"
+	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag/scrap
+	matter = list(MATERIAL_STEEL = 1)
+
+/obj/item/ammo_casing/shotgun/beanbag/scrap/prespawned
+	amount = 5
+
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"
 	desc = "A .50 shell."
-	icon_state = "gshell"
-	spent_icon = "gshell-spent"
+	icon_state = "s-shell_l"
+	spent_icon = "s-shell_l-spent"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/pellet/prespawned
 	amount = 5
 
+/obj/item/ammo_casing/shotgun/pellet/scrap
+	name = "old shotgun shell"
+	desc = "An older .50 shell."
+	icon_state = "s-shell_ss"
+	spent_icon = "s-shell_ss-spent"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/scrap
+
+/obj/item/ammo_casing/shotgun/pellet/scrap/prespawned
+	amount = 5
+
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
 	desc = "A .50 blank shell."
-	icon_state = "blshell"
-	spent_icon = "blshell-spent"
+	icon_state = "s-shell_b"
+	spent_icon = "s-shell_b-spent"
 	projectile_type = /obj/item/projectile/bullet/blank
 	matter = list(MATERIAL_STEEL = 1)
 
@@ -178,8 +359,8 @@
 /obj/item/ammo_casing/shotgun/practice
 	name = "shotgun shell"
 	desc = "A .50 practice shell."
-	icon_state = "pshell"
-	spent_icon = "pshell-spent"
+	icon_state = "s-shell_p"
+	spent_icon = "s-shell_p-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
 	matter = list(MATERIAL_STEEL = 1)
 
@@ -190,8 +371,8 @@
 /obj/item/ammo_casing/shotgun/flash
 	name = "flash shell"
 	desc = "A .50 chemical shell used to signal distress or provide illumination."
-	icon_state = "fshell"
-	spent_icon = "fshell-spent"
+	icon_state = "s-shell_f"
+	spent_icon = "s-shell_f-spent"
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
 
@@ -201,8 +382,8 @@
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "incendiary shell"
 	desc = "A .50 chemical shell with highly flammable load."
-	icon_state = "ishell"
-	spent_icon = "ishell-spent"
+	icon_state = "s-shell_i"
+	spent_icon = "s-shell_i-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/incendiary
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMA = 0.5)
 

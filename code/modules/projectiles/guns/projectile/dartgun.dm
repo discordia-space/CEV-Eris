@@ -56,7 +56,7 @@
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0
 	mag_well = MAG_WELL_DART
-	rarity_value = GUN_BASE_RARITY_VALUE+5
+	rarity_value = 10
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.

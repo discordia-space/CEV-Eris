@@ -17,7 +17,6 @@
 	penetration_multiplier = 1.3
 	recoil_buildup = 3
 
-
 /obj/item/weapon/gun/projectile/mk58/update_icon()
 	..()
 
@@ -27,7 +26,6 @@
 		icon_state = initial(icon_state) + "_empty"
 	else
 		icon_state = initial(icon_state) + "_full"
-
 
 
 /obj/item/weapon/gun/projectile/mk58/wood

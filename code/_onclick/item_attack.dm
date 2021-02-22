@@ -53,7 +53,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-/obj/item/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
+/obj/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
 	. = FALSE
 	if(!istype(I, /obj/item/weapon/tool/sword/nt_sword))
 		return FALSE
@@ -80,7 +80,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /mob/living/attackby(obj/item/I, mob/living/user, var/params)
 	if(!ismob(user))
 		return FALSE
-	if(can_operate(src, user) && do_surgery(src, user, I)) //Surgery
+	var/surgery_check = can_operate(src, user)
+	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
 	return I.attack(src, user, user.targeted_organ)
 

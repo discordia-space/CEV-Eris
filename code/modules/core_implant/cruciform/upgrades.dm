@@ -24,6 +24,7 @@
 	if(istype(user_mob))
 		user = user_mob
 		module.user = user
+		GLOB.new_neothecnology_convert++
 
 /obj/item/weapon/coreimplant_upgrade/cruciform/obey/set_up()
 	module = new CRUCIFORM_OBEY_ACTIVATOR

@@ -350,3 +350,12 @@
 
 /obj/item/stack/material/biomatter/full
 	amount = 60
+
+/obj/item/stack/material/compressed
+	name = "compressed matter"
+	desc = "Useful matter that has been compressed and squeezed into cartridges."
+	singular_name = "compressed matter cartridge"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "rcd"
+	item_state = "rcdammo"
+	default_type = MATERIAL_COMPRESSED

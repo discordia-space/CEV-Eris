@@ -13,7 +13,7 @@
 	var/max_amount = 1
 	var/top_price
 	var/low_price
-	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
+	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE) //The tags the item must have to be considered to spawn
 	var/list/should_be_include_tags = list()//TODO
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
@@ -177,7 +177,7 @@
 
 /obj/spawner/proc/find_smart_point()
 	var/list/points_for_spawn = list()
-	for(var/turf/T in trange(spread_range, loc))
+	for(var/turf/T in RANGE_TURFS(spread_range, loc))
 		if(check_biome_spawner() && !(T in biome.spawn_turfs))
 			continue
 		if(!check_spawn_point(T, check_density))

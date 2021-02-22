@@ -414,17 +414,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_max_w_class()
 	var/get_max_w_class = 0
-	for(var/obj/item/clothing/C in get_equipped_items(TRUE))
-		if(C)
-			if(C.w_class > ITEM_SIZE_TINY)
-				get_max_w_class = C.w_class
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C.w_class > get_max_w_class)
+			get_max_w_class = C.w_class
 	return get_max_w_class
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
 	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C)
-			style_factor += C.get_style()
+		style_factor += C.get_style()
 	if(restrained())
 		style_factor -= 1
 	if(feet_blood_DNA)

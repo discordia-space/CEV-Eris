@@ -17,8 +17,8 @@
 	item_modifystate = "stun"
 
 	init_firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="energystun", item_modifystate="stun", fire_sound='sound/weapons/Taser.ogg', icon="stun"),
-		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, modifystate="energykill", item_modifystate="kill", fire_sound='sound/weapons/Laser.ogg', icon="kill"),
+		STUNBOLT,
+		LETHAL,
 		WEAPON_CHARGE,
 		)
 
@@ -46,6 +46,8 @@
 	modifystate = null
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
+
+	spawn_tags = SPAWN_TAG_FS_ENERGY
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]

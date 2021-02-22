@@ -14,10 +14,6 @@
 	// set it to CRAFT_DEFAULT_DIR to spawn the result in its default direction (stored in dir_default)
 	var/dir_default = 2  // south is default for recipes with dir_type = CRAFT_DEFAULT_DIR
 
-	var/variation_type = CRAFT_REFERENCE  // if the object is the reference of a subtype
-	// set it to CRAFT_VARIATION if the object is a variation of the reference
-	var/name_craft_menu  // name of the subtype formed by a reference and its variations
-
 /datum/craft_recipe/New()
 	var/step_definations = steps
 	steps = new

@@ -8,3 +8,4 @@
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
+

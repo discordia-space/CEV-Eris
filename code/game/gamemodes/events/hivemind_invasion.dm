@@ -16,11 +16,11 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen	= 180 //hivemind is annouced wayy faster now, enjoy
+	announceWhen	= 240
 
 
 /datum/event/hivemind/announce()
-	level_eight_announcement() //new announcment so the crew doesn't have to fuck around trying to figure out if its a blob, hivemind, or a literal fungus
+	level_eight_announcement() //Different announcement than blob or plants, so the crew doesn't need to struggle trying to figure out if it's blob, plants or hive
 
 
 /datum/event/hivemind/start()

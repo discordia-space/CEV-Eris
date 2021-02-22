@@ -39,7 +39,7 @@
 /turf/space/proc/update_starlight()
 	if(!config.starlight)
 		return
-	if(locate(/turf/simulated) in trange(1, src))
+	if(locate(/turf/simulated) in RANGE_TURFS(1, src))
 		set_light(2, 1, config.starlight)
 	else
 		set_light(0)

@@ -24,6 +24,8 @@
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
 	glove_type = /obj/item/clothing/gloves/rig/light
 
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
 
@@ -112,7 +114,6 @@
 		/obj/item/rig_module/datajack,
 		/obj/item/rig_module/self_destruct
 		)
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/gloves/rig/light/ninja
 	name = "insulated gloves"

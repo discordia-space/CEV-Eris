@@ -9,6 +9,7 @@
 	projectile_type = /obj/item/projectile/beam/lastertag/blue
 	bad_type = /obj/item/weapon/gun/energy/lasertag
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
+	rarity_value = 30
 	var/required_vest
 
 /obj/item/weapon/gun/energy/lasertag/special_check(mob/living/carbon/human/M)

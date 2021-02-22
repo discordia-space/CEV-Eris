@@ -85,6 +85,12 @@
 
 	return ..()
 
+/obj/item/clothing/suit/space/void/make_young()
+	..()
+	if(boots) boots.make_young()
+	if(helmet) helmet.make_young()
+	if(tank) tank.make_young()
+
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 

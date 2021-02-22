@@ -263,7 +263,8 @@
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
 		if(I.perk)
-			owner.stats.addPerk(I.perk)
+			if(owner.stats.addPerk(I.perk))
+				I.perk = null
 		for(var/mob/living/carbon/human/H in viewers(owner))
 			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
@@ -360,7 +361,7 @@
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
-/datum/sanity/proc/breakdown()
+/datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
@@ -372,7 +373,7 @@
 			S.reg_break(owner)
 
 	var/list/possible_results
-	if(prob(positive_prob) && positive_prob_multiplier > 0)
+	if((prob(positive_prob) && positive_prob_multiplier > 0) || positive_breakdown)
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)

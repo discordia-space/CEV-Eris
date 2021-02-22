@@ -14,6 +14,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
+	recoil_buildup = 7
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
@@ -24,8 +25,8 @@
 	var/bolt_open = 0
 	burst_delay = 0
 	init_firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
-		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
+		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
+		list(mode_name="Both Barrels", mode_desc="Give them the side-by-side", burst=2, icon="burst"),
 		)
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet
