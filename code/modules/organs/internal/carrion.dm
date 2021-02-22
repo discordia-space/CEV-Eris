@@ -222,18 +222,23 @@
 	set category = "Carrion"
 	set name = "Regenerative Stasis (20)"
 
-	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
+	if(!owner.stat && alert("Are you sure you wish to fake our death?",,"Yes","No") == "No")
 		return
 
 	if(!(owner.check_ability(20)))
 		return
 
-	to_chat(owner, SPAN_NOTICE("We will attempt to regenerate our form."))
-
+	to_chat(owner, SPAN_NOTICE("you will attempt to regenerate your form."))
+	var/geneticpoints_lost = 0
+	var/obj/item/organ/internal/carrion/maw/H = owner.random_organ_by_process(OP_MAW)
+	if(!H)
+		geneticpoints_lost +=4
+		to_chat(owner, SPAN_NOTICE("your missing maw caused a leak of genetic material."))
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
 	owner.timeofdeath = world.time
+	src.geneticpoints -= geneticpoints_lost
 	var/last_owner = owner
 
 	spawn(rand(1 MINUTES, 3 MINUTES))
