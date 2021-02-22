@@ -199,7 +199,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	empulse(target, 0, 0)
-	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
 	damage_types = list(BRUTE = 65)
