@@ -1067,11 +1067,18 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 /image/proc/BreakSync(atom/D, breakIcon = TRUE, breakFlicks = TRUE)
 	if(istype(D) && SynchronizedAtoms.Find(D))
 		var/list/data_of_sync = SynchronizedAtoms[D]
-		if(data_of_sync)
+		if(length(data_of_sync) >= 2)
 			if(breakIcon && data_of_sync[1] == 1)
+				data_of_sync[1] = 0
 				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
 			if(breakFlicks && data_of_sync[2] == 1)
+				data_of_sync[2] = 0
 				GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
+			var/all_zero = TRUE
+			for(var/i in data_of_sync)
+				all_zero = all_zero && !i
+			if(all_zero)
+				SynchronizedAtoms.Remove(D)
 
 /image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
 	if(QDELETED(D))
