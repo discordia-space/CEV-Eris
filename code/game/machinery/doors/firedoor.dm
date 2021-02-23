@@ -329,10 +329,10 @@
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("door_opening", src)
+			flicker("door_opening")
 			playsound(src, 'sound/machines/airlock_ext_open.ogg', 37, 1)
 		if("closing")
-			flick("door_closing", src)
+			flicker("door_closing")
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 37, 1)
 	return
 

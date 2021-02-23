@@ -96,7 +96,7 @@
 /obj/structure/simple_door/proc/Open()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
-	flick("[material.door_icon_base]opening",src)
+	FLICK("[material.door_icon_base]opening",src)
 	sleep(10)
 	density = FALSE
 	set_opacity(FALSE)
@@ -108,7 +108,7 @@
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
-	flick("[material.door_icon_base]closing",src)
+	FLICK("[material.door_icon_base]closing",src)
 	sleep(10)
 	density = TRUE
 	set_opacity(TRUE)

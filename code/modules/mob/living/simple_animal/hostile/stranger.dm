@@ -55,7 +55,7 @@
 	animation.icon_state = "blank"
 	animation.icon =  'icons/mob/mob.dmi'
 	animation.master = src
-	flick("dust2-h", animation)
+	FLICK("dust2-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 	do_sparks(3, 0, src.loc)
 	qdel(src)

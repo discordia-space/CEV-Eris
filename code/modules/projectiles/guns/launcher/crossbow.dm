@@ -324,7 +324,7 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
-		flick("[icon_state]-empty", src)
+		FLICK("[icon_state]-empty", src)
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/attack_self(mob/living/user)
 	if(tension)

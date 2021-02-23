@@ -150,7 +150,7 @@
 		return FALSE
 
 	if(surge && !emagged)
-		flick("apc-spark", src)
+		FLICK("apc-spark", src)
 		emagged = TRUE
 		locked = FALSE
 		update_icon()
@@ -701,7 +701,7 @@
 		else if(stat & (BROKEN|MAINT))
 			to_chat(user, "Nothing happens.")
 		else
-			flick("apc-spark", src)
+			FLICK("apc-spark", src)
 			if (do_after(user,6,src))
 				if(prob(50))
 					emagged = TRUE

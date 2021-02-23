@@ -10,11 +10,11 @@
 
 /obj/machinery/door/airlock/Process()
 	..()
-	if (arePowerSystemsOn())
+	if(arePowerSystemsOn())
 		execute_current_command()
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if (!arePowerSystemsOn()) return //no power
+	if(!arePowerSystemsOn()) return //no power
 
 	if(!signal || signal.encryption) return
 
@@ -28,11 +28,11 @@
 	if(operating)
 		return //emagged or busy doing something else
 
-	if (!cur_command)
+	if(!cur_command)
 		return
 
 	do_command(cur_command)
-	if (command_completed(cur_command))
+	if(command_completed(cur_command))
 		cur_command = null
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
@@ -69,7 +69,7 @@
 /obj/machinery/door/airlock/proc/command_completed(var/command)
 	switch(command)
 		if("open")
-			return (!density)
+			return !density
 
 		if("close")
 			return density
@@ -185,7 +185,7 @@
 	signal.data["command"] = command
 
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("airlock_sensor_cycle", src)
+	flicker("airlock_sensor_cycle")
 
 /obj/machinery/airlock_sensor/Process()
 	if(on)
@@ -342,7 +342,7 @@
 		signal.data["command"] = command
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("access_button_cycle", src)
+	flicker("access_button_cycle")
 
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

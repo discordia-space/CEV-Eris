@@ -757,7 +757,7 @@ proc
 		var/flatX2 = flat.Width()
 		var/flatY1 = 1
 		var/flatY2 = flat.Height()
-			
+
 		// Dimensions of overlay being added
 		var/addX1
 		var/addX2
@@ -1039,3 +1039,58 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
+
+/proc/FLICK(state, datum/D)
+	if(istype(D))
+		return D.flicker(state)
+	else
+		CRASH("[D](\ref[D]) is not datum, aborting /proc/FLICK. Additional info: {[json_encode(args)]}")
+
+/datum/proc/flicker(iconOrState)
+	// To handle not only state changes in update icon if need
+	flick(iconOrState, src)
+
+/image
+	var/list/SynchronizedAtoms = list()
+
+/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withFlicks = TRUE)
+	if(istype(D))
+		SynchronizedAtoms[D] = args.Copy(2)
+		if(withIcon)
+			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
+			D.update_icon()
+		if(withFlicks)
+			GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
+	else
+		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
+
+/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakFlicks = TRUE)
+	if(istype(D) && SynchronizedAtoms.Find(D))
+		var/list/data_of_sync = SynchronizedAtoms[D]
+		if(data_of_sync)
+			if(breakIcon && data_of_sync[1] == 1)
+				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
+			if(breakFlicks && data_of_sync[2] == 1)
+				GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
+
+/image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
+	if(QDELETED(D))
+		qdel(src)
+		return
+	if(isByEvent)
+		GLOB.update_icon_event.register(D, src, .proc/flick_synchronization)
+	return flicker(iconOrState)
+
+/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays, isByEvent = TRUE)
+	if(QDELETED(D))
+		qdel(src)
+		return
+	if(_icon)
+		icon = _icon
+	if(_state)
+		icon_state = _state
+	if(_overlays)
+		overlays = _overlays //No need to .Copy, byond copy ovelays' list by it self
+	if(isByEvent)
+		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
+

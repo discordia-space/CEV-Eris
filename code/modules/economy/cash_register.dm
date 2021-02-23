@@ -451,7 +451,7 @@
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
-	flick("register_approve", src)
+	FLICK("register_approve", src)
 	reset_memory()
 	updateDialog()
 

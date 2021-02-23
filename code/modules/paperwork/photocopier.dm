@@ -107,7 +107,7 @@
 			copyitem = I
 			I.loc = src
 			to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
-			flick(insert_anim, src)
+			FLICK(insert_anim, src)
 			updateUsrDialog()
 		else
 			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))

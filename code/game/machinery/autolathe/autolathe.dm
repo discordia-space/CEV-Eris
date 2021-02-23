@@ -686,21 +686,21 @@
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
-	flick("[initial(icon_state)]_start", src)
+	FLICK("[initial(icon_state)]_start", src)
 
 /obj/machinery/autolathe/proc/print_post()
-	flick("[initial(icon_state)]_finish", src)
+	FLICK("[initial(icon_state)]_finish", src)
 	if(!current_file && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
 /obj/machinery/autolathe/proc/res_load(material/material)
-	flick("[initial(icon_state)]_load", image_load)
+	FLICK("[initial(icon_state)]_load", image_load)
 	if(material)
 		image_load_material.color = material.icon_colour
 		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
-		flick("[initial(icon_state)]_load_m", image_load_material)
+		FLICK("[initial(icon_state)]_load_m", image_load_material)
 
 
 /obj/machinery/autolathe/proc/check_materials(datum/design/design)

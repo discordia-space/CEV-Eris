@@ -279,7 +279,7 @@
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			if(M.HUDtech.Find("flash"))
-				flick("flash", M.HUDtech["flash"])
+				FLICK("flash", M.HUDtech["flash"])
 	else
 		return ..()
 

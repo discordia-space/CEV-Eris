@@ -99,15 +99,15 @@
 
 /datum/multistructure/biogenerator/proc/activate()
 	generator.core.icon_state 	= "core-working"
-	flick("core-starting", generator.core)
+	FLICK("core-starting", generator.core)
 	screen.icon_state 			= "screen-working"
-	flick("screen-starting", screen)
+	FLICK("screen-starting", screen)
 	working = TRUE
 
 
 /datum/multistructure/biogenerator/proc/deactivate()
 	generator.core.icon_state 		= initial(generator.core.icon_state)
-	flick("core-finishing", generator.core)
+	FLICK("core-finishing", generator.core)
 	screen.icon_state 	= initial(screen.icon_state)
 	working = FALSE
 	last_output_power = 0

@@ -402,20 +402,20 @@
 	switch(animation)
 		if("opening")
 			if(p_open)
-				flick("o_doorc0", src)
+				FLICK("o_doorc0", src)
 			else
-				flick("doorc0", src)
+				FLICK("doorc0", src)
 		if("closing")
 			if(p_open)
-				flick("o_doorc1", src)
+				FLICK("o_doorc1", src)
 			else
-				flick("doorc1", src)
+				FLICK("doorc1", src)
 		if("spark")
 			if(density)
-				flick("door_spark", src)
+				FLICK("door_spark", src)
 		if("deny")
 			if(density && !(stat & (NOPOWER|BROKEN)))
-				flick("door_deny", src)
+				FLICK("door_deny", src)
 				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
