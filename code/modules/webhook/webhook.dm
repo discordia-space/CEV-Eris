@@ -1,26 +1,41 @@
 #define RESTART_WEBHOOK "restart"
+#define LOBBY_ALERT "lobbyalert"
+#define ADMIN_HELP "adminhelp"
+#define ADMIN_ALERT "adminalert"
+#define CODE_ALERT "codealert"
+#define ADMIRALTY_ALERT "admiraltyalert"
+
+/proc/is_webhook_set_up()
+	return config.webhook_key && config.webhook_url
+
+// type: string, params: byond list
+/proc/call_webhook(var/type, var/params)
+	spawn(0)
+		params["key"] = config.webhook_key
+		params["type"] = type
+		var/query_string = list2params(params)
+		var/url = "[config.webhook_url]?[query_string]"
+
+		world.Export(url)
 
 /proc/call_restart_webhook()
-	if (!config.webhook_url || !config.webhook_key)
+	if (!is_webhook_set_up())
 		return
-	spawn(0)
-		var/message = "<@&546427101247438849> Restart!"
-		var/query_string = "type=restart"
-		query_string += "&key=[url_encode(config.webhook_key)]"
-		query_string += "&msg=[url_encode(message)]"
-		world.Export("[config.webhook_url]?[query_string]")
+	var/message = "<@&546427101247438849> Restart!"
+	var/params = list(msg = message)
+	call_webhook(RESTART_WEBHOOK, params)
 
 /proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
-	if (!config.webhook_url || !config.webhook_key)
+	if (!is_webhook_set_up())
 		return
-	spawn(0)
-		var/query_string = "type=lobbyalert"
-		query_string += "&key=[url_encode(config.webhook_key)]"
-		query_string += "&msg=[url_encode(message)]"
-		query_string += "&color=[url_encode(color)]"
-		if(sender)
-			query_string += "&from=[url_encode(sender)]"
-		world.Export("[config.webhook_url]?[query_string]")
+	var/params = list(
+		msg = message,
+		color = color
+	)
+	if (sender)
+		params["from"] = sender
+	
+	call_webhook(LOBBY_ALERT, params)
 
 ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 /client/proc/discord_msg()
@@ -36,33 +51,35 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 
 
 /proc/send2adminchat(var/initiator, var/original_msg)
-	if(!config.webhook_url)
+	if(!is_webhook_set_up())
 		return
 
 	var/list/adm = get_admin_counts()
 	var/list/afkmins = adm["afk"]
 	var/list/allmins = adm["total"]
 
-	spawn(0) //Unreliable world.Exports()
-		var/query_string = "type=adminhelp"
-		query_string += "&key=[url_encode(config.webhook_key)]"
-		query_string += "&from=[url_encode(initiator)]"
-		query_string += "&msg=[url_encode(html_decode(original_msg))]"
-		query_string += "&admin_number=[allmins.len]"
-		query_string += "&admin_number_afk=[afkmins.len]"
-		world.Export("[config.webhook_url]?[query_string]")
+	var/params = list(
+		from = initiator,
+		msg = html_decode(original_msg),
+		admin_number = allmins.len,
+		admin_number_afk = afkmins.len
+	)
+
+	call_webhook(ADMIN_HELP, params)
 
 /proc/send_adminalert2adminchat(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
-	if (!config.webhook_url || !config.webhook_key)
+	if (!is_webhook_set_up())
 		return
-	spawn(0)
-		var/query_string = "type=adminalert"
-		query_string += "&key=[url_encode(config.webhook_key)]"
-		query_string += "&msg=[url_encode(message)]"
-		query_string += "&color=[url_encode(color)]"
-		if(sender)
-			query_string += "&from=[url_encode(sender)]"
-		world.Export("[config.webhook_url]?[query_string]")
+		
+	var/params = list(
+		msg = message,
+		color = color
+	)
+
+	if (sender)
+		params["from"] = sender
+	
+	call_webhook(ADMIN_ALERT, params)
 
 /proc/get_admin_counts(requiredflags = R_ADMIN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
@@ -78,16 +95,19 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 			.["present"] += X
 
 /proc/send2coders(var/message = "Debug Message", var/color = "#FFFFFF", var/sender, var/admiralty = 0)
-	if (!config.webhook_url || !config.webhook_key)
+	if (!is_webhook_set_up())
 		return
-	spawn(0)
-		var/query_string = "type=codealert"
-		if(admiralty)
-			query_string = "type=admiraltyalert"
-		query_string += "&key=[url_encode(config.webhook_key)]"
-		query_string += "&msg=[url_encode(message)]"
-		query_string += "&color=[url_encode(color)]"
-		if(sender)
-			query_string += "&from=[url_encode(sender)]"
-		world.Export("[config.webhook_url]?[query_string]")
+	
+	var/params = list(
+		msg = message,
+		color = color
+	)
+
+	if (sender)
+		params["from"] = sender
+	
+	if (admiralty)
+		call_webhook(ADMIRALTY_ALERT, params)
+	else
+		call_webhook(CODE_ALERT, params)
 
