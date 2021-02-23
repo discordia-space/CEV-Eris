@@ -1076,9 +1076,9 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 		GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
 		GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
 	else
-		CRASH("[D] is not datum, aborting '/image/proc/SyncWithDatum'.")
+		CRASH("[D](\ref[D]) is not datum, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
 
-/image/proc/BreakSync(datum/D)
+/image/proc/BreakSync(atom/D)
 	if(istype(D))
 		GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
 		GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
