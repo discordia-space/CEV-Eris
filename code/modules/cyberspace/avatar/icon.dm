@@ -8,6 +8,7 @@
 			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner])")
 		if(!Icon)
 			Icon = image(,Owner,)
+			Icon.SyncWithAtom(Owner)
 			Icon.plane = FULLSCREEN_PLANE
 			Icon.layer = FULLSCREEN_LAYER + 0.01
 		_updateImage_icon(Icon)
@@ -24,7 +25,7 @@
 		_updateImage_icon(Icon)
 
 /datum/CyberSpaceAvatar/proc/_updateImage_icon(image/iIcon)
-	iIcon.SyncWith(Owner)
+	//iIcon.SyncWithAtom(Owner)
 	iIcon.color = color
 
 /datum/CyberSpaceAvatar/Destroy()
