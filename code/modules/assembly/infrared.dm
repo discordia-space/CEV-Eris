@@ -36,7 +36,7 @@
 	return secured
 
 
-/obj/item/device/assembly/infra/update_icon()
+/obj/item/device/assembly/infra/on_update_icon()
 	overlays.Cut()
 	attached_overlays = list()
 	if(on)

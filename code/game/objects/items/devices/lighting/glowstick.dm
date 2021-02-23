@@ -33,7 +33,7 @@
 	else
 		visible_message("[src] slowly burn out")
 
-/obj/item/device/lighting/glowstick/update_icon()
+/obj/item/device/lighting/glowstick/on_update_icon()
 	overlays.Cut()
 	if(!fuel)
 		icon_state = "[initial(icon_state)]-empty"

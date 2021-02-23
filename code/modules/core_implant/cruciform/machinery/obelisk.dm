@@ -133,5 +133,5 @@
 	return got_neoteo
 
 
-/obj/machinery/power/nt_obelisk/update_icon()
+/obj/machinery/power/nt_obelisk/on_update_icon()
 	icon_state = "nt_obelisk[active?"_on":""]"

@@ -29,7 +29,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	if(severity == 1) // Very sturdy.
 		set_broken()
 
-/obj/machinery/gravity_generator/update_icon()
+/obj/machinery/gravity_generator/on_update_icon()
 	..()
 	icon_state = "[get_status()]_[sprite_number]"
 
@@ -279,7 +279,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		return "fix[min(broken_state, 3)]"
 	return on || charging_state != POWER_IDLE ? "on" : "off"
 
-/obj/machinery/gravity_generator/main/update_icon()
+/obj/machinery/gravity_generator/main/on_update_icon()
 	..()
 	for(var/obj/O in parts)
 		O.update_icon()

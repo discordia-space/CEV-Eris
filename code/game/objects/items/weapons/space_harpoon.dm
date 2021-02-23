@@ -118,7 +118,7 @@
 	spawn(13)	//Average length of transforming animation
 		transforming = FALSE
 
-/obj/item/weapon/bluespace_harpoon/update_icon()
+/obj/item/weapon/bluespace_harpoon/on_update_icon()
 	icon_state = "harpoon-[mode]"
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
@@ -163,7 +163,7 @@
 /obj/item/weapon/bluespace_harpoon/mounted/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/weapon/bluespace_harpoon/mounted/update_icon()
+/obj/item/weapon/bluespace_harpoon/mounted/on_update_icon()
 	icon_state = "harpoon-mounted-[mode]"
 
 /obj/item/weapon/bluespace_harpoon/mounted/blitz
@@ -172,5 +172,5 @@
 	icon_state = "harpoon-mounted-blitz-1"
 	spawn_tags = null
 
-/obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
+/obj/item/weapon/bluespace_harpoon/mounted/blitz/on_update_icon()
 	icon_state = "harpoon-mounted-blitz-[mode]"

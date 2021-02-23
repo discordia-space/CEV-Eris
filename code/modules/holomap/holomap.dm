@@ -172,7 +172,7 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/holomap/update_icon()
+/obj/machinery/holomap/on_update_icon()
 	if(!holomap_datum)
 		return //Not yet.
 

@@ -155,6 +155,6 @@
 	ratio = round(ratio, 0.33) * 100
 	overlays += "grenademag_[ratio]"
 
-/obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
+/obj/item/weapon/gun/launcher/grenade/lenar/on_update_icon()
 	overlays.Cut()
 	update_charge()

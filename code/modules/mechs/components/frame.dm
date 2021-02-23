@@ -63,7 +63,7 @@
 	else if(!is_reinforced)
 		to_chat(user, SPAN_WARNING("It does not have any internal reinforcement."))
 
-/obj/structure/heavy_vehicle_frame/update_icon()
+/obj/structure/heavy_vehicle_frame/on_update_icon()
 	. = ..()
 	var/list/new_overlays = get_mech_images(list(legs, head, body, arms), layer)
 	if(body)

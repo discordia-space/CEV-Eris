@@ -26,7 +26,7 @@
 		all_images += get_mech_image(comp.decal, comp.icon_state, comp.on_mech_icon, comp.color, overlay_layer)
 	return all_images
 
-/mob/living/exosuit/update_icon()
+/mob/living/exosuit/on_update_icon()
 	. = ..()
 	var/list/new_overlays = get_mech_images(list(body, head), MECH_BASE_LAYER)
 	if(body && !hatch_closed)

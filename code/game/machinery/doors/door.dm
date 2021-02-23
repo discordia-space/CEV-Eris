@@ -390,7 +390,7 @@
 	return
 
 
-/obj/machinery/door/update_icon()
+/obj/machinery/door/on_update_icon()
 	if(density)
 		icon_state = "door1"
 	else

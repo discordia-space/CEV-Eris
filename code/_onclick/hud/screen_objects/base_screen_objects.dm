@@ -141,7 +141,7 @@
 	. = ..()
 	name = initial(name)
 
-/obj/screen/item_action/top_bar/update_icon()
+/obj/screen/item_action/top_bar/on_update_icon()
 	..()
 	if(!ismob(owner.loc))
 		return
@@ -234,7 +234,7 @@
 	..()
 	update_icon()
 
-/obj/screen/zone_sel/update_icon()
+/obj/screen/zone_sel/on_update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
 
@@ -308,7 +308,7 @@
 	if (slot_id == slot_l_hand) C.activate_hand("l")
 	else C.activate_hand("r")
 
-/obj/screen/inventory/hand/update_icon()
+/obj/screen/inventory/hand/on_update_icon()
 	overlays -= ovrls["act_hand"]
 	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
 		overlays += ovrls["act_hand"]
@@ -341,7 +341,7 @@
 /obj/screen/health/Process()
 	update_icon()
 
-/obj/screen/health/update_icon()
+/obj/screen/health/on_update_icon()
 	if(parentmob:stat != DEAD)
 		overlays.Cut()
 		if (parentmob:analgesic >= 100)
@@ -384,7 +384,7 @@
 	ovrls["sanity6"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity6")
 	update_icon()
 
-/obj/screen/sanity/update_icon()
+/obj/screen/sanity/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	if(!istype(H) || H.stat == DEAD)
 		return
@@ -455,7 +455,7 @@
 	ovrls["nsa10"] += new /image/no_recolor(icon = src.icon, icon_state = "nsa10")
 	update_icon()
 
-/obj/screen/nsa/update_icon()
+/obj/screen/nsa/on_update_icon()
 	var/mob/living/carbon/C = parentmob
 	if(!istype(C) || C.stat == DEAD)
 		return
@@ -510,7 +510,7 @@
 	//var/mob/living/carbon/human/H = parentmob
 	update_icon()
 
-/obj/screen/nutrition/update_icon()
+/obj/screen/nutrition/on_update_icon()
 	set src in usr.client.screen
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
@@ -552,7 +552,7 @@
 	update_icon()
 
 
-/obj/screen/bodytemp/update_icon()
+/obj/screen/bodytemp/on_update_icon()
 	//TODO: precalculate all of this stuff when the species datum is created
 	var/mob/living/carbon/parentmobC = parentmob	// same parent mob but in correct type for accessing to species
 	var/base_temperature = parentmobC.species.body_temperature
@@ -616,7 +616,7 @@
 /obj/screen/pressure/Process()
 	update_icon()
 
-/obj/screen/pressure/update_icon()
+/obj/screen/pressure/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 //	icon_state = "pressure[H.pressure_alert]"
 	overlays.Cut()
@@ -643,7 +643,7 @@
 /obj/screen/toxin/Process()
 	update_icon()
 
-/obj/screen/toxin/update_icon()
+/obj/screen/toxin/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
 	if(H.plasma_alert)
@@ -675,7 +675,7 @@
 /obj/screen/oxygen/Process()
 	update_icon()
 
-/obj/screen/oxygen/update_icon()
+/obj/screen/oxygen/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	overlays.Cut()
 	if(H.oxygen_alert)
@@ -708,7 +708,7 @@
 /obj/screen/fire/Process()
 	update_icon()
 
-/obj/screen/fire/update_icon()
+/obj/screen/fire/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	src.overlays.Cut()
 	overlays += ovrls["fire[H.fire_alert == 1]"]
@@ -837,7 +837,7 @@ obj/screen/fire/DEADelize()
 						to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>")
 					update_icon()
 
-/obj/screen/internal/update_icon()
+/obj/screen/internal/on_update_icon()
 	overlays.Cut()
 	if(parentmob:internal)
 		overlays += ovrls["internal1"]
@@ -896,7 +896,7 @@ obj/screen/fire/DEADelize()
 	//update_icon()
 	//icon_state = "pull0"
 
-/obj/screen/pull/update_icon()
+/obj/screen/pull/on_update_icon()
 	if (parentmob.pulling)
 		icon_state = "pull1"
 	else
@@ -924,7 +924,7 @@ obj/screen/fire/DEADelize()
 	update_icon()
 	return TRUE
 
-/obj/screen/HUDthrow/update_icon()
+/obj/screen/HUDthrow/on_update_icon()
 	if (parentmob.in_throw_mode)
 		icon_state = "act_throw_on"
 	else
@@ -992,7 +992,7 @@ obj/screen/fire/DEADelize()
 	..()
 	update_icon()
 
-/obj/screen/mov_intent/update_icon()
+/obj/screen/mov_intent/on_update_icon()
 	icon_state = parentmob.move_intent.hud_icon_state
 
 //-----------------------mov_intent END------------------------------
@@ -1039,7 +1039,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/bionics/r_arm
 	target_organ = BP_R_ARM
 
-/obj/screen/bionics/update_icon()
+/obj/screen/bionics/on_update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	if(istype(H))
 		var/obj/item/organ/external/E = H.organs_by_name[target_organ]
@@ -1103,7 +1103,7 @@ obj/screen/fire/DEADelize()
 	else
 		return ..()
 
-/obj/screen/intent/update_icon()
+/obj/screen/intent/on_update_icon()
 	src.overlays.Cut()
 	switch (parentmob.a_intent)
 		if(I_HELP)
@@ -1160,7 +1160,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/drugoverlay/Process()
 	update_icon()
 
-/obj/screen/drugoverlay/update_icon()
+/obj/screen/drugoverlay/on_update_icon()
 	underlays.Cut()
 	if (parentmob.disabilities & NEARSIGHTED)
 		var/obj/item/clothing/glasses/G = parentmob.get_equipped_item(slot_glasses)
@@ -1195,7 +1195,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/damageoverlay/Process()
 	update_icon()
 
-/obj/screen/damageoverlay/update_icon()
+/obj/screen/damageoverlay/on_update_icon()
 	overlays.Cut()
 	UpdateHealthState()
 
@@ -1302,7 +1302,7 @@ obj/screen/fire/DEADelize()
 	update_icon()
 	return
 
-/obj/screen/glasses_overlay/update_icon()
+/obj/screen/glasses_overlay/on_update_icon()
 	overlays.Cut()
 	var/mob/living/carbon/human/H = parentmob
 	if(istype(H.glasses, /obj/item/clothing/glasses))

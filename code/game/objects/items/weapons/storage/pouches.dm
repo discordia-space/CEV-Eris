@@ -207,7 +207,7 @@
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
 
-/obj/item/weapon/storage/pouch/tubular/update_icon()
+/obj/item/weapon/storage/pouch/tubular/on_update_icon()
 	..()
 	overlays.Cut()
 	if(contents.len)
@@ -249,7 +249,7 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/pistol_holster/update_icon()
+/obj/item/weapon/storage/pouch/pistol_holster/on_update_icon()
 	..()
 	overlays.Cut()
 	if(contents.len)
@@ -272,7 +272,7 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/baton_holster/update_icon()
+/obj/item/weapon/storage/pouch/baton_holster/on_update_icon()
 	..()
 	overlays.Cut()
 	if(contents.len)

@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		user.stop_pulling()
 	return
 
-/obj/machinery/conveyor/update_icon()
+/obj/machinery/conveyor/on_update_icon()
 	..()
 	if(operating && can_conveyor_run())
 		icon_state = "conveyor_started_[clockwise ? "cw" : "ccw"]"
@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	GLOB.conveyor_switches -= src
 	return ..()
 
-/obj/machinery/conveyor_switch/update_icon()
+/obj/machinery/conveyor_switch/on_update_icon()
 	overlays.Cut()
 	if(!position)
 		icon_state = "switch-off"

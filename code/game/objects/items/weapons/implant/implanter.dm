@@ -28,7 +28,7 @@
 	update_icon()
 	return
 
-/obj/item/weapon/implanter/update_icon()
+/obj/item/weapon/implanter/on_update_icon()
 	if(implant)
 		icon_state = "implanter1"
 	else

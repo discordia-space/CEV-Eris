@@ -29,7 +29,7 @@
 		new spawn_type(src)
 	update_icon()
 
-/obj/item/weapon/storage/box/donut/update_icon()
+/obj/item/weapon/storage/box/donut/on_update_icon()
 	overlays.Cut()
 	var/i = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)

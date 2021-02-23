@@ -157,7 +157,7 @@
 	if(contents.len)
 		dry()
 
-/obj/machinery/smartfridge/drying_rack/update_icon()
+/obj/machinery/smartfridge/drying_rack/on_update_icon()
 	overlays.Cut()
 	if(inoperable())
 		icon_state = icon_off
@@ -239,7 +239,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/smartfridge/update_icon()
+/obj/machinery/smartfridge/on_update_icon()
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = icon_off
 	else

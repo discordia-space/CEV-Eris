@@ -202,7 +202,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/update_icon()
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/on_update_icon()
 	if(hud in src)
 		icon_state = "bulletproof_ironhammer"
 		set_light(0, 0)
@@ -276,7 +276,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/update_icon()
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full/on_update_icon()
 	if(hud in src)
 		icon_state = "ironhammer_full"
 		set_light(0, 0)
@@ -343,7 +343,7 @@
 /obj/item/clothing/head/armor/faceshield/attack_self()
 	toggle()
 
-/obj/item/clothing/head/armor/faceshield/update_icon()
+/obj/item/clothing/head/armor/faceshield/on_update_icon()
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 //I wanted to name it set_up() but some how I thought that would be misleading
@@ -445,7 +445,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/riot_hud/update_icon()
+/obj/item/clothing/head/armor/riot_hud/on_update_icon()
 	if(hud in src)
 		icon_state = "light_riot"
 		set_light(0, 0)

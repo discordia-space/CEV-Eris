@@ -23,7 +23,7 @@
 			origin_tech = list(TECH_COMBAT = 1)
 
 
-/obj/item/weapon/melee/toolbox_maul/update_icon()
+/obj/item/weapon/melee/toolbox_maul/on_update_icon()
 	..()
 	overlays.Cut()
 	if(reinforced)

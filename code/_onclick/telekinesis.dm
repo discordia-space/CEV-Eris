@@ -157,7 +157,7 @@ var/const/tk_maxrange = 15
 		return
 	new /obj/effect/overlay/pulse(get_turf(focus), 5)
 
-/obj/item/tk_grab/update_icon()
+/obj/item/tk_grab/on_update_icon()
 	overlays.Cut()
 	if(focus)
 		var/old_layer = focus.layer

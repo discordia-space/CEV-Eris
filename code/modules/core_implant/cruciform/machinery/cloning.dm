@@ -229,7 +229,7 @@
 
 	use_power(power_cost)
 
-/obj/machinery/neotheology/cloner/update_icon()
+/obj/machinery/neotheology/cloner/on_update_icon()
 	icon_state = "pod_base0"
 
 	overlays.Cut()
@@ -349,7 +349,7 @@
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 
-/obj/machinery/neotheology/biomass_container/update_icon()
+/obj/machinery/neotheology/biomass_container/on_update_icon()
 	overlays.Cut()
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
@@ -452,7 +452,7 @@
 		implant = null
 	return ..()
 
-/obj/machinery/neotheology/reader/update_icon()
+/obj/machinery/neotheology/reader/on_update_icon()
 	overlays.Cut()
 
 	if(panel_open)

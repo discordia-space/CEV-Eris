@@ -24,7 +24,7 @@
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
 	twohanded = TRUE
-/obj/item/weapon/gun/projectile/rpg/update_icon()
+/obj/item/weapon/gun/projectile/rpg/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

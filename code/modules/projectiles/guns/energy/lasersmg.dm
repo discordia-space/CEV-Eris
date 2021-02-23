@@ -35,7 +35,7 @@
 	..()
 	return ..()
 
-/obj/item/weapon/gun/energy/lasersmg/update_icon()
+/obj/item/weapon/gun/energy/lasersmg/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -45,7 +45,7 @@
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-/obj/item/weapon/gun/energy/lasersmg/update_icon()//TODO: Rework overlays, check assets storage for charge states.
+/obj/item/weapon/gun/energy/lasersmg/on_update_icon()//TODO: Rework overlays, check assets storage for charge states.
 	overlays.Cut()
 	..()
 

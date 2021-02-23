@@ -17,7 +17,7 @@
 	var/req_type
 	var/max_w_class
 
-/datum/inventory_slot/proc/update_icon(mob/living/owner, redraw)
+/datum/inventory_slot/proc/on_update_icon(mob/living/owner, redraw)
 	if(update_proc)
 		call(owner, update_proc)(redraw)
 

@@ -54,7 +54,7 @@
 	desc = "They are worth 0 credits."
 	worth = 0
 
-/obj/item/weapon/spacecash/bundle/update_icon()
+/obj/item/weapon/spacecash/bundle/on_update_icon()
 	overlays.Cut()
 	var/sum = src.worth
 	var/num = 0

@@ -526,7 +526,7 @@
 /obj/item/weapon/rig/proc/get_species_icon()
 	return 'icons/mob/rig_back.dmi'
 
-/obj/item/weapon/rig/update_icon(var/update_mob_icon)
+/obj/item/weapon/rig/on_update_icon(var/update_mob_icon)
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)

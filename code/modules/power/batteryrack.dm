@@ -32,7 +32,7 @@
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
 
 
-/obj/machinery/power/smes/batteryrack/update_icon()
+/obj/machinery/power/smes/batteryrack/on_update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
 
@@ -107,7 +107,7 @@
 	var/overcharge_percent = 0
 
 
-/obj/machinery/power/smes/batteryrack/makeshift/update_icon()
+/obj/machinery/power/smes/batteryrack/makeshift/on_update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
 

@@ -37,7 +37,7 @@
 	if(src)
 		qdel(src)
 
-/obj/item/weapon/mine/update_icon()
+/obj/item/weapon/mine/on_update_icon()
 	overlays.Cut()
 
 	if(armed)

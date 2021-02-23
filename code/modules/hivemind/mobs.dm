@@ -741,7 +741,7 @@
 
 //animations
 //updates every life tick
-/mob/living/simple_animal/hostile/hivemind/mechiver/update_icon()
+/mob/living/simple_animal/hostile/hivemind/mechiver/on_update_icon()
 	if(target_mob && !passenger && (get_dist(target_mob, src) <= 4) && !is_on_cooldown())
 		if(!hatch_closed)
 			return

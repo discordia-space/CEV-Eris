@@ -41,7 +41,7 @@
 
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
-/obj/structure/cyberplant/update_icon()
+/obj/structure/cyberplant/on_update_icon()
 	..()
 	overlays.Cut()
 	if (!plant)

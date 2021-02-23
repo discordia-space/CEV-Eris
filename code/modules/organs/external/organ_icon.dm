@@ -76,7 +76,7 @@ var/global/list/limb_icon_cache = list()
 	update_icon(1)
 	..()
 
-/obj/item/organ/external/head/update_icon()
+/obj/item/organ/external/head/on_update_icon()
 
 	..()
 	if(!appearance_test.special_update)
@@ -113,7 +113,7 @@ var/global/list/limb_icon_cache = list()
 
 	return mob_icon
 
-/obj/item/organ/external/update_icon(regenerate = 0)
+/obj/item/organ/external/on_update_icon(regenerate = 0)
 	var/gender = "_m"
 
 	if(appearance_test.simple_setup)

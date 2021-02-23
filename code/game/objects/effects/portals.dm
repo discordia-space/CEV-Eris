@@ -140,7 +140,7 @@ var/list/portal_cache = list()
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
 
-/obj/effect/portal/wormhole/update_icon()
+/obj/effect/portal/wormhole/on_update_icon()
 	if (failchance > 0)
 		icon_state = "wormhole_unstable"
 		desc = "It is whirling violently. Going into this thing might be a bad idea."
@@ -220,4 +220,4 @@ var/list/portal_cache = list()
 		P.teleportations_left -= 1
 		close()
 
-/obj/effect/portal/wormhole/update_icon()
+/obj/effect/portal/wormhole/on_update_icon()

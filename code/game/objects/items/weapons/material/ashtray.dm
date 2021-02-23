@@ -20,7 +20,7 @@ var/global/list/ashtray_cache = list()
 	update_icon()
 	return
 
-/obj/item/weapon/material/ashtray/update_icon()
+/obj/item/weapon/material/ashtray/on_update_icon()
 	color = null
 	overlays.Cut()
 	var/cache_key = "base-[material.name]"

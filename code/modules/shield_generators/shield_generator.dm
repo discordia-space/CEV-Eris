@@ -78,7 +78,7 @@
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/shield_generator/update_icon()
+/obj/machinery/power/shield_generator/on_update_icon()
 	overlays.Cut()
 	if(running)
 		icon_state = "generator1"

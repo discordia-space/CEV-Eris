@@ -156,7 +156,7 @@
 	update_icon()
 	name = W.name + " (taped)"
 
-/obj/item/weapon/ducttape/update_icon()
+/obj/item/weapon/ducttape/on_update_icon()
 	if (!stuck)
 		return
 

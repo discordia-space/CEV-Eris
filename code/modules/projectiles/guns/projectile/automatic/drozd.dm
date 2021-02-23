@@ -28,7 +28,7 @@
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/weapon/gun/projectile/automatic/drozd/update_icon()
+/obj/item/weapon/gun/projectile/automatic/drozd/on_update_icon()
 	overlays.Cut()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)

@@ -15,7 +15,7 @@
 	..(user)
 	user.examinate(bombtank)
 
-/obj/item/device/onetankbomb/update_icon()
+/obj/item/device/onetankbomb/on_update_icon()
 	if(bombtank)
 		icon_state = bombtank.icon_state
 	if(bombassembly)

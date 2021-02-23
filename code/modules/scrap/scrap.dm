@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	I.transform = M
 	return I
 
-/obj/structure/scrap_spawner/update_icon(rebuild_base=FALSE)
+/obj/structure/scrap_spawner/on_update_icon(rebuild_base=FALSE)
 	if(clear_if_empty())
 		return
 
@@ -650,7 +650,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	spawn_tags = SPAWN_TAG_BEACON_SCRAP
 
 
-/obj/structure/scrap_spawner/poor/structure/update_icon(rebuild_base=FALSE) //make big trash icon for this
+/obj/structure/scrap_spawner/poor/structure/on_update_icon(rebuild_base=FALSE) //make big trash icon for this
 	..()
 	if(!loot_generated)
 		underlays += image(icon, icon_state = "underlay_big")

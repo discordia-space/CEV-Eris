@@ -128,7 +128,7 @@
 	qdel(src)
 
 
-/obj/rogue/teleporter/update_icon()
+/obj/rogue/teleporter/on_update_icon()
 	overlays.Cut()
 
 	if(charging && charge < 10)

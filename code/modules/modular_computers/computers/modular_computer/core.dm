@@ -101,7 +101,7 @@
 		to_chat(user, "You emag \the [src]. Its screen flickers briefly.")
 		return TRUE
 
-/obj/item/modular_computer/update_icon()
+/obj/item/modular_computer/on_update_icon()
 	overlays.Cut()
 	if (screen_on)
 		if(bsod)

@@ -12,7 +12,7 @@
 	var/frames = 0
 	var/maxFrames = 5
 
-/obj/machinery/beehive/update_icon()
+/obj/machinery/beehive/on_update_icon()
 	overlays.Cut()
 	icon_state = "beehive"
 	if(closed)

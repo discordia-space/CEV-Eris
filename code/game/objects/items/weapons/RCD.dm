@@ -197,7 +197,7 @@
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1
 
-/obj/item/weapon/rcd/update_icon()	//For the fancy "ammo" counter
+/obj/item/weapon/rcd/on_update_icon()	//For the fancy "ammo" counter
 	overlays.Cut()
 
 	var/ratio = 0

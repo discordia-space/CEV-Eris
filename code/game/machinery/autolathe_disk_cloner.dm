@@ -231,7 +231,7 @@
 	update_icon()
 
 
-/obj/machinery/autolathe_disk_cloner/update_icon()
+/obj/machinery/autolathe_disk_cloner/on_update_icon()
 	overlays.Cut()
 
 	if(panel_open)

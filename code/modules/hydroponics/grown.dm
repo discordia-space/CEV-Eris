@@ -130,7 +130,7 @@
 		plant_controller.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/update_icon()
+/obj/item/weapon/reagent_containers/food/snacks/grown/on_update_icon()
 	if(!seed || !plant_controller || !plant_controller.plant_icon_cache)
 		return
 	overlays.Cut()

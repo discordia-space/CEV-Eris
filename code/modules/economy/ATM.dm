@@ -68,7 +68,7 @@ log transactions
 		held_card = null
 	update_icon()
 
-/obj/machinery/atm/update_icon()
+/obj/machinery/atm/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "atm_off"
 		return

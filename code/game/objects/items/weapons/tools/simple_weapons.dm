@@ -175,7 +175,7 @@
 	embed_mult = initial(embed_mult)
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 
-/obj/item/weapon/tool/sword/katana/nano/update_icon()
+/obj/item/weapon/tool/sword/katana/nano/on_update_icon()
 	..()
 	if(cell)
 		overlays += "[icon_state]_cell"

@@ -153,7 +153,7 @@ var/datum/controller/process/open_space/OS_controller = null
 	return
 
 
-/turf/simulated/open/update_icon()
+/turf/simulated/open/on_update_icon()
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)

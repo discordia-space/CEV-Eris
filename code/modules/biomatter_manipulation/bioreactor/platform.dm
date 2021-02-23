@@ -123,7 +123,7 @@
 		playsound(loc, 'sound/effects/bubbles.ogg', 50, 1)
 
 
-/obj/machinery/multistructure/bioreactor_part/platform/update_icon()
+/obj/machinery/multistructure/bioreactor_part/platform/on_update_icon()
 	var/corner_dir = 0		//used at sprite determination, direction point to center of whole bioreactor chamber
 	for(var/direction in cardinal)
 		if(locate(type) in get_step(src, direction))
@@ -206,7 +206,7 @@
 			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
 
 
-/obj/structure/window/reinforced/bioreactor/update_icon()
+/obj/structure/window/reinforced/bioreactor/on_update_icon()
 	overlays.Cut()
 	..()
 	if(contamination_level)

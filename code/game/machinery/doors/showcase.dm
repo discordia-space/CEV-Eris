@@ -72,7 +72,7 @@
 	new /obj/item/weapon/material/shard(src.loc)
 	return ..()
 
-/obj/machinery/door/blast/shutters/glass/update_icon()
+/obj/machinery/door/blast/shutters/glass/on_update_icon()
 	overlays.Cut()
 	if(density)
 		icon_state = "closed"

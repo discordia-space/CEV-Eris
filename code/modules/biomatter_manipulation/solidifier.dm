@@ -30,7 +30,7 @@
 	AddComponent(/datum/component/plumbing/demand/all/biomass, anchored)
 	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
-/obj/machinery/biomatter_solidifier/update_icon()
+/obj/machinery/biomatter_solidifier/on_update_icon()
 	if(active)
 		icon_state = initial(icon_state) + "_on"
 	else

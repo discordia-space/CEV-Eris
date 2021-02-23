@@ -43,7 +43,7 @@
 	else
 		..()
 
-/obj/item/weapon/pinpointer/update_icon()
+/obj/item/weapon/pinpointer/on_update_icon()
 	overlays.Cut()
 
 	if (slot)

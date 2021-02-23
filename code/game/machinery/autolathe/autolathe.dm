@@ -667,7 +667,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/update_icon()
+/obj/machinery/autolathe/on_update_icon()
 	overlays.Cut()
 
 	icon_state = initial(icon_state)

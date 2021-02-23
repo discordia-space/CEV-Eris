@@ -27,7 +27,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/hatton/update_icon()
+/obj/item/weapon/hatton/on_update_icon()
 	overlays.Cut()
 	if(magazine)
 		if(magazine.charge)
@@ -161,7 +161,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/hatton_magazine/update_icon()
+/obj/item/weapon/hatton_magazine/on_update_icon()
 	if(charge)
 		icon_state = "Hatton_box1"
 	else
@@ -173,7 +173,7 @@
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	charge = 2
 
-/obj/item/weapon/hatton_magazine/moebius/update_icon()
+/obj/item/weapon/hatton_magazine/moebius/on_update_icon()
 	if(charge)
 		icon_state = "Moebius_box1"
 	else
@@ -212,7 +212,7 @@
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/hatton/moebius/update_icon()
+/obj/item/weapon/hatton/moebius/on_update_icon()
 	overlays.Cut()
 	if(magazine)
 		if(magazine.charge)

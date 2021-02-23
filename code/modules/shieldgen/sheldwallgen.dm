@@ -85,7 +85,7 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
-/obj/machinery/shieldwallgen/update_icon()
+/obj/machinery/shieldwallgen/on_update_icon()
 	icon_state = "Shield_Gen"
 	if(active)
 		icon_state = "Shield_Gen_active"

@@ -24,7 +24,7 @@
 	desc = "A cyan folder."
 	icon_state = "folder_cyan"
 
-/obj/item/weapon/folder/update_icon()
+/obj/item/weapon/folder/on_update_icon()
 	overlays.Cut()
 	if(contents.len)
 		overlays += "folder_paper"

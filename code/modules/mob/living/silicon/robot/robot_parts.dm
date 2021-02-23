@@ -102,7 +102,7 @@
 		parts[P.body_part] = P
 	update_icon()
 
-/obj/item/robot_parts/robot_suit/update_icon()
+/obj/item/robot_parts/robot_suit/on_update_icon()
 	src.overlays.Cut()
 	for(var/part in parts)
 		if(parts[part])

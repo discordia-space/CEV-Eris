@@ -57,7 +57,7 @@
 		overlays += "[icon_state]_on"
 
 
-/obj/item/weapon/gun/projectile/revolver/update_icon()
+/obj/item/weapon/gun/projectile/revolver/on_update_icon()
 	update_charge()
 
 /obj/item/weapon/gun/projectile/revolver/generate_guntags()

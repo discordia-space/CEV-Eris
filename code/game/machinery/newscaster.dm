@@ -170,7 +170,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	allCasters -= src
 	. = ..()
 
-/obj/machinery/newscaster/update_icon()
+/obj/machinery/newscaster/on_update_icon()
 	if(!ispowered || isbroken)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.

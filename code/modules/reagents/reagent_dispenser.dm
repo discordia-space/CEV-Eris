@@ -367,7 +367,7 @@
 		. = ..()
 	update_icon()
 
-/obj/structure/reagent_dispensers/bidon/update_icon()
+/obj/structure/reagent_dispensers/bidon/on_update_icon()
 	cut_overlays()
 	if(lid)
 		var/mutable_appearance/lid_icon = mutable_appearance(icon, "[icon_state]_lid")

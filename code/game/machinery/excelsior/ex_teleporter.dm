@@ -96,7 +96,7 @@ var/global/excelsior_last_draft = 0
 			energy_gain *= 2
 
 
-/obj/machinery/complant_teleporter/update_icon()
+/obj/machinery/complant_teleporter/on_update_icon()
 	overlays.Cut()
 
 	if(panel_open)

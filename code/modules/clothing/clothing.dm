@@ -374,7 +374,7 @@ BLIND     // can't see anything
 		to_chat(user, SPAN_NOTICE("You crawl under \the [src]."))
 	return 1
 
-/obj/item/clothing/head/update_icon(mob/user)
+/obj/item/clothing/head/on_update_icon(mob/user)
 
 	overlays.Cut()
 	var/mob/living/carbon/human/H
@@ -523,7 +523,7 @@ BLIND     // can't see anything
 	else to_chat(usr, "You haven't got any accessories in your shoes")
 
 
-/obj/item/clothing/shoes/update_icon()
+/obj/item/clothing/shoes/on_update_icon()
 	overlays.Cut()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")

@@ -12,7 +12,7 @@
 	reagent_flags = OPENCONTAINER
 	use_reagents_as_fuel = TRUE
 
-/obj/machinery/power/port_gen/pacman/diesel/update_icon()
+/obj/machinery/power/port_gen/pacman/diesel/on_update_icon()
 	overlays.Cut()
 	if(active)
 		overlays += "on"

@@ -39,7 +39,7 @@
 			spawn(rand(0, 15))
 				icon_state = "[icon_type]_off"
 
-/obj/machinery/slotmachine/update_icon()
+/obj/machinery/slotmachine/on_update_icon()
 	overlays.Cut()
 	//From left to right
 	var/offset = -6

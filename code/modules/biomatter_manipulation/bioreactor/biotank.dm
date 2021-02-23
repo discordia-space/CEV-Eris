@@ -56,7 +56,7 @@
 			to_chat(user, SPAN_NOTICE("Pipes looks clean."))
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/on_update_icon()
 	overlays.Cut()
 	if(pipes_cleanness <= 90)
 		overlays += "[icon_state]-dirty_[get_dirtiness_level()]"
@@ -143,7 +143,7 @@
 	return ..()
 
 
-/obj/structure/biomatter_tank/update_icon()
+/obj/structure/biomatter_tank/on_update_icon()
 	overlays.Cut()
 	if(canister && platform.pipes_opened)
 		var/image/pipe_overlay = image(icon = 'icons/obj/machines/bioreactor.dmi', icon_state = "port-pipe", pixel_y = -9)

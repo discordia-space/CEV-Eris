@@ -125,7 +125,7 @@
 	return
 
 
-/obj/machinery/computer/aifixer/update_icon()
+/obj/machinery/computer/aifixer/on_update_icon()
 	..()
 	if((stat & BROKEN) || (stat & NOPOWER))
 		return

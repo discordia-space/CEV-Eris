@@ -655,7 +655,7 @@ There are 9 wires.
 	else
 		underlays += GLOB.wedge_icon_cache[cache_string]
 
-/obj/machinery/door/airlock/update_icon()
+/obj/machinery/door/airlock/on_update_icon()
 	set_light(0)
 	if(overlays.len)
 		overlays.Cut()

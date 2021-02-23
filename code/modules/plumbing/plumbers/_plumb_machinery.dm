@@ -26,7 +26,7 @@
 	. = ..()
 	create_reagents(buffer, reagent_flags)
 
-/obj/machinery/plumbing/update_icon()
+/obj/machinery/plumbing/on_update_icon()
 	..()
 	overlays.Cut()
 	var/list/new_overlays = update_overlays()

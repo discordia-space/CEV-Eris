@@ -122,7 +122,7 @@
 			AC.update_icon()
 	return TRUE
 
-/obj/item/ammo_casing/update_icon()
+/obj/item/ammo_casing/on_update_icon()
 	if(spent_icon && !BB)
 		icon_state = spent_icon
 	src.overlays.Cut()
@@ -339,7 +339,7 @@
 		C.set_dir(pick(cardinal))
 	update_icon()
 
-/obj/item/ammo_magazine/update_icon()
+/obj/item/ammo_magazine/on_update_icon()
 	if(multiple_sprites)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null

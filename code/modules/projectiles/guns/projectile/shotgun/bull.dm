@@ -94,7 +94,7 @@
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
 
-/obj/item/weapon/gun/projectile/shotgun/bull/update_icon()
+/obj/item/weapon/gun/projectile/shotgun/bull/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

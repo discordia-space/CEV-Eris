@@ -75,7 +75,7 @@
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
-/obj/structure/bigDelivery/update_icon()
+/obj/structure/bigDelivery/on_update_icon()
 	overlays = new()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
@@ -186,7 +186,7 @@
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
-/obj/item/smallDelivery/update_icon()
+/obj/item/smallDelivery/on_update_icon()
 	overlays = new()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")

@@ -67,7 +67,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/suit_storage_unit/update_icon()
+/obj/machinery/suit_storage_unit/on_update_icon()
 	cut_overlays()
 
 	if(overlay_color)

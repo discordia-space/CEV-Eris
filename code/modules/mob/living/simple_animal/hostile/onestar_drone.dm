@@ -38,7 +38,7 @@
 	update_icon()
 
 
-/mob/living/simple_animal/hostile/onestar_custodian/update_icon()
+/mob/living/simple_animal/hostile/onestar_custodian/on_update_icon()
 	. = ..()
 	overlays.Cut()
 	var/image/shell_I = image(icon, src, "shell_[shell_type]")

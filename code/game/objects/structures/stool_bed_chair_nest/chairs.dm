@@ -38,7 +38,7 @@
 /obj/structure/bed/chair/post_buckle_mob()
 	update_icon()
 
-/obj/structure/bed/chair/update_icon()
+/obj/structure/bed/chair/on_update_icon()
 	..()
 
 /*
@@ -147,7 +147,7 @@
 	anchored = FALSE
 	buckle_movable = 1
 
-/obj/structure/bed/chair/office/update_icon()
+/obj/structure/bed/chair/office/on_update_icon()
 	return
 
 /obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -222,7 +222,7 @@
 	icon_state = "wooden_chair"
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/wood/update_icon()
+/obj/structure/bed/chair/wood/on_update_icon()
 	return
 
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -245,7 +245,7 @@
 /obj/structure/bed/chair/custom
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/custom/update_icon()
+/obj/structure/bed/chair/custom/on_update_icon()
 	return
 
 /obj/structure/bed/chair/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)

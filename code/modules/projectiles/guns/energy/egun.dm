@@ -56,7 +56,7 @@
 	else
 		overlays += "lazer_pdw"
 
-/obj/item/weapon/gun/energy/gun/martin/update_icon()
+/obj/item/weapon/gun/energy/gun/martin/on_update_icon()
 	overlays.Cut()
 	if(cell && cell.charge >= charge_cost) //no overlay if we dont have any power
 		update_mode()

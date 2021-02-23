@@ -129,7 +129,7 @@
 	last_target = null
 	raised = TRUE
 
-/obj/machinery/porta_turret/excelsior/update_icon()
+/obj/machinery/porta_turret/excelsior/on_update_icon()
 	overlays.Cut()
 
 	if(!(stat & BROKEN))

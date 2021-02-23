@@ -234,7 +234,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/constructable_frame/machine_frame/vertical/update_icon()
+/obj/machinery/constructable_frame/machine_frame/vertical/on_update_icon()
 	overlays.Cut()
 
 	var/image/I = image(icon, "[icon_state]1")

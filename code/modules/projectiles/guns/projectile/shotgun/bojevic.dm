@@ -30,7 +30,7 @@
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/weapon/gun/projectile/shotgun/bojevic/update_icon()
+/obj/item/weapon/gun/projectile/shotgun/bojevic/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

@@ -206,7 +206,7 @@
 	var/pipes_dirtiness = 0
 
 
-/obj/machinery/multistructure/biogenerator_part/port/update_icon()
+/obj/machinery/multistructure/biogenerator_part/port/on_update_icon()
 	overlays.Cut()
 	if(panel_open)
 		overlays += "port-opened"
@@ -344,7 +344,7 @@
 	return ..()
 
 
-/obj/machinery/atmospherics/binary/biogen_chamber/update_icon()
+/obj/machinery/atmospherics/binary/biogen_chamber/on_update_icon()
 	if(panel_open)
 		if(wires)
 			icon_state = "chambers-wires"
@@ -453,7 +453,7 @@
 	return ..()
 
 
-/obj/machinery/power/biogenerator_core/update_icon()
+/obj/machinery/power/biogenerator_core/on_update_icon()
 	overlays.Cut()
 	overlays += "core-pipe"
 	if(!coil_frame)

@@ -51,7 +51,7 @@
 		if("stun") overlays += "nucgun-stun"
 		if("lethal") overlays += "nucgun-kill"
 
-/obj/item/weapon/gun/energy/gun/nuclear/update_icon()
+/obj/item/weapon/gun/energy/gun/nuclear/on_update_icon()
 	overlays.Cut()
 	if(cell)
 		update_charge()

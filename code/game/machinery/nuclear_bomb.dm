@@ -362,7 +362,7 @@ var/bomb_set
 
 	return
 
-/obj/machinery/nuclearbomb/update_icon()
+/obj/machinery/nuclearbomb/on_update_icon()
 	if(lighthack)
 		icon_state = "nuclearbomb0"
 		return

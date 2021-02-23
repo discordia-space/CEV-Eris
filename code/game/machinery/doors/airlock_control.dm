@@ -169,7 +169,7 @@
 	var/alert = 0
 	var/previousPressure
 
-/obj/machinery/airlock_sensor/update_icon()
+/obj/machinery/airlock_sensor/on_update_icon()
 	if(on)
 		if(alert)
 			icon_state = "airlock_sensor_alert"
@@ -316,7 +316,7 @@
 	var/on = TRUE
 
 
-/obj/machinery/access_button/update_icon()
+/obj/machinery/access_button/on_update_icon()
 	if(on)
 		icon_state = "access_button_standby"
 	else

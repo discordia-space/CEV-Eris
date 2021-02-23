@@ -836,7 +836,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
-/obj/item/device/pda/update_icon()
+/obj/item/device/pda/on_update_icon()
 	..()
 
 	overlays.Cut()

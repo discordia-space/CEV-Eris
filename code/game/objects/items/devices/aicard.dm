@@ -77,7 +77,7 @@
 		update_icon()
 	return 1
 
-/obj/item/device/aicard/update_icon()
+/obj/item/device/aicard/on_update_icon()
 	overlays.Cut()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)

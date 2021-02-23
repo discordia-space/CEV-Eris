@@ -24,7 +24,7 @@
 	zoom_factor = 2
 	twohanded = TRUE
 
-/obj/item/weapon/gun/projectile/heavysniper/update_icon()
+/obj/item/weapon/gun/projectile/heavysniper/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

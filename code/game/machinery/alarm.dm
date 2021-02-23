@@ -266,7 +266,7 @@
 		return 1
 	return 0
 
-/obj/machinery/alarm/update_icon()
+/obj/machinery/alarm/on_update_icon()
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
@@ -930,7 +930,7 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-/obj/machinery/firealarm/update_icon()
+/obj/machinery/firealarm/on_update_icon()
 	overlays.Cut()
 
 	if(wiresexposed)

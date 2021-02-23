@@ -178,7 +178,7 @@
 	. = ..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 
-/obj/machinery/reagentgrinder/portable/update_icon()
+/obj/machinery/reagentgrinder/portable/on_update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
@@ -286,7 +286,7 @@
 		return
 	grind()
 
-/obj/machinery/reagentgrinder/industrial/update_icon()
+/obj/machinery/reagentgrinder/industrial/on_update_icon()
 	overlays.Cut()
 
 	if(panel_open)
@@ -462,7 +462,7 @@
 		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
 
 
-/obj/item/weapon/storage/makeshift_grinder/update_icon()
+/obj/item/weapon/storage/makeshift_grinder/on_update_icon()
 	. = ..()
 	cut_overlays()
 	if(reagents.total_volume)

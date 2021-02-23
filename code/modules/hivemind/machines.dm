@@ -37,7 +37,7 @@
 	set_light(2, 3, illumination_color)
 
 
-/obj/machinery/hivemind_machine/update_icon()
+/obj/machinery/hivemind_machine/on_update_icon()
 	overlays.Cut()
 	if(stat & EMPED)
 		icon_state = "[icon_state]-disabled"
@@ -366,7 +366,7 @@
 		add_wireweed(wireweed)
 
 
-/obj/machinery/hivemind_machine/node/update_icon()
+/obj/machinery/hivemind_machine/node/on_update_icon()
 	overlays.Cut()
 	if(stat & EMPED)
 		icon_state = "core-disabled"

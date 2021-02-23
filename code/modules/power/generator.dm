@@ -61,7 +61,7 @@
 				circ2 = null
 	update_icon()
 
-/obj/machinery/power/generator/update_icon()
+/obj/machinery/power/generator/on_update_icon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
 	overlays.Cut()
 	if (stat & (NOPOWER|BROKEN) || !anchored)
