@@ -1050,6 +1050,28 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	// To handle not only state changes in update icon if need
 	flick(iconOrState, src)
 
+/image
+	var/list/SynchronizedAtoms = list()
+
+/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withState = TRUE)
+	if(istype(D))
+		SynchronizedAtoms[D] = args.Copy(2)
+		if(withIcon)
+			GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
+		if(withState)
+			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
+	else
+		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
+
+/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakState = TRUE)
+	if(istype(D) && SynchronizedAtoms.Find(D))
+		var/list/data_of_sync = SynchronizedAtoms[D]
+		if(data_of_sync)
+			if(breakIcon && data_of_sync[1] == 1)
+				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
+			if(breakState && data_of_sync[2] == 1)
+				GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
+
 /image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
 	if(QDELETED(D))
 		qdel(src)
@@ -1071,14 +1093,3 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	if(isByEvent)
 		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
 
-/image/proc/SyncWithAtom(atom/D)
-	if(istype(D))
-		GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
-		GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
-	else
-		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
-
-/image/proc/BreakSync(atom/D)
-	if(istype(D))
-		GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
-		GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
