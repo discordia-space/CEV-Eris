@@ -4,6 +4,6 @@ GLOBAL_DATUM_INIT(update_icon_event, /decl/observ/update_icon, new)
 	name = "Updated Icon"
 	expected_type = /atom
 
-/atom/on_update_icon()
+/atom/update_icon()
 	. = ..()
 	GLOB.update_icon_event.raise_event(src, icon, icon_state, overlays)
