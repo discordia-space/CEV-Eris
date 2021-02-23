@@ -84,6 +84,8 @@
 /obj/item/weapon/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
 	w_class = initial(w_class)
+	slot_flags = initial(slot_flags)
+	armor_penetration = initial(armor_penetration)
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
@@ -100,6 +102,8 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
+	force = WEAPON_FORCE_DANGEROUS
+	armor = list(melee = 20, bullet = 30, energy = 30, bomb = 0, bio = 0, rad = 0)
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE

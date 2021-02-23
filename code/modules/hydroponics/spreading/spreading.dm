@@ -28,6 +28,7 @@
 	layer = 3
 	pass_flags = PASSTABLE
 	mouse_opacity = 1
+	reagent_flags = DRAINABLE
 
 	var/health = 5
 	var/max_health = 60

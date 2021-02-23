@@ -70,7 +70,7 @@ var/global/obj/machinery/power/eotp/eotp
 
 	updateObservation()
 
-	if(world.time >= (last_rescan + rescan_cooldown))
+	if(world.time >= (last_rescan + rescan_cooldown) && length(scanned))
 		var/mob/living/carbon/human/H = pick(scanned)
 		var/obj/item/weapon/implant/core_implant/I = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
@@ -151,10 +151,11 @@ var/global/obj/machinery/power/eotp/eotp
 				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
 					preacher = H
 
-		if(!preacher)
+		if(!preacher && length(disciples))
 			preacher = pick(disciples)
 
-		to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+		if(preacher)
+			to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
 		for(var/disciple in disciples)

@@ -7,7 +7,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	gun_tags = list(GUN_SILENCABLE)
 	w_class = ITEM_SIZE_SMALL
-	can_dual = 1
+	can_dual = TRUE
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	caliber = CAL_PISTOL
@@ -19,7 +19,8 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
-	rarity_value = 8
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

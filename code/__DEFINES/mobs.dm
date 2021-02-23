@@ -201,3 +201,10 @@
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 #define NECROZTIME 	(5 MINUTES)
+
+
+
+//Surgery operation defines
+#define CAN_OPERATE_ALL 1 //All possible surgery types are available
+#define CAN_OPERATE_STANDING -1 //Only limited surgery types are available (gouging out shrapnel, for instance)
+

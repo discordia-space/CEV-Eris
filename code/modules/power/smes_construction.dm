@@ -15,7 +15,6 @@
 	var/ChargeCapacity = 10000000
 	var/IOCapacity = 750000
 	rating = 2
-	rarity_value = 30
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/weapon/stock_parts/smes_coil/weak
@@ -26,7 +25,6 @@
 	ChargeCapacity = 2000000
 	IOCapacity = 600000
 	rating = 1
-	rarity_value = 10
 
 // 1000% Charge Capacity, 20% I/O Capacity
 /obj/item/weapon/stock_parts/smes_coil/super_capacity
@@ -37,7 +35,6 @@
 	ChargeCapacity = 100000000
 	IOCapacity = 150000
 	rating = 3
-	rarity_value = 50
 
 // 10% Charge Capacity, 400% I/O Capacity. Technically turns SMES into large super capacitor.Ideal for shields.
 /obj/item/weapon/stock_parts/smes_coil/super_io
@@ -48,7 +45,6 @@
 	ChargeCapacity = 1000000
 	IOCapacity = 3000000
 	rating = 3
-	rarity_value = 50
 
 
 // SMES itself

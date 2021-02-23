@@ -2,7 +2,7 @@
 /datum/design/autolathe/clothing/excelsior_armor
 	name = "excelsior armor"
 	build_path = /obj/item/clothing/suit/space/void/excelsior
-	
+
 // Standard
 
 /datum/design/autolathe/clothing/generic_helmet_basic
@@ -16,7 +16,7 @@
 /datum/design/autolathe/clothing/generic_vest
 	name = "armor vest"
 	build_path = /obj/item/clothing/suit/armor/vest
-	
+
 /datum/design/autolathe/clothing/generic_vest_full
 	name = "fullbody armor vest"
 	build_path = /obj/item/clothing/suit/armor/vest/full
@@ -30,7 +30,7 @@
 /datum/design/autolathe/clothing/bulletproof_vest_generic
 	name = "bulletproof vest"
 	build_path = /obj/item/clothing/suit/armor/bulletproof
-	
+
 /datum/design/autolathe/clothing/bulletproof_vest_generic_full
 	name = "fullbody bulletproof vest"
 	build_path = /obj/item/clothing/suit/armor/bulletproof/full
@@ -41,9 +41,9 @@
 
 // Ablative
 
-/datum/design/autolathe/clothing/ablative_vest
-	name = "ablative armor vest"
-	build_path = /obj/item/clothing/suit/armor/laserproof
+/datum/design/autolathe/clothing/ablative_vest_full
+	name = "full ablative armor vest"
+	build_path = /obj/item/clothing/suit/armor/laserproof/full
 
 /datum/design/autolathe/clothing/ablative_helmet
 	name = "ablative helmet"
@@ -62,7 +62,7 @@
 /datum/design/autolathe/clothing/ih_vest_basic
 	name = "operator armor"
 	build_path = /obj/item/clothing/suit/armor/vest/ironhammer
-	
+
 /datum/design/autolathe/clothing/ih_vest_basic_full
 	name = "fullbody operator armor"
 	build_path = /obj/item/clothing/suit/armor/vest/full/ironhammer

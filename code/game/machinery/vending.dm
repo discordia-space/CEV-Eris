@@ -852,21 +852,18 @@
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
-
-	for(var/datum/data/vending_product/R in product_records)
-		throw_item = R.get_product(loc)
-		if(!throw_item)
-			continue
-		break
-	if(!throw_item)
-		return 0
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
-	visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
+	var/obj/item/projectile/P = new /obj/item/projectile/coin(get_turf(src))
+	P.shot_from = src
+	playsound(src, \
+		pick('sound/weapons/Gunshot.ogg','sound/weapons/guns/fire/Revolver_fire.ogg','sound/weapons/Gunshot_light.ogg',\
+		'sound/weapons/guns/fire/shotgunp_fire.ogg','sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/lmg_fire.ogg',\
+		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
+		60, 1)
+	P.launch(target)
+	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()
@@ -1003,6 +1000,7 @@
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
@@ -1023,9 +1021,11 @@
 					/obj/item/ammo_magazine/ammobox/pistol = 5,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 3,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
-					/obj/item/weapon/tool/knife/tacknife = 5)
+					/obj/item/weapon/tool/knife/tacknife = 5,
+					/obj/item/weapon/storage/box/smokes = 3)
 
 	prices = list(
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300,
@@ -1043,6 +1043,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/weapon/storage/box/smokes = 200,
 					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
@@ -1185,7 +1186,7 @@
 
 		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
 		/obj/item/stack/medical/advanced/bruise_pack = 200, /obj/item/stack/medical/advanced/ointment = 200,
-		/obj/item/stack/nanopaste = 300,
+		/obj/item/stack/nanopaste = 1000,
 
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 100, /obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 150, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 300,
@@ -1211,6 +1212,7 @@
 					/obj/item/weapon/handcuffs/zipties = 8,
 					/obj/item/weapon/grenade/flashbang = 8,
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
+					/obj/item/weapon/grenade/smokebomb = 8,
 					/obj/item/device/flash = 8,
 					/obj/item/weapon/reagent_containers/spray/pepper = 8,
 					/obj/item/ammo_magazine/ihclrifle/rubber = 8,

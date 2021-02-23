@@ -118,6 +118,11 @@
 			continue
 		damage_types[damage_type] += newdamages[damage_type]
 
+/obj/item/projectile/proc/adjust_ricochet(noricochet)
+	if(noricochet)
+		can_ricochet = FALSE
+		return
+
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0

@@ -26,11 +26,11 @@
 #define DECK_HEIGHT 3	//3 metres in vertical height between decks
 //Note that the height of a turf's airspace is defined elsewhere as 2.5 metres, this adds extra to account for floor thickness
 
-#define trange(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-)
+#define RANGE_TURFS(RADIUS, CENTER) \
+	block(\
+	locate(max(CENTER.x-(RADIUS),1),			max(CENTER.y-(RADIUS),1),			CENTER.z),\
+	locate(min(CENTER.x+(RADIUS),world.maxx),	min(CENTER.y+(RADIUS),world.maxy),	CENTER.z)\
+  )
 
 #define get_turf(atom) get_step(atom, 0)
 

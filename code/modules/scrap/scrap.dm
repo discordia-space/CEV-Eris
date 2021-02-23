@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(tags)
 			if(rare)
-				top_price = 2000
+				top_price = GUN_CHEAP_PRICE
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
@@ -284,11 +284,10 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/obj/item/organ/external/BP = victim.get_organ(victim.hand ? BP_L_ARM : BP_R_ARM)
 		if(!BP)
 			return FALSE
-		if(BP_IS_ROBOTIC(BP))
-			return FALSE
 		to_chat(user, SPAN_DANGER("Ouch! You cut yourself while picking through \the [src]."))
 		BP.take_damage(5, null, TRUE, TRUE, "Sharp debris")
-		victim.reagents.add_reagent("toxin", pick(prob(50);0,prob(50);5,prob(10);10,prob(1);25))
+		if(!BP_IS_ROBOTIC(BP))
+			victim.reagents.add_reagent("toxin", pick(prob(50);0,prob(50);5,prob(10);10,prob(1);25))
 		if(victim.species.flags & NO_PAIN) // So we still take damage, but actually dig through.
 			return FALSE
 		return TRUE
@@ -393,14 +392,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	rarity_value = 16.66
 	loot_tags = list(
-		SPAWN_DESING,
+		SPAWN_DESIGN,
 		SPAWN_ELECTRONICS,
 		SPAWN_KNIFE,
 		SPAWN_ITEM,
 		SPAWN_MATERIAL,
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_POWERCELL,
-		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,SPAWN_DESING_COMMON,SPAWN_COMPUTER_HARDWERE,
+		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,SPAWN_DESIGN_COMMON,SPAWN_COMPUTER_HARDWERE,
 		SPAWN_TOOL, SPAWN_DIVICE, SPAWN_JETPACK, SPAWN_ITEM_UTILITY,SPAWN_TOOL_UPGRADE,SPAWN_TOOLBOX,SPAWN_VOID_SUIT,
 		SPAWN_GUN_UPGRADE,
 		SPAWN_POUCH,
@@ -450,7 +449,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/science.dmi'
 	rarity_value = 25
 	loot_tags = list(
-		SPAWN_DESING,
+		SPAWN_DESIGN,
 		SPAWN_ELECTRONICS,
 		SPAWN_KNIFE,
 		SPAWN_ITEM,
@@ -458,7 +457,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_POWERCELL,
 		SPAWN_ASSEMBLY,SPAWN_STOCK_PARTS,
-		SPAWN_DESING_COMMON,
+		SPAWN_DESIGN_COMMON,
 		SPAWN_COMPUTER_HARDWERE,
 		SPAWN_TOOL, SPAWN_DIVICE,
 		SPAWN_JETPACK,

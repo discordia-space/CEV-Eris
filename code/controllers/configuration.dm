@@ -732,6 +732,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ruins_start")
 					config.start_location = "space ruins"
+
 				if("generate_loot_data")
 					config.generate_loot_data = TRUE
 				else

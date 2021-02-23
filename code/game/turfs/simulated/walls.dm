@@ -428,7 +428,7 @@
 		spawn(2)
 			new /obj/structure/girder(src)
 			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in trange(3, src) - src)
+			for(var/turf/simulated/wall/W in RANGE_TURFS(3, src) - src)
 				W.burn((temperature/4))
 			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
 				D.ignite(temperature/4)

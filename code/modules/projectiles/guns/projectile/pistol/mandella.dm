@@ -8,7 +8,7 @@
 	icon_state = "mandella"
 	item_state = "mandella"
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	silenced = TRUE
 
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -21,6 +21,8 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.7
 	recoil_buildup = 19
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 
 /obj/item/weapon/gun/projectile/mandella/update_icon()

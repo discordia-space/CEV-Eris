@@ -65,44 +65,75 @@
 	name = "Technomancer \"Homebrew\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
+/obj/item/organ/external/robotic/technomancer/groin
+	name = "\"Technomancer\" Groin"
+	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/technomancer/torso
+	name = "\"Technomancer\" Torso"
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/technomancer/head
+	name = "\"Technomancer\" Head"
+	default_description = /datum/organ_description/head
+
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
-	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
+	desc = "Streamlined, sleek, and sterile."
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 	model = "moebius"
+	bad_type = /obj/item/organ/external/robotic/moebius
+
+/obj/item/organ/external/robotic/moebius/l_arm
+	default_description = /datum/organ_description/arm/left
+
+/obj/item/organ/external/robotic/moebius/r_arm
+	default_description = /datum/organ_description/arm/right
+
+/obj/item/organ/external/robotic/moebius/l_leg
+	default_description = /datum/organ_description/leg/left
+
+/obj/item/organ/external/robotic/moebius/r_leg
+	default_description = /datum/organ_description/leg/right
+
+/obj/item/organ/external/robotic/moebius/groin
+	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/moebius/torso
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/moebius/head
+	default_description = /datum/organ_description/head
+
+/obj/item/organ/external/robotic/moebius/reinforced
+	name = "\"Moebius\" R++"
+	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
 	armor = list(melee = 35, bullet = 35, energy = 35, bomb = 35, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
 	price_tag = 300
-	bad_type = /obj/item/organ/external/robotic/moebius
+	bad_type = /obj/item/organ/external/robotic/moebius/reinforced
 
-/obj/item/organ/external/robotic/moebius/l_arm
-	name = "\"Moebius\" Left Arm"
+/obj/item/organ/external/robotic/moebius/reinforced/l_arm
 	default_description = /datum/organ_description/arm/left
 
-/obj/item/organ/external/robotic/moebius/r_arm
-	name = "\"Moebius\" Right Arm"
+/obj/item/organ/external/robotic/moebius/reinforced/r_arm
 	default_description = /datum/organ_description/arm/right
 
-/obj/item/organ/external/robotic/moebius/l_leg
-	name = "\"Moebius\" Left Leg"
+/obj/item/organ/external/robotic/moebius/reinforced/l_leg
 	default_description = /datum/organ_description/leg/left
 
-/obj/item/organ/external/robotic/moebius/r_leg
-	name = "\"Moebius\" Right Leg"
+/obj/item/organ/external/robotic/moebius/reinforced/r_leg
 	default_description = /datum/organ_description/leg/right
 
-/obj/item/organ/external/robotic/moebius/groin
-	name = "\"Moebius\" Groin"
+/obj/item/organ/external/robotic/moebius/reinforced/groin
 	default_description = /datum/organ_description/groin
 
-/obj/item/organ/external/robotic/moebius/torso
-	name = "\"Moebius\" Torso"
+/obj/item/organ/external/robotic/moebius/reinforced/torso
 	default_description = /datum/organ_description/chest
 
-/obj/item/organ/external/robotic/moebius/head
-	name = "\"Moebius\" Head"
+/obj/item/organ/external/robotic/moebius/reinforced/head
 	default_description = /datum/organ_description/head
 
 /obj/item/organ/external/robotic/excelsior
