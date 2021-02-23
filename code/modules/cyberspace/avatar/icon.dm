@@ -3,7 +3,7 @@
 	var/color = CYBERSPACE_MAIN_COLOR
 
 /datum/CyberSpaceAvatar/proc/UpdateIcon(forced) //handle underlays, icon and overlays in separated icons 
-	if(Owner)
+	if(enabled && Owner)
 		if(!istype(Owner))
 			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner])")
 		if(!Icon)
@@ -21,7 +21,7 @@
 
 /datum/CyberSpaceAvatar/proc/SetColor(value)
 	color = value
-	if(Owner)
+	if(enabled && Owner)
 		_updateImage_icon(Icon)
 
 /datum/CyberSpaceAvatar/proc/_updateImage_icon(image/iIcon)

@@ -1,6 +1,12 @@
 GLOBAL_LIST_EMPTY(CyberSpaceAtoms)
 /datum/CyberSpaceAvatar
 	var/atom/Owner
+	var/enabled = TRUE
+
+/datum/CyberSpaceAvatar/proc/SetEnabled(value)
+	enabled = value
+	if(enabled)
+		SetOwner(Owner)
 
 /datum/CyberSpaceAvatar/New(atom/nOwner)
 	. = ..()
