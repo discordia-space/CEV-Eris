@@ -76,7 +76,7 @@
 	return
 
 /obj/structure/bigDelivery/on_update_icon()
-	set_overlays(new())
+	cut_overlays()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -187,7 +187,7 @@
 	return
 
 /obj/item/smallDelivery/on_update_icon()
-	set_overlays(new())
+	cut_overlays()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
