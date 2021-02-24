@@ -1097,7 +1097,27 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	if(_state)
 		icon_state = _state
 	if(_overlays)
-		overlays = _overlays //No need to .Copy, byond copy ovelays' list by it self
+		overlays = _overlays
 	if(isByEvent)
 		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
+
+/atom/proc/SetIcon(value)
+	icon = value
+
+/atom/proc/SetIconState(value)
+	icon_state = value
+
+
+// Overlays
+/atom/proc/add2overlays()
+	return overlays.Add(args)
+
+/atom/proc/remove_overlays()
+	return overlays.Remove(args)
+/atom/proc/set_overlays(list/value)
+	overlays = value
+
+// (placeholders for if/when TG overlays system is ported)
+/atom/proc/cut_overlays(Start=1, End=0)
+	return overlays.Cut(Start, End)
 
