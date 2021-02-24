@@ -22,7 +22,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	owner.parallax = src
 	parallax_screen = new /obj/parallax_screen
 	parallax_screen.plane = plane
-	overlays += parallax_screen
+	add_overlays(parallax_screen)
 	update()
 	..(null)
 

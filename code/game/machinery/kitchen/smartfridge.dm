@@ -164,9 +164,9 @@
 	else
 		icon_state = icon_on
 	if(contents.len)
-		overlays += "drying_rack_filled"
+		add_overlays("drying_rack_filled")
 		if(!inoperable() && currently_drying)
-			overlays += "drying_rack_drying"
+			add_overlays("drying_rack_drying")
 
 /obj/machinery/smartfridge/drying_rack/proc/dry()
 	var/drying_something = FALSE //While we're here, check if anything is undried and still processing
@@ -246,7 +246,7 @@
 		icon_state = icon_on
 
 	if(panel_open && icon_panel)
-		overlays += image(icon, icon_panel)
+		add_overlays(image(icon, icon_panel))
 
 /*******************
 *   Item Adding

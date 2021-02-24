@@ -354,12 +354,12 @@
 		if(overlays.len)
 			overlays.len = 0
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			overlays += status_overlays_lock[locked+1]
-			overlays += status_overlays_charging[charging+1]
+			add_overlays(status_overlays_lock[locked+1])
+			add_overlays(status_overlays_charging[charging+1])
 			if(operating)
-				overlays += status_overlays_equipment[equipment+1]
-				overlays += status_overlays_lighting[lighting+1]
-				overlays += status_overlays_environ[environ+1]
+				add_overlays(status_overlays_equipment[equipment+1])
+				add_overlays(status_overlays_lighting[lighting+1])
+				add_overlays(status_overlays_environ[environ+1])
 
 
 /obj/machinery/power/apc/proc/check_updates()

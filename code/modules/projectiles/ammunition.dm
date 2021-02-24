@@ -139,7 +139,7 @@
 		var/matrix/temp_image_matrix = matrix()
 		temp_image_matrix.Turn(round(45 * rand(0, 16) / 2))
 		temp_image.transform = temp_image_matrix
-		src.overlays += temp_image
+		src.add_overlays(temp_image)
 
 /obj/item/ammo_casing/examine(mob/user)
 	..()

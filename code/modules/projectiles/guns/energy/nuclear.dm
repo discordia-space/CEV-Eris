@@ -34,16 +34,16 @@
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
 	var/ratio = cell.charge / cell.maxcharge
 	ratio = round(ratio, 0.25) * 100
-	overlays += "nucgun-[ratio]"
+	add_overlays("nucgun-[ratio]")
 	set_item_state("-[ratio]")
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
 	if(lightfail)
-		overlays += "nucgun-medium"
+		add_overlays("nucgun-medium")
 	else if ((cell.charge/cell.maxcharge) <= 0.5)
-		overlays += "nucgun-light"
+		add_overlays("nucgun-light")
 	else
-		overlays += "nucgun-clean"
+		add_overlays("nucgun-clean")
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]

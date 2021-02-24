@@ -68,4 +68,4 @@
 	if(opened)
 		overlays.Cut()
 		for(var/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/D in contents)
-			overlays += image('icons/obj/food.dmi', "[D.overlay_state]")
+			add_overlays(image('icons/obj/food.dmi', "[D.overlay_state]"))

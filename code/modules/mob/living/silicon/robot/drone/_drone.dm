@@ -161,10 +161,10 @@ var/list/mob_hat_cache = list()
 
 	overlays.Cut()
 	if(stat == CONSCIOUS && eyecolor)
-		overlays += "eyes-drone[eyecolor]"
+		add_overlays("eyes-drone[eyecolor]")
 
 	if(armguard)
-		overlays += "model-[armguard]"
+		add_overlays("model-[armguard]")
 
 	if(hat) // Let the drones wear hats.
 		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
@@ -359,7 +359,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/construction/updateicon()
 	overlays.Cut()
 	if(stat == CONSCIOUS)
-		overlays += "eyes-[module_sprites[icontype]]"
+		add_overlays("eyes-[module_sprites[icontype]]")
 
 /proc/too_many_active_drones()
 	var/drones = 0

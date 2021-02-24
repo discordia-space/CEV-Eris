@@ -7,7 +7,7 @@
 
 /obj/structure/bed/chair/e_chair/New()
 	. = ..()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+	add_overlays(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 
 /obj/structure/bed/chair/e_chair/attackby(var/obj/item/weapon/tool/tool, var/mob/user)
 	if(!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -31,7 +31,7 @@
 /obj/structure/bed/chair/e_chair/rotate()
 	. = ..()
 	overlays.Cut()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+	add_overlays(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 	//there's probably a better way of handling this, but eh. -Pete
 
 /obj/structure/bed/chair/e_chair/proc/shock()

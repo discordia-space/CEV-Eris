@@ -370,10 +370,10 @@
 	overlays.Cut()
 	if(stat & EMPED)
 		icon_state = "core-disabled"
-		overlays += "core-smirk_disabled"
+		add_overlays("core-smirk_disabled")
 	else
 		icon_state = initial(icon_state)
-		overlays += "core-smirk"
+		add_overlays("core-smirk")
 
 
 /obj/machinery/hivemind_machine/node/use_ability(atom/target)

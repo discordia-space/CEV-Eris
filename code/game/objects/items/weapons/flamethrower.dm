@@ -51,9 +51,9 @@
 /obj/item/weapon/flamethrower/on_update_icon()
 	overlays.Cut()
 	if(ptank)
-		overlays += "+ptank"
+		add_overlays("+ptank")
 	if(lit)
-		overlays += "+lit"
+		add_overlays("+lit")
 	return
 
 /obj/item/weapon/flamethrower/afterattack(atom/target, mob/user, proximity)

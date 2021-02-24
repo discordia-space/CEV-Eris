@@ -526,7 +526,7 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/on_update_icon()
 	overlays.Cut()
 	if(holding)
-		overlays += image(icon, "[icon_state]_knife")
+		add_overlays(image(icon, "[icon_state]_knife"))
 	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)

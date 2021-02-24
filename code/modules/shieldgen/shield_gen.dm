@@ -242,7 +242,7 @@
 		overlays.Cut()
 		if (owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
-			overlays += I
+			add_overlays(I)
 
 //TODO MAKE THIS MULTIZ COMPATIBLE
 //grab the border tiles in a circle around this machine

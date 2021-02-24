@@ -106,7 +106,7 @@
 	src.overlays.Cut()
 	for(var/part in parts)
 		if(parts[part])
-			overlays += "[part]+o"
+			add_overlays("[part]+o")
 
 /obj/item/robot_parts/robot_suit/is_ready()
 	var/list/missed = req_parts - parts

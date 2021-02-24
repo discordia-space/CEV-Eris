@@ -42,7 +42,7 @@
 	else if(on)
 		var/image/I = image(icon,"[initial(icon_state)]-on",color)
 		I.blend_mode = BLEND_ADD
-		overlays += I
+		add_overlays(I)
 		item_state = "[initial(icon_state)]-on"
 		set_light(brightness_on)
 	else

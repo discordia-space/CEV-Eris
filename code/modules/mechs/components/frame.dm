@@ -68,7 +68,7 @@
 	var/list/new_overlays = get_mech_images(list(legs, head, body, arms), layer)
 	if(body)
 		density = TRUE
-		overlays += get_mech_image(null, "[body.icon_state]_cockpit", body.icon, body.color)
+		add_overlays(get_mech_image(null, "[body.icon_state]_cockpit", body.icon, body.color))
 		if(body.pilot_coverage < 100 || body.transparent_cabin)
 			new_overlays += get_mech_image(null, "[body.icon_state]_open_overlay", body.icon, body.color)
 	else

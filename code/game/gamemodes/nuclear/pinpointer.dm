@@ -48,7 +48,7 @@
 
 	if (slot)
 		var/tooloverlay = "disknukeloaded"
-		overlays += (tooloverlay)
+		add_overlays((tooloverlay))
 
 
 /obj/item/weapon/pinpointer/proc/workdisk()

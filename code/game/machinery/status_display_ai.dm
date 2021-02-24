@@ -94,7 +94,7 @@ var/list/ai_status_emotions = list(
 	picture_state = state
 	if(overlays.len)
 		overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+	add_overlays(image('icons/obj/status_display.dmi', icon_state=picture_state))
 
 /obj/machinery/ai_status_display/power_change()
 	..()

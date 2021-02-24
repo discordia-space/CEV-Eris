@@ -51,11 +51,11 @@ obj/var/contaminated = 0
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
 	if(!contaminated)
 		contaminated = 1
-		overlays += contamination_overlay
+		add_overlays(contamination_overlay)
 
 /obj/item/proc/decontaminate()
 	contaminated = 0
-	overlays -= contamination_overlay
+	remove_overlays(contamination_overlay)
 
 /mob/proc/contaminate()
 

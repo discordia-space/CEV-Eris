@@ -32,10 +32,10 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Hatton_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			add_overlays(icon(icon, "[magazine.charge]/3"))
 		else
 			icon_state = "Hatton_Hammer_1_empty"
-			overlays += icon(icon, "1/3")
+			add_overlays(icon(icon, "1/3"))
 	else
 		icon_state="Hatton_Hammer_0"
 
@@ -217,10 +217,10 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Moebius_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			add_overlays(icon(icon, "[magazine.charge]/3"))
 		else
 			icon_state = "Moebius_Hammer_1_empty"
-			overlays += icon(icon, "1/3")
+			add_overlays(icon(icon, "1/3"))
 	else
 		icon_state = "Moebius_Hammer_0"
 

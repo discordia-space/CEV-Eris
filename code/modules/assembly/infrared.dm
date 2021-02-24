@@ -40,7 +40,7 @@
 	overlays.Cut()
 	attached_overlays = list()
 	if(on)
-		overlays += "infrared_on"
+		add_overlays("infrared_on")
 		attached_overlays += "infrared_on"
 
 	if(holder)

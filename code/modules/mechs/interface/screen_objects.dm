@@ -254,7 +254,7 @@
 				if(4) I.color = "#f00"
 				else I.color = "#f5f5f0"
 			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
-		overlays += GLOB.mech_damage_overlay_cache["[part]-[state]"]
+		add_overlays(GLOB.mech_damage_overlay_cache["[part]-[state]"])
 
 //Controls if cameras set the vision flags
 /obj/screen/movable/exosuit/toggle/camera

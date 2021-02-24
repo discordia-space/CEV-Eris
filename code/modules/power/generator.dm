@@ -68,7 +68,7 @@
 		return 1
 	else
 		if (lastgenlev != 0)
-			overlays += image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]")
+			add_overlays(image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]"))
 			if (circ1 && circ2)
 				var/extreme = (lastgenlev > 9) ? "ex" : ""
 				if (circ1.last_temperature < circ2.last_temperature)

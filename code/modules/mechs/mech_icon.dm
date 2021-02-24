@@ -13,7 +13,7 @@
 				var/icon/decal_icon = icon(MECH_DECALS_ICON, decal)
 				decal_icon.Blend(GLOB.mech_icon_cache[template_key], ICON_MULTIPLY)
 				GLOB.mech_icon_cache[decal_key] = decal_icon
-			I.overlays += get_mech_image(null, decal_key, GLOB.mech_icon_cache[decal_key])
+			I.add_overlays(get_mech_image(null, decal_key, GLOB.mech_icon_cache[decal_key]))
 		I.appearance_flags |= RESET_COLOR
 		I.layer = overlay_layer
 		I.plane = FLOAT_PLANE
@@ -47,7 +47,7 @@
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
 	if(update_overlays && LAZYLEN(pilot_overlays))
-		overlays -= pilot_overlays
+		remove_overlays(pilot_overlays)
 	pilot_overlays = null
 	if(!body || ((body.pilot_coverage < 100 || body.transparent_cabin) && !body.hide_pilot))
 		for(var/i = 1 to LAZYLEN(pilots))
@@ -66,7 +66,7 @@
 			LAZYADD(pilot_overlays, draw_pilot)
 			update_mech_hud_4(pilot)
 		if(update_overlays && LAZYLEN(pilot_overlays))
-			overlays += pilot_overlays
+			add_overlays(pilot_overlays)
 
 /mob/living/exosuit/regenerate_icons()
 	return

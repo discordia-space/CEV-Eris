@@ -50,13 +50,13 @@
 	..()
 
 	if(istype(cell, /obj/item/weapon/cell/medium/moebius/nuclear))
-		overlays += image(icon, "nuke_cell")
+		add_overlays(image(icon, "nuke_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium/moebius))
-		overlays += image(icon, "moeb_cell")
+		add_overlays(image(icon, "moeb_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium/excelsior))
-		overlays += image(icon, "excel_cell")
+		add_overlays(image(icon, "excel_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium))
-		overlays += image(icon, "guild_cell")
+		add_overlays(image(icon, "guild_cell"))

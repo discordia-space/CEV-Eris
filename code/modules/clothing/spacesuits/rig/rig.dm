@@ -530,7 +530,7 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
+				chest.add_overlays(image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH))
 
 /obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
 

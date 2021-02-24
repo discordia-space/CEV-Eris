@@ -98,7 +98,7 @@
 		mymist = null
 
 	if(master && master.on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		add_overlays(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
 		if(master.watertemp == "freezing")
 			return
 		if(!ismist)

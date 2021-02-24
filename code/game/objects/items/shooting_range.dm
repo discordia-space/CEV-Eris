@@ -142,7 +142,7 @@
 			virtualIcon.DrawBox(null, B.b2x, B.b2y1,  B.b2x, B.b2y2)
 			// vertical line, top to bottom
 
-		overlays += bmark
+		add_overlays(bmark)
 		// add the decal
 
 		icon = virtualIcon

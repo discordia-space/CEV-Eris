@@ -209,14 +209,14 @@
 /obj/machinery/multistructure/biogenerator_part/port/on_update_icon()
 	overlays.Cut()
 	if(panel_open)
-		overlays += "port-opened"
+		add_overlays("port-opened")
 		if(pipes_dirtiness)
 			if(pipes_dirtiness == 1)
-				overlays += "port_dirty_low"
+				add_overlays("port_dirty_low")
 			else if(pipes_dirtiness <= 3)
-				overlays += "port_dirty_medium"
+				add_overlays("port_dirty_medium")
 			else
-				overlays += "port_dirty_full"
+				add_overlays("port_dirty_full")
 
 
 /obj/machinery/multistructure/biogenerator_part/port/examine(mob/user)
@@ -455,9 +455,9 @@
 
 /obj/machinery/power/biogenerator_core/on_update_icon()
 	overlays.Cut()
-	overlays += "core-pipe"
+	add_overlays("core-pipe")
 	if(!coil_frame)
-		overlays += "core-coil"
+		add_overlays("core-coil")
 
 
 /obj/machinery/power/biogenerator_core/examine(mob/user)

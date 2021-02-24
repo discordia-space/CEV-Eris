@@ -103,7 +103,7 @@
 	overlays.Cut()
 	..()
 	if(cell)
-		overlays += image(icon, "cell_guild")
+		add_overlays(image(icon, "cell_guild"))
 
 /obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
 	name = "NT PR \"Martyr\""

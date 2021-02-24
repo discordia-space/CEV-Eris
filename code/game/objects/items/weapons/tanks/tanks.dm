@@ -262,7 +262,7 @@ var/list/global/tank_gauge_cache = list()
 	overlays.Cut()
 	if(!tank_gauge_cache[indicator])
 		tank_gauge_cache[indicator] = image(icon, indicator)
-	overlays += tank_gauge_cache[indicator]
+	add_overlays(tank_gauge_cache[indicator])
 
 /obj/item/weapon/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank

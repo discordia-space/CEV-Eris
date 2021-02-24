@@ -31,7 +31,7 @@
 		overlays.Cut()
 
 		if(lastgenlev != 0)
-			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+			add_overlays(image('icons/obj/power.dmi', "teg-op[lastgenlev]"))
 
 #define GENRATE 800		// generator output coefficient from Q
 

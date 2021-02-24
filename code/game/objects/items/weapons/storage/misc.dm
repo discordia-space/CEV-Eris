@@ -33,7 +33,7 @@
 	overlays.Cut()
 	var/i = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
-		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
+		add_overlays(image('icons/obj/food.dmi', "[i][D.overlay_state]"))
 		i++
 
 /obj/item/weapon/storage/box/donut/empty

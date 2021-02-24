@@ -328,7 +328,7 @@
 				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
 				overlays.Cut()
 				if(panel_open)
-					overlays += image(icon, "[icon_type]-panel")
+					add_overlays(image(icon, "[icon_type]-panel"))
 				SSnano.update_uis(src)
 			return
 

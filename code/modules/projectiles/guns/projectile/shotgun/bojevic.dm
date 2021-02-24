@@ -43,11 +43,11 @@
 		itemstring += "_doble"
 
 	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_color]"
+		add_overlays("m12[ammo_magazine.ammo_color]")
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide"
+		add_overlays("slide")
 
 	icon_state = iconstring
 	set_item_state(itemstring)

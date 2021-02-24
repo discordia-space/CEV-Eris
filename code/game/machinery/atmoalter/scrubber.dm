@@ -43,10 +43,10 @@
 		icon_state = "pscrubber:0"
 
 	if(holding)
-		overlays += "scrubber-open"
+		add_overlays("scrubber-open")
 
 	if(connected_port)
-		overlays += "scrubber-connector"
+		add_overlays("scrubber-connector")
 
 	return
 

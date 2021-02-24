@@ -146,11 +146,11 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 /obj/machinery/power/rad_collector/proc/update_icons()
 	overlays.Cut()
 	if(P)
-		overlays += "ptank"
+		add_overlays("ptank")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += "on"
+		add_overlays("on")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()

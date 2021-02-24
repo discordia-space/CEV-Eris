@@ -66,8 +66,8 @@
 	var/image/img = image("icon"=I, "layer"=FLOAT_LAYER)	//take a snapshot. (necessary to stop the underlays appearing under our inventory-HUD slots ~Carn
 	I.pixel_x = xx		//and then return it
 	I.pixel_y = yy
-	overlays += img
-	overlays += "evidence"
+	add_overlays(img)
+	add_overlays("evidence")
 	//should look nicer for transparent stuff. not really that important, but hey.
 
 	desc = "An evidence bag containing [I]."

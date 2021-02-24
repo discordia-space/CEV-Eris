@@ -179,9 +179,9 @@
 	overlays.Cut()
 
 	if(panel_open)
-		overlays += "station_map-panel"
+		add_overlays("station_map-panel")
 	else
-		overlays -= "station_map-panel"
+		remove_overlays("station_map-panel")
 
 	if(wiresexposed)
 		switch(buildstage)

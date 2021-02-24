@@ -52,9 +52,9 @@
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	if(current_mode.name == "stun")
-		overlays += "taser_pdw"
+		add_overlays("taser_pdw")
 	else
-		overlays += "lazer_pdw"
+		add_overlays("lazer_pdw")
 
 /obj/item/weapon/gun/energy/gun/martin/on_update_icon()
 	overlays.Cut()

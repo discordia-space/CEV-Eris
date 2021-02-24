@@ -277,11 +277,11 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	else if(position == DIRECTION_REVERSED)
 		icon_state = "switch-rev"
 		if(!(stat & NOPOWER))
-			overlays += "redlight"
+			add_overlays("redlight")
 	else if(position == DIRECTION_FORWARDS)
 		icon_state = "switch-fwd"
 		if(!(stat & NOPOWER))
-			overlays += "greenlight"
+			add_overlays("greenlight")
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)

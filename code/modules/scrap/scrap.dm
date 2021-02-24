@@ -256,9 +256,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to num)
 				var/image/I = image(parts_icon,pick(icon_states(parts_icon)))
 				I.color = pick("#996633", "#663300", "#666666", "")
-				base_icon.overlays += randomize_image(I)
+				base_icon.add_overlays(randomize_image(I))
 			GLOB.scrap_base_cache["[icontype][icon_state][ID]"] = base_icon
-		overlays += GLOB.scrap_base_cache["[icontype][icon_state][ID]"]
+		add_overlays(GLOB.scrap_base_cache["[icontype][icon_state][ID]"])
 	if(loot_generated)
 		underlays.Cut()
 		for(var/obj/O in loot.contents)

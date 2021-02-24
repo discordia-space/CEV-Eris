@@ -428,7 +428,7 @@
 		if(!stamped)
 			stamped = new
 		stamped += P.type
-		overlays += stampoverlay
+		add_overlays(stampoverlay)
 
 		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 

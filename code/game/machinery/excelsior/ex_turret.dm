@@ -133,7 +133,7 @@
 	overlays.Cut()
 
 	if(!(stat & BROKEN))
-		overlays += image("turret_gun")
+		add_overlays(image("turret_gun"))
 
 /obj/machinery/porta_turret/excelsior/launch_projectile()
 	ammo--

@@ -48,7 +48,7 @@
 		return
 
 	plant.ChangeOpacity(hologram_opacity)
-	overlays += plant
+	add_overlays(plant)
 
 /obj/structure/cyberplant/proc/change_plant(var/state)
 	plant = prepare_icon(state)
@@ -144,13 +144,13 @@
 			if (QDELETED(src))
 				return
 
-			overlays += plant
+			add_overlays(plant)
 			set_light(brightness_on, brightness_on/2)
 			sleep(3)
 			if (QDELETED(src))
 				return
 
-			overlays -= plant
+			remove_overlays(plant)
 			set_light(0, 0)
 			sleep(3)
 			if (QDELETED(src))

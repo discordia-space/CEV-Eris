@@ -47,7 +47,7 @@
 	for(var/slot in slots)
 		img = new/image(icon, "slot_[slots[slot]]")
 		img.pixel_x += offset
-		overlays += img
+		add_overlays(img)
 		offset += 6
 
 /obj/machinery/slotmachine/proc/check_streak()

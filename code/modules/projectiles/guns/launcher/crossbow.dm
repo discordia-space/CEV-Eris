@@ -361,14 +361,14 @@
 /obj/item/weapon/gun/launcher/crossbow/RCD/on_update_icon()
 	overlays.Cut()
 	if(bolt)
-		overlays += "rxb-bolt"
+		add_overlays("rxb-bolt")
 	var/ratio = 0
 	if(stored_matter < boltcost)
 		ratio = 0
 	else
 		ratio = stored_matter / max_stored_matter
 		ratio = max(round(ratio, 0.25) * 100, 25)
-	overlays += "rxb-[ratio]"
+	add_overlays("rxb-[ratio]")
 	if(tension > 1)
 		icon_state = "rxb-drawn"
 	else

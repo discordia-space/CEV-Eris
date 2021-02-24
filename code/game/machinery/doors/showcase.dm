@@ -83,7 +83,7 @@
 		else if(health < maxhealth)
 			var/ratio = health / maxhealth
 			ratio = CEILING(ratio * 4, 1) * 25
-			overlays += "damage[ratio]"
+			add_overlays("damage[ratio]")
 	else
 		icon_state = "open"
 

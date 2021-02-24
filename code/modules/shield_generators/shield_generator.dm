@@ -87,7 +87,7 @@
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
-			overlays += I
+			add_overlays(I)
 
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)

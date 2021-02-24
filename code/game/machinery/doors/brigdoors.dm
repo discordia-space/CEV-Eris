@@ -327,7 +327,7 @@
 /obj/machinery/door_timer/proc/set_picture(var/state)
 	picture_state = state
 	overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+	add_overlays(image('icons/obj/status_display.dmi', icon_state=picture_state))
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
@@ -351,7 +351,7 @@
 		var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
 		ID.pixel_x = -(d-1)*5 + px
 		ID.pixel_y = py
-		I.overlays += ID
+		I.add_overlays(ID)
 	return I
 
 #undef FONT_SIZE

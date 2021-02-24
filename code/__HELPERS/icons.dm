@@ -134,27 +134,27 @@ mob
 		underlays += image(icon='old_or_unused.dmi',icon_state="red", pixel_x = -32)
 
 		// Testing image overlays
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32)
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32)
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32)
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32))
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32))
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32))
 
 		// Testing icon file overlays (defaults to mob's state)
-		overlays += '_flat_demoIcons2.dmi'
+		add_overlays('_flat_demoIcons2.dmi')
 
 		// Testing icon_state overlays (defaults to mob's icon)
-		overlays += "white"
+		add_overlays("white")
 
 		// Testing dynamic icon overlays
 		var/icon/I = icon('old_or_unused.dmi', icon_state="aqua")
 		I.Shift(NORTH, 16, 1)
-		overlays+=I
+		add_overlays(I)
 
 		// Testing dynamic image overlays
 		I=image(icon=I, pixel_x = -32, pixel_y = 32)
-		overlays+=I
+		add_overlays(I)
 
 		// Testing object types (and layers)
-		overlays+=/obj/effect/overlayTest
+		add_overlays(/obj/effect/overlayTest)
 
 		loc = locate (10, 10, 1)
 	verb
@@ -184,7 +184,7 @@ mob
 
 		Add_Overlay()
 			set name = "4. Add Overlay"
-			overlays += image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32))
+			add_overlays(image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32)))
 
 		Stress_Test()
 			set name = "5. Stress Test"
@@ -848,7 +848,7 @@ proc
 			if(2)	I.pixel_x++
 			if(3)	I.pixel_y--
 			if(4)	I.pixel_y++
-		overlays += I
+		add_overlays(I)
 		//And finally add the overlay.
 
 /proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
@@ -1110,9 +1110,14 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 
 // Overlays
+//associate_with_overlays("temp4", "alive", "meter")
+/atom/proc/associate_with_overlays()
+	overlays |= args
+//overlays.Add("temp4", "alive", "meter");overlays += list("temp4", "alive", "meter");
 /atom/proc/add_overlays()
 	return overlays.Add(args)
 
+//overlays.Remove("temp4", "alive", "meter");overlays -= list("temp4", "alive", "meter");
 /atom/proc/remove_overlays()
 	return overlays.Remove(args)
 /atom/proc/set_overlays(list/value)

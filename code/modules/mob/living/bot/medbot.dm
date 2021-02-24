@@ -117,7 +117,7 @@
 /mob/living/bot/medbot/update_icons()
 	overlays.Cut()
 	if(skin)
-		overlays += image('icons/obj/aibots.dmi', "medskin_[skin]")
+		add_overlays(image('icons/obj/aibots.dmi', "medskin_[skin]"))
 	if(currently_healing)
 		icon_state = "medibots"
 	else
@@ -331,7 +331,7 @@
 	..()
 	spawn(5) // Terrible. TODO: fix
 		if(skin)
-			overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
+			add_overlays(image('icons/obj/aibots.dmi', "kit_skin_[src.skin]"))
 
 /obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -352,7 +352,7 @@
 					to_chat(user, SPAN_NOTICE("You add the health sensor to [src]."))
 					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					name = "First aid/robot arm/health analyzer assembly"
-					overlays += image('icons/obj/aibots.dmi', "na_scanner")
+					add_overlays(image('icons/obj/aibots.dmi', "na_scanner"))
 
 			if(1)
 				if(is_proximity_sensor(W))

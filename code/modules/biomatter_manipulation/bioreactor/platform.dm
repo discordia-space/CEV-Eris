@@ -216,7 +216,7 @@
 		biomass.Turn(-40, 40)
 		biomass.Blend(rgb(0, 0, 0, biomass_alpha))
 		default.Blend(biomass, ICON_MULTIPLY)
-		overlays += default
+		add_overlays(default)
 
 
 /obj/structure/window/reinforced/bioreactor/proc/apply_dirt(var/amount)
