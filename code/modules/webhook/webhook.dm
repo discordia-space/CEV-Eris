@@ -9,7 +9,7 @@
 	return config.webhook_key && config.webhook_url
 
 // type: string, params: byond list
-/proc/call_webhook(var/type, var/params)
+/proc/call_webhook(var/type, var/params = list())
 	spawn(0)
 		params["key"] = config.webhook_key
 		params["type"] = type
@@ -21,9 +21,7 @@
 /proc/call_restart_webhook()
 	if (!is_webhook_set_up())
 		return
-	var/message = "<@&546427101247438849> Restart!"
-	var/params = list(msg = message)
-	call_webhook(RESTART_WEBHOOK, params)
+	call_webhook(RESTART_WEBHOOK)
 
 /proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
 	if (!is_webhook_set_up())
