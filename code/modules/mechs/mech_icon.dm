@@ -43,7 +43,7 @@
 			var/use_icon_state = "[hardpoint_object.icon_state]_[hardpoint]"
 			if(use_icon_state in GLOB.mech_weapon_overlays)
 				new_overlays += get_mech_image(null, use_icon_state, MECH_WEAPON_OVERLAYS_ICON, null, hardpoint_object.mech_layer )
-	overlays = new_overlays
+	set_overlays(new_overlays)
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
 	if(update_overlays && LAZYLEN(pilot_overlays))

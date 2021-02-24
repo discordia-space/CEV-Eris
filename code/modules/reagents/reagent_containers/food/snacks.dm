@@ -2998,7 +2998,7 @@
 		pizza = new type_pizza(src)
 
 /obj/item/pizzabox/on_update_icon()
-	overlays = list()
+	set_overlays(list())
 
 	// Set appropriate description
 	if(open && pizza )

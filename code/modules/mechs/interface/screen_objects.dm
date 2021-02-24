@@ -113,7 +113,7 @@
 				GLOB.hardpoint_bar_cache += bar
 		for(var/i = 1; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
 	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
-	overlays = new_overlays
+	set_overlays(new_overlays)
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
 	if(..() && owner && holding)

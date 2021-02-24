@@ -73,7 +73,7 @@
 			new_overlays += get_mech_image(null, "[body.icon_state]_open_overlay", body.icon, body.color)
 	else
 		density = FALSE
-	overlays = new_overlays
+	set_overlays(new_overlays)
 	if(density != opacity)
 		set_opacity(density)
 

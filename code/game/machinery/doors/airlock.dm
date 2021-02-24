@@ -668,7 +668,7 @@ There are 9 wires.
 		else
 			icon_state = "door_closed"
 		if(p_open || welded)
-			overlays = list()
+			set_overlays(list())
 			if(p_open)
 				overlays += image(icon, "panel_open")
 			if (!(stat & NOPOWER))

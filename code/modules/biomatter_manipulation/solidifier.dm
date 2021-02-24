@@ -35,7 +35,7 @@
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
-	overlays = list()
+	set_overlays(list())
 	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
 
 /obj/machinery/biomatter_solidifier/Process()
