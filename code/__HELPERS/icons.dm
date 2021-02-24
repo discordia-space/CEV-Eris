@@ -1051,57 +1051,6 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	// To handle not only state changes in update icon if need
 	flick(iconOrState, src)
 
-/image
-	var/list/SynchronizedAtoms = list()
-
-/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withFlicks = TRUE)
-	if(istype(D))
-		SynchronizedAtoms[D] = args.Copy(2)
-		if(withIcon)
-			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
-			D.update_icon()
-		if(withFlicks)
-			GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
-	else
-		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
-
-/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakFlicks = TRUE)
-	if(istype(D) && SynchronizedAtoms.Find(D))
-		var/list/data_of_sync = SynchronizedAtoms[D]
-		if(length(data_of_sync) >= 2)
-			if(breakIcon && data_of_sync[1] == 1)
-				data_of_sync[1] = 0
-				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
-			if(breakFlicks && data_of_sync[2] == 1)
-				data_of_sync[2] = 0
-				GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
-			var/all_zero = TRUE
-			for(var/i in data_of_sync)
-				all_zero = all_zero && !i
-			if(all_zero)
-				SynchronizedAtoms.Remove(D)
-
-/image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
-	if(QDELETED(D))
-		qdel(src)
-		return
-	if(isByEvent)
-		GLOB.update_icon_event.register(D, src, .proc/flick_synchronization)
-	return flicker(iconOrState)
-
-/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays, isByEvent = TRUE)
-	if(QDELETED(D))
-		qdel(src)
-		return
-	if(_icon)
-		icon = _icon
-	if(_state)
-		icon_state = _state
-	if(_overlays)
-		overlays = _overlays
-	if(isByEvent)
-		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
-
 /atom/proc/SetIcon(value)
 	icon = value
 
