@@ -20,7 +20,7 @@
 	.=..()
 	var/list/new_overlays = .
 	for(var/overlay in new_overlays)
-		overlays.Add(overlay)
+		add_overlays(overlay)
 	if(!isnull(seed))
 		if(mechanical && health <= (seed.get_trait(TRAIT_ENDURANCE) / 2))
 			add_overlays("over_lowhealth3")

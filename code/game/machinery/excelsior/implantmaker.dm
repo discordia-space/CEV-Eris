@@ -97,4 +97,4 @@
 	cut_overlays()
 
 	if(panel_open)
-		overlays.Add(image(icon, "panel"))
+		add_overlays(image(icon, "panel"))

@@ -32,7 +32,7 @@
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)
-			overlays.Add(overlay)
+			add_overlays(overlay)
 
 /obj/machinery/plumbing/verb/rotate()
 	set category = "Object"

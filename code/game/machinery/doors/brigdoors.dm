@@ -351,7 +351,7 @@
 		var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
 		ID.pixel_x = -(d-1)*5 + px
 		ID.pixel_y = py
-		I.overlays.Add(ID)
+		I.add_overlays(ID)
 	return I
 
 #undef FONT_SIZE

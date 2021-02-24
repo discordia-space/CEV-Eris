@@ -673,7 +673,7 @@
 	icon_state = initial(icon_state)
 
 	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_panel"))
+		add_overlays(image(icon, "[icon_state]_panel"))
 
 	if(icon_off())
 		return

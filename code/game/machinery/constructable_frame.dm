@@ -240,5 +240,5 @@
 	var/image/I = image(icon, "[icon_state]1")
 	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
-	overlays.Add(I)
+	add_overlays(I)
 

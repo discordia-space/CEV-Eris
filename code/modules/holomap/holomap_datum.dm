@@ -23,7 +23,7 @@
 				else
 					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) + 2*ERIS_HOLOMAP_CENTER_GUTTER
 					deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(level)
-				station_map.overlays.Add(deck_name)
+				station_map.add_overlays(deck_name)
 
 	if(isAI)
 		T = get_turf(user.client.eye)

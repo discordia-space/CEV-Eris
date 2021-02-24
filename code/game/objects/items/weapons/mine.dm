@@ -41,7 +41,7 @@
 	cut_overlays()
 
 	if(armed)
-		overlays.Add(image(icon,"mine_light"))
+		add_overlays(image(icon,"mine_light"))
 
 /obj/item/weapon/mine/attack_self(mob/user)
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))

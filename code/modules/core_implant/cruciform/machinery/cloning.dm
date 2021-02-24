@@ -236,22 +236,22 @@
 
 	if(panel_open)
 		var/image/P = image(icon, "pod_panel")
-		overlays.Add(P)
+		add_overlays(P)
 
 	var/image/I = image(icon, "pod_base1")
 	I.layer = 5
 	I.pixel_z = 32
-	overlays.Add(I)
+	add_overlays(I)
 
 	if(closed)
 		I = image(icon, "pod_under")
 		I.layer = 5
-		overlays.Add(I)
+		add_overlays(I)
 
 		I = image(icon, "pod_top_on")
 		I.layer = 5.021
 		I.pixel_z = 32
-		overlays.Add(I)
+		add_overlays(I)
 
 
 	/////////BODY
@@ -265,14 +265,14 @@
 		I.layer = 5
 		I.pixel_z = 11 + crop
 
-		overlays.Add(I)
+		add_overlays(I)
 
 		if(P >= CLONING_BONES)
 			I = image(icon, "clone_meat")
 			I.alpha = min(255,round(((P-CLONING_BONES)/(CLONING_MEAT-CLONING_BONES))*255))
 			I.layer = 5
 			I.pixel_z = 11
-			overlays.Add(I)
+			add_overlays(I)
 
 			if(P >= CLONING_MEAT && occupant)
 				I = image(occupant.icon, occupant.icon_state)
@@ -280,7 +280,7 @@
 				I.overlays = occupant.overlays
 				I.layer = 5
 				I.pixel_z = 11
-				overlays.Add(I)
+				add_overlays(I)
 
 	//////////////
 
@@ -288,25 +288,25 @@
 		if(!anim0 && !anim1)
 			I = image(icon, "pod_glass0")
 			I.layer = 5.01
-			overlays.Add(I)
+			add_overlays(I)
 
 			I = image(icon, "pod_glass1")
 			I.layer = 5.01
 			I.pixel_z = 32
-			overlays.Add(I)
+			add_overlays(I)
 
 			I = image(icon, "pod_liquid0")
 			I.layer = 5.01
-			overlays.Add(I)
+			add_overlays(I)
 
 			I = image(icon, "pod_liquid1")
 			I.layer = 5.01
 			I.pixel_z = 32
-			overlays.Add(I)
+			add_overlays(I)
 
 	if(anim0 && anim1)
-		overlays.Add(anim0)
-		overlays.Add(anim1)
+		add_overlays(anim0)
+		add_overlays(anim1)
 
 	I = image(icon, "pod_top0")
 
@@ -315,12 +315,12 @@
 	else
 		I.layer = 5.02
 
-	overlays.Add(I)
+	add_overlays(I)
 
 	I = image(icon, "pod_top1")
 	I.layer = 5.02
 	I.pixel_z = 32
-	overlays.Add(I)
+	add_overlays(I)
 
 
 /////////////////////
@@ -354,7 +354,7 @@
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)
-			overlays.Add(overlay)
+			add_overlays(overlay)
 
 /obj/machinery/neotheology/biomass_container/update_overlays()
 	. = ..()
@@ -457,7 +457,7 @@
 
 	if(panel_open)
 		var/image/P = image(icon, "reader_panel")
-		overlays.Add(P)
+		add_overlays(P)
 
 
 	icon_state = "reader_off"
@@ -469,7 +469,7 @@
 		var/image/I = image(icon, "reader_c_green")
 		if(implant.get_module(CRUCIFORM_PRIEST))
 			I = image(icon, "reader_c_red")
-		overlays.Add(I)
+		add_overlays(I)
 
 
 /////////////////////

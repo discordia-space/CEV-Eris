@@ -94,7 +94,7 @@
 
 	cut_overlays()
 	if(panel_open)
-		overlays.Add(image(icon,"Shield_Gen_panel"))
+		add_overlays(image(icon,"Shield_Gen_panel"))
 
 /obj/machinery/shieldwallgen/Process()
 	power()

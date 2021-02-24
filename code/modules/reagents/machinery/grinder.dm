@@ -290,7 +290,7 @@
 	cut_overlays()
 
 	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_p"))
+		add_overlays(image(icon, "[icon_state]_p"))
 
 /obj/machinery/reagentgrinder/industrial/ui_data()
 	var/list/data = ..()

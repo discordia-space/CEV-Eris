@@ -132,24 +132,24 @@
 	cut_overlays()
 
 	if(charging && charge < 10)
-		overlays.Add(image(icon, icon_state = "charging_1"))
+		add_overlays(image(icon, icon_state = "charging_1"))
 		return
 
 	if(charging & charge < 25)
-		overlays.Add(image(icon, icon_state = "charging_2"))
+		add_overlays(image(icon, icon_state = "charging_2"))
 		return
 
 	if(charging & charge < charge_max)
-		overlays.Add(image(icon, icon_state = "charging_3"))
+		add_overlays(image(icon, icon_state = "charging_3"))
 		return
 
 	if(charge >= charge_max)
-		overlays.Add(image(icon, icon_state = "charged_portal"))
-		overlays.Add(image(icon, icon_state = "beam"))
+		add_overlays(image(icon, icon_state = "charged_portal"))
+		add_overlays(image(icon, icon_state = "beam"))
 		return
 
 /obj/rogue/teleporter/proc/portal_burst()
-	overlays.Add(image(icon, icon_state = "portal_on"))
+	add_overlays(image(icon, icon_state = "portal_on"))
 	visible_message("A shimmering portal appears!")
 	sleep(100)
 	update_icon()
@@ -160,13 +160,13 @@
 				A.stasis = FALSE
 				A.activate_ai()
 
-	overlays.Add(image(icon, icon_state = "portal_failing"))
+	add_overlays(image(icon, icon_state = "portal_failing"))
 	visible_message("The portal starts flickering!")
 	flickering = 1
 	sleep(100)
 	update_icon()
 
-	overlays.Add(image(icon, icon_state = "portal_pop"))
+	add_overlays(image(icon, icon_state = "portal_pop"))
 	visible_message("The portal bursts!")
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
