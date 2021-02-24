@@ -205,7 +205,7 @@
 			holomap_datum.initialize_holomap_bogus()
 		else
 			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
-			overlays |= small_station_map
+			associate_with_overlays(small_station_map)
 			holomap_datum.initialize_holomap(get_turf(src))
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)

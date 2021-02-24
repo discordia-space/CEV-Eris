@@ -101,7 +101,7 @@ var/global/list/limb_icon_cache = list()
 				var/icon/facial = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 				if(facial_hair_style.do_colouration)
 					facial.Blend(owner.facial_color, ICON_ADD)
-				overlays |= facial
+				associate_with_overlays(facial)
 
 		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[owner.h_style]
@@ -109,7 +109,7 @@ var/global/list/limb_icon_cache = list()
 				var/icon/hair = new/icon(hair_style.icon, hair_style.icon_state)
 				if(hair_style.do_colouration)
 					hair.Blend(hair_col, ICON_ADD)
-				overlays |= hair
+				associate_with_overlays(hair)
 
 	return mob_icon
 

@@ -67,5 +67,5 @@
 					if(istype(A, /obj/item))
 						var/obj/item/O = A
 						if(O.was_bloodied && !(O.blood_overlay in O.overlays))
-							O.overlays |= O.blood_overlay
+							O.associate_with_overlays(O.blood_overlay)
 							reset_objects |= O

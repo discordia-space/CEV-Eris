@@ -30,7 +30,7 @@
 			if(!dead_overlay)
 				dead_overlay = image('icons/obj/hydroponics_growing.dmi', "[ikey]")
 				dead_overlay.color = DEAD_PLANT_COLOUR
-			overlays |= dead_overlay
+			associate_with_overlays(dead_overlay)
 		else
 			if(!seed.growth_stages)
 				seed.update_growth_stages()
@@ -51,7 +51,7 @@
 				plant_overlay = image('icons/obj/hydroponics_growing.dmi', "[ikey]")
 				plant_overlay.color = seed.get_trait(TRAIT_PLANT_COLOUR)
 				plant_controller.plant_icon_cache["[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"] = plant_overlay
-			overlays |= plant_overlay
+			associate_with_overlays(plant_overlay)
 			if(harvest && overlay_stage == seed.growth_stages)
 				ikey = "[seed.get_trait(TRAIT_PRODUCT_ICON)]"
 				var/image/harvest_overlay = plant_controller.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"]
@@ -59,7 +59,7 @@
 					harvest_overlay = image('icons/obj/hydroponics_products.dmi', "[ikey]")
 					harvest_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 					plant_controller.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"] = harvest_overlay
-				overlays |= harvest_overlay
+				associate_with_overlays(harvest_overlay)
 	//Draw the cover.
 	if(closed_system)
 		add_overlays("hydrocover")

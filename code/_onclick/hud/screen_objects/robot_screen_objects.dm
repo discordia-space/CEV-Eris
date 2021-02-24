@@ -203,7 +203,7 @@
 	var/mob/living/silicon/robot/R = parentmob
 	for (var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
 		if(S.overlay)
-			overlays |= S.overlay
+			associate_with_overlays(S.overlay)
 
 
 /obj/screen/silicon/pull

@@ -290,7 +290,7 @@ var/list/holder_mob_icon_cache = list()
 	color = M.color
 	name = M.name
 	desc = M.desc
-	overlays |= M.overlays
+	associate_with_overlays(M.overlays)
 	last_holder = loc
 	update_wear_icon()
 

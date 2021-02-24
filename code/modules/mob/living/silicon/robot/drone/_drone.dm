@@ -167,7 +167,7 @@ var/list/mob_hat_cache = list()
 		add_overlays("model-[armguard]")
 
 	if(hat) // Let the drones wear hats.
-		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
+		associate_with_overlays(get_hat_icon(hat, hat_x_offset, hat_y_offset))
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return

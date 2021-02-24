@@ -267,7 +267,7 @@ var/list/tape_roll_applications = list()
 			tape_roll_applications[F] &= ~direction
 		else
 			user.visible_message("\The [user] applied \the [src] on \the [F] to create area markings.", "You apply \the [src] on \the [F] to create area markings.")
-			F.overlays |= hazard_overlay
+			F.associate_with_overlays(hazard_overlay)
 			tape_roll_applications[F] |= direction
 		return
 

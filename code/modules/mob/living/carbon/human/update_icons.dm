@@ -153,7 +153,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		for(var/image/I in overlays_standing)
 			add_overlays(I)
 		if(species.has_floating_eyes)
-			overlays |= species.get_eyes(src)
+			associate_with_overlays(species.get_eyes(src))
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
@@ -542,7 +542,7 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/clothing/under/under = w_uniform
 			if(under.accessories.len)
 				for(var/obj/item/clothing/accessory/A in under.accessories)
-					standing.overlays |= A.get_mob_overlay()
+					standing.associate_with_overlays(A.get_mob_overlay())
 
 		overlays_standing[UNIFORM_LAYER]	= standing
 
@@ -788,7 +788,7 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/clothing/head/hat = head
 			var/cache_key = "[hat.light_overlay]_[species.get_bodytype()]"
 			if(hat.on && light_overlay_cache[cache_key])
-				standing.overlays |= light_overlay_cache[cache_key]
+				standing.associate_with_overlays(light_overlay_cache[cache_key])
 
 		standing.color = head.color
 		overlays_standing[HEAD_LAYER] = standing
@@ -882,7 +882,7 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/clothing/suit/suit = wear_suit
 		if(istype(suit) && suit.accessories.len)
 			for(var/obj/item/clothing/accessory/A in suit.accessories)
-				standing.overlays |= A.get_mob_overlay()
+				standing.associate_with_overlays(A.get_mob_overlay())
 
 		overlays_standing[SUIT_LAYER]	= standing
 

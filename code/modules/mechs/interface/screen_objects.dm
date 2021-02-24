@@ -235,7 +235,7 @@
 
 	if(!owner.body.computer?.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
 		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECH_HUD_ICON, icon_state="dam_error")
-		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
+		associate_with_overlays(GLOB.mech_damage_overlay_cache["critfail"])
 		return
 
 	var/list/part_to_state = list("legs" = owner.legs,"body" = owner.body,"head" = owner.head,"arms" = owner.arms)
