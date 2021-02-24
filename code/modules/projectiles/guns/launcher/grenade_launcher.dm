@@ -156,5 +156,5 @@
 	add_overlays("grenademag_[ratio]")
 
 /obj/item/weapon/gun/launcher/grenade/lenar/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	update_charge()

@@ -658,7 +658,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/on_update_icon()
 	set_light(0)
 	if(overlays.len)
-		overlays.Cut()
+		cut_overlays()
 	if(underlays.len)
 		underlays.Cut()
 	if(density)
@@ -691,7 +691,7 @@ There are 9 wires.
 	switch(animation)
 		if("opening")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flicker("o_door_opening")
 			else
@@ -699,7 +699,7 @@ There are 9 wires.
 			update_icon()
 		if("closing")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flicker("o_door_closing")
 			else

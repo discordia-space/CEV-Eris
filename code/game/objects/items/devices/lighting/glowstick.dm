@@ -34,7 +34,7 @@
 		visible_message("[src] slowly burn out")
 
 /obj/item/device/lighting/glowstick/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!fuel)
 		icon_state = "[initial(icon_state)]-empty"
 		item_state = "glowstick"

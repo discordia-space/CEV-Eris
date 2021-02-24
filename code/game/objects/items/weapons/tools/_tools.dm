@@ -997,7 +997,7 @@
 	return ..()
 
 /obj/item/weapon/tool/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(switched_on && toggleable)
 		add_overlays("[icon_state]_on")

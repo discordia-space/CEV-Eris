@@ -338,7 +338,7 @@
 
 
 /obj/machinery/door/firedoor/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	set_light(0)
 	var/do_set_light = FALSE
 

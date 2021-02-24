@@ -125,7 +125,7 @@
 /obj/item/ammo_casing/on_update_icon()
 	if(spent_icon && !BB)
 		icon_state = spent_icon
-	src.overlays.Cut()
+	src.cut_overlays()
 	if(amount > 1)
 		src.pixel_x = 0
 		src.pixel_y = 0

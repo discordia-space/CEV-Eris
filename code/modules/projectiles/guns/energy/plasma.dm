@@ -100,7 +100,7 @@
 	init_firemodes = list()
 
 /obj/item/weapon/gun/energy/plasma/brigador/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(cell)
 		add_overlays(image(icon, "cell_guild"))

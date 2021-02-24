@@ -63,7 +63,7 @@
 
 	var/obj/item/weapon/cell/C = owner.get_cell()
 	if(!C || (C.is_empty()))
-		overlays.Cut()
+		cut_overlays()
 		return
 
 	maptext = holding.get_hardpoint_maptext()
@@ -72,7 +72,7 @@
 
 	var/value = holding.get_hardpoint_status_value()
 	if(isnull(value))
-		overlays.Cut()
+		cut_overlays()
 		return
 
 	if(ui_damage)
@@ -228,7 +228,7 @@
 
 /obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	var/obj/item/weapon/cell/C = owner.get_cell()
 	if(!owner.body || !C || C.is_empty())
 		return

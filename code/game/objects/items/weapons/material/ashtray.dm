@@ -22,7 +22,7 @@ var/global/list/ashtray_cache = list()
 
 /obj/item/weapon/material/ashtray/on_update_icon()
 	color = null
-	overlays.Cut()
+	cut_overlays()
 	var/cache_key = "base-[material.name]"
 	if(!ashtray_cache[cache_key])
 		var/image/I = image('icons/obj/objects.dmi',"ashtray")

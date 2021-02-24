@@ -18,7 +18,7 @@
 	update_icon()
 
 /obj/item/weapon/clipboard/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(toppaper)
 		add_overlays(toppaper.icon_state)
 		add_overlays(toppaper.overlays)

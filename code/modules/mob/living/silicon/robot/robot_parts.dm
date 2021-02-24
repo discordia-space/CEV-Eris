@@ -103,7 +103,7 @@
 	update_icon()
 
 /obj/item/robot_parts/robot_suit/on_update_icon()
-	src.overlays.Cut()
+	src.cut_overlays()
 	for(var/part in parts)
 		if(parts[part])
 			add_overlays("[part]+o")

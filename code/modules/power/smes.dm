@@ -104,7 +104,7 @@
 	return 0
 
 /obj/machinery/power/smes/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)	return
 
 	add_overlays(image('icons/obj/power.dmi', "smes-op[outputting]"))

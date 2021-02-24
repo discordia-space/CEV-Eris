@@ -48,7 +48,7 @@
 
 
 /obj/item/device/assembly_holder/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(left_assembly)
 		add_overlays("[left_assembly.icon_state]_left")
 		for(var/O in left_assembly.attached_overlays)

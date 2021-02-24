@@ -189,7 +189,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	return null
 
 /HUD_element/proc/_updateLayers()
-	overlays.Cut()
+	cut_overlays()
 	underlays.Cut()
 
 	if(!debugMode)

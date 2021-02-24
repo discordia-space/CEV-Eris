@@ -4,7 +4,7 @@ var/global/list/limb_icon_cache = list()
 	return
 
 /obj/item/organ/external/proc/compile_icon()
-	overlays.Cut()
+	cut_overlays()
 	 // This is a kludge, only one icon has more than one generation of children though.
 	for(var/obj/item/organ/external/organ in contents)
 		if(organ.children && organ.children.len)
@@ -82,7 +82,7 @@ var/global/list/limb_icon_cache = list()
 	if(!appearance_test.special_update)
 		return mob_icon
 
-	overlays.Cut()
+	cut_overlays()
 	if(!owner || !owner.species)
 		return
 

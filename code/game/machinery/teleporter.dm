@@ -316,7 +316,7 @@
 
 /obj/machinery/teleport/station/New()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	add_overlays("controller-wires")
 
 /obj/machinery/teleport/station/attack_ai()

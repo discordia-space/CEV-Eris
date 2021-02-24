@@ -931,7 +931,7 @@ FIRE ALARM
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
 /obj/machinery/firealarm/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(wiresexposed)
 		switch(buildstage)

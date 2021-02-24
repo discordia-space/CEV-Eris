@@ -43,7 +43,7 @@
 
 /obj/structure/cyberplant/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if (!plant)
 		return
 
@@ -138,7 +138,7 @@
 			if (QDELETED(src))
 				return
 
-			overlays.Cut()
+			cut_overlays()
 			set_light(0, 0)
 			sleep(3)
 			if (QDELETED(src))

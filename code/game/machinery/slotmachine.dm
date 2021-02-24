@@ -40,7 +40,7 @@
 				icon_state = "[icon_type]_off"
 
 /obj/machinery/slotmachine/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	//From left to right
 	var/offset = -6
 	var/image/img

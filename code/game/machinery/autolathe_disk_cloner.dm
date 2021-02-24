@@ -232,7 +232,7 @@
 
 
 /obj/machinery/autolathe_disk_cloner/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		overlays.Add(image(icon, icon_state = "disk_cloner_panel"))

@@ -34,7 +34,7 @@ var/list/flooring_cache = list()
 
 
 		// Apply edges, corners, and inner corners.
-		overlays.Cut()
+		cut_overlays()
 		var/has_border = 0
 		if (!flooring.smooth_nothing)
 		//Check if we're actually going to do anything first

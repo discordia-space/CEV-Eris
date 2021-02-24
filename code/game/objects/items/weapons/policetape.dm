@@ -106,7 +106,7 @@ var/list/tape_roll_applications = list()
 	color = COLOR_GREEN
 
 /obj/item/taperoll/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/overlay = image(icon = src.icon)
 	overlay.appearance_flags = RESET_COLOR
 	if(ismob(loc))

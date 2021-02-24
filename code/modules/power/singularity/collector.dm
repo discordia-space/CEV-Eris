@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(P)
 		add_overlays("ptank")
 	if(stat & (NOPOWER|BROKEN))

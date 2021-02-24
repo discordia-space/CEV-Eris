@@ -253,7 +253,7 @@
 		name = "[P.name]"
 		desc = "[P.desc]"
 
-	overlays.Cut()
+	cut_overlays()
 
 
 	if(cards.len == 1)

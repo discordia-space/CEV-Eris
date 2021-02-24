@@ -49,7 +49,7 @@
 
 
 /obj/item/weapon/flamethrower/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(ptank)
 		add_overlays("+ptank")
 	if(lit)

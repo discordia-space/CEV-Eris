@@ -35,5 +35,5 @@
 
 	icon_state = initial(icon_state)
 	if(!anchored)
-		overlays.Cut()
+		cut_overlays()
 		icon_state += "-closed"

@@ -92,7 +92,7 @@
 	return ..()
 
 /obj/effect/shower/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(mymist)
 		qdel(mymist)
 		mymist = null

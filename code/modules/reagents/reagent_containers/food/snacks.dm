@@ -246,7 +246,7 @@
 			)
 
 			src.bitecount++
-			U.overlays.Cut()
+			U.cut_overlays()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
 			I.color = src.filling_color

@@ -376,7 +376,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/head/on_update_icon(mob/user)
 
-	overlays.Cut()
+	cut_overlays()
 	var/mob/living/carbon/human/H
 	if(ishuman(user))
 		H = user
@@ -524,7 +524,7 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/shoes/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(holding)
 		add_overlays(image(icon, "[icon_state]_knife"))
 	return ..()

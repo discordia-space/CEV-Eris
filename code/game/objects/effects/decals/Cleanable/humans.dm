@@ -90,7 +90,7 @@ var/global/list/image/splatter_cache=list()
 				S.add_overlays(S.blood_overlay)
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
-				S.overlays.Cut()
+				S.cut_overlays()
 				S.add_overlays(S.blood_overlay)
 			S.blood_DNA |= blood_DNA.Copy()
 
@@ -194,7 +194,7 @@ var/global/list/image/splatter_cache=list()
 	blood.Blend(basecolor,ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up

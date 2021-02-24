@@ -25,7 +25,7 @@
 
 /obj/item/weapon/melee/toolbox_maul/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(reinforced)
 		add_overlays("[icon_state]-duct_tape")
 

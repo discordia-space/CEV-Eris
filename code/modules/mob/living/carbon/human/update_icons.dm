@@ -146,7 +146,7 @@ Please contact me on #coderbus IRC. ~Carn x
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 //	update_hud()		//TODO: remove the need for this
-	overlays.Cut()
+	cut_overlays()
 
 	if (icon_update)
 		icon = stand_icon

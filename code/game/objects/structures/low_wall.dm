@@ -170,7 +170,7 @@
 
 //Icon procs.mostly copied from tables
 /obj/structure/low_wall/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	var/image/I
 

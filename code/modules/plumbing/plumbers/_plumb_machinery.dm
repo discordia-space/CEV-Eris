@@ -28,7 +28,7 @@
 
 /obj/machinery/plumbing/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)

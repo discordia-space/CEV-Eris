@@ -97,7 +97,7 @@ var/global/excelsior_last_draft = 0
 
 
 /obj/machinery/complant_teleporter/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		add_overlays(image("panel"))

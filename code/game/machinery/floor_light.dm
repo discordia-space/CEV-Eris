@@ -126,7 +126,7 @@ var/list/floor_light_cache = list()
 	update_icon()
 
 /obj/machinery/floor_light/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(use_power && !broken())
 		if(isnull(damaged))
 			var/cache_key = "floorlight-[default_light_colour]"

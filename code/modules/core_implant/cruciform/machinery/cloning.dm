@@ -232,7 +232,7 @@
 /obj/machinery/neotheology/cloner/on_update_icon()
 	icon_state = "pod_base0"
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		var/image/P = image(icon, "pod_panel")
@@ -350,7 +350,7 @@
 	T?.levelupdate()
 
 /obj/machinery/neotheology/biomass_container/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)
@@ -453,7 +453,7 @@
 	return ..()
 
 /obj/machinery/neotheology/reader/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		var/image/P = image(icon, "reader_panel")

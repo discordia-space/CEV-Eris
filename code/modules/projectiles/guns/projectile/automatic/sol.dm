@@ -42,7 +42,7 @@
 
 	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")
 	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
-	overlays.Cut()
+	cut_overlays()
 	update_charge()
 
 /obj/item/weapon/gun/projectile/automatic/sol/generate_guntags()

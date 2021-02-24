@@ -198,7 +198,7 @@
 	return 1
 
 /obj/item/weapon/rcd/on_update_icon()	//For the fancy "ammo" counter
-	overlays.Cut()
+	cut_overlays()
 
 	var/ratio = 0
 	ratio = stored_matter / 30	//30 is the hardcoded max capacity of the RCD

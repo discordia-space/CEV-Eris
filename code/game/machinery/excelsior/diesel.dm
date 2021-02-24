@@ -13,7 +13,7 @@
 	use_reagents_as_fuel = TRUE
 
 /obj/machinery/power/port_gen/pacman/diesel/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(active)
 		add_overlays("on")
 		if(HasFuel())

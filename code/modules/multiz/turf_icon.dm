@@ -46,7 +46,7 @@
 		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
 			return //turf below will update this one
 
-	overlays.Cut()
+	cut_overlays()
 	var/turf/below = GetBelow(src)
 	if (istype(below, /turf/simulated/open))
 		ChangeTurf(/turf/simulated/open)

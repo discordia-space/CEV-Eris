@@ -36,7 +36,7 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "[initial(icon_state)]"
 
 	if(wielded)

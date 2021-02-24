@@ -102,7 +102,7 @@
 		return TRUE
 
 /obj/item/modular_computer/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (screen_on)
 		if(bsod)
 			overlays.Add("bsod")

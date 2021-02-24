@@ -207,7 +207,7 @@
 
 
 /obj/structure/window/reinforced/bioreactor/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(contamination_level)
 		var/biomass_alpha = min((50*contamination_level), 255)

@@ -448,7 +448,7 @@
 		return
 
 	mode = 1
-	overlays.Cut()
+	cut_overlays()
 
 	load.loc = src.loc
 	load.pixel_y -= 9

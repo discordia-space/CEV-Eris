@@ -176,7 +176,7 @@
 	if(!holomap_datum)
 		return //Not yet.
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
 		add_overlays("station_map-panel")

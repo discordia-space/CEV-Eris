@@ -47,13 +47,13 @@
 
 /obj/item/device/gps/emp_act(severity)
 	emped = TRUE
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(image(icon, "emp"))
 	addtimer(CALLBACK(src, .proc/post_emp), 300)
 
 /obj/item/device/gps/proc/post_emp()
 	emped = FALSE
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(image(icon, "working"))
 
 /obj/item/device/gps/proc/can_show_gps(datum/gps_data/G)

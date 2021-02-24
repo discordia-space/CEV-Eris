@@ -55,7 +55,7 @@
 			gib_throw_dir = get_dir(src, output)
 
 /obj/machinery/gibber/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (dirty)
 		src.add_overlays(image('icons/obj/kitchen.dmi', "grbloody"))
 	if(stat & (NOPOWER|BROKEN))

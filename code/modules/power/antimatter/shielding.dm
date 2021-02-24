@@ -108,7 +108,7 @@
 
 
 /obj/machinery/am_shielding/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	for(var/direction in alldirs)
 		var/machine = locate(/obj/machinery, get_step(loc, direction))
 		if((istype(machine, /obj/machinery/am_shielding) && machine:control_unit == control_unit)||(istype(machine, /obj/machinery/power/am_control_unit) && machine == control_unit))

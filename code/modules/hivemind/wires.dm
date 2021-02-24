@@ -101,7 +101,7 @@
 
 
 /obj/effect/plant/hivemind/refresh_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/I
 	var/turf/simulated/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)

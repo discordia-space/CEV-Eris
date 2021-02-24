@@ -463,7 +463,7 @@
 
 /turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
 	for(var/direction in step_overlays)

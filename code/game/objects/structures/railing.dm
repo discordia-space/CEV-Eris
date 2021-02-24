@@ -115,7 +115,7 @@
 
 /obj/structure/railing/on_update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)
-	overlays.Cut()
+	cut_overlays()
 	if (!check || !anchored)
 		icon_state = "[icon_modifier]railing0"
 	else

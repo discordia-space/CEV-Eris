@@ -359,7 +359,7 @@
 		return
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(bolt)
 		add_overlays("rxb-bolt")
 	var/ratio = 0

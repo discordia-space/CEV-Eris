@@ -210,7 +210,7 @@
 
 
 /obj/structure/janitorialcart/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(mybucket)
 		add_overlays("cart_bucket")

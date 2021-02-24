@@ -320,7 +320,7 @@ var/list/custom_table_appearance = list(
 /obj/structure/table/on_update_icon()
 	if(flipped != 1)
 		icon_state = "blank"
-		overlays.Cut()
+		cut_overlays()
 
 		var/image/I
 
@@ -369,7 +369,7 @@ var/list/custom_table_appearance = list(
 				I = image(icon, "[custom_appearance[3]]_[connections[i]]", dir = 1<<(i-1))
 				add_overlays(I)
 	else
-		overlays.Cut()
+		cut_overlays()
 		var/type = 0
 		var/tabledirs = 0
 		for(var/direction in list(turn(dir,90), turn(dir,-90)) )

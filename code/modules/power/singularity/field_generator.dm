@@ -38,7 +38,7 @@ field_generator power level display
 
 
 /obj/machinery/field_generator/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!active)
 		if(warming_up)
 			add_overlays("+a[warming_up]")

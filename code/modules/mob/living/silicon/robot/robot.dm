@@ -780,7 +780,7 @@
 	return FALSE
 
 /mob/living/silicon/robot/updateicon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
 		add_overlays("eyes-[module_sprites[icontype]]")
 

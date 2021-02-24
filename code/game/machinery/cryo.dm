@@ -194,7 +194,7 @@
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "pod[on]"
 	var/image/I
 

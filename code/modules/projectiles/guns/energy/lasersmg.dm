@@ -46,7 +46,7 @@
 		itemstring += "_mag"
 
 /obj/item/weapon/gun/energy/lasersmg/on_update_icon()//TODO: Rework overlays, check assets storage for charge states.
-	overlays.Cut()
+	cut_overlays()
 	..()
 
 	if(istype(cell, /obj/item/weapon/cell/medium/moebius/nuclear))

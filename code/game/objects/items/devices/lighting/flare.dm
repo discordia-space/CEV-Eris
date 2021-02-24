@@ -39,7 +39,7 @@
 		damtype = "fire"
 
 /obj/item/device/lighting/glowstick/flare/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!fuel)
 		icon_state = "[initial(icon_state)]-empty"
 		set_light(0)

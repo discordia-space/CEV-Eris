@@ -60,7 +60,7 @@
 	..()
 
 /obj/machinery/computer/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)

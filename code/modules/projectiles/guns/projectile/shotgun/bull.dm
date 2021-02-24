@@ -105,5 +105,5 @@
 
 	icon_state = iconstring
 	set_item_state(itemstring)
-	overlays.Cut()
+	cut_overlays()
 	update_charge()

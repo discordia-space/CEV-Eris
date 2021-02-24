@@ -250,7 +250,7 @@
 
 	alpha = 255
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(!node1 && !node2)
 		var/turf/T = get_turf(src)
@@ -510,7 +510,7 @@
 				qdel(meter)
 		qdel(src)
 	else
-		overlays.Cut()
+		cut_overlays()
 		add_overlays(icon_manager.get_atmos_icon("manifold", , pipe_color, "core" + icon_connect_type))
 		add_overlays(icon_manager.get_atmos_icon("manifold", , , "clamps" + icon_connect_type))
 		underlays.Cut()
@@ -758,7 +758,7 @@
 				qdel(meter)
 		qdel(src)
 	else
-		overlays.Cut()
+		cut_overlays()
 		add_overlays(icon_manager.get_atmos_icon("manifold", , pipe_color, "4way" + icon_connect_type))
 		add_overlays(icon_manager.get_atmos_icon("manifold", , , "clamps_4way" + icon_connect_type))
 		underlays.Cut()
@@ -978,7 +978,7 @@
 
 	alpha = 255
 
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "cap"))
 
 /obj/machinery/atmospherics/pipe/cap/atmos_init()
@@ -1287,7 +1287,7 @@
 
 	alpha = 255
 
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "universal"))
 	underlays.Cut()
 
@@ -1324,7 +1324,7 @@
 
 	alpha = 255
 
-	overlays.Cut()
+	cut_overlays()
 	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "universal"))
 	underlays.Cut()
 

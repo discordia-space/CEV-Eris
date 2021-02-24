@@ -150,7 +150,7 @@
 	update_icon()
 
 /obj/machinery/media/jukebox/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		if(stat & BROKEN)
 			icon_state = "[state_base]-broken"

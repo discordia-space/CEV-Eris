@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	return ..()
 
 /obj/machinery/conveyor_switch/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!position)
 		icon_state = "switch-off"
 	else if(position == DIRECTION_REVERSED)

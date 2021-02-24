@@ -36,7 +36,7 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/c20r/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)
 		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")

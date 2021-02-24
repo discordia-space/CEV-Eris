@@ -38,7 +38,7 @@
 		qdel(src)
 
 /obj/item/weapon/mine/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(armed)
 		overlays.Add(image(icon,"mine_light"))

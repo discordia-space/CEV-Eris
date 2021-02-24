@@ -40,7 +40,7 @@
 
 /mob/living/simple_animal/hostile/onestar_custodian/on_update_icon()
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	var/image/shell_I = image(icon, src, "shell_[shell_type]")
 	var/image/marks_I = image(icon, src, "marks_[marks_type]")
 	var/image/screen_I = image(icon, src, "screen_[screen_type]")

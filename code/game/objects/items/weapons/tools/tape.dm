@@ -162,7 +162,7 @@
 
 	if (istype(stuck, /obj/item/weapon/paper))
 		icon_state = stuck.icon_state
-		overlays.Cut()
+		cut_overlays()
 		set_overlays(stuck.overlays + "tape_overlay")
 	else
 		var/mutable_appearance/MA = new(stuck)

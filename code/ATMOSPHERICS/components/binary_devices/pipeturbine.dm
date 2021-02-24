@@ -73,7 +73,7 @@
 			network2.update = 1
 
 	update_icon()
-		overlays.Cut()
+		cut_overlays()
 		if (dP > 10)
 			add_overlays(image('icons/obj/pipeturbine.dmi', "moto-turb"))
 		if (kin_energy > 100000)

@@ -13,7 +13,7 @@
 	var/maxFrames = 5
 
 /obj/machinery/beehive/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "beehive"
 	if(closed)
 		add_overlays("lid")
@@ -251,12 +251,12 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	full = 0
 	name = "empty bee pack"
 	desc = "A stasis pack for moving bees. It's empty."
-	overlays.Cut()
+	cut_overlays()
 	add_overlays("beepack-empty")
 
 /obj/item/bee_pack/proc/fill()
 	full = initial(full)
 	name = initial(name)
 	desc = initial(desc)
-	overlays.Cut()
+	cut_overlays()
 	add_overlays("beepack-full")

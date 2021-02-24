@@ -30,7 +30,7 @@
 	update_icon()
 
 /obj/structure/medical_stand/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if (tank)
 		if (breather)

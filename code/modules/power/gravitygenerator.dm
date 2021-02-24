@@ -152,7 +152,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	for(var/obj/machinery/gravity_generator/M in parts)
 		if(!(M.stat & BROKEN))
 			M.set_broken()
-	middle.overlays.Cut()
+	middle.cut_overlays()
 	charge_count = 0
 	breaker = 0
 	grav_off()
@@ -379,7 +379,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 			if(overlay_state != current_overlay)
 				if(middle)
-					middle.overlays.Cut()
+					middle.cut_overlays()
 					if(overlay_state)
 						middle.add_overlays(overlay_state)
 					current_overlay = overlay_state

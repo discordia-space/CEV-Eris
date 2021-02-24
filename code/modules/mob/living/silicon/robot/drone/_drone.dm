@@ -159,7 +159,7 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/updateicon()
 
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS && eyecolor)
 		add_overlays("eyes-drone[eyecolor]")
 
@@ -357,7 +357,7 @@ var/list/mob_hat_cache = list()
 	name = real_name
 
 /mob/living/silicon/robot/drone/construction/updateicon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
 		add_overlays("eyes-[module_sprites[icontype]]")
 

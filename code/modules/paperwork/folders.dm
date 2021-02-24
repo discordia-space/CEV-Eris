@@ -25,7 +25,7 @@
 	icon_state = "folder_cyan"
 
 /obj/item/weapon/folder/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
 		add_overlays("folder_paper")
 	return

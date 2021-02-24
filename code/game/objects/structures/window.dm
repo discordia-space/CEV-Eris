@@ -98,7 +98,7 @@
 	if (is_full_window())
 		return
 	if (overlays)
-		overlays.Cut()
+		cut_overlays()
 
 	var/image/img = image(src.icon, src.icon_state)
 	img.color = "#ffffff"
@@ -470,7 +470,7 @@
 /obj/structure/window/on_update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
-	overlays.Cut()
+	cut_overlays()
 	if(!is_fulltile())
 		icon_state = "[basestate]"
 		return

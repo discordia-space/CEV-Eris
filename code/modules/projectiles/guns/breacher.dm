@@ -28,7 +28,7 @@
 	update_icon()
 
 /obj/item/weapon/hatton/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Hatton_Hammer_1"
@@ -213,7 +213,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/hatton/moebius/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Moebius_Hammer_1"

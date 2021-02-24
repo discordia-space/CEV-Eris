@@ -207,7 +207,7 @@
 
 
 /obj/machinery/multistructure/biogenerator_part/port/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
 		add_overlays("port-opened")
 		if(pipes_dirtiness)
@@ -454,7 +454,7 @@
 
 
 /obj/machinery/power/biogenerator_core/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	add_overlays("core-pipe")
 	if(!coil_frame)
 		add_overlays("core-coil")

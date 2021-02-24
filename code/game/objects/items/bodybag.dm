@@ -48,7 +48,7 @@
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
-		src.overlays.Cut()
+		src.cut_overlays()
 		return
 
 /obj/structure/closet/body_bag/store_mobs(var/stored_units)

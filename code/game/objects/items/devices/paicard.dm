@@ -279,14 +279,14 @@
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
-	src.overlays.Cut()
+	src.cut_overlays()
 	src.add_overlays("pai-off")
 
 /obj/item/device/paicard
 	var/current_emotion = 1
 /obj/item/device/paicard/proc/setEmotion(var/emotion)
 	if(pai)
-		src.overlays.Cut()
+		src.cut_overlays()
 		switch(emotion)
 			if(1) src.add_overlays("pai-happy")
 			if(2) src.add_overlays("pai-cat")

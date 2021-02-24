@@ -158,7 +158,7 @@
 		dry()
 
 /obj/machinery/smartfridge/drying_rack/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(inoperable())
 		icon_state = icon_off
 	else

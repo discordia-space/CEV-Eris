@@ -73,7 +73,7 @@
 	if(!icon_base)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	var/image/I
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[icon_base][wall_connections[i]]", dir = GLOB.cardinal[i])

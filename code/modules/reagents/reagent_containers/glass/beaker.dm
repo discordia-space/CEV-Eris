@@ -158,7 +158,7 @@
 		return ..()
 
 /obj/item/weapon/reagent_containers/glass/bucket/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(reagents.total_volume >= 1)
 		add_overlays("water_bucket")
 	if(has_lid())

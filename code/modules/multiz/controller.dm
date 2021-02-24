@@ -154,7 +154,7 @@ var/datum/controller/process/open_space/OS_controller = null
 
 
 /turf/simulated/open/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/turf/below = GetBelow(src)
 	if(below)
 		if(below.is_space())

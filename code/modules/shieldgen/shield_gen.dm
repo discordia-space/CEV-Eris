@@ -239,7 +239,7 @@
 			icon_state = "generator1"
 		else
 			icon_state = "generator0"
-		overlays.Cut()
+		cut_overlays()
 		if (owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
 			add_overlays(I)

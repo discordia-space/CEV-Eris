@@ -16,7 +16,7 @@
 
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", dir = src.dir)
 	O.layer = ABOVE_MOB_LAYER
 	add_overlays(O)

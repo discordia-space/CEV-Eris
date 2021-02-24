@@ -129,7 +129,7 @@
 
 
 /obj/rogue/teleporter/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(charging && charge < 10)
 		overlays.Add(image(icon, icon_state = "charging_1"))

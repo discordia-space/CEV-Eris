@@ -209,7 +209,7 @@
 
 /obj/item/weapon/storage/pouch/tubular/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
 		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
 
@@ -251,7 +251,7 @@
 
 /obj/item/weapon/storage/pouch/pistol_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
 		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
 
@@ -274,7 +274,7 @@
 
 /obj/item/weapon/storage/pouch/baton_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
 		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
 

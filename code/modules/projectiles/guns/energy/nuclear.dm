@@ -52,7 +52,7 @@
 		if("lethal") overlays += "nucgun-kill"
 
 /obj/item/weapon/gun/energy/gun/nuclear/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(cell)
 		update_charge()
 		update_reactor()

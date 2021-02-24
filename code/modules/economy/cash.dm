@@ -55,7 +55,7 @@
 	worth = 0
 
 /obj/item/weapon/spacecash/bundle/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/sum = src.worth
 	var/num = 0
 	var/list/denominations = list(1000,500,200,100,50,20,10,1)

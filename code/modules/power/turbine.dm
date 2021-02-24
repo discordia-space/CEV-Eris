@@ -62,7 +62,7 @@
 /obj/machinery/compressor/Process()
 	if(!starter)
 		return
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		return
 	if(!turbine)
@@ -120,7 +120,7 @@
 /obj/machinery/power/turbine/Process()
 	if(!compressor.starter)
 		return
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		return
 	if(!compressor)
