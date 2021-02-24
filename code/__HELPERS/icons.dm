@@ -1109,17 +1109,23 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	icon_state = value
 
 
-// Overlays
+// Overlays' hadlers
+	//!!! DO NOT USE RAW overlays' OPERATIONS IF YOU DON'T KNOW WHY YOU USE THEM RAW !!!
 //associate_with_overlays("temp4", "alive", "meter")
+	//overlays |=
 /atom/proc/associate_with_overlays()
 	overlays |= args
-//overlays.Add("temp4", "alive", "meter");overlays += list("temp4", "alive", "meter");
+//add_overlays("temp4", "alive", "meter")
+	//overlays.Add;overlays +=
 /atom/proc/add_overlays()
 	return overlays.Add(args)
 
-//overlays.Remove("temp4", "alive", "meter");overlays -= list("temp4", "alive", "meter");
+//remove_overlays("temp4", "alive", "meter")
+	//
 /atom/proc/remove_overlays()
 	return overlays.Remove(args)
+//set_overlays(list("temp4", "alive", "meter"))
+	//overlays =
 /atom/proc/set_overlays(list/value)
 	overlays = value
 
