@@ -142,11 +142,11 @@
 		plant_icon = image('icons/obj/hydroponics_products.dmi',"blank")
 		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
-		plant_icon.associate_with_overlays(fruit_base)
+		plant_icon |= (fruit_base)
 		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in icon_states('icons/obj/hydroponics_products.dmi'))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-			plant_icon.associate_with_overlays(fruit_leaves)
+			plant_icon |= (fruit_leaves)
 		plant_controller.plant_icon_cache[icon_key] = plant_icon
 	associate_with_overlays(plant_icon)
 
