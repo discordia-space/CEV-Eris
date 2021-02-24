@@ -343,7 +343,7 @@
 	var/do_set_light = FALSE
 
 	if(density)
-		icon_state = "door_closed"
+		SetIconState("door_closed")
 		if(hatch_open)
 			add_overlays("hatch")
 		if(blocked)
@@ -359,7 +359,7 @@
 						add_overlays(new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir))
 						do_set_light = TRUE
 	else
-		icon_state = "door_open"
+		SetIconState("door_open")
 		if(blocked)
 			add_overlays("welded_open")
 

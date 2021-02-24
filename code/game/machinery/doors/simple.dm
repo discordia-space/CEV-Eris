@@ -51,11 +51,11 @@
 		take_damage(min(damage, 100))
 
 /obj/machinery/door/unpowered/simple/on_update_icon()
-	if(density)
-		icon_state = "[icon_base]"
-	else
-		icon_state = "[icon_base]open"
-	return
+	. = ""
+	if(!density)
+		. = "open"
+	. = "[icon_base][.]"
+	SetIconState(.)
 
 /obj/machinery/door/unpowered/simple/do_animate(animation)
 	switch(animation)
@@ -63,7 +63,6 @@
 			flicker("[icon_base]opening")
 		if("closing")
 			flicker("[icon_base]closing")
-	return
 
 /obj/machinery/door/unpowered/simple/inoperable(additional_flags = 0)
 	return (stat & (BROKEN|additional_flags))
@@ -145,8 +144,6 @@
 		else
 			close()
 		return
-
-	return
 
 
 /obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)

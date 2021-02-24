@@ -306,7 +306,7 @@
 // if timing=true, run update display function
 /obj/machinery/door_timer/on_update_icon()
 	if(stat & (NOPOWER))
-		icon_state = "frame"
+		SetIconState("frame")
 		return
 	if(stat & (BROKEN))
 		set_picture("ai_bsod")

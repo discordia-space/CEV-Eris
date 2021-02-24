@@ -364,10 +364,10 @@
 	stat |= BROKEN
 
 	if (health <= 0)
-		visible_message("<span class = 'warning'>\The [src.name] breaks open!</span>")
+		visible_message(SPAN_WARNING("\The [src.name] breaks open!"))
 		open(TRUE)
 	else
-		visible_message("<span class = 'warning'>\The [src.name] breaks!</span>")
+		visible_message(SPAN_WARNING("\The [src.name] breaks!"))
 	update_icon()
 
 
@@ -391,10 +391,7 @@
 
 
 /obj/machinery/door/on_update_icon()
-	if(density)
-		icon_state = "door1"
-	else
-		icon_state = "door0"
+	SetIconState("door[density]")
 	update_openspace()
 
 
@@ -431,7 +428,7 @@
 		f6?.set_opacity(0)
 
 	do_animate("opening")
-	icon_state = "door0"
+	SetIconState("door0")
 	sleep(3)
 	src.density = FALSE
 	update_nearby_tiles()

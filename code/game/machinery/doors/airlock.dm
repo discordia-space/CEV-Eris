@@ -663,10 +663,10 @@ There are 9 wires.
 		underlays.Cut()
 	if(density)
 		if(locked && lights && arePowerSystemsOn())
-			icon_state = "door_locked"
+			SetIconState("door_locked")
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
-			icon_state = "door_closed"
+			SetIconState("door_closed")
 		if(p_open || welded)
 			set_overlays(list())
 			if(p_open)
@@ -681,7 +681,7 @@ There are 9 wires.
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
 			add_overlays(image(icon, "sparks_damaged"))
 	else
-		icon_state = "door_open"
+		SetIconState("door_open")
 		if((stat & BROKEN) && !(stat & NOPOWER))
 			add_overlays(image(icon, "sparks_open"))
 	if(wedged_item)

@@ -1,3 +1,5 @@
+//A little bit broken cause repo have too many 'icon =' and 'icon_state =' in class definitions to replace them automatically.
+//If you can, use SetIcon and SetIconState instead.
 GLOBAL_DATUM_INIT(set_icon_event, /decl/observ/set_icon, new)
 /decl/observ/set_icon
 	name = "Icon Changed"
