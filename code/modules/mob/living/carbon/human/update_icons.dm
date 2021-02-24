@@ -206,7 +206,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			DI = damage_icon_parts[cache_index]
 
-		standing_image.add_overlays(DI)
+		standing_image.overlays.Add(DI)
 
 	overlays_standing[DAMAGE_LAYER] = standing_image
 
@@ -386,7 +386,7 @@ var/global/list/damage_icon_parts = list()
 	for(var/mut in mutations)
 		switch(mut)
 			if(LASER)
-				standing.add_overlays("lasereyes_s")
+				standing.overlays.Add("lasereyes_s")
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing
@@ -404,7 +404,7 @@ var/global/list/damage_icon_parts = list()
 		if(I.is_external() && I.wearer == src)
 			var/image/mob_icon = I.get_mob_overlay(gender)
 			if(mob_icon)
-				standing.add_overlays(mob_icon)
+				standing.overlays.Add(mob_icon)
 				have_icon = TRUE
 
 	if(have_icon)
@@ -696,7 +696,7 @@ var/global/list/damage_icon_parts = list()
 		if(shoes.blood_DNA)
 			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
-			standing.add_overlays(bloodsies)
+			standing.overlays.Add(bloodsies)
 		standing.color = shoes.color
 		overlays_standing[SHOES_LAYER] = standing
 	else
@@ -989,7 +989,7 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/weapon/rig/rig = back//Maybe add if(rig.installed_modules.len) below this since the code for accessories does that far as I know.
 			for(var/obj/item/rig_module/module in rig.installed_modules)
 				if(module.suit_overlay)
-					standing.add_overlays(image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay))
+					standing.overlays.Add(image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay))
 
 		//create the image
 		overlays_standing[BACK_LAYER] = standing
@@ -1147,7 +1147,7 @@ var/global/list/damage_icon_parts = list()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.open)
 			var/image/I = image("icon"='icons/mob/surgery.dmi', "icon_state"="[E.name][round(E.open)]", "layer"=-SURGERY_LAYER)
-			total.add_overlays(I)
+			total.overlays.Add(I)
 	overlays_standing[SURGERY_LAYER] = total
 	if(update_icons)   update_icons()
 
