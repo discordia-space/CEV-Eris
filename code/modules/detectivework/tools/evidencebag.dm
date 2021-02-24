@@ -67,7 +67,8 @@
 	I.pixel_x = xx		//and then return it
 	I.pixel_y = yy
 	overlays += img
-	overlays += "evidence"	//should look nicer for transparent stuff. not really that important, but hey.
+	overlays += "evidence"
+	//should look nicer for transparent stuff. not really that important, but hey.
 
 	desc = "An evidence bag containing [I]."
 	I.loc = src

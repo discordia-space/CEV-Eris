@@ -6,9 +6,8 @@
 	var/last_time = 1
 
 /obj/structure/bed/chair/e_chair/New()
-	..()
+	. = ..()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
-	return
 
 /obj/structure/bed/chair/e_chair/attackby(var/obj/item/weapon/tool/tool, var/mob/user)
 	if(!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -29,13 +28,11 @@
 	to_chat(usr, SPAN_NOTICE("You switch on [src]."))
 	shock()
 
-	return
-
 /obj/structure/bed/chair/e_chair/rotate()
-	..()
+	. = ..()
 	overlays.Cut()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
-	return
+	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+	//there's probably a better way of handling this, but eh. -Pete
 
 /obj/structure/bed/chair/e_chair/proc/shock()
 	if(last_time + 50 > world.time)
@@ -67,5 +64,3 @@
 
 	A.power_light = light
 	A.updateicon()
-
-	return

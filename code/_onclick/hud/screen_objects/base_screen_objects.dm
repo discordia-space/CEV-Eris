@@ -565,7 +565,7 @@
 		temp_step = (parentmobC.species.heat_level_1 - base_temperature)/4
 
 		if (parentmob:bodytemperature >= parentmobC.species.heat_level_1)
-			overlays += ovrls["temp4"]//icon_state = "temp4"
+			overlays += ovrls["temp4"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*3)
 			overlays += ovrls["temp3"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*2)

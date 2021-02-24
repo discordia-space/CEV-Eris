@@ -848,7 +848,8 @@ proc
 			if(2)	I.pixel_x++
 			if(3)	I.pixel_y--
 			if(4)	I.pixel_y++
-		overlays += I//And finally add the overlay.
+		overlays += I
+		//And finally add the overlay.
 
 /proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
@@ -1109,7 +1110,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 
 // Overlays
-/atom/proc/add2overlays()
+/atom/proc/add_overlays()
 	return overlays.Add(args)
 
 /atom/proc/remove_overlays()
