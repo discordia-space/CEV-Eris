@@ -13,7 +13,7 @@
 				var/icon/decal_icon = icon(MECH_DECALS_ICON, decal)
 				decal_icon.Blend(GLOB.mech_icon_cache[template_key], ICON_MULTIPLY)
 				GLOB.mech_icon_cache[decal_key] = decal_icon
-			I.add_overlays(get_mech_image(null, decal_key, GLOB.mech_icon_cache[decal_key]))
+			I.overlays.Add(get_mech_image(null, decal_key, GLOB.mech_icon_cache[decal_key]))
 		I.appearance_flags |= RESET_COLOR
 		I.layer = overlay_layer
 		I.plane = FLOAT_PLANE
