@@ -50,4 +50,4 @@
 // 	legend = image('icons/effects/64x64.dmi', "strategic")
 // 	legend.pixel_x = 3*WORLD_ICON_SIZE
 // 	legend.pixel_y = 3*WORLD_ICON_SIZE
-// 	station_map |= (legend)
+// 	station_map.overlays |= (legend)
