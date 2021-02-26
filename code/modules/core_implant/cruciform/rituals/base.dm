@@ -134,7 +134,7 @@
 /datum/ritual/cruciform/base/install_upgrade
 	name = "Install Cruciform Upgrade"
 	phrase = "Deum benedicite mihi voluntas in suum donum"
-	desc = "This litany will command a cruciform upgrade attach to person. Cruciform upgrade must lay near them."
+	desc = "This litany will command a cruciform upgrade to attach to follower's cruciform. Follower must lie on altar and upgrade must be near them."
 	power = 20
 
 /datum/ritual/cruciform/base/install_upgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
