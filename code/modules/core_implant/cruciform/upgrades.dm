@@ -54,7 +54,7 @@
 /obj/item/weapon/cruciform_upgrade/proc/uninstall()
 	forceMove(get_turf(wearer))
 	cruciform.upgrade = null
-	wearer.visible_message(SPAN_DANGER("[src] remove from [wearer]'s cruciform."))
+	wearer.visible_message(SPAN_WARNING("[src] removes itself from [wearer]'s cruciform."))
 	OnUninstall()
 	wearer = null
 	cruciform = null
