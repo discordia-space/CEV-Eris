@@ -1,0 +1,8 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: handmade revolver recipe
+  - bugfix: handmade bolt gun recipe
+  - bugfix: Scavenger armor recipe
+  - bugfix: Makeshift armored void suit recipe
+  - bugfix: craft system
