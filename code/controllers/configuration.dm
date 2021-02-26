@@ -736,7 +736,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.start_location = "space ruins"
 
 				if("profiler_permission")
-					profiler_permission = text2num(value)
+					config.profiler_permission = text2num(value)
 
 				if("generate_loot_data")
 					config.generate_loot_data = TRUE
@@ -859,4 +859,3 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
 		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
-
