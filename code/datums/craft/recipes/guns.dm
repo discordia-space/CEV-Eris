@@ -17,7 +17,7 @@
 	name = "Handmade Revolver"
 	result = /obj/item/weapon/gun/projectile/revolver/handmade
 	steps = list(
-		list(/obj/item/part/armor, 2),
+		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -29,7 +29,7 @@
 	name = "Handmade bolt action rifle"
 	result = /obj/item/weapon/gun/projectile/boltgun/handmade
 	steps = list(
-		list(/obj/item/part/armor, 2),
+		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
