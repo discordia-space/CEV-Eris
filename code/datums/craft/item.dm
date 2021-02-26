@@ -15,16 +15,14 @@
 
 
 /obj/item/craft/proc/update()
-	step = recipe.get_actual_step()
-	desc = recipe.get_description(step)
+	desc = recipe.get_description(step-1, src)
 
 /obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
 	if(user && istype(loc, /turf))
 		user.face_atom(src) //Look at what you're doing please
 
 	if(recipe.try_step(step, I, user, src)) //First step is
-		var/datum/craft_step/CS = recipe.steps[step]
-		if(CS.completed && recipe.is_compelete(step+1))
+		if(recipe.is_compelete(step))
 			recipe.spawn_result(src, user)
 		else
 			update()

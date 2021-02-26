@@ -69,7 +69,7 @@
 		list(/obj/item/part/armor, 3),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
 		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTIC),
-		list(/obj/item/weapon/tool/tape_roll, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 15),
 		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
@@ -81,7 +81,7 @@
 		list(/obj/item/part/armor, 5),
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
-		list(/obj/item/weapon/tool/tape_roll, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 15),
 		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
