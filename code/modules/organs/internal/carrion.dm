@@ -233,7 +233,7 @@
 	var/obj/item/organ/internal/carrion/maw/H = owner.random_organ_by_process(OP_MAW)
 	if(!H)
 		geneticpoints_lost +=4
-		to_chat(owner, SPAN_NOTICE("your missing maw caused a leak of genetic material."))
+		to_chat(owner, SPAN_NOTICE("Your missing maw caused a leak of genetic material."))
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
