@@ -188,10 +188,11 @@
 				return FALSE
 			req_amount = 0
 		else if(reqed_type) //No deleting tools
-			if(!(target in craft_items))
-				craft_items[target] = req_amount--
-			else
-				craft_items[target]--
+			if(target)
+				if(!(target in craft_items))
+					craft_items[target] = req_amount - 2
+				else
+					craft_items[target]--
 			qdel(I)
 
 	if(target)
