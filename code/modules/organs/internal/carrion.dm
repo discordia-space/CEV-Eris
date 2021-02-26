@@ -228,7 +228,7 @@
 	if(!(owner.check_ability(20)))
 		return
 
-	to_chat(owner, SPAN_NOTICE("you will attempt to regenerate your form."))
+	to_chat(owner, SPAN_NOTICE("You will attempt to regenerate your form."))
 	var/geneticpoints_lost = 0
 	var/obj/item/organ/internal/carrion/maw/H = owner.random_organ_by_process(OP_MAW)
 	if(!H)
