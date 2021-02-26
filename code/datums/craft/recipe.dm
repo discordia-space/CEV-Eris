@@ -38,17 +38,15 @@
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
 
-/datum/craft_recipe/proc/get_description(pass_steps)
+/datum/craft_recipe/proc/get_description(pass_steps, obj/item/craft/C)
 	. = list()
 	var/atom/A = result
 	. += "[initial(A.desc)]<br>"
 	for(var/datum/craft_step/CS in steps)
-		//if(pass_steps > 0)
-		//	--pass_steps
-		//	continue
-		if(CS.completed)
+		if(pass_steps > 0)
+			--pass_steps
 			continue
-		CS.make_desc()
+		CS.make_desc(C)
 		. += CS.desc
 	return jointext(., "<br>")
 
@@ -113,8 +111,8 @@
 	if(ishuman(user) && !I.is_held())
 		to_chat(user, SPAN_WARNING("You should hold [I] in hands for doing that!"))
 		return
-
-	if(!CS.apply(I, user, null, src))
+	var/apply_type = CS.apply(I, user, null, src)
+	if(!apply_type)
 		return
 
 	var/obj/item/CR
@@ -130,16 +128,15 @@
 		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)
+		var/obj/item/craft/CO = CR
+		if(apply_type == 1)
+			CO.step++
+		else if(apply_type == 2)
+			CS.craft_items[CO] = CS.req_amount - 1
+		CO.update()
 	if(flags & CRAFT_ON_FLOOR)
 		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
 	return CR
 
-/datum/craft_recipe/proc/get_actual_step(mob/living/user)
-	var/step_num = 1
-	for(var/datum/craft_step/CS in steps)
-		if(!CS.completed)
-			return step_num
-		step_num++
-	return step_num
