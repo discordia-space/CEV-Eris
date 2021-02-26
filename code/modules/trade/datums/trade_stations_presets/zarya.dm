@@ -14,6 +14,7 @@
 		"Energiya" = list(
 			/obj/item/weapon/electronics/circuitboard/shield_diffuser,
 			/obj/item/weapon/electronics/circuitboard/shield_generator,
+			/obj/item/weapon/electronics/circuitboard/long_range_scanner,
 			/obj/item/weapon/cell/large,
 			/obj/item/weapon/cell/large/high,
 			/obj/item/solar_assembly,

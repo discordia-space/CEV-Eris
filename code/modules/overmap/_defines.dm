@@ -22,11 +22,15 @@ var/global/list/map_sectors = list()
 	var/list/numbers = list()
 
 	if(x == 1 || x == GLOB.maps_data.overmap_size)
-		numbers += list("[round(y/10)]","[round(y%10)]")
+		numbers += list("[round(y/100)]")
+		var/ry = round(y%100)
+		numbers += list("[round(ry/10)]","[round(ry%10)]")
 		if(y == 1 || y == GLOB.maps_data.overmap_size)
 			numbers += "-"
 	if(y == 1 || y == GLOB.maps_data.overmap_size)
-		numbers += list("[round(x/10)]","[round(x%10)]")
+		numbers += list("[round(x/100)]")
+		var/rx = round(x%100)
+		numbers += list("[round(rx/10)]","[round(rx%10)]")
 
 	for(var/i = 1 to numbers.len)
 		var/image/I = image('icons/effects/numbers.dmi',numbers[i])
@@ -77,3 +81,10 @@ var/global/list/map_sectors = list()
 						AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
 						CHECK_TICK
 				CHECK_TICK
+
+/obj/effect/star
+	name = "G-type main-sequence star"
+	desc = "A G-type main-sequence star similar to the one in the center of the Sol system."
+	icon = 'icons/obj/celestial.dmi'
+	icon_state = "sun-4"
+	anchored = TRUE

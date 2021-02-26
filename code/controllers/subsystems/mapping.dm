@@ -69,6 +69,8 @@ SUBSYSTEM_DEF(mapping)
 
 	return 1
 
+
+
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
 	world.incrementMaxZ()
@@ -78,13 +80,20 @@ SUBSYSTEM_DEF(mapping)
 		var/turf/T = square
 		if(T.x == GLOB.maps_data.overmap_size || T.y == GLOB.maps_data.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
-		else
+		else if(T.x == 1 || T.y == 1)
 			T = T.ChangeTurf(/turf/unsimulated/map/)
 		turfs += T
 		CHECK_TICK
 
 	var/area/overmap/A = new
 	A.contents.Add(turfs)
+
+    // Spawn star at the center of the overmap
+	for(var/i in -4 to 4)
+		for(var/j in -4 to 4)
+			var/turf/T = locate(round(GLOB.maps_data.overmap_size/2)+i,round(GLOB.maps_data.overmap_size/2)+j,GLOB.maps_data.overmap_z)
+			var/obj/effect/star/S = new(T)
+			S.icon_state = "sun[i]-4"
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")

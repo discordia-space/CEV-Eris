@@ -12,7 +12,8 @@
 	var/fore_dir = NORTH				//what dir ship flies towards for purpose of moving stars effect procs
 
 	var/obj/machinery/computer/helm/nav_control
-	var/list/engines = list()
+	var/list/engines = list()  // contains /datum/ship_engine
+	var/list/scanners = list() // contains /obj/machinery/power/long_range_scanner
 	var/engines_state = 1 //global on/off toggle for all engines
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
@@ -42,6 +43,10 @@
 		if (E.z in map_z)
 			E.linked = src
 			//testing("Engines console at level [E.z] linked to overmap object '[name]'.")
+
+	for(var/obj/machinery/power/long_range_scanner/LRS in ship_scanners)
+		if (LRS.z in map_z)
+			scanners |= LRS
 
 	for(var/obj/machinery/computer/helm/H in SSmachines.machinery)
 		if (H.z in map_z)
@@ -197,3 +202,23 @@
 	if(istype(A,/turf/unsimulated/map/edge))
 		handle_wraparound()
 	..()
+
+/obj/effect/overmap/ship/proc/scan()
+
+	var/max_range = 0
+	var/obj/machinery/power/long_range_scanner/max_LRS = null
+	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)
+		if(LRS.scan_range > max_range)
+			max_range = LRS.scan_range
+			max_LRS = LRS
+
+	if(max_LRS)
+		max_LRS.consume_energy_scan()
+
+	for (var/turf/T in range(max_range, loc))
+		overmap_event_handler.scan_loc(T)
+
+/obj/effect/overmap/ship/proc/can_scan()
+
+	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)
+		. |= (LRS.running && (LRS.current_energy > round(ENERGY_PER_SCAN)))

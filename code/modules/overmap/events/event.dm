@@ -40,9 +40,11 @@
 
 				var/obj/effect/overmap_event/event = new(event_turf)
 	//			world << "Created new event in [event.loc.x], [event.loc.y]"
-				event.name = overmap_event.name
-				event.icon_state = pick(overmap_event.event_icon_states)
+				event.name = overmap_event.name_unknown
+				event.icon_state = pick(overmap_event.event_icon_states_unknown)
 				event.opacity =  overmap_event.opacity
+				event.name_scanned = overmap_event.name
+				event.icon_scanned = pick(overmap_event.event_icon_states)
 
 /decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)
 	var/z_level_text = num2text(z_level)
@@ -112,6 +114,8 @@
 	var/datum/overmap_event/old_event = events_by_turf[old_loc]
 	var/datum/overmap_event/new_event = events_by_turf[new_loc]
 
+	if(istype(entering_ship, /obj/effect/overmap/ship/eris))
+		scan_loc(new_loc)
 	if(old_event == new_event)
 		return
 	if(new_event)
@@ -119,13 +123,24 @@
 			return
 		new_event.enter(entering_ship)
 
+/decl/overmap_event_handler/proc/scan_loc(var/turf/new_loc)
+	for(var/obj/effect/overmap_event/E in new_loc)
+		if(!E.scanned)
+			E.name = E.name_scanned
+			E.icon_state = E.icon_scanned
+			E.scanned = TRUE
+
 // We don't subtype /obj/effect/overmap because that'll create sections one can travel to
 //  And with them "existing" on the overmap Z-level things quickly get odd.
 /obj/effect/overmap_event
-	name = "event"
+	name = "unknown spatial phenomenon"
 	icon = 'icons/obj/overmap.dmi'
-	icon_state = "event"
+	icon_state = "event_unknown"
 	opacity = 1
+
+	var/name_scanned = "event"
+	var/icon_scanned = "event"
+	var/scanned = FALSE // if the event has been scanned (True) or is still unknown (False)
 
 /datum/overmap_event
 	var/name = "map event"
@@ -137,6 +152,10 @@
 	var/difficulty = EVENT_LEVEL_MODERATE
 	var/list/victims
 	var/continuous = TRUE //if it should form continous blob, or can have gaps
+
+	var/list/event_icon_states_unknown = list("event_unknown") // list to have the possibility to use several unknown icons to pick from
+	var/name_unknown = "unknown spatial phenomenon"
+	// var/scanned = FALSE // if the event has been scanned (True) or is still unknown (False)
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
 //	world << "Ship [victim] encountered [name]"

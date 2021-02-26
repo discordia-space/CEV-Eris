@@ -72,8 +72,15 @@
 
 		<div class="itemContent">
 			<div class='item'>
-				<span class='white'>Direct control</span>
+				<span class='white'> Direct control</span>
 				{{:helper.link(data.manual_control ? 'Engaged' : 'Disengaged', 'shuffle', { 'manual' : 1 }, null, data.manual_control ? 'selected' : null)}}
+			</div>
+		</div>
+
+		<div class="itemContent">
+			<div class='item'>
+				<span class='white'> Scanner control</span>
+				{{:helper.link('Scan', null, { 'scan' : 1 }, data.canscan ? null : 'disabled', null)}}
 			</div>
 		</div>
 	</div>

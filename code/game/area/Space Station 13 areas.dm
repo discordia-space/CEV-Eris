@@ -900,3 +900,10 @@ var/list/centcom_areas = list (
 	has_gravity = 1
 	requires_power = 0
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
+
+/area/telluric
+	icon_state = "away"
+	name = "Telluric Planet"
+	has_gravity = 1
+	luminosity = 1 
+	dynamic_lighting = 0

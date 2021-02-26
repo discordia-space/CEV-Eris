@@ -789,6 +789,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	*/
 
+/datum/supply_pack/lrange_scanner
+	contains = list(/obj/item/weapon/electronics/circuitboard/long_range_scanner)
+	name = "Long range scanner circuitry"
+	cost = 5000
+	containertype = /obj/structure/closet/crate/secure
+	crate_name = "long range scanner circuitry crate"
+	group = "Engineering"
+
 /datum/supply_pack/smbig
 	name = "Supermatter Core (CAUTION)"
 	contains = list(/obj/machinery/power/supermatter)

@@ -109,6 +109,7 @@
 	data["autopilot"] = autopilot
 	data["manual_control"] = manual_control
 	data["canburn"] = linked.can_burn()
+	data["canscan"] = linked.can_scan()
 
 	if(linked.get_speed())
 		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
@@ -217,6 +218,9 @@
 		else
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
+
+	if (href_list["scan"])
+		linked.scan()
 
 	updateUsrDialog()
 
