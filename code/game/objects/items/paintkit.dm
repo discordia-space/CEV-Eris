@@ -1,7 +1,7 @@
 /obj/item/device/kit
 	icon_state = "modkit"
 	icon = 'icons/obj/device.dmi'
-	bad_type = /obj/item/device/kit/suit
+	bad_type = /obj/item/device/kit
 	var/new_name = "exosuit"    //What is the variant called?
 	var/new_desc = "An exosuit." //How is the new exosuit described?
 	var/new_icon = "ripley"  //What base icon will the new exosuit use?
@@ -24,6 +24,7 @@
 	name = "voidsuit modification kit"
 	desc = "A kit for modifying a voidsuit."
 	uses = 2
+	bad_type = /obj/item/device/kit/suit
 	var/new_light_overlay
 	var/new_mob_icon_file
 

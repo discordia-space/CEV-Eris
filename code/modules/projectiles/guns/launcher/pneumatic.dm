@@ -11,6 +11,7 @@
 	fire_delay = 50
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	twohanded = TRUE
+	rarity_value = 10//no price tag, high rarity
 
 	var/fire_pressure                                   // Used in fire checks/pressure checks.
 	var/max_w_class = ITEM_SIZE_NORMAL                                 // Hopper intake size.

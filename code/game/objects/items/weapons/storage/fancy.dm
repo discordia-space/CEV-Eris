@@ -359,6 +359,6 @@
 		overlays += image(icon, src, "ledb")
 	return
 
-/obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W, mob/user)
 	..()
 	update_icon()

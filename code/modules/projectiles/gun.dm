@@ -179,7 +179,7 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
-	
+
 	if(!twohanded_check(M))
 		return FALSE
 

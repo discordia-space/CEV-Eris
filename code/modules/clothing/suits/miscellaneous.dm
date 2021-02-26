@@ -215,7 +215,6 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
-
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "Sleek leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
@@ -419,3 +418,20 @@
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/suit/storage/scavengerarmor
+	name = "Scavenger armor"
+	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
+	icon_state = "scav_armor"
+	item_state = "scav_armor"
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.7
+	spawn_blacklisted = TRUE
