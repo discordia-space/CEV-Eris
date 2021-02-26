@@ -234,6 +234,13 @@
 	spawn_type = /obj/item/ammo_casing/shotgun/practice/prespawned
 	rarity_value = 50
 
+/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
+	name = "box of incendiary shells"
+	spawn_type = /obj/item/ammo_casing/shotgun/incendiary/prespawned
+	rarity_value = 100
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+
+
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of .60 Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
