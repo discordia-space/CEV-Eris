@@ -9,7 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the NeoTheology Church"
 	selection_color = "#ecd37d"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25, LANGUAGE_LATIN = 45)
 
 	cruciform_access = list(
 		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
@@ -78,7 +78,7 @@
 	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
 	wage = WAGE_PROFESSIONAL
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
@@ -121,7 +121,7 @@
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_hydroponics, access_morgue, access_crematorium, access_maint_tunnels)
 	wage = WAGE_PROFESSIONAL
 
@@ -166,7 +166,7 @@
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Custodian","Sanitation Technician")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
 	wage = WAGE_PROFESSIONAL
 	outfit_type = /decl/hierarchy/outfit/job/church/janitor

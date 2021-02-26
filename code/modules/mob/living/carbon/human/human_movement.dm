@@ -20,6 +20,13 @@
 	if(stats.getPerk(PERK_FAST_WALKER))
 		tally -= 0.5
 
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C && C.active)
+		var/obj/item/weapon/cruciform_upgrade/upgrade = C.upgrade
+		if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_SPEED_OF_THE_CHOSEN))
+			var/obj/item/weapon/cruciform_upgrade/speed_of_the_chosen/sotc = upgrade
+			tally -= sotc.speed_increase
+
 	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER - nutrition)
 	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.

@@ -177,7 +177,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
-			/obj/item/weapon/gun/projectile/automatic/atreides,
+			/obj/item/weapon/gun/projectile/automatic/z8,
 			/obj/item/weapon/gun/projectile/automatic/atreides)
 	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -198,17 +198,18 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 
 /datum/supply_pack/eweapons
-	name = "Experimental weapons crate"
+	name = "Incendiary weapons crate"
 	contains = list(/obj/item/weapon/flamethrower/full,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/grenade/chem_grenade/incendiary,
 					/obj/item/weapon/grenade/chem_grenade/incendiary,
-					/obj/item/weapon/grenade/chem_grenade/incendiary)
+					/obj/item/weapon/grenade/chem_grenade/incendiary,
+					/obj/item/weapon/storage/box/shotgunammo/incendiaryshells)
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure/weapon
-	crate_name = "Experimental weapons crate"
+	crate_name = "Incendiary weapons crate"
 	group = "Security"
 
 /datum/supply_pack/armor
@@ -259,13 +260,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 */
 /datum/supply_pack/ballisticarmor
 	name = "IH Ballistic Armor"
-	contains = list(/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/head/armor/helmet,
-					/obj/item/clothing/head/armor/helmet)
+	contains = list(/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+					/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure
-	crate_name = "FS Close Quarters Pack"
+	crate_name = "IH Ballistic Armor Pack"
 	group = "Security"
 
 /datum/supply_pack/shotgunammo_beanbag
@@ -306,10 +307,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/energyarmor
 	name = "IH Ablative Armor"
-	contains = list(/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/head/armor/helmet,
-					/obj/item/clothing/head/armor/helmet)
+	contains = list(/obj/item/clothing/suit/armor/laserproof/full,
+					/obj/item/clothing/suit/armor/laserproof/full,
+					/obj/item/clothing/head/armor/laserproof,
+					/obj/item/clothing/head/armor/laserproof)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Ablative Armor crate"
@@ -1230,7 +1231,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/meat,
-					/obj/item/weapon/reagent_containers/food/snacks/meat)
+					/obj/item/weapon/reagent_containers/food/snacks/meat,
+					/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+					/obj/item/weapon/reagent_containers/food/condiment/enzyme,)
 
 	cost = 900
 	containertype = /obj/structure/closet/crate/freezer
@@ -1436,7 +1439,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/spawner/gun/cheap,
 					/obj/spawner/gun/cheap)
 	name = "Surplus Weaponry"
-	cost = 5000
+	cost = 3500
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
