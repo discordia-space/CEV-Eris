@@ -15,6 +15,7 @@
 	var/end_msg = ""
 	var/completed = FALSE
 	var/tool_name
+	var/list/craft_items = list()
 
 
 /datum/craft_step/New(list/params, datum/craft_recipe/parent)
@@ -187,13 +188,16 @@
 				return FALSE
 			req_amount = 0
 		else if(reqed_type) //No deleting tools
-			req_amount--
+			if(!(target in craft_items))
+				craft_items[target] = req_amount--
+			else
+				craft_items[target]--
 			qdel(I)
 
 	if(target)
 		announce_action(end_msg, user, I, target)
 	building = FALSE
-	if(req_amount <= 0)
+	if(craft_items[target] <= 0 || req_amount <= 0)
 		completed = TRUE
 
 /datum/craft_step/proc/find_item(mob/living/user)
