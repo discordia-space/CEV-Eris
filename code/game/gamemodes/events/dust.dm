@@ -135,7 +135,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				for(var/mob/M in range(10, src))
 					if(!M.stat && !isAI(M))
 						shake_camera(M, 3, 1)
-			if (A)
+			if(A)
 				playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 				if(ismob(A))

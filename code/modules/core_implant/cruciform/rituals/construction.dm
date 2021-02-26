@@ -47,9 +47,9 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something is missing.",user,C,targets)
 		return
-	
+
 	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
-	
+
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, blueprint.build_time)
 
 	if(!do_after(user, blueprint.build_time, target_turf))
@@ -64,17 +64,21 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 
 	for(var/item_type in blueprint.materials)
 		var/t = locate(item_type) in target_turf.contents
-		qdel(t)
-	
-	effect.success()	
+		if(istype(t, /obj/item/stack))
+			var/obj/item/stack/S = t
+			S.use(blueprint.materials[item_type])
+		else
+			qdel(t)
+
+	effect.success()
 	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
 	var/build_path = blueprint.build_path
 	new build_path(target_turf)
-	
+
 
 /datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
-	
+
 	for(var/item_type in blueprint.materials)
 		var/located_raw = locate(item_type) in turf_contents
 		//single item check is handled there, rest of func is for stacked items or items with containers
@@ -94,7 +98,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	var/build_path
 	var/list/materials
 	var/build_time = 3 SECONDS
-	
+
 /datum/nt_blueprint/canister
 	name = "Biomatter Canister"
 	build_path = /obj/structure/reagent_dispensers/biomatter
@@ -102,7 +106,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/steel = 8,
 		/obj/item/stack/material/plastic = 2
 	)
-/datum/nt_blueprint/canister/large  
+/datum/nt_blueprint/canister/large
 	name = "Large Biomatter Canister"
 	build_path = /obj/structure/reagent_dispensers/biomatter/large
 	materials = list(

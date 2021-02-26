@@ -10,7 +10,6 @@
 
 	recoil_buildup = 0.5 //energy weapons have little to no recoil
 
-
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium

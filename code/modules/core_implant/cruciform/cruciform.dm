@@ -14,6 +14,7 @@ var/list/disciples = list()
 	max_power = 50
 	power_regen = 0.5
 	price_tag = 500
+	var/obj/item/weapon/cruciform_upgrade/upgrade
 
 	var/channeling_boost = 0  // used for the power regen boost if the wearer has the channeling perk
 

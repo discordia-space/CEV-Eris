@@ -349,3 +349,40 @@
 	helmet = /obj/item/clothing/head/space/void/science
 	rarity_value = 50
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/space/void/riggedvoidsuit
+	name = "makeshift armored Helmet"
+	desc = "A makeshift armored helmet you can see the glue holding it, just close enough to be airtight."
+	icon_state = "makeshift_void"
+	item_state = "makeshift_void"
+	slowdown = 2
+
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	light_overlay = "helmet_light_dual"
+	siemens_coefficient = 0.8
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit
+	name = "makeshift armored voidsuit"
+	desc = "A makeshift armored voidsuit you can see the glue holding it, just close enough to be airtight."
+	icon_state = "makeshift_void"
+	item_state = "makeshift_void"
+	siemens_coefficient = 0.4
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	siemens_coefficient = 0.8
+	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
+	spawn_blacklisted = TRUE
+

@@ -21,7 +21,7 @@
 	var/icon_opened = "secure0"
 	var/locked = 1
 	var/code = ""
-	var/l_code = null
+	var/l_code
 	var/l_set = 0
 	var/l_setshort = 0
 	var/l_hacking = 0

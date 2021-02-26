@@ -46,7 +46,6 @@
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
 	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
-
 	caliber = CAL_DART
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
@@ -94,7 +93,7 @@
 	//if (!..(user, 2))
 	//	return
 	..()
-	if (beakers.len)
+	if(beakers.len)
 		to_chat(user, SPAN_NOTICE("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)

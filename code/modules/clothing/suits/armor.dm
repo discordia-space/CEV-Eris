@@ -93,6 +93,7 @@
 	)
 	price_tag = 150
 	rarity_value = 15
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/vest/handmade/full
 	name = "full handmade armor vest"

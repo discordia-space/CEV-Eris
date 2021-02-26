@@ -1,0 +1,19 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - rscadd: gun assembly.
+  - rscadd: gun assembly.
+  - rscadd: Handmade bolt action rifle
+  - rscadd: Handmade revolver
+  - tweak: Handmade Pistol now uses .40 caliber and requires different materials to
+      craft it.
+  - rscadd: Slide barrel shotgun
+  - rscadd: Makeshift laser carbine
+  - rscadd: Makeshift grenade launcher
+  - rscadd: gun and armor parts
+  - tweak: now there are fewer guns in maint, instead some gun parts spawners have
+      been added.
+  - bugfix: gun spawn values
+  - rscadd: Makeshift armored void suit
+  - rscadd: Scavenger armor.​
+  - rscadd: gun parts and electronics pouch
