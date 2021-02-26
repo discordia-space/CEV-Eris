@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: fixed a surgery-related runtime
+  - bugfix: the ablative armor crate now comes with ablative armor
+  - tweak: tweaked the price and contents of some weapon & armor crates.
