@@ -1039,6 +1039,7 @@
 #include "code\game\objects\items\weapons\implant\implants\carrion\infection_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\mindboil_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\observer_spider.dm"
+#include "code\game\objects\items\weapons\implant\implants\carrion\signal_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\toxic_spider.dm"
 #include "code\game\objects\items\weapons\material\ashtray.dm"
 #include "code\game\objects\items\weapons\material\bats.dm"
