@@ -130,7 +130,7 @@
 
 /obj/item/weapon/cruciform_upgrade/martyr_gift
 	name = "Martyr gift"
-	desc = "This upgrade upon the death of the follower, causes a large ‘explosion’ that doesn’t damage terrain nor does it damage followers of NT. It will cause massive burns to any non-cruciformed crewmembers or critters within its radius. However, in process of doing so, this upgrade destroys itself, albeit cruciform remains intact.
+	desc = "This upgrade upon the death of the follower, causes a large ‘explosion’ that doesn’t damage terrain nor does it damage followers of NT. It will cause massive burns to any non-cruciformed crewmembers or critters within its radius. However, in process of doing so, this upgrade destroys itself, albeit cruciform remains intact."
 	icon_state = "martyr_gift"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5)
 	var/burn_damage = 50
