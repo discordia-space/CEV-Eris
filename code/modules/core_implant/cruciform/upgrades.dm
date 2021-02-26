@@ -48,7 +48,7 @@
 	cruciform = _cruciform
 	active = TRUE
 	OnInstall(target, _cruciform)
-	wearer.visible_message(SPAN_DANGER("[src] attach to [wearer]'s cruciform."))
+	wearer.visible_message(SPAN_WARNING("[src] attaches itself to [wearer]'s cruciform."))
 	return active
 
 /obj/item/weapon/cruciform_upgrade/proc/uninstall()
