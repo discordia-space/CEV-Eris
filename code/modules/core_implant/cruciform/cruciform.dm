@@ -80,12 +80,13 @@ var/list/disciples = list()
 	..()
 	if(active && round(world.time) % 5 == 0)
 		remove_cyber()
-	if(wearer && wearer.stat == DEAD)
-		deactivate()
-	if(wearer && wearer.stats && wearer.stats.getPerk(/datum/perk/channeling) && round(world.time) % 5 == 0)
-		power_regen -= channeling_boost  // Removing the previous channeling boost since the number of disciples may have changed
-		channeling_boost = 0.2 * disciples.len  // Proportional to the number of cruciformed people on board
-		power_regen += channeling_boost  // Applying the new power regeneration boost
+	if(wearer)
+		if(wearer.stat == DEAD)
+			deactivate()
+		else if(wearer.stats?.getPerk(/datum/perk/channeling) && round(world.time) % 5 == 0)
+			power_regen -= channeling_boost  // Removing the previous channeling boost since the number of disciples may have changed
+			channeling_boost = 0.2 * disciples.len  // Proportional to the number of cruciformed people on board
+			power_regen += channeling_boost  // Applying the new power regeneration boost
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)
