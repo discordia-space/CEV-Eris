@@ -84,11 +84,8 @@ var/list/disciples = list()
 		deactivate()
 	if(wearer && wearer.stats && wearer.stats.getPerk(/datum/perk/channeling) && round(world.time) % 5 == 0)
 		power_regen -= channeling_boost  // Removing the previous channeling boost since the number of disciples may have changed
-		wearer.visible_message(SPAN_DANGER("Old [channeling_boost]"))
 		channeling_boost = 0.2 * disciples.len  // Proportional to the number of cruciformed people on board
 		power_regen += channeling_boost  // Applying the new power regeneration boost
-		wearer.visible_message(SPAN_DANGER("New [channeling_boost]"))
-
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)
