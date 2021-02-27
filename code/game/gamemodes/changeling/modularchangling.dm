@@ -92,6 +92,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 3
 	spiderpath = /obj/item/weapon/implant/carrion_spider/identity
 
+/datum/power/carrion/signal_spider
+	name = "Electrocurrent spider"
+	desc = "Creates a spider that can pulse wires in machines."
+	genomecost = 2
+	spiderpath = /obj/item/weapon/implant/carrion_spider/signal
+
 /datum/power/carrion/smooth_spider
 	name = "Smooth spider"
 	desc = "Evolves a spider of pure horror."
