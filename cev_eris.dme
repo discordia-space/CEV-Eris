@@ -2770,5 +2770,7 @@
 #include "maps\submaps\planetary_ruins\exoplanet_ruins.dm"
 #include "maps\submaps\planetary_ruins\drill_site\drill_site.dm"
 #include "maps\submaps\planetary_ruins\hut\hut.dm"
+#include "maps\submaps\planetary_ruins\radshrine\radshrine.dm"
+#include "maps\submaps\planetary_ruins\spider_nest\spider_nest.dm"
 #include "maps\submaps\planetary_ruins\tar_anomaly\tar_anomaly.dm"
 // END_INCLUDE
