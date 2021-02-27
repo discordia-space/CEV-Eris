@@ -2760,7 +2760,6 @@
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
 #include "maps\encounters\spaceruins\spaceruins.dm"
-#include "maps\encounters\telluric\telluric.dm"
 #include "maps\submaps\deepmaint_rooms\template.dm"
 #include "maps\submaps\deepmaint_rooms\core\core_rooms.dm"
 #include "maps\submaps\deepmaint_rooms\normal\normal_rooms.dm"
