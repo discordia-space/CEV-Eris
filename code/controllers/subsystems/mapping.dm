@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(mapping)
 		for(var/j in -4 to 4)
 			var/turf/T = locate(round(GLOB.maps_data.overmap_size/2)+i,round(GLOB.maps_data.overmap_size/2)+j,GLOB.maps_data.overmap_z)
 			var/obj/effect/star/S = new(T)
-			S.icon_state = "sun[i]-4"
+			S.icon_state = "sun[i][j]"
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")
