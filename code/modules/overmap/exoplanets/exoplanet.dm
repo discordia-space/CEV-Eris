@@ -69,6 +69,11 @@
 	map_z += world.maxz
 	forceMove(locate(1,1,world.maxz))
 
+	// Update size of mob_living_by_zlevel to store the mobs in the new zlevel
+	while(SSmobs.mob_living_by_zlevel.len < world.maxz)
+		SSmobs.mob_living_by_zlevel.len++
+		SSmobs.mob_living_by_zlevel[SSmobs.mob_living_by_zlevel.len] = list()
+
 	new /obj/map_data/exoplanet(src)
 
 	if(LAZYLEN(possible_themes))

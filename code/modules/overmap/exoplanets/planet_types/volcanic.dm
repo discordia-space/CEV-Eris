@@ -71,9 +71,13 @@
 
 /turf/simulated/floor/exoplanet/volcanic
 	name = "volcanic floor"
-	icon = 'icons/turf/flooring/lava.dmi'
-	icon_state = "cold"
+	icon = 'icons/turf/volcanic.dmi'
+	icon_state = "basalt"
 	dirt_color = COLOR_GRAY20
+
+/turf/simulated/floor/exoplanet/volcanic/New()
+	icon_state = "basalt[rand(0,12)]"
+	..()
 
 /datum/random_map/automata/cave_system/mountains/volcanic
 	iterations = 2
@@ -89,7 +93,7 @@
 
 /turf/simulated/floor/exoplanet/lava
 	name = "lava"
-	icon = 'icons/turf/flooring/lava.dmi'
+	icon = 'icons/turf/volcanic.dmi'
 	icon_state = "lava"
 	movement_delay = 4
 	dirt_color = COLOR_GRAY20
