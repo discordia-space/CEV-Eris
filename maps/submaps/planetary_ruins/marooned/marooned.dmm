@@ -135,7 +135,7 @@
 /area/map_template/marooned)
 "av" = (
 /obj/item/weapon/paper/marooned/note06,
-/obj/random/trash,
+/obj/spawner/junk,
 /obj/item/weapon/paper/marooned/note08,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
@@ -170,7 +170,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
 "aA" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /obj/effect/floor_decal/steeldecal/steel_decals_central7,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
@@ -178,7 +178,7 @@
 /obj/item/weapon/paper/marooned/note07{
 	pixel_x = 6
 	},
-/obj/random/trash,
+/obj/spawner/junk,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/bed,
 /turf/simulated/floor/tiled/techfloor/grid,

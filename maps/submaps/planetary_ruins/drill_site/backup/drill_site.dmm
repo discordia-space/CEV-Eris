@@ -3,12 +3,12 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/obj/random/loot,
-/obj/random/junk,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/junk,
 /turf/template_noop,
 /area/template_noop)
 "e" = (
@@ -24,7 +24,7 @@
 /turf/template_noop,
 /area/template_noop)
 "j" = (
-/obj/random/tool,
+/obj/spawner/tool,
 /turf/template_noop,
 /area/template_noop)
 "k" = (
@@ -36,23 +36,23 @@
 /turf/template_noop,
 /area/template_noop)
 "n" = (
-/obj/random/drinkbottle,
+/obj/spawner/drinkbottle,
 /turf/template_noop,
 /area/template_noop)
 "s" = (
-/obj/random/loot,
+/obj/spawner/pack/tech_loot,
 /turf/template_noop,
 /area/template_noop)
 "y" = (
-/obj/random/hat,
+/obj/spawner/hat,
 /turf/template_noop,
 /area/template_noop)
 "H" = (
-/obj/random/powercell,
+/obj/spawner/powercell,
 /turf/template_noop,
 /area/template_noop)
 "O" = (
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /turf/template_noop,
 /area/template_noop)
 

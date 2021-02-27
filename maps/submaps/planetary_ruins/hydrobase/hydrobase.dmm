@@ -148,7 +148,7 @@
 /turf/simulated/wall/alium,
 /area/map_template/hydrobase/station/goatzone)
 "ay" = (
-/obj/structure/sign/warning/biohazard,
+/obj/structure/sign/biohazard,
 /turf/simulated/wall/alium,
 /area/map_template/hydrobase/station/growX)
 "az" = (
@@ -1052,7 +1052,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/pirate,
 /turf/simulated/floor/fixed/alium,
@@ -2132,9 +2132,9 @@
 /obj/item/weapon/reagent_containers/pill/methylphenidate,
 /obj/item/weapon/reagent_containers/pill/methylphenidate,
 /obj/item/weapon/reagent_containers/pill/methylphenidate,
-/obj/random/smokes,
-/obj/random/smokes,
-/obj/random/smokes,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
 /obj/item/weapon/reagent_containers/pill/zoom,
 /obj/item/weapon/reagent_containers/pill/zoom,
 /obj/item/weapon/reagent_containers/pill/zoom,
@@ -2316,19 +2316,19 @@
 "fr" = (
 /obj/structure/catwalk,
 /obj/item/weapon/material/knife/folding/combat/switchblade,
-/obj/random/coin,
-/obj/random/coin,
+/obj/spawner/coin,
+/obj/spawner/coin,
 /obj/structure/closet/crate/secure/weapon{
 	desc = "A heavy-duty crate with a suite of firearms safety instructions plastered on the side. The ID scanner is unlike anything you've seen before.";
 	name = "weapons crate";
 	req_access = list("ACCESS_SYNDICATE")
 	},
-/obj/random/projectile,
+/obj/spawner/projectile,
 /obj/item/weapon/material/knife/combat,
 /obj/item/weapon/spacecash/bundle/c100,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/handgun,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/handgun,
 /obj/item/stack/material/diamond/ten,
 /obj/item/stack/material/gold/ten,
 /obj/item/stack/material/gold/ten,

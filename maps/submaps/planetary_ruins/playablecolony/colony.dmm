@@ -188,12 +188,12 @@
 /area/map_template/colony/command)
 "aE" = (
 /obj/structure/table/steel_reinforced,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
 /obj/item/stack/material/tritium/fifty,
 /obj/item/stack/material/deuterium/fifty,
 /obj/item/stack/material/deuterium/fifty,
@@ -467,8 +467,8 @@
 	dir = 1
 	},
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "bk" = (
@@ -636,10 +636,10 @@
 /area/map_template/colony/tcomms)
 "bw" = (
 /obj/structure/table/steel_reinforced,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony/tcomms)
 "bx" = (
@@ -695,8 +695,8 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony/command)
 "bD" = (
@@ -1069,23 +1069,23 @@
 "cj" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/spacecash/bundle/c1000,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
-/obj/random/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
+/obj/spawner/cash,
 /obj/item/weapon/spacecash/bundle/c1000,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony/tcomms)
@@ -2314,7 +2314,7 @@
 "eC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/marble,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "eD" = (
 /obj/structure/catwalk,
@@ -2431,7 +2431,7 @@
 /area/map_template/colony/engineering)
 "eN" = (
 /obj/structure/table/marble,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "eO" = (
 /obj/machinery/power/apc{
@@ -2464,7 +2464,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "eQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2667,7 +2667,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "fh" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -2777,7 +2777,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "fr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3334,20 +3334,20 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/civilian,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "ge" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /obj/structure/closet/crate/freezer,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
-/obj/random/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
+/obj/spawner/drinkbottle,
 /obj/item/weapon/storage/lunchbox/syndicate/filled,
 /obj/item/weapon/storage/lunchbox/cat/filled,
 /obj/item/weapon/storage/lunchbox/nt/filled,
@@ -3515,7 +3515,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "gp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3667,7 +3667,7 @@
 	},
 /obj/structure/table/marble,
 /obj/machinery/microwave,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "gD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3745,8 +3745,8 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "gK" = (
@@ -3755,7 +3755,7 @@
 	},
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_alc/full,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "gL" = (
 /obj/machinery/atmospherics/unary/heater{
@@ -4275,7 +4275,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "hI" = (
 /obj/item/weapon/stool/bar/padded,
@@ -4742,7 +4742,7 @@
 	pixel_y = -32;
 	req_access = list()
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony/messhall)
 "ix" = (
 /obj/effect/floor_decal/techfloor{
@@ -4953,8 +4953,8 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony/atmospherics)
 "iL" = (
@@ -5021,7 +5021,7 @@
 /obj/item/weapon/deck/cards,
 /obj/item/weapon/storage/pill_bottle/dice,
 /obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/random/drinkbottle,
+/obj/spawner/drinkbottle,
 /obj/effect/floor_decal/spline/fancy/wood{
 	icon_state = "spline_fancy";
 	dir = 9
@@ -5686,8 +5686,8 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "jS" = (
@@ -5878,7 +5878,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/glass/security,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kh" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
@@ -6009,8 +6009,8 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "kt" = (
@@ -6094,7 +6094,7 @@
 	dir = 4;
 	pixel_x = -21
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kA" = (
 /obj/machinery/alarm{
@@ -6102,7 +6102,7 @@
 	pixel_y = 20
 	},
 /obj/structure/flora/pottedplant/tropical,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kB" = (
 /obj/structure/window/reinforced{
@@ -6111,7 +6111,7 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen/multi,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kC" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -6257,7 +6257,7 @@
 	dir = 5
 	},
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "kP" = (
@@ -6265,13 +6265,13 @@
 	dir = 4
 	},
 /obj/machinery/vending/snix,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kQ" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "kR" = (
 /obj/machinery/mech_recharger,
@@ -6386,7 +6386,7 @@
 	name = "Entry Blast Doors";
 	pixel_y = 8
 	},
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "lc" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -6596,7 +6596,7 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/colony/hydroponics)
 "ly" = (
@@ -7245,7 +7245,7 @@
 	},
 /obj/structure/closet/firecloset,
 /obj/item/device/flashlight/lamp/floodlamp,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "mB" = (
@@ -7710,7 +7710,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/light,
-/turf/simulated/floor/lino,
+/turf/simulated/floor/tiled/cafe,
 /area/map_template/colony)
 "nl" = (
 /obj/machinery/light{

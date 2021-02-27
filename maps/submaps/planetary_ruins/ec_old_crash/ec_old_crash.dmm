@@ -164,7 +164,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/wall_mounted/emcloset,
 /turf/simulated/floor/tiled/airless,
 /area/map_template/ecship/crew)
 "az" = (
@@ -213,7 +213,7 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/wall_mounted/emcloset,
 /turf/simulated/floor/tiled/white/lowpressure,
 /area/map_template/ecship/cryo)
 "aF" = (
@@ -335,7 +335,7 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/wall_mounted/emcloset,
 /turf/simulated/floor/tiled/airless,
 /area/map_template/ecship/cryo)
 "aS" = (
@@ -599,7 +599,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/wall_mounted/emcloset,
 /turf/simulated/floor/tiled/white/lowpressure,
 /area/map_template/ecship/cryo)
 "br" = (
@@ -1529,7 +1529,7 @@
 	icon_state = "corner_white";
 	dir = 9
 	},
-/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/wall_mounted/emcloset,
 /obj/machinery/meter,
 /turf/simulated/floor,
 /area/map_template/ecship/engineering)

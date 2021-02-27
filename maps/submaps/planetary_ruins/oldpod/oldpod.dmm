@@ -50,7 +50,7 @@
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
 "ai" = (
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/map_template/oldpod)
@@ -122,7 +122,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/map_template/oldpod)
 "ar" = (
@@ -134,7 +134,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/map_template/oldpod)
 "as" = (
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
@@ -167,7 +167,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
@@ -193,7 +193,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/map_template/oldpod)
 "aA" = (
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -202,7 +202,7 @@
 /area/map_template/oldpod)
 "aB" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -223,11 +223,11 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/random/tech_supply,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
+/obj/spawner/tech_supply,
+/obj/spawner/tech_supply,
+/obj/spawner/tech_supply,
+/obj/spawner/tech_supply,
+/obj/spawner/tech_supply,
 /obj/item/weapon/pickaxe,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
@@ -268,7 +268,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
@@ -484,8 +484,8 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/map_template/oldpod)

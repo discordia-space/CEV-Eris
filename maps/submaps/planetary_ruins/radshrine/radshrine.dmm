@@ -12,17 +12,17 @@
 "e" = (
 /obj/structure/bed/chair/wood,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/carpet/red,
+/turf/simulated/floor/carpet,
 /area/template_noop)
 "f" = (
-/turf/simulated/floor/carpet/red,
+/turf/simulated/floor/carpet,
 /area/template_noop)
 "g" = (
 /obj/item/trash/candle,
-/turf/simulated/floor/carpet/red,
+/turf/simulated/floor/carpet,
 /area/template_noop)
 "h" = (
-/obj/effect/wallframe_spawn/reinforced,
+/obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "i" = (
@@ -31,7 +31,7 @@
 /area/template_noop)
 "I" = (
 /obj/structure/bed/chair/wood,
-/turf/simulated/floor/carpet/red,
+/turf/simulated/floor/carpet,
 /area/template_noop)
 
 (1,1,1) = {"

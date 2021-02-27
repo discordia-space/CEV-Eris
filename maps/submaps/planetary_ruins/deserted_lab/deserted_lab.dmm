@@ -3,22 +3,20 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/simulated/wall/r_wall/prepainted{
-	paint_color = "#556769"
-	},
+/turf/simulated/wall/r_wall,
 /area/template_noop)
 "ac" = (
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "ad" = (
-/obj/random/loot,
+/obj/spawner/pack/tech_loot,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/mucus,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "ae" = (
-/obj/random/loot,
+/obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "af" = (
@@ -54,7 +52,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "al" = (
-/obj/random/loot,
+/obj/spawner/pack/tech_loot,
 /obj/effect/decal/cleanable/mucus,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
@@ -63,7 +61,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "ao" = (
-/obj/random/junk,
+/obj/spawner/junk,
 /turf/template_noop,
 /area/template_noop)
 "ap" = (
@@ -83,7 +81,7 @@
 /turf/template_noop,
 /area/template_noop)
 "at" = (
-/obj/random/loot,
+/obj/spawner/pack/tech_loot,
 /mob/living/simple_animal/hostile/voxslug,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
@@ -94,8 +92,8 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/random/contraband,
-/obj/random/masks,
+/obj/spawner/contraband,
+/obj/spawner/masks,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "aw" = (
@@ -105,7 +103,7 @@
 /area/template_noop)
 "ax" = (
 /obj/structure/bed/chair/office/light,
-/obj/structure/closet/walllocker/emerglocker/east,
+/obj/structure/closet/wall_mounted/emcloset,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "ay" = (
@@ -131,7 +129,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "aC" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "aD" = (
@@ -149,8 +147,8 @@
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "aH" = (
-/obj/random/trash,
-/obj/random/trash,
+/obj/spawner/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "aI" = (
@@ -164,7 +162,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "aJ" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "aK" = (
@@ -177,9 +175,9 @@
 /area/template_noop)
 "aL" = (
 /obj/structure/table/rack,
-/obj/random/firstaid,
-/obj/random/advdevice,
-/obj/random/advdevice,
+/obj/spawner/firstaid,
+/obj/spawner/advdevice,
+/obj/spawner/advdevice,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
 "aM" = (
@@ -217,8 +215,8 @@
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "aS" = (
-/obj/random/junk,
-/obj/random/junk,
+/obj/spawner/junk,
+/obj/spawner/junk,
 /turf/template_noop,
 /area/template_noop)
 "aT" = (
@@ -228,7 +226,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "aU" = (
-/obj/random/junk,
+/obj/spawner/junk,
 /obj/structure/bed/chair/office/light,
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
@@ -246,7 +244,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "aX" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "aY" = (
@@ -260,15 +258,15 @@
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "ba" = (
-/obj/random/snack,
+/obj/spawner/snack,
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "bb" = (
 /obj/structure/table/rack,
-/obj/random/powercell,
-/obj/random/voidsuit,
-/obj/random/voidhelmet,
-/obj/random/toolbox,
+/obj/spawner/powercell,
+/obj/spawner/voidsuit,
+/obj/spawner/voidhelmet,
+/obj/spawner/toolbox,
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "bc" = (
@@ -285,14 +283,14 @@
 /turf/simulated/floor/carpet/blue2,
 /area/template_noop)
 "bf" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/mucus,
 /mob/living/simple_animal/hostile/creature,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/template_noop)
 "bg" = (
-/obj/random/trash,
+/obj/spawner/junk,
 /obj/structure/filingcabinet/wallcabinet{
 	pixel_y = -32
 	},

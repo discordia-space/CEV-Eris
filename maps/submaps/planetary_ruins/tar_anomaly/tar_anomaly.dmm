@@ -1,12 +1,12 @@
-"a" = (/obj/random/junk/low_chance,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
+"a" = (/obj/spawner/junk/low_chance,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
 "b" = (/turf/template_noop,/area/template_noop)
 "c" = (/obj/structure/flora/ausbushes/lavendergrass,/turf/template_noop,/area/template_noop)
 "d" = (/obj/machinery/artifact,/turf/simulated/floor/exoplanet/shrouded,/area/template_noop)
 "e" = (/obj/structure/flora/ausbushes/fullgrass,/turf/template_noop,/area/template_noop)
 "f" = (/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
-"g" = (/obj/random/plushie,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
-"h" = (/obj/random/common_oddities,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
-"i" = (/obj/random/junk,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
+"g" = (/obj/spawner/toy/plushie,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
+"h" = (/obj/spawner/oddities,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
+"i" = (/obj/spawner/junk,/turf/simulated/floor/exoplanet/water/shallow/tar,/area/template_noop)
 
 (1,1,1) = {"
 fbbbcfffbbb
