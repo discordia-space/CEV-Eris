@@ -2,7 +2,7 @@
 	name = "established colony"
 	id = "playablecolony"
 	description = "a fully functional colony on the frontier of settled space"
-	suffixes = list("playablecolony/colony.dmm")
+	suffix = "playablecolony/colony.dmm"
 	cost = 2
 	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS | TEMPLATE_FLAG_NO_RUINS | TEMPLATE_FLAG_NO_RADS
 	ruin_tags = RUIN_HUMAN|RUIN_HABITAT
