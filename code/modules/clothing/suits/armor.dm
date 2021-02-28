@@ -99,6 +99,7 @@
 	name = "full handmade armor vest"
 	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
 	icon_state = "armor_handmade_fullbody"
+	slowdown = 0.1
 	rarity_value = 20 // bit rarer than the version without kneepads
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
 
@@ -196,7 +197,6 @@
 	icon_state = "bulletproof_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	rarity_value = 55
-	slowdown = 0.25
 	matter = list(
 		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
 		MATERIAL_PLASTEEL = 3,
@@ -208,7 +208,6 @@
 			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 0.25
 	armor = list(
 		melee = 25,
 		bullet = 60,
