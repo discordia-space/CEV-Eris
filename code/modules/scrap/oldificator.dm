@@ -48,7 +48,7 @@
 	   "It is difficult to make out what this thing once was.",
 	    "A relic from a bygone age.")
 
-	germ_level = pick(80,110,160)
+	germ_level = max(germ_level, pick(80,110,160))
 	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
 
 	//Deplete matter and matter_reagents
@@ -123,6 +123,11 @@
 		for(var/datum/reagent/R in reagents.reagent_list)
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("toxin", rand(0, actual_volume - reagents.total_volume))
+
+/obj/item/weapon/reagent_containers/food/snacks/make_old()
+	.=..()
+	if(.)
+		junk_food = TRUE
 
 //Sealed survival food, always edible
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood/make_old()
@@ -324,6 +329,8 @@
 	if (.)
 		salvage_num = max(1, salvage_num - pick(1, 2, 3))
 */
+/obj/item/part/gun/make_old()
+	return
 
 /mob/living/exosuit
 	var/oldified = FALSE//Todo: inprove it.
@@ -341,3 +348,14 @@
 		comp.make_old()
 	updatehealth()
 	*/
+
+/obj/item/weapon/gun/make_old()
+	.=..()
+	if(. && prob(60))
+		var/list/trash_mods = TRASH_GUNMODS
+		while(trash_mods.len)
+			var/trash_mod_path = pick_n_take(trash_mods)
+			var/obj/item/trash_mod = new trash_mod_path
+			if(SEND_SIGNAL(trash_mod, COMSIG_IATTACK, src, null))
+				break
+			qdel(trash_mod)

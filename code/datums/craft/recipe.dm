@@ -26,10 +26,10 @@
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
 	M.Created(user)
-	switch (C.recipe.dir_type)
-		if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+	switch(C.recipe.dir_type)
+		if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 			M.dir = user.dir
-		if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+		if(CRAFT_TOWARD_USER)  // spawn the result towards the user
 			M.dir = reverse_dir[user.dir]
 		else  // spawn the result in its default direction
 			M.dir = C.recipe.dir_default
@@ -38,21 +38,21 @@
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
 
-/datum/craft_recipe/proc/get_description(pass_steps)
+/datum/craft_recipe/proc/get_description(pass_steps, obj/item/craft/C)
 	. = list()
 	var/atom/A = result
-	.+="[initial(A.desc)]<br>"
-	for(var/item in steps)
+	. += "[initial(A.desc)]<br>"
+	for(var/datum/craft_step/CS in steps)
 		if(pass_steps > 0)
 			--pass_steps
 			continue
-		var/datum/craft_step/CS = item
+		CS.make_desc(C)
 		. += CS.desc
 	return jointext(., "<br>")
 
 
-/datum/craft_recipe/proc/can_build(mob/living/user, var/turf/T)
-	if (!T)
+/datum/craft_recipe/proc/can_build(mob/living/user, turf/T)
+	if(!T)
 		return FALSE
 
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
@@ -62,12 +62,11 @@
 		else
 			//Prevent building dense things in turfs that already contain dense objects
 			var/atom/A = result
-			if (initial(A.density))
+			if(initial(A.density))
 				for (var/atom/movable/AM in T)
-					if (AM != user && AM.density)
+					if(AM != user && AM.density)
 						to_chat(user, SPAN_WARNING("You can't build here, it's blocked by [AM]!"))
 						return FALSE
-
 	return TRUE
 
 
@@ -112,25 +111,32 @@
 	if(ishuman(user) && !I.is_held())
 		to_chat(user, SPAN_WARNING("You should hold [I] in hands for doing that!"))
 		return
-
-	if(!CS.apply(I, user, null, src))
+	var/apply_type = CS.apply(I, user, null, src)
+	if(!apply_type)
 		return
 
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
-		switch (dir_type)
-			if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+		switch(dir_type)
+			if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 				CR.dir = user.dir
-			if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+			if(CRAFT_TOWARD_USER)  // spawn the result towards the user
 				CR.dir = reverse_dir[user.dir]
 			else  // spawn the result in its default direction
 				CR.dir = dir_default
 		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)
+		var/obj/item/craft/CO = CR
+		if(apply_type == 1)
+			CO.step++
+		else if(apply_type == 2)
+			CS.craft_items[CO] = CS.req_amount - 1
+		CO.update()
 	if(flags & CRAFT_ON_FLOOR)
 		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
 	return CR
+

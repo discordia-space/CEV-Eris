@@ -207,7 +207,8 @@
 		.["categories"] = list()
 		.["total"] = PRG.get_price_of_cart()
 		for(var/i in PRG.station.assortiment)
-			.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
+			if(istext(i))
+				.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
 		if(PRG.choosed_category)
 			var/list/assort = PRG.station.assortiment[PRG.choosed_category]
 			if(islist(assort))

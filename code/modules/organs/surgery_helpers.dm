@@ -109,5 +109,6 @@
 
 // Handling of attacks in organ-centric surgery - called from attackby and attack_hand
 // To be overridden in subtypes
-/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool)
+/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
 	return FALSE
+

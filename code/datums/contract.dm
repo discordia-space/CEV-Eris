@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
-		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
+		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof/full,
 		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
 	))
 GLOBAL_LIST_INIT(excel_item_targets,list(
@@ -71,11 +71,15 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
+	else
+		GLOB.completed_antag_contracts++
 	completed = TRUE
 	completed_by = M
 
-	if(M && M.current)
-		to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+	if(M)
+		M.contracts_completed++
+		if(M.current)
+			to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
 
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)

@@ -72,8 +72,6 @@ SUBSYSTEM_DEF(trade)
 			station.init_src()
 	else if(ispath(stype, /datum/trade_station))
 		station = new stype(TRUE)
-	if(station?.linked_with)
-		init_stations_by_list(station.linked_with)
 	. = station
 
 /datum/controller/subsystem/trade/proc/init_stations_by_list(list/L)

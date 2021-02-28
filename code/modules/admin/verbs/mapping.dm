@@ -112,7 +112,7 @@ var/intercom_range_display_status = 0
 
 	if(intercom_range_display_status)
 		for(var/obj/item/device/radio/intercom/I in world)
-			for(var/turf/T in trange(7, I))
+			for(var/turf/T in RANGE_TURFS(7, I))
 				var/obj/effect/debugging/marker/F = new(T)
 				if (!(F in view(7, I.loc)))
 					qdel(F)
@@ -241,7 +241,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 				continue
 			recurse_zone(connected,1)
 
-	for(var/turf/T in trange(25, location))
+	for(var/turf/T in RANGE_TURFS(25, location))
 		if(T in testZAScolors_turfs)
 			continue
 		images += image(red, T, "zasdebug", LIGHTING_LAYER)

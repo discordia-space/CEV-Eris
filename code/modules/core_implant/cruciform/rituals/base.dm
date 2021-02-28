@@ -130,3 +130,82 @@
 	T.sanity.changeLevel(sanity_lost)
 	SEND_SIGNAL(H, COMSIG_RITUAL, src, T)
 	return TRUE
+
+/datum/ritual/cruciform/base/install_upgrade
+	name = "Install Cruciform Upgrade"
+	phrase = "Deum benedicite mihi voluntas in suum donum"
+	desc = "This litany will command a cruciform upgrade to attach to follower's cruciform. Follower must lie on altar and upgrade must be near them."
+	power = 20
+
+/datum/ritual/cruciform/base/install_upgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/H = get_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
+	if(!CI)
+		fail("[H] don't have a cruciform installed.", user, C)
+		return FALSE
+	if(CI.upgrade)
+		fail("Cruciform already has an upgrade installed.", user, C)
+		return FALSE
+
+	var/list/L = get_front(user)
+
+	var/obj/item/weapon/cruciform_upgrade/CU = locate(/obj/item/weapon/cruciform_upgrade) in L
+
+	if(!CU)
+		fail("There is no cruciform upgrade nearby.", user, C)
+		return FALSE
+
+	if(!(H in L))
+		fail("Cruciform upgrade is too far from [H].", user, C)
+		return FALSE
+
+	if(CU.active)
+		fail("Cruciform upgrade is already active.", user, C)
+		return FALSE
+
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
+		fail("[H] must lie on the altar.", user, C)
+		return FALSE
+
+	for(var/obj/item/clothing/CL in H)
+		if(H.l_hand == CL || H.r_hand == CL)
+			continue
+		fail("[H] must be undressed.", user, C)
+		return FALSE
+
+
+
+	if(!CU.install(H, CI) || CU.wearer != H)
+		fail("Commitment failed.", user, C)
+		return FALSE
+
+	return TRUE
+
+/datum/ritual/cruciform/base/uninstall_upgrade
+	name = "Uninstall Cruciform Upgrade"
+	phrase = "Deus meus ut quid habebant affectus."
+	desc = "This litany will command cruciform uprgrade to detach from cruciform."
+	power = 20
+
+/datum/ritual/cruciform/base/uninstall_upgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/H = get_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
+	var/list/L = get_front(user)
+
+	if(!CI)
+		fail("There is no cruciform on this one", user, C)
+		return FALSE
+
+	if(!CI.upgrade)
+		fail("Cruciform upgrade is not installed.", user, C)
+		return FALSE
+
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
+		fail("[H] must lie on the altar.", user, C)
+		return FALSE
+
+	if(CI.upgrade.uninstall() || CI.upgrade)
+		fail("Commitment failed.", user, C)
+		return FALSE
+
+	return TRUE

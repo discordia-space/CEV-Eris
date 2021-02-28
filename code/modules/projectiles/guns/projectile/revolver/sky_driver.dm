@@ -5,18 +5,22 @@
 	icon_state = "sky_driver"
 	item_state = "sky_driver"
 	drawChargeMeter = FALSE
-	max_shells = 5
-	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 10, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/pistol
+	magazine_type = /obj/item/ammo_magazine/slpistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
+	caliber = CAL_PISTOL
+	max_shells = 5
+	ammo_type = /obj/item/ammo_casing/pistol
+	magazine_type = /obj/item/ammo_magazine/slpistol
 	price_tag = 20000
 	damage_multiplier = 1.1
 	penetration_multiplier = 20
-	pierce_multiplier =  5
+	pierce_multiplier = 5
 	recoil_buildup = 50
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
+	noricochet = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
@@ -26,6 +30,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.ironhammer_faction_item_loss++
 	..()
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/attackby(obj/item/I, mob/user, params)

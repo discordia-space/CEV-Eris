@@ -828,8 +828,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
-	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+	if(owner)
+		var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
+		return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
@@ -931,9 +932,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		return english_list(descriptors)
 
-	. = ""
-	if((status & ORGAN_CUT_AWAY) && !is_stump() && !(parent && parent.status & ORGAN_CUT_AWAY))
-		. += "tear at [amputation_point] so severe that it hangs by a scrap of flesh"
 	//Normal organic organ damage
 	var/list/wound_descriptors = list()
 	if(open > 1)

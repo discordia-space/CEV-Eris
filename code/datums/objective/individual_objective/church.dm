@@ -39,7 +39,7 @@
 		return FALSE
 	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
 	for(var/mob/living/carbon/human/H in candidates)
-		if(!H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(!is_neotheology_disciple(H))
 			return TRUE
 	return FALSE
 
@@ -47,7 +47,7 @@
 	..()
 	var/list/valid_targets = list()
 	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
-		if(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(is_neotheology_disciple(H))
 			continue
 		valid_targets += H
 	target = pick(valid_targets)
@@ -76,7 +76,7 @@
 		return FALSE
 	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
 	for(var/mob/living/carbon/human/H in candidates)
-		if(!H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(!is_neotheology_disciple(H))
 			return TRUE
 	return FALSE
 
@@ -84,7 +84,7 @@
 	..()
 	var/list/valid_targets = list()
 	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
-		if(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(is_neotheology_disciple(H))
 			continue
 		valid_targets += H
 	target = pick(valid_targets)

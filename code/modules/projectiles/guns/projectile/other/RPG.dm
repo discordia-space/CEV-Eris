@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 5)
 	price_tag = 8000
-	ammo_type = "/obj/item/ammo_casing/rocket"
+	ammo_type = /obj/item/ammo_casing/rocket
 	load_method = SINGLE_CASING
 	handle_casings = EJECT_CASINGS
 	max_shells = 1
@@ -24,6 +24,7 @@
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
 	twohanded = TRUE
+
 /obj/item/weapon/gun/projectile/rpg/update_icon()
 	..()
 
@@ -32,9 +33,10 @@
 
 	if (loaded.len)
 		iconstring += "-he"
-//		itemstring += "-he"         disabled until mag fix
+		//itemstring += "-he"         disabled until mag fix
 	icon_state = iconstring
 	set_item_state(itemstring)
+
 /obj/item/weapon/gun/projectile/rpg/Initialize()
 	. = ..()
 	update_icon()

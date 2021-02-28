@@ -180,7 +180,7 @@
 	if(!istype(M))
 		return
 
-	if(!can_operate(M, user))
+	if(!can_operate(M, user) == CAN_OPERATE_ALL)
 		to_chat(user, SPAN_WARNING("You need to lay the cadaver down on a table first!"))
 		return
 
@@ -203,6 +203,8 @@
 	for(var/mob/O in viewers(M))
 		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)
 	SEND_SIGNAL(user, COMSING_AUTOPSY, M)
+	if(M.mind && M.mind.assigned_job && (M.mind.assigned_job.department in GLOB.department_moebius))
+		GLOB.moebius_autopsies_mobs.Add(M)
 	src.add_data(S, user)
 
 	return 1

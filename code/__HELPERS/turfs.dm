@@ -112,7 +112,7 @@
 	if (A.flags & AREA_FLAG_EXTERNAL)
 		return TRUE
 
-	for (var/a in trange(1, T))
+	for (var/a in RANGE_TURFS(1, T))
 		var/turf/U = a //This is a speed hack.
 		//Manual casting when the type is known skips an istype check in the loop
 		if (A.flags & AREA_FLAG_EXTERNAL)

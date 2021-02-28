@@ -102,6 +102,7 @@ other types of metals and chemistry for reagents).
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
+	chemicals = list("nanites" = 5)
 
 /datum/design/research/item/scalpel_laser
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."

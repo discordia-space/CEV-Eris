@@ -13,8 +13,10 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
 	var/prefix = "upgraded" //Added to the tool's name
-	var/removal_time = WORKTIME_SLOW
 
+	var/removal_time = WORKTIME_SLOW
+	var/removal_difficulty = FAILCHANCE_CHALLENGING
+	var/destroy_on_removal = FALSE
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
 
@@ -51,7 +53,8 @@
 		//No using multiples of the same upgrade
 		for (var/obj/item/I in T.item_upgrades)
 			if(I.type == parent.type || (exclusive_type && istype(I.type, exclusive_type)))
-				to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
+				if(user)
+					to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
 				return FALSE
 
 	if(istool(A))
@@ -64,7 +67,8 @@
 
 /datum/component/item_upgrade/proc/check_robot(mob/living/silicon/robot/R, mob/living/user)
 	if(!R.opened)
-		to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
+		if(user)
+			to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
 		return FALSE
 	var/list/robotools = list()
 	for(var/obj/item/weapon/tool/robotool in R.module.modules)
@@ -74,7 +78,7 @@
 		if(chosen_tool == "Cancel")
 			return FALSE
 		return can_apply(chosen_tool,user)
-	else
+	if(user)
 		to_chat(user, SPAN_WARNING("[R] has no modifiable tools."))
 	return FALSE
 
@@ -84,7 +88,8 @@
 		return FALSE
 
 	if(T.item_upgrades.len >= T.max_upgrades)
-		to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
 		return FALSE
 
 	if(required_qualities.len)
@@ -95,64 +100,77 @@
 				break
 
 		if(!qmatch)
-			to_chat(user, SPAN_WARNING("This tool lacks the required qualities!"))
+			if(user)
+				to_chat(user, SPAN_WARNING("This tool lacks the required qualities!"))
 			return FALSE
 
 	if(negative_qualities.len)
 		for(var/i in negative_qualities)
 			if(T.ever_has_quality(i))
-				to_chat(user, SPAN_WARNING("This tool can not accept the modification!"))
+				if(user)
+					to_chat(user, SPAN_WARNING("This tool can not accept the modification!"))
 				return FALSE
 
 	if((req_fuel_cell & REQ_FUEL) && !T.use_fuel_cost)
-		to_chat(user, SPAN_WARNING("This tool does not use fuel!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This tool does not use fuel!"))
 		return FALSE
 
 	if((req_fuel_cell & REQ_CELL) && !T.use_power_cost)
-		to_chat(user, SPAN_WARNING("This tool does not use power!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This tool does not use power!"))
 		return FALSE
 
 	if((req_fuel_cell & REQ_FUEL_OR_CELL) && (!T.use_power_cost && !T.use_fuel_cost))
-		to_chat(user, SPAN_WARNING("This tool does not use [T.use_power_cost?"fuel":"power"]!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This tool does not use [T.use_power_cost?"fuel":"power"]!"))
 		return FALSE
 
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		if(SANCTIFIED in T.aspects)
-			to_chat(user, SPAN_WARNING("This tool already sanctified!"))
+			if(user)
+				to_chat(user, SPAN_WARNING("This tool already sanctified!"))
 			return FALSE
 
 	if(tool_upgrades[UPGRADE_CELLPLUS])
 		if(!(T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small))
-			to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
+			if(user)
+				to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
 			return FALSE
 		if(T.cell)
-			to_chat(user, SPAN_WARNING("Remove the cell from the tool first!"))
+			if(user)
+				to_chat(user, SPAN_WARNING("Remove the cell from the tool first!"))
 			return FALSE
 
 	return TRUE
 
 /datum/component/item_upgrade/proc/check_gun(obj/item/weapon/gun/G, mob/living/user)
 	if(!weapon_upgrades.len)
-		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
 
 	if(G.item_upgrades.len >= G.max_upgrades)
-		to_chat(user, SPAN_WARNING("This weapon can't fit anymore modifications!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This weapon can't fit anymore modifications!"))
 		return FALSE
 
 	for(var/obj/I in G.item_upgrades)
 		var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
 		if(IU && IU.gun_loc_tag == gun_loc_tag)
-			to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
+			if(user)
+				to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
 			return FALSE
 
 	for(var/I in req_gun_tags)
 		if(!G.gun_tags.Find(I))
-			to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
+			if(user)
+				to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
 			return FALSE
 
 	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/weapon/gun/energy))
-		to_chat(user, SPAN_WARNING("This weapon does not use power!"))
+		if(user)
+			to_chat(user, SPAN_WARNING("This weapon does not use power!"))
 		return FALSE
 	return TRUE
 
@@ -174,9 +192,14 @@
 	A.refresh_upgrades()
 	return TRUE
 
-/datum/component/item_upgrade/proc/uninstall(obj/item/I)
+/datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
 	var/obj/item/P = parent
 	I.item_upgrades -= P
+	if(destroy_on_removal)
+		UnregisterSignal(I, COMSIG_ADDVAL)
+		UnregisterSignal(I, COMSIG_APPVAL)
+		qdel(P)
+		return
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_ADDVAL)
 	UnregisterSignal(I, COMSIG_APPVAL)
@@ -546,9 +569,10 @@
 		if(toremove == "Cancel")
 			return 1
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+		if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
-			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
+			if(!IU.destroy_on_removal && user)
+				to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
 			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
 			upgrade_loc.refresh_upgrades()
 			return 1

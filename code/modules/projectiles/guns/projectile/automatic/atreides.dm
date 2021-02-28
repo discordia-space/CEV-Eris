@@ -11,13 +11,12 @@
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = "/obj/item/ammo_casing/pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 1200
-	rarity_value = 19.2
 	damage_multiplier = 0.8
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level

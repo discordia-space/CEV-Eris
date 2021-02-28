@@ -69,12 +69,13 @@
 	fire_delay = 8
 	price_tag = 3000
 	zoom_factor = null
-	rarity_value = 12
 
 	init_firemodes = list(
 		list(mode_name="Burn", mode_desc="A general purpose plasma round, for dealing with native fauna", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),
 		list(mode_name="Melt", mode_desc="A much more charged plasma round, for stripping away armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, charge_cost=20, icon="kill", projectile_color = "#00AAFF"),
 	)
+
+	spawn_tags = SPAWN_TAG_FS_ENERGY
 
 /obj/item/weapon/gun/energy/plasma/cassad/update_icon()
 	..()
@@ -104,12 +105,12 @@
 	if(cell)
 		overlays += image(icon, "cell_guild")
 
-/obj/item/weapon/gun/energy/plasma/martyr // or should it be  Zealot
+/obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
 	name = "NT PR \"Martyr\""
 	desc = "A \"NeoTheology\" weapon that uses advanced biomass conversion controllable blasts of energized matter. is a disposable side arm, good enough to save you and be recycled."
 	icon = 'icons/obj/guns/energy/martyr.dmi'
 	icon_state = "martyr"
-	suitable_cell = /obj/item/weapon/cell/small    //so if people manage to get the cell out. shouldn't be a huge deal
+	suitable_cell = /obj/item/weapon/cell/small	//so if people manage to get the cell out. shouldn't be a huge deal
 	item_state = null	//so the human update icon uses the icon_state instead.
 	item_charge_meter = TRUE
 	w_class = ITEM_SIZE_SMALL

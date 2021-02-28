@@ -22,9 +22,15 @@
 		</div>
 		<div class="statusDisplay">
 			{{if data.current.point_cost > 0}}
-			<div class="item {{:data.disk && data.disk.license >= data.current.point_cost ? "itemLabelWidest" : "bad"}}">
-				License point cost: {{:data.current.point_cost}}
-			</div>
+				{{if !data.disk}}
+					<div class="{{:data.is_nanoforge ? "itemLabelWidest" : "bad"}}">
+						License point cost: {{:data.current.point_cost}}
+					</div>
+				{{else}}
+					<div class="item {{:data.disk.license >= data.current.point_cost ? "itemLabelWidest" : "bad"}}">
+						License point cost: {{:data.current.point_cost}}
+					</div>
+				{{/if}}
 			{{/if}}
 
 			{{if data.current.materials}}

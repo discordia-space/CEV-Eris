@@ -224,10 +224,10 @@
 	slot_flags = SLOT_EARS
 
 /obj/effect/foam_dart_dummy
-	name = ""
+	name = "foam dart"
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "null"
+	icon_state = "foamdart"
 	anchored = TRUE
 	density = FALSE
 
