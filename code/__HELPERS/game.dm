@@ -273,6 +273,11 @@
 			return M
 	return null
 
+/proc/get_client_by_ckey(key)
+	for(var/mob/M in SSmobs.mob_list)
+		if(M.ckey == lowertext(key))
+			return M.client
+	return null
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
 /proc/get_active_candidates(buffer = 1)
