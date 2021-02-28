@@ -2770,6 +2770,8 @@
 #include "maps\submaps\planetary_ruins\exoplanet_ruins.dm"
 #include "maps\submaps\planetary_ruins\drill_site\drill_site.dm"
 #include "maps\submaps\planetary_ruins\hut\hut.dm"
+#include "maps\submaps\planetary_ruins\monoliths\monoliths.dm"
+#include "maps\submaps\planetary_ruins\oasis\oasis.dm"
 #include "maps\submaps\planetary_ruins\oldpod\oldpod.dm"
 #include "maps\submaps\planetary_ruins\radshrine\radshrine.dm"
 #include "maps\submaps\planetary_ruins\spider_nest\spider_nest.dm"

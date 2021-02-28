@@ -2,7 +2,7 @@
 	name = "Monolith Ring"
 	id = "planetsite_monoliths"
 	description = "Bunch of monoliths surrounding an artifact."
-	suffixes = list("monoliths/monoliths.dmm")
+	suffix = "monoliths/monoliths.dmm"
 	cost = 1
 	template_flags = TEMPLATE_FLAG_NO_RUINS
 	ruin_tags = RUIN_ALIEN
@@ -10,39 +10,39 @@
 /obj/structure/monolith
 	name = "monolith"
 	desc = "An obviously artifical structure of unknown origin. The symbols '<font face='Shage'>DWNbTX</font>' are engraved on the base."
-	icon = 'icons/obj/monolith.dmi'
-	icon_state = "jaggy1"
-	plane = ABOVE_HUMAN_PLANE
-	layer = ABOVE_HUMAN_LAYER
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "monolith"
+	plane = ABOVE_HUD_LAYER
+	layer = ABOVE_HUD_LAYER
 	density = 1
 	anchored = 1
 	var/active = 0
 
 /obj/structure/monolith/Initialize()
 	. = ..()
-	icon_state = "jaggy[rand(1,4)]"
-	var/material/A = SSmaterials.get_material_by_name(MATERIAL_ALIENALLOY)
+	icon_state = "monolith"
+	var/material/A = get_material_by_name(MATERIAL_VOXALLOY)
 	if(A)
 		color = A.icon_colour
-	if(GLOB.using_map.use_overmap)
+	if(config.use_overmap)
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			desc += "\nThere are images on it: [E.get_engravings()]"
 
-/obj/structure/monolith/on_update_icon()
+/obj/structure/monolith/update_icon()
 	overlays.Cut()
 	if(active)
-		var/image/I = image(icon,"[icon_state]decor")
+		var/image/I = image(icon,"[icon_state]_1")
 		I.appearance_flags = RESET_COLOR
 		I.color = get_random_colour(0, 150, 255)
 		I.layer = ABOVE_LIGHTING_LAYER
-		I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+		I.plane = ABOVE_LIGHTING_PLANE
 		overlays += I
 		set_light(0.3, 0.1, 2, l_color = I.color)
 
 /obj/structure/monolith/attack_hand(mob/user)
 	visible_message("[user] touches \the [src].")
-	if(GLOB.using_map.use_overmap && istype(user,/mob/living/carbon/human))
+	if(config.use_overmap && istype(user,/mob/living/carbon/human))
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
 			var/mob/living/carbon/human/H = user
