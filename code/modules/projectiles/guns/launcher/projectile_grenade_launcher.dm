@@ -18,7 +18,7 @@
 	max_shells = 3
 	recoil_buildup = 20
 	twohanded = TRUE
-	accompanying_object = /obj/item/ammo_casing/grenade/frag
+	ammo_type = /obj/item/ammo_casing/grenade/frag
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'	//Placeholder, could use a new sound
 

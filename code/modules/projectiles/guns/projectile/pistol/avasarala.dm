@@ -14,7 +14,6 @@
 	magazine_type = /obj/item/ammo_magazine/magnum
 
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-
 	can_dual = TRUE
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.35

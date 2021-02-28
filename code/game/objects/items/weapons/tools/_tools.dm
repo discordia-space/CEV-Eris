@@ -973,11 +973,20 @@
 		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
 			if (S.brute_dam)
 				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-					if (use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						S.heal_damage(15,0,TRUE)
-						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-						user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src]."))
-						return 1
+					for(var/datum/wound/W in S.wounds)
+						if(W.internal)
+							return
+						if(W.damtype_sanitize() != BRUTE)
+							continue
+						if(!use_tool(user, M, W.damage/5, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+							break
+						W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
+						to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+					S.update_damages()
+					if(S.brute_dam)
+						to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+					return
 				else if (S.open != 2)
 					to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 					return 1

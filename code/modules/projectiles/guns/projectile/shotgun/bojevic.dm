@@ -24,7 +24,7 @@
 	recoil_buildup = 7.4 // at least somewhat controllable
 	one_hand_penalty = 20 //automatic shotgun level
 
-				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
+					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY
