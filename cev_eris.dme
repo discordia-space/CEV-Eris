@@ -2769,6 +2769,7 @@
 #include "maps\submaps\dungeon_rooms\rooms\room_templates.dm"
 #include "maps\submaps\planetary_ruins\exoplanet_ruins.dm"
 #include "maps\submaps\planetary_ruins\drill_site\drill_site.dm"
+#include "maps\submaps\planetary_ruins\fountain\fountain_ruin.dm"
 #include "maps\submaps\planetary_ruins\hut\hut.dm"
 #include "maps\submaps\planetary_ruins\monoliths\monoliths.dm"
 #include "maps\submaps\planetary_ruins\oasis\oasis.dm"
