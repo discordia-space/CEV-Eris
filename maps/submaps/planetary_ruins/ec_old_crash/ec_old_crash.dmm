@@ -30,7 +30,7 @@
 /turf/simulated/floor/airless,
 /area/map_template/ecship/cockpit)
 "ag" = (
-/obj/structure/grille,
+/obj/structure/girder,
 /turf/template_noop,
 /area/template_noop)
 "ah" = (
@@ -1885,7 +1885,7 @@
 /turf/template_noop,
 /area/template_noop)
 "qB" = (
-/obj/structure/grille,
+/obj/structure/girder,
 /obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
