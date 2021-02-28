@@ -54,7 +54,6 @@
 "m" = (
 /obj/structure/table/marble,
 /obj/item/weapon/paper_bin,
-/obj/spawner/voidhelmet,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "n" = (

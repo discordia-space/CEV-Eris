@@ -117,7 +117,7 @@
 /area/map_template/marooned)
 "as" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "at" = (
 /obj/structure/closet/crate/freezer,
@@ -275,7 +275,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "aP" = (
 /obj/structure/fuel_port,

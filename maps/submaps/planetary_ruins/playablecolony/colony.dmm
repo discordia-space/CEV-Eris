@@ -401,7 +401,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "bd" = (
 /turf/simulated/wall/r_wall,
@@ -3812,7 +3812,7 @@
 	icon_state = "railing0-1"
 	},
 /obj/effect/floor_decal/industrial/hatch/orange,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/airlock)
 "gR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3829,7 +3829,7 @@
 	},
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/industrial/hatch/orange,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/airlock)
 "gT" = (
 /obj/machinery/atmospherics/binary/pump,
@@ -4222,7 +4222,7 @@
 /obj/item/device/radio,
 /obj/item/device/radio,
 /obj/item/device/radio,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "hC" = (
 /obj/effect/floor_decal/techfloor{
@@ -4579,7 +4579,7 @@
 	icon_state = "warning";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "ij" = (
 /obj/structure/hygiene/shower{
@@ -4789,7 +4789,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "iB" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -5483,7 +5483,7 @@
 /obj/machinery/conveyor{
 	id = "colonymine"
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/mineralprocessing)
 "jD" = (
 /obj/effect/floor_decal/borderfloorwhite,
@@ -5946,7 +5946,7 @@
 	output_turf = 1
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/mineralprocessing)
 "kp" = (
 /obj/structure/table/rack,
@@ -5963,7 +5963,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "kq" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible,
@@ -5994,7 +5994,7 @@
 	pixel_y = -28
 	},
 /obj/structure/cable,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "ks" = (
 /obj/effect/floor_decal/techfloor{
@@ -6454,7 +6454,7 @@
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/mineralprocessing)
 "lj" = (
 /obj/structure/cable{
@@ -6691,7 +6691,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "lI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -7371,7 +7371,7 @@
 	icon_state = "warning";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/armory)
 "mJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -8122,7 +8122,7 @@
 	output_turf = 4
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/mineralprocessing)
 "nU" = (
 /obj/structure/cable{
@@ -8170,7 +8170,7 @@
 	output_turf = 1
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony/mineralprocessing)
 "nY" = (
 /obj/machinery/portable_atmospherics/canister/air/airlock,
