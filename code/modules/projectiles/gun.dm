@@ -470,7 +470,7 @@
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
-			user.apply_effect(110,AGONY,0)
+			user.adjustHalLoss(110)
 		qdel(in_chamber)
 		mouthshoot = FALSE
 		return

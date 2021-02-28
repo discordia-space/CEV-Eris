@@ -148,15 +148,13 @@
 			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy"))
 
 	else if(blood_volume < blood_bad)
-		adjustOxyLoss(5)
-		adjustToxLoss(3)
+		adjustOxyLoss(2)
+		adjustToxLoss(1)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
-		if(getOxyLoss() < 50)
-			adjustOxyLoss(10)
 		adjustOxyLoss(1)
 		if(prob(15))
 			Paralyse(rand(1,3))
@@ -165,8 +163,8 @@
 	else if(blood_volume < blood_safe)
 		if(prob(1))
 			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
-		if(getOxyLoss() < 20)
-			adjustOxyLoss(3)
+		if(getOxyLoss() < 10)
+			adjustOxyLoss(1)
 
 	if(blood_volume > total_blood_req)	
 		status_flags &= ~BLEEDOUT
