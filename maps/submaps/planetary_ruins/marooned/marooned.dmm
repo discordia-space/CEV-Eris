@@ -22,7 +22,7 @@
 "af" = (
 /obj/structure/lattice,
 /obj/item/stack/material/ocp,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "ag" = (
@@ -33,12 +33,12 @@
 /turf/simulated/wall/ocp_wall,
 /area/map_template/marooned)
 "ai" = (
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aj" = (
 /obj/item/stack/material/ocp,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "ak" = (
@@ -51,7 +51,7 @@
 	icon_state = "corner_white";
 	dir = 9
 	},
-/obj/machinery/atmospherics/binary/oxyregenerator,
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/marooned)
 "am" = (
@@ -78,7 +78,7 @@
 /area/map_template/marooned)
 "ao" = (
 /obj/structure/lattice,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "ap" = (
@@ -121,7 +121,7 @@
 /area/map_template/marooned)
 "at" = (
 /obj/structure/closet/crate/freezer,
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 4
 	},
@@ -130,7 +130,7 @@
 /area/map_template/marooned)
 "au" = (
 /obj/structure/closet/crate/freezer,
-/obj/structure/handrai,
+/obj/structure/railing,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
 "av" = (
@@ -141,7 +141,7 @@
 /area/map_template/marooned)
 "aw" = (
 /obj/machinery/space_heater,
-/obj/structure/handrai,
+/obj/structure/railing,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
 "ax" = (
@@ -156,7 +156,7 @@
 	pixel_x = -3;
 	pixel_y = 1
 	},
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 4
 	},
@@ -185,11 +185,11 @@
 /area/map_template/marooned)
 "aC" = (
 /obj/structure/shuttle/engine/propulsion,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aD" = (
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 4
 	},
@@ -215,7 +215,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/map_template/marooned)
 "aH" = (
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 4
 	},
@@ -242,7 +242,7 @@
 /area/map_template/marooned)
 "aL" = (
 /obj/structure/inflatable/wall,
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 4
 	},
@@ -260,7 +260,7 @@
 /area/map_template/marooned)
 "aN" = (
 /obj/structure/inflatable/wall,
-/obj/structure/handrai{
+/obj/structure/railing{
 	icon_state = "handrail";
 	dir = 8
 	},
@@ -288,17 +288,17 @@
 	icon_state = "2-5";
 	dir = 2
 	},
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aR" = (
 /obj/structure/inflatable/door,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aS" = (
 /obj/structure/inflatable/wall,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aT" = (
@@ -306,7 +306,7 @@
 	icon_state = "2-5";
 	dir = 1
 	},
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aU" = (
@@ -337,7 +337,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aX" = (
@@ -347,7 +347,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aY" = (
@@ -361,12 +361,12 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "aZ" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 

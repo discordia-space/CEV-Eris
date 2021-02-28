@@ -49,10 +49,10 @@
 	name = "\improper Crashed Dropship"
 	icon_state = "A"
 
-/obj/effect/scorcher
+/obj/effect/damagedfloor
 	name = "fire"
 
-/obj/effect/scorcher/Initialize()
+/obj/effect/damagedfloor/Initialize()
 	..()
 	var/turf/simulated/T = get_turf(src)
 	if(istype(T))

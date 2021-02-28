@@ -2,12 +2,12 @@
 	name = "Expeditionary Ship"
 	id = "ec_old_wreck"
 	description = "An abandoned ancient STL exploration ship."
-	suffixes = list("ec_old_crash/ec_old_crash.dmm")
+	suffix = "ec_old_crash/ec_old_crash.dmm"
 	cost = 0.5
-	apc_test_exempt_areas = list(
+	/*apc_test_exempt_areas = list(
 		/area/map_template/ecship/engine = NO_SCRUBBER|NO_APC,
 		/area/map_template/ecship/cockpit = NO_SCRUBBER|NO_APC
-	)
+	)*/
 	ruin_tags = RUIN_HUMAN|RUIN_WRECK
 
 /area/map_template/ecship/crew
@@ -29,7 +29,7 @@
 /area/map_template/ecship/engine
 	name = "\improper Engine Exterior"
 	icon_state = "engine"
-	area_flags = AREA_FLAG_EXTERNAL
+	// flags = AREA_FLAG_EXTERNAL
 
 /area/map_template/ecship/cockpit
 	name = "\improper Cockpit"
@@ -58,22 +58,21 @@
 /obj/item/weapon/ecletters
 	name = "bundle of letters"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "docs_part"
-	item_state = "paper"
+	icon_state = "paper_words"
 
 /obj/item/weapon/ecletters/Initialize()
 	. = ..()
-	desc = "A bunch of letters from Expeditionary Corps explorers to their family and loved ones, dated [game_year - 142]. They're not hopeful."
+	desc = "A bunch of letters from crewmembers to their family and loved ones, dated [game_year - 142]. They're not hopeful."
 
 /obj/item/weapon/paper/ecrashlog
 	name = "handwritten note"
 
 /obj/item/weapon/paper/ecrashlog/Initialize()
 	. = ..()
-	var/shipname = "TEV [pick("Magellan", "Gagarin", "Drake", "Horizon", "Aurora")]"
-	var/decl/cultural_info/S = SSculture.get_culture(CULTURE_HUMAN_EARTH)
+	var/shipname = "CEV [pick("Magellan", "Gagarin", "Drake", "Horizon", "Aurora")]"
+	var/datum/species/S = all_species[SPECIES_HUMAN]
 	var/new_info = {"
-	I am Lieutenant Hao Ru, captain of [shipname], of the Terran Commonwealth Expeditionary Corps.<br>
+	I am Lieutenant Hao Ru, captain of [shipname], of the Hansa Trade Union.<br>
 	We are dying. The Ran Mission has failed.<br>
 	Our ship has suffered a catastrophic chain of failures whist crew was in cryotransit. It started with thruster controls going inoperable, and our auto-pilot was unable to adjust course away from an asteroid cluster. <br>
 	We've lost the navigational suite from impacts, and are flying blind. We have tried every option, and our engineers have ascertained that there is no way to repair it in the field.<br>
@@ -87,7 +86,7 @@
 	Senior Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
 	Senior Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
 	Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
-	I am Lieutenant Hao Ru, captain of [shipname] of the Terran Commonwealth Expeditionary Corps. I will be joining my crew in cryo now.<br>
+	I am Lieutenant Hao Ru, captain of [shipname] of the Hansa Trade Union. I will be joining my crew in cryo now.<br>
 	<i>3rd December [game_year - 142]</i></tt>
 	"}
 	set_content(new_info)
@@ -95,3 +94,7 @@
 /obj/machinery/alarm/low/Initialize()
 	. = ..()
 	TLV["pressure"] = list(ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*0.20,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20)
+
+/obj/machinery/cryopod/broken
+	allow_occupant_types = list()
+	desc = "An old man-sized pod for entering suspended animation. It appears to be broken."

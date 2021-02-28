@@ -4254,7 +4254,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/map_template/colony)
 "hF" = (
-/obj/machinery/atmospherics/binary/oxyregenerator,
+/obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/map_template/colony/atmospherics)

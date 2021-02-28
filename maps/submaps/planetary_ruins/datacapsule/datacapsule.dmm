@@ -7,7 +7,7 @@
 /turf/simulated/wall/ocp_wall,
 /area/map_template/datacapsule)
 "c" = (
-/obj/effect/scorcher,
+/obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
