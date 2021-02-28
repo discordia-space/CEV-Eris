@@ -11,7 +11,7 @@
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25, LANGUAGE_NEOHONGO = 35)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 
@@ -69,7 +69,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_NEOHONGO = 20)
 
 	//alt_titles = list("Moebius Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
@@ -129,7 +129,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_NEOHONGO = 20)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 

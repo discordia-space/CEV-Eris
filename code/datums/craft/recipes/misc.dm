@@ -254,7 +254,6 @@
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
-
 /datum/craft_recipe/makeshift_leg
 	name = "Makeshift prosthetic left leg"
 	result = /obj/item/organ/external/robotic/makeshift/l_leg
@@ -293,3 +292,11 @@
 	name = "Makeshift prosthetic right arm"
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
 
+/datum/craft_recipe/guns_craft_frame
+	name = "Gun assembly."
+	result = /obj/item/craft_frame/guns
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 10)
+	)
+	related_stats = list(STAT_MEC)

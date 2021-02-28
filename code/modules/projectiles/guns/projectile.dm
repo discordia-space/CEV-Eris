@@ -22,10 +22,10 @@
 	var/obj/item/ammo_casing/chambered
 
 	//gunporn stuff
-	var/unload_sound 	= 'sound/weapons/guns/interact/pistol_magout.ogg'
-	var/reload_sound 	= 'sound/weapons/guns/interact/pistol_magin.ogg'
-	var/cocked_sound 	= 'sound/weapons/guns/interact/pistol_cock.ogg'
-	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.ogg'
+	var/unload_sound = 'sound/weapons/guns/interact/pistol_magout.ogg'
+	var/reload_sound = 'sound/weapons/guns/interact/pistol_magin.ogg'
+	var/cocked_sound = 'sound/weapons/guns/interact/pistol_cock.ogg'
+	var/bulletinsert_sound = 'sound/weapons/guns/interact/bullet_insert.ogg'
 
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside
@@ -149,9 +149,9 @@
 
 		switch(method_for_this_load)
 			if(MAGAZINE)
-//				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
-//					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
-//					return
+				//if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
+				//	to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+				//	return
 				if(tac_reloads && ammo_magazine)
 					unload_ammo(user)	// ejects the magazine before inserting the new one.
 					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))

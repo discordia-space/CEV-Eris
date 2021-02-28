@@ -581,7 +581,7 @@
 	var/list/base_turfs = get_base_turfs()
 
 	for(var/turf/gen_turf in base_turfs)
-		for(var/turf/T in trange(field_radius, gen_turf))
+		for(var/turf/T in RANGE_TURFS(field_radius, gen_turf))
 			if(istype(T, /turf/space))
 				continue
 
@@ -756,7 +756,7 @@
 	if(generator)
 		generator.toggle_tendrils(FALSE)
 		if(generator.running != SHIELD_OFF && !generator.emergency_shutdown)
-			generator.offline_for += 300 
+			generator.offline_for += 300
 			generator.shutdown_field()
 			generator.emergency_shutdown = TRUE
 			generator.log_event(EVENT_DISABLED, generator)
@@ -843,7 +843,7 @@
 		allowed_modes.Remove(MODEFLAG_HULL)
 		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
 		return FALSE
-	
+
 	mode_list = list()
 	for(var/st in subtypesof(/datum/shield_mode/))
 		var/datum/shield_mode/SM = new st()

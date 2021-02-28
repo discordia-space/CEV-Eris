@@ -16,12 +16,10 @@
 	max_shells = 1
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
 	one_hand_penalty = 10
-	var/bolt_open = 0
-	var/item_suffix = ""
 	zoom_factor = 2
 	twohanded = TRUE
 	darkness_view = 7
@@ -29,6 +27,8 @@
 	var/extra_damage_mult_scoped = 0.2
 	gun_tags = list(GUN_AMR, GUN_SCOPE)
 	rarity_value = 90
+	var/bolt_open = 0
+	var/item_suffix = ""
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()

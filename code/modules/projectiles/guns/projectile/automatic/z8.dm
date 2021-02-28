@@ -10,15 +10,15 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
 	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
-	ammo_type = "/obj/item/ammo_casing/srifle"
+	ammo_type = /obj/item/ammo_casing/srifle
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle
-	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	recoil_buildup = 1
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.1

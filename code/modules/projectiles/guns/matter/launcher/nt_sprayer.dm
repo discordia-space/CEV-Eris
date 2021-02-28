@@ -5,7 +5,6 @@
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
 	slot_flags = SLOT_BACK | SLOT_BELT
 	fire_sound = 'sound/weapons/Genhit.ogg'
-
 	matter_type = MATERIAL_BIOMATTER
 
 	init_firemodes = list(
@@ -14,6 +13,7 @@
 	)
 	projectile_cost = 0.5
 	projectile_type = /obj/item/weapon/arrow/neotheo/cleansing
+	spawn_blacklisted = TRUE
 
 
 /obj/item/weapon/arrow/neotheo

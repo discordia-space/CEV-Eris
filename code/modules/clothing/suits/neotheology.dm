@@ -3,7 +3,7 @@
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	item_state = "acolyte"
-	flags_inv = BLOCKHEADHAIR
+	flags_inv = BLOCKHAIR
 	action_button_name = "Toggle Helmet Light"
 	light_overlay = "helmet_light"
 	brightness_on = 4
@@ -22,8 +22,8 @@
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
 	item_state = "acolyte"
-	slowdown = 0.3
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 25, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -40,7 +40,7 @@
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
 	item_state = "botanist"
-	flags_inv = BLOCKHEADHAIR
+	flags_inv = BLOCKHAIR
 	action_button_name = "Toggle Helmet Light"
 	light_overlay = "helmet_light"
 	brightness_on = 4
@@ -61,6 +61,7 @@
 	item_state = "botanist"
 	slowdown = 0
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -77,7 +78,7 @@
 	icon_state = "custodian"
 	item_state = "custodian"
 	action_button_name = "Toggle Helmet Light"
-	flags_inv = BLOCKHEADHAIR
+	flags_inv = BLOCKHAIR
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	armor = list(
@@ -96,8 +97,8 @@
 	desc = "Someone's gotta clean this mess."
 	icon_state = "custodian"
 	item_state = "custodian"
-	slowdown = 0.05
 	matter = list(MATERIAL_PLASTIC = 40, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
 		bullet = 25,

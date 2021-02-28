@@ -12,7 +12,7 @@
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	ammo_type = "/obj/item/ammo_casing/pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_H_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
@@ -34,7 +34,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 
 	price_tag = 1700
-	rarity_value = 16
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/automatic/molly/update_icon()

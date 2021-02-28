@@ -271,7 +271,7 @@
 	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
-	new /obj/item/clothing/suit/neotheology_jacket(src)
+	new /obj/item/clothing/suit/storage/neotheology_jacket(src)
 	new /obj/item/clothing/head/chaplain_hood(src)
 	new /obj/item/clothing/under/bride_white(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)

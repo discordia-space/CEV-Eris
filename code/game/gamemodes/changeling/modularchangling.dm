@@ -74,6 +74,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 3
 	spiderpath = /obj/item/weapon/implant/carrion_spider/identity
 
+/datum/power/carrion/signal_spider
+	name = "Electrocurrent spider"
+	desc = "Creates a spider that can pulse wires in machines."
+	genomecost = 2
+	spiderpath = /obj/item/weapon/implant/carrion_spider/signal
+
 /datum/power/carrion/maw
 	name = "Carrion Maw"
 	desc = "Unlocks and expands your jaw, giving you the ability to spit acid and call upon spiders."

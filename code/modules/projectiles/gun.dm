@@ -25,7 +25,7 @@
 	hud_actions = list()
 	bad_type = /obj/item/weapon/gun
 	spawn_tags = SPAWN_TAG_GUN
-	rarity_value = 10
+	rarity_value = 5
 	spawn_frequency = 10
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
@@ -111,7 +111,7 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
-	if(one_hand_penalty || twohanded && (!wielded_item_state))//If the gun has a one handed penalty or is twohanded, but has no wielded item state then use this generic one.
+	if((one_hand_penalty || twohanded) && !wielded_item_state)//If the gun has a one handed penalty or is twohanded, but has no wielded item state then use this generic one.
 		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 	generate_guntags()
 	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
@@ -183,12 +183,9 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
-	if(twohanded)
-		if(!wielded)
-			if (world.time >= recentwield + 1 SECONDS)
-				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
-				recentwield = world.time
-			return FALSE
+
+	if(!twohanded_check(M))
+		return FALSE
 
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -216,6 +213,15 @@
 			if(rigged > TRUE)
 				explosion(get_turf(src), 1, 2, 3, 3)
 				qdel(src)
+			return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/proc/twohanded_check(user)
+	if(twohanded)
+		if(!wielded)
+			if (world.time >= recentwield + 1 SECONDS)
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				recentwield = world.time
 			return FALSE
 	return TRUE
 

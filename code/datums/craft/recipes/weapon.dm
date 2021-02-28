@@ -121,15 +121,6 @@
 		list(/obj/item/weapon/storage/belt, 1, "time" = 10)
 	)
 
-/datum/craft_recipe/weapon/pistol
-	name = "handmade gun"
-	result = /obj/item/weapon/gun/projectile/handmade_pistol
-	steps = list(
-		list(/obj/item/pipe, 1, "time" = 60),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20)
-	)
-
 /datum/craft_recipe/weapon/flamethrower
 	name = "flamethrower"
 	result = /obj/item/weapon/flamethrower

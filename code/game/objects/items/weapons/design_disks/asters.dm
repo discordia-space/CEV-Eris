@@ -3,7 +3,7 @@
 	disk_name = "Asters Basic Tool Pack"
 	icon_state = "guild"
 	rarity_value = 5.5
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = -1
 	designs = list(
 		/datum/design/autolathe/tool/hatchet,
@@ -34,7 +34,7 @@
 	disk_name = "Asters Miscellaneous Pack"
 	icon_state = "guild"
 	rarity_value = 3.5
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = -1
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
@@ -68,7 +68,7 @@
 	disk_name = "Asters Devices and Instruments"
 	icon_state = "guild"
 	rarity_value = 3
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
@@ -95,7 +95,7 @@
 	disk_name = "Asters Robustcells"
 	icon_state = "guild"
 	rarity_value = 3
-	spawn_tags = SPAWN_TAG_DESING_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/cell/large,
