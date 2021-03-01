@@ -18,6 +18,8 @@
 		if(forced)
 			for(var/mob/viewer in GLOB.CyberSpaceViewers)
 				viewer.client && ShowToClient(viewer.client)
+	else for(var/mob/viewer in GLOB.CyberSpaceViewers)
+		viewer.client && HideFromClient(viewer.client)
 
 /datum/CyberSpaceAvatar/proc/SetColor(value)
 	color = value
