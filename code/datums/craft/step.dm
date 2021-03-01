@@ -190,7 +190,6 @@
 				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
 				building = FALSE
 				return FALSE
-			req_amount = 0
 		else if(reqed_type) //No deleting tools
 			if(target)
 				if(!(target in craft_items))
@@ -202,7 +201,7 @@
 	if(target)
 		announce_action(end_msg, user, I, target)
 	building = FALSE
-	if(req_amount <= 1 || (target && craft_items[target] <= 0))
+	if(!reqed_type || (reqed_type && (req_amount <= 1 || (target && craft_items[target] <= 0))))
 		if(target)
 			target.step++
 	else
