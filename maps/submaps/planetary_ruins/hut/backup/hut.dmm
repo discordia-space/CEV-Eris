@@ -100,7 +100,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "K" = (
-/obj/effect/wallframe_spawn/reinforced,
+/obj/structure/girder,
 /turf/simulated/floor/plating,
 /area/template_noop)
 

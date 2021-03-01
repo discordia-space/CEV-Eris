@@ -298,7 +298,7 @@
 /turf/simulated/floor/tiled/airless,
 /area/map_template/ecship/cryo)
 "aS" = (
-/obj/effect/floor_decal/industrial/warning/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/light/small{
 	brightness_color = COLOR_LIGHTING_RED_BRIGHT
 	},
@@ -937,7 +937,7 @@
 /turf/simulated/floor,
 /area/map_template/ecship/science)
 "ch" = (
-/obj/effect/floor_decal/industrial/warning/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/light/small{
 	brightness_color = COLOR_LIGHTING_RED_BRIGHT
 	},
@@ -1128,7 +1128,7 @@
 /turf/simulated/wall/titanium,
 /area/map_template/ecship/science)
 "cC" = (
-/obj/effect/floor_decal/industrial/warning/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/map_template/ecship/crew)
 "cD" = (
@@ -1578,7 +1578,7 @@
 /area/map_template/ecship/engine)
 "dy" = (
 /obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable{
 	icon_state = "1-2";
 	dir = 4
@@ -1607,7 +1607,7 @@
 /area/map_template/ecship/engine)
 "dA" = (
 /obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable{
 	icon_state = "1-2";
 	dir = 4
@@ -1620,7 +1620,7 @@
 /area/map_template/ecship/engine)
 "dB" = (
 /obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -1658,7 +1658,7 @@
 /area/map_template/ecship/engine)
 "dH" = (
 /obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable{
 	icon_state = "0-2";
 	dir = 4;

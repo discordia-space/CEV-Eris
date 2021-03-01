@@ -2,20 +2,20 @@
 	name = "hydroponics base"
 	id = "exoplanet_hydrobase"
 	description = "hydroponics base with random plants and a lot of enemies"
-	suffixes = list("hydrobase/hydrobase.dmm")
+	suffix = "hydrobase/hydrobase.dmm"
 	cost = 2
 	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS | TEMPLATE_FLAG_NO_RUINS
 	ruin_tags = RUIN_ALIEN
-	apc_test_exempt_areas = list(
+	/*apc_test_exempt_areas = list(
 		/area/map_template/hydrobase = NO_SCRUBBER|NO_VENT|NO_APC,
 		/area/map_template/hydrobase/station = NO_SCRUBBER
-	)
+	)*/
 
 // Areas //
 /area/map_template/hydrobase
 	name = "\improper Hydroponics Base X207"
 	icon_state = "hydro"
-	icon = 'maps/random_ruins/exoplanet_ruins/hydrobase/hydro.dmi'
+	icon = 'maps/submaps/planetary_ruins/hydrobase/hydro.dmi'
 
 /area/map_template/hydrobase/solars
 	name = "\improper X207 Solar Array"
@@ -75,10 +75,6 @@
 	name = "hydroponics supplies locker"
 	req_access = list()
 
-/obj/item/projectile/beam/drone/weak
-	damage = 7
-
-
 // Mobs //
 /mob/living/simple_animal/hostile/retaliate/goat/hydro
 	name = "goat"
@@ -88,37 +84,60 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	faction = "farmbots"
+	attacktext = "bonked"
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/hydro
+/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone
 	name = "Farmbot"
 	desc = "The botanist's best friend. There's something slightly odd about the way it moves."
-	icon = 'maps/random_ruins/exoplanet_ruins/hydrobase/hydro.dmi'
-	speak = list("Initiating harvesting subrout-ine-ine.", "Connection timed out.", "Connection with master AI syst-tem-tem lost.", "Core systems override enab-...")
-	emote_see = list("beeps repeatedly", "whirrs violently", "flashes its indicator lights", "emits a ping sound")
+	icon = 'maps/submaps/planetary_ruins/hydrobase/hydro.dmi'
 	icon_state = "farmbot"
 	icon_living = "farmbot"
 	icon_dead = "farmbot_dead"
 	faction = "farmbots"
-	health = 225
-	maxHealth = 225
-	malfunctioning = 0
+	attacktext = "zapped"
+	speak = list("Initiating harvesting subrout-ine-ine.", "Connection timed out.", "Connection with master AI syst-tem-tem lost.", "Core systems override enab-...")
+	emote_see = list("beeps repeatedly", "whirrs violently", "flashes its indicator lights", "emits a ping sound")
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	move_to_delay = 2
+	turns_per_move = 5
+	minbodytemp = 0
+	speed = 4
+	light_range = 3
+	light_color = COLOR_LIGHTING_BLUE_BRIGHT
+	mob_classification = CLASSIFICATION_SYNTHETIC
+	projectiletype = /obj/item/projectile/beam/drone
+	ranged = TRUE
+	ranged_cooldown = 2 SECONDS
+	move_to_delay = 9
+	health = 200
+	maxHealth = 200
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+	rarity_value = 42
+	speak_chance = 5
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/hydro/Initialize()
+/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone/death()
+	..()
+	visible_message("<b>[src]</b> blows apart!")
+	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	return
+
+/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone/FindTarget()
 	. = ..()
-	if(prob(15))
-		projectiletype = /obj/item/projectile/beam/drone/weak
+	if(.)
+		visible_emote("[pick(emote_see)].")
+		say(pick(speak))
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/hydro/emp_act(severity)
-	health -= rand(5,10) * (severity + 1)
-	disabled = rand(15, 30)
-	malfunctioning = 1
-	hostile_drone = 1
-	destroy_surroundings = 1
-	projectiletype = initial(projectiletype)
-	walk(src,0)
-
-/mob/living/simple_animal/hostile/retaliate/malf_drone/hydro/ListTargets()
-	if(hostile_drone)
-		return view(src, 3)
-	else
-		return ..()
+/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone/speak_audio()
+	say(pick(speak))
+	return

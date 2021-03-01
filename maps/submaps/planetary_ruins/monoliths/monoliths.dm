@@ -63,9 +63,25 @@
 	to_chat(user, "<span class='notice'>\The [src] is still.</span>")
 	return ..()
 
-/turf/simulated/floor/fixed/alium/ruin
+/turf/simulated/wall/alium
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "alienvault"
+	material = MATERIAL_VOXALLOY
+
+/turf/simulated/floor/fixed/alium
 	name = "ancient alien plating"
 	desc = "This obviously wasn't made for your feet. Looks pretty old."
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "alienvault"
+	mineral = MATERIAL_VOXALLOY
+
+/turf/simulated/floor/fixed/alium/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/fixed/alium/ruin
+	oxygen = 0
+	nitrogen = 0
 	initial_gas = null
 
 /turf/simulated/floor/fixed/alium/ruin/Initialize()

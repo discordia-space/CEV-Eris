@@ -664,7 +664,7 @@
 /turf/simulated/floor/plating,
 /area/map_template/colony/medbay)
 "bA" = (
-/obj/machinery/power/smes/buildable/max_cap_in_out,
+/obj/machinery/power/smes/buildable,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
@@ -1037,7 +1037,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/power/smes/buildable/max_cap_in_out,
+/obj/machinery/power/smes/buildable,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
@@ -5151,7 +5151,7 @@
 /turf/simulated/floor/wood,
 /area/map_template/colony/commons)
 "jc" = (
-/obj/structure/sign/warning/smoking{
+/obj/structure/sign/nosmoking_1{
 	pixel_y = -28
 	},
 /obj/effect/floor_decal/spline/fancy/wood,
@@ -5171,7 +5171,7 @@
 /area/map_template/colony)
 "je" = (
 /obj/item/weapon/stool/bar/padded,
-/obj/structure/sign/warning/smoking{
+/obj/structure/sign/nosmoking_1{
 	pixel_y = 28
 	},
 /obj/effect/floor_decal/spline/fancy/wood{
