@@ -45,7 +45,7 @@
 /area/template_noop)
 "l" = (
 /obj/structure/table/marble,
-/obj/item/device/flashlight/lamp,
+/obj/item/device/lighting/toggleable/lamp,
 /obj/structure/sign/monkey_painting{
 	pixel_y = -32
 	},

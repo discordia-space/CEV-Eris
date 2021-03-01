@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/wood,
+/turf/simulated/wall,
 /area/template_noop)
 "c" = (
 /obj/machinery/power/port_gen/pacman,
@@ -12,17 +12,18 @@
 "d" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/color/black,
-/obj/item/clothing/shoes/jungleboots,
+/obj/spawner/cloth/shoes,
 /obj/item/clothing/mask/breath,
-/turf/simulated/floor/carpet/green,
+/turf/simulated/floor/carpet/turcarpet,
 /area/template_noop)
 "e" = (
-/turf/simulated/floor/carpet/green,
+/turf/simulated/floor/carpet/turcarpet,
 /area/template_noop)
 "f" = (
 /obj/structure/bed,
 /obj/item/weapon/bedsheet,
-/turf/simulated/floor/carpet/green,
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/carpet/turcarpet,
 /area/template_noop)
 "g" = (
 /obj/structure/window/reinforced/full,
@@ -34,37 +35,35 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "i" = (
-/obj/item/device/flashlight/lamp/green,
+/obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/green,
+/turf/simulated/floor/carpet/turcarpet,
 /area/template_noop)
 "j" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/mask/smokable/pipe/cobpipe,
-/obj/item/weapon/storage/chewables/rollable/generic,
-/obj/item/weapon/material/ashtray/bronze,
-/turf/simulated/floor/carpet/green,
+/turf/simulated/floor/carpet/turcarpet,
 /area/template_noop)
 "k" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/material/kitchen/utensil/fork/plastic,
 /obj/item/weapon/material/kitchen/utensil/fork/plastic,
 /obj/item/weapon/material/kitchen/utensil/fork/plastic,
-/obj/item/weapon/material/knife/table,
+/obj/item/weapon/tool/knife,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "l" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
+/obj/item/weapon/tool/knife,
+/obj/item/weapon/tool/knife,
 /obj/effect/floor_decal/spline/fancy/wood{
 	icon_state = "spline_fancy";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "m" = (
 /obj/structure/closet/crate/freezer,
@@ -72,17 +71,18 @@
 	icon_state = "spline_fancy";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "n" = (
-/obj/machinery/cooker/oven,
+/obj/structure/table/woodentable,
+/obj/machinery/microwave,
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "o" = (
 /turf/simulated/floor/wood,
@@ -98,8 +98,7 @@
 /area/template_noop)
 "q" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/detective,
-/obj/item/weapon/material/ashtray/bronze,
+/obj/item/weapon/paper_bin,
 /obj/item/weapon/deck/cards,
 /turf/simulated/floor/wood,
 /area/template_noop)
@@ -115,43 +114,45 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/weapon/material/knife/kitchen/cleaver,
-/turf/simulated/floor/tiled/monotile,
+/obj/item/weapon/tool/knife/butch,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "t" = (
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "u" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "v" = (
 /obj/machinery/r_n_d/server/robotics{
 	desc = "A jury-rigged server setup.";
 	name = "low-tech server"
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "w" = (
-/turf/simulated/floor/wood/usedup,
+/turf/simulated/floor/wood,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/roomba/slayer,
 /area/template_noop)
 "x" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/device/lighting/toggleable/lamp,
 /obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "y" = (
 /obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "z" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "A" = (
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -171,7 +172,7 @@
 	desc = "A cheap, beat-up old laptop.";
 	name = "old laptop"
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "D" = (
 /obj/structure/bed/chair/wood{
@@ -182,7 +183,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/template_noop)
 "E" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
@@ -204,16 +205,24 @@
 /area/template_noop)
 "I" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/pirate,
-/obj/item/weapon/storage/box/ammo/shotgunshells,
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
+/obj/spawner/ammo/shotgun,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "J" = (
 /obj/structure/closet,
-/obj/item/stack/material/steel/ten,
-/obj/item/stack/material/wood/fifty,
-/obj/item/stack/tile/carpetgreen/fifty,
-/obj/item/stack/material/glass/reinforced/ten,
+/obj/item/stack/material/steel{
+	amount=10
+	},
+/obj/item/stack/material/wood{
+	amount=50
+	},
+/obj/item/stack/tile/carpet/turcarpet{
+	amount=50
+	},
+/obj/item/stack/material/glass/reinforced{
+	amount=10
+	},
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},

@@ -466,7 +466,7 @@
 	icon_state = "techfloor_edges";
 	dir = 1
 	},
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -694,7 +694,7 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -3744,7 +3744,7 @@
 	dir = 6
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -4952,7 +4952,7 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -5685,7 +5685,7 @@
 	dir = 6
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -6008,7 +6008,7 @@
 	dir = 8
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -6256,7 +6256,7 @@
 	icon_state = "techfloor_edges";
 	dir = 5
 	},
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony)
@@ -6595,7 +6595,7 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/colony/hydroponics)
@@ -7244,7 +7244,7 @@
 	dir = 10
 	},
 /obj/structure/closet/firecloset,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/colony)
@@ -7459,7 +7459,7 @@
 /obj/machinery/cell_charger,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/flashlight/lamp/floodlamp,
+/obj/machinery/floodlight,
 /turf/simulated/floor/exoplanet/concrete,
 /area/map_template/colony/mineralprocessing)
 "mQ" = (
