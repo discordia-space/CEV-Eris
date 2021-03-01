@@ -68,7 +68,7 @@
 /obj/item/organ/external/robotic/technomancer/groin
 	name = "\"Technomancer\" Groin"
 	default_description = /datum/organ_description/groin
-
+/*
 /obj/item/organ/external/robotic/technomancer/torso
 	name = "\"Technomancer\" Torso"
 	default_description = /datum/organ_description/chest
@@ -76,7 +76,7 @@
 /obj/item/organ/external/robotic/technomancer/head
 	name = "\"Technomancer\" Head"
 	default_description = /datum/organ_description/head
-
+*/
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
 	desc = "Streamlined, sleek, and sterile."
@@ -98,13 +98,13 @@
 
 /obj/item/organ/external/robotic/moebius/groin
 	default_description = /datum/organ_description/groin
-
+/*
 /obj/item/organ/external/robotic/moebius/torso
 	default_description = /datum/organ_description/chest
 
 /obj/item/organ/external/robotic/moebius/head
 	default_description = /datum/organ_description/head
-
+*/
 /obj/item/organ/external/robotic/moebius/reinforced
 	name = "\"Moebius\" R++"
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
@@ -129,13 +129,13 @@
 
 /obj/item/organ/external/robotic/moebius/reinforced/groin
 	default_description = /datum/organ_description/groin
-
+/*
 /obj/item/organ/external/robotic/moebius/reinforced/torso
 	default_description = /datum/organ_description/chest
 
 /obj/item/organ/external/robotic/moebius/reinforced/head
 	default_description = /datum/organ_description/head
-
+*/
 /obj/item/organ/external/robotic/excelsior
 	name = "Excelsior"
 	desc = "Plasma reinforced black prosthesis designed for heavy combat."

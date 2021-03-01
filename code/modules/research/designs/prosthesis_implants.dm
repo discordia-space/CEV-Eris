@@ -37,10 +37,10 @@
 
 /datum/design/research/item/mechfab/prosthesis_moebius/groin
 	build_path = /obj/item/organ/external/robotic/moebius/reinforced/groin
-
+/*
 /datum/design/research/item/mechfab/prosthesis_moebius/head
 	build_path = /obj/item/organ/external/robotic/moebius/reinforced/head
-
+*/
 //Modules ====================================
 
 /datum/design/research/item/mechfab/modules
