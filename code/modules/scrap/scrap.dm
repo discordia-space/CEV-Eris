@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/obj/big_item
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
-	var/rare_item_chance = 70
+	var/rare_item_chance = 50
 	var/rare_item = FALSE
 	var/prob_make_old = 80
 
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/list/loot_tags_copy = loot_tags.Copy()
 		if(rare)
 			loot_tags_copy -= junk_tags
-			loot_tags_copy |= rare_loot
+			loot_tags_copy |= list(pickweight(rare_loot))
 		var/list/true_loot_tags = list()
 		var/tags_amt = max(round(loot_tags_copy.len/3),1)
 		for(var/y in 1 to tags_amt)
@@ -140,9 +140,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(tags)
 			if(rare)
-				top_price = GUN_CHEAP_PRICE
+				top_price = CHEAP_ITEM_PRICE * 1.5
 				true_loot_tags -= junk_tags
-				true_loot_tags |= rare_loot
+				true_loot_tags |= list(pickweight(rare_loot))
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
