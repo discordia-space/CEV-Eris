@@ -195,7 +195,7 @@
 				stop()
 
 		if(occupant && ishuman(occupant))
-			occupant.setCloneLoss(CLONING_DONE-progress)
+			occupant.setCloneLoss(max(CLONING_DONE-progress, clone_damage))
 			occupant.setBrainLoss(CLONING_DONE-progress)
 
 			occupant.adjustOxyLoss(-4)
