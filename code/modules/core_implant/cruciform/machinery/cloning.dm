@@ -38,8 +38,7 @@
 
 	var/power_cost = 250
 
-	var/brute_damage = 30
-	var/burn_damage = 30
+	var/clone_damage = 60
 
 /obj/machinery/neotheology/cloner/New()
 	..()
@@ -160,7 +159,15 @@
 	return TRUE
 
 /obj/machinery/neotheology/cloner/proc/done()
-	occupant.setCloneLoss(0)
+	var/damage_modifier = 1
+
+	if(reader.implant.get_module(CRUCIFORM_INQUISITOR) || (reader.implant.get_module(CRUCIFORM_PRIEST) && reader.implant.get_module(CRUCIFORM_REDLIGHT)))
+		damage_modifier += 2
+
+	else if(reader.implant.get_module(CRUCIFORM_PRIEST))
+		damage_modifier++
+
+	occupant.setCloneLoss(clone_damage/damage_modifier)
 	occupant.setBrainLoss(0)
 	occupant.updatehealth()
 	stop()
@@ -213,16 +220,6 @@
 			occupant.UpdateAppearance()
 			occupant.sync_organ_dna()
 			occupant.flavor_text = R.flavor
-			var/damage_modifier = 1
-
-			if(reader.implant.get_module(CRUCIFORM_INQUISITOR) || (reader.implant.get_module(CRUCIFORM_PRIEST) && reader.implant.get_module(CRUCIFORM_REDLIGHT)))
-				modifier += 2
-
-			else if(reader.implant.get_module(CRUCIFORM_PRIEST))
-				modifier++
-
-			occupant.adjustBruteLoss(brute_damage/damage_modifier)
-			occupant.adjustFireLoss(burn_damage/damage_modifier)
 
 			R.stats.copyTo(occupant.stats)
 
