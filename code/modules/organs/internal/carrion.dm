@@ -222,18 +222,23 @@
 	set category = "Carrion"
 	set name = "Regenerative Stasis (20)"
 
-	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
+	if(!owner.stat && alert("Are you sure you wish to fake our death?",,"Yes","No") == "No")
 		return
 
 	if(!(owner.check_ability(20)))
 		return
 
-	to_chat(owner, SPAN_NOTICE("We will attempt to regenerate our form."))
-
+	to_chat(owner, SPAN_NOTICE("You will attempt to regenerate your form."))
+	var/geneticpoints_lost = 0
+	var/obj/item/organ/internal/carrion/maw/H = owner.random_organ_by_process(OP_MAW)
+	if(!H)
+		geneticpoints_lost +=4
+		to_chat(owner, SPAN_NOTICE("Your missing maw caused a leak of genetic material."))
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
 	owner.timeofdeath = world.time
+	src.geneticpoints -= geneticpoints_lost
 	var/last_owner = owner
 
 	spawn(rand(1 MINUTES, 3 MINUTES))
@@ -288,6 +293,11 @@
 			if(BP_IS_ROBOTIC(O))
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
+			else if(istype(O, /obj/item/organ/internal/carrion))
+				owner.carrion_hunger += 3
+				geneticpointgain = 4
+				chemgain = 50
+				taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				geneticpointgain = 3
 				chemgain = 20
