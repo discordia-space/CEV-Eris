@@ -164,10 +164,10 @@
 	if(reader.implant.get_module(CRUCIFORM_INQUISITOR) || (reader.implant.get_module(CRUCIFORM_PRIEST) && reader.implant.get_module(CRUCIFORM_REDLIGHT)))
 		damage_modifier += 2
 
-	else if(reader.implant.get_module(CRUCIFORM_PRIEST))
-		damage_modifier++
-
-	occupant.setCloneLoss(clone_damage/damage_modifier)
+	else
+		if(reader.implant.get_module(CRUCIFORM_PRIEST))
+			damage_modifier++
+		occupant.setCloneLoss(clone_damage/damage_modifier)
 	occupant.setBrainLoss(0)
 	occupant.updatehealth()
 	stop()
