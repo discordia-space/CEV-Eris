@@ -7,6 +7,7 @@
 	w_class = ITEM_SIZE_TINY
 	light_color = COLOR_LIGHTING_ORANGE_DARK
 	var/wax = 2000
+	var/lit_sanity_damage = -0.5
 
 /obj/item/weapon/flame/candle/New()
 	wax = rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
@@ -74,6 +75,6 @@
 		STOP_PROCESSING(SSobj, src)
 	else
 		START_PROCESSING(SSobj, src)
-		sanity_damage = -0.5
+		sanity_damage = lit_sanity_damage
 		set_light(CANDLE_LUM)
 	update_icon()
