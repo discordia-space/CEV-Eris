@@ -147,6 +147,14 @@
 	)
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
+/atom/movable/proc/crusade_activated()
+	return
+
+/datum/group_ritual_effect/cruciform/crusade/trigger_success(mob/starter, list/participants)
+	..()
+	for(var/atom/movable/A in GLOB.all_faction_items)
+		A.crusade_activated()
+
 /datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
 	if(cnt < 6)
 		return
