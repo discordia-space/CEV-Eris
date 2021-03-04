@@ -42,12 +42,10 @@
 
 /obj/item/weapon/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
 	if(!src.lit)
-		src.lit = 1
+		change_lit(TRUE)
 		//src.damtype = "fire"
 		for(var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, 1)
-		set_light(CANDLE_LUM)
-		START_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/flame/candle/Process()
@@ -66,6 +64,16 @@
 
 /obj/item/weapon/flame/candle/attack_self(mob/user as mob)
 	if(lit)
-		lit = 0
-		update_icon()
+		change_lit(FALSE)
+
+/obj/item/weapon/flame/candle/proc/change_lit(new_state = FALSE)
+	lit = new_state
+	if(!lit)
 		set_light(0)
+		sanity_damage = 0
+		STOP_PROCESSING(SSobj, src)
+	else
+		START_PROCESSING(SSobj, src)
+		sanity_damage = -0.5
+		set_light(CANDLE_LUM)
+	update_icon()
