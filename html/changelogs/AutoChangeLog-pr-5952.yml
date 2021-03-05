@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: the trash piles are less likely to spawn a rare item.
+  - tweak: stash spawner is less frequent to find.
