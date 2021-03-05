@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	for(var/x in 1 to amt)
 		var/rare = FALSE
 		var/rare_items_amt = rand(1,2)
-		if((x >= amt-rare_items_amt) && prob(rare_item_chance))
+		if((x > amt-rare_items_amt) && prob(rare_item_chance))
 			rare = TRUE
 		var/list/loot_tags_copy = loot_tags.Copy()
 		if(rare)
