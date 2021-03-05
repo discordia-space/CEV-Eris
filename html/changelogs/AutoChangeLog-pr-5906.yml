@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - balance: fullbody vests now slow you down
