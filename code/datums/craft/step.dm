@@ -96,7 +96,6 @@
 	)
 
 /datum/craft_step/proc/apply(obj/item/I, mob/living/user, obj/item/craft/target, datum/craft_recipe/recipe)
-	. = 1
 	if(building)
 		return
 	building = TRUE
@@ -105,18 +104,18 @@
 		if(istype(I, /obj/item/stack/material))
 			var/obj/item/stack/material/M = I
 			if(M.get_default_type() != reqed_material)
-				to_chat(user, "Wrong material!")
+				to_chat(user, SPAN_WARNING("Wrong material!"))
 				building = FALSE
 				return
 		else
-			to_chat(user, "This isn't a material stack!")
+			to_chat(user, SPAN_WARNING("This isn't a material stack!"))
 			building = FALSE
 			return
 
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			to_chat(user, "Not enough items in [I]")
+			to_chat(user, SPAN_WARNING("Not enough items in [I]"))
 			building = FALSE
 			return
 
@@ -130,18 +129,18 @@
 
 	if(reqed_type)
 		if(!istype(I, reqed_type))
-			to_chat(user, "Wrong item!")
+			to_chat(user, SPAN_WARNING("Wrong item!"))
 			building = FALSE
 			return
 		if(!is_valid_to_consume(I, user))
-			to_chat(user, "That item can't be used for crafting!")
+			to_chat(user, SPAN_WARNING("That item can't be used for crafting!"))
 			building = FALSE
 			return
 
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				to_chat(user, "Not enough items in [I]")
+				to_chat(user, SPAN_WARNING("Not enough items in [I]"))
 				building = FALSE
 				return
 
@@ -204,6 +203,7 @@
 	if(!reqed_type || (reqed_type && (req_amount <= 1 || (target && craft_items[target] <= 0))))
 		if(target)
 			target.step++
+			return 1
 	else
 		return 2
 
