@@ -22,13 +22,6 @@ var/list/disciples = list()
 	. = ..()
 	if(.)
 		target.stats.addPerk(/datum/perk/sanityboost)
-		if(target.client)
-			if(target.mind && target.mind.assigned_job && target.mind.assigned_job.department == DEPARTMENT_CHURCH)
-				return .
-			var/datum/category_item/setup_option/core_implant/I = target.client.prefs.get_option("Core implant")
-			if((I && I.implant_type	&& istype(I.implant_type,  /obj/item/weapon/implant/core_implant/cruciform)) && (!target.mind || !(target.mind.assigned_role == "Robot" || target.mind.assigned_role == "AI")))
-				return .
-			GLOB.new_neothecnology_convert++
 
 /obj/item/weapon/implant/core_implant/cruciform/uninstall()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
