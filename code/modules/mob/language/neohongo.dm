@@ -17,6 +17,6 @@
 	                 "Jikko", "naze", "takai", "boruda", "garasu","kritikaru", "chan", "itsu","niichi", "ji", "mono", \
 	                 "daigaku", "ima", "ato", "mae", "sen", "heya", "namae", "chuu", "gai", "hoka no", "desu", "receive", \
 	                 "tsukuru", "manabu", "chikai", "daijoubu", "totemo", "shikashi", "mata", "dakara", "to", " node", "kashira", \
-	                 "dan'yaku", "guntai", "taiho", "Kogeki!", "bakudan", "tatakai", "gado", "koshi!", "heishi", "shori!", \
-	                 "shireikan", "misairu", "shuryuudan!", "buki", "sento", "teisen", "senso", "tairyohakaiheiki", "hohei!", "eiseitai!")
+	                 "dan'yaku", "guntai", "taiho", "Kogeki", "bakudan", "tatakai", "gado", "koshi", "heishi", "shori", \
+	                 "shireikan", "misairu", "shuryuudan", "buki", "sento", "teisen", "senso", "tairyohakaiheiki", "hohei", "eiseitai")
 
