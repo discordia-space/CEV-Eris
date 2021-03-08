@@ -259,16 +259,6 @@
 		fail("Soul transfer failed.", user, C)
 		return FALSE
 
-	var/damage_modifier = 1
-	var/obj/item/weapon/implant/core_implant/cruciform/C_user = user.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C_user.get_module(CRUCIFORM_INQUISITOR) || (C_user.get_module(CRUCIFORM_PRIEST) && C_user.get_module(CRUCIFORM_REDLIGHT)))
-		damage_modifier += 2
-
-	else
-		if(C_user.get_module(CRUCIFORM_PRIEST))
-			damage_modifier++
-		CI.wearer.setCloneLoss(max(clone_damage/damage_modifier, CI.wearer.getCloneLoss()))
-
 
 	return TRUE
 
