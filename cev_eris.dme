@@ -1795,6 +1795,7 @@
 #include "code\modules\mob\language\german.dm"
 #include "code\modules\mob\language\jive.dm"
 #include "code\modules\mob\language\language.dm"
+#include "code\modules\mob\language\latin.dm"
 #include "code\modules\mob\language\monkey.dm"
 #include "code\modules\mob\language\neohongo.dm"
 #include "code\modules\mob\language\outsider.dm"
