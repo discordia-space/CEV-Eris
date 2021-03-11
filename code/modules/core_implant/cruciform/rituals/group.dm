@@ -28,7 +28,8 @@
 
 /datum/group_ritual_effect/cruciform/stat
 	var/stat_buff
-	var/buff_value = 2
+	var/buff_value = 3
+	var/aditional_value = 2
 
 /datum/group_ritual_effect/cruciform/stat/trigger_success(var/mob/starter, var/list/participants)
 	. = ..()
@@ -39,11 +40,11 @@
 /datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
 	if(cnt < 3 || !stat_buff)
 		return
-	M.stats.changeStat(stat_buff, buff_value)
+	M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
 
 /datum/ritual/group/cruciform/stat/mechanical
 	name = "Pounding Whisper"
-	desc = "Boosts Mechanical stat to 2 for each participant."
+	desc = "Boosts Mechanical stat to 3 + 2 for each participant."
 	phrase = "Omnia haec tractavi in corde meo ut curiose intellegerem sunt iusti atque sapientes et opera eorum in manu Dei et tamen nescit homo utrum amore an odio dignus sit."
 	phrases = list(
 		"Omnia haec tractavi in corde meo ut curiose intellegerem sunt iusti atque sapientes et opera eorum in manu Dei et tamen nescit homo utrum amore an odio dignus sit.",
@@ -65,7 +66,7 @@
 
 /datum/ritual/group/cruciform/stat/cognition
 	name = "Revelation of Secrets"
-	desc = "Boosts Cognition stat to 2 for each participant."
+	desc = "Boosts Cognition stat to 3 + 2 for each participant."
 	phrase = "Dedit quoque Deus sapientiam Salomoni et prudentiam multam nimis et latitudinem cordis quasi harenam quae est in litore maris."
 	phrases = list(
 		"Dedit quoque Deus sapientiam Salomoni et prudentiam multam nimis et latitudinem cordis quasi harenam quae est in litore maris.",
@@ -85,7 +86,7 @@
 
 /datum/ritual/group/cruciform/stat/biology
 	name = "Lisp of Vitae"
-	desc = "Boosts Biology stat to 2 for each participant."
+	desc = "Boosts Biology stat to 3 + 2 for each participant."
 	phrase = "Convocatis autem duodecim apostolis dedit illis virtutem et potestatem super omnia daemonia et ut languores curarent."
 	phrases = list(
 		"Convocatis autem duodecim apostolis dedit illis virtutem et potestatem super omnia daemonia et ut languores curarent.",
@@ -104,7 +105,7 @@
 
 /datum/ritual/group/cruciform/stat/robustness
 	name = "Canto of Courage"
-	desc = "Boosts Robustness stat to 2 for each participant."
+	desc = "Boosts Robustness stat to 3 + 2 for each participant."
 	phrase = "Audi Israhel tu transgredieris hodie Iordanem ut possideas nationes maximas et fortiores te civitates ingentes et ad caelum usque muratas."
 	phrases = list(
 		"Audi Israhel tu transgredieris hodie Iordanem ut possideas nationes maximas et fortiores te civitates ingentes et ad caelum usque muratas.",
@@ -123,7 +124,7 @@
 
 /datum/ritual/group/cruciform/stat/toughness
 	name = "Reclamation of Endurance"
-	desc = "Boosts Toughness stat to 2 for each participant."
+	desc = "Boosts Toughness stat to 3 + 2 for each participant."
 	phrase = "In finem psalmus David."
 	phrases = list(
 		"In finem psalmus David.",
