@@ -8,6 +8,7 @@
 /datum/storyevent/hivemind
 	id = "hivemind"
 	name = "Hivemind Invasion"
+	req_crew = 16
 
 
 	event_type = /datum/event/hivemind
