@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: added a makeshift crafted SMG implant
+  - rscadd: added a shield implant which is sold by the zarya
