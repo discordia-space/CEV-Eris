@@ -1,0 +1,5 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: New messages upon examining simple animals, Roughly telling you how much
+      damaged they are.
