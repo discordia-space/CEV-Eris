@@ -64,7 +64,7 @@
 	if(accepted)
 		working = TRUE
 		start_time = world.time
-
+		
 		flick(image(icon, "closing"), src)
 
 		update_icon()
