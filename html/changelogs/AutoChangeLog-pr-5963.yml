@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: convert score now increases every time an epiphany ritual is performed.
