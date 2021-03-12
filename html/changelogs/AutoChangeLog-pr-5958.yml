@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: you can no longer craft items with less materials than required.
+  - tweak: warning messages in the craft system now appear in red.
