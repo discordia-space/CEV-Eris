@@ -1,0 +1,6 @@
+author: Wouju
+delete-after: true
+changes:
+  - balance: Hivemind now requires 16 players to spawn
+  - bugfix: Blitz, Serbs and Malf AI now actually check for the amount of players
+      to spawn
