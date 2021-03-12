@@ -1,3 +1,6 @@
+#define IN_PROGRESS 2
+#define READY 1
+
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
@@ -195,17 +198,19 @@
 					craft_items[target] = req_amount - 1
 				else
 					craft_items[target]--
+
+				if(craft_items[target] >= 1)
+					. = IN_PROGRESS
 			qdel(I)
 
 	if(target)
 		announce_action(end_msg, user, I, target)
 	building = FALSE
-	if(!reqed_type || (reqed_type && (req_amount <= 1 || (target && craft_items[target] <= 0))))
+
+	if(. != IN_PROGRESS)
 		if(target)
 			target.step++
-			return 1
-	else
-		return 2
+		return READY
 
 /datum/craft_step/proc/find_item(mob/living/user)
 	var/list/items = new
@@ -293,3 +298,7 @@
 	//If we get here, then we found the item but it wasn't valid to use, sorry!
 
 	return FALSE
+
+
+#undef IN_PROGRESS
+#undef READY
