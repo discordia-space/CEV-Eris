@@ -14,6 +14,8 @@
 	defaultHUD = "exosuits"
 	bad_type = /mob/living/exosuit
 
+	mob_classification = CLASSIFICATION_SYNTHETIC
+
 	var/initial_icon
 
 	var/emp_damage = 0
