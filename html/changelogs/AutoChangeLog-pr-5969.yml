@@ -1,0 +1,7 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: Every time the EOTP performs a miracle, you can use the rituals to increase
+      stats.
+  - tweak: stat boosting rituals now permanently increase one stat by 3+2 for each
+      participant.
