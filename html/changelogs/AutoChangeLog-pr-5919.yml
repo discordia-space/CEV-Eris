@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: 1 Hour after the first excel conversion, the crew is informed about the
+      excel presence. This can be prevented for some time by completing mandates,
+      and will be sped up through additional conversions.
