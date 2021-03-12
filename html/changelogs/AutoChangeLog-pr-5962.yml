@@ -1,0 +1,6 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: reincarnation and Commitment can now be performed by any disciple of nt.
+  - tweak: cloning now produces cloning damage depending on who has activated the
+      cloning machine.
