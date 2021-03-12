@@ -293,7 +293,7 @@
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
 
 /datum/craft_recipe/guns_craft_frame
-	name = "Gun assembly."
+	name = "Gun assembly"
 	result = /obj/item/craft_frame/guns
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
