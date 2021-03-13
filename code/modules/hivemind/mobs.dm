@@ -312,7 +312,7 @@
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(get_turf(src), 0, 0, 3) //explosion almost equal to a full welding fuel tank, deadly
+	explosion(get_turf(src), 0, 0, 2) //explosion almost equal to a full welding fuel tank, deadly
 	qdel(src)
 
 
@@ -426,8 +426,8 @@
 	desc = "A cyborg covered with something... something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
-	health = 400
-	maxHealth = 400 //can take a lot of hits before being obliterated
+	health = 350
+	maxHealth = 350 //can take a lot of hits before being obliterated
 	melee_damage_lower = 25
 	melee_damage_upper = 30 //Claws man, they hurt
 	attacktext = "clawed"
@@ -638,12 +638,13 @@
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
 	name = "Mechiver"
-	desc = "Once an exosuit, this hulking amalgamation of flesh and machine drips fresh blood out of the pilot's hatch."
+	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and machine drips fresh blood out of the pilot's hatch."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
-	health = 700
-	maxHealth = 700
+	health = 550
+	maxHealth = 550
+	resistance = RESISTANCE_AVERAGE
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	mob_size = MOB_LARGE
