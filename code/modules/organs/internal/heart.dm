@@ -17,3 +17,7 @@
 		return FALSE
 
 	return owner.pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
+
+/obj/item/organ/internal/heart/robotic
+	name = "hydraulic hub"
+	nature = MODIFICATION_SILICON
