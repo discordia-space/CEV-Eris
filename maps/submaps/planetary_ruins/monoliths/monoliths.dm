@@ -63,28 +63,47 @@
 	to_chat(user, "<span class='notice'>\The [src] is still.</span>")
 	return ..()
 
+/decl/flooring/reinforced/alium
+	name = "ancient alien floor"
+	desc = "This obviously wasn't made for your feet. Looks pretty old."
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_base = "alienvault"
+	build_type = null
+	has_damage_range = 6
+	flags = TURF_ACID_IMMUNE | TURF_HIDES_THINGS
+	can_paint = null
+
 /turf/simulated/wall/alium
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "alienvault"
 	material = MATERIAL_VOXALLOY
 
-/turf/simulated/floor/fixed/alium
+/turf/simulated/floor/alium
 	name = "ancient alien plating"
 	desc = "This obviously wasn't made for your feet. Looks pretty old."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "alienvault"
 	mineral = MATERIAL_VOXALLOY
+	initial_flooring = /decl/flooring/reinforced/alium
 
-/turf/simulated/floor/fixed/alium/airless
+/turf/simulated/floor/alium/airless
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/fixed/alium/ruin
+/turf/simulated/floor/alium/ruin
 	oxygen = 0
 	nitrogen = 0
 	initial_gas = null
 
-/turf/simulated/floor/fixed/alium/ruin/Initialize()
+/turf/simulated/floor/alium/ruin/Initialize()
 	. = ..()
 	if(prob(10))
 		ChangeTurf(get_base_turf_by_area(src))
+
+/turf/simulated/wall/alium/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+	// ALIUM DOES NOT GIVE A FUCK
+
+/turf/simulated/floor/alium/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+	// ALIUM DOES NOT GIVE A FUCK

@@ -9,14 +9,14 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/structure/catwalk,
 /obj/item/seeds/random,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "ad" = (
 /turf/simulated/floor/tiled/dark,
 /area/map_template/hydrobase/station/growX)
 "ae" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "af" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -25,7 +25,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "ag" = (
 /mob/living/bot/farmbot{
@@ -36,7 +36,7 @@
 "ah" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "ai" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -52,7 +52,7 @@
 /area/map_template/hydrobase/station/growX)
 "al" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "am" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -63,7 +63,7 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "an" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -73,7 +73,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growX)
 "ao" = (
 /obj/machinery/light{
@@ -83,16 +83,16 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "ap" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "aq" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "ar" = (
 /obj/machinery/alarm{
@@ -127,7 +127,7 @@
 /area/map_template/hydrobase/station/growD)
 "au" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "av" = (
 /mob/living/bot/farmbot{
@@ -170,18 +170,18 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiavulgarisseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "aC" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiavulgarisseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "aD" = (
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "aE" = (
 /turf/simulated/floor/tiled/white,
@@ -271,10 +271,10 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "aP" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "aQ" = (
 /turf/simulated/floor/tiled/white,
@@ -287,7 +287,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "aT" = (
 /obj/item/trash/cigbutt/cigarbutt,
@@ -314,7 +314,7 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/structure/catwalk,
 /obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/goatzone)
 "aX" = (
 /obj/structure/disposalpipe/segment{
@@ -369,7 +369,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "bc" = (
 /obj/machinery/power/apc{
@@ -423,7 +423,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/wheatseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "bi" = (
 /mob/living/bot/farmbot{
@@ -444,7 +444,7 @@
 	},
 /obj/machinery/light,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -463,7 +463,7 @@
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/door/blast/regular{
 	dir = 4;
-	id_tag = "goatzone";
+	id = "goatzone";
 	name = "Containment Zone"
 	},
 /turf/simulated/floor/tiled/white,
@@ -489,7 +489,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/pumpkinseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "bq" = (
 /obj/structure/lattice,
@@ -517,7 +517,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bt" = (
 /obj/machinery/light{
@@ -546,7 +546,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bx" = (
 /obj/machinery/light{
@@ -581,7 +581,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/blast_door{
-	id_tag = "goatzone";
+	id = "goatzone";
 	name = "containment zone control";
 	pixel_w = 0;
 	pixel_x = 0;
@@ -630,7 +630,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "bF" = (
 /obj/machinery/mech_recharger,
@@ -639,7 +639,7 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -669,7 +669,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "bL" = (
 /obj/machinery/light{
@@ -728,17 +728,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "bU" = (
 /obj/structure/cable/yellow{
@@ -793,18 +793,18 @@
 /mob/living/bot/farmbot{
 	faction = "farmbots"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "ca" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "cb" = (
 /obj/structure/catwalk,
 /obj/machinery/light,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growD)
 "cc" = (
 /obj/structure/cable/yellow,
@@ -942,25 +942,25 @@
 /area/map_template/hydrobase/station/growF)
 "cv" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cw" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/lemonseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cx" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/glowberryseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cy" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/goldappleseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cz" = (
 /obj/structure/catwalk,
@@ -969,19 +969,19 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/orangeseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cA" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/eggplantseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cB" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/cornseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cC" = (
 /obj/machinery/alarm{
@@ -996,7 +996,7 @@
 	},
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cD" = (
 /obj/structure/cable/yellow{
@@ -1007,7 +1007,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "cE" = (
 /obj/machinery/portable_atmospherics/canister/air{
@@ -1016,7 +1016,7 @@
 /obj/structure/window/reinforced/plasma{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "cF" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
@@ -1027,7 +1027,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "cG" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -1040,7 +1040,7 @@
 /obj/spawner/toolbox,
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "cH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
@@ -1055,7 +1055,7 @@
 	},
 /obj/structure/catwalk,
 /obj/machinery/autolathe,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "cI" = (
 /obj/structure/cable/yellow{
@@ -1081,7 +1081,7 @@
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/growF)
 "cL" = (
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "cM" = (
 /obj/machinery/power/solar{
@@ -1095,22 +1095,22 @@
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "cN" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "cO" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/chiliseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cP" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "cQ" = (
 /obj/item/trash/cigbutt/cigarbutt,
@@ -1143,7 +1143,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "cU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1155,7 +1155,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "cW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1180,13 +1180,13 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "cZ" = (
 /obj/machinery/portable_atmospherics/canister/air{
 	start_pressure = 740.5
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "da" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -1195,11 +1195,11 @@
 	},
 /obj/machinery/light,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "db" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "dc" = (
 /obj/machinery/power/apc{
@@ -1210,7 +1210,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
 "dd" = (
 /obj/structure/cable/yellow{
@@ -1243,7 +1243,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "di" = (
 /obj/machinery/light{
@@ -1252,7 +1252,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/grassseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dj" = (
 /mob/living/bot/farmbot{
@@ -1264,31 +1264,31 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/bluespacetomatoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dl" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tomatoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dm" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/bluetomatoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dn" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/grapeseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "do" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/bananaseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -1339,7 +1339,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dt" = (
 /obj/structure/cable/yellow{
@@ -1350,7 +1350,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "du" = (
 /obj/structure/cable/yellow{
@@ -1358,7 +1358,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dv" = (
 /obj/structure/cable/yellow{
@@ -1377,7 +1377,7 @@
 	icon_state = "ai-crash";
 	name = "inactive AI"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dw" = (
 /obj/structure/cable/yellow{
@@ -1388,7 +1388,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dx" = (
 /obj/structure/cable/yellow{
@@ -1399,7 +1399,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1458,13 +1458,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "dE" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/orangeseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dF" = (
 /obj/item/trash/cigbutt,
@@ -1482,7 +1482,7 @@
 	faction = "farmbots";
 	name = "Steward Stewart"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1493,7 +1493,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "dJ" = (
 /turf/simulated/wall/alium,
@@ -1506,7 +1506,7 @@
 	},
 /obj/machinery/reagentgrinder,
 /obj/structure/table/glass,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dL" = (
 /obj/structure/catwalk,
@@ -1515,13 +1515,13 @@
 	pixel_y = 32
 	},
 /obj/structure/table/glass,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dM" = (
 /obj/structure/catwalk,
 /obj/item/weapon/material/kitchen/utensil/spoon,
 /obj/structure/table/glass,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dN" = (
 /obj/structure/catwalk,
@@ -1530,7 +1530,7 @@
 	dir = 1
 	},
 /obj/machinery/smartfridge/drying_rack,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1577,7 +1577,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dS" = (
 /obj/machinery/power/terminal{
@@ -1588,7 +1588,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dT" = (
 /obj/machinery/power/smes/buildable,
@@ -1597,7 +1597,7 @@
 	icon_state = "0-2"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "dU" = (
 /obj/structure/cable{
@@ -1627,75 +1627,75 @@
 	desc = "A flexible superconducting cable for heavy-duty power transfer. It's been labeled 'chaos reigns'.";
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "dX" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/potatoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dY" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/peanutseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "dZ" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/potatoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "ea" = (
 /obj/structure/catwalk,
 /obj/machinery/light,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/riceseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "eb" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/sugarcaneseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "ec" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/soyaseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "ed" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/poisonberryseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "ee" = (
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growC)
 "ef" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "eg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "eh" = (
 /obj/structure/catwalk,
 /obj/item/weapon/material/kitchen/rollingpin,
 /obj/item/weapon/tool/knife/butch,
 /obj/structure/table/glass,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "ei" = (
 /obj/structure/bed/chair/office/light{
@@ -1742,11 +1742,11 @@
 	},
 /obj/structure/window/reinforced/plasma,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "ep" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "eq" = (
 /obj/machinery/power/apc{
@@ -1762,18 +1762,18 @@
 	},
 /obj/structure/window/reinforced/plasma,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "er" = (
 /turf/simulated/wall/alium,
 /area/map_template/hydrobase/station/solarlock)
 "es" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "et" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "eu" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -1781,7 +1781,7 @@
 	icon_state = "warningcorner";
 	dir = 8
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "ev" = (
 /obj/machinery/alarm{
@@ -1896,7 +1896,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/solarlock)
 "eF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -1931,7 +1931,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/solarlock)
 "eG" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1950,7 +1950,7 @@
 	id_tag = "solars_pump"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/solarlock)
 "eH" = (
 /obj/machinery/door/airlock/external{
@@ -1961,7 +1961,7 @@
 	name = "EVA External Access"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/solarlock)
 "eI" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1988,7 +1988,7 @@
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "eJ" = (
 /obj/structure/cable{
@@ -1996,7 +1996,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "eK" = (
 /obj/structure/cable{
@@ -2008,7 +2008,7 @@
 	icon_state = "warning";
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "eL" = (
 /obj/machinery/power/tracker{
@@ -2026,7 +2026,7 @@
 	icon_state = "warning";
 	dir = 8
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "eN" = (
 /turf/simulated/wall/alium,
@@ -2034,13 +2034,13 @@
 "eO" = (
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "eP" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/amanitamycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "eQ" = (
 /obj/structure/catwalk,
@@ -2050,7 +2050,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/amanitamycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "eR" = (
 /obj/structure/cable/yellow{
@@ -2064,7 +2064,7 @@
 	},
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "eS" = (
 /obj/machinery/power/apc{
@@ -2095,7 +2095,7 @@
 	pixel_x = -38;
 	pixel_y = 0
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "eU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2122,7 +2122,7 @@
 	desc = "A minature crossbow that fires some sort of dart from an internal magazine.";
 	name = "mini-crossbow"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "eX" = (
 /obj/structure/closet/l3closet/general,
@@ -2168,7 +2168,7 @@
 	dir = 8
 	},
 /obj/item/weapon/material/shard/plasma,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fb" = (
 /obj/structure/cable/yellow{
@@ -2177,7 +2177,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -2190,23 +2190,23 @@
 /obj/structure/window/reinforced/plasma{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fd" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/solarlock)
 "fe" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
 	dir = 4
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "ff" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "fg" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -2214,7 +2214,7 @@
 	icon_state = "warningcorner";
 	dir = 1
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/template_noop)
 "fh" = (
 /obj/machinery/light{
@@ -2228,7 +2228,7 @@
 /turf/simulated/floor/tiled/white,
 /area/map_template/hydrobase/station/growB)
 "fj" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fk" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -2275,15 +2275,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "fp" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
-	id_tag = "shipping";
+	id = "shipping";
 	pixel_x = -25
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
@@ -2314,7 +2314,7 @@
 /obj/item/stack/material/gold{
 	amount = 10
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2348,7 +2348,7 @@
 "fu" = (
 /obj/structure/dispenser/oxygen,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fv" = (
 /obj/machinery/portable_atmospherics/canister/air/airlock,
@@ -2357,23 +2357,23 @@
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fw" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fx" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/reishimycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fy" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/angelmycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fz" = (
 /obj/machinery/alarm{
@@ -2386,13 +2386,13 @@
 	pixel_x = 39;
 	pixel_y = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fA" = (
 /obj/machinery/light,
 /obj/machinery/mech_recharger,
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "fB" = (
 /turf/simulated/wall/alium,
@@ -2405,7 +2405,7 @@
 /obj/machinery/atmospherics/binary/pump/on,
 /obj/machinery/door/blast/regular{
 	dir = 4;
-	id_tag = "shipping"
+	id = "shipping"
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
@@ -2441,7 +2441,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "fH" = (
 /obj/structure/cable{
@@ -2449,7 +2449,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "fI" = (
 /obj/structure/cable{
@@ -2462,12 +2462,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "fJ" = (
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fK" = (
 /obj/machinery/light{
@@ -2476,7 +2476,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "fL" = (
 /obj/structure/catwalk,
@@ -2486,7 +2486,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "fM" = (
 /obj/machinery/power/apc{
@@ -2499,7 +2499,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/shipaccess)
 "fN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -2513,10 +2513,10 @@
 "fO" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
-	id_tag = "shipping";
+	id = "shipping";
 	pixel_x = 25
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/shipaccess)
 "fP" = (
 /obj/machinery/washing_machine,
@@ -2559,7 +2559,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/towermycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "fT" = (
 /mob/living/bot/farmbot{
@@ -2583,7 +2583,7 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "fW" = (
 /obj/machinery/light/small{
@@ -2599,7 +2599,7 @@
 	pixel_y = 0;
 	req_access = newlist()
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/shipaccess)
 "fX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -2625,7 +2625,7 @@
 	pixel_x = 39;
 	pixel_y = 4
 	},
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/shipaccess)
 "fZ" = (
 /obj/machinery/light{
@@ -2659,7 +2659,7 @@
 	},
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/towermycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "gd" = (
 /obj/item/trash/cigbutt,
@@ -2755,7 +2755,7 @@
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/chantermycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "gn" = (
 /turf/simulated/wall/alium,
@@ -2804,7 +2804,7 @@
 /obj/machinery/light,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/chantermycelium,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growB)
 "gt" = (
 /obj/machinery/mech_recharger,
@@ -2832,7 +2832,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gv" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2861,7 +2861,7 @@
 	id_tag = "hydrodock_pump"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gx" = (
 /obj/spawner/cloth/under,
@@ -2891,7 +2891,7 @@
 	id_tag = "hydrodock_pump"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gB" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
@@ -2916,7 +2916,7 @@
 	tag_interior_door = "hydrodock_inner"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gD" = (
 /obj/machinery/power/solar{
@@ -2928,7 +2928,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "gE" = (
 /obj/structure/cable{
@@ -2936,7 +2936,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/fixed/alium/airless,
+/turf/simulated/floor/alium/airless,
 /area/map_template/hydrobase/solars)
 "gF" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -2949,7 +2949,7 @@
 	id_tag = "hydrodock_pump"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gG" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -2968,14 +2968,14 @@
 	id_tag = "hydrodock_pump"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/dockport)
 "gI" = (
 /obj/machinery/light,
 /obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
 "gJ" = (
 /obj/structure/sign/nosmoking_1,

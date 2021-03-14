@@ -7,12 +7,14 @@ var/list/ship_scanners = list()
 /obj/machinery/power/long_range_scanner
 	name = "long range scanner"
 	desc = "An advanced long range scanner with heavy-duty capacitor, capable of scanning celestial anomalies at large distances."
-	icon = 'icons/obj/machines/shielding.dmi'
-	icon_state = "generator0"
+	icon = 'icons/obj/machines/conduit_of_soul.dmi'
+	icon_state = "core"
 	density = TRUE
 	anchored = FALSE
 
 	circuit = /obj/item/weapon/electronics/circuitboard/long_range_scanner
+
+
 
 	var/needs_update = FALSE //If true, will update in process
 
@@ -71,9 +73,17 @@ var/list/ship_scanners = list()
 /obj/machinery/power/long_range_scanner/update_icon()
 	overlays.Cut()
 	if(running)
-		icon_state = "generator1"
+		set_light(1, 1, "#82C2D8")
+		icon_state = "core_warmup"
+		spawn(20)
+			set_light(1, 1, "#82C2D8")
+			icon_state = "core_active"
 	else
-		icon_state = "generator0"
+		set_light(1, 1, "#82C2D8")
+		icon_state = "core_shutdown"
+		spawn(20)
+			set_light(0)
+			icon_state = "core_inactive"
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
@@ -81,9 +91,22 @@ var/list/ship_scanners = list()
 
 	for (var/obj/machinery/scanner_conduit/S in tendrils)
 		if (running)
-			S.icon_state = "conduit_1"
+			S.dim_light()
+			S.icon_state = "warmup"
+			S.update_icon()
+			spawn(20)
+				S.bright_light()
+				S.icon_state = "speen"
+				S.update_icon()
+
 		else
-			S.icon_state = "conduit_0"
+			S.dim_light()
+			S.icon_state = "shutdown"
+			S.update_icon()
+			spawn(20)
+				S.no_light()
+				S.icon_state = "inactive"
+				S.update_icon()
 
 
 /obj/machinery/power/long_range_scanner/Initialize()
@@ -249,7 +272,6 @@ var/list/ship_scanners = list()
 		if(running != SCANNER_RUNNING)
 			return
 		running = SCANNER_DISCHARGING
-		update_icon()
 		offline_for += 30 //It'll take one minute to shut down
 		. = 1
 		log_event(EVENT_DISABLED, src)
@@ -367,8 +389,8 @@ var/list/ship_scanners = list()
 
 /obj/machinery/scanner_conduit
 	name = "scanner conduit"
-	icon = 'icons/obj/machines/shielding.dmi'
-	icon_state = "conduit_0"
+	icon = 'icons/obj/machines/conduit_of_soul.dmi'
+	icon_state = "inactive"
 	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
 	density = TRUE
 	anchored = FALSE //Will be set true just after deploying
@@ -376,6 +398,15 @@ var/list/ship_scanners = list()
 
 /obj/machinery/scanner_conduit/proc/connect(sca)
 	scanner = sca
+
+/obj/machinery/scanner_conduit/proc/no_light()
+	set_light(0)
+
+/obj/machinery/scanner_conduit/proc/dim_light()
+	set_light(1, 1, "#82C2D8")
+
+/obj/machinery/scanner_conduit/proc/bright_light()
+	set_light(2, 2, "#82C2D8")
 
 /obj/machinery/scanner_conduit/Destroy()
 	if(scanner)

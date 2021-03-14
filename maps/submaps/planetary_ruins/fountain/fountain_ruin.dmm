@@ -6,7 +6,7 @@
 /turf/simulated/wall/sandstonediamond,
 /area/template_noop)
 "c" = (
-/turf/simulated/floor/fixed/alium,
+/turf/simulated/floor/alium,
 /area/template_noop)
 "e" = (
 /obj/structure/healingfountain,

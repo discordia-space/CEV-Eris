@@ -1,49 +1,44 @@
-/datum/map_template/ruin/exoplanet/marooned 
-	name = "Marooned" 
-	id = "awaysite_marooned" 
-	description = "crashed dropship with marooned Magnitka officer" 
-	suffixes = list("marooned/marooned.dmm") 
-	cost = 1 
+/datum/map_template/ruin/exoplanet/marooned
+	name = "Marooned"
+	id = "awaysite_marooned"
+	description = "crashed dropship with marooned Magnitka officer"
+	suffix = "marooned/marooned.dmm"
+	cost = 1
 	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS | TEMPLATE_FLAG_NO_RUINS
 	ruin_tags = RUIN_HUMAN|RUIN_WRECK
-	apc_test_exempt_areas = list(
+	/*apc_test_exempt_areas = list(
 		/area/map_template/marooned = NO_SCRUBBER|NO_VENT|NO_APC
-	)
+	)*/
 
-/obj/item/clothing/under/magintka_uniform 
-	name = "officer uniform" 
-	desc = "A dark uniform coat worn by Magnitka fleet officers." 
-	icon_state = "magnitka_officer" 
-	icon = 'maps/random_ruins/exoplanet_ruins/marooned/marooned_icons.dmi' 
-	item_icons = list(slot_w_uniform_str = 'maps/random_ruins/exoplanet_ruins/marooned/marooned_icons.dmi') 
- 
-/obj/item/clothing/accessory/medal/silver/marooned_medal 
-	name = "silver medal" 
-	desc = "An silver round medal of marooned officer. It has inscription \"For Distinguished Service\" in lower part. On medal's plank it's engraved \"H. Warda\"" 
-	icon_state = "marooned_medal" 
-	icon = 'maps/random_ruins/exoplanet_ruins/marooned/marooned_icons.dmi' 
- 
-/obj/effect/landmark/corpse/marooned_officer 
-	name = "Horazy Warda" 
-	corpse_outfits = list(/decl/hierarchy/outfit/marooned_officer) 
-	spawn_flags = ~CORPSE_SPAWNER_RANDOM_NAME 
- 
-/decl/hierarchy/outfit/marooned_officer 
-	name = "Dead Magnitka's fleet officer" 
-	uniform = /obj/item/clothing/under/magintka_uniform 
-	suit = /obj/item/clothing/suit/storage/hooded/wintercoat 
-	shoes = /obj/item/clothing/shoes/jungleboots 
-	gloves = /obj/item/clothing/gloves/thick 
-	head = /obj/item/clothing/head/beret 
-	l_pocket = /obj/item/weapon/material/knife/folding/combat/switchblade 
- 
+/obj/item/clothing/under/magintka_uniform
+	name = "officer uniform"
+	desc = "A dark uniform coat worn by Magnitka fleet officers."
+	icon_state = "magnitka_officer"
+	icon = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi'
+	item_icons = list(slot_w_uniform_str = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi')
+
+/obj/item/clothing/accessory/medal/silver/marooned_medal
+	name = "silver medal"
+	desc = "An silver round medal of marooned officer. It has inscription \"For Distinguished Service\" in lower part. On medal's plank it's engraved \"H. Warda\""
+	icon_state = "marooned_medal"
+	icon = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi'
+
+/obj/landmark/corpse/marooned_officer
+	name = "Horazy Warda"
+	corpseuniform = /obj/item/clothing/under/magintka_uniform
+	corpsesuit = /obj/item/clothing/suit/storage/cyberpunksleek_long/black
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpsegloves = /obj/item/clothing/gloves/thick
+	corpsehelmet = /obj/item/clothing/head/beret
+	corpsepocket1 = /obj/item/weapon/tool/knife/switchblade
+
 /obj/item/weapon/gun/projectile/revolver/medium/marooned
 	name = "worn-out revolver"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/medium/marooned/Initialize()
 	. = ..()
 	consume_next_projectile()
-	handle_post_fire()
 
 /area/map_template/marooned
 	name = "\improper Crashed Dropship"
@@ -79,6 +74,3 @@
 	info = "Day 18. I think. Life support is failing, I am running out of power. I think at this point I just am writing this to avoid thinking about what's to come.<br>I failed. I rallied some of the sane crewmen, and we made a break for the cargo hold, but we were too badly outnumbered. I holed up in the dropship, but the bastards just locked the hatch and overrode controls to send me planetside. And they didn't go for a soft descent. Wrecked dropship hard, barely left the inner hull intact. Some debris pierced my side."
 /obj/item/weapon/paper/marooned/note09
 	info = "Day ???. I'm not getting better. I can barely move now, and even if I try to eat something, I just puke it out. Guess this is it. I am not going to lie here and puke to death, I'm an officer dammit. I'd write something profound, if I could. Damn that obelisk. Glory to Magnitka."
-
-/obj/machinery/computer/dummy
-	construct_state = null

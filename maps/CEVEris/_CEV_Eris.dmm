@@ -2392,6 +2392,23 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
+"afW" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/green,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/engineering/long_range_scanner)
 "afX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -106646,22 +106663,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
-"vUB" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/cable/green,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/eris/engineering/long_range_scanner)
 "whx" = (
 /obj/structure/table/rack,
 /obj/item/stack/cable_coil,
@@ -293059,7 +293060,7 @@ yfr
 yfr
 eVJ
 tBD
-vUB
+afW
 yfr
 aaa
 aaa

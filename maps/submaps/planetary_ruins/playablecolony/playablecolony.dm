@@ -6,37 +6,15 @@
 	cost = 2
 	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS | TEMPLATE_FLAG_NO_RUINS | TEMPLATE_FLAG_NO_RADS
 	ruin_tags = RUIN_HUMAN|RUIN_HABITAT
-	apc_test_exempt_areas = list(
+	/*apc_test_exempt_areas = list(
 		/area/map_template/colony/mineralprocessing = NO_SCRUBBER|NO_VENT
-	)
-
-/decl/submap_archetype/playablecolony
-	descriptor = "established colony"
-	crew_jobs = list(/datum/job/submap/colonist)
-
-/datum/job/submap/colonist
-	title = "Colonist"
-	info = "You are a Colonist, living on the rim of explored, let alone inhabited, space in a reconstructed shelter made from the very ship that took you here."
-	total_positions = 6
-	outfit_type = /decl/hierarchy/outfit/job/colonist
-
-/decl/hierarchy/outfit/job/colonist
-	name = OUTFIT_JOB_NAME("Colonist")
-	id_type = null
-	pda_type = null
-
-/obj/effect/submap_landmark/spawnpoint/colonist_spawn
-	name = "Colonist"
-
-/obj/effect/submap_landmark/joinable_submap/colony
-	name = "Established Colony"
-	archetype = /decl/submap_archetype/playablecolony
+	)*/
 
 // Areas //
 /area/map_template/colony
 	name = "\improper Colony Hallways"
 	icon_state = "halls"
-	icon = 'maps/random_ruins/exoplanet_ruins/playablecolony/colony.dmi'
+	icon = 'maps/submaps/planetary_ruins/playablecolony/colony.dmi'
 
 /area/map_template/colony/engineering
 	name = "\improper Colony Engineering"
