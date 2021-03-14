@@ -87,8 +87,10 @@
 	cut_overlays()
 	if(running)
 		icon_state = "generator1"
+		set_light(2, 2, "#8AD55D")
 	else
 		icon_state = "generator0"
+		set_light(0)
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
@@ -97,8 +99,10 @@
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)
 			S.icon_state = "conduit_1"
+			S.bright_light()
 		else
 			S.icon_state = "conduit_0"
+			S.no_light()
 
 
 
@@ -766,6 +770,12 @@
 
 /obj/machinery/shield_conduit/proc/connect(gen)
 	generator = gen
+
+/obj/machinery/shield_conduit/proc/no_light()
+	set_light(0)
+
+/obj/machinery/shield_conduit/proc/bright_light()
+	set_light(2, 2, "#8AD55D")
 
 /obj/machinery/shield_conduit/Destroy()
 	if(generator)

@@ -76,7 +76,7 @@ var/list/ship_scanners = list()
 		set_light(1, 1, "#82C2D8")
 		icon_state = "core_warmup"
 		spawn(20)
-			set_light(1, 1, "#82C2D8")
+			set_light(2, 2, "#82C2D8")
 			icon_state = "core_active"
 	else
 		set_light(1, 1, "#82C2D8")
