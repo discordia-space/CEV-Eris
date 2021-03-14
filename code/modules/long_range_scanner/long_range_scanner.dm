@@ -84,10 +84,6 @@ var/list/ship_scanners = list()
 		spawn(20)
 			set_light(0)
 			icon_state = "core_inactive"
-	if (tendrils_deployed)
-		for (var/D in tendril_dirs)
-			var/I = image(icon,"capacitor_connected", dir = D)
-			overlays += I
 
 	for (var/obj/machinery/scanner_conduit/S in tendrils)
 		if (running)
