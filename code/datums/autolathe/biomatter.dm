@@ -44,6 +44,18 @@
 	name = "NT Custodian Armor"
 	build_path = /obj/item/clothing/suit/armor/custodian
 
+/datum/design/bioprinter/nt_clothes/acolyte_armor_head
+	name = "NT Acolyte Hood"
+	build_path = /obj/item/clothing/head/armor/acolyte
+
+/datum/design/bioprinter/nt_clothes/agrolyte_armor_head
+	name = "NT Agrolyte Helmet"
+	build_path = /obj/item/clothing/head/armor/agrolyte
+
+/datum/design/bioprinter/nt_clothes/custodian_armor_head
+	name = "NT Custodian Helmet"
+	build_path = /obj/item/clothing/head/armor/custodian
+
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
 	build_path = /obj/item/clothing/suit/storage/neotheology_coat
