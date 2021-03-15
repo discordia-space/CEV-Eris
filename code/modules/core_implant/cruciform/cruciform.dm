@@ -12,7 +12,7 @@ var/list/disciples = list()
 	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
-	power_regen = 2 / (1 MINUTES)
+	power_regen = 2/(1 MINUTES)
 	price_tag = 500
 	var/obj/item/weapon/cruciform_upgrade/upgrade
 
@@ -22,14 +22,13 @@ var/list/disciples = list()
 	var/max_righteous_life = 100
 
 /obj/item/weapon/implant/core_implant/cruciform/auto_restore_power()
-	if(power < max_power)
+	if(power >= max_power)
 		return
 	var/true_power_regen = power_regen
 	if(GLOB.miracle_points > 0)
 		true_power_regen += GLOB.miracle_points / (1 MINUTES)
 	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * (0.1 / 1 MINUTES)
 	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
-	admin_notice("el crcimierdas restaura [true_power_regen]")
 	restore_power(true_power_regen)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/register_wearer()
@@ -119,7 +118,7 @@ var/list/disciples = list()
 			deactivate()
 		else if(wearer.stats?.getPerk(/datum/perk/channeling) && round(world.time) % 5 == 0)
 			power_regen -= channeling_boost  // Removing the previous channeling boost since the number of disciples may have changed
-			channeling_boost = 0.2 * disciples.len  // Proportional to the number of cruciformed people on board
+			channeling_boost = power_regen * disciples.len / 2.5  // Proportional to the number of cruciformed people on board
 			power_regen += channeling_boost  // Applying the new power regeneration boost
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/transfer_soul()

@@ -306,7 +306,7 @@ var/list/channel_to_radio_key = new
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
-			if(O) //It's possible that it could be deleted in the meantime.
+			if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message), message_pre_stutter)
 
 
