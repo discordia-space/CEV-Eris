@@ -149,6 +149,9 @@
 /obj/item/weapon/implant/core_implant/proc/restore_power(var/value)
 	power = min(max_power, power + value)
 
+/obj/item/weapon/implant/core_implant/proc/auto_restore_power()
+	restore_power(power_regen)
+
 /obj/item/weapon/implant/core_implant/Process()
 	if(!active)
 		return
@@ -156,7 +159,8 @@
 		remove_hearing()
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
-	restore_power(power_regen)
+	else
+		auto_restore_power()
 
 /obj/item/weapon/implant/core_implant/proc/get_module(var/m_type)
 	if(!ispath(m_type))

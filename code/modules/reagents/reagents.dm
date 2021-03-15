@@ -128,9 +128,9 @@
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien, location)
 	if(!istype(M))
-		return
+		return FALSE
 	if(!affects_dead && M.stat == DEAD)
-		return
+		return FALSE
 
 	var/removed = consumed_amount(M, alien, location)
 
@@ -149,6 +149,7 @@
 	// At this point, the reagent might have removed itself entirely - safety check
 	if(volume && holder)
 		remove_self(removed)
+	return TRUE
 
 /datum/reagent/proc/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
 	if(!ishuman(H))
@@ -160,7 +161,7 @@
 
 /datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
-	
+
 	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
