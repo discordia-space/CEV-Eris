@@ -13,6 +13,3 @@
 /obj/item/organ/internal/kidney/left
 /obj/item/organ/internal/kidney/right
 	icon_state = "kidney_right"
-
-/obj/item/organ/internal/kidney/left/robotic
-
