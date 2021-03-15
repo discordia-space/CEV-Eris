@@ -4,6 +4,7 @@
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
+	category = "Common"
 	cooldown_time = 1 MINUTES
 
 
