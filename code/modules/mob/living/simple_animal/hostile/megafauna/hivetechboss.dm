@@ -20,6 +20,7 @@
 	megafauna_min_cooldown = 50
 	megafauna_max_cooldown = 80
 
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 	var/health_marker_1 = 0//1700
 	var/health_marker_2 = 0//900

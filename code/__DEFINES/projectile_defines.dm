@@ -3,7 +3,6 @@
 #define CAL_CLRIFLE ".25 Caseless"
 #define CAL_SRIFLE ".20"
 #define CAL_PISTOL ".35"
-#define CAL_35A ".35 auto"
 #define CAL_LRIFLE ".30"
 #define CAL_MAGNUM ".40 magnum"
 #define CAL_ANTIM ".60 Anti Material"

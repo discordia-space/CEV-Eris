@@ -23,6 +23,34 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				to_chat(C, msg)
 
+/**
+ * Sends a message to the staff able to see admin tickets
+ * Arguments:
+ * msg - The message being send
+ * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+               send a sound and flash the window. Defaults to FALSE
+ */
+/proc/message_adminTicket(msg, important = FALSE)
+	for(var/client/C in admins)
+		if(R_ADMIN & C.holder.rights)
+			to_chat(C, msg)
+			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
+				sound_to(C, 'sound/effects/adminhelp.ogg')
+
+/**
+ * Sends a message to the staff able to see mentor tickets
+ * Arguments:
+ * msg - The message being send
+ * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+               send a sound and flash the window. Defaults to FALSE
+ */
+/proc/message_mentorTicket(msg, important = FALSE)
+	for(var/client/C in admins)
+		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))
+			to_chat(C, msg)
+			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
+				sound_to(C, 'sound/effects/adminhelp.ogg')
+
 proc/admin_notice(message, rights)
 	for(var/mob/M in SSmobs.mob_list)
 		if(check_rights(rights, 0, M))
@@ -1134,3 +1162,30 @@ ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 			H.paralysis = 0
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
+
+// Returns a list of the number of admins in various categories
+// result[1] is the number of staff that match the rank mask and are active
+// result[2] is the number of staff that do not match the rank mask
+// result[3] is the number of staff that match the rank mask and are inactive
+/proc/staff_countup(rank_mask = R_ADMIN)
+	var/list/result = list(0, 0, 0)
+	for(var/client/X in admins)
+		if(rank_mask && !check_rights_for(X, rank_mask))
+			result[2]++
+			continue
+		if(X.holder.fakekey)
+			result[2]++
+			continue
+		if(X.is_afk())
+			result[3]++
+			continue
+		result[1]++
+	return result
+
+//This proc checks whether subject has at least ONE of the rights specified in rights_required.
+/proc/check_rights_for(client/subject, rights_required)
+	if(subject && subject.holder)
+		if(rights_required && !(rights_required & subject.holder.rights))
+			return 0
+		return 1
+	return 0

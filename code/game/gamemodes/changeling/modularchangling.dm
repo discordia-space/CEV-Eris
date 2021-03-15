@@ -19,8 +19,8 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/control_spider
 	name = "Control spider"
-	desc = "Creates a mind controling spider with a neural link to you, giving you the abilty to control the host, but also making you feel any trauma the host has, and than some."
-	genomecost = 10
+	desc = "Creates a mind controling spider with a neural link to you, giving you the abilty to control a weak minded host."
+	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/control
 
 /datum/power/carrion/infection_spider
@@ -36,6 +36,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 4
 	spiderpath = /obj/item/weapon/implant/carrion_spider/healing
 
+/datum/power/carrion/blight_spider
+	name = "Blight spider"
+	desc = "Evolves a spider filled with a sickening venom."
+	genomecost = 7
+	spiderpath = /obj/item/weapon/implant/carrion_spider/blight
+
 /datum/power/carrion/breeding_spider
 	name = "Breeding spider"
 	desc = "Creates a spider carrying eggs, when it will be put inside a dead host and activated, the eggs will give birth to many lesser ones of your kin."
@@ -47,6 +53,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	desc = "Creates an expensive spider that makes a small explosion."
 	genomecost = 10
 	spiderpath = /obj/item/weapon/implant/carrion_spider/explosive
+
+/datum/power/carrion/spark_spider
+	name = "Spark spider"
+	desc = "Creates a spider that makes a small spark."
+	genomecost = 1
+	spiderpath = /obj/item/weapon/implant/carrion_spider/spark
 
 /datum/power/carrion/toxic_spider
 	name = "Toxin bomb spider"
@@ -60,6 +72,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	helptext = "Used to complete derail contracts"
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/mindboil
+
+/datum/power/carrion/talking_spider
+	name = "Talking spider"
+	desc = "Creates a spider that can hijack someones vocal cords, giving you the ability to talk through them."
+	genomecost = 5
+	spiderpath = /obj/item/weapon/implant/carrion_spider/talking
 
 /datum/power/carrion/observer_spider
 	name = "Observer spider"
@@ -80,15 +98,21 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 2
 	spiderpath = /obj/item/weapon/implant/carrion_spider/signal
 
+/datum/power/carrion/smooth_spider
+	name = "Smooth spider"
+	desc = "Evolves a spider of pure horror."
+	genomecost = 3
+	spiderpath = /obj/item/weapon/implant/carrion_spider/smooth
+
 /datum/power/carrion/maw
 	name = "Carrion Maw"
-	desc = "Unlocks and expands your jaw, giving you the ability to spit acid and call upon spiders."
+	desc = "Unlocks and expands your jaw, giving you the ability to spit acid, call upon spiders and tear off limbs."
 	genomecost = 0
 	organpath = /obj/item/organ/internal/carrion/maw
 
 /datum/power/carrion/spinneret
 	name = "Carrion Spinneret"
-	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest and filter your blood from all chemicals."
+	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest, filter your blood from all chemicals and make webs."
 	genomecost = 7
 	organpath = /obj/item/organ/internal/carrion/spinneret
 

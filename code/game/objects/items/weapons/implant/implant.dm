@@ -89,7 +89,8 @@
 /obj/item/weapon/implant/proc/uninstall()
 	on_uninstall()
 	forceMove(get_turf(wearer))
-	part.implants.Remove(src)
+	if(part)
+		part.implants.Remove(src)
 	part = null
 	implanted = FALSE
 	if(ishuman(wearer))

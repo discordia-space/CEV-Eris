@@ -38,6 +38,7 @@
 
 	var/power_cost = 250
 
+	var/clone_damage = 0
 
 /obj/machinery/neotheology/cloner/New()
 	..()
@@ -158,7 +159,7 @@
 	return TRUE
 
 /obj/machinery/neotheology/cloner/proc/done()
-	occupant.setCloneLoss(0)
+	occupant.setCloneLoss(clone_damage)
 	occupant.setBrainLoss(0)
 	occupant.updatehealth()
 	stop()
@@ -176,7 +177,7 @@
 			update_icon()
 			return
 
-		progress += cloning_speed 
+		progress += cloning_speed
 
 		if(progress <= CLONING_DONE)
 			if(container)
@@ -186,7 +187,7 @@
 				stop()
 
 		if(occupant && ishuman(occupant))
-			occupant.setCloneLoss(CLONING_DONE-progress)
+			occupant.setCloneLoss(max(CLONING_DONE-progress, clone_damage))
 			occupant.setBrainLoss(CLONING_DONE-progress)
 
 			occupant.adjustOxyLoss(-4)

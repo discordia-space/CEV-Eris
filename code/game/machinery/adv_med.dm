@@ -366,7 +366,9 @@
 			dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
 		dat += "</tr>"
 
-	for(var/obj/item/organ/I in occ["internal_organs"])
+	for(var/obj/item/organ/internal/I in occ["internal_organs"])
+		if(I.scanner_hidden)
+			continue
 
 		var/mech = ""
 		var/bone_fracture = ""
