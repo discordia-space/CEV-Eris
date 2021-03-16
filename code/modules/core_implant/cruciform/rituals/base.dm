@@ -20,6 +20,7 @@
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
@@ -45,6 +46,7 @@
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
