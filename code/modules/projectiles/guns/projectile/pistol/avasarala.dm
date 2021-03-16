@@ -26,3 +26,17 @@
 
 	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/weapon/gun/projectile/avasarala/update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	icon_state = iconstring
+
+/obj/item/weapon/gun/projectile/avasarala/Initialize()
+	. = ..()
+	update_icon()
