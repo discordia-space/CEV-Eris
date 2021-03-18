@@ -40,7 +40,7 @@
 	name = "item assembly"
 	desc = "Debug item"
 	icon ='icons/obj/crafts.dmi'
-	icon_state = "gun_frame"//evan, temp icon
+	icon_state = "gun_frame"
 	matter = list()
 	bad_type = /obj/item/craft_frame
 	spawn_frequency = 0

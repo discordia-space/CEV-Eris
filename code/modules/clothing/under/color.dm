@@ -1,3 +1,6 @@
+/obj/item/clothing/under/color
+	bad_type = /obj/item/clothing/under/color
+
 /obj/item/clothing/under/color/black
 	name = "black jumpsuit"
 	initial_name = "black jumpsuit"

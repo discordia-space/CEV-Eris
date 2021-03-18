@@ -1,5 +1,0 @@
-author: DarkLevel - code; Armolitskiy - sprites
-delete-after: true
-changes:
-  - rscadd: Cruciform upgrades and another thing that related to cruciform upgrades.
-  - bugfix: construction ritual now don't use ALL materials.

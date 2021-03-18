@@ -297,8 +297,8 @@
 /obj/item/weapon/storage/pouch/gun_part
 	name = "part pouch"
 	desc = "Can hold gun parts and armor parts."
-	icon_state = "baton_holster"//evan, temp sprite
-	item_state = "baton_holster"
+	icon_state = "part_pouch"
+	item_state = "part_pouch"
 	rarity_value = 33
 
 	storage_slots = 10

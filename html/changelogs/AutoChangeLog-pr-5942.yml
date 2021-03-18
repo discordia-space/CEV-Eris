@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: signaler spider for the carrion, works like a signaling device

@@ -1,3 +1,6 @@
+#define IN_PROGRESS 2
+#define READY 1
+
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
@@ -13,8 +16,8 @@
 	var/desc = ""
 	var/start_msg = ""
 	var/end_msg = ""
-	var/completed = FALSE
 	var/tool_name
+	var/list/craft_items = list()
 
 
 /datum/craft_step/New(list/params, datum/craft_recipe/parent)
@@ -63,24 +66,29 @@
 		tool_name = "units of [M.display_name]"
 	make_desc()
 
-/datum/craft_step/proc/make_desc()
-	switch(req_amount)
+/datum/craft_step/proc/make_desc(obj/item/craft/C)
+	var/amt = req_amount
+	if(C && reqed_type && req_amount > 1)
+		if(!(C in craft_items))
+			craft_items[C] = req_amount
+		amt = craft_items[C]
+
+	switch(amt)
 		if(0)
 			desc = "Apply [tool_name]"
 			start_msg = "%USER% starts use %ITEM% on %TARGET%"
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
 			if(reqed_material)
-				desc = "Attach [req_amount] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+				desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
 			else
 				desc = "Attach [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[reqed_type].png")] height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
-			desc = "Attach [req_amount] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+			desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
-
 
 /datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
 	msg = replacetext(msg,"%USER%","[user]")
@@ -90,8 +98,7 @@
 		msg
 	)
 
-/datum/craft_step/proc/apply(obj/item/I, mob/living/user, atom/target, datum/craft_recipe/recipe)
-	. = TRUE
+/datum/craft_step/proc/apply(obj/item/I, mob/living/user, obj/item/craft/target, datum/craft_recipe/recipe)
 	if(building)
 		return
 	building = TRUE
@@ -100,18 +107,18 @@
 		if(istype(I, /obj/item/stack/material))
 			var/obj/item/stack/material/M = I
 			if(M.get_default_type() != reqed_material)
-				to_chat(user, "Wrong material!")
+				to_chat(user, SPAN_WARNING("Wrong material!"))
 				building = FALSE
 				return
 		else
-			to_chat(user, "This isn't a material stack!")
+			to_chat(user, SPAN_WARNING("This isn't a material stack!"))
 			building = FALSE
 			return
 
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			to_chat(user, "Not enough items in [I]")
+			to_chat(user, SPAN_WARNING("Not enough items in [I]"))
 			building = FALSE
 			return
 
@@ -125,18 +132,18 @@
 
 	if(reqed_type)
 		if(!istype(I, reqed_type))
-			to_chat(user, "Wrong item!")
+			to_chat(user, SPAN_WARNING("Wrong item!"))
 			building = FALSE
 			return
 		if(!is_valid_to_consume(I, user))
-			to_chat(user, "That item can't be used for crafting!")
+			to_chat(user, SPAN_WARNING("That item can't be used for crafting!"))
 			building = FALSE
 			return
 
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				to_chat(user, "Not enough items in [I]")
+				to_chat(user, SPAN_WARNING("Not enough items in [I]"))
 				building = FALSE
 				return
 
@@ -185,16 +192,25 @@
 				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
 				building = FALSE
 				return FALSE
-			req_amount = 0
 		else if(reqed_type) //No deleting tools
-			req_amount--
+			if(target)
+				if(!(target in craft_items))
+					craft_items[target] = req_amount - 1
+				else
+					craft_items[target]--
+
+				if(craft_items[target] >= 1)
+					. = IN_PROGRESS
 			qdel(I)
 
 	if(target)
 		announce_action(end_msg, user, I, target)
 	building = FALSE
-	if(req_amount <= 0)
-		completed = TRUE
+
+	if(. != IN_PROGRESS)
+		if(target)
+			target.step++
+		return READY
 
 /datum/craft_step/proc/find_item(mob/living/user)
 	var/list/items = new
@@ -282,3 +298,7 @@
 	//If we get here, then we found the item but it wasn't valid to use, sorry!
 
 	return FALSE
+
+
+#undef IN_PROGRESS
+#undef READY

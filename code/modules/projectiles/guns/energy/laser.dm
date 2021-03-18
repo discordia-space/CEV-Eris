@@ -235,7 +235,7 @@
 	name = "makeshift laser carbine"
 	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
 	icon = 'icons/obj/guns/energy/makeshift_carbine.dmi'
-	icon_state = "makeshift"//evan, TODO
+	icon_state = "makeshift"
 	item_state = "makeshift"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15)

@@ -10,7 +10,7 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#94a87f"
 	req_admin_notify = 1
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5, LANGUAGE_NEOHONGO = 40)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
 	wage = WAGE_COMMAND
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
 
@@ -70,7 +70,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_NEOHONGO = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
 
@@ -131,7 +131,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_NEOHONGO = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
 
@@ -184,7 +184,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	wage = WAGE_PROFESSIONAL
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_NEOHONGO = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
 
@@ -222,7 +222,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_LABOUR_HAZARD
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15, LANGUAGE_NEOHONGO = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
 	access = list(

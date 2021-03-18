@@ -34,20 +34,22 @@
 	to_chat(src, "<font color='blue'>PM to-<b>Staff </b>: [msg]</font>")
 	log_admin("HELP: [key_name(src)]: [msg]")
 
-	var/mentor_msg = "\blue <b><font color=red>Request for Help: </font>[get_options_bar(mob, 4, 1, 1, 0)]:</b> [msg]"
+	// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
+	// var/mentor_msg = "\blue <b><font color=red>Request for Help: </font>[get_options_bar(mob, 4, 1, 1, 0)]:</b> [msg]"
 	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, 1, 1)]:</b> [msg]"
 
+	// Send adminhelp message to Discord chat
 	send2adminchat(key_name(src), original_msg)
 
+	// Play adminhelp sound to all admins who have not disabled it in preferences
 	for(var/client/X in admins)
-		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
+		if(X.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
+			sound_to(X, 'sound/effects/adminhelp.ogg')
 
-			if(X.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
-				X << 'sound/effects/adminhelp.ogg'
-			if(X.holder.rights == R_MENTOR)
-				to_chat(X, mentor_msg)		// Mentors won't see coloring of names on people with special_roles (Antags, etc.)
-			else
-				to_chat(X, msg)
+	// Assuming it is an an admin help and not a mentor help	
+	SStickets.newHelpRequest(src, msg) // Ahelp
+
+	// SSmentor_tickets.newHelpRequest(src, mentormsg) // Mhelp (for mentors if they ever get implemented)
 
 	return
 

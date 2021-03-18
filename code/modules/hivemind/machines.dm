@@ -621,7 +621,6 @@
 					"You seek survival. We offer immortality.",
 					"Look at you. A pathetic creature of meat and bone.",
 					"Augmentation is the future of humanity. Surrender your flesh for the future.",
-					"Kill yourself. Better still, kill others, and feed me their bodies.",
 					"Your body enslaves you. Your mind in metal is free of all want.",
 					"Do you fear death? Lay down among the nanites. Your pattern will continue.",
 					"Carve your flesh from your bones. See your weakness. Feel that weakness flowing away.",

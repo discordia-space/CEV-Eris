@@ -1,6 +1,0 @@
-author: AlexMorgan3817
-delete-after: true
-changes:
-  - admin: Stock byond's optimized client-side profiler for devs, that not cause dream
-      seeker and daemon lag as shit, required rights can be set through config. Current
-      R_DEBUG | R_SERVER.
