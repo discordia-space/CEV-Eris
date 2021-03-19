@@ -39,6 +39,10 @@
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
 		/datum/design/bioprinter/nt_clothes/custodian_armor,
 
+		/datum/design/bioprinter/nt_clothes/acolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/agrolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/custodian_armor_head,
+
 		/datum/design/bioprinter/nt_clothes/preacher_coat,
 		/datum/design/bioprinter/nt_clothes/acolyte_jacket,
 		/datum/design/bioprinter/nt_clothes/sports_jacket,
