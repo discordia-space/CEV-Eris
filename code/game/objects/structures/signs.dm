@@ -595,4 +595,4 @@
 /obj/structure/sign/derelict3
 	name = "Old sign"
 	desc = "A propaganda poster asking crew to look out for suspicious activity. You can't be too cautious nowadays as well."
-	icon_state = "something-old3
+	icon_state = "something-old3"
