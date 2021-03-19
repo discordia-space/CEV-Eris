@@ -591,3 +591,8 @@
 	name = "Old sign"
 	desc = "Looks like a planet crashing by some station above it. Its kinda scary."
 	icon_state = "something-old2"
+
+/obj/structure/sign/derelict3
+	name = "Old sign"
+	desc = "A propaganda poster asking crew to look out for suspicious activity. You can't be too cautious nowadays as well."
+	icon_state = "something-old3

@@ -1369,7 +1369,9 @@
 /turf/simulated/floor,
 /area/map_template/ecship/engineering)
 "dg" = (
-/obj/structure/sign/vacuum,
+/obj/structure/sign/vacuum{
+	icon_state = "space_old_crash"
+	},
 /turf/simulated/wall/titanium,
 /area/map_template/ecship/engineering)
 "dh" = (
