@@ -22,51 +22,28 @@ var/list/ship_scanners = list()
 	var/needs_update = FALSE //If true, will update in process
 
 	var/datum/wires/long_range_scanner/wires
-	var/list/field_segments = list()	// List of all shield segments owned by this generator.
-	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
 	var/list/event_log = list()			// List of relevant events for this shield
 	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
 
+	var/scanner_modes = 0				// Enabled scanner mode flags
 	var/scan_range = 2					// Scan range on the overmap
 
-	var/shield_modes = 0				// Enabled shield mode flags
-	var/mitigation_em = 0				// Current EM mitigation
-	var/mitigation_physical = 0			// Current Physical mitigation
-	var/mitigation_heat = 0				// Current Burn mitigation
-	var/mitigation_max = 0				// Maximal mitigation reachable with this generator. Set by RefreshParts()
-	var/max_energy = 0					// Maximal stored energy. In joules. Depends on the type of used SMES coil when constructing this generator.
+	var/max_energy = 0					// Maximal stored energy. In joules. Depends on the type of used SMES coil when constructing this scanner.
 	var/current_energy = 0				// Current stored energy.
-	var/field_radius = 200				// Current field radius. //200 is default for hull shield
-	var/running = SCANNER_OFF			// Whether the generator is enabled or not.
+	var/running = SCANNER_OFF			// Whether the scanner is enabled or not.
 	var/input_cap = 1 MEGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this value per tick at most
 	var/upkeep_power_usage = 0			// Upkeep power usage last tick.
-	var/upkeep_multiplier = 1			// Multiplier of upkeep values.
-	var/upkeep_star_multiplier = 1	  // Multiplier of upkeep values due to proximity with the star at the center of the overmap
-	var/upkeep_star_multiplier_max = 4  // Maximum upkeep multiplier when the ship is right on top of the star
-	var/upkeep_star_multiplier_safe = 50// Distance from star above which shields are no longer impacted (multiplier = 1)
 	var/power_usage = 0					// Total power usage last tick.
 	var/overloaded = 0					// Whether the field has overloaded and shut down to regenerate.
-	var/offline_for = 0					// The generator will be inoperable for this duration in ticks.
+	var/offline_for = 0					// The scanner will be inoperable for this duration in ticks.
 	var/input_cut = 0					// Whether the input wire is cut.
 	var/mode_changes_locked = 0			// Whether the control wire is cut, locking out changes.
 	var/ai_control_disabled = 0			// Whether the AI control is disabled.
-	var/list/mode_list = null			// A list of shield_mode datums.
-	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
+	var/emergency_shutdown = FALSE		// Whether the scanner is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
 	var/generatingShield = FALSE //true when shield tiles are in process of being generated
 
 	var/obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
-
-	var/report_integrity = FALSE //This shield generator will make announcements about its condition
-	//Set this false for any subclasses
-
-	//Reporting variables
-	var/last_report_time = 0 //World time of the last time we sent a report
-	var/min_report_interval = 120 SECONDS //Time between reports for small damage. This will be ignored for large integrity changes
-	var/last_report_integrity = 100
-	var/max_report_integrity = 80 //If shield integrity is above this, don't bother reporting
-	var/report_delay = 20 SECONDS //We will wait this amount of time after taking a hit before sending a report.
-	var/report_scheduled = FALSE //
 
 	var/list/tendrils = list()
 	var/list/tendril_dirs = list(NORTH, EAST, WEST)
@@ -324,7 +301,7 @@ var/list/ship_scanners = list()
 
 // Checks whether specific flags are enabled
 /obj/machinery/power/long_range_scanner/proc/check_flag(var/flag)
-	return (shield_modes & flag)
+	return (scanner_modes & flag)
 
 
 /obj/machinery/power/long_range_scanner/proc/get_logs()
