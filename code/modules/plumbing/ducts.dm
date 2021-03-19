@@ -288,7 +288,7 @@ All the important duct code:
 					adjacents += D
 	return adjacents
 
-/obj/machinery/duct/update_icon()
+/obj/machinery/duct/on_update_icon()
 	..()
 	if(vertical_conector || multi_layer)
 		return

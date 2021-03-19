@@ -83,7 +83,7 @@
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/update_icon()
+/obj/structure/extinguisher_cabinet/on_update_icon()
 	if(!opened)
 		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
 			icon_state = "extinguisher_closed_mini"

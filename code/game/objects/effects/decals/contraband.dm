@@ -136,7 +136,7 @@
 		else if(placement_dir&EAST)
 			pixel_x = -32
 		anchored = TRUE
-		flick("poster_being_set", src)
+		FLICK("poster_being_set", src)
 		playsound(W, 'sound/items/poster_being_created.ogg', 100, 1)
 		design.set_design(src)
 

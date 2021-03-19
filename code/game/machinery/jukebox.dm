@@ -149,8 +149,8 @@
 		StopPlaying()
 	update_icon()
 
-/obj/machinery/media/jukebox/update_icon()
-	overlays.Cut()
+/obj/machinery/media/jukebox/on_update_icon()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		if(stat & BROKEN)
 			icon_state = "[state_base]-broken"
@@ -160,11 +160,11 @@
 	icon_state = state_base
 	if(playing)
 		if(emagged)
-			overlays += "[state_base]-emagged"
+			add_overlays("[state_base]-emagged")
 		else
-			overlays += "[state_base]-running"
+			add_overlays("[state_base]-running")
 	if (panel_open)
-		overlays += "panel_open"
+		add_overlays("panel_open")
 
 /obj/machinery/media/jukebox/Topic(href, href_list)
 	if(..() || !(Adjacent(usr) || issilicon(usr)))

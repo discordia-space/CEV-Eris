@@ -78,8 +78,8 @@
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/shield_generator/update_icon()
-	overlays.Cut()
+/obj/machinery/power/shield_generator/on_update_icon()
+	cut_overlays()
 	if(running)
 		icon_state = "generator1"
 	else
@@ -87,7 +87,7 @@
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
-			overlays += I
+			add_overlays(I)
 
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)

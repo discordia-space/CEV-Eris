@@ -37,7 +37,7 @@
 	rarity_value = 16
 	price_tag = 1200
 
-/obj/item/weapon/gun/projectile/selfload/update_icon()
+/obj/item/weapon/gun/projectile/selfload/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

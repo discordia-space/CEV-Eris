@@ -38,7 +38,7 @@
 
 	if(!allowed(user) && (wires & 1))
 		to_chat(user, SPAN_WARNING("Access Denied"))
-		flick("doorctrl-denied",src)
+		FLICK("doorctrl-denied",src)
 		return
 
 	use_power(5)
@@ -55,7 +55,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/button/remote/update_icon()
+/obj/machinery/button/remote/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
@@ -159,16 +159,16 @@
 				update_icon()
 		else
 			to_chat(user, SPAN_WARNING("Access Denied"))
-			flick("doorid-denied",src)
+			FLICK("doorid-denied",src)
 	else
 		to_chat(user, SPAN_WARNING("You need a id card to operate."))
-		flick("doorid-denied",src)
+		FLICK("doorid-denied",src)
 
 /obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
 	to_chat(user, SPAN_WARNING("You need a id card to operate."))
-	flick("doorid-denied",src)
+	FLICK("doorid-denied",src)
 
-/obj/machinery/button/remote/blast_door/id_card/update_icon()
+/obj/machinery/button/remote/blast_door/id_card/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorid-p"
 	else
@@ -226,7 +226,7 @@
 
 	return
 
-/obj/machinery/button/remote/driver/update_icon()
+/obj/machinery/button/remote/driver/on_update_icon()
 	if(active)
 		icon_state = "launcher1"
 	else if(stat & (NOPOWER))

@@ -157,16 +157,16 @@
 	if(contents.len)
 		dry()
 
-/obj/machinery/smartfridge/drying_rack/update_icon()
-	overlays.Cut()
+/obj/machinery/smartfridge/drying_rack/on_update_icon()
+	cut_overlays()
 	if(inoperable())
 		icon_state = icon_off
 	else
 		icon_state = icon_on
 	if(contents.len)
-		overlays += "drying_rack_filled"
+		add_overlays("drying_rack_filled")
 		if(!inoperable() && currently_drying)
-			overlays += "drying_rack_drying"
+			add_overlays("drying_rack_drying")
 
 /obj/machinery/smartfridge/drying_rack/proc/dry()
 	var/drying_something = FALSE //While we're here, check if anything is undried and still processing
@@ -239,14 +239,14 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/smartfridge/update_icon()
+/obj/machinery/smartfridge/on_update_icon()
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = icon_off
 	else
 		icon_state = icon_on
 
 	if(panel_open && icon_panel)
-		overlays += image(icon, icon_panel)
+		add_overlays(image(icon, icon_panel))
 
 /*******************
 *   Item Adding

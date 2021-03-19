@@ -36,7 +36,7 @@
 	price_tag = 1700
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/automatic/molly/update_icon()
+/obj/item/weapon/gun/projectile/automatic/molly/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

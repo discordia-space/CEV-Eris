@@ -33,7 +33,7 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/gun/projectile/automatic/maxim/update_icon()
+/obj/item/weapon/gun/projectile/automatic/maxim/on_update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"

@@ -102,7 +102,7 @@
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	var/shielded = 0
 	var/b_loss

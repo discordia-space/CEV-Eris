@@ -167,7 +167,7 @@
 						var/datum/find/F = finds[1]
 						if(F.excavation_required <= excavation_level + F.view_range)
 							archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-							overlays += archaeo_overlay
+							add_overlays(archaeo_overlay)
 
 					//there's got to be a better way to do this
 					var/update_excav_overlay = 0
@@ -185,7 +185,7 @@
 					if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 						var/excav_quadrant = round(excavation_level / 25) + 1
 						excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-						overlays += excav_overlay
+						add_overlays(excav_overlay)
 
 					//drop some rocks
 					next_rock += excavation_amount * 10
@@ -290,12 +290,12 @@
 			to_chat(M, "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>")
 			if(pain)
 				if (M.HUDtech.Find("pain"))
-					flick("pain",M.HUDtech["pain"])
+					FLICK("pain",M.HUDtech["pain"])
 				if(prob(50))
 					M.adjustBruteLoss(5)
 			else
 				if (M.HUDtech.Find("flash"))
-					flick("flash", M.HUDtech["flash"])
+					FLICK("flash", M.HUDtech["flash"])
 				if(prob(50))
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
@@ -463,13 +463,13 @@
 
 /turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
 	for(var/direction in step_overlays)
 
 		if(istype(get_step(src, step_overlays[direction]), /turf/space))
-			overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction])
+			add_overlays(image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction]))
 
 	//todo cache
 	if(overlay_detail) overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)

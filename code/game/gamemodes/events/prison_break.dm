@@ -74,7 +74,7 @@
 				theAPC = A.get_apc()
 				if(theAPC.operating)	//If the apc's off, it's a little hard to overload the lights.
 					for(var/obj/machinery/light/L in A)
-						L.flicker(10)
+						L.flick_light(10)
 
 
 /datum/event/prison_break/end()

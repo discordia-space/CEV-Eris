@@ -283,14 +283,14 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/proc/sync(var/mob/living/M)
 	dir = 2
-	overlays.Cut()
+	cut_overlays()
 	icon = M.icon
 	icon_state = M.icon_state
 	item_state = M.item_state
 	color = M.color
 	name = M.name
 	desc = M.desc
-	overlays |= M.overlays
+	associate_with_overlays(M.overlays)
 	last_holder = loc
 	update_wear_icon()
 

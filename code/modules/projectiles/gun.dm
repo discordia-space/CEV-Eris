@@ -142,7 +142,7 @@
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
 
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/on_update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)

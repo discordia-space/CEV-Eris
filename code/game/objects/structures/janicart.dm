@@ -209,23 +209,23 @@
 
 
 
-/obj/structure/janitorialcart/update_icon()
-	overlays.Cut()
+/obj/structure/janitorialcart/on_update_icon()
+	cut_overlays()
 
 	if(mybucket)
-		overlays += "cart_bucket"
+		add_overlays("cart_bucket")
 		if(mybucket.reagents.total_volume >= 1)
-			overlays += "water_cart"
+			add_overlays("water_cart")
 	if(mybag)
-		overlays += "cart_garbage"
+		add_overlays("cart_garbage")
 	if(mymop)
-		overlays += "cart_mop"
+		add_overlays("cart_mop")
 	if(myspray)
-		overlays += "cart_spray"
+		add_overlays("cart_spray")
 	if(myreplacer)
-		overlays += "cart_replacer"
+		add_overlays("cart_replacer")
 	if(signs)
-		overlays += "cart_sign[signs]"
+		add_overlays("cart_sign[signs]")
 
 
 

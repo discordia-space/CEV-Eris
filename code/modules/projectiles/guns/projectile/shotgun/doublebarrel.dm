@@ -37,7 +37,7 @@
 	desc = "A double-barreled shotgun meant to fire signal flash shells."
 	ammo_type = /obj/item/ammo_casing/shotgun/flash
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/update_icon()
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
