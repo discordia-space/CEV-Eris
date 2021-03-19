@@ -11,8 +11,8 @@
 	pixel_x = -16
 	ranged = TRUE
 
-	health = 1650
-	maxHealth = 1650 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
+	health = 1850
+	maxHealth = 1850 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
 	break_stuff_probability = 95
 
 	melee_damage_lower = 30
