@@ -89,11 +89,8 @@ SUBSYSTEM_DEF(mapping)
 	A.contents.Add(turfs)
 
     // Spawn star at the center of the overmap
-	for(var/i in -4 to 4)
-		for(var/j in -4 to 4)
-			var/turf/T = locate(round(GLOB.maps_data.overmap_size/2)+i,round(GLOB.maps_data.overmap_size/2)+j,GLOB.maps_data.overmap_z)
-			var/obj/effect/star/S = new(T)
-			S.icon_state = "sun[i][j]"
+	var/turf/T = locate(round(GLOB.maps_data.overmap_size/2),round(GLOB.maps_data.overmap_size/2),GLOB.maps_data.overmap_z)
+	new /obj/effect/star(T)
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")
