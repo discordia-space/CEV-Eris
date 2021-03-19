@@ -1,6 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - bugfix: biomatter now deals damage based on the amount of bio protection you have,
-      instead of just not dealing damage if you had even a very tiny amount of bio
-      resist.

@@ -1,7 +1,0 @@
-author: AlexMorgan3817
-delete-after: true
-changes:
-  - refactor: Flicks now handling by /datum/proc/flicker
-  - refactor: Icon, icon state now should handling by /atom/proc/SetIcon and SetIconState.
-  - refactor: Overlays operations refactored to procs as cut_overlays, add_overlays,
-      associate and etc.
