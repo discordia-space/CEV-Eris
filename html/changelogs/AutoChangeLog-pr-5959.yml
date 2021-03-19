@@ -1,0 +1,4 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: You can now examine Hivemind machines to rougly check their health
