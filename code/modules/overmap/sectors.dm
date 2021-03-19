@@ -2,9 +2,9 @@
 //Overmap object representing zlevel(s)
 //===================================================================================
 /obj/effect/overmap
-	name = "map object"
+	name = "unknown spatial phenomenon"
 	icon = 'icons/obj/overmap.dmi'
-	icon_state = "object"
+	icon_state = "poi"
 	bad_type = /obj/effect/overmap
 	spawn_tags = null
 	var/list/map_z = list()
@@ -21,6 +21,12 @@
 
 	var/global/eris_start_set = FALSE //Tells us if we need to modify a random location for Eris to start at
 	var/global/eris
+
+	// Stage 0: close, well scanned by sensors
+	// Stage 1: medium, barely scanned by sensors
+	// Stage 2: far, not scanned by sensors
+	var/list/name_stages = list("stage0", "stage1", "stage2")
+	var/list/icon_stages = list("generic", "object", "poi")
 
 /obj/effect/overmap/Initialize()
 	. = ..()
@@ -93,7 +99,7 @@
 /obj/effect/overmap/sector
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
-	icon_state = "sector"
+	icon_state = "poi"
 	anchored = TRUE
 
 /obj/effect/overmap/sector/Initialize()

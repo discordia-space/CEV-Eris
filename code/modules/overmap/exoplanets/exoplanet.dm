@@ -1,6 +1,5 @@
 /obj/effect/overmap/sector/exoplanet
 	name = "exoplanet"
-	icon_state = "globe"
 	in_space = 0
 	var/area/planetary_area
 	var/list/seeds = list()
@@ -44,6 +43,9 @@
 
 	var/habitability_class
 
+	name_stages = list("exoplanet", "unknown planet", "unknown spatial phenomenon")
+	icon_stages = list("generic", "planet", "poi")
+
 /obj/effect/overmap/sector/exoplanet/proc/generate_habitability()
 	var/roll = rand(1,100)
 	switch(roll)
@@ -57,6 +59,11 @@
 /obj/effect/overmap/sector/exoplanet/New(nloc, max_x, max_y)
 	if(!config.use_overmap)
 		return
+
+	// We do those 3 lines before name is overwritten by "[generate_planet_name()], \a [name]"
+	var/list/planet_name = splittext(name, " ") // format "type exoplanet" like "barren exoplanet"
+	name_stages[1] = name  // for instance "barren exoplanet"
+	icon_stages[1] = planet_name[1]  // for instance "barren" after the splittext
 
 	maxx = max_x ? max_x : world.maxx
 	maxy = max_y ? max_y : world.maxy

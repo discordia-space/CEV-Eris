@@ -1,6 +1,8 @@
 #define EVENT_ENABLED 			3
 #define EVENT_DISABLED 			4
 #define EVENT_RECONFIGURED		5
+#define PASSIVE_SCAN_RANGE      3
+#define PASSIVE_SCAN_PERIOD     3
 
 var/list/ship_scanners = list()
 
@@ -492,10 +494,8 @@ var/list/ship_scanners = list()
 		return FALSE
 
 /obj/machinery/power/long_range_scanner/proc/consume_energy_scan()
-	admin_notice("Old: [current_energy]")
 	if(current_energy > round(ENERGY_PER_SCAN))
 		current_energy -= round(ENERGY_PER_SCAN)
-		admin_notice("New: [current_energy]")
 		return TRUE
 	return FALSE
 

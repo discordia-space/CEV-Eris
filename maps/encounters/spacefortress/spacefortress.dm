@@ -12,12 +12,14 @@
 /obj/effect/overmap/sector/fortress
 	name = "abandoned fortress"
 	desc = "An abandoned space fortress, carved inside an asteroid. Might be a hundred years old."
-	icon_state = "sector"
 	generic_waypoints = list(
 		"nav_fortress_1",
 		"nav_fortress_2"
 	)
 	known = 1
+
+	name_stages = list("abandoned fortress", "unknown object", "unknown spatial phenomenon")
+	icon_stages = list("os_fortress", "object", "poi")
 
 /obj/effect/shuttle_landmark/fortress/nav1
 	name = "Abandoned Fortress Navpoint #1"

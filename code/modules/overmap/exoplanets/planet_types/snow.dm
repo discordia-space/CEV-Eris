@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/snow
-	name = "snow exoplanet"
+	name = "frozen exoplanet"
 	desc = "Cold planet with limited plant life."
 	color = "#e8faff"
 	planetary_area = /area/exoplanet/snow
@@ -21,7 +21,7 @@
 		atmosphere.update_values()
 
 /datum/random_map/noise/exoplanet/snow
-	descriptor = "snow exoplanet"
+	descriptor = "frozen exoplanet"
 	smoothing_iterations = 1
 	flora_prob = 5
 	large_flora_prob = 10

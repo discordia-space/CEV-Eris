@@ -73,11 +73,6 @@
 		if(istype(victim, /obj/effect/overmap/ship))
 			OE:leave(victim)
 			OE:enter(victim)
-		if(istype(victim, /obj/effect/overmap/ship/eris))
-			if(!scanned)
-				name = name_scanned
-				icon_state = icon_scanned
-				scanned = TRUE
 
 /obj/effect/overmap_event/movable/Uncrossed(obj/effect/overmap/ship/victim)
 	..()
@@ -140,17 +135,19 @@
 	start_x = 2
 	start_y = 2
 	eventtype = /datum/overmap_event/meteor/comet_tail_core
+	icon_state = "poi"
 
-	name_scanned = "moving comet core"
-	icon_scanned = "ship_moving"
+	name_stages = list("comet core", "unknown object", "unknown spatial phenomenon")
+	icon_stages = list("generic", "object", "poi")
+
+/obj/effect/overmap_event/movable/comet/Initialize()
+	. = ..()
+
+	icon_stages[1] = pick(list("asteroid0", "asteroid1", "asteroid2", "asteroid3"))
 
 /obj/effect/overmap_event/movable/comet/Move()
 	if(type == /obj/effect/overmap_event/movable/comet)
 		var/obj/effect/overmap_event/movable/comet/cometmedium/CT = new /obj/effect/overmap_event/movable/comet/cometmedium()
-		if(scanned)
-			CT.name = CT.name_scanned
-			CT.icon_state = CT.icon_scanned
-			CT.scanned = TRUE
 
 		CT.moving_vector = moving_vector
 		CT.Move(src.loc)
@@ -159,12 +156,15 @@
 /obj/effect/overmap_event/movable/comet/cometmedium
 	movable = 0
 	eventtype = /datum/overmap_event/meteor/comet_tail_medium
+	icon_state = "poi"
 
-	name_scanned = "dense comet tail"
-	icon_scanned = "meteor1"
+	name_stages = list("comet tail", "unknown field", "unknown spatial phenomenon")
+	icon_stages = list("generic", "field", "poi")
 
 /obj/effect/overmap_event/movable/comet/cometmedium/Initialize()
 	. = ..()
+
+	icon_stages[1] = pick(list("meteors0", "meteors1", "meteors2", "meteors3"))
 
 	if(!config.use_overmap)
 		return
@@ -172,26 +172,14 @@
 
 	spawn(350)
 		var/obj/effect/overmap_event/movable/comet/comettail/CT = new /obj/effect/overmap_event/movable/comet/comettail()
-		if(scanned)
-			CT.name = CT.name_scanned
-			CT.icon_state = CT.icon_scanned
-			CT.scanned = TRUE
 		CT.Move(src.loc)
 		CT.moving_vector = moving_vector
 
 		var/obj/effect/overmap_event/movable/comet/comettail/CT2 = new /obj/effect/overmap_event/movable/comet/comettail()
-		if(scanned)
-			CT2.name = CT2.name_scanned
-			CT2.icon_state = CT2.icon_scanned
-			CT2.scanned = TRUE
 		CT2.Move( locate(get_step(src, turn(moving_vector, 90)) ))
 		CT2.moving_vector = moving_vector
 
 		var/obj/effect/overmap_event/movable/comet/comettail/CT3 = new /obj/effect/overmap_event/movable/comet/comettail()
-		if(scanned)
-			CT3.name = CT3.name_scanned
-			CT3.icon_state = CT3.icon_scanned
-			CT3.scanned = TRUE
 		CT3.Move( locate(get_step(src, turn(moving_vector, -90)) ))
 		CT3.moving_vector = moving_vector
 
@@ -201,12 +189,15 @@
 /obj/effect/overmap_event/movable/comet/comettail
 	movable = 0
 	eventtype = /datum/overmap_event/meteor/comet_tail
+	icon_state = "poi"
 
-	name_scanned = "thin comet tail"
-	icon_scanned = "dust1"
+	name_stages = list("thin comet tail", "unknown field", "unknown spatial phenomenon")
+	icon_stages = list("generic", "field", "poi")
 
 /obj/effect/overmap_event/movable/comet/comettail/Initialize()
 	. = ..()
+
+	icon_stages[1] = pick(list("dust0", "dust1", "dust2", "dust3"))
 
 	if(!config.use_overmap)
 		return
