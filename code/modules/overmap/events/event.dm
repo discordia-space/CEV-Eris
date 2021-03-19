@@ -41,10 +41,10 @@
 
 				var/obj/effect/overmap_event/event = new(event_turf)
 	//			world << "Created new event in [event.loc.x], [event.loc.y]"
-				event.name = overmap_event.name
+				event.name = overmap_event.event_name_stages[3]
 				event.icon_state = "poi"
 				event.icon_stages = list(pick(overmap_event.event_icon_stage0), pick(overmap_event.event_icon_stage1), "poi")
-				event.name_stages = overmap_event.event_name_stages		
+				event.name_stages = overmap_event.event_name_stages
 				event.opacity =  overmap_event.opacity
 
 /decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)

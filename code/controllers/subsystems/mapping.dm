@@ -77,11 +77,10 @@ SUBSYSTEM_DEF(mapping)
 	GLOB.maps_data.overmap_z = world.maxz
 	var/list/turfs = list()
 	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))
-		var/turf/T = square
-		if(T.x == GLOB.maps_data.overmap_size || T.y == GLOB.maps_data.overmap_size)
-			T = T.ChangeTurf(/turf/unsimulated/map/edge)
-		else if(T.x == 1 || T.y == 1)
-			T = T.ChangeTurf(/turf/unsimulated/map/)
+		// Switch to space turf with green grid overlay
+		var/turf/space/T = square
+		T.icon_state = "grid"
+		T.update_starlight()
 		turfs += T
 		CHECK_TICK
 

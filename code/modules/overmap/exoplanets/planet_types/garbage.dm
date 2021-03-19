@@ -1,7 +1,7 @@
 /obj/effect/overmap/sector/exoplanet/garbage
 	name = "ruined exoplanet"
 	desc = "An arid exoplanet with unnatural formations covering the surface. Hotspots of radiation detected."
-	color = "#a5a18b"
+	//color = "#a5a18b"
 	planetary_area = /area/exoplanet/garbage
 	map_generators = list(/datum/random_map/noise/exoplanet/garbage, /datum/random_map/noise/ore/poor)
 	ruin_tags_whitelist = RUIN_ALIEN|RUIN_NATURAL|RUIN_WRECK
