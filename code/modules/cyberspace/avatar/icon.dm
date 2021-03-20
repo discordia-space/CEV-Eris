@@ -8,9 +8,9 @@
 			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner])")
 		if(!Icon)
 			Icon = image(,Owner,)
+			Icon.plane = FULLSCREEN_PLANE + 1
+			//Icon.layer = FULLSCREEN_LAYER
 			Icon.SyncWithAtom(Owner)
-			Icon.plane = FULLSCREEN_PLANE
-			Icon.layer = FULLSCREEN_LAYER + 0.01
 		_updateImage_icon(Icon)
 		if(ismovable(Owner))
 			GLOB.moved_event.register(Owner, src, /datum/CyberSpaceAvatar/proc/UpdateIcon)

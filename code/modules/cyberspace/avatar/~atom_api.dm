@@ -29,10 +29,12 @@
 	if(CyberAvatar && !istype(CyberAvatar))
 		CreateCA()
 
-/atom/proc/CreateCA()
+/atom/proc/CreateCA(_color)
 	if(istype(CyberAvatar))
 		qdel(CyberAvatar)
 	CyberAvatar = new(src)
+	if(_color)
+		CyberAvatar.SetColor(_color)
 
 /atom/proc/DestroyCA()
 	qdel(CyberAvatar)

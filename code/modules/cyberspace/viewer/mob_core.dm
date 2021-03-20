@@ -10,6 +10,7 @@ GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 
 /mob/proc/UpdateCyberVisuals()
 	if(CanSeeCyberSpace())
+		client.AddCyberspaceBackground()
 		for(var/atom/A in range(client.view + 1, src))
 		//for(var/atom/A in GLOB.CyberSpaceAtoms)
 			A.CyberAvatar?.ShowToClient(client)
@@ -17,6 +18,7 @@ GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 		GLOB.CyberSpaceViewers |= src
 	else
 		if(client)
+			client.RemoveCyberspaceBackground()
 			for(var/atom/A in range(client.view + 1, src))
 			//for(var/atom/A in GLOB.CyberSpaceAtoms)
 				A.CyberAvatar?.HideFromClient(client)
