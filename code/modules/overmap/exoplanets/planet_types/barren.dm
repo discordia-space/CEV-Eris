@@ -37,10 +37,10 @@
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
 
-/turf/simulated/floor/exoplanet/barren/update_icon()
-	overlays.Cut()
+/turf/simulated/floor/exoplanet/barren/on_update_icon()
+	cut_overlays()
 	if(prob(20))
-		overlays += image('icons/turf/flooring/decals.dmi', "asteroid[rand(0,9)]")
+		add_overlays(image('icons/turf/flooring/decals.dmi', "asteroid[rand(0,9)]"))
 
 /turf/simulated/floor/exoplanet/barren/Initialize()
 	. = ..()

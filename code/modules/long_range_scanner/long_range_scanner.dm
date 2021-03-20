@@ -50,8 +50,8 @@ var/list/ship_scanners = list()
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/long_range_scanner/update_icon()
-	overlays.Cut()
+/obj/machinery/power/long_range_scanner/on_update_icon()
+	cut_overlays()
 	if(running)
 		set_light(1, 1, "#82C2D8")
 		icon_state = "core_warmup"

@@ -99,7 +99,7 @@
 	dirt_color = COLOR_GRAY20
 	var/list/victims
 
-/turf/simulated/floor/exoplanet/lava/update_icon()
+/turf/simulated/floor/exoplanet/lava/on_update_icon()
 	return
 
 /turf/simulated/floor/exoplanet/lava/Initialize()

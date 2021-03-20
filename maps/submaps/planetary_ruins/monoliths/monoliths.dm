@@ -29,15 +29,15 @@
 		if(istype(E))
 			desc += "\nThere are images on it: [E.get_engravings()]"
 
-/obj/structure/monolith/update_icon()
-	overlays.Cut()
+/obj/structure/monolith/on_update_icon()
+	cut_overlays()
 	if(active)
 		var/image/I = image(icon,"[icon_state]_1")
 		I.appearance_flags = RESET_COLOR
 		I.color = get_random_colour(0, 150, 255)
 		I.layer = ABOVE_LIGHTING_LAYER
 		I.plane = ABOVE_LIGHTING_PLANE
-		overlays += I
+		add_overlays(I)
 		set_light(0.3, 0.1, 2, l_color = I.color)
 
 /obj/structure/monolith/attack_hand(mob/user)

@@ -40,7 +40,7 @@
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice"
 
-/turf/simulated/floor/exoplanet/ice/update_icon()
+/turf/simulated/floor/exoplanet/ice/on_update_icon()
 	return
 
 /turf/simulated/floor/exoplanet/snow
