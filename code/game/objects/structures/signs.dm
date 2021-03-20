@@ -497,6 +497,10 @@
 	name = "DRONES"
 	icon_state = "drones"
 
+/obj/structure/sign/department/scanner
+	name = "LONG RANGE SCANNER"
+	icon_state = "scanner"
+
 /obj/structure/sign/department/interrogation
 	name = "INTERROGATION"
 	icon_state = "interrogation"

@@ -102205,6 +102205,9 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/sign/department/scanner{
+	pixel_x = 32
+	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eBK" = (
@@ -105328,6 +105331,13 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
+"lDR" = (
+/obj/structure/catwalk,
+/obj/structure/sign/department/scanner{
+	pixel_x = 32
+	},
+/turf/simulated/open,
+/area/eris/engineering/gravity_generator)
 "lGH" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/alarm{
@@ -292656,7 +292666,7 @@ dKs
 dLg
 eBI
 eCv
-eCr
+lDR
 eDB
 eCr
 eFe
