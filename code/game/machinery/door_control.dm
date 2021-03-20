@@ -55,7 +55,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/button/remote/update_icon()
+/obj/machinery/button/remote/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
@@ -168,7 +168,7 @@
 	to_chat(user, SPAN_WARNING("You need a id card to operate."))
 	FLICK("doorid-denied",src)
 
-/obj/machinery/button/remote/blast_door/id_card/update_icon()
+/obj/machinery/button/remote/blast_door/id_card/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorid-p"
 	else
@@ -226,7 +226,7 @@
 
 	return
 
-/obj/machinery/button/remote/driver/update_icon()
+/obj/machinery/button/remote/driver/on_update_icon()
 	if(active)
 		icon_state = "launcher1"
 	else if(stat & (NOPOWER))

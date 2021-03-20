@@ -32,7 +32,7 @@
 	update_name()
 
 
-/obj/item/weapon/reagent_containers/blood/update_icon()
+/obj/item/weapon/reagent_containers/blood/on_update_icon()
 	cut_overlays()
 
 	if(!reagents || !reagents.total_volume)

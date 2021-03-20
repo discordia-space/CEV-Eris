@@ -42,7 +42,7 @@ var/global/list/map_sectors = list()
 			I.pixel_x = 5*i - 2
 		if(x == GLOB.maps_data.overmap_size)
 			I.pixel_x = 5*i + 2
-		overlays += I
+		add_overlays(I)
 
 //Proc to 'move' stars in spess
 //null direction stops movement

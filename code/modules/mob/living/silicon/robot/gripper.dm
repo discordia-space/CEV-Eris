@@ -76,7 +76,7 @@
 
 
 //This places a little image of the gripped item in the gripper, so you can see visually what you're holding
-/obj/item/weapon/gripper/update_icon()
+/obj/item/weapon/gripper/on_update_icon()
 	underlays.Cut()
 	if (wrapped && wrapped.icon)
 		var/mutable_appearance/MA = new(wrapped)

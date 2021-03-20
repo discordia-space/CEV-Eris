@@ -96,11 +96,11 @@ var/global/excelsior_last_draft = 0
 			energy_gain *= 2
 
 
-/obj/machinery/complant_teleporter/update_icon()
-	overlays.Cut()
+/obj/machinery/complant_teleporter/on_update_icon()
+	cut_overlays()
 
 	if(panel_open)
-		overlays += image("panel")
+		add_overlays(image("panel"))
 
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = "off"

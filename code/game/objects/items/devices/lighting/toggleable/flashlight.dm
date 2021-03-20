@@ -315,7 +315,7 @@
 	light_spot_radius = 3
 	light_spot_power = 2.5
 
-/obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
+/obj/item/device/lighting/toggleable/flashlight/seclite/on_update_icon()
 	. = ..()
 
 	if(on)

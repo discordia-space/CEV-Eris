@@ -39,6 +39,10 @@
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
 		/datum/design/bioprinter/nt_clothes/custodian_armor,
 
+		/datum/design/bioprinter/nt_clothes/acolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/agrolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/custodian_armor_head,
+
 		/datum/design/bioprinter/nt_clothes/preacher_coat,
 		/datum/design/bioprinter/nt_clothes/acolyte_jacket,
 		/datum/design/bioprinter/nt_clothes/sports_jacket,
@@ -347,3 +351,11 @@
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
 		)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade
+	disk_name = "NeoTheology Armory - Cruciform Upgrades"
+	icon_state = "neotheology"
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade/New()
+	designs = subtypesof(/datum/design/autolathe/cruciform_upgrade)
+	..()

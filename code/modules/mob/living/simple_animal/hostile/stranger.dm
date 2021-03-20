@@ -139,7 +139,7 @@
 		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
 	)
 
-/obj/item/weapon/gun/energy/plasma/stranger/update_icon(ignore_inhands)
+/obj/item/weapon/gun/energy/plasma/stranger/on_update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

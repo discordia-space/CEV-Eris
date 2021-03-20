@@ -667,13 +667,13 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/update_icon()
-	overlays.Cut()
+/obj/machinery/autolathe/on_update_icon()
+	cut_overlays()
 
 	icon_state = initial(icon_state)
 
 	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_panel"))
+		add_overlays(image(icon, "[icon_state]_panel"))
 
 	if(icon_off())
 		return

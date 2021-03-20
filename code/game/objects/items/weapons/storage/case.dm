@@ -37,12 +37,12 @@
 		close_all()
 		update_icon()
 
-/obj/item/weapon/storage/case/update_icon()
+/obj/item/weapon/storage/case/on_update_icon()
 	..()
 
 	icon_state = initial(icon_state)
 	if(!anchored)
-		overlays.Cut()
+		cut_overlays()
 		icon_state += "-closed"
 
 /obj/item/weapon/storage/case/donut
@@ -63,9 +63,9 @@
 	new /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig(src)
 	update_icon()
 
-/obj/item/weapon/storage/case/donut/update_icon()
+/obj/item/weapon/storage/case/donut/on_update_icon()
 	..()
 	if(opened)
-		overlays.Cut()
+		cut_overlays()
 		for(var/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/D in contents)
-			overlays += image('icons/obj/food.dmi', "[D.overlay_state]")
+			add_overlays(image('icons/obj/food.dmi', "[D.overlay_state]"))

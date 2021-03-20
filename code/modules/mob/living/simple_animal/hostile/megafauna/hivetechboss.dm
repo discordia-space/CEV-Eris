@@ -11,8 +11,8 @@
 	pixel_x = -16
 	ranged = TRUE
 
-	health = 2250
-	maxHealth = 2250 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
+	health = 1850
+	maxHealth = 1850 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
 	break_stuff_probability = 95
 
 	melee_damage_lower = 30
@@ -20,23 +20,13 @@
 	megafauna_min_cooldown = 50
 	megafauna_max_cooldown = 80
 
-
-	var/health_marker_1 = 0//1700
-	var/health_marker_2 = 0//900
-	var/health_marker_3 = 0//100
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 	projectiletype = /obj/item/projectile/goo
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/death()
 	..()
 	delhivetech()
-
-/mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/telenode()
-	var/list/atom/NODES = list()
-	for(var/obj/machinery/hivemind_machine/node/NODE in world)
-		NODES.Add(NODE.loc)
-	if(length(NODES) > 0)
-		forceMove(pick(NODES))
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/delhivetech()
 	var/othertyrant = 0
@@ -55,18 +45,6 @@
 		return 0
 	if(client)
 		return 0
-
-	if(!health_marker_1 && health < 1700)
-		health_marker_1 = !health_marker_1
-		telenode()
-
-	if(!health_marker_2 && health < 900)
-		health_marker_2 = !health_marker_2
-		telenode()
-
-	if(!health_marker_3 && health < 100)
-		health_marker_3 = !health_marker_3
-		telenode()
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/OpenFire()
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)

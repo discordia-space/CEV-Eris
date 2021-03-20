@@ -6107,8 +6107,10 @@
 "aog" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
 /obj/item/clothing/mask/gas/ihs,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
 "aoh" = (
@@ -11984,7 +11986,8 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/hallway/side/eschangarb)
 "aCe" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aCf" = (
@@ -13706,9 +13709,10 @@
 /area/eris/engineering/atmos)
 "aGG" = (
 /obj/structure/closet,
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
 "aGH" = (
@@ -18843,8 +18847,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aTi" = (
@@ -19321,7 +19326,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "aUo" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aUp" = (
@@ -20957,7 +20963,8 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section4deck5port)
 "aXS" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aXT" = (
@@ -21035,7 +21042,9 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aYc" = (
@@ -27739,10 +27748,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/hallway/side/morguehallway)
 "blR" = (
-/obj/spawner/gun/normal/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 2. Maints on the west of Morgue."
 	},
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "blS" = (
@@ -29734,7 +29743,8 @@
 	d2 = 0;
 	icon_state = "16-0"
 	},
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bqs" = (
@@ -30476,7 +30486,8 @@
 /area/eris/maintenance/section4deck4port)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bsw" = (
@@ -39212,8 +39223,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bLM" = (
-/obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bLN" = (
@@ -40679,7 +40691,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOS" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOT" = (
@@ -56228,9 +56241,10 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czQ" = (
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czR" = (
@@ -73672,11 +73686,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "doi" = (
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 4. Deep maints east from Medbay EVA, under the wall of secutity checkpoint."
 	},
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "doj" = (
@@ -73800,11 +73815,12 @@
 /area/eris/security/checkpoint/supply)
 "dow" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/firstaid/low_chance,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dox" = (
@@ -86510,18 +86526,19 @@
 /area/eris/maintenance/section4deck2port)
 "dSg" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/space)
 "dSh" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/space)
 "dSi" = (
@@ -87977,6 +87994,8 @@
 "dVR" = (
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dVS" = (
@@ -88321,10 +88340,11 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck1starboard)
 "dWv" = (
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dWw" = (

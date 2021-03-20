@@ -655,35 +655,35 @@ There are 9 wires.
 	else
 		underlays += GLOB.wedge_icon_cache[cache_string]
 
-/obj/machinery/door/airlock/update_icon()
+/obj/machinery/door/airlock/on_update_icon()
 	set_light(0)
 	if(overlays.len)
-		overlays.Cut()
+		cut_overlays()
 	if(underlays.len)
 		underlays.Cut()
 	if(density)
 		if(locked && lights && arePowerSystemsOn())
-			icon_state = "door_locked"
+			SetIconState("door_locked")
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
-			icon_state = "door_closed"
+			SetIconState("door_closed")
 		if(p_open || welded)
-			overlays = list()
+			set_overlays(list())
 			if(p_open)
-				overlays += image(icon, "panel_open")
+				add_overlays(image(icon, "panel_open"))
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(icon, "sparks_broken")
+					add_overlays(image(icon, "sparks_broken"))
 				else if (health < maxhealth * 3/4)
-					overlays += image(icon, "sparks_damaged")
+					add_overlays(image(icon, "sparks_damaged"))
 			if(welded)
-				overlays += image(icon, "welded")
+				add_overlays(image(icon, "welded"))
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_damaged")
+			add_overlays(image(icon, "sparks_damaged"))
 	else
-		icon_state = "door_open"
+		SetIconState("door_open")
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_open")
+			add_overlays(image(icon, "sparks_open"))
 	if(wedged_item)
 		generate_wedge_overlay()
 
@@ -691,7 +691,7 @@ There are 9 wires.
 	switch(animation)
 		if("opening")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flicker("o_door_opening")
 			else
@@ -699,7 +699,7 @@ There are 9 wires.
 			update_icon()
 		if("closing")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flicker("o_door_closing")
 			else

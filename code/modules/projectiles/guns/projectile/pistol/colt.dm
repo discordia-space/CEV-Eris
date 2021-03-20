@@ -14,11 +14,10 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.5
 	recoil_buildup = 17
-
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 
-/obj/item/weapon/gun/projectile/colt/update_icon()
+/obj/item/weapon/gun/projectile/colt/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

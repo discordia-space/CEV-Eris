@@ -56,11 +56,11 @@
 // Proc: update_icon()
 // Parameters: None
 // Description: Updates icon of this object. Uses icon state variables.
-/obj/machinery/door/blast/update_icon()
+/obj/machinery/door/blast/on_update_icon()
 	if(density)
-		icon_state = icon_state_closed
+		SetIconState(icon_state_closed)
 	else
-		icon_state = icon_state_open
+		SetIconState(icon_state_open)
 	return
 
 // Proc: force_open()

@@ -134,27 +134,27 @@ mob
 		underlays += image(icon='old_or_unused.dmi',icon_state="red", pixel_x = -32)
 
 		// Testing image overlays
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32)
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32)
-		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32)
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32))
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32))
+		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32))
 
 		// Testing icon file overlays (defaults to mob's state)
-		overlays += '_flat_demoIcons2.dmi'
+		add_overlays('_flat_demoIcons2.dmi')
 
 		// Testing icon_state overlays (defaults to mob's icon)
-		overlays += "white"
+		add_overlays("white")
 
 		// Testing dynamic icon overlays
 		var/icon/I = icon('old_or_unused.dmi', icon_state="aqua")
 		I.Shift(NORTH, 16, 1)
-		overlays+=I
+		add_overlays(I)
 
 		// Testing dynamic image overlays
 		I=image(icon=I, pixel_x = -32, pixel_y = 32)
-		overlays+=I
+		add_overlays(I)
 
 		// Testing object types (and layers)
-		overlays+=/obj/effect/overlayTest
+		add_overlays(/obj/effect/overlayTest)
 
 		loc = locate (10, 10, 1)
 	verb
@@ -184,7 +184,7 @@ mob
 
 		Add_Overlay()
 			set name = "4. Add Overlay"
-			overlays += image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32))
+			add_overlays(image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32)))
 
 		Stress_Test()
 			set name = "5. Stress Test"
@@ -848,7 +848,8 @@ proc
 			if(2)	I.pixel_x++
 			if(3)	I.pixel_y--
 			if(4)	I.pixel_y++
-		overlays += I//And finally add the overlay.
+		add_overlays(I)
+		//And finally add the overlay.
 
 /proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
@@ -1050,47 +1051,34 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	// To handle not only state changes in update icon if need
 	flick(iconOrState, src)
 
-/image
-	var/list/SynchronizedAtoms = list()
+/atom/proc/SetIcon(value)
+	icon = value
 
-/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withFlicks = TRUE)
-	if(istype(D))
-		SynchronizedAtoms[D] = args.Copy(2)
-		if(withIcon)
-			GLOB.update_icon_event.register(D, src, .proc/icon_synchronization)
-			D.update_icon()
-		if(withFlicks)
-			GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
-	else
-		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithDatum. Additional info: {[json_encode(args)]}")
+/atom/proc/SetIconState(value)
+	icon_state = value
 
-/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakFlicks = TRUE)
-	if(istype(D) && SynchronizedAtoms.Find(D))
-		var/list/data_of_sync = SynchronizedAtoms[D]
-		if(data_of_sync)
-			if(breakIcon && data_of_sync[1] == 1)
-				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
-			if(breakFlicks && data_of_sync[2] == 1)
-				GLOB.update_icon_event.unregister(D, src, .proc/icon_synchronization)
 
-/image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
-	if(QDELETED(D))
-		qdel(src)
-		return
-	if(isByEvent)
-		GLOB.update_icon_event.register(D, src, .proc/flick_synchronization)
-	return flicker(iconOrState)
+// Overlays' hadlers
+	//!!! DO NOT USE RAW overlays' OPERATIONS IF YOU DON'T KNOW WHY YOU USE THEM RAW !!!
+//associate_with_overlays("temp4", "alive", "meter")
+	//overlays |=
+/atom/proc/associate_with_overlays()
+	overlays |= args
+//add_overlays("temp4", "alive", "meter")
+	//overlays.Add;overlays +=
+/atom/proc/add_overlays()
+	return overlays.Add(args)
 
-/image/proc/icon_synchronization(atom/D, _icon, _state, _overlays, isByEvent = TRUE)
-	if(QDELETED(D))
-		qdel(src)
-		return
-	if(_icon)
-		icon = _icon
-	if(_state)
-		icon_state = _state
-	if(_overlays)
-		overlays = _overlays //No need to .Copy, byond copy ovelays' list by it self
-	if(isByEvent)
-		GLOB.flicker_event.register(D, src, .proc/icon_synchronization)
+//remove_overlays("temp4", "alive", "meter")
+	//
+/atom/proc/remove_overlays()
+	return overlays.Remove(args)
+//set_overlays(list("temp4", "alive", "meter"))
+	//overlays =
+/atom/proc/set_overlays(list/value)
+	overlays = value
+
+// (placeholders for if/when TG overlays system is ported)
+/atom/proc/cut_overlays(Start=1, End=0)
+	return overlays.Cut(Start, End)
 

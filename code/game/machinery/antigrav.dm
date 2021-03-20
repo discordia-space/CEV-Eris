@@ -126,7 +126,7 @@
 	FLICK("GraviMobile_stoping", src)
 	FLICK("GraviMobile_stoping_ball", ball)
 
-/obj/machinery/antigrav/update_icon()
+/obj/machinery/antigrav/on_update_icon()
 	if(!anchored)
 		icon_state = "GraviMobile"
 		return

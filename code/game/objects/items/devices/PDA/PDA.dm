@@ -836,14 +836,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
-/obj/item/device/pda/update_icon()
+/obj/item/device/pda/on_update_icon()
 	..()
 
-	overlays.Cut()
+	cut_overlays()
 	if(new_message || new_news)
-		overlays += image('icons/obj/pda.dmi', "pda-r")
+		add_overlays(image('icons/obj/pda.dmi', "pda-r"))
 	if(locate(/obj/item/weapon/pen) in src)
-		overlays += image('icons/obj/pda.dmi', "pda_pen")
+		add_overlays(image('icons/obj/pda.dmi', "pda_pen"))
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
 	//TODO: sometimes these attacks show up on the message server

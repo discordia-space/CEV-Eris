@@ -24,6 +24,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
+	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -32,7 +33,7 @@
 		)
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/gun/projectile/automatic/ak47/update_icon()
+/obj/item/weapon/gun/projectile/automatic/ak47/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

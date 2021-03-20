@@ -226,6 +226,7 @@
 
 /obj/item/weapon/storage/briefcase/antimaterial_rifle
 	desc = "An ominous leather briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/briefcase/antimaterial_rifle/populate_contents()
 	new /obj/item/ammo_casing/antim(src)

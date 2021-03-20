@@ -169,14 +169,14 @@
 	var/alert = 0
 	var/previousPressure
 
-/obj/machinery/airlock_sensor/update_icon()
+/obj/machinery/airlock_sensor/on_update_icon()
 	if(on)
 		if(alert)
-			icon_state = "airlock_sensor_alert"
+			SetIconState("airlock_sensor_alert")
 		else
-			icon_state = "airlock_sensor_standby"
+			SetIconState("airlock_sensor_standby")
 	else
-		icon_state = "airlock_sensor_off"
+		SetIconState("airlock_sensor_off")
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
 	var/datum/signal/signal = new
@@ -291,16 +291,9 @@
 	return new /datum/gas_mixture
 
 
-
-
-
-
-
-
-
-
 /obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
+	var/base_of_state = "access_button"
 	icon_state = "access_button_standby"
 	name = "access button"
 
@@ -316,11 +309,9 @@
 	var/on = TRUE
 
 
-/obj/machinery/access_button/update_icon()
-	if(on)
-		icon_state = "access_button_standby"
-	else
-		icon_state = "access_button_off"
+/obj/machinery/access_button/on_update_icon()
+	. = ..()
+	SetIconState("[base_of_state]_[on?"standby":"off"]")
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button

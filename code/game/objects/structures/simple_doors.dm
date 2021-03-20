@@ -117,7 +117,7 @@
 	isSwitchingStates = 0
 	update_nearby_tiles()
 
-/obj/structure/simple_door/update_icon()
+/obj/structure/simple_door/on_update_icon()
 	if(state)
 		icon_state = "[material.door_icon_base]open"
 	else

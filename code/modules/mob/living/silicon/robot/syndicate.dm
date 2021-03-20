@@ -17,7 +17,7 @@
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
 	laws = new /datum/ai_laws/syndicate_override
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 	new /obj/item/weapon/robot_module/syndicate(src)
 

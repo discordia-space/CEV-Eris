@@ -139,7 +139,7 @@
 		update_icon()
 	SEND_SIGNAL(src, COMSIG_SHIP_STILL, x, y, is_still())
 
-/obj/effect/overmap/ship/update_icon()
+/obj/effect/overmap/ship/on_update_icon()
 	if(!is_still())
 		icon_state = "ship_moving"
 		dir = get_heading()

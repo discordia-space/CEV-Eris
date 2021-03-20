@@ -32,7 +32,7 @@
 		)
 
 
-/obj/item/weapon/gun/projectile/automatic/sts35/update_icon()
+/obj/item/weapon/gun/projectile/automatic/sts35/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

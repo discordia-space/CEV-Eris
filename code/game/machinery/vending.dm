@@ -326,9 +326,9 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
 				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
-				overlays.Cut()
+				cut_overlays()
 				if(panel_open)
-					overlays += image(icon, "[icon_type]-panel")
+					add_overlays(image(icon, "[icon_type]-panel"))
 				SSnano.update_uis(src)
 			return
 

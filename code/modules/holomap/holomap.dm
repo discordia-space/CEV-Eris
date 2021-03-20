@@ -172,16 +172,16 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/holomap/update_icon()
+/obj/machinery/holomap/on_update_icon()
 	if(!holomap_datum)
 		return //Not yet.
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
-		overlays += "station_map-panel"
+		add_overlays("station_map-panel")
 	else
-		overlays -= "station_map-panel"
+		remove_overlays("station_map-panel")
 
 	if(wiresexposed)
 		switch(buildstage)
@@ -205,7 +205,7 @@
 			holomap_datum.initialize_holomap_bogus()
 		else
 			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
-			overlays |= small_station_map
+			associate_with_overlays(small_station_map)
 			holomap_datum.initialize_holomap(get_turf(src))
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)

@@ -101,7 +101,7 @@
 
 
 /obj/effect/plant/hivemind/refresh_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/I
 	var/turf/simulated/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
@@ -109,7 +109,7 @@
 	else
 		for(var/i = 1 to 4)
 			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
-			overlays += I
+			add_overlays(I)
 
 	//wallhug
 	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
@@ -130,7 +130,7 @@
 			if (T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
-			overlays += wall_hug_overlay
+			add_overlays(wall_hug_overlay)
 
 
 

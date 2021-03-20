@@ -85,7 +85,7 @@
 		update_icon()
 
 
-/obj/machinery/complant_maker/update_icon()
+/obj/machinery/complant_maker/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "off"
 	else
@@ -94,7 +94,7 @@
 	if(working)
 		icon_state = "working"
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
-		overlays.Add(image(icon, "panel"))
+		add_overlays(image(icon, "panel"))

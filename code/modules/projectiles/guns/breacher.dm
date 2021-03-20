@@ -27,15 +27,15 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/hatton/update_icon()
-	overlays.Cut()
+/obj/item/weapon/hatton/on_update_icon()
+	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Hatton_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			add_overlays(icon(icon, "[magazine.charge]/3"))
 		else
 			icon_state = "Hatton_Hammer_1_empty"
-			overlays += icon(icon, "1/3")
+			add_overlays(icon(icon, "1/3"))
 	else
 		icon_state="Hatton_Hammer_0"
 
@@ -72,7 +72,7 @@
 
 /obj/item/weapon/hatton/proc/click_empty(mob/user = null)
 	if (user)
-		user.visible_message(SPAN_DANGER("*click*"),  SPAN_DANGER("*click*"))
+		user.visible_message(SPAN_DANGER("*click*"), SPAN_DANGER("*click*"))
 	else
 		src.visible_message(SPAN_DANGER("*click*"))
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
@@ -161,7 +161,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/hatton_magazine/update_icon()
+/obj/item/weapon/hatton_magazine/on_update_icon()
 	if(charge)
 		icon_state = "Hatton_box1"
 	else
@@ -173,7 +173,7 @@
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	charge = 2
 
-/obj/item/weapon/hatton_magazine/moebius/update_icon()
+/obj/item/weapon/hatton_magazine/moebius/on_update_icon()
 	if(charge)
 		icon_state = "Moebius_box1"
 	else
@@ -212,15 +212,15 @@
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/hatton/moebius/update_icon()
-	overlays.Cut()
+/obj/item/weapon/hatton/moebius/on_update_icon()
+	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Moebius_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			add_overlays(icon(icon, "[magazine.charge]/3"))
 		else
 			icon_state = "Moebius_Hammer_1_empty"
-			overlays += icon(icon, "1/3")
+			add_overlays(icon(icon, "1/3"))
 	else
 		icon_state = "Moebius_Hammer_0"
 

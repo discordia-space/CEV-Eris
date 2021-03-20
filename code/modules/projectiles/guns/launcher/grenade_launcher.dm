@@ -14,14 +14,14 @@
 	throw_distance = 7
 	release_force = 5
 
+	zoom_factor = 2
+	twohanded = TRUE
 	var/obj/item/weapon/grenade/chambered
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
-	zoom_factor = 2
-	twohanded = TRUE
 
 //revolves the magazine, allowing players to choose between multiple grenade types
-/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user as mob)
+/obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user)
 	playsound(user, 'sound/weapons/shotgunpump.ogg', 60, 1)
 
 	var/obj/item/weapon/grenade/next
@@ -49,9 +49,7 @@
 	if(!G.loadable)
 		to_chat(user, SPAN_WARNING("\The [G] doesn't seem to fit in \the [src]!"))
 		return
-
-	if(grenades.len >= max_grenades)
-		to_chat(user, SPAN_WARNING("\The [src] is full."))
+	if(!chek_grenades(user))
 		return
 	user.remove_from_mob(G)
 	G.forceMove(src)
@@ -59,6 +57,12 @@
 	user.visible_message("\The [user] inserts \a [G] into \the [src].", SPAN_NOTICE("You insert \a [G] into \the [src]."))
 	pump(user)
 	update_icon()
+
+/obj/item/weapon/gun/launcher/grenade/proc/chek_grenades(mob/user)
+	. = TRUE
+	if(grenades.len >= max_grenades)
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
+		return FALSE
 
 /obj/item/weapon/gun/launcher/grenade/proc/unload(mob/user)
 	if(grenades.len)
@@ -107,6 +111,7 @@
 	max_grenades = 0
 	safety = FALSE
 	twohanded = FALSE
+
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return
 
@@ -153,8 +158,26 @@
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
-	overlays += "grenademag_[ratio]"
+	add_overlays("grenademag_[ratio]")
 
-/obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/launcher/grenade/lenar/on_update_icon()
+	cut_overlays()
 	update_charge()
+
+/obj/item/weapon/gun/launcher/grenade/makeshift
+	name = "makeshift grenade launcher"
+	desc = "Your own, homemade, China Lake."
+	icon = 'icons/obj/guns/launcher/makeshift.dmi'
+	icon_state = "makeshift"
+	item_state = "makeshift"
+	w_class = ITEM_SIZE_BULKY
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	force = 5
+	max_grenades = 0
+
+/obj/item/weapon/gun/launcher/grenade/makeshift/chek_grenades(mob/user)
+	. = TRUE
+	if(grenades.len > max_grenades)
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
+		return FALSE

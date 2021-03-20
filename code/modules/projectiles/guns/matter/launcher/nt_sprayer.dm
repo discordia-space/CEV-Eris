@@ -5,7 +5,6 @@
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
 	slot_flags = SLOT_BACK | SLOT_BELT
 	fire_sound = 'sound/weapons/Genhit.ogg'
-
 	matter_type = MATERIAL_BIOMATTER
 
 	init_firemodes = list(

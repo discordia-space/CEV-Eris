@@ -12,7 +12,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1200
-	rarity_value = 16
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
@@ -38,7 +37,7 @@
 	rarity_value = 16
 	price_tag = 1200
 
-/obj/item/weapon/gun/projectile/selfload/update_icon()
+/obj/item/weapon/gun/projectile/selfload/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

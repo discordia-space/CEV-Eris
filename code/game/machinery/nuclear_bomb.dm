@@ -71,18 +71,18 @@ var/bomb_set
 				if (src.auth)
 					if (panel_open == 0)
 						panel_open = 1
-						overlays += image(icon, "npanel_open")
+						add_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You unscrew the control panel of [src]."))
 					else
 						panel_open = 0
-						overlays -= image(icon, "npanel_open")
+						remove_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You screw the control panel of [src] back on."))
 				else
 					if (panel_open == 0)
 						to_chat(user, SPAN_NOTICE("\The [src] emits a buzzing noise, the panel staying locked in."))
 					if (panel_open == 1)
 						panel_open = 0
-						overlays -= image(icon, "npanel_open")
+						remove_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 					FLICK("nuclearbombc", src)
@@ -362,7 +362,7 @@ var/bomb_set
 
 	return
 
-/obj/machinery/nuclearbomb/update_icon()
+/obj/machinery/nuclearbomb/on_update_icon()
 	if(lighthack)
 		icon_state = "nuclearbomb0"
 		return

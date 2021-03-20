@@ -72,20 +72,21 @@
 	new /obj/item/weapon/material/shard(src.loc)
 	return ..()
 
-/obj/machinery/door/blast/shutters/glass/update_icon()
-	overlays.Cut()
+/obj/machinery/door/blast/shutters/glass/on_update_icon()
+	cut_overlays()
 	if(density)
-		icon_state = "closed"
+		var/postfix = ""
 		if(!have_glass)
-			icon_state += "_empty"
+			postfix = "_empty"
 		else if(stat&BROKEN)
-			icon_state += "-broken"
+			postfix = "-broken"
 		else if(health < maxhealth)
 			var/ratio = health / maxhealth
 			ratio = CEILING(ratio * 4, 1) * 25
-			overlays += "damage[ratio]"
+			add_overlays("damage[ratio]")
+		SetIconState("closed[postfix]")
 	else
-		icon_state = "open"
+		SetIconState("open")
 
 /obj/machinery/door/blast/shutters/glass/open()
 	if(operating)
@@ -101,7 +102,7 @@
 	else
 		var/ratio = health / maxhealth
 		ratio = CEILING(ratio * 4, 1) * 25
-		overlays.Cut()
+		cut_overlays()
 		flicker("opening[ratio]")
 
 	density = FALSE
@@ -114,15 +115,13 @@
 		return
 
 	operating = TRUE
-	overlays.Cut()
+	cut_overlays()
 	if(!have_glass)
 		flicker("closing-empty")
-		icon_state = "closed-empty"
-
+		SetIconState("closed-empty")
 	else if(stat&BROKEN)
 		flicker("closing-broken")
-		icon_state = "closed-broken"
-
+		SetIconState("closed-broken")
 	else
 		var/ratio = health / maxhealth
 		ratio = CEILING(ratio * 4, 1) * 25

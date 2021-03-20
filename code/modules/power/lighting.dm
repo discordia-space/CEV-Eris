@@ -257,7 +257,7 @@
 //		A.update_lights()
 	. = ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/on_update_icon()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
