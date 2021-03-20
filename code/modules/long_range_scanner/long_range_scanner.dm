@@ -11,7 +11,7 @@ var/list/ship_scanners = list()
 	name = "long range scanner"
 	desc = "An advanced long range scanner with heavy-duty capacitor, capable of scanning celestial anomalies at large distances."
 	icon = 'icons/obj/machines/conduit_of_soul.dmi'
-	icon_state = "core"
+	icon_state = "core_inactive"
 	density = TRUE
 	anchored = FALSE
 
