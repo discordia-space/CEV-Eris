@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/garbage
-	name = "ruined exoplanet"
+	planet_type = "ruined"
 	desc = "An arid exoplanet with unnatural formations covering the surface. Hotspots of radiation detected."
 	//color = "#a5a18b"
 	planetary_area = /area/exoplanet/garbage

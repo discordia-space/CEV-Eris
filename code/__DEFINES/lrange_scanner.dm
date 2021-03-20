@@ -1,4 +1,4 @@
-#define ENERGY_UPKEEP_SCANNER (25 KILOWATTS)	// Base upkeep
+#define ENERGY_UPKEEP_SCANNER (35 KILOWATTS)	// Base upkeep
 #define ENERGY_PER_SCAN (100 MEGAWATTS)	// Energy cost to launch a scan (yes it's in Watt and not in Joules...)
 
 #define SCANNER_OFF 0				// The shield is offline

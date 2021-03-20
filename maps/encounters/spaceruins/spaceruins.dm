@@ -10,7 +10,7 @@
 
 
 /obj/effect/overmap/sector/spaceruins
-	name = "space ruins"
+	name = "unknown spatial phenomenon"
 	desc = "An assorted clutter of small asteroids and space trash, seems to be long abandoned."
 	generic_waypoints = list(
 		"nav_ruin_1",

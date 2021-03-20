@@ -26,10 +26,10 @@
 	for(var/obj/effect/overmap/sector/S in map)
 		if (S.known)
 			var/datum/data/record/R = new()
-			R.fields["name"] = S.name
+			R.fields["name"] = S.name_stages[1]
 			R.fields["x"] = S.x
 			R.fields["y"] = S.y
-			known_sectors[S.name] = R
+			known_sectors[S.name_stages[1]] = R
 
 /obj/machinery/computer/helm/Process()
 	..()

@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/barren
-	name = "barren exoplanet"
+	planet_type = "barren"
 	desc = "An exoplanet that couldn't hold its atmosphere."
 	//color = "#847c6f"
 	planetary_area = /area/exoplanet/barren

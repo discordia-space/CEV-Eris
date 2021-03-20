@@ -10,7 +10,7 @@
 
 //MINING-1 // CLUSTER
 /obj/effect/overmap/sector/fortress
-	name = "abandoned fortress"
+	name = "unknown spatial phenomenon"
 	desc = "An abandoned space fortress, carved inside an asteroid. Might be a hundred years old."
 	generic_waypoints = list(
 		"nav_fortress_1",

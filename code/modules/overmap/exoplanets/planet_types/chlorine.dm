@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/chlorine
-	name = "chlorine exoplanet"
+	planet_type = "chlorine"
 	desc = "An exoplanet with a chlorine based ecosystem. Large quantities of liquid chlorine are present."
 	//color = "#efff7c"
 	planetary_area = /area/exoplanet/chlorine

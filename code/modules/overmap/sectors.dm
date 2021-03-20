@@ -50,7 +50,7 @@
 		eris_start_set = TRUE
 
 	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
-	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
+	testing("Located sector \"[name_stages[1]]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
 
 	GLOB.maps_data.player_levels |= map_z
 
@@ -74,7 +74,7 @@
 		if(WP)
 			found_waypoints += WP
 		else
-			admin_notice("Sector \"[name]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
+			admin_notice("Sector \"[name_stages[1]]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
 	generic_waypoints = found_waypoints
 
 	for(var/shuttle_name in restricted_waypoints)
@@ -84,14 +84,14 @@
 			if(WP)
 				found_waypoints += WP
 			else
-				admin_notice("Sector \"[name]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
+				admin_notice("Sector \"[name_stages[1]]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
 		restricted_waypoints[shuttle_name] = found_waypoints
 
 	for(var/obj/machinery/computer/sensors/S in SSmachines.machinery)
 		if (S.z in map_z)
 			S.linked = src
 
-/obj/effect/overmap/proc/get_waypoints(var/shuttle_name)
+/obj/effect/overmap/sector/proc/get_waypoints(var/shuttle_name)
 	. = generic_waypoints.Copy()
 	if(shuttle_name in restricted_waypoints)
 		. += restricted_waypoints[shuttle_name]

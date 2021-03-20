@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/snow
-	name = "frozen exoplanet"
+	planet_type = "frozen"
 	desc = "Cold planet with limited plant life."
 	//color = "#e8faff"
 	planetary_area = /area/exoplanet/snow

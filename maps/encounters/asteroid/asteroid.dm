@@ -2,7 +2,7 @@
 
 //MINING-1 // CLUSTER
 /obj/effect/overmap/sector/asteroid
-	name = "asteroid"
+	name = "unknown spatial phenomenon"
 	desc = "A large asteroid. Mineral content detected."
 	generic_waypoints = list(
 		"nav_asteroid_1",

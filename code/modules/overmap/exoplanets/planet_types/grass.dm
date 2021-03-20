@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/grass
-	name = "lush exoplanet"
+	planet_type = "lush"
 	desc = "Planet with abundant flora and fauna."
 	//color = "#538224"
 	planetary_area = /area/exoplanet/grass

@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet
-	name = "exoplanet"
+	name = "unknown spatial phenomenon"
 	in_space = 0
 	var/area/planetary_area
 	var/list/seeds = list()
@@ -12,6 +12,7 @@
 	var/maxx
 	var/maxy
 	var/landmark_type = /obj/effect/shuttle_landmark/automatic
+	var/planet_type = "generic"
 
 	var/list/planet_colors = list()
 
@@ -60,17 +61,12 @@
 	if(!config.use_overmap)
 		return
 
-	// We do those 3 lines before name is overwritten by "[generate_planet_name()], \a [name]"
-	var/list/planet_name = splittext(name, " ") // format "type exoplanet" like "barren exoplanet"
-	name_stages[1] = name  // for instance "barren exoplanet"
-	icon_stages[1] = planet_name[1]  // for instance "barren" after the splittext
-
 	maxx = max_x ? max_x : world.maxx
 	maxy = max_y ? max_y : world.maxy
 	planetary_area = new planetary_area()
 
-	name = "[generate_planet_name()], \a [name]"
-
+	name_stages[1] = "[generate_planet_name()], \a [planet_type] " + name_stages[1]
+	icon_stages[1] = planet_type
 
 	world.maxz++
 	map_z += world.maxz

@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/volcanic
-	name = "volcanic exoplanet"
+	planet_type = "volcanic"
 	desc = "A tectonically unstable planet, extremely rich in minerals."
 	//color = "#8e3900"
 	planetary_area = /area/exoplanet/volcanic

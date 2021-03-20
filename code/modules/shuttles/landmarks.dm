@@ -91,7 +91,6 @@
 /obj/effect/shuttle_landmark/automatic/proc/add_to_sector(var/obj/effect/overmap/O, var/tag_only)
 	if(!istype(O))
 		return
-	name = "[O.name] - [name]"
 	if(shuttle_restricted)
 		if(!O.restricted_waypoints[shuttle_restricted])
 			O.restricted_waypoints[shuttle_restricted] = list()

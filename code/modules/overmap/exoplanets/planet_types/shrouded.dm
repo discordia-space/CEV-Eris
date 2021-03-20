@@ -1,5 +1,5 @@
 /obj/effect/overmap/sector/exoplanet/shrouded
-	name = "shrouded exoplanet"
+	planet_type = "shrouded"
 	desc = "An exoplanet shrouded in a perpetual storm of bizzare, light absorbing particles."
 	//color = "#3e3960"
 	planetary_area = /area/exoplanet/shrouded
