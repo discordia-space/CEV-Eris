@@ -1,7 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - tweak: Hiborg and Mechiver have reduced HP. Mechiver now has some flat damage
-      resistance.
-  - balance: Removed Hivemind Tyrant's ability to teleport around.
-  - bugfix: Fixed Hivemind Bomber's explosion being 5x5 instead of 3x3

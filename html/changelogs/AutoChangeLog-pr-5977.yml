@@ -1,6 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - rscadd: Added back robotic organs.
-  - rscadd: More organs can be modified.
-  - bugfix: Fixed FBP-s using organic organs.
