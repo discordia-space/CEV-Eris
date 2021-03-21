@@ -35,7 +35,7 @@
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
-	icon_state = iconstring
+	SetIconState(iconstring)
 
 /obj/item/weapon/gun/projectile/avasarala/Initialize()
 	. = ..()
