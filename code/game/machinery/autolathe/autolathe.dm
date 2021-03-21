@@ -74,6 +74,7 @@
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
 	var/obj/item/oddity
+	var/use_license = TRUE
 	var/is_nanoforge = FALSE
 
 /obj/machinery/autolathe/Initialize()
@@ -214,6 +215,7 @@
 		data["oddity_name"] = oddity.name
 		data["oddity_stats"] = stats
 
+	data["use_license"] = use_license
 	data["is_nanoforge"] = is_nanoforge
 	return data
 
@@ -734,7 +736,7 @@
 		if(!design_file || !design_file.design)
 			return ERR_NOTFOUND
 
-		if(!design_file.check_license())
+		if(use_license && !design_file.check_license())
 			return ERR_NOLICENSE
 
 		var/datum/design/design = design_file.design
@@ -908,7 +910,7 @@
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	if(current_file.use_license()) //In the case of an an unprotected design, this will always be true
+	if(!use_license || current_file.use_license()) //In the case of an an unprotected design, this will always be true
 		fabricate_design(current_file.design)
 	else
 		//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
