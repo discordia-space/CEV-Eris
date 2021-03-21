@@ -20,7 +20,7 @@
 
 /obj/structure/monolith/Initialize()
 	. = ..()
-	icon_state = "monolith"
+	SetIconState("monolith")
 	var/material/A = get_material_by_name(MATERIAL_VOXALLOY)
 	if(A)
 		color = A.icon_colour

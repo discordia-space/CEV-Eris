@@ -13,7 +13,7 @@
 	..(newloc)
 	name = "[M.display_name] deposit"
 	ore_key = M.name
-	icon_state = "rock_[ore_key]"
+	SetIconState("rock_[ore_key]")
 	var/turf/T = get_turf(src)
 	if(T.color)
 		color = T.color

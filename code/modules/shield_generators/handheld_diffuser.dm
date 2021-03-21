@@ -10,9 +10,9 @@
 
 /obj/item/device/shield_diffuser/on_update_icon()
 	if(enabled)
-		icon_state = "hdiffuser_on"
+		SetIconState("hdiffuser_on")
 	else
-		icon_state = "hdiffuser_off"
+		SetIconState("hdiffuser_off")
 
 /obj/item/device/shield_diffuser/Destroy()
 	if(enabled)

@@ -54,34 +54,34 @@ var/list/ship_scanners = list()
 	cut_overlays()
 	if(running)
 		set_light(1, 1, "#82C2D8")
-		icon_state = "core_warmup"
+		SetIconState("core_warmup")
 		spawn(20)
 			set_light(2, 2, "#82C2D8")
-			icon_state = "core_active"
+			SetIconState("core_active")
 	else
 		set_light(1, 1, "#82C2D8")
-		icon_state = "core_shutdown"
+		SetIconState("core_shutdown")
 		spawn(20)
 			set_light(0)
-			icon_state = "core_inactive"
+			SetIconState("core_inactive")
 
 	for (var/obj/machinery/scanner_conduit/S in tendrils)
 		if (running)
 			S.dim_light()
-			S.icon_state = "warmup"
+			S.SetIconState("warmup")
 			S.update_icon()
 			spawn(20)
 				S.bright_light()
-				S.icon_state = "speen"
+				S.SetIconState("speen")
 				S.update_icon()
 
 		else
 			S.dim_light()
-			S.icon_state = "shutdown"
+			S.SetIconState("shutdown")
 			S.update_icon()
 			spawn(20)
 				S.no_light()
-				S.icon_state = "inactive"
+				S.SetIconState("inactive")
 				S.update_icon()
 
 

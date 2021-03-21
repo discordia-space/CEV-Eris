@@ -86,6 +86,6 @@
 /turf/simulated/floor/exoplanet/grass/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 200 && prob(5)) || temperature > T0C + 1000)
 		SetName("scorched ground")
-		icon_state = "scorched"
+		SetIconState("scorched")
 		footstep_type = /decl/footsteps/asteroid
 		color = null

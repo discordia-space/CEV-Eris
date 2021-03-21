@@ -60,5 +60,5 @@
 	footstep_type = /decl/footsteps/sand
 
 /turf/simulated/floor/exoplanet/chlorine_sand/New()
-	icon_state = "chlorine_sand[rand(0,11)]"
+	SetIconState("chlorine_sand[rand(0,11)]")
 	..()

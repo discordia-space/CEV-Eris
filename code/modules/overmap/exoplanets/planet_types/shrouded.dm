@@ -62,5 +62,5 @@
 	dirt_color = "#3e3960"
 
 /turf/simulated/floor/exoplanet/shrouded/New()
-	icon_state = "shrouded[rand(0,8)]"
+	SetIconState("shrouded[rand(0,8)]")
 	..()

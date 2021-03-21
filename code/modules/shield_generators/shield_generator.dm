@@ -86,10 +86,10 @@
 /obj/machinery/power/shield_generator/on_update_icon()
 	cut_overlays()
 	if(running)
-		icon_state = "generator1"
+		SetIconState("generator1")
 		set_light(2, 2, "#8AD55D")
 	else
-		icon_state = "generator0"
+		SetIconState("generator0")
 		set_light(0)
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
@@ -98,10 +98,10 @@
 
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)
-			S.icon_state = "conduit_1"
+			S.SetIconState("conduit_1")
 			S.bright_light()
 		else
-			S.icon_state = "conduit_0"
+			S.SetIconState("conduit_0")
 			S.no_light()
 
 

@@ -17,11 +17,11 @@
 	var/time_between_uses = 1800
 	var/last_process = 0
 
-/obj/structure/healingfountain/update_icon()  // update_icon() but as a proc to be able to do a callback
+/obj/structure/healingfountain/on_update_icon()  // update_icon() but as a proc to be able to do a callback
 	if(last_process + time_between_uses > world.time)
-		icon_state = "fountain"
+		SetIconState("fountain")
 	else
-		icon_state = "fountain-blue"
+		SetIconState("fountain-blue")
 
 /obj/structure/healingfountain/attack_hand(mob/living/user)
 	. = ..()

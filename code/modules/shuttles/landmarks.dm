@@ -142,7 +142,7 @@
 
 /obj/item/device/spaceflare/on_update_icon()
 	if(active)
-		icon_state = "bluflare_on"
+		SetIconState("bluflare_on")
 		set_light(l_range = 6, l_power = 3)
 
 

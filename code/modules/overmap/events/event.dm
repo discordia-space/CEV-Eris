@@ -42,7 +42,7 @@
 				var/obj/effect/overmap_event/event = new(event_turf)
 	//			world << "Created new event in [event.loc.x], [event.loc.y]"
 				event.name = overmap_event.event_name_stages[3]
-				event.icon_state = "poi"
+				event.SetIconState("poi")
 				event.icon_stages = list(pick(overmap_event.event_icon_stage0), pick(overmap_event.event_icon_stage1), "poi")
 				event.name_stages = overmap_event.event_name_stages
 				event.opacity =  overmap_event.opacity
@@ -129,7 +129,7 @@
 		for(var/turf/T in range(PASSIVE_SCAN_RANGE+1, new_loc))
 			for(var/obj/effect/overmap_event/E in T)
 				E.name = E.name_stages[3]
-				E.icon_state = E.icon_stages[3]
+				E.SetIconState(E.icon_stages[3])
 	else
 		var/passive_scan = (world.time - last_tick) > PASSIVE_SCAN_PERIOD
 		if(passive_scan)
@@ -148,33 +148,33 @@
 			for(var/obj/effect/overmap_event/E in T)
 				E.name = E.name_stages[1]
 				if(!passive_scan)
-					E.icon_state = E.icon_stages[1]  // No outline
+					E.SetIconState(E.icon_stages[1])  // No outline
 				else					
-					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
+					E.SetIconState(E.icon_stages[1] + "_g")  // Green outline
 			for(var/obj/effect/overmap/E in T)
 				E.name = E.name_stages[1]
 				if((!passive_scan) || istype(E, /obj/effect/overmap/sector/exoplanet))
-					E.icon_state = E.icon_stages[1]  // No outline
+					E.SetIconState(E.icon_stages[1])  // No outline
 				else					
-					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
+					E.SetIconState(E.icon_stages[1] + "_g")  // Green outline
 
 		// Stage 1 (limit range)
 		for(var/turf/T in getcircle(new_loc, PASSIVE_SCAN_RANGE))
 			for(var/obj/effect/overmap_event/E in T)
 				E.name = E.name_stages[2]
-				E.icon_state = E.icon_stages[2]
+				E.SetIconState(E.icon_stages[2])
 			for(var/obj/effect/overmap/E in T)
 				E.name = E.name_stages[2]
-				E.icon_state = E.icon_stages[2]
+				E.SetIconState(E.icon_stages[2])
 
 		// Stage 2 (too far for sensors)
 		for(var/turf/T in getcircle(new_loc, PASSIVE_SCAN_RANGE+1))
 			for(var/obj/effect/overmap_event/E in T)
 				E.name = E.name_stages[3]
-				E.icon_state = E.icon_stages[3]
+				E.SetIconState(E.icon_stages[3])
 			for(var/obj/effect/overmap/E in T)
 				E.name = E.name_stages[3]
-				E.icon_state = E.icon_stages[3]
+				E.SetIconState(E.icon_stages[3])
 
 	return
 

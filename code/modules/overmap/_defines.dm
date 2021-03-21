@@ -75,5 +75,5 @@ var/global/list/map_sectors = list()
 	var/i = rand(descs.len)
 	name = names[i]
 	desc = descs[i]
-	icon_state = icons[i]
+	SetIconState(icons[i])
 	..()

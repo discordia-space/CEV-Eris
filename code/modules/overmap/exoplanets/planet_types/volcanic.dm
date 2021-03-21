@@ -76,7 +76,7 @@
 	dirt_color = COLOR_GRAY20
 
 /turf/simulated/floor/exoplanet/volcanic/New()
-	icon_state = "basalt[rand(0,12)]"
+	SetIconState("basalt[rand(0,12)]")
 	..()
 
 /datum/random_map/automata/cave_system/mountains/volcanic
