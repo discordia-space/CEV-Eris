@@ -198,7 +198,7 @@
 		var/obj/item/stack/tile/floor/cyborg/C = I
 		C.stacktype = src.type
 		C.build_type = src.type
-		to_chat(usr, SPAN_NOTICE("You will now build [C.build_type]"))
+		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
 	else
 		..()
 
