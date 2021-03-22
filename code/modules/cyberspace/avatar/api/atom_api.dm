@@ -1,5 +1,6 @@
 /atom
 	var/datum/CyberSpaceAvatar/CyberAvatar
+	var/CyberAvatar_inittype
 
 /datum/CyberSpaceAvatar/SetOwner(atom/nOwner)
 	. = ..()
@@ -32,7 +33,10 @@
 /atom/proc/CreateCA(_color)
 	if(istype(CyberAvatar))
 		qdel(CyberAvatar)
-	CyberAvatar = new(src)
+	if(ispath(CyberAvatar_inittype))
+		CyberAvatar = new CyberAvatar_inittype(src)
+	else
+		CyberAvatar = new(src)
 	if(_color)
 		CyberAvatar.SetColor(_color)
 
