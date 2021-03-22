@@ -2304,7 +2304,7 @@
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
 	if(warm)
-		to_chat(user, SPAN_NOTICE("You pretty sure \the [src] can't be heated again."))
+		to_chat(user, SPAN_NOTICE("You are pretty sure \the [src] can't be heated again."))
 		return
 	user.visible_message(
 		SPAN_NOTICE("[user] crushes \the [src] package."),
