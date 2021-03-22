@@ -1,4 +1,3 @@
-GLOBAL_LIST_EMPTY(CyberSpaceAtoms)
 /datum/CyberSpaceAvatar
 	var/atom/Owner
 	var/enabled = TRUE
@@ -14,8 +13,5 @@ GLOBAL_LIST_EMPTY(CyberSpaceAtoms)
 
 /datum/CyberSpaceAvatar/proc/SetOwner(atom/nOwner)
 	Owner = nOwner
-	if(nOwner)
-		GLOB.CyberSpaceAtoms |= Owner
-	else
-		GLOB.CyberSpaceAtoms -= Owner
+	nOwner ? SScyberspace.AddToAtoms(Owner) : SScyberspace.RemoveFromAtoms(Owner)
 	UpdateIcon(TRUE)

@@ -1,4 +1,3 @@
-GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 /mob/var/_SeeCyberSpace = FALSE
 
 /mob/Login()
@@ -15,7 +14,7 @@ GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 		//for(var/atom/A in GLOB.CyberSpaceAtoms)
 			A.CyberAvatar?.ShowToClient(client)
 		GLOB.moved_event.register(src, src, /mob/proc/UpdateCyberVisuals)
-		GLOB.CyberSpaceViewers |= src
+		SScyberspace.AddToViewers(src)
 	else
 		if(client)
 			client.RemoveCyberspaceBackground()
@@ -23,13 +22,15 @@ GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 			//for(var/atom/A in GLOB.CyberSpaceAtoms)
 				A.CyberAvatar?.HideFromClient(client)
 		GLOB.moved_event.unregister(src, src, /mob/proc/UpdateCyberVisuals)
-		GLOB.CyberSpaceViewers.Remove(src)
+		SScyberspace.RemoveFromViewers(src)
 
 /client/proc/AlreadySeeThisCyberAvatar(datum/CyberSpaceAvatar/CA)
 	. = istype(CA) && images.Find(CA.Icon)
 
 /mob/proc/SetSeeCyberSpace(value)
 	_SeeCyberSpace = value
+	if(value)
+		SScyberspace.InitCyberspace()
 	UpdateCyberVisuals()
 
 /mob/Destroy()

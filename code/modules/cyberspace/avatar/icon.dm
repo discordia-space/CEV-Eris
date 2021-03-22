@@ -16,9 +16,9 @@
 			GLOB.moved_event.register(Owner, src, /datum/CyberSpaceAvatar/proc/UpdateIcon)
 		GLOB.dir_set_event.register(Owner, src, /datum/CyberSpaceAvatar/proc/UpdateIcon)
 		if(forced)
-			for(var/mob/viewer in GLOB.CyberSpaceViewers)
+			for(var/mob/viewer in SScyberspace.CyberSpaceViewers)
 				viewer.client && ShowToClient(viewer.client)
-	else for(var/mob/viewer in GLOB.CyberSpaceViewers)
+	else for(var/mob/viewer in SScyberspace.CyberSpaceViewers)
 		viewer.client && HideFromClient(viewer.client)
 
 /datum/CyberSpaceAvatar/proc/SetColor(value)
@@ -32,6 +32,6 @@
 
 /datum/CyberSpaceAvatar/Destroy()
 	istype(Icon) && qdel(Icon)
-	for(var/mob/viewer in GLOB.CyberSpaceViewers)
+	for(var/mob/viewer in SScyberspace.CyberSpaceViewers)
 		viewer.client && HideFromClient(viewer.client)
 	. = ..()

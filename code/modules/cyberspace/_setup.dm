@@ -5,6 +5,8 @@
 #include "avatar/icon.dm"
 #include "avatar/visual.dm"
 #include "avatar/~atom_api.dm"
-#include "avatar/implementations.dm"
+
+#include "controller/implementations.dm"
+#include "controller/SScyberspace.dm"
 
 #include "viewer/mob_core.dm"
