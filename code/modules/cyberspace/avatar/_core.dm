@@ -13,5 +13,5 @@
 
 /datum/CyberSpaceAvatar/proc/SetOwner(atom/nOwner)
 	Owner = nOwner
-	nOwner ? SScyberspace.AddToAtoms(Owner) : SScyberspace.RemoveFromAtoms(Owner)
+	nOwner ? AddToAtoms(Owner) : RemoveFromAtoms(Owner)
 	UpdateIcon(TRUE)

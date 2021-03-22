@@ -27,7 +27,7 @@
 /atom/Initialize()
 	. = ..()
 	if(CyberAvatar && !istype(CyberAvatar))
-		CreateCA()
+		CreateCA(CyberAvatar)
 
 /atom/proc/CreateCA(_color)
 	if(istype(CyberAvatar))
