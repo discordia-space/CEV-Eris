@@ -43,7 +43,7 @@
 	choosen_color = pick(possible_colors)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/automatic/slaught_o_matic/update_icon()
+/obj/item/weapon/gun/projectile/automatic/slaught_o_matic/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

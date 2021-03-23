@@ -35,7 +35,7 @@
 	..(user)
 	to_chat(user, "It has [spikes] spike\s remaining.")
 
-/obj/item/weapon/gun/launcher/spikethrower/update_icon()
+/obj/item/weapon/gun/launcher/spikethrower/on_update_icon()
 	icon_state = "spikethrower[spikes]"
 
 /obj/item/weapon/gun/launcher/spikethrower/special_check(user)

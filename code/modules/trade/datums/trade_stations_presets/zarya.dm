@@ -27,6 +27,7 @@
 			/obj/item/clothing/gloves/insulated,
 		),
 		"Vsyakoe" = list(
+			/obj/item/organ_module/active/simple/armshield,
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/item/weapon/storage/briefcase/inflatable/empty,
 			/obj/item/inflatable/door,

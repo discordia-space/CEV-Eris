@@ -158,10 +158,10 @@
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
-	overlays += "grenademag_[ratio]"
+	add_overlays("grenademag_[ratio]")
 
-/obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/launcher/grenade/lenar/on_update_icon()
+	cut_overlays()
 	update_charge()
 
 /obj/item/weapon/gun/launcher/grenade/makeshift

@@ -329,39 +329,39 @@
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("door_opening", src)
+			flicker("door_opening")
 			playsound(src, 'sound/machines/airlock_ext_open.ogg', 37, 1)
 		if("closing")
-			flick("door_closing", src)
+			flicker("door_closing")
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 37, 1)
 	return
 
 
-/obj/machinery/door/firedoor/update_icon()
-	overlays.Cut()
+/obj/machinery/door/firedoor/on_update_icon()
+	cut_overlays()
 	set_light(0)
 	var/do_set_light = FALSE
 
 	if(density)
-		icon_state = "door_closed"
+		SetIconState("door_closed")
 		if(hatch_open)
-			overlays += "hatch"
+			add_overlays("hatch")
 		if(blocked)
-			overlays += "welded"
+			add_overlays("welded")
 		if(pdiff_alert)
-			overlays += "palert"
+			add_overlays("palert")
 			do_set_light = TRUE
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = cardinal[d]
 				for(var/i=1;i<=ALERT_STATES.len;i++)
 					if(dir_alerts[d] & (1<<(i-1)))
-						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
+						add_overlays(new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir))
 						do_set_light = TRUE
 	else
-		icon_state = "door_open"
+		SetIconState("door_open")
 		if(blocked)
-			overlays += "welded_open"
+			add_overlays("welded_open")
 
 	if(do_set_light)
 		set_light(1.5, 0.5, COLOR_SUN)

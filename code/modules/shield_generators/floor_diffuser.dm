@@ -86,7 +86,7 @@
 	if(default_part_replacement(O, user))
 		return
 
-/obj/machinery/shield_diffuser/update_icon()
+/obj/machinery/shield_diffuser/on_update_icon()
 	if(alarm)
 		icon_state = "fdiffuser_emergency"
 		return

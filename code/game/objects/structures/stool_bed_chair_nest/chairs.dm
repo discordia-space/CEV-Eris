@@ -38,7 +38,7 @@
 /obj/structure/bed/chair/post_buckle_mob()
 	update_icon()
 
-/obj/structure/bed/chair/update_icon()
+/obj/structure/bed/chair/on_update_icon()
 	..()
 
 /*
@@ -48,7 +48,7 @@
 		I.color = material.icon_colour
 		I.layer = FLY_LAYER
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	associate_with_overlays(stool_cache[cache_key])
 */
 	// Padding overlay.
 	if(padding_material)
@@ -58,7 +58,7 @@
 			I.color = padding_material.icon_colour
 			I.layer = FLY_LAYER
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		associate_with_overlays(stool_cache[padding_cache_key])
 
 	if(buckled_mob && padding_material)
 		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
@@ -67,7 +67,7 @@
 			I.layer = ABOVE_MOB_LAYER
 			I.color = padding_material.icon_colour
 			stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
+		associate_with_overlays(stool_cache[cache_key])
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
@@ -147,7 +147,7 @@
 	anchored = FALSE
 	buckle_movable = 1
 
-/obj/structure/bed/chair/office/update_icon()
+/obj/structure/bed/chair/office/on_update_icon()
 	return
 
 /obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -209,7 +209,7 @@
 	..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 // Chair types
 
@@ -222,7 +222,7 @@
 	icon_state = "wooden_chair"
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/wood/update_icon()
+/obj/structure/bed/chair/wood/on_update_icon()
 	return
 
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -234,7 +234,7 @@
 	..(newloc, MATERIAL_WOOD)
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
@@ -245,7 +245,7 @@
 /obj/structure/bed/chair/custom
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/custom/update_icon()
+/obj/structure/bed/chair/custom/on_update_icon()
 	return
 
 /obj/structure/bed/chair/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -257,7 +257,7 @@
 	. = ..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 
 //wooden

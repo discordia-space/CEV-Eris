@@ -231,7 +231,7 @@
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning fade out."
 
-/obj/machinery/shield_gen/update_icon()
+/obj/machinery/shield_gen/on_update_icon()
 	if(stat & BROKEN)
 		icon_state = "broke"
 	else
@@ -239,10 +239,10 @@
 			icon_state = "generator1"
 		else
 			icon_state = "generator0"
-		overlays.Cut()
+		cut_overlays()
 		if (owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
-			overlays += I
+			add_overlays(I)
 
 //TODO MAKE THIS MULTIZ COMPATIBLE
 //grab the border tiles in a circle around this machine

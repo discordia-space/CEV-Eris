@@ -32,17 +32,17 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool/padded/New(var/newloc, var/new_material)
 	..(newloc, MATERIAL_STEEL, MATERIAL_CARPET)
 
-/obj/item/weapon/stool/update_icon()
+/obj/item/weapon/stool/on_update_icon()
 	// Prep icon.
 	icon_state = ""
-	overlays.Cut()
+	cut_overlays()
 	// Base icon.
 	var/cache_key = "stool-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
 		I.color = material.icon_colour
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	associate_with_overlays(stool_cache[cache_key])
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "stool-padding-[padding_material.name]"
@@ -50,7 +50,7 @@ var/global/list/stool_cache = list() //haha stool
 			var/image/I =  image(icon, "stool_padding")
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		associate_with_overlays(stool_cache[padding_cache_key])
 	// Strings.
 	if(padding_material)
 		name = "[padding_material.display_name] [initial(name)]" //this is not perfect but it will do for now.
@@ -160,7 +160,7 @@ var/global/list/stool_cache = list() //haha stool
 	else
 		..()
 
-/obj/item/weapon/stool/custom/update_icon()
+/obj/item/weapon/stool/custom/on_update_icon()
 	return
 
 

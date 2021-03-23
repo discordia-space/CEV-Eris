@@ -8,7 +8,7 @@
 	var/active_power_use = 10 KILOWATTS * CELLRATE
 	var/enabled = 0
 
-/obj/item/device/shield_diffuser/update_icon()
+/obj/item/device/shield_diffuser/on_update_icon()
 	if(enabled)
 		icon_state = "hdiffuser_on"
 	else

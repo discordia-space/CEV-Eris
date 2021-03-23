@@ -30,7 +30,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
+/obj/item/weapon/gun/projectile/automatic/straylight/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

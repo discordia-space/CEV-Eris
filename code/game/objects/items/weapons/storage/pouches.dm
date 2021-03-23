@@ -207,11 +207,11 @@
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
 
-/obj/item/weapon/storage/pouch/tubular/update_icon()
+/obj/item/weapon/storage/pouch/tubular/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -249,11 +249,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/pistol_holster/update_icon()
+/obj/item/weapon/storage/pouch/pistol_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
 
 /obj/item/weapon/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -272,11 +272,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/baton_holster/update_icon()
+/obj/item/weapon/storage/pouch/baton_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
 
 /obj/item/weapon/storage/pouch/holding
 	name = "pouch of holding"

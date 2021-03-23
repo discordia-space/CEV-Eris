@@ -35,7 +35,7 @@
 	..()
 	return ..()
 
-/obj/item/weapon/gun/energy/lasersmg/update_icon()
+/obj/item/weapon/gun/energy/lasersmg/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -45,18 +45,18 @@
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-/obj/item/weapon/gun/energy/lasersmg/update_icon()//TODO: Rework overlays, check assets storage for charge states.
-	overlays.Cut()
+/obj/item/weapon/gun/energy/lasersmg/on_update_icon()//TODO: Rework overlays, check assets storage for charge states.
+	cut_overlays()
 	..()
 
 	if(istype(cell, /obj/item/weapon/cell/medium/moebius/nuclear))
-		overlays += image(icon, "nuke_cell")
+		add_overlays(image(icon, "nuke_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium/moebius))
-		overlays += image(icon, "moeb_cell")
+		add_overlays(image(icon, "moeb_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium/excelsior))
-		overlays += image(icon, "excel_cell")
+		add_overlays(image(icon, "excel_cell"))
 
 	else if(istype(cell, /obj/item/weapon/cell/medium))
-		overlays += image(icon, "guild_cell")
+		add_overlays(image(icon, "guild_cell"))

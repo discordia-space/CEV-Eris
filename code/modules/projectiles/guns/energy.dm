@@ -100,7 +100,7 @@
 	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
-/obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/energy/on_update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

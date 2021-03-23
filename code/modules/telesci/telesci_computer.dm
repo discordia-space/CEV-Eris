@@ -169,7 +169,7 @@
 		var/turf/target = locate(trueX, trueY, z_co)
 		last_target = target
 		var/area/A = get_area(target)
-		flick("pad-beam", telepad)
+		FLICK("pad-beam", telepad)
 
 		if(spawn_time > 15) // 1.5 seconds
 			playsound(telepad.loc, 'sound/weapons/flash.ogg', 25, 1)
@@ -213,7 +213,7 @@
 				temp_msg = "ERROR: Sector is unavailable."
 				return
 
-			flick("pad-beam", telepad)
+			FLICK("pad-beam", telepad)
 			playsound(telepad.loc, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 			for(var/atom/movable/ROI in source)
 				// if is anchored, don't let through

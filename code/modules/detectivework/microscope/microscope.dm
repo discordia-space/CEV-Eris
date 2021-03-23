@@ -39,7 +39,7 @@
 	to_chat(user, SPAN_NOTICE("Printing findings now..."))
 	var/obj/item/weapon/paper/report = new(get_turf(src))
 	report.stamped = list(/obj/item/weapon/stamp)
-	report.overlays = list("paper_stamped")
+	report.set_overlays(list("paper_stamped"))
 	report_num++
 
 	if(istype(sample, /obj/item/weapon/forensics/swab))
@@ -106,7 +106,7 @@
 	else
 		return ..()
 
-/obj/machinery/microscope/update_icon()
+/obj/machinery/microscope/on_update_icon()
 	icon_state = "microscope"
 	if(sample)
 		icon_state += "slide"

@@ -44,7 +44,7 @@ var/global/universe_has_ended = 0
 
 	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+			FLICK("e_flash", M.HUDtech["flash"])
 
 	if(evacuation_controller.cancel_evacuation())
 		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
@@ -118,8 +118,8 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			continue
 		if(A.owner.current.stat!=2)
 			A.owner.current.Weaken(10)
-//			flick("e_flash", M.current.flash)
+//			FLICK("e_flash", M.current.flash)
 			if (A.owner.current.HUDtech.Find("flash"))
-				flick("e_flash", A.owner.current.HUDtech["flash"])
+				FLICK("e_flash", A.owner.current.HUDtech["flash"])
 
 		A.remove_antagonist()

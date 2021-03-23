@@ -77,7 +77,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 
-/obj/item/weapon/gun/energy/plasma/cassad/update_icon()
+/obj/item/weapon/gun/energy/plasma/cassad/on_update_icon()
 	..()
 	set_item_state(null, back = TRUE)
 
@@ -99,11 +99,11 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
 	init_firemodes = list()
 
-/obj/item/weapon/gun/energy/plasma/brigador/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/energy/plasma/brigador/on_update_icon()
+	cut_overlays()
 	..()
 	if(cell)
-		overlays += image(icon, "cell_guild")
+		add_overlays(image(icon, "cell_guild"))
 
 /obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
 	name = "NT PR \"Martyr\""
