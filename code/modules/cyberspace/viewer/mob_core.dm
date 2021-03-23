@@ -18,7 +18,7 @@
 	else
 		if(client)
 			client.RemoveCyberspaceBackground()
-			for(var/atom/A in range(client.view + 1, src))
+			for(var/atom/A in GLOB.CyberSpaceAtoms)
 			//for(var/atom/A in GLOB.CyberSpaceAtoms)
 				A.CyberAvatar?.HideFromClient(client)
 		GLOB.moved_event.unregister(src, src, /mob/proc/UpdateCyberVisuals)

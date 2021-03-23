@@ -2,6 +2,9 @@
 	var/SecurityHash // Generates almost random md5 hash on initialize that will available to AI // Hackers will bruteforce it like miners
 	var/rangeOfProof = list(10, 99)
 
+	// icon_file = 
+	// icon_state = 
+
 /datum/CyberSpaceAvatar/AreaFirewall/New()
 	. = ..()
 	GenerateSecurityHash()
