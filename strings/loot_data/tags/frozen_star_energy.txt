@@ -1,2 +1,0 @@
-/obj/item/weapon/gun/energy/plasma/cassad    blacklisted=0    spawn_value=2.77778   spawn_price=3100   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/medium
-/obj/item/weapon/gun/energy/gun/martin    blacklisted=0    spawn_value=6.45161   spawn_price=1050   prob_accompanying_obj=100    accompanying_objs=/obj/item/weapon/cell/small

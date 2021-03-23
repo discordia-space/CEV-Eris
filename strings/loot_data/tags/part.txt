@@ -1,2 +1,0 @@
-/obj/item/part/armor    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/part/gun    blacklisted=0    spawn_value=8.01467   spawn_price=300   prob_accompanying_obj=100    accompanying_objs=nothing
