@@ -1,0 +1,5 @@
+author: infraredbaron
+delete-after: true
+changes:
+  - bugfix: gibber now spawns correct meat
+  - code_imp: added isroach check
