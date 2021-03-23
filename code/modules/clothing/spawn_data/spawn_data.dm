@@ -437,7 +437,7 @@
 	rarity_value = 30.2778
 
 /obj/item/clothing/suit/armor/reactive
-	rarity_value = 50
+	rarity_value = 70
 
 /obj/item/clothing/suit/armor/crusader
 	rarity_value = 41.6667
@@ -755,7 +755,7 @@
 	rarity_value = 13.3333
 
 /obj/item/clothing/shoes/magboots/merc
-	rarity_value = 13.3333
+	rarity_value = 26
 
 /obj/item/clothing/shoes/magboots
 	rarity_value = 13.3333

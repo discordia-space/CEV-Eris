@@ -78,6 +78,7 @@
 		bio = 0,
 		rad = 0
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/storage/vest/chestrig/New()
 	..()
