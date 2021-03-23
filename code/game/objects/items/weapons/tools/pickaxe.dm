@@ -151,7 +151,7 @@
 /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0
 	passive_fuel_cost = 0
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 
 /obj/item/weapon/tool/pickaxe/excavation
 	name = "hand pickaxe"
