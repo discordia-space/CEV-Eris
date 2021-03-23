@@ -10,4 +10,6 @@
 		#include "avatar/api/atom_api.dm"
 		#include "avatar/api/interactions_api.dm"
 
+#include "~game/_game.dm"
+
 #include "viewer/mob_core.dm"

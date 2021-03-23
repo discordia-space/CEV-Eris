@@ -1,11 +1,5 @@
 #define CYBERAVATAR_CONNECT_PROC_TO(Proc2Connect, TargetProc) ##Proc2Connect{. = ..(); if(istype(CyberAvatar) && CyberAvatar.enabled)CyberAvatar.##TargetProc(arglist(args))}
 
-// /atom/Crossed(atom/movable/O)
-// 	. = ..()
-// 	if(CyberAvatar?.enabled)
-// 		CyberAvatar.OnCrossedBy(O)
-
-
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Crossed(atom/movable/O), OnCrossedBy)
 /datum/CyberSpaceAvatar/proc/OnCrossedBy(atom/movable/O)
 
@@ -18,5 +12,14 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/Cross(atom/movable/O), OnCross)
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Uncross(atom/movable/O), OnUncross)
 /datum/CyberSpaceAvatar/proc/OnUncross(atom/movable/O)
 
-CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), OnMove)
-/datum/CyberSpaceAvatar/proc/OnMove(atom/movable/O)
+CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), OnMovedTo)
+/datum/CyberSpaceAvatar/proc/OnMovedTo(NewLoc,Dir=0,step_x=0,step_y=0)
+
+CYBERAVATAR_CONNECT_PROC_TO(/atom/attack_hand(mob/user as mob), attacked_by_hand)
+/datum/CyberSpaceAvatar/proc/attacked_by_hand(mob/user as mob)
+	var/datum/CyberSpaceAvatar/A = user.CyberAvatar
+	if(istype(A))
+		attacked_by_avatar(A, user.a_intent)
+
+/datum/CyberSpaceAvatar/proc/attacked_by_avatar(datum/CyberSpaceAvatar/user, intent)
+
