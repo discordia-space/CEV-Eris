@@ -16,7 +16,7 @@
 #define  BASE_RECHARGE_TIME 4
 
 //clothing
-#define CLOTH_PRICE_DIVISOR 50
+#define CLOTH_PRICE_DIVISOR 40
 
 //biomes
 

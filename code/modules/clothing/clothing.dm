@@ -9,7 +9,8 @@
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	bad_type = /obj/item/clothing
-	rarity_value = 10
+	rarity_value = 5
+	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.

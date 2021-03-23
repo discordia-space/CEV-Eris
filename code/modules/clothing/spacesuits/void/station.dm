@@ -200,7 +200,6 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
-	rarity_value = 8.7
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -288,7 +287,6 @@
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
-	rarity_value = 16
 
 //Science
 /obj/item/clothing/head/space/void/science
@@ -347,7 +345,6 @@
 	price_tag = 1200
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
-	rarity_value = 50
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/riggedvoidsuit

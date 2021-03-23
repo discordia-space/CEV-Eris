@@ -10,7 +10,6 @@
 	item_state = "ass_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -27,7 +26,6 @@
 	item_state = "artist_armor"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	rarity_value = 0
 	armor = list(
 		melee = 5,
 		bullet = 0,
@@ -46,7 +44,6 @@
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -64,7 +61,6 @@
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -211,7 +207,6 @@
 	icon_state = "insp_coat"
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"
-	rarity_value = 16.66
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -223,7 +218,6 @@
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
-	rarity_value = 8
 
 /obj/item/clothing/suit/storage/hazardvest/orange
 	icon_state = "hazard_orange"
@@ -262,7 +256,6 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 0,

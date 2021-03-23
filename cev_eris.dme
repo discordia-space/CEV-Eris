@@ -1528,6 +1528,7 @@
 #include "code\modules\clothing\spacesuits\void\station.dm"
 #include "code\modules\clothing\spacesuits\void\void.dm"
 #include "code\modules\clothing\spacesuits\void\wizard.dm"
+#include "code\modules\clothing\spawn_data\spawn_data.dm"
 #include "code\modules\clothing\suits\armor.dm"
 #include "code\modules\clothing\suits\bio.dm"
 #include "code\modules\clothing\suits\jobs.dm"
