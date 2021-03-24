@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/stranger
-	name = "Stranger"
-	desc = "A stranger from an unknown place."
+	name = "Stranger from Beyond" // byond, hee hee
+	desc = "A humanoid creature who resides in the deepest, darkest corners of the Null Space. It's attracted sources to chaos and disorder in Bluespace."
 	icon_state = "strangerranged"
 	icon_dead = "stranger_dead"
 	icon_gib = "syndicate_gib"
