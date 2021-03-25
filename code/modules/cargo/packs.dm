@@ -1524,7 +1524,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 				/obj/item/weapon/storage/fancy/cigcartons/killthroat,
 				/obj/item/weapon/storage/fancy/cigcartons/homeless)
 	name = "Cigarettes Cartons"
-	cost = 1200
+	cost = 7500
 	crate_name = "Cigarettes Cartons Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Supply"
