@@ -654,15 +654,6 @@
 		remove_self(volume)
 		return TRUE
 
-/datum/reagent/toxin/biomatter
-	name = "Biomatter"
-	id = "biomatter"
-	description = "A goo of unknown to you origin. Its better to stay that way."
-	taste_description = "vomit"
-	reagent_state = LIQUID
-	color = "#527f4f"
-	strength = 0.3
-
 /datum/reagent/toxin/chlorine
 	name = "Chlorine"
 	description = "A highly poisonous liquid. Smells strongly of bleach."
