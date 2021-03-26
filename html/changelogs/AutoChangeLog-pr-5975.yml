@@ -1,0 +1,11 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: the energy regeneration of the cruciform is much slower.
+  - tweak: Entreaty and Relief rituals ignore stuttering.
+  - tweak: common rituals have a delay of one minute after being performed.
+  - tweak: Revelation ritual always increases sanity.
+  - tweak: EOTP miracles increase the energy regeneration of the cruciform.
+  - tweak: Stat COG now increases the energy regeneration of the cruciform.
+  - rscadd: Righteous life stat bar
+  - tweak: the priest now starts with his cruciform charged to maximum energy.
