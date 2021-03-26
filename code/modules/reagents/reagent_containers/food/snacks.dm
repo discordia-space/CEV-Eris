@@ -2303,10 +2303,14 @@
 		open()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
+	if(warm)
+		to_chat(user, SPAN_NOTICE("You are pretty sure \the [src] can't be heated again."))
+		return
 	user.visible_message(
 		SPAN_NOTICE("[user] crushes \the [src] package."),
 		"You crush \the [src] package and feel a comfortable heat build up."
 	)
+	warm = TRUE
 	spawn(300)
 		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
@@ -2318,7 +2322,6 @@
 		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
 
 /obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
-	warm = TRUE
 	for(var/reagent in heated_reagents)
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
