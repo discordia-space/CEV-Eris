@@ -21,6 +21,7 @@
 	one_hand_penalty = 10
 	zoom_factor = 2
 	twohanded = TRUE
+	no_internal_mag = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
 

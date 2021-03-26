@@ -1,0 +1,17 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: you can now attach the tactical knife and the gyrostabilized grip to guns
+  - rscadd: added the makeshift bullet time generator, a craftable gunmod
+  - balance: silencers are now more silent and lower the recoil of your gun somewhat
+  - balance: nerfed the novakovic's melee damage, increased it's melee AP
+  - bugfix: attaching scopes no longer worsen your gun's accuracy
+  - bugfix: radiation-inducing gunmods now properly apply their rads
+  - balance: buffed the radiation-inducing gunmods
+  - balance: the decloner now deals significantly more rad damage
+  - balance: the plasma pistol no longer deals rad damage, but deals more tox damage
+      now
+  - bugfix: you can no longer attach the overshooter to the AMR and the double-barreled
+      shotgun
+  - balance: the Tesla chip now enables an energy gun to shoot in fullauto and makes
+      it consume much less charge per shot.
