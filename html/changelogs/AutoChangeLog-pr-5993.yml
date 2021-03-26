@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Fix shuttle travel time when moving to another sector on overmap
