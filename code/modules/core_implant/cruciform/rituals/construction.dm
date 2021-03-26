@@ -30,7 +30,6 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
 	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
 
-/datum/ritual
 /datum/ritual/cruciform/priest/construction
 	name = "Manifestation"
 	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
