@@ -230,6 +230,15 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/gravcharger
+	name = "Makeshift bullet time generator"
+	result = /obj/item/weapon/gun_upgrade/mechanism/gravcharger
+	steps = list(
+		list(/obj/item/weapon/tool_upgrade/refinement/compensatedbarrel, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
 /datum/craft_recipe/weapon/armgun
 	name = "embedded SMG"
 	result = /obj/item/organ_module/active/simple/armsmg

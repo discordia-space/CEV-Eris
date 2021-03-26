@@ -7,6 +7,7 @@
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
+	armor_penetration = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
@@ -96,7 +97,8 @@
 			If you’re on a budget, it’s a darn good rifle for just about everything. \
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
-	item_suffix = "_wood"
+	item_suffix  = "_wood"
+	force = 23
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"

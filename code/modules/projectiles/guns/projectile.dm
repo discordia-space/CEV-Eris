@@ -40,6 +40,7 @@
 	var/auto_eject_sound
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
+	var/no_internal_mag = FALSE // to bar sniper and double-barrel from installing overshooter.
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -371,5 +372,5 @@
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
-	if(max_shells)
+	if(max_shells && !no_internal_mag) // so the overshooter can't be attached to the AMR and double-barrel anymore
 		gun_tags |= GUN_INTERNAL_MAG

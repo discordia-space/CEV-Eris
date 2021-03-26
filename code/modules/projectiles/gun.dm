@@ -75,8 +75,10 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
+	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
+
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -298,6 +300,8 @@
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
+		projectile.multiply_projectile_agony(proj_agony_multiplier)
+
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
@@ -357,7 +361,7 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, pointblank=0, reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
-		playsound(user, fire_sound_silenced, 15, 1, -3)
+		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
 
@@ -725,6 +729,7 @@
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
+	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
@@ -737,6 +742,11 @@
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
+	force = initial(force)
+	armor_penetration = initial(armor_penetration)
+	sharp = initial(sharp)
+	attack_verb = list()
+	one_hand_penalty = initial(one_hand_penalty)
 	initialize_scope()
 	initialize_firemodes()
 
@@ -753,3 +763,5 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
+	if(!sharp)
+		gun_tags |= SLOT_BAYONET
