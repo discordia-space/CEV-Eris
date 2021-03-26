@@ -73,6 +73,17 @@
 			add_overlays("over_alert3")
 		if(harvest)
 			add_overlays("over_harvest3")
+
+	if((!density || !opacity) && seed && seed.get_trait(TRAIT_LARGE))
+		if(!mechanical)
+			set_density(1)
+		set_opacity(1)
+	else
+		if(!mechanical)
+			set_density(0)
+		set_opacity(0)
+
+
 	// Update bioluminescence.
 	if(seed)
 		if(seed.get_trait(TRAIT_BIOLUM))

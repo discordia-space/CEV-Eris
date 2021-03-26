@@ -1,6 +1,6 @@
 /datum/trade_station/fbv_hellcat
 	name_pool = list("FBV 'Hellcat'" = "They are sending message, \"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to depart with some extra supplies to get rid of while we're still here.\"")
-	icon_states = "ship"
+	icon_states = "ihs_destroyer"
 	spawn_probability = 0
 	start_discovered = TRUE
 	spawn_always = TRUE

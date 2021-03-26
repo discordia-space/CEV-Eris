@@ -19,15 +19,17 @@
 	get_known_sectors()
 	new /obj/effect/overmap_event/movable/comet()
 
+	linked.check_link()
+
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
 	for(var/obj/effect/overmap/sector/S in map)
 		if (S.known)
 			var/datum/data/record/R = new()
-			R.fields["name"] = S.name
+			R.fields["name"] = S.name_stages[1]
 			R.fields["x"] = S.x
 			R.fields["y"] = S.y
-			known_sectors[S.name] = R
+			known_sectors[S.name_stages[1]] = R
 
 /obj/machinery/computer/helm/Process()
 	..()
@@ -109,6 +111,7 @@
 	data["autopilot"] = autopilot
 	data["manual_control"] = manual_control
 	data["canburn"] = linked.can_burn()
+	data["canpulse"] = linked.can_pulse()
 
 	if(linked.get_speed())
 		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
@@ -217,6 +220,9 @@
 		else
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
+
+	if (href_list["pulse"])
+		linked.pulse()
 
 	updateUsrDialog()
 

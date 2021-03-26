@@ -1,6 +1,6 @@
 /datum/trade_station/caduceus
 	name_pool = list("MAV 'Caduceus'" = "Moebius Aid Vessel 'Caduceus'. They're sending a message. \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you any medical aid while we are still here.\".")
-	icon_states = "ship"
+	icon_states = "moe_capital"
 	start_discovered = TRUE
 	spawn_always = TRUE
 

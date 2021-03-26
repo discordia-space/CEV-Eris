@@ -37,7 +37,7 @@
 
 /turf/simulated/mineral/Initialize()
 	.=..()
-	icon_state = "rock[rand(0,4)]"
+	SetIconState("rock[rand(0,4)]")
 	spawn(0)
 		MineralSpread()
 
@@ -108,10 +108,12 @@
 	clear_ore_effects()
 	if(!mineral)
 		name = "\improper Rock"
-		icon_state = "rock"
+		SetIconState("rock")
 		return
 	name = "\improper [mineral.display_name] deposit"
-	new /obj/effect/mineral(src, mineral)
+	var/obj/effect/mineral/M = new /obj/effect/mineral(src, mineral)
+	spawn(1)
+		M.color = color
 
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
@@ -417,7 +419,7 @@
 
 /turf/simulated/floor/asteroid/New()
 	..()
-	icon_state = "asteroid[rand(0,2)]"
+	SetIconState("asteroid[rand(0,2)]")
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
@@ -458,7 +460,7 @@
 		new/obj/item/weapon/ore/glass(src)
 
 	dug = 1
-	icon_state = "asteroid_dug"
+	SetIconState("asteroid_dug")
 	return
 
 /turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
