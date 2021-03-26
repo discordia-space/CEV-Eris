@@ -55,6 +55,11 @@
 			for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
 				if(LZ.is_valid(src))
 					res["[S.name_stages[1]] - [LZ.name]"] = LZ
+
+	for(var/obj/effect/overmap/ship/eris/S in map)
+		for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
+			if(LZ.is_valid(src))
+				res["[S.name_stages[1]] - [LZ.name]"] = LZ
 	return res
 
 /datum/shuttle/autodock/overmap/proc/get_location_name()
