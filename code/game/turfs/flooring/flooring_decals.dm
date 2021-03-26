@@ -11,9 +11,10 @@ var/list/floor_decals = list()
 	var/supplied_dir
 	var/variants_amount
 
-/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
+/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour, var/newappearance)
 	supplied_dir = newdir
 	if(newcolour) color = newcolour
+	if(newappearance) appearance = newappearance
 	..(newloc)
 
 /obj/effect/floor_decal/Initialize()
@@ -36,7 +37,7 @@ var/list/floor_decals = list()
 			floor_decals[cache_key] = I
 		if(!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]
-		T.overlays |= floor_decals[cache_key]
+		T.associate_with_overlays(floor_decals[cache_key])
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/reset

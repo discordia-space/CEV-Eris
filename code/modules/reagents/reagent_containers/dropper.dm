@@ -96,7 +96,7 @@
 
 	return
 
-/obj/item/weapon/reagent_containers/dropper/update_icon()
+/obj/item/weapon/reagent_containers/dropper/on_update_icon()
 	cut_overlays()
 	if(reagents.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "dropper")

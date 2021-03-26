@@ -227,6 +227,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/generate_loot_data = FALSE //for loot rework
 
+	var/profiler_permission = R_DEBUG | R_SERVER
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -733,6 +735,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ruins_start")
 					config.start_location = "space ruins"
 
+				if("profiler_permission")
+					config.profiler_permission = text2num(value)
+
 				if("generate_loot_data")
 					config.generate_loot_data = TRUE
 				else
@@ -854,4 +859,3 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
 		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
-

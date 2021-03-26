@@ -68,7 +68,7 @@
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/update_icon()
+/obj/item/weapon/cell/on_update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
@@ -85,9 +85,9 @@
 	if (charge_status == last_charge_status)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	if (charge_status != null)
-		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
+		add_overlays(image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]"))
 
 	last_charge_status = charge_status
 

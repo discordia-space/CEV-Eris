@@ -32,7 +32,7 @@
 	else
 		..()
 
-/obj/item/weapon/storage/sheath/update_icon()
+/obj/item/weapon/storage/sheath/on_update_icon()
 	var/icon_to_set
 	for(var/obj/item/weapon/tool/sword/SW in contents)
 		icon_to_set = SW.icon_state

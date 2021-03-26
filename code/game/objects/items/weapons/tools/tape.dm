@@ -156,14 +156,14 @@
 	update_icon()
 	name = W.name + " (taped)"
 
-/obj/item/weapon/ducttape/update_icon()
+/obj/item/weapon/ducttape/on_update_icon()
 	if (!stuck)
 		return
 
 	if (istype(stuck, /obj/item/weapon/paper))
 		icon_state = stuck.icon_state
-		overlays.Cut()
-		overlays = stuck.overlays + "tape_overlay"
+		cut_overlays()
+		set_overlays(stuck.overlays + "tape_overlay")
 	else
 		var/mutable_appearance/MA = new(stuck)
 		MA.layer = layer-0.1
@@ -183,7 +183,7 @@
 	stuck.forceMove(get_turf(src))
 	user.put_in_hands(stuck)
 	stuck = null
-	overlays = null
+	set_overlays(null)
 	qdel(src)
 
 /obj/item/weapon/ducttape/afterattack(A, mob/user, flag, params)

@@ -48,7 +48,7 @@
 	   "It is difficult to make out what this thing once was.",
 	    "A relic from a bygone age.")
 
-	germ_level = pick(80,110,160)
+	germ_level = max(germ_level, pick(80,110,160))
 	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
 
 	//Deplete matter and matter_reagents
@@ -329,6 +329,8 @@
 	if (.)
 		salvage_num = max(1, salvage_num - pick(1, 2, 3))
 */
+/obj/item/part/gun/make_old()
+	return
 
 /mob/living/exosuit
 	var/oldified = FALSE//Todo: inprove it.

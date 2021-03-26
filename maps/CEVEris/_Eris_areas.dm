@@ -556,6 +556,10 @@
 	name = "Shield Generator Room"
 	icon_state = "blueold"
 
+/area/eris/engineering/long_range_scanner
+	name = "Long Range Scanner Room"
+	icon_state = "blueold"
+
 /area/eris/engineering/atmos
  	name = "\improper Atmospherics"
  	icon_state = "atmos"

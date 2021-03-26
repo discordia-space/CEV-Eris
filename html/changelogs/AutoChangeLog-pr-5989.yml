@@ -1,0 +1,6 @@
+author: Wouju
+delete-after: true
+changes:
+  - balance: 'Hivemind Mobs now have their movement speed fixed, in order from slowest
+      to fastest: Mechiver < Bomber < Hiborg < Himan < Lobber < Stinger.  Also makes
+      the Mechiver have higher HP and Armour as to compensate for the slowness.'

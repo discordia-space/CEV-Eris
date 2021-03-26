@@ -14,7 +14,6 @@
 	magazine_type = /obj/item/ammo_magazine/magnum
 
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-
 	can_dual = TRUE
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.35
@@ -27,3 +26,17 @@
 
 	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/weapon/gun/projectile/avasarala/on_update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	SetIconState(iconstring)
+
+/obj/item/weapon/gun/projectile/avasarala/Initialize()
+	. = ..()
+	update_icon()

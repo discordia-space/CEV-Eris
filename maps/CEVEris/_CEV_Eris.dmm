@@ -6107,8 +6107,10 @@
 "aog" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
 /obj/item/clothing/mask/gas/ihs,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
 "aoh" = (
@@ -11984,7 +11986,8 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/hallway/side/eschangarb)
 "aCe" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aCf" = (
@@ -13706,9 +13709,10 @@
 /area/eris/engineering/atmos)
 "aGG" = (
 /obj/structure/closet,
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
 "aGH" = (
@@ -18843,8 +18847,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aTi" = (
@@ -19321,7 +19326,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "aUo" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aUp" = (
@@ -20957,7 +20963,8 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section4deck5port)
 "aXS" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aXT" = (
@@ -21035,7 +21042,9 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aYc" = (
@@ -27739,10 +27748,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/hallway/side/morguehallway)
 "blR" = (
-/obj/spawner/gun/normal/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 2. Maints on the west of Morgue."
 	},
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "blS" = (
@@ -29734,7 +29743,8 @@
 	d2 = 0;
 	icon_state = "16-0"
 	},
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bqs" = (
@@ -30476,7 +30486,8 @@
 /area/eris/maintenance/section4deck4port)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bsw" = (
@@ -39212,8 +39223,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bLM" = (
-/obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bLN" = (
@@ -40679,7 +40691,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOS" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOT" = (
@@ -56228,9 +56241,10 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czQ" = (
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czR" = (
@@ -73672,11 +73686,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "doi" = (
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 4. Deep maints east from Medbay EVA, under the wall of secutity checkpoint."
 	},
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "doj" = (
@@ -73800,11 +73815,12 @@
 /area/eris/security/checkpoint/supply)
 "dow" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/firstaid/low_chance,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dox" = (
@@ -85264,9 +85280,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/gravity_generator)
 "dPc" = (
@@ -85318,16 +85331,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
-"dPj" = (
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/obj/structure/table/rack,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/engineering/gravity_generator)
 "dPk" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -85606,10 +85609,23 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/gravity_generator)
 "dPX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/engineering{
+	name = "Long Range Scanner Room";
+	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/gravity_generator)
 "dPY" = (
 /obj/structure/cable/green{
@@ -86510,18 +86526,19 @@
 /area/eris/maintenance/section4deck2port)
 "dSg" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/space)
 "dSh" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/normal/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating,
 /area/space)
 "dSi" = (
@@ -87977,6 +87994,8 @@
 "dVR" = (
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dVS" = (
@@ -88321,10 +88340,11 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck1starboard)
 "dWv" = (
-/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "dWw" = (
@@ -102086,6 +102106,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/gravity_generator)
 "eBE" = (
@@ -102130,6 +102153,11 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eBH" = (
@@ -102140,6 +102168,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eBI" = (
@@ -102148,15 +102181,17 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/sign/department/scanner{
+	pixel_x = 32
 	},
 /turf/simulated/open,
-/area/eris/engineering/gravity_generator)
-"eBJ" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/gravity_generator)
 "eBK" = (
 /obj/machinery/camera/network/third_section{
@@ -102498,6 +102533,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eCw" = (
@@ -102686,13 +102729,6 @@
 	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/open,
-/area/eris/engineering/gravity_generator)
-"eCU" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/gravity_generator)
 "eCV" = (
 /obj/machinery/firealarm{
@@ -104468,6 +104504,11 @@
 /obj/structure/sign/department/shield{
 	pixel_y = 32
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eRb" = (
@@ -104792,6 +104833,13 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
+"idh" = (
+/obj/structure/catwalk,
+/obj/structure/sign/department/scanner{
+	pixel_x = 32
+	},
+/turf/simulated/open,
+/area/eris/engineering/gravity_generator)
 "ifZ" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/structure/railing/grey,
@@ -105064,6 +105112,14 @@
 /obj/effect/shuttle_landmark/merc/atmos,
 /turf/space,
 /area/space)
+"kaS" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/long_range_scanner/hull/installed,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
@@ -105369,6 +105425,18 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"mxw" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/green,
+/obj/machinery/light,
+/obj/machinery/power/apc{
+	name = "South APC";
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/engineering/long_range_scanner)
 "mAA" = (
 /turf/simulated/wall,
 /area/eris/crew_quarters/clownoffice)
@@ -105679,6 +105747,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
+"oAL" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/engineering/long_range_scanner)
 "oAW" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 4;
@@ -105779,6 +105853,9 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
+"peB" = (
+/turf/simulated/wall/r_wall,
+/area/eris/engineering/long_range_scanner)
 "pkU" = (
 /obj/machinery/light/small,
 /obj/machinery/portable_atmospherics/canister/plasma,
@@ -105955,6 +106032,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rlT" = (
+/obj/machinery/door/blast/regular{
+	id = "scannerroom";
+	name = "Long Range Scanner Screen"
+	},
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/engineering/long_range_scanner)
 "rnc" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -106074,6 +106159,17 @@
 /obj/spawner/mob/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
+"sbX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "sds" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/railing/grey{
@@ -106149,6 +106245,25 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"stu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "suD" = (
 /obj/machinery/holomap{
 	dir = 8;
@@ -106161,6 +106276,19 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"sBN" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/engineering/long_range_scanner)
 "sGt" = (
 /obj/effect/shuttle_landmark/merc/sec2east,
 /turf/space,
@@ -106185,10 +106313,21 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"sMx" = (
+/obj/machinery/shield_diffuser,
+/turf/simulated/floor/hull,
+/area/eris/engineering/atmos)
 "sRW" = (
 /obj/machinery/slotmachine,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
+"sUy" = (
+/obj/structure/table/rack,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/gravity_generator)
 "sZg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -106260,6 +106399,10 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"tCG" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "tEu" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/lights/tubes,
@@ -106375,6 +106518,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"uEI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/engineering/gravity_generator)
 "uFZ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
@@ -106384,6 +106533,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"uPp" = (
+/obj/structure/table/standard,
+/obj/item/weapon/cell/large/high,
+/obj/item/weapon/cell/large/high,
+/obj/machinery/button/remote/blast_door{
+	id = "scannerroom";
+	name = "Long Range Scanner Shutters"
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/engineering/long_range_scanner)
 "uYg" = (
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
@@ -106672,6 +106831,9 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"xoq" = (
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "xpe" = (
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
@@ -121226,7 +121388,7 @@ aGq
 aGS
 aFc
 aCW
-aad
+sMx
 aad
 aad
 aai
@@ -290290,11 +290452,11 @@ cNH
 eBh
 dXi
 abF
-abF
-abF
-aaa
-aaa
-aaa
+dLg
+dlC
+dlC
+dLg
+uEI
 dLg
 eBz
 eAS
@@ -290492,12 +290654,12 @@ cNH
 dXi
 dXi
 abF
-abF
-abF
-aaa
-aaa
-aaa
 dLg
+esR
+dPq
+sUy
+dPd
+dPc
 dPb
 dPo
 dPp
@@ -290694,12 +290856,12 @@ cNH
 dXi
 abF
 abF
-abF
-abF
-aaa
-aaa
-aaa
 dLg
+dPr
+eFe
+eFe
+eFe
+eFe
 eBB
 eCo
 eCO
@@ -290896,11 +291058,11 @@ aNe
 dXi
 abF
 abF
-abF
-abF
-aaa
-aaa
-aaa
+dLg
+dlC
+dlC
+uEI
+uEI
 dLg
 eBC
 eCp
@@ -292520,7 +292682,7 @@ dKs
 dLg
 eBI
 eCv
-eCr
+idh
 eDB
 eCr
 eFe
@@ -292718,11 +292880,11 @@ abF
 abF
 abF
 abF
-aaa
+abF
 dLg
-eBJ
+eAS
 dPX
-eCU
+eAS
 dLg
 dLg
 dLg
@@ -292920,12 +293082,12 @@ abF
 abF
 abF
 abF
-aaa
-dLg
-dPc
-eFe
-dPq
-dLg
+peB
+peB
+tCG
+stu
+mxw
+peB
 aaa
 aaa
 aad
@@ -293122,12 +293284,12 @@ abF
 abF
 abF
 abF
-aaa
-dLg
-dPd
-eFe
-dPr
-dLg
+peB
+xoq
+kaS
+sbX
+oAL
+rlT
 aaa
 aaa
 aad
@@ -293324,12 +293486,12 @@ abF
 abF
 abF
 abF
-aaa
-dLg
-dPj
-eFe
-esR
-dLg
+peB
+peB
+xoq
+uPp
+sBN
+peB
 aaa
 aaa
 aad
@@ -293526,12 +293688,12 @@ abF
 abF
 abF
 abF
-aad
-dLg
-dLg
-dlC
-dLg
-dLg
+abF
+peB
+rlT
+rlT
+peB
+peB
 aad
 aaA
 aaA

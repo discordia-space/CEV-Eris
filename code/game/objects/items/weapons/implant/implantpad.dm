@@ -10,7 +10,7 @@
 	var/obj/item/weapon/implantcase/case = null
 
 
-/obj/item/weapon/implantpad/update_icon()
+/obj/item/weapon/implantpad/on_update_icon()
 	icon_state = case ? "implantpad-1" : "implantpad-0"
 
 /obj/item/weapon/implantpad/attack_hand(mob/living/user)

@@ -246,11 +246,11 @@
 			)
 
 			src.bitecount++
-			U.overlays.Cut()
+			U.cut_overlays()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
 			I.color = src.filling_color
-			U.overlays += I
+			U.add_overlays(I)
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
@@ -2303,10 +2303,14 @@
 		open()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
+	if(warm)
+		to_chat(user, SPAN_NOTICE("You are pretty sure \the [src] can't be heated again."))
+		return
 	user.visible_message(
 		SPAN_NOTICE("[user] crushes \the [src] package."),
 		"You crush \the [src] package and feel a comfortable heat build up."
 	)
+	warm = TRUE
 	spawn(300)
 		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
@@ -2318,7 +2322,6 @@
 		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
 
 /obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
-	warm = TRUE
 	for(var/reagent in heated_reagents)
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
@@ -2452,7 +2455,7 @@
 	nutriment_desc = list("bread" = 2)
 	preloaded_reagents = list("protein" = 4)
 	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
-	
+
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 	name = "Banana-nut bread"
@@ -2997,8 +3000,8 @@
 	if(type_pizza)
 		pizza = new type_pizza(src)
 
-/obj/item/pizzabox/update_icon()
-	overlays = list()
+/obj/item/pizzabox/on_update_icon()
+	set_overlays(list())
 
 	// Set appropriate description
 	if(open && pizza )
@@ -3026,7 +3029,7 @@
 		if(pizza )
 			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
-			overlays += pizzaimg
+			add_overlays(pizzaimg)
 
 		return
 	else
@@ -3043,7 +3046,7 @@
 		if(doimgtag )
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = boxes.len * 3
-			overlays += tagimg
+			add_overlays(tagimg)
 
 	icon_state = "pizzabox[boxes.len+1]"
 

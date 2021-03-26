@@ -109,7 +109,7 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
-	if(one_hand_penalty || twohanded && (!wielded_item_state))//If the gun has a one handed penalty or is twohanded, but has no wielded item state then use this generic one.
+	if((one_hand_penalty || twohanded) && !wielded_item_state)//If the gun has a one handed penalty or is twohanded, but has no wielded item state then use this generic one.
 		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 	generate_guntags()
 	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
@@ -149,7 +149,7 @@
 	if(onsuit && carry_state)
 		item_state_slots[slot_s_store_str]= "back"    + state
 
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/on_update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)
@@ -186,7 +186,7 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
-	
+
 	if(!twohanded_check(M))
 		return FALSE
 

@@ -30,7 +30,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/dallas/update_icon()
+/obj/item/weapon/gun/projectile/automatic/dallas/on_update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"

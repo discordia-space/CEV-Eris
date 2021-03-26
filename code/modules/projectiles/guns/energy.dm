@@ -10,7 +10,6 @@
 
 	recoil_buildup = 0.5 //energy weapons have little to no recoil
 
-
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
@@ -101,7 +100,7 @@
 	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
-/obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/energy/on_update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 

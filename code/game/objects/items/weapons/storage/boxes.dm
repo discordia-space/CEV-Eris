@@ -43,7 +43,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/storage/box/update_icon()
+/obj/item/weapon/storage/box/on_update_icon()
 	. = ..()
 	if(illustration)
 		cut_overlays()
@@ -233,6 +233,13 @@
 	name = "box of practice shells"
 	spawn_type = /obj/item/ammo_casing/shotgun/practice/prespawned
 	rarity_value = 50
+
+/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
+	name = "box of incendiary shells"
+	spawn_type = /obj/item/ammo_casing/shotgun/incendiary/prespawned
+	rarity_value = 100
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of .60 Anti Material shells"

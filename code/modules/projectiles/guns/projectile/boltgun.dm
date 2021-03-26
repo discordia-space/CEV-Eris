@@ -29,7 +29,7 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 
-/obj/item/weapon/gun/projectile/boltgun/update_icon()
+/obj/item/weapon/gun/projectile/boltgun/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -100,4 +100,25 @@
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
-	rarity_value = 48
+	spawn_blacklisted = FALSE
+
+/obj/item/weapon/gun/projectile/boltgun/handmade
+	name = "handmade bolt action rifle"
+	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
+	icon_state = "boltgun_hand"
+	item_suffix = "_hand"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	wielded_item_state = "_doble_hand"
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
+	fire_delay = 17 // abit more than the serbian one
+	damage_multiplier = 1
+	penetration_multiplier = 1
+	recoil_buildup = 40 //same as AMR
+	max_shells = 5
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
+	price_tag = 800
+	one_hand_penalty = 30 //don't you dare to one hand this
+	sharp = FALSE //no bayonet here
+	spawn_blacklisted = TRUE

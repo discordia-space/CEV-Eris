@@ -122,6 +122,9 @@
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
 
+/obj/machinery/alarm/fire_act()
+	return
+
 /obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
@@ -266,7 +269,7 @@
 		return 1
 	return 0
 
-/obj/machinery/alarm/update_icon()
+/obj/machinery/alarm/on_update_icon()
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
@@ -930,8 +933,8 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-/obj/machinery/firealarm/update_icon()
-	overlays.Cut()
+/obj/machinery/firealarm/on_update_icon()
+	cut_overlays()
 
 	if(wiresexposed)
 		switch(buildstage)
@@ -961,7 +964,7 @@ FIRE ALARM
 			var/decl/security_level/sl = security_state.current_security_level
 
 			set_light(sl.light_max_bright, sl.light_inner_range, sl.light_outer_range, 2, sl.light_color_alarm)
-			src.overlays += image('icons/obj/monitors.dmi', sl.overlay_firealarm)
+			src.add_overlays(image('icons/obj/monitors.dmi', sl.overlay_firealarm))
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
