@@ -231,7 +231,7 @@
 	)
 
 /datum/craft_recipe/weapon/gravcharger
-	name = "Makeshift bullet time generator "
+	name = "Makeshift bullet time generator"
 	result = /obj/item/weapon/gun_upgrade/mechanism/gravcharger
 	steps = list(
 		list(/obj/item/weapon/tool_upgrade/refinement/compensatedbarrel, 1),
