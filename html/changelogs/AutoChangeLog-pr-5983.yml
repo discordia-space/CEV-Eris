@@ -1,5 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: Cyborg tile stack can copy steel tiles by clicking on them for easy reconstruction
-      of damaged areas

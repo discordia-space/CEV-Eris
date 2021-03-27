@@ -1,4 +1,0 @@
-author: infraredbaron
-delete-after: true
-changes:
-  - bugfix: Fixes being able to endlessly heat MRE
