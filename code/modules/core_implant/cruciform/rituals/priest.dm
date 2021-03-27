@@ -129,7 +129,6 @@
 	cooldown_time = 2 MINUTES
 	effect_time = 10 MINUTES
 	cooldown_category = "short_boost"
-	var/buff_time = 10 MINUTES
 	var/list/stats_to_boost = list()
 
 /datum/ritual/cruciform/priest/short_boost/New()
@@ -158,7 +157,7 @@
 /datum/ritual/cruciform/priest/short_boost/proc/give_boost(mob/living/carbon/human/participant)
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
-		participant.stats.addTempStat(stat, amount, buff_time, src.name)
+		participant.stats.addTempStat(stat, amount, effect_time, src.name)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
