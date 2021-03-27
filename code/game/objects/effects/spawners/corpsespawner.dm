@@ -121,12 +121,21 @@
 
 /obj/landmark/corpse/chef
 	name = "Chef"
+	corpseuniform = /obj/item/clothing/under/rank/chef
+	corpsesuit = /obj/item/clothing/suit/chef
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseid = 1
 	corpseidjob = "Chef"
 
-
 /obj/landmark/corpse/doctor
 	name = "Medical doctor"
+	corpseuniform = /obj/item/clothing/under/rank/medical
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsepocket1 = /obj/item/device/lighting/toggleable/flashlight/pen
+	corpsebelt = /obj/item/weapon/storage/belt/medical/
 	corpseid = 1
 	corpseidjob = "Medical doctor"
 
