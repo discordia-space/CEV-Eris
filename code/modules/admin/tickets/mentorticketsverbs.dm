@@ -1,5 +1,6 @@
 //Verbs
 
+/*
 ADMIN_VERB_ADD(/client/proc/openMentorTicketUI, R_ADMIN, FALSE)
 /client/proc/openMentorTicketUI()
 
@@ -29,3 +30,4 @@ ADMIN_VERB_ADD(/client/verb/openMentorUserUI, R_ADMIN, FALSE)
 	set name = "My Mentor Tickets"
 	set category = "Admin"
 	SSmentor_tickets.userDetailUI(usr)
+*/
