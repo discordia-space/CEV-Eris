@@ -38,6 +38,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random_podchem
 	name = "unmarked vial"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random_podchem/Initialize()
 	. = ..()

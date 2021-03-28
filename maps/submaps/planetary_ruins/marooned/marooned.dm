@@ -16,12 +16,14 @@
 	icon_state = "magnitka_officer"
 	icon = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi'
 	item_icons = list(slot_w_uniform_str = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi')
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/accessory/medal/silver/marooned_medal
 	name = "silver medal"
 	desc = "An silver round medal of marooned officer. It has inscription \"For Distinguished Service\" in lower part. On medal's plank it's engraved \"H. Warda\""
 	icon_state = "marooned_medal"
 	icon = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi'
+	spawn_blacklisted = TRUE
 
 /obj/landmark/corpse/marooned_officer
 	name = "Horazy Warda"
@@ -56,6 +58,7 @@
 
 /obj/item/weapon/paper/marooned/
 	name = "diary page"
+	spawn_blacklisted = TRUE
 /obj/item/weapon/paper/marooned/note01
 	info = "Horacy Warda, Captain First Rank of Magnitka Defence Forces, Special Observation Flotilia. I have been betrayed by my crew and illegally marooned.<br>Main conspirators were Lieutenant Igor Pytlak, Lieutenant Hans Kovac and Captain Third Rank Dragomir Mladic.<br>If you find this, please make sure those dogs face justice."
 /obj/item/weapon/paper/marooned/note02
