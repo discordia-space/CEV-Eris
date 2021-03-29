@@ -47,6 +47,9 @@
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
+	var/base_spreading = 90 // higher value means better chance to hit here. derp.
+	var/spreading_step = 15
+	var/projectile_accuracy = 1
 
 	//Effects
 	var/stun = 0
@@ -109,15 +112,15 @@
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
 
-/obj/item/projectile/multiply_projectile_agony(newmult)
-	agony = initial(agony) * newmult
+/obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
+	projectile_accuracy = initial(projectile_accuracy) * newmult
 
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
-			irradiate += newdamages[IRRADIATE]
+			irradiate += damage_type[IRRADIATE]
 			continue
 		damage_types[damage_type] += newdamages[damage_type]
 
@@ -240,7 +243,13 @@
 	if(hit_zone)
 		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
 		if(def_zone)
-			result = target_mob.bullet_act(src, def_zone)//this returns mob's armor_check and another - see modules/mob/living/living_defense.dm
+			var/spread = max(base_spreading - (spreading_step * distance), 0)
+			var/aim_hit_chance = max(0, projectile_accuracy)
+			if(prob(aim_hit_chance))
+				result = target_mob.bullet_act(src, def_zone)
+			else
+				def_zone = ran_zone(def_zone,spread)
+				result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)

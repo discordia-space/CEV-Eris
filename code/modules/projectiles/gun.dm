@@ -306,6 +306,7 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
+			P.multiply_projectile_accuracy(user.stats.getStat(STAT_VIG)/2)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
