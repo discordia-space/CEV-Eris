@@ -123,9 +123,9 @@
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
-			irradiate += damage_type[IRRADIATE]
+			irradiate += newdamages[IRRADIATE]
 			continue
-		damage_types[damage_type] += damage_type[damage_type]
+		damage_types[damage_type] += newdamages[damage_type]
 
 /obj/item/projectile/proc/adjust_ricochet(noricochet)
 	if(noricochet)
