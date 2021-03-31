@@ -78,6 +78,7 @@
 	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
+	var/inversed_carry = FALSE
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -98,6 +99,7 @@
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
 		hud_actions += action
+	verbs += /obj/item/weapon/gun/proc/toggle_carry_state_verb
 
 
 	if(icon_contained)
@@ -138,11 +140,16 @@
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
 	state = initial(state)
-	if(back)
-		item_state_slots[slot_back_str]   = "back"      + state
-	if(onsuit)
-		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
+	var/carry_state = inversed_carry
+	if(back && !carry_state)
+		item_state_slots[slot_back_str]   = "back"      + state
+	if(back && carry_state)
+		item_state_slots[slot_back_str]   = "onsuit"      + state
+	if(onsuit && !carry_state)
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
+	if(onsuit && carry_state)
+		item_state_slots[slot_s_store_str]= "back"    + state
 
 /obj/item/weapon/gun/on_update_icon()
 	if(wielded_item_state)
@@ -603,6 +610,11 @@
 	else
 		user.update_cursor()
 
+/obj/item/weapon/gun/proc/toggle_carry_state(mob/living/user)
+	inversed_carry = !inversed_carry
+	to_chat(user, SPAN_NOTICE("You adjust the way the gun will be worn on your back and on your suit."))
+	set_item_state()
+
 /obj/item/weapon/gun/proc/get_total_damage_adjust()
 	var/val = 0
 	for(var/i in proj_damage_adjust)
@@ -651,6 +663,13 @@
 	set src in view(1)
 
 	toggle_safety(usr)
+
+/obj/item/weapon/gun/proc/toggle_carry_state_verb()
+	set name = "Toggle gun's carry position"
+	set category = "Object"
+	set src in view(1)
+
+	toggle_carry_state(usr)
 
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
