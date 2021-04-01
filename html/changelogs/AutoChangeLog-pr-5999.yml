@@ -1,0 +1,4 @@
+author: infraredbaron
+delete-after: true
+changes:
+  - rscadd: email now properly logged.
