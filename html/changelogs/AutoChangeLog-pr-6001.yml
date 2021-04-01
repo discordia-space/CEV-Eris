@@ -1,0 +1,5 @@
+author: infraredbaron
+delete-after: true
+changes:
+  - imageadd: Generic module for your needs
+  - imagedel: breacher RIGs; ERT RIGs; Asset protection RIG; Burecracy RIG;
