@@ -1,7 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: cell overlay for the brigador
-  - rscadd: you can now adjust the way a gun will be displayed when worn on your suit
-      and back slot (will only work for guns with differing back and suit slot sprites)
-  - tweak: turns most back gun sprites into onsuit sprites as well and vice versa.
