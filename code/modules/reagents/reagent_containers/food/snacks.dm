@@ -3378,3 +3378,18 @@
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
 	taste_tag = list(SWEET_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "A pickle. You smirk just from looking at it. \red Still funniest shit ever."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pickle"
+	filling_color = "#5bd63c"
+	preloaded_reagents = list("protein" = 100)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle/On_Consume(mob/eater, mob/feeder)
+	. = ..()
+	to_chat(eater, SPAN_DANGER("You are feeling kind of funny"))
+	var/mob/living/simple_animal/hostile/pickle/XD = new /mob/living/simple_animal/hostile/pickle(get_turf(eater))
+	eater.mind?.transfer_to(XD)
+	eater.gib()

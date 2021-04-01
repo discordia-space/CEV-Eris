@@ -7,7 +7,6 @@
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
 	w_class = ITEM_SIZE_SMALL
-	rarity_value = 13.33
 	var/open = 0 //0 = full, 1 = head only, 2 = face only
 
 /obj/item/clothing/mask/balaclava/proc/adjust_mask(mob/living/carbon/human/user)
@@ -51,4 +50,3 @@
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "swatclava"
-	rarity_value = 10

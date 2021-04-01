@@ -6,6 +6,7 @@
 	item_state = ""	//no inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/clothing/accessory
 	var/slot = "decor"
 	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
 	var/image/inv_overlay	//overlay used when attached to clothing.

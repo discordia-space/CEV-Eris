@@ -131,10 +131,9 @@
 	cooldown_category = "short_boost"
 	var/list/stats_to_boost = list()
 
-	New()
-		..()
-		desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
-
+/datum/ritual/cruciform/priest/short_boost/New()
+	..()
+	desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
 
 /datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/people_around = list()
@@ -158,7 +157,7 @@
 /datum/ritual/cruciform/priest/short_boost/proc/give_boost(mob/living/carbon/human/participant)
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
-		participant.stats.changeStat(stat, amount)
+		participant.stats.addTempStat(stat, amount, effect_time, src.name)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
@@ -166,9 +165,7 @@
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the participant
-	// may have been deleted during the duration of the boost
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
-		participant.stats.changeStat(stat, -amount)
 		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
@@ -186,31 +183,15 @@
 			stats_text += ", [stat]"
 	return lowertext(stats_text)
 
-
-/datum/ritual/cruciform/priest/short_boost/mechanical
-	name = "Pounding Whisper"
-	phrase = "Vocavitque nomen eius Noe dicens iste consolabitur nos ab operibus et laboribus manuum nostrarum in terra cui maledixit Dominus"
-	stats_to_boost = list(STAT_MEC = 10)
-
-/datum/ritual/cruciform/priest/short_boost/cognition
-	name = "Revelation of Secrets"
-	phrase = "Quia Dominus dat sapientiam et ex ore eius scientia et prudentia"
-	stats_to_boost = list(STAT_COG = 10)
-
-/datum/ritual/cruciform/priest/short_boost/biology
-	name = "Lisp of Vitae"
-	phrase = "Ecce ego obducam ei cicatricem et sanitatem et curabo eos et revelabo illis deprecationem pacis et veritatis"
-	stats_to_boost = list(STAT_BIO = 10)
+/datum/ritual/cruciform/priest/short_boost/wisdom
+	name = "Grace of Perseverance"
+	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus"
+	stats_to_boost = list(STAT_MEC = 10, STAT_COG = 10, STAT_BIO = 10)
 
 /datum/ritual/cruciform/priest/short_boost/courage
-	name = "Canto of Courage"
-	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
-	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)
-
-/datum/ritual/cruciform/priest/short_boost/vigilance
-	name = "Commitment to Determination"
-	phrase = "Cor meum et caro mea, potest deficere, sed non in viribus Deus cordis mei et pars mea Deus in aeternum"
-	stats_to_boost = list(STAT_VIG = 10)
+	name = "To Uphold the Holy Word"
+	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi"
+	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
 	name = "Atonement"
