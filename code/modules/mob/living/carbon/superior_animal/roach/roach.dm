@@ -49,13 +49,3 @@
 	if(.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
 			F.distress_call()
-
-/mob/living/carbon/superior_animal/roach/attackby(var/obj/item/I, var/mob/user)
-    if(prob(15))
-        var/freq = 1.0 + 0.5*(30 - RAND_DECIMAL(20,70))/80
-        if(prob(50))
-            playsound(loc, "sound/hallucinations/male_scream.ogg", 80, 1, freq)
-        else
-            playsound(loc, "sound/hallucinations/female_scream.ogg", 80, 1, freq)
-
-    . = ..()
