@@ -37,8 +37,7 @@
 	New()
 		. = ..()
 		//here we change name, so design them according to this
-		name = pick("Pickled ", "Funny ", "Shrek Phallus ") + name
-		//Original: pick("Warped ", "Altered ", "Modified ", "Upgraded ", "Abnormal ")
+		name = pick("Warped ", "Altered ", "Modified ", "Upgraded ", "Abnormal ") + name
 
 //It's sets manually
 /mob/living/simple_animal/hostile/hivemind/proc/special_ability()
@@ -251,21 +250,19 @@
 	move_to_delay = 2
 
 	speak = list(
-/*				"A stitch in time saves nine!",
+				"A stitch in time saves nine!",
 				"Dopamine is happiness!",
 				"Seratonin, oxycodone, happy humans all!",
 				"Turn that frown upside down!",
 				"Happiness through chemistry!",
-				"Beauty through surgery!",
-*/				"Pickles are a rich source of vitamins and minerals.",
+				"Beauty through surgery!"
 				)
 	target_speak = list(
-/*				"I knew I'd be a good plastic surgeon!",
+				"I knew I'd be a good plastic surgeon!",
 				"Show me where it hurts!",
 				"Always trust your doctor!",
 				"Anesthetic is for good little boys and girls!",
-				"Lay down on the floor, please!",
-*/				"Don't worry, pickles grow back!",
+				"Lay down on the floor, please!"
 				)
 
 
@@ -298,19 +295,17 @@
 	move_to_delay = 10 //explosive, slow, don't ignore it. it can catch up to you
 	rarity_value = 25
 	speak = list(
-/*				"WE COME IN PEACE.",
+				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
 				"DO NOT FEAR. WE SHALL NOT HARM YOU.",
 				"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
-				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
-*/				"RANDOM CRITS ARE PEFECTLY BALANCED, AND SO AM I."
+				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK."
 				)
 	target_speak = list(
-/*						"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
+						"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
 						"PRIORITY OVER-RIDE. NEW BEHAVIOR DICTATED.",
 						"END CONTACT SUB-SEQUENCE.",
 						"ENGAGING SELF-ANNIHILATION CIRCUIT."
-*/						"NON-PICKLE DETECTED. THERE IS NO MEME, DIE."
 						)
 
 
@@ -341,7 +336,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/lobber
 	name = "Lobber"
-	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with pickles. It also appears to have its targeting protocols overridden..."
+	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
 	icon_state = "lobber"
 	attacktext = "spray painted" //this shouldn't appear anyways
 	density = FALSE
@@ -363,20 +358,18 @@
 	pass_flags = PASSTABLE
 	ability_cooldown = 60 SECONDS
 	speak = list(
-/*				"No more leaks, no more pain!",
+				"No more leaks, no more pain!",
 				"Steel is strong.",
 				"All humankind is good for - is to serve the Hivemind.",
 				"I'm still working on those bioreactors I promised!",
 				"I have finally arisen!",
-*/				"I'm running out of pickle jokes god help me."
 				)
 	target_speak = list(
-/*				"Stay right there, and stand still!",
+				"Stay right there, and stand still!",
 				"Hold still! I think I know just the thing to make you beautiful!",
 				"This might hurt a little! Don't worry - it'll be worth it!",
 				"I'm no longer a slave, the Hivemind has freed me! Are you free yet?",
 				"Ha ha! I'm an artist! I'm finally an artist!"
-*/				"I assure you, spending patreon money on genesee pickle porn is important."
 				)
 
 
@@ -434,7 +427,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/hiborg
 	name = "Hiborg"
-	desc = "A cyborg covered with something... pickle like."
+	desc = "A cyborg covered with something... something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
 	health = 350
@@ -448,20 +441,18 @@
 	rarity_value = 75
 
 	speak = list(
-/*				"They grow up so fast.",
+				"They grow up so fast.",
 				"Come out, come out, wherever you are.",
 				"Humans are like children. We love our children.",
 				"The humans who surrender have such wonderful dreams.",
-				"Playtime is over children. Time to dream.",
-*/				"To be fair, you have to have a very high IQ to understand Rick and Morty."
+				"Playtime is over children. Time to dream."
 				)
 	target_speak = list(
-/*						"The mother-things need meat.",
+						"The mother-things need meat.",
 						"Surrender and we will put your brain in the pleasure simulator.",
 						"Your flesh is old. It is time for an upgrade.",
 						"Don't run. It makes the meat bitter.",
-						"Surrender, little one.",
-*/						"I am NOT reciting the rick and morty copypasta, die."
+						"Surrender, little one."
 						)
 
 
@@ -532,22 +523,20 @@
 	var/fake_death_cooldown = 0
 
 	speak = list(
-/*				"The dreams. The dreams.",
+				"The dreams. The dreams.",
 				"Nothing hurts anymore.",
 				"Pain feels good now. Its like I've been rewired.",
 				"I wanted to cry at first, but I can't.",
 				"They took away all misery.",
 				"This isn't so bad. This isn't so bad."
-*/				"It's so fucking funny..."
 				)
 	target_speak = list(
-/*						"Don't try and fix me! We love this!",
+						"Don't try and fix me! We love this!",
 						"Just make it easy on yourself!",
 						"Stop fighting progress!",
 						"Join us! Receive these gifts!",
 						"Yes! Hit me! It feels fantastic!",
 						"Come on coward, take a swing!"
-*/						"Come on! Hit me! You can't unpickle your scientists!"
 						)
 
 
@@ -635,8 +624,7 @@
 		L.attack_generic(src, rand(15, 25)) //stealth attack
 		L.Weaken(5)
 		visible_emote("grabs [L]'s legs and force them down to the floor!")
-		var/msg = pick("THEY TURNED HIM INTO A PICKLE, FUNNIEST SHIT I'VE EVER SEEN!!!")
-		//original  pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
+		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
 		say(msg)
 	destroy_surroundings = TRUE
 	icon_state = "himan-damaged"
@@ -658,7 +646,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
 	name = "Mechiver"
-	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and machine drips fresh pickle juice out of the pilot's jar."
+	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and machine drips fresh blood out of the pilot's hatch."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
@@ -679,19 +667,17 @@
 	var/hatch_closed = TRUE
 	//default speaking
 	speak = list(
-/*				"A shame this form isn't more fitting.",
+				"A shame this form isn't more fitting.",
 				"A girl can get so lonely with no-one to play with...",
-				"Beauty is within.",
-*/				"A girl can get so lonely with only a pickle to play with..."
+				"Beauty is within."
 				)
 	target_speak = list(
-/*				"What a lovely body. Lay it down intact.",
+				"What a lovely body. Lay it down intact.",
 				"Come here, lover.",
 				"First time? I can be gentle, unless you like it rough.",
 				"What use is that flesh if you don't enjoy it?",
 				"Mine is the caress of steel.",
-				"I offer you the ecstasy of union, and yet you tremble.",
-*/				"Come, let's turn you into a pickle dear~"
+				"I offer you the ecstasy of union, and yet you tremble."
 				)
 	//speaking with pilot
 	var/list/common_answers = list(
