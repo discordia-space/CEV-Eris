@@ -4,7 +4,6 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	body_parts_covered = 0
-	rarity_value = 10
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -25,14 +24,12 @@
 	name = "Scanning Goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
 	icon_state = "uzenwa_sissra_1"
-	rarity_value = 50
 
 /obj/item/clothing/glasses/regular/goggles
 	name = "Green Goggles"
 	desc = "A very oddly shaped pair of green goggles with bits of wire poking out the sides. This is the future!"
 	icon_state = "green_goggles"
 	item_state = "green_goggles"
-	rarity_value = 40
 
 /obj/item/clothing/glasses/regular/goggles/black
 	name = "Black Goggles"
