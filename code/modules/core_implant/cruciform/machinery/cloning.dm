@@ -207,6 +207,9 @@
 			occupant = new/mob/living/carbon/human(src)
 			occupant.dna = R.dna.Clone()
 			occupant.set_species()
+			var/newicon = pick('icons/mob/human_races/r_human2.dmi', 'icons/mob/human_races/r_human3.dmi', 'icons/mob/human_races/r_human4.dmi', 'icons/mob/human_races/r_human5.dmi', 'icons/mob/human_races/r_human6.dmi')
+			occupant.species.icobase = newicon
+			occupant.species.deform = newicon
 			occupant.real_name = R.dna.real_name
 			occupant.age = R.age
 			occupant.UpdateAppearance()
