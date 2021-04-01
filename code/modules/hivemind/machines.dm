@@ -311,8 +311,9 @@
 //generate evopoints, spread weeds
 /obj/machinery/hivemind_machine/node
 	name = "Processing Core"
-	desc = "Its cold eye seeks to dominate what it surveys."
-	icon_state = "core"
+	desc = "This Pickle, aside from being attached to several wires, is releasing grey ooze from its many wounds."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pickle"
 	max_health = 420
 	resistance = RESISTANCE_TOUGH
 	can_regenerate = FALSE

@@ -3,15 +3,17 @@
 
 //toxic shot, turret's ability use it
 /obj/item/projectile/goo
-	name = "Electrolyzed goo"
-	icon = 'icons/obj/hivemind.dmi'
-	icon_state = "goo_proj"
+	name = "Electrolyzed Pickle" //original "Electrolyzed goo"
+//	icon = 'icons/obj/hivemind.dmi'
+//	icon_state = "goo_proj"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pickle"
 	damage_types = list(BURN = 15)
 	check_armour = ARMOR_ENERGY
 	step_delay = 2
 
 /obj/item/projectile/goo/weak
-	name = "Weakened Electrolyzed goo"
+	name = "Weakened Electrolyzed Pickle" //original "Weakened Electrolyzed goo"
 	damage_types = list(BURN = 5)
 
 
