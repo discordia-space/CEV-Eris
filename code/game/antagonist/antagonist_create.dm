@@ -69,6 +69,14 @@
 		var/datum/preferences/P = M.client.prefs
 		P.copy_to(M, FALSE)
 
+		var/mob/living/carbon/human/H = M
+		var/newicon = pick('icons/mob/human_races/r_human2.dmi', 'icons/mob/human_races/r_human3.dmi', 'icons/mob/human_races/r_human4.dmi', 'icons/mob/human_races/r_human5.dmi', 'icons/mob/human_races/r_human6.dmi')
+		H.species.icobase = newicon
+		H.species.deform = newicon
+		H.force_update_limbs()
+		H.update_eyes()
+		H.regenerate_icons()
+
 
 
 	if(!M.mind)

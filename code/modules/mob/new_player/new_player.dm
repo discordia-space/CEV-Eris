@@ -377,6 +377,9 @@
 	//new_character.dna.UpdateSE()
 
 	// Do the initial caching of the player's body icons.
+	var/newicon = pick('icons/mob/human_races/r_human2.dmi', 'icons/mob/human_races/r_human3.dmi', 'icons/mob/human_races/r_human4.dmi', 'icons/mob/human_races/r_human5.dmi', 'icons/mob/human_races/r_human6.dmi')
+	new_character.species.icobase = newicon
+	new_character.species.deform = newicon
 	new_character.force_update_limbs()
 	new_character.update_eyes()
 	new_character.regenerate_icons()
