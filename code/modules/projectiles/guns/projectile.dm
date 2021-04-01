@@ -216,6 +216,13 @@
 			inserted_casing.maxamount = C.maxamount
 			if(ispath(inserted_casing.projectile_type) && C.BB)
 				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+//			if(inserted_casing.sprite_update_spawn)
+//				var/matrix/rotation_matrix = matrix()
+//				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
+//				if(inserted_casing.sprite_use_small)
+//					C.transform = rotation_matrix * inserted_casing.sprite_scale
+//				else
+//					C.transform = rotation_matrix
 			C.update_icon()
 			inserted_casing.update_icon()
 			loaded.Insert(1, inserted_casing)
