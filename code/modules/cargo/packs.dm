@@ -1537,7 +1537,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	group = "Supply"
 
-	/datum/supply_pack/randomised/corporate
+/datum/supply_pack/randomised/corporate
 	num_contained = 3
 	contains = list(/obj/item/clothing/suit/space/void/merc,
 					/obj/item/weapon/gun/energy/crossbow,
@@ -1545,9 +1545,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/energy/crossbow/largecrossbow,
 					/obj/item/weapon/gun/projectile/mk58,
 					/obj/item/weapon/gun/projectile/mk58/wood)
-	name = "Corporate war crate"
+	name = "Corporate War Crate"
 	cost = 8000
 	containertype = /obj/structure/closet/crate
-	crate_name = "Corporate war crate"
+	crate_name = "Corporate War Crate"
 	contraband = TRUE
 	group = "Security"
