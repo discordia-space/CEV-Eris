@@ -2,9 +2,9 @@
 	id = "mercenary"
 	name = "serbian mercenaries"
 	role_id = ROLE_MERCENARY
-	weight = 0.4
+	weight = 0.2
 	ocurrences_max = 1
-	req_crew = 5
+	req_crew = 16
 	
 	//Until we code some way to reset the merc base, can't allow this to happen more than once per round
 
