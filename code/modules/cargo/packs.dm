@@ -1540,10 +1540,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	/datum/supply_pack/randomised/corporate
 	num_contained = 3
 	contains = list(/obj/item/clothing/suit/space/void/merc,
-					/obj/item/weapon/gun/energy/crossbow
-					/obj/item/weapon/gun/energy/sniperrifle
-					/obj/item/weapon/gun/energy/crossbow/largecrossbow
-					/obj/item/weapon/gun/projectile/mk58
+					/obj/item/weapon/gun/energy/crossbow,
+					/obj/item/weapon/gun/energy/sniperrifle,
+					/obj/item/weapon/gun/energy/crossbow/largecrossbow,
+					/obj/item/weapon/gun/projectile/mk58,
 					/obj/item/weapon/gun/projectile/mk58/wood)
 	name = "Corporate war crate"
 	cost = 8000
