@@ -1,4 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: Areas without apc are no longer considered for the Disturbance objective.

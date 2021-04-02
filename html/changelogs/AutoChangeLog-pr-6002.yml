@@ -1,5 +1,0 @@
-author: drexample
-delete-after: true
-changes:
-  - rscadd: New vote sound
-  - bugfix: Fixes missing human mob icons
