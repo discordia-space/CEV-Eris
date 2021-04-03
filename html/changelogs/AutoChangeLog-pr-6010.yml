@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Tobacco demand have been increasing too much lately, cigarette prices
+      have lowered in accordance to demand.
