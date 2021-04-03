@@ -544,6 +544,7 @@
 	dir = 4
 	},
 /obj/machinery/optable,
+/mob/living/carbon/superior_animal/giant_spider/hunter,
 /turf/simulated/floor/tiled/white/lowpressure,
 /area/map_template/ecship/science)
 "bt" = (
@@ -687,6 +688,7 @@
 	dir = 2;
 	health = 1e+007
 	},
+/mob/living/carbon/superior_animal/giant_spider,
 /turf/simulated/floor/tiled/white/lowpressure,
 /area/map_template/ecship/science)
 "bH" = (
@@ -982,6 +984,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/northleft,
+/mob/living/carbon/superior_animal/giant_spider/nurse,
 /turf/simulated/floor/tiled/white/lowpressure,
 /area/map_template/ecship/science)
 "cm" = (
@@ -1850,6 +1853,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/template_noop,
 /area/template_noop)
+"kP" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/white/lowpressure,
+/area/map_template/ecship/cryo)
 "mD" = (
 /obj/structure/lattice,
 /obj/effect/damagedfloor,
@@ -1860,6 +1867,10 @@
 /obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
+"sf" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor,
+/area/map_template/ecship/engineering)
 "NM" = (
 /obj/effect/damagedfloor,
 /turf/template_noop,
@@ -2627,7 +2638,7 @@ cK
 cP
 cU
 cP
-cU
+sf
 dq
 cU
 dd
@@ -3192,7 +3203,7 @@ ab
 as
 aH
 aV
-aV
+kP
 aV
 aH
 as

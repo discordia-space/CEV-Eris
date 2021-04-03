@@ -42,7 +42,7 @@
 
 /area/map_template/marooned
 	name = "\improper Crashed Dropship"
-	icon_state = "A"
+	icon_state = "blue"
 
 /obj/effect/damagedfloor
 	name = "fire"
