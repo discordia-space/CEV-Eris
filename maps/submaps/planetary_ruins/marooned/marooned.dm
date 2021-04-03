@@ -14,7 +14,6 @@
 	name = "officer uniform"
 	desc = "A dark uniform coat worn by Magnitka fleet officers."
 	icon_state = "magnitka_officer"
-	icon = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi'
 	item_icons = list(slot_w_uniform_str = 'maps/submaps/planetary_ruins/marooned/marooned_icons.dmi')
 	spawn_blacklisted = TRUE
 
@@ -28,7 +27,6 @@
 /obj/landmark/corpse/marooned_officer
 	name = "Horazy Warda"
 	corpseuniform = /obj/item/clothing/under/magintka_uniform
-	corpsesuit = /obj/item/clothing/suit/storage/cyberpunksleek_long/black
 	corpseshoes = /obj/item/clothing/shoes/reinforced
 	corpsegloves = /obj/item/clothing/gloves/thick
 	corpsehelmet = /obj/item/clothing/head/beret

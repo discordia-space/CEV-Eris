@@ -162,6 +162,10 @@
 
 /obj/landmark/corpse/scientist
 	name = "Scientist"
+	corpseuniform = /obj/item/clothing/under/rank/scientist
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseradio = /obj/item/device/radio/headset
+	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	corpseid = 1
 	corpseidjob = "Scientist"
 
@@ -179,8 +183,8 @@
 
 /obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
-	corpseradio = /obj/item/device/radio/headset/heads/hop
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_officer
+	corpseradio = /obj/item/device/radio/headset
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
@@ -190,7 +194,7 @@
 
 /obj/landmark/corpse/commander
 	name = "Commander"
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_captain
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseradio = /obj/item/device/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
