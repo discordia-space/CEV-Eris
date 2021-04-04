@@ -14,7 +14,7 @@
 	. = ..()
 	container = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 
-/obj/machinery/autolathe/excelsior/update_icon()
+/obj/machinery/autolathe/excelsior/on_update_icon()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "[initial(icon_state)]_off"

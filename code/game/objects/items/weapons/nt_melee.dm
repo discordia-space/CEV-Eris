@@ -89,7 +89,7 @@
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
-/obj/item/weapon/tool/sword/nt/scourge/update_icon()
+/obj/item/weapon/tool/sword/nt/scourge/on_update_icon()
 	if(extended)
 		icon_state = initial(icon_state) + "_extended"
 	else

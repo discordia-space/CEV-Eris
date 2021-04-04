@@ -27,10 +27,11 @@
 	var/extra_damage_mult_scoped = 0.2
 	gun_tags = list(GUN_AMR, GUN_SCOPE)
 	rarity_value = 90
+	no_internal_mag = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
 
-/obj/item/weapon/gun/projectile/heavysniper/update_icon()
+/obj/item/weapon/gun/projectile/heavysniper/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

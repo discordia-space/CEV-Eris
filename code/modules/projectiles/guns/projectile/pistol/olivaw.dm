@@ -23,7 +23,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/olivaw/update_icon()
+/obj/item/weapon/gun/projectile/olivaw/on_update_icon()
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "olivawcivil"

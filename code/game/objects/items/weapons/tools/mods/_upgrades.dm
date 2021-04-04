@@ -315,6 +315,16 @@
 	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
 		G.vision_flags = SEE_MOBS
 
+	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
+		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		G.sharp = TRUE
+	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
+		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
+	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
+		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
+	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
+		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
+	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -326,6 +336,8 @@
 			E.overcharge_rate *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+		if(weapon_upgrades[GUN_UPGRADE_AGONY_MULT])
+			E.proj_agony_multiplier *= weapon_upgrades[GUN_UPGRADE_AGONY_MULT]
 
 	if(istype(G, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/P = G

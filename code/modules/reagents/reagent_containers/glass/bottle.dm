@@ -13,7 +13,7 @@
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
 
-/obj/item/weapon/reagent_containers/glass/bottle/update_icon()
+/obj/item/weapon/reagent_containers/glass/bottle/on_update_icon()
 	cut_overlays()
 
 	if(has_lid())

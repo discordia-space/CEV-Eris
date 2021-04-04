@@ -6,6 +6,7 @@
 	item_state = ""	//no inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/clothing/accessory
 	var/slot = "decor"
 	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
 	var/image/inv_overlay	//overlay used when attached to clothing.
@@ -46,7 +47,7 @@
 		return
 	has_suit = S
 	loc = has_suit
-	has_suit.overlays += get_inv_overlay()
+	has_suit.add_overlays(get_inv_overlay())
 
 	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
 	src.add_fingerprint(user)
@@ -54,7 +55,7 @@
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
 		return
-	has_suit.overlays -= get_inv_overlay()
+	has_suit.remove_overlays(get_inv_overlay())
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)

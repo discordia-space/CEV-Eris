@@ -75,11 +75,13 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
+	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 	var/darkness_view = 0
 	var/vision_flags = 0
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
+	var/inversed_carry = FALSE
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -100,6 +102,7 @@
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
 		hud_actions += action
+	verbs += /obj/item/weapon/gun/proc/toggle_carry_state_verb
 
 
 	if(icon_contained)
@@ -140,13 +143,18 @@
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
 	state = initial(state)
-	if(back)
+
+	var/carry_state = inversed_carry
+	if(back && !carry_state)
 		item_state_slots[slot_back_str]   = "back"      + state
-	if(onsuit)
+	if(back && carry_state)
+		item_state_slots[slot_back_str]   = "onsuit"      + state
+	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
+	if(onsuit && carry_state)
+		item_state_slots[slot_s_store_str]= "back"    + state
 
-
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/on_update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)
@@ -302,6 +310,8 @@
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
+		projectile.multiply_projectile_agony(proj_agony_multiplier)
+
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
@@ -361,7 +371,7 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, pointblank=0, reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
-		playsound(user, fire_sound_silenced, 15, 1, -3)
+		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
 
@@ -603,6 +613,11 @@
 	else
 		user.update_cursor()
 
+/obj/item/weapon/gun/proc/toggle_carry_state(mob/living/user)
+	inversed_carry = !inversed_carry
+	to_chat(user, SPAN_NOTICE("You adjust the way the gun will be worn on your back and on your suit."))
+	set_item_state()
+
 /obj/item/weapon/gun/proc/get_total_damage_adjust()
 	var/val = 0
 	for(var/i in proj_damage_adjust)
@@ -651,6 +666,13 @@
 	set src in view(1)
 
 	toggle_safety(usr)
+
+/obj/item/weapon/gun/proc/toggle_carry_state_verb()
+	set name = "Toggle gun's carry position"
+	set category = "Object"
+	set src in view(1)
+
+	toggle_carry_state(usr)
 
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
@@ -729,6 +751,7 @@
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
+	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
@@ -744,6 +767,11 @@
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
+	force = initial(force)
+	armor_penetration = initial(armor_penetration)
+	sharp = initial(sharp)
+	attack_verb = list()
+	one_hand_penalty = initial(one_hand_penalty)
 	initialize_scope()
 	initialize_firemodes()
 
@@ -771,3 +799,5 @@
 	else
 		H.using_scope = null
 
+	if(!sharp)
+		gun_tags |= SLOT_BAYONET

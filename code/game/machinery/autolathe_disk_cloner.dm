@@ -231,28 +231,28 @@
 	update_icon()
 
 
-/obj/machinery/autolathe_disk_cloner/update_icon()
-	overlays.Cut()
+/obj/machinery/autolathe_disk_cloner/on_update_icon()
+	cut_overlays()
 
 	if(panel_open)
-		overlays.Add(image(icon, icon_state = "disk_cloner_panel"))
+		add_overlays(image(icon, icon_state = "disk_cloner_panel"))
 
 	if(!stat)
-		overlays.Add(image(icon, icon_state = "disk_cloner_screen"))
-		overlays.Add(image(icon, icon_state = "disk_cloner_keyboard"))
+		add_overlays(image(icon, icon_state = "disk_cloner_screen"))
+		add_overlays(image(icon, icon_state = "disk_cloner_keyboard"))
 
 		if(original)
-			overlays.Add(image(icon, icon_state = "disk_cloner_screen_disk1"))
+			add_overlays(image(icon, icon_state = "disk_cloner_screen_disk1"))
 
 			if(original.stored_files.len)
-				overlays.Add(image(icon, icon_state = "disk_cloner_screen_list1"))
+				add_overlays(image(icon, icon_state = "disk_cloner_screen_list1"))
 
 		if(copy)
-			overlays.Add(image(icon, icon_state = "disk_cloner_screen_disk2"))
+			add_overlays(image(icon, icon_state = "disk_cloner_screen_disk2"))
 
 			if(copy.stored_files.len)
-				overlays.Add(image(icon, icon_state = "disk_cloner_screen_list2"))
+				add_overlays(image(icon, icon_state = "disk_cloner_screen_list2"))
 
 		if(copying)
-			overlays.Add(image(icon, icon_state = "disk_cloner_cloning"))
+			add_overlays(image(icon, icon_state = "disk_cloner_cloning"))
 

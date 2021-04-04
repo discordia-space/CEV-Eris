@@ -207,7 +207,7 @@
 	new /obj/item/weapon/reagent_containers/syringe/large/antitoxin(src)
 	new /obj/item/weapon/reagent_containers/syringe/large/dexalin_plus(src)
 
-/obj/item/weapon/storage/firstaid/nt/update_icon()
+/obj/item/weapon/storage/firstaid/nt/on_update_icon()
 	if(!contents.len)
 		icon_state = "[initial(icon_state)]_empty"
 		item_state = "[initial(item_state)]_empty"

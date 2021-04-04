@@ -5,6 +5,7 @@
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	var/list/owner_verbs = list()
 	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
+	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
 	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
 	var/max_blood_storage = 0	//How much blood an organ stores. Base is 5 * blood_req, so the organ can survive without blood for 5 ticks beofre taking damage (+ blood supply of blood vessels)

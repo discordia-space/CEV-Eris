@@ -110,6 +110,9 @@
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
 
+/obj/item/projectile/multiply_projectile_agony(newmult)
+	agony = initial(agony) * newmult
+
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return

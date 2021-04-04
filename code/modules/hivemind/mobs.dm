@@ -22,6 +22,9 @@
 	bad_type = /mob/living/simple_animal/hostile/hivemind
 	spawn_tags = SPAWN_TAG_MOB_HIVEMIND
 	rarity_value = 20
+
+	mob_classification = CLASSIFICATION_SYNTHETIC
+
 	var/malfunction_chance = 5
 	var/ability_cooldown = 30 SECONDS
 	var/list/target_speak = list()			//this is like speak list, but when we see our target
@@ -189,7 +192,7 @@
 	var/icon/infested = new /icon(icon, icon_state)
 	var/icon/covering_mask = new /icon('icons/mob/hivemind.dmi', "covering[rand(1, 3)]")
 	infested.Blend(covering_mask, ICON_MULTIPLY)
-	overlays += infested
+	add_overlays(infested)
 
 	setMaxHealth(victim.maxHealth * 2 + 10)
 	health = maxHealth
@@ -225,6 +228,7 @@
 //Special ability: none
 //Just another boring mob without any cool abilities
 //Low chance of malfunction
+//Faster than average, to the point it could possibly catch up to someone
 //Default speaking chance
 //Appears from dead small mobs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
@@ -243,7 +247,7 @@
 	malfunction_chance = 5
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 5
+	move_to_delay = 2
 
 	speak = list(
 				"A stitch in time saves nine!",
@@ -251,7 +255,7 @@
 				"Seratonin, oxycodone, happy humans all!",
 				"Turn that frown upside down!",
 				"Happiness through chemistry!",
-				"Beauty through surgery!",
+				"Beauty through surgery!"
 				)
 	target_speak = list(
 				"I knew I'd be a good plastic surgeon!",
@@ -272,6 +276,7 @@
 //Special ability: none
 //Explode in contact with target
 //Extremely low chance of malfunction
+//Very slow
 //Default speaking chance
 //Appears from dead small mobs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
@@ -287,14 +292,14 @@
 	malfunction_chance = 1 //1% chance of it exploding, for no reason at all
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 2 //explosive, slow, don't ignore it. it can catch up to you
+	move_to_delay = 10 //explosive, slow, don't ignore it. it can catch up to you
 	rarity_value = 25
 	speak = list(
 				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
 				"DO NOT FEAR. WE SHALL NOT HARM YOU.",
 				"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
-				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
+				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK."
 				)
 	target_speak = list(
 						"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
@@ -312,7 +317,7 @@
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(get_turf(src), 0, 0, 3) //explosion almost equal to a full welding fuel tank, deadly
+	explosion(get_turf(src), 0, 0, 2) //explosion almost equal to a full welding fuel tank, deadly
 	qdel(src)
 
 
@@ -324,7 +329,6 @@
 //Special ability: Can fire 3 projectiles at once for 10 seconds, then overheats
 //Deals no melee damage, but fires projectiles
 //Starts with 10 malfunction chance, malfunction also triggered when overheating
-//Higher speed than normal
 //Slighly higher speaking chance
 //Appears from hive spawner and Mechiver
 //Appears rarely than bomber or stinger
@@ -352,7 +356,6 @@
 	rarity_value = 50
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 8
 	ability_cooldown = 60 SECONDS
 	speak = list(
 				"No more leaks, no more pain!",
@@ -418,6 +421,7 @@
 //							  Splash attack, that slash everything around!
 //Decent chance of malfunction
 //Default speaking chance
+//Slower than average
 //Appears from dead cyborgs and assemblers
 //////////////////////////////////////////////////////////////////////////////
 
@@ -426,21 +430,23 @@
 	desc = "A cyborg covered with something... something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
-	health = 400
-	maxHealth = 400 //can take a lot of hits before being obliterated
+	health = 350
+	maxHealth = 350 //can take a lot of hits before being obliterated
 	melee_damage_lower = 25
 	melee_damage_upper = 30 //Claws man, they hurt
 	attacktext = "clawed"
-	speed = 7
+	move_to_delay = 6
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
 	rarity_value = 75
 
-	speak = list("They grow up so fast.",
+	speak = list(
+				"They grow up so fast.",
 				"Come out, come out, wherever you are.",
 				"Humans are like children. We love our children.",
 				"The humans who surrender have such wonderful dreams.",
-				"Playtime is over children. Time to dream.")
+				"Playtime is over children. Time to dream."
+				)
 	target_speak = list(
 						"The mother-things need meat.",
 						"Surrender and we will put your brain in the pleasure simulator.",
@@ -491,6 +497,7 @@
 //Special ability: Shriek, that stuns victims
 //Can fool his enemies and pretend to be dead
 //A little bit higher chance of malfunction than others
+//Slower than average, faster than Hiborg
 //Default speaking chance
 //Appears from dead human corpses
 //////////////////////////////////////////////////////////////////////////////
@@ -507,7 +514,7 @@
 	attacktext = "slashed"
 	malfunction_chance = 20 //a combination of metal and flesh in a weird and confusing way. I would assume the body is trying to reject the implants/cybernetics.
 	mob_size = MOB_MEDIUM
-	speed = 8
+	move_to_delay = 5
 	ability_cooldown = 20 SECONDS
 	rarity_value = 75
 	//internals
@@ -633,24 +640,26 @@
 //Can picking up corpses too, rebuild them to living hive mobs, like it wires do
 //Default malfunction chance
 //Increased speaking chance, can take pilot and speak with him
+//Dummy thick, slow as fuck
 //Rarely can appear from infested machinery (with a circuit board, like an Autholate)
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
 	name = "Mechiver"
-	desc = "Once an exosuit, this hulking amalgamation of flesh and machine drips fresh blood out of the pilot's hatch."
+	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and machine drips fresh blood out of the pilot's hatch."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
-	health = 700
-	maxHealth = 700
+	health = 600
+	maxHealth = 600
+	resistance = RESISTANCE_ARMOURED 
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	mob_size = MOB_LARGE
 	attacktext = "crushed"
 	ability_cooldown = 1 MINUTES
 	speak_chance = 8
-	speed = 8
+	move_to_delay = 10
 	rarity_value = 125
 	//internals
 	var/pilot						//Yes, there's no pilot, so we just use var
@@ -660,14 +669,16 @@
 	speak = list(
 				"A shame this form isn't more fitting.",
 				"A girl can get so lonely with no-one to play with...",
-				"Beauty is within.")
+				"Beauty is within."
+				)
 	target_speak = list(
 				"What a lovely body. Lay it down intact.",
 				"Come here, lover.",
 				"First time? I can be gentle, unless you like it rough.",
 				"What use is that flesh if you don't enjoy it?",
 				"Mine is the caress of steel.",
-				"I offer you the ecstasy of union, and yet you tremble.")
+				"I offer you the ecstasy of union, and yet you tremble."
+				)
 	//speaking with pilot
 	var/list/common_answers = list(
 								"Of course, lover.",
@@ -741,26 +752,26 @@
 
 //animations
 //updates every life tick
-/mob/living/simple_animal/hostile/hivemind/mechiver/update_icon()
+/mob/living/simple_animal/hostile/hivemind/mechiver/on_update_icon()
 	if(target_mob && !passenger && (get_dist(target_mob, src) <= 4) && !is_on_cooldown())
 		if(!hatch_closed)
 			return
-		overlays.Cut()
+		cut_overlays()
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 			icon_state = "mechiver-chief"
-			overlays += "mechiver-hands"
+			add_overlays("mechiver-hands")
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 			icon_state = "mechiver-welcome"
-			overlays += "mechiver-wires"
+			add_overlays("mechiver-wires")
 		hatch_closed = FALSE
 	else
-		overlays.Cut()
+		cut_overlays()
 		hatch_closed = TRUE
 		icon_state = "mechiver-closed"
 		if(passenger)
-			overlays += "mechiver-process"
+			add_overlays("mechiver-process")
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/AttackingTarget()
@@ -777,9 +788,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(mob/living/target)
 	if(!target_mob && hatch_closed) //when we picking up corpses
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
@@ -792,9 +803,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/proc/release_passenger(var/safely = FALSE)
 	if(passenger)
 		if(pilot)
-			flick("mechiver-opening", src)
+			FLICK("mechiver-opening", src)
 		else
-			flick("mechiver-opening_wires", src)
+			FLICK("mechiver-opening_wires", src)
 
 		if(ishuman(passenger))
 			if(!safely) //that was stressful

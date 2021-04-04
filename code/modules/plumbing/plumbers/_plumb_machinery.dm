@@ -26,13 +26,13 @@
 	. = ..()
 	create_reagents(buffer, reagent_flags)
 
-/obj/machinery/plumbing/update_icon()
+/obj/machinery/plumbing/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	var/list/new_overlays = update_overlays()
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)
-			overlays.Add(overlay)
+			add_overlays(overlay)
 
 /obj/machinery/plumbing/verb/rotate()
 	set category = "Object"

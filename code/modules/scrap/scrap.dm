@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/obj/big_item
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
-	var/rare_item_chance = 70
+	var/rare_item_chance = 50
 	var/rare_item = FALSE
 	var/prob_make_old = 80
 
@@ -121,12 +121,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	for(var/x in 1 to amt)
 		var/rare = FALSE
 		var/rare_items_amt = rand(1,2)
-		if((x >= amt-rare_items_amt) && prob(rare_item_chance))
+		if((x > amt-rare_items_amt) && prob(rare_item_chance))
 			rare = TRUE
 		var/list/loot_tags_copy = loot_tags.Copy()
 		if(rare)
 			loot_tags_copy -= junk_tags
-			loot_tags_copy |= rare_loot
+			loot_tags_copy |= list(pickweight(rare_loot))
 		var/list/true_loot_tags = list()
 		var/tags_amt = max(round(loot_tags_copy.len/3),1)
 		for(var/y in 1 to tags_amt)
@@ -140,9 +140,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(tags)
 			if(rare)
-				top_price = GUN_CHEAP_PRICE
+				top_price = CHEAP_ITEM_PRICE * 1.5
 				true_loot_tags -= junk_tags
-				true_loot_tags |= rare_loot
+				true_loot_tags |= list(pickweight(rare_loot))
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	I.transform = M
 	return I
 
-/obj/structure/scrap_spawner/update_icon(rebuild_base=FALSE)
+/obj/structure/scrap_spawner/on_update_icon(rebuild_base=FALSE)
 	if(clear_if_empty())
 		return
 
@@ -255,9 +255,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to num)
 				var/image/I = image(parts_icon,pick(icon_states(parts_icon)))
 				I.color = pick("#996633", "#663300", "#666666", "")
-				base_icon.overlays += randomize_image(I)
+				base_icon.overlays.Add(randomize_image(I))
 			GLOB.scrap_base_cache["[icontype][icon_state][ID]"] = base_icon
-		overlays += GLOB.scrap_base_cache["[icontype][icon_state][ID]"]
+		add_overlays(GLOB.scrap_base_cache["[icontype][icon_state][ID]"])
 	if(loot_generated)
 		underlays.Cut()
 		for(var/obj/O in loot.contents)
@@ -652,7 +652,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	spawn_tags = SPAWN_TAG_BEACON_SCRAP
 
 
-/obj/structure/scrap_spawner/poor/structure/update_icon(rebuild_base=FALSE) //make big trash icon for this
+/obj/structure/scrap_spawner/poor/structure/on_update_icon(rebuild_base=FALSE) //make big trash icon for this
 	..()
 	if(!loot_generated)
 		underlays += image(icon, icon_state = "underlay_big")

@@ -18,7 +18,7 @@
 		implant = new implant(src)
 		update_icon()
 
-/obj/item/weapon/implantcase/update_icon()
+/obj/item/weapon/implantcase/on_update_icon()
 	if(implant)
 		src.icon_state = "implantcase-[implant.implant_color]"
 	else

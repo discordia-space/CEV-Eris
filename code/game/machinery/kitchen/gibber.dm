@@ -54,18 +54,18 @@
 		if(output)
 			gib_throw_dir = get_dir(src, output)
 
-/obj/machinery/gibber/update_icon()
-	overlays.Cut()
+/obj/machinery/gibber/on_update_icon()
+	cut_overlays()
 	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+		src.add_overlays(image('icons/obj/kitchen.dmi', "grbloody"))
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		src.add_overlays(image('icons/obj/kitchen.dmi', "grjam"))
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		src.add_overlays(image('icons/obj/kitchen.dmi', "gruse"))
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		src.add_overlays(image('icons/obj/kitchen.dmi', "gridle"))
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()
@@ -204,6 +204,12 @@
 			slab_count = critter.meat_amount
 		if(critter.meat_type)
 			slab_type = critter.meat_type
+
+	else if(isroach(occupant))
+		var/mob/living/carbon/superior_animal/roach/H = occupant
+		slab_type = H.meat_type
+		slab_count = H.meat_amount
+
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		slab_name = src.occupant.real_name

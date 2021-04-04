@@ -113,3 +113,6 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 			testing("Caching [M] for future use")
 			source.loc = null
 			cached_space += source
+
+/obj/effect/overmap/proc/get_skybox_representation()
+	return

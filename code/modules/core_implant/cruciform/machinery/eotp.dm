@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(miracle_points, 0)
+
 var/global/obj/machinery/power/eotp/eotp
 
 #define ARMAMENTS "Armaments"
@@ -193,7 +195,7 @@ var/global/obj/machinery/power/eotp/eotp
 
 	for(var/disciple in disciples)
 		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))
-
+	GLOB.miracle_points++
 
 #undef ARMAMENTS
 #undef ALERT

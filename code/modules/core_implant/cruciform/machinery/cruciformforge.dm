@@ -130,16 +130,16 @@
 /obj/machinery/neotheology/cruciformforge/proc/flick_anim(var/animation)
 
 	if(animation == WORK)
-		flick("[initial(icon_state)]_start", src)
+		FLICK("[initial(icon_state)]_start", src)
 		icon_state = "[initial(icon_state)]_work"
 		update_icon()
 
 	if(animation == LOAD)
-		flick("[initial(icon_state)]_load", image_load)
+		FLICK("[initial(icon_state)]_load", image_load)
 		return
 
 	if(animation == DONE)
-		flick("[initial(icon_state)]_finish", src)
+		FLICK("[initial(icon_state)]_finish", src)
 		icon_state = "[initial(icon_state)]"
 		update_icon()
 

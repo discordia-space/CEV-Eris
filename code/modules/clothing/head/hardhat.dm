@@ -24,7 +24,6 @@
 	icon_state = "hardhat_yellow_visor"
 	body_parts_covered = HEAD|FACE|EYES
 	flags_inv = HIDEEYES
-	rarity_value = 40
 
 /obj/item/clothing/head/hardhat/blue
 	icon_state = "hardhat_blue"

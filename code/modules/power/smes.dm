@@ -103,29 +103,29 @@
 		return 1
 	return 0
 
-/obj/machinery/power/smes/update_icon()
-	overlays.Cut()
+/obj/machinery/power/smes/on_update_icon()
+	cut_overlays()
 	if(stat & BROKEN)	return
 
-	overlays += image('icons/obj/power.dmi', "smes-op[outputting]")
+	add_overlays(image('icons/obj/power.dmi', "smes-op[outputting]"))
 
 	if(inputting == 2)
-		overlays += image('icons/obj/power.dmi', "smes-oc2")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc2"))
 	else if (inputting == 1)
-		overlays += image('icons/obj/power.dmi', "smes-oc1")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc1"))
 	else if (input_attempt)
-		overlays += image('icons/obj/power.dmi', "smes-oc0")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc0"))
 
 	var/clevel = chargedisplay()
 	if(clevel)
-		overlays += image('icons/obj/power.dmi', "smes-og[clevel]")
+		add_overlays(image('icons/obj/power.dmi', "smes-og[clevel]"))
 
 	if(outputting == 2)
-		overlays += image('icons/obj/power.dmi', "smes-op2")
+		add_overlays(image('icons/obj/power.dmi', "smes-op2"))
 	else if (outputting == 1)
-		overlays += image('icons/obj/power.dmi', "smes-op1")
+		add_overlays(image('icons/obj/power.dmi', "smes-op1"))
 	else
-		overlays += image('icons/obj/power.dmi', "smes-op0")
+		add_overlays(image('icons/obj/power.dmi', "smes-op0"))
 
 /obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))

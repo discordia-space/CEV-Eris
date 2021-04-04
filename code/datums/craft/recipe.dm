@@ -1,3 +1,6 @@
+#define IN_PROGRESS 2
+#define READY 1
+
 /datum/craft_recipe
 	var/name
 	var/category = "Misc"
@@ -129,9 +132,9 @@
 	else
 		CR = new /obj/item/craft (null, src)
 		var/obj/item/craft/CO = CR
-		if(apply_type == 1)
+		if(apply_type == READY)
 			CO.step++
-		else if(apply_type == 2)
+		else if(apply_type == IN_PROGRESS)
 			CS.craft_items[CO] = CS.req_amount - 1
 		CO.update()
 	if(flags & CRAFT_ON_FLOOR)
@@ -140,3 +143,5 @@
 		user.put_in_hands(CR)
 	return CR
 
+#undef IN_PROGRESS
+#undef READY

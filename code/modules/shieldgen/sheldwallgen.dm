@@ -85,16 +85,16 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
-/obj/machinery/shieldwallgen/update_icon()
-	icon_state = "Shield_Gen"
+/obj/machinery/shieldwallgen/on_update_icon()
+	SetIconState("Shield_Gen")
 	if(active)
-		icon_state = "Shield_Gen_active"
+		SetIconState("Shield_Gen_active")
 		if(stunmode)
-			icon_state = "Shield_Gen_emagged"
+			SetIconState("Shield_Gen_emagged")
 
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
-		overlays.Add(image(icon,"Shield_Gen_panel"))
+		add_overlays(image(icon,"Shield_Gen_panel"))
 
 /obj/machinery/shieldwallgen/Process()
 	power()

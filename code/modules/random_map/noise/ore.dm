@@ -43,7 +43,7 @@
 
 	for(var/i=0,i<chunk_size,i++)
 		for(var/j=0,j<chunk_size,j++)
-			var/turf/simulated/T = locate(tx+j, ty+i, origin_z)
+			var/turf/simulated/mineral/T = locate(tx+j, ty+i, origin_z)
 			if(!istype(T) || !T.has_resources)
 				continue
 			if(!priority_process) sleep(-1)
@@ -89,3 +89,16 @@
 		return "R"
 	else
 		return "D"
+
+/datum/random_map/noise/ore/filthy_rich
+	deep_val = 0.6
+	rare_val = 0.4
+
+/datum/random_map/noise/ore/rich
+	deep_val = 0.7
+	rare_val = 0.5
+
+/datum/random_map/noise/ore/poor
+	deep_val = 0.8
+	rare_val = 0.7
+	chunk_size = 3

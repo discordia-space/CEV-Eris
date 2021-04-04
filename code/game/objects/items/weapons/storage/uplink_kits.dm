@@ -226,6 +226,7 @@
 
 /obj/item/weapon/storage/briefcase/antimaterial_rifle
 	desc = "An ominous leather briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/briefcase/antimaterial_rifle/populate_contents()
 	new /obj/item/ammo_casing/antim(src)
@@ -324,3 +325,12 @@
 	for(var/i, i < storage_slots , i++)
 		var/stim = pick(subtypesof(/obj/item/weapon/reagent_containers/syringe/stim))
 		new stim(src)
+
+/obj/item/weapon/storage/box/syndie_kit/pickle
+	name = "Pickle box"
+	desc = "Pickle."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/pickle/populate_contents()
+	new /obj/item/weapon/reagent_containers/food/snacks/pickle(src)

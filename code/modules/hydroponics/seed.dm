@@ -806,4 +806,4 @@
 	if(get_trait(TRAIT_PLANT_ICON))
 		growth_stages = plant_controller.plant_sprites[get_trait(TRAIT_PLANT_ICON)]
 	else
-		growth_stages = 0
+		growth_stages = plant_controller.plant_sprites[get_trait("bush1")]

@@ -45,4 +45,4 @@
 		target.forceMove(loc)
 		spawn(1)
 			target.forceMove(src)
-			flick("loader_take", src)
+			FLICK("loader_take", src)

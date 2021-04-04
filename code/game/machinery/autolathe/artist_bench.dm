@@ -204,7 +204,7 @@
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
-	flick("[initial(icon_state)]_work", src)
+	FLICK("[initial(icon_state)]_work", src)
 	working = TRUE
 	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
 		error = "Lost artist."
