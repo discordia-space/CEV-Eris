@@ -673,7 +673,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/mob/living/simple_animal/hostile/roomba/boomba,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bB" = (
@@ -899,7 +899,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bV" = (
-/obj/effect/floor_decal/industrial/warning,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
@@ -1072,6 +1071,10 @@
 /obj/item/seeds/bananaseed,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
+"zb" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/map_template/crashed_pod)
 
 (1,1,1) = {"
 aa
@@ -1123,7 +1126,7 @@ bg
 bC
 bL
 bJ
-bD
+zb
 bD
 bJ
 "}
