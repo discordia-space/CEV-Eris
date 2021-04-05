@@ -1744,7 +1744,7 @@
 	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
 	var/turf/T = get_turf(src)
 	if(istype(T))
-		var/mob/living/carbon/human/monkey/M = new /mob/living/carbon/human/monkey(T)
+		new /mob/living/carbon/human/monkey(T)
 	qdel(src)
 	return TRUE
 
