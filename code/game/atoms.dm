@@ -765,7 +765,5 @@ its easier to just keep the beam vertical.
 	if(ismob(src))
 		var/mob/M = src
 		M.death(FALSE, FALSE)
-		qdel(src)
-	else
-		qdel(src)
+	qdel(src)
 	. = TRUE
