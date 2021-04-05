@@ -95,26 +95,26 @@
 	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+
 	if(!roundstart) request_player()
 
 /mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
-	if(stat|| key)
-		return 0
-	var/confirmation = alert("Would you like to occupy the [src]?", "", "Yes", "No")
-	if(confirmation == "No" || !src || QDELETED(src))
-		return 1
+	if(stat || key)
+		return FALSE
+	var/confirmation = alert("Would you like to occupy \the [src]?", "", "Yes", "No")
+	if(confirmation == "No" || QDELETED(src))
+		return TRUE
 	if(key)
-		to_chat(user, "<span class='warning'>Someone is already occupying this body.</span>")
-		return 1
-	roundstart = 1 //Outer variable in /datum/antagonist/borer causes borer to teleport when mind is switched.
+		to_chat(user, SPAN_WARNING("Someone is already occupying this body."))
+		return TRUE
 	key = user.key
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/borer/attack_ghost(mob/user)
-	.=..()
-	if(.)
-		return
-	ghost_enter(user)
+	. = ..()
+	if(!.)
+		. = ghost_enter(user)
+
 
 /mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
 	// Remove all abilities
