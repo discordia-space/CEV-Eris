@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 	var/radius = 0
 
 /obj/effect/landmark/ruin/automatic/clearing/New(loc, my_ruin_template, ruin_radius)
-	..(loc, my_ruin_template)
+	. = ..(loc, my_ruin_template)
 	radius = ruin_radius	
 
 /obj/effect/landmark/ruin/automatic/clearing/Initialize()
