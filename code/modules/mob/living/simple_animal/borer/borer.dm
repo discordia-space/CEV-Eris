@@ -97,6 +97,24 @@
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 	if(!roundstart) request_player()
 
+/mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
+	if(stat|| key)
+		return 0
+	var/confirmation = alert("Become a borer?", "You Monster", "Yes", "No")
+	if(confirmation == "No" || !src || QDELETED(src))
+		return 1
+	if(key)
+		to_chat(user, "<span class='warning'>Someone is already occupying this body.</span>")
+		return 1
+	key = user.key
+	return 1
+
+/mob/living/simple_animal/borer/attack_ghost(mob/user)
+	.=..()
+	if(.)
+		return
+	ghost_enter(user)
+
 /mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
 	// Remove all abilities
 	verbs -= abilities_standalone
