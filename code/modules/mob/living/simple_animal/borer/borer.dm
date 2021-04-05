@@ -95,17 +95,19 @@
 	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+
 	if(!roundstart) request_player()
 
 /mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
 	if(stat|| key)
 		return 0
-	var/confirmation = alert("Become a borer?", "You Monster", "Yes", "No")
+	var/confirmation = alert("Would you like to occupy [src]?", "", "Yes", "No")
 	if(confirmation == "No" || !src || QDELETED(src))
 		return 1
 	if(key)
 		to_chat(user, "<span class='warning'>Someone is already occupying this body.</span>")
 		return 1
+	roundstart = 1 //Outer variable in /datum/antagonist/borer causes borer to teleport when mind is switched.
 	key = user.key
 	return 1
 
