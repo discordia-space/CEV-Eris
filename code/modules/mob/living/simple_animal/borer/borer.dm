@@ -95,13 +95,12 @@
 	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
-
 	if(!roundstart) request_player()
 
 /mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
 	if(stat|| key)
 		return 0
-	var/confirmation = alert("Would you like to occupy [src]?", "", "Yes", "No")
+	var/confirmation = alert("Would you like to occupy the [src]?", "", "Yes", "No")
 	if(confirmation == "No" || !src || QDELETED(src))
 		return 1
 	if(key)
