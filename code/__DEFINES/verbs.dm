@@ -1,0 +1,4 @@
+#define CYBERNETIC_VERBS_CATEGORY "Cybernetics"
+//TODO
+#define IC_VERBS_CATEGORY "IC"
+#define OOC_VERBS_CATEGORY "OOC"

@@ -9,6 +9,7 @@
 	#include "avatar/visual.dm"
 		#include "avatar/api/atom_api.dm"
 		#include "avatar/api/interactions_api.dm"
+	#include "avatar/hash.dm"
 
 #include "~game/_game.dm"
 
