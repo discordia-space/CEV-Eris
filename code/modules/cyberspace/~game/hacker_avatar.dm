@@ -5,11 +5,11 @@
 	icon_state = "ai_observer"
 
 /mob/observer/cyberspace_eye
+	alpha = 200
 	icon = 'icons/obj/cyberspace/cyberspace.dmi'
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 
 /mob/observer/cyberspace_eye/ai
-	alpha = 200
 	icon_state = "ai_presence"
 
 /datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
