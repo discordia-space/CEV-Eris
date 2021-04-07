@@ -8,6 +8,7 @@
 	alpha = 200
 	icon = 'icons/obj/cyberspace/cyberspace.dmi'
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
+	_SeeCyberSpace = TRUE
 
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
