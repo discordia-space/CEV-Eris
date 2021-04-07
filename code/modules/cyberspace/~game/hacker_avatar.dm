@@ -10,6 +10,8 @@
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 	_SeeCyberSpace = TRUE
 
+CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
+
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
 
