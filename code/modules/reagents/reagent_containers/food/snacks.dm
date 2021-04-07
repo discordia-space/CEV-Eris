@@ -1769,6 +1769,190 @@
 	reagent_flags = NONE
 	wrapped = TRUE
 
+/obj/item/weapon/reagent_containers/food/snacks/cube/roach
+	name = "Roach Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "roachcube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/roach/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/roach/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/fuhrer
+	name = "Fuhrer Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "fuhrercube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/fuhrer/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/fuhrer(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/fuhrer/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/jager
+	name = "Jager Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "jagercube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/jager/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/hunter(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/jager/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/kraftwerk
+	name = "Kraftwerk Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "kraftwerkcube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/kraftwerk/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/nanite(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/kraftwerk/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/roachling
+	name = "Roachling Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "babycube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/roachling/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/roachling(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/roachling/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/seuche
+	name = "Seuche Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "seuchecube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/seuche/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/support(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/seuche/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/panzer
+	name = "Panzer Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "panzercube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/panzer/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/tank(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/panzer/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/grestrahlte
+	name = "Grestrahlte Cube"
+	desc = "Just add Blood!"
+	reagent_flags = REFILLABLE
+	icon = 'icons/obj/roach_cubes.dmi'
+	icon_state = "gestrahltecube"
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	preloaded_reagents = list("protein" = 10)
+	taste_tag = list(MEAT_FOOD,BLAND_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/grestrahlte/proc/Expand()
+	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	new/mob/living/carbon/superior_animal/roach/toxic(T)
+	qdel(src)
+	return TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/grestrahlte/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
 	desc = "This is absolutely Ei Nath."
@@ -2452,7 +2636,7 @@
 	nutriment_desc = list("bread" = 2)
 	preloaded_reagents = list("protein" = 4)
 	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
-	
+
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 	name = "Banana-nut bread"

@@ -1052,3 +1052,57 @@ I said no!
 /datum/recipe/cake/brain
 	items = list(/obj/item/organ/internal/brain)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
+
+/datum/recipe/cube/roach
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 10)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/roach
+
+/datum/recipe/cube/fuhrer
+	fruit = list("potato" = 2)
+	reagents = list("protein" = 25)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/fuhrer
+
+/datum/recipe/cube/jager
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 15)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/jager
+
+/datum/recipe/cube/kraftwerk
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 10, "iron" = 10)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/kraftwerk
+
+/datum/recipe/cube/roachling
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/roachling
+
+/datum/recipe/cube/seuche
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 10, "blattedin" = 10)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/seuche
+
+/datum/recipe/cube/panzer
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 20)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/panzer
+
+/datum/recipe/cube/gestrahlte
+	fruit = list("potato" = 1)
+	reagents = list("protein" = 10, "uranium" = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cube/grestrahlte
