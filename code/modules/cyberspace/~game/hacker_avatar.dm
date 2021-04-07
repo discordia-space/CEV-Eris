@@ -4,13 +4,17 @@
 /datum/CyberSpaceAvatar/eye/ai
 	icon_state = "ai_observer"
 
+CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 /mob/observer/cyberspace_eye
 	alpha = 200
 	icon = 'icons/obj/cyberspace/cyberspace.dmi'
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 	_SeeCyberSpace = TRUE
 
-CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
+	var/mob/owner
+	Initialize(mapload, _owner)
+		. = ..()
+		owner = _owner
 
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
