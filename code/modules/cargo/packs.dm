@@ -1357,21 +1357,21 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Resource Integration Gear"
 
 /datum/supply_pack/flash
-	name = "Mouned Flash Module Crate"
+	name = "Mounted Flash Module Crate"
 	contains = list(/obj/item/rig_module/device/flash)
 	cost = 300
 	crate_name = "Mouned Flash Module Crate"
 	group = "Resource Integration Gear"
 
 /datum/supply_pack/egun
-	name = "Mouned Energy Gun Module Crate"
+	name = "Mounted Energy Gun Module Crate"
 	contains = list(/obj/item/rig_module/mounted/egun)
 	cost = 2100
 	crate_name = "Mouned Energy Gun Module Crate"
 	group = "Resource Integration Gear"
 
 /datum/supply_pack/taser
-	name = "Mouned Taser Gun Module Crate"
+	name = "Mounted Taser Gun Module Crate"
 	contains = list(/obj/item/rig_module/mounted/taser)
 	cost = 900
 	crate_name = "Mouned Taser Gun Module Crate"
