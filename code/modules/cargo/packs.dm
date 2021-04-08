@@ -1327,6 +1327,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1100
 	crate_name = "Hazard Hardsuit Control Module Crate"
 	group = "Resource Integration Gear"
+	
+/datum/supply_pack/industrial
+	name = "Industrial Hardsuit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/industrial)
+	cost = 3000
+	crate_name = "Industrial Hardsuit Control Module Crate"
+	group = "Resource Integration Gear"
 
 /datum/supply_pack/minerpack
 	name = "Hardsuit Mining Utilities Package"
