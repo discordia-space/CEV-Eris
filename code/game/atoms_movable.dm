@@ -322,10 +322,10 @@
 	else
 		glide_size = max(min, glide_size_override)
 
-	for (var/atom/movable/AM in contents)
+/*	for (var/atom/movable/AM in contents)
 		AM.set_glide_size(glide_size, min, max)
 
-
+*/
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
