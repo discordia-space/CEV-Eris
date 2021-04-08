@@ -1352,7 +1352,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/rig_module/mounted/taser,
 					/obj/item/rig_module/device/flash,
 					/obj/item/rig_module/vision/sechud)
-	cost = 2160
+	cost = 2880
 	crate_name = "Hardsuit Security Utilities Package"
 	group = "Resource Integration Gear"
 
@@ -1366,7 +1366,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/egun
 	name = "Mouned Energy Gun Module Crate"
 	contains = list(/obj/item/rig_module/mounted/egun)
-	cost = 1200
+	cost = 2100
 	crate_name = "Mouned Energy Gun Module Crate"
 	group = "Resource Integration Gear"
 
