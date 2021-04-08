@@ -190,7 +190,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 /obj/landmark/corpse/commander
 	name = "Commander"
@@ -205,7 +205,7 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 
 /////////////////Enemies//////////////////////
