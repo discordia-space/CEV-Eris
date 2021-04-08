@@ -23,12 +23,12 @@
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()
-	var/workTime = 10 SECONDS
+	var/workTime = 5 SECONDS
 	var/lastActivation = 0
 	var/on = FALSE
 	var/mode = MODE_SEPARATING
 	var/beakerSlots = 3
-	var/unitsPerSec = 2
+	var/unitsPerSec = 1
 
 /obj/machinery/centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
