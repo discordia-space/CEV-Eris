@@ -48,8 +48,8 @@
 				continue
 			if(!priority_process) sleep(-1)
 			T.resources = list()
-			T.resources[MATERIAL_GLASS] = rand(3,5)
-			T.resources[MATERIAL_PLASTIC] = rand(3,5)
+			T.resources[MATERIAL_GLASS] = rand(7,12)
+			T.resources[MATERIAL_PLASTIC] = rand(7,12)
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
