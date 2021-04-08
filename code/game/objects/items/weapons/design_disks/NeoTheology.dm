@@ -38,6 +38,7 @@
 		/datum/design/bioprinter/nt_clothes/acolyte_armor,
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
 		/datum/design/bioprinter/nt_clothes/custodian_armor,
+		/datum/design/bioprinter/nt_clothes/NTvoid,
 
 		/datum/design/bioprinter/nt_clothes/acolyte_armor_head,
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor_head,
