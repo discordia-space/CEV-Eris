@@ -44,6 +44,10 @@
 	name = "navigation console"
 	build_path = /obj/item/weapon/electronics/circuitboard/nav
 
+/datum/design/autolathe/circuit/jtb
+	name = "junk tractor beam control console"
+	build_path = /obj/item/weapon/electronics/circuitboard/jtb
+
 /datum/design/autolathe/circuit/centrifuge
 	name = "centrifuge"
 	build_path = /obj/item/weapon/electronics/circuitboard/centrifuge

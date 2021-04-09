@@ -2773,6 +2773,7 @@
 #include "maps\submaps\dungeon_rooms\exits\exit_templates.dm"
 #include "maps\submaps\dungeon_rooms\rooms\room_templates.dm"
 #include "maps\submaps\junk_field\junk_field.dm"
+#include "maps\submaps\junk_field\j21_21\neutral\neutral.dm"
 #include "maps\submaps\junk_field\j3_3\single_pile\single_pile.dm"
 #include "maps\submaps\planetary_ruins\exoplanet_ruins.dm"
 #include "maps\submaps\planetary_ruins\crashed_pod\crashed_pod.dm"
@@ -2788,5 +2789,6 @@
 #include "maps\submaps\planetary_ruins\oasis\oasis.dm"
 #include "maps\submaps\planetary_ruins\oldpod\oldpod.dm"
 #include "maps\submaps\planetary_ruins\radshrine\radshrine.dm"
+#include "maps\submaps\planetary_ruins\spider_nest\spider_nest.dm"
 #include "maps\submaps\planetary_ruins\tar_anomaly\tar_anomaly.dm"
 // END_INCLUDE

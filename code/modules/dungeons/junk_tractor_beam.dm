@@ -1,3 +1,7 @@
+#define BEAM_IDLE        0
+#define BEAM_CAPTURING   1
+#define BEAM_STABILIZED  2
+
 //////////////////////////////
 // Generator used for the junk tractor beam level
 //////////////////////////////
@@ -12,6 +16,7 @@
 	invisibility = 101
 	var/delay = 2
 
+	var/max_trials = 3 // Maximum number of trials to build the map
 	var/maxx = 100 // hardcoded width of junk_tractor_beam.dmm
 	var/maxy = 100 // hardcoded height of junk_tractor_beam.dmm
 	var/margin = 9 // margin at the edge of the map
@@ -36,7 +41,7 @@
 	0  0  0  0  0
 	*/
 
-	var/number_asteroids = 10 // Number of asteroids if the junk field has the asteroid belt property
+	var/number_asteroids = 6 // Number of asteroids if the junk field has the asteroid belt property
 	var/number_21_21 = 2 // Max number of 21 by 21 junk chunks
 	var/number_3_3 = 15 // Max number of 3 by 3 junk chunks
 
@@ -45,6 +50,9 @@
 
 
 /obj/jtb_generator/New()
+	return
+
+/obj/jtb_generator/proc/generate_junk_field()
 
 	numR = round((maxx - margin) / 3)
 	numC = round((maxy - margin) / 3)
@@ -62,23 +70,31 @@
 		pool_3_3 += new junk_tmpl
 
 	// Populate z level with asteroids and junk chunks
-	populate_z_level()
+	var/trial = 0
+	while(!populate_z_level() && trial < max_trials)  // Try building until a map complete
+		trial++
+		testing("Junk Field build failed at zlevel [loc.z]. Trying again.")
+	if(trial==max_trials)
+		emergency_stop()
+
+/obj/jtb_generator/proc/emergency_stop()
+	admin_notice("Something really wrong happened, junk field generation failed several times in a row")
+	log_world("Something really wrong happened, junk field generation failed several times in a row")
+	qdel(src)
 
 /obj/jtb_generator/proc/populate_z_level()
-	while(1)
-		if(Master.current_runlevel)
-			break
-		else
-			sleep(250)
-
+	
 	testing("Junk Field build starting at zlevel [loc.z].")
 	generate_asteroids()
 	compute_occupancy_map()
 	compute_occupancy_grid()
 	place_21_21_chunks()
-	place_portal()
+	if(!place_portal())
+		return FALSE // Not being able to place portal, rebuilding map
 	place_3_3_chunks()
+	tame_mobs()
 	testing("Junk Field build complete at zlevel [loc.z].")
+	return TRUE
 
 /obj/jtb_generator/proc/generate_asteroids()
 	for(var/i = 1 to number_asteroids)
@@ -95,9 +111,6 @@
 			sleep(delay)
 	
 	//newmob.faction = "asteroid_belt" //so they won't just kill each other
-	
-	//var/teleporter = pick(myarea.teleporter_spawns)
-	//generate_teleporter(teleporter)
 
 // Check if the turfs associated with cell (x,y) are empty
 /obj/jtb_generator/proc/check_occupancy(var/x, var/y)
@@ -135,9 +148,9 @@
 	var/list/listY = list()
 
 	// Choose an empty spot for the 21 by 21 chunk
-	for(var/i = 1 to numR)
-		for(var/j = 1 to numC)
-			if(grid[i][j]==7)
+	for(var/i = 8 to numR) // Start at 8 since we have the block needs a 7x7 space
+		for(var/j = 8 to numC)
+			if(grid[i][j]>=4)
 				listX += i
 				listY += j
 	if(listX.len==0)
@@ -198,7 +211,7 @@
 			log_world("Junk loader had no 21 by 21 chunks to pick from.")
 			break
 
-		var/turf/T = get_center_21_21() // Location of the central turf of the 21 by 21 chunk
+		var/turf/T = get_center_21_21() // Location of the central turf of a 21 by 21 free chunk
 		if(!T)
 			log_world("No empty space available to place a 21 by 21 chunk. There was [number_21_21-i+1] remaining chunks to place.")
 			break
@@ -210,8 +223,18 @@
 
 // Place the portal that leads to the ship
 /obj/jtb_generator/proc/place_portal()
+	var/turf/T = get_center_3_3() // Location of the central turf of a 3 by 3 free chunk
+	if(!T)
+		log_world("No empty space available to place a 3 by 3 chunk. Junk field portal cannot be placed.")
+		return FALSE
+	else
+		var/obj/asteroid_spawner/portal/P = new(T)
+		var/PPREFAB = /datum/rogue/asteroid/predef/portal
+		var/PBUILD = new PPREFAB(null)
+		place_asteroid(PBUILD, P)
+		log_world("Junk field portal placed at ([T.x], [T.y], [T.z])")
 
-	return
+	return TRUE
 
 // Place 3 by 3 junk chunks from the pool of available templates
 /obj/jtb_generator/proc/place_3_3_chunks()
@@ -224,21 +247,47 @@
 			log_world("Junk loader had no 3 by 3 chunks to pick from.")
 			break
 
-		var/turf/T = get_center_3_3() // Location of the central turf of the 21 by 21 chunk
+		var/turf/T = get_center_3_3() // Location of the central turf of a 3 by 3 free chunk
 		if(!T)
 			log_world("No empty space available to place a 3 by 3 chunk. There was [number_3_3-i+1] remaining chunks to place.")
 			break
 
 		testing("Debug width [chunk.width]")
-		log_world("Chunk \"[chunk.name]\" of size 21 by 21 placed at ([T.x], [T.y], [T.z])")
+		log_world("Chunk \"[chunk.name]\" of size 3 by 3 placed at ([T.x], [T.y], [T.z])")
 		load_chunk(T, chunk)
 
 	return
 
-/obj/jtb_generator/proc/generate_teleporter(var/obj/asteroid_spawner/rogue_teleporter/TP)
-	var/TPPREFAB = /datum/rogue/asteroid/predef/teleporter
-	var/TPBUILD = new TPPREFAB(null)
-	place_asteroid(TPBUILD, TP)
+// Make all junk field mobs friends with one another
+/obj/jtb_generator/proc/tame_mobs()
+	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		M.faction = "junk_field"
+
+// Dummy object because place_asteroid needs an /obj/asteroid_spawner
+/obj/asteroid_spawner/portal
+	name = "portal spawn"
+	icon = 'icons/mob/eye.dmi'
+	icon_state = "default-eye"
+	invisibility = 101
+	anchored = TRUE
+
+// Template of portal chunk
+/datum/rogue/asteroid/predef/portal
+	type_wall	= /turf/simulated/wall/r_wall
+	type_under	= /turf/simulated/floor/asteroid
+
+	New()
+		..()
+		spot_add(1,1,type_under) //Bottom left corner
+		spot_add(1,2,type_under)
+		spot_add(1,3,type_under)
+		spot_add(2,1,type_under)
+		spot_add(2,2,type_under) //Center floor
+		spot_add(2,2,/obj/effect/portal/jtb)
+		spot_add(2,3,type_under)
+		spot_add(3,1,type_under)
+		spot_add(3,2,type_under)
+		spot_add(3,3,type_under) //Bottom right corner
 
 /proc/load_chunk(turf/central_turf, datum/map_template/template)
 	if(!template)
@@ -324,3 +373,109 @@
 
 				else //Anything not a turf
 					new T(spot)
+
+
+//////////////////////////////
+// Console to use junk tractor beam
+//////////////////////////////
+
+/obj/machinery/computer/jtb_console
+	name = "junk tractor beam control console"
+	icon_state = "computer"
+	icon_keyboard = "teleport_key"
+	icon_screen = "teleport"
+	light_color = COLOR_LIGHTING_CYAN_MACHINERY
+	circuit = /obj/item/weapon/electronics/circuitboard/jtb
+	var/obj/effect/portal/jtb/ship_portal  // ship side portal
+	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
+
+	var/beam_state = BEAM_IDLE
+
+
+/obj/machinery/computer/jtb_console/Initialize()
+	. = ..()
+	
+	// TODO: Connect to already existing portal and retrieve junk field info
+
+
+/obj/machinery/computer/jtb_console/attack_hand(mob/user)
+	if(..())
+		return
+	ui_interact(user)
+
+/obj/machinery/computer/jtb_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+	var/data[0]
+	data = list(
+		"beam_state" = beam_state,
+		"affinity" = get_junk_field_affinity(),
+		"junk_field_name" = get_junk_field_name(),
+		"can_pick" = beam_state == BEAM_IDLE,
+		"can_capture" = can_capture(),
+		"can_cancel" = can_cancel(),
+		"can_release" = can_release()
+	)
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "jtb_console.tmpl", "Junk Tractor Beam Control", 380, 530)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/computer/jtb_console/Topic(href, href_list, state)
+	
+	if(href_list["capture"])
+		field_capture()
+
+	if(href_list["cancel"])
+		field_cancel()
+
+	if(href_list["release"])
+		field_release()
+	
+	if(href_list["pick"])
+		var/list/possible_fields = get_possible_fields()
+		var/F
+		if(possible_fields.len)
+			F = input("Choose Junk Field", "Junk Field") as null|anything in possible_fields
+		else
+			to_chat(usr, "<span class='warning'>No junk field in range.</span>")
+		possible_fields = get_possible_fields()
+		if(CanInteract(usr,GLOB.default_state) && (F in possible_fields))
+			set_field(possible_fields[F])
+	
+	updateUsrDialog()
+
+/obj/machinery/computer/jtb_console/proc/get_junk_field_affinity()
+	return "test affinity"
+
+/obj/machinery/computer/jtb_console/proc/get_junk_field_name()
+	return "test name"
+
+/obj/machinery/computer/jtb_console/proc/can_capture()
+	return 1
+
+/obj/machinery/computer/jtb_console/proc/can_cancel()
+	return 0
+
+/obj/machinery/computer/jtb_console/proc/can_release()
+	return 0
+
+/obj/machinery/computer/jtb_console/proc/field_capture()
+	return
+
+/obj/machinery/computer/jtb_console/proc/field_cancel()
+	return
+
+/obj/machinery/computer/jtb_console/proc/field_release()
+	return
+
+/obj/machinery/computer/jtb_console/proc/get_possible_fields()
+	return list()
+
+/obj/machinery/computer/jtb_console/proc/set_field()
+	return
+
+#undef BEAM_IDLE
+#undef BEAM_CAPTURING
+#undef BEAM_STABILIZED
