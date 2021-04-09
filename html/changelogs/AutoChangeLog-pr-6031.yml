@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - spellcheck: Oddities description that are made by Techno-Tribalist Enforcer are
+      now "created" rather than "maded"
