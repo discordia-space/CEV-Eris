@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/avasarala
-	name = "FS HG .40 Magnum \"Avasarala\""
+	name = "NT HG .40 Magnum \"Avasarala\""
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
 
 	icon = 'icons/obj/guns/projectile/avasarala.dmi'

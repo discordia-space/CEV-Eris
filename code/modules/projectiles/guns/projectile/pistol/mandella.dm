@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/mandella
-	name = "FS HG .25 CS \"Mandella\""
+	name = "OR HG .25 CS \"Mandella\""
 	desc = "A rugged, robust operator handgun with inbuilt silencer. Chambered in rifle caseless ammunition, this time-tested handgun is \
 			your absolute choise if you need to take someone down silently, as it's deadly, produces no sound and leaves no traces. \
 			Built to have enhanced armor penetration abilities. \

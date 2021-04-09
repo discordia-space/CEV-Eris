@@ -208,10 +208,6 @@
 	build_path = /obj/item/weapon/storage/bag/money
 
 //[/THINGS]
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
-
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt

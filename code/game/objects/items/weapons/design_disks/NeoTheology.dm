@@ -22,7 +22,6 @@
 		/datum/design/bioprinter/medical/advanced/ointment,
 
 		/datum/design/autolathe/gun/nt_sprayer,
-		/datum/design/autolathe/gun/plasma/martyr,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
 		/datum/design/autolathe/device/grenade/nt_weedkiller
 
