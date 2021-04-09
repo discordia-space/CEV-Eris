@@ -1335,34 +1335,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Industrial Hardsuit Control Module Crate"
 	group = "Resource Integration Gear"
 
-/datum/supply_pack/minerpack
-	name = "Hardsuit Mining Utilities Package"
-	contains = list(/obj/item/rig_module/device/drill,
-					/obj/item/rig_module/device/orescanner,
-					/obj/item/rig_module/vision/meson,
-					/obj/item/rig_module/maneuvering_jets)
-	cost = 1920
-	crate_name = "Hardsuit Mining Utilities Package"
-	group = "Resource Integration Gear"
-
-/datum/supply_pack/medicpack
-	name = "Hardsuit Medical Utilities Package"
-	contains = list(/obj/item/rig_module/device/healthscanner,
-					/obj/item/rig_module/vision/medhud)
-	cost = 720
-	crate_name = "Hardsuit Medical Utilities Package"
-	group = "Resource Integration Gear"
-
-/datum/supply_pack/secpack
-	name = "Hardsuit Security Utilities Package"
-	contains = list(/obj/item/rig_module/mounted/egun,
-					/obj/item/rig_module/mounted/taser,
-					/obj/item/rig_module/device/flash,
-					/obj/item/rig_module/vision/sechud)
-	cost = 2880
-	crate_name = "Hardsuit Security Utilities Package"
-	group = "Resource Integration Gear"
-
 /datum/supply_pack/flash
 	name = "Mounted Flash Module Crate"
 	contains = list(/obj/item/rig_module/device/flash)
