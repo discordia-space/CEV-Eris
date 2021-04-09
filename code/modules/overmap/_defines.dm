@@ -72,7 +72,7 @@ var/global/list/map_sectors = list()
 	var/list/icons = list("bluedwarf", "reddwarf", "yellowgiant", "blackhole", "illusive", "clockwork")
 
 /obj/effect/star/New()
-	var/i = rand(descs.len)
+	var/i = rand(1, descs.len)
 	name = names[i]
 	desc = descs[i]
 	SetIconState(icons[i])

@@ -19,15 +19,6 @@
 /obj/effect/window_lwall_spawn/plasma/reinforced,
 /turf/simulated/floor/plating,
 /area/map_template/crashed_pod)
-"ae" = (
-/obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 1
-	},
-/obj/structure/girder,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
 "af" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	icon_state = "intact";
@@ -310,7 +301,6 @@
 /obj/spawner/cloth/under,
 /obj/spawner/cloth/under,
 /obj/spawner/cloth/under/low_chance,
-/obj/effect/decal/cleanable/dirt,
 /obj/spawner/junkfood,
 /obj/item/trash/liquidfood,
 /obj/item/weapon/stock_parts/matter_bin/super,
@@ -323,6 +313,7 @@
 /obj/item/stack/material/sandstone{
 	amount = 50
 	},
+/mob/living/simple_animal/hostile/roomba/boomba,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aH" = (
@@ -345,7 +336,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/curtain/open/shower/engineering,
 /obj/machinery/shower{
-	dir = 8;
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
@@ -501,10 +492,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
-"bb" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
 "bc" = (
 /obj/landmark/corpse/engineer,
 /obj/structure/bed/chair/comfy/black,
@@ -601,11 +588,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -917,7 +899,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bV" = (
-/obj/effect/floor_decal/industrial/warning,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
@@ -1090,6 +1071,10 @@
 /obj/item/seeds/bananaseed,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
+"zb" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/map_template/crashed_pod)
 
 (1,1,1) = {"
 aa
@@ -1101,7 +1086,7 @@ ab
 ab
 ab
 ab
-bb
+ax
 ab
 ab
 ab
@@ -1141,7 +1126,7 @@ bg
 bC
 bL
 bJ
-bD
+zb
 bD
 bJ
 "}
@@ -1165,7 +1150,7 @@ ab
 "}
 (5,1,1) = {"
 ac
-ae
+ad
 aj
 ar
 ay
@@ -1219,7 +1204,7 @@ ab
 "}
 (8,1,1) = {"
 ac
-ae
+ad
 am
 au
 az
@@ -1262,7 +1247,7 @@ aC
 aL
 aX
 aY
-bp
+bo
 bo
 bA
 bz

@@ -212,3 +212,6 @@
 		var/obj/item/stack/cable_coil/coil = C
 		coil.turf_place(src, user)
 		return
+
+	else
+		..(C,user)
