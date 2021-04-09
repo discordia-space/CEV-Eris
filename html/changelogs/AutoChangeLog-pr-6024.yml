@@ -1,0 +1,5 @@
+author: Omni44
+delete-after: true
+changes:
+  - rscadd: Resoruce Integration Gear Tab in Cargo Console
+  - rscadd: Some RIG crates to Cargo console
