@@ -1388,7 +1388,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Internal Hardsuit Storage Comparment Crate"
 	contains = list(/obj/item/rig_module/storage)
 	cost = 1200
-	crate_name = "Internal Hardsuit Storage Comparment Crate"
+	crate_name = "Internal Hardsuit Storage Compartment Crate"
 	group = "Resource Integration Gear"
 
 /datum/supply_pack/meson
