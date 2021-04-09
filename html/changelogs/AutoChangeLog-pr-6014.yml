@@ -1,0 +1,12 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: You can now place lattice and floors on planets
+  - bugfix: Exploration flags can now be put down on planets
+  - bugfix: Roombas no longer carry wood floor overlay with them
+  - bugfix: Mineral overlays should no longer appear on ruins turfs
+  - bugfix: Foutain no longer duplicates organs if you have prosthetics
+  - bugfix: Lava no longer melts reality (ghosts, lights)
+  - bugfix: Officer uniform and naked corpses in ruins
+  - bugfix: Blacklist ruins exclusive items from spawning on Eris
+  - tweak: All access removed from the crashed pod corpses' IDs
