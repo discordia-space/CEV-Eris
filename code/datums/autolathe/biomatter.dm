@@ -37,7 +37,7 @@
 	build_path = /obj/item/clothing/suit/armor/acolyte
 
 /datum/design/bioprinter/nt_clothes/NTvoid
-	name = "NeoTheology Voidsuit"
+	name = "neotheology voidsuit"
 	build_path = /obj/item/clothing/suit/space/void/NTvoid		
 
 /datum/design/bioprinter/nt_clothes/agrolyte_armor
