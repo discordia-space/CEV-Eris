@@ -1,5 +1,0 @@
-author: Kurgis
-delete-after: true
-changes:
-  - refactor: Removed ~2000 lines regarding some map object variables, should have
-      no in-game effect.

@@ -1,4 +1,0 @@
-author: StiffRobot
-delete-after: true
-changes:
-  - bugfix: Moving while gulping something down will splash everything on you now
