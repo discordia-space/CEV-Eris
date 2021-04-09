@@ -48,6 +48,13 @@
 		b.disconnect()
 	return ..()
 
+/obj/machinery/mining/drill/Initialize()
+	. = ..()
+	var/obj/item/weapon/cell/large/high/C = new(src)
+	component_parts += C
+	cell = C
+	update_icon()
+
 /obj/machinery/mining/drill/Process()
 	if(!active)
 		return
