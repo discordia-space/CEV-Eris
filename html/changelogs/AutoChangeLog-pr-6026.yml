@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - balance: Increase ore quantity and reduce mining drill consumption
