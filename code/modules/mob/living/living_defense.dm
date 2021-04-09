@@ -56,7 +56,7 @@
 						SPAN_NOTICE("Your armor reduced the impact greatly!"))
 
 	else if(armor_effectiveness >= 49)
-		armor_message(SPAN_NOTICE("[src] armor abosrbs most of the damage!"),
+		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 						SPAN_NOTICE("Your armor protects you from impact!"))
 
 	else if(armor_effectiveness >= 24)
