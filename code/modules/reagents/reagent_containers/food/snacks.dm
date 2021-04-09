@@ -1742,15 +1742,11 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
-	var/mob/living/carbon/human/H = new(get_turf(src))
-	H.set_species(monkey_type)
-	H.real_name = H.species.get_random_name()
-	H.name = H.real_name
-	if(ismob(loc))
-		var/mob/M = loc
-		M.unEquip(src)
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		new /mob/living/carbon/human/monkey(T)
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"

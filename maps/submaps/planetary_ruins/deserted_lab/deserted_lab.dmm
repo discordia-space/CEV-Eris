@@ -131,9 +131,6 @@
 /obj/spawner/closet,
 /turf/simulated/floor/carpet/blucarpet,
 /area/template_noop)
-"aD" = (
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
 "aE" = (
 /obj/structure/bookcase/manuals/xenoarchaeology,
 /turf/simulated/floor/carpet/blucarpet,
@@ -295,6 +292,10 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/tiled/white,
 /area/template_noop)
+"sW" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -337,7 +338,7 @@ aV
 aL
 ab
 aB
-aD
+au
 ab
 ao
 "}
@@ -351,7 +352,7 @@ aq
 aJ
 ac
 aP
-aD
+au
 aW
 ab
 aa
@@ -398,7 +399,7 @@ ab
 aE
 aU
 aK
-am
+sW
 aa
 "}
 (8,1,1) = {"
@@ -413,14 +414,14 @@ az
 ba
 aX
 bb
-am
+sW
 aa
 "}
 (9,1,1) = {"
 aa
 ab
 at
-aD
+au
 aT
 bd
 av
@@ -428,7 +429,7 @@ ab
 aM
 be
 aG
-am
+sW
 aa
 "}
 (10,1,1) = {"

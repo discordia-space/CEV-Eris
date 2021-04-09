@@ -11,7 +11,7 @@
 	name = "healing fountain"
 	desc = "A fountain containing the waters of life."
 	icon = 'icons/obj/xenoarchaeology.dmi'
-	icon_state = "fountain"
+	icon_state = "fountain-blue"
 	anchored = TRUE
 	density = TRUE
 	var/time_between_uses = 1800
@@ -35,10 +35,10 @@
 	
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.revive()  // human specific revive (admin heal)
+		H.rejuvenate()  // human specific rejuvenate
 	else
-		user.revive()  // classic mob revive (admin heal)
-
+		user.rejuvenate()  // classic mob rejuvenate
+	
 	update_icon()
 	spawn(time_between_uses+1)
 		update_icon()

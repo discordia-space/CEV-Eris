@@ -95,7 +95,26 @@
 	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+
 	if(!roundstart) request_player()
+
+/mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
+	if(stat || key)
+		return FALSE
+	var/confirmation = alert("Would you like to occupy \the [src]?", "", "Yes", "No")
+	if(confirmation == "No" || QDELETED(src))
+		return TRUE
+	if(key)
+		to_chat(user, SPAN_WARNING("Someone is already occupying this body."))
+		return TRUE
+	key = user.key
+	return TRUE
+
+/mob/living/simple_animal/borer/attack_ghost(mob/user)
+	. = ..()
+	if(!.)
+		. = ghost_enter(user)
+
 
 /mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
 	// Remove all abilities

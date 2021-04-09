@@ -433,7 +433,7 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 
-	var/can_hold_knife
+	var/can_hold_knife = 0
 	var/obj/item/holding
 	var/noslip = 0
 	var/module_inside = 0
@@ -498,6 +498,7 @@ BLIND     // can't see anything
 			/obj/item/weapon/tool/knife/butterfly,
 			/obj/item/weapon/material/kitchen/utensil,
 			/obj/item/weapon/tool/knife/tacknife,
+			/obj/item/weapon/tool/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)

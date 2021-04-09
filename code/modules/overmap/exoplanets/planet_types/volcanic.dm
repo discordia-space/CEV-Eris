@@ -131,7 +131,7 @@
 		return PROCESS_KILL
 	for(var/weakref/W in victims)
 		var/atom/movable/AM = W.resolve()
-		if (AM == null || get_turf(AM) != src ) //|| AM.is_burnable() == FALSE
+		if (AM == null || get_turf(AM) != src || !(isliving(AM) || isobj(AM)) || istype(AM,/obj/effect/effect/light)) //|| AM.is_burnable() == FALSE
 			victims -= W
 			continue
 		var/datum/gas_mixture/environment = return_air()

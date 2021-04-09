@@ -54,11 +54,13 @@
 	icon_state = "datadisk0"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/ecletters
 	name = "bundle of letters"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_words"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/ecletters/Initialize()
 	. = ..()
@@ -66,6 +68,7 @@
 
 /obj/item/weapon/paper/ecrashlog
 	name = "handwritten note"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/paper/ecrashlog/Initialize()
 	. = ..()
