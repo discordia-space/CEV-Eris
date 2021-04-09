@@ -111,7 +111,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/NTvoid
-	name = "Neotheology Voidsuit Helmet"
+	name = "neotheology voidsuit helmet"
 	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoidhelmet"
 	item_state = "ntvoidhelmet"
