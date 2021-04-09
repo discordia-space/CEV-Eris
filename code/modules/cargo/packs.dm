@@ -5,7 +5,7 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Medical / Science","Hydroponics","Mining","Supply","Miscellaneous")
+var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Medical / Science","Hydroponics","Mining","Supply","Resource Integration Gear","Miscellaneous")
 
 /datum/supply_pack
 	var/name = "Crate"
@@ -1310,6 +1310,114 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Empty box crate"
 	group = "Supply"
 
+//----------------------------------------------
+//-----------------R.I.G------------------------
+//----------------------------------------------
+
+/datum/supply_pack/eva
+	name = "EVA Suit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/eva)
+	cost = 600
+	crate_name = "EVA Suit Control Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/hazard
+	name = "Hazard Hardsuit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/hazard)
+	cost = 1100
+	crate_name = "Hazard Hardsuit Control Module Crate"
+	group = "Resource Integration Gear"
+	
+/datum/supply_pack/industrial
+	name = "Industrial Hardsuit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/industrial)
+	cost = 3000
+	crate_name = "Industrial Hardsuit Control Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/flash
+	name = "Mounted Flash Module Crate"
+	contains = list(/obj/item/rig_module/device/flash)
+	cost = 300
+	crate_name = "Mouned Flash Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/egun
+	name = "Mounted Energy Gun Module Crate"
+	contains = list(/obj/item/rig_module/mounted/egun)
+	cost = 2100
+	crate_name = "Mouned Energy Gun Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/taser
+	name = "Mounted Taser Gun Module Crate"
+	contains = list(/obj/item/rig_module/mounted/taser)
+	cost = 900
+	crate_name = "Mouned Taser Gun Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/drill
+	name = "Hardsuit Mounted Drill Crate"
+	contains = list(/obj/item/rig_module/device/drill)
+	cost = 600
+	crate_name = "Hardsuit Mounted Drill Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/orescanner
+	name = "Hardsuit Mounted Ore Scanner Crate"
+	contains = list(/obj/item/rig_module/device/orescanner)
+	cost = 300
+	crate_name = "Hardsuit Mounted Ore Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/healthscanner
+	name = "Hardsuit Mounted Health Scanner Crate"
+	contains = list(/obj/item/rig_module/device/healthscanner)
+	cost = 300
+	crate_name = "Hardsuit Mounted Health Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/maneuverjet
+	name = "Hardsuit Maneuvering Jet Crate"
+	contains = list(/obj/item/rig_module/maneuvering_jets)
+	cost = 1200
+	crate_name = "Hardsuit Maneuvering Jet Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/storage
+	name = "Internal Hardsuit Storage Compartment Crate"
+	contains = list(/obj/item/rig_module/storage)
+	cost = 1200
+	crate_name = "Internal Hardsuit Storage Compartment Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/meson
+	name = "Hardsut Meson Scanner Crate"
+	contains = list(/obj/item/rig_module/vision/meson)
+	cost = 300
+	crate_name = "Hardsut Meson Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/medhud
+	name = "Hardsuit Medical Hud Crate"
+	contains = list(/obj/item/rig_module/vision/medhud)
+	cost = 300
+	crate_name = "Hardsuit Medical Hud Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/sechud
+	name = "Hardsuit Security Hud Crate"
+	contains = list(/obj/item/rig_module/vision/sechud)
+	cost = 300
+	crate_name = "Hardsuit Security Hud Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/nvgrig
+	name = "Hardsuit Night vision Interface Crate"
+	contains = list(/obj/item/rig_module/vision/nvg)
+	cost = 1800
+	crate_name = "Hardsuit Night vision Interface Crate"
+	group = "Resource Integration Gear"
 //----------------------------------------------
 //--------------MISCELLANEOUS-------------------
 //----------------------------------------------
