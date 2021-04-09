@@ -1,0 +1,6 @@
+author: Holvr0
+delete-after: true
+changes:
+  - bugfix: fixed separate_solution in reagent_containers.dm, to properly handle the
+      amount of reagents transferred in the centrifuge. Amounts of reagents below
+      2u no longer result in 2u after separation.
