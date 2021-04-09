@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/rpg
-	name = "RPG-7"
+	name = "RPG-17"
 	desc = "A modified ancient rocket-propelled grenade launcher, this design is centuries old, but well preserved. \
 			Modification altered gun mechanism to take much more compact, but sligtly less devastating in close quaters rockets and remove backfire. \
 			Their priming and proplusion was altered too for more robust speed, so it has strong recoil."
@@ -27,15 +27,16 @@
 
 /obj/item/weapon/gun/projectile/rpg/on_update_icon()
 	. = ..()
+	cut_overlays()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
 
 	if (loaded.len)
-		iconstring += "-he"
-		//itemstring += "-he"         disabled until mag fix
-	icon_state = iconstring
-	set_item_state(itemstring)
+		iconstring += "_he"
+
+	add_overlays(iconstring)
+
+	update_wear_icon()
 
 /obj/item/weapon/gun/projectile/rpg/Initialize()
 	. = ..()
