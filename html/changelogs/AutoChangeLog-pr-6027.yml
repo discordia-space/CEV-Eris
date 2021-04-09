@@ -1,0 +1,5 @@
+author: zoktiik
+delete-after: true
+changes:
+  - rscadd: Craftable shivs now count as boot knives, allowing you to put them in
+      any boot that can hold a knife.
