@@ -1,4 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - spellcheck: Instead of abosrbing damage, armor now absorbs it properly.
