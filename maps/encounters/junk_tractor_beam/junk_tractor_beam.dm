@@ -4,7 +4,7 @@
 	name = "Junk Field Level"
 	is_player_level = TRUE
 	is_contact_level = TRUE
-	is_accessable_level = TRUE
+	is_accessable_level = FALSE
 	height = 1
 	is_sealed = TRUE
 

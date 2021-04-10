@@ -16,12 +16,12 @@
 	asteroid_belt_status = has_asteroid_belt()
 	affinity = get_random_affinity()
 
-/obj/jtb_generator/proc/has_asteroid_belt()
+/datum/junk_field/proc/has_asteroid_belt()
 	if(prob(20))
 		return TRUE
 	return FALSE
 
-/obj/jtb_generator/proc/get_random_affinity()
+/datum/junk_field/proc/get_random_affinity()
 	return pickweight(list(
 					"Neutral" = 10,
 					"OneStar" = 3,
@@ -76,6 +76,7 @@
 	var/list/pool_3_3 = list()  // Pool of 3 by 3 junk chunks
 
 	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
+	var/obj/effect/portal/jtb/ship_portal  // ship side portal
 	var/beam_state = BEAM_STABILIZED  // state of the junk tractor beam
 	var/datum/junk_field/current_jf  // the current chosen junk field
 	var/jf_counter = 1  // counting junk fields to give them a unique number
@@ -83,7 +84,6 @@
 	var/nb_in_pool = 3  // Number of junk fields in the pool
 	var/list/jf_pool = list()  // Pool of junk fields you can choose from
 
-	var/start_cooldown
 	var/beam_cooldown_time = 10 SECONDS 
 	var/beam_capture_time = 10 SECONDS
 
@@ -91,22 +91,35 @@
 /obj/jtb_generator/New()
 	current_jf = new /datum/junk_field(jf_counter)
 	jf_counter++
+	generate_junk_field_pool()
 	return
 
-/obj/jtb_generator/proc/generate_junk_field_pools()
+/obj/jtb_generator/proc/generate_junk_field_pool()
 	if(nb_in_pool > 0)
 		for(var/i in 1 to nb_in_pool)
 			jf_pool += new /datum/junk_field(jf_counter)
 			jf_counter++
 	return
 
-/obj/jtb_generator/proc/field_capture()
+/obj/jtb_generator/proc/field_capture(var/turf/T)
 	beam_state = BEAM_CAPTURING
 	spawn(beam_capture_time)
 		if(src && beam_state == BEAM_CAPTURING)  // Check if jtb_generator has not been destroyed during spawn time and if capture has not been cancelled
 			beam_state = BEAM_STABILIZED
-			// TODO TRIGGER GENERATION
+
+			generate_junk_field()  // Generate the junk field
+
+			jf_pool -= current_jf  // Remove generated junk field from pool
+			jf_pool += new /datum/junk_field(jf_counter)  // Add a new entry to the pool
+			jf_counter++
+
+			create_link_portal(T)
 	return
+
+/obj/jtb_generator/proc/create_link_portal(var/turf/T)
+	ship_portal = new /obj/effect/portal/jtb(T)  // Spawn portal on ship
+	ship_portal.set_target(get_turf(jtb_portal))  // Link the two portals
+	jtb_portal.set_target(get_turf(ship_portal))
 
 /obj/jtb_generator/proc/field_cancel()
 	if(beam_state == BEAM_CAPTURING)
@@ -115,25 +128,60 @@
 
 /obj/jtb_generator/proc/field_release()
 
-	start_cooldown = world.time
+	// TODO TRIGGER CLEANUP
+	cleanup_junk_field()
+	// TODO CHECK IF HUMAN IN FIELD
+	// TODO what to do with corpses?
+	qdel(ship_portal)
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
 		if(src)  // Check if jtb_generator has not been destroyed during spawn time
 			beam_state = BEAM_IDLE
+			if(jf_pool.len)
+				current_jf = jf_pool[1]  // Select the first available junk field by default
 	return
 
 /obj/jtb_generator/proc/get_possible_fields()
 	var/list/res = list()
 	for(var/datum/junk_field/JF in jf_pool)
-		res["[JF.asteroid_belt_status ? "Asteroid Belt - " : ""] [JF.affinity] [JF.name]"] = JF
+		res["[JF.asteroid_belt_status ? "Asteroid Belt - " : ""][JF.affinity] [JF.name]"] = JF
 	return res
 
 /obj/jtb_generator/proc/set_field(var/datum/junk_field/JF)
 	current_jf = JF
 	return
 
+/obj/jtb_generator/proc/cleanup_junk_field()
+
+	testing("Starting junk field cleanup.")
+	for(var/i = 1 to maxx)
+		for(var/j = 1 to maxy)
+			var/turf/T = locate(i, j, z)
+			for(var/obj/O in T)
+				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
+					qdel(O)
+			for(var/mob/M in T)
+				if(!ishuman(M))  // Delete all non human mobs
+					M.death()  // First we kill them
+					qdel(M)
+				else  // Humans just win an express ticket to deep space
+					go_to_bluespace(M.loc, 0, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
+			if(!T.is_space())
+				T.ChangeTurf(/turf/space)
+
+	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
+	for(var/i = 1 to maxx)
+		for(var/j = 1 to maxy)
+			var/turf/T = locate(i, j, z)
+			for(var/obj/O in T)
+				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
+					qdel(O)
+	// All mobs and turfs have already been handled so no need to deal with that during second pass
+
+	testing("Junk field cleanup is over.")
+
 /obj/jtb_generator/proc/generate_junk_field()
-	testing("Generating Asteroid Belt: [asteroid_belt_status] - Affinity: [affinity]")
+	testing("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
 
 	numR = round((maxx - margin) / 3)
 	numC = round((maxy - margin) / 3)
@@ -166,7 +214,8 @@
 /obj/jtb_generator/proc/populate_z_level()
 	
 	testing("Junk Field build starting at zlevel [loc.z].")
-	generate_asteroids()
+	if(current_jf.asteroid_belt_status)  // Generate asteroids only if the junk field has an asteroid belt
+		generate_asteroids()
 	compute_occupancy_map()
 	compute_occupancy_grid()
 	place_21_21_chunks()
@@ -314,7 +363,7 @@
 		var/PBUILD = new PPREFAB(null)
 		place_asteroid(PBUILD, P)
 		log_world("Junk field portal placed at ([T.x], [T.y], [T.z])")
-		jtb_portal = locate(obj/effect/portal/jtb) in T
+		jtb_portal = locate(/obj/effect/portal/jtb) in T
 
 	return TRUE
 
@@ -468,23 +517,23 @@
 	icon_screen = "teleport"
 	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	circuit = /obj/item/weapon/electronics/circuitboard/jtb
-	var/obj/effect/portal/jtb/ship_portal  // ship side portal
-	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
 	var/obj/jtb_generator/jtb_gen  // jtb generator
 
 
 /obj/machinery/computer/jtb_console/Initialize()
 	. = ..()
 	
-	var/area/A = /area/junk_tractor_beam
-	jtb_gen = locate(/obj/jtb_generator) in A  // Find junk field generator object
+	jtb_gen = locate(/obj/jtb_generator)  // Find junk field generator object
 	if(!jtb_gen)
 		admin_notice("Could not find junk tractor beam generator.")
 		log_world("Could not find junk tractor beam generator.")
-	jtb_portal = jtb_gen.jtb_portal  // Retrieve portal spawned by generator on junk field side
-	if(!jtb_portal)
-		admin_notice("Could not find junk field side portal.")
-		log_world("Could not find junk field side portal.")
+	else
+		jtb_gen.create_link_portal(get_turf(locate(x+2, y, z)))
+	/*else
+		jtb_portal = jtb_gen.jtb_portal  // Retrieve portal spawned by generator on junk field side
+		if(!jtb_portal)
+			admin_notice("Could not find junk field side portal.")
+			log_world("Could not find junk field side portal.")*/
 	
 	// TODO: Connect to already existing portal and retrieve junk field info
 
@@ -493,13 +542,15 @@
 	if(..())
 		return
 	if(!jtb_gen)
-		audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
+		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
 		return
 	ui_interact(user)
 
 /obj/machinery/computer/jtb_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!jtb_gen)
-		audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
+		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
 		return
 	
 	var/data[0]
@@ -508,7 +559,6 @@
 		"asteroid_belt" = get_asteroid_belt_status(),
 		"affinity" = get_junk_field_affinity(),
 		"junk_field_name" = get_junk_field_name(),
-		"can_pick" = get_beam_state() == BEAM_IDLE,
 		"can_capture" = can_capture(),
 		"can_cancel" = can_cancel(),
 		"can_release" = can_release()
@@ -522,7 +572,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/computer/jtb_console/Topic(href, href_list, state)
-	
+	if(..())
+		return 1
+
 	if(href_list["capture"])
 		field_capture()
 
@@ -534,14 +586,15 @@
 	
 	if(href_list["pick"])
 		var/list/possible_fields = get_possible_fields()
-		var/F
+		var/datum/junk_field/JF
 		if(possible_fields.len)
-			F = input("Choose Junk Field", "Junk Field") as null|anything in possible_fields
+			JF = input("Choose Junk Field", "Junk Field") as null|anything in possible_fields
 		else
-			to_chat(usr, "<span class='warning'>No junk field in range.</span>")
+			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+			src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: No junk field in range.'</span>")
 		possible_fields = get_possible_fields()
-		if(CanInteract(usr,GLOB.default_state) && (F in possible_fields))
-			set_field(possible_fields[F])
+		if(CanInteract(usr,GLOB.default_state) && (JF in possible_fields))
+			set_field(possible_fields[JF])
 	
 	updateUsrDialog()
 
@@ -549,13 +602,13 @@
 	return jtb_gen.beam_state
 
 /obj/machinery/computer/jtb_console/proc/get_asteroid_belt_status()
-	return jtb_gen.current_jf.asteroid_belt_status
+	return jtb_gen.current_jf ? jtb_gen.current_jf.asteroid_belt_status : FALSE
 
 /obj/machinery/computer/jtb_console/proc/get_junk_field_affinity()
-	return jtb_gen.current_jf.affinity
+	return jtb_gen.current_jf ? jtb_gen.current_jf.affinity : "None"
 
 /obj/machinery/computer/jtb_console/proc/get_junk_field_name()
-	return jtb_gen.current_jf.name
+	return jtb_gen.current_jf ? jtb_gen.current_jf.name : "None"
 
 /obj/machinery/computer/jtb_console/proc/can_capture()
 	return jtb_gen.beam_state == BEAM_IDLE
@@ -567,14 +620,20 @@
 	return jtb_gen.beam_state == BEAM_STABILIZED
 
 /obj/machinery/computer/jtb_console/proc/field_capture()
-	jtb_gen.field_capture() 
+	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+	src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Starting capture of targeted junk field.'</span>")
+	jtb_gen.field_capture(get_turf(locate(x+2, y, z))) 
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_cancel()
+	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+	src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Canceling capture of junk field.'</span>")
 	jtb_gen.field_cancel()
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_release()
+	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+	src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Releasing captured junk field.'</span>")
 	jtb_gen.field_release()
 	return
 

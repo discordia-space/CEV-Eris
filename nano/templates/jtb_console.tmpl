@@ -11,6 +11,8 @@
 				<span style="font-weight: bold;color: #336699">CAPTURING JUNK FIELD</span>
 			{{else data.beam_state == 2}}
 				<span style="font-weight: bold;color: #336699">STABILIZED</span>
+			{{else data.beam_state == 3}}
+				<span class="bad">COOLING DOWN</span>
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
@@ -47,7 +49,7 @@
 	</div>
 	<span class="average">{{:data.junk_field_name}}</span>
 	<div class="item">
-		{{:helper.link('Choose Junk Field', 'arrowreturn-1-s', {'pick' : '1'}, data.can_pick ? null : 'disabled' , null)}}
+		{{:helper.link('Choose Junk Field', 'arrowreturn-1-s', {'pick' : '1'}, data.can_capture ? null : 'disabled' , null)}}
 	</div>
 </div>
 <h3>Tractor Beam Control</h3>
