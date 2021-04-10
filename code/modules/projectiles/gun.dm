@@ -269,10 +269,6 @@
 	else
 		return ..() //Pistolwhippin'
 
-
-
-
-
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
