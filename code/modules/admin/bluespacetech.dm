@@ -28,11 +28,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.h_style = "Crewcut"
 	var/list/stat_modifiers = list(
 		STAT_ROB = 99,
-        STAT_TGH = 99,
-        STAT_BIO = 99,
-        STAT_MEC = 99,
-        STAT_VIG = 99,
-        STAT_COG = 99
+		STAT_TGH = 99,
+		STAT_BIO = 99,
+		STAT_MEC = 99,
+		STAT_VIG = 99,
+		STAT_COG = 99
 	)
 	for(var/stat in stat_modifiers)
 		bst.stats.changeStat(stat, stat_modifiers[stat])
