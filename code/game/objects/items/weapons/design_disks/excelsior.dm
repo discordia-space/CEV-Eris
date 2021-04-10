@@ -84,7 +84,7 @@
 	such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing.\""}
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 50
-	license = 14
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/drozd = 3,
 		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
@@ -100,7 +100,7 @@
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 50
-	license = 14
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/ak47 = 3,
 		/datum/design/autolathe/ammo/lrifle,						//AK ammo
@@ -116,7 +116,7 @@
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 50
-	license = 14
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/vintorez = 3,
 		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
@@ -132,7 +132,7 @@
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 50
-	license = 14
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/boltgun = 3,
 		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
@@ -149,7 +149,7 @@
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON_EXCELSIOR
 	rarity_value = 45
-	license = 14
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/makarov = 2,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
