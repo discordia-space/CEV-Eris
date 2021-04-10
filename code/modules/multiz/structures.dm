@@ -217,7 +217,8 @@
 						user.client.perspective = EYE_PERSPECTIVE
 						user.hud_used.updatePlaneMasters(user)
 						user.is_watching = TRUE
-						user.can_multiz_pb = TRUE
+						if(Adjacent(user))
+							user.can_multiz_pb = TRUE
 				return
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
