@@ -1,5 +1,0 @@
-author: infraredbaron
-delete-after: true
-changes:
-  - imageadd: new, dedicated NT crossbow sprite
-  - imagedel: deleted martyr
