@@ -3,6 +3,10 @@
 #define BEAM_STABILIZED  2
 #define BEAM_COOLDOWN    3
 
+#define JTB_EDGE 1
+#define JTB_MAXX 100
+#define JTB_MAXY 100
+
 //////////////////////////////
 // Junk Field datum
 //////////////////////////////
@@ -44,8 +48,8 @@
 	var/delay = 2
 
 	var/max_trials = 3 // Maximum number of trials to build the map
-	var/maxx = 100 // hardcoded width of junk_tractor_beam.dmm
-	var/maxy = 100 // hardcoded height of junk_tractor_beam.dmm
+	var/maxx = JTB_MAXX // hardcoded width of junk_tractor_beam.dmm
+	var/maxy = JTB_MAXY // hardcoded height of junk_tractor_beam.dmm
 	var/margin = 9 // margin at the edge of the map
 	var/numR = 0 // number of rows (of 3 by 3 cells)
 	var/numC = 0 // number of cols (of 3 by 3 cells)
@@ -223,6 +227,7 @@
 		return FALSE // Not being able to place portal, rebuilding map
 	place_3_3_chunks()
 	tame_mobs()
+	generate_edge()
 	testing("Junk Field build complete at zlevel [loc.z].")
 	return TRUE
 
@@ -394,6 +399,19 @@
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
 		M.faction = "junk_field"
 
+// Generate the edge at the border of the map for wrapping effect
+/obj/jtb_generator/proc/generate_edge()
+	testing("Generating edges of junk field at zlevel [loc.z].")
+	// Let's try without a cleanup step. If it causes issues we will have to delete everything on the edge first
+	var/list/edges
+	edges += block(locate(1, 1, z), locate(1+JTB_EDGE, maxy, z))  // Left border
+	edges |= block(locate(maxx-JTB_EDGE, 1, z),locate(maxx, maxy, z))  // Right border
+	edges |= block(locate(1, 1, z), locate(maxx, 1+JTB_EDGE, z))  // Bottom border
+	edges |= block(locate(1, maxy-JTB_EDGE, z),locate(maxx, maxy, z))  // Top border
+	for(var/turf/T in edges)
+		T.ChangeTurf(/turf/simulated/jtb_edge)
+	testing("Edges generation complete.")
+	
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
 /obj/asteroid_spawner/portal
 	name = "portal spawn"
@@ -644,6 +662,99 @@
 	jtb_gen.set_field(JF)
 	return 
 
+//////////////////////////////
+// Wrapping at the edge of junk field
+// Mainly a copy paste of /turf/simulated/planet_edge
+//////////////////////////////
+
+/turf/simulated/jtb_edge
+	name = "junk field edge"
+	desc = "A blue wall of energy that stabilizes the junk field."
+	density = FALSE
+	blocks_air = TRUE
+	dynamic_lighting = FALSE
+	icon = 'icons/obj/machines/shielding.dmi'
+	icon_state = "shield_normal"
+	var/list/victims
+
+/turf/simulated/jtb_edge/proc/MineralSpread()
+	return
+
+/*/turf/simulated/jtb_edge/Initialize()
+	. = ..()
+
+	var/nx = x
+	if (x <= JTB_EDGE)
+		nx = x + (JTB_MAXX - 2*JTB_EDGE) - 1
+	else if (x >= (JTB_MAXX - JTB_EDGE))
+		nx = x - (JTB_MAXX  - 2*JTB_EDGE) + 1
+
+	var/ny = y
+	if(y <= JTB_EDGE)
+		ny = y + (JTB_MAXY - 2*JTB_EDGE) - 1
+	else if (y >= (JTB_MAXY - JTB_EDGE))
+		ny = y - (JTB_MAXY - 2*JTB_EDGE) + 1
+
+	var/turf/NT = locate(nx, ny, z)
+	if(NT)
+		vis_contents = list(NT)
+
+	//Need to put a mouse-opaque overlay there to prevent people turning/shooting towards ACTUAL location of vis_content things
+	var/obj/effect/overlay/O = new(src)
+	O.mouse_opacity = 2
+	O.name = "distant space"
+	O.desc = "You need to come over there to take a better look."
+*/
+
+/turf/simulated/jtb_edge/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/turf/simulated/jtb_edge/Exited(atom/movable/AM)
+	. = ..()
+	LAZYREMOVE(victims, weakref(AM))
+	
+/turf/simulated/jtb_edge/Entered(atom/movable/AM)
+	..()
+	LAZYADD(victims, weakref(AM))
+	START_PROCESSING(SSobj, src)
+
+/turf/simulated/jtb_edge/Process()
+	. = ..()
+
+	for(var/weakref/W in victims)
+		var/atom/movable/AM = W.resolve()
+		if (AM == null || get_turf(AM) != src )
+			victims -= W
+			continue
+
+		var/new_x = AM.x
+		var/new_y = AM.y
+		if(x <= 1+JTB_EDGE)
+			new_x = JTB_MAXX - JTB_EDGE - 1
+		else if (x >= (JTB_MAXX - JTB_EDGE))
+			new_x = JTB_EDGE + 2
+		else if (y <= 1+JTB_EDGE)
+			new_y = JTB_MAXY - JTB_EDGE - 1
+		else if (y >= (JTB_MAXY - JTB_EDGE))
+			new_y = JTB_EDGE + 2
+
+		var/turf/T = locate(new_x, new_y, AM.z)
+		if(T && !T.density)
+			AM.forceMove(T)
+			if(isliving(AM))
+				var/mob/living/L = AM
+				if(L.pulling)
+					var/atom/movable/AMP = L.pulling
+					AMP.forceMove(T)
+			victims -= W  // Victim has been teleported
+
+	if(!LAZYLEN(victims))
+		return PROCESS_KILL
+
 #undef BEAM_IDLE
 #undef BEAM_CAPTURING
 #undef BEAM_STABILIZED
+#undef JTB_EDGE
+#undef JTB_MAXX
+#undef JTB_MAXY
