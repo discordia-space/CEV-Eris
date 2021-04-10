@@ -3,7 +3,7 @@
 #define BEAM_STABILIZED  2
 #define BEAM_COOLDOWN    3
 
-#define JTB_EDGE 1
+#define JTB_EDGE 2
 #define JTB_MAXX 100
 #define JTB_MAXY 100
 
@@ -21,7 +21,7 @@
 	affinity = get_random_affinity()
 
 /datum/junk_field/proc/has_asteroid_belt()
-	if(prob(20))
+	if(prob(90))
 		return TRUE
 	return FALSE
 
@@ -51,10 +51,11 @@
 	var/maxx = JTB_MAXX // hardcoded width of junk_tractor_beam.dmm
 	var/maxy = JTB_MAXY // hardcoded height of junk_tractor_beam.dmm
 	var/margin = 9 // margin at the edge of the map
-	var/numR = 0 // number of rows (of 3 by 3 cells)
-	var/numC = 0 // number of cols (of 3 by 3 cells)
-	var/map // map with 0s (free 3 by 3 cells) and 1s (occupied 3 by 3 cells)
-	var/grid // grid of 3 by 3 empty cells available in the map (margin excluded)
+	var/numR = 0 // number of rows (of 5 by 5 cells)
+	var/numC = 0 // number of cols (of 5 by 5 cells)
+	var/list/edges // edges turf of the area
+	var/map // map with 0s (free 5 by 5 cells) and 1s (occupied 5 by 5 cells)
+	var/grid // grid of 5 by 5 empty cells available in the map (margin excluded)
 	/* Value at position [i][j] is the size of the biggest empty square with [i][j] at its bottom right corner
 	For instance with empty/occupied cells placed like that on the map:
 	0  1  1  0  1
@@ -73,11 +74,11 @@
 	*/
 
 	var/number_asteroids = 6 // Number of asteroids if the junk field has the asteroid belt property
-	var/number_21_21 = 2 // Max number of 21 by 21 junk chunks
-	var/number_3_3 = 15 // Max number of 3 by 3 junk chunks
+	var/number_25_25 = 3 // Max number of 25 by 25 junk chunks
+	var/number_5_5 = 15 // Max number of 5 by 5 junk chunks
 
-	var/list/pool_21_21 = list() // Pool of 21 by 21 junk chunks
-	var/list/pool_3_3 = list()  // Pool of 3 by 3 junk chunks
+	var/list/pool_25_25 = list() // Pool of 25 by 25 junk chunks
+	var/list/pool_5_5 = list()  // Pool of 5 by 5 junk chunks
 
 	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
 	var/obj/effect/portal/jtb/ship_portal  // ship side portal
@@ -160,7 +161,7 @@
 	testing("Starting junk field cleanup.")
 	for(var/i = 1 to maxx)
 		for(var/j = 1 to maxy)
-			var/turf/T = locate(i, j, z)
+			var/turf/T = get_turf(locate(i, j, z))
 			for(var/obj/O in T)
 				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
 					qdel(O)
@@ -176,7 +177,7 @@
 	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
 	for(var/i = 1 to maxx)
 		for(var/j = 1 to maxy)
-			var/turf/T = locate(i, j, z)
+			var/turf/T = get_turf(locate(i, j, z))
 			for(var/obj/O in T)
 				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
 					qdel(O)
@@ -187,20 +188,20 @@
 /obj/jtb_generator/proc/generate_junk_field()
 	testing("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
 
-	numR = round((maxx - margin) / 3)
-	numC = round((maxy - margin) / 3)
+	numR = round((maxx - margin) / 5)
+	numC = round((maxy - margin) / 5)
 	map = new/list(numR,numC,0)
 	grid = new/list(numR,numC,0)
 
-	// Get pool of 21 by 21 junk chunks
-	for(var/T in subtypesof(/datum/map_template/junk/j21_21))
-		var/datum/map_template/junk/j21_21/junk_tmpl = T
-		pool_21_21 += new junk_tmpl
+	// Get pool of 25 by 25 junk chunks
+	for(var/T in subtypesof(/datum/map_template/junk/j25_25))
+		var/datum/map_template/junk/j25_25/junk_tmpl = T
+		pool_25_25 += new junk_tmpl
 
-	// Get pool of 3 by 3 junk chunks
-	for(var/T in subtypesof(/datum/map_template/junk/j3_3))
-		var/datum/map_template/junk/j3_3/junk_tmpl = T
-		pool_3_3 += new junk_tmpl
+	// Get pool of 5 by 5 junk chunks
+	for(var/T in subtypesof(/datum/map_template/junk/j5_5))
+		var/datum/map_template/junk/j5_5/junk_tmpl = T
+		pool_5_5 += new junk_tmpl
 
 	// Populate z level with asteroids and junk chunks
 	var/trial = 0
@@ -222,10 +223,10 @@
 		generate_asteroids()
 	compute_occupancy_map()
 	compute_occupancy_grid()
-	place_21_21_chunks()
+	place_25_25_chunks()
 	if(!place_portal())
 		return FALSE // Not being able to place portal, rebuilding map
-	place_3_3_chunks()
+	place_5_5_chunks()
 	tame_mobs()
 	generate_edge()
 	testing("Junk Field build complete at zlevel [loc.z].")
@@ -236,7 +237,7 @@
 		var/valid = FALSE
 		var/turf/T
 		while(!valid)
-			T = locate(rand(margin, maxx - margin), rand(margin, maxy - margin), loc.z)
+			T = get_turf(locate(rand(margin, maxx - margin), rand(margin, maxy - margin), loc.z))
 			if(istype(T,/turf/space)) // Avoid spawning new asteroid on top of an existing asteroid
 				valid = TRUE
 		var/obj/asteroid_spawner/SP = new(T)
@@ -249,7 +250,7 @@
 
 // Check if the turfs associated with cell (x,y) are empty
 /obj/jtb_generator/proc/check_occupancy(var/x, var/y)
-	for(var/turf/T in block(locate(3 * x, 3 * y, loc.z), locate(3 * (x + 1), 3 * (y + 1), loc.z)))
+	for(var/turf/T in block(locate(5 * x - 4, 5 * y - 4, loc.z), locate(5 * (x + 1) - 4, 5 * (y + 1) - 4, loc.z)))
 		if(!istype(T,/turf/space))
 			return 1
 	return 0
@@ -276,50 +277,50 @@
 			else
 				grid[i][j] = 0
 
-/obj/jtb_generator/proc/get_center_21_21()
+/obj/jtb_generator/proc/get_corner_25_25()
 	var/target_x = 0  // x coordinates in grid
 	var/target_y = 0  // y coordinates in grid
 	var/list/listX = list()
 	var/list/listY = list()
 
-	// Choose an empty spot for the 21 by 21 chunk
-	for(var/i = 8 to numR) // Start at 8 since we have the block needs a 7x7 space
-		for(var/j = 8 to numC)
-			if(grid[i][j]>=4)
+	// Choose an empty spot for the 25 by 25 chunk
+	for(var/i = 5 to numR)
+		for(var/j = 5 to numC)
+			if(grid[i][j]>=3) // We allow the chunk to be partially into an asteroid
 				listX += i
 				listY += j
 	if(listX.len==0)
-		return null  // No empty space available to place a 21 by 21 chunk
+		return null  // No empty space available to place a 25 by 25 chunk
 	else
 		var/target = rand(1, listX.len)
 		target_x = listX[target]
 		target_y = listY[target]
 
 	// Update the occupancy map
-	for(var/i = (target_x-7) to target_x)
-		for(var/j = (target_y-7) to target_y)
+	for(var/i = (target_x-4) to target_x)
+		for(var/j = (target_y-4) to target_y)
 			map[i][j] = 1
 	
 	// Update the occupancy grid
 	compute_occupancy_grid()
 
-	// - 4 to get the center cell of the 7 by 7 empty area then + 1 to get the central turf of the central 3 by 3 cell 
-	return locate(3 * (target_x - 4) + 1, 3 * (target_y - 4) + 1, loc.z)
+	// bottom left corner turf
+	return get_turf(locate(5 * (target_x - 4) - 4, 5 * (target_y - 4) - 4, loc.z))
 
-/obj/jtb_generator/proc/get_center_3_3()
+/obj/jtb_generator/proc/get_corner_5_5()
 	var/target_x = 0  // x coordinates in grid
 	var/target_y = 0  // y coordinates in grid
 	var/list/listX = list()
 	var/list/listY = list()
 
-	// Choose an empty spot for the 3 by 3 chunk
+	// Choose an empty spot for the 5 by 5 chunk
 	for(var/i = 1 to numR)
 		for(var/j = 1 to numC)
 			if(grid[i][j]>0)
 				listX += i
 				listY += j
 	if(listX.len==0)
-		return null  // No empty space available to place a 3 by 3 chunk
+		return null  // No empty space available to place a 5 by 5 chunk
 	else
 		var/target = rand(1, listX.len)
 		target_x = listX[target]
@@ -330,39 +331,50 @@
 	
 	// Update the occupancy grid
 	grid[target_x][target_y] = 0 
-	// No need to do a compute_occupancy_grid() because we don't care about the exact values to place 3 by 3 chunks
+	// No need to do a compute_occupancy_grid() because we don't care about the exact values to place 5 by 5 chunks
 
-	// + 1 to get the central turf of the central 3 by 3 cell 
-	return locate(3 * target_x + 1, 3 * target_y + 1, loc.z)
+	// bottom left corner turf
+	return get_turf(locate(5 * target_x - 4, 5 * target_y - 4, loc.z))
 
-// Place 21 by 21 junk chunks from the pool of available templates
-/obj/jtb_generator/proc/place_21_21_chunks()
-	for(var/i = 1 to number_21_21)
+// Place 25 by 25 junk chunks from the pool of available templates
+/obj/jtb_generator/proc/place_25_25_chunks()
+	for(var/i = 1 to number_25_25)
 		// Pick a ruin
-		var/datum/map_template/junk/j21_21/chunk = null
-		if(pool_21_21?.len)
-			chunk = pick(pool_21_21) // TODO AFFINITY PICK (5 different pools?)
+		var/datum/map_template/junk/j25_25/chunk = null
+		if(pool_25_25?.len)
+			chunk = pick(pool_25_25) // TODO AFFINITY PICK (5 different pools?)
 		else
-			log_world("Junk loader had no 21 by 21 chunks to pick from.")
+			log_world("Junk loader had no 25 by 25 chunks to pick from.")
 			break
 
-		var/turf/T = get_center_21_21() // Location of the central turf of a 21 by 21 free chunk
+		var/turf/T = get_corner_25_25() // Location of the bottom left corner turf of a 25 by 25 free chunk
 		if(!T)
-			log_world("No empty space available to place a 21 by 21 chunk. There was [number_21_21-i+1] remaining chunks to place.")
+			log_world("No empty space available to place a 25 by 25 chunk. There was [number_25_25-i+1] remaining chunks to place.")
 			break
 
-		log_world("Chunk \"[chunk.name]\" of size 21 by 21 placed at ([T.x], [T.y], [T.z])")
-		load_ruin(T, chunk)  // Use ruin loader from planetary exploration
+		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
+		var/Ty = T.y
+
+		log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
+		load_chunk(T, chunk)  // Use ruin loader from planetary exploration
+
+		// Cleanup mineral overlays in case chunk got partially merged with an asteroid 
+		// This is intended by if(grid[i][j]>=3) in get_corner_25_25 since it can be hard finding a completely clear 25x25 area
+		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 24, Ty + 24, z)))
+			for(var/obj/effect/mineral/M in TM)
+				if(!istype(get_turf(M), /turf/simulated/mineral))
+					qdel(M)
 
 	return
 
 // Place the portal that leads to the ship
 /obj/jtb_generator/proc/place_portal()
-	var/turf/T = get_center_3_3() // Location of the central turf of a 3 by 3 free chunk
+	var/turf/T = get_corner_5_5() // Location of the bottom left corner turf of a 5 by 5 free chunk
 	if(!T)
-		log_world("No empty space available to place a 3 by 3 chunk. Junk field portal cannot be placed.")
+		log_world("No empty space available to place a 5 by 5 chunk. Junk field portal cannot be placed.")
 		return FALSE
 	else
+		T = get_turf(locate(T.x + 2, T.y + 2, T.z))  // Portal loading works with center tile
 		var/obj/asteroid_spawner/portal/P = new(T)
 		var/PPREFAB = /datum/rogue/asteroid/predef/portal
 		var/PBUILD = new PPREFAB(null)
@@ -372,24 +384,24 @@
 
 	return TRUE
 
-// Place 3 by 3 junk chunks from the pool of available templates
-/obj/jtb_generator/proc/place_3_3_chunks()
-	for(var/i = 1 to number_3_3)
+// Place 5 by 5 junk chunks from the pool of available templates
+/obj/jtb_generator/proc/place_5_5_chunks()
+	for(var/i = 1 to number_5_5)
 		// Pick a ruin
-		var/datum/map_template/junk/j3_3/chunk = null
-		if(pool_3_3?.len)
-			chunk = pick(pool_3_3) // TODO AFFINITY PICK (5 different pools?)
+		var/datum/map_template/junk/j5_5/chunk = null
+		if(pool_5_5?.len)
+			chunk = pick(pool_5_5) // TODO AFFINITY PICK (5 different pools?)
 		else
-			log_world("Junk loader had no 3 by 3 chunks to pick from.")
+			log_world("Junk loader had no 5 by 5 chunks to pick from.")
 			break
 
-		var/turf/T = get_center_3_3() // Location of the central turf of a 3 by 3 free chunk
+		var/turf/T = get_corner_5_5() // Location of the bottom left corner turf of a 5 by 5 free chunk
 		if(!T)
-			log_world("No empty space available to place a 3 by 3 chunk. There was [number_3_3-i+1] remaining chunks to place.")
+			log_world("No empty space available to place a 5 by 5 chunk. There was [number_5_5-i+1] remaining chunks to place.")
 			break
 
 		testing("Debug width [chunk.width]")
-		log_world("Chunk \"[chunk.name]\" of size 3 by 3 placed at ([T.x], [T.y], [T.z])")
+		log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
 		load_chunk(T, chunk)
 
 	return
@@ -402,14 +414,33 @@
 // Generate the edge at the border of the map for wrapping effect
 /obj/jtb_generator/proc/generate_edge()
 	testing("Generating edges of junk field at zlevel [loc.z].")
-	// Let's try without a cleanup step. If it causes issues we will have to delete everything on the edge first
-	var/list/edges
+	
+	edges = list()
 	edges += block(locate(1, 1, z), locate(1+JTB_EDGE, maxy, z))  // Left border
 	edges |= block(locate(maxx-JTB_EDGE, 1, z),locate(maxx, maxy, z))  // Right border
 	edges |= block(locate(1, 1, z), locate(maxx, 1+JTB_EDGE, z))  // Bottom border
 	edges |= block(locate(1, maxy-JTB_EDGE, z),locate(maxx, maxy, z))  // Top border
+
+	// Cleanup and spawn edge
 	for(var/turf/T in edges)
-		T.ChangeTurf(/turf/simulated/jtb_edge)
+		for(var/obj/O in T)
+			if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
+				qdel(O)
+		for(var/mob/M in T)
+			if(!ishuman(M))  // Delete all non human mobs
+				M.death()  // First we kill them
+				qdel(M)
+			else  // Humans just win an express ticket to deep space
+				go_to_bluespace(M.loc, 0, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
+		if(T.x <= JTB_EDGE || T.y <= JTB_EDGE || T.x >= maxx-JTB_EDGE+1 || T.y >= maxy-JTB_EDGE+1)  // To let a 1-wide ribbon of clean space
+			T.ChangeTurf(/turf/simulated/jtb_edge)
+
+	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
+	for(var/turf/T in edges)
+		for(var/obj/O in T)
+			if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
+				qdel(O)
+
 	testing("Edges generation complete.")
 	
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
@@ -422,26 +453,22 @@
 
 // Template of portal chunk
 /datum/rogue/asteroid/predef/portal
+	width = 5
 	type_wall	= /turf/simulated/wall/r_wall
 	type_under	= /turf/simulated/floor/asteroid
 
 	New()
-		..()
-		spot_add(1,1,type_under) //Bottom left corner
-		spot_add(1,2,type_under)
-		spot_add(1,3,type_under)
-		spot_add(2,1,type_under)
-		spot_add(2,2,type_under) //Center floor
-		spot_add(2,2,/obj/effect/portal/jtb)
-		spot_add(2,3,type_under)
-		spot_add(3,1,type_under)
-		spot_add(3,2,type_under)
-		spot_add(3,3,type_under) //Bottom right corner
+		..()  // The joy of not being able to use a for in the declaration
+		for(var/i = 1 to 5)
+			for(var/j = 1 to 5)
+				spot_add(i,j,type_under)
+				if(i==3 && j==3)
+					spot_add(3,3,/obj/effect/portal/jtb)
 
-/proc/load_chunk(turf/central_turf, datum/map_template/template)
+/proc/load_chunk(turf/corner_turf, datum/map_template/template)
 	if(!template)
 		return FALSE
-	template.load(central_turf,centered = TRUE)
+	template.load(corner_turf,centered = FALSE)
 	return TRUE
 
 // Copy of /obj/asteroid_generator/proc/generate_asteroid
@@ -509,13 +536,12 @@
 			for(var/T in curr_y)
 				if(ispath(T,/turf)) //We're spawning a turf
 
-
 					//Make sure we locate()'d a turf and not something else
 					if(!isturf(spot))
 						spot = get_turf(spot)
 					var/turf/P = spot
 
-					if(P)
+					if(P.is_space())  // Only spawn on space turf to avoid mixing with junk chunks
 						var/turf/newturf = P.ChangeTurf(T)
 						if(newturf)//check here, because sometimes it runtimes and shits in the logs
 							newturf.update_icon(1)
@@ -537,7 +563,6 @@
 	circuit = /obj/item/weapon/electronics/circuitboard/jtb
 	var/obj/jtb_generator/jtb_gen  // jtb generator
 
-
 /obj/machinery/computer/jtb_console/Initialize()
 	. = ..()
 	
@@ -547,14 +572,6 @@
 		log_world("Could not find junk tractor beam generator.")
 	else
 		jtb_gen.create_link_portal(get_turf(locate(x+2, y, z)))
-	/*else
-		jtb_portal = jtb_gen.jtb_portal  // Retrieve portal spawned by generator on junk field side
-		if(!jtb_portal)
-			admin_notice("Could not find junk field side portal.")
-			log_world("Could not find junk field side portal.")*/
-	
-	// TODO: Connect to already existing portal and retrieve junk field info
-
 
 /obj/machinery/computer/jtb_console/attack_hand(mob/user)
 	if(..())
@@ -680,32 +697,6 @@
 /turf/simulated/jtb_edge/proc/MineralSpread()
 	return
 
-/*/turf/simulated/jtb_edge/Initialize()
-	. = ..()
-
-	var/nx = x
-	if (x <= JTB_EDGE)
-		nx = x + (JTB_MAXX - 2*JTB_EDGE) - 1
-	else if (x >= (JTB_MAXX - JTB_EDGE))
-		nx = x - (JTB_MAXX  - 2*JTB_EDGE) + 1
-
-	var/ny = y
-	if(y <= JTB_EDGE)
-		ny = y + (JTB_MAXY - 2*JTB_EDGE) - 1
-	else if (y >= (JTB_MAXY - JTB_EDGE))
-		ny = y - (JTB_MAXY - 2*JTB_EDGE) + 1
-
-	var/turf/NT = locate(nx, ny, z)
-	if(NT)
-		vis_contents = list(NT)
-
-	//Need to put a mouse-opaque overlay there to prevent people turning/shooting towards ACTUAL location of vis_content things
-	var/obj/effect/overlay/O = new(src)
-	O.mouse_opacity = 2
-	O.name = "distant space"
-	O.desc = "You need to come over there to take a better look."
-*/
-
 /turf/simulated/jtb_edge/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -739,7 +730,7 @@
 		else if (y >= (JTB_MAXY - JTB_EDGE))
 			new_y = JTB_EDGE + 2
 
-		var/turf/T = locate(new_x, new_y, AM.z)
+		var/turf/T = get_turf(locate(new_x, new_y, AM.z))
 		if(T && !T.density)
 			AM.forceMove(T)
 			if(isliving(AM))

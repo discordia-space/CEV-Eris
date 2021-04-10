@@ -11,10 +11,10 @@
 
 	..()
 
-/datum/map_template/junk/j21_21
-	prefix = "maps/submaps/junk_field/j21_21/"
+/datum/map_template/junk/j25_25
+	prefix = "maps/submaps/junk_field/j25_25/"
 	var/list/ruin_tags
 
-/datum/map_template/junk/j3_3
-	prefix = "maps/submaps/junk_field/j3_3/"
+/datum/map_template/junk/j5_5
+	prefix = "maps/submaps/junk_field/j5_5/"
 	var/list/ruin_tags
