@@ -1,6 +1,33 @@
 #define BEAM_IDLE        0
 #define BEAM_CAPTURING   1
 #define BEAM_STABILIZED  2
+#define BEAM_COOLDOWN    3
+
+//////////////////////////////
+// Junk Field datum
+//////////////////////////////
+/datum/junk_field
+	var/name // name of the junk field
+	var/asteroid_belt_status // if it has an asteroid belt
+	var/affinity // affinity of the junk field
+
+/datum/junk_field/New(var/ID)
+	name = "Junk Field #[ID]"
+	asteroid_belt_status = has_asteroid_belt()
+	affinity = get_random_affinity()
+
+/obj/jtb_generator/proc/has_asteroid_belt()
+	if(prob(20))
+		return TRUE
+	return FALSE
+
+/obj/jtb_generator/proc/get_random_affinity()
+	return pickweight(list(
+					"Neutral" = 10,
+					"OneStar" = 3,
+					"IronHammer" = 3,
+					"Serbian" = 3
+					))
 
 //////////////////////////////
 // Generator used for the junk tractor beam level
@@ -48,11 +75,65 @@
 	var/list/pool_21_21 = list() // Pool of 21 by 21 junk chunks
 	var/list/pool_3_3 = list()  // Pool of 3 by 3 junk chunks
 
+	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
+	var/beam_state = BEAM_STABILIZED  // state of the junk tractor beam
+	var/datum/junk_field/current_jf  // the current chosen junk field
+	var/jf_counter = 1  // counting junk fields to give them a unique number
+
+	var/nb_in_pool = 3  // Number of junk fields in the pool
+	var/list/jf_pool = list()  // Pool of junk fields you can choose from
+
+	var/start_cooldown
+	var/beam_cooldown_time = 10 SECONDS 
+	var/beam_capture_time = 10 SECONDS
+
 
 /obj/jtb_generator/New()
+	current_jf = new /datum/junk_field(jf_counter)
+	jf_counter++
+	return
+
+/obj/jtb_generator/proc/generate_junk_field_pools()
+	if(nb_in_pool > 0)
+		for(var/i in 1 to nb_in_pool)
+			jf_pool += new /datum/junk_field(jf_counter)
+			jf_counter++
+	return
+
+/obj/jtb_generator/proc/field_capture()
+	beam_state = BEAM_CAPTURING
+	spawn(beam_capture_time)
+		if(src && beam_state == BEAM_CAPTURING)  // Check if jtb_generator has not been destroyed during spawn time and if capture has not been cancelled
+			beam_state = BEAM_STABILIZED
+			// TODO TRIGGER GENERATION
+	return
+
+/obj/jtb_generator/proc/field_cancel()
+	if(beam_state == BEAM_CAPTURING)
+		beam_state = BEAM_IDLE
+	return
+
+/obj/jtb_generator/proc/field_release()
+
+	start_cooldown = world.time
+	beam_state = BEAM_COOLDOWN
+	spawn(beam_cooldown_time)
+		if(src)  // Check if jtb_generator has not been destroyed during spawn time
+			beam_state = BEAM_IDLE
+	return
+
+/obj/jtb_generator/proc/get_possible_fields()
+	var/list/res = list()
+	for(var/datum/junk_field/JF in jf_pool)
+		res["[JF.asteroid_belt_status ? "Asteroid Belt - " : ""] [JF.affinity] [JF.name]"] = JF
+	return res
+
+/obj/jtb_generator/proc/set_field(var/datum/junk_field/JF)
+	current_jf = JF
 	return
 
 /obj/jtb_generator/proc/generate_junk_field()
+	testing("Generating Asteroid Belt: [asteroid_belt_status] - Affinity: [affinity]")
 
 	numR = round((maxx - margin) / 3)
 	numC = round((maxy - margin) / 3)
@@ -233,6 +314,7 @@
 		var/PBUILD = new PPREFAB(null)
 		place_asteroid(PBUILD, P)
 		log_world("Junk field portal placed at ([T.x], [T.y], [T.z])")
+		jtb_portal = locate(obj/effect/portal/jtb) in T
 
 	return TRUE
 
@@ -388,12 +470,21 @@
 	circuit = /obj/item/weapon/electronics/circuitboard/jtb
 	var/obj/effect/portal/jtb/ship_portal  // ship side portal
 	var/obj/effect/portal/jtb/jtb_portal   // junk field side portal
-
-	var/beam_state = BEAM_IDLE
+	var/obj/jtb_generator/jtb_gen  // jtb generator
 
 
 /obj/machinery/computer/jtb_console/Initialize()
 	. = ..()
+	
+	var/area/A = /area/junk_tractor_beam
+	jtb_gen = locate(/obj/jtb_generator) in A  // Find junk field generator object
+	if(!jtb_gen)
+		admin_notice("Could not find junk tractor beam generator.")
+		log_world("Could not find junk tractor beam generator.")
+	jtb_portal = jtb_gen.jtb_portal  // Retrieve portal spawned by generator on junk field side
+	if(!jtb_portal)
+		admin_notice("Could not find junk field side portal.")
+		log_world("Could not find junk field side portal.")
 	
 	// TODO: Connect to already existing portal and retrieve junk field info
 
@@ -401,15 +492,23 @@
 /obj/machinery/computer/jtb_console/attack_hand(mob/user)
 	if(..())
 		return
+	if(!jtb_gen)
+		audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
+		return
 	ui_interact(user)
 
 /obj/machinery/computer/jtb_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+	if(!jtb_gen)
+		audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
+		return
+	
 	var/data[0]
 	data = list(
-		"beam_state" = beam_state,
+		"beam_state" = get_beam_state(),
+		"asteroid_belt" = get_asteroid_belt_status(),
 		"affinity" = get_junk_field_affinity(),
 		"junk_field_name" = get_junk_field_name(),
-		"can_pick" = beam_state == BEAM_IDLE,
+		"can_pick" = get_beam_state() == BEAM_IDLE,
 		"can_capture" = can_capture(),
 		"can_cancel" = can_cancel(),
 		"can_release" = can_release()
@@ -446,35 +545,45 @@
 	
 	updateUsrDialog()
 
+/obj/machinery/computer/jtb_console/proc/get_beam_state()
+	return jtb_gen.beam_state
+
+/obj/machinery/computer/jtb_console/proc/get_asteroid_belt_status()
+	return jtb_gen.current_jf.asteroid_belt_status
+
 /obj/machinery/computer/jtb_console/proc/get_junk_field_affinity()
-	return "test affinity"
+	return jtb_gen.current_jf.affinity
 
 /obj/machinery/computer/jtb_console/proc/get_junk_field_name()
-	return "test name"
+	return jtb_gen.current_jf.name
 
 /obj/machinery/computer/jtb_console/proc/can_capture()
-	return 1
+	return jtb_gen.beam_state == BEAM_IDLE
 
 /obj/machinery/computer/jtb_console/proc/can_cancel()
-	return 0
+	return jtb_gen.beam_state == BEAM_CAPTURING
 
 /obj/machinery/computer/jtb_console/proc/can_release()
-	return 0
+	return jtb_gen.beam_state == BEAM_STABILIZED
 
 /obj/machinery/computer/jtb_console/proc/field_capture()
+	jtb_gen.field_capture() 
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_cancel()
+	jtb_gen.field_cancel()
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_release()
+	jtb_gen.field_release()
 	return
 
 /obj/machinery/computer/jtb_console/proc/get_possible_fields()
-	return list()
+	return jtb_gen.get_possible_fields()
 
-/obj/machinery/computer/jtb_console/proc/set_field()
-	return
+/obj/machinery/computer/jtb_console/proc/set_field(var/datum/junk_field/JF)
+	jtb_gen.set_field(JF)
+	return 
 
 #undef BEAM_IDLE
 #undef BEAM_CAPTURING

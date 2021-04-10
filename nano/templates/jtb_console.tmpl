@@ -17,16 +17,30 @@
 		</div>
 	</div>
 </div>
-{{if data.has_docking}}
-	<div class="item" style="padding-top: 10px">
-		<div class="item">
-			<div class="itemLabel">
-				Affinity:
-			</div>
-			<span class="average">{{:data.affinity}}</span>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Asteroid Belt:
+		</div>
+		<div class="itemContent">
+			{{if data.asteroid_belt == 0}}
+				<span class="idle">NONE</span>
+			{{else data.asteroid_belt == 1}}
+				<span style="font-weight: bold;color: #336699">DETECTED</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
 		</div>
 	</div>
-{{/if}}
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Affinity:
+		</div>
+		<span class="average">{{:data.affinity}}</span>
+	</div>
+</div>
 <div class="item" style="padding-top: 10px">
 	<div class="itemLabel">
 		Junk Field ID:
