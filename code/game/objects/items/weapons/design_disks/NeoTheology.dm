@@ -37,7 +37,6 @@
 		/datum/design/bioprinter/nt_clothes/acolyte_armor,
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
 		/datum/design/bioprinter/nt_clothes/custodian_armor,
-		/datum/design/bioprinter/nt_clothes/NTvoid,
 
 		/datum/design/bioprinter/nt_clothes/acolyte_armor_head,
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor_head,
@@ -126,7 +125,12 @@
 		/datum/design/autolathe/helmet/crusader,
 		/datum/design/autolathe/armor/crusader
 	)
-
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/void
+	disk_name = "NeoTheology Armory - Neotheology Voidsuit"
+	icon_state = "neotheology"
+	designs = list(
+		/datum/design/autolathe/clothing/NTvoid
+	)
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/excruciator
 	disk_name = "NeoTheology Armory - NT \"EXCRUCIATOR\" giga lens"
 	icon_state = "neotheology"

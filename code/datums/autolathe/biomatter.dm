@@ -36,10 +36,6 @@
 	name = "NT Acolyte Armor"
 	build_path = /obj/item/clothing/suit/armor/acolyte
 
-/datum/design/bioprinter/nt_clothes/NTvoid
-	name = "neotheology voidsuit"
-	build_path = /obj/item/clothing/suit/space/void/NTvoid		
-
 /datum/design/bioprinter/nt_clothes/agrolyte_armor
 	name = "NT Agrolyte Armor"
 	build_path = /obj/item/clothing/suit/armor/agrolyte
@@ -301,6 +297,10 @@
 /datum/design/autolathe/helmet/crusader
 	name = "crusader helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/crusader
+
+/datum/design/autolathe/clothing/NTvoid
+	name = "neotheology voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/NTvoid
 
 //[MED]
 /datum/design/bioprinter/medical
