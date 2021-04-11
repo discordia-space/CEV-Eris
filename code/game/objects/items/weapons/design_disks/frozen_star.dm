@@ -362,12 +362,12 @@
 
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov
-	disk_name = "Frozen Star - .30 Kalashnikov Rifle"
+	disk_name = "Frozen Star - .30 Vipr Rifle"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Kalashnikov\""
+		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Vipr\""
 		/datum/design/autolathe/ammo/lrifle,
 		/datum/design/autolathe/ammo/lrifle/practice = 0,
 		/datum/design/autolathe/ammo/lrifle/rubber,
