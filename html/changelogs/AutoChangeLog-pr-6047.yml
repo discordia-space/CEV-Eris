@@ -1,0 +1,5 @@
+author: Omni44
+delete-after: true
+changes:
+  - balance: Moved NT void to EOTP reward pool
+  - code_imp: changed some NT void code.
