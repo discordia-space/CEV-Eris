@@ -3,9 +3,10 @@
 #define BEAM_STABILIZED  2
 #define BEAM_COOLDOWN    3
 
-#define JTB_EDGE 2
-#define JTB_MAXX 100
-#define JTB_MAXY 100
+#define JTB_EDGE     2
+#define JTB_MAXX   100
+#define JTB_MAXY   100
+#define JTB_OFFSET  10
 
 //////////////////////////////
 // Junk Field datum
@@ -159,12 +160,11 @@
 /obj/jtb_generator/proc/cleanup_junk_field()
 
 	testing("Starting junk field cleanup.")
-	for(var/i = 1 to maxx)
-		for(var/j = 1 to maxy)
+	for(var/i = 1+JTB_OFFSET to maxx+JTB_OFFSET)
+		for(var/j = 1+JTB_OFFSET to maxy+JTB_OFFSET)
 			var/turf/T = get_turf(locate(i, j, z))
 			for(var/obj/O in T)
-				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
-					qdel(O)
+				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 			for(var/mob/M in T)
 				if(!ishuman(M))  // Delete all non human mobs
 					M.death()  // First we kill them
@@ -175,12 +175,11 @@
 				T.ChangeTurf(/turf/space)
 
 	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
-	for(var/i = 1 to maxx)
-		for(var/j = 1 to maxy)
+	for(var/i = 1+JTB_OFFSET to maxx+JTB_OFFSET)
+		for(var/j = 1+JTB_OFFSET to maxy+JTB_OFFSET)
 			var/turf/T = get_turf(locate(i, j, z))
 			for(var/obj/O in T)
-				if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
-					qdel(O)
+				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 	// All mobs and turfs have already been handled so no need to deal with that during second pass
 
 	testing("Junk field cleanup is over.")
@@ -237,7 +236,7 @@
 		var/valid = FALSE
 		var/turf/T
 		while(!valid)
-			T = get_turf(locate(rand(margin, maxx - margin), rand(margin, maxy - margin), loc.z))
+			T = get_turf(locate(rand(margin+JTB_OFFSET, maxx+JTB_OFFSET - margin), rand(margin+JTB_OFFSET, maxy+JTB_OFFSET - margin), loc.z))
 			if(istype(T,/turf/space)) // Avoid spawning new asteroid on top of an existing asteroid
 				valid = TRUE
 		var/obj/asteroid_spawner/SP = new(T)
@@ -250,7 +249,7 @@
 
 // Check if the turfs associated with cell (x,y) are empty
 /obj/jtb_generator/proc/check_occupancy(var/x, var/y)
-	for(var/turf/T in block(locate(5 * x - 4, 5 * y - 4, loc.z), locate(5 * (x + 1) - 4, 5 * (y + 1) - 4, loc.z)))
+	for(var/turf/T in block(locate(5 * x - 4 + JTB_OFFSET, 5 * y - 4 + JTB_OFFSET, loc.z), locate(5 * (x + 1) - 4 + JTB_OFFSET, 5 * (y + 1) - 4 + JTB_OFFSET, loc.z)))
 		if(!istype(T,/turf/space))
 			return 1
 	return 0
@@ -305,7 +304,7 @@
 	compute_occupancy_grid()
 
 	// bottom left corner turf
-	return get_turf(locate(5 * (target_x - 4) - 4, 5 * (target_y - 4) - 4, loc.z))
+	return get_turf(locate(5 * (target_x - 4) - 4 + JTB_OFFSET, 5 * (target_y - 4) - 4 + JTB_OFFSET, loc.z))
 
 /obj/jtb_generator/proc/get_corner_5_5()
 	var/target_x = 0  // x coordinates in grid
@@ -334,7 +333,7 @@
 	// No need to do a compute_occupancy_grid() because we don't care about the exact values to place 5 by 5 chunks
 
 	// bottom left corner turf
-	return get_turf(locate(5 * target_x - 4, 5 * target_y - 4, loc.z))
+	return get_turf(locate(5 * target_x - 4 + JTB_OFFSET, 5 * target_y - 4 + JTB_OFFSET, loc.z))
 
 // Place 25 by 25 junk chunks from the pool of available templates
 /obj/jtb_generator/proc/place_25_25_chunks()
@@ -365,8 +364,7 @@
 				if(!istype(get_turf(M), /turf/simulated/mineral))
 					qdel(M)
 			for(var/obj/structure/lattice/L in TM)  // Fix lattice dir that is not rotated correctly by the loader
-				//L.updateOverlays()
-				L.dir = 2 // reverse_dir[L.dir]
+				L.dir = 2
 
 	return
 
@@ -413,8 +411,7 @@
 		// Fix lattice dir that is not rotated correctly by the loader
 		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 4, Ty + 4, z)))
 			for(var/obj/structure/lattice/L in TM)
-				//L.updateOverlays()
-				L.dir = 2 // reverse_dir[L.dir]
+				L.dir = 2
 
 	return
 
@@ -428,30 +425,28 @@
 	testing("Generating edges of junk field at zlevel [loc.z].")
 	
 	edges = list()
-	edges += block(locate(1, 1, z), locate(1+JTB_EDGE, maxy, z))  // Left border
-	edges |= block(locate(maxx-JTB_EDGE, 1, z),locate(maxx, maxy, z))  // Right border
-	edges |= block(locate(1, 1, z), locate(maxx, 1+JTB_EDGE, z))  // Bottom border
-	edges |= block(locate(1, maxy-JTB_EDGE, z),locate(maxx, maxy, z))  // Top border
+	edges += block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(1+JTB_OFFSET+JTB_EDGE, maxy+JTB_OFFSET, z))  // Left border
+	edges |= block(locate(maxx+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET, z),locate(maxx+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Right border
+	edges |= block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(maxx+JTB_OFFSET, 1+JTB_OFFSET+JTB_EDGE, z))  // Bottom border
+	edges |= block(locate(1+JTB_OFFSET, maxy+JTB_OFFSET-JTB_EDGE, z),locate(maxx+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Top border
 
 	// Cleanup and spawn edge
 	for(var/turf/T in edges)
 		for(var/obj/O in T)
-			if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
-				qdel(O)
+			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
 		for(var/mob/M in T)
 			if(!ishuman(M))  // Delete all non human mobs
 				M.death()  // First we kill them
 				qdel(M)
 			else  // Humans just win an express ticket to deep space
 				go_to_bluespace(M.loc, 0, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
-		if(T.x <= JTB_EDGE || T.y <= JTB_EDGE || T.x >= maxx-JTB_EDGE+1 || T.y >= maxy-JTB_EDGE+1)  // To let a 1-wide ribbon of clean space
+		if(T.x <= JTB_EDGE+JTB_OFFSET || T.y <= JTB_EDGE+JTB_OFFSET || T.x >= maxx+JTB_OFFSET-JTB_EDGE+1 || T.y >= maxy+JTB_OFFSET-JTB_EDGE+1)  // To let a 1-wide ribbon of clean space
 			T.ChangeTurf(/turf/simulated/jtb_edge)
 
 	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
 	for(var/turf/T in edges)
 		for(var/obj/O in T)
-			if(!(istype(O, /obj/jtb_generator) || istype(O, /obj/map_data/junk_tractor_beam)))  // JTB related stuff
-				qdel(O)
+			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
 
 	testing("Edges generation complete.")
 	
@@ -752,14 +747,14 @@
 
 		var/new_x = AM.x
 		var/new_y = AM.y
-		if(x <= 1+JTB_EDGE)
-			new_x = JTB_MAXX - JTB_EDGE - 1
-		else if (x >= (JTB_MAXX - JTB_EDGE))
-			new_x = JTB_EDGE + 2
-		else if (y <= 1+JTB_EDGE)
-			new_y = JTB_MAXY - JTB_EDGE - 1
-		else if (y >= (JTB_MAXY - JTB_EDGE))
-			new_y = JTB_EDGE + 2
+		if(x <= 1+JTB_OFFSET+JTB_EDGE)
+			new_x = JTB_MAXX + JTB_OFFSET - JTB_EDGE
+		else if (x >= (JTB_MAXX+JTB_OFFSET - JTB_EDGE))
+			new_x = JTB_EDGE+JTB_OFFSET + 1
+		else if (y <= 1+JTB_OFFSET+JTB_EDGE)
+			new_y = JTB_MAXY+JTB_OFFSET - JTB_EDGE
+		else if (y >= (JTB_MAXY+JTB_OFFSET - JTB_EDGE))
+			new_y = JTB_EDGE+JTB_OFFSET + 1
 
 		var/turf/T = get_turf(locate(new_x, new_y, AM.z))
 		if(T && !T.density)
@@ -780,3 +775,4 @@
 #undef JTB_EDGE
 #undef JTB_MAXX
 #undef JTB_MAXY
+#undef JTB_OFFSET
