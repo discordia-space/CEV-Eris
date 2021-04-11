@@ -86,7 +86,7 @@
 	rarity_value = 50
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/drozd = 3,
+		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
 		/datum/design/autolathe/ammo/msmg/rubber
 	)
@@ -102,7 +102,7 @@
 	rarity_value = 50
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/ak47 = 3,
+		/datum/design/autolathe/gun/ak47,
 		/datum/design/autolathe/ammo/lrifle,						//AK ammo
 		/datum/design/autolathe/ammo/lrifle/rubber,
 	)
@@ -118,7 +118,7 @@
 	rarity_value = 50
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/vintorez = 3,
+		/datum/design/autolathe/gun/vintorez,
 		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
@@ -134,7 +134,7 @@
 	rarity_value = 50
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/boltgun = 3,
+		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
@@ -151,7 +151,7 @@
 	rarity_value = 45
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/makarov = 2,
+		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
