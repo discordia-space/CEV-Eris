@@ -35,6 +35,7 @@
 	var/list/gun_loc_tag //Define(string). For checking if the gun already has something of this installed (No double trigger mods, for instance)
 	var/list/req_gun_tags = list() //Define(string). Must match all to be able to install it.
 	var/list/weapon_upgrades = list() //variable name(string) -> num
+	var/list/gun_blacklist = list() //Used to compare Gun used and whether the Mod can be installed on it or not.
 
 /datum/component/item_upgrade/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
@@ -162,11 +163,10 @@
 				to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
 			return FALSE
 
-	for(var/I in req_gun_tags)
-		if(!G.gun_tags.Find(I))
-			if(user)
-				to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
-			return FALSE
+	if(G.type in gun_blacklist)
+		if(user)
+			to_chat(user, SPAN_WARNING("This mod can not be installed on the [G]!"))
+		return FALSE
 
 	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/weapon/gun/energy))
 		if(user)

@@ -84,6 +84,7 @@
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.25)
 	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
+	I.gun_blacklist = list(/obj/item/weapon/gun/energy/sniperrifle)
 
 // Add toxin damage to your weapon
 /obj/item/weapon/gun_upgrade/barrel/toxin_coater
