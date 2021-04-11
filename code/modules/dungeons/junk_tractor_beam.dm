@@ -76,7 +76,7 @@
 
 	var/number_asteroids = 6 // Number of asteroids if the junk field has the asteroid belt property
 	var/number_25_25 = 3 // Max number of 25 by 25 junk chunks
-	var/number_5_5 = 15 // Max number of 5 by 5 junk chunks
+	var/number_5_5 = 25 // Max number of 5 by 5 junk chunks
 
 	var/list/pool_25_25 = list() // Pool of 25 by 25 junk chunks
 	var/list/pool_5_5 = list()  // Pool of 5 by 5 junk chunks
@@ -425,10 +425,10 @@
 	testing("Generating edges of junk field at zlevel [loc.z].")
 	
 	edges = list()
-	edges += block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(1+JTB_OFFSET+JTB_EDGE, maxy+JTB_OFFSET, z))  // Left border
-	edges |= block(locate(maxx+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET, z),locate(maxx+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Right border
-	edges |= block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(maxx+JTB_OFFSET, 1+JTB_OFFSET+JTB_EDGE, z))  // Bottom border
-	edges |= block(locate(1+JTB_OFFSET, maxy+JTB_OFFSET-JTB_EDGE, z),locate(maxx+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Top border
+	edges += block(locate(1+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET, z), locate(1+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Left border
+	edges |= block(locate(maxx+JTB_OFFSET, 1+JTB_OFFSET, z),locate(maxx+JTB_OFFSET+JTB_EDGE, maxy+JTB_OFFSET, z))  // Right border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET-JTB_EDGE, z), locate(maxx+JTB_OFFSET+JTB_EDGE, 1+JTB_OFFSET, z))  // Bottom border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE, maxy+JTB_OFFSET, z),locate(maxx+JTB_OFFSET+JTB_EDGE, maxy+JTB_OFFSET+JTB_EDGE, z))  // Top border
 
 	// Cleanup and spawn edge
 	for(var/turf/T in edges)
@@ -440,14 +440,14 @@
 				qdel(M)
 			else  // Humans just win an express ticket to deep space
 				go_to_bluespace(M.loc, 0, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
-		if(T.x <= JTB_EDGE+JTB_OFFSET || T.y <= JTB_EDGE+JTB_OFFSET || T.x >= maxx+JTB_OFFSET-JTB_EDGE+1 || T.y >= maxy+JTB_OFFSET-JTB_EDGE+1)  // To let a 1-wide ribbon of clean space
+		if(T.x <= JTB_OFFSET || T.y <= JTB_OFFSET || T.x >= maxx+JTB_OFFSET+1 || T.y >= maxy+JTB_OFFSET+1)  // To let a 1-wide ribbon of clean space
 			T.ChangeTurf(/turf/simulated/jtb_edge)
 
 	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
 	for(var/turf/T in edges)
 		for(var/obj/O in T)
 			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
-
+	
 	testing("Edges generation complete.")
 	
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
@@ -476,7 +476,6 @@
 	if(!template)
 		return FALSE
 	var/ori = pick(cardinal)
-	testing(ori)
 	if(ori == WEST || ori == EAST)  
 		// For west and east the x and y coordinates are switched by template.load so we need to switch them ourself to spawn at correct location
 		corner_turf = get_turf(locate(corner_turf.y, corner_turf.x, corner_turf.z))
@@ -747,14 +746,15 @@
 
 		var/new_x = AM.x
 		var/new_y = AM.y
-		if(x <= 1+JTB_OFFSET+JTB_EDGE)
-			new_x = JTB_MAXX + JTB_OFFSET - JTB_EDGE
-		else if (x >= (JTB_MAXX+JTB_OFFSET - JTB_EDGE))
-			new_x = JTB_EDGE+JTB_OFFSET + 1
-		else if (y <= 1+JTB_OFFSET+JTB_EDGE)
-			new_y = JTB_MAXY+JTB_OFFSET - JTB_EDGE
-		else if (y >= (JTB_MAXY+JTB_OFFSET - JTB_EDGE))
-			new_y = JTB_EDGE+JTB_OFFSET + 1
+		if(x <= JTB_OFFSET)
+			new_x = JTB_OFFSET + JTB_MAXX
+		else if (x >= (JTB_OFFSET + JTB_MAXX + 1))
+			new_x = JTB_OFFSET + 1
+		
+		if (y <= JTB_OFFSET)
+			new_y = JTB_OFFSET + JTB_MAXY
+		else if (y >= (JTB_OFFSET + JTB_MAXY + 1))
+			new_y = JTB_OFFSET + 1
 
 		var/turf/T = get_turf(locate(new_x, new_y, AM.z))
 		if(T && !T.density)
