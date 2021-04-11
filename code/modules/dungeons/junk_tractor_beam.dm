@@ -356,7 +356,7 @@
 		var/Ty = T.y
 
 		log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
-		load_chunk(T, chunk)  // Use ruin loader from planetary exploration
+		load_chunk(T, chunk)  // Load chunk with random orientation for variety purpose
 
 		// Cleanup mineral overlays in case chunk got partially merged with an asteroid 
 		// This is intended by if(grid[i][j]>=3) in get_corner_25_25 since it can be hard finding a completely clear 25x25 area
@@ -364,6 +364,9 @@
 			for(var/obj/effect/mineral/M in TM)
 				if(!istype(get_turf(M), /turf/simulated/mineral))
 					qdel(M)
+			for(var/obj/structure/lattice/L in TM)  // Fix lattice dir that is not rotated correctly by the loader
+				//L.updateOverlays()
+				L.dir = 2 // reverse_dir[L.dir]
 
 	return
 
@@ -400,9 +403,18 @@
 			log_world("No empty space available to place a 5 by 5 chunk. There was [number_5_5-i+1] remaining chunks to place.")
 			break
 
+		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
+		var/Ty = T.y
+
 		testing("Debug width [chunk.width]")
 		log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
-		load_chunk(T, chunk)
+		load_chunk(T, chunk)  // Load chunk with random orientation for variety purpose
+
+		// Fix lattice dir that is not rotated correctly by the loader
+		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 4, Ty + 4, z)))
+			for(var/obj/structure/lattice/L in TM)
+				//L.updateOverlays()
+				L.dir = 2 // reverse_dir[L.dir]
 
 	return
 
@@ -459,8 +471,8 @@
 
 	New()
 		..()  // The joy of not being able to use a for in the declaration
-		for(var/i = 1 to 5)
-			for(var/j = 1 to 5)
+		for(var/i = 2 to 4)
+			for(var/j = 2 to 4)
 				spot_add(i,j,type_under)
 				if(i==3 && j==3)
 					spot_add(3,3,/obj/effect/portal/jtb)
@@ -468,7 +480,12 @@
 /proc/load_chunk(turf/corner_turf, datum/map_template/template)
 	if(!template)
 		return FALSE
-	template.load(corner_turf,centered = FALSE)
+	var/ori = pick(cardinal)
+	testing(ori)
+	if(ori == WEST || ori == EAST)  
+		// For west and east the x and y coordinates are switched by template.load so we need to switch them ourself to spawn at correct location
+		corner_turf = get_turf(locate(corner_turf.y, corner_turf.x, corner_turf.z))
+	template.load(corner_turf, centered=FALSE, orientation=ori)
 	return TRUE
 
 // Copy of /obj/asteroid_generator/proc/generate_asteroid
