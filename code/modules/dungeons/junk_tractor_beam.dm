@@ -668,9 +668,23 @@
 
 /obj/machinery/computer/jtb_console/proc/field_release()
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
-	src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Releasing captured junk field.'</span>")
-	jtb_gen.field_release()
+	if(check_biosignature())
+		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Sentient signature detected in junk field. Release blocked by security protocols.'</span>")
+	else
+		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Releasing captured junk field.'</span>")
+		jtb_gen.field_release()
 	return
+
+/obj/machinery/computer/jtb_console/proc/check_biosignature()
+	var/list/candidates = SSticker.minds.Copy()
+	while(candidates.len)
+		var/datum/mind/candidate_mind = candidates[1]
+		candidates -= candidate_mind
+
+		var/mob/M = candidate_mind.current
+		if((ishuman(M) || issilicon(M)) && (M.stat != DEAD && M.z == jtb_gen.z))  // Check if there is an alive human/silicon in the junk field
+			return TRUE
+	return FALSE
 
 /obj/machinery/computer/jtb_console/proc/get_possible_fields()
 	return jtb_gen.get_possible_fields()
