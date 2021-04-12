@@ -1103,6 +1103,8 @@
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
 				  /obj/item/weapon/storage/fancy/cigarettes = 100,
 				  /obj/item/weapon/storage/fancy/cigcartons = 800,
+			 	  /obj/item/weapon/storage/fancy/cigar = 350,
+				  /obj/item/weapon/storage/fancy/cigarettes/killthroat = 90,
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
