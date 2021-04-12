@@ -2,7 +2,7 @@
 	name = "neutral 1"
 	id = "neutral1"
 	description = "A small drifting space wreck. It has no discernable origin."
-	suffix = "neutral/neutral.dmm"
+	suffix = "neutral/neutral1.dmm"
 
 /datum/map_template/junk/j5_5/neutral/neutral2
 	name = "neutral 2"

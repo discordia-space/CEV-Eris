@@ -74,9 +74,11 @@
 	0  0  0  0  0
 	*/
 
-	var/number_asteroids = 6 // Number of asteroids if the junk field has the asteroid belt property
-	var/number_25_25 = 3 // Max number of 25 by 25 junk chunks
-	var/number_5_5 = 25 // Max number of 5 by 5 junk chunks
+	var/number_asteroids = 8 // Number of asteroids if the junk field has the asteroid belt property
+	var/number_25_25_base = 4 // Max number of 25 by 25 junk chunks
+	var/number_5_5_base = 35 // Max number of 5 by 5 junk chunks
+	var/number_25_25_bonus = 2 // Bonus of 25 by 25 junk chunks if no asteroids
+	var/number_5_5_bonus = 25 // Bonus of 5 by 5 junk chunks if no asteroids
 
 	var/list/pool_25_25 = list() // Pool of 25 by 25 junk chunks
 	var/list/pool_5_5 = list()  // Pool of 5 by 5 junk chunks
@@ -134,10 +136,7 @@
 
 /obj/jtb_generator/proc/field_release()
 
-	// TODO TRIGGER CLEANUP
 	cleanup_junk_field()
-	// TODO CHECK IF HUMAN IN FIELD
-	// TODO what to do with corpses?
 	qdel(ship_portal)
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
@@ -159,7 +158,7 @@
 
 /obj/jtb_generator/proc/cleanup_junk_field()
 
-	testing("Starting junk field cleanup.")
+	log_world("Starting junk field cleanup.")
 	for(var/i = 1+JTB_OFFSET to maxx+JTB_OFFSET)
 		for(var/j = 1+JTB_OFFSET to maxy+JTB_OFFSET)
 			var/turf/T = get_turf(locate(i, j, z))
@@ -182,10 +181,10 @@
 				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 	// All mobs and turfs have already been handled so no need to deal with that during second pass
 
-	testing("Junk field cleanup is over.")
+	log_world("Junk field cleanup is over.")
 
 /obj/jtb_generator/proc/generate_junk_field()
-	testing("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
+	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
 
 	numR = round((maxx - margin) / 5)
 	numC = round((maxy - margin) / 5)
@@ -206,7 +205,7 @@
 	var/trial = 0
 	while(!populate_z_level() && trial < max_trials)  // Try building until a map complete
 		trial++
-		testing("Junk Field build failed at zlevel [loc.z]. Trying again.")
+		log_world("Junk Field build failed at zlevel [loc.z]. Trying again.")
 	if(trial==max_trials)
 		emergency_stop()
 
@@ -217,7 +216,7 @@
 
 /obj/jtb_generator/proc/populate_z_level()
 	
-	testing("Junk Field build starting at zlevel [loc.z].")
+	log_world("Junk Field build starting at zlevel [loc.z].")
 	if(current_jf.asteroid_belt_status)  // Generate asteroids only if the junk field has an asteroid belt
 		generate_asteroids()
 	compute_occupancy_map()
@@ -228,7 +227,7 @@
 	place_5_5_chunks()
 	tame_mobs()
 	generate_edge()
-	testing("Junk Field build complete at zlevel [loc.z].")
+	log_world("Junk Field build complete at zlevel [loc.z].")
 	return TRUE
 
 /obj/jtb_generator/proc/generate_asteroids()
@@ -245,7 +244,10 @@
 		if(delay)
 			sleep(delay)
 	
-	//newmob.faction = "asteroid_belt" //so they won't just kill each other
+	// Refresh lighting of asteroid walls
+	for(var/turf/T in block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(maxx+JTB_OFFSET, maxx+JTB_OFFSET, z)))
+		if(istype(T,/turf/simulated/mineral))
+			T.reconsider_lights()
 
 // Check if the turfs associated with cell (x,y) are empty
 /obj/jtb_generator/proc/check_occupancy(var/x, var/y)
@@ -256,18 +258,14 @@
 
 // Compute matrix with 1 if cell is occupied, 0 otherwise 
 /obj/jtb_generator/proc/compute_occupancy_map()
-	//testing("[numR] and [numC]")
 	for(var/i = 1 to numR)
 		for(var/j = 1 to numC)
-			//testing("[i] [j]")
 			map[i][j] = check_occupancy(i, j)
 
 // Compute occupancy grid
 /obj/jtb_generator/proc/compute_occupancy_grid()
-	//testing("Bis [numR] and [numC]")
 	for(var/i = 1 to numR)
 		for(var/j = 1 to numC)
-			//testing("[i] [j]")
 			if(map[i][j]==0)
 				if(i==1 || j==1)
 					grid[i][j] = 1
@@ -337,6 +335,7 @@
 
 // Place 25 by 25 junk chunks from the pool of available templates
 /obj/jtb_generator/proc/place_25_25_chunks()
+	var/number_25_25 = number_25_25_base + number_25_25_bonus
 	for(var/i = 1 to number_25_25)
 		// Pick a ruin
 		var/datum/map_template/junk/j25_25/chunk = null
@@ -353,18 +352,27 @@
 
 		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
 		var/Ty = T.y
+		var/ori = pick(cardinal)
 
 		log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
-		load_chunk(T, chunk)  // Load chunk with random orientation for variety purpose
+		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
 
 		// Cleanup mineral overlays in case chunk got partially merged with an asteroid 
 		// This is intended by if(grid[i][j]>=3) in get_corner_25_25 since it can be hard finding a completely clear 25x25 area
 		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 24, Ty + 24, z)))
-			for(var/obj/effect/mineral/M in TM)
-				if(!istype(get_turf(M), /turf/simulated/mineral))
-					qdel(M)
-			for(var/obj/structure/lattice/L in TM)  // Fix lattice dir that is not rotated correctly by the loader
-				L.dir = 2
+			for(var/obj/O in TM)
+				if(istype(O, /obj/effect/mineral) && !istype(get_turf(O), /turf/simulated/mineral))
+					qdel(O)
+				else if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
+					O.dir = 2
+				else
+					// Fix railing and light bulbs dir
+					if(ori == SOUTH && intypes(O))
+						O.dir = GLOB.flip_dir[O.dir]
+					else if(ori == WEST && intypes(O))
+						O.dir = GLOB.cw_dir[O.dir]
+					else if(ori == EAST  && intypes(O))
+						O.dir = GLOB.ccw_dir[O.dir]
 
 	return
 
@@ -387,6 +395,7 @@
 
 // Place 5 by 5 junk chunks from the pool of available templates
 /obj/jtb_generator/proc/place_5_5_chunks()
+	var/number_5_5 = number_5_5_base + number_5_5_bonus
 	for(var/i = 1 to number_5_5)
 		// Pick a ruin
 		var/datum/map_template/junk/j5_5/chunk = null
@@ -403,17 +412,29 @@
 
 		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
 		var/Ty = T.y
+		var/ori = pick(cardinal)
 
-		testing("Debug width [chunk.width]")
 		log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
 		load_chunk(T, chunk)  // Load chunk with random orientation for variety purpose
 
-		// Fix lattice dir that is not rotated correctly by the loader
 		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 4, Ty + 4, z)))
-			for(var/obj/structure/lattice/L in TM)
-				L.dir = 2
+			for(var/obj/O in TM)
+				if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
+					O.dir = 2
+				else
+					// Fix railing and light bulbs dir
+					if(ori == SOUTH && intypes(O))
+						O.dir = GLOB.flip_dir[O.dir]
+					else if(ori == WEST && intypes(O))
+						O.dir = GLOB.cw_dir[O.dir]
+					else if(ori == EAST  && intypes(O))
+						O.dir = GLOB.ccw_dir[O.dir]
 
 	return
+
+// Detect if the object is a type that should be rotated
+/obj/jtb_generator/proc/intypes(var/obj/O)
+	return istype(O, /obj/structure) || istype(O, /obj/machinery/camera) || istype(O, /obj/machinery/light) || istype(O, /obj/machinery/atmospherics/pipe/)
 
 // Make all junk field mobs friends with one another
 /obj/jtb_generator/proc/tame_mobs()
@@ -422,7 +443,7 @@
 
 // Generate the edge at the border of the map for wrapping effect
 /obj/jtb_generator/proc/generate_edge()
-	testing("Generating edges of junk field at zlevel [loc.z].")
+	log_world("Generating edges of junk field at zlevel [loc.z].")
 	
 	edges = list()
 	edges += block(locate(1+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET, z), locate(1+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Left border
@@ -448,7 +469,7 @@
 		for(var/obj/O in T)
 			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
 	
-	testing("Edges generation complete.")
+	log_world("Edges generation complete.")
 	
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
 /obj/asteroid_spawner/portal
@@ -472,10 +493,9 @@
 				if(i==3 && j==3)
 					spot_add(3,3,/obj/effect/portal/jtb)
 
-/proc/load_chunk(turf/corner_turf, datum/map_template/template)
+/proc/load_chunk(turf/corner_turf, datum/map_template/template, var/ori)
 	if(!template)
 		return FALSE
-	var/ori = pick(cardinal)
 	if(ori == WEST || ori == EAST)  
 		// For west and east the x and y coordinates are switched by template.load so we need to switch them ourself to spawn at correct location
 		corner_turf = get_turf(locate(corner_turf.y, corner_turf.x, corner_turf.z))
@@ -717,7 +737,7 @@
 	dynamic_lighting = FALSE
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield_normal"
-	var/list/victims
+	var/list/victims = list()
 
 /turf/simulated/jtb_edge/proc/MineralSpread()
 	return
@@ -741,8 +761,9 @@
 	for(var/weakref/W in victims)
 		var/atom/movable/AM = W.resolve()
 		if (AM == null || get_turf(AM) != src )
-			victims -= W
-			continue
+			if(victims) // Avoid null runtimes
+				victims -= W
+				continue
 
 		var/new_x = AM.x
 		var/new_y = AM.y
@@ -764,10 +785,30 @@
 				if(L.pulling)
 					var/atom/movable/AMP = L.pulling
 					AMP.forceMove(T)
-			victims -= W  // Victim has been teleported
+			if(victims) // Avoid null runtimes
+				victims -= W  // Victim has been teleported
 
 	if(!LAZYLEN(victims))
 		return PROCESS_KILL
+
+//////////////////////////////
+// Machinery that stabilizes the portal
+//////////////////////////////
+/obj/structure/jtb_pillar
+	name = "space-time interference dampener"
+	desc = "An ominous pillar that can stabilize a bluespace portal by dampening local space-time interferences."
+	icon = 'icons/obj/structure/junk_tractor_beam.dmi'
+	icon_state = "pillar"
+	density = TRUE
+	anchored = TRUE
+
+/obj/structure/jtb_pillar/New()
+	set_light(2, 2, "#8AD55D")
+	..()
+
+/obj/structure/jtb_pillar/Destroy()
+	set_light(0)
+	..()
 
 #undef BEAM_IDLE
 #undef BEAM_CAPTURING
