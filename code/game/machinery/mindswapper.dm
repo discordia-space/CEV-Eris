@@ -13,6 +13,13 @@
 	var/operating = FALSE  // Is it on?
 	var/swap_time = 200  // Time from starting until minds are swapped
 	var/swap_range = 1
+	var/swappable_mobs = list(
+	/mob/living/carbon/human,
+	/mob/living/silicon/robot,
+	/mob/living/simple_animal/borer,
+	/mob/living/simple_animal/mouse,
+	/mob/living/carbon/slime,
+	/mob/living/simple_animal/cow)
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -78,11 +85,11 @@
 	// Get all candidates in range for the mind swapping
 	var/list/swapBoddies = list()
 	var/list/swapMinds = list()
-	for(var/mob/living/carbon/C in range(swap_range,src))
-		if (C.stat != DEAD)  // candidates should not be dead
+	for(var/mob/living/C in range(swap_range,src))
+		if (C.stat != DEAD && C.type in swappable_mobs)  // candidates should not be dead
 			swapBoddies += C
 			swapMinds += C.ghostize(0)
-	
+
 	// Shuffle the list containing the candidates' boddies
 	swapBoddies = shuffle(swapBoddies)
 
@@ -98,7 +105,7 @@
 		i += 1
 
 	// Knock out all candidates
-	for(var/mob/living/carbon/C in swapBoddies)
+	for(var/mob/living/C in swapBoddies)
 		C.Stun(2)
 		C.Weaken(10)
 
