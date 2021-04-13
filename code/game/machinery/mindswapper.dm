@@ -89,7 +89,6 @@
 		if (C.stat != DEAD && C.type in swappable_mobs)  // candidates should not be dead
 			swapBoddies += C
 			swapMinds += C.ghostize(0)
-
 	// Shuffle the list containing the candidates' boddies
 	swapBoddies = shuffle(swapBoddies)
 
