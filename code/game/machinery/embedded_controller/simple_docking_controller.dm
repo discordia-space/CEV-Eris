@@ -134,7 +134,7 @@
 
 //are we ready for undocking?
 /datum/computer/file/embedded_program/docking/simple/ready_for_undocking()
-	. = (control_mode == MODE_SERVER && undocking_attempts++ >= 5) || (memory["door_status"]["state"] == "closed" && memory["door_status"]["lock"] == "locked")
+	. = (control_mode == MODE_SERVER)
 	if(.)
 		undocking_attempts = 0
 	return .
