@@ -1096,32 +1096,21 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
-	if (!check_rights(R_ADMIN|R_DEBUG,0))
-		return 0
-	if (!frommob.ckey)
+	if(!check_rights(R_ADMIN|R_DEBUG,0) || !frommob.ckey)
 		return 0
 	var/question = ""
-	if (tomob.ckey)
+	if(tomob.ckey)
 		question = "This mob already has a user ([tomob.key]) in control of it! "
 	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
 	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
-	if (ask != "Yes")
-		return 1
-	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
+	if(ask == "No" || !frommob || !tomob)
 		return 1
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
-	tomob.ckey = frommob.ckey
-	if(tomob.client)
-		if(tomob.client.UI)
-			tomob.client.UI.show()
-		else
-			tomob.client.create_UI(tomob.type)
-
-	qdel(frommob)
+	frommob.PutInAnotherMob(tomob)
 	return 1
 
 /*

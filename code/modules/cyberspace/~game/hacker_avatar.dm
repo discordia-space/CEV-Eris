@@ -11,13 +11,7 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 	_SeeCyberSpace = TRUE
 
-	var/mob/owner
-	Initialize(mapload, _owner)
-		. = ..()
-		owner = _owner
-
-/mob/observer/cyberspace_eye/ai
-	icon_state = "ai_presence"
+	var/obj/item/weapon/computer_hardware/deck/owner
 
 /datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
 	var/turf/movedTo = get_step(mover, direction)
@@ -37,3 +31,12 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 			var/datum/CyberSpaceAvatar/CAtoCheck = A.CyberAvatar
 			if(CAtoCheck.density)
 				. += CAtoCheck
+
+/mob/observer/cyberspace_eye/ai
+	icon_state = "ai_presence"
+
+/mob/observer/cyberspace_eye/hacker/verb/CancelConnection()
+	set name = "Cancel Cyberspace Connection"
+	set category = "Cyberspace"
+
+	owner.CancelCyberspaceConnection()

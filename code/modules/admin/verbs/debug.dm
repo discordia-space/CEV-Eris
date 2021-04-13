@@ -284,25 +284,34 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
-	if(!check_rights(R_DEBUG|R_ADMIN))	return
-	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
-			return
-		else
-			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
-			ghost.ckey = M.ckey
+	if (\
+		!check_rights(R_DEBUG|R_ADMIN)\
+		||\
+		M.ckey\
+		&&\
+		alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,\
+			"Yes",\
+			"No") != "Yes"\
+		)
+		return
+
 	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
-	if(isghost(adminmob))
-		qdel(adminmob)
+	var/mob/adminmob = mob
+	if(istype(adminmob))
+		adminmob.PutInAnotherMob(M)
 
-
-
-
-
-
+/mob/proc/PutInAnotherMob(mob/M)
+	if(M.client)
+		M.ghostize(0)
+	M.ckey = ckey
+	if(isghost(src))
+		qdel(src)
+	if(M.client)
+		if(M.client.UI)
+			M.client.UI.show()
+		else
+			M.client.create_UI(M.type)
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"

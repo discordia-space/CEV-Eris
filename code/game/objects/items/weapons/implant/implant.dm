@@ -20,6 +20,8 @@
 	var/external = FALSE
 	var/cruciform_resist = FALSE
 
+	var/list/owner_verbs = list()
+
 /obj/item/weapon/implant/attackby(obj/item/weapon/I, mob/user)
 	..()
 	if(istype(I, /obj/item/weapon/implanter))
@@ -79,6 +81,10 @@
 	wearer.update_implants()
 	for(var/mob/living/carbon/human/H in viewers(target))
 		SEND_SIGNAL(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
+
+	for(var/proc_path in owner_verbs)
+		verbs |= proc_path
+
 	return TRUE
 
 /obj/item/weapon/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
@@ -97,6 +103,9 @@
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()
 	wearer = null
+
+	for(var/proc_path in owner_verbs)
+		verbs -= proc_path
 
 /obj/item/weapon/implant/proc/on_uninstall()
 
