@@ -15,6 +15,7 @@
 	var/swap_range = 1
 	var/swappable_mobs = list(
 	/mob/living/carbon/human,
+	/mob/living/carbon/human/monkey,
 	/mob/living/silicon/robot,
 	/mob/living/simple_animal/borer,
 	/mob/living/simple_animal/mouse,
