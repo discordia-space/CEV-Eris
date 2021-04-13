@@ -87,7 +87,7 @@
 	var/list/swapBoddies = list()
 	var/list/swapMinds = list()
 	for(var/mob/living/C in range(swap_range,src))
-		if (C.stat != DEAD && C.type in swappable_mobs)  // candidates should not be dead
+		if (C.stat != DEAD && (C.type in swappable_mobs))  // candidates should not be dead
 			swapBoddies += C
 			swapMinds += C.ghostize(0)
 	// Shuffle the list containing the candidates' boddies
