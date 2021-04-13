@@ -13,7 +13,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.5
-	recoil_buildup = 17
+	recoil_buildup = 4
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 
