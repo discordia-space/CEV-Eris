@@ -19,7 +19,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 
 	damage_multiplier = 1
-	recoil_buildup = 19
+	recoil_buildup = 2
 	silenced = 0
 	can_dual = 1
 
