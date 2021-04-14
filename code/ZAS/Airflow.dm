@@ -16,7 +16,7 @@ mob/proc/airflow_stun()
 		return 0
 	if(!lying)
 		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
-	Weaken(5)
+	Weaken(3) // Nerfed from 5
 	last_airflow_stun = world.time
 
 mob/living/silicon/airflow_stun()
