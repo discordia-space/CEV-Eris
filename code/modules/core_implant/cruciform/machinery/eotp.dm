@@ -151,19 +151,19 @@ var/global/obj/machinery/power/eotp/eotp
 					var/mob/living/carbon/human/H = disciple
 					if(H.sanity)
 						H.sanity.changeLevel(20)
-			return
 
-		for(var/disciple in disciples)
-			if(ishuman(disciple))
-				var/mob/living/carbon/human/H = disciple
-				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
-					preacher = H
+		else
+			for(var/disciple in disciples)
+				if(ishuman(disciple))
+					var/mob/living/carbon/human/H = disciple
+					if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
+						preacher = H
 
-		if(!preacher && length(disciples))
-			preacher = pick(disciples)
+			if(!preacher && length(disciples))
+				preacher = pick(disciples)
 
-		if(preacher)
-			to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+			if(preacher)
+				to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
 		for(var/disciple in disciples)
