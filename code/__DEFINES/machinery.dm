@@ -185,3 +185,4 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 #define ODDITY "Oddity"
 #define STAT_BUFF "Stat Buff"
 #define MATERIAL_REWARD "Materials"
+#define ENERGY_REWARD "Energy"
