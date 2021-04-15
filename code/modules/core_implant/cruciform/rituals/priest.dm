@@ -299,7 +299,6 @@
 
 		if(num_item < req_num)
 			var/obj/item = path
-			admin_notice("no hay suficientes de [initial(item.name)]")
 			break
 		else
 			num_check++
@@ -324,8 +323,6 @@
 						qdel(I)
 						req_num--
 		return TRUE
-
-	admin_notice("tienes [num_check] ofrendas pero ncesitas [offerings.len]")
 
 	return FALSE
 
