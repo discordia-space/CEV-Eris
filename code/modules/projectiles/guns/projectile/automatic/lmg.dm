@@ -98,7 +98,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/lmg/tk
 	name = "FS LMG .30 Takeshi"
-	desc = "The \"Takeshi LMG\" is FS's awnser to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
+	desc = "The \"Takeshi LMG\" is FS's answer to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
 	icon = 'icons/obj/guns/projectile/tk.dmi'
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
