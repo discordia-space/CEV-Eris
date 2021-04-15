@@ -28,7 +28,12 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(reagents.total_volume)
+	if(label_text)
+		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
+		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
+		add_overlay(label)
+
+	if(reagents?.total_volume)
 		if(label_text)
 			var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]_labeled-[get_filling_state()]")
 			filling.color = reagents.get_color()
@@ -89,6 +94,7 @@
 	name = "vial"
 	desc = "A small glass vial."
 	icon_state = "vial"
+	label_icon_state = "label_vial"
 	matter = list(MATERIAL_GLASS = 1)
 	volume = 30
 	w_class = ITEM_SIZE_TINY
