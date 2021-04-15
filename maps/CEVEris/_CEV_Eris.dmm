@@ -18149,8 +18149,6 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/projectile/automatic/lmg/tk,
-/obj/item/weapon/gun/projectile/automatic/lmg/tk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSq" = (
@@ -104132,6 +104130,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/uppercor)
+"oEo" = (
+/obj/structure/table/rack,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/obj/item/weapon/gun/projectile/automatic/lmg/tk,
+/obj/item/weapon/gun/projectile/automatic/lmg/tk,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/security/warden)
 "oHW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -166300,7 +166308,7 @@ abF
 abF
 abF
 aaB
-aaB
+oEo
 aSp
 aSW
 aaB
