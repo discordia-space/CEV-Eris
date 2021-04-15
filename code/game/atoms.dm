@@ -762,5 +762,8 @@ its easier to just keep the beam vertical.
 /atom/proc/lava_act()
 	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")
 	playsound(src, 'sound/effects/flare.ogg', 100, 3)
+	if(ismob(src))
+		var/mob/M = src
+		M.death(FALSE, FALSE)
 	qdel(src)
 	. = TRUE

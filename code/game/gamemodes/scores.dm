@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(score_moebius_autopsies_mobs, 0)
 
 //ironhammer
 GLOBAL_VAR_INIT(ironhammer_score, 0)
-GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
+GLOBAL_VAR_INIT(initial_ironhammer_score, 500)
 
 GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
 GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
@@ -246,7 +246,8 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 
 	for(var/mob/E in GLOB.player_list)
-		E.scorestats()
+		if(E.mind)
+			E.scorestats()
 
 /proc/get_color_score(msg, score, maxscore=MAX_FACTION_SCORE)
 	if(score >= maxscore*0.5)

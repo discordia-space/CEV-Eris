@@ -56,7 +56,6 @@
 	dir = 4
 	},
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-10"
 	},
 /turf/simulated/floor/holofloor/tiled,
@@ -87,7 +86,6 @@
 /area/holodeck/source_emptycourt)
 "at" = (
 /obj/structure/cryofeed{
-	tag = "icon-cryo_rear (EAST)";
 	icon_state = "cryo_rear";
 	dir = 4
 	},
@@ -95,7 +93,6 @@
 /area/centcom/evac)
 "au" = (
 /obj/machinery/cryopod{
-	tag = "icon-cryopod_0 (EAST)";
 	icon_state = "cryopod_0";
 	dir = 4
 	},
@@ -305,44 +302,37 @@
 /area/holodeck/source_courtroom)
 "bd" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall8";
 	icon_state = "cargoshwall8"
 	},
 /turf/space,
 /area/supply/dock)
 "be" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall7";
 	icon_state = "cargoshwall7"
 	},
 /area/supply/dock)
 "bf" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall6";
 	icon_state = "cargoshwall6"
 	},
 /area/supply/dock)
 "bg" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall5";
 	icon_state = "cargoshwall5"
 	},
 /area/supply/dock)
 "bh" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall4";
 	icon_state = "cargoshwall4"
 	},
 /area/supply/dock)
 "bi" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall3";
 	icon_state = "cargoshwall3"
 	},
 /area/supply/dock)
 "bj" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall2";
 	icon_state = "cargoshwall2"
 	},
 /area/supply/dock)
@@ -434,14 +424,12 @@
 /area/holodeck/source_courtroom)
 "bv" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall9";
 	icon_state = "cargoshwall9"
 	},
 /turf/space,
 /area/supply/dock)
 "bw" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall10";
 	icon_state = "cargoshwall10"
 	},
 /area/supply/dock)
@@ -454,14 +442,12 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "by" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "bz" = (
@@ -476,12 +462,10 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "bA" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall11";
 	icon_state = "cargoshwall11"
 	},
 /area/supply/dock)
@@ -530,14 +514,12 @@
 /area/centcom/evac)
 "bJ" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall12";
 	icon_state = "cargoshwall12"
 	},
 /turf/space,
 /area/supply/dock)
 "bK" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall13";
 	icon_state = "cargoshwall13"
 	},
 /area/supply/dock)
@@ -548,7 +530,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "bM" = (
@@ -566,7 +547,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "bN" = (
@@ -616,14 +596,12 @@
 /area/holodeck/source_courtroom)
 "bT" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall14";
 	icon_state = "cargoshwall14"
 	},
 /turf/space,
 /area/supply/dock)
 "bU" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall15";
 	icon_state = "cargoshwall15"
 	},
 /area/supply/dock)
@@ -631,7 +609,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor3";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor3"
 	},
 /area/supply/dock)
 "bW" = (
@@ -646,7 +623,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "bX" = (
@@ -692,21 +668,18 @@
 /area/holodeck/source_emptycourt)
 "cd" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall16";
 	icon_state = "cargoshwall16"
 	},
 /turf/space,
 /area/supply/dock)
 "ce" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall17";
 	icon_state = "cargoshwall17"
 	},
 /area/supply/dock)
 "cf" = (
 /obj/effect/shuttle_landmark/supply/centcom,
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall18";
 	icon_state = "cargoshwall18"
 	},
 /area/supply/dock)
@@ -752,20 +725,17 @@
 /area/holodeck/source_courtroom)
 "ck" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall19";
 	icon_state = "cargoshwall19"
 	},
 /turf/space,
 /area/supply/dock)
 "cl" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall20";
 	icon_state = "cargoshwall20"
 	},
 /area/supply/dock)
 "cm" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-06";
 	icon_state = "plant-06"
 	},
 /turf/simulated/floor/holofloor/tiled,
@@ -812,14 +782,12 @@
 /area/holodeck/source_emptycourt)
 "cs" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall21";
 	icon_state = "cargoshwall21"
 	},
 /turf/space,
 /area/supply/dock)
 "ct" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall22";
 	icon_state = "cargoshwall22"
 	},
 /area/supply/dock)
@@ -830,14 +798,12 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "cv" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor5";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor5"
 	},
 /area/supply/dock)
 "cw" = (
@@ -847,7 +813,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "cx" = (
@@ -865,7 +830,6 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor1"
 	},
 /area/supply/dock)
 "cy" = (
@@ -884,14 +848,12 @@
 /area/space)
 "cA" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall23";
 	icon_state = "cargoshwall23"
 	},
 /turf/space,
 /area/supply/dock)
 "cB" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall24";
 	icon_state = "cargoshwall24"
 	},
 /area/supply/dock)
@@ -899,12 +861,10 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor6";
 	name = "Cargo Transport Shuttle (A5)";
-	tag = "icon-cargofloor6"
 	},
 /area/supply/dock)
 "cD" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall25";
 	icon_state = "cargoshwall25"
 	},
 /area/supply/dock)
@@ -987,50 +947,42 @@
 /area/holodeck/source_boxingcourt)
 "cW" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall26";
 	icon_state = "cargoshwall26"
 	},
 /turf/space,
 /area/supply/dock)
 "cX" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall27";
 	icon_state = "cargoshwall27"
 	},
 /area/supply/dock)
 "cY" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall28";
 	icon_state = "cargoshwall28"
 	},
 /area/supply/dock)
 "cZ" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall29";
 	icon_state = "cargoshwall29"
 	},
 /area/supply/dock)
 "da" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall30";
 	icon_state = "cargoshwall30"
 	},
 /area/supply/dock)
 "db" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall31";
 	icon_state = "cargoshwall31"
 	},
 /area/supply/dock)
 "dc" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall32";
 	icon_state = "cargoshwall32"
 	},
 /area/supply/dock)
 "dd" = (
 /turf/simulated/shuttle/wall/cargo{
-	tag = "icon-cargoshwall33";
 	icon_state = "cargoshwall33"
 	},
 /area/supply/dock)
@@ -1100,7 +1052,6 @@
 /area/centcom/evac)
 "dl" = (
 /obj/item/modular_computer/console{
-	tag = "icon-console (EAST)";
 	icon_state = "console";
 	dir = 4
 	},
@@ -1123,56 +1074,48 @@
 /area/holodeck/source_boxingcourt)
 "dq" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall34";
 	icon_state = "cargoshwall34"
 	},
 /turf/space,
 /area/supply/dock)
 "dr" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall35";
 	icon_state = "cargoshwall35"
 	},
 /turf/space,
 /area/supply/dock)
 "ds" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall36";
 	icon_state = "cargoshwall36"
 	},
 /turf/space,
 /area/supply/dock)
 "dt" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall37";
 	icon_state = "cargoshwall37"
 	},
 /turf/space,
 /area/supply/dock)
 "du" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall38";
 	icon_state = "cargoshwall38"
 	},
 /turf/space,
 /area/supply/dock)
 "dv" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall39";
 	icon_state = "cargoshwall39"
 	},
 /turf/space,
 /area/supply/dock)
 "dw" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall40";
 	icon_state = "cargoshwall40"
 	},
 /turf/space,
 /area/supply/dock)
 "dx" = (
 /obj/structure/shuttle_part/cargo{
-	tag = "icon-cargoshwall41";
 	icon_state = "cargoshwall41"
 	},
 /turf/space,
@@ -1322,7 +1265,6 @@
 /area/holodeck/source_meetinghall)
 "dT" = (
 /obj/structure/bed/chair/wood{
-	tag = "icon-wooden_chair (NORTH)";
 	icon_state = "wooden_chair";
 	dir = 1
 	},
@@ -1443,7 +1385,6 @@
 /obj/structure/table/rack,
 /obj/item/clothing/glasses/powered/thermal/plain/monocle,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
@@ -1493,7 +1434,6 @@
 /area/skipjack_station/start)
 "eu" = (
 /turf/unsimulated/beach/sand{
-	tag = "icon-beach";
 	icon_state = "beach"
 	},
 /area/holodeck/source_beach)
@@ -1560,7 +1500,6 @@
 /obj/item/weapon/book/manual/wiki/science_robotics,
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2678,7 +2617,6 @@
 /obj/structure/bed/chair/comfy/black,
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2772,7 +2710,6 @@
 /area/centcom/merc_base)
 "hJ" = (
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2782,7 +2719,6 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2792,7 +2728,6 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2820,7 +2755,6 @@
 	prices = list()
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2960,7 +2894,6 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -2996,7 +2929,6 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3007,7 +2939,6 @@
 	},
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3022,7 +2953,6 @@
 	},
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3088,7 +3018,6 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3179,7 +3108,6 @@
 	prices = list()
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3263,7 +3191,6 @@
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -3913,7 +3840,6 @@
 	name = "Flasher";
 	pixel_x = 27;
 	pixel_y = 0;
-	tag = "permflash"
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -3963,7 +3889,6 @@
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -4368,7 +4293,6 @@
 /obj/effect/decal/cleanable/cobweb2{
 	icon_state = "spiderling";
 	name = "dead spider";
-	tag = "icon-spiderling"
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -4776,7 +4700,6 @@
 /area/centcom/raider_base)
 "mF" = (
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
@@ -4951,7 +4874,6 @@
 /obj/structure/bed,
 /obj/item/weapon/bedsheet/orange,
 /obj/effect/decal/cleanable/cobweb2{
-	tag = "icon-cobweb1";
 	icon_state = "cobweb1"
 	},
 /turf/unsimulated/floor{
@@ -5019,7 +4941,6 @@
 "nk" = (
 /obj/item/target,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5027,7 +4948,6 @@
 "nl" = (
 /obj/item/target/syndicate,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5035,7 +4955,6 @@
 "nm" = (
 /obj/item/target/alien,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5098,7 +5017,6 @@
 /area/wizard_station)
 "nu" = (
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5178,7 +5096,6 @@
 /obj/item/robot_parts/head,
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5189,7 +5106,6 @@
 	pixel_x = 22
 	},
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5203,13 +5119,11 @@
 "nK" = (
 /obj/item/clothing/head/xenos,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "nL" = (
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
@@ -5231,14 +5145,12 @@
 	name = "\improper alien mask"
 	},
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "nO" = (
 /obj/item/xenos_claw,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
@@ -5284,7 +5196,6 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/spikethrower,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
@@ -5317,28 +5228,24 @@
 "nY" = (
 /obj/item/pizzabox/meat,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "nZ" = (
 /obj/structure/table/rack,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "oa" = (
 /obj/item/remains/human,
 /turf/unsimulated/floor{
-	tag = "icon-lava";
 	name = "plating";
 	icon_state = "lava"
 	},
 /area/wizard_station)
 "ob" = (
 /turf/unsimulated/floor{
-	tag = "icon-lava";
 	name = "plating";
 	icon_state = "lava"
 	},
@@ -5346,13 +5253,11 @@
 "oc" = (
 /turf/unsimulated/floor{
 	icon_state = "asteroid";
-	tag = "icon-ironsand7"
 	},
 /area/wizard_station)
 "od" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5379,7 +5284,6 @@
 /area/wizard_station)
 "oh" = (
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5387,7 +5291,6 @@
 "oi" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5395,20 +5298,17 @@
 "ok" = (
 /obj/item/weapon/tank/nitrogen,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "ol" = (
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "om" = (
 /obj/structure/bed/chair,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5429,7 +5329,6 @@
 "op" = (
 /obj/machinery/computer/station_alert/all,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5451,7 +5350,6 @@
 "os" = (
 /obj/machinery/computer/shuttle_control/multi/vox,
 /turf/unsimulated/floor{
-	tag = "icon-cult";
 	name = "plating";
 	icon_state = "cult"
 	},
@@ -5460,14 +5358,12 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/item/weapon/tank/nitrogen,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
 "ou" = (
 /obj/item/clothing/head/philosopher_wig,
 /turf/unsimulated/floor{
-	tag = "icon-asteroid";
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)

@@ -321,7 +321,7 @@
 
 /obj/item/weapon/oddity/techno
 	name = "Unknown technological part"
-	desc = "Technological part maded by Techno-Tribalism Enforcer."
+	desc = "Technological part created by Techno-Tribalism Enforcer."
 	icon_state = "techno_part1"
 
 /obj/item/weapon/oddity/techno/Initialize()

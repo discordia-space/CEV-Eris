@@ -110,6 +110,70 @@
 		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_ak47
+	disk_name = "Excelsior - .30 AK47 Rifle"
+	desc = {"The back has a machine etching:\n \
+	\"Fear not the tyrant of the old world; \
+	The tools we have wrought shall be used to strike them down - \
+	and bring to pass the great and collective future.\""}
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/ammo/lrifle,						//AK ammo
+		/datum/design/autolathe/ammo/lrifle/rubber,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_vintorez
+	disk_name = "Excelsior - .20 Vintorez Rifle"
+	desc = {"The back has a machine etching:\n \
+	\"Remember the failures of those before; \
+	for all failures serve as lessons and warnings - \
+	heed not the blind who cannot see the progress made from the past.\""}
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
+		/datum/design/autolathe/ammo/srifle/rubber,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_boltgun
+	disk_name = "Excelsior - .30 Kardashev-Mosin Rifle"
+	desc = {"The back has a machine etching:\n \
+	\"Remember the Haven; \
+	it is their wisdom which has brought the great work to bear - \
+	with tools such as these, their great vision was brought to light.\""}
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/boltgun,
+		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
+		/datum/design/autolathe/ammo/lrifle_ammobox_small,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
+	)
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_makarov
+	disk_name = "Excelsior - .35 Makarov HG"
+	desc = {"The back has a machine etching:\n \
+	\"Suffer not the slouch, the layabout, nor the shirk; \
+	for these are the weakness in the great chains of the common liberating mind - \
+	if the faults are not expunged, the collective shall fall because of it.\""}
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 45
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/makarov,
+		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+	)
+
 //Serb
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric

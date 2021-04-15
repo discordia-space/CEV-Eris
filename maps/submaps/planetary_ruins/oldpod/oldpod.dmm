@@ -10,22 +10,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
-"ac" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/map_template/oldpod)
 "ad" = (
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
 "ae" = (
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"af" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
 /area/map_template/oldpod)
 "ag" = (
 /obj/structure/shuttle/engine/heater{
@@ -89,7 +79,6 @@
 /area/map_template/oldpod)
 "ao" = (
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair_preview (WEST)";
 	icon_state = "shuttle_chair_preview";
 	dir = 8
 	},
@@ -101,7 +90,6 @@
 /area/map_template/oldpod)
 "ap" = (
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair_preview (NORTH)";
 	icon_state = "shuttle_chair_preview";
 	dir = 4
 	},
@@ -126,12 +114,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"as" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -234,11 +216,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aG" = (
@@ -503,28 +480,26 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
-"bh" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
+"bq" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/plating,
 /area/map_template/oldpod)
-"bi" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
+"jX" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/plating,
 /area/map_template/oldpod)
 
 (1,1,1) = {"
 aa
-ac
-ac
-ac
+aa
+aa
+aa
 ax
 ae
-ac
-ac
-ac
-bh
+aa
+aa
+aa
+aa
 "}
 (2,1,1) = {"
 ab
@@ -533,16 +508,16 @@ ak
 ar
 ay
 aG
-ad
+jX
 aU
 ba
-ac
+aa
 "}
 (3,1,1) = {"
-ac
-ac
+aa
+aa
 al
-as
+am
 az
 am
 aO
@@ -551,19 +526,19 @@ bb
 aO
 "}
 (4,1,1) = {"
-ac
+aa
 ah
 al
 at
 aA
 aH
-ac
-ac
-ac
-ac
+aa
+aa
+aa
+aa
 "}
 (5,1,1) = {"
-ad
+bq
 ai
 am
 au
@@ -587,7 +562,7 @@ bd
 ae
 "}
 (7,1,1) = {"
-ac
+aa
 aj
 ao
 ao
@@ -596,11 +571,11 @@ aK
 aR
 aX
 be
-ac
+aa
 "}
 (8,1,1) = {"
-ac
-ac
+aa
+aa
 ap
 ap
 aE
@@ -608,29 +583,29 @@ aL
 aS
 aY
 bf
-ac
+aa
 "}
 (9,1,1) = {"
 ab
 ag
 aq
 aw
-aF
+ai
 aM
 aT
 aZ
 bg
-ac
+aa
 "}
 (10,1,1) = {"
-af
-ac
-ac
-ac
+aa
+aa
+aa
+aa
 ae
 aN
-ac
-ac
-ac
-bi
+aa
+aa
+aa
+aa
 "}

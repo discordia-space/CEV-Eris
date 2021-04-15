@@ -1105,6 +1105,8 @@
 				  /obj/item/weapon/storage/fancy/cigcartons = 800,
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
+				  /obj/item/weapon/storage/fancy/cigar = 450,
+				  /obj/item/weapon/storage/fancy/cigarettes/killthroat = 100,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
 				  /obj/item/clothing/mask/vape = 300,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 100,
