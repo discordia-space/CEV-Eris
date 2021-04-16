@@ -329,9 +329,8 @@
 	item_state = "moebiussuit"
 	matter = list(
 	MATERIAL_PLASTEEL = 15,
-	MATERIAL_STEEL = 10,
+	MATERIAL_STEEL = 30,
 	MATERIAL_PLASTIC = 10,
-	MATERIAL_PLATINUM = 5
 	)
 	armor = list(
 		melee = 40,
