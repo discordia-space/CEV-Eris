@@ -27,7 +27,7 @@ var/datum/hivemind/hive_mind_ai
 						/obj/machinery/floor_light,		/obj/machinery/flasher,
 						/obj/machinery/filler_object,		/obj/machinery/hivemind_machine,
 						/obj/machinery/cryopod,			/obj/machinery/portable_atmospherics/hydroponics/soil,
-						/obj/machinery/portable_atmospherics/canister)
+						/obj/machinery/power/supermatter,	/obj/machinery/portable_atmospherics/canister)
 
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
