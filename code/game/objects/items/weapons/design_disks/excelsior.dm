@@ -137,7 +137,7 @@
 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
-		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/makarov
