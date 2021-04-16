@@ -6,7 +6,7 @@
 	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/turtleneck
-    display_name = "Tactical turtleneck"
+    display_name = "Green turtleneck"
     path = /obj/item/clothing/under/turtleneck
     slot = slot_w_uniform
 
