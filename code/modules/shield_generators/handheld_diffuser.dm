@@ -5,6 +5,7 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "hdiffuser_off"
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_frequency = 0
 	var/active_power_use = 10 KILOWATTS * CELLRATE
 	var/enabled = 0
 
