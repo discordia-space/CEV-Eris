@@ -37,7 +37,7 @@
 		/datum/design/autolathe/prosthesis/excelsior/l_leg,
 		/datum/design/autolathe/prosthesis/excelsior/r_leg,
 		/datum/design/autolathe/device/implanter,					//misc
-		/datum/design/autolathe/device/propaganda_chip,
+		/datum/design/autolathe/device/propaganda_chip
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/weapons
