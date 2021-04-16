@@ -538,6 +538,7 @@
 
 // FACTION KEYWORDS
 #define SPAWN_ASTERS "asters"
+#define SPAWN_EXCELSIOR "excelsior"
 #define SPAWN_FROZEN_STAR "frozen_star"
 #define SPAWN_IRONHAMMER "ironhammer"
 #define SPAWN_NANOTRASEN "nanotrasen"

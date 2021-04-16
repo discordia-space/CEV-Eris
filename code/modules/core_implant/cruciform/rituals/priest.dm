@@ -249,3 +249,100 @@
 	if(altar)
 		new /obj/item/weapon/paper/neopaper(altar.loc, disciples.Join("\n"), "Church Record")
 	return TRUE
+
+/datum/ritual/cruciform/priest/offering
+	name = "Offerings"
+	category = "Offerings"
+	success_message = "tus plegarais han sido escuchadas"
+	fail_message = "Your prayers have not been answered."
+	power = 30
+	var/list/req_offerings = list()
+	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+
+/datum/ritual/cruciform/priest/offering/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	var/list/OBJS = get_front(H)
+
+	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
+	if(!EOTP)
+		fail("You must be in front of the Eye of the Protector.", H, C)
+		return FALSE
+
+	var/list/obj/item/item_targets = list()
+	var/turf/source_t = get_turf(EOTP)
+	for(var/turf/T in RANGE_TURFS(7, source_t))
+		for(var/obj/item/A in T)
+			item_targets.Add(A)
+
+	if(!make_offerings(item_targets))
+		fail("Your offerings are not worthy.", H, C)
+		return FALSE
+
+	EOTP.current_rewards = miracles
+	return TRUE
+
+/datum/ritual/cruciform/priest/offering/proc/make_offerings(list/offerings)
+	var/num_check = 0
+	var/list/true_offerings = list()
+	for(var/path in req_offerings)
+		var/req_num = req_offerings[path]
+		var/num_item = 0
+		for(var/obj/item/I in offerings)
+			if(istype(I, path))
+				if(num_item >= req_num)
+					break
+				if(istype(I, /obj/item/stack))
+					var/obj/item/stack/S = I
+					num_item += S.amount
+				else
+					num_item++
+				true_offerings.Add(I)
+
+		if(num_item < req_num)
+			var/obj/item = path
+			break
+		else
+			num_check++
+
+	if(num_check >= req_offerings.len)
+		for(var/path in req_offerings)
+			var/req_num = req_offerings[path]
+			for(var/obj/item/I in true_offerings)
+				if(req_num <= 0)
+					break
+				if(istype(I, path))
+					if(istype(I, /obj/item/stack))
+						var/obj/item/stack/S = I
+						if(S.amount <= req_num)
+							var/num = S.amount
+							S.use(num)
+							req_num -= num
+						else
+							S.use(req_num)
+							req_num = 0
+					else
+						qdel(I)
+						req_num--
+		return TRUE
+
+	return FALSE
+
+/datum/ritual/cruciform/priest/offering/call_for_arms
+	name = "Call for arms"
+	phrase = "Pater da mihi fortitudinem cladem ad malum."
+	desc = "Ask the Eye of the Protector to give you weapons to fight evil."
+	req_offerings = list(/obj/item/stack/material/plasteel = 20, /obj/item/stack/material/steel = 40, /obj/item/stack/material/biomatter = 150)
+	miracles = list(ARMAMENTS)
+
+/datum/ritual/cruciform/priest/offering/divine_intervention
+	name = "Divine intervention"
+	phrase = "Auxilium instaurarent domum tuam."
+	desc = "Requests the Eye of the Protector for construction materials."
+	req_offerings = list(/obj/item/stack/material/biomatter = 200)
+	miracles = list(MATERIAL_REWARD)
+
+/datum/ritual/cruciform/priest/offering/holy_guidance
+	name = "Holy guidance"
+	phrase = "Domine deus, lux via"
+	desc = "Present your prayers to the Eye of the Protector."
+	req_offerings = list(/obj/item/weapon/oddity = 1, /obj/item/weapon/reagent_containers/food/snacks/grown = 40)
+	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
