@@ -116,8 +116,6 @@
 			var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 			if(CI)
 				to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
-			else
-				fail("There is no cruciform on [T]", H, C)
 	else
 		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
 		return FALSE
