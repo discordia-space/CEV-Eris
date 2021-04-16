@@ -73,7 +73,7 @@
 		/datum/design/autolathe/clothing/excelsior_armor,
 		/datum/design/autolathe/device/excelbaton,					//security
 		/datum/design/autolathe/device/excelsiormine,
-		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/sec/beartrap
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/drozd
