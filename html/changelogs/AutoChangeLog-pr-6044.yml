@@ -1,0 +1,5 @@
+author: zoktiik
+delete-after: true
+changes:
+  - rscadd: Added an examine message that states whether or not a cruciform has been
+      activated, and that additionally tells NT members and ghosts whose soul it is.
