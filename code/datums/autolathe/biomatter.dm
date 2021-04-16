@@ -44,6 +44,18 @@
 	name = "NT Custodian Armor"
 	build_path = /obj/item/clothing/suit/armor/custodian
 
+/datum/design/bioprinter/nt_clothes/acolyte_armor_head
+	name = "NT Acolyte Hood"
+	build_path = /obj/item/clothing/head/armor/acolyte
+
+/datum/design/bioprinter/nt_clothes/agrolyte_armor_head
+	name = "NT Agrolyte Helmet"
+	build_path = /obj/item/clothing/head/armor/agrolyte
+
+/datum/design/bioprinter/nt_clothes/custodian_armor_head
+	name = "NT Custodian Helmet"
+	build_path = /obj/item/clothing/head/armor/custodian
+
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
 	build_path = /obj/item/clothing/suit/storage/neotheology_coat
@@ -196,10 +208,6 @@
 	build_path = /obj/item/weapon/storage/bag/money
 
 //[/THINGS]
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
-
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
@@ -289,6 +297,10 @@
 /datum/design/autolathe/helmet/crusader
 	name = "crusader helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/crusader
+
+/datum/design/autolathe/clothing/NTvoid
+	name = "neotheology voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/NTvoid
 
 //[MED]
 /datum/design/bioprinter/medical

@@ -5,6 +5,7 @@
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
 	category = "Common"
+	cooldown_time = 1 MINUTES
 
 
 /datum/ritual/targeted/cruciform/base
@@ -19,9 +20,11 @@
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
+	set_personal_cooldown(H)
 	return TRUE
 
 
@@ -34,6 +37,7 @@
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.adjustNutrition(100)
 	H.adjustToxLoss(5)
+	set_personal_cooldown(H)
 	return TRUE
 
 
@@ -42,6 +46,7 @@
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
@@ -53,6 +58,7 @@
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
 			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/reveal
@@ -91,6 +97,8 @@
 					break
 	if (!was_triggired)
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
+
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/sense_cruciform
@@ -100,16 +108,18 @@
 	power = 20
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
-	var/mob/living/carbon/human/T = get_victim(H)
-	if(T)
-		var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(H, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
-		if(CI)
-			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
-		else
-			fail("There is no cruciform on [T]", H, C)
+	var/list/mob/living/carbon/human/humans = list()
+	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
+		humans.Add(T)
+	if(humans.len)
+		for(var/mob/living/carbon/human/T in humans)
+			var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+			if(CI)
+				to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
 	else
 		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
 		return FALSE
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/revelation
@@ -125,10 +135,11 @@
 		fail("No target.", H, C)
 		return FALSE
 	T.hallucination(50,100)
-	var/sanity_lost = rand(-10,10)
+	var/sanity_gain = rand(0,10)
 	T.druggy = max(T.druggy, 10)
-	T.sanity.changeLevel(sanity_lost)
-	SEND_SIGNAL(H, COMSIG_RITUAL, src, T)
+	T.sanity.changeLevel(sanity_gain)
+	SEND_SIGNAL(H, COMSIG_RITUAL_REVELATION, src, T)
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/install_upgrade
@@ -178,6 +189,7 @@
 	if(!CU.install(H, CI) || CU.wearer != H)
 		fail("Commitment failed.", user, C)
 		return FALSE
+	set_personal_cooldown(H)
 
 	return TRUE
 
@@ -207,5 +219,120 @@
 	if(CI.upgrade.uninstall() || CI.upgrade)
 		fail("Commitment failed.", user, C)
 		return FALSE
+	set_personal_cooldown(H)
+
+	return TRUE
+
+/datum/ritual/cruciform/base/reincarnation
+	name = "Reincarnation"
+	phrase = "Vetus moritur et onus hoc levaverit"
+	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
+	var/clone_damage = 60
+
+/datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
+
+	if(!CI)
+		fail("There is no cruciform on this one", user, C)
+		return FALSE
+
+	var/datum/core_module/cruciform/cloning/data = CI.get_module(CRUCIFORM_CLONING)
+
+	if(!CI.wearer)
+		fail("Cruciform is not installed.", user, C)
+		return FALSE
+
+	if(!CI.activated)
+		fail("This cruciform doesn't have soul inside.", user, C)
+		return FALSE
+
+	if(CI.active)
+		fail("This cruciform already activated.", user, C)
+		return FALSE
+
+	if(CI.wearer.stat == DEAD)
+		fail("Soul cannot move to dead body.", user, C)
+		return FALSE
+
+	var/datum/mind/MN = data.mind
+	if(!istype(MN, /datum/mind))
+		fail("Soul is lost.", user, C)
+		return FALSE
+	if(MN.active)
+		if(data.ckey != ckey(MN.key))
+			fail("Soul is lost.", user, C)
+			return FALSE
+	if(MN.current && MN.current.stat != DEAD)
+		fail("Soul is lost.", user, C)
+		return FALSE
+
+	var/succ = CI.transfer_soul()
+
+	if(!succ)
+		fail("Soul transfer failed.", user, C)
+		return FALSE
+	set_personal_cooldown(user)
+
+
+	return TRUE
+
+/datum/ritual/cruciform/base/install
+	name = "Commitment"
+	phrase = "Unde ipse Dominus dabit vobis signum"
+	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
+
+/datum/ritual/cruciform/base/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/H = get_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
+	if(CI)
+		fail("[H] already have a cruciform installed.", user, C)
+		return FALSE
+
+	var/list/L = get_front(user)
+
+	CI = locate(/obj/item/weapon/implant/core_implant/cruciform) in L
+
+	if(!CI)
+		fail("There is no cruciform on this one", user, C)
+		return FALSE
+
+	if (H.stat == DEAD)
+		fail("It is too late for this one, the soul has already left the vessel", user, C)
+		return FALSE
+
+	if(!(H in L))
+		fail("Cruciform is too far from [H].", user, C)
+		return FALSE
+
+	if(CI.active)
+		fail("Cruciform already active.", user, C)
+		return FALSE
+
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
+		fail("[H] must lie on the altar.", user, C)
+		return FALSE
+
+	for(var/obj/item/clothing/CL in H)
+		if(H.l_hand == CL || H.r_hand == CL)
+			continue
+		fail("[H] must be undressed.", user, C)
+		return FALSE
+
+
+	if(!CI.install(H, BP_CHEST, user) || CI.wearer != H)
+		fail("Commitment failed.", user, C)
+		return FALSE
+
+	if(ishuman(H))
+		var/mob/living/carbon/human/M = H
+		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
+		for (var/i = 0; i < 5;i++)
+			E.take_damage(5, sharp = FALSE)
+			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
+
+		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
+		M.update_implants()
+		M.updatehealth()
+	set_personal_cooldown(user)
 
 	return TRUE

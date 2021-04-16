@@ -74,6 +74,7 @@
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
 	var/obj/item/oddity
+	var/use_license = TRUE
 	var/is_nanoforge = FALSE
 
 /obj/machinery/autolathe/Initialize()
@@ -214,6 +215,7 @@
 		data["oddity_name"] = oddity.name
 		data["oddity_stats"] = stats
 
+	data["use_license"] = use_license
 	data["is_nanoforge"] = is_nanoforge
 	return data
 
@@ -667,13 +669,13 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/update_icon()
-	overlays.Cut()
+/obj/machinery/autolathe/on_update_icon()
+	cut_overlays()
 
 	icon_state = initial(icon_state)
 
 	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_panel"))
+		add_overlays(image(icon, "[icon_state]_panel"))
 
 	if(icon_off())
 		return
@@ -686,21 +688,21 @@
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
-	flick("[initial(icon_state)]_start", src)
+	FLICK("[initial(icon_state)]_start", src)
 
 /obj/machinery/autolathe/proc/print_post()
-	flick("[initial(icon_state)]_finish", src)
+	FLICK("[initial(icon_state)]_finish", src)
 	if(!current_file && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
 /obj/machinery/autolathe/proc/res_load(material/material)
-	flick("[initial(icon_state)]_load", image_load)
+	FLICK("[initial(icon_state)]_load", image_load)
 	if(material)
 		image_load_material.color = material.icon_colour
 		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
-		flick("[initial(icon_state)]_load_m", image_load_material)
+		FLICK("[initial(icon_state)]_load_m", image_load_material)
 
 
 /obj/machinery/autolathe/proc/check_materials(datum/design/design)
@@ -734,7 +736,7 @@
 		if(!design_file || !design_file.design)
 			return ERR_NOTFOUND
 
-		if(!design_file.check_license())
+		if(use_license && !design_file.check_license())
 			return ERR_NOLICENSE
 
 		var/datum/design/design = design_file.design
@@ -908,7 +910,7 @@
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	if(current_file.use_license()) //In the case of an an unprotected design, this will always be true
+	if(!use_license || current_file.use_license()) //In the case of an an unprotected design, this will always be true
 		fabricate_design(current_file.design)
 	else
 		//If we get here, then the user attempted to print something but the disk had run out of its limited licenses

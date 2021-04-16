@@ -3,7 +3,8 @@
 	desc = "A beaker."
 	icon_state = "beaker"
 	item_state = "beaker"
-	filling_states = "-10;10;25;50;75;80;100"
+	label_icon_state = "label_beaker"
+	filling_states = "20;40;60;80;100"
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 20
 
@@ -19,7 +20,7 @@
 	..()
 	playsound(src,'sound/items/Glass_Fragment_drop.ogg',50,1)
 
-/obj/item/weapon/reagent_containers/glass/beaker/update_icon()
+/obj/item/weapon/reagent_containers/glass/beaker/on_update_icon()
 	cut_overlays()
 
 	if(has_lid())
@@ -27,10 +28,20 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(reagents && reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state][get_filling_state()]")
-		filling.color = reagents.get_color()
-		add_overlay(filling)
+	if(label_text)
+		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
+		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
+		add_overlay(label)
+
+	if(reagents?.total_volume)
+		if(label_text)
+			var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]_labeled-[get_filling_state()]")
+			filling.color = reagents.get_color()
+			add_overlay(filling)
+		else
+			var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-[get_filling_state()]")
+			filling.color = reagents.get_color()
+			add_overlay(filling)
 
 
 //// Subtypes ////
@@ -39,6 +50,7 @@
 	name = "large beaker"
 	desc = "A large beaker."
 	icon_state = "beakerlarge"
+	label_icon_state = "label_beakerlarge"
 	matter = list(MATERIAL_GLASS = 2)
 	volume = 120
 	amount_per_transfer_from_this = 10
@@ -59,11 +71,12 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology."
 	icon_state = "beakerbluespace"
+	label_icon_state = "label_beakerbluespace"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASMA = 1)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
-	lid_icon_state = "lid_beakerlarge"
+	lid_icon_state = "lid_beakerbluespace"
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/bowl
@@ -81,6 +94,7 @@
 	name = "vial"
 	desc = "A small glass vial."
 	icon_state = "vial"
+	label_icon_state = "label_vial"
 	matter = list(MATERIAL_GLASS = 1)
 	volume = 30
 	w_class = ITEM_SIZE_TINY
@@ -157,11 +171,11 @@
 	else
 		return ..()
 
-/obj/item/weapon/reagent_containers/glass/bucket/update_icon()
-	overlays.Cut()
+/obj/item/weapon/reagent_containers/glass/bucket/on_update_icon()
+	cut_overlays()
 	if(reagents.total_volume >= 1)
-		overlays += "water_bucket"
+		add_overlays("water_bucket")
 	if(has_lid())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		add_overlays(lid)
 

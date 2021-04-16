@@ -147,7 +147,7 @@
 			if (!near_external)
 				T.ex_act(prob(80) ? 3 : 2)
 
-/obj/effect/plant/update_icon()
+/obj/effect/plant/on_update_icon()
 	//TODO: should really be caching this.
 	refresh_icon()
 

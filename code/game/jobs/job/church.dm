@@ -19,7 +19,7 @@
 		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors, access_change_nt
 	)
 
-	wage = WAGE_PROFESSIONAL //The church has deep pockets
+	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/church/chaplain
 
@@ -80,7 +80,7 @@
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
-	wage = WAGE_PROFESSIONAL
+	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
 	stat_modifiers = list(
@@ -123,7 +123,7 @@
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_hydroponics, access_morgue, access_crematorium, access_maint_tunnels)
-	wage = WAGE_PROFESSIONAL
+	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 
 	outfit_type = /decl/hierarchy/outfit/job/church/gardener
 	stat_modifiers = list(
@@ -168,7 +168,7 @@
 	//alt_titles = list("Custodian","Sanitation Technician")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80, LANGUAGE_LATIN = 20)
 	cruciform_access = list(access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
-	wage = WAGE_PROFESSIONAL
+	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/janitor
 
 	stat_modifiers = list(

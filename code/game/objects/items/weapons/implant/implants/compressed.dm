@@ -36,7 +36,7 @@
 	implant = /obj/item/weapon/implant/compressed
 	spawn_tags = null
 
-/obj/item/weapon/implanter/compressed/update_icon()
+/obj/item/weapon/implanter/compressed/on_update_icon()
 	if(implant)
 		var/obj/item/weapon/implant/compressed/c = implant
 		if(!c.scanned)

@@ -79,7 +79,7 @@
 
 /obj/item/weapon/tool/knife/tacknife
 	name = "tactical knife"
-	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
+	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space. Could be attached to a gun."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "tacknife_guard"
 	item_state = "knife"
@@ -88,6 +88,18 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	embed_mult = 0.3
 	max_upgrades = 3
+
+/obj/item/weapon/tool/knife/tacknife/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_BAYONET = TRUE,
+		GUN_UPGRADE_MELEEDAMAGE = 5,
+		GUN_UPGRADE_MELEEPENETRATION = 15,
+		GUN_UPGRADE_OFFSET = 4
+		)
+	I.gun_loc_tag = GUN_UNDERBARREL
+	I.req_gun_tags = list(SLOT_BAYONET)
 
 /obj/item/weapon/tool/knife/dagger
 	name = "dagger"

@@ -21,7 +21,7 @@
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
 	damage_multiplier = 1.75
 	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
-	recoil_buildup = 50
+	recoil_buildup = 8
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
@@ -51,14 +51,14 @@
 /obj/item/weapon/gun/projectile/revolver/proc/update_charge()
 	if(!drawChargeMeter)
 		return
-	overlays.Cut()
+	cut_overlays()
 	if(loaded.len==0)
-		overlays += "[icon_state]_off"
+		add_overlays("[icon_state]_off")
 	else
-		overlays += "[icon_state]_on"
+		add_overlays("[icon_state]_on")
 
 
-/obj/item/weapon/gun/projectile/revolver/update_icon()
+/obj/item/weapon/gun/projectile/revolver/on_update_icon()
 	update_charge()
 
 /obj/item/weapon/gun/projectile/revolver/generate_guntags()

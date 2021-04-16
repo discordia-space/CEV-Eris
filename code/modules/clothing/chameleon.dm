@@ -44,7 +44,6 @@
 	item_state = "bl_suit"
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER_CHAMALEON
-	rarity_value = 50
 
 	origin_tech = list(TECH_COVERT = 3)
 	var/global/list/clothing_choices
@@ -84,7 +83,6 @@
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_CHAMALEON
-	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/head/chameleon/New()
@@ -157,7 +155,6 @@
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_SHOES_CHAMALEON
-	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
@@ -234,7 +231,6 @@
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GLOVES_CHAMALEON
-	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
@@ -271,7 +267,6 @@
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
-	rarity_value = 50
 	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
 
@@ -309,7 +304,6 @@
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GLASSES_CHAMALEON
-	rarity_value = 50
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()

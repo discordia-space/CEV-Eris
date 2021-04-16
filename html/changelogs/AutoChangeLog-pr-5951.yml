@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: add a debug item called "under" to the blacklist
-  - tweak: the default name for jumsuit is "jumsuit"

@@ -347,7 +347,7 @@ Very rarely it might escape
 		aware_mobs |= "\ref[user]"
 
 
-/obj/item/weapon/beartrap/update_icon()
+/obj/item/weapon/beartrap/on_update_icon()
 	..()
 
 	if(!deployed)

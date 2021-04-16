@@ -27,7 +27,7 @@
 		)
 
 
-/obj/item/weapon/gun/projectile/automatic/vintorez/update_icon()
+/obj/item/weapon/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)
 	var/itemstring = initial(item_state)
 

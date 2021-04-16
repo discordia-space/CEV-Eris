@@ -74,7 +74,7 @@
 	for(var/obj/machinery/light/L in area)
 		L.seton(L.has_power())
 		if(prob(50))
-			L.flicker(rand(1, 3))
+			L.flick_light(rand(1, 3))
 		sleep(10)
 
 		if(forceful_toggle)

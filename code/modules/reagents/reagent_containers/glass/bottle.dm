@@ -9,11 +9,11 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	filling_states = "20;60;80;100"
+	filling_states = "20;40;60;80;100"
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
 
-/obj/item/weapon/reagent_containers/glass/bottle/update_icon()
+/obj/item/weapon/reagent_containers/glass/bottle/on_update_icon()
 	cut_overlays()
 
 	if(has_lid())

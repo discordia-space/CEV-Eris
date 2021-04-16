@@ -886,29 +886,8 @@
 //----Smokes-----//
 //***************//
 
-/obj/item/weapon/storage/fancy/cigarettes
-	price_tag = 150
-
-/obj/item/weapon/storage/fancy/cigarettes/luckystars
-	price_tag = 170
-
-/obj/item/weapon/storage/fancy/cigarettes/jerichos
-	price_tag = 220
-
-/obj/item/weapon/storage/fancy/cigarettes/menthols
-	price_tag = 180
-
-/obj/item/weapon/storage/fancy/cigar
-	price_tag = 270
-
-/obj/item/weapon/storage/fancy/cigarettes/carcinomas
-	price_tag  = 230
-
-/obj/item/weapon/storage/fancy/cigarettes/professionals
-	price_tag = 250
-
-/obj/item/weapon/storage/box/matches
-	price_tag = 10
+/obj/item/clothing/mask/smokable
+	price_tag = 5 //cigarette monopoly no more
 
 /obj/item/weapon/flame/lighter
 	price_tag = 20

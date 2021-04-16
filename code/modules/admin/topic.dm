@@ -22,6 +22,37 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
+	if(href_list["openticket"])
+		var/ticketID = text2num(href_list["openticket"])
+		if(!href_list["is_mhelp"])
+			if(!check_rights(R_ADMIN))
+				return
+			SStickets.showDetailUI(usr, ticketID)
+		else
+			if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))
+				return
+			SSmentor_tickets.showDetailUI(usr, ticketID)
+
+	if(href_list["take_question"])
+		var/indexNum = text2num(href_list["take_question"])
+		if(check_rights(R_ADMIN))
+			SStickets.takeTicket(indexNum)
+
+	if(href_list["resolve"])
+		var/indexNum = text2num(href_list["resolve"])
+		if(check_rights(R_ADMIN))
+			SStickets.resolveTicket(indexNum)
+
+	if(href_list["convert_ticket"])
+		var/indexNum = text2num(href_list["convert_ticket"])
+		if(check_rights(R_ADMIN))
+			SStickets.convert_to_other_ticket(indexNum)
+
+	if(href_list["autorespond"])
+		var/indexNum = text2num(href_list["autorespond"])
+		if(check_rights(R_ADMIN))
+			SStickets.autoRespond(indexNum)
+
 	var/static/list/topic_handlers = AdminTopicHandlers()
 	var/datum/admin_topic/handler
 

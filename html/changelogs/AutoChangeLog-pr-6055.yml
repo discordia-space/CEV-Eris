@@ -1,0 +1,6 @@
+author: Shazbot194
+delete-after: true
+changes:
+  - rscadd: SA Carbine "Krinkov"
+  - balance: Changed FA AK into the FA Vipr; a Hunting Rifle
+  - tweak: Mirrored Excel AK back sprite so now you can seen wearing two AKMSs.

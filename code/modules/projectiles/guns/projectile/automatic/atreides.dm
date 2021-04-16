@@ -27,7 +27,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/atreides/update_icon()
+/obj/item/weapon/gun/projectile/automatic/atreides/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

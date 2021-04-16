@@ -10,7 +10,7 @@
 					{{if value.point_cost > 0}}
 						{{if !data.disk}}
 							<font size="1">
-							<div class="{{:data.is_nanoforge ? "unimportant" : "bad"}}">
+							<div class="{{:data.use_license ? "bad" : "unimportant"}}">
 								License point cost: {{:value.point_cost}}
 							</div>
 							</font>

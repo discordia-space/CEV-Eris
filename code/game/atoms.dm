@@ -42,6 +42,9 @@
 	var/list/atom_colours
 
 /atom/proc/update_icon()
+	return on_update_icon(arglist(args))
+
+/atom/proc/on_update_icon()
 	return
 
 /atom/New(loc, ...)
@@ -756,3 +759,11 @@ its easier to just keep the beam vertical.
 
 /atom/proc/additional_see_invisible()
 	return 0
+/atom/proc/lava_act()
+	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")
+	playsound(src, 'sound/effects/flare.ogg', 100, 3)
+	if(ismob(src))
+		var/mob/M = src
+		M.death(FALSE, FALSE)
+	qdel(src)
+	. = TRUE

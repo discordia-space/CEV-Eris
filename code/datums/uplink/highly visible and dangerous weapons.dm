@@ -81,3 +81,9 @@
 	if(.)
 		var/obj/item/weapon/gun/energy/psychic/lasercannon/L = .
 		L.owner = U.uplink_owner
+/*
+/datum/uplink_item/item/visible_weapons/pickle
+	name = "Pickle"
+	item_cost = 100
+	path = /obj/item/weapon/storage/box/syndie_kit/pickle
+*/

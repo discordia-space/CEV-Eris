@@ -116,7 +116,7 @@
 	if(!on)
 		return
 	if(emagged && prob(1))
-		flick("farmbot_broke", src)
+		FLICK("farmbot_broke", src)
 	if(client)
 		return
 
@@ -247,7 +247,7 @@
 			attacking = 0
 		switch(action)
 			if("weed")
-				flick("farmbot_hoe", src)
+				FLICK("farmbot_hoe", src)
 				do_attack_animation(A)
 				if(prob(50))
 					visible_message(SPAN_DANGER("[src] swings wildly at [A] with a minihoe, missing completely!"))
@@ -259,7 +259,7 @@
 				var/message = pick("I WILL PURGE THIS.", "YOU HAVE NO PLACE HERE.")
 				say(message)
 			if("water")
-				flick("farmbot_water", src)
+				FLICK("farmbot_water", src)
 				visible_message(SPAN_DANGER("[src] splashes [A] with water!")) // That's it. RP effect.
 
 /mob/living/bot/farmbot/explode()

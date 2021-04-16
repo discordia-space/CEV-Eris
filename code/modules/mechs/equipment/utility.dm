@@ -102,7 +102,7 @@
 		update_icon()
 		owner.update_icon()
 
-/obj/item/mech_equipment/light/update_icon()
+/obj/item/mech_equipment/light/on_update_icon()
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"

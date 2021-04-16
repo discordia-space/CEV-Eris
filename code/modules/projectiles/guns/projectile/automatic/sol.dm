@@ -35,14 +35,14 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	overlays += "sol_[ratio]"
+	add_overlays("sol_[ratio]")
 
-/obj/item/weapon/gun/projectile/automatic/sol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/sol/on_update_icon()
 	..()
 
 	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")
 	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
-	overlays.Cut()
+	cut_overlays()
 	update_charge()
 
 /obj/item/weapon/gun/projectile/automatic/sol/generate_guntags()

@@ -317,7 +317,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/lrifle/pk
-	name = "PK munitions box (.30 Rifle)"
+	name = "LMG munitions box (.30 Rifle)"
 	icon_state = "pk_box"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -328,7 +328,7 @@
 	max_ammo = 80
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammobox/lrifle/pk/update_icon()
+/obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
 		icon_state = "pk_box-0"
 		return
