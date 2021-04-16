@@ -25,8 +25,6 @@ var/list/disciples = list()
 	if(power >= max_power)
 		return
 	var/true_power_regen = power_regen
-	if(GLOB.miracle_points > 0)
-		true_power_regen += GLOB.miracle_points / (1 MINUTES)
 	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * (0.1 / 1 MINUTES)
 	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
 	restore_power(true_power_regen)
