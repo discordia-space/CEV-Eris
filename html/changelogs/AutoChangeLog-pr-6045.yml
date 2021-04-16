@@ -1,0 +1,6 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Excelsior design disk has been split into two, and Excelsior stashes now
+      also spawn with an empty design disk.
+  - balance: Excelsior gun designs should spawn somewhat less.
