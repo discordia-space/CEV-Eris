@@ -170,6 +170,10 @@
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/pk
 
+/datum/design/autolathe/gun/lmg_tk
+	name = "FS LMG .30 \"Takeshi\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/tk
+
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
 	build_path = /obj/item/weapon/gun/launcher/grenade
