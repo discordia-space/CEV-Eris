@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - rscadd: RPG, traitor uplink, mindreader and several other debug items were removed
+      from maints.
