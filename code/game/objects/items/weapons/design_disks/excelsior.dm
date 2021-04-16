@@ -120,7 +120,7 @@
 	designs = list(
 		/datum/design/autolathe/gun/vintorez,
 		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
-		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/boltgun
