@@ -153,8 +153,12 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
 /datum/design/autolathe/gun/ak47_fs
-	name = "FS AR .30 \"Kalashnikov\""
+	name = "FS AR .30 \"Vipr\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
+
+/datum/design/autolathe/gun/ak47_sa
+	name = "SA Car .30 \"Krinkov\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/sts35
 	name = "STS-35"
