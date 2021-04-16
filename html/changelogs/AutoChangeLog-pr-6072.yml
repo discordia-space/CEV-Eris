@@ -1,0 +1,8 @@
+author: zoktiik
+delete-after: true
+changes:
+  - tweak: Low walls (without a window) and unflipped tables will no longer block
+      "living", "hard-stunned" creatures, meaning that, without any shielding, you
+      can now break a window to space and get spaced if you don't have magboots.
+  - balance: Airflow stun length has been nerfed from 5 to 3 ticks, so that you don't
+      get back up from the stun in the middle of nowhere after getting spaced.
