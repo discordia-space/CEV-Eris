@@ -153,5 +153,5 @@
 	designs = list(
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
-		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/magazine_pistol/rubber
 	)
