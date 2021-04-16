@@ -104,7 +104,7 @@
 	designs = list(
 		/datum/design/autolathe/gun/ak47,
 		/datum/design/autolathe/ammo/lrifle,						//AK ammo
-		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/lrifle/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/vintorez
