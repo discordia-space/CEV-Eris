@@ -5,6 +5,11 @@
 	slot = slot_w_uniform
 	sort_category = "Uniforms and Casual Dress"
 
+/datum/gear/uniform/turtleneck
+    display_name = "Tactical turtleneck"
+    path = /obj/item/clothing/under/turtleneck
+    slot = slot_w_uniform
+
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
