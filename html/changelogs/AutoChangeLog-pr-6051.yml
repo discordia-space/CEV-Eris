@@ -1,6 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - balance: Neotheos now have a wage and starting money, however no external funding
-      so they have to use their department account for wages, it should last enough
-      for five paychecks though.
