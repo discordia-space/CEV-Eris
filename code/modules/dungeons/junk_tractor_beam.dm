@@ -92,8 +92,8 @@
 	var/nb_in_pool = 3  // Number of junk fields in the pool
 	var/list/jf_pool = list()  // Pool of junk fields you can choose from
 
-	var/beam_cooldown_time = 10 SECONDS 
-	var/beam_capture_time = 10 SECONDS
+	var/beam_cooldown_time = 5 MINUTES 
+	var/beam_capture_time = 20 SECONDS
 
 	var/list/preloaded_25_25 = list()  // Need to preload maps in SOUTH direction
 	var/list/preloaded_5_5 = list()  // Need to preload maps in SOUTH direction
