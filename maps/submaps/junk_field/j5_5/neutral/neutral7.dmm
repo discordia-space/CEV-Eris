@@ -3,11 +3,11 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /turf/simulated/wall/r_wall,
@@ -95,7 +95,7 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "l" = (
-/obj/structure/plushie/carp,
+/mob/living/simple_animal/hostile/carp,
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "m" = (
@@ -143,5 +143,5 @@ k
 d
 a
 f
-c
+k
 "}

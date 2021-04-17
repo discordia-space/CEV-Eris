@@ -36,7 +36,7 @@
 /area/template_noop)
 "j" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "k" = (
 /obj/spawner/techpart,
@@ -49,39 +49,13 @@
 "m" = (
 /obj/structure/lattice,
 /mob/living/simple_animal/hostile/carp,
-/turf/space,
-/area/template_noop)
-"n" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"o" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"p" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
 b
 e
-d
+c
 l
 m
 "}
@@ -90,26 +64,26 @@ d
 d
 h
 h
-n
+d
 "}
 (3,1,1) = {"
 j
 f
 i
 h
-o
+a
 "}
 (4,1,1) = {"
 b
 g
 k
 a
-p
+l
 "}
 (5,1,1) = {"
 c
 h
 c
 c
-n
+c
 "}

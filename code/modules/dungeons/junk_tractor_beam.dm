@@ -188,8 +188,8 @@
 /obj/jtb_generator/proc/generate_junk_field()
 	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
 
-	numR = round((maxx) / 5)
-	numC = round((maxy) / 5)
+	numR = round((maxx) / 5) - 1
+	numC = round((maxy) / 5) - 1
 	map = new/list(numR,numC,0)
 	grid = new/list(numR,numC,0)
 
@@ -305,7 +305,6 @@
 	
 	// Update the occupancy grid
 	compute_occupancy_grid()
-
 	// bottom left corner turf
 	return get_turf(locate(5 * (target_x - 4) - 4 + JTB_OFFSET, 5 * (target_y - 4) - 4 + JTB_OFFSET, loc.z))
 
@@ -369,28 +368,38 @@
 			ori = SOUTH
 			preloaded_25_25[i_chunk] = 1  // Map is going to be loaded
 
-		// log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
+		// log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z]) with dir [ori]")
 		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
 
-		// Cleanup mineral overlays in case chunk got partially merged with an asteroid 
-		// This is intended by if(grid[i][j]>=3) in get_corner_25_25 since it can be hard finding a completely clear 25x25 area
-		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 24, Ty + 24, z)))
-			for(var/obj/O in TM)
-				if(istype(O, /obj/effect/mineral) && !istype(get_turf(O), /turf/simulated/mineral))
-					qdel(O)
-				else if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
-					O.dir = 2
-				else
-					// Fix obj dir
-					if(intypes(O))
-						if(ori == NORTH)
-							O.dir = reverse_dir[O.dir]
-						if(ori == EAST)
-							O.dir = GLOB.cw_dir[O.dir]
-						if(ori == WEST)
-							O.dir = GLOB.ccw_dir[O.dir]
+		fix_chunk_loading(Tx, Ty, 24, ori)
 
 	return
+
+// Fix the stuff the chunk loader does not do properly...
+/obj/jtb_generator/proc/fix_chunk_loading(var/Tx, var/Ty, var/off, var/ori)
+	for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + off, Ty + off, z)))
+		for(var/obj/O in TM)
+			if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
+				O.dir = 2
+			else if(istype(O, /obj/structure/sign))  // Fix magical sign offset, don't ask why...
+				if(ori == NORTH)
+					O.pixel_x = - O.pixel_x
+					O.pixel_y = - O.pixel_y
+				if(ori == EAST)
+					var/tmp = O.pixel_x
+					O.pixel_x = O.pixel_y
+					O.pixel_y = - tmp
+				if(ori == WEST)
+					var/tmp = O.pixel_x
+					O.pixel_x = - O.pixel_y
+					O.pixel_y = tmp
+			else if(intypes(O))  // Fix obj directions
+				if(ori == NORTH)
+					O.dir = reverse_dir[O.dir]
+				if(ori == EAST)
+					O.dir = GLOB.cw_dir[O.dir]
+				if(ori == WEST)
+					O.dir = GLOB.ccw_dir[O.dir]
 
 // Place the portal that leads to the ship
 /obj/jtb_generator/proc/place_portal()
@@ -439,22 +448,10 @@
 			ori = SOUTH
 			preloaded_5_5[i_chunk] = 1  // Map is going to be loaded
 
-		// log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
+		// log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z]) with dir [ori]")
 		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
 
-		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 4, Ty + 4, z)))
-			for(var/obj/O in TM)
-				if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
-					O.dir = 2
-				else
-					// Fix obj dir
-					if(intypes(O))
-						if(ori == NORTH)
-							O.dir = reverse_dir[O.dir]
-						if(ori == EAST)
-							O.dir = GLOB.cw_dir[O.dir]
-						if(ori == WEST)
-							O.dir = GLOB.ccw_dir[O.dir]
+		fix_chunk_loading(Tx, Ty, 4, ori)
 
 	return
 

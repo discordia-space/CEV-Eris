@@ -2,9 +2,6 @@
 "a" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
-"b" = (
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "c" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -37,7 +34,7 @@
 /area/template_noop)
 "h" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "i" = (
 /obj/structure/cable/green{
@@ -71,7 +68,7 @@
 "m" = (
 /obj/structure/lattice,
 /mob/living/simple_animal/hostile/carp,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "n" = (
 /mob/living/simple_animal/hostile/carp,
@@ -100,7 +97,7 @@ p
 p
 "}
 (2,1,1) = {"
-b
+d
 f
 j
 k
@@ -114,7 +111,7 @@ l
 o
 "}
 (4,1,1) = {"
-d
+a
 a
 a
 a

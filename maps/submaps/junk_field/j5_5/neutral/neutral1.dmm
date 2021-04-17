@@ -4,11 +4,11 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -29,11 +29,18 @@
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
+"L" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"W" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
 
 (1,1,1) = {"
 b
 b
-b
+W
 c
 b
 "}
@@ -45,7 +52,7 @@ h
 b
 "}
 (3,1,1) = {"
-b
+W
 f
 e
 c
@@ -56,12 +63,12 @@ c
 c
 g
 g
-c
+L
 "}
 (5,1,1) = {"
 b
 b
 b
-b
-b
+W
+c
 "}

@@ -2,14 +2,14 @@
 "a" = (
 /obj/structure/lattice,
 /obj/spawner/junk/low_chance,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/space,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /turf/simulated/wall/r_wall,
@@ -26,38 +26,41 @@
 /obj/structure/girder,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
+"R" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-b
-b
-b
+g
+R
+R
 c
-b
+R
 "}
 (2,1,1) = {"
 b
 c
 e
 f
-b
+R
 "}
 (3,1,1) = {"
 c
 a
 d
 d
-b
+R
 "}
 (4,1,1) = {"
-b
-b
+R
+R
 d
 g
-b
+g
 "}
 (5,1,1) = {"
-b
-b
+R
+R
 b
 a
 c

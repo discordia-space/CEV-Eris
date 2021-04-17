@@ -1,22 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "b" = (
 /obj/structure/lattice,
-/turf/space,
-/area/template_noop)
-"c" = (
-/obj/structure/lattice,
-/obj/structure/railing,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
 "e" = (
 /obj/structure/railing,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "f" = (
 /obj/spawner/junkfood/rotten,
@@ -31,7 +26,7 @@
 	dir = 8;
 	tag = "icon-railing0 (WEST)"
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "i" = (
 /obj/spawner/junkfood/rotten/low_chance,
@@ -43,22 +38,34 @@
 	dir = 8;
 	tag = "icon-railing0 (WEST)"
 	},
-/turf/space,
+/turf/template_noop,
+/area/template_noop)
+"q" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"z" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"P" = (
+/obj/structure/lattice,
+/obj/structure/railing,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
 a
-a
-a
-a
+P
+z
+b
 b
 "}
 (2,1,1) = {"
 b
-c
+P
 f
 d
-b
+z
 "}
 (3,1,1) = {"
 a
@@ -68,15 +75,15 @@ i
 a
 "}
 (4,1,1) = {"
-a
+b
 a
 h
 j
 b
 "}
 (5,1,1) = {"
-a
-a
+q
+b
 a
 a
 b

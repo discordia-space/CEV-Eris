@@ -4,11 +4,11 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "d" = (
 /turf/simulated/wall/r_wall,
@@ -32,13 +32,16 @@
 "i" = (
 /obj/structure/lattice,
 /obj/spawner/junkfood/rotten,
-/turf/space,
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 
 (1,1,1) = {"
 b
 b
-b
+E
 c
 b
 "}
@@ -50,23 +53,23 @@ g
 b
 "}
 (3,1,1) = {"
-c
+h
 h
 d
 d
-c
+h
 "}
 (4,1,1) = {"
 b
 i
 f
 f
-c
+h
 "}
 (5,1,1) = {"
 b
 b
 b
-b
-b
+c
+E
 "}

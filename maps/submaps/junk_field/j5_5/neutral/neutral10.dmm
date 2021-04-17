@@ -5,7 +5,7 @@
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "b" = (
 /obj/structure/disposalpipe/segment{
@@ -84,7 +84,7 @@
 /area/template_noop)
 "i" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "j" = (
 /obj/spawner/traps/low_chance,
@@ -95,7 +95,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "l" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -117,19 +117,19 @@ c
 h
 j
 g
-i
+l
 "}
 (4,1,1) = {"
 d
 g
 k
 g
-l
+i
 "}
 (5,1,1) = {"
 i
 g
 g
 g
-l
+f
 "}
