@@ -253,7 +253,7 @@
 /datum/ritual/cruciform/priest/offering
 	name = "Offerings"
 	category = "Offerings"
-	success_message = "tus plegarais han sido escuchadas"
+	success_message = "tus plegarais han sido escuchadas."
 	fail_message = "Your prayers have not been answered."
 	power = 30
 	var/list/req_offerings = list()
@@ -298,7 +298,6 @@
 				true_offerings.Add(I)
 
 		if(num_item < req_num)
-			var/obj/item = path
 			break
 		else
 			num_check++
@@ -346,3 +345,35 @@
 	desc = "Present your prayers to the Eye of the Protector."
 	req_offerings = list(/obj/item/weapon/oddity = 1, /obj/item/weapon/reagent_containers/food/snacks/grown = 40)
 	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
+
+/datum/ritual/cruciform/priest/divine_blessing
+	name = "Divine Blessing"
+	phrase = "Corpus Deus"
+	desc = "Increases the stats of an oddity."
+	success_message = "Your oddity has been blessed."
+	var/list/odditys = list()
+
+
+/datum/ritual/cruciform/priest/divine_blessing/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/obj/item/I = user.get_active_hand()
+	if(!I)
+		fail("You have nothing in your active hand.", user, C)
+		return FALSE
+
+	if(I in odditys)
+		fail("This oddity has already been blessed.", user, C)
+		return FALSE
+
+	GET_COMPONENT_FROM(inspiracion, /datum/component/inspiration, I)
+	if(!inspiracion)
+		fail("You need to hold an oddity in your active hand.", user, C)
+		return FALSE
+
+	if(!inspiracion.stats)
+		fail("This oddity cannot be blessed.", user, C)
+		return FALSE
+
+	for(var/stat in inspiracion.stats)
+		inspiracion.stats[stat] += rand(4,8)
+	odditys.Add(I)
+	return TRUE
