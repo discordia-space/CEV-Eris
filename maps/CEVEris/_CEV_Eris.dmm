@@ -14973,10 +14973,6 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
-"aKK" = (
-/obj/structure/scrap_beacon,
-/turf/simulated/floor/tiled/dark/danger,
-/area/eris/maintenance/junk)
 "aKL" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/meter,
@@ -102915,6 +102911,12 @@
 /obj/machinery/duct,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
+"feu" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/maintenance/junk)
 "fjl" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/structure/railing/grey,
@@ -105023,6 +105025,10 @@
 "vAE" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/clownoffice)
+"vBC" = (
+/obj/structure/jtb_pillar,
+/turf/simulated/floor/tiled/dark/danger,
+/area/eris/maintenance/junk)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -105190,6 +105196,10 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"xoj" = (
+/obj/machinery/computer/jtb_console,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/maintenance/junk)
 "xoq" = (
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
@@ -131645,8 +131655,8 @@ azq
 aIS
 aJI
 aZI
-aJI
-aJI
+xoj
+feu
 aZI
 aJI
 aMK
@@ -132249,11 +132259,11 @@ azq
 azq
 azq
 aFv
+vBC
 aKf
 aKf
 aKf
-aKf
-aKf
+vBC
 aFo
 aMK
 aSd
@@ -132655,7 +132665,7 @@ aFo
 aIU
 aKf
 aKf
-aKK
+aKf
 aKf
 aKf
 aIU
@@ -133057,11 +133067,11 @@ aDK
 aFm
 aFo
 aFo
+vBC
 aKf
 aKf
 aKf
-aKf
-aKf
+vBC
 aFo
 bdH
 aNW
