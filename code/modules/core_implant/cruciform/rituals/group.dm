@@ -124,7 +124,7 @@
 
 /datum/ritual/group/cruciform/stat/vigilance
 	name = "Canto of Courage"
-	desc = "Boosts Robustness stat to 3 + 2 for each participant."
+	desc = "Boosts Vigilance stat to 3 + 2 for each participant."
 	phrase = "Vigilia exemplum imitari debemus."
 	phrases = list(
 		"Vigilia exemplum imitari debemus.",
