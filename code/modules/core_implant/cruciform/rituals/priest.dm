@@ -253,7 +253,7 @@
 /datum/ritual/cruciform/priest/offering
 	name = "Offerings"
 	category = "Offerings"
-	success_message = "tus plegarais han sido escuchadas"
+	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
 	power = 30
 	var/list/req_offerings = list()
@@ -298,7 +298,6 @@
 				true_offerings.Add(I)
 
 		if(num_item < req_num)
-			var/obj/item = path
 			break
 		else
 			num_check++
