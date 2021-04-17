@@ -129,6 +129,7 @@
 	cooldown_time = 2 MINUTES
 	effect_time = 10 MINUTES
 	cooldown_category = "short_boost"
+	power = 30
 	var/list/stats_to_boost = list()
 
 /datum/ritual/cruciform/priest/short_boost/New()
@@ -351,6 +352,7 @@
 	phrase = "Corpus Deus"
 	desc = "Increases the stats of an oddity."
 	success_message = "Your oddity has been blessed."
+	fail_message = "You feel cold in your active hand."
 	var/list/odditys = list()
 
 
