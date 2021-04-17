@@ -28,3 +28,23 @@
 	name = "neutral 6"
 	id = "neutral6"
 	suffix = "neutral/neutral6.dmm"
+
+/datum/map_template/junk/j5_5/neutral/neutral7
+	name = "neutral 7"
+	id = "neutral7"
+	suffix = "neutral/neutral7.dmm"
+
+/datum/map_template/junk/j5_5/neutral/neutral8
+	name = "neutral 8"
+	id = "neutral8"
+	suffix = "neutral/neutral8.dmm"
+
+/datum/map_template/junk/j5_5/neutral/neutral9
+	name = "neutral 9"
+	id = "neutral9"
+	suffix = "neutral/neutral9.dmm"
+
+/datum/map_template/junk/j5_5/neutral/neutral10
+	name = "neutral 10"
+	id = "neutral10"
+	suffix = "neutral/neutral10.dmm"
