@@ -198,10 +198,12 @@
 /datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
 	return TRUE
 
-/datum/group_ritual_effect/cruciform/sanctify/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
 	..()
 	var/area/A = get_area(starter)
 	A?.sanctify()
+	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
+		O.force_active = max(60, O.force_active)
 
 /area/proc/sanctify()
 	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)
