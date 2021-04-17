@@ -31,20 +31,24 @@
 		return
 	use_power(2)
 	if(contents.len)
-		for(var/mob/living/L in contents)
+		for(var/atom/movable/A in contents)
 			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform = MS_bioreactor.get_unoccupied_platform()
 			if(empty_platform)
-				L.forceMove(get_step(src, dir_output))
+				A.forceMove(get_step(src, dir_output))
 	else
 		grab()
 
 
 /obj/machinery/multistructure/bioreactor_part/loader/proc/grab()
 	var/turf/T = get_step(src, dir_input)
-	for(var/mob/living/L in T)
-		if(L.stat == DEAD && !L.anchored && !L.buckled && contents.len <= 10)
-			L.forceMove(loc)
+	for(var/atom/movable/A in T)
+		if(!A.anchored && contents.len <= 10)
+			if(isliving(A))
+				var/mob/living/L = A
+				if(L.stat != DEAD || ishuman(L))
+					continue
+			A.forceMove(loc)
 			spawn(1)
-				L.forceMove(src)
+				A.forceMove(src)
 				FLICK("loader_take", src)
 			break
