@@ -160,7 +160,7 @@
 
 /obj/jtb_generator/proc/cleanup_junk_field(var/x1, var/x2, var/y1, var/y2)
 
-	log_world("Starting junk field cleanup.")
+	log_world("Starting junk field cleanup at zlevel [loc.z].")
 	for(var/i = x1 to x2)
 		for(var/j = y1 to y2)
 			var/turf/T = get_turf(locate(i, j, z))
@@ -183,7 +183,7 @@
 				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 	// All mobs and turfs have already been handled so no need to deal with that during second pass
 
-	log_world("Junk field cleanup is over.")
+	log_world("Junk field cleanup is over at zlevel [loc.z].")
 
 /obj/jtb_generator/proc/generate_junk_field()
 	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
@@ -224,30 +224,6 @@
 	log_world("Something really wrong happened, junk field generation failed several times in a row")
 	qdel(src)
 
-/*/obj/jtb_generator/proc/preload_chunks()
-	log_world("Start preloading chunks at zlevel [loc.z].")
-
-	var/datum/map_template/junk/j25_25/chunk = null
-	for(var/i = 1 to pool_25_25.len)
-		
-		chunk = pool_25_25[i]
-		
-		var/turf/T = get_turf(locate(5, 5, loc.z))
-		log_world("Preloading chunk \"[chunk.name]\"")
-		load_chunk(T, chunk, SOUTH)  // Load chunk with random orientation for variety purpose
-
-		cleanup_junk_field(5, 30, 5, 30)  // Cleanup chunk
-
-	for(var/i = 1 to pool_5_5.len)
-		
-		chunk = pool_5_5[i]
-		
-		var/turf/T = get_turf(locate(5, 5, loc.z))
-		log_world("Preloading chunk \"[chunk.name]\"")
-		load_chunk(T, chunk, SOUTH)  // Load chunk with random orientation for variety purpose
-
-		cleanup_junk_field(5, 10, 5, 10)  // Cleanup chunk
-*/
 /obj/jtb_generator/proc/populate_z_level()
 	
 	log_world("Junk Field build starting at zlevel [loc.z].")
@@ -277,12 +253,6 @@
 		place_asteroid(AS,SP)
 		if(delay)
 			sleep(delay)
-	
-	// Refresh lighting of asteroid walls
-	/*for(var/turf/T in block(locate(1+JTB_OFFSET, 1+JTB_OFFSET, z), locate(maxx+JTB_OFFSET, maxx+JTB_OFFSET, z)))
-		if(!T.is_space()) // istype(T,/turf/simulated/mineral))
-			var/atom/movable/lighting_overlay/LO = T.lighting_overlay
-			LO?.update_overlay()*/
 
 // Check if the turfs associated with cell (x,y) are empty
 /obj/jtb_generator/proc/check_occupancy(var/x, var/y)
@@ -387,15 +357,6 @@
 
 		var/turf/T = get_corner_25_25() // Location of the bottom left corner turf of a 25 by 25 free chunk
 
-		/*if(i==1)
-			T = get_turf(locate(20, 20, 10))
-		else if(i==2)
-			T = get_turf(locate(60, 20, 10))
-		else if(i==3)
-			T = get_turf(locate(20, 60, 10))
-		else if(i==4)
-			T = get_turf(locate(60, 60, 10))*/
-
 		if(!T)
 			log_world("No empty space available to place a 25 by 25 chunk. There was [number_25_25-i+1] remaining chunks to place.")
 			break
@@ -403,32 +364,12 @@
 		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
 		var/Ty = T.y
 		var/ori = pick(cardinal)
-		/*if(i==1)
-			ori = SOUTH
-		else if(i==2)
-			ori = WEST
-		else if(i==3)
-			ori = EAST
-		else if(i==4)
-			ori = NORTH
-		else
-			ori = SOUTH*/
 
 		if(preloaded_25_25[i_chunk] == 0)
 			ori = SOUTH
 			preloaded_25_25[i_chunk] = 1  // Map is going to be loaded
 
-		/*testing("-")
-		if(ori == SOUTH)
-			testing("Orientation: SOUTH")
-		else if(ori==NORTH)
-			testing("Orientation: NORTH")
-		else if(ori==EAST)
-			testing("Orientation: EAST")
-		else if(ori==WEST)
-			testing("Orientation: WEST")*/
-
-		log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
+		// log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z])")
 		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
 
 		// Cleanup mineral overlays in case chunk got partially merged with an asteroid 
@@ -498,7 +439,7 @@
 			ori = SOUTH
 			preloaded_5_5[i_chunk] = 1  // Map is going to be loaded
 
-		log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
+		// log_world("Chunk \"[chunk.name]\" of size 5 by 5 placed at ([T.x], [T.y], [T.z])")
 		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
 
 		for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + 4, Ty + 4, z)))
@@ -553,8 +494,6 @@
 	for(var/turf/T in edges)
 		for(var/obj/O in T)
 			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
-	
-	log_world("Edges generation complete.")
 	
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
 /obj/asteroid_spawner/portal
