@@ -141,7 +141,7 @@
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-		if(!handcuffed || buckled || src.stats.getStat(STAT_ROB) < 50)
+		if(!handcuffed || buckled)
 			return
 		visible_message(
 			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
