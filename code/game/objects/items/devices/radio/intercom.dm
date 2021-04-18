@@ -98,7 +98,7 @@
 	if(!target_area)
 		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS)
 		return FALSE
-	if(!(target_area.apc))
+	if(!target_area.apc)
 		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS) // We don't proces if there is no APC , no point in doing so is there ?
 		return FALSE
 	linked_area = target_area
