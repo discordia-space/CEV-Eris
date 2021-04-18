@@ -92,6 +92,7 @@
 	var/nb_in_pool = 3  // Number of junk fields in the pool
 	var/list/jf_pool = list()  // Pool of junk fields you can choose from
 
+	var/beam_cooldown_start = 0  // Starting time of the cooldown for the progress bar
 	var/beam_cooldown_time = 5 MINUTES 
 	var/beam_capture_time = 20 SECONDS
 
@@ -140,6 +141,7 @@
 
 	cleanup_junk_field(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	qdel(ship_portal)
+	beam_cooldown_start = world.time
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
 		if(src)  // Check if jtb_generator has not been destroyed during spawn time
@@ -647,7 +649,9 @@
 		"junk_field_name" = get_junk_field_name(),
 		"can_capture" = can_capture(),
 		"can_cancel" = can_cancel(),
-		"can_release" = can_release()
+		"can_release" = can_release(),
+		"bar_max" = get_cooldown_max(),
+		"bar_current" = get_cooldown_current()
 	)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -695,6 +699,12 @@
 
 /obj/machinery/computer/jtb_console/proc/get_junk_field_name()
 	return jtb_gen.current_jf ? jtb_gen.current_jf.name : "None"
+
+/obj/machinery/computer/jtb_console/proc/get_cooldown_max()
+	return jtb_gen.beam_cooldown_time
+
+/obj/machinery/computer/jtb_console/proc/get_cooldown_current()
+	return world.time - jtb_gen.beam_cooldown_start
 
 /obj/machinery/computer/jtb_console/proc/can_capture()
 	return jtb_gen.beam_state == BEAM_IDLE

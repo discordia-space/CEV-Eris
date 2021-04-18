@@ -17,6 +17,13 @@
 				<span class="bad">ERROR</span>
 			{{/if}}
 		</div>
+		<div class="itemContent">
+		{{if data.beam_state == 3}}
+			{{:helper.displayBar(data.bar_current, 0, data.bar_max, 'good')}}
+		{{else}}
+			{{:helper.displayBar(0, 0, data.bar_max, 'good')}}
+		{{/if}}
+		</div>
 	</div>
 </div>
 <div class="item" style="padding-top: 10px">
