@@ -1086,7 +1086,7 @@ FIRE ALARM
 
 	if(timing)
 		if(time > 0)
-			time = time - ((world.timeofday - last_process)/10)
+			time -= (world.timeofday - last_process)/10
 		else
 			alarm()
 			time = 0
@@ -1304,4 +1304,3 @@ Just a object used in constructing fire alarms
 		var/tp = text2num(href_list["tp"])
 		time += tp
 		time = min(max(round(time), 0), 120)
-
