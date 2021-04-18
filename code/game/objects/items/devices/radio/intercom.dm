@@ -108,6 +108,7 @@
 	linked_area = target_area
 	RegisterSignal(target_area, COMSIG_AREA_APC_DELETED, .proc/on_apc_removal)
 	RegisterSignal(target_area, COMSIG_AREA_APC_POWER_CHANGE, .proc/change_status)
+	change_status()
 
 /obj/item/device/radio/intercom/proc/on_apc_removal()
 	UnregisterSignal(linked_area , COMSIG_AREA_APC_DELETED)
