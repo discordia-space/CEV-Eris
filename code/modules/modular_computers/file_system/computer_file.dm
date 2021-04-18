@@ -1,5 +1,4 @@
-var/global/file_uid = 0
-
+GLOBAL_VAR_INIT(file_uid, 0)
 /datum/computer_file
 	var/filename = "NewFile" 								// Placeholder. No spacebars
 	var/filetype = "XXX" 									// File full names are [filename].[filetype] so like NewFile.XXX in this case
@@ -9,10 +8,12 @@ var/global/file_uid = 0
 	var/undeletable = FALSE									// Whether the file may be deleted. Setting to TRUE prevents deletion/renaming/etc.
 	var/uid													// UID of this file
 
+	var/static/list/VARS_BLACKLIST_FOR_CLONE = list("holder", "uid") // put here all variables that use referenses, you should set vars with references by yourself
+
 /datum/computer_file/New()
-	..()
-	uid = file_uid
-	file_uid++
+	. = ..()
+	uid = GLOB.file_uid
+	GLOB.file_uid++
 
 /datum/computer_file/Destroy()
 	if(holder)
@@ -23,14 +24,19 @@ var/global/file_uid = 0
 
 // Returns independent copy of this file.
 /datum/computer_file/proc/clone(rename = 0)
-	var/datum/computer_file/temp = new type
-	temp.unsendable = unsendable
-	temp.undeletable = undeletable
-	temp.size = size
-	temp.filetype = filetype
-	temp.filename = filename
+	var/datum/computer_file/clone_file = new type()
+	// clone_file.unsendable = unsendable
+	// clone_file.undeletable = undeletable
+	// clone_file.size = size
+	// clone_file.filetype = filetype
+	// clone_file.filename = filename
+	for(var/i in vars)
+		if(!VARS_BLACKLIST_FOR_CLONE.Find(i))
+			clone_file.vars[i] = vars[i]
 
-	if(rename)
-		temp.filename += "(Copy)"
+	if(istext(rename))
+		clone_file.filename = rename
+	else if(rename)
+		clone_file.filename += "(Copy)"
 
-	return temp
+	return clone_file

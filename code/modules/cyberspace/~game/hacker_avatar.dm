@@ -12,6 +12,14 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 	_SeeCyberSpace = TRUE
 
 	var/obj/item/weapon/computer_hardware/deck/owner
+	proc
+		ReturnToBody()
+			if(istype(owner))
+				to_chat(src, SPAN_WARNING("You feel like your mind is decaying, you feel empty ... <br> <br> \
+				But after that you feel your memory coming back piece by piece as a mind, you see your old deeds, you feel ashamed ..."))
+				owner.CancelCyberspaceConnection()
+				return TRUE
+			to_chat(src, SPAN_WARNING("You can't feel your shell."))
 
 /datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
 	var/turf/movedTo = get_step(mover, direction)
@@ -36,7 +44,7 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 	icon_state = "ai_presence"
 
 /mob/observer/cyberspace_eye/hacker/verb/CancelConnection()
-	set name = "Cancel Cyberspace Connection"
+	set name = "Return to body" // snap back to reality
 	set category = "Cyberspace"
 
-	owner.CancelCyberspaceConnection()
+	ReturnToBody()

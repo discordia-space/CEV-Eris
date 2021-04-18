@@ -1,4 +1,4 @@
-/datum/subroutine
+/datum/subroutine //this not forced to ICES cuz can be used by programs
 	var/Name
 	var/Description
 	var/IsBroken = FALSE

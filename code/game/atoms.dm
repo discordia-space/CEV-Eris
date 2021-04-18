@@ -635,7 +635,7 @@ its easier to just keep the beam vertical.
 		var/obj/O = o
 		O.show_message(message,2,deaf_message,1)
 
-/atom/movable/proc/dropInto(var/atom/destination)
+/atom/movable/proc/dropInto(atom/destination) // Drops item on turf of destination
 	while(istype(destination))
 		var/atom/drop_destination = destination.onDropInto(src)
 		if(!istype(drop_destination) || drop_destination == destination)
@@ -646,11 +646,16 @@ its easier to just keep the beam vertical.
 		destination = drop_destination
 	return forceMove(null)
 
-/atom/proc/onDropInto(var/atom/movable/AM)
+/atom/proc/onDropInto(atom/movable/AM)
 	return // If onDropInto returns null, then dropInto will forceMove AM into us.
 
-/atom/movable/onDropInto(var/atom/movable/AM)
+/atom/movable/onDropInto(atom/movable/AM)
 	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.
+
+/atom/movable/proc/relocateTo(atom/target) // Safely move in target
+	dropInto(target)
+	if(!isturf(target) && loc != target)
+		return forceMove(target)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
 	if(loc)

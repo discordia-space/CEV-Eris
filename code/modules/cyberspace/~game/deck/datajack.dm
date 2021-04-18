@@ -123,7 +123,7 @@
 			UnRegisterMovementEventsFor()
 			if(connection)
 				DisconnectFromDeck()
-			forceMove(owner)
+			relocateTo(owner)
 			visible && visible_message(SPAN_WARNING("[src] has retracted to [owner.loc]."))
 			return TRUE
 	proc
@@ -134,11 +134,11 @@
 	proc
 		ConnectToDeck(obj/item/weapon/computer_hardware/deck/_deck)
 			connection = _deck
-			dropInto(_deck)
-			forceMove(_deck)
+			return relocateTo(connection)
 
 		DisconnectFromDeck()
 			UnRegisterMovementEventsFor(connection)
 			connection.DisconnectCable()
+			dropInto(connection)
 			connection = null
 			
