@@ -135,12 +135,10 @@
 	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
 		breakouttime /= 2
 
-	visible_message(
-		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
-		)
-
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		visible_message(
+		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)"))
 		if(!handcuffed || buckled)
 			return
 		visible_message(
@@ -148,6 +146,21 @@
 			SPAN_NOTICE("You successfully remove \the [handcuffed].")
 			)
 		drop_from_inventory(handcuffed)
+
+	if(istype(buckled, /obj/item/weapon/beartrap))
+		breakouttime /= 2
+		visible_message(
+		SPAN_DANGER("\The [src] attempts to remove \the [HC] using the trap!"),
+		SPAN_WARNING("You attempt to remove \the [HC] using the trap. (This will take around [breakouttime / 10] seconds and you need to stand still)")
+		)
+		if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
+			if(!handcuffed)
+				return
+			visible_message(
+			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
+			SPAN_NOTICE("You successfully remove \the [handcuffed].")
+			)
+			drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
 	if(!can_click())

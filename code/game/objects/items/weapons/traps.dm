@@ -48,6 +48,11 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	if (!user)
 		return //No user, or too far away
+	
+	if(iscarbon(user)) //check if mob is carbon as handcuffed only applies to carbon mobs
+		var/mob/living/carbon/C = user //set carbon to user
+		if(C.handcuffed)
+			return//you instantly fail if you are handcuffed and trapped, this way you will loose the handcuffs first instead of repeatedly snapping your torso in half
 
 	//How hard will this be? The chance of failure
 	var/difficulty = base_difficulty
