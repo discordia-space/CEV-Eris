@@ -28,7 +28,7 @@
 		var/mob/living/carbon/human/H = i
 		H.stats.removePerk(/datum/perk/sanityboost)
 	currently_affected = null
-	..()
+	return ..()
 
 /obj/machinery/power/nt_obelisk/attack_hand(mob/user)
 	return
