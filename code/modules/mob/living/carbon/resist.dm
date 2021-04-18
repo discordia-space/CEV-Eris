@@ -148,14 +148,6 @@
 			SPAN_NOTICE("You successfully remove \the [handcuffed].")
 			)
 		drop_from_inventory(handcuffed)
-	if(src.stats.getStat(STAT_ROB) > 50)
-		if(!handcuffed || buckled)
-			return
-		visible_message(
-			SPAN_DANGER("\The [src] manages to rip their [handcuffed] apart!"),
-			SPAN_NOTICE("You successfully tear your handcuffs off.")
-			)
-		drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
 	if(!can_click())
