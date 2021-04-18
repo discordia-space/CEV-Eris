@@ -141,11 +141,19 @@
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-		if(!handcuffed || buckled)
+		if(!handcuffed || buckled || src.stats.getStat(STAT_ROB) < 50)
 			return
 		visible_message(
 			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
 			SPAN_NOTICE("You successfully remove \the [handcuffed].")
+			)
+		drop_from_inventory(handcuffed)
+	if(src.stats.getStat(STAT_ROB) > 50)
+		if(!handcuffed || buckled)
+			return
+		visible_message(
+			SPAN_DANGER("\The [src] manages to rip their [handcuffed] apart!"),
+			SPAN_NOTICE("You successfully tear your handcuffs off.")
 			)
 		drop_from_inventory(handcuffed)
 
@@ -187,6 +195,8 @@
 /mob/living/carbon/proc/can_break_cuffs()
 	if(HULK in mutations)
 		return 1
+	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
+		return 1
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
@@ -203,7 +213,10 @@
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" )) //Hulks like bragging.
+		else
+			say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ))
 
 		qdel(handcuffed)
 		handcuffed = null
@@ -224,7 +237,10 @@
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		else
+			say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null
