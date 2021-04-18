@@ -9,7 +9,7 @@
 	canhear_range = 2
 	flags = CONDUCT | NOBLOODY
 	var/number = 0
-	var/area/linked_area = null
+	var/area/linked_area
 
 /obj/item/device/radio/intercom/custom
 	name = "station intercom (Custom)"
