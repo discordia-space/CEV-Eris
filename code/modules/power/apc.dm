@@ -187,6 +187,7 @@
 
 /obj/machinery/power/apc/Destroy()
 	update()
+	SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED, src)
 	area.apc = null
 	area.power_light = 0
 	area.power_equip = 0
