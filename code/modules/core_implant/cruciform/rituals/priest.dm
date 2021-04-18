@@ -298,7 +298,6 @@
 				true_offerings.Add(I)
 
 		if(num_item < req_num)
-			var/obj/item = path
 			break
 		else
 			num_check++
