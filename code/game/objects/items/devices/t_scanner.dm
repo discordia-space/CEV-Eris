@@ -51,7 +51,7 @@
 	var/datum/event_source //When listening for movement, this is the source we're listening to
 	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
 
-/obj/item/device/t_scanner/update_icon()
+/obj/item/device/t_scanner/on_update_icon()
 	icon_state = "t-ray[enabled]"
 
 /******************************************************
@@ -126,7 +126,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	var/turf/center = get_turf(loc)
 	if(!center) return
 
-	for(var/turf/T in trange(scan_range, center))
+	for(var/turf/T in RANGE_TURFS(scan_range, center))
 		for(var/obj/O in T.contents)
 			if(O.level != BELOW_PLATING_LEVEL)
 				continue

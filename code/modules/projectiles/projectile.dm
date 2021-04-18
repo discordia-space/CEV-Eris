@@ -109,14 +109,22 @@
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
 
+/obj/item/projectile/multiply_projectile_agony(newmult)
+	agony = initial(agony) * newmult
+
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
-			irradiate += damage_type[IRRADIATE]
+			irradiate += newdamages[IRRADIATE]
 			continue
 		damage_types[damage_type] += newdamages[damage_type]
+
+/obj/item/projectile/proc/adjust_ricochet(noricochet)
+	if(noricochet)
+		can_ricochet = FALSE
+		return
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0

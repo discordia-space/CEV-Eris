@@ -317,7 +317,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/lrifle/pk
-	name = "PK munitions box (.30 Rifle)"
+	name = "LMG munitions box (.30 Rifle)"
 	icon_state = "pk_box"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -328,7 +328,7 @@
 	max_ammo = 80
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammobox/lrifle/pk/update_icon()
+/obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
 		icon_state = "pk_box-0"
 		return
@@ -400,6 +400,10 @@
 	multiple_sprites = 1
 	rarity_value = 6.66
 
+/obj/item/ammo_magazine/slpistol/empty
+	icon_state = "slpistol"
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/slpistol/practice
 	name = "speed loader (.35 Special practice)"
 	icon_state = "slpistol_p"
@@ -430,6 +434,10 @@
 	multiple_sprites = 1
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
+
+/obj/item/ammo_magazine/slmagnum/empty
+	icon_state = "slmagnum"
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/slmagnum/practice
 	name = "speed loader (.40 Magnum practice)"
@@ -494,7 +502,7 @@
 	name = "ammo drum (.50 slug)"
 	icon_state = "m12_slug"
 	mag_type = MAGAZINE
-	mag_well =  MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)

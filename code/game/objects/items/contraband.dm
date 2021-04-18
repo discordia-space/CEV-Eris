@@ -4,7 +4,7 @@
 /obj/item/weapon/storage/pill_bottle/happy
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
-	spawn_tags = SPAWN_TAG_DRUG_PILL_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 	rarity_value = 25
 
 /obj/item/weapon/storage/pill_bottle/happy/populate_contents()
@@ -19,7 +19,7 @@
 /obj/item/weapon/storage/pill_bottle/zoom
 	name = "bottle of Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
-	spawn_tags = SPAWN_TAG_DRUG_PILL_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 	rarity_value = 25
 
 /obj/item/weapon/storage/pill_bottle/zoom/populate_contents()
@@ -44,8 +44,8 @@
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)
 
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random/New()
-	..()
+/obj/item/weapon/reagent_containers/glass/beaker/vial/random/Initialize()
+	. = ..()
 
 	var/list/picked_reagents = pickweight(random_reagent_list)
 	for(var/reagent in picked_reagents)

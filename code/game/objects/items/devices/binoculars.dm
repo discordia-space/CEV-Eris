@@ -1,5 +1,4 @@
 /obj/item/device/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
 	icon_state = "binoculars"

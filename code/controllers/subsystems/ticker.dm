@@ -289,11 +289,11 @@ SUBSYSTEM_DEF(ticker)
 	//Now animate the cinematic
 	sleep(30)
 
-	flick("intro_nuke", cinematic)
+	FLICK("intro_nuke", cinematic)
 
 	sleep(30)
 
-	flick("ship_explode_fade_red", cinematic)
+	FLICK("ship_explode_fade_red", cinematic)
 
 	sleep(15)
 
@@ -502,7 +502,7 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
 	GLOB.storyteller.declare_completion()//To declare normal completion.
-
+	scoreboard()//scores
 	//Ask the event manager to print round end information
 	SSevent.RoundEnd()
 

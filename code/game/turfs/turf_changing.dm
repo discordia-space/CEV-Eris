@@ -72,7 +72,7 @@
 		T.levelupdate()
 		. =  T
 
-	for(var/turf/neighbour in trange(1, src))
+	for(var/turf/neighbour in RANGE_TURFS(1, src))
 		if (istype(neighbour, /turf/space))
 			var/turf/space/SP = neighbour
 			SP.update_starlight()
@@ -102,7 +102,7 @@
 	src.set_dir(other.dir)
 	src.icon_state = other.icon_state
 	src.icon = other.icon
-	src.overlays = other.overlays.Copy()
+	src.set_overlays(other.overlays.Copy())
 	src.underlays = other.underlays.Copy()
 	src.opacity = other.opacity
 	if(hasvar(src, "blocks_air"))

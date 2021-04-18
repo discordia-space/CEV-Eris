@@ -82,7 +82,7 @@
 				qdel(src)
 	return
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/on_update_icon()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -224,10 +224,10 @@
 	slot_flags = SLOT_EARS
 
 /obj/effect/foam_dart_dummy
-	name = ""
+	name = "foam dart"
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "null"
+	icon_state = "foamdart"
 	anchored = TRUE
 	density = FALSE
 

@@ -61,9 +61,10 @@ SUBSYSTEM_DEF(supply)
 			SEND_SIGNAL(shuttle, COMSIG_SHUTTLE_SUPPLY, AM)
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
-	for(var/a in exports)
-		var/datum/export/E = a
+	for(var/A in exports)
+		var/datum/export/E = A
 		var/export_text = E.total_printout()
+		GLOB.supply_profit += E.cost
 		if(!export_text)
 			continue
 
@@ -111,7 +112,7 @@ SUBSYSTEM_DEF(supply)
 
 		var/datum/supply_order/SO = S
 		var/datum/supply_pack/SP = SO.object
-
+		GLOB.supply_profit -= SP.cost
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 
@@ -151,7 +152,22 @@ SUBSYSTEM_DEF(supply)
 			if(!typepath)
 				continue
 
-			var/atom/B2 = new typepath(A)
+			var/atom/movable/B2
+			if(ispath(typepath, /obj/spawner))
+				var/obj/randomcatcher/CATCH = new /obj/randomcatcher
+				B2 = CATCH.get_item(typepath)
+				B2.forceMove(A)
+			else
+				B2 = new typepath(A)
+			B2.surplus_tag = TRUE
+			var/list/n_contents = B2.GetAllContents()
+			for(var/atom/movable/I in n_contents)
+				I.surplus_tag = TRUE
+			/* So you can't really just buy crates, then instantly resell them for a potential profit depending on if the crate hasn't had its cost scaled properly.
+			*  Yes, there are limits, I could itterate over every content of the item too and set its surplus_tag to TRUE
+			*  But that doesn't work with stackables when you can just make a new stack, and gets comp-expensive and not worth it just to spite people getting extra numbers
+			*/
+
 			if(SP.amount && B2:amount) B2:amount = SP.amount
 			if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 

@@ -46,17 +46,17 @@
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
 	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
-
 	caliber = CAL_DART
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	recoil_buildup = 0
-	silenced = 1
+	silenced = TRUE
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0
 	mag_well = MAG_WELL_DART
+	rarity_value = 10
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.
@@ -74,7 +74,7 @@
 			beakers += B
 	update_icon()
 
-/obj/item/weapon/gun/projectile/dartgun/update_icon()
+/obj/item/weapon/gun/projectile/dartgun/on_update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "dartgun-[round(ammo_magazine.stored_ammo.len,2)]"
@@ -93,7 +93,7 @@
 	//if (!..(user, 2))
 	//	return
 	..()
-	if (beakers.len)
+	if(beakers.len)
 		to_chat(user, SPAN_NOTICE("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
@@ -183,7 +183,7 @@
 		if(index <= beakers.len)
 			if(beakers[index])
 				var/obj/item/weapon/reagent_containers/glass/beaker/B = beakers[index]
-				to_chat(usr,  "You remove [B] from [src].")
+				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
 				B.loc = get_turf(src)

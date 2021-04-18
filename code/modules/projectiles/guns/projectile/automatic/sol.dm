@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
-	rarity_value = 24
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 2
 	penetration_multiplier = 1.1
@@ -24,8 +23,10 @@
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		list(mode_name="3-round bursts", burst=3, fire_delay = 3, move_delay=4, icon="burst", damage_multiplier = 0.05)
+		BURST_3_ROUND
 		)
+
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)
@@ -34,14 +35,14 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	overlays += "sol_[ratio]"
+	add_overlays("sol_[ratio]")
 
-/obj/item/weapon/gun/projectile/automatic/sol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/sol/on_update_icon()
 	..()
 
-	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
-	set_item_state(ammo_magazine ?  "-full" : "", back = TRUE)
-	overlays.Cut()
+	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")
+	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
+	cut_overlays()
 	update_charge()
 
 /obj/item/weapon/gun/projectile/automatic/sol/generate_guntags()

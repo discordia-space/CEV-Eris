@@ -24,6 +24,7 @@
 	name = "Chameleon Kit"
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/syndie_kit/chameleon
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/voice
 	name = "Voice Changer"
@@ -46,6 +47,6 @@
     path = /obj/item/weapon/gun_upgrade/muzzle/silencer
 
 /datum/uplink_item/item/stealth_items/killer
-    name = "Syndicate \"Proffesional Killer\" scope"
+    name = "Syndicate \"Profesional Killer\" scope"
     item_cost = 2
     path = /obj/item/weapon/gun_upgrade/scope/killer

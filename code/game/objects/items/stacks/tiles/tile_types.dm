@@ -191,6 +191,17 @@
 /*
  * Steel
  */
+
+ // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
+/obj/item/stack/tile/floor/steel/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/stack/tile/floor/cyborg))
+		var/obj/item/stack/tile/floor/cyborg/C = I
+		C.stacktype = src.type
+		C.build_type = src.type
+		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
+	else
+		..()
+
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
 	singular_name = "steel floor tile"

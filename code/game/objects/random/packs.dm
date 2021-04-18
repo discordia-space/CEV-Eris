@@ -43,7 +43,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/tool = 20,
 					/obj/spawner/tool_upgrade = 30,
 					/obj/spawner/toolbox = 5,
-					/obj/spawner/voidsuit = 3,
+					/obj/spawner/voidsuit = 2,
+					/obj/spawner/armor_parts = 4,
 					/obj/spawner/gun_upgrade = 2
 				))
 
@@ -78,7 +79,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/ammo/ihs = 15,
 					/obj/spawner/ammo/lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
-					/obj/spawner/cloth/holster = 8
+					/obj/spawner/cloth/holster = 8,
+					/obj/spawner/gun_parts = 20
 				))
 
 /obj/spawner/pack/gun_loot/low_chance

@@ -6,7 +6,10 @@
 		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
 		if(!IO.can_assign(src))
 			continue
-		valid_objectives[npath] = 10/IO.rarity
+		var/multiplier = 10
+		if(!IO.limited_antag && (IO.req_department.len || IO.req_cruciform))
+			multiplier *= 2 //priorize faction objectives
+		valid_objectives[npath] = multiplier/IO.rarity
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
@@ -27,16 +30,16 @@
 	var/desc = "Placeholder Objective"
 	var/datum/mind/owner
 	var/mob/living/carbon/human/mind_holder
-	var/completed = FALSE
-	var/allow_cruciform = TRUE
 	var/units_completed = 0
 	var/units_requested = 1
-	var/based_time = FALSE
+	var/completed = FALSE
 	var/list/req_department = list()
 	var/req_cruciform = FALSE
-	var/insight_reward = 20
+	var/allow_cruciform = TRUE
+	var/based_time = FALSE
 	var/limited_antag = FALSE
 	var/rarity = 1
+	var/insight_reward = 20
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
@@ -58,6 +61,7 @@
 	var/mob/living/carbon/human/H = owner.current
 	H.sanity.give_insight(insight_reward)
 	H.sanity.give_insight_rest(insight_reward/2)
+	update_faction_score()
 	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()
@@ -93,7 +97,7 @@
 			continue
 		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items[faction_item]))
 			continue
-		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && is_neotheology_disciple(H))
 			continue
 		if(!locate(faction_item.type))
 			continue
@@ -109,11 +113,26 @@
 		return FALSE
 	if(!L || !L.mind || (L.mind && player_is_antag(L.mind)))
 		return FALSE
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(!C && req_cruciform)
-		return FALSE
-	if(C && !allow_cruciform)
-		return FALSE
+	if(is_neotheology_disciple(L))
+		if(!allow_cruciform)
+			return FALSE
+	else
+		if(req_cruciform)
+			return FALSE
 	if(req_department.len && (!L.mind.assigned_job || !(L.mind.assigned_job.department in req_department)))
 		return FALSE
 	return TRUE
+
+/datum/individual_objective/proc/update_faction_score()
+	if(owner)
+		owner.individual_objectives_completed++
+	if(req_cruciform || (DEPARTMENT_CHURCH in req_department))
+		GLOB.neotheology_objectives_completed++
+	else if(DEPARTMENT_SECURITY in req_department)
+		GLOB.ironhammer_objectives_completed++
+	else if((DEPARTMENT_SCIENCE in req_department) || (DEPARTMENT_MEDICAL in req_department))
+		GLOB.moebius_objectives_completed++
+	else if(DEPARTMENT_GUILD in req_department)
+		GLOB.guild_objectives_completed++
+	else if(DEPARTMENT_ENGINEERING in req_department)
+		GLOB.technomancer_objectives_completed++

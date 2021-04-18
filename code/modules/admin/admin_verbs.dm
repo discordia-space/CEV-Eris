@@ -28,9 +28,13 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 			if(text2num(text_right) & holder.rights)
 				verbs += admin_verbs[text_right]
 
+		if(check_rights(config.profiler_permission))
+			control_freak = 0 // enable profiler
+
 /client/proc/remove_admin_verbs()
 	for(var/right in admin_verbs)
 		verbs.Remove(admin_verbs[right])
+	control_freak = initial(control_freak)
 
 ADMIN_VERB_ADD(/client/proc/hide_most_verbs, null, FALSE)
 //hides all our hideable adminverbs

@@ -1,4 +1,9 @@
 //CLOTH RANDOM
+/obj/spawner/cloth
+	name = "debug: random cloth"
+	tags_to_spawn = list(SPAWN_CLOTHING)
+	bad_type = /obj/spawner/cloth
+
 /obj/spawner/cloth/masks
 	name = "random mask"
 	desc = "This is a random mask."

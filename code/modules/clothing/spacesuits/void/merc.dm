@@ -59,7 +59,7 @@
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 
-/obj/item/clothing/head/space/void/merc/update_icon()
+/obj/item/clothing/head/space/void/merc/on_update_icon()
 	..()
 	if(on)
 		icon_state = "syndiehelm_on"
@@ -85,7 +85,6 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
-	rarity_value = 160
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE

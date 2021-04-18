@@ -10,13 +10,13 @@
 	max_shells = 7
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	flags =  CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/shotgun
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
 	recoil_buildup = 7
@@ -27,9 +27,12 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	init_firemodes = list(
-		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
-		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
+		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
+		list(mode_name="Both Barrels", mode_desc="Give them the side-by-side", burst=2, icon="burst"),
 		)
+
+	spawn_tags = SPANW_TAG_FS_SHOTGUN
+	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)
@@ -89,9 +92,18 @@
 /obj/item/weapon/gun/projectile/shotgun/bull/proc/update_charge()
 	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
-	overlays += "[ratio]_PW"
+	add_overlays("[ratio]_PW")
 
+/obj/item/weapon/gun/projectile/shotgun/bull/on_update_icon()
+	..()
 
-/obj/item/weapon/gun/projectile/shotgun/bull/update_icon()
-	overlays.Cut()
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if(wielded)
+		itemstring += "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+	cut_overlays()
 	update_charge()

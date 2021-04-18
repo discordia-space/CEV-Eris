@@ -16,7 +16,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Spawn_values
 	bad_type = /obj/item/weapon/cell
-	rarity_value = 3
+	rarity_value = 2
 	spawn_tags = SPAWN_TAG_POWERCELL
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 100
@@ -26,8 +26,8 @@
 	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
-	var/autorecharge_rate = 0.03
-	var/recharge_time = 4 //How often nuclear cells will recharge
+	var/autorecharge_rate = BASE_AUTORECHARGE_RATE//0.03
+	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
@@ -68,7 +68,7 @@
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/update_icon()
+/obj/item/weapon/cell/on_update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
@@ -85,9 +85,9 @@
 	if (charge_status == last_charge_status)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	if (charge_status != null)
-		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
+		add_overlays(image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]"))
 
 	last_charge_status = charge_status
 

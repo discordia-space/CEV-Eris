@@ -5,15 +5,15 @@
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
 	slot_flags = SLOT_BACK | SLOT_BELT
 	fire_sound = 'sound/weapons/Genhit.ogg'
-
 	matter_type = MATERIAL_BIOMATTER
 
 	init_firemodes = list(
-		list(mode_name="clean", projectile_type=/obj/item/weapon/arrow/neotheo/cleansing, icon="stun"),
-		list(mode_name="de-weed", projectile_type=/obj/item/weapon/arrow/neotheo/weedkiller, icon="kill"),
+		list(mode_name="clean", mode_desc="A slippery cleaning foam, perfect for annoying others", projectile_type=/obj/item/weapon/arrow/neotheo/cleansing, icon="stun"),
+		list(mode_name="de-weed", mode_desc="Antifungal, Antifloral, all round Herbicide", projectile_type=/obj/item/weapon/arrow/neotheo/weedkiller, icon="kill"),
 	)
 	projectile_cost = 0.5
 	projectile_type = /obj/item/weapon/arrow/neotheo/cleansing
+	spawn_blacklisted = TRUE
 
 
 /obj/item/weapon/arrow/neotheo

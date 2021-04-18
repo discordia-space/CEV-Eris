@@ -22,6 +22,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.technomancer_faction_item_loss++
 	..()
 
 /obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
@@ -170,8 +171,8 @@
 		else
 			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
-		visible_message("\icon The [src] beeps, \"The [src] need time to cooldown.\".")
+		visible_message("\icon The [src] beeps, \"The [src] needs time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/examine(user)
 	..()
-	to_chat(user, SPAN_NOTICE("The [src] is feeded by [items_count]/[max_count]."))
+	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))

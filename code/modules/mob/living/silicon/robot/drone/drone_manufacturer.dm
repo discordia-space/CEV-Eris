@@ -75,7 +75,7 @@
 
 	announce_ghost_joinleave(player, 0, "They have taken control over a maintenance drone.")
 	visible_message("\The [src] churns and grinds as it lurches into motion, disgorging a shiny new drone after a few moments.")
-	flick("h_lathe_leave",src)
+	FLICK("h_lathe_leave",src)
 
 	time_last_drone = world.time
 	if(player.mob && player.mob.mind) player.mob.mind.reset()

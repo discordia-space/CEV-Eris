@@ -120,7 +120,7 @@
 	if(allow_spacemove())
 		return TRUE
 
-	for(var/turf/simulated/T in trange(1,src))
+	for(var/turf/simulated/T in RANGE_TURFS(1,src))
 		if(T.density)
 			if(check_shoegrip(FALSE))
 				return TRUE
@@ -132,7 +132,7 @@
 	if(allow_spacemove()) //Checks for active jetpack
 		return TRUE
 
-	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"
+	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //Robots get "magboots"
 		if(T.density)
 			return TRUE
 

@@ -251,7 +251,7 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
+			W.add_overlays(image('icons/effects/effects.dmi',icon_state = "#673910"))
 			remove_self(5)
 	return TRUE
 
@@ -525,7 +525,7 @@
 		if(heart)
 			heart.damage += 0.5
 			if(prob(30))
-				to_chat(H, SPAN_DANGER("Your heart twitching insane!"))
+				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
 		if(H.stat == DEAD)
 			H.resuscitate()
 

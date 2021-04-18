@@ -300,6 +300,7 @@
 /obj/item/weapon/tank/jetpack/rig
 	name = "maneuvring jets"
 	var/obj/item/weapon/rig/holder
+	spawn_tags = null
 
 //The rig jetpack uses the suit's gastank, this is set during the install proc for the rig module
 

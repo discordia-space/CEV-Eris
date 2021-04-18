@@ -12,20 +12,21 @@
 // -----------------------------
 /obj/item/weapon/storage/secure
 	name = "secstorage"
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_SMALL
+	max_storage_space = DEFAULT_NORMAL_STORAGE
+	bad_type = /obj/item/weapon/storage/secure
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
 	var/icon_opened = "secure0"
 	var/locked = 1
 	var/code = ""
-	var/l_code = null
+	var/l_code
 	var/l_set = 0
 	var/l_setshort = 0
 	var/l_hacking = 0
 	var/emagged = 0
 	var/open = 0
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_SMALL
-	max_storage_space = DEFAULT_NORMAL_STORAGE
 
 /obj/item/weapon/storage/secure/examine(mob/user)
 	if(..(user, 1))
@@ -104,15 +105,15 @@
 				src.l_set = 1
 			else if ((src.code == src.l_code) && (src.emagged == 0) && (src.l_set == 1))
 				src.locked = 0
-				src.overlays = null
-				overlays += image('icons/obj/storage.dmi', icon_opened)
+				src.set_overlays(null)
+				add_overlays(image('icons/obj/storage.dmi', icon_opened))
 				src.code = null
 			else
 				src.code = "ERROR"
 		else
 			if ((href_list["type"] == "R") && (src.emagged == 0) && (!src.l_setshort))
 				src.locked = 1
-				src.overlays = null
+				src.set_overlays(null)
 				src.code = null
 				src.close(usr)
 			else
@@ -129,10 +130,10 @@
 /obj/item/weapon/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
 	if(!emagged)
 		emagged = 1
-		src.overlays += image('icons/obj/storage.dmi', icon_sparking)
+		src.add_overlays(image('icons/obj/storage.dmi', icon_sparking))
 		sleep(6)
-		src.overlays = null
-		overlays += image('icons/obj/storage.dmi', icon_locking)
+		src.set_overlays(null)
+		add_overlays(image('icons/obj/storage.dmi', icon_locking))
 		locked = 0
 		to_chat(user, (feedback ? feedback : "You short out the lock of \the [src]."))
 		return 1

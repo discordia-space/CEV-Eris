@@ -107,6 +107,10 @@
 		return 1
 	if(locate(/obj/structure/low_wall) in get_turf(mover))
 		return 1
+	if(isliving(mover))
+		var/mob/living/L = mover
+		if(L.weakened)
+			return 1
 	return ..()
 
 
@@ -169,8 +173,8 @@
 
 
 //Icon procs.mostly copied from tables
-/obj/structure/low_wall/update_icon()
-	overlays.Cut()
+/obj/structure/low_wall/on_update_icon()
+	cut_overlays()
 
 	var/image/I
 
@@ -178,7 +182,7 @@
 	for(var/i = 1 to 4)
 		I = image(icon, "[icon_state]_[connections[i]]", dir = 1<<(i-1))
 		I.color = wall_color
-		overlays += I
+		add_overlays(I)
 
 
 	for (var/obj/structure/window/W in loc)
@@ -192,7 +196,7 @@
 		I = image(icon, "[icon_state]_over_[wall_connections[i]]", dir = 1<<(i-1))
 		I.color = wall_color
 		I.layer = ABOVE_WINDOW_LAYER
-		overlays += I
+		add_overlays(I)
 
 
 
@@ -241,7 +245,7 @@
 			for(var/obj/structure/low_wall/T in oview(src, 1))
 				T.update_connections()
 
-			for(var/turf/simulated/wall/T in trange(1, src) - src)
+			for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
 				T.update_connections()
 		return
 
@@ -283,7 +287,7 @@
 	var/list/connected_cardinals = list()
 
 	//Now we loop through all the full walls near us. Everything here automatically meets condition 1
-	for(var/turf/simulated/wall/T in trange(1, src) - src)
+	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
 		var/T_dir = get_dir(src, T)
 
 		//If this wall is cardinal to us, it meets condition 2a and passes

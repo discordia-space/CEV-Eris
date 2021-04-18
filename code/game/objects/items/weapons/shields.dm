@@ -31,7 +31,9 @@
 
 /obj/item/weapon/shield
 	name = "shield"
+	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 0, bio = 0, rad = 0)
 	var/base_block_chance = 50
+	var/slowdown_time = 1
 
 /obj/item/weapon/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
@@ -47,6 +49,13 @@
 
 /obj/item/weapon/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
+
+/obj/item/weapon/shield/attack(mob/M, mob/user)
+	if(isliving(M))
+		var/mob/living/L = M
+		if(L.slowdown < slowdown_time * 3)
+			L.slowdown += slowdown_time
+	return ..()
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -193,12 +202,11 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/shield/energy/update_icon()
+/obj/item/weapon/shield/energy/on_update_icon()
 	icon_state = "eshield[active]"
 	update_wear_icon()
 	if(active)
 		set_light(1.5, 1.5, COLOR_LIGHTING_BLUE_BRIGHT)
 	else
 		set_light(0)
-
 

@@ -102,7 +102,7 @@
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	var/shielded = 0
 	var/b_loss
@@ -1016,6 +1016,12 @@ var/list/rank_prefix = list(\
 	data["desires"] = sanity.desires
 	data["rest"] = sanity.resting
 	data["insight_rest"] = sanity.insight_rest
+
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C)
+		data["cruciform"] = TRUE
+		data["righteous_life"] = C.righteous_life
+
 	return data
 
 /mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -1185,9 +1191,9 @@ var/list/rank_prefix = list(\
 		for(var/tag in species.has_limbs)
 			BM = Pref.get_modification(tag)
 			var/datum/organ_description/OD = species.has_limbs[tag]
-			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ_base)
-			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
-				BM = PBM
+//			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ_base)
+//			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
+//				BM = PBM
 			if(BM.is_allowed(tag, Pref, src))
 				BM.create_organ(src, OD, Pref.modifications_colors[tag])
 			else
@@ -1597,17 +1603,25 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
+	var/obj/item/organ/internal/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/brain_organ = random_organ_by_process(BP_BRAIN)
 
-	if(!is_asystole() && has_organ(OP_HEART, check_usablility = TRUE) && has_organ(BP_BRAIN, check_usablility = TRUE))
+	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
 		return 0
 
 	if(world.time >= (timeofdeath + NECROZTIME))
 		return 0
 
-	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
 	var/oxyLoss = getOxyLoss()
-	if(oxyLoss > 40)
-		setOxyLoss(40)
+	if(oxyLoss > 20)
+		setOxyLoss(20)
+
+	if(health <= (HEALTH_THRESHOLD_DEAD - oxyLoss))
+		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life!"))
+		timeofdeath = 0
+		return 0
+
+	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
 	pulse = PULSE_NORM
 	handle_pulse()
 	timeofdeath = 0

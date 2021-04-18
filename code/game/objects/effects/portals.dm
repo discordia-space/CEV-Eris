@@ -7,13 +7,13 @@
 	density = TRUE
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
-	var/atom/target = null
+	var/atom/target
 	anchored = TRUE
 	var/lifetime = 0
 	var/birthtime = 0
 	var/next_teleport
 	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
-	var/entropy_value = 3
+	var/entropy_value = 4
 
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
@@ -52,7 +52,7 @@ var/list/portal_cache = list()
 		I1.Blend(I2,ICON_MULTIPLY)
 		portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"] = I1 //And cache it!
 
-	overlays += portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"]
+	add_overlays(portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"])
 
 
 
@@ -140,7 +140,7 @@ var/list/portal_cache = list()
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
 
-/obj/effect/portal/wormhole/update_icon()
+/obj/effect/portal/wormhole/on_update_icon()
 	if (failchance > 0)
 		icon_state = "wormhole_unstable"
 		desc = "It is whirling violently. Going into this thing might be a bad idea."
@@ -182,10 +182,12 @@ var/list/portal_cache = list()
 	mask = "portal_mask"
 	failchance = 0
 	admin_announce_new = FALSE
+	entropy_value = 50
 	var/teleportations_left
 
 /obj/effect/portal/wormhole/rift/New(loc, exit, msg_admins=TRUE)
 	teleportations_left = rand(3, 10)
+	entropy_value = round(entropy_value/teleportations_left)
 	..(loc, 0, exit)
 	deltimer(lifetime)
 	if(msg_admins)
@@ -218,4 +220,4 @@ var/list/portal_cache = list()
 		P.teleportations_left -= 1
 		close()
 
-/obj/effect/portal/wormhole/update_icon()
+/obj/effect/portal/wormhole/on_update_icon()

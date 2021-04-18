@@ -214,7 +214,7 @@
 
 	find_control_computer()
 
-/obj/machinery/cryopod/update_icon()
+/obj/machinery/cryopod/on_update_icon()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_1"
 	else
@@ -514,7 +514,7 @@
 		time_entered = world.time
 		if(ishuman(occupant) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
-			H.in_stasis = 1
+			H.EnterStasis()
 		new_occupant.forceMove(src)
 
 		if (notifications)
@@ -532,7 +532,7 @@
 			occupant.reset_view(null)
 			if(ishuman(occupant) && applies_stasis)
 				var/mob/living/carbon/human/H = occupant
-				H.in_stasis = 0
+				H.ExitStasis()
 		occupant = null
 
 	update_icon()

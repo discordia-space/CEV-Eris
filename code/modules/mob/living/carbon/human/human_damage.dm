@@ -67,16 +67,12 @@
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(BP_IS_ROBOTIC(O))
-			continue //robot limbs don't count towards shock and crit
 		amount += O.brute_dam
 	return amount
 
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(BP_IS_ROBOTIC(O))
-			continue //robot limbs don't count towards shock and crit
 		amount += O.burn_dam
 	return amount
 
@@ -106,7 +102,7 @@
 			O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(-amount, 0, internal=0, robo_repair=(BP_IS_ROBOTIC(O)))
+			O.heal_damage(-amount, 0, robo_repair=(BP_IS_ROBOTIC(O)))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
@@ -119,7 +115,7 @@
 			O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 		else
 			//if you don't want to heal robot organs, they you will have to check that yourself before using this proc.
-			O.heal_damage(0, -amount, internal=0, robo_repair=(BP_IS_ROBOTIC(O)))
+			O.heal_damage(0, -amount, robo_repair=(BP_IS_ROBOTIC(O)))
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 

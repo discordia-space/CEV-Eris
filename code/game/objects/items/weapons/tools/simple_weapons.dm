@@ -141,7 +141,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = WEAPON_FORCE_BRUTAL
+	force = WEAPON_FORCE_DANGEROUS * 1.5
 	armor_penetration = ARMOR_PEN_MODERATE
 	rarity_value = 35
 
@@ -151,6 +151,7 @@
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"
 	toggleable = TRUE
+	max_upgrades = 1
 
 	suitable_cell = /obj/item/weapon/cell/small
 
@@ -159,7 +160,7 @@
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switched_on_force = WEAPON_FORCE_LETHAL
+	switched_on_force = WEAPON_FORCE_BRUTAL
 	rarity_value = 60
 	spawn_blacklisted = TRUE
 
@@ -174,14 +175,14 @@
 	embed_mult = initial(embed_mult)
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 
-/obj/item/weapon/tool/sword/katana/nano/update_icon()
+/obj/item/weapon/tool/sword/katana/nano/on_update_icon()
 	..()
 	if(cell)
-		overlays += "[icon_state]_cell"
+		add_overlays("[icon_state]_cell")
 	if(switched_on)
-		overlays += "[icon_state]_power_on"
+		add_overlays("[icon_state]_power_on")
 	else
-		overlays += "[icon_state]_power_off"
+		add_overlays("[icon_state]_power_off")
 
 //Flails
 /obj/item/weapon/tool/chainofcommand

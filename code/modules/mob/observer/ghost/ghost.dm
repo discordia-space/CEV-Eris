@@ -43,11 +43,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
-			overlays = H.overlays_standing
+			set_overlays(H.overlays_standing)
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			set_overlays(body.overlays)
 
 		alpha = 127
 
@@ -385,7 +385,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(bootime > world.time) return
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
-		L.flicker()
+		L.flick_light()
 		bootime = world.time + 600
 		return
 	//Maybe in the future we can add more <i>spooky</i> code here!

@@ -81,9 +81,9 @@
 		W.forceMove(src)
 		update_icon()
 
-/obj/item/glass_jar/update_icon() // Also updates name and desc
+/obj/item/glass_jar/on_update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 	switch(contains)
 		if(0)
 			name = initial(name)

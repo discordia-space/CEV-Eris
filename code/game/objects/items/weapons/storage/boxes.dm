@@ -43,7 +43,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/storage/box/update_icon()
+/obj/item/weapon/storage/box/on_update_icon()
 	. = ..()
 	if(illustration)
 		cut_overlays()
@@ -233,6 +233,13 @@
 	name = "box of practice shells"
 	spawn_type = /obj/item/ammo_casing/shotgun/practice/prespawned
 	rarity_value = 50
+
+/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
+	name = "box of incendiary shells"
+	spawn_type = /obj/item/ammo_casing/shotgun/incendiary/prespawned
+	rarity_value = 100
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of .60 Anti Material shells"
@@ -652,11 +659,13 @@
 
 /obj/item/weapon/storage/box/happy_meal
 	name = "McRonalds' Robust Meal"
-	desc = "This is typical Robust Meal from McRonalds... And you almost feel smell of delicious food from it. Wait! It must have toy inside! Unpack it now!"
+	desc = "This is typical Robust Meal from McRonalds.\
+	And you almost feel smell of delicious food from it.\
+	Wait! It must have toy inside! Unpack it now!"
 	icon_state = "happy_meal"
 
 /obj/item/weapon/storage/box/happy_meal/New()
-	..()
+	. = ..()
 	var/list/things2spawn = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake,
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,

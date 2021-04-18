@@ -32,7 +32,7 @@
 		)
 	var/list/lines = list("Ore deposits found at [source.x], [source.y]:")
 
-	for(var/turf/simulated/T in trange(2, source))
+	for(var/turf/simulated/T in RANGE_TURFS(2, source))
 		if(!T.has_resources)
 			continue
 
@@ -67,7 +67,7 @@
 /proc/mining_scan_action_precise(turf/source, mob/user)
 	var/list/lines = list("Ore deposits found at [source.x], [source.y]:")
 	var/list/metals = list()
-	for(var/turf/simulated/T in trange(2, source))
+	for(var/turf/simulated/T in RANGE_TURFS(2, source))
 		if(!T.has_resources)
 			continue
 

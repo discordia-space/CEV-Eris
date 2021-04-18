@@ -25,6 +25,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.moebius_faction_item_loss++
 	..()
 
 /obj/item/weapon/reagent_containers/enricher/attackby(obj/item/I, mob/living/user, params)

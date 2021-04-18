@@ -121,27 +121,26 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
 	)
 	related_stats = list(STAT_COG)
-	name_craft_menu = "Folders"
 
 /datum/craft_recipe/folder/blue
 	name = "blue folder"
 	result = /obj/item/weapon/folder/blue
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/folder/red
 	name = "red folder"
 	result = /obj/item/weapon/folder/red
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/folder/cyan
 	name = "cyan folder"
 	result = /obj/item/weapon/folder/cyan
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/folder/yellow
 	name = "yellow folder"
 	result = /obj/item/weapon/folder/yellow
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/bandage
 	name = "bandages"
@@ -229,8 +228,6 @@
 	)
 	related_stats = list(STAT_MEC)
 
-	name_craft_menu = "exosuit drill heads"
-
 /datum/craft_recipe/drill_head/plasteel
 	name = "plasteel drill head"
 	result = /obj/item/weapon/material/drill_head/plasteel
@@ -238,7 +235,7 @@
 		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/drill_head/diamond
 	name = "diamond drill head"
@@ -247,7 +244,7 @@
 		list(CRAFT_MATERIAL, 6, MATERIAL_DIAMOND, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/pipe
 	name = "Smoking pipe"
@@ -257,7 +254,6 @@
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
-
 /datum/craft_recipe/makeshift_leg
 	name = "Makeshift prosthetic left leg"
 	result = /obj/item/organ/external/robotic/makeshift/l_leg
@@ -296,3 +292,11 @@
 	name = "Makeshift prosthetic right arm"
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
 
+/datum/craft_recipe/guns_craft_frame
+	name = "Gun assembly"
+	result = /obj/item/craft_frame/guns
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 10)
+	)
+	related_stats = list(STAT_MEC)

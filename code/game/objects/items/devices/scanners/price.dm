@@ -21,7 +21,7 @@
 		scan_data = price_scan_results(target)
 	else
 		scan_data += "<br>[price_scan_results(target)]"
-	flick("reader1", src)
+	FLICK("reader1", src)
 	show_results(user)
 
 /obj/item/device/scanner/price/afterattack(atom/A, mob/user, proximity)
@@ -35,10 +35,9 @@
 
 	if(price)
 		data += "<span class='notice'>Scanned [target], value: <b>[price]</b> \
-			credits[target.contents.len ? " (contents included)" : ""].</span>"
+			credits[target.contents.len ? " (contents included)" : ""]. [target.surplus_tag?"(surplus)":""]</span>"
 	else
 		data += "<span class='warning'>Scanned [target], no export value. \
 			</span>"
-
 	data = jointext(data, "<br>")
 	return data

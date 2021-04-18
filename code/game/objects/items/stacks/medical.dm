@@ -91,7 +91,7 @@
 
 	M.updatehealth()
 
-/obj/item/stack/medical/update_icon()
+/obj/item/stack/medical/on_update_icon()
 	if(QDELETED(src)) //Checks if the item has been deleted
 		return	//If it has, do nothing
 	..()
@@ -194,8 +194,8 @@
 						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -263,8 +263,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
@@ -364,8 +364,8 @@
 			use(used)
 			update_icon()
 	else
-		if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-			if (do_surgery(H,user,src))
+		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+			if (do_surgery(H,user,src, TRUE))
 				return
 		else
 			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -432,8 +432,8 @@
 						else
 							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 		else
-			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
+				if (do_surgery(H,user,src, TRUE))
 					return
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
@@ -519,7 +519,7 @@
 	matter = list(MATERIAL_BIOMATTER = 3)
 	origin_tech = list(TECH_BIO = 4)
 
-/obj/item/stack/medical/advanced/bruise_pack/nt/update_icon()
+/obj/item/stack/medical/advanced/bruise_pack/nt/on_update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 	..()
 
@@ -534,6 +534,6 @@
 	matter = list(MATERIAL_BIOMATTER = 3)
 	origin_tech = list(TECH_BIO = 4)
 
-/obj/item/stack/medical/advanced/ointment/nt/update_icon()
+/obj/item/stack/medical/advanced/ointment/nt/on_update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 	..()

@@ -59,7 +59,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/weapon/reagent_containers/food/drinks/update_icon()
+/obj/item/weapon/reagent_containers/food/drinks/on_update_icon()
 	cut_overlays()
 	if(reagents && reagents.total_volume)
 		if(base_name)
@@ -97,9 +97,8 @@
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
 			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
 		if(!do_after(usr, reagents.total_volume))
-			if(!Adjacent(usr))
-				return
-			standard_splash_mob(src, src)
+			standard_splash_mob(usr, usr)
+			return
 
 		if(!Adjacent(usr))
 			return
@@ -193,7 +192,7 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup/update_icon()
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/on_update_icon()
 	if(reagents && reagents.total_volume)
 		icon_state = "water_cup"
 	else

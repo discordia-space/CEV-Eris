@@ -96,11 +96,11 @@ var/global/excelsior_last_draft = 0
 			energy_gain *= 2
 
 
-/obj/machinery/complant_teleporter/update_icon()
-	overlays.Cut()
+/obj/machinery/complant_teleporter/on_update_icon()
+	cut_overlays()
 
 	if(panel_open)
-		overlays += image("panel")
+		add_overlays(image("panel"))
 
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = "off"
@@ -266,7 +266,7 @@ var/global/excelsior_last_draft = 0
 
 	processing_order = TRUE
 	excelsior_energy = max(excelsior_energy - order_cost, 0)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	spawn(17)
 		complete_order(order_path, amount)
 
@@ -283,7 +283,7 @@ var/global/excelsior_last_draft = 0
 		if(M.target_type == I.type)
 			I.Destroy()
 			M.complete(user)
-			flick("teleporting", src)
+			FLICK("teleporting", src)
 	..()
 
 /obj/machinery/complant_teleporter/attack_hand(mob/user)
@@ -333,7 +333,7 @@ var/global/excelsior_last_draft = 0
 	visible_message("\the [src] blinks, refusing [affecting].")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 /obj/machinery/complant_teleporter/proc/teleport_out(var/mob/living/affecting, var/mob/living/user)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
 	visible_message("\the [src] teleporter closes and [affecting] disapears.")
 	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
@@ -352,7 +352,7 @@ var/global/excelsior_last_draft = 0
 		return
 	processing_order = TRUE
 	use_power(active_power_usage * 10)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	var/mob/observer/ghost/candidate = draft_ghost("Excelsior Conscript", ROLE_BANTYPE_EXCELSIOR, ROLE_EXCELSIOR_REV)
 	if(!candidate)
 		processing_order = FALSE

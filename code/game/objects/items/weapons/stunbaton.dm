@@ -53,7 +53,7 @@
 		if(!cell.check_charge(hitcost))	//do we have enough power for another hit?
 			set_status(FALSE)
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/weapon/melee/baton/on_update_icon()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)

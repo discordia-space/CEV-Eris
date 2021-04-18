@@ -10,7 +10,6 @@
 
 	recoil_buildup = 0.5 //energy weapons have little to no recoil
 
-
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
@@ -31,8 +30,6 @@
 	var/overcharge_rate = 1 //Base overcharge additive rate for the gun
 	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
 	var/overcharge_max = 5
-
-	bad_type = /obj/item/weapon/gun/energy
 
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
@@ -103,7 +100,7 @@
 	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
-/obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
+/obj/item/weapon/gun/energy/on_update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 
@@ -158,6 +155,9 @@
 		data["shots_remaining"] = round(C.charge/charge_cost)
 		data["max_shots"] = round(C.maxcharge/charge_cost)
 	return data
+
+/obj/item/weapon/gun/energy/get_dud_projectile()
+	return new projectile_type
 
 /obj/item/weapon/gun/energy/refresh_upgrades()
 	//refresh our unique variables before applying upgrades too

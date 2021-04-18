@@ -1,10 +1,3 @@
-#define ERR_OK 0
-#define ERR_NOTFOUND "not found"
-#define ERR_NOMATERIAL "no material"
-#define ERR_NOREAGENT "no reagent"
-#define ERR_NOLICENSE "no license"
-#define ERR_PAUSED "paused"
-#define ERR_NOINSIGHT "no insight"
 #define MAX_STAT_VALUE 12
 
 /obj/machinery/autolathe/artist_bench
@@ -18,12 +11,10 @@
 	have_recycling = FALSE
 	have_design_selector = FALSE
 	categories = list("Artwork")
-
+	use_oddities = TRUE
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
 	var/min_mat = 20
 	var/min_insight = 40
-	var/datum/component/inspiration/inspiration
-	var/obj/item/oddity
 
 /obj/machinery/autolathe/artist_bench/ui_data()
 	var/list/data = list()
@@ -58,25 +49,10 @@
 
 		ui.open()
 
-/obj/machinery/autolathe/artist_bench/attackby(obj/item/I, mob/user)
-	GET_COMPONENT_FROM(C, /datum/component/inspiration, I)
-	if(C && C.perk)
-		insert_oddity(user, I)
-		return
-	. = ..()
 
 /obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
 	if(..())
 		return
-
-	usr.set_machine(src)
-
-	if(href_list["oddity_name"])
-		if(oddity)
-			remove_oddity(usr)
-		else
-			insert_oddity(usr)
-		return TRUE
 
 	if(href_list["create_art"])
 		if(ishuman(usr))
@@ -89,47 +65,6 @@
 			create_art(ins_used, H)
 			return TRUE
 		return FALSE
-
-/obj/machinery/autolathe/artist_bench/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/weapon/oddity/inserted_oddity
-	if(oddity)
-		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
-		return
-
-	if(!inserted_oddity && istype(user))
-		inserted_oddity = user.get_active_hand()
-
-	if(!istype(inserted_oddity))
-		return
-
-	if(!Adjacent(user) || !Adjacent(inserted_oddity))
-		return
-
-	GET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
-	if(!C || !C.perk)
-		return
-
-	if(istype(user) && (inserted_oddity in user))
-		user.unEquip(inserted_oddity, src)
-
-	inserted_oddity.forceMove(src)
-	oddity = inserted_oddity
-	inspiration = C
-	to_chat(user, SPAN_NOTICE("You set \the [inserted_oddity] into the model stand in [src]."))
-	SSnano.update_uis(src)
-
-/obj/machinery/autolathe/artist_bench/proc/remove_oddity(mob/living/user)
-	if(!oddity)
-		return
-
-	oddity.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [oddity] from the model stand in [src]."))
-
-	if(istype(user) && Adjacent(user))
-		user.put_in_hands(oddity)
-
-	oddity = null
-	inspiration = null
-	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used, mob/living/carbon/human/user)
 	var/list/LStats = list()
@@ -174,11 +109,11 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-	var/weight_mechanical = 0 + LStats[STAT_MEC]
-	var/weight_cognition = 0 + LStats[STAT_COG]
+//	var/weight_mechanical = 0 + LStats[STAT_MEC]
+//	var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
-	var/weight_toughness = 0 + LStats[STAT_TGH]
+//	var/weight_toughness = 0 + LStats[STAT_TGH]
 	var/weight_vigilance = 0 + LStats[STAT_VIG]
 
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
@@ -191,11 +126,7 @@
 			"magnum" = 8 + weight_vigilance,
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + max(weight_vigilance + weight_cognition),
-			"gyro" = 1 + weight_mechanical,
 			"cap" = 16 + weight_biology,
-			"rocket" = 8 + weight_toughness,
-			"grenade" = 8 + weight_toughness
 		))
 
 		switch(gun_pattern)
@@ -229,38 +160,13 @@
 			//	if("revolver")
 			//		caliber = pick(CAL_357)
 
-			if("sniper")//From sniper.dm, Arbitrary values
-				R.caliber = CAL_ANTIM
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5) //From sniper.dm, Temporary values
-				R.recoil_buildup = 90 + rand(-10,10)
-
-			if("gyro")//From gyropistol.dm, Arbitrary values
-				R.caliber = CAL_70
-				R.recoil_buildup = 0.1 * rand(1,20)
-
 			if("cap")
 				R.caliber = CAL_CAP
 
-			if("rocket")//From RPG.dm, Arbitrary values
-				R.caliber = CAL_ROCKET
-				R.fire_sound = 'sound/effects/bang.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
-				R.recoil_buildup = 15 + rand(-3,3)
-
-			if("grenade")
-				R.caliber = CAL_GRENADE
-				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
-				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
-				R.one_hand_penalty = 15 + rand(-2,3)//from sniper.dm, Temporary values
-				R.recoil_buildup = 20 + rand(-5,5) //from projectile_grenade_launcher.dm
-
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
-				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
-				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
+				list(mode_name="Single shot", mode_desc="fire one barrel at a time", burst=1, icon="semi"),
+				list(mode_name="Triple barrel",mode_desc="fire three barrels at once", burst=3, icon="auto"),
 				)
 		return R
 
@@ -298,7 +204,7 @@
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
-	flick("[initial(icon_state)]_work", src)
+	FLICK("[initial(icon_state)]_work", src)
 	working = TRUE
 	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
 		error = "Lost artist."
@@ -356,20 +262,10 @@
 		if(stored_material[rmat] < min_mat)
 			return ERR_NOMATERIAL
 
-	for(var/rmat in design.materials)
-		if(!(rmat in stored_material))
-			return ERR_NOMATERIAL
+	var/error_mat = check_materials(design)
 
-		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
-			return ERR_NOMATERIAL
-
-	if(design.chemicals.len)
-		if(!container || !container.is_drawable())
-			return ERR_NOREAGENT
-
-		for(var/rgn in design.chemicals)
-			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
-				return ERR_NOREAGENT
+	if(error_mat != ERR_OK)
+		return error_mat
 
 	return ERR_OK
 
@@ -382,12 +278,4 @@
 		LAZYAPLUS(new_materials, pick(suitable_materials), rand(0,2))
 	O.matter = new_materials
 
-
-#undef ERR_OK
-#undef ERR_NOTFOUND
-#undef ERR_NOMATERIAL
-#undef ERR_NOREAGENT
-#undef ERR_NOLICENSE
-#undef ERR_PAUSED
-#undef ERR_NOINSIGHT
 #undef MAX_STAT_VALUE

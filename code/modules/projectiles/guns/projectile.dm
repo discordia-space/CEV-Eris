@@ -22,10 +22,10 @@
 	var/obj/item/ammo_casing/chambered
 
 	//gunporn stuff
-	var/unload_sound 	= 'sound/weapons/guns/interact/pistol_magout.ogg'
-	var/reload_sound 	= 'sound/weapons/guns/interact/pistol_magin.ogg'
-	var/cocked_sound 	= 'sound/weapons/guns/interact/pistol_cock.ogg'
-	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.ogg'
+	var/unload_sound = 'sound/weapons/guns/interact/pistol_magout.ogg'
+	var/reload_sound = 'sound/weapons/guns/interact/pistol_magin.ogg'
+	var/cocked_sound = 'sound/weapons/guns/interact/pistol_cock.ogg'
+	var/bulletinsert_sound = 'sound/weapons/guns/interact/bullet_insert.ogg'
 
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside
@@ -40,6 +40,7 @@
 	var/auto_eject_sound
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
+	var/no_internal_mag = FALSE // to bar sniper and double-barrel from installing overshooter.
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -149,9 +150,9 @@
 
 		switch(method_for_this_load)
 			if(MAGAZINE)
-//				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
-//					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
-//					return
+				//if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
+				//	to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+				//	return
 				if(tac_reloads && ammo_magazine)
 					unload_ammo(user)	// ejects the magazine before inserting the new one.
 					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
@@ -215,6 +216,13 @@
 			inserted_casing.maxamount = C.maxamount
 			if(ispath(inserted_casing.projectile_type) && C.BB)
 				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+//			if(inserted_casing.sprite_update_spawn)
+//				var/matrix/rotation_matrix = matrix()
+//				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
+//				if(inserted_casing.sprite_use_small)
+//					C.transform = rotation_matrix * inserted_casing.sprite_scale
+//				else
+//					C.transform = rotation_matrix
 			C.update_icon()
 			inserted_casing.update_icon()
 			loaded.Insert(1, inserted_casing)
@@ -342,6 +350,24 @@
 
 	return data
 
+/obj/item/weapon/gun/projectile/get_dud_projectile()
+	var/proj_type
+	if(chambered)
+		proj_type = chambered.BB.type
+	else if(loaded.len)
+		var/obj/item/ammo_casing/A = loaded[1]
+		if(!A.BB)
+			return null
+		proj_type = A.BB.type
+	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		var/obj/item/ammo_casing/A = ammo_magazine.stored_ammo[1]
+		if(!A.BB)
+			return null
+		proj_type = A.BB.type
+	if(!proj_type)
+		return null
+	return new proj_type
+
 /obj/item/weapon/gun/projectile/refresh_upgrades()
 	max_shells = initial(max_shells)
 	..()
@@ -353,5 +379,5 @@
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
-	if(max_shells)
+	if(max_shells && !no_internal_mag) // so the overshooter can't be attached to the AMR and double-barrel anymore
 		gun_tags |= GUN_INTERNAL_MAG

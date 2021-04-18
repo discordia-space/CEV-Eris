@@ -351,7 +351,6 @@
 /area/space)
 "bf" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (SOUTHEAST)";
 	icon_state = "intact";
 	dir = 6
 	},
@@ -360,7 +359,6 @@
 /area/space)
 "bg" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -374,7 +372,6 @@
 /area/space)
 "bi" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	tag = "icon-intact (NORTH)";
 	icon_state = "intact";
 	dir = 1
 	},
@@ -390,7 +387,6 @@
 /area/space)
 "bk" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -418,7 +414,6 @@
 /area/testing/second)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -429,7 +424,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (EAST)";
 	icon_state = "intact";
 	dir = 4
 	},
@@ -437,7 +431,6 @@
 /area/testing/second)
 "br" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},
@@ -445,7 +438,6 @@
 /area/testing/second)
 "bs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (EAST)";
 	icon_state = "intact";
 	dir = 4
 	},
@@ -454,7 +446,6 @@
 /area/testing/second)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (EAST)";
 	icon_state = "intact";
 	dir = 4
 	},
@@ -462,7 +453,6 @@
 /area/testing/second)
 "bu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -477,7 +467,6 @@
 /area/testing/second)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	tag = "icon-intact (SOUTHEAST)";
 	icon_state = "intact";
 	dir = 6
 	},
@@ -488,13 +477,11 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4;
 	icon_state = "intact";
-	tag = "icon-intact (EAST)"
 	},
 /turf/simulated/floor/plating,
 /area/space)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	tag = "icon-intact (EAST)";
 	icon_state = "intact";
 	dir = 4
 	},
@@ -502,7 +489,6 @@
 /area/space)
 "bA" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (WEST)";
 	icon_state = "intact";
 	dir = 8
 	},
@@ -510,7 +496,6 @@
 /area/space)
 "bB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -564,7 +549,6 @@
 /area/testing/second)
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (SOUTHEAST)";
 	icon_state = "intact";
 	dir = 6
 	},
@@ -572,7 +556,6 @@
 /area/space)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -622,7 +605,6 @@
 /area/testing/second)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	tag = "icon-map (EAST)";
 	icon_state = "map";
 	dir = 4
 	},
@@ -638,7 +620,6 @@
 /area/testing/second)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},

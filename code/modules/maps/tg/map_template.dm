@@ -1,6 +1,7 @@
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
+	var/id = null
 	var/template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
 	var/width = 0
 	var/height = 0
@@ -14,6 +15,9 @@
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
 	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
+	var/template_flags = TEMPLATE_FLAG_ALLOW_DUPLICATES
+
+	var/static/dmm_suite/maploader = new
 
 /datum/map_template/New(path = null, rename = null)
 	if(path)

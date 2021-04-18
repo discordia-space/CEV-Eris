@@ -68,7 +68,7 @@
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
-	damage_types = list(BURN = 20)
+	damage_types = list(BURN = 25)
 	armor_penetration = 40
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
@@ -156,8 +156,6 @@
 	icon_state = "xray"
 	damage_types = list(BURN = 60)
 	armor_penetration = 50
-	stun = 3
-	weaken = 3
 	stutter = 3
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle

@@ -8,7 +8,7 @@
 #define JUKEMODE_REPEAT_SONG 3 // Play the same song over and over
 #define JUKEMODE_PLAY_ONCE   4 // Play, then stop.
 
-/obj/machinery/media/jukebox/
+/obj/machinery/media/jukebox
 	name = "space jukebox"
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
@@ -22,7 +22,7 @@
 	circuit = /obj/item/weapon/electronics/circuitboard/jukebox
 
 	// Vars for hacking
-	var/datum/wires/jukebox/wires = null
+	var/datum/wires/jukebox/wires
 	var/hacked = FALSE // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
@@ -39,23 +39,22 @@
 	update_icon()
 
 /obj/machinery/media/jukebox/Destroy()
-	qdel(wires)
-	wires = null
-	..()
+	QDEL_NULL(wires)
+	. = ..()
 
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
-	..()
+	. = ..()
 	if(all_jukebox_tracks.len < 1)
 		stat |= BROKEN // No tracks configured this round!
-		return
-	// Ootherwise load from the global list!
-	for(var/datum/track/T in all_jukebox_tracks)
-		if(T.secret)
-			secret_tracks |= T
-		else
-			tracks |= T
-	return
+	else
+		// Ootherwise load from the global list!
+		for(var/datum/track/T in all_jukebox_tracks)
+			if(T.secret)
+				secret_tracks |= T
+			else
+				tracks |= T
+
 
 /obj/machinery/media/jukebox/Process()
 	if(!playing)
@@ -150,8 +149,8 @@
 		StopPlaying()
 	update_icon()
 
-/obj/machinery/media/jukebox/update_icon()
-	overlays.Cut()
+/obj/machinery/media/jukebox/on_update_icon()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		if(stat & BROKEN)
 			icon_state = "[state_base]-broken"
@@ -161,11 +160,11 @@
 	icon_state = state_base
 	if(playing)
 		if(emagged)
-			overlays += "[state_base]-emagged"
+			add_overlays("[state_base]-emagged")
 		else
-			overlays += "[state_base]-running"
+			add_overlays("[state_base]-running")
 	if (panel_open)
-		overlays += "panel_open"
+		add_overlays("panel_open")
 
 /obj/machinery/media/jukebox/Topic(href, href_list)
 	if(..() || !(Adjacent(usr) || issilicon(usr)))

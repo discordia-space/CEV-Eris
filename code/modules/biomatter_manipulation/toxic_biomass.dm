@@ -4,9 +4,8 @@
 //toxin attack proc, it's used for attacking people with checking their armor
 /proc/toxin_attack(mob/living/victim, var/damage = rand(2, 4))
 	if(istype(victim))
-		var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
-		if(!hazard_protection)
-			victim.apply_damage(damage * victim.reagent_permeability(), TOX)
+		var/hazard_protection = 100 - victim.getarmor(null, ARMOR_BIO)
+		victim.apply_damage(max(0, damage * hazard_protection / 100 * victim.reagent_permeability()), TOX)
 
 
 //this proc spill some biomass on the floor

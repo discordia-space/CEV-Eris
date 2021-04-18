@@ -5,7 +5,7 @@
 	top_price = CHEAP_ITEM_PRICE
 	low_price = 1
 	restricted_tags = list(SPAWN_ORE, SPAWN_MATERIAL_RESOURCES, SPAWN_COOKED_FOOD, SPAWN_ORGAN_ORGANIC)
-	include_paths = list(/obj/spawner/pack/rare, /obj/item/stash_spawner)
+	include_paths = list(/obj/spawner/pack/rare)
 
 /obj/spawner/lowkeyrandom/Initialize(mapload, with_aditional_object)
 	var/list/tags = SSspawn_data.lowkeyrandom_tags.Copy()

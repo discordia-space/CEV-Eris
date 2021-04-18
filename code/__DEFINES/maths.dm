@@ -223,3 +223,9 @@
 proc/n_ceil(var/num)
 	if(isnum(num))
 		return round(num)+1
+
+
+
+#define T100C 373.15 //  100.0 degrees celsius
+
+#define CELSIUS + T0C

@@ -326,9 +326,9 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
 				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
-				overlays.Cut()
+				cut_overlays()
 				if(panel_open)
-					overlays += image(icon, "[icon_type]-panel")
+					add_overlays(image(icon, "[icon_type]-panel"))
 				SSnano.update_uis(src)
 			return
 
@@ -658,7 +658,7 @@
 		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
-				flick(icon_deny,src)
+				FLICK(icon_deny,src)
 				return
 
 			var/key = text2num(href_list["vend"])
@@ -747,7 +747,7 @@
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
-		flick(icon_deny,src)
+		FLICK(icon_deny,src)
 		return
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Vending..."
@@ -776,7 +776,7 @@
 
 	use_power(vend_power_usage)	//actuators and stuff
 	if(icon_vend) //Show the vending animation if needed
-		flick(icon_vend,src)
+		FLICK(icon_vend,src)
 	spawn(vend_delay)
 		if(R.get_product(get_turf(src)))
 			playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
@@ -852,21 +852,18 @@
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
-
-	for(var/datum/data/vending_product/R in product_records)
-		throw_item = R.get_product(loc)
-		if(!throw_item)
-			continue
-		break
-	if(!throw_item)
-		return 0
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
-	visible_message(SPAN_WARNING("\The [src] launches \a [throw_item] at \the [target]!"))
+	var/obj/item/projectile/P = new /obj/item/projectile/coin(get_turf(src))
+	P.shot_from = src
+	playsound(src, \
+		pick('sound/weapons/Gunshot.ogg','sound/weapons/guns/fire/Revolver_fire.ogg','sound/weapons/Gunshot_light.ogg',\
+		'sound/weapons/guns/fire/shotgunp_fire.ogg','sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/lmg_fire.ogg',\
+		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
+		60, 1)
+	P.launch(target)
+	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()
@@ -1003,6 +1000,7 @@
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
@@ -1023,9 +1021,11 @@
 					/obj/item/ammo_magazine/ammobox/pistol = 5,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 3,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
-					/obj/item/weapon/tool/knife/tacknife = 5)
+					/obj/item/weapon/tool/knife/tacknife = 5,
+					/obj/item/weapon/storage/box/smokes = 3)
 
 	prices = list(
+					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300,
@@ -1043,6 +1043,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/weapon/storage/box/smokes = 200,
 					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
@@ -1104,6 +1105,8 @@
 				  /obj/item/weapon/storage/fancy/cigcartons = 800,
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
+				  /obj/item/weapon/storage/fancy/cigar = 450,
+				  /obj/item/weapon/storage/fancy/cigarettes/killthroat = 100,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
 				  /obj/item/clothing/mask/vape = 300,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 100,
@@ -1185,7 +1188,7 @@
 
 		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
 		/obj/item/stack/medical/advanced/bruise_pack = 200, /obj/item/stack/medical/advanced/ointment = 200,
-		/obj/item/stack/nanopaste = 300,
+		/obj/item/stack/nanopaste = 1000,
 
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 100, /obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 150, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 300,
@@ -1211,6 +1214,7 @@
 					/obj/item/weapon/handcuffs/zipties = 8,
 					/obj/item/weapon/grenade/flashbang = 8,
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
+					/obj/item/weapon/grenade/smokebomb = 8,
 					/obj/item/device/flash = 8,
 					/obj/item/weapon/reagent_containers/spray/pepper = 8,
 					/obj/item/ammo_magazine/ihclrifle/rubber = 8,

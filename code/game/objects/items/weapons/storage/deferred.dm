@@ -159,9 +159,9 @@
 
 /obj/item/weapon/storage/deferred/crate/ak
 	name = "rifleman crate"
-	desc = "A crate containing six FS AK-47 rifles, and plenty of magazines."
+	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6,
+	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/sa  = 6,
 	/obj/item/ammo_magazine/lrifle = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
@@ -205,7 +205,7 @@
 	name = "sidearm crate"
 	desc = "A crate containing six Makarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
+	initial_contents = list(/obj/item/weapon/gun/projectile/selfload/makarov = 6,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/weapon/tool/knife/boot = 6)
 

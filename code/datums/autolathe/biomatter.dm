@@ -44,13 +44,25 @@
 	name = "NT Custodian Armor"
 	build_path = /obj/item/clothing/suit/armor/custodian
 
+/datum/design/bioprinter/nt_clothes/acolyte_armor_head
+	name = "NT Acolyte Hood"
+	build_path = /obj/item/clothing/head/armor/acolyte
+
+/datum/design/bioprinter/nt_clothes/agrolyte_armor_head
+	name = "NT Agrolyte Helmet"
+	build_path = /obj/item/clothing/head/armor/agrolyte
+
+/datum/design/bioprinter/nt_clothes/custodian_armor_head
+	name = "NT Custodian Helmet"
+	build_path = /obj/item/clothing/head/armor/custodian
+
 /datum/design/bioprinter/nt_clothes/preacher_coat
 	name = "NT Preacher Longcoat"
-	build_path = /obj/item/clothing/suit/neotheology_coat
+	build_path = /obj/item/clothing/suit/storage/neotheology_coat
 
 /datum/design/bioprinter/nt_clothes/acolyte_jacket
 	name = "NT Acolyte Jacket"
-	build_path = /obj/item/clothing/suit/neotheology_jacket
+	build_path = /obj/item/clothing/suit/storage/neotheology_jacket
 
 /datum/design/bioprinter/nt_clothes/sports_jacket
 	name = "NT Sports Jacket"
@@ -196,13 +208,40 @@
 	build_path = /obj/item/weapon/storage/bag/money
 
 //[/THINGS]
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
-
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
+
+/datum/design/autolathe/excruciator
+	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	build_path = /obj/item/weapon/gun_upgrade/barrel/excruciator
+
+/datum/design/autolathe/cruciform_upgrade
+	build_path = /obj/item/weapon/cruciform_upgrade
+
+/datum/design/autolathe/cruciform_upgrade/natures_blessing
+	name = "Natures blessing"
+	build_path = /obj/item/weapon/cruciform_upgrade/natures_blessing
+
+/datum/design/autolathe/cruciform_upgrade/faiths_shield
+	name = "Faiths shield"
+	build_path = /obj/item/weapon/cruciform_upgrade/faiths_shield
+
+/datum/design/autolathe/cruciform_upgrade/cleansing_presence
+	name = "Cleansing presence"
+	build_path = /obj/item/weapon/cruciform_upgrade/cleansing_presence
+
+/datum/design/autolathe/cruciform_upgrade/martyr_gift
+	name = "Martyr gift"
+	build_path = /obj/item/weapon/cruciform_upgrade/martyr_gift
+
+/datum/design/autolathe/cruciform_upgrade/wrath_of_god
+	name = "Wrath of god"
+	build_path = /obj/item/weapon/cruciform_upgrade/wrath_of_god
+
+/datum/design/autolathe/cruciform_upgrade/speed_of_the_chosen
+	name = "Speed of the chosen"
+	build_path = /obj/item/weapon/cruciform_upgrade/speed_of_the_chosen
 
 //[MELEE]
 /datum/design/autolathe/sword/nt_sword
@@ -258,6 +297,10 @@
 /datum/design/autolathe/helmet/crusader
 	name = "crusader helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/crusader
+
+/datum/design/autolathe/clothing/NTvoid
+	name = "neotheology voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/NTvoid
 
 //[MED]
 /datum/design/bioprinter/medical

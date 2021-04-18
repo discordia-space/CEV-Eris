@@ -46,6 +46,18 @@
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
 		return ..()
+
+	var/turf/AtomTurf = get_turf(A)
+	var/turf/UserTurf = get_turf(user)
+	var/dense_check
+	switch(mode)
+		if(MODE_TRANSMIT)
+			dense_check = AtomTurf.contains_dense_objects(TRUE)
+		if(MODE_RECEIVE)
+			dense_check = UserTurf.contains_dense_objects(TRUE)
+	if(dense_check)
+		to_chat(user, SPAN_WARNING("Dense content detected on receiving terrain. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
+		return //No actual telefragging, wasn't allowed to do that at the time
 	if(!Using)
 		Using = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
@@ -56,24 +68,22 @@
 			if(!user || !A || user.machine)
 				return
 			if(transforming)
-				to_chat(user, SPAN_WARNING("You can't fire \the [src] while transforming!"))
+				to_chat(user, SPAN_WARNING("You can't fire \the [src] while it is transforming!"))
 				return
 
 			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 			user.visible_message(SPAN_WARNING("\The [user] fires \the [src]!"))
-			to_chat(user,SPAN_WARNING("You fire from [src]"))
+			to_chat(user,SPAN_WARNING("You fire \the [src]"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(4, 1, A)
 			s.start()
 
-			var/turf/AtomTurf = get_turf(A)
-			var/turf/UserTurf = get_turf(user)
-
-			if(mode)
-				teleport(UserTurf, AtomTurf)
-			else
-				teleport(AtomTurf, UserTurf)
+			switch(mode)
+				if(MODE_TRANSMIT)
+					teleport(UserTurf, AtomTurf)
+				if(MODE_RECEIVE)
+					teleport(AtomTurf, UserTurf)
 		else
 			to_chat(user, SPAN_WARNING("Error, do not move!"))
 			Using = FALSE
@@ -104,11 +114,11 @@
 	transforming = TRUE
 	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
-	flick("harpoon-[mode]-change", src)
+	FLICK("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
 		transforming = FALSE
 
-/obj/item/weapon/bluespace_harpoon/update_icon()
+/obj/item/weapon/bluespace_harpoon/on_update_icon()
 	icon_state = "harpoon-[mode]"
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
@@ -153,7 +163,7 @@
 /obj/item/weapon/bluespace_harpoon/mounted/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/weapon/bluespace_harpoon/mounted/update_icon()
+/obj/item/weapon/bluespace_harpoon/mounted/on_update_icon()
 	icon_state = "harpoon-mounted-[mode]"
 
 /obj/item/weapon/bluespace_harpoon/mounted/blitz
@@ -162,5 +172,5 @@
 	icon_state = "harpoon-mounted-blitz-1"
 	spawn_tags = null
 
-/obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
+/obj/item/weapon/bluespace_harpoon/mounted/blitz/on_update_icon()
 	icon_state = "harpoon-mounted-blitz-[mode]"

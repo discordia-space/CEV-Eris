@@ -16,11 +16,12 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_blacklisted = TRUE
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy
-	var/saved_item = /obj/item/trash/cigbutt
-	var/saved_icon = 'icons/inventory/face/icon.dmi'
-	var/saved_icon_state = "cigbutt"
+	var/saved_item
+	var/saved_icon
+	var/saved_icon_state
 	var/saved_overlays
 
 	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
@@ -85,7 +86,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		to_chat(usr, SPAN_NOTICE("You deactivate the [src]."))
 		var/obj/effect/overlay/T = new(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse",T)
+		FLICK("emppulse",T)
 		STOP_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 	else
@@ -98,7 +99,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		to_chat(usr, SPAN_NOTICE("You activate the [src]."))
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse",T)
+		FLICK("emppulse",T)
 		START_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 
@@ -134,7 +135,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	desc = O.desc
 	icon = new_icon
 	icon_state = new_iconstate
-	overlays = new_overlays
+	set_overlays(new_overlays)
 	set_dir(O.dir)
 	M.loc = src
 	master = C
@@ -183,3 +184,8 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
 	. = ..()
+
+/obj/effect/dummy/chameleon/Crossed(AM as mob|obj)
+	if(isobj(AM) || isliving(AM))
+		master.disrupt()
+	..()

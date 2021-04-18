@@ -30,7 +30,7 @@
 	var/sanctified_attack = FALSE
 
 	if(damagetype == HALLOSS)
-		effective_damage = round(effective_damage * (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100))
+		effective_damage = round(effective_damage * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 	if(effective_damage <= 0)
 		armor_message(SPAN_NOTICE("Your armor absorbs the blow!"))
@@ -56,7 +56,7 @@
 						SPAN_NOTICE("Your armor reduced the impact greatly!"))
 
 	else if(armor_effectiveness >= 49)
-		armor_message(SPAN_NOTICE("[src] armor abosrbs most of the damage!"),
+		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 						SPAN_NOTICE("Your armor protects you from impact!"))
 
 	else if(armor_effectiveness >= 24)
@@ -72,7 +72,7 @@
 		//Pain part of the damage, that simulates impact from armor absorbtion
 		//For balance purposes, it's lowered by ARMOR_AGONY_COEFFICIENT
 		if(!(damagetype == HALLOSS ))
-			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT *(get_specific_organ_efficiency(OP_NERVE, def_zone) / 100) / 100))
+			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
 			apply_effect(agony_gamage, AGONY)
 
 		//Actual part of the damage that passed through armor

@@ -110,6 +110,8 @@
 				var/prev_stat
 				for(var/stat in ALL_STATS)
 					var/datum/stat_mod/SM = mob.stats.getTempStat(stat, "nt_obelisk")
+					if(mob.stats && mob.stats.getPerk(/datum/perk/channeling))
+						buff_power = buff_power * 2  // Channeling gives +1 stat point per disciple so it amounts to * 2
 					if(stat == stat_buff)
 						if(!SM)
 							message = "A wave of dizziness washes over you, and your mind is filled with a sudden insight into [stat]."
@@ -131,5 +133,5 @@
 	return got_neoteo
 
 
-/obj/machinery/power/nt_obelisk/update_icon()
+/obj/machinery/power/nt_obelisk/on_update_icon()
 	icon_state = "nt_obelisk[active?"_on":""]"
