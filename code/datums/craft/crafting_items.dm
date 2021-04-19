@@ -31,7 +31,7 @@
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTEEL = 6)
+	matter = list(MATERIAL_PLASTEEL = 1.2)
 
 /obj/item/part/gun/New()
 	. = ..()
