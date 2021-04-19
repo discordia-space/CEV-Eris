@@ -11,7 +11,7 @@
 		. = ..()
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			. = . && myDeck.CheckMemory()
+			. = . && myDeck.IsWorking() && myDeck.CheckMemory()
 
 	Activate(mob/user)
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))

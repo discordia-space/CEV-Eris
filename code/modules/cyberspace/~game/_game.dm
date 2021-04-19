@@ -9,6 +9,7 @@
 
 	#include "deck/datajack.dm"
 	#include "deck/deck.dm"
+	#include "deck/programs.dm"
 		#include "deck/hardware/_hardware.dm"
 		#include "deck/hardware/chip.dm"
 			#include "deck/hardware/chips/clone.dm"

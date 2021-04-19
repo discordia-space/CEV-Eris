@@ -3,12 +3,16 @@
 	desc = "The small plank with silicon crystall on it."
 
 	SoftName = "T381 Memory Crystal"
-	ActionDescription = "Memory buffer extends by 1 for 20 minutes. Can be activated not in run."
+	ActionDescription = "Memory buffer extends by (memory of this chip x 2) for 20 minutes. Can be activated not in run."
 
-	Memory = 1
+	AdditionalDescription = "Sometimes you need extra SPACE."
+
+	Memory = 16
 
 	Activate(mob/user)
-		if(alert(user, "Are you sure you want activate [SoftName]", "[SoftName]", "Yes","No") == "Yes")
-		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
+		if(alert(user, "Are you sure you want activate [SoftName]", "[SoftName]", "Yes", "No") == "Yes" && istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			
+			. = memory * 2
+			myDeck.GiveTemporaryMemory(., 20 MINUTES)
+			return ..() && .
+

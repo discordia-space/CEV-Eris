@@ -4,5 +4,5 @@
 
 	SoftName = "Asters Memory Chip"
 
-	Memory = 1
+	Memory = 16
 	LinkStreight = 1

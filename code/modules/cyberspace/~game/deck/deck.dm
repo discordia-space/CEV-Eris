@@ -13,13 +13,13 @@
 	var/power_usage_idle = 100
 	var/power_usage_using = 2 KILOWATTS
 
+	var/link_streight = 0 // Default power over tracing by ices or on ices can be increased by programs/hardware
 
 	var/memory = 64 // Memory slots for programs, can be extended by hardware
-	var/list/programs = list() // Installed programs, icebreakers and etc.
+	var/list/memory_buffer = list() // Installed programs, icebreakers and etc.
 
 	var/hardware_slots = 8
 	var/chip_slots = 4 // Same as memory, to extend or buy better deck or get hardware extending them.
-	var/link_streight = 0 // Power over tracing by ices or on ices can be increased by programs/hardware
 	var/list/hardware = list()
 
 	var/mob/observer/cyberspace_eye/projected_mind = /mob/observer/cyberspace_eye/runner
@@ -46,6 +46,8 @@
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 
 /obj/item/weapon/computer_hardware/deck/proc
+	IsWorking()
+		return projected_mind.loc != src
 	GetFreeChipSlots()
 		for(var/obj/item/weapon/deck_hardware/chip/C in hardware)
 			. -= C.chip_slot_costing
@@ -54,13 +56,6 @@
 		for(var/obj/item/weapon/deck_hardware/H in hardware)
 			. += H.hardware_size
 		. = (hardware_slots - .) >= hardware_size
-	CheckMemory(used)
-		. = IsProgramSuits(used) >= 0
-
-	IsProgramSuits(used = 16) // Returns delta of memory after applying using, so if this returns more than 0 then memory is enough
-		for(var/datum/computer_file/cyberdeck_program/program in programs)
-			. += program.size
-		. = memory - (. + used)
 
 	update_power_usage()
 		if(!connection)
