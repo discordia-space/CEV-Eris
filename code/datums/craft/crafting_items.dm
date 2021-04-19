@@ -58,7 +58,7 @@
 /obj/item/craft_frame/guns
 	name = "gun assembly"
 	desc = "Add some weapon parts to complete this, use your knowledge of mechanics and create a gun."
-	matter = list(MATERIAL_PLASTEEL = 6)
+	matter = list(MATERIAL_PLASTEEL = 5)
 	suitable_part = /obj/item/part/gun
 	spawn_frequency = 0
 	tags_to_spawn = list(SPAWN_GUN)
