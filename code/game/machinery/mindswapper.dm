@@ -13,9 +13,7 @@
 	var/operating = FALSE  // Is it on?
 	var/swap_time = 200  // Time from starting until minds are swapped
 	var/swap_range = 1
-	var/swap_blacklist = list(/mob/living/simple_animal/hostile/megafauna,
-
-	)
+	var/swap_blacklist = list(/mob/living/simple_animal/hostile/megafauna)
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -83,9 +81,8 @@
 	var/list/swapMinds = list()
 	for(var/mob/living/M in range(swap_range,src))
 		if (M.stat != DEAD || M.mob_classification != CLASSIFICATION_SYNTHETIC || !(M.type in swap_blacklist))  // candidates should not be dead
-			swapBoddies += C
-			swapMinds += C.ghostize(0)
-
+			swapBoddies += M
+			swapMinds += M.ghostize(0)
 	// Shuffle the list containing the candidates' boddies
 	swapBoddies = shuffle(swapBoddies)
 
