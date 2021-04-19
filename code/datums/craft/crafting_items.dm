@@ -91,7 +91,6 @@
 	for(var/i in 1 to total_items)
 		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, null, TRUE, null, paths, null)
 		paths += list(SSspawn_data.pick_spawn(canidates))
-	paths = SSspawn_data.sort_paths_by_price(paths)
 	for(var/path in paths)
 		items += new path()
 
