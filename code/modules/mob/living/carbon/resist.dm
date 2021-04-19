@@ -201,14 +201,13 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break \the [handcuffed]!"),
+			SPAN_DANGER("<big>[src] manages to destroy \the [handcuffed]!</big>"),
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
 		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" )) //Hulks like bragging.
-		else
-			say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ))
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+
 
 		qdel(handcuffed)
 		handcuffed = null
@@ -225,14 +224,12 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break the legcuffs!"),
+			SPAN_DANGER("<big>[src] manages to destroy the legcuffs!</big>"),
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
 		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		else
-			say(pick("RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", "AAAAAAARRRGH!" ))
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null
