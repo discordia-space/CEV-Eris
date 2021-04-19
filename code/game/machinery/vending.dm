@@ -1025,26 +1025,24 @@
 					/obj/item/weapon/storage/box/smokes = 3)
 
 	prices = list(
-					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
-					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
-					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/slpistol/rubber = 300,
-					/obj/item/ammo_magazine/pistol/rubber = 200,
-					/obj/item/ammo_magazine/hpistol = 400,
-					/obj/item/ammo_magazine/hpistol/rubber = 300,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
+					/obj/item/ammo_magazine/slpistol/rubber = 100,
+					/obj/item/ammo_magazine/pistol/rubber = 150,
+					/obj/item/ammo_magazine/hpistol = 300,
+					/obj/item/ammo_magazine/hpistol/rubber = 200,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300,
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 400,
-					/obj/item/ammo_magazine/slpistol = 500,
-					/obj/item/ammo_magazine/smg/rubber = 300,
+					/obj/item/ammo_magazine/sllrifle = 300,
+					/obj/item/ammo_magazine/slpistol = 100,
+					/obj/item/ammo_magazine/smg/rubber = 200,
 					/obj/item/ammo_magazine/smg = 400,
-					/obj/item/ammo_magazine/ammobox/pistol = 700,
-					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
-					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
-					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/ammo_magazine/ammobox/pistol = 500,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 600,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 600,
+					/obj/item/weapon/tool/knife/tacknife = 300,
 					/obj/item/weapon/storage/box/smokes = 200,
-					/obj/item/ammo_magazine/pistol = 600,)
+					/obj/item/ammo_magazine/pistol = 300,)
 
 //This one's from bay12
 /obj/machinery/vending/cart

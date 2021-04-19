@@ -42,7 +42,7 @@
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 2)
-	price_tag = 1000
+	price_tag = 800
 	modifystate = null
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
