@@ -5,8 +5,8 @@
 	SoftName = "Clone Chip"
 	ActionDescription = "If able, clone installed program and install clone costing it's CP and memory."
 
-	// TryInstallTo(obj/item/weapon/computer_hardware/_deck)
-	// Installed(obj/item/weapon/computer_hardware/_deck)
+	AdditionalDescription = "The best practice is to back up the backup."
+
 	CanActivated(mob/user)
 		. = ..()
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
@@ -16,7 +16,7 @@
 	Activate(mob/user)
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in myDeck.programs.Copy() + "(CANCEL)"
+			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.programs.Copy() + "(CANCEL)")
 			
 			var/message = "Action canceled."
 			

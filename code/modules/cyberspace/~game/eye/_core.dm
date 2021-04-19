@@ -1,9 +1,6 @@
 /datum/CyberSpaceAvatar/eye
 	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
-/datum/CyberSpaceAvatar/eye/ai
-	icon_state = "ai_observer"
-
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 /mob/observer/cyberspace_eye
 	alpha = 200
@@ -21,16 +18,6 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 				return TRUE
 			to_chat(src, SPAN_WARNING("You can't feel your shell."))
 
-/datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
-	var/turf/movedTo = get_step(mover, direction)
-
-	var/list/denseAvatar = GetDenseCyberspaceAvatars(movedTo)
-
-	if(islist(denseAvatar) && length(denseAvatar))
-		for(var/datum/CyberSpaceAvatar/CA in denseAvatar)
-			CA.BumpedBy(mover.CyberAvatar)
-	else
-		. = ..()
 
 /proc/GetDenseCyberspaceAvatars(turf/T)
 	. = list()
@@ -40,11 +27,7 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 			if(CAtoCheck.density)
 				. += CAtoCheck
 
+/datum/CyberSpaceAvatar/eye/ai
+	icon_state = "ai_observer"
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
-
-/mob/observer/cyberspace_eye/hacker/verb/CancelConnection()
-	set name = "Return to body" // snap back to reality
-	set category = "Cyberspace"
-
-	ReturnToBody()

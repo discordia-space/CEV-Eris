@@ -7,8 +7,9 @@
 	hardware_size = 0
 	var/chip_slot_costing = 1
 
-	// TryInstallTo(obj/item/weapon/computer_hardware/_deck)
-	// Installed(obj/item/weapon/computer_hardware/_deck)
+	TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck)
+		. = ..() && _deck?.GetFreeChipSlots() > chip_slot_costing // No overrides cuz hardware_size = 0
+			
 	Activate(mob/user)
 		SetIntegrity(Integrity - 1)
 		return TRUE

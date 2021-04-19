@@ -22,7 +22,7 @@
 	var/link_streight = 0 // Power over tracing by ices or on ices can be increased by programs/hardware
 	var/list/hardware = list()
 
-	var/mob/observer/cyberspace_eye/projected_mind = /mob/observer/cyberspace_eye/hacker
+	var/mob/observer/cyberspace_eye/projected_mind = /mob/observer/cyberspace_eye/runner
 
 	var/obj/item/mind_cable/cable
 
@@ -37,8 +37,7 @@
 			var/obj/item/weapon/deck_hardware/H = W
 			if(istype(W, /obj/item/mind_cable) && do_after(user, 1 SECONDS, src))
 				. = SetCable(W)
-			
-			else if(istype(W, /obj/item/weapon/deck_hardware) && IsHardwareSuits())
+			else if(istype(W, /obj/item/weapon/deck_hardware))
 				. = H.TryInstallTo(src)
 				if(.)
 					H.relocateTo(src)
@@ -47,8 +46,14 @@
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 
 /obj/item/weapon/computer_hardware/deck/proc
+	GetFreeChipSlots()
+		for(var/obj/item/weapon/deck_hardware/chip/C in hardware)
+			. -= C.chip_slot_costing
+		. += chip_slots // for example: - 2 + 4 = 2
 	IsHardwareSuits(hardware_size = 1)
-		. = hardware_slots >= hardware_size
+		for(var/obj/item/weapon/deck_hardware/H in hardware)
+			. += H.hardware_size
+		. = (hardware_slots - .) >= hardware_size
 	CheckMemory(used)
 		. = IsProgramSuits(used) >= 0
 
