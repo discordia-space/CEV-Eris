@@ -250,4 +250,3 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
 	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
-
