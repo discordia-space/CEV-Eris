@@ -16,7 +16,7 @@
 /obj/machinery/shield/malfai
 	name = "emergency forcefield"
 	desc = "A powerfull forcefield which seems to be projected by the station's emergency atmosphere containment field"
-	health = 600
+	health = 400
 
 /obj/machinery/shield/proc/check_failure()
 	if (health <= 0)
