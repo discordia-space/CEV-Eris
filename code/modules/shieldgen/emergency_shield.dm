@@ -15,7 +15,7 @@
 
 /obj/machinery/shield/malfai
 	name = "emergency forcefield"
-	desc = "A powerfull forcefield which seems to be projected by the station's emergency atmosphere containment field"
+	desc = "A powerful forcefield which seems to be projected by the station's emergency atmosphere containment field"
 	health = 400
 
 /obj/machinery/shield/proc/check_failure()
