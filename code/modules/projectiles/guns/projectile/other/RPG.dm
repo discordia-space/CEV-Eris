@@ -24,6 +24,7 @@
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
 	twohanded = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/rpg/on_update_icon()
 	. = ..()

@@ -25,8 +25,6 @@ var/list/disciples = list()
 	if(power >= max_power)
 		return
 	var/true_power_regen = power_regen
-	if(GLOB.miracle_points > 0)
-		true_power_regen += GLOB.miracle_points / (1 MINUTES)
 	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * (0.1 / 1 MINUTES)
 	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
 	restore_power(true_power_regen)
@@ -99,6 +97,21 @@ var/list/disciples = list()
 	if(eotp)
 		eotp.addObservation(50)
 	return TRUE
+
+/obj/item/weapon/implant/core_implant/cruciform/examine(mob/user) 
+	..()
+	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
+	if(data?.mind) // if there is cloning data and it has a mind
+		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
+		if(isghost(user) || (user in disciples))
+			var/datum/mind/MN = data.mind
+			if(MN.name) // if there is a mind and it also has a name
+				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+			else
+				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
+	else // no cloning data
+		to_chat(user, "This cruciform has not yet been activated.")
+
 
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()

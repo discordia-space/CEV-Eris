@@ -14,6 +14,7 @@
 		bio = 0,
 		rad = 0
 	)
+	spawn_blacklisted = TRUE
 	var/self_cooldown = 2 MINUTES
 	var/last_use = 0
 

@@ -172,6 +172,10 @@
 	name = "SA Car .30 \"Krinkov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
 
+/datum/design/autolathe/gun/ak47_sa
+	name = "SA Car .30 \"Krinkov\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
+
 /datum/design/autolathe/gun/sts35
 	name = "STS-35"
 	build_path = /obj/item/weapon/gun/projectile/automatic/sts35
@@ -185,6 +189,10 @@
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/pk
+
+/datum/design/autolathe/gun/lmg_tk
+	name = "FS LMG .30 \"Takeshi\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/tk
 
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""

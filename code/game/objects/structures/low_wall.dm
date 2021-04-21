@@ -107,6 +107,10 @@
 		return 1
 	if(locate(/obj/structure/low_wall) in get_turf(mover))
 		return 1
+	if(isliving(mover))
+		var/mob/living/L = mover
+		if(L.weakened)
+			return 1
 	return ..()
 
 

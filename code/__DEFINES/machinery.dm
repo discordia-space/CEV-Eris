@@ -177,3 +177,12 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 
 //AUTOLATHE
 #define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
+
+//EOTP
+#define ARMAMENTS "Armaments"
+#define ALERT "Antag Alert"
+#define INSPIRATION "Inspiration"
+#define ODDITY "Oddity"
+#define STAT_BUFF "Stat Buff"
+#define MATERIAL_REWARD "Materials"
+#define ENERGY_REWARD "Energy"
