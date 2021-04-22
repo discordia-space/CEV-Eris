@@ -74,6 +74,7 @@
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "technomancer helmet"
@@ -135,6 +136,7 @@
 		rad = 0
 	)
 	price_tag = 400
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -337,6 +339,7 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
