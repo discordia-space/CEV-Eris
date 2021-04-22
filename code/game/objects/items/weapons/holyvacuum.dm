@@ -2,7 +2,7 @@
 	desc = "The pinnacle of NeoTheology cleaning technology."
 	name = "holy vacuum cleaner"
 	icon = 'icons/obj/janitor.dmi'
-	icon_state = "mop"
+	icon_state = "vacuum"
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
@@ -18,9 +18,26 @@
 	var/vacuum_time = 3
 
 /obj/item/weapon/holyvacuum/Initialize()
-	. = ..()
+	.=..()
 	create_reagents(10)
 	refill()
+	update_icon()
+
+/obj/item/weapon/holyvacuum/on_update_icon()
+	.=..()
+	cut_overlays()
+	if(amount == 0)
+		add_overlays("0")
+	else if(amount < 0.25*max_amount)
+		add_overlays("1")
+	else if(amount < 0.5*max_amount)
+		add_overlays("2")
+	else if(amount < 0.75*max_amount)
+		add_overlays("3")
+	else if(amount < max_amount)
+		add_overlays("4")
+	else if(amount == max_amount)
+		add_overlays("5")
 
 /obj/item/weapon/holyvacuum/proc/refill()
 	reagents.add_reagent("cleaner", 10)  // Need to have cleaner in it for /turf/proc/clean
@@ -37,6 +54,7 @@
 	CF.matter[MATERIAL_BIOMATTER] = amount
 	amount = 0
 	to_chat(user, SPAN_NOTICE("You empty the storage tank of the holy vacuum cleaner."))
+	update_icon()
 
 /obj/item/weapon/holyvacuum/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
@@ -56,6 +74,7 @@
 				amount += 0.1 * T.clean(src, user)  // Fill the vacuum cleaner with the cleaned filth
 			to_chat(user, SPAN_NOTICE("You have vacuumed all the filth!"))
 			refill()
+			update_icon()
 
 /obj/item/weapon/compressedfilth
 	desc = "A small block of compressed filth. Gross!"
