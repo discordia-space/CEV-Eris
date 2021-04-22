@@ -9,7 +9,7 @@
 	throw_range = 3
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("bashed", "bludgeoned", "whacked")
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 5)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 100
 
@@ -22,6 +22,10 @@
 	create_reagents(10)
 	refill()
 	update_icon()
+
+/obj/item/weapon/holyvacuum/examine(mob/user)
+	..()
+	to_chat(user, "\The [src] tank contains [amount] units of compressed filth.")
 
 /obj/item/weapon/holyvacuum/on_update_icon()
 	.=..()

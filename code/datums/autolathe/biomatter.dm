@@ -211,6 +211,10 @@
 	name = "Cash Bag"
 	build_path = /obj/item/weapon/storage/bag/money
 
+/datum/design/bioprinter/holyvacuum
+	name = "Holy Vacuum Cleaner"
+	build_path = /obj/item/weapon/holyvacuum
+
 //[/THINGS]
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
