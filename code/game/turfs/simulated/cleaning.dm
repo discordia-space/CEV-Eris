@@ -34,7 +34,7 @@
 
 //expects an atom containing the reagents used to clean the turf
 /turf/proc/clean(atom/source, mob/user)
-	/var/amount = 0
+	var/amount = 0
 	amount = 0  // reset amount to 0 since the line above is done only once 
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
