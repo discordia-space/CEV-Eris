@@ -16,7 +16,7 @@
 	var/link_streight = 0 // Default power over tracing by ices or on ices can be increased by programs/hardware
 
 	var/memory = 64 // Memory slots for programs, can be extended by hardware
-	var/list/memory_buffer = list() // Installed programs, icebreakers and etc.
+	var/list/memory_buffer = list() // Grip of programs, icebreakers and etc. Installed programs handling in cyberspace eye
 
 	var/hardware_slots = 8
 	var/chip_slots = 4 // Same as memory, to extend or buy better deck or get hardware extending them.

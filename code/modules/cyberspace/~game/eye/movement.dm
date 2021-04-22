@@ -11,3 +11,11 @@
 			CA.BumpedBy(mover.CyberAvatar)
 	else
 		. = ..()
+
+/proc/GetDenseCyberspaceAvatars(turf/T)
+	. = list()
+	for(var/atom/A in T)
+		if(A.CyberAvatar)
+			var/datum/CyberSpaceAvatar/CAtoCheck = A.CyberAvatar
+			if(CAtoCheck.density)
+				. += CAtoCheck

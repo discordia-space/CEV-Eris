@@ -3,6 +3,8 @@
 	#include "eye/_core.dm"
 	#include "eye/movement.dm"
 	#include "eye/runner.dm"
+	#include "eye/programs.dm"
+	#include "eye/grip.dm"
 
 	#include "ices/AreaFirewall.dm"
 		#include "ices/core/_ice.dm"

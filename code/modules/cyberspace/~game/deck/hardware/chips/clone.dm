@@ -13,17 +13,17 @@
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
 			. = . && myDeck.IsWorking() && myDeck.CheckMemory()
 
-	Activate(mob/user)
+	Activate(mob/user) // TODO: It must install program not copy in grip
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.programs.Copy() + "(CANCEL)")
+			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.memory_buffer.Copy() + "(CANCEL)") //
 			
 			var/message = "Action canceled."
 			
 			if(programToClone != "(CANCEL)")
 				if(myDeck.CheckMemory(programToClone.size))
 					var/datum/computer_file/cyberdeck_program/clone = programToClone.clone()
-					myDeck.programs += clone
+					myDeck.memory_buffer += clone //
 					. = ..()
 					message = "Chip activated succesfull."
 				else

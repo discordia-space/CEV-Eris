@@ -12,14 +12,16 @@
 
 	CheckMemory()
 		. = memory >= GetBusyMemory()
-		while(!. && length(programs) > 0)
-			programs.Remove(programs[length(programs) - 1])
+		while(!. && length(memory_buffer) > 0)
+			memory_buffer.Remove(memory_buffer[length(memory_buffer) - 1])
 			. = memory >= GetBusyMemory()
+		projected_mind.UpdateGrip()
+
 
 	GetBusyMemory()
 		for(var/datum/computer_file/cyberdeck_program/program in memory_buffer)
 			. += program.size
-	
+
 	GetFreeMemory()
 		. = memory - GetBusyMemory()
 
@@ -30,14 +32,14 @@
 		if(CheckMemory() && able_to_install_program(P))
 			RemoveMemory(P.size)
 			memory_buffer += P
-			holder.remove_file(P)
+			if(istype(holder2))
+				var/obj/item/weapon/computer_hardware/hard_drive/hard_drive	= holder2.hard_drive
+				hard_drive.remove_file(P)
 
 	RemoveProgram(datum/computer_file/cyberdeck_program/P, obj/item/weapon/computer_hardware/hard_drive/MoveTo = holder2)
 		if(P.Deletable)
-			programs.Remove(P)
+			memory_buffer.Remove(P)
 			CheckMemory()
 			if(istype(holder2))
-				holder2.store_file(P)
-
-
-
+				var/obj/item/weapon/computer_hardware/hard_drive/hard_drive	= holder2.hard_drive
+				hard_drive.store_file(P)
