@@ -342,6 +342,6 @@
 /datum/ritual/cruciform/priest/offering/holy_guidance
 	name = "Holy guidance"
 	phrase = "Domine deus, lux via"
-	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and fruits."
+	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and 40 fruits."
 	req_offerings = list(/obj/item/weapon/oddity = 1, /obj/item/weapon/reagent_containers/food/snacks/grown = 40)
 	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
