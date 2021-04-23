@@ -107,7 +107,7 @@
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This cheap copy has been made to look as least miltaristic as possible to be sold to as many civilian populations as possible."
+			This cheap copy has been made to look as least militaristic as possible to be sold to as many civilian populations as possible."
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
 	recoil_buildup = 1.5	//Heavy, semi-auto and burst only
@@ -140,7 +140,7 @@
 			desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 					This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 					It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-					This cheap copy has been made to look as least miltaristic as possible to be sold to as many civilian populations as possible."
+					This cheap copy has been made to look as least militaristic as possible to be sold to as many civilian populations as possible."
 			icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 		if(7 to 9)
 			name = "FS AR .30 \"WASP\""						// A small play on the Romanian WASR
@@ -241,11 +241,10 @@
 	recoil_buildup = 1.6	//Full size, but cheap
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
 	)
 
-	price_tag = 1000
-	spawn_blacklisted = FALSE
+	price_tag = 500
