@@ -24,6 +24,7 @@
 	recoil_buildup = 1.9
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
+	rarity_value = 80
 
 	init_firemodes = list(
 		FULL_AUTO_600,

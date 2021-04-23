@@ -750,6 +750,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	abandon_mob()
 
+/mob/observer/ghost/verb/last_shelter()
+	set name = "Activate Last Shelter"
+	set desc = "Will try to activate Last Shelter artifact and alert preacher."
+	set category = "Ghost"
+	GLOB.last_shelter.active_effect(src, TRUE)
+
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"

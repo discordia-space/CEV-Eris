@@ -44,8 +44,8 @@
 		force = material.get_edge_damage()
 	else
 		force = material.get_blunt_damage()
-	force = round(force*force_divisor)
-	throwforce = round(material.get_blunt_damage()*thrown_force_divisor)
+	force = min(25, round(force*force_divisor))
+	throwforce = min(15, round(material.get_blunt_damage()*thrown_force_divisor))
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
 

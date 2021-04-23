@@ -1,0 +1,5 @@
+author: Jackofashepard
+delete-after: true
+changes:
+  - rscdel: fun
+  - tweak: max damage for spear

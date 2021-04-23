@@ -38,8 +38,7 @@
 			/obj/item/clothing/head/welding,
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/machinery/floodlight,
-			/obj/spawner/lathe_disk
+			/obj/machinery/floodlight
 		)
 	)
 
