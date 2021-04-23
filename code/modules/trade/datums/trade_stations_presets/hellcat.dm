@@ -27,7 +27,7 @@
 			/obj/item/weapon/gun/projectile/olivaw,
 			/obj/item/weapon/gun/projectile/revolver/havelock,
 			/obj/item/weapon/gun/projectile/revolver/consul,
-			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+			/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
 			/obj/item/weapon/gun/projectile/automatic/atreides,
 		),
 		"Ammunition" = list(
