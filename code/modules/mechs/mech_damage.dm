@@ -6,7 +6,7 @@
 			effect = max((1 - (getarmor(null, ARMOR_RAD) / 100)) * effect / (armor_value + 1),0)
 		var/mob/living/pilot = pick(pilots)
 		return pilot.apply_effect(effect, effecttype, armor_value)
-	if(!(effecttype in list(AGONY, STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
+	if(!(effecttype in list(STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
 		. = ..()
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
