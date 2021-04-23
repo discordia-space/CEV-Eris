@@ -376,6 +376,6 @@
 		return FALSE
 
 	for(var/stat in inspiracion.stats)
-		inspiracion.stats[stat] += rand(4,8)
+		inspiracion.stats[stat] += rand(1,8)
 	odditys.Add(I)
 	return TRUE
