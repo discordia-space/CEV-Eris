@@ -187,6 +187,8 @@
 /mob/living/carbon/proc/can_break_cuffs()
 	if(HULK in mutations)
 		return 1
+	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
+		return 1
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
@@ -199,11 +201,13 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break \the [handcuffed]!"),
+			SPAN_DANGER("<big>[src] manages to destroy \the [handcuffed]!</big>"),
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+
 
 		qdel(handcuffed)
 		handcuffed = null
@@ -220,11 +224,12 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break the legcuffs!"),
+			SPAN_DANGER("<big>[src] manages to destroy the legcuffs!</big>"),
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null
