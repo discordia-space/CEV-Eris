@@ -17,7 +17,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 1000
+	price_tag = 800
 	recoil_buildup = 12
 	one_hand_penalty = 15 //full sized shotgun level
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
