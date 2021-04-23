@@ -1,4 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: the bioreactor receiver now accepts dead mobs, except humans.
