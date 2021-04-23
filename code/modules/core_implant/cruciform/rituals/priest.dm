@@ -335,7 +335,7 @@
 /datum/ritual/cruciform/priest/offering/divine_intervention
 	name = "Divine intervention"
 	phrase = "Auxilium instaurarent domum tuam."
-	desc = "Requests the Eye of the Protector for construction materials. You must offer biomatter."
+	desc = "Requests the Eye of the Protector for construction materials. You must offer 200 biomatter."
 	req_offerings = list(/obj/item/stack/material/biomatter = 200)
 	miracles = list(MATERIAL_REWARD)
 
