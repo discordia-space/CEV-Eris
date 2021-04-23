@@ -1,0 +1,5 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added parts pouch to a NT disk (the one with pouches and clothes)
+  - tweak: tweaked materials from gun and armour parts, gun part is smaller
