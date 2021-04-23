@@ -21,10 +21,8 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 	var/damage = 20
 	var/max_targets = 5
 
-	var/nt_buff_power = 5
 	var/nt_buff_cd = 3
 
-	var/static/stat_buff
 	var/list/currently_affected = list()
 	var/force_active = 0
 
@@ -37,7 +35,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 		var/mob/living/carbon/human/H = i
 		H.stats.removePerk(/datum/perk/sanityboost)
 	currently_affected = null
-	..()
+	return ..()
 
 /obj/machinery/power/nt_obelisk/attack_hand(mob/user)
 	return
@@ -110,34 +108,9 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
 				mob.stats.addPerk(/datum/perk/sanityboost)
 				currently_affected += mob
-			if(I.power < I.max_power)	I.power += nt_buff_power
+			I.restore_power(I.power_regen)
 			for(var/r_tag in mob.personal_ritual_cooldowns)
 				mob.personal_ritual_cooldowns[r_tag] -= nt_buff_cd
-
-			if(stat_buff)
-				var/buff_power = disciples.len
-				var/message
-				var/prev_stat
-				for(var/stat in ALL_STATS)
-					var/datum/stat_mod/SM = mob.stats.getTempStat(stat, "nt_obelisk")
-					if(mob.stats && mob.stats.getPerk(/datum/perk/channeling))
-						buff_power = buff_power * 2  // Channeling gives +1 stat point per disciple so it amounts to * 2
-					if(stat == stat_buff)
-						if(!SM)
-							message = "A wave of dizziness washes over you, and your mind is filled with a sudden insight into [stat]."
-						else if(SM.value != buff_power) // buff power was changed
-							message = "Your knowledge of [stat] feels slightly [SM.value > buff_power ? "lessened" : "broadened"]."
-						else if(SM.time < world.time + 10 MINUTES) // less than 10 minutes of buff duration left
-							message = "Your knowledge of [stat] feels renewed."
-						mob.stats.addTempStat(stat, buff_power, 20 MINUTES, "nt_obelisk")
-					else if(SM)
-						prev_stat = stat
-						mob.stats.removeTempStat(stat, "nt_obelisk")
-
-				if(prev_stat) // buff stat was replaced
-					message = "A wave of dizziness washes over you, and your mind is filled with a sudden insight into [stat_buff] as your knowledge of [prev_stat] feels lessened."
-				if(message)
-					to_chat(mob, SPAN_NOTICE(message))
 
 			got_neoteo = TRUE
 	return got_neoteo
