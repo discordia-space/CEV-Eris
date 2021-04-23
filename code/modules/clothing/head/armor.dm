@@ -74,6 +74,7 @@
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "technomancer helmet"
@@ -135,6 +136,7 @@
 		rad = 0
 	)
 	price_tag = 400
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -220,66 +222,12 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
-	action_button_name = "Toggle Security Hud"
-	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
 	matter = list(
 		MATERIAL_STEEL = 10, // also comes with a hud with it's own prices
 		MATERIAL_PLASTEEL = 2,
 		MATERIAL_GLASS = 2
 	)
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
-	..()
-	hud = new(src)
-	hud.canremove = FALSE
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/ui_action_click()
-	if(..())
-		return TRUE
-	toggle()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/verb/toggle()
-	set name = "Toggle Security HUD"
-	set desc = "Shows you jobs and criminal statuses"
-	set category = "Object"
-	var/mob/user = loc
-	if(usr.stat || user.restrained())
-		return
-	if(user.get_equipped_item(slot_head) != src)
-		return
-	if(hud in src)
-		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
-			update_icon()
-	else
-		if(ismob(hud.loc))
-			var/mob/hud_loc = hud.loc
-			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
-		hud.forceMove(src)
-		update_icon()
-	usr.update_action_buttons()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/dropped(usr)
-	..()
-	if(hud.loc != src)
-		if(ismob(hud.loc))
-			var/mob/hud_loc = hud.loc
-			hud_loc.drop_from_inventory(hud, src)
-			to_chat(hud_loc, "[hud] automaticly retract in [src].")
-		hud.forceMove(src)
-		update_icon()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/on_update_icon()
-	if(hud in src)
-		icon_state = "ironhammer_full"
-		set_light(0, 0)
-	else
-		icon_state = "ironhammer_full_on"
-		set_light(2, 2, COLOR_LIGHTING_ORANGE_MACHINERY)
-	update_wear_icon()
-	..()
 
 /obj/item/clothing/head/armor/laserproof //TODO: Give it reflection capabilities after refactor
 	name = "ablative helmet"
@@ -391,6 +339,7 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
