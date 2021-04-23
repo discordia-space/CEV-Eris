@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(all_obelisk)
+
 /obj/machinery/power/nt_obelisk
 	name = "NeoTheology's obelisk"
 	desc = "The obelisk."
@@ -24,6 +26,11 @@
 
 	var/static/stat_buff
 	var/list/currently_affected = list()
+	var/force_active = 0
+
+/obj/machinery/power/nt_obelisk/New()
+	..()
+	GLOB.all_obelisk |= src
 
 /obj/machinery/power/nt_obelisk/Destroy()
 	for(var/i in currently_affected)
@@ -41,6 +48,9 @@
 		return
 	var/list/affected = range(area_radius, src)
 	active = check_for_faithful(affected)
+	if(force_active > 0)
+		active = TRUE
+	force_active--
 	update_icon()
 	if(!active)
 		use_power = IDLE_POWER_USE
