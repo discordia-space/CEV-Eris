@@ -197,7 +197,7 @@
 	build_path = /obj/item/weapon/storage/pouch/tubular/vial
 
 /datum/design/bioprinter/part
-	build_type = "Part pouch"
+	name = "Part pouch"
 	build_path = /obj/item/weapon/storage/pouch/gun_part
 
 //[/CLOTHES, ARMOR AND ACCESORIES]
