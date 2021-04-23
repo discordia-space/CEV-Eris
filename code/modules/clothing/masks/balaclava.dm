@@ -50,9 +50,3 @@
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "swatclava"
-
-/obj/item/clothing/mask/balaclava/sosalka
-	name = "sosalka"
-	desc = "Smells of vodka."
-	icon_state = "sosalka"
-	item_state = "sosalka"

@@ -1471,7 +1471,7 @@
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/weapon/storage/ration_pack = 10,
-					/obj/item/clothing/mask/balaclava/sosalka = 50
+					/obj/item/clothing/mask/balaclava = 50
 					)
 	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
@@ -1482,7 +1482,7 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/weapon/storage/ration_pack = 800,
-					/obj/item/clothing/mask/balaclava/sosalka = 100
+					/obj/item/clothing/mask/balaclava = 100
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
