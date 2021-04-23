@@ -66,7 +66,10 @@
 /obj/item/craft_frame/examine(user, distance)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("Requires [req_parts] gun parts to be complete."))
+		if(req_parts > 0)
+			to_chat(user, SPAN_NOTICE("Requires [req_parts] gun parts to be complete."))
+		else
+			to_chat(user, SPAN_NOTICE("[src] is complete."))
 
 /obj/item/craft_frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, suitable_part))
@@ -79,7 +82,7 @@
 				complete()
 				to_chat(user, SPAN_NOTICE("You have completed [src]."))
 			return
-	. = ..()
+	return ..()
 
 /obj/item/craft_frame/proc/complete()
 	generate_guns()
@@ -89,13 +92,8 @@
 	for(var/i in 1 to total_items)
 		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, null, TRUE, null, paths, null)
 		paths += list(SSspawn_data.pick_spawn(canidates))
-	paths = SSspawn_data.sort_paths_by_price(paths)
 	for(var/path in paths)
 		items += new path()
-
-/obj/item/craft_frame/Destroy()
-	drop_parts()
-	. = ..()
 
 /obj/item/craft_frame/proc/drop_parts()
 	for(var/obj/item/part/P in contents)
