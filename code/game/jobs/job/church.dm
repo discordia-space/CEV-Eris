@@ -78,7 +78,7 @@
 	spawn_positions = 4
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_LATIN = 1000)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_LATIN = 100)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
 	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
