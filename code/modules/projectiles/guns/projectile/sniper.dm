@@ -2,7 +2,7 @@
 	name = "SA AMR \"Hristov\""
 	desc = "A portable anti-armour rifle, fitted with a scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells. Alt click it to access the chamber."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
-	icon_state = "heavysniper"
+	icon_state = "heavysniper_closed"
 	item_state = "heavysniper"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
