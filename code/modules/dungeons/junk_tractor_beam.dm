@@ -627,7 +627,8 @@
 			admin_notice("Could not find junk tractor beam generator.")
 			log_world("Could not find junk tractor beam generator.")
 		else
-			jtb_gen.create_link_portal(get_turf(locate(x+5, y, z)))
+			if(!(locate(/obj/effect/portal/jtb) in get_turf(locate(x+5, y, z))) && can_release())  // If portal not already created and junk field is ready
+				jtb_gen.create_link_portal(get_turf(locate(x+5, y, z)))
 			has_been_init = TRUE
 	if(!jtb_gen)
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
