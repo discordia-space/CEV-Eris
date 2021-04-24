@@ -614,7 +614,7 @@
 
 /obj/structure/plushie/cirnofumo
 	name = "Cirno Fumo"
-	desc = "A plushie of a.... where are these coming from?."
+	desc = "A plushie of a.... where are these coming from?"
 	icon_state = "cirfumoplushie"
 	phrase = "I can even freeze magicians!"
 
