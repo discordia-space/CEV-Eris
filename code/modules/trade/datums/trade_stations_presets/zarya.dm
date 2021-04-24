@@ -14,6 +14,7 @@
 		"Energiya" = list(
 			/obj/item/weapon/electronics/circuitboard/shield_diffuser,
 			/obj/item/weapon/electronics/circuitboard/shield_generator,
+			/obj/item/weapon/electronics/circuitboard/long_range_scanner,
 			/obj/item/weapon/cell/large,
 			/obj/item/weapon/cell/large/high,
 			/obj/item/solar_assembly,
@@ -37,8 +38,7 @@
 			/obj/item/clothing/head/welding,
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/machinery/floodlight,
-			/obj/spawner/lathe_disk
+			/obj/machinery/floodlight
 		)
 	)
 

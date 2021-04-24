@@ -1,8 +1,10 @@
 #define DEBUG
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
+#define TURF_FLAG_NORUINS 2
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+#define RUIN_MAP_EDGE_PAD 15
 
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
@@ -288,6 +290,35 @@
 #define CATALOG_ALL "all"
 
 #define get_area(A) (get_step(A, 0)?.loc)
+
+
+//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
+#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+
+
+//Planet habitability class
+#define HABITABILITY_IDEAL  1
+#define HABITABILITY_OKAY  2
+#define HABITABILITY_BAD  3
+
+
+//Map template flags
+#define TEMPLATE_FLAG_ALLOW_DUPLICATES 1 // Lets multiple copies of the template to be spawned
+#define TEMPLATE_FLAG_SPAWN_GUARANTEED 2 // Makes it ignore away site budget and just spawn (only for away sites)
+#define TEMPLATE_FLAG_CLEAR_CONTENTS   4 // if it should destroy objects it spawns on top of
+#define TEMPLATE_FLAG_NO_RUINS         8 // if it should forbid ruins from spawning on top of it
+#define TEMPLATE_FLAG_NO_RADS          16// Removes all radiation from the template after spawning.
+
+
+//Flags for exoplanet ruin picking
+
+#define RUIN_HABITAT 	1		//long term habitat
+#define RUIN_HUMAN 		2		//human-made structure
+#define RUIN_ALIEN 		4		//artificial structure of an unknown origin
+#define RUIN_WRECK 		8		//crashed vessel
+#define RUIN_NATURAL	16		//naturally occuring structure
+#define RUIN_WATER 		32		//ruin depending on planet having water accessible
 
 #define NEWorINITIAL(variable, newvalue) variable = newvalue ? newvalue : initial(variable)
 

@@ -5,6 +5,7 @@
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
 	category = "Common"
+	cooldown_time = 1 MINUTES
 
 
 /datum/ritual/targeted/cruciform/base
@@ -19,9 +20,11 @@
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
+	set_personal_cooldown(H)
 	return TRUE
 
 
@@ -34,6 +37,7 @@
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.adjustNutrition(100)
 	H.adjustToxLoss(5)
+	set_personal_cooldown(H)
 	return TRUE
 
 
@@ -42,6 +46,7 @@
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
+	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
@@ -53,6 +58,7 @@
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
 			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/reveal
@@ -80,17 +86,12 @@
 				was_triggired = TRUE
 				break
 	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
-		to_chat(H, SPAN_WARNING("Something wrong with this area. Tread carefully."))
+		to_chat(H, SPAN_WARNING("Something is wrong with this area. Tread carefully."))
 		was_triggired = TRUE
-	if (prob(20))
-		for(var/mob/living/carbon/human/target in range(14, H))
-			for(var/organ in target.organs)
-				if (organ in subtypesof(/obj/item/organ/internal/carrion))
-					to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
-					was_triggired = TRUE
-					break
 	if (!was_triggired)
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
+
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/sense_cruciform
@@ -100,16 +101,18 @@
 	power = 20
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
-	var/mob/living/carbon/human/T = get_victim(H)
-	if(T)
-		var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(H, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
-		if(CI)
-			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
-		else
-			fail("There is no cruciform on [T]", H, C)
+	var/list/mob/living/carbon/human/humans = list()
+	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
+		humans.Add(T)
+	if(humans.len)
+		for(var/mob/living/carbon/human/T in humans)
+			var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+			if(CI)
+				to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
 	else
 		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
 		return FALSE
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/revelation
@@ -125,10 +128,11 @@
 		fail("No target.", H, C)
 		return FALSE
 	T.hallucination(50,100)
-	var/sanity_lost = rand(-10,10)
+	var/sanity_gain = rand(0,10)
 	T.druggy = max(T.druggy, 10)
-	T.sanity.changeLevel(sanity_lost)
-	SEND_SIGNAL(H, COMSIG_RITUAL, src, T)
+	T.sanity.changeLevel(sanity_gain)
+	SEND_SIGNAL(H, COMSIG_RITUAL_REVELATION, src, T)
+	set_personal_cooldown(H)
 	return TRUE
 
 /datum/ritual/cruciform/base/install_upgrade
@@ -178,6 +182,7 @@
 	if(!CU.install(H, CI) || CU.wearer != H)
 		fail("Commitment failed.", user, C)
 		return FALSE
+	set_personal_cooldown(H)
 
 	return TRUE
 
@@ -207,6 +212,7 @@
 	if(CI.upgrade.uninstall() || CI.upgrade)
 		fail("Commitment failed.", user, C)
 		return FALSE
+	set_personal_cooldown(H)
 
 	return TRUE
 
@@ -258,6 +264,7 @@
 	if(!succ)
 		fail("Soul transfer failed.", user, C)
 		return FALSE
+	set_personal_cooldown(user)
 
 
 	return TRUE
@@ -319,5 +326,6 @@
 		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
 		M.update_implants()
 		M.updatehealth()
+	set_personal_cooldown(user)
 
 	return TRUE

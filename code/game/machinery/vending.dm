@@ -1025,26 +1025,24 @@
 					/obj/item/weapon/storage/box/smokes = 3)
 
 	prices = list(
-					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 90,
-					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
-					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/slpistol/rubber = 300,
-					/obj/item/ammo_magazine/pistol/rubber = 200,
-					/obj/item/ammo_magazine/hpistol = 400,
-					/obj/item/ammo_magazine/hpistol/rubber = 300,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
+					/obj/item/ammo_magazine/slpistol/rubber = 100,
+					/obj/item/ammo_magazine/pistol/rubber = 150,
+					/obj/item/ammo_magazine/hpistol = 300,
+					/obj/item/ammo_magazine/hpistol/rubber = 200,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300,
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 400,
-					/obj/item/ammo_magazine/slpistol = 500,
-					/obj/item/ammo_magazine/smg/rubber = 300,
+					/obj/item/ammo_magazine/sllrifle = 300,
+					/obj/item/ammo_magazine/slpistol = 100,
+					/obj/item/ammo_magazine/smg/rubber = 200,
 					/obj/item/ammo_magazine/smg = 400,
-					/obj/item/ammo_magazine/ammobox/pistol = 700,
-					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
-					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
-					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/ammo_magazine/ammobox/pistol = 500,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 600,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 600,
+					/obj/item/weapon/tool/knife/tacknife = 300,
 					/obj/item/weapon/storage/box/smokes = 200,
-					/obj/item/ammo_magazine/pistol = 600,)
+					/obj/item/ammo_magazine/pistol = 300,)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1105,6 +1103,8 @@
 				  /obj/item/weapon/storage/fancy/cigcartons = 800,
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
+				  /obj/item/weapon/storage/fancy/cigar = 450,
+				  /obj/item/weapon/storage/fancy/cigarettes/killthroat = 100,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
 				  /obj/item/clothing/mask/vape = 300,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 100,
@@ -1468,7 +1468,8 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 2,
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
-					/obj/item/weapon/storage/ration_pack = 10
+					/obj/item/weapon/storage/ration_pack = 10,
+					/obj/item/clothing/mask/balaclava = 50
 					)
 	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
@@ -1478,7 +1479,8 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
-					/obj/item/weapon/storage/ration_pack = 800
+					/obj/item/weapon/storage/ration_pack = 800,
+					/obj/item/clothing/mask/balaclava = 100
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN

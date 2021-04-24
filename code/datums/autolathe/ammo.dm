@@ -315,7 +315,7 @@
 	build_path = /obj/item/ammo_magazine/sllrifle
 
 /datum/design/autolathe/ammo/lrifle_pk
-	name = "PK munitions box (.30 Rifle)"
+	name = "LMG munitions box (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/lrifle/pk
 
 // .30 ammoboxes

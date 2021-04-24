@@ -196,6 +196,10 @@
 	name= "Vial pouch"
 	build_path = /obj/item/weapon/storage/pouch/tubular/vial
 
+/datum/design/bioprinter/part
+	name = "Part pouch"
+	build_path = /obj/item/weapon/storage/pouch/gun_part
+
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
 //[MISC]
@@ -208,10 +212,6 @@
 	build_path = /obj/item/weapon/storage/bag/money
 
 //[/THINGS]
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
-
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
@@ -301,6 +301,10 @@
 /datum/design/autolathe/helmet/crusader
 	name = "crusader helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/crusader
+
+/datum/design/autolathe/clothing/NTvoid
+	name = "neotheology voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/NTvoid
 
 //[MED]
 /datum/design/bioprinter/medical

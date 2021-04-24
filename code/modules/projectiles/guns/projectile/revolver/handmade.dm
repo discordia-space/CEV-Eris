@@ -9,5 +9,5 @@
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.3
-	recoil_buildup = 60
+	recoil_buildup = 7
 	spawn_blacklisted = TRUE

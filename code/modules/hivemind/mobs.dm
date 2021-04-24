@@ -228,6 +228,7 @@
 //Special ability: none
 //Just another boring mob without any cool abilities
 //Low chance of malfunction
+//Faster than average, to the point it could possibly catch up to someone
 //Default speaking chance
 //Appears from dead small mobs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
@@ -246,7 +247,7 @@
 	malfunction_chance = 5
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 5
+	move_to_delay = 2
 
 	speak = list(
 				"A stitch in time saves nine!",
@@ -254,7 +255,7 @@
 				"Seratonin, oxycodone, happy humans all!",
 				"Turn that frown upside down!",
 				"Happiness through chemistry!",
-				"Beauty through surgery!",
+				"Beauty through surgery!"
 				)
 	target_speak = list(
 				"I knew I'd be a good plastic surgeon!",
@@ -275,6 +276,7 @@
 //Special ability: none
 //Explode in contact with target
 //Extremely low chance of malfunction
+//Very slow
 //Default speaking chance
 //Appears from dead small mobs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
@@ -290,14 +292,14 @@
 	malfunction_chance = 1 //1% chance of it exploding, for no reason at all
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 2 //explosive, slow, don't ignore it. it can catch up to you
+	move_to_delay = 10 //explosive, slow, don't ignore it. it can catch up to you
 	rarity_value = 25
 	speak = list(
 				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
 				"DO NOT FEAR. WE SHALL NOT HARM YOU.",
 				"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
-				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK.",
+				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK."
 				)
 	target_speak = list(
 						"MUST BREAK TARGET INTO COMPONENT COMPOUNDS.",
@@ -327,7 +329,6 @@
 //Special ability: Can fire 3 projectiles at once for 10 seconds, then overheats
 //Deals no melee damage, but fires projectiles
 //Starts with 10 malfunction chance, malfunction also triggered when overheating
-//Higher speed than normal
 //Slighly higher speaking chance
 //Appears from hive spawner and Mechiver
 //Appears rarely than bomber or stinger
@@ -355,7 +356,6 @@
 	rarity_value = 50
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 8
 	ability_cooldown = 60 SECONDS
 	speak = list(
 				"No more leaks, no more pain!",
@@ -421,6 +421,7 @@
 //							  Splash attack, that slash everything around!
 //Decent chance of malfunction
 //Default speaking chance
+//Slower than average
 //Appears from dead cyborgs and assemblers
 //////////////////////////////////////////////////////////////////////////////
 
@@ -434,16 +435,18 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 30 //Claws man, they hurt
 	attacktext = "clawed"
-	speed = 7
+	move_to_delay = 6
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
 	rarity_value = 75
 
-	speak = list("They grow up so fast.",
+	speak = list(
+				"They grow up so fast.",
 				"Come out, come out, wherever you are.",
 				"Humans are like children. We love our children.",
 				"The humans who surrender have such wonderful dreams.",
-				"Playtime is over children. Time to dream.")
+				"Playtime is over children. Time to dream."
+				)
 	target_speak = list(
 						"The mother-things need meat.",
 						"Surrender and we will put your brain in the pleasure simulator.",
@@ -494,6 +497,7 @@
 //Special ability: Shriek, that stuns victims
 //Can fool his enemies and pretend to be dead
 //A little bit higher chance of malfunction than others
+//Slower than average, faster than Hiborg
 //Default speaking chance
 //Appears from dead human corpses
 //////////////////////////////////////////////////////////////////////////////
@@ -510,7 +514,7 @@
 	attacktext = "slashed"
 	malfunction_chance = 20 //a combination of metal and flesh in a weird and confusing way. I would assume the body is trying to reject the implants/cybernetics.
 	mob_size = MOB_MEDIUM
-	speed = 8
+	move_to_delay = 5
 	ability_cooldown = 20 SECONDS
 	rarity_value = 75
 	//internals
@@ -545,7 +549,7 @@
 
 
 	//low hp? It's time to play dead
-	if(health < 120 && !fake_dead && world.time > fake_death_cooldown)
+	if(health < 160 && !fake_dead && world.time > fake_death_cooldown)
 		fake_death()
 
 	//shhhh, there an ambush
@@ -598,8 +602,7 @@
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
 
-		victim.Weaken(5)
-		victim.ear_deaf = 40
+		victim.Weaken(4)
 		to_chat(victim, SPAN_WARNING("You hear loud and terrible scream!"))
 	special_ability_cooldown = world.time + ability_cooldown
 
@@ -618,11 +621,12 @@
 	var/mob/living/L = target_mob
 	if(L)
 		L.attack_generic(src, rand(15, 25)) //stealth attack
-		L.Weaken(5)
-		visible_emote("grabs [L]'s legs and force them down to the floor!")
+		L.Weaken(6)
+		visible_emote("suddenly heals its wounds and grabs [L] by the legs, forcing them down onto the floor!") //Nanomachines son!
 		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
 		say(msg)
 	destroy_surroundings = TRUE
+	heal_overall_damage(30, 0) //more than 10% of maxhealth
 	icon_state = "himan-damaged"
 	fake_dead = FALSE
 	stance = HOSTILE_STANCE_IDLE
@@ -636,6 +640,7 @@
 //Can picking up corpses too, rebuild them to living hive mobs, like it wires do
 //Default malfunction chance
 //Increased speaking chance, can take pilot and speak with him
+//Dummy thick, slow as fuck
 //Rarely can appear from infested machinery (with a circuit board, like an Autholate)
 //////////////////////////////////////////////////////////////////////////////
 
@@ -645,16 +650,16 @@
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
-	health = 550
-	maxHealth = 550
-	resistance = RESISTANCE_AVERAGE
+	health = 600
+	maxHealth = 600
+	resistance = RESISTANCE_ARMOURED 
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	mob_size = MOB_LARGE
 	attacktext = "crushed"
 	ability_cooldown = 1 MINUTES
 	speak_chance = 8
-	speed = 8
+	move_to_delay = 10
 	rarity_value = 125
 	//internals
 	var/pilot						//Yes, there's no pilot, so we just use var
@@ -664,14 +669,16 @@
 	speak = list(
 				"A shame this form isn't more fitting.",
 				"A girl can get so lonely with no-one to play with...",
-				"Beauty is within.")
+				"Beauty is within."
+				)
 	target_speak = list(
 				"What a lovely body. Lay it down intact.",
 				"Come here, lover.",
 				"First time? I can be gentle, unless you like it rough.",
 				"What use is that flesh if you don't enjoy it?",
 				"Mine is the caress of steel.",
-				"I offer you the ecstasy of union, and yet you tremble.")
+				"I offer you the ecstasy of union, and yet you tremble."
+				)
 	//speaking with pilot
 	var/list/common_answers = list(
 								"Of course, lover.",

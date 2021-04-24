@@ -102,33 +102,17 @@
 /obj/item/weapon/gun/energy/plasma/brigador/on_update_icon()
 	cut_overlays()
 	..()
-	if(cell)
-		add_overlays(image(icon, "cell_guild"))
+	overlays.Cut()
+	..()
 
-/obj/item/weapon/gun/energy/plasma/martyr // or should it be Zealot
-	name = "NT PR \"Martyr\""
-	desc = "A \"NeoTheology\" weapon that uses advanced biomass conversion controllable blasts of energized matter. is a disposable side arm, good enough to save you and be recycled."
-	icon = 'icons/obj/guns/energy/martyr.dmi'
-	icon_state = "martyr"
-	suitable_cell = /obj/item/weapon/cell/small	//so if people manage to get the cell out. shouldn't be a huge deal
-	item_state = null	//so the human update icon uses the icon_state instead.
-	item_charge_meter = TRUE
-	w_class = ITEM_SIZE_SMALL
-	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_POCKET
-	force = WEAPON_FORCE_PAINFUL
-	matter = list(MATERIAL_STEEL = 1, "biomatter" = 20)
-	disposable = TRUE
-	price_tag = 500
-	fire_sound = 'sound/weapons/Laser.ogg'
-	cell_type = /obj/item/weapon/cell/disposable //so it won't mess up the autolathe building materials
-	sel_mode = 2
-	charge_cost = 12.5 // for 8 shots
-	recoil_buildup = 1
-	fire_delay = 8
-	one_hand_penalty = 0
-	twohanded = FALSE
+	if(istype(cell, /obj/item/weapon/cell/small/moebius/nuclear))
+		overlays += image(icon, "cell_nuclear")
 
-	init_firemodes = list(
-		list(mode_name="Stun", mode_desc="An electrified plasma round, capable of stunning a moderately armoured opponent", projectile_type=/obj/item/projectile/plasma/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=null,charge_cost=12.5, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="Melt", mode_desc="Bask in the flame.", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=100, icon="destroy", projectile_color = "#FFFFFF"),
-	)
+	else if(istype(cell, /obj/item/weapon/cell/small/moebius))
+		overlays += image(icon, "cell_moebius")
+
+	else if(istype(cell, /obj/item/weapon/cell/small/excelsior))
+		overlays += image(icon, "cell_excelsior")
+
+	else if(istype(cell, /obj/item/weapon/cell/small))
+		overlays += image(icon, "cell_guild")

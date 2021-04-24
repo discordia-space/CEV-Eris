@@ -16,7 +16,7 @@
 #define  BASE_RECHARGE_TIME 4
 
 //clothing
-#define CLOTH_PRICE_DIVISOR 50
+#define CLOTH_PRICE_DIVISOR 40
 
 //biomes defines
 #define LOOT_LEVEL_VERY_LOW 4000
@@ -538,6 +538,7 @@
 
 // FACTION KEYWORDS
 #define SPAWN_ASTERS "asters"
+#define SPAWN_EXCELSIOR "excelsior"
 #define SPAWN_FROZEN_STAR "frozen_star"
 #define SPAWN_IRONHAMMER "ironhammer"
 #define SPAWN_NANOTRASEN "nanotrasen"

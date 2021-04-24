@@ -17,7 +17,7 @@
 
 /datum/design/autolathe/gun/clarissa
 	name = "FS HG .35 \"Clarissa\""
-	build_path = /obj/item/weapon/gun/projectile/selfload/clarissa
+	build_path = /obj/item/weapon/gun/projectile/selfload
 
 /datum/design/autolathe/gun/makarov
 	name = "Excelsior .35 \"Makarov\""
@@ -152,9 +152,29 @@
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
-/datum/design/autolathe/gun/ak47_fs
-	name = "FS AR .30 \"Kalashnikov\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
+/datum/design/autolathe/gun/ak47_fs_vipr
+	name = "FS AR .30 \"Vipr\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/vipr
+
+/datum/design/autolathe/gun/ak47_fs_wasp
+	name = "FS AR .30 \"Wasp\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/wasp
+
+/datum/design/autolathe/gun/ak47_fs_brush
+	name = "FS AR .30 \"Brushmaster\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/brush
+
+/datum/design/autolathe/gun/ak47_fs_ih
+	name = "FS AR .30 \"Venger\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/ih
+
+/datum/design/autolathe/gun/ak47_sa
+	name = "SA Car .30 \"Krinkov\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
+
+/datum/design/autolathe/gun/ak47_sa
+	name = "SA Car .30 \"Krinkov\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/sts35
 	name = "STS-35"
@@ -169,6 +189,10 @@
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/pk
+
+/datum/design/autolathe/gun/lmg_tk
+	name = "FS LMG .30 \"Takeshi\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/lmg/tk
 
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
@@ -235,10 +259,6 @@
 /datum/design/autolathe/gun/plasma/cassad
 	name = "FS PR \"Cassad\""
 	build_path = /obj/item/weapon/gun/energy/plasma/cassad
-
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
 
 // Special
 /datum/design/autolathe/gun/reclaimer

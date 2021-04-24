@@ -11,9 +11,10 @@ var/list/floor_decals = list()
 	var/supplied_dir
 	var/variants_amount
 
-/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
+/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour, var/newappearance)
 	supplied_dir = newdir
 	if(newcolour) color = newcolour
+	if(newappearance) appearance = newappearance
 	..(newloc)
 
 /obj/effect/floor_decal/Initialize()

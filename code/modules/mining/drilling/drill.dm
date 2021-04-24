@@ -48,6 +48,13 @@
 		b.disconnect()
 	return ..()
 
+/obj/machinery/mining/drill/Initialize()
+	. = ..()
+	var/obj/item/weapon/cell/large/high/C = new(src)
+	component_parts += C
+	cell = C
+	update_icon()
+
 /obj/machinery/mining/drill/Process()
 	if(!active)
 		return
@@ -200,7 +207,7 @@
 	..()
 	harvest_speed = 0
 	capacity = 0
-	charge_use = 50
+	charge_use = 37
 	radius = 0
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
@@ -209,7 +216,7 @@
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
-			charge_use -= 10 * (P.rating - harvest_speed)
+			charge_use -= 8 * (P.rating - harvest_speed)
 			charge_use = max(charge_use, 0)
 		if(istype(P, /obj/item/weapon/stock_parts/scanning_module))
 			radius = 1 + P.rating

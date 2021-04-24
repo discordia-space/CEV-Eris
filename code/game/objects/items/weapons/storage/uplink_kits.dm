@@ -325,3 +325,12 @@
 	for(var/i, i < storage_slots , i++)
 		var/stim = pick(subtypesof(/obj/item/weapon/reagent_containers/syringe/stim))
 		new stim(src)
+
+/obj/item/weapon/storage/box/syndie_kit/pickle
+	name = "Pickle box"
+	desc = "Pickle."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/pickle/populate_contents()
+	new /obj/item/weapon/reagent_containers/food/snacks/pickle(src)

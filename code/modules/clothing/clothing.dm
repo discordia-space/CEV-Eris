@@ -9,7 +9,8 @@
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	bad_type = /obj/item/clothing
-	rarity_value = 10
+	rarity_value = 5
+	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
@@ -432,7 +433,7 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 
-	var/can_hold_knife
+	var/can_hold_knife = 0
 	var/obj/item/holding
 	var/noslip = 0
 	var/module_inside = 0
@@ -497,6 +498,7 @@ BLIND     // can't see anything
 			/obj/item/weapon/tool/knife/butterfly,
 			/obj/item/weapon/material/kitchen/utensil,
 			/obj/item/weapon/tool/knife/tacknife,
+			/obj/item/weapon/tool/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)

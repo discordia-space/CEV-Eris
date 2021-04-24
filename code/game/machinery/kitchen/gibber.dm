@@ -204,6 +204,12 @@
 			slab_count = critter.meat_amount
 		if(critter.meat_type)
 			slab_type = critter.meat_type
+
+	else if(isroach(occupant))
+		var/mob/living/carbon/superior_animal/roach/H = occupant
+		slab_type = H.meat_type
+		slab_count = H.meat_amount
+
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		slab_name = src.occupant.real_name

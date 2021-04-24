@@ -39,7 +39,8 @@
 
 /datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
 	if(cnt < 3 || !stat_buff)
-		return
+		to_chat(M, SPAN_NOTICE("Insufficient participants."))
+		return FALSE
 	M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
 
 /datum/ritual/group/cruciform/stat/mechanical
@@ -121,6 +122,24 @@
 /datum/group_ritual_effect/cruciform/stat/robustness
 	stat_buff = STAT_ROB
 
+/datum/ritual/group/cruciform/stat/vigilance
+	name = "Canto of Courage"
+	desc = "Boosts Vigilance stat to 3 + 2 for each participant."
+	phrase = "Vigilia exemplum imitari debemus."
+	phrases = list(
+		"Vigilia exemplum imitari debemus.",
+		"Pater nos tuetur ac curae.",
+		"Novit Patrem nos dirigit in viam rectam.",
+		"Patris nostri et benedicet tuetur.",
+		"Pater amat et tuetur.",
+		"Patrem tuetur et protegit.",
+		"Amen."
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/stat/vigilance
+
+/datum/group_ritual_effect/cruciform/stat/vigilance
+	stat_buff = STAT_VIG
+
 
 /datum/ritual/group/cruciform/stat/toughness
 	name = "Reclamation of Endurance"
@@ -198,10 +217,12 @@
 /datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
 	return TRUE
 
-/datum/group_ritual_effect/cruciform/sanctify/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
 	..()
 	var/area/A = get_area(starter)
 	A?.sanctify()
+	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
+		O.force_active = max(60, O.force_active)
 
 /area/proc/sanctify()
 	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)

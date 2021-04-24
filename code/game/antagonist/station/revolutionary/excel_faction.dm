@@ -85,7 +85,9 @@
 
 	var/obj/item/weapon/storage/deferred/stash/sack/stash = new
 
-	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(stash)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design(stash)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
 	new /obj/item/weapon/electronics/circuitboard/excelsiorautolathe(stash)
 	new /obj/item/weapon/electronics/circuitboard/excelsior_teleporter(stash)
 

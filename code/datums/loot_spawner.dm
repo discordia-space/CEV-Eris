@@ -425,3 +425,40 @@ the value of stock parts increases with the rating.
 		copy_paths -= selected_path
 		things += selected_path
 	return things
+
+/* this proc generates a rarity value depending on the armor.
+/obj/item/clothing/proc/generate_loot_data()
+	var/file_dir = "strings/cloth_data"
+	var/loot_data = file("[file_dir]/cloth_data.txt")
+	var/pure_data = file("[file_dir]/pure_data.txt")
+
+	fdel(loot_data)
+	fdel(pure_data)
+
+	var/list/types = subtypesof(/obj/item/clothing)
+	for(var/path in types)
+		var/obj/item/clothing/C = new path
+		var/list/armor_list = C.armor.getList()
+		var/total_armor = 0
+		var/real_total_armor = 0
+		for(var/armor_type in armor_list)
+			var/val = armor_list[armor_type]
+			real_total_armor += val
+			if(armor_type == ARMOR_BOMB || armor_type == ARMOR_BIO || armor_type == ARMOR_RAD)
+				val /= 1.5
+			total_armor += val
+		if(total_armor)
+			total_armor /= armor_list.len
+			total_armor += 5
+		loot_data << "[C.type]"
+		loot_data << "[C.rarity_value+total_armor]"
+		loot_data << "    rarity_value = [initial(C.rarity_value)]"
+		loot_data << "[real_total_armor]"
+		loot_data  << ""
+
+		pure_data  << "[C.type]"
+		pure_data  << "    rarity_value = [5 + total_armor]"
+		pure_data  << ""
+		pure_data << "[real_total_armor]"
+		qdel(C)
+*/
