@@ -18407,10 +18407,6 @@
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/hallway/side/atmosphericshallway)
-"aSV" = (
-/obj/machinery/duct/vertical,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "aSW" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/teargas,
@@ -30205,10 +30201,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
-"btd" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "bte" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_x = 32
@@ -36372,7 +36364,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bHq" = (
@@ -41599,7 +41590,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -41618,7 +41608,6 @@
 	dir = 9
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bSM" = (
@@ -41644,7 +41633,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bSO" = (
@@ -41722,7 +41710,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTa" = (
@@ -41736,7 +41723,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTb" = (
@@ -41750,7 +41736,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTd" = (
@@ -103315,13 +103300,6 @@
 /obj/machinery/camera/motion/security,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
-"iTJ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4
-	},
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/neotheology/bioreactor)
 "iUs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -121947,7 +121925,7 @@ wwL
 awR
 awR
 aCn
-aSV
+bts
 byM
 bGG
 bSI
@@ -122149,8 +122127,8 @@ alg
 awR
 awR
 aCn
-btd
-btd
+bts
+bts
 bHp
 bSK
 bXZ
@@ -122759,7 +122737,7 @@ btg
 bts
 bGG
 bSZ
-iTJ
+bYO
 bZM
 cci
 bts
@@ -124173,9 +124151,9 @@ btr
 bBX
 bRo
 bTc
-btd
-btd
-btd
+bts
+bts
+bts
 bts
 bts
 bts
