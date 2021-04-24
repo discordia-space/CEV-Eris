@@ -57,7 +57,7 @@
 	var/obj/item/weapon/compressedfilth/CF = new(user.loc)  // Drop the content of the vacuum cleaner on the ground
 	CF.matter[MATERIAL_BIOMATTER] = amount
 	amount = 0
-	to_chat(user, SPAN_NOTICE("You empty the storage tank of the holy vacuum cleaner."))
+	to_chat(user, SPAN_NOTICE("You empty the storage tank of the [src]."))
 	update_icon()
 
 /obj/item/weapon/holyvacuum/afterattack(atom/A, mob/user, proximity)
