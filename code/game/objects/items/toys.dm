@@ -620,7 +620,7 @@
 
 /obj/structure/plushie/astolfofumo
 	name = "Astolfo Fumo"
-	desc = "A plushie of a.... wait is that a bulge?."
+	desc = "A plushie of a.... wait is that a bulge?"
 	icon_state = "asfumoplushie"
 	phrase = "Yahoo! My name is Astolfo! Rider Class! And, and...umm, nice to meet you!"
 
