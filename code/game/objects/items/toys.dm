@@ -615,13 +615,13 @@
 /obj/structure/plushie/cirnofumo
 	name = "Cirno Fumo"
 	desc = "A plushie of a.... where are these coming from?."
-	icon_state = "asfumoplushie"
+	icon_state = "cirfumoplushie"
 	phrase = "I can even freeze magicians!"
 
 /obj/structure/plushie/astolfofumo
 	name = "Astolfo Fumo"
 	desc = "A plushie of a.... wait is that a bulge?."
-	icon_state = "cirfumoplushie"
+	icon_state = "asfumoplushie"
 	phrase = "Yahoo! My name is Astolfo! Rider Class! And, and...umm, nice to meet you!"
 
 //Small plushies.
