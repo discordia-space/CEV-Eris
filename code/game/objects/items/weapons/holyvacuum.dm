@@ -64,7 +64,7 @@
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 		if(amount >= max_amount)
-			to_chat(user, SPAN_NOTICE("The storage tank of the holy vacuum cleaner is full!"))
+			to_chat(user, SPAN_NOTICE("The storage tank of the [src] is full!"))
 			return
 		var/turf/T = get_turf(A)
 		if(!T)
