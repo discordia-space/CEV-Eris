@@ -12,6 +12,7 @@
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 5)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 100
+	spawn_blacklisted = TRUE
 
 	var/amount = 0
 	var/max_amount = 30
@@ -94,6 +95,7 @@
 	matter = list(MATERIAL_BIOMATTER=0)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 100
+	spawn_blacklisted = TRUE
 
 	var/amount = 0
 	var/max_amount = 0
