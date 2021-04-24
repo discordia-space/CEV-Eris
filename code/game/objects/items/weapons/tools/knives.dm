@@ -300,15 +300,17 @@
 	desc = "A piece of glass tied using cable coil onto two welded rods. Impressive work."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spear"
+	item_state = "spear"
+	wielded_icon = "spear_wielded"
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_BULKY //4 it's long
+	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
 	force = WEAPON_FORCE_NORMAL * 1.6 //16
 	throwforce = WEAPON_FORCE_DANGEROUS //20
 	armor_penetration = ARMOR_PEN_MODERATE //15
-	max_upgrades = 1
+	max_upgrades = 3
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it
