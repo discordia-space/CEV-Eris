@@ -366,10 +366,14 @@
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/template_noop)
+"Dt" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
 
 (1,1,1) = {"
-aa
-aa
+af
+ab
 aa
 aa
 ab
@@ -389,15 +393,15 @@ ab
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ab
+aX
+af
+af
 "}
 (2,1,1) = {"
-aa
-aa
-aa
+ab
+af
+ab
 af
 aX
 aX
@@ -416,10 +420,10 @@ aX
 aX
 aa
 aa
-aa
-aa
-aa
-aa
+ak
+ak
+ak
+ab
 "}
 (3,1,1) = {"
 aa
@@ -442,10 +446,10 @@ af
 aU
 ak
 ab
-aa
-aa
-aa
-aa
+ab
+aU
+Dt
+aX
 aa
 "}
 (4,1,1) = {"
@@ -468,11 +472,11 @@ ab
 af
 ax
 ak
+aa
 ab
+am
+af
 ab
-aa
-aa
-aa
 aa
 "}
 (5,1,1) = {"
@@ -495,7 +499,7 @@ ab
 af
 ap
 ak
-ab
+aa
 ab
 ab
 aa
@@ -524,7 +528,7 @@ ag
 ak
 ak
 aX
-aa
+ab
 aa
 aa
 aa
@@ -902,9 +906,9 @@ aO
 aa
 ak
 aa
-ab
-aX
-ab
+aa
+aa
+aa
 aa
 "}
 (21,1,1) = {"
@@ -928,11 +932,11 @@ aS
 aO
 aa
 bi
+aa
+aa
 ab
-af
-aX
-aX
-ab
+aa
+aa
 "}
 (22,1,1) = {"
 aa
@@ -956,10 +960,10 @@ aa
 aa
 bi
 ab
-af
-af
-aX
-af
+aa
+ab
+aa
+aa
 "}
 (23,1,1) = {"
 aa
@@ -982,15 +986,15 @@ ab
 aa
 aa
 aX
-ab
-ab
 aa
+ab
+aX
 ab
 aa
 "}
 (24,1,1) = {"
-aa
-aa
+af
+ab
 ab
 an
 ab
@@ -1009,16 +1013,16 @@ aT
 aa
 aa
 aX
-aa
-aa
-aa
-aa
-aa
+ab
+af
+aX
+aX
+ab
 "}
 (25,1,1) = {"
-aa
-aa
-ab
+an
+ad
+af
 aX
 aX
 aX
@@ -1036,9 +1040,9 @@ aX
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ab
+af
+af
+aX
+af
 "}

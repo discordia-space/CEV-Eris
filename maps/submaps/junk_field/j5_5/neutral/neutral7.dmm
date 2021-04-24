@@ -3,9 +3,6 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/template_noop)
-"c" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
@@ -109,13 +106,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
-b
-k
 a
+a
+b
 f
-c
+n
 "}
 (2,1,1) = {"
 b
@@ -125,14 +125,14 @@ g
 n
 "}
 (3,1,1) = {"
-b
+Q
 d
 m
 h
 n
 "}
 (4,1,1) = {"
-c
+b
 d
 e
 i

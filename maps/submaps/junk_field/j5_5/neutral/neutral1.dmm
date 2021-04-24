@@ -4,7 +4,7 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/turf/template_noop,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
@@ -29,46 +29,46 @@
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"L" = (
+"x" = (
 /obj/structure/girder,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"W" = (
-/turf/simulated/floor/plating/under,
+"O" = (
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
 b
+O
 b
-W
 c
-b
+x
 "}
 (2,1,1) = {"
 c
 a
 d
 h
-b
+d
 "}
 (3,1,1) = {"
-W
+b
 f
 e
 c
-b
+O
 "}
 (4,1,1) = {"
 c
 c
 g
 g
-L
+c
 "}
 (5,1,1) = {"
 b
+O
+O
 b
-b
-W
-c
+x
 "}

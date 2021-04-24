@@ -4,7 +4,6 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
-/obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
@@ -33,7 +32,8 @@
 /mob/living/simple_animal/hostile/carp,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"k" = (
+"D" = (
+/obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 
@@ -42,10 +42,10 @@ a
 a
 e
 f
-b
+e
 "}
 (2,1,1) = {"
-e
+D
 e
 i
 d
@@ -56,19 +56,19 @@ f
 g
 j
 d
-b
+D
 "}
 (4,1,1) = {"
 d
 h
 e
 d
-k
+b
 "}
 (5,1,1) = {"
 f
 e
-e
+D
 d
-k
+f
 "}

@@ -46,18 +46,17 @@
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"m" = (
-/obj/structure/lattice,
+"T" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/template_noop,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 
 (1,1,1) = {"
-b
+T
 e
 c
+j
 l
-m
 "}
 (2,1,1) = {"
 d

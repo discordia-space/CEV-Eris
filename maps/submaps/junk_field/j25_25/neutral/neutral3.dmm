@@ -919,11 +919,15 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
+"Fq" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/template_noop)
 
 (1,1,1) = {"
-aa
-aa
-aa
+ae
+ao
+ae
 aa
 aa
 aa
@@ -945,12 +949,12 @@ aa
 aa
 ao
 ae
-ab
+ao
 "}
 (2,1,1) = {"
-aa
-aa
-aa
+ae
+Fq
+ab
 aa
 aa
 aA
@@ -975,10 +979,10 @@ ao
 ao
 "}
 (3,1,1) = {"
-aa
-aa
-ab
-ab
+ao
+bt
+ae
+ao
 aa
 aA
 bk
@@ -1002,11 +1006,11 @@ aa
 aa
 "}
 (4,1,1) = {"
-aa
 ab
 ao
+ao
 ae
-aa
+ab
 aA
 bl
 aA
@@ -1510,12 +1514,12 @@ bt
 aA
 aA
 aA
-aa
+ab
 aa
 aa
 "}
 (23,1,1) = {"
-aa
+ae
 ab
 ao
 ao
@@ -1536,13 +1540,13 @@ cZ
 aP
 aA
 ab
-aa
-aa
-aa
-aa
+ab
+ab
+ae
+ab
 "}
 (24,1,1) = {"
-aa
+aB
 ab
 ao
 ao
@@ -1564,15 +1568,15 @@ bt
 aA
 aa
 aa
-aa
-aa
-aa
+ao
+ae
+ae
 "}
 (25,1,1) = {"
-aa
-aa
+aA
+ao
+ao
 ab
-aa
 aa
 aa
 aa
@@ -1591,7 +1595,7 @@ aT
 aA
 aa
 aa
-aa
-aa
-aa
+ao
+ar
+ae
 "}

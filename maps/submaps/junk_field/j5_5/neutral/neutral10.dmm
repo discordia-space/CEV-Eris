@@ -1,11 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/lattice,
 /obj/structure/railing{
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/turf/template_noop,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "b" = (
 /obj/structure/disposalpipe/segment{
@@ -83,8 +82,21 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/template_noop)
 "i" = (
-/obj/structure/lattice,
-/turf/template_noop,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "j" = (
 /obj/spawner/traps/low_chance,
@@ -95,14 +107,21 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "l" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"J" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"S" = (
 /turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
 a
 f
-i
-l
+J
+J
 l
 "}
 (2,1,1) = {"
@@ -110,21 +129,21 @@ b
 g
 g
 g
-l
+f
 "}
 (3,1,1) = {"
 c
 h
 j
 g
-l
+S
 "}
 (4,1,1) = {"
 d
 g
 k
 g
-i
+J
 "}
 (5,1,1) = {"
 i
