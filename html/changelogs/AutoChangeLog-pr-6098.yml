@@ -1,8 +1,0 @@
-author: Jackofashepard
-delete-after: true
-changes:
-  - rscadd: 2 more NT acolyte closets
-  - rscadd: 2 more toolboxes of each type
-  - rscadd: 2 more NT acolyte slots and spawn points
-  - tweak: upped NT acolyte cap by 2
-  - tweak: All NTs know latin now

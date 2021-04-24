@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: now when performing the sanctify ritual, all obelisks, temporarily, function
-      as if they have an NT member in their vicinity.

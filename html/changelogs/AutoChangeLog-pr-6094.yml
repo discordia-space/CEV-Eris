@@ -1,8 +1,0 @@
-author: Jackofashepard
-delete-after: true
-changes:
-  - tweak: tweaked resist code so the visible message does not display unless you
-      are actually attempting to break out
-  - balance: you now use the trap to break out of your cuffs faster (basically the
-      total time to completely break out evens out)
-  - bugfix: fixed infinite handcuff in trap exploit

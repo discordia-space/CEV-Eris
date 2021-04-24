@@ -1,6 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: the message that appears when performing an offering ritual is now in
-      English.
-  - tweak: offering rituals now let you know what to offer.

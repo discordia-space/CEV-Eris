@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: gun assembly no longer returns to the user the gun parts used to create
-      a gun.
-  - tweak: gun that can be created using a gun assembly are no longer displayed according
-      to their spawn frequency.
