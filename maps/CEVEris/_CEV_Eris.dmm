@@ -18214,14 +18214,14 @@
 /area/eris/engineering/atmos/storage)
 "aSw" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/shotgunammo/slug,
-/obj/item/weapon/storage/box/shotgunammo/slug,
-/obj/item/weapon/storage/box/shotgunammo/slug,
-/obj/item/weapon/storage/box/shotgunammo/slug,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSx" = (
@@ -21423,6 +21423,19 @@
 /obj/item/ammo_magazine/lrifle/pk,
 /obj/item/ammo_magazine/ammobox/lrifle,
 /obj/item/ammo_magazine/ammobox/lrifle,
+/obj/item/weapon/storage/box/shotgunammo/slug,
+/obj/item/weapon/storage/box/shotgunammo/slug,
+/obj/item/weapon/storage/box/shotgunammo/slug,
+/obj/item/weapon/storage/box/shotgunammo/slug,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
