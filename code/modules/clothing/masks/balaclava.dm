@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/balaclava
 	name = "balaclava"
-	desc = "LOADSAMONEY"
+	desc = "Designed to both hide your face and keep it comfy and warm."
 	icon_state = "balaclava"
 	item_state = "balaclava"
 	action_button_name = "Adjust Balaclava"

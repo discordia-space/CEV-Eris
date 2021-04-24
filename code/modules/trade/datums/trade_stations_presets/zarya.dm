@@ -38,7 +38,8 @@
 			/obj/item/clothing/head/welding,
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/machinery/floodlight = good_data("Nuuuuu, eto kot v meshke!", list(-10, 3))
+			/obj/machinery/floodlight,
+			/obj/spawner/lathe_disk = good_data("Nuuuuu, eto kot v meshke!", list(-10, 3)),
 		)
 	)
 

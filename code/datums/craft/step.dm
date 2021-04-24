@@ -1,6 +1,3 @@
-#define IN_PROGRESS 2
-#define READY 1
-
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
@@ -201,6 +198,10 @@
 
 				if(craft_items[target] >= 1)
 					. = IN_PROGRESS
+
+			else if(req_amount > 1)
+				. = IN_PROGRESS
+
 			qdel(I)
 
 	if(target)
@@ -210,7 +211,7 @@
 	if(. != IN_PROGRESS)
 		if(target)
 			target.step++
-		return READY
+		return IS_READY
 
 /datum/craft_step/proc/find_item(mob/living/user)
 	var/list/items = new
@@ -298,7 +299,3 @@
 	//If we get here, then we found the item but it wasn't valid to use, sorry!
 
 	return FALSE
-
-
-#undef IN_PROGRESS
-#undef READY

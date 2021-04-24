@@ -174,9 +174,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "FS Revolver Pack"
 	group = "Security"
 
+/datum/supply_pack/fshunting	//3 "random" hunting rifles
+	name = "FS Hunting Rifle Pack"
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+			/obj/item/weapon/gun/projectile/automatic/ak47/fs)
+	cost = 4500
+	containertype = /obj/structure/closet/crate/secure/weapon
+	crate_name = "FS Hunting Rifle Pack"
+	group = "Security"
+
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
-	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
 			/obj/item/weapon/gun/projectile/automatic/z8,
 			/obj/item/weapon/gun/projectile/automatic/atreides)
 	cost = 6000
@@ -1327,7 +1337,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1100
 	crate_name = "Hazard Hardsuit Control Module Crate"
 	group = "Resource Integration Gear"
-	
+
 /datum/supply_pack/industrial
 	name = "Industrial Hardsuit Control Module Crate"
 	contains = list(/obj/item/weapon/rig/industrial)

@@ -129,6 +129,7 @@
 	cooldown_time = 2 MINUTES
 	effect_time = 10 MINUTES
 	cooldown_category = "short_boost"
+	power = 30
 	var/list/stats_to_boost = list()
 
 /datum/ritual/cruciform/priest/short_boost/New()
@@ -253,7 +254,7 @@
 /datum/ritual/cruciform/priest/offering
 	name = "Offerings"
 	category = "Offerings"
-	success_message = "tus plegarais han sido escuchadas"
+	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
 	power = 30
 	var/list/req_offerings = list()
@@ -298,7 +299,6 @@
 				true_offerings.Add(I)
 
 		if(num_item < req_num)
-			var/obj/item = path
 			break
 		else
 			num_check++
@@ -329,20 +329,53 @@
 /datum/ritual/cruciform/priest/offering/call_for_arms
 	name = "Call for arms"
 	phrase = "Pater da mihi fortitudinem cladem ad malum."
-	desc = "Ask the Eye of the Protector to give you weapons to fight evil."
+	desc = "Ask the Eye of the Protector to give you weapons to fight evil. You must offer 40 metal, 20 plasteel and 150 biomatter."
 	req_offerings = list(/obj/item/stack/material/plasteel = 20, /obj/item/stack/material/steel = 40, /obj/item/stack/material/biomatter = 150)
 	miracles = list(ARMAMENTS)
 
 /datum/ritual/cruciform/priest/offering/divine_intervention
 	name = "Divine intervention"
 	phrase = "Auxilium instaurarent domum tuam."
-	desc = "Requests the Eye of the Protector for construction materials."
+	desc = "Requests the Eye of the Protector for construction materials. You must offer 200 biomatter."
 	req_offerings = list(/obj/item/stack/material/biomatter = 200)
 	miracles = list(MATERIAL_REWARD)
 
 /datum/ritual/cruciform/priest/offering/holy_guidance
 	name = "Holy guidance"
 	phrase = "Domine deus, lux via"
-	desc = "Present your prayers to the Eye of the Protector."
+	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and 40 fruits."
 	req_offerings = list(/obj/item/weapon/oddity = 1, /obj/item/weapon/reagent_containers/food/snacks/grown = 40)
 	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
+
+/datum/ritual/cruciform/priest/divine_blessing
+	name = "Divine Blessing"
+	phrase = "Corpus Deus"
+	desc = "Increases the stats of an oddity."
+	success_message = "Your oddity has been blessed."
+	fail_message = "You feel cold in your active hand."
+	var/list/odditys = list()
+
+
+/datum/ritual/cruciform/priest/divine_blessing/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/obj/item/I = user.get_active_hand()
+	if(!I)
+		fail("You have nothing in your active hand.", user, C)
+		return FALSE
+
+	if(I in odditys)
+		fail("This oddity has already been blessed.", user, C)
+		return FALSE
+
+	GET_COMPONENT_FROM(inspiracion, /datum/component/inspiration, I)
+	if(!inspiracion)
+		fail("You need to hold an oddity in your active hand.", user, C)
+		return FALSE
+
+	if(!inspiracion.stats)
+		fail("This oddity cannot be blessed.", user, C)
+		return FALSE
+
+	for(var/stat in inspiracion.stats)
+		inspiracion.stats[stat] += rand(1,8)
+	odditys.Add(I)
+	return TRUE

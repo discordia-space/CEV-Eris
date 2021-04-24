@@ -1,3 +1,5 @@
+GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
+
 /obj/item/device/last_shelter
 	name = "Last Shelter"
 	desc = "Powerful scanner that can teleport a cruciforms of pilgrims lost in this sector of space."
@@ -14,6 +16,7 @@
 
 /obj/item/device/last_shelter/New()
 	..()
+	GLOB.last_shelter = src
 	GLOB.all_faction_items[src] = GLOB.department_church
 
 /obj/item/device/last_shelter/Destroy()
@@ -29,6 +32,9 @@
 	..()
 
 /obj/item/device/last_shelter/attack_self(mob/user)
+	active_effect(user)
+
+/obj/item/device/last_shelter/proc/active_effect(mob/user, alert = FALSE)
 	if(world.time >= (last_teleport + cooldown))
 		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))
 		last_teleport = world.time
@@ -45,6 +51,17 @@
 		else
 			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))
 			scan = FALSE
+
+		if(alert)
+			var/preacher
+			for(var/mob/living/carbon/human/H in disciples)
+				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
+					preacher = H
+
+			if(!preacher && length(disciples))
+				preacher = pick(disciples)
+			to_chat(preacher, SPAN_WARNING("[src] has been activated."))
+
 
 	else if(scan)
 		to_chat(user, SPAN_WARNING("The [src] is still woking! Wait a minute!"))
