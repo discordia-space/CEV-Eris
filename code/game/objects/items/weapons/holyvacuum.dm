@@ -25,7 +25,7 @@
 
 /obj/item/weapon/holyvacuum/examine(mob/user)
 	..()
-	to_chat(user, "\The [src] tank contains [amount] units of compressed filth.")
+	to_chat(user, "\The [src]'s tank contains [amount] units of compressed filth.")
 
 /obj/item/weapon/holyvacuum/on_update_icon()
 	.=..()
