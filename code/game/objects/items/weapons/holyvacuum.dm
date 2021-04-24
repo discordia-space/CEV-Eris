@@ -13,6 +13,7 @@
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 100
 	spawn_blacklisted = TRUE
+	price_tag = 300
 
 	var/amount = 0
 	var/max_amount = 30
@@ -96,6 +97,7 @@
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 100
 	spawn_blacklisted = TRUE
+	price_tag = 0
 
 	var/amount = 0
 	var/max_amount = 0
