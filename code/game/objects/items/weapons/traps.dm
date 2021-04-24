@@ -323,6 +323,9 @@ Very rarely it might escape
 
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
 	if(deployed && isliving(AM))
+		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
+			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			return ..()
 		var/mob/living/L = AM
 		var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
 		if("\ref[L]" in aware_mobs)
