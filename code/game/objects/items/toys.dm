@@ -608,7 +608,7 @@
 
 /obj/structure/plushie/marisafumo
 	name = "Marisa Fumo"
-	desc = "A plushie of a....?."
+	desc = "A plushie of a....?"
 	icon_state = "marfumoplushie"
 	phrase = "I just don't think about losing."
 
