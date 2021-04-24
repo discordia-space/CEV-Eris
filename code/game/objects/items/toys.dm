@@ -606,11 +606,23 @@
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
 
-/obj/structure/plushie/fumo
-	name = "Fumo"
+/obj/structure/plushie/marisafumo
+	name = "Marisa Fumo"
 	desc = "A plushie of a....?."
-	icon_state = "fumoplushie"
+	icon_state = "marfumoplushie"
 	phrase = "I just don't think about losing."
+
+/obj/structure/plushie/cirnofumo
+	name = "Cirno Fumo"
+	desc = "A plushie of a.... where are these coming from?."
+	icon_state = "asfumoplushie"
+	phrase = "I can even freeze magicians!"
+
+/obj/structure/plushie/astolfofumo
+	name = "Astolfo Fumo"
+	desc = "A plushie of a.... wait is that a bulge?."
+	icon_state = "cirfumoplushie"
+	phrase = "Yahoo! My name is Astolfo! Rider Class! And, and...umm, nice to meet you!"
 
 //Small plushies.
 /obj/item/toy/plushie
