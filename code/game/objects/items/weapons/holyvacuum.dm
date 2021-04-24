@@ -49,7 +49,7 @@
 /obj/item/weapon/holyvacuum/attack_self(var/mob/user)
 	.=..()
 	if(amount==0)
-		to_chat(user, SPAN_NOTICE("The storage tank of the holy vacuum cleaner is already empty."))
+		to_chat(user, SPAN_NOTICE("The storage tank of the [src] is already empty."))
 	else
 		empty(user)
 
