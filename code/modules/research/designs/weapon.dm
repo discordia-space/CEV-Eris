@@ -22,19 +22,24 @@
 	build_path = /obj/item/weapon/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
+/datum/design/research/item/weapon/centauri
+	desc = "The \"Centauri\" is a prototype of a light laser sub-machine gun with a great firerate."
+	build_path = /obj/item/weapon/gun/energy/centauri
+	sort_string = "TAAAD"
+
 /datum/design/research/item/weapon/c20r
 	name = "C20R-prototype"
 	desc = "The C-20r is a lightweight and rapid-firing SMG. Uses 10mm rounds."
 	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
-	sort_string = "TAAAF"
+	sort_string = "TAAAE"
 
 /datum/design/research/item/weapon/plasmapistol
 	build_path = /obj/item/weapon/gun/energy/plasma/brigador
-	sort_string = "TAAAD"
+	sort_string = "TAAAF"
 
 /datum/design/research/item/weapon/decloner
 	build_path = /obj/item/weapon/gun/energy/decloner
-	sort_string = "TAAAE"
+	sort_string = "TAAAG"
 
 /datum/design/research/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."

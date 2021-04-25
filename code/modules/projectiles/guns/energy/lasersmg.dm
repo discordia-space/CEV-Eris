@@ -60,3 +60,32 @@
 
 	else if(istype(cell, /obj/item/weapon/cell/medium))
 		add_overlays(image(icon, "guild_cell"))
+
+/obj/item/weapon/gun/energy/centauri
+	name = "Moebius PDW \"Centauri\""
+	desc = "\"Moebius\" brand laser sub-machine gun with a great firerate. Caution, there is a possibility of melting the barrel."
+	icon = 'icons/obj/guns/energy/centauri.dmi'
+	icon_state = "centauri"
+	item_state = "centauri"
+	item_charge_meter = TRUE
+	fire_sound = 'sound/weapons/Laser.ogg'
+	can_dual = TRUE
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
+	w_class = ITEM_SIZE_NORMAL
+	slot_flags = SLOT_BELT
+	projectile_type = /obj/item/projectile/beam
+	suitable_cell = /obj/item/weapon/cell/medium
+	charge_cost = 40
+	fire_delay = 20
+	zoom_factor = 0.5
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_STEEL = 20, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
+	price_tag = 2000
+	damage_multiplier = 0.40
+	recoil_buildup = 2
+	one_hand_penalty = 3
+	spawn_blacklisted = TRUE
+	init_firemodes = list(
+		FULL_AUTO_300,
+		SEMI_AUTO_NODELAY,
+		BURST_5_ROUND
+		)
