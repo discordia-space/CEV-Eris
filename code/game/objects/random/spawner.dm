@@ -94,9 +94,9 @@
 		if(ismachinery(A) || isstructure(A))
 			A.set_dir(src.dir)
 		spawns.Add(A)
-		// if(ismovable(A))
-		// 	var/atom/movable/AM = A
-		// 	price_tag += AM.get_item_cost()
+		if(ismovable(A))
+			var/atom/movable/AM = A
+			price_tag += AM.get_item_cost()
 		if(allow_aditional_object && islist(aditional_object) && aditional_object.len)
 			for(var/thing in aditional_object)
 				var/atom/movable/AM2 = thing
