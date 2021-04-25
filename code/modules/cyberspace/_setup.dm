@@ -1,3 +1,5 @@
+#include "memory_stack.dm"
+
 #include "defines.dm"
 #include "cyberspace_hider.dm"
 

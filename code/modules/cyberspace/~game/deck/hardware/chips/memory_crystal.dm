@@ -13,6 +13,6 @@
 		if((alert(user, "Are you sure you want activate [SoftName]", "[SoftName]", "Yes", "No") == "Yes") && istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
 			. = Memory * 2
-			myDeck.GiveTemporaryMemory(., 20 MINUTES)
+			myDeck.TemporaryExtendGrip(., 20 MINUTES)
 			return ..() && .
 

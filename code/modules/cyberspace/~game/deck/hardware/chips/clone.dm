@@ -21,11 +21,11 @@
 			var/message = "Action canceled."
 			
 			if(programToClone != "(CANCEL)")
-				if(myDeck.CheckMemory(programToClone.size))
-					var/datum/computer_file/cyberdeck_program/clone = programToClone.clone()
-					myDeck.memory_buffer += clone //
+				var/datum/computer_file/cyberdeck_program/clone = programToClone.clone()
+				if(myDeck.InstallProgram(clone))
 					. = ..()
 					message = "Chip activated succesfull."
 				else
+					qdel(clone)
 					message = "No available memory."
 			to_chat(user, SPAN_WARNING(message))

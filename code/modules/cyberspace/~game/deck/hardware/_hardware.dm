@@ -41,7 +41,7 @@
 	Installed(obj/item/weapon/computer_hardware/deck/_deck)
 		. = ..()
 		if(. && CheckIntegrity())
-			_deck.memory += Memory
+			_deck.memory_buffer.memory += Memory
 			_deck.link_streight += LinkStreight
 
 	Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
