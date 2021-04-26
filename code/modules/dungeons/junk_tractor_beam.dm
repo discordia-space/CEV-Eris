@@ -850,6 +850,7 @@
 	desc = "An ominous pillar that can stabilize a bluespace portal by dampening local space-time interferences."
 	icon = 'icons/obj/structures/junk_tractor_beam.dmi'
 	icon_state = "pillar"
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	anchored = TRUE
 
