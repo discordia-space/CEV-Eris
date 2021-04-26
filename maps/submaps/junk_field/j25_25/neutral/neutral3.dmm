@@ -919,13 +919,13 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
-"Fq" = (
+"NP" = (
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/template_noop)
 
 (1,1,1) = {"
-ae
+aA
 ao
 ae
 aa
@@ -949,11 +949,11 @@ aa
 aa
 ao
 ae
-ao
+aA
 "}
 (2,1,1) = {"
 ae
-Fq
+NP
 ab
 aa
 aa
@@ -1597,5 +1597,5 @@ aa
 aa
 ao
 ar
-ae
+aA
 "}

@@ -366,13 +366,13 @@
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/template_noop)
-"Dt" = (
+"tL" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 
 (1,1,1) = {"
-af
+ak
 ab
 aa
 aa
@@ -396,7 +396,7 @@ aa
 ab
 aX
 af
-af
+ak
 "}
 (2,1,1) = {"
 ab
@@ -448,7 +448,7 @@ ak
 ab
 ab
 aU
-Dt
+tL
 aX
 aa
 "}
@@ -1044,5 +1044,5 @@ ab
 af
 af
 aX
-af
+ak
 "}

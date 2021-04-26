@@ -639,21 +639,13 @@
 /mob/living/simple_animal/hostile/bear,
 /turf/simulated/floor/tiled/steel,
 /area/template_noop)
-"dg" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"Ts" = (
+"mW" = (
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/template_noop)
 
 (1,1,1) = {"
-ag
+ad
 ah
 ag
 ac
@@ -677,11 +669,11 @@ aF
 ab
 ag
 ah
-ah
+ad
 "}
 (2,1,1) = {"
 ag
-Ts
+mW
 ab
 ac
 ac
@@ -1324,6 +1316,6 @@ ab
 ab
 ab
 ab
-dg
-dg
+bw
+ad
 "}
