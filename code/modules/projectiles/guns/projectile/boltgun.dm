@@ -103,6 +103,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 16)
 
 /obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
