@@ -85,7 +85,7 @@
 	if(!istool(I))
 		return FALSE
 	if(!gun_parts)
-		to_chat(user, SPAN_NOTICE("You can't dismantle [src] it has no gun  parts!"))
+		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
 		return FALSE
 	if(I.get_tool_quality(QUALITY_BOLT_TURNING))
 		user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]"), SPAN_NOTICE("You begin breaking apart [src] for gun parts"))
