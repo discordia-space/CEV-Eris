@@ -90,7 +90,7 @@
 	if(I.get_tool_quality(QUALITY_BOLT_TURNING))
 		user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING(You begin breaking apart [src] for gun parts."))
 	if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-		user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!."), SPAN_NOTICE("You break [src] apart for gun parts."))
+		user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
 		for(var/target_item in gun_parts)
 			var/amount = gun_parts[target_item]
 			while(amount)
