@@ -212,7 +212,7 @@
 	build_path = /obj/item/weapon/storage/bag/money
 
 /datum/design/bioprinter/holyvacuum
-	name = "Holy Vacuum Cleaner"
+	name = "\"Tersus\" Vacuum Cleaner"
 	build_path = /obj/item/weapon/holyvacuum
 
 //[/THINGS]

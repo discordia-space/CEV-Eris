@@ -1,6 +1,6 @@
 /obj/item/weapon/holyvacuum
 	desc = "An advanced vacuum cleaner designed by NeoTheology that compresses trash into reusable biomatter bricks. It looks more like a ghost-busting gun than an actual vacuum cleaner. There is no safety switch."
-	name = "holy vacuum cleaner"
+	name = "\"Tersus\" vacuum cleaner"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "vacuum"
 	force = WEAPON_FORCE_WEAK
