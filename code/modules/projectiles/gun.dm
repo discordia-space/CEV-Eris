@@ -82,7 +82,7 @@
 	var/inversed_carry = FALSE
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/living/user, params)
-	if(!istool(I))
+	if(!istool(I) || user.a_intent != I_HURT)
 		return FALSE
 	if(!gun_parts)
 		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
