@@ -91,8 +91,9 @@
 	if(shock_stage <= traumatic_shock)	//Shock stage slowly climbs to traumatic shock
 		shock_stage = min(shock_stage + shock_stage_speed, traumatic_shock)
 
-		if(shock_stage < traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to 40% of traumatic shock
+		if(shock_stage <= traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to 40% of traumatic shock
 			shock_stage = (traumatic_shock * 0.4)
+			shock_stage = round(shock_stage / 2) * 2 //rounded to the nearest even sumber, so messages show up
 
 	else
 		shock_stage = max(shock_stage - shock_stage_speed, 0)
@@ -128,7 +129,7 @@
 		enter_hard_crit()
 
 /mob/living/carbon/human/proc/enter_hard_crit()
-	var/knockout_time = rand(3 MINUTES, 4 MINUTES)
+	var/knockout_time = rand(2 MINUTES, 3 MINUTES)
 	to_chat(src, SPAN_DANGER("[pick("You are knocked out", "You can't feel anything anymore", "You just can't keep going anymore")]!"))
 	visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
 	Weaken(knockout_time)
