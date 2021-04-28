@@ -48,3 +48,8 @@
 	name = "neutral 10"
 	id = "neutral10"
 	suffix = "neutral/neutral10.dmm"
+
+/datum/map_template/junk/j5_5/neutral/neutral11
+	name = "neutral 11"
+	id = "neutral11"
+	suffix = "neutral/neutral11.dmm"
