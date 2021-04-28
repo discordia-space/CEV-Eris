@@ -77,7 +77,7 @@
 	var/number_asteroids = 8 // Number of asteroids if the junk field has the asteroid belt property
 	var/number_25_25_base = 4 // Max number of 25 by 25 junk chunks
 	var/number_5_5_base = 35 // Max number of 5 by 5 junk chunks
-	var/number_25_25_bonus = 2 // Bonus of 25 by 25 junk chunks if no asteroids
+	var/number_25_25_bonus = 4 // Bonus of 25 by 25 junk chunks if no asteroids
 	var/number_5_5_bonus = 25 // Bonus of 5 by 5 junk chunks if no asteroids
 
 	var/list/pool_25_25 = list() // Pool of 25 by 25 junk chunks
@@ -190,8 +190,8 @@
 /obj/jtb_generator/proc/generate_junk_field()
 	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
 
-	numR = round((maxx) / 5) - 1
-	numC = round((maxy) / 5) - 1
+	numR = round((maxx) / 5)
+	numC = round((maxy) / 5)
 	map = new/list(numR,numC,0)
 	grid = new/list(numR,numC,0)
 
