@@ -1026,7 +1026,7 @@
 	mix_message = "The slime extract begins to vibrate violently!"
 
 /datum/chemical_reaction/slime/crit/on_reaction(var/datum/reagents/holder)
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 2)
 		var/roachcube = pick(subtypesof(/obj/item/weapon/reagent_containers/food/snacks/roachcube))
 		new roachcube(get_turf(holder.my_atom))
 	..()
