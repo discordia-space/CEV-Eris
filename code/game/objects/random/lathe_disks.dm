@@ -2,7 +2,6 @@
 	name = "random lathe disk"
 	icon_state = "tech-green"
 	tags_to_spawn = list(SPAWN_DESIGN)
-	price_tag = 500
 
 /obj/spawner/lathe_disk/low_chance
 	name = "low chance random lathe disk"
