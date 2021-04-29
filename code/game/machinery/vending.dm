@@ -1496,7 +1496,7 @@
 					/obj/item/ammo_magazine/hpistol = 12,
 					/obj/item/ammo_magazine/cspistol = 12,
 					/obj/item/ammo_magazine/srifle = 12,
-					/obj/item/ammo_magazine/smg = 12
+					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 20, 
 					/obj/item/part/gun = 20,
 					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4,
@@ -1506,24 +1506,25 @@
 					/obj/item/weapon/gun/projectile/mandella = 4,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
-					/obj/item/weapon/gun/projectile/automatic/molly = 4,
+					/obj/item/weapon/gun/projectile/automatic/molly = 4
 					)
 	prices = list(
-					/obj/item/part/armor = 700, 
-					/obj/item/part/gun = 700,
-					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 3750,
-					/obj/item/weapon/gun/energy/retro = 2500,
-					/obj/item/weapon/gun/projectile/mk58  = 1750,
-					/obj/item/weapon/gun/projectile/mk58/wood = 1750,
-					/obj/item/weapon/gun/projectile/mandella = 1875,
-					/obj/item/weapon/gun/projectile/revolver/deckard = 3875,
-					/obj/item/weapon/gun/projectile/automatic/z8 = 4000,
-					/obj/item/weapon/gun/projectile/automatic/molly = 2125,
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
 					/obj/item/ammo_magazine/cspistol = 300,
 					/obj/item/ammo_magazine/srifle = 300,
-					/obj/item/ammo_magazine/smg = 400
+					/obj/item/ammo_magazine/smg = 400,
+					/obj/item/part/armor = 700, 
+					/obj/item/part/gun = 700,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 3200,
+					/obj/item/weapon/gun/energy/retro = 2000,
+					/obj/item/weapon/gun/projectile/mk58  = 1500,
+					/obj/item/weapon/gun/projectile/mk58/wood = 1500,
+					/obj/item/weapon/gun/projectile/mandella = 1500,
+					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
+					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
+					/obj/item/weapon/gun/projectile/automatic/molly = 2000
+
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_GUILD
