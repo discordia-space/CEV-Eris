@@ -104186,6 +104186,10 @@
 /obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
+"oUH" = (
+/obj/machinery/vending/trashvend,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "oUI" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -204571,7 +204575,7 @@ anJ
 anJ
 esN
 cwA
-cjM
+oUH
 cil
 cil
 czL
