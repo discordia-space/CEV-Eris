@@ -1484,6 +1484,49 @@
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
+	
+/obj/machinery/vending/trashvend
+	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
+	desc = "Some relic of an Aster's subsidiary, its mascot most likely long dead."
+	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
+	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
+	icon_state = "trashvend"
+	products = list(
+					/obj/item/part/armor = 20, 
+					/obj/item/part/gun = 20,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4,
+					/obj/item/weapon/gun/energy/retro = 4,
+					/obj/item/weapon/gun/projectile/mk58  = 2,
+					/obj/item/weapon/gun/projectile/mk58/wood = 2,
+					/obj/item/weapon/gun/projectile/mandella = 4,
+					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
+					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
+					/obj/item/weapon/gun/projectile/automatic/molly = 4,
+					/obj/item/ammo_magazine/lrifle = 12,
+					/obj/item/ammo_magazine/hpistol = 12,
+					/obj/item/ammo_magazine/cspistol = 12,
+					/obj/item/ammo_magazine/srifle = 12,
+					/obj/item/ammo_magazine/smg = 12
+					)
+	prices = list(
+					/obj/item/part/armor = 700, 
+					/obj/item/part/gun = 700,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4500,
+					/obj/item/weapon/gun/energy/retro = 3000,
+					/obj/item/weapon/gun/projectile/mk58  = 2100,
+					/obj/item/weapon/gun/projectile/mk58/wood = 2100,
+					/obj/item/weapon/gun/projectile/mandella = 2250,
+					/obj/item/weapon/gun/projectile/revolver/deckard = 4650,
+					/obj/item/weapon/gun/projectile/automatic/z8 = 4800,
+					/obj/item/weapon/gun/projectile/automatic/molly = 2550,
+					/obj/item/ammo_magazine/lrifle = 400,
+					/obj/item/ammo_magazine/hpistol = 300,
+					/obj/item/ammo_magazine/cspistol = 300,
+					/obj/item/ammo_magazine/srifle = 300,
+					/obj/item/ammo_magazine/smg = 400
+					)
+	idle_power_usage = 211
+	vendor_department = DEPARTMENT_GUILD
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
