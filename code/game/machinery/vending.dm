@@ -1487,7 +1487,7 @@
 
 /obj/machinery/vending/trashvend
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
-	desc = "Some relic of an Aster's subsidiary, its mascot most likely long dead."
+	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
 	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
 	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
 	icon_state = "trashvend"
@@ -1527,7 +1527,7 @@
 
 					)
 	idle_power_usage = 211
-	vendor_department = DEPARTMENT_GUILD
+	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
