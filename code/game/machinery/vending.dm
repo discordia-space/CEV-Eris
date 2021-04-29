@@ -998,7 +998,6 @@
 					/obj/item/weapon/gun/energy/gun/martin = 5,
 					/obj/item/weapon/gun/projectile/revolver/havelock = 5,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
 					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
@@ -1506,7 +1505,8 @@
 					/obj/item/weapon/gun/projectile/mandella = 4,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
-					/obj/item/weapon/gun/projectile/automatic/molly = 4
+					/obj/item/weapon/gun/projectile/automatic/molly = 4,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4
 					)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
@@ -1523,8 +1523,8 @@
 					/obj/item/weapon/gun/projectile/mandella = 1500,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
-					/obj/item/weapon/gun/projectile/automatic/molly = 2000
-
+					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
