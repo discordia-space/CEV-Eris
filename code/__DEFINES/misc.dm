@@ -320,7 +320,7 @@
 #define RUIN_NATURAL	16		//naturally occuring structure
 #define RUIN_WATER 		32		//ruin depending on planet having water accessible
 
-#define NEWorINITIAL(variable, newvalue) variable = newvalue ? newvalue : initial(variable)
+#define NEWorNOACTION(variable, newvalue)  newvalue ? (variable = newvalue) : null
 
 //Matricies
 #define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\

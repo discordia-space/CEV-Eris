@@ -21,7 +21,9 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 
 /datum/CyberSpaceAvatar/eye/ai
 	icon_state = "ai_observer"
+
 CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/eye/ai)
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
-
+	ReturnToBody()
+		return

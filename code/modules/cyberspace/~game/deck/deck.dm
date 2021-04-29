@@ -45,6 +45,7 @@
 					H.Installed(src)
 			if(.)
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+			SetUpProjectedMind()
 
 /obj/item/weapon/computer_hardware/deck/proc
 	IsWorking()
@@ -92,4 +93,8 @@
 
 	SetUpProjectedMind()
 		projected_mind.Memory = DefaultMemoryForInstalledPrograms
-		
+		projected_mind.reset_HUD()
+	
+	AddLinkStreight(count)
+		link_streight += count
+

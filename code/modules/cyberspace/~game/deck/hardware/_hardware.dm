@@ -41,17 +41,17 @@
 	Installed(obj/item/weapon/computer_hardware/deck/_deck)
 		. = ..()
 		if(. && CheckIntegrity())
-			_deck.memory_buffer.memory += Memory
-			_deck.link_streight += LinkStreight
+			_deck.AddMemory(Memory)
+			_deck.AddLinkStreight(LinkStreight)
 
 	Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
 		. = ..()
 		if(!broken)
-			_deck.memory -= Memory
+			_deck.AddMemory(-Memory)
 			_deck.link_streight -= LinkStreight
 	Broken()
 		. = ..()
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/_deck = loc
-			_deck.memory -= Memory
-			_deck.link_streight -= LinkStreight
+			_deck.AddMemory(-Memory)
+			_deck.AddLinkStreight(-LinkStreight)

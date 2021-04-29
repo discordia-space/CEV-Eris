@@ -20,12 +20,12 @@
 		if(HUDdatum.HUDneed)
 			var/obj/screen/movable/exosuit/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 			var/obj/screen/movable/exosuit/HUD = new HUDtype(src)
-			NEWorINITIAL(HUD.name, HUDname)
-			if(istype(HUD)) NEWorINITIAL(HUD.owner, src)
-			NEWorINITIAL(HUD.icon, HUDdatum.HUDneed[HUDname]["icon"])
-			NEWorINITIAL(HUD.icon_state, HUDdatum.HUDneed[HUDname]["icon_state"])
-			NEWorINITIAL(HUD.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
-			NEWorINITIAL(HUD.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
+			NEWorNOACTION(HUD.name, HUDname)
+			if(istype(HUD)) NEWorNOACTION(HUD.owner, src)
+			NEWorNOACTION(HUD.icon, HUDdatum.HUDneed[HUDname]["icon"])
+			NEWorNOACTION(HUD.icon_state, HUDdatum.HUDneed[HUDname]["icon_state"])
+			NEWorNOACTION(HUD.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
+			NEWorNOACTION(HUD.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
 
 			HUDneed[HUD.name] = HUD
 			if(HUD.process_flag) HUDprocess += HUD

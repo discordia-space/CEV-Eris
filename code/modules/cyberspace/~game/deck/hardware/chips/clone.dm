@@ -16,7 +16,7 @@
 	Activate(mob/user) // TODO: It must install program not copy in grip
 		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.memory_buffer.Copy() + "(CANCEL)") //
+			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.memory_buffer.GetNames() + "(CANCEL)")
 			
 			var/message = "Action canceled."
 			
