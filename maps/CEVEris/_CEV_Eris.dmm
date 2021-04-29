@@ -2368,6 +2368,13 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
+"afW" = (
+/obj/structure/closet/excavation,
+/obj/item/weapon/storage/belt/archaeology,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,9"
+	},
+/area/shuttle/research/station)
 "afX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -9167,6 +9174,12 @@
 /obj/machinery/neotheology/biomass_container,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
+"avL" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,9"
+	},
+/area/shuttle/research/station)
 "avM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11651,6 +11664,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"aBK" = (
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "aBL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15182,6 +15202,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"aLp" = (
+/obj/machinery/light,
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -19151,6 +19176,13 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"aUH" = (
+/obj/structure/closet/excavation,
+/obj/item/weapon/storage/belt/archaeology,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,8"
+	},
+/area/shuttle/research/station)
 "aUI" = (
 /obj/machinery/meter{
 	frequency = 1443;
@@ -27346,6 +27378,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"bmd" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,8"
+	},
+/area/shuttle/research/station)
 "bme" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30103,6 +30141,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
+"bsO" = (
+/obj/structure/closet/excavation,
+/obj/item/weapon/storage/belt/archaeology,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,7"
+	},
+/area/shuttle/research/station)
 "bsP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -30136,6 +30181,12 @@
 "bsS" = (
 /turf/simulated/wall,
 /area/eris/hallway/side/section3port)
+"bsT" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,7"
+	},
+/area/shuttle/research/station)
 "bsU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -92769,12 +92820,6 @@
 	icon_state = "4,9"
 	},
 /area/shuttle/research/station)
-"ejV" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,9"
-	},
-/area/shuttle/research/station)
 "ejW" = (
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
@@ -92804,16 +92849,6 @@
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,9"
-	},
-/area/shuttle/research/station)
-"ekb" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,9"
 	},
 /area/shuttle/research/station)
 "ekc" = (
@@ -92924,22 +92959,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"ekn" = (
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"eko" = (
-/obj/machinery/light,
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "ekp" = (
@@ -93055,12 +93074,6 @@
 	icon_state = "4,8"
 	},
 /area/shuttle/research/station)
-"ekC" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,8"
-	},
-/area/shuttle/research/station)
 "ekD" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -93105,16 +93118,6 @@
 	},
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,8"
-	},
-/area/shuttle/research/station)
-"ekI" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,8"
 	},
 /area/shuttle/research/station)
 "ekJ" = (
@@ -93300,12 +93303,6 @@
 	icon_state = "4,7"
 	},
 /area/shuttle/research/station)
-"elk" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,7"
-	},
-/area/shuttle/research/station)
 "ell" = (
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
@@ -93332,16 +93329,6 @@
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,7"
-	},
-/area/shuttle/research/station)
-"elq" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,7"
 	},
 /area/shuttle/research/station)
 "elr" = (
@@ -287979,7 +287966,7 @@ ehb
 eic
 eiV
 ejG
-ekn
+aBK
 ect
 dWt
 dWM
@@ -288181,7 +288168,7 @@ ehc
 eid
 eiW
 ejH
-eko
+aLp
 ect
 dWu
 dWX
@@ -294846,9 +294833,9 @@ egy
 ehz
 eiA
 eji
-ejV
-ekC
-elk
+afW
+aUH
+bsO
 emr
 enr
 eoe
@@ -296058,9 +296045,9 @@ egE
 ehF
 eiG
 ejo
-ekb
-ekI
-elq
+avL
+bmd
+bsT
 emx
 enx
 eok

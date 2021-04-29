@@ -482,6 +482,10 @@
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
 
 
+/obj/machinery/suit_storage_unit/moebius
+	SUIT_TYPE = /obj/item/clothing/suit/space/void/hazardsuit/moebius
+
+
 /obj/machinery/suit_storage_unit/nt
 	SUIT_TYPE = /obj/item/clothing/suit/armor/acolyte
 	HELMET_TYPE = /obj/item/clothing/head/armor/acolyte
