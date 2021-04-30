@@ -1,0 +1,7 @@
+author: INFRARED_BARON, Firefox13
+delete-after: true
+changes:
+  - rscdel: Excavation suit
+  - rscadd: New moebius hazard suit which spawns everywhere where old excavation suit
+      spawned
+  - rscadd: New hazard suit which spawns in maintenance
