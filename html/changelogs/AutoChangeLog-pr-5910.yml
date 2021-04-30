@@ -1,0 +1,7 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: AMR can now use default, depleted uranium(irradiatino), EMP, breaching
+      ammo and comes with in-built NVG scope that can be upgraded with thermal glasses
+      to have thermal vision too
+  - bugfix: radiation-inducing gunmods now properly induce their radiation.
