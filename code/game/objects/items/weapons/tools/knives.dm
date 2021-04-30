@@ -319,3 +319,4 @@
 
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_KNIFE
+
