@@ -948,6 +948,7 @@
 #include "code\game\objects\items\weapons\flamethrower.dm"
 #include "code\game\objects\items\weapons\gift_wrappaper.dm"
 #include "code\game\objects\items\weapons\handcuffs.dm"
+#include "code\game\objects\items\weapons\holyvacuum.dm"
 #include "code\game\objects\items\weapons\improvised_components.dm"
 #include "code\game\objects\items\weapons\legcuffs.dm"
 #include "code\game\objects\items\weapons\maneki_neko.dm"
