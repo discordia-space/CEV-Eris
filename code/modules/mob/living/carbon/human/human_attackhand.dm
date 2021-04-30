@@ -249,7 +249,6 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
