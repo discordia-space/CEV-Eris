@@ -305,6 +305,9 @@
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, (5 * I.w_class))) //Tiny = 5, giant = 30
 				item.throwing = 1
 				item.forceMove(get_turf(GetAbove(src)))
+			else
+				to_chat(usr, SPAN_WARNING("You were interrupted!"))
+				return
 		src.visible_message(SPAN_DANGER("[src] has thrown [item]."))
 		if(incorporeal_move)
 			inertia_dir = 0
