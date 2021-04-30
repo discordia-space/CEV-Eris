@@ -312,6 +312,9 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
+	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
+		G.vision_flags = SEE_MOBS
+
 	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		G.sharp = TRUE

@@ -230,8 +230,8 @@
 //// .60 ////
 
 /obj/item/ammo_casing/antim
-	name = "shell casing"
-	desc = "A .60 Anti-Material shell."
+	name = "\"Penetrator\" shell casing"
+	desc = "A .60 Anti-Material \"Penetrator\" shell."
 	icon_state = "atmr"
 	spent_icon = "atmr-spent"
 	caliber = CAL_ANTIM
@@ -244,6 +244,30 @@
 	sprite_scale = 0.5
 
 /obj/item/ammo_casing/antim/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/emp
+	name = "\"Blackout\" shell casing"
+	desc = "A .60 Anti-Material \"Blackout\" shell."
+	projectile_type = /obj/item/projectile/bullet/antim/emp
+
+/obj/item/ammo_casing/antim/emp/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/uranium
+	name = "\"Meltdown\" shell casing"
+	desc = "A .60 Anti-Material \"Meltdown\" shell."
+	projectile_type = /obj/item/projectile/bullet/antim/uranium
+
+/obj/item/ammo_casing/antim/uranium/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/breach
+	name = "\"Breacher\" shell casing"
+	desc = "A .60 Anti-Material \"Breacher\" shell."
+	projectile_type = /obj/item/projectile/bullet/antim/breach
+
+/obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/antim/scrap
