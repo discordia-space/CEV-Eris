@@ -1,0 +1,5 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added craftable spear via the craft menu. Sprite was modified by me but
+      originally made by CeUvI
