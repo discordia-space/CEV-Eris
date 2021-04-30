@@ -1,4 +1,5 @@
 #define TRADE_SYSTEM_IC_NAME "Asters Automated Trading System"
+GLOBAL_LIST_EMPTY(price_cache)
 SUBSYSTEM_DEF(trade)
 	name = "Trade"
 	priority = SS_PRIORITY_SUPPLY
@@ -96,12 +97,12 @@ SUBSYSTEM_DEF(trade)
 		else
 			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
 			return 0
-	var/static/list/price_cache = list()
-	if(!price_cache[path])
+	
+	if(!GLOB.price_cache[path])
 		var/atom/movable/AM = new path
-		price_cache[path] = get_cost(AM)
+		GLOB.price_cache[path] = get_cost(AM)
 		qdel(AM)
-	return price_cache[path]
+	return GLOB.price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
 	. = get_cost(target) * 0.6
