@@ -2368,6 +2368,12 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
+"afW" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,9"
+	},
+/area/shuttle/research/station)
 "afX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -9167,6 +9173,13 @@
 /obj/machinery/neotheology/biomass_container,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
+"avL" = (
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "avM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11651,6 +11664,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"aBK" = (
+/obj/machinery/light,
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "aBL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15182,6 +15200,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"aLp" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,8"
+	},
+/area/shuttle/research/station)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -19147,6 +19171,12 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"aUH" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,7"
+	},
+/area/shuttle/research/station)
 "aUI" = (
 /obj/machinery/meter{
 	frequency = 1443;
@@ -92791,16 +92821,6 @@
 	icon_state = "10,9"
 	},
 /area/shuttle/research/station)
-"ekb" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,9"
-	},
-/area/shuttle/research/station)
 "ekc" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,9"
@@ -92909,22 +92929,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"ekn" = (
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"eko" = (
-/obj/machinery/light,
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "ekp" = (
@@ -93090,16 +93094,6 @@
 	},
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,8"
-	},
-/area/shuttle/research/station)
-"ekI" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,8"
 	},
 /area/shuttle/research/station)
 "ekJ" = (
@@ -93317,16 +93311,6 @@
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,7"
-	},
-/area/shuttle/research/station)
-"elq" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,7"
 	},
 /area/shuttle/research/station)
 "elr" = (
@@ -287957,7 +287941,7 @@ ehb
 eic
 eiV
 ejG
-ekn
+avL
 ect
 dWt
 dWM
@@ -288159,7 +288143,7 @@ ehc
 eid
 eiW
 ejH
-eko
+aBK
 ect
 dWu
 dWX
@@ -296036,9 +296020,9 @@ egE
 ehF
 eiG
 ejo
-ekb
-ekI
-elq
+afW
+aLp
+aUH
 emx
 enx
 eok
