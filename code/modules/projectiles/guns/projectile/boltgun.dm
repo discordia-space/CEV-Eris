@@ -27,6 +27,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
 	spawn_blacklisted = TRUE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 	var/bolt_open = 0
 	var/item_suffix = ""
 
