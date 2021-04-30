@@ -175,6 +175,16 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/spear
+	name = "spear"
+	result = /obj/item/weapon/tool/spear
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_HAMMERING, 5, 10),
+	)
 
 /datum/craft_recipe/weapon/sonic_grenade
 	name = "Loudmouth grenade"
