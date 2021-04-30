@@ -67,6 +67,12 @@ var/total_runtimes_skipped = 0
 		locinfo = atom_loc_line(usr)
 		if(locinfo)
 			usrinfo += "  usr.loc: [locinfo]"
+		if(!cat_dusty)  // When the first runtimes occurs we creates Dusty
+			cat_dusty = new /mob/living/simple_animal/cat/runtime(get_turf(usr))
+			cat_teleport = world.time
+		else if(world.time - cat_teleport > cat_cooldown) // Limit Dusty teleportations in case there is a spam of runtimes
+			cat_teleport = world.time
+			do_teleport(cat_dusty, get_turf(usr), 2, 0, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
 	// The proceeding mess will almost definitely break if error messages are ever changed
 	// I apologize in advance
 	var/list/splitlines = splittext(e.desc, "\n")
