@@ -342,9 +342,6 @@ var/cat_teleport = 0.0
 /mob/living/simple_animal/cat/runtime/set_flee_target(atom/A)
 	return
 
-/mob/living/simple_animal/cat/runtime/set_flee_target(atom/A)
-	return
-
 /mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
 	return PROJECTILE_FORCE_MISS
 
