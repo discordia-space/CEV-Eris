@@ -1,6 +1,0 @@
-author: AlexMorgan3817
-delete-after: true
-changes:
-  - balance: Removes random lathe disks from Zarya.
-  - tweak: Zarya now selling not full belt for 300 credits.
-  - bugfix: Caching of goods for trade stations now work properly.
