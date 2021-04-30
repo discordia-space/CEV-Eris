@@ -273,6 +273,11 @@
 
 	if(!item) return
 
+	if(GetAbove(target) && !istype(item, /obj/item/weapon/grab))
+		var/turf/target = GetAbove(get_turf(target))
+		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		return
+
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
 		item = G.throw_held() //throw the person instead of the grab
@@ -294,7 +299,13 @@
 
 	//Grab processing has a chance of returning null
 	if(item && src.unEquip(item, loc))
-		src.visible_message("\red [src] has thrown [item].")
+		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
+			var/obj/item/I = item
+			src.visible_message(SPAN_DANGER("[src] is beginning to throw \the [item] high!"))
+			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, (5 * I.w_class))) //Tiny = 5, giant = 30
+				item.throwing = 1
+				item.forceMove(get_turf(GetAbove(src)))
+		src.visible_message(SPAN_DANGER("[src] has thrown [item]."))
 		if(incorporeal_move)
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
@@ -302,6 +313,7 @@
 			step(src, inertia_dir)
 
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		item.throwing = 0
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
