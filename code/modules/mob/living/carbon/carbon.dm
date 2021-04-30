@@ -299,6 +299,7 @@
 			src.visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, (5 * I.w_class))) //Tiny = 5, giant = 30
 				item.throwing = 1
+				src.unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))
 			else
 				to_chat(usr, SPAN_WARNING("You were interrupted!"))
@@ -310,6 +311,7 @@
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
+		src.unEquip(item, loc)
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
 		item.throwing = 0
 
