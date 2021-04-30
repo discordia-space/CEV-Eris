@@ -296,7 +296,7 @@
 	if(item && src.unEquip(item, loc))
 		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
 			var/obj/item/I = item
-			src.visible_message(SPAN_DANGER("[src] is beginning to throw \the [item] high!"))
+			src.visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, (5 * I.w_class))) //Tiny = 5, giant = 30
 				item.throwing = 1
 				item.forceMove(get_turf(GetAbove(src)))
