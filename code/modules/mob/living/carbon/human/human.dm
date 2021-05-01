@@ -1235,9 +1235,8 @@ var/list/rank_prefix = list(\
 			var/obj/item/I = random_organ_by_process(organ_tag)
 			if(I && I.type == organ_type)
 				continue
-			else
-				if(I)
-					qdel(I)
+			else if(I)
+				qdel(I)
 			new organ_type(src)
 
 		if(checkprefcruciform)
