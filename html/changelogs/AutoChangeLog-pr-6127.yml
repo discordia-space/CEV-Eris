@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: the energy regeneration of the cruciform no longer increases excessively
-      due to a high COG value.

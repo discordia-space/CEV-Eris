@@ -1,4 +1,0 @@
-author: Jackofashepard
-delete-after: true
-changes:
-  - rscdel: Removed floor stun from disarm intent and melee
