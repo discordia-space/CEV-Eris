@@ -77,6 +77,9 @@
 	var/proj_step_multiplier = 1
 	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
+	var/darkness_view = 0
+	var/vision_flags = 0
+	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
 
@@ -761,6 +764,9 @@
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
+	darkness_view = initial(darkness_view)
+	vision_flags = initial(vision_flags)
+	see_invisible_gun = initial(see_invisible_gun)
 	force = initial(force)
 	armor_penetration = initial(armor_penetration)
 	sharp = initial(sharp)
@@ -782,5 +788,16 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
+
+/obj/item/weapon/gun/zoom(tileoffset, viewsize)
+	..()
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/H = usr
+	if(zoom)
+		H.using_scope = src
+	else
+		H.using_scope = null
+
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET

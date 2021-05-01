@@ -66,6 +66,7 @@
 		/obj/item/weapon/grenade/chem_grenade/antiweed,
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
+	price_tag = 200
 /obj/item/weapon/storage/belt/utility/full
 	rarity_value = 50
 

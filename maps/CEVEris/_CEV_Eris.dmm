@@ -2368,6 +2368,12 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
+"afW" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,9"
+	},
+/area/shuttle/research/station)
 "afX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -9167,6 +9173,13 @@
 /obj/machinery/neotheology/biomass_container,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
+"avL" = (
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "avM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11651,6 +11664,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"aBK" = (
+/obj/machinery/light,
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/anomal)
 "aBL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15182,6 +15200,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"aLp" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,8"
+	},
+/area/shuttle/research/station)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -17411,14 +17435,14 @@
 /area/eris/security/main)
 "aQC" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/sol,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/projectile/automatic/sol,
-/obj/item/weapon/gun/projectile/automatic/sol,
-/obj/item/weapon/gun/projectile/automatic/sol,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aQD" = (
@@ -18407,10 +18431,6 @@
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/hallway/side/atmosphericshallway)
-"aSV" = (
-/obj/machinery/duct/vertical,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "aSW" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/teargas,
@@ -19151,6 +19171,12 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"aUH" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,7"
+	},
+/area/shuttle/research/station)
 "aUI" = (
 /obj/machinery/meter{
 	frequency = 1443;
@@ -21423,6 +21449,15 @@
 /obj/item/ammo_magazine/lrifle/pk,
 /obj/item/ammo_magazine/ammobox/lrifle,
 /obj/item/ammo_magazine/ammobox/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
@@ -30205,10 +30240,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
-"btd" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "bte" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_x = 32
@@ -36372,7 +36403,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bHq" = (
@@ -41599,7 +41629,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -41618,7 +41647,6 @@
 	dir = 9
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bSM" = (
@@ -41644,7 +41672,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bSO" = (
@@ -41722,7 +41749,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTa" = (
@@ -41736,7 +41762,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTb" = (
@@ -41750,7 +41775,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/machinery/duct,
 /turf/simulated/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "bTd" = (
@@ -92806,16 +92830,6 @@
 	icon_state = "10,9"
 	},
 /area/shuttle/research/station)
-"ekb" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,9"
-	},
-/area/shuttle/research/station)
 "ekc" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,9"
@@ -92924,22 +92938,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"ekn" = (
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/anomal)
-"eko" = (
-/obj/machinery/light,
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "ekp" = (
@@ -93105,16 +93103,6 @@
 	},
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,8"
-	},
-/area/shuttle/research/station)
-"ekI" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,8"
 	},
 /area/shuttle/research/station)
 "ekJ" = (
@@ -93332,16 +93320,6 @@
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,7"
-	},
-/area/shuttle/research/station)
-"elq" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/space/anomaly,
-/obj/item/clothing/mask/breath,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,7"
 	},
 /area/shuttle/research/station)
 "elr" = (
@@ -103315,13 +103293,6 @@
 /obj/machinery/camera/motion/security,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
-"iTJ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4
-	},
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/neotheology/bioreactor)
 "iUs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -121947,7 +121918,7 @@ wwL
 awR
 awR
 aCn
-aSV
+bts
 byM
 bGG
 bSI
@@ -122149,8 +122120,8 @@ alg
 awR
 awR
 aCn
-btd
-btd
+bts
+bts
 bHp
 bSK
 bXZ
@@ -122759,7 +122730,7 @@ btg
 bts
 bGG
 bSZ
-iTJ
+bYO
 bZM
 cci
 bts
@@ -124173,9 +124144,9 @@ btr
 bBX
 bRo
 bTc
-btd
-btd
-btd
+bts
+bts
+bts
 bts
 bts
 bts
@@ -287979,7 +287950,7 @@ ehb
 eic
 eiV
 ejG
-ekn
+avL
 ect
 dWt
 dWM
@@ -288181,7 +288152,7 @@ ehc
 eid
 eiW
 ejH
-eko
+aBK
 ect
 dWu
 dWX
@@ -296058,9 +296029,9 @@ egE
 ehF
 eiG
 ejo
-ekb
-ekI
-elq
+afW
+aLp
+aUH
 emx
 enx
 eok

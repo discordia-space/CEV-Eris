@@ -206,6 +206,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
 		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
 		return
+	if(locate(/obj/structure/multiz/stairs) in get_turf(user))
+		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, it needs a flat surface."))
+		return
 	if(!deployed && can_use(user))
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
@@ -323,6 +326,12 @@ Very rarely it might escape
 
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
 	if(deployed && isliving(AM))
+		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
+			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			return ..()
+		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
+			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
+			return ..()
 		var/mob/living/L = AM
 		var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
 		if("\ref[L]" in aware_mobs)
