@@ -36,7 +36,6 @@ var/global/list/limb_icon_cache = list()
 		skin_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
 	if(species.appearance_flags & HAS_SKIN_COLOR)
 		skin_col = rgb(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
-		log_and_message_admins("Gave [src] (Exterl bodypart organ) the colour values of [dna.GetUIValue(DNA_UI_SKIN_R)], [dna.GetUIValue(DNA_UI_SKIN_G)] , [dna.GetUIValue(DNA_UI_SKIN_B)], of species [species]")
 	hair_col = rgb(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
 
 /obj/item/organ/external/proc/get_cache_key()
