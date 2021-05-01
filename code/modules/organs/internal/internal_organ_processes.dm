@@ -26,10 +26,8 @@
 		for(var/organ in process_list)
 			var/obj/item/organ/internal/I = organ
 			effective_efficiency += I.get_process_eficiency(process_define)
-	if(effective_efficiency == 0) // This gets divided often , if its 0 it runtimes everywhere.
-		effective_efficiency = 0.01
 		
-	return effective_efficiency
+	return effective_efficiency ? effective_efficiency : 1
 
 /mob/living/carbon/human/get_specific_organ_efficiency(process_define, parent_organ_tag)
 	var/effective_efficiency = 0
@@ -44,7 +42,7 @@
 			if(process_define in I.organ_efficiency)
 				effective_efficiency += I.get_process_eficiency(process_define)
 	
-	return effective_efficiency
+	return effective_efficiency ? effective_efficiency : 1
 
 /mob/living/carbon/human/proc/eye_process()
 	var/eye_efficiency = get_organ_efficiency(OP_EYES)
@@ -228,7 +226,7 @@
 		else
 			adjustNutrition(-(total_nutriment_req * (stomach_efficiency/100)))
 
-	if(stomach_efficiency <= 0)
+	if(stomach_efficiency <= 1)
 		for(var/mob/living/M in stomach_contents)
 			M.loc = loc
 			stomach_contents.Remove(M)
@@ -244,7 +242,7 @@
 	if(vessel_efficiency)
 		carrion_stored_chemicals = min(carrion_stored_chemicals + (0.01 * vessel_efficiency), 0.5 * vessel_efficiency)
 
-	if(maw_efficiency && (world.time > (carrion_last_hunger + 2 MINUTES)))
+	if((maw_efficiency > 1 )&& (world.time > (carrion_last_hunger + 2 MINUTES)))
 		var/max_hunger = round(10 * (maw_efficiency / 100))
 		if(carrion_hunger < max_hunger)
 			carrion_hunger = min(carrion_hunger + (round(1* (maw_efficiency / 100))), max_hunger)
