@@ -56,7 +56,7 @@
 		for(var/mob/V in viewers(src, null))
 			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
 
-		B.brainmob.mind.transfer_to(brainmob)
+		brainmob = B.brainmob
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0
