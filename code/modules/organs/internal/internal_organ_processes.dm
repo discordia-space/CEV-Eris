@@ -26,6 +26,8 @@
 		for(var/organ in process_list)
 			var/obj/item/organ/internal/I = organ
 			effective_efficiency += I.get_process_eficiency(process_define)
+	if(effective_efficiency == 0) // This gets divided often , if its 0 it runtimes everywhere.
+		effective_efficiency = 0.01
 		
 	return effective_efficiency
 
