@@ -155,7 +155,7 @@
 
 /obj/item/weapon/tool/hammer/IH
 	name = "IH \"Tactical Breaching Hammer\""
-	desc = "Used for applying blunt force trauma to a person's ribcage, and for breaking through walls."
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if you robust enough, even a reinforced wall."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "ironhammer"
 	item_state = "ironhammer"
