@@ -103982,6 +103982,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3port)
+"nYR" = (
+/obj/machinery/vending/trashvend,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "nZb" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -164958,7 +164962,7 @@ ijn
 sRW
 clX
 cjq
-aqV
+nYR
 epI
 anJ
 aaa
