@@ -588,11 +588,11 @@
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
-	metabolism = REM * 10
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/medicine/ossisine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustHalLoss(15)
+	M.apply_damage(15, HALLOSS)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -604,7 +604,7 @@
 			var/obj/item/organ/external/E = pick(brokenBP)
 			E.mend_fracture()
 			M.pain(E.name, 60, TRUE)
-			dose -= 1
+			dose -= min(dose, metabolism)
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(2)
