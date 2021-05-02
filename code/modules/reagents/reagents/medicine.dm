@@ -584,27 +584,27 @@
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"
 	id = "ossisine"
-	description = "Paralyses user and restores broken bones. Medicate in critical conditions only."
+	description = "Puts the user in a great amount of pain and repairs broken bones one at a time. Medicate in critical conditions only."
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
+	metabolism = REM * 10
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/medicine/ossisine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.paralysis = max(M.paralysis, 5)
+	M.adjustHalLoss(15)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(prob(5 * effect_multiplier + dose) || dose == overdose)
-			var/list/brokenBP = list()
-			for(var/obj/item/organ/external/E in H.organs)
-				if(E.is_broken())
-					brokenBP += E
-			if(brokenBP.len)
-				var/obj/item/organ/external/E = pick(brokenBP)
-				E.mend_fracture()
-				M.pain(E.name, 60, TRUE)
-				dose = 0
+		var/list/brokenBP = list()
+		for(var/obj/item/organ/external/E in H.organs)
+			if(E.is_broken())
+				brokenBP += E
+		if(brokenBP.len)
+			var/obj/item/organ/external/E = pick(brokenBP)
+			E.mend_fracture()
+			M.pain(E.name, 60, TRUE)
+			dose -= 1
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(2)
