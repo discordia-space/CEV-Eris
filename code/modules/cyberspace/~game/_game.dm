@@ -4,6 +4,7 @@
 #include "deck/QP.dm"
 	#include "deck/hardware/_hardware.dm"
 	#include "deck/hardware/chip.dm"
+	#include "deck/hardware/QP_hardware.dm"
 		#include "deck/hardware/chips/clone.dm"
 		#include "deck/hardware/chips/fracture_gen.dm"
 		#include "deck/hardware/chips/memchip.dm"

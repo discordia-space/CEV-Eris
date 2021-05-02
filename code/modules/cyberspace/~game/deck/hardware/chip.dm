@@ -5,6 +5,8 @@
 	Integrity = 1
 
 	hardware_size = 0
+
+	Cooldown = 0
 	var/chip_slot_costing = 1
 
 	TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck)
@@ -13,3 +15,6 @@
 	Activate(mob/user)
 		SetIntegrity(Integrity - 1)
 		return TRUE
+	
+	CanActivated(mob/user)
+		return ..() && (alert(user, "Are you sure you want activate [SoftName]", "[SoftName]", "Yes", "No") == "Yes")

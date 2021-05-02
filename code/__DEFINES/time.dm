@@ -5,12 +5,16 @@
 #define MIDNIGHT_ROLLOVER_CHECK ( rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : midnight_rollovers )
 
 #define SECONDS *10
+#define SECOND SECONDS
 
 #define MINUTES SECONDS*60
+#define MINUTE MINUTES
 
 #define HOURS MINUTES*60
+#define HOUR HOURS
 
 #define DAYS *864000
+#define DAY DAYS
 
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (world.tick_usage*0.01*world.tick_lag)

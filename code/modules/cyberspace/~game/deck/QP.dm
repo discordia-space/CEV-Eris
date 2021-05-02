@@ -7,7 +7,10 @@
 									// If returned nothing then value too big or somewhy it unable to be setted.
 			if(QuantumPoints == value)
 				return TRUE
-			if(value <= QuantumPointsLimit || force)
+			else if(value <= QuantumPointsLimit || force)
 				QuantumPoints = value
 				. = TRUE
+
+		GetFreePlaceForQP()
+			return QuantumPointsLimit - QuantumPoints
 

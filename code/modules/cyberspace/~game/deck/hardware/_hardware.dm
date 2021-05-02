@@ -2,22 +2,36 @@
 	name = "unknown hardware"
 	desc = "This is a core type of cyberdeck hardware, you shouldn't see this."
 
+	icon = 'icons/obj/cyberspace/hardware/hardware.dmi'
+
+
 	var/SoftName = "Unknown" // Title of hardware in decks' hardware manager
 	var/ActionDescription // text that will describe what will happen when hardware become active.
 	var/AdditionalDescription // Put here any IC comments from creators or previous owners of this. Users maybe will get access to change this.
 
 	var/Integrity = 10
+	var/tmp/next_activation //Time of last activation
+	var/Cooldown = 1 MINUTE
+
 	var/hardware_size = 1
+
 	var/broken = FALSE
+
+	var/NeedToBeInCyberSpace = TRUE
+
+	var/obj/item/weapon/computer_hardware/deck/myDeck
+
 	proc
 		TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck) // Return TRUE if successful, if TRUE returned this will automaticaly moved in deck. You shouldn't move it forced.
 			. = _deck?.IsHardwareSuits(hardware_size)
 		Installed(obj/item/weapon/computer_hardware/deck/_deck)
+			myDeck = _deck
 		Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
 		Activate(mob/user)
+			next_activation = max(world.time + Cooldown, next_activation)
 		// Do not call CanActivated here, Activate should be raw proc of activation, if you want to check something and it is avoidable then override CanActivated
 		CanActivated(mob/user)
-			. = CheckIntegrity()
+			. = istype(loc, /obj/item/weapon/computer_hardware/deck) && CheckIntegrity() && (next_activation <= world.time)
 		CheckIntegrity()
 			if(!broken)
 				if(Integrity > 0)

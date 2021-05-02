@@ -9,10 +9,11 @@
 
 	Memory = 16
 
+	NeedToBeInCyberSpace = FALSE
+
 	Activate(mob/user)
-		if((alert(user, "Are you sure you want activate [SoftName]", "[SoftName]", "Yes", "No") == "Yes") && istype(loc, /obj/item/weapon/computer_hardware/deck))
-			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
-			. = Memory * 2
-			myDeck.TemporaryExtendGrip(., 20 MINUTES)
-			return ..() && .
+		var/obj/item/weapon/computer_hardware/deck/myDeck = loc
+		. = Memory * 2
+		myDeck.TemporaryExtendGrip(., 20 MINUTES)
+		return ..() && .
 
