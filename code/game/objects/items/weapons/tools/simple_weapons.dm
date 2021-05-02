@@ -138,16 +138,11 @@
 /obj/item/weapon/tool/sword/saber
 	name = "officer's saber"
 	desc = "A saber with golden grip, for the real heads of this ship."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "saber"
 	item_state = "saber"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
-	sharp = TRUE
-	edge = TRUE
-	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT
-	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_DANGEROUS * 1.5
+	force = WEAPON_FORCE_DANGEROUS * 2
 	armor_penetration = ARMOR_PEN_MODERATE
 	spawn_blacklisted = TRUE
 	price_tag = 10000
