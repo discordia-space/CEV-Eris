@@ -1058,7 +1058,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			break
 		new meat(location_meat)
 		if(user.species == species)
-			user.sanity_damage += 2
+			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
 			to_chat(SPAN_NOTICE("You feel your [species]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 	qdel(src)
 	
