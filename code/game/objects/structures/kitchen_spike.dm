@@ -30,10 +30,8 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
-		if(!issmall(H))
-			return 0
 		meat_type = H.species.meat_type
-		icon_state = "spikebloody"
+		icon_state = "spikebloody_[H.species]"
 	else
 		return 0
 
@@ -47,9 +45,9 @@
 		return
 	meat--
 	new meat_type(get_turf(src))
-	if(src.meat > 1)
+	if(meat > 1)
 		to_chat(user, "You remove some meat from \the [victim_name].")
-	else if(src.meat == 1)
+	else if(meat == 1)
 		to_chat(user, "You remove the last piece of meat from \the [victim_name]!")
 		icon_state = "spike"
 		occupied = 0
@@ -62,7 +60,7 @@
 		if (!occupied)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
-				new /obj/item/stack/rods(src.loc, 3)
+				new /obj/item/stack/rods(loc, 3)
 				qdel(src)
 			return
 		else
