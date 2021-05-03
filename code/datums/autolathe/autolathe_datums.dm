@@ -158,12 +158,17 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, fabricator)
+/datum/design/proc/Fabricate(newloc, mat_efficiency, fabricator, low_quality_print)
 	if(!build_path)
 		return
 
 	var/atom/A = new build_path(newloc)
 	A.Created()
+
+	if(low_quality_print)
+		var/obj/O = A
+		if(istype(O))
+			O.make_old(TRUE)
 
 	if(mat_efficiency != 1 && adjust_materials)
 		for(var/obj/O in A.GetAllContents(includeSelf = TRUE))

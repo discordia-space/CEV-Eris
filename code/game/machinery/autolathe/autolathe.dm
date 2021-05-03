@@ -70,6 +70,9 @@
 	var/tmp/obj/effect/flicker_overlay/image_load
 	var/tmp/obj/effect/flicker_overlay/image_load_material
 
+	// If it prints high quality or bulky/deformed/debuffed items
+	var/low_quality_print = TRUE
+
 	//for nanoforge and artist bench
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
@@ -920,7 +923,7 @@
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
 	consume_materials(design)
-	design.Fabricate(drop_location(), mat_efficiency, src)
+	design.Fabricate(drop_location(), mat_efficiency, src, low_quality_print)
 
 	working = FALSE
 	current_file = null

@@ -6,6 +6,7 @@
 	use_oddities = TRUE
 	use_license = FALSE
 	is_nanoforge = TRUE
+	low_quality_print = FALSE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
 	var/list/nanoforge_designs = list()
 	var/list/tags_to_spawn = list(SPAWN_DESIGN)
