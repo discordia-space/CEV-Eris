@@ -155,7 +155,7 @@
 
 /obj/item/weapon/tool/hammer/IH
 	name = "FS \"Ironhammer\" Breaching Hammer"
-	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if you robust enough, even a reinforced wall."
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "ironhammer"
 	item_state = "ironhammer"
