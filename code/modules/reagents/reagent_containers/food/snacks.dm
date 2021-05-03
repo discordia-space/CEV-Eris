@@ -3427,10 +3427,9 @@
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_desc = list("chalk" = 6)
 	nutriment_amt = 20
-	preloaded_reagents = list("iron" = 3)
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
-	rarity_value = 5
+	rarity_value = 70
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread

@@ -790,7 +790,7 @@
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
 	id = "vomitol"
-	description = "Forces patient to vomit - results in total cleaning of his stomach. Has extremely unpleasant taste."
+	description = "Forces patient to vomit - results in total cleaning of his stomach. Has extremely unpleasant taste and seems to collect on food in mushroom rich enviroments."
 	taste_description = "worst thing in the world"
 	reagent_state = LIQUID
 	color = "#a6b85b"
