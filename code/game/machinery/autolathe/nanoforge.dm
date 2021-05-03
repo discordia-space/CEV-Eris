@@ -1,5 +1,5 @@
 /obj/machinery/autolathe/nanoforge
-	name = "matter nanoforge"
+	name = "matter auto-nanoforge"
 	desc = "It consumes items and produces compressed matter."
 	icon_state = "nanoforge"
 	icon = 'icons/obj/machines/autolathe.dmi'
