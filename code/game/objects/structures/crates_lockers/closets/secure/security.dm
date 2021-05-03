@@ -6,11 +6,11 @@
 /obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
 	new /obj/item/weapon/storage/backpack/captain(src)
 	new /obj/item/weapon/storage/backpack/satchel/captain(src)
-	new /obj/item/clothing/head/caphat/cap(src)
 	new /obj/item/clothing/under/rank/captain(src)
+	new /obj/item/clothing/suit/storage/captain(src)
 	new /obj/item/clothing/suit/armor/vest(src)
 	new /obj/item/clothing/head/armor/helmet(src)
-	new /obj/item/clothing/shoes/color/brown(src)
+	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/device/radio/headset/heads/captain(src)
 	new /obj/item/clothing/gloves/captain(src)
 	new /obj/item/weapon/storage/belt/sheath(src)
@@ -21,8 +21,6 @@
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/weapon/melee/telebaton(src)
-	new /obj/item/clothing/head/caphat/formal(src)
-	new /obj/item/clothing/under/captainformal(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hop
