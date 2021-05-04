@@ -70,8 +70,9 @@
 	var/tmp/obj/effect/flicker_overlay/image_load
 	var/tmp/obj/effect/flicker_overlay/image_load_material
 
-	// If it prints high quality or bulky/deformed/debuffed items
+	// If it prints high quality or bulky/deformed/debuffed items, or if it prints good items for one faction only.
 	var/low_quality_print = TRUE
+	var/list/high_quality_faction_list = list()
 
 	//for nanoforge and artist bench
 	var/use_oddities = FALSE
@@ -923,7 +924,7 @@
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
 	consume_materials(design)
-	design.Fabricate(drop_location(), mat_efficiency, src, low_quality_print)
+	design.Fabricate(drop_location(), mat_efficiency, src)
 
 	working = FALSE
 	current_file = null
