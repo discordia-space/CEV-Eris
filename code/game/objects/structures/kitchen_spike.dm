@@ -31,7 +31,7 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		meat_type = H.species.meat_type
-		icon_state = "spike_[H.species]"
+		icon_state = "spike_[H.species.name]"
 	else
 		return 0
 
@@ -53,7 +53,7 @@
 		occupied = 0
 	if(meat_type == user.species.meat_type)
 		user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition) // The more hungry the less sanity damage.
-		to_chat(SPAN_NOTICE("You feel your [user.species]ity dismantling as you slabs off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+		to_chat(SPAN_NOTICE("You feel your [user.species.name]ity dismantling as you slabs off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 
 
 /obj/structure/kitchenspike/attackby(obj/item/I, mob/user)
