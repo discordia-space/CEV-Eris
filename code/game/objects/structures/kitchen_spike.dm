@@ -53,7 +53,7 @@
 		occupied = 0
 	if(meat_type == user.species.meat_type)
 		user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition) // The more hungry the less sanity damage.
-		to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity dismantling as you slabs off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+		to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity dismantling as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 
 
 /obj/structure/kitchenspike/attackby(obj/item/I, mob/user)
