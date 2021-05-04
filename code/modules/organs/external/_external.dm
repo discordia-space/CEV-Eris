@@ -1043,11 +1043,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/attackby(obj/item/A, mob/user, params)
 	if(A.has_quality(QUALITY_CUTTING))
 		if(!(user.a_intent == I_HURT))
-			return
+			return ..()
 		user.visible_message(SPAN_WARNING("[user] begins butchering \the [src]"), SPAN_WARNING("You begin butchering \the [src]"), SPAN_NOTICE("You hear meat being cut apart"), 5)
 		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_BIO))
 			on_butcher(A, user, get_turf(src))
-	..()
 
 /obj/item/organ/external/proc/on_butcher(obj/item/A, mob/living/carbon/human/user, location_meat)
 	if(internal_organs.Find(/obj/item/organ/internal/muscle))
