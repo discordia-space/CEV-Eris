@@ -18,9 +18,11 @@
 			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
 			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.memory_buffer.GetNames() + "(CANCEL)")
 			
+			programToClone = myDeck.memory_buffer.ProgramByName(programToClone)
+
 			var/message = "Action canceled."
 			
-			if(programToClone != "(CANCEL)")
+			if(programToClone != "(CANCEL)" && istype(programToClone))
 				var/datum/computer_file/cyberdeck_program/clone = programToClone.clone()
 				if(myDeck.InstallProgram(clone))
 					. = ..()
@@ -29,3 +31,4 @@
 					qdel(clone)
 					message = "No available memory."
 			to_chat(user, SPAN_WARNING(message))
+	

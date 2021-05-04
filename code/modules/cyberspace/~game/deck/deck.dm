@@ -18,6 +18,7 @@
 	var/DefaultMemoryForInstalledPrograms = 64
 
 	var/datum/MemoryStack/memory_buffer = new // Grip of programs, icebreakers and etc. Installed programs handling in cyberspace eye
+	var/memory_count = 64
 
 	var/hardware_slots = 8
 	var/chip_slots = 4 // Slots for chips, to extend or buy better deck or get hardware extending them.
@@ -32,6 +33,8 @@
 		if(ispath(projected_mind))
 			projected_mind = new projected_mind()
 			projected_mind.owner = src
+		if(istype(memory_buffer))
+			memory_buffer.Memory = memory_count
 	attackby(obj/item/W, mob/living/user)
 		. = ..()
 		if(!.)
@@ -46,6 +49,8 @@
 			if(.)
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 			SetUpProjectedMind()
+	disabled()
+		CancelCyberspaceConnection()
 
 /obj/item/weapon/computer_hardware/deck/proc
 	IsWorking()
@@ -54,6 +59,7 @@
 		for(var/obj/item/weapon/deck_hardware/chip/C in hardware)
 			. -= C.chip_slot_costing
 		. += chip_slots // for example: - 2 + 4 = 2
+
 	IsHardwareSuits(hardware_size = 1)
 		for(var/obj/item/weapon/deck_hardware/H in hardware)
 			. += H.hardware_size

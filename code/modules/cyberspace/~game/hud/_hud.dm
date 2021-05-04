@@ -26,8 +26,7 @@
 			var/obj/screen/movable/cyberspace_eye/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 			var/obj/screen/movable/cyberspace_eye/SO = new HUDtype(src)
 			NEWorNOACTION(SO.name, HUDname)
-			NEWorNOACTION(SO.icon, HUDdatum.HUDneed[HUDname]["icon"])
-			NEWorNOACTION(SO.icon_state, HUDdatum.HUDneed[HUDname]["icon_state"])
+			NEWorNOACTION(SO.icon, HUDdatum.icon)
 			NEWorNOACTION(SO.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
 			NEWorNOACTION(SO.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
 
@@ -36,9 +35,10 @@
 				HUDprocess += SO
 	
 	if(istype(owner))
-		var/i = 0
-		while(i <= owner.chip_slots)
-			var/obj/screen/movable/cyberspace_eye/chips/H = new(_name = "Chip [i]", _parentmob = src)
+		var/i = 1
+		for(var/obj/item/weapon/deck_hardware/chip/chip in owner.hardware)
+			var/obj/screen/movable/cyberspace_eye/chips/H = new(_name = "[chip.name]", _parentmob = src)
 			H.screen_loc = "WEST+[i]:4,SOUTH:11"
+			H.myChip = chip
 			HUDneed[H.name] = H
 			i++

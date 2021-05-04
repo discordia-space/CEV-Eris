@@ -1,6 +1,6 @@
 /obj/screen/movable/cyberspace_eye
 	name = "cyberspace hud"
-	icon = CYBERSPACE_HUD_ICON
+	icon = 'icons/obj/cyberspace/hud/common.dmi'
 	icon_state = "base"
 
 /obj/screen/movable/cyberspace_eye/Click(location, control, params)
@@ -19,7 +19,7 @@
 
 /obj/screen/movable/cyberspace_eye/QuantumPointsCounter
 	name = "QP Counter"
-	icon_state = "qp_counter"
+	icon_state = "counter"
 
 /obj/screen/movable/cyberspace_eye/QuantumPointsCounter/on_update_icon()
 	var/mob/observer/cyberspace_eye/avatar = parentmob
@@ -30,4 +30,11 @@
 
 /obj/screen/movable/cyberspace_eye/chips
 	name = "Chip"
-	icon_state = "chips"
+	icon_state = "base"
+
+	var/obj/item/weapon/deck_hardware/chip/myChip
+
+/obj/screen/movable/cyberspace_eye/chips/Click(location, control, params)
+	. = ..()
+	if(istype(myChip))
+		myChip.Activate()

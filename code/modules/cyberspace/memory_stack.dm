@@ -6,6 +6,11 @@
 			. = list()
 			for(var/datum/computer_file/i in Content)
 				. += i.filename
+		ProgramByName(_name)
+			for(var/datum/computer_file/i in Content)
+				if(i.filename == _name)
+					return i
+
 		TemporaryExtendStack(count = 16, time = 10 MINUTES)
 			ExtendStack(count)
 			addtimer(CALLBACK(src, .proc/CutStack, count), time)

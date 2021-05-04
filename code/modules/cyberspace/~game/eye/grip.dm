@@ -5,3 +5,4 @@
 			return owner?.memory_buffer
 
 		UpdateGrip() // Called on CheckMemory //TODO: HUD update here
+			update_hud()
