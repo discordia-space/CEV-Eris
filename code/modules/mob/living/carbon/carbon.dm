@@ -296,7 +296,7 @@
 	if(item)
 		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
 			var/obj/item/I = item
-			var/robust = usr.stats.getStat(STAT_ROB)
+			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) * (STR * 0.1)
 			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
@@ -304,7 +304,7 @@
 				unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))
 			else
-				to_chat(usr, SPAN_WARNING("You were interrupted!"))
+				to_chat(src, SPAN_WARNING("You were interrupted!"))
 				return
 		visible_message(SPAN_DANGER("[src] has thrown [item]."))
 		if(incorporeal_move)
