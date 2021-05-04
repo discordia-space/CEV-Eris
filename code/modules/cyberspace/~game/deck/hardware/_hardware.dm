@@ -26,6 +26,8 @@
 			. = _deck?.IsHardwareSuits(hardware_size)
 		Installed(obj/item/weapon/computer_hardware/deck/_deck)
 			myDeck = _deck
+			myDeck.hardware |= src
+
 		Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
 		Activate(mob/user)
 			next_activation = max(world.time + Cooldown, next_activation)

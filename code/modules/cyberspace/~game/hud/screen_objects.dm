@@ -26,7 +26,7 @@
 	if(istype(avatar))
 		var/obj/item/weapon/computer_hardware/deck/myDeck = avatar.owner
 		if(istype(myDeck))
-			maptext = "QP:[myDeck.QuantumPoints]"
+			maptext = "[myDeck.QuantumPoints] QP"
 
 /obj/screen/movable/cyberspace_eye/chips
 	name = "Chip"
@@ -34,7 +34,17 @@
 
 	var/obj/item/weapon/deck_hardware/chip/myChip
 
-/obj/screen/movable/cyberspace_eye/chips/Click(location, control, params)
-	. = ..()
+	Click(location, control, params)
+		. = ..()
+		if(istype(myChip))
+			myChip.Activate()
+	on_update_icon()
+		. = ..()
+		overlays |= image(myChip.icon, null, myChip.icon_state)
+
+/obj/screen/movable/cyberspace_eye/chips/proc/SetChip(obj/screen/movable/cyberspace_eye/chips/chip)
 	if(istype(myChip))
-		myChip.Activate()
+		overlays -= myChip
+
+	myChip = chip
+	update_icon()
