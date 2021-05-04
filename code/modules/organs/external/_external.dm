@@ -1049,8 +1049,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			on_butcher(A, user, get_turf(src))
 
 /obj/item/organ/external/proc/on_butcher(obj/item/A, mob/living/carbon/human/user, location_meat)
-	if(internal_organs.Find(/obj/item/organ/internal/muscle))
-		return
 	for(var/obj/item/organ/internal/muscle/placeholder in internal_organs)
 		var/meat = species?.meat_type // One day someone will make a species with no meat type.
 		if(!meat)
