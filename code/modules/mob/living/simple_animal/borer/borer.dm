@@ -138,7 +138,7 @@
 	if(!host)
 		verbs += abilities_standalone
 	else if(!controlling)
-		if(host)
+		if(ishuman(host))
 			verbs += abilities_in_host
 			Stat()
 			return
