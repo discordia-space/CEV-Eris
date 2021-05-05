@@ -28,6 +28,7 @@ var/list/disciples = list()
 	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
 	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
 		true_power_regen += power_regen * disciples.len / 2.5  // Proportional to the number of cruciformed people on board
+
 	restore_power(true_power_regen)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/register_wearer()
