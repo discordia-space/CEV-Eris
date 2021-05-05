@@ -94,7 +94,7 @@
 			infestation_delay *= 3
 
 	// Borer gets host abilities before actually getting inside the host
-	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666 << What the fuck were they thinking when they do the force move MUCH later.
+	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666 << We fix this in a better way
 	if(!do_mob(src, M, infestation_delay))
 		to_chat(src, SPAN_DANGER("As [M] moves away, you are dislodged and fall to the ground."))
 		return
@@ -115,9 +115,8 @@
 	host = M
 	host.status_flags |= PASSEMOTES
 	update_abilities()
-	var/random_turf = get_step(src, NORTH) // Bluespace fuckery i ain't got to explain shit.
-	move_to_turf(src , loc, random_turf)
-	forceMove(host)
+	spawn(1) /// Wait for abilities to update THEN move them in due to the afore-mentioned bug.
+		forceMove(host)
 	//Update their traitor status.
 	/*if(host.mind && src.mind)
 		var/list/L = get_player_antags(src.mind, ROLE_BORER)
@@ -125,15 +124,15 @@
 		if(L.len)
 			borer = L[1]*/
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/I = H.random_organ_by_process(BP_BRAIN)
-		if(!I) // No brain organ, so the borer moves in and replaces it permanently.
-			replace_brain()
-		else
-			// If they're in normally, implant removal can get them out.
-			var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-			head.implants += src
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/organ/I = H.random_organ_by_process(BP_BRAIN)
+			if(!I) // No brain organ, so the borer moves in and replaces it permanently.
+				replace_brain()
+			else
+				// If they're in normally, implant removal can get them out.
+				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+				head.implants += src
 
 /*
 /mob/living/simple_animal/borer/verb/devour_brain()
