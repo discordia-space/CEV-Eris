@@ -124,7 +124,7 @@
 
 	// Borer gets host abilities before actually getting inside the host
 	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
-	if(force_host)
+	/*if(force_host)
 		if(ishuman(host))
 			verbs += abilities_in_host
 			return
@@ -132,22 +132,17 @@
 			if(istype(ability, /mob/living/carbon/human))
 				continue
 			verbs += ability
-		return
+		return*/
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
 		verbs += abilities_standalone
 	else if(!controlling)
-		if(ishuman(host))
+		if(host)
 			verbs += abilities_in_host
 			Stat()
 			return
-		for(var/ability in abilities_in_host)
-			if(istype(ability, /mob/living/carbon/human))
-				continue
-			verbs += ability
 	else
-
 		host.verbs += abilities_in_control
 	Stat()
 
@@ -340,7 +335,7 @@
 
 	update_abilities()
 
-	to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
+	to_chat(get_borer_control(), SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
 	max_chemicals += (borer_level * 10)
 	max_chemicals_inhost = max_chemicals * 5
 

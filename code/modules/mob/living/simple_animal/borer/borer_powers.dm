@@ -94,11 +94,9 @@
 			infestation_delay *= 3
 
 	// Borer gets host abilities before actually getting inside the host
-	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
-	update_abilities(force_host=TRUE)
+	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666 << What the fuck were they thinking when they do the force move MUCH later.
 	if(!do_mob(src, M, infestation_delay))
 		to_chat(src, SPAN_DANGER("As [M] moves away, you are dislodged and fall to the ground."))
-		update_abilities()
 		return
 
 	to_chat(src, SPAN_NOTICE("You wiggle into [M]'s ear."))
@@ -116,6 +114,9 @@
 
 	host = M
 	host.status_flags |= PASSEMOTES
+	update_abilities()
+	var/random_turf = get_step(src, NORTH) // Bluespace fuckery i ain't got to explain shit.
+	move_to_turf(src , loc, random_turf)
 	forceMove(host)
 	//Update their traitor status.
 	/*if(host.mind && src.mind)
@@ -180,6 +181,7 @@
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
 	H.verbs |= /mob/living/carbon/proc/spawn_larvae
 	H.verbs |= /mob/living/carbon/proc/talk_host
+	H.verbs |= /mob/living/simple_animal/borer/proc/secrete_chemicals
 
 	if(H.client)
 		H.daemonize()
