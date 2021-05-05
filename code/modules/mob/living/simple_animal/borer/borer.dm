@@ -49,8 +49,7 @@
 		/mob/living/proc/ventcrawl,
 		/mob/living/proc/hide,
 		/mob/living/simple_animal/borer/proc/paralyze_victim,
-		/mob/living/simple_animal/borer/proc/infest,
-
+		/mob/living/simple_animal/borer/proc/infest
 		)
 
 	// Abilities borer can use when inside the host, but not in control
