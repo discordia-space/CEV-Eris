@@ -12,7 +12,7 @@ var/list/disciples = list()
 	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
-	power_regen = 2/(1 MINUTES)
+	power_regen = 20/(1 MINUTES)
 	price_tag = 500
 	var/obj/item/weapon/cruciform_upgrade/upgrade
 
@@ -28,7 +28,6 @@ var/list/disciples = list()
 	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
 	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
 		true_power_regen += power_regen * disciples.len / 2.5  // Proportional to the number of cruciformed people on board
-
 	restore_power(true_power_regen)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/register_wearer()
