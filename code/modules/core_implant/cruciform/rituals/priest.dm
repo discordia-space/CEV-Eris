@@ -256,7 +256,7 @@
 	category = "Offerings"
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
-	power = 30
+	power = 10
 	var/list/req_offerings = list()
 	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
 
