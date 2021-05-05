@@ -180,7 +180,6 @@
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
 	H.verbs |= /mob/living/carbon/proc/spawn_larvae
 	H.verbs |= /mob/living/carbon/proc/talk_host
-	H.verbs |= /mob/living/simple_animal/borer/proc/secrete_chemicals
 
 	if(H.client)
 		H.daemonize()
@@ -207,6 +206,18 @@
 
 	if(!H.lastKnownIP)
 		H.lastKnownIP = s2h_ip
+
+	if(stat) // > Take over a body that is always dead , die , !?!??!
+		var/all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
+		while(all_damage > 90)
+			host.adjustBruteLoss(-10)
+			host.adjustFireLoss(-10)
+			host.adjustCloneLoss(-10)
+			host.adjustOxyLoss(-10)
+			host.adjustToxLoss(-10)
+			all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
+		host.stat = UNCONSCIOUS
+		host.updatehealth()
 
 /mob/living/simple_animal/borer/proc/secrete_chemicals()
 	set category = "Abilities"
