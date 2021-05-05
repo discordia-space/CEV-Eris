@@ -207,17 +207,17 @@
 	if(!H.lastKnownIP)
 		H.lastKnownIP = s2h_ip
 
-	if(stat) // > Take over a body that is always dead , die , !?!??!
-		var/all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
+	if(H.stat) // > Take over a body that is always dead , die , !?!??!
+		var/all_damage = H.getBruteLoss() + H.getFireLoss() + H.getCloneLoss() + H.getOxyLoss() + H.getToxLoss()
 		while(all_damage > 90)
-			host.adjustBruteLoss(-10)
-			host.adjustFireLoss(-10)
-			host.adjustCloneLoss(-10)
-			host.adjustOxyLoss(-10)
-			host.adjustToxLoss(-10)
-			all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
-		host.stat = UNCONSCIOUS
-		host.updatehealth()
+			H.adjustBruteLoss(-10)
+			H.adjustFireLoss(-10)
+			H.adjustCloneLoss(-10)
+			H.adjustOxyLoss(-10)
+			H.adjustToxLoss(-10)
+			all_damage = H.getBruteLoss() + H.getFireLoss() + H.getCloneLoss() + H.getOxyLoss() + H.getToxLoss()
+		H.stat = UNCONSCIOUS
+		H.updatehealth()
 
 /mob/living/simple_animal/borer/proc/secrete_chemicals()
 	set category = "Abilities"
