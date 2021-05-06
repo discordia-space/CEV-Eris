@@ -22,6 +22,9 @@
 	icon_state = "jackboots_ironhammer"
 	spawn_blacklisted = TRUE
 
+obj/item/clothing/shoes/jackboots/ironhammer/handle_movement(turf/walking, running)
+	playsound(src.loc,  'sound/effects/boot_crunch.ogg', 100, 1, 10)
+
 /obj/item/clothing/shoes/jackboots/german
 	name = "Oberth Republic boots"
 	desc = "A pair of brown boots."
