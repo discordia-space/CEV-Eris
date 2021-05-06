@@ -266,9 +266,10 @@
 
 // Runtime cat
 
-var/cat_dusty
-var/cat_cooldown = 30 SECONDS
+var/cat_cooldown = 20 SECONDS
+var/cat_max_number = 10
 var/cat_teleport = 0.0
+var/cat_number = 0
 
 /mob/living/simple_animal/cat/runtime
 	name = "Dusty"
@@ -289,6 +290,21 @@ var/cat_teleport = 0.0
 	melee_damage_upper = 15
 	attacktext = "slashed"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
+
+	var/cat_life_duration = 1 MINUTES
+
+/mob/living/simple_animal/cat/runtime/New(loc)
+	..(loc)
+	cat_number += 1
+	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
+	spawn(cat_life_duration)
+		qdel(src)
+
+/mob/living/simple_animal/cat/runtime/Destroy()
+	// We teleport Dusty in the corner of one of the ship zlevel for stylish disparition
+	do_teleport(src, get_turf(locate(1, 1, pick(GLOB.maps_data.station_levels))), 2, 0, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
+	cat_number -= 1
+	return ..()
 
 /mob/living/simple_animal/cat/runtime/attackby(var/obj/item/O, var/mob/user)
 	visible_message(SPAN_DANGER("[user]'s [O.name] harmlessly passes through \the [src]."))
