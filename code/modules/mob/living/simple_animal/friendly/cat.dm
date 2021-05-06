@@ -299,10 +299,10 @@ var/cat_teleport = 0.0
 	switch(M.a_intent)
 
 		if(I_HELP)  // Pet the cat
-			M.visible_message("\blue [M] pets \the [src].")
+			M.visible_message(SPAN_NOTICE("[M] pets \the [src]."))
 
 		if(I_DISARM)
-			M.visible_message("\blue [M]'s hand passes through \the [src].")
+			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_GRAB)
@@ -311,14 +311,14 @@ var/cat_teleport = 0.0
 			if (!(status_flags & CANPUSH))
 				return
 
-			M.visible_message("\blue [M]'s hand passes through \the [src].")
+			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			var/datum/gender/G = gender_datums[M.gender]
-			M.visible_message("\red [M] tries to kick \the [src] but [G.his] foot passes through.")
+			M.visible_message(SPAN_WARNING("[M] tries to kick \the [src] but [G.his] foot passes through."))
 			M.do_attack_animation(src)
-			visible_message("\red \The [src] hisses.")
+			visible_message(SPAN_WARNING("\The [src] hisses."))
 			strike_back(M)
 	
 	return
@@ -345,6 +345,12 @@ var/cat_teleport = 0.0
 /mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
 	return PROJECTILE_FORCE_MISS
 
+/mob/living/simple_animal/cat/runtime/ex_act(severity)
+	return
+
+/mob/living/simple_animal/cat/runtime/singularity_act()
+	return
+
 /mob/living/simple_animal/cat/runtime/start_pulling(var/atom/movable/AM)
-	to_chat(src, "\red Your hand passes through \the [src].")
+	to_chat(src, SPAN_WARNING("Your hand passes through \the [src]."))
 	return
