@@ -95843,6 +95843,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/landmark/join/start/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
 "erH" = (
