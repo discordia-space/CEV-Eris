@@ -95748,6 +95748,9 @@
 /obj/item/clothing/under/soviet,
 /obj/item/clothing/head/ushanka,
 /obj/item/clothing/head/ushanka,
+/obj/machinery/light/built{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "erx" = (
@@ -95859,6 +95862,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/light/built,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
 "erJ" = (
