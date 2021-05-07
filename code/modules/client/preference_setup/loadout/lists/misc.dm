@@ -15,6 +15,12 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
+/datum/gear/clown
+	display_name = "clown pack"
+	path = /obj/item/weapon/storage/box/clown
+	cost = 3
+	allowed_roles = list("Vagabond")
+
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
