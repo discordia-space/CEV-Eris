@@ -104233,6 +104233,10 @@
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
+"pJt" = (
+/obj/machinery/vending/Billomat,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/lobby)
 "pJI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -205094,7 +205098,7 @@ bVg
 bVE
 bXd
 bXx
-bDF
+pJt
 bXO
 bYp
 bYq
