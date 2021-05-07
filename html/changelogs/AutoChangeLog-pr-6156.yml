@@ -1,0 +1,4 @@
+author: CeUvi, SPCR/MLGSTATICa
+delete-after: true
+changes:
+  - rscadd: Added new tactical reload (empty gun -> click on mag -> loaded gun)
