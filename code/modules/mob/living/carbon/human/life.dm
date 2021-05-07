@@ -357,7 +357,7 @@
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
 
-	if(get_organ_efficiency(OP_LUNGS))
+	if(get_organ_efficiency(OP_LUNGS) > 1)
 		failed_last_breath = !handle_breath_lungs(breath)
 	else
 		failed_last_breath = 1

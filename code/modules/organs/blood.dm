@@ -304,7 +304,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 			open_check = TRUE
 
 	var/blood_volume = get_blood_volume()
-	if( heart_efficiency <= 0 || (pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !robo_check))
+	if( heart_efficiency <= 1 || (pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !robo_check))
 		blood_volume *= 0.25
 	else
 		var/pulse_mod = 1

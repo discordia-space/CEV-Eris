@@ -1,14 +1,14 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/device/mmi/digital/New()
-	src.brainmob = new(src)
-	src.brainmob.stat = CONSCIOUS
-	src.brainmob.add_language(LANGUAGE_ROBOT)
-	src.brainmob.container = src
-	src.brainmob.silent = 0
+	brainmob = new(src)
+	brainmob.stat = CONSCIOUS
+	brainmob.add_language(LANGUAGE_ROBOT)
+	brainmob.container = src
+	brainmob.silent = 0
 	..()
 
-/obj/item/device/mmi/digital/transfer_identity(var/mob/living/carbon/H)
+/obj/item/device/mmi/digital/transfer_identity(mob/living/carbon/H)
 	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.stat = 0
@@ -57,7 +57,6 @@
 			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
 
 		brainmob = B.brainmob
-		B.brainmob = null
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0

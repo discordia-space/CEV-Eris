@@ -130,7 +130,7 @@
 		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
 			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
-		if (isliving(AM))
+		if(isliving(AM))
 			for(var/datum/antagonist/A in AM.mind.antagonist)
 				if(A.id == ROLE_EXCELSIOR_REV)
 					return
