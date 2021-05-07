@@ -1,11 +1,12 @@
 /obj/machinery/autolathe/nanoforge
-	name = "matter nanoforge"
+	name = "matter auto-nanoforge"
 	desc = "It consumes items and produces compressed matter."
 	icon_state = "nanoforge"
 	icon = 'icons/obj/machines/autolathe.dmi'
 	use_oddities = TRUE
 	use_license = FALSE
 	is_nanoforge = TRUE
+	low_quality_print = FALSE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
 	var/list/nanoforge_designs = list()
 	var/list/tags_to_spawn = list(SPAWN_DESIGN)

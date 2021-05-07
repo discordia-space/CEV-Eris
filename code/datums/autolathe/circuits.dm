@@ -94,5 +94,5 @@
 	build_path = /obj/item/weapon/electronics/circuitboard/excelsior_turret
 
 /datum/design/autolathe/circuit/autolathe_excelsior
-	name = "excelsior autolathe"
+	name = "excelsior autoforge"
 	build_path = /obj/item/weapon/electronics/circuitboard/excelsiorautolathe

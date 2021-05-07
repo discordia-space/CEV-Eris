@@ -125,8 +125,8 @@
 	disk_name = "NeoTheology Armory - Crusader Armor"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/helmet/crusader,
-		/datum/design/autolathe/armor/crusader
+		/datum/design/autolathe/nt/helmet/crusader,
+		/datum/design/autolathe/nt/armor/crusader
 	)
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/void
 	disk_name = "NeoTheology Armory - Neotheology Voidsuit"
@@ -153,37 +153,37 @@
 	disk_name = "NeoTheology Armory - Basic Melee Weapons"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_dagger,
+		/datum/design/autolathe/nt/sword/nt_sword,
+		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/longsword
 	disk_name = "NeoTheology Armory - NT Longsword"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/scourge
 	disk_name = "NeoTheology Armory - NT Scourge"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/halberd
 	disk_name = "NeoTheology Armory - NT Halberd"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_halberd,
+		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/shield
@@ -191,11 +191,11 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	designs = list(
-		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_dagger,
-		/datum/design/autolathe/shield/nt_shield,
+		/datum/design/autolathe/nt/sword/nt_sword,
+		/datum/design/autolathe/nt/sword/nt_dagger,
+		/datum/design/autolathe/nt/shield/nt_shield,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/firstaid
@@ -231,10 +231,10 @@
 	disk_name = "NeoTheology Armory - Grenades Pack"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/grenade/nt_explosive,
-		/datum/design/autolathe/grenade/nt_flashbang,
-		/datum/design/autolathe/grenade/nt_frag,
-		/datum/design/autolathe/grenade/nt_smokebomb
+		/datum/design/autolathe/nt/grenade/nt_explosive,
+		/datum/design/autolathe/nt/grenade/nt_flashbang,
+		/datum/design/autolathe/nt/grenade/nt_frag,
+		/datum/design/autolathe/nt/grenade/nt_smokebomb
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis
