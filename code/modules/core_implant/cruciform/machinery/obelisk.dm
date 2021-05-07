@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
 				mob.stats.addPerk(/datum/perk/sanityboost)
 				currently_affected += mob
-			I.restore_power(I.power_regen)
+			I.restore_power(I.power_regen*2)
 			for(var/r_tag in mob.personal_ritual_cooldowns)
 				mob.personal_ritual_cooldowns[r_tag] -= nt_buff_cd
 
