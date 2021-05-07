@@ -1,0 +1,6 @@
+author: ''
+delete-after: true
+changes:
+  - rscadd: Ability to butcher dead bodies and cut-off limbs for meat.
+  - rscadd: Reworked kitchen ustensil sprites (Mre-spoon , spoon , fork , cleaver,
+      knife , butching knife) made by CeuVi
