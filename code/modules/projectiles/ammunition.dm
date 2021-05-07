@@ -244,6 +244,7 @@
 				return
 			gun_to_load.load_ammo(src, user)
 			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
+			visible_message("[user] tactically reloads [W] using only one hand!")	
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
