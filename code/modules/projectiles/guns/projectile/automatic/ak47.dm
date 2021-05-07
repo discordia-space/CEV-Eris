@@ -24,6 +24,7 @@
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
 	spawn_blacklisted = TRUE
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
