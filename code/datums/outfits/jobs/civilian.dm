@@ -4,6 +4,25 @@
 	uniform = /obj/item/clothing/under/rank/assistant
 	r_pocket = /obj/item/weapon/spacecash/bundle/vagabond
 
+/decl/hierarchy/outfit/job/free_clown //literally just the guild artist but renamed, making it a child of the guild clown would be more bothersome
+	name = OUTFIT_JOB_NAME("Clown")
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	l_pocket = /obj/item/weapon/bikehorn
+	backpack_contents = list(/obj/item/weapon/bananapeel = 1, /obj/item/weapon/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/weapon/stamp/clown = 1, /obj/item/weapon/handcuffs/fake = 1)
+
+/decl/hierarchy/outfit/job/free_clown/New()
+	..()
+	backpack_overrides[/decl/backpack_outfit/backpack] = /obj/item/weapon/storage/backpack/clown
+	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/weapon/storage/backpack/satchel/leather
+
+
+/decl/hierarchy/outfit/job/free_clown/post_equip(var/mob/living/carbon/human/H)
+	..()
+	H.mutations.Add(CLUMSY)
+
+
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
 	hierarchy_type = /decl/hierarchy/outfit/job/service

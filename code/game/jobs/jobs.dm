@@ -51,6 +51,7 @@ var/const/GUILDTECH			=(1<<4)
 var/const/MINER				=(1<<5)
 var/const/ARTIST			=(1<<6)
 var/const/ASSISTANT			=(1<<7)
+var/const/CLOWN				=(1<<8)
 
 
 var/const/CHAPLAIN			=(1<<0)

@@ -77,3 +77,56 @@
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
 
+/datum/job/clown
+	title = "Clown"
+	flag = CLOWN
+	department = DEPARTMENT_CIVILIAN
+	department_flag = CIVILIAN
+	faction = "CEV Eris"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "anyone who pays you, yourself, and whatever you believe in"
+	selection_color = "#dddddd"
+	initial_balance	= 0 //A starving artist on a dying ship
+	wage = WAGE_NONE //look up
+	//Having to entertain a lot of people, all over the galaxy, helps at times, low chance to know most languages.
+	also_known_languages = list(
+		LANGUAGE_CYRILLIC = 5, 
+		LANGUAGE_SERBIAN = 5, 
+		LANGUAGE_NEOHONGO = 5, 
+		LANGUAGE_GERMAN = 5, 
+		LANGUAGE_JIVE = 5, 
+		LANGUAGE_LATIN = 5
+		)
+
+	access = list(access_maint_tunnels, access_theatre)
+	outfit_type = /decl/hierarchy/outfit/job/free_clown
+
+	stat_modifiers = list(
+		STAT_ROB = 4,
+		STAT_TGH = 4,
+		STAT_BIO = 4,
+		STAT_MEC = 4,
+		STAT_VIG = 4,
+		STAT_COG = 4
+	)
+
+
+	description = "You go by many names an artist, a performer, a jester, a bard. But always and forever, a Clown that is free. You have no wage, no starting money, only your wits and sense of humor on this dying ship.<br>\
+
+How you act is most important. Maybe you're a sad old jester, with nothing more than his alcoholism, old dusty clothes and sad jokes, followed by a honk.<br>\
+Or a cheerful clown, wearing bright colours and slipping everyone around with your banana peel and soap you grabbed off of someone.<br>\
+Or one of the silent mimes, wearing nothing but black and white, observing in silence.<br>\
+All of them however have one thing in common, entertainment.<br>\
+
+Perhaps you boarded the CEV Eris with this new crew, or are like one of the vagabonds, a reminder of the prievous crewmates.<br>\
+While your wage is non-existent, this does not mean you don't. You still exist, with all your skills and knowledge.<br>\
+The ID you wear has acces to your theatre and maintenance, incase you need to look for inspiration amongst the roaches and mushrooms.<br>\
+As a Clown, you should strive to entertain the crew, or anyone who pays you. Perhaps you could become the court jester to the Captain, or an informant to one of the Heads of Staff."
+
+	loyalties = "Your loyalty is yours to decide. In whatever you believe."
+
+/obj/landmark/join/start/clown
+	name = "Clown"
+	icon_state = "player-grey"
+	join_tag = /datum/job/clown
