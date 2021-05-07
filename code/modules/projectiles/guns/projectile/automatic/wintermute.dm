@@ -23,6 +23,7 @@
 	zoom_factor = 0.4
 	recoil_buildup = 2
 	one_hand_penalty = 15 //automatic rifle level
+	damage_multiplier = 1.15
 
 	init_firemodes = list(
 		FULL_AUTO_400,
