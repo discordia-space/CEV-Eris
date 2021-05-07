@@ -15,6 +15,10 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
+/datum/gear/clown
+	display_name = "clown pack"
+	path = /obj/item/weapon/storage/box/clown
+
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
