@@ -18436,12 +18436,11 @@
 /obj/item/weapon/tool/hammer/IH,
 /obj/item/weapon/tool/hammer/IH,
 /obj/item/weapon/tool/hammer/IH,
-/obj/item/weapon/tool/hammer/IH,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/simulated/floor/holofloor/tiled/dark,
 /area/eris/security/warden)
 "aSW" = (
 /obj/structure/table/rack,
@@ -167316,7 +167315,7 @@ aQC
 aaJ
 aTa
 aSy
-aSV
+aTa
 aTx
 aVa
 aSS
@@ -168120,7 +168119,7 @@ aQP
 aQP
 aQP
 aaB
-aaB
+aSV
 aRH
 aSw
 aaB
@@ -168321,7 +168320,7 @@ aad
 aaa
 aaa
 abF
-abF
+aaB
 aaB
 aaB
 aaB

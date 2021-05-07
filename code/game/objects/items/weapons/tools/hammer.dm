@@ -166,5 +166,4 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING
 	tool_qualities = list(QUALITY_HAMMERING = 40)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
-	slot_flags = SLOT_BACK
 	spawn_blacklisted = TRUE
