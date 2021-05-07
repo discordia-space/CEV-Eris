@@ -19,6 +19,7 @@
 	display_name = "clown pack"
 	path = /obj/item/weapon/storage/box/clown
 	cost = 3
+	allowed_roles = list("Vagabond")
 
 /datum/gear/dice
 	display_name = "dice pack"
