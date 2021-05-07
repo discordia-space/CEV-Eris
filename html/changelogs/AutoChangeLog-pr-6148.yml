@@ -1,0 +1,10 @@
+author: CeUvi
+delete-after: true
+changes:
+  - rscadd: Officer's saber to Captain's and FO's lockers
+  - rscadd: New coat for captain
+  - tweak: Made sheath a belt subtype, so you can use "switch belt layer" verb on
+      it
+  - tweak: made captain spawn with his new coat and jackboots
+  - imageadd: New sprites for captain
+  - imagedel: Old sprites for captain
