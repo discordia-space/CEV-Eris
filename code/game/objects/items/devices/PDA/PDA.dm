@@ -1329,17 +1329,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	else
 		to_chat(usr, SPAN_NOTICE("You cannot do this while restrained."))
 
-
-/obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
-	if (isliving(AM))
-		var/mob/living/M = AM
-		if(locate(/obj/structure/multiz/stairs) in get_turf(loc) || locate(/obj/structure/multiz/ladder) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
-			return
-		if(M.slip("the PDA",8) && M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
-			if(src.cartridge.charges < 5)
-				src.cartridge.charges++
-
 /obj/item/device/pda/proc/available_pdas()
 	var/list/names = list()
 	var/list/plist = list()
