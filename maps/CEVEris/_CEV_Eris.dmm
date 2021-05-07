@@ -29925,8 +29925,8 @@
 /area/eris/maintenance/section3deck1central)
 "bsl" = (
 /obj/structure/table/rack/shelf,
-/obj/spawner/rations,
-/obj/spawner/rations,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "bsm" = (
@@ -49550,14 +49550,10 @@
 "clG" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
+/obj/spawner/rations/low_chance,
+/obj/spawner/rations/low_chance,
+/obj/spawner/junkfood/low_chance,
+/obj/spawner/junkfood/low_chance,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "clH" = (
@@ -56716,9 +56712,8 @@
 /obj/spawner/rations,
 /obj/spawner/rations,
 /obj/spawner/rations,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
+/obj/spawner/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCE" = (
@@ -88302,9 +88297,9 @@
 /area/eris/maintenance/section3deck3starboard)
 "dZA" = (
 /obj/structure/table/standard,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/maintenance/section3deck3starboard)
 "dZB" = (
@@ -88881,7 +88876,7 @@
 /area/eris/maintenance/section3deck3starboard)
 "eaM" = (
 /obj/structure/table/standard,
-/obj/spawner/rations,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section3deck3starboard)
 "eaN" = (
@@ -96935,10 +96930,10 @@
 /area/eris/maintenance/section3deck1central)
 "etY" = (
 /obj/structure/table/standard,
-/obj/spawner/rations,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/spawner/junkfood/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
 "etZ" = (
@@ -104639,15 +104634,14 @@
 /obj/spawner/rations,
 /obj/spawner/rations,
 /obj/spawner/rations,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
 /obj/machinery/button/remote/blast_door{
 	id = "kitchen_hatch";
 	name = "Kitchen Hatch Control";
 	pixel_y = -24;
 	req_access = null
 	},
+/obj/spawner/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "sJL" = (

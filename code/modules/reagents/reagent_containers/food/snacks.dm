@@ -3426,6 +3426,7 @@
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_desc = list("chalk" = 6)
+	preloaded_reagents = list("iron" = 3)
 	nutriment_amt = 20
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
