@@ -205,7 +205,7 @@
 //[MISC]
 /datum/design/bioprinter/storage/sheath
 	name = "sheath"
-	build_path = /obj/item/weapon/storage/sheath
+	build_path = /obj/item/weapon/storage/belt/sheath
 
 /datum/design/bioprinter/leather/cash_bag
 	name = "Cash Bag"

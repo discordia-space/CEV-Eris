@@ -12,7 +12,7 @@
 	var/new_tags_amt = max(round(tags.len*0.10),1)
 	for(var/i in 1 to new_tags_amt)
 		tags_to_spawn += pick_n_take(tags)
-	. = ..()
+	return ..()
 
 /obj/spawner/lowkeyrandom/low_chance
 	name = "low chance random stuff"

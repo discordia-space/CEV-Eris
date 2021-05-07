@@ -221,7 +221,7 @@
 	s.set_up(1, 1, M.loc)
 	s.start()
 
-	M.apply_effect(50, AGONY, 0)
+	M.adjustHalLoss(50)
 
 	return TRUE
 
@@ -256,7 +256,7 @@
 	category = "Offerings"
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
-	power = 30
+	power = 10
 	var/list/req_offerings = list()
 	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
 
