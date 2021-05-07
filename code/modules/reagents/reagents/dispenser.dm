@@ -420,7 +420,7 @@
 /datum/reagent/organic/sugar
 	name = "Sugar"
 	id = "sugar"
-	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste. Its not a good idea to inject too much raw sugar into your bloodstream."
+	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste. It is not a good idea to inject too much raw sugar into your bloodstream."
 	taste_description = "sugar"
 	taste_mult = 1.8
 	overdose = 40
