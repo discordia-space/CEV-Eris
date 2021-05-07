@@ -201,7 +201,14 @@
 		qdel(src)
 		return FALSE
 
-	loc = get_turf(user) //move the projectile out into the world
+	loc = get_turf(user)
+
+	if(iscarbon(user))
+		var/mob/living/carbon/human/blanker = user
+		if(blanker.can_multiz_pb && (!isturf(target)))
+			loc = get_turf(blanker.client.eye)
+			if(!(loc.Adjacent(target)))
+				loc = get_turf(blanker)
 
 	firer = user
 	shot_from = launcher.name
