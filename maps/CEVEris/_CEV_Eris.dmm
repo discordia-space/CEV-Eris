@@ -18431,6 +18431,17 @@
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/hallway/side/atmosphericshallway)
+"aSV" = (
+/obj/structure/table/rack,
+/obj/item/weapon/tool/hammer/IH,
+/obj/item/weapon/tool/hammer/IH,
+/obj/item/weapon/tool/hammer/IH,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/eris/security/warden)
 "aSW" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/teargas,
@@ -168108,7 +168119,7 @@ aQP
 aQP
 aQP
 aaB
-aaB
+aSV
 aRH
 aSw
 aaB
@@ -168309,7 +168320,7 @@ aad
 aaa
 aaa
 abF
-abF
+aaB
 aaB
 aaB
 aaB
