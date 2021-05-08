@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: cruciform energy
-  - tweak: reduces the energy cost of the offerings to 10
-  - tweak: doubles the energy regeneration coming from the obelisks.
-  - tweak: the energy regeneration miracle further increases energy regeneration.

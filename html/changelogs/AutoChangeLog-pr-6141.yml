@@ -1,6 +1,0 @@
-author: DarkLevel - code; CeUvi - sprites.
-delete-after: true
-changes:
-  - rscadd: IH "Tactical Breaching Hammer"
-  - balance: Rebalancing wall smashing mechanic. Make it more depends on stats of
-      the user and item.

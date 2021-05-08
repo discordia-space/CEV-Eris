@@ -1,9 +1,0 @@
-author: TheShown, Alliostra
-delete-after: true
-changes:
-  - balance: Paincrit has been reworked
-  - balance: Pain has been reworked with dynamic and constant pain
-  - balance: Bleedout side effects have been nerfed
-  - balance: Aiming on where your bullets hit based on where you click on the sprite
-      has been removed, and has been replaced with accuracy based on VIG and distance
-  - balance: Internal organ HP has been buffed to a base of 100

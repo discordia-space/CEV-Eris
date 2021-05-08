@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - code_imp: added signals for APC power change, and APC deletion for areas.
-  - refactor: refactored intercom code to not process and instead use signals
