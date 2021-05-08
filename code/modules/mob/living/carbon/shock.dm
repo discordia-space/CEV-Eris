@@ -91,7 +91,7 @@
 	if(shock_stage <= traumatic_shock)	//Shock stage slowly climbs to traumatic shock
 		shock_stage = min(shock_stage + shock_stage_speed, traumatic_shock)
 
-		if(shock_stage <= traumatic_shock * 0.4)	//If the difference is too big shock stage jumps to 40% of traumatic shock
+		if(shock_stage <= round(traumatic_shock * 0.4 / 2) * 2)	//If the difference is too big shock stage jumps to 40% of traumatic shock
 			shock_stage = (traumatic_shock * 0.4)
 			shock_stage = round(shock_stage / 2) * 2 //rounded to the nearest even sumber, so messages show up
 
