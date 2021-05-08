@@ -59,7 +59,7 @@
 			list("vomitol" = 20) = 10)
 		var/list/picked_reagents = pickweight(random_reagent_list)
 		for(var/reagent in picked_reagents)
-			reagents.add_reagent(reagent, picked_reagents[reagent])
+			food.reagents.add_reagent(reagent, picked_reagents[reagent])
 		if(prob(50)) // So sometimes the rot is visible.
 			food.make_old()
 	return spawns
