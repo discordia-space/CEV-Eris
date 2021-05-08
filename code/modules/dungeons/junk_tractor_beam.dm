@@ -385,23 +385,29 @@
 				O.dir = 2
 			else if(istype(O, /obj/structure/sign))  // Fix magical sign offset, don't ask why...
 				if(ori == NORTH)
-					O.pixel_x = - O.pixel_x
 					O.pixel_y = - O.pixel_y
-				if(ori == EAST)
+				else if(ori == EAST)
 					var/tmp = O.pixel_x
 					O.pixel_x = O.pixel_y
-					O.pixel_y = - tmp
-				if(ori == WEST)
+					O.pixel_y = tmp
+				else if(ori == WEST)
 					var/tmp = O.pixel_x
 					O.pixel_x = - O.pixel_y
 					O.pixel_y = tmp
 			else if(intypes(O))  // Fix obj directions
 				if(ori == NORTH)
-					O.dir = reverse_dir[O.dir]
-				if(ori == EAST)
-					O.dir = GLOB.cw_dir[O.dir]
-				if(ori == WEST)
+					if(O.dir == NORTH || O.dir == SOUTH)
+						O.dir = reverse_dir[O.dir]
+				else if(ori == EAST)
+					if(O.dir == EAST || O.dir == WEST)
+						O.dir = GLOB.ccw_dir[O.dir]
+					else
+						O.dir = GLOB.cw_dir[O.dir]
+				else if(ori == WEST)
 					O.dir = GLOB.ccw_dir[O.dir]
+				// Refresh railing icon so that they properly merge with each other
+				if(istype(O, /obj/structure/railing))
+					O.update_icon()
 
 // Place the portal that leads to the ship
 /obj/jtb_generator/proc/place_portal()
@@ -494,6 +500,15 @@
 		for(var/obj/O in T)
 			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
 	
+	// Make space outside the edge impassable to avoid fast moving object moving too fast through the barrier to be detected and wraped-around
+	edges = list()
+	edges += block(locate(1+JTB_OFFSET-JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE, z), locate(1+JTB_OFFSET-JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Left border
+	edges |= block(locate(maxx+JTB_OFFSET+JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE, z),locate(maxx+JTB_OFFSET+JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Right border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE-1, z), locate(maxx+JTB_OFFSET+JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE-1, z))  // Bottom border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE+1, z),locate(maxx+JTB_OFFSET+JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE+1, z))  // Top border
+	for(var/turf/T in edges)
+		T.density = 1
+
 // Dummy object because place_asteroid needs an /obj/asteroid_spawner
 /obj/asteroid_spawner/portal
 	name = "portal spawn"
