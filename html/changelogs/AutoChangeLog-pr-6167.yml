@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - balance: slowdown from pain is lowered.
+  - bugfix: shock stage should now increase properly.
