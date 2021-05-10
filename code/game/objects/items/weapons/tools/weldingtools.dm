@@ -109,5 +109,5 @@
 	max_fuel = 60
 	max_upgrades = 4
 	degradation = 0.4
-	fuel_type = "blood"
+//	fuel_type = "blood"
 	spawn_blacklisted = TRUE
