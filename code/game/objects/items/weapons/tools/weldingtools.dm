@@ -95,3 +95,19 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
+
+/obj/item/weapon/tool/weldingtool/hivemind
+	name = "modified welding tool"
+	icon_state = "hivemind_welder"
+	item_state = "hivemind_welder"
+	desc = "A welding tool with numerous growths on it, the fuel tanks is bloated. Doubt you will be able to use it for anything other than welding."
+	glow_color = COLOR_LIME
+	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_BIOMATTER = 5)
+	switched_on_qualities = list(QUALITY_WELDING = 50)
+	use_fuel_cost = 0.2
+	max_fuel = 60
+	max_upgrades = 4
+	degradation = 0.4
+	fuel_type = "blood"
+	spawn_blacklisted = TRUE
