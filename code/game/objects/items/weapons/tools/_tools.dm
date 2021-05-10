@@ -35,6 +35,7 @@
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
+	var/fuel_type = "fuel"
 
 	var/mode = NOMODE //For various tool icon updates.
 
@@ -82,7 +83,7 @@
 
 	if(use_fuel_cost)
 		create_reagents(max_fuel)
-		reagents.add_reagent("fuel", max_fuel)
+		reagents.add_reagent(fuel_type, max_fuel)
 
 	if(use_stock_cost)
 		stock = max_stock
@@ -719,7 +720,7 @@
 
 	if(use_fuel_cost)
 		if(!consume_fuel(use_fuel_cost*timespent))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_NOTICE("You need more fuel to complete this task."))
 			return FALSE
 
 	if(use_stock_cost)
@@ -742,12 +743,12 @@
 
 	if(use_fuel_cost)
 		if(get_fuel() < (use_fuel_cost*time))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_NOTICE("You need more fuel to complete this task."))
 			return FALSE
 
 	if (use_stock_cost)
 		if(stock < (use_stock_cost*time))
-			to_chat(user, SPAN_NOTICE("There is not enough left in [src] to complete this task."))
+			to_chat(user, SPAN_NOTICE("There is not enough fuel left in [src] to complete this task."))
 			return FALSE
 
 	if(eye_hazard)
@@ -763,11 +764,11 @@
 
 //Returns the amount of fuel in tool
 /obj/item/weapon/tool/proc/get_fuel()
-	return ( reagents ? reagents.get_reagent_amount("fuel") : 0 )
+	return ( reagents ? reagents.get_reagent_amount(fuel_type) : 0 )
 
 /obj/item/weapon/tool/proc/consume_fuel(var/volume)
 	if (get_fuel() >= volume)
-		reagents.remove_reagent("fuel", volume)
+		reagents.remove_reagent(fuel_type, volume)
 		return TRUE
 	return FALSE
 
@@ -833,7 +834,7 @@
 			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
 
 	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		to_chat(user, text("\icon[] [] contains []/[] units of []!", src, src.name, get_fuel(), src.max_fuel, fuel_type))
 
 	if (use_stock_cost)
 		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
