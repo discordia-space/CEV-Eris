@@ -104,6 +104,7 @@
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/sl_pistol,
 		/datum/design/autolathe/ammo/sl_pistol/practice = 0,
 		/datum/design/autolathe/ammo/sl_pistol/rubber,
 		)
