@@ -35,7 +35,11 @@
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
-	var/fuel_type = "fuel"
+	var/fuel_type = "fuel" //aight here's how this shitcode thing works
+	//each chem has an 'id' , for example welding fuel's 'id' is '"fuel"'
+	// blood's id is '"blood"' etc. You can check the id of each chem by, well just searching for it
+	//simply set the 'fuel_type' to the same id/string as the chem you want to be used as fuel
+	//for example a tool using blood as fuel would have 'fuel_type = "blood"'
 
 	var/mode = NOMODE //For various tool icon updates.
 
