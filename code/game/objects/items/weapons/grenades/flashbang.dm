@@ -17,6 +17,13 @@
 	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
 		flashbang_bang(get_turf(src), M)
 
+	for(var/mob/living/carbon/human/thermal_user in orange(9, loc))
+		if(!thermal_user.glasses)
+			return
+		var/obj/item/clothing/glasses/potential_thermals = thermal_user.glasses
+		if(potential_thermals.overlay == global_hud.thermal)
+			flashbang_bang(get_turf(src), thermal_user)
+
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
 		B.health -= damage
