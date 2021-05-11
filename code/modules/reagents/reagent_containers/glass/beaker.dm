@@ -175,5 +175,5 @@
 		add_overlays(lid)
 
 /obj/item/weapon/reagent_containers/glass/beaker/hivemind
-	preloaded_reagents = list("nanites" = 30, "uncapnanites" = 30)
+	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)
 	spawn_blacklisted = TRUE

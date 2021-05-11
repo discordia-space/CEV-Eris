@@ -323,10 +323,13 @@
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
-	var/list/reward_item = list(/obj/item/weapon/tool/weldingtool/hivemind,
-								/obj/item/weapon/tool/crowbar/pneumatic/hivemind,
-								/obj/item/weapon/reagent_containers/glass/beaker/hivemind
-								)
+	var/list/reward_item = list(
+		/obj/item/weapon/tool/weldingtool/hivemind,
+		/obj/item/weapon/tool/crowbar/pneumatic/hivemind,
+		/obj/item/weapon/reagent_containers/glass/beaker/hivemind,
+		/obj/item/weapon/oddity/hivemind/old_radio,
+		/obj/item/weapon/oddity/hivemind/old_pda
+		)
 
 
 /obj/machinery/hivemind_machine/node/Initialize()
@@ -365,10 +368,17 @@
 		var/gift = pick(reward_item)
 		new gift(get_turf(loc))
 
+/obj/machinery/hivemind_machine/node/proc/core()
+	state("leaves behind a weird looking datapad!")
+	var/core = /obj/item/weapon/oddity/hivemind/hive_core
+	new core(get_turf(loc))
+
 /obj/machinery/hivemind_machine/node/Destroy()
 	gift()
 	hive_mind_ai.hives.Remove(src)
 	check_for_other()
+	if(hive_mind_ai == null)
+		core()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
 		remove_wireweed(wire)
 	return ..()
