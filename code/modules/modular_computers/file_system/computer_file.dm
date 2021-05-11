@@ -6,6 +6,7 @@ GLOBAL_VAR_INIT(file_uid, 0)
 	var/obj/item/weapon/computer_hardware/hard_drive/holder	// Holder that contains this file.
 	var/unsendable = FALSE									// Whether the file may be sent to someone via NTNet transfer or other means.
 	var/undeletable = FALSE									// Whether the file may be deleted. Setting to TRUE prevents deletion/renaming/etc.
+	var/Clonable = TRUE
 	var/uid													// UID of this file
 
 	var/static/list/VARS_BLACKLIST_FOR_CLONE = list("holder", "uid") // put here all variables that use referenses, you should set vars with references by yourself
@@ -23,7 +24,9 @@ GLOBAL_VAR_INIT(file_uid, 0)
 	return ..()
 
 // Returns independent copy of this file.
-/datum/computer_file/proc/clone(rename = 0)
+/datum/computer_file/proc/clone(rename = 0, force = FALSE)
+	if(!(Clonable || force))
+		return FALSE
 	var/datum/computer_file/clone_file = new type()
 	// clone_file.unsendable = unsendable
 	// clone_file.undeletable = undeletable

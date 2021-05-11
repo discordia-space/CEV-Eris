@@ -50,3 +50,27 @@
 
 			myObject = H
 			update_icon()
+
+/obj/screen/movable/cyberspace_eye/hardware
+	name = "Program To Install"
+	icon_state = "base"
+
+	var/obj/item/weapon/deck_hardware/myObject
+
+	Click(location, control, params)
+		. = ..()
+		if(istype(myObject))
+			myObject.Activate()
+	on_update_icon()
+		. = ..()
+		if(istype(myObject))
+			overlays |= image(myObject.icon, null, myObject.icon_state)
+
+	proc
+		SetObject(obj/item/weapon/deck_hardware/H)
+			if(istype(myObject) && myObject != H)
+				overlays -= myObject
+
+			myObject = H
+			update_icon()
+
