@@ -468,6 +468,7 @@
 		STAT_BIO = 8
 	)
 
+//i copied the entire thing because beforehand it just did not work
 /obj/item/weapon/oddity/hivemind/hive_core/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
