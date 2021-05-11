@@ -35,10 +35,22 @@
 				HUDprocess += SO
 	
 	if(istype(owner))
-		var/i = 0
-		for(var/obj/item/weapon/deck_hardware/chip/chip in owner.hardware)
-			var/obj/screen/movable/cyberspace_eye/chips/H = new(_name = "[i+1]>[chip]", _parentmob = src)
-			H.screen_loc = "WEST+[i]:4,SOUTH:11"
-			H.SetChip(chip)
-			HUDneed[H.name] = H
-			i++
+		var/hardwareI = 0
+		var/chipI = 0
+		for(var/obj/item/weapon/deck_hardware/H in owner.hardware)
+			var/number = 0
+			var/screen_position = ""
+			if(istype(H, /obj/item/weapon/deck_hardware/chip))
+				number = chipI
+				screen_position = "CENTER+[chipI - owner.chip_slots + 2]:4,SOUTH:11"
+				chipI++
+			else
+				number = hardwareI
+				screen_position = "WEST:4,CENTER+[hardwareI - owner.hardware_slots + 4]:11"
+				hardwareI++
+			
+			var/obj/screen/movable/cyberspace_eye/hardware/screenObject = new(_name = "[number + 1]> [H]", _parentmob = src)
+			screenObject.screen_loc = screen_position
+
+			screenObject.SetObject(H)
+			HUDneed[screenObject.name] = screenObject

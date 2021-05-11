@@ -28,23 +28,25 @@
 		if(istype(myDeck))
 			maptext = "[myDeck.QuantumPoints] QP"
 
-/obj/screen/movable/cyberspace_eye/chips
+/obj/screen/movable/cyberspace_eye/hardware
 	name = "Chip"
 	icon_state = "base"
 
-	var/obj/item/weapon/deck_hardware/chip/myChip
+	var/obj/item/weapon/deck_hardware/myObject
 
 	Click(location, control, params)
 		. = ..()
-		if(istype(myChip))
-			myChip.Activate()
+		if(istype(myObject))
+			myObject.Activate()
 	on_update_icon()
 		. = ..()
-		overlays |= image(myChip.icon, null, myChip.icon_state)
+		if(istype(myObject))
+			overlays |= image(myObject.icon, null, myObject.icon_state)
 
-/obj/screen/movable/cyberspace_eye/chips/proc/SetChip(obj/screen/movable/cyberspace_eye/chips/chip)
-	if(istype(myChip))
-		overlays -= myChip
+	proc
+		SetObject(obj/item/weapon/deck_hardware/H)
+			if(istype(myObject) && myObject != H)
+				overlays -= myObject
 
-	myChip = chip
-	update_icon()
+			myObject = H
+			update_icon()
