@@ -323,6 +323,9 @@
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
+	var/list/reward_item = list(/obj/item/weapon/tool/weldingtool/hivemind,
+								/obj/item/weapon/tool/crowbar/pneumatic/hivemind
+								)
 
 
 /obj/machinery/hivemind_machine/node/Initialize()
@@ -356,13 +359,10 @@
 	SDP.set_master(src)
 
 /obj/machinery/hivemind_machine/node/proc/gift()
-	var/list/reward_item = list(/obj/item/weapon/tool/weldingtool/hivemind,
-								/obj/item/weapon/tool/crowbar/pneumatic/hivemind
-								)
-	if(prob(100))
+	if(prob(10))
 		state("leaves behind an item!")
-		for(var/gift in reward_item)
-			new gift(get_turf(loc))
+		var/gift = pick(reward_item)
+		new gift(get_turf(loc))
 
 /obj/machinery/hivemind_machine/node/Destroy()
 	gift()
