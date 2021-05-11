@@ -174,3 +174,20 @@
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		add_overlays(lid)
 
+/obj/item/weapon/reagent_containers/glass/beaker/hivemind
+	name = "modified sac"
+	desc = "A stretchable sac with numerous growths on it."
+	icon_state = "hivemind_beaker"
+	label_icon_state = "label_hivemind_beaker"
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BIO = 2)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_BIOMATTER = 3, MATERIAL_PLASTIC = 2)
+	volume = 150
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(10,30,50,150)
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/reagent_containers/glass/beaker/hivemind/nanites
+	preloaded_reagents = list("nanites" = 60)
+
+/obj/item/weapon/reagent_containers/glass/beaker/hivemind/uncapnanites
+	preloaded_reagents = list("uncapnanites" = 60)
