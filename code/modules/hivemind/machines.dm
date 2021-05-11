@@ -355,14 +355,22 @@
 	SDP = new picked_sdp(src)
 	SDP.set_master(src)
 
+/obj/machinery/hivemind_machine/node/proc/gift()
+	var/list/reward_item = list(/obj/item/weapon/tool/weldingtool/hivemind,
+								/obj/item/weapon/tool/crowbar/pneumatic/hivemind
+								)
+	if(prob(100))
+		state("leaves behind an item!")
+		for(var/gift in reward_item)
+			new gift(get_turf(loc))
 
 /obj/machinery/hivemind_machine/node/Destroy()
+	gift()
 	hive_mind_ai.hives.Remove(src)
 	check_for_other()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
 		remove_wireweed(wire)
 	return ..()
-
 
 /obj/machinery/hivemind_machine/node/Process()
 	if(!..())
