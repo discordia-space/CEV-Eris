@@ -52,16 +52,14 @@
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/weapon/tool/crowbar
-	name = "modified crowbar"
-	desc = "A crowbar with numerous growths on it, along with a sac attached. Doubt you will be able to use it for anything other than prying."
-	icon_state = "crowbar"
-	item_state = "crowbar"
+/obj/item/weapon/tool/crowbar/pneumatic/hivemind
+	name = "modified pneumatic crowbar"
+	desc = "A pneumatic crowbar with numerous growths on it. Doubt you will be able to use it for anything other than prying."
+	icon_state = "hivemind_pneumo_crowbar"
+	item_state = "hivemind_pneumo_crowbar"
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_BIOMATTER = 5)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_BIOMATTER = 3)
 	tool_qualities = list(QUALITY_PRYING = 50)
-	max_upgrades = 4
 	degradation = 0.4
 	use_power_cost = 0.4
-	suitable_cell = /obj/item/weapon/cell/medium
 	spawn_blacklisted = TRUE

@@ -100,10 +100,10 @@
 	name = "modified welding tool"
 	icon_state = "hivemind_welder"
 	item_state = "hivemind_welder"
-	desc = "A welding tool with numerous growths on it, the fuel tanks is bloated. Doubt you will be able to use it for anything other than welding."
+	desc = "A welding tool with numerous growths on it, the fuel tank is bloated. Doubt you will be able to use it for anything other than welding."
 	glow_color = COLOR_LIME
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_BIOMATTER = 5)
+	matter = list(MATERIAL_STEEL = 7, MATERIAL_BIOMATTER = 3)
 	switched_on_qualities = list(QUALITY_WELDING = 50)
 	use_fuel_cost = 0.2
 	max_fuel = 60
