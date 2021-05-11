@@ -57,7 +57,7 @@
 	desc = "A pneumatic crowbar with numerous growths on it. Doubt you will be able to use it for anything other than prying."
 	icon_state = "hivemind_pneumo_crowbar"
 	item_state = "hivemind_pneumo_crowbar"
-	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_BIO = 2, TECH_COVERT = 1)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_BIOMATTER = 3)
 	tool_qualities = list(QUALITY_PRYING = 50)
 	degradation = 0.4
