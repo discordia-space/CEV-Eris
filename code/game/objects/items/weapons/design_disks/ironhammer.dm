@@ -1,7 +1,7 @@
 // Ironhammer
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/security
 	disk_name = "Ironhammer Miscellaneous Pack"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	rarity_value = 5
 	license = 20
 	designs = list(
@@ -19,7 +19,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	rarity_value = 12 // one of the more common advanced disks
 	license = 6 // 6 pieces, or 3 sets if you use helm + vest
@@ -31,7 +31,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof
 	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	rarity_value = 15 // about as rare as a advanced tool disk - remember that this takes from the 'advanced' pool (which is rare) instead of the 'common' pool like the normal armor disk does
 	license = 4 // 4 pieces, or 2 sets
@@ -43,7 +43,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/ablative
 	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	rarity_value = 16 // slightly rarer than bulletproof gear
 	license = 4 // 4 pieces, or 2 sets
@@ -54,7 +54,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih
 	disk_name = "Ironhammer Combat Equipment - Operator Armor"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	spawn_blacklisted = TRUE //should only be obtainable from the sectech
 	license = 6
 	designs = list(
@@ -65,7 +65,7 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
 	disk_name = "Ironhammer Combat Equipment - Bulletproof Operator Armor"
-	icon_state = "ironhammer"
+	icon_state = "ironhammer_disc"
 	spawn_blacklisted = TRUE
 	license = 4
 	designs = list(
