@@ -1493,7 +1493,6 @@
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
 					/obj/item/ammo_magazine/hpistol = 12,
-					//obj/item/ammo_magazine/cspistol = 12,
 					/obj/item/ammo_magazine/srifle = 12,
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 20, 
@@ -1502,7 +1501,6 @@
 					/obj/item/weapon/gun/energy/retro = 4,
 					/obj/item/weapon/gun/projectile/mk58  = 2,
 					/obj/item/weapon/gun/projectile/mk58/wood = 2,
-					//obj/item/weapon/gun/projectile/mandella = 4,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
 					/obj/item/weapon/gun/projectile/automatic/molly = 4,
