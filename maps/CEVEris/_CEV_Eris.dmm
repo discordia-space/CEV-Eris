@@ -34889,13 +34889,12 @@
 /turf/simulated/open,
 /area/eris/security/prison)
 "bEb" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	req_access = list(25)
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen)
 "bEc" = (
 /obj/structure/railing{
 	dir = 4
@@ -35044,7 +35043,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen)
 "bEr" = (
 /obj/machinery/door/window/southright{
 	dir = 1;
@@ -52420,8 +52419,10 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "csD" = (
-/turf/simulated/wall,
-/area/eris/maintenance/section3deck4port)
+/obj/structure/catwalk,
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen)
 "csE" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -61908,11 +61909,9 @@
 	},
 /area/shuttle/mining/station)
 "cPH" = (
-/obj/structure/railing{
-	dir = 4
-	},
+/obj/structure/catwalk,
 /turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen)
 "cPI" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "6,21"
@@ -66681,12 +66680,11 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay)
 "dbp" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/obj/machinery/door/airlock{
+	req_access = list(25)
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen)
 "dbq" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -94981,6 +94979,7 @@
 /obj/structure/closet/chefcloset,
 /obj/item/weapon/tool/knife,
 /obj/item/weapon/tool/knife,
+/obj/item/weapon/electronics/circuitboard/vending,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "epI" = (
@@ -103766,6 +103765,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"muf" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen)
 "mxw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -104517,6 +104523,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
+"scN" = (
+/obj/structure/catwalk,
+/obj/spawner/pack/junk_machine,
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen)
 "sds" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/railing/grey{
@@ -105036,6 +105047,11 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
+"vSe" = (
+/obj/structure/catwalk,
+/obj/machinery/autolathe,
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen)
 "wja" = (
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/wall/r_wall,
@@ -162329,12 +162345,12 @@ bQU
 bVb
 cmm
 cpP
-cPv
-cPv
-cPv
-cPv
-cPv
-bUG
+csD
+csD
+csD
+csD
+scN
+cAS
 dHD
 dRr
 crv
@@ -162530,12 +162546,12 @@ cfb
 gXX
 ovh
 bQU
-bAZ
-cPv
-cPv
-cPv
-cPv
-cPv
+cpP
+muf
+cPH
+cPH
+cPH
+cPH
 bEq
 dmg
 dRu
@@ -162738,7 +162754,7 @@ cPH
 cPH
 cPH
 cPH
-bUG
+cAS
 dnb
 dRu
 bWh
@@ -162935,11 +162951,11 @@ chb
 cij
 com
 cpP
-cQe
-cQe
-cQe
-cQe
-cQe
+vSe
+scN
+cPH
+cPH
+cPH
 bEb
 bWh
 dHD
@@ -163137,12 +163153,12 @@ bzz
 cpP
 cpP
 cpP
-csD
-csD
+egG
+egG
 dbp
-csD
-csD
-anJ
+egG
+egG
+cAS
 anJ
 anJ
 anJ
