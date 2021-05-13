@@ -1,6 +1,3 @@
-/mob/observer/cyberspace_eye
-	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
-
 /datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
 	var/turf/movedTo = get_step(mover, direction)
 

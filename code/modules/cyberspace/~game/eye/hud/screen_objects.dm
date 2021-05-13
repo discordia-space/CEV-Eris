@@ -51,23 +51,26 @@
 			myObject = H
 			update_icon()
 
-/obj/screen/movable/cyberspace_eye/hardware
+/obj/screen/movable/cyberspace_eye/program
 	name = "Program To Install"
 	icon_state = "base"
 
-	var/obj/item/weapon/deck_hardware/myObject
+	var/datum/computer_file/cyberdeck_program/myObject
 
 	Click(location, control, params)
 		. = ..()
 		if(istype(myObject))
-			myObject.Activate()
+			var/mob/observer/cyberspace_eye/avatar = parentmob
+			if(istype(avatar))
+				avatar.InstallProgram(myObject)
+			
 	on_update_icon()
 		. = ..()
 		if(istype(myObject))
-			overlays |= image(myObject.icon, null, myObject.icon_state)
+			overlays |= image(myObject.icon, null, myObject.state)
 
 	proc
-		SetObject(obj/item/weapon/deck_hardware/H)
+		SetObject(datum/computer_file/cyberdeck_program/H) //TODO, add icons to /datum/computer_file/*
 			if(istype(myObject) && myObject != H)
 				overlays -= myObject
 

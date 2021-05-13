@@ -32,7 +32,8 @@
 				if(!.)
 					var/lenOfContent = length(Content)
 					Content.Cut(lenOfContent, lenOfContent + 1)
-			while(!.)
+			while(!(. && length(Content)))
+
 		GetBusyMemory()
 			for(var/datum/computer_file/program in Content)
 				. += program.size

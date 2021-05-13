@@ -23,6 +23,6 @@
 	RemoveProgram(datum/computer_file/cyberdeck_program/P, obj/item/weapon/computer_hardware/hard_drive/MoveTo)
 		if(!MoveTo && istype(holder2))
 			MoveTo = holder2.hard_drive
-		if(P.Deletable)
+		if(!P.undeletable)
 			. = memory_buffer.RemoveProgram(P, MoveTo)
 

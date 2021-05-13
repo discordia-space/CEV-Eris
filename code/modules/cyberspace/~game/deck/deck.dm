@@ -98,7 +98,7 @@
 			projected_mind.relocateTo(src)
 
 	SetUpProjectedMind()
-		projected_mind.Memory = DefaultMemoryForInstalledPrograms
+		projected_mind.InstalledPrograms.Memory = DefaultMemoryForInstalledPrograms
 		projected_mind.reset_HUD()
 	
 	AddLinkStreight(count)

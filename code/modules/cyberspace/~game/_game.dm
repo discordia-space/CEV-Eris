@@ -1,8 +1,9 @@
 #include "deck/datajack.dm"
 #include "deck/deck.dm"
+#include "deck/programs.dm"
 	#include "deck/programs/_core.dm"
-	#include "deck/programs/programs.dm"
 	#include "deck/programs/QP.dm"
+	#include "deck/programs/instalation.dm"
 
 	#include "deck/hardware/_hardware.dm"
 	#include "deck/hardware/chip.dm"
@@ -13,13 +14,9 @@
 		#include "deck/hardware/chips/memory_crystal.dm"
 
 #include "eye/_core.dm"
-#include "eye/movement.dm"
 #include "eye/runner.dm"
-#include "eye/programs.dm"
-#include "eye/grip.dm"
+#include "eye/installed_programs.dm"
+#include "eye/memory_buffer.dm"
 	#include "eye/hud/_hud.dm"
 	#include "eye/hud/datum.dm"
 	#include "eye/hud/screen_objects.dm"
-
-#include "ices/AreaFirewall.dm"
-
