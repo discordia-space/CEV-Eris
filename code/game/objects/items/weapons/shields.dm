@@ -71,22 +71,47 @@
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10)
 	price_tag = 500
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
+	var/is_covered = FALSE
 
 /obj/item/weapon/shield/riot/handle_shield(mob/user)
 	. = ..()
 	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
 
 /obj/item/weapon/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
-		var/obj/item/projectile/P = damage_source
-		//plastic shields do not stop bullets or lasers, even in space. Will block beanbags, rubber bullets, and stunshots just fine though.
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
-			return 0
-	return base_block_chance
+	if(MOVING_QUICKLY(user))
+		return 0
+	if(MOVING_DELIBERATELY(user))
+		return base_block_chance
+
+/obj/item/weapon/shield/riot/New()
+	START_PROCESSING(SSobj, src)
+	return
+
+/obj/item/weapon/shield/riot/Process()
+	update_icon()
+	update_wear_icon()
+
+/obj/item/weapon/shield/riot/on_update_icon()
+	var/mob/living/carbon/human/user = loc
+	if(!istype(user))
+		is_covered = FALSE
+		return
+	if(MOVING_QUICKLY(user))
+		item_state = "[initial(item_state)]_run"
+		armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+		if(is_covered)
+			visible_message("[user] lets go of their cover.")
+			is_covered = FALSE
+	else
+		item_state = "[initial(item_state)]_walk"
+		armor = initial(armor)
+		if(!is_covered)
+			visible_message("[user] raises [src], covering themselves with it!")
+			is_covered = TRUE
 
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton))
