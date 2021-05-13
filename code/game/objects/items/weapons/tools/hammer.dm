@@ -164,6 +164,6 @@
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_ROBUST
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING
-	tool_qualities = list(QUALITY_HAMMERING = 40)
+	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
 	spawn_blacklisted = TRUE
