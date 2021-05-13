@@ -2385,6 +2385,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\wintermute.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\z8.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\zoric.dm"
+#include "code\modules\projectiles\guns\projectile\battle_rifle\kovacs.dm"
 #include "code\modules\projectiles\guns\projectile\other\RPG.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\avasarala.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\colt.dm"

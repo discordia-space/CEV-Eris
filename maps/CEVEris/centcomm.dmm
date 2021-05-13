@@ -86,15 +86,15 @@
 /area/holodeck/source_emptycourt)
 "at" = (
 /obj/structure/cryofeed{
-	icon_state = "cryo_rear";
-	dir = 4
+	dir = 4;
+	icon_state = "cryo_rear"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
 "au" = (
 /obj/machinery/cryopod{
-	icon_state = "cryopod_0";
-	dir = 4
+	dir = 4;
+	icon_state = "cryopod_0"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
@@ -441,13 +441,13 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "by" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bz" = (
@@ -461,7 +461,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bA" = (
@@ -529,7 +529,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bM" = (
@@ -546,7 +546,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bN" = (
@@ -608,7 +608,7 @@
 "bV" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor3";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bW" = (
@@ -622,7 +622,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "bX" = (
@@ -797,13 +797,13 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "cv" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor5";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "cw" = (
@@ -812,7 +812,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "cx" = (
@@ -829,7 +829,7 @@
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "cy" = (
@@ -860,7 +860,7 @@
 "cC" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor6";
-	name = "Cargo Transport Shuttle (A5)";
+	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
 "cD" = (
@@ -1052,8 +1052,8 @@
 /area/centcom/evac)
 "dl" = (
 /obj/item/modular_computer/console{
-	icon_state = "console";
-	dir = 4
+	dir = 4;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
@@ -1265,8 +1265,8 @@
 /area/holodeck/source_meetinghall)
 "dT" = (
 /obj/structure/bed/chair/wood{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
@@ -1500,8 +1500,8 @@
 /obj/item/weapon/book/manual/wiki/science_robotics,
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "eE" = (
@@ -1946,22 +1946,22 @@
 /area/shuttle/syndicate_elite/mothership)
 "fH" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r";
-	dir = 1
+	dir = 1;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /area/shuttle/syndicate_elite/mothership)
 "fI" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 1
+	dir = 1;
+	icon_state = "propulsion"
 	},
 /turf/space,
 /area/shuttle/syndicate_elite/mothership)
 "fJ" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l";
-	dir = 1
+	dir = 1;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /area/shuttle/syndicate_elite/mothership)
@@ -1989,8 +1989,8 @@
 "fN" = (
 /obj/structure/window/reinforced/crescent,
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 1
+	dir = 1;
+	icon_state = "heater"
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/syndicate_elite/mothership)
@@ -2617,8 +2617,8 @@
 /obj/structure/bed/chair/comfy/black,
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "hq" = (
@@ -2710,8 +2710,8 @@
 /area/centcom/merc_base)
 "hJ" = (
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "hK" = (
@@ -2719,8 +2719,8 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "hL" = (
@@ -2728,8 +2728,8 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "hM" = (
@@ -2755,8 +2755,8 @@
 	prices = list()
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "hU" = (
@@ -2894,8 +2894,8 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "iA" = (
@@ -2929,8 +2929,8 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "iE" = (
@@ -2939,8 +2939,8 @@
 	},
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "iF" = (
@@ -2953,8 +2953,8 @@
 	},
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "iH" = (
@@ -3018,8 +3018,8 @@
 	},
 /obj/landmark/storyevent/merc_spawn,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "iO" = (
@@ -3108,8 +3108,8 @@
 	prices = list()
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "jb" = (
@@ -3142,8 +3142,8 @@
 /area/centcom/evac)
 "jj" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -3151,8 +3151,8 @@
 	pixel_x = -28
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jk" = (
@@ -3191,8 +3191,8 @@
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "jo" = (
@@ -3242,8 +3242,8 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jy" = (
@@ -3286,8 +3286,8 @@
 	dir = 8
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jD" = (
@@ -3296,8 +3296,8 @@
 	},
 /obj/item/weapon/soap/syndie,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jE" = (
@@ -3320,8 +3320,8 @@
 	opacity = 1
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jH" = (
@@ -3363,8 +3363,8 @@
 /area/shuttle/mercenary)
 "jL" = (
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jM" = (
@@ -3372,8 +3372,8 @@
 	dir = 1
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jN" = (
@@ -3439,8 +3439,8 @@
 	pixel_x = 28
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
 "jV" = (
@@ -3839,7 +3839,7 @@
 	id = "syndieflash";
 	name = "Flasher";
 	pixel_x = 27;
-	pixel_y = 0;
+	pixel_y = 0
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -3889,8 +3889,8 @@
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -4292,7 +4292,7 @@
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/decal/cleanable/cobweb2{
 	icon_state = "spiderling";
-	name = "dead spider";
+	name = "dead spider"
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -4643,14 +4643,14 @@
 	pixel_y = 8
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "mx" = (
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "my" = (
@@ -4658,8 +4658,8 @@
 	pixel_y = 28
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "mz" = (
@@ -4682,12 +4682,12 @@
 /area/wizard_station)
 "mD" = (
 /obj/machinery/shower{
-	icon_state = "shower";
-	dir = 8
+	dir = 8;
+	icon_state = "shower"
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "mE" = (
@@ -4699,10 +4699,12 @@
 	},
 /area/centcom/raider_base)
 "mF" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/deferred/crate/kovacs,
 /turf/unsimulated/floor{
-	icon_state = "asteroid"
+	icon_state = "dark"
 	},
-/area/centcom/raider_base)
+/area/centcom/merc_base)
 "mG" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/tray{
@@ -4904,8 +4906,8 @@
 /area/centcom/raider_base)
 "ng" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/unsimulated/floor{
 	dir = 8;
@@ -4930,8 +4932,8 @@
 /area/wizard_station)
 "nj" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/unsimulated/floor{
 	dir = 8;
@@ -4941,28 +4943,28 @@
 "nk" = (
 /obj/item/target,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nl" = (
 /obj/item/target/syndicate,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nm" = (
 /obj/item/target/alien,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nn" = (
 /turf/unsimulated/wall/fakeglass{
-	icon_state = "fakewindows2";
-	dir = 1
+	dir = 1;
+	icon_state = "fakewindows2"
 	},
 /area/wizard_station)
 "no" = (
@@ -4985,8 +4987,8 @@
 	},
 /obj/item/weapon/soap/syndie,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nr" = (
@@ -4994,8 +4996,8 @@
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "ns" = (
@@ -5017,8 +5019,8 @@
 /area/wizard_station)
 "nu" = (
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nv" = (
@@ -5037,8 +5039,8 @@
 /area/centcom/raider_base)
 "ny" = (
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nz" = (
@@ -5060,8 +5062,8 @@
 "nB" = (
 /obj/effect/decal/cleanable/blood,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nC" = (
@@ -5096,8 +5098,8 @@
 /obj/item/robot_parts/head,
 /obj/structure/table/glass,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nI" = (
@@ -5106,8 +5108,8 @@
 	pixel_x = 22
 	},
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/wizard_station)
 "nJ" = (
@@ -5122,21 +5124,16 @@
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
-"nL" = (
-/turf/unsimulated/floor{
-	icon_state = "asteroid"
-	},
-/area/centcom/raider_base)
 "nM" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nN" = (
@@ -5170,14 +5167,14 @@
 /area/space)
 "nR" = (
 /turf/unsimulated/wall/fakeglass{
-	icon_state = "fakewindows";
-	dir = 8
+	dir = 8;
+	icon_state = "fakewindows"
 	},
 /area/wizard_station)
 "nS" = (
 /turf/unsimulated/wall/fakeglass{
-	icon_state = "fakewindows2";
-	dir = 8
+	dir = 8;
+	icon_state = "fakewindows2"
 	},
 /area/wizard_station)
 "nT" = (
@@ -5188,8 +5185,8 @@
 /area/wizard_station)
 "nU" = (
 /turf/unsimulated/wall/fakeglass{
-	icon_state = "fakewindows";
-	dir = 4
+	dir = 4;
+	icon_state = "fakewindows"
 	},
 /area/wizard_station)
 "nV" = (
@@ -5201,8 +5198,8 @@
 /area/centcom/raider_base)
 "nW" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -5212,8 +5209,8 @@
 	pixel_y = 0
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nX" = (
@@ -5221,8 +5218,8 @@
 	dir = 1
 	},
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
 "nY" = (
@@ -5240,26 +5237,26 @@
 "oa" = (
 /obj/item/remains/human,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "lava"
+	icon_state = "lava";
+	name = "plating"
 	},
 /area/wizard_station)
 "ob" = (
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "lava"
+	icon_state = "lava";
+	name = "plating"
 	},
 /area/wizard_station)
 "oc" = (
 /turf/unsimulated/floor{
-	icon_state = "asteroid";
+	icon_state = "asteroid"
 	},
 /area/wizard_station)
 "od" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "oe" = (
@@ -5278,21 +5275,21 @@
 "og" = (
 /obj/effect/decal/cleanable/blood,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "oh" = (
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "oi" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "ok" = (
@@ -5309,8 +5306,8 @@
 "om" = (
 /obj/structure/bed/chair,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "on" = (
@@ -5329,29 +5326,29 @@
 "op" = (
 /obj/machinery/computer/station_alert/all,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "oq" = (
 /obj/item/weapon/caution,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "or" = (
 /obj/item/weapon/tool/knife/ritual,
 /turf/unsimulated/floor{
-	icon_state = "freezerfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
 "os" = (
 /obj/machinery/computer/shuttle_control/multi/vox,
 /turf/unsimulated/floor{
-	name = "plating";
-	icon_state = "cult"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/raider_base)
 "ot" = (
@@ -5863,8 +5860,8 @@
 /area/skipjack_station/start)
 "pT" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -12002,11 +11999,11 @@ hl
 hl
 hl
 hl
-mF
-mF
+ol
+ol
 nO
-mF
-mF
+ol
+ol
 ok
 hl
 hl
@@ -12204,13 +12201,13 @@ hl
 hl
 hl
 hl
-mF
-mF
+ol
+ol
 nV
 nZ
 nZ
 ol
-mF
+ol
 hl
 hl
 hl
@@ -12403,16 +12400,16 @@ hl
 hl
 hl
 hl
-mF
-mF
-mF
-mF
-mF
-mF
-mF
-mF
-mF
-mF
+ol
+ol
+ol
+ol
+ol
+ol
+ol
+ol
+ol
+ol
 hl
 hl
 hl
@@ -12604,17 +12601,17 @@ hl
 hl
 hl
 lu
-mF
-mF
+ol
+ol
 hl
-mF
-mF
-mF
+ol
+ol
+ol
 nV
 nV
 em
-mF
-mF
+ol
+ol
 ot
 hl
 hl
@@ -12805,18 +12802,18 @@ hl
 hl
 hl
 hl
-mF
-mF
+ol
+ol
 hl
 hl
 hl
 hl
-nL
-mF
-mF
-mF
-mF
-mF
+ol
+ol
+ol
+ol
+ol
+ol
 ou
 hl
 hl
@@ -13006,18 +13003,18 @@ ab
 hl
 hl
 hl
-mF
-mF
-mF
+ol
+ol
+ol
 hl
 hl
 hl
 hl
 hl
-mF
-mF
-mF
-mF
+ol
+ol
+ol
+ol
 hl
 hl
 hl
@@ -13209,7 +13206,7 @@ hl
 hl
 hl
 lu
-mF
+ol
 hl
 hl
 hl
@@ -33980,7 +33977,7 @@ hl
 hl
 hl
 gZ
-iX
+mF
 iX
 iX
 iX

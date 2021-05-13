@@ -183,6 +183,10 @@
 	name = "STS-35"
 	build_path = /obj/item/weapon/gun/projectile/automatic/sts35
 
+/datum/design/autolathe/gun/kovacs
+	name = "SA BR \"Kovacs\""
+	build_path = /obj/item/weapon/gun/projectile/kovacs
+
 // Heavy
 
 /datum/design/autolathe/gun/heavysniper

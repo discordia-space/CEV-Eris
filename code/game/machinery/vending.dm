@@ -1471,6 +1471,7 @@
 					/obj/item/weapon/storage/ration_pack = 10,
 					/obj/item/clothing/mask/balaclava = 50
 					)
+	contraband = list(/obj/item/weapon/gun/projectile/kovacs = 4, /obj/item/ammo_magazine/srifle = 20)
 	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
           			/obj/item/weapon/storage/deferred/crate/uniform_green = 2000,
@@ -1479,6 +1480,7 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
+					/obj/item/ammo_magazine/srifle = 200,
 					/obj/item/weapon/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100
 					)
