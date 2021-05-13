@@ -460,6 +460,7 @@
 	name = "makeshift datapad"
 	desc = "A makeshift datapad covered in growths. Whatever data stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
 	icon_state = "hivemind_core"
+	w_class = ITEM_SIZE_NORMAL
 	random_stats = FALSE
 	oddity_stats = list(
 		STAT_COG = 8,
