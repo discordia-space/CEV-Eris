@@ -41233,7 +41233,12 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
 "bRH" = (
-/turf/simulated/floor/grass,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/wall,
 /area/eris/crew_quarters/hydroponics/garden)
 "bRI" = (
 /obj/structure/disposalpipe/segment{
@@ -47081,6 +47086,11 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
 "cfw" = (
@@ -52419,9 +52429,8 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "csD" = (
-/obj/structure/catwalk,
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "csE" = (
 /obj/structure/extinguisher_cabinet{
@@ -103200,6 +103209,10 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
+"ihL" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -103285,6 +103298,9 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"iMs" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "iNx" = (
 /obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -103301,6 +103317,18 @@
 /obj/machinery/camera/motion/security,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
+"iQX" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "iUs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -103550,6 +103578,11 @@
 "kLT" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
+"kTx" = (
+/obj/structure/catwalk,
+/obj/spawner/pack/machine,
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
 "kUI" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -103858,6 +103891,13 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"naM" = (
+/obj/structure/catwalk,
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/spawner/lathe_disk,
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen_storage)
 "ncx" = (
 /obj/effect/shuttle_landmark/merc/medbay,
 /turf/space,
@@ -104279,6 +104319,13 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
+"qcR" = (
+/obj/structure/catwalk,
+/obj/structure/table/rack/shelf,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen_storage)
 "qkR" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/atmos{
@@ -104527,9 +104574,8 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
 "scN" = (
-/obj/structure/catwalk,
-/obj/spawner/pack/junk_machine,
-/turf/simulated/open,
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "sds" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -104736,6 +104782,15 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"tkP" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen_storage)
 "tqZ" = (
 /obj/spawner/junk/low_chance,
 /obj/machinery/light/small,
@@ -104875,6 +104930,15 @@
 	},
 /turf/space,
 /area/space)
+"uyP" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/open,
+/area/eris/crew_quarters/kitchen_storage)
 "uCf" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
@@ -105054,9 +105118,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
 "vSe" = (
-/obj/structure/catwalk,
 /obj/machinery/autolathe,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "wja" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -162354,8 +162417,8 @@ cpP
 csD
 csD
 csD
-csD
-scN
+iMs
+ihL
 tVe
 dHD
 dRr
@@ -162557,7 +162620,7 @@ muf
 cPH
 cPH
 cPH
-cPH
+qcR
 bEq
 dmg
 dRu
@@ -162751,15 +162814,15 @@ bTJ
 bTJ
 bTJ
 cfv
+bTJ
+bTJ
+bTJ
 bRH
-bRH
-bRH
-cpP
-cPH
-cPH
-cPH
-cPH
-cPH
+tkP
+tkP
+tkP
+uyP
+naM
 tVe
 dnb
 dRu
@@ -162959,9 +163022,9 @@ com
 cpP
 vSe
 scN
-cPH
-cPH
-cPH
+iMs
+iQX
+iMs
 bEb
 bWh
 dHD
@@ -163361,7 +163424,7 @@ bBE
 cYb
 cjp
 aqa
-cQe
+kTx
 cQe
 cQe
 cQe
