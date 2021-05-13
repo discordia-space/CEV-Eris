@@ -252,7 +252,7 @@
 			H.adjustFireLoss(-healing_power)
 
 /datum/perk/oddity/hive_born
-	name = "Hive Born"
+	name = "Hiveborn"
 	desc = "You feel electricty flow within your body to your hands. Powercells recharge in your hands."
 	icon_state = "circuitry"  //https://game-icons.net/1x1/lorc/circuitry.html
 	gain_text = "You feel a stabbing pain of something being injected into you, and with it a painfully pleaseant feeling of being improved."
