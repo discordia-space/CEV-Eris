@@ -102938,13 +102938,6 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/atmos)
-"fpC" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
@@ -102980,13 +102973,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/reception)
-"fKW" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "fMl" = (
 /obj/effect/shuttle_landmark/merc/sec3east4,
 /turf/space,
@@ -103101,14 +103087,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
-"hgW" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "hlV" = (
 /obj/machinery/light{
 	dir = 8
@@ -103184,13 +103162,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
-"hME" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "hNy" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = 32
@@ -103234,14 +103205,6 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
-"ifZ" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -103309,13 +103272,6 @@
 	},
 /turf/space,
 /area/space)
-"iFk" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "iFm" = (
 /turf/simulated/wall,
 /area/eris/maintenance/section3deck4central)
@@ -104023,14 +103979,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemistry)
-"nOH" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "nQZ" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/steel/monofloor,
@@ -104122,16 +104070,6 @@
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
-"ozT" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "ozX" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -104223,19 +104161,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"oXl" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
-"oXs" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "oZm" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -104271,13 +104196,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/quartermaster/hangarsupply)
-"pqj" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "ptL" = (
 /obj/structure/closet/self_pacification,
@@ -104489,16 +104407,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"rsY" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "rBd" = (
 /obj/machinery/duct,
 /turf/simulated/floor/wood,
@@ -104601,16 +104509,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
-"sds" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "shD" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104799,16 +104697,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
-"tdy" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "tea" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/meter,
@@ -105097,13 +104985,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"vvC" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "vAE" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/clownoffice)
@@ -105217,11 +105098,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/quartermaster/hangarsupply)
-"wPN" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/railing/grey,
-/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "wQU" = (
 /obj/structure/railing{
@@ -128913,9 +128789,9 @@ ato
 ato
 xzg
 kGH
-oXs
 kGH
-pqj
+kGH
+kGH
 kGH
 eZC
 voT
@@ -129114,11 +128990,11 @@ fVv
 hIx
 ato
 xzg
-vvC
-oXl
 kGH
-sds
-vvC
+kGH
+kGH
+kGH
+kGH
 lPM
 lwW
 cgp
@@ -129518,11 +129394,11 @@ tEu
 ato
 tPR
 nJh
-fKW
-hgW
 kGH
-tdy
-fKW
+kGH
+kGH
+kGH
+kGH
 oZm
 pmS
 fFd
@@ -129721,9 +129597,9 @@ apb
 bqy
 gTF
 kGH
-oXs
 kGH
-pqj
+kGH
+kGH
 kGH
 hIj
 xaI
@@ -130125,9 +130001,9 @@ apb
 bqA
 aBI
 tcP
-wPN
 tcP
-fpC
+tcP
+tcP
 tcP
 bBr
 bBP
@@ -130326,11 +130202,11 @@ ato
 ato
 plN
 rUL
-iFk
-ifZ
 tcP
-ozT
-iFk
+tcP
+tcP
+tcP
+tcP
 ceY
 axs
 bJn
@@ -130730,11 +130606,11 @@ bsi
 aTu
 byL
 xzg
-hME
-nOH
 tcP
-rsY
-hME
+tcP
+tcP
+tcP
+tcP
 uqX
 gkN
 cgt
@@ -130933,9 +130809,9 @@ auV
 auV
 xzg
 tcP
-wPN
 tcP
-fpC
+tcP
+tcP
 tcP
 smB
 ato
