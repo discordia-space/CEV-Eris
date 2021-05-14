@@ -19,6 +19,7 @@ var/list/cached_space = list()
 /obj/effect/overmap/sector/temporary/Destroy()
 	map_sectors["[map_z]"] = null
 	testing("Temporary sector at [x],[y] was deleted.")
+	. = ..()
 
 /obj/effect/overmap/sector/temporary/proc/can_die(var/mob/observer)
 	testing("Checking if sector at [map_z[1]] can die.")
@@ -112,3 +113,6 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 			testing("Caching [M] for future use")
 			source.loc = null
 			cached_space += source
+
+/obj/effect/overmap/proc/get_skybox_representation()
+	return

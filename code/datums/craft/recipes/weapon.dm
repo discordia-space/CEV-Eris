@@ -31,6 +31,16 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/weapon/hook
+	name = "steel meathook"
+	result = /obj/item/weapon/tool/knife/hook
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_HAMMERING, 15, 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
+		list(QUALITY_CUTTING, 10, 10)
+	)
+
 /datum/craft_recipe/weapon/spoon
 	name = "spoon"
 	result = /obj/item/weapon/material/kitchen/utensil/spoon
@@ -111,15 +121,6 @@
 		list(/obj/item/weapon/storage/belt, 1, "time" = 10)
 	)
 
-/datum/craft_recipe/weapon/pistol
-	name = "handmade gun"
-	result = /obj/item/weapon/gun/projectile/handmade_pistol
-	steps = list(
-		list(/obj/item/pipe, 1, "time" = 60),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20)
-	)
-
 /datum/craft_recipe/weapon/flamethrower
 	name = "flamethrower"
 	result = /obj/item/weapon/flamethrower
@@ -174,6 +175,16 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/spear
+	name = "spear"
+	result = /obj/item/weapon/tool/spear
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_HAMMERING, 5, 10),
+	)
 
 /datum/craft_recipe/weapon/sonic_grenade
 	name = "Loudmouth grenade"
@@ -226,5 +237,29 @@
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
 		list(/obj/item/weapon/stock_parts/capacitor, 1, "time" = 5),
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
+/datum/craft_recipe/weapon/gravcharger
+	name = "Makeshift bullet time generator"
+	result = /obj/item/weapon/gun_upgrade/mechanism/gravcharger
+	steps = list(
+		list(/obj/item/weapon/tool_upgrade/refinement/compensatedbarrel, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
+/datum/craft_recipe/weapon/armgun
+	name = "embedded SMG"
+	result = /obj/item/organ_module/active/simple/armsmg
+	steps = list(
+		list(/obj/item/weapon/gun/projectile/automatic, 1),
+		list(/obj/item/trash/material/metal, "time" = 10),
+		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTEEL, "time" = 10),
+		list(/obj/item/weapon/gun/projectile, 1, "time" = 20),
+		list(QUALITY_WELDING, 10, "time" = 40),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(/obj/item/trash/material/circuit, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC, "time" = 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)

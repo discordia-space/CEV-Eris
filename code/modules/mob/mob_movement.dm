@@ -177,7 +177,7 @@
 //It checks all the adjacent tiles
 /mob/proc/check_dense_object()
 
-	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
+	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //we only care for non-space turfs
 		if(T.density)	//walls work when you're adjacent
 			return TRUE
 

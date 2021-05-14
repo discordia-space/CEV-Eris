@@ -14,6 +14,8 @@
 		to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
 	else
 		to_chat(user, SPAN_NOTICE("You find no visible wounds."))
+	if(locate(/obj/item/weapon/material/shard/shrapnel) in E.implants)
+		to_chat(user, SPAN_WARNING("There is what appears to be shrapnel embedded within [affecting]'s [E.name]."))
 
 	to_chat(user, SPAN_NOTICE("Checking bones now..."))
 	if(!do_mob(user, H, 20))

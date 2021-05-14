@@ -1,4 +1,7 @@
 //Food items that are eaten normally and don't leave anything behind.
+/obj/item/weapon/reagent_containers/food
+	bad_type = /obj/item/weapon/reagent_containers/food
+
 /obj/item/weapon/reagent_containers/food/snacks
 	name = "snack"
 	desc = "yummy"
@@ -6,6 +9,8 @@
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_COOKED_FOOD
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
@@ -112,10 +117,13 @@
 	if(iscarbon(M))
 		//TODO: replace with standard_feed_mob() call.
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/human/H = M
+		var/fullness_modifier = 1
+		if(istype(H))
+			fullness_modifier = 100 / H.get_organ_efficiency(OP_STOMACH)
+		var/fullness = (C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)) * fullness_modifier
 		if(C == user)								//If you're eating it yourself
-			if(ishuman(C))
-				var/mob/living/carbon/human/H = M
+			if(istype(H))
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -161,7 +169,6 @@
 				var/amount_eaten = min(reagents.total_volume, bitesize)
 				var/list/sanity_vars = get_sanity_gain(M)
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
-				var/mob/living/carbon/human/H = M
 				if(istype(H))
 					H.sanity.onEat(src, sanity_vars[1], sanity_vars[2])
 				bitecount++
@@ -239,11 +246,11 @@
 			)
 
 			src.bitecount++
-			U.overlays.Cut()
+			U.cut_overlays()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
 			I.color = src.filling_color
-			U.overlays += I
+			U.add_overlays(I)
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
@@ -589,6 +596,7 @@
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
+	preloaded_reagents = list("sprinkles" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/On_Consume(var/mob/eater, var/mob/feeder = null)
 	..()
@@ -603,45 +611,49 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/mec
 	name = "Yellow Masterpiece Donut"
-	desc = "The taste you will never forget. Special for engineers."
+	desc = "The sour citrus flavor you will never forget. A choice sweet of mechanics."
 	icon_state = "donut_mec"
 	overlay_state = "donut_mec_c"
 	stats_buff = list(STAT_MEC)
+	preloaded_reagents = list("sprinkles" = 1, "lemonjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog
 	name = "Purple Masterpiece Donut"
-	desc = "The taste you will never forget. Special for intelligent people."
+	desc = "The too-sweet artificial grape taste you will never forget. An intellectual's favorite."
 	icon_state = "donut_cog"
 	overlay_state = "donut_cog_c"
 	stats_buff = list(STAT_COG)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/bio
 	name = "Green Masterpiece Donut"
-	desc = "The taste you will never forget. Special for medics."
+	desc = "The fresh spearmint flavor you will never forget. Perfect for an immaculate doctor."
 	icon_state = "donut_bio"
 	overlay_state = "donut_bio_c"
 	stats_buff = list(STAT_BIO)
+	preloaded_reagents = list("sprinkles" = 1, "mint" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob
 	name = "Brown Masterpiece Donut"
-	desc = "The taste you will never forget. Special for strong people."
+	desc = "A near-chocolate taste you will never forget. A robust flavor for the strong."
 	icon_state = "donut_rob"
 	overlay_state = "donut_rob_c"
 	stats_buff = list(STAT_ROB)
+	preloaded_reagents = list("sprinkles" = 1, "coco" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh
 	name = "Cream Masterpiece Donut"
-	desc = "The taste you will never forget. Special for tough people."
+	desc = "The classic donut flavor you will never forget. Specially panders to tough people."
 	icon_state = "donut_tgh"
 	overlay_state = "donut_tgh_c"
 	stats_buff = list(STAT_TGH)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig
 	name = "Blue Masterpiece Donut"
-	desc = "The taste you will never forget. Special for vigilant people."
+	desc = "A tart blueberry taste you will never forget. A go-to choice for the vigilant watchman."
 	icon_state = "donut_vig"
 	overlay_state = "donut_vig_c"
 	stats_buff = list(STAT_VIG)
+	preloaded_reagents = list("sprinkles" = 1, "berryjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -1730,15 +1742,11 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
-	var/mob/living/carbon/human/H = new(get_turf(src))
-	H.set_species(monkey_type)
-	H.real_name = H.species.get_random_name()
-	H.name = H.real_name
-	if(ismob(loc))
-		var/mob/M = loc
-		M.unEquip(src)
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		new /mob/living/carbon/human/monkey(T)
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
@@ -1756,6 +1764,78 @@
 	icon_state = "monkeycubewrap"
 	reagent_flags = NONE
 	wrapped = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube
+	name = "Roach cube"
+	desc = "It still twitches. Just add blood!"
+	spawn_tags = SPAWN_TAG_ROACH
+	spawn_frequency = 5
+	rarity_value = 65
+	reagent_flags = REFILLABLE
+	icon_state = "roach"
+	bitesize = 12
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks/roachcube
+	preloaded_reagents = list("protein" = 10, "diplopterum" = 2)
+	taste_tag = list(MEAT_FOOD)
+	var/roach_type
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/proc/Expand()
+	visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		new roach_type(T)
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/kampfer
+	name = "Kampfer cube"
+	icon_state = "roach"
+	roach_type = /mob/living/carbon/superior_animal/roach
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/roachling
+	name = "Roachling cube"
+	rarity_value = 60
+	icon_state = "roachling"
+	roach_type = /mob/living/carbon/superior_animal/roach/roachling
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/jager
+	name = "Jager cube"
+	rarity_value = 80
+	icon_state = "jager"
+	roach_type = /mob/living/carbon/superior_animal/roach/hunter
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/panzer
+	name = "Panzer cube"
+	rarity_value = 85
+	icon_state = "panzer"
+	roach_type = /mob/living/carbon/superior_animal/roach/tank
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/seuche
+	name = "Seuche cube"
+	rarity_value = 80
+	icon_state = "seuche"
+	roach_type = /mob/living/carbon/superior_animal/roach/support
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/gestrahlte
+	name = "Gestrahlte cube"
+	rarity_value = 85
+	icon_state = "toxic"
+	roach_type = /mob/living/carbon/superior_animal/roach/toxic
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/kraftwerk
+	name = "Kraftwerk cube"
+	rarity_value = 85
+	icon_state = "techno"
+	roach_type = /mob/living/carbon/superior_animal/roach/nanite
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/fuhrer
+	name = "Fuhrer cube"
+	rarity_value = 98
+	icon_state = "fuhrer"
+	roach_type = /mob/living/carbon/superior_animal/roach/fuhrer
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
@@ -2291,10 +2371,14 @@
 		open()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
+	if(warm)
+		to_chat(user, SPAN_NOTICE("You are pretty sure \the [src] can't be heated again."))
+		return
 	user.visible_message(
 		SPAN_NOTICE("[user] crushes \the [src] package."),
 		"You crush \the [src] package and feel a comfortable heat build up."
 	)
+	warm = TRUE
 	spawn(300)
 		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
@@ -2306,7 +2390,6 @@
 		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
 
 /obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
-	warm = TRUE
 	for(var/reagent in heated_reagents)
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
@@ -2440,7 +2523,7 @@
 	nutriment_desc = list("bread" = 2)
 	preloaded_reagents = list("protein" = 4)
 	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
-	
+
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 	name = "Banana-nut bread"
@@ -2976,63 +3059,68 @@
 	var/open = 0 // Is the box open?
 	var/ismessy = 0 // Fancy mess on the lid
 	var/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pizza // Content pizza
+	var/type_pizza
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
 
-/obj/item/pizzabox/update_icon()
+/obj/item/pizzabox/Initialize(mapload)
+	. = ..()
+	if(type_pizza)
+		pizza = new type_pizza(src)
 
-	overlays = list()
+/obj/item/pizzabox/on_update_icon()
+	set_overlays(list())
 
 	// Set appropriate description
-	if( open && pizza )
+	if(open && pizza )
 		desc = "A box suited for pizzas. It appears to have a [pizza.name] inside."
-	else if( boxes.len > 0 )
+	else if(boxes.len > 0 )
 		desc = "A pile of boxes suited for pizzas. There appears to be [boxes.len + 1] boxes in the pile."
 
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
 		var/toptag = topbox.boxtag
-		if( toptag != "" )
+		if(toptag != "" )
 			desc = "[desc] The box on top has a tag, it reads: '[toptag]'."
 	else
 		desc = "A box suited for pizzas."
 
-		if( boxtag != "" )
+		if(boxtag != "" )
 			desc = "[desc] The box has a tag, it reads: '[boxtag]'."
 
 	// Icon states and overlays
-	if( open )
-		if( ismessy )
+	if(open )
+		if(ismessy )
 			icon_state = "pizzabox_messy"
 		else
 			icon_state = "pizzabox_open"
 
-		if( pizza )
+		if(pizza )
 			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
-			overlays += pizzaimg
+			add_overlays(pizzaimg)
 
 		return
 	else
 		// Stupid code because byondcode sucks
 		var/doimgtag = 0
-		if( boxes.len > 0 )
+		if(boxes.len > 0 )
 			var/obj/item/pizzabox/topbox = boxes[boxes.len]
-			if( topbox.boxtag != "" )
+			if(topbox.boxtag != "" )
 				doimgtag = 1
 		else
-			if( boxtag != "" )
+			if(boxtag != "" )
 				doimgtag = 1
 
-		if( doimgtag )
+		if(doimgtag )
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = boxes.len * 3
-			overlays += tagimg
+			add_overlays(tagimg)
 
 	icon_state = "pizzabox[boxes.len+1]"
 
 /obj/item/pizzabox/attack_hand( mob/user as mob )
 
-	if( open && pizza )
+	if(open && pizza )
 		user.put_in_hands( pizza )
 
 		to_chat(user, SPAN_WARNING("You take \the [src.pizza] out of \the [src]."))
@@ -3040,8 +3128,8 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
-		if( user.get_inactive_hand() != src )
+	if(boxes.len > 0 )
+		if(user.get_inactive_hand() != src )
 			..()
 			return
 
@@ -3057,28 +3145,28 @@
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
-	if( boxes.len > 0 )
+	if(boxes.len > 0 )
 		return
 
 	open = !open
 
-	if( open && pizza )
+	if(open && pizza )
 		ismessy = 1
 
 	update_icon()
 
 /obj/item/pizzabox/attackby( obj/item/I as obj, mob/user as mob )
-	if( istype(I, /obj/item/pizzabox/) )
+	if(istype(I, /obj/item/pizzabox/) )
 		var/obj/item/pizzabox/box = I
 
-		if( !box.open && !src.open )
+		if(!box.open && !src.open )
 			// Make a list of all boxes to be added
 			var/list/boxestoadd = list()
 			boxestoadd += box
 			for(var/obj/item/pizzabox/i in box.boxes)
 				boxestoadd += i
 
-			if( (boxes.len+1) + boxestoadd.len <= 5 )
+			if((boxes.len+1) + boxestoadd.len <= 5 )
 				user.drop_from_inventory(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
@@ -3094,9 +3182,9 @@
 
 		return
 
-	if( istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
+	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza) ) // Long ass fucking object name
 
-		if( src.open )
+		if(src.open )
 			user.drop_from_inventory(I, src)
 			src.pizza = I
 
@@ -3107,15 +3195,15 @@
 			to_chat(user, SPAN_WARNING("You try to push \the [I] through the lid but it doesn't work!"))
 		return
 
-	if( istype(I, /obj/item/weapon/pen/) )
+	if(istype(I, /obj/item/weapon/pen/) )
 
-		if( src.open )
+		if(src.open )
 			return
 
 		var/t = sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
-		if( boxes.len > 0 )
+		if(boxes.len > 0 )
 			boxtotagto = boxes[boxes.len]
 
 		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", 1, 30)
@@ -3124,20 +3212,20 @@
 		return
 	..()
 
-/obj/item/pizzabox/margherita/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
+/obj/item/pizzabox/margherita
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 	boxtag = "Margherita Deluxe"
 
-/obj/item/pizzabox/vegetable/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza(src)
+/obj/item/pizzabox/vegetable
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	boxtag = "Gourmet Vegatable"
 
-/obj/item/pizzabox/mushroom/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza(src)
+/obj/item/pizzabox/mushroom
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 	boxtag = "Mushroom Special"
 
-/obj/item/pizzabox/meat/New()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+/obj/item/pizzabox/meat
+	type_pizza = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 	boxtag = "Meatlover's Supreme"
 
 
@@ -3309,7 +3397,7 @@
 	taste_tag = list(BLAND_FOOD)
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user)
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user) //this is obsolete??
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
 			new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
@@ -3338,11 +3426,11 @@
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_desc = list("chalk" = 6)
-	nutriment_amt = 20
 	preloaded_reagents = list("iron" = 3)
+	nutriment_amt = 20
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
-	rarity_value = 5
+	rarity_value = 70
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
@@ -3358,3 +3446,18 @@
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
 	taste_tag = list(SWEET_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "A pickle. You smirk just from looking at it. \red Still funniest shit ever."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pickle"
+	filling_color = "#5bd63c"
+	preloaded_reagents = list("protein" = 100)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle/On_Consume(mob/eater, mob/feeder)
+	. = ..()
+	to_chat(eater, SPAN_DANGER("You are feeling kind of funny"))
+	var/mob/living/simple_animal/hostile/pickle/XD = new /mob/living/simple_animal/hostile/pickle(get_turf(eater))
+	eater.mind?.transfer_to(XD)
+	eater.gib()

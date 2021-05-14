@@ -581,7 +581,7 @@
 		else
 			min = mid+1
 
-proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
+/proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
 	// Returns a new list with the text values sorted.
 	// Use binary search to order by sortValue.
 	// This works by going to the half-point of the list, seeing if the node in question is higher or lower cost,
@@ -939,7 +939,7 @@ Checks if a list has the same entries and values as an element of big.
 	. = 0
 	if(istext(L))
 		L = try_json_decode(L)
-	else if(length(L))
+	if(length(L))
 		. += length(L)
 		for(var/list/i in L)
 			if(islist(i))

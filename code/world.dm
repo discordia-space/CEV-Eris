@@ -16,8 +16,8 @@ var/global/datum/global_init/init = new ()
 
 /datum/global_init/New()
 	generate_gameid()
-	makeDatumRefLists()
 	load_configuration()
+	makeDatumRefLists()
 
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
@@ -28,7 +28,7 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/Destroy()
 	return 1
 
-var/game_id = null
+var/game_id
 /proc/generate_gameid()
 	if(game_id != null)
 		return
@@ -333,3 +333,7 @@ proc/establish_db_connection()
 		return setup_database_connection()
 	else
 		return 1
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()

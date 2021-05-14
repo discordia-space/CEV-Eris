@@ -123,7 +123,7 @@
 	if(rag) return
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/update_icon()
+/obj/item/weapon/reagent_containers/food/drinks/bottle/on_update_icon()
 	underlays.Cut()
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
@@ -131,7 +131,7 @@
 		set_light(2)
 	else
 		set_light(0)
-		if(reagents.total_volume)
+		if(reagents && reagents.total_volume)
 			icon_state = icon_state_full
 		else
 			icon_state = icon_state_empty

@@ -7,7 +7,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	canmove = 0
-	blinded = 0
+	blinded = FALSE
 	anchored = TRUE	//  don't get pushed around
 	layer = GHOST_LAYER
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal)
@@ -43,11 +43,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
-			overlays = H.overlays_standing
+			set_overlays(H.overlays_standing)
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			overlays = body.overlays
+			set_overlays(body.overlays)
 
 		alpha = 127
 
@@ -88,7 +88,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 /mob/observer/ghost/Topic(href, href_list)
 	if (href_list["track"])
-		if(istype(href_list["track"],/mob))
+		if(ismob(href_list["track"]))
 			var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
 			if(target)
 				ManualFollow(target)
@@ -385,7 +385,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(bootime > world.time) return
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
-		L.flicker()
+		L.flick_light()
 		bootime = world.time + 600
 		return
 	//Maybe in the future we can add more <i>spooky</i> code here!
@@ -749,6 +749,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Respawn as character"
 	set category = "Ghost"
 	abandon_mob()
+
+/mob/observer/ghost/verb/last_shelter()
+	set name = "Activate Last Shelter"
+	set desc = "Will try to activate Last Shelter artifact and alert preacher."
+	set category = "Ghost"
+	GLOB.last_shelter.active_effect(src, TRUE)
 
 /mob/verb/abandon_mob()
 	set name = "Respawn"

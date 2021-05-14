@@ -78,6 +78,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
+	bad_type = /obj/item/weapon/storage/box/syndie_kit
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
@@ -222,13 +223,12 @@
 	new /obj/item/weapon/gun/projectile/shotgun/bojevic(src)
 	new /obj/item/ammo_magazine/m12/pellet(src)
 
-/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
-	name = "Sniper rifle box"
-	desc = "Sniper rifle kit. One shot for real men."
-	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
 
-/obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle/populate_contents()
+/obj/item/weapon/storage/briefcase/antimaterial_rifle
+	desc = "An ominous leather briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/storage/briefcase/antimaterial_rifle/populate_contents()
 	new /obj/item/ammo_casing/antim(src)
 	new /obj/item/weapon/weaponparts/heavysniper/stock(src)
 	new /obj/item/weapon/weaponparts/heavysniper/reciever(src)
@@ -325,3 +325,12 @@
 	for(var/i, i < storage_slots , i++)
 		var/stim = pick(subtypesof(/obj/item/weapon/reagent_containers/syringe/stim))
 		new stim(src)
+
+/obj/item/weapon/storage/box/syndie_kit/pickle
+	name = "Pickle box"
+	desc = "Pickle."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/pickle/populate_contents()
+	new /obj/item/weapon/reagent_containers/food/snacks/pickle(src)

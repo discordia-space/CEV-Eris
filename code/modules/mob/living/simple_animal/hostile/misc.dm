@@ -89,3 +89,21 @@
 	pass_flags = PASSTABLE
 	density = FALSE
 	mob_size = 1.5
+
+//Pickle
+/mob/living/simple_animal/hostile/pickle
+	name = "Pickle"
+	desc = "Pickle."
+	icon_state = "pickle"
+	icon_living = "pickle"
+	icon_dead = "pickle"
+	icon = 'icons/obj/food.dmi'
+	pass_flags = PASSGLASS
+	density = FALSE
+	maxHealth = 500
+	health = 500
+	speed = -10
+	melee_damage_lower = 30
+	melee_damage_upper = 50
+	attacktext = "pickled"
+	resistance = 30

@@ -12,15 +12,51 @@ var/list/disciples = list()
 	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
-	power_regen = 0.5
+	power_regen = 20/(1 MINUTES)
 	price_tag = 500
+	var/obj/item/weapon/cruciform_upgrade/upgrade
+
+	var/righteous_life = 0
+	var/max_righteous_life = 100
+
+/obj/item/weapon/implant/core_implant/cruciform/auto_restore_power()
+	if(power >= max_power)
+		return
+
+	var/true_power_regen = power_regen
+	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * (1 / (1 MINUTES))
+	true_power_regen +=  power_regen * 1.5 * righteous_life / max_righteous_life
+	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
+		true_power_regen += power_regen * disciples.len / 2.5  // Proportional to the number of cruciformed people on board
+
+	restore_power(true_power_regen)
+
+/obj/item/weapon/implant/core_implant/cruciform/proc/register_wearer()
+	RegisterSignal(wearer, COMSIG_CARBON_HAPPY, .proc/on_happy, TRUE)
+	RegisterSignal(wearer, COMSIG_GROUP_RITUAL, .proc/on_ritual, TRUE)
+
+/obj/item/weapon/implant/core_implant/cruciform/proc/unregister_wearer()
+	UnregisterSignal(wearer, COMSIG_CARBON_HAPPY)
+	UnregisterSignal(wearer, COMSIG_GROUP_RITUAL)
+
+/obj/item/weapon/implant/core_implant/cruciform/proc/on_happy(datum/reagent/happy, signal)
+	if(istype(happy, /datum/reagent/ethanol))
+		righteous_life = max(righteous_life - 0.1, 0)
+	else if(istype(happy, /datum/reagent/drug))
+		righteous_life = max(righteous_life - 0.5, 0)
+
+/obj/item/weapon/implant/core_implant/cruciform/proc/on_ritual()
+	righteous_life = min(righteous_life + 20, max_righteous_life)
+
 
 /obj/item/weapon/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
 	. = ..()
 	if(.)
 		target.stats.addPerk(/datum/perk/sanityboost)
+		register_wearer()
 
 /obj/item/weapon/implant/core_implant/cruciform/uninstall()
+	unregister_wearer()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
 	return ..()
 
@@ -50,6 +86,8 @@ var/list/disciples = list()
 	if(is_carrion(wearer))
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
+		if(eotp)
+			eotp.addObservation(200)
 		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
@@ -58,22 +96,41 @@ var/list/disciples = list()
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
+	if(eotp)
+		eotp.addObservation(50)
 	return TRUE
+
+/obj/item/weapon/implant/core_implant/cruciform/examine(mob/user)
+	..()
+	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
+	if(data?.mind) // if there is cloning data and it has a mind
+		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
+		if(isghost(user) || (user in disciples))
+			var/datum/mind/MN = data.mind
+			if(MN.name) // if there is a mind and it also has a name
+				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+			else
+				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
+	else // no cloning data
+		to_chat(user, "This cruciform has not yet been activated.")
+
 
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
 		return
 	disciples.Remove(wearer)
+	if(eotp)
+		eotp.removeObservation(50)
 	..()
 
 /obj/item/weapon/implant/core_implant/cruciform/Process()
 	..()
 	if(active && round(world.time) % 5 == 0)
 		remove_cyber()
-	if(wearer && wearer.stat == DEAD)
-		deactivate()
-
+	if(wearer)
+		if(wearer.stat == DEAD)
+			deactivate()
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)

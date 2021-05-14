@@ -3,6 +3,7 @@
 	icon_state = "beacon"
 	anchored = TRUE
 	density = TRUE
+	var/entropy_value = 1
 
 /obj/machinery/trade_beacon/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -14,7 +15,10 @@
 	return "[A.name] ([z], [x], [y])"
 
 /obj/machinery/trade_beacon/proc/activate()
-	flick("[icon_state]_active", src)
+	FLICK("[icon_state]_active", src)
+	do_sparks(5, 0, loc)
+	bluespace_entropy(2, get_turf(src))
+	playsound(loc, "sparks", 50, 1)
 
 /obj/machinery/trade_beacon/sending
 	name = "sending trade beacon"
@@ -45,10 +49,16 @@
 /obj/machinery/trade_beacon/receiving/proc/drop(drop_type)
 	var/list/floor = list()
 	for(var/turf/simulated/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
-		if(F.contains_dense_objects())
+		if(F.contains_dense_objects(TRUE))
 			continue
 		floor += F
 	if(!length(floor))
 		return FALSE
 	activate()
-	return new drop_type(pick(floor))
+	var/turf/simulated/floor/pickfloor = pick(floor)
+	if(ispath(drop_type, /obj/structure/closet/crate))
+		var/mob/living/carbon/human/dude = locate(/mob/living/carbon/human) in pickfloor
+		if(dude)
+			dude.damage_through_armor(30)
+
+	return new drop_type(pickfloor)

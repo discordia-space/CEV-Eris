@@ -23,7 +23,7 @@
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
-	var/species = "Human"
+	var/species = SPECIES_HUMAN
 
 /obj/landmark/corpse/Initialize()
 	..()
@@ -121,12 +121,21 @@
 
 /obj/landmark/corpse/chef
 	name = "Chef"
+	corpseuniform = /obj/item/clothing/under/rank/chef
+	corpsesuit = /obj/item/clothing/suit/chef
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseid = 1
 	corpseidjob = "Chef"
 
-
 /obj/landmark/corpse/doctor
 	name = "Medical doctor"
+	corpseuniform = /obj/item/clothing/under/rank/medical
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsepocket1 = /obj/item/device/lighting/toggleable/flashlight/pen
+	corpsebelt = /obj/item/weapon/storage/belt/medical/
 	corpseid = 1
 	corpseidjob = "Medical doctor"
 
@@ -153,6 +162,10 @@
 
 /obj/landmark/corpse/scientist
 	name = "Scientist"
+	corpseuniform = /obj/item/clothing/under/rank/scientist
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseradio = /obj/item/device/radio/headset
+	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	corpseid = 1
 	corpseidjob = "Scientist"
 
@@ -170,18 +183,18 @@
 
 /obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
-	corpseradio = /obj/item/device/radio/headset/heads/hop
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_officer
+	corpseradio = /obj/item/device/radio/headset
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 /obj/landmark/corpse/commander
 	name = "Commander"
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_captain
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseradio = /obj/item/device/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
@@ -192,7 +205,7 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 
 /////////////////Enemies//////////////////////

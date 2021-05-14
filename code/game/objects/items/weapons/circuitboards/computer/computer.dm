@@ -189,3 +189,7 @@
 	name = T_BOARD("guest pass console")
 	build_path = /obj/machinery/computer/guestpass
 	origin_tech = list(TECH_DATA = 2)
+
+/obj/item/weapon/electronics/circuitboard/jtb
+	name = T_BOARD("junk tractor beam control console")
+	build_path = /obj/machinery/computer/jtb_console

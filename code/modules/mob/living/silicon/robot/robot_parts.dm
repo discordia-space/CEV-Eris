@@ -8,6 +8,7 @@
 	slot_flags = SLOT_BELT
 	dir = SOUTH
 	matter = list(MATERIAL_STEEL = 15)
+	bad_type = /obj/item/robot_parts
 	var/body_part = "part"
 
 /obj/item/robot_parts/set_dir()
@@ -101,11 +102,11 @@
 		parts[P.body_part] = P
 	update_icon()
 
-/obj/item/robot_parts/robot_suit/update_icon()
-	src.overlays.Cut()
+/obj/item/robot_parts/robot_suit/on_update_icon()
+	src.cut_overlays()
 	for(var/part in parts)
 		if(parts[part])
-			overlays += "[part]+o"
+			add_overlays("[part]+o")
 
 /obj/item/robot_parts/robot_suit/is_ready()
 	var/list/missed = req_parts - parts

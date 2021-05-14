@@ -10,7 +10,6 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	rarity_value = 10
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
@@ -22,7 +21,7 @@
 		rad = 0
 	)
 	price_tag = 20
-	style = 0
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new
@@ -44,6 +43,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	body_parts_covered = HEAD|FACE|EYES
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -52,7 +52,6 @@
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
 	price_tag = 50
-	rarity_value = 100
 
 /obj/item/clothing/mask/gas/ihs
 	name = "Ironhammer gasmask"
@@ -60,7 +59,6 @@
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
 	price_tag = 40
-	rarity_value = 20
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
@@ -68,31 +66,46 @@
 	icon_state = "swat"
 	siemens_coefficient = 0.7
 	price_tag = 50
-	rarity_value = 100
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/mask/gas/artist_hat
+	name = "Spooky Rebreather"
+	desc = "Wearing this makes you feel awesome - seeing someone else wearing this makes them look like a loser."
+	icon_state = "artist"
+	item_state = "artist_hat"
+	spawn_frequency = 0
+	var/list/states = list("True Form" = "artist", "The clown" = "clown",
+	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
+	"The Rainbow Color" = "rainbow", "The monkey" = "monkeymask", "The Owl" = "owl")
+
+/obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)
+	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in states
+
+	if(src && choice && !user.incapacitated() && Adjacent(user))
+		icon_state = states[choice]
+		to_chat(user, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
+		return TRUE
 
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	rarity_value = 20
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
-
-	var/mob/M = usr
 	var/list/options = list()
 	options["True Form"] = "clown"
 	options["The Feminist"] = "sexyclown"
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"
 
-	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
+	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
 
-	if(src && choice && !M.incapacitated() && Adjacent(M))
+	if(src && choice && !user.incapacitated() && Adjacent(user))
 		icon_state = options[choice]
-		to_chat(M, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
-		return 1
+		to_chat(user, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
+		return TRUE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
@@ -105,6 +118,7 @@
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -118,6 +132,7 @@
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -137,10 +152,8 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
-	rarity_value = 100
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"
 	icon_state = "germangasmask"
-	rarity_value = 100
 

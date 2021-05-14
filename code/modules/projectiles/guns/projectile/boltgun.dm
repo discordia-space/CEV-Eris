@@ -7,28 +7,31 @@
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
+	armor_penetration = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
-	penetration_multiplier  = 1.5
+	penetration_multiplier = 1.5
 	recoil_buildup = 40 //same as AMR
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
-	ammo_type = /obj/item/ammo_magazine/lrifle
+	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 1600
+	price_tag = 1000
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
-	var/bolt_open = 0
-	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
+	spawn_blacklisted = TRUE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
+	var/bolt_open = 0
+	var/item_suffix = ""
 
-/obj/item/weapon/gun/projectile/boltgun/update_icon()
+/obj/item/weapon/gun/projectile/boltgun/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -96,7 +99,30 @@
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
+	force = 23
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
-	rarity_value = 48
+	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
+
+/obj/item/weapon/gun/projectile/boltgun/handmade
+	name = "handmade bolt action rifle"
+	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
+	icon_state = "boltgun_hand"
+	item_suffix = "_hand"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	wielded_item_state = "_doble_hand"
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
+	fire_delay = 17 // abit more than the serbian one
+	damage_multiplier = 1
+	penetration_multiplier = 1
+	recoil_buildup = 40 //same as AMR
+	max_shells = 5
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
+	price_tag = 800
+	one_hand_penalty = 30 //don't you dare to one hand this
+	sharp = FALSE //no bayonet here
+	spawn_blacklisted = TRUE

@@ -15,7 +15,7 @@
 	desc = "Has a valve and pump attached to it"
 	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 7500			//7500 W ~ 10 HP
+	power_rating = 12000		//12000 W ~ 16 HP
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
@@ -24,7 +24,7 @@
 
 	var/area/initial_loc
 	var/area_uid
-	var/id_tag = null
+	var/id_tag
 
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 	var/expanded_range = FALSE
@@ -73,7 +73,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2
 
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
@@ -103,7 +103,7 @@
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500 //meant to match air injector
 
-/obj/machinery/atmospherics/unary/vent_pump/update_icon(safety = 0)
+/obj/machinery/atmospherics/unary/vent_pump/on_update_icon(safety = 0)
 	if(!node1)
 		use_power = NO_POWER_USE
 

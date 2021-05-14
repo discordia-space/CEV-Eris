@@ -6,7 +6,7 @@
 	icon_state = "borer"
 	organ_tag = BP_BRAIN
 	desc = "A disgusting space slug."
-	parent_organ = BP_HEAD
+	parent_organ_base = BP_HEAD
 	vital = 1
 
 /obj/item/organ/internal/borer/Process()

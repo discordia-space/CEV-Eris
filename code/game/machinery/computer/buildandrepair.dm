@@ -7,7 +7,7 @@
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
 	var/obj/item/weapon/electronics/circuitboard/circuit
-	spawn_tags = SPAWN_TAG_COMPUTERFRAME
+	spawn_tags = SPAWN_TAG_MACHINE_FRAME
 
 //	weight = 1.0E8
 
@@ -159,7 +159,7 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(I, /obj/item/stack/material) && I.get_material_name() == "glass")
+			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_GLASS)
 				var/obj/item/stack/G = I
 				if (G.get_amount() < 2)
 					to_chat(user, SPAN_WARNING("You need two sheets of glass to put in the glass panel."))

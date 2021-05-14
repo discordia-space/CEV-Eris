@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
-		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
+		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof/full,
 		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
 	))
 GLOBAL_LIST_INIT(excel_item_targets,list(
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/desc
 	var/reward = 0
 	var/completed = FALSE
-	var/datum/mind/completed_by = null
+	var/datum/mind/completed_by
 	var/unique = FALSE
 
 /datum/antag_contract/proc/can_place()
@@ -71,11 +71,15 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
+	else
+		GLOB.completed_antag_contracts++
 	completed = TRUE
 	completed_by = M
 
-	if(M && M.current)
-		to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+	if(M)
+		M.contracts_completed++
+		if(M.current)
+			to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
 
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)
@@ -309,7 +313,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/samples = list()
 	for(var/obj/item/weapon/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != "Human" || (data["blood_DNA"] in samples))
+		if(!data || data["species"] != SPECIES_HUMAN || (data["blood_DNA"] in samples))
 			continue
 		samples += data["blood_DNA"]
 		if(samples.len >= count)
@@ -364,13 +368,21 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		warning("Mandate completed twice: [name] [desc]")
 	completed = TRUE
 
-	if(user)
-		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
 
 	excelsior_energy += reward
+	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
+	var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
+	if(E)
+		E.mandate_completion()
+	if(user)
+		if(E)
+			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, [E.time2minutes(E.mandate_increase)] minutes have been added to the detection countdown timer.)"))
+		else
+			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
+	
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
-	
+
 /datum/antag_contract/excel/appropriate
 	name = "Appropriate"
 	reward = 400
@@ -407,27 +419,27 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/targets_command = prob(command_bias)
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts)
 		candidates -= M.target_mind
-	
+
 	while(candidates.len)
 		var/datum/mind/candidate_mind = pick(candidates)
 		candidates -= candidate_mind
-		
+
 		if(player_is_antag_id(candidate_mind, ROLE_EXCELSIOR_REV))
 			continue
 
 		var/mob/living/carbon/human/H = candidate_mind.current
 		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
 			continue
-		
+
 		if (targets_command)
 			if(!(candidate_mind.assigned_role in list(JOBS_COMMAND + JOBS_SECURITY)))
 				continue
-		
+
 		if (cruciform_check)
 			var/cruciform = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 			if(cruciform)
 				continue
-		
+
 		target_mind = candidate_mind
 		desc = "[name] [target_mind.current.real_name] [desc_text]"
 		if(H.stats.getPerk(PERK_NOBLE))
@@ -458,7 +470,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	name = "Propaganda"
 	reward = 600
 	var/list/area/targets = list()
-	
+
 /datum/antag_contract/excel/propaganda/New()
 	var/list/candidates = ship_areas.Copy()
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)

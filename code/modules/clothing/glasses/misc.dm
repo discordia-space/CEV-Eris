@@ -4,7 +4,6 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	body_parts_covered = 0
-	rarity_value = 10
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -12,7 +11,6 @@
 	icon_state = "monocle"
 	item_state = "headset" // lol
 	body_parts_covered = 0
-	style = 2
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -26,14 +24,12 @@
 	name = "Scanning Goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
 	icon_state = "uzenwa_sissra_1"
-	rarity_value = 50
 
 /obj/item/clothing/glasses/regular/goggles
 	name = "Green Goggles"
 	desc = "A very oddly shaped pair of green goggles with bits of wire poking out the sides. This is the future!"
 	icon_state = "green_goggles"
 	item_state = "green_goggles"
-	rarity_value = 40
 
 /obj/item/clothing/glasses/regular/goggles/black
 	name = "Black Goggles"
@@ -46,7 +42,6 @@
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
-	style = 1
 
 /obj/item/clothing/glasses/threedglasses
 	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
@@ -61,7 +56,6 @@
 	icon_state = "gglasses"
 	item_state = "gglasses"
 	body_parts_covered = 0
-	style = 1
 
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
@@ -70,7 +64,6 @@
 	item_state = "sunglasses"
 	darkness_view = -1
 	flash_protection = FLASH_PROTECTION_MODERATE
-	style = 2
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -90,9 +83,16 @@
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
 	prescription = TRUE
-	style = 2
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/artist
+	name = "4-D Glasses"
+	desc = "You can see in every dimension, and get four times the amount of headache!"
+	icon_state = "artist"
+	item_state = "artist_glasses"
+	body_parts_covered = 0
+	spawn_frequency = 0

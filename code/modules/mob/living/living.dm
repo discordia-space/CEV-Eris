@@ -220,7 +220,7 @@ default behaviour is:
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/adjustBruteLoss(var/amount)
+/mob/living/proc/adjustBruteLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
@@ -228,12 +228,12 @@ default behaviour is:
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
-/mob/living/proc/adjustOxyLoss(var/amount)
+/mob/living/proc/adjustOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = min(max(oxyloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setOxyLoss(var/amount)
+/mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = amount
@@ -241,12 +241,12 @@ default behaviour is:
 /mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
+/mob/living/proc/adjustToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setToxLoss(var/amount)
+/mob/living/proc/setToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = amount
@@ -254,7 +254,7 @@ default behaviour is:
 /mob/living/proc/getFireLoss()
 	return fireloss
 
-/mob/living/proc/adjustFireLoss(var/amount)
+/mob/living/proc/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	fireloss = min(max(fireloss + amount, 0),(maxHealth*2))
@@ -262,12 +262,12 @@ default behaviour is:
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
-/mob/living/proc/adjustCloneLoss(var/amount)
+/mob/living/proc/adjustCloneLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setCloneLoss(var/amount)
+/mob/living/proc/setCloneLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	cloneloss = amount
@@ -275,12 +275,12 @@ default behaviour is:
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
-/mob/living/proc/adjustBrainLoss(var/amount)
+/mob/living/proc/adjustBrainLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	brainloss = min(max(brainloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setBrainLoss(var/amount)
+/mob/living/proc/setBrainLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	brainloss = amount
@@ -288,12 +288,12 @@ default behaviour is:
 /mob/living/proc/getHalLoss()
 	return halloss
 
-/mob/living/proc/adjustHalLoss(var/amount)
+/mob/living/proc/adjustHalLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	halloss = min(max(halloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setHalLoss(var/amount)
+/mob/living/proc/setHalLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	halloss = amount
@@ -301,8 +301,17 @@ default behaviour is:
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 
-/mob/living/proc/setMaxHealth(var/newMaxHealth)
+/mob/living/proc/adjustMaxHealth(amount)
+	maxHealth += amount
+
+/mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
+
+/mob/living/proc/get_limb_efficiency(bodypartdefine)
+	return 100
+
+/mob/living/proc/get_specific_organ_efficiency(process_define, parent_organ_tag)
+	return 100
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
@@ -311,7 +320,7 @@ default behaviour is:
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
+/mob/living/get_contents(var/obj/item/weapon/storage/Storage)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -421,7 +430,7 @@ default behaviour is:
 	disabilities = 0
 
 	// fix blindness and deafness
-	blinded = 0
+	blinded = FALSE
 	eye_blind = 0
 	eye_blurry = 0
 	ear_deaf = 0
@@ -435,7 +444,6 @@ default behaviour is:
 	if(stat == DEAD)
 		GLOB.dead_mob_list -= src
 		GLOB.living_mob_list += src
-		tod = null
 		timeofdeath = 0
 
 	// restore us to conciousness
@@ -667,12 +675,12 @@ default behaviour is:
 	return FALSE
 
 //damage/heal the mob ears and adjust the deaf amount
-/mob/living/adjustEarDamage(var/damage, var/deaf)
+/mob/living/adjustEarDamage(damage, deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
 
 //pass a negative argument to skip one of the variable
-/mob/living/setEarDamage(var/damage, var/deaf)
+/mob/living/setEarDamage(damage, deaf)
 	if(damage >= 0)
 		ear_damage = damage
 	if(deaf >= 0)
@@ -832,13 +840,20 @@ default behaviour is:
 		if(A)
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
+	var/turf/T = get_turf(src)
+	if(T)
+		update_z(T.z)
+
+/mob/living/Destroy()
+	qdel(stats)
+	stats = null
+	return ..()
 
 /mob/living/proc/vomit()
 	return
 
-/mob/living/proc/adjustNutrition(var/amount)
-	nutrition += amount
-	nutrition = max(0,min(nutrition, max_nutrition))	//clamp the value
+/mob/living/proc/adjustNutrition(amount)
+	nutrition = max(0,min(nutrition + amount, max_nutrition))	//clamp the value
 
 /mob/living/proc/is_asystole()
 	return FALSE

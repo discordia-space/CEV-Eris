@@ -2,8 +2,8 @@
 	name = "pouch"
 	desc = "Can hold various things."
 	icon = 'icons/inventory/pockets/icon.dmi'
-	icon_state = "pouch"
-	item_state = "pouch"
+	//icon_state = "pouch" //TODO
+	//item_state = "pouch" //TODO
 
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT //Pouches can be worn on belt
@@ -14,7 +14,6 @@
 	attack_verb = list("pouched")
 	spawn_blacklisted = FALSE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_POUCH
 	bad_type = /obj/item/weapon/storage/pouch
 
@@ -45,6 +44,7 @@
 	desc = "Can hold anything in it, but only about once."
 	icon_state = "small_generic"
 	item_state = "small_generic"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 3)
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
 	max_w_class = ITEM_SIZE_SMALL
@@ -55,6 +55,7 @@
 	desc = "Can hold anything in it, but only about twice."
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
+	matter = list(MATERIAL_BIOMATTER = 24, MATERIAL_STEEL = 6 )
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
@@ -65,6 +66,7 @@
 	desc = "A mini satchel. Can hold a fair bit, but it won't fit in your pocket"
 	icon_state = "large_generic"
 	item_state = "large_generic"
+	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 9 )
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
@@ -77,6 +79,7 @@
 	desc = "Can hold medical equipment. But only about three pieces of it."
 	icon_state = "medical_supply"
 	item_state = "medical_supply"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 3
@@ -104,6 +107,7 @@
 	desc = "Can hold small engineering tools. But only about three pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
 	storage_slots = 3
@@ -135,6 +139,7 @@
 	desc = "Can hold engineering equipment. But only about two pieces of it."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 2
@@ -162,6 +167,7 @@
 	desc = "Can hold ammo magazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	item_state = "ammo"
+	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 3
@@ -178,6 +184,7 @@
 	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes or rockets."
 	icon_state = "flare"
 	item_state = "flare"
+	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
 	rarity_value = 14
 
 	storage_slots = 5
@@ -200,11 +207,11 @@
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
 
-/obj/item/weapon/storage/pouch/tubular/update_icon()
+/obj/item/weapon/storage/pouch/tubular/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -218,7 +225,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/weapon/gun/projectile/clarissa,
+		/obj/item/weapon/gun/projectile/selfload,
 		/obj/item/weapon/gun/projectile/colt,
 		/obj/item/weapon/gun/projectile/avasarala,
 		/obj/item/weapon/gun/projectile/giskard,
@@ -242,11 +249,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/pistol_holster/update_icon()
+/obj/item/weapon/storage/pouch/pistol_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
 
 /obj/item/weapon/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -265,11 +272,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/baton_holster/update_icon()
+/obj/item/weapon/storage/pouch/baton_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
 
 /obj/item/weapon/storage/pouch/holding
 	name = "pouch of holding"
@@ -282,3 +289,23 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/storage/pouch/holding/New()
+	..()
+	bluespace_entropy(3, get_turf(src))
+
+/obj/item/weapon/storage/pouch/gun_part
+	name = "part pouch"
+	desc = "Can hold gun parts and armor parts."
+	icon_state = "part_pouch"
+	item_state = "part_pouch"
+	rarity_value = 33
+
+	storage_slots = 10
+	max_w_class = ITEM_SIZE_NORMAL
+
+	can_hold = list(
+		/obj/item/part,
+		/obj/item/weapon/stock_parts,
+		/obj/item/weapon/electronics
+		)

@@ -22,7 +22,7 @@
 	matter = list(MATERIAL_BIOMATTER = 1)
 	contained_sprite = TRUE
 	spawn_tags = SPAWN_JUNK
-	rarity_value = 3.33
+	rarity_value = 3.5
 
 
 	var/info		//What's actually written on the paper.
@@ -57,7 +57,7 @@
 	update_space(info)
 	updateinfolinks()
 
-/obj/item/weapon/paper/update_icon()
+/obj/item/weapon/paper/on_update_icon()
 	if (icon_state == "paper_talisman")
 		return
 	else if (info)
@@ -196,7 +196,7 @@
 	stamps = null
 	free_space = MAX_PAPER_MESSAGE_LEN
 	stamped = list()
-	overlays.Cut()
+	cut_overlays()
 	updateinfolinks()
 	update_icon()
 
@@ -428,7 +428,7 @@
 		if(!stamped)
 			stamped = new
 		stamped += P.type
-		overlays += stampoverlay
+		add_overlays(stampoverlay)
 
 		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 
@@ -444,7 +444,7 @@
 	icon_state = "paper_crumpled"
 	crumpled = TRUE
 
-/obj/item/weapon/paper/crumpled/update_icon()
+/obj/item/weapon/paper/crumpled/on_update_icon()
 	if (icon_state == "paper_crumpled_bloodied")
 		return
 	else if (info)
@@ -460,7 +460,7 @@
 	name = "sheet of odd paper"
 	icon_state = "paper_neo"
 
-/obj/item/weapon/paper/neopaper/update_icon()
+/obj/item/weapon/paper/neopaper/on_update_icon()
 	if(info)
 		icon_state = "paper_neo_words"
 	else
@@ -471,7 +471,7 @@
 	name = "odd paper scrap"
 	icon_state = "paper_neo_crumpled"
 
-/obj/item/weapon/paper/crumpled/neo/update_icon()
+/obj/item/weapon/paper/crumpled/neo/on_update_icon()
 	if (icon_state == "paper_neo_crumpled_bloodied")
 		return
 	else if (info)
@@ -481,6 +481,7 @@
 	return
 
 /obj/item/weapon/paper/crumpled/neo/bloody
-	icon_state = "paper_neo_crumpled_bloodied"
+	icon_state = "paper_neo_crumpled_bloodied" //todo fix sprite
+	spawn_blacklisted = TRUE
 
 #undef MAX_FIELDS

@@ -8,9 +8,9 @@
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
-	var/reinforced = FALSE
-	var/obj/item/weapon/storage/toolbox/toolbox = null
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
+	var/reinforced = FALSE
+	var/obj/item/weapon/storage/toolbox/toolbox
 	New()
 		..()
 		if(!toolbox)
@@ -23,11 +23,11 @@
 			origin_tech = list(TECH_COMBAT = 1)
 
 
-/obj/item/weapon/melee/toolbox_maul/update_icon()
+/obj/item/weapon/melee/toolbox_maul/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(reinforced)
-		overlays += "[icon_state]-duct_tape"
+		add_overlays("[icon_state]-duct_tape")
 
 /obj/item/weapon/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
 	qdel(src)

@@ -55,7 +55,7 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if(can_operate(src, M) && do_surgery(src, M, null))
+			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
 				return 1
 			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
 				if(!H.check_has_mouth())
@@ -136,10 +136,15 @@
 				return
 
 			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
+			var/obj/item/organ/external/current_hand = organs_by_name[hand ? BP_L_ARM : BP_R_ARM]
+
+			if(current_hand)
+				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
 
 			if(!affecting || affecting.is_stump())
 				to_chat(M, SPAN_DANGER("They are missing that limb!"))
@@ -162,6 +167,8 @@
 			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
 				accurate = 1 // certain circumstances make it impossible for us to evade punches
 				stat_damage = stat_damage + 2
+
+			stat_damage *= limb_efficiency_multiplier
 
 			// Process evasion and blocking
 			var/miss_type = 0
@@ -242,7 +249,6 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
@@ -259,11 +265,6 @@
 
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-			if(!(species.flags & NO_SLIP) && randn <= 20)
-				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				return
 
 			if(randn <= 50)
 				//See about breaking grips or pulls

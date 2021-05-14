@@ -48,9 +48,9 @@
 
 
 	//Variables used for tool degradation
-	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	health = 0		// Health of a tool.
 	max_health = 1000
+	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
 	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
 	var/isBroken = FALSE
@@ -81,15 +81,13 @@
 		cell = new suitable_cell(src)
 
 	if(use_fuel_cost)
-		var/datum/reagents/R = new/datum/reagents(max_fuel)
-		reagents = R
-		R.my_atom = src
-		R.add_reagent("fuel", max_fuel)
+		create_reagents(max_fuel)
+		reagents.add_reagent("fuel", max_fuel)
 
-	if (use_stock_cost)
+	if(use_stock_cost)
 		stock = max_stock
 
-	if (max_health)
+	if(max_health)
 		health = max_health
 
 	update_icon()
@@ -278,7 +276,7 @@
 //Editionaly, handle_failure proc will be called for a critical failure roll.
 /obj/item/proc/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	var/obj/item/weapon/tool/T
-	if (istool(src))
+	if(istool(src))
 		T = src
 		T.tool_in_use = TRUE
 
@@ -476,7 +474,7 @@
 	if(istype(loc, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/AD = loc
 		AD.take_out_wedged_item()
-	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1 -3)
+	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1, -3)
 	isBroken = TRUE
 	return
 
@@ -487,7 +485,7 @@
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
 /obj/item/proc/handle_failure(mob/living/user, atom/target, required_stat, required_quality)
 	var/obj/item/weapon/tool/T
-	if(istype(src, /obj/item/weapon/tool))
+	if(istool(src))
 		T = src
 
 	var/crit_fail_chance = 25
@@ -574,7 +572,7 @@
 			if("throw")
 				if(user)
 					var/mob/living/carbon/human/H = user
-					var/throw_target = pick(trange(6, user))
+					var/throw_target = pick(RANGE_TURFS(6, user))
 					to_chat(user, SPAN_DANGER("Your [src] flies away!"))
 					H.unEquip(src)
 					throw_at(throw_target, src.throw_range, src.throw_speed, H)
@@ -584,7 +582,7 @@
 					AD.take_out_wedged_item()
 				else
 					forceMove(get_turf(src))
-				var/throw_target = pick(trange(6, src))
+				var/throw_target = pick(RANGE_TURFS(6, src))
 				throw_at(throw_target, src.throw_range, src.throw_speed)
 				return
 
@@ -937,7 +935,7 @@
 		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if(!E)
 			return
 		var/safety = H.eyecheck()
@@ -975,11 +973,20 @@
 		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
 			if (S.brute_dam)
 				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-					if (use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						S.heal_damage(15,0,0,1)
-						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-						user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src]."))
-						return 1
+					for(var/datum/wound/W in S.wounds)
+						if(W.internal)
+							return
+						if(W.damtype_sanitize() != BRUTE)
+							continue
+						if(!use_tool(user, M, W.damage/5, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+							break
+						W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
+						to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+					S.update_damages()
+					if(S.brute_dam)
+						to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+					return
 				else if (S.open != 2)
 					to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 					return 1
@@ -989,11 +996,11 @@
 
 	return ..()
 
-/obj/item/weapon/tool/update_icon()
-	overlays.Cut()
+/obj/item/weapon/tool/on_update_icon()
+	cut_overlays()
 
 	if(switched_on && toggleable)
-		overlays += "[icon_state]_on"
+		add_overlays("[icon_state]_on")
 
 	if(use_power_cost)
 		var/ratio = 0
@@ -1001,7 +1008,7 @@
 		if(cell && cell.charge >= use_power_cost)
 			ratio = cell.charge / cell.maxcharge
 			ratio = max(round(ratio, 0.25) * 100, 25)
-			overlays += "[icon_state]-[ratio]"
+			add_overlays("[icon_state]-[ratio]")
 
 	if(use_fuel_cost)
 		var/ratio = 0
@@ -1009,7 +1016,7 @@
 		if(get_fuel() >= use_fuel_cost)
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
-			overlays += "[icon_state]-[ratio]"
+			add_overlays("[icon_state]-[ratio]")
 
 	if(ismob(loc))
 		var/tooloverlay
@@ -1018,7 +1025,7 @@
 				tooloverlay = "excavate"
 			if (DIG)
 				tooloverlay = "dig"
-		overlays += (tooloverlay)
+		add_overlays((tooloverlay))
 
 /***************************
 	Misc/utility procs
@@ -1033,6 +1040,7 @@
 	name = "Electric Boogaloo 3000"
 	icon_state = "omnitool"
 	item_state = "omnitool"
+	spawn_tags = null
 	tool_qualities = list(QUALITY_BOLT_TURNING = 100,
 							QUALITY_PRYING = 100,
 							QUALITY_WELDING = 100,

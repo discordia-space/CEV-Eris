@@ -10,7 +10,6 @@
 
 /obj/item/weapon/paper/toxin
 	name = "Chemical Information"
-	spawn_blacklisted = TRUE
 	info = {"Known Onboard Toxins:
 	Grade A Semi-Liquid Plasma:
 	Highly poisonous. You cannot sustain concentrations above 15 units.
@@ -95,7 +94,6 @@
 
 /obj/item/weapon/paper/hydroponics
 	name = "Greetings from Billy Bob"
-	spawn_blacklisted = TRUE
 	info = {"\[b\]Hey fellow botanist!\[/b\]
 	
 	I didn't trust the station folk so I left \
@@ -243,7 +241,6 @@
 
 /obj/item/weapon/paper/sop
 	name = "paper- 'Standard Operating Procedure'"
-	spawn_blacklisted = TRUE
 	info = {"Alert Levels:
 	Blue- Emergency
 	1. Caused by fire
@@ -306,7 +303,6 @@
 
 /obj/item/weapon/paper/self_pacification
 	name = "Self-Pacification and You!"
-	spawn_blacklisted = TRUE
 	info = {"\[h1\]\[center\]\[b\]Self-Pacification and You!\[/b\]\[/center\]\[/h1\]
 	As pursuant to \[b\]\"Hansa Property Rights For Detainees\"\[/b\], \[b\]Aster's \"Assembly Upon The Definition of Aggression\"\[/b\], and the good initiative of \[b\]IronHammer Command\[/b\]; these steps have been laid to better actuate your personal property rights while within indefinite detainment:
 	

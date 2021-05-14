@@ -14,11 +14,13 @@
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/weapon/spacecash
+	spawn_tags = null
 	var/access = list()
 	access = access_crate_cash
 	var/worth = 0
 
-/obj/item/weapon/spacecash/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/spacecash/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/spacecash))
 		if(istype(W, /obj/item/weapon/spacecash/ewallet))
 			return FALSE
@@ -52,8 +54,8 @@
 	desc = "They are worth 0 credits."
 	worth = 0
 
-/obj/item/weapon/spacecash/bundle/update_icon()
-	overlays.Cut()
+/obj/item/weapon/spacecash/bundle/on_update_icon()
+	cut_overlays()
 	var/sum = src.worth
 	var/num = 0
 	var/list/denominations = list(1000,500,200,100,50,20,10,1)
@@ -66,14 +68,14 @@
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
-			src.overlays += banknote
+			src.add_overlays(banknote)
 	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
-		src.overlays += banknote
+		src.add_overlays(banknote)
 	src.desc = "They are worth [worth] credits."
 	if(worth in denominations)
 		src.name = "[worth] credit"
@@ -84,7 +86,7 @@
 	var/amount = input(usr, "How many credits do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
-	else if (!Adjacent(usr))
+	else if(!Adjacent(usr))
 		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
 		return
 
@@ -181,17 +183,17 @@
 	desc = "It's worth 1000 credits."
 	worth = 1000
 
-proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
+proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user)
 	if(sum in list(1000,500,200,100,50,20,10,1))
 		var/cash_type = text2path("/obj/item/weapon/spacecash/bundle/c[sum]")
 		var/obj/cash = new cash_type (usr.loc)
 		if(ishuman(human_user) && !human_user.get_active_hand())
 			human_user.put_in_hands(cash)
 	else
-		var/obj/item/weapon/spacecash/bundle/bundle = new (spawnloc)
+		var/obj/item/weapon/spacecash/bundle/bundle = new(spawnloc)
 		bundle.worth = sum
 		bundle.update_icon()
-		if (ishuman(human_user) && !human_user.get_active_hand())
+		if(ishuman(human_user) && !human_user.get_active_hand())
 			human_user.put_in_hands(bundle)
 	return
 
@@ -203,7 +205,7 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
 	..(user)
-	if (!(user in view(2)) && user!=src.loc) return
+	if(!(user in view(2)) && user!=src.loc) return
 	to_chat(user, "\blue Charge card's owner: [src.owner_name]. Credits remaining: [src.worth].")
 
 #undef CASH_PER_STAT

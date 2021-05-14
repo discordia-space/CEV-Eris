@@ -72,7 +72,7 @@
 		return
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	flick("[base_state]_flash", src)
+	FLICK("[base_state]_flash", src)
 	src.last_flash = world.time
 	use_power(1500)
 
@@ -86,19 +86,19 @@
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
-			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+			var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 			if(!E)
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
 				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+					FLICK("e_flash", O.HUDtech["flash"])
 				E.damage += rand(1, 5)
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
+					FLICK("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity)
@@ -127,11 +127,11 @@
 
 		if (!src.anchored)
 			user.show_message(text(SPAN_WARNING("[src] can now be moved.")))
-			src.overlays.Cut()
+			src.cut_overlays()
 
 		else if (src.anchored)
 			user.show_message(text(SPAN_WARNING("[src] is now secured.")))
-			src.overlays += "[base_state]-s"
+			src.add_overlays("[base_state]-s")
 
 /obj/machinery/button/flasher
 	name = "flasher button"

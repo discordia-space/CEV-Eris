@@ -1,5 +1,6 @@
 /obj/item/weapon/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
+	bad_type = /obj/item/weapon/material/kitchen
 
 /*
  * Utensils
@@ -13,16 +14,17 @@
 	edge = TRUE
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
+	bad_type = /obj/item/weapon/material/kitchen/utensil
+	spawn_tags = SPAWN_TAG_ITEM
 	var/loaded      //Descriptive string for currently loaded food object.
 	var/scoop_food = 1
-	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 
 /obj/item/weapon/material/kitchen/utensil/New()
 	..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 	create_reagents(5)
-	return
 
 /obj/item/weapon/material/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))
@@ -48,7 +50,7 @@
 				return
 			M.visible_message(SPAN_NOTICE("\The [user] feeds some [loaded] to \the [M] with \the [src]."))
 		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
-		overlays.Cut()
+		cut_overlays()
 		return
 	else
 		to_chat(user, SPAN_WARNING("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK

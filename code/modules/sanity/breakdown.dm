@@ -32,7 +32,7 @@
 	return !!name
 
 /datum/breakdown/proc/update()
-	if(finished || (duration && world.time > end_time))
+	if(finished || (duration && world.time > end_time) || holder.owner.stat == DEAD)
 		conclude()
 		return FALSE
 	return TRUE
@@ -46,7 +46,7 @@
 /datum/breakdown/proc/occur_animation()
 	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
 	holder.owner << img
-	flick(icon_state, img)
+	FLICK(icon_state, img)
 
 /datum/breakdown/proc/occur()
 	occur_animation()
@@ -74,7 +74,7 @@
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(insight_reward)
 		if(finished)
-			holder.insight += insight_reward
+			holder.give_insight(insight_reward)
 			if(restore_sanity_post)
 				holder.restoreLevel(restore_sanity_post)
 		else if(is_negative)

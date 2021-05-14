@@ -34,6 +34,9 @@
 	var/input_cap = 1 MEGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this value per tick at most
 	var/upkeep_power_usage = 0			// Upkeep power usage last tick.
 	var/upkeep_multiplier = 1			// Multiplier of upkeep values.
+	var/upkeep_star_multiplier = 1      // Multiplier of upkeep values due to proximity with the star at the center of the overmap
+	var/upkeep_star_multiplier_max = 4  // Maximum upkeep multiplier when the ship is right on top of the star
+	var/upkeep_star_multiplier_safe = 50// Distance from star above which shields are no longer impacted (multiplier = 1)
 	var/power_usage = 0					// Total power usage last tick.
 	var/overloaded = 0					// Whether the field has overloaded and shut down to regenerate.
 	var/offline_for = 0					// The generator will be inoperable for this duration in ticks.
@@ -44,6 +47,8 @@
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
 	var/generatingShield = FALSE //true when shield tiles are in process of being generated
+
+	var/obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
 
 	// The shield mode flags which should be enabled on this generator by default
 
@@ -78,22 +83,26 @@
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/shield_generator/update_icon()
-	overlays.Cut()
+/obj/machinery/power/shield_generator/on_update_icon()
+	cut_overlays()
 	if(running)
-		icon_state = "generator1"
+		SetIconState("generator1")
+		set_light(2, 2, "#8AD55D")
 	else
-		icon_state = "generator0"
+		SetIconState("generator0")
+		set_light(0)
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
-			overlays += I
+			add_overlays(I)
 
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)
-			S.icon_state = "conduit_1"
+			S.SetIconState("conduit_1")
+			S.bright_light()
 		else
-			S.icon_state = "conduit_0"
+			S.SetIconState("conduit_0")
+			S.no_light()
 
 
 
@@ -113,7 +122,8 @@
 	for (var/DM in default_modes)
 		toggle_flag(DM)
 
-
+	// Link to Eris object on the overmap
+	linked_ship = locate(/obj/effect/overmap/ship/eris)
 
 /obj/machinery/power/shield_generator/Destroy()
 	toggle_tendrils(FALSE)
@@ -220,6 +230,13 @@
 
 	upkeep_multiplier = new_upkeep
 
+// Recalculates and updates the upkeep star multiplier
+/obj/machinery/power/shield_generator/proc/update_upkeep_star_multiplier()
+	var/distance = sqrt((linked_ship.x - GLOB.maps_data.overmap_size/2)**2 + (linked_ship.y - GLOB.maps_data.overmap_size/2)**2) // Distance from star
+	if(distance>upkeep_star_multiplier_safe) // Above safe distance, no impact on shields
+		upkeep_star_multiplier = 1
+	else // Otherwise shields are impacted depending on proximity to the star
+		upkeep_star_multiplier = 1 + (upkeep_star_multiplier_max - 1) * ((upkeep_star_multiplier_safe - distance) / upkeep_star_multiplier_safe)
 
 /obj/machinery/power/shield_generator/Process()
 	upkeep_power_usage = 0
@@ -243,7 +260,9 @@
 	mitigation_heat = between(0, mitigation_heat - MITIGATION_LOSS_PASSIVE, mitigation_max)
 	mitigation_physical = between(0, mitigation_physical - MITIGATION_LOSS_PASSIVE, mitigation_max)
 
-	upkeep_power_usage = round((field_segments.len - damaged_segments.len) * ENERGY_UPKEEP_PER_TILE * upkeep_multiplier)
+	update_upkeep_star_multiplier() // Update shield upkeep depending on proximity to the star at the center of the overmap
+
+	upkeep_power_usage = round((field_segments.len - damaged_segments.len) * ENERGY_UPKEEP_PER_TILE * upkeep_multiplier * upkeep_star_multiplier)
 
 	if(powernet && !input_cut && (running == SHIELD_RUNNING || running == SHIELD_OFF))
 		var/energy_buffer = 0
@@ -297,7 +316,7 @@
 		wrench(user, O)
 		return
 
-	if(istype(O, /obj/item/weapon/tool))
+	if(istool(O))
 		return src.attack_hand(user)
 
 
@@ -545,9 +564,9 @@
 
 /obj/machinery/power/shield_generator/proc/get_logs()
 	var/list/all_logs = list()
-	for(var/entry in event_log)
+	for(var/i = event_log.len; i > 1; i--)
 		all_logs.Add(list(list(
-			"entry" = entry
+			"entry" = event_log[i]
 		)))
 	return all_logs
 
@@ -581,7 +600,7 @@
 	var/list/base_turfs = get_base_turfs()
 
 	for(var/turf/gen_turf in base_turfs)
-		for(var/turf/T in trange(field_radius, gen_turf))
+		for(var/turf/T in RANGE_TURFS(field_radius, gen_turf))
 			if(istype(T, /turf/space))
 				continue
 
@@ -752,11 +771,17 @@
 /obj/machinery/shield_conduit/proc/connect(gen)
 	generator = gen
 
+/obj/machinery/shield_conduit/proc/no_light()
+	set_light(0)
+
+/obj/machinery/shield_conduit/proc/bright_light()
+	set_light(2, 2, "#8AD55D")
+
 /obj/machinery/shield_conduit/Destroy()
 	if(generator)
 		generator.toggle_tendrils(FALSE)
 		if(generator.running != SHIELD_OFF && !generator.emergency_shutdown)
-			generator.offline_for += 300 
+			generator.offline_for += 300
 			generator.shutdown_field()
 			generator.emergency_shutdown = TRUE
 			generator.log_event(EVENT_DISABLED, generator)
@@ -843,7 +868,7 @@
 		allowed_modes.Remove(MODEFLAG_HULL)
 		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
 		return FALSE
-	
+
 	mode_list = list()
 	for(var/st in subtypesof(/datum/shield_mode/))
 		var/datum/shield_mode/SM = new st()

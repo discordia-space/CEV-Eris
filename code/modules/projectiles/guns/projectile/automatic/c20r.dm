@@ -19,15 +19,14 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 6)
 	price_tag = 1800
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sfrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sfrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
 	penetration_multiplier = 1.5 //7.5 with regular lethal ammo, 15 with HV, seems legit
 	zoom_factor = 0.4
-	recoil_buildup = 3
+	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
-	rarity_value = 19.2
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -36,13 +35,13 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/projectile/automatic/c20r/on_update_icon()
+	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)
-		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
+		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide[silenced ? "_s" : ""]"
+		add_overlays("slide[silenced ? "_s" : ""]")
 
 /obj/item/weapon/gun/projectile/automatic/c20r/Initialize()
 	. = ..()

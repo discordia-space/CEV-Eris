@@ -1,6 +1,7 @@
 /mob/living/silicon
 	gender = NEUTER
 	voice_name = "synthesized voice"
+	bad_type = /mob/living/silicon
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
@@ -35,9 +36,9 @@
 	#define MED_HUD 2 //Medical HUD mode
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
-/mob/living/silicon/New()
+/mob/living/silicon/Initialize()
 	GLOB.silicon_mob_list |= src
-	..()
+	. = ..()
 	add_language(LANGUAGE_COMMON)
 	init_id()
 	init_subsystems()
@@ -76,9 +77,9 @@
 		if(2)
 			take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-//	flick("noise", flash)
+//	FLICK("noise", flash)
 	if (HUDtech.Find("flash"))
-		flick("noise", HUDtech["flash"])
+		FLICK("noise", HUDtech["flash"])
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
 	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
 	..()
@@ -247,7 +248,7 @@
 /mob/living/silicon/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	switch(severity)
 		if(1)

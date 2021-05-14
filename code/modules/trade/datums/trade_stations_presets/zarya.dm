@@ -14,6 +14,7 @@
 		"Energiya" = list(
 			/obj/item/weapon/electronics/circuitboard/shield_diffuser,
 			/obj/item/weapon/electronics/circuitboard/shield_generator,
+			/obj/item/weapon/electronics/circuitboard/long_range_scanner,
 			/obj/item/weapon/cell/large,
 			/obj/item/weapon/cell/large/high,
 			/obj/item/solar_assembly,
@@ -27,17 +28,17 @@
 			/obj/item/clothing/gloves/insulated,
 		),
 		"Vsyakoe" = list(
+			/obj/item/organ_module/active/simple/armshield,
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/item/weapon/storage/briefcase/inflatable/empty,
 			/obj/item/inflatable/door,
 			/obj/item/inflatable/wall,
 			/obj/item/stack/material/steel/full,
-			/obj/item/weapon/storage/belt/utility/full,
+			/obj/item/weapon/storage/belt/utility,
 			/obj/item/clothing/head/welding,
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight,
-			/obj/spawner/lathe_disk
 		)
 	)
 

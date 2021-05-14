@@ -9,7 +9,7 @@
 	desc = "Has a valve and pump attached to it"
 	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 7500			//7500 W ~ 10 HP
+	power_rating = 12000		//12000 W ~ 16 HP
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER //connects to regular and scrubber pipes
 
@@ -17,7 +17,7 @@
 	layer = GAS_SCRUBBER_LAYER
 
 	var/area/initial_loc
-	var/id_tag = null
+	var/id_tag
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
@@ -39,7 +39,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER * 2
 
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
@@ -51,7 +51,7 @@
 	unregister_radio(src, frequency)
 	. = ..()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/update_icon(safety = 0)
+/obj/machinery/atmospherics/unary/vent_scrubber/on_update_icon(safety = 0)
 	if(!node1)
 		use_power = NO_POWER_USE
 

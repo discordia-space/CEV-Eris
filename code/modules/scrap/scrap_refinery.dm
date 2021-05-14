@@ -69,7 +69,7 @@
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 
-/obj/machinery/recycler/update_icon()
+/obj/machinery/recycler/on_update_icon()
 	.=..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
@@ -114,7 +114,7 @@
 	if(!istype(I, /obj/item/weapon/scrap_lump))
 		chance_mod = 5
 	if(prob(chance_to_recycle / chance_mod))
-		new /obj/item/stack/sheet/refined_scrap(loc)
+		new /obj/item/stack/refined_scrap(loc)
 	qdel(I)
 
 /obj/machinery/recycler/proc/stop(mob/living/L)

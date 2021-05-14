@@ -7,7 +7,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/butterflyhandle
 	name = "concealed knife grip"
@@ -17,7 +17,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/wirerod
 	name = "wired rod"
@@ -32,16 +32,12 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	rarity_value = 16.66
-	spawn_tags = SPAWN_TAG_CONTRABAND
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user)
 	..()
 	var/obj/item/finished
-	if(istype(I, /obj/item/weapon/material/shard))
-		var/obj/item/weapon/material/tmp_shard = I
-		finished = new /obj/item/weapon/material/spear(get_turf(user), tmp_shard.material.name)
-		to_chat(user, SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable."))
-	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
+	if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
 		to_chat(user, SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
 	if(finished)

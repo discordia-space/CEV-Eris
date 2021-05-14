@@ -105,7 +105,8 @@
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
-	funding_type = FUNDING_EXTERNAL
+	account_budget = 4500 //each Neotheo has a wage of 900, this is enough to pay 5 paychecks before needing more cash
+	funding_type = FUNDING_NONE //The church on eris has no external funding. This further reinforces the theory that everyone on the CEV Eris is a reject of their factions
 	funding_source = "Church of NeoTheology"
 
 

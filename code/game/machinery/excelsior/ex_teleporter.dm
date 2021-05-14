@@ -20,7 +20,7 @@ var/global/excelsior_last_draft = 0
 	var/energy_gain = 1
 	var/processing_order = FALSE
 	var/nanoui_menu = 0 	// Based on Uplink
-	var/mob/current_user 
+	var/mob/current_user
 	var/time_until_scan
 
 	var/reinforcements_delay = 20 MINUTES
@@ -51,7 +51,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/weapon/stock_parts/manipulator/excelsior = 350,
 		/obj/item/weapon/stock_parts/micro_laser/excelsior = 350,
 		/obj/item/weapon/stock_parts/matter_bin/excelsior = 350,
-		/obj/item/clothing/under/excelsior = 100,
+		/obj/item/clothing/under/excelsior = 50,
 		/obj/item/weapon/electronics/circuitboard/excelsior_teleporter = 500,
 		/obj/item/weapon/electronics/circuitboard/excelsiorautolathe = 150,
 		/obj/item/weapon/electronics/circuitboard/excelsiorreconstructor = 150,
@@ -60,6 +60,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/weapon/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/weapon/electronics/circuitboard/diesel = 150
 		)
+	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
 	excelsior_teleporters |= src
@@ -75,6 +76,7 @@ var/global/excelsior_last_draft = 0
 	var/man_amount = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
+		entropy_value = initial(entropy_value)/M.rating
 		man_amount++
 
 	// +50% speed for each upgrade tier
@@ -94,11 +96,11 @@ var/global/excelsior_last_draft = 0
 			energy_gain *= 2
 
 
-/obj/machinery/complant_teleporter/update_icon()
-	overlays.Cut()
+/obj/machinery/complant_teleporter/on_update_icon()
+	cut_overlays()
 
 	if(panel_open)
-		overlays += image("panel")
+		add_overlays(image("panel"))
 
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = "off"
@@ -186,7 +188,7 @@ var/global/excelsior_last_draft = 0
 			) // list in a list because Byond merges the first list...
 
 	data["materials_list"] = order_list_m
-	
+
 	var/list/order_list_p = list()
 	for(var/item in parts_list)
 		var/obj/item/I = item
@@ -264,13 +266,14 @@ var/global/excelsior_last_draft = 0
 
 	processing_order = TRUE
 	excelsior_energy = max(excelsior_energy - order_cost, 0)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	spawn(17)
 		complete_order(order_path, amount)
 
 /obj/machinery/complant_teleporter/proc/complete_order(order_path, amount)
 	use_power(active_power_usage * 3)
 	new order_path(loc, amount)
+	bluespace_entropy(entropy_value, get_turf(src))
 	processing_order = FALSE
 
 /obj/machinery/complant_teleporter/attackby(obj/item/I, mob/user)
@@ -280,7 +283,7 @@ var/global/excelsior_last_draft = 0
 		if(M.target_type == I.type)
 			I.Destroy()
 			M.complete(user)
-			flick("teleporting", src)
+			FLICK("teleporting", src)
 	..()
 
 /obj/machinery/complant_teleporter/attack_hand(mob/user)
@@ -326,11 +329,11 @@ var/global/excelsior_last_draft = 0
 		teleport_out(affecting, user)
 		excelsior_conscripts += 1
 		return
-	
+
 	visible_message("\the [src] blinks, refusing [affecting].")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 /obj/machinery/complant_teleporter/proc/teleport_out(var/mob/living/affecting, var/mob/living/user)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
 	visible_message("\the [src] teleporter closes and [affecting] disapears.")
 	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
@@ -349,7 +352,7 @@ var/global/excelsior_last_draft = 0
 		return
 	processing_order = TRUE
 	use_power(active_power_usage * 10)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	var/mob/observer/ghost/candidate = draft_ghost("Excelsior Conscript", ROLE_BANTYPE_EXCELSIOR, ROLE_EXCELSIOR_REV)
 	if(!candidate)
 		processing_order = FALSE

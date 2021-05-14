@@ -50,8 +50,8 @@
 	for(var/obj/ripped_item in ripped_turf)
 		if(count >= rating)
 			break
-		if(istype(ripped_item, /obj/structure/scrap))
-			var/obj/structure/scrap/pile = ripped_item
+		if(istype(ripped_item, /obj/structure/scrap_spawner))
+			var/obj/structure/scrap_spawner/pile = ripped_item
 			while(pile.dig_out_lump(loc, 1))
 				if(prob(20))
 					break
@@ -105,7 +105,7 @@
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 
-/obj/machinery/pile_ripper/update_icon()
+/obj/machinery/pile_ripper/on_update_icon()
 	..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
@@ -150,7 +150,7 @@
 	L.adjustBruteLoss(45)
 	if(istype(L, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
-		H.nutrition -= 100
+		H.adjustNutrition(-100)
 		if(H.nutrition <= 0)
 			H.gib()
 		if(H.isMonkey())

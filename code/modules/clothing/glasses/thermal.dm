@@ -9,7 +9,6 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
 	price_tag = 1000
-	rarity_value = 80
 	tick_cost = 0.5
 
 
@@ -31,12 +30,20 @@
 	. = ..()
 	overlay = global_hud.thermal
 
+/obj/item/clothing/glasses/powered/thermal/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_THERMAL = TRUE
+		)
+	I.gun_loc_tag = GUN_SCOPE
+	I.req_gun_tags = list(GUN_AMR, GUN_SCOPE)
+
 /obj/item/clothing/glasses/powered/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
-	rarity_value = 50
 	spawn_blacklisted = TRUE
 
 
@@ -45,7 +52,6 @@
 	desc = "Chinese thermals in the shape of goggles."
 	icon_state = "onestar_thermal"
 	off_state = "onestar_thermal"
-	rarity_value = 100
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/powered/thermal/plain
@@ -58,7 +64,6 @@
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
-	rarity_value = 10
 
 	body_parts_covered = 0
 

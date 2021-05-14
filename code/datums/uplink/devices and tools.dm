@@ -42,6 +42,11 @@
 	name = "Heavy Armor Vest"
 	item_cost = 6
 	path = /obj/item/clothing/suit/storage/vest/merc
+	
+/datum/uplink_item/item/tools/full_heavy_vest
+	name = "Fullbody Heavy Armor Vest"
+	item_cost = 8
+	path = /obj/item/clothing/suit/storage/vest/merc/full
 
 /datum/uplink_item/item/tools/heavy_helmet
 	name = "Heavy Armor Helmet"
@@ -188,7 +193,7 @@
 /datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.maxHealth += 30
+		BS.adjustMaxHealth(30)
 		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
 		return 1
 	return 0

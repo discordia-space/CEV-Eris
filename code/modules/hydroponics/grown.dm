@@ -6,7 +6,7 @@
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
 	slot_flags = SLOT_HOLSTER
-
+	spawn_frequency = 0
 	var/plantname
 	var/datum/seed/seed
 	var/potency = -1
@@ -130,10 +130,10 @@
 		plant_controller.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/update_icon()
+/obj/item/weapon/reagent_containers/food/snacks/grown/on_update_icon()
 	if(!seed || !plant_controller || !plant_controller.plant_icon_cache)
 		return
-	overlays.Cut()
+	cut_overlays()
 	var/image/plant_icon
 	var/icon_key = "fruit-[seed.get_trait(TRAIT_PRODUCT_ICON)]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"
 	if(plant_controller.plant_icon_cache[icon_key])
@@ -142,13 +142,13 @@
 		plant_icon = image('icons/obj/hydroponics_products.dmi',"blank")
 		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
-		plant_icon.overlays |= fruit_base
+		plant_icon.overlays |= (fruit_base)
 		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in icon_states('icons/obj/hydroponics_products.dmi'))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-			plant_icon.overlays |= fruit_leaves
+			plant_icon.overlays |= (fruit_leaves)
 		plant_controller.plant_icon_cache[icon_key] = plant_icon
-	overlays |= plant_icon
+	associate_with_overlays(plant_icon)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
@@ -302,9 +302,9 @@
 	if(seed.get_trait(TRAIT_STINGS))
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.gloves)
-			return FALSE
+			return TRUE //We have gloves, so we can pick it up safely
 		if(!reagents || reagents.total_volume <= 0)
-			return FALSE
+			return TRUE //Out of reagents
 		reagents.remove_any(rand(1,3)) //Todo, make it actually remove the reagents the seed uses.
 		seed.do_thorns(H,src)
 		seed.do_sting(H,src,pick(BP_R_ARM, BP_L_ARM))
@@ -342,9 +342,9 @@ var/list/fruit_icon_cache = list()
 		var/image/I = image(icon,"fruit_rind")
 		I.color = rind_colour
 		fruit_icon_cache["rind-[rind_colour]"] = I
-	overlays |= fruit_icon_cache["rind-[rind_colour]"]
+	associate_with_overlays(fruit_icon_cache["rind-[rind_colour]"])
 	if(!fruit_icon_cache["slice-[rind_colour]"])
 		var/image/I = image(icon,"fruit_slice")
 		I.color = flesh_colour
 		fruit_icon_cache["slice-[rind_colour]"] = I
-	overlays |= fruit_icon_cache["slice-[rind_colour]"]
+	associate_with_overlays(fruit_icon_cache["slice-[rind_colour]"])

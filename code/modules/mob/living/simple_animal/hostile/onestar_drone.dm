@@ -38,19 +38,19 @@
 	update_icon()
 
 
-/mob/living/simple_animal/hostile/onestar_custodian/update_icon()
+/mob/living/simple_animal/hostile/onestar_custodian/on_update_icon()
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	var/image/shell_I = image(icon, src, "shell_[shell_type]")
 	var/image/marks_I = image(icon, src, "marks_[marks_type]")
 	var/image/screen_I = image(icon, src, "screen_[screen_type]")
 	var/image/tool_I = image(icon, src, "tool_[tool]_[tooltype]")
 	var/image/radio_I = image(icon, src, "radio_os")
-	overlays += shell_I
-	overlays += marks_I
-	overlays += screen_I
-	overlays += tool_I
-	overlays += radio_I
+	add_overlays(shell_I)
+	add_overlays(marks_I)
+	add_overlays(screen_I)
+	add_overlays(tool_I)
+	add_overlays(radio_I)
 
 
 
@@ -77,7 +77,7 @@
 	rarity_value = 59.5
 
 
-/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(var/amount)
+/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	fireloss = min(max(fireloss + amount/2, 0),(maxHealth*2)) //Slightly resistant to fire, because it would blow apart otherwise

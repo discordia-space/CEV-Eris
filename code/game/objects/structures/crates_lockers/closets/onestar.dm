@@ -3,6 +3,7 @@
 //// Loot table on all tiers
 /obj/structure/closet/onestar
 	spawn_blacklisted = TRUE
+	bad_type = /obj/structure/closet/onestar
 	spawn_tags = SPAWN_TAG_CLOSET_OS
 
 // Tier 1

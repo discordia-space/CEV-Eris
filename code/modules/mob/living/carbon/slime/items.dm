@@ -9,11 +9,13 @@
 	throw_speed = 3
 	throw_range = 6
 	origin_tech = list(TECH_BIO = 4)
+	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
+	bad_type = /obj/item/slime_extract
+	spawn_blacklisted = TRUE//antag_item_targets
 	var/Uses = 1 // uses before it goes inert
 	var/enhanced = 0 //has it been enhanced before?
-	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 
-	attackby(obj/item/O as obj, mob/user as mob)
+	attackby(obj/item/O, mob/user)
 		if(istype(O, /obj/item/weapon/slimesteroid2))
 			if(enhanced == 1)
 				to_chat(user, SPAN_WARNING(" This extract has already been enhanced!"))

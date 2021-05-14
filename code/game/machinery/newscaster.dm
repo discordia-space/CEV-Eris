@@ -170,25 +170,25 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	allCasters -= src
 	. = ..()
 
-/obj/machinery/newscaster/update_icon()
+/obj/machinery/newscaster/on_update_icon()
 	if(!ispowered || isbroken)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
-			src.overlays.Cut()
-			src.overlays += image(src.icon, "crack3")
+			src.cut_overlays()
+			src.add_overlays(image(src.icon, "crack3"))
 		return
 
-	src.overlays.Cut() //reset overlays
+	src.cut_overlays() //reset overlays
 
 	if(news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
 		icon_state = "newscaster_wanted"
 		return
 
 	if(alert) //new message alert overlay
-		src.overlays += "newscaster_alert"
+		src.add_overlays("newscaster_alert")
 
 	if(hitstaken > 0) //Cosmetic damage overlay
-		src.overlays += image(src.icon, "crack[hitstaken]")
+		src.add_overlays(image(src.icon, "crack[hitstaken]"))
 
 	icon_state = "newscaster_normal"
 	return
@@ -935,8 +935,8 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 ////////////////////////////////////helper procs
 
 
-/obj/machinery/newscaster/proc/scan_user(mob/living/user as mob)
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
+/obj/machinery/newscaster/proc/scan_user(mob/living/user)
+	if(ishuman(user))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		var/obj/item/weapon/card/id/id = human_user.GetIdCard()
 		if(istype(id))                                      //Newscaster scans you

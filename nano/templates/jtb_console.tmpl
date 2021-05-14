@@ -1,0 +1,71 @@
+<h3>Tractor Beam Status</h3>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Tractor Beam:
+		</div>
+		<div class="itemContent">
+			{{if data.beam_state == 0}}
+				<span class="idle">IDLE</span>
+			{{else data.beam_state == 1}}
+				<span style="font-weight: bold;color: #336699">CAPTURING JUNK FIELD</span>
+			{{else data.beam_state == 2}}
+				<span style="font-weight: bold;color: #336699">STABILIZED</span>
+			{{else data.beam_state == 3}}
+				<span class="bad">COOLING DOWN</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+		<div class="itemContent">
+		{{if data.beam_state == 3}}
+			{{:helper.displayBar(data.bar_current, 0, data.bar_max, 'good')}}
+		{{else}}
+			{{:helper.displayBar(0, 0, data.bar_max, 'good')}}
+		{{/if}}
+		</div>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Asteroid Belt:
+		</div>
+		<div class="itemContent">
+			{{if data.asteroid_belt == 0}}
+				<span class="idle">NONE</span>
+			{{else data.asteroid_belt == 1}}
+				<span style="font-weight: bold;color: #336699">DETECTED</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Affinity:
+		</div>
+		<span class="average">{{:data.affinity}}</span>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="itemLabel">
+		Junk Field ID:
+	</div>
+	<span class="average">{{:data.junk_field_name}}</span>
+	<div class="item">
+		{{:helper.link('Choose Junk Field', 'arrowreturn-1-s', {'pick' : '1'}, data.can_capture ? null : 'disabled' , null)}}
+	</div>
+</div>
+<h3>Tractor Beam Control</h3>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+			{{:helper.link('Capture Junk Field', 'arrowthickstop-1-e', {'capture' : '1'}, data.can_capture ? null : 'disabled' , null)}}
+			{{:helper.link('Cancel Capture', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
+			{{:helper.link('Release Junk Field', 'alert', {'release' : '1'}, data.can_release ? null : 'disabled' , null)}}
+		</div>
+	</div>
+</div>

@@ -17,7 +17,7 @@
 	price_tag = 2200
 	damage_multiplier = 0.8 	 //25,6 lethal, 28 HV //damage
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
-	recoil_buildup = 6
+	recoil_buildup = 1.2
 
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
@@ -28,13 +28,13 @@
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/weapon/gun/projectile/automatic/drozd/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/projectile/automatic/drozd/on_update_icon()
+	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)
-		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
+		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide[silenced ? "_s" : ""]"
+		add_overlays("slide[silenced ? "_s" : ""]")
 
 /obj/item/weapon/gun/projectile/automatic/drozd/Initialize()
 	. = ..()

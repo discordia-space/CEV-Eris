@@ -12,6 +12,7 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 	matter = list(MATERIAL_BIOMATTER = 1)
+	bad_type = /obj/item/weapon/reagent_containers/pill
 
 /obj/item/weapon/reagent_containers/pill/Initialize()
 	. = ..()
@@ -47,7 +48,8 @@
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
-			O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
+			if(!user.stats.getPerk(PERK_FAST_FINGERS))
+				O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
 
 		qdel(src)
 

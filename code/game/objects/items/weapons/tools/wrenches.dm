@@ -22,7 +22,7 @@
 	matter = list(MATERIAL_STEEL = 1)
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 3
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/wrench/big_wrench
 	name = "big wrench"
@@ -31,8 +31,9 @@
 	w_class = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
+	force = WEAPON_FORCE_PAINFUL * 1.2
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
+	throwforce = WEAPON_FORCE_PAINFUL
 	degradation = 0.7
 	max_upgrades = 4
 	rarity_value = 24

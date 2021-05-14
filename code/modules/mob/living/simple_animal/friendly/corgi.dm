@@ -37,6 +37,7 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
+	spawn_frequency = 0//unique
 
 /mob/living/simple_animal/corgi/Life()
 	..()
@@ -50,14 +51,15 @@
 					set_dir(i)
 					sleep(1)
 
-/mob/living/simple_animal/corgi/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/corgi/beg(atom/thing, atom/holder)
 	visible_emote("stares at the [thing] that [holder] has with sad puppy eyes.")
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
+	spawn_blacklisted = TRUE//antag_item_targets
 
-/mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+/mob/living/simple_animal/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	if(istype(O, /obj/item/weapon/newspaper))
 		if(!stat)
 			visible_message(SPAN_NOTICE("[user] baps [name] on the nose with the rolled up [O.name]."))
@@ -74,7 +76,7 @@
 		..()
 
 /mob/living/simple_animal/corgi/regenerate_icons()
-	overlays = list()
+	set_overlays(list())
 
 	if(inventory_head)
 		var/head_icon_state = inventory_head.icon_state
@@ -83,7 +85,7 @@
 
 		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
 		if(head_icon)
-			overlays += head_icon
+			add_overlays(head_icon)
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
@@ -92,7 +94,7 @@
 
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
 		if(back_icon)
-			overlays += back_icon
+			add_overlays(back_icon)
 	return
 
 

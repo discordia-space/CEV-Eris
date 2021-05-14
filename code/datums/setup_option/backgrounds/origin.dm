@@ -44,6 +44,9 @@
 		STAT_COG = -10
 	)
 
+/datum/category_item/setup_option/background/origin/predstraza/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_SERBIAN)
 
 /datum/category_item/setup_option/background/origin/sich_prime
 	name = "Sich Prime"
@@ -77,6 +80,10 @@
 		STAT_COG = -10
 	)
 
+/datum/category_item/setup_option/background/origin/new_rome/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_LATIN)
+
 
 /datum/category_item/setup_option/background/origin/shimatengoku
 	name = "Shimatengoku"
@@ -93,6 +100,10 @@
 		STAT_VIG = 10,
 		STAT_COG = 5
 	)
+
+/datum/category_item/setup_option/background/origin/shimatengoku/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_NEOHONGO)
 
 
 /datum/category_item/setup_option/background/origin/hmss_destined
@@ -190,3 +201,20 @@
 		STAT_VIG = 10,
 		STAT_COG = 2
 	)
+
+
+/datum/category_item/setup_option/background/origin/eureka
+    name = "Eureka"
+    desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
+            And thus did the Syndicate and Nanotrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
+            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hansa and Neotheology both in the form of criminals. \
+            All in the name of saving what's left."
+
+    stat_modifiers = list(
+        STAT_ROB = -5,
+        STAT_TGH = 5,
+        STAT_BIO = 10,
+        STAT_MEC = -10,
+        STAT_VIG = 10,
+        STAT_COG = -5
+    )

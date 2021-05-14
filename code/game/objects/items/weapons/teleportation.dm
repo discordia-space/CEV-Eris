@@ -18,11 +18,13 @@
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
+	spawn_blacklisted = TRUE///obj/item/weapon/hand_tele
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/portal_type = /obj/effect/portal
-	var/portal_fail_chance = null
+	var/portal_fail_chance
 	var/cell_charge_per_attempt = 33
+	var/entropy_value = 1  //for bluespace entropy
 
 /obj/item/weapon/hand_tele/Initialize()
 	. = ..()
@@ -56,7 +58,7 @@
 				L["[com.id] (Inactive)"] = com.locked
 	var/list/turfs = list()
 	var/turf/TLoc = get_turf(src)
-	for(var/turf/T in trange(10, TLoc) - TLoc)
+	for(var/turf/T in RANGE_TURFS(10, TLoc) - TLoc)
 		if(T.x > world.maxx - 8 || T.x < 8) //putting them at the edge is dumb
 			continue
 		if(T.y > world.maxy - 8 || T.y < 8)
@@ -71,6 +73,7 @@
 	to_chat(user, SPAN_NOTICE("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
+	P.entropy_value += entropy_value
 	if(portal_fail_chance)
 		P.failchance = portal_fail_chance
 	src.add_fingerprint(user)
@@ -95,6 +98,8 @@
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
+	entropy_value = 3 //for bluespace entropy
+	spawn_blacklisted = FALSE
 	var/calibration_required = TRUE
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
@@ -106,7 +111,7 @@
 				user.drop_from_inventory(user.get_active_hand())
 				user.drop_from_inventory(user.get_inactive_hand())
 				if(teleport_location)
-					do_teleport(user, teleport_location, 1)
+					go_to_bluespace(get_turf(src), entropy_value, TRUE, user, teleport_location, 1)
 					return
 			if(do_after(user, 30))
 				if(calibration_required)
@@ -136,14 +141,15 @@
 	icon_state = "telespear"
 	item_state = "telespear"
 	slot_flags = SLOT_BACK
+	var/entropy_value = 1 //for bluespace entropy
 
-/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))
-		do_teleport(user, teleport_location, 1)
+		go_to_bluespace(get_turf(src), entropy_value, FALSE, user, teleport_location, 1)
 	else
-		do_teleport(M, teleport_location, 1)
+		go_to_bluespace(get_turf(src), entropy_value, FALSE, M, teleport_location, 1)
 	qdel(src)
 	var/obj/item/stack/rods/R = new(M.loc)
 	user.put_in_active_hand(R)

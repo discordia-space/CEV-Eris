@@ -12,7 +12,7 @@
 /obj/spawner/closet/tech
 	name = "random technical closet"
 	icon_state = "closet-orange"
-	tags_to_spawn = list(SPAWN_TECHNICAL_CLOSET)
+	tags_to_spawn = list(SPAWN_CLOSET_TECHNICAL)
 
 /obj/spawner/closet/tech/low_chance
 	name = "low chance random technical closet"
@@ -32,7 +32,7 @@
 /obj/spawner/closet/maintloot
 	name = "random maint loot closet"
 	icon_state = "closet-black"
-	tags_to_spawn = list(SPAWN_RANDOM_CLOSET)
+	tags_to_spawn = list(SPAWN_CLOSET_RANDOM)
 	exclusion_paths = list(/obj/structure/closet/random/hostilemobs/beacon)
 	allow_blacklist = TRUE
 

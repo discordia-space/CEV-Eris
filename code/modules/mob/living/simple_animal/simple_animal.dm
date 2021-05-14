@@ -7,7 +7,7 @@
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-
+	bad_type = /mob/living/simple_animal
 	var/datum/component/spawner/nest
 
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
@@ -116,19 +116,19 @@
 
 	verbs -= /mob/verb/observe
 
-	if (mob_size)
+	if(mob_size)
 		nutrition_step = mob_size * 0.03 * metabolic_factor
 		bite_factor = mob_size * 0.1
 		max_nutrition *= 1 + (nutrition_step*4)//Max nutrition scales faster than costs, so bigger creatures eat less often
-		reagents = new/datum/reagents(stomach_size_mult*mob_size, src)
+		create_reagents(stomach_size_mult*mob_size)
 	else
-		reagents = new/datum/reagents(20, src)
+		create_reagents(20)
 
 /mob/living/simple_animal/Move(NewLoc, direct)
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != DEAD)
-			src.nutrition -= nutrition_step
+			src.adjustNutrition(-nutrition_step)
 
 /mob/living/simple_animal/Released()
 	//These will cause mobs to immediately do things when released.
@@ -161,22 +161,26 @@
 			to_chat(user, SPAN_NOTICE("It looks hungry."))
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
 			to_chat(user, "It looks full and contented.")
-	if (health < maxHealth * 0.5)
-		to_chat(user, SPAN_DANGER("It looks badly wounded!"))
+	if (health < maxHealth * 0.25)
+		to_chat(user, SPAN_DANGER("It's grievously wounded!"))
+	else if (health < maxHealth * 0.50)
+		to_chat(user, SPAN_DANGER("It's badly wounded!"))
+	else if (health < maxHealth * 0.75)
+		to_chat(user, SPAN_WARNING("It's wounded."))
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It looks wounded."))
+		to_chat(user, SPAN_WARNING("It's a bit wounded."))
 
 /mob/living/simple_animal/Life()
-	..()
+	.=..()
 
 	if(!stasis)
 
-		if(stat == DEAD)
-			return 0
+		if(!.)
+			return FALSE
 
 		if(health <= 0)
 			death()
-			return
+			return FALSE
 
 		if(health > maxHealth)
 			health = maxHealth
@@ -250,7 +254,7 @@
 					speak_audio()
 
 			if(incapacitated())
-				return 1
+				return TRUE
 
 			//Movement
 			turns_since_move++
@@ -264,7 +268,7 @@
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
 
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
 	if(islist(message))
@@ -282,7 +286,7 @@
 /mob/living/simple_animal/proc/process_food()
 	if (hunger_enabled)
 		if (nutrition)
-			nutrition -= nutrition_step//Bigger animals get hungry faster
+			adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
 			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
 		else
 			if (prob(3))
@@ -424,7 +428,7 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 	switch (severity)
 		if (1)
 			adjustBruteLoss(500)

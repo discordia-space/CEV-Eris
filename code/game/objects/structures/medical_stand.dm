@@ -29,33 +29,33 @@
 	contained = new mask_type (src)
 	update_icon()
 
-/obj/structure/medical_stand/update_icon()
-	overlays.Cut()
+/obj/structure/medical_stand/on_update_icon()
+	cut_overlays()
 
 	if (tank)
 		if (breather)
-			overlays += "tube_active"
+			add_overlays("tube_active")
 		else
-			overlays += "tube"
+			add_overlays("tube")
 		if(istype(tank,/obj/item/weapon/tank/anesthetic))
-			overlays += "tank_anest"
+			add_overlays("tank_anest")
 		else if(istype(tank,/obj/item/weapon/tank/nitrogen))
-			overlays += "tank_nitro"
+			add_overlays("tank_nitro")
 		else if(istype(tank,/obj/item/weapon/tank/oxygen))
-			overlays += "tank_oxyg"
+			add_overlays("tank_oxyg")
 		else if(istype(tank,/obj/item/weapon/tank/plasma))
-			overlays += "tank_plasma"
+			add_overlays("tank_plasma")
 		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
-		//	overlays += "tank_hydro"
+		//	add_overlays("tank_hydro")
 		else
-			overlays += "tank_other"
+			add_overlays("tank_other")
 
 	if(beaker)
-		overlays += "beaker"
+		add_overlays("beaker")
 		if(attached)
-			overlays += "line_active"
+			add_overlays("line_active")
 		else
-			overlays += "line"
+			add_overlays("line")
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
@@ -70,7 +70,7 @@
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
 			if (filling.icon)
 				filling.icon += reagents.get_color()
-				overlays += filling
+				add_overlays(filling)
 
 /obj/structure/medical_stand/Destroy()
 	STOP_PROCESSING(SSobj,src)
@@ -295,15 +295,15 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool))
-		if (valve_opened)
+/obj/structure/medical_stand/attackby(obj/item/weapon/W, mob/user)
+	if(istool(W))
+		if(valve_opened)
 			to_chat(user, SPAN_WARNING("Close the valve first."))
 			return
-		if (tank)
+		if(tank)
 			if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
-			if (!is_loosen)
+			if(!is_loosen)
 				is_loosen = TRUE
 			else
 				is_loosen = FALSE
@@ -341,7 +341,7 @@
 	else
 		return ..()
 
-/obj/structure/medical_stand/examine(var/mob/user)
+/obj/structure/medical_stand/examine(mob/user)
 	. = ..()
 
 	if (get_dist(src, user) > 2)
@@ -427,11 +427,11 @@
 				return
 			if(H.species.flags & NO_BLOOD)
 				return
-			if(!H.should_have_organ(BP_HEART))
+			if(!H.should_have_process(OP_HEART))
 				return
 
 			// If the human is losing too much blood, beep.
-			if(H.get_blood_volume() < BLOOD_VOLUME_SAFE * 1.05)
+			if(H.get_blood_volume() < (H.total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER) * 1.05)
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = H.take_blood(beaker,amount)

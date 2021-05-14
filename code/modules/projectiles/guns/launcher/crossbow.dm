@@ -57,20 +57,20 @@
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
 	twohanded = TRUE
-	rarity_value = 48
+	rarity_value = 35//no price tag,then high rarirty
 
 	var/obj/item/bolt
-	var/tension = 0                         // Current draw on the bow.
-	var/max_tension = 5                     // Highest possible tension.
-	var/release_speed = 5                   // Speed per unit of tension.
-	var/obj/item/weapon/cell/large/cell    // Used for firing superheated rods.
-	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
-	var/draw_time = 20							// How long it takes to increase the draw on the bow by one "tension"
+	var/tension = 0						// Current draw on the bow.
+	var/max_tension = 5					// Highest possible tension.
+	var/release_speed = 5				// Speed per unit of tension.
+	var/obj/item/weapon/cell/large/cell	// Used for firing superheated rods.
+	var/current_user					// Used to check if the crossbow has changed hands since being drawn.
+	var/draw_time = 20					// How long it takes to increase the draw on the bow by one "tension"
 
 /obj/item/weapon/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed
 
-/obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
+/obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user)
 	if(tension <= 0)
 		to_chat(user, SPAN_WARNING("\The [src] is not drawn back!"))
 		return null
@@ -189,7 +189,7 @@
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
 
-/obj/item/weapon/gun/launcher/crossbow/update_icon()
+/obj/item/weapon/gun/launcher/crossbow/on_update_icon()
 	if(tension > 1)
 		icon_state = "crossbow-drawn"
 	else if(bolt)
@@ -207,7 +207,7 @@
 
 	var/buildstate = 0
 
-/obj/item/weapon/crossbowframe/update_icon()
+/obj/item/weapon/crossbowframe/on_update_icon()
 	icon_state = "crossbowframe[buildstate]"
 
 /obj/item/weapon/crossbowframe/examine(mob/user)
@@ -311,6 +311,7 @@
 	icon_state = "rxb"
 	slot_flags = null
 	draw_time = 5
+	spawn_blacklisted = TRUE
 	var/stored_matter = 0
 	var/max_stored_matter = 60
 	var/boltcost = 5
@@ -323,7 +324,7 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
-		flick("[icon_state]-empty", src)
+		FLICK("[icon_state]-empty", src)
 
 /obj/item/weapon/gun/launcher/crossbow/RCD/attack_self(mob/living/user)
 	if(tension)
@@ -357,17 +358,17 @@
 		update_icon()
 		return
 
-/obj/item/weapon/gun/launcher/crossbow/RCD/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/launcher/crossbow/RCD/on_update_icon()
+	cut_overlays()
 	if(bolt)
-		overlays += "rxb-bolt"
+		add_overlays("rxb-bolt")
 	var/ratio = 0
 	if(stored_matter < boltcost)
 		ratio = 0
 	else
 		ratio = stored_matter / max_stored_matter
 		ratio = max(round(ratio, 0.25) * 100, 25)
-	overlays += "rxb-[ratio]"
+	add_overlays("rxb-[ratio]")
 	if(tension > 1)
 		icon_state = "rxb-drawn"
 	else

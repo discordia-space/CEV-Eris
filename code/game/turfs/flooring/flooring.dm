@@ -25,6 +25,7 @@ var/list/flooring_types
 
 	var/footstep_sound = "floor"
 	var/hit_sound = null
+	var/footstep_type
 
 	var/has_base_range
 	var/has_damage_range

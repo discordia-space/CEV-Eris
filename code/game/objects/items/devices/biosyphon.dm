@@ -17,8 +17,8 @@
 	var/last_produce = 0
 	var/cooldown = 15 MINUTES
 
-/obj/item/biosyphon/New()
-	..()
+/obj/item/biosyphon/Initialize()
+	. = ..()
 	GLOB.all_faction_items[src] = GLOB.department_security
 	START_PROCESSING(SSobj, src)
 
@@ -27,6 +27,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.ironhammer_faction_item_loss++
 	. = ..()
 
 /obj/item/biosyphon/Process()

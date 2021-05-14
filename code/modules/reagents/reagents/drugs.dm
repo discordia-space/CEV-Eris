@@ -8,11 +8,22 @@
 	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(sanity_gain)
+	if(sanity_gain && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(istype(H))
-			H.sanity.onDrug(src, effect_multiplier)
-		SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+		H.sanity.onDrug(src, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+
+/datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(sanity_gain && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.sanity.onDrug(src, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+
+/datum/reagent/drug/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	if(sanity_gain && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.sanity.onDrug(src, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/on_mob_delete(mob/living/L)
 	..()
@@ -109,6 +120,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 
 /datum/reagent/drug/mindwipe
@@ -125,6 +137,7 @@
 	sanity_gain = 2
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 	M.druggy = max(M.druggy, 5 * effect_multiplier)
 	M.make_jittery(10 * effect_multiplier)
@@ -132,13 +145,11 @@
 	M.confused = max(M.confused, 20 * effect_multiplier)
 	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
-	if(ishuman(M))
+	if(ishuman(M) && (prob(5 * effect_multiplier)))
 		var/mob/living/carbon/human/affected = M
-		if(prob(5 * effect_multiplier))
-			for(var/datum/breakdown/B in affected.sanity.breakdowns)
-				if(B)
-					B.finished = TRUE
-					to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
+		for(var/datum/breakdown/B in affected.sanity.breakdowns)
+			B.finished = TRUE
+			to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
 
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"
@@ -206,7 +217,7 @@
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
 
-/datum/reagent/drug/nicotine/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/drug/nicotine/overdose(mob/living/carbon/M, alien)
 	M.add_side_effect("Headache", 11)
 	if(prob(5))
 		M.vomit()
@@ -228,6 +239,7 @@
 
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
@@ -250,6 +262,7 @@
 	addiction_chance = 30
 
 /datum/reagent/drug/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
 	if(prob(2))
 		spawn

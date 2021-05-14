@@ -16,7 +16,7 @@
 /obj/landmark/proc/delete()
 	delete_me = TRUE
 
-/obj/landmark/Initialize()
+/obj/landmark/Initialize(mapload)
 	. = ..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL

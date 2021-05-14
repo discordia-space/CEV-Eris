@@ -4,6 +4,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/weapon/reagent_containers
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
@@ -225,7 +226,7 @@
 				containers.Remove(C)
 				continue
 
-			var/amount = min(C.reagents.get_free_space(), amount_to_transfer)
+			var/amount = min(C.reagents.get_free_space(), min(amount_to_transfer, R.volume))
 			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
 				C.reagents.add_reagent(R.id, amount, R.get_data())
 				reagents.remove_reagent(R.id, amount)

@@ -27,12 +27,13 @@
 
 // Claim machine ID
 /obj/machinery/cash_register/New()
+	. = ..()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 
-/obj/machinery/cash_register/examine(mob/user as mob)
+/obj/machinery/cash_register/examine(mob/user)
 	..(user)
 	if(cash_open)
 		if(cash_stored)
@@ -49,7 +50,7 @@
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
 			cash_stored = 0
-			overlays -= "register_cash"
+			remove_overlays("register_cash")
 		else
 			open_cash_box()
 	else
@@ -186,7 +187,7 @@
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
 			cash_stored += SC.worth
-			overlays |= "register_cash"
+			associate_with_overlays("register_cash")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.drop_from_inventory(SC)
@@ -450,7 +451,7 @@
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
-	flick("register_approve", src)
+	FLICK("register_approve", src)
 	reset_memory()
 	updateDialog()
 
@@ -473,15 +474,15 @@
 
 	if(cash_open)
 		cash_open = 0
-		overlays -= "register_approve"
-		overlays -= "register_open"
-		overlays -= "register_cash"
+		remove_overlays("register_approve")
+		remove_overlays("register_open")
+		remove_overlays("register_cash")
 	else if(!cash_locked)
 		cash_open = 1
-		overlays += "register_approve"
-		overlays += "register_open"
+		add_overlays("register_approve")
+		add_overlays("register_open")
 		if(cash_stored)
-			overlays += "register_cash"
+			add_overlays("register_cash")
 	else
 		to_chat(usr, SPAN_WARNING("The cash box is locked."))
 

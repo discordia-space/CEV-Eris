@@ -62,7 +62,7 @@ var/global/list/image/splatter_cache=list()
 	if(world.time > drytime)
 		dry()
 
-/obj/effect/decal/cleanable/blood/update_icon()
+/obj/effect/decal/cleanable/blood/on_update_icon()
 	if(basecolor == "rainbow") basecolor = get_random_colour(1)
 	color = basecolor
 
@@ -87,11 +87,11 @@ var/global/list/image/splatter_cache=list()
 			if(!S.blood_DNA)
 				S.blood_DNA = list()
 				S.blood_overlay.color = basecolor
-				S.overlays += S.blood_overlay
+				S.add_overlays(S.blood_overlay)
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
-				S.overlays.Cut()
-				S.overlays += S.blood_overlay
+				S.cut_overlays()
+				S.add_overlays(S.blood_overlay)
 			S.blood_DNA |= blood_DNA.Copy()
 
 	else if (hasfeet)//Or feet
@@ -132,8 +132,8 @@ var/global/list/image/splatter_cache=list()
 		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
 
 /obj/effect/decal/cleanable/blood/splatter
-        random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
-        amount = 2
+    random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+    amount = 2
 
 /obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
@@ -182,7 +182,7 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFFFFF"
 
-/obj/effect/decal/cleanable/blood/gibs/update_icon()
+/obj/effect/decal/cleanable/blood/gibs/on_update_icon()
 
 	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
@@ -194,8 +194,8 @@ var/global/list/image/splatter_cache=list()
 	blood.Blend(basecolor,ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
-	overlays += giblets
+	cut_overlays()
+	add_overlays(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibup1","gibup1","gibup1")
@@ -247,7 +247,7 @@ var/global/list/image/splatter_cache=list()
 //This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
 /obj/effect/decal/cleanable/blood/proc/fall_to_floor()
 	if (istype(loc, /turf/simulated/open))
-		anchored = 0 //Anchored things can't fall
+		anchored = FALSE //Anchored things can't fall
 		while (istype(loc, /turf/simulated/open))
 			var/turf/simulated/open/T = loc
 			T.fallThrough(src)

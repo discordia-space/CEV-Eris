@@ -7,19 +7,18 @@
 	icon_state = "atreides"
 	item_state = "atreides"
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
+	can_dual = TRUE
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = "/obj/item/ammo_casing/pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
-	price_tag = 1200
-	rarity_value = 19.2
+	price_tag = 800
 	damage_multiplier = 0.8
-	recoil_buildup = 4
+	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -28,7 +27,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/atreides/update_icon()
+/obj/item/weapon/gun/projectile/automatic/atreides/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

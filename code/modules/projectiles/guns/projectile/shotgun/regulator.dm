@@ -12,6 +12,5 @@
 	price_tag = 1500
 	damage_multiplier = 1.15
 	penetration_multiplier = 0.9
-	recoil_buildup = 16
+	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
-	rarity_value = 20

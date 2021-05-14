@@ -11,6 +11,10 @@
 	var/nitrogen = 0
 	var/plasma = 0
 
+	var/list/initial_gas
+
+	var/footstep_type
+
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
@@ -25,6 +29,8 @@
 	var/blessed = 0             // Has the turf been blessed?
 
 	var/list/decals
+
+	var/movement_delay
 
 	var/is_hole = FALSE			// If true, turf is open to vertical transitions through it.
 								// This is a more generic way of handling open space turfs
@@ -236,15 +242,13 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/contains_dense_objects()
+/turf/proc/contains_dense_objects(unincludehumans)
 	if(density)
 		return 1
 	for(var/atom/A in src)
-		if(A.density && !(A.flags & ON_BORDER))
+		if(A.density && !(A.flags & ON_BORDER) && (unincludehumans && !ishuman(A)))
 			return 1
 	return 0
-
-
 
 /turf/get_footstep_sound(var/mobtype)
 
@@ -258,18 +262,18 @@ var/const/enterloopsanity = 100
 
 	return sound
 
-
 /turf/simulated/floor/get_footstep_sound(var/mobtype)
 
 	var/sound
 
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	sound =  footstep_sound("floor")
 	if(catwalk)
 		sound = footstep_sound("catwalk")
 	else if(flooring)
 		sound = footstep_sound(flooring.footstep_sound)
 	else if(initial_flooring)
-		var/decl/flooring/floor = initial_flooring
+		var/decl/flooring/floor = decls_repository.get_decl(initial_flooring)
 		sound = footstep_sound(floor.footstep_sound)
 
 	return sound

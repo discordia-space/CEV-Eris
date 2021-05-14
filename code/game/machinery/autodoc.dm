@@ -1,7 +1,4 @@
 /obj/machinery/autodoc
-	var/mob/living/carbon/occupant
-	var/datum/autodoc/autodoc_processor
-	var/locked
 	name = "Autodoc"
 	icon = 'icons/obj/autodoc.dmi'
 	icon_state = "powered_off"
@@ -11,6 +8,9 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
+	var/mob/living/carbon/occupant
+	var/datum/autodoc/autodoc_processor
+	var/locked
 
 /obj/machinery/autodoc/New()
 	. = ..()
@@ -139,7 +139,7 @@
 /obj/machinery/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
 
-/obj/machinery/autodoc/update_icon()
+/obj/machinery/autodoc/on_update_icon()
 	if(stat & (NOPOWER|BROKEN) || !occupant)
 		icon_state = "powered_off"
 	else

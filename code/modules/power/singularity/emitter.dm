@@ -5,7 +5,7 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
@@ -57,7 +57,7 @@
 	wifi_receiver = null
 	return ..()
 
-/obj/machinery/power/emitter/update_icon()
+/obj/machinery/power/emitter/on_update_icon()
 	if (active && powernet && avail(active_power_usage))
 		icon_state = "emitter_+a"
 	else

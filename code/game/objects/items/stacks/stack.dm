@@ -13,15 +13,16 @@
 	icon = 'icons/obj/stack/items.dmi'
 	gender = PLURAL
 	origin_tech = list(TECH_MATERIAL = 1)
+	bad_type = /obj/item/stack
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/stacktype //determines whether different stack types can merge
-	var/build_type = null //used when directly applied to a turf
+	var/build_type //used when directly applied to a turf
 	var/uses_charge = 0
-	var/list/charge_costs = null
-	var/list/datum/matter_synth/synths = null
+	var/list/charge_costs
+	var/list/datum/matter_synth/synths
 	var/consumable = TRUE	// Will the stack disappear entirely once the amount is used up?
 	var/splittable = TRUE	// Is the stack capable of being splitted?
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
@@ -49,7 +50,7 @@
 		amount = round(amount, 1) //Just in case
 	update_icon()
 
-/obj/item/stack/update_icon()
+/obj/item/stack/on_update_icon()
 	if(novariants)
 		return ..()
 	if(amount <= (max_amount * (1/3)))

@@ -86,12 +86,12 @@
 		P.info += "<br>"
 		P.info += "\icon[scanned_object] [results]"
 		P.stamped = list(/obj/item/weapon/stamp)
-		P.overlays = list("paper_stamped")
+		P.set_overlays(list("paper_stamped"))
 		if(scanned_object)
 			P.artifact_type = scanned_object.type
 			if(istype(scanned_object, /obj/machinery/artifact))
 				var/obj/machinery/artifact/A = scanned_object
-				A.anchored = 0
+				A.anchored = FALSE
 				A.being_used = 0
 				scanned_object = null
 				if(A.my_effect)

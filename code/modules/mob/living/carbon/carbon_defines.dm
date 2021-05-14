@@ -14,6 +14,11 @@
 	//Active emote/pose
 	var/pose
 
+	//Values from all base organs should add up to this
+	var/total_blood_req = 40
+	var/total_oxygen_req = 50
+	var/total_nutriment_req = DEFAULT_HUNGER_FACTOR
+
 	var/datum/reagents/metabolism/bloodstr
 	var/datum/reagents/metabolism/ingested
 	var/datum/reagents/metabolism/touching
@@ -27,6 +32,7 @@
 	nutrition = 400//Carbon
 
 	var/is_watching = TRUE  //used for remote viewing of multiz structures
+	var/can_multiz_pb = FALSE // used for point-blanking people that camp ladders.
 
 	var/obj/item/weapon/tank/internal //Human/Monkey
 

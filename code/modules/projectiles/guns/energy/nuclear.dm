@@ -14,8 +14,8 @@
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', icon="stun"),
-		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg', icon="kill"),
+		STUNBOLT,
+		LETHAL
 		)
 
 	var/lightfail = 0
@@ -31,29 +31,12 @@
 		update_icon()
 	return 1
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
-	var/ratio = cell.charge / cell.maxcharge
-	ratio = round(ratio, 0.25) * 100
-	overlays += "nucgun-[ratio]"
-	set_item_state("-[ratio]")
-
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
-	if(lightfail)
-		overlays += "nucgun-medium"
-	else if ((cell.charge/cell.maxcharge) <= 0.5)
-		overlays += "nucgun-light"
-	else
-		overlays += "nucgun-clean"
-
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "nucgun-stun"
 		if("lethal") overlays += "nucgun-kill"
 
-/obj/item/weapon/gun/energy/gun/nuclear/update_icon()
-	overlays.Cut()
-	if(cell)
-		update_charge()
-		update_reactor()
+/obj/item/weapon/gun/energy/gun/nuclear/on_update_icon()
+	cut_overlays()
 	update_mode()

@@ -16,7 +16,7 @@
 	max_upgrades = 1 //it's not even a tool
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/nailstick
 	name = "nailed stick"
@@ -32,7 +32,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	max_upgrades = 5
 	tool_qualities = list(QUALITY_HAMMERING = 10)
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/hatchet
 	name = "hatchet"
@@ -50,7 +50,6 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 20)
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/fireaxe
 	name = "fire axe"
@@ -69,7 +68,6 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
-	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 	rarity_value = 48
 
 /obj/item/weapon/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
@@ -137,13 +135,25 @@
 	spawn_tags = SPAWN_TAG_SWORD
 	rarity_value = 25
 
+/obj/item/weapon/tool/sword/saber
+	name = "officer's saber"
+	desc = "A saber with golden grip, for the real heads of this ship."
+	icon_state = "saber"
+	item_state = "saber"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
+	slot_flags = SLOT_BELT
+	force = WEAPON_FORCE_BRUTAL
+	armor_penetration = ARMOR_PEN_MODERATE
+	spawn_blacklisted = TRUE
+	price_tag = 10000
+
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"
 	desc = "Modern japanese-style blade that has no curve to it. This one looks pretty sharp."
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = WEAPON_FORCE_BRUTAL
+	force = WEAPON_FORCE_DANGEROUS * 1.5
 	armor_penetration = ARMOR_PEN_MODERATE
 	rarity_value = 35
 
@@ -153,6 +163,7 @@
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"
 	toggleable = TRUE
+	max_upgrades = 1
 
 	suitable_cell = /obj/item/weapon/cell/small
 
@@ -161,7 +172,7 @@
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switched_on_force = WEAPON_FORCE_LETHAL
+	switched_on_force = WEAPON_FORCE_BRUTAL
 	rarity_value = 60
 	spawn_blacklisted = TRUE
 
@@ -176,14 +187,14 @@
 	embed_mult = initial(embed_mult)
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 
-/obj/item/weapon/tool/sword/katana/nano/update_icon()
+/obj/item/weapon/tool/sword/katana/nano/on_update_icon()
 	..()
 	if(cell)
-		overlays += "[icon_state]_cell"
+		add_overlays("[icon_state]_cell")
 	if(switched_on)
-		overlays += "[icon_state]_power_on"
+		add_overlays("[icon_state]_power_on")
 	else
-		overlays += "[icon_state]_power_off"
+		add_overlays("[icon_state]_power_off")
 
 //Flails
 /obj/item/weapon/tool/chainofcommand

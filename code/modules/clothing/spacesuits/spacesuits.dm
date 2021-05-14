@@ -33,6 +33,7 @@
 	price_tag = 100
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/clothing/head/space
+	style = STYLE_NEG_HIGH
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -96,6 +97,7 @@
 	species_restricted = list("exclude")
 	equip_delay = 4 SECONDS
 	bad_type = /obj/item/clothing/suit/space
+	style = STYLE_NEG_HIGH
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
 /obj/item/clothing/suit/space/equipped(mob/M)

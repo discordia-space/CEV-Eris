@@ -1,11 +1,13 @@
-#define good_data(nam, rand_list) list("name" = nam, "amount_range" = rand_list)
+#define good_data(nam, randList) list("name" = nam, "amount_range" = randList)
 #define custom_good_name(nam) good_data(nam, null)
-#define custom_good_amount_range(rand_list) good_data(null, rand_list)
+#define custom_good_amount_range(randList) good_data(null, randList)
+
+#define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
 /datum/trade_station
 	var/name
 	var/desc
-	var/list/icon_states = "station"
+	var/list/icon_states = "htu_station"
 	var/offer_type
 	var/offer_price
 	var/offer_amount
@@ -14,10 +16,10 @@
 	var/spawn_probability = 30
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
-	var/list/linked_with //trade 'stations' or 'station' that must spawn with //list or path
+	var/commision = 200 //Cost of trading more than one thing or cost for crate
 
 	var/list/forced_overmap_zone //list(list(minx, maxx), list(miny, maxy))
-	var/ovemap_opacity = 0
+	var/overmap_opacity = 0
 
 	var/list/name_pool = list()
 
@@ -37,7 +39,7 @@
 
 /datum/trade_station/proc/init_src()
 	if(name)
-		crash_with("Some retard gived trade station a name before init_src, not thought name_pool. ([type])")
+		crash_with("Some retard gived trade station a name before init_src, overriding name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
 		name_pool.Remove(S.name)
 		if(!length(name_pool))
@@ -46,6 +48,8 @@
 			break
 	name = pick(name_pool)
 	desc = name_pool[name]
+
+	AssembleAssortiment()
 
 	update_tick()
 
@@ -63,10 +67,33 @@
 	if(start_discovered)
 		SStrade.discovered_stations += src
 
+/datum/trade_station/proc/AssembleAssortiment()
+	for(var/list/categoryName in assortiment)
+		if(categoryName?.len >= 2) // ?. len and not checking islist() cuz only lists have var/len and ?. check it's isnull
+			var/new_category_name
+			if(categoryName.Find("name"))
+				new_category_name = categoryName["name"]
+			else
+				continue
+			var/list/content
+			var/list/category_content_tag = (categoryName.Find("tags") ? categoryName["tags"] : null)
+			if(islist(assortiment[categoryName]))
+				content = assortiment[categoryName]
+			else
+				content = list()
+			content.Add(SSspawn_data.valid_candidates(category_content_tag,,TRUE))
+
+			if(istext(new_category_name) && islist(content))
+				var/categoryName_index = assortiment.Find(categoryName)
+				assortiment.Cut(categoryName_index, categoryName_index + 1)
+
+				assortiment.Insert(categoryName_index, new_category_name)
+				assortiment[new_category_name] = content
+
 /datum/trade_station/proc/update_tick()
 	offer_tick()
 	goods_tick()
-	addtimer(CALLBACK(src, .proc/update_tick), rand(15,25) MINUTES)
+	addtimer(CALLBACK(src, .proc/update_tick), rand(15,25) MINUTES, TIMER_STOPPABLE)
 
 /datum/trade_station/proc/goods_tick()
 	for(var/i in assortiment)
@@ -112,6 +139,7 @@
 /datum/trade_station/proc/regain_trade_stations_budget(budget = spawn_cost)
 	if(!spawn_always)
 		SStrade.trade_stations_budget += budget
+
 /datum/trade_station/Destroy()
 	SStrade.all_stations -= src
 	SStrade.discovered_stations -= src
@@ -122,10 +150,11 @@
 	overmap_location = locate(x, y, z)
 
 	overmap_object = new(overmap_location)
-	overmap_object.name = name
-	overmap_object.icon_state = pick(icon_states)
-	overmap_object.opacity = ovemap_opacity
+	overmap_object.opacity = overmap_opacity
 	overmap_object.dir = pick(rand(1,2), 4, 8)
+
+	overmap_object.name_stages = list(name, "unknown station", "unknown spatial phenomenon")
+	overmap_object.icon_stages = list(pick(icon_states), "station", "poi")
 
 	if(!start_discovered)
 		GLOB.entered_event.register(overmap_location, src, .proc/discovered)

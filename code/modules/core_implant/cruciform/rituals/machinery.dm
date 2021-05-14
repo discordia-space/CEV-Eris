@@ -12,6 +12,7 @@
 	name = "Resurrection"
 	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
 	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
+	var/clone_damage = 60
 
 /datum/ritual/cruciform/machines/resurrection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/OBJS = get_front(user)
@@ -30,10 +31,49 @@
 		fail("Cloner is off.", user, C)
 		return FALSE
 
-	pod.start()
+	if(pod.start())
+		var/damage_modifier = 1
+		var/obj/item/weapon/implant/core_implant/cruciform/C_user = user.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+		if(C_user.get_module(CRUCIFORM_INQUISITOR) || (C_user.get_module(CRUCIFORM_PRIEST) && C_user.get_module(CRUCIFORM_REDLIGHT)))
+			damage_modifier = 0
+		else if(C_user.get_module(CRUCIFORM_PRIEST))
+			damage_modifier = 0.5
+		pod.clone_damage = clone_damage * damage_modifier
 	return TRUE
 
+/datum/ritual/cruciform/machines/cruciformforge
+	name = "Make cruciform"
+	phrase = "Nos nostrae initium creatores."
+	desc = "A ritual, that commands cruciform forge to make a new empty cruciform."
 
+/datum/ritual/cruciform/machines/cruciformforge/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/neotheology/cruciformforge/forge = locate(/obj/machinery/neotheology/cruciformforge) in OBJS
+
+	if(!forge)
+		fail("You fail to find any cruciform forge here.", user, C)
+		return FALSE
+
+	if(forge.working)
+		fail("[forge] is already working!", user, C)
+		return FALSE
+
+	if(forge.stat & NOPOWER)
+		fail("[forge] is off.", user, C)
+		return FALSE
+
+	for(var/_material in forge.needed_material)
+		if(!(_material in forge.stored_material))
+			fail("[forge] does not have a [_material] to produce cruciform.", user, C)
+			return FALSE
+
+		if(forge.needed_material[_material] > forge.stored_material[_material])
+			fail("[forge] does not have enough [_material] to produce cruciform.", user, C)
+			return FALSE
+
+	forge.produce()
+	return TRUE
 
 ////////////////////////BIOMATTER MANIPULATION MULTI MACHINES RITUALS
 

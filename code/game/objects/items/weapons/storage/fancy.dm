@@ -14,15 +14,16 @@
  *		MRE containers
  */
 
-/obj/item/weapon/storage/fancy/
+/obj/item/weapon/storage/fancy
 	icon = 'icons/obj/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	max_storage_space = 8
+	bad_type = /obj/item/weapon/storage/fancy
 	var/icon_type = "donut"
 	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
-/obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
+/obj/item/weapon/storage/fancy/on_update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "[src.icon_type]box[total_contents]"
 	return
@@ -50,6 +51,7 @@
 	icon_type = "egg"
 	name = "egg box"
 	storage_slots = 12
+	item_obj = /obj/item/weapon/reagent_containers/food/snacks/egg
 	can_hold = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
 		/obj/item/weapon/reagent_containers/food/snacks/boiledegg
@@ -57,7 +59,7 @@
 
 /obj/item/weapon/storage/fancy/egg_box/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
+		new item_obj(src)
 
 //MRE food
 /obj/item/weapon/storage/fancy/mre_cracker
@@ -65,13 +67,14 @@
 	name = "enriched crackers pack"
 	storage_slots = 5
 	icon_type = "crackers"
+	item_obj = /obj/item/weapon/reagent_containers/food/snacks/mre_cracker
 	can_hold = list(
 		/obj/item/weapon/reagent_containers/food/snacks/mre_cracker
 		)
 
 /obj/item/weapon/storage/fancy/mre_cracker/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/reagent_containers/food/snacks/mre_cracker(src)
+		new item_obj(src)
 
 /*
  * Candle Box
@@ -86,11 +89,13 @@
 	item_state = "candlebox5"
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
+	storage_slots = 5
+	item_obj = /obj/item/weapon/flame/candle
 
 
 /obj/item/weapon/storage/fancy/candle_box/populate_contents()
-	for(var/i in 1 to 5)
-		new /obj/item/weapon/flame/candle(src)
+	for(var/i in 1 to storage_slots)
+		new item_obj(src)
 
 /*
  * Crayon Box
@@ -116,11 +121,11 @@
 	new /obj/item/weapon/pen/crayon/purple(src)
 	update_icon()
 
-/obj/item/weapon/storage/fancy/crayons/update_icon()
-	overlays = list() //resets list
-	overlays += image('icons/obj/crayons.dmi',"crayonbox")
+/obj/item/weapon/storage/fancy/crayons/on_update_icon()
+	cut_overlays()
+	add_overlays(image('icons/obj/crayons.dmi',"crayonbox"))
 	for(var/obj/item/weapon/pen/crayon/crayon in contents)
-		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
+		add_overlays(image('icons/obj/crayons.dmi',crayon.colourName))
 
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/pen/crayon))
@@ -150,14 +155,44 @@
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
 	reagent_flags = REFILLABLE | NO_REACT
+	var/open = FALSE
+
+/obj/item/weapon/storage/fancy/cigarettes/attack_self(mob/user)
+	if(open)
+		close_all()
+	else
+		..()
+	update_icon()
+
+/obj/item/weapon/storage/fancy/cigarettes/open(mob/user)
+	. = ..()
+	open = TRUE
+
+/obj/item/weapon/storage/fancy/cigarettes/close_all()
+	. = ..()
+	if(contents.len)
+		open = FALSE
+
+/obj/item/weapon/storage/fancy/cigarettes/show_to(mob/user)
+	. = ..()
+	update_icon()
 
 /obj/item/weapon/storage/fancy/cigarettes/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new item_obj(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
-/obj/item/weapon/storage/fancy/cigarettes/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+/obj/item/weapon/storage/fancy/cigarettes/on_update_icon()
+	if(open)
+		icon_state = "[initial(icon_state)][contents.len]"
+	else
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/weapon/storage/fancy/cigarettes/can_be_inserted(obj/item/W, stop_messages = 0)
+	if(!open)
+		to_chat(usr, SPAN_WARNING("Open [src] first!"))
+		return FALSE
+	return ..()
 
 /obj/item/weapon/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 	// Don't try to transfer reagents to lighters
@@ -217,8 +252,8 @@
 	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
 
-/obj/item/weapon/storage/fancy/cigcartons/update_icon()
-	if( contents.len > 0 )
+/obj/item/weapon/storage/fancy/cigcartons/on_update_icon()
+	if(contents.len > 0)
 		icon_state = "[initial(icon_state)]1"
 	else
 		icon_state = "[initial(icon_state)]"
@@ -262,14 +297,15 @@
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
 	icon_type = "cigar"
 	reagent_flags = REFILLABLE | NO_REACT
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/cigar
 
 /obj/item/weapon/storage/fancy/cigar/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/clothing/mask/smokable/cigarette/cigar(src)
+		new item_obj(src)
 	create_reagents(15 * storage_slots)
 	update_icon()
 
-/obj/item/weapon/storage/fancy/cigar/update_icon()
+/obj/item/weapon/storage/fancy/cigar/on_update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 
 /obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
@@ -289,11 +325,11 @@
 	name = "vial storage box"
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
-
+	item_obj = /obj/item/weapon/reagent_containers/glass/beaker/vial
 
 /obj/item/weapon/storage/fancy/vials/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
+		new item_obj(src)
 
 /obj/item/weapon/storage/lockbox/vials
 	name = "secure vial storage box"
@@ -311,18 +347,18 @@
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
+/obj/item/weapon/storage/lockbox/vials/on_update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
+	src.cut_overlays()
 	if (!broken)
-		overlays += image(icon, src, "led[locked]")
+		add_overlays(image(icon, src, "led[locked]"))
 		if(locked)
-			overlays += image(icon, src, "cover")
+			add_overlays(image(icon, src, "cover"))
 	else
-		overlays += image(icon, src, "ledb")
+		add_overlays(image(icon, src, "ledb"))
 	return
 
-/obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/storage/lockbox/vials/attackby(obj/item/weapon/W, mob/user)
 	..()
 	update_icon()

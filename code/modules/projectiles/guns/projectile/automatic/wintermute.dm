@@ -15,15 +15,15 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
-	rarity_value = 48
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
-	recoil_buildup = 7
+	recoil_buildup = 1.5
 	one_hand_penalty = 15 //automatic rifle level
+	damage_multiplier = 1.15
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -31,7 +31,9 @@
 		BURST_3_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/weapon/gun/projectile/automatic/wintermute/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

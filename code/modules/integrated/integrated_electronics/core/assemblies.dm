@@ -41,6 +41,7 @@
 	max_components = IC_COMPONENTS_BASE / 2
 	max_complexity = IC_COMPLEXITY_BASE / 2
 	var/obj/item/weapon/implant/integrated_circuit/implant
+	bad_type = /obj/item/device/electronic_assembly/implant
 	spawn_frequency = 0
 
 /obj/item/device/electronic_assembly/New()
@@ -69,7 +70,7 @@
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
-/obj/item/device/electronic_assembly/implant/update_icon()
+/obj/item/device/electronic_assembly/implant/on_update_icon()
 	..()
 	implant.icon_state = icon_state
 
@@ -155,7 +156,7 @@
 /obj/item/device/electronic_assembly/drone/can_move()
 	return TRUE
 
-/obj/item/device/electronic_assembly/update_icon()
+/obj/item/device/electronic_assembly/on_update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else

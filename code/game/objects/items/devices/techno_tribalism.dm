@@ -22,6 +22,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.technomancer_faction_item_loss++
 	..()
 
 /obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
@@ -59,10 +60,14 @@
 				oddity_stats[STAT_MEC] += 1
 				oddity_stats[STAT_VIG] += 3
 				oddity_stats[STAT_COG] += 1
+			else if(GLOB.all_faction_items[W] == GLOB.department_civilian)
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_COG] += 2
 			else
 				crash_with("[W], incompatible department")
 
-		else if(istype(W, /obj/item/weapon/tool))
+		else if(istool(W))
 			var/useful = FALSE
 			if(W.tool_qualities)
 
@@ -132,7 +137,7 @@
 			else
 				oddity_stats[STAT_ROB] += 1
 
-		else if(istype(W, /obj/item/weapon/gun))
+		else if(isgun(W))
 			oddity_stats[STAT_ROB] += 2
 			oddity_stats[STAT_VIG] += 2
 
@@ -152,11 +157,11 @@
 /obj/item/device/techno_tribalism/attack_self()
 	if(world.time >= (last_produce + cooldown))
 		if(items_count >= max_count)
-			if(istype(src.loc, /mob/living/carbon/human))
+			if(ishuman(src.loc))
 				var/mob/living/carbon/human/user = src.loc
 				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
 				T.oddity_stats = src.oddity_stats
-				T.AddComponent(/datum/component/inspiration, T.oddity_stats)
+				T.AddComponent(/datum/component/inspiration, T.oddity_stats, T.perk)
 				items_count = 0
 				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				last_produce = world.time
@@ -166,8 +171,8 @@
 		else
 			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
-		visible_message("\icon The [src] beeps, \"The [src] need time to cooldown.\".")
+		visible_message("\icon The [src] beeps, \"The [src] needs time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/examine(user)
 	..()
-	to_chat(user, SPAN_NOTICE("The [src] is feeded by [items_count]/[max_count]."))
+	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))

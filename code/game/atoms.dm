@@ -42,6 +42,9 @@
 	var/list/atom_colours
 
 /atom/proc/update_icon()
+	return on_update_icon(arglist(args))
+
+/atom/proc/on_update_icon()
 	return
 
 /atom/New(loc, ...)
@@ -316,6 +319,11 @@ its easier to just keep the beam vertical.
 				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
 			else
 				to_chat(user, "<span class='danger'>It's empty.</span>")
+
+	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
+		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
+		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
+
 	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
@@ -744,3 +752,18 @@ its easier to just keep the beam vertical.
 		else if(C)
 			color = C
 			return
+
+//Return flags that may be added as part of a mobs sight
+/atom/proc/additional_sight_flags()
+	return 0
+
+/atom/proc/additional_see_invisible()
+	return 0
+/atom/proc/lava_act()
+	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")
+	playsound(src, 'sound/effects/flare.ogg', 100, 3)
+	if(ismob(src))
+		var/mob/M = src
+		M.death(FALSE, FALSE)
+	qdel(src)
+	. = TRUE

@@ -10,7 +10,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	sharp = FALSE
 	edge = FALSE
-
+	bad_type = /obj/item/weapon/material
+	spawn_tags = SPAWN_TAG_WEAPON
 	var/applies_material_colour = 1
 	var/unbreakable
 	var/force_divisor = 1
@@ -43,8 +44,8 @@
 		force = material.get_edge_damage()
 	else
 		force = material.get_blunt_damage()
-	force = round(force*force_divisor)
-	throwforce = round(material.get_blunt_damage()*thrown_force_divisor)
+	force = min(25, round(force*force_divisor))
+	throwforce = min(15, round(material.get_blunt_damage()*thrown_force_divisor))
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"
 

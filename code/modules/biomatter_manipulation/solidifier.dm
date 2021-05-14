@@ -18,7 +18,6 @@
 	active_power_usage = 300
 	reagent_flags = TRANSPARENT
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/solidifier
 	var/active = FALSE
 	var/port_dir = SOUTH
 	var/obj/structure/reagent_dispensers/biomatter/container
@@ -29,15 +28,15 @@
 	create_reagents(BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME*3)
 	anchored = bolt
 	AddComponent(/datum/component/plumbing/demand/all/biomass, anchored)
-	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
+	add_overlays(image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir))
 
-/obj/machinery/biomatter_solidifier/update_icon()
+/obj/machinery/biomatter_solidifier/on_update_icon()
 	if(active)
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
-	overlays = list()
-	overlays += image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir)
+	set_overlays(list())
+	add_overlays(image(icon = src.icon, icon_state = "tube", layer = LOW_OBJ_LAYER, dir = port_dir))
 
 /obj/machinery/biomatter_solidifier/Process()
 	if(active)
@@ -46,23 +45,23 @@
 				if(!container)
 					abort("Container of liquid biomatter required.")
 					return
-				else if(!container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
+				else if(!container.reagents.has_reagent(MATERIAL_BIOMATTER, BIOMATTER_PER_SHEET))
 					abort("Insufficient amount of biomatter.")
 					return
-			if(container && container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
+			if(container && container.reagents.has_reagent(MATERIAL_BIOMATTER, BIOMATTER_PER_SHEET))
 				var/quantity = min(reagents.get_free_space(), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
-				container.reagents.trans_id_to(src, "biomatter", quantity, TRUE)
-		if(reagents.get_reagent_amount("biomatter") >= BIOMATTER_PER_SHEET)
+				container.reagents.trans_id_to(src, MATERIAL_BIOMATTER, quantity, TRUE)
+		if(reagents.get_reagent_amount(MATERIAL_BIOMATTER) >= BIOMATTER_PER_SHEET)
 			process_biomatter()
 		else
 			abort("Insufficient amount of biomatter.")
 
 /obj/machinery/biomatter_solidifier/proc/process_biomatter()
-	var/quantity = min(reagents.get_reagent_amount("biomatter"), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
-	reagents.remove_reagent("biomatter", quantity)
-	var/obj/item/stack/material/biomatter/current_stack
+	var/quantity = min(reagents.get_reagent_amount(MATERIAL_BIOMATTER), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
+	reagents.remove_reagent(MATERIAL_BIOMATTER, quantity)
 
 	while(quantity > 0)
+		var/obj/item/stack/material/biomatter/current_stack
 		//if there any stacks here, let's check them
 		if(locate(/obj/item/stack/material/biomatter) in loc)
 			for(var/obj/item/stack/material/biomatter/stack_on_my_loc in loc)
@@ -137,5 +136,5 @@
 	ping()
 	update_icon()
 
-#undef BIOMATTER_SHEETS_PER_TIME 
+#undef BIOMATTER_SHEETS_PER_TIME
 #undef CONTAINER_PIXEL_OFFSET

@@ -124,11 +124,26 @@ Basic field subtypes.
 		value = abs(given_value)
 
 /datum/report_field/number/module/ask_value(mob/user)
-	var/value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
-	if(value >= 0)
-		set_value(value)
-	else
+	var/input_value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
+
+	if(input_value < 0)
 		to_chat(user,SPAN_WARNING("Value has to be positive."))
+		return
+	var/obj/item/weapon/card/id/held_card = user.GetIdCard()
+	if(!held_card)
+		to_chat(user, SPAN_WARNING("Your ID is missing."))
+		return
+	var/datum/money_account/used_account = get_account(held_card.associated_account_number)
+	var/datum/transaction/T_post = new(-input_value, used_account.owner_name, "Bounty Edited", "Bounty board system")
+	if(T_post.apply_to(used_account)) //Charges the new money
+		to_chat(user, SPAN_WARNING("Bounty modified. Your previous funds have been refunded."))
+		var/datum/transaction/T_pre = new(value, used_account.owner_name, "Bounty Refund", "Bounty board system")
+		T_pre.apply_to(used_account) //Refunds the old money
+	else
+		to_chat(user, SPAN_WARNING("You don't have enough funds to do that!"))
+		return
+
+	set_value(input_value)
 
 /datum/report_field/number/module/set_value(given_value)
 	if(isnum(given_value))

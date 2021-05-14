@@ -33,7 +33,7 @@
 	for(var/turf/T in RANGE_TURFS(impact_range, src))
 		if(!istype(T,/turf/simulated/floor))
 			continue
-		if((locate(/obj/structure/scrap) in T))
+		if((locate(/obj/structure/scrap_spawner) in T))
 			continue
 		if(!prob(impact_prob))
 			continue

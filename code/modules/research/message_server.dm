@@ -153,7 +153,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	else
 		..(O, user)
 
-/obj/machinery/message_server/update_icon()
+/obj/machinery/message_server/on_update_icon()
 	if((stat & (BROKEN|NOPOWER)))
 		icon_state = "server-nopower"
 	else if (!active)
@@ -195,10 +195,10 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 
 	//Only one can exist in the world!
-/obj/machinery/blackbox_recorder/New()
-	if(blackbox)
-		if(istype(blackbox,/obj/machinery/blackbox_recorder))
-			qdel(src)
+/obj/machinery/blackbox_recorder/Initialize(mapload, d)
+	. = ..()
+	if(blackbox && istype(blackbox,/obj/machinery/blackbox_recorder))
+		return INITIALIZE_HINT_QDEL
 	blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()

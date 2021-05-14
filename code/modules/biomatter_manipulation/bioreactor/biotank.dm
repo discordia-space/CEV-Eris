@@ -27,8 +27,6 @@
 	var/pipes_opened = FALSE
 	var/pipes_cleanness = 100
 
-	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_biotank
-
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
 	. = ..()
@@ -58,10 +56,10 @@
 			to_chat(user, SPAN_NOTICE("Pipes looks clean."))
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
-	overlays.Cut()
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/on_update_icon()
+	cut_overlays()
 	if(pipes_cleanness <= 90)
-		overlays += "[icon_state]-dirty_[get_dirtiness_level()]"
+		add_overlays("[icon_state]-dirty_[get_dirtiness_level()]")
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Process()
@@ -92,6 +90,7 @@
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/take_amount(new_amount)
 	biotank.reagents.add_reagent("biomatter", new_amount)
+	GLOB.biomatter_neothecnology_amt += new_amount
 
 
 //Pipe wearout. Wearout var - is amount of 'dirt' that will be applied to our pipes
@@ -144,11 +143,11 @@
 	return ..()
 
 
-/obj/structure/biomatter_tank/update_icon()
-	overlays.Cut()
+/obj/structure/biomatter_tank/on_update_icon()
+	cut_overlays()
 	if(canister && platform.pipes_opened)
 		var/image/pipe_overlay = image(icon = 'icons/obj/machines/bioreactor.dmi', icon_state = "port-pipe", pixel_y = -9)
-		overlays += pipe_overlay
+		add_overlays(pipe_overlay)
 
 
 /obj/structure/biomatter_tank/attack_hand(mob/user)
@@ -208,7 +207,7 @@
 	target_tank.can_anchor = FALSE
 	canister = target_tank
 	platform.MS_bioreactor.metrics_screen.icon_state = "screen_process"
-	flick("screen_activation", platform.MS_bioreactor.metrics_screen)
+	FLICK("screen_activation", platform.MS_bioreactor.metrics_screen)
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 	. = TRUE
 

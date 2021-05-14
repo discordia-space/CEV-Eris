@@ -12,14 +12,26 @@
 	var/is_caseless = FALSE
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/projectile_type					//The bullet type to create when New() is called
-	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
-	var/spent_icon = null
+	var/obj/item/projectile/BB			//The loaded bullet - make it so that the projectiles are created only when needed?
+	var/spent_icon
 	var/amount = 1
 	var/maxamount = 15
 	var/reload_delay = 0
 
+	var/sprite_update_spawn = FALSE		//defaults to normal sized sprites
+	var/sprite_max_rotate = 16
+	var/sprite_scale = 1
+	var/sprite_use_small = TRUE 		//A var for a later global option to use all big sprites or small sprites for bullets, must be used before startup
+
 /obj/item/ammo_casing/Initialize()
 	. = ..()
+	if(sprite_update_spawn)
+		var/matrix/rotation_matrix = matrix()
+		rotation_matrix.Turn(round(45 * rand(0, sprite_max_rotate) / 2))
+		if(sprite_use_small)
+			src.transform = rotation_matrix * sprite_scale
+		else
+			src.transform = rotation_matrix
 	if(ispath(projectile_type))
 		BB = new projectile_type(src)
 	pixel_x = rand(-10, 10)
@@ -122,10 +134,10 @@
 			AC.update_icon()
 	return TRUE
 
-/obj/item/ammo_casing/update_icon()
+/obj/item/ammo_casing/on_update_icon()
 	if(spent_icon && !BB)
 		icon_state = spent_icon
-	src.overlays.Cut()
+	src.cut_overlays()
 	if(amount > 1)
 		src.pixel_x = 0
 		src.pixel_y = 0
@@ -137,9 +149,9 @@
 		temp_image.pixel_x = rand(coef, -coef)
 		temp_image.pixel_y = rand(coef, -coef)
 		var/matrix/temp_image_matrix = matrix()
-		temp_image_matrix.Turn(round(45 * rand(0, 16) / 2))
+		temp_image_matrix.Turn(round(45 * rand(0, sprite_max_rotate) / 2))
 		temp_image.transform = temp_image_matrix
-		src.overlays += temp_image
+		src.add_overlays(temp_image)
 
 /obj/item/ammo_casing/examine(mob/user)
 	..()
@@ -161,6 +173,10 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 10
+	bad_type = /obj/item/ammo_magazine
 
 	var/ammo_color = ""		//For use in modular sprites
 
@@ -221,6 +237,14 @@
 			to_chat(user, SPAN_NOTICE("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
 		else
 			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
+	if(istype(W, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/gun_to_load = W
+		if(gun_to_load.can_dual && !gun_to_load.ammo_magazine)
+			if(!do_after(user, 0.5 SECONDS, src))
+				return
+			gun_to_load.load_ammo(src, user)
+			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
+			visible_message("[user] tactically reloads [W] using only one hand!")	
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
@@ -283,7 +307,7 @@
 		inserted_casing.update_icon()
 		stored_ammo.Insert(1, inserted_casing)
 	else
-		if(istype(C.loc,/mob))
+		if(ismob(C.loc))
 			var/mob/M = C.loc
 			M.remove_from_mob(C)
 		C.forceMove(src)
@@ -335,7 +359,7 @@
 		C.set_dir(pick(cardinal))
 	update_icon()
 
-/obj/item/ammo_magazine/update_icon()
+/obj/item/ammo_magazine/on_update_icon()
 	if(multiple_sprites)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null

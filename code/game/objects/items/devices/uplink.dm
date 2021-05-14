@@ -122,8 +122,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT)\
-	                                     : !!length(owner_roles & ROLES_CONTRACT)
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)\
+	                                     : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -211,7 +211,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				nanoui_data["exploit_exists"] = 1
 				break
-	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
+	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY) : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
 		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)
@@ -281,10 +281,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	icon = 'icons/obj/supplybeacon.dmi'
 	desc = "A bulky machine used for teleporting in supplies from a benefactor."
 	icon_state = "beacon"
-	var/obj/item/device/uplink/hidden/uplink
-	var/telecrystals = 100
 	density = TRUE
 	anchored = TRUE
+	var/obj/item/device/uplink/hidden/uplink
+	var/telecrystals = 100
 	var/owner_roles //Can be a list of roles or a single role
 
 /obj/structure/uplink/New()

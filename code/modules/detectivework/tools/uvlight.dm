@@ -43,7 +43,7 @@
 		stored_alpha.Cut()
 	if(reset_objects.len)
 		for(var/obj/item/I in reset_objects)
-			I.overlays -= I.blood_overlay
+			I.remove_overlays(I.blood_overlay)
 			if(I.fluorescent == 2) I.fluorescent = 1
 		reset_objects.Cut()
 
@@ -54,7 +54,7 @@
 		var/turf/origin = get_turf(src)
 		if(!origin)
 			return
-		for(var/turf/T in trange(range, origin))
+		for(var/turf/T in RANGE_TURFS(range, origin))
 			var/use_alpha = 255 - (step_alpha * get_dist(origin, T))
 			for(var/atom/A in T.contents)
 				if(A.fluorescent == 1)
@@ -67,5 +67,5 @@
 					if(istype(A, /obj/item))
 						var/obj/item/O = A
 						if(O.was_bloodied && !(O.blood_overlay in O.overlays))
-							O.overlays |= O.blood_overlay
+							O.associate_with_overlays(O.blood_overlay)
 							reset_objects |= O

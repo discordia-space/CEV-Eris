@@ -22,7 +22,7 @@
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	rarity_value = 3
 
 /obj/item/weapon/tool/saw/circular //tier 3
@@ -31,7 +31,7 @@
 	icon_state = "saw"
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
-	force = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_DANGEROUS * 1.15
 	armor_penetration = ARMOR_PEN_MODERATE
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
@@ -44,6 +44,7 @@
 	name = "advanced circular saw"
 	desc = "You think you can cut anything with it."
 	icon_state = "advanced_saw"
+	force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_DEEP
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)

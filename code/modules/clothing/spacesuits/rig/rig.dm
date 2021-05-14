@@ -21,8 +21,9 @@
 	req_access = list()
 	w_class = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
-	spawn_tags = SPAWN_TAG_RING
+	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
+	bad_type = /obj/item/weapon/rig
 
 	// These values are passed on to all component pieces.
 	armor = list(
@@ -368,8 +369,8 @@
 	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())
-		if(!cell || cell.empty())
+	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.is_empty())
+		if(!cell || cell.is_empty())
 			if(electrified > 0)
 				electrified = 0
 			if(!offline)
@@ -525,11 +526,11 @@
 /obj/item/weapon/rig/proc/get_species_icon()
 	return 'icons/mob/rig_back.dmi'
 
-/obj/item/weapon/rig/update_icon(var/update_mob_icon)
+/obj/item/weapon/rig/on_update_icon(var/update_mob_icon)
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
+				chest.add_overlays(image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH))
 
 /obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
 
@@ -636,7 +637,7 @@
 
 /obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
-	if(sealing || !cell || cell.empty())
+	if(sealing || !cell || cell.is_empty())
 		return
 
 	if(!istype(wearer) || !wearer.back == src)
@@ -748,7 +749,7 @@
 
 /obj/item/weapon/rig/proc/retract()
 	if (wearer)
-		for(var/piece in list("helmet","gauntlets","chest","boots"))
+		for(var/piece in list("helmet","chest","gauntlets","boots"))
 			toggle_piece(piece, wearer, ONLY_RETRACT)
 
 /obj/item/weapon/rig/proc/remove()
@@ -865,7 +866,7 @@
 			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
-	if(offline || !cell || cell.empty() || locked_down)
+	if(offline || !cell || cell.is_empty() || locked_down)
 		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)

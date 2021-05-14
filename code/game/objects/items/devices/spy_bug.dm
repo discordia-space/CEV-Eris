@@ -15,7 +15,7 @@
 	throw_speed = 3
 
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_COVERT = 3)
-
+	spawn_blacklisted = TRUE
 	var/obj/item/device/radio/spy/radio
 	var/obj/machinery/camera/spy/camera
 
@@ -153,13 +153,14 @@
 	name = "DV-136ZB #[rand(1000,9999)]"
 	c_tag = name
 
-/obj/machinery/camera/spy/check_eye(var/mob/user as mob)
+/obj/machinery/camera/spy/check_eye(mob/user)
 	return 0
 
 /obj/item/device/radio/spy
+	name = "spy device"
+	icon_state = "syn_cypherkey"
 	listening = 0
 	frequency = 1473
 	broadcasting = 0
 	canhear_range = 1
-	name = "spy device"
-	icon_state = "syn_cypherkey"
+	spawn_blacklisted = 1

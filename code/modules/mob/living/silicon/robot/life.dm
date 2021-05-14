@@ -45,7 +45,7 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if ( cell && is_component_functioning("power cell") && src.cell.charge > 0 )
+	if (cell && is_component_functioning("power cell") && src.cell.charge > 0)
 		if(src.module_state_1)
 			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)
@@ -99,9 +99,9 @@
 				AdjustWeakened(-1)
 			if (src.paralysis > 0)
 				AdjustParalysis(-1)
-				src.blinded = 1
+				src.blinded = TRUE
 			else
-				src.blinded = 0
+				src.blinded = FALSE
 
 		else	//Not stunned.
 			src.stat = 0
@@ -109,14 +109,14 @@
 		confused = max(0, confused - 1)
 
 	else //Dead.
-		src.blinded = 1
+		src.blinded = TRUE
 		src.stat = 2
 
 	if (src.stuttering) src.stuttering--
 
 	if (src.eye_blind)
 		src.eye_blind--
-		src.blinded = 1
+		src.blinded = TRUE
 
 	if (src.ear_deaf > 0) src.ear_deaf--
 	if (src.ear_damage < 25)
@@ -126,7 +126,7 @@
 	src.density = !( src.lying )
 
 	if ((src.sdisabilities & BLIND))
-		src.blinded = 1
+		src.blinded = TRUE
 	if ((src.sdisabilities & DEAF))
 		src.ear_deaf = 1
 
@@ -145,9 +145,9 @@
 			radio.on = TRUE
 
 	if(is_component_functioning("camera"))
-		src.blinded = 0
+		src.blinded = FALSE
 	else
-		src.blinded = 1
+		src.blinded = TRUE
 
 	return 1
 
@@ -272,9 +272,9 @@
 	return canmove
 
 /mob/living/silicon/robot/update_fire()
-	overlays -= image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
+	remove_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
 	if(on_fire)
-		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
+		add_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
 
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them

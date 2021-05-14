@@ -3,13 +3,15 @@
 /obj/item/weapon/storage/box/samplebags
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
-	New()
-		for(var/i=0, i<7, i++)
-			var/obj/item/weapon/evidencebag/S = new(src)
-			S.name = "sample bag"
-			S.desc = "a bag for holding research samples."
-		..()
-		return
+	initial_amount = 7
+	spawn_type = /obj/item/weapon/evidencebag
+
+/obj/item/weapon/storage/box/samplebags/populate_contents()
+	for(var/i in 1 to initial_amount)
+		var/obj/item/weapon/evidencebag/S = new(src)
+		S.name = "sample bag"
+		S.desc = "a bag for holding research samples."
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -72,8 +74,8 @@
 			//update the sample bag
 			filled_bag.icon_state = "evidence"
 			var/image/I = image("icon"=R, "layer"=FLOAT_LAYER)
-			filled_bag.overlays += I
-			filled_bag.overlays += "evidence"
+			filled_bag.add_overlays(I)
+			filled_bag.add_overlays("evidence")
 			filled_bag.w_class = ITEM_SIZE_TINY
 
 			to_chat(user, "\blue You take a core sample of the [item_to_sample].")

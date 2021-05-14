@@ -43,6 +43,8 @@
 	if(get_storyteller())	//Call objectives update to check inquisitor objective completion
 		get_storyteller().update_objectives()
 
+	GLOB.new_neothecnology_convert++
+
 	return TRUE
 
 /* - This will be used later, when new cult arrive.
@@ -50,120 +52,6 @@
 	name = "banish"
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
-
-/datum/ritual/cruciform/priest/reincarnation
-	name = "Reincarnation"
-	phrase = "Vetus moritur et onus hoc levaverit"
-	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
-
-/datum/ritual/cruciform/priest/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
-
-	if(!CI)
-		fail("There is no cruciform on this one", user, C)
-		return FALSE
-
-	var/datum/core_module/cruciform/cloning/data = CI.get_module(CRUCIFORM_CLONING)
-
-	if(!CI.wearer)
-		fail("Cruciform is not installed.", user, C)
-		return FALSE
-
-	if(!CI.activated)
-		fail("This cruciform doesn't have soul inside.", user, C)
-		return FALSE
-
-	if(CI.active)
-		fail("This cruciform already activated.", user, C)
-		return FALSE
-
-	if(CI.wearer.stat == DEAD)
-		fail("Soul cannot move to dead body.", user, C)
-		return FALSE
-
-	var/datum/mind/MN = data.mind
-	if(!istype(MN, /datum/mind))
-		fail("Soul is lost.", user, C)
-		return FALSE
-	if(MN.active)
-		if(data.ckey != ckey(MN.key))
-			fail("Soul is lost.", user, C)
-			return FALSE
-	if(MN.current && MN.current.stat != DEAD)
-		fail("Soul is lost.", user, C)
-		return FALSE
-
-	var/succ = CI.transfer_soul()
-
-	if(!succ)
-		fail("Soul transfer failed.", user, C)
-		return FALSE
-
-
-	return TRUE
-
-
-/datum/ritual/cruciform/priest/install
-	name = "Commitment"
-	phrase = "Unde ipse Dominus dabit vobis signum"
-	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
-
-/datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/mob/living/carbon/human/H = get_victim(user)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
-	if(CI)
-		fail("[H] already have a cruciform installed.", user, C)
-		return FALSE
-
-	var/list/L = get_front(user)
-
-	CI = locate(/obj/item/weapon/implant/core_implant/cruciform) in L
-
-	if(!CI)
-		fail("There is no cruciform on this one", user, C)
-		return FALSE
-
-	if (H.stat == DEAD)
-		fail("It is too late for this one, the soul has already left the vessel", user, C)
-		return FALSE
-
-	if(!(H in L))
-		fail("Cruciform is too far from [H].", user, C)
-		return FALSE
-
-	if(CI.active)
-		fail("Cruciform already active.", user, C)
-		return FALSE
-
-	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
-		fail("[H] must lie on the altar.", user, C)
-		return FALSE
-
-	for(var/obj/item/clothing/CL in H)
-		if(H.l_hand == CL || H.r_hand == CL)
-			continue
-		fail("[H] must be undressed.", user, C)
-		return FALSE
-
-
-
-	if(!CI.install(H, BP_CHEST, user) || CI.wearer != H)
-		fail("Commitment failed.", user, C)
-		return FALSE
-
-	if(ishuman(H))
-		var/mob/living/carbon/human/M = H
-		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		for (var/i = 0; i < 5;i++)
-			E.take_damage(5, sharp = FALSE)
-			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
-
-		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
-		M.update_implants()
-		M.updatehealth()
-
-	return TRUE
-
 
 /datum/ritual/cruciform/priest/ejection
 	name = "Deprivation"
@@ -241,12 +129,12 @@
 	cooldown_time = 2 MINUTES
 	effect_time = 10 MINUTES
 	cooldown_category = "short_boost"
+	power = 30
 	var/list/stats_to_boost = list()
 
-	New()
-		..()
-		desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
-
+/datum/ritual/cruciform/priest/short_boost/New()
+	..()
+	desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
 
 /datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/people_around = list()
@@ -255,7 +143,7 @@
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		to_chat(user, SPAN_NOTICE("Your feel the air thrum with an inaudible vibration."))
+		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible vibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
 			to_chat(participant, SPAN_NOTICE("You hear a silent signal..."))
@@ -270,17 +158,15 @@
 /datum/ritual/cruciform/priest/short_boost/proc/give_boost(mob/living/carbon/human/participant)
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
-		participant.stats.changeStat(stat, amount)
+		participant.stats.addTempStat(stat, amount, effect_time, src.name)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
-	// take_boost is automatically triggered by a callback function when the boost ends but the participant 
-	// may have been deleted during the duration of the boost
+	// take_boost is automatically triggered by a callback function when the boost ends but the participant
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
-		participant.stats.changeStat(stat, -amount)
 		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
@@ -298,31 +184,15 @@
 			stats_text += ", [stat]"
 	return lowertext(stats_text)
 
-
-/datum/ritual/cruciform/priest/short_boost/mechanical
-	name = "Pounding Whisper"
-	phrase = "Vocavitque nomen eius Noe dicens iste consolabitur nos ab operibus et laboribus manuum nostrarum in terra cui maledixit Dominus"
-	stats_to_boost = list(STAT_MEC = 10)
-
-/datum/ritual/cruciform/priest/short_boost/cognition
-	name = "Revelation of Secrets"
-	phrase = "Quia Dominus dat sapientiam et ex ore eius scientia et prudentia"
-	stats_to_boost = list(STAT_COG = 10)
-
-/datum/ritual/cruciform/priest/short_boost/biology
-	name = "Lisp of Vitae"
-	phrase = "Ecce ego obducam ei cicatricem et sanitatem et curabo eos et revelabo illis deprecationem pacis et veritatis"
-	stats_to_boost = list(STAT_BIO = 10)
+/datum/ritual/cruciform/priest/short_boost/wisdom
+	name = "Grace of Perseverance"
+	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus"
+	stats_to_boost = list(STAT_MEC = 10, STAT_COG = 10, STAT_BIO = 10)
 
 /datum/ritual/cruciform/priest/short_boost/courage
-	name = "Canto of Courage"
-	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
-	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)
-
-/datum/ritual/cruciform/priest/short_boost/vigilance
-	name = "Commitment to Determination"
-	phrase = "Cor meum et caro mea, potest deficere, sed non in viribus Deus cordis mei et pars mea Deus in aeternum"
-	stats_to_boost = list(STAT_VIG = 10)
+	name = "To Uphold the Holy Word"
+	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi"
+	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
 	name = "Atonement"
@@ -351,7 +221,7 @@
 	s.set_up(1, 1, M.loc)
 	s.start()
 
-	M.apply_effect(50, AGONY, 0)
+	M.adjustHalLoss(50)
 
 	return TRUE
 
@@ -379,4 +249,133 @@
 
 	if(altar)
 		new /obj/item/weapon/paper/neopaper(altar.loc, disciples.Join("\n"), "Church Record")
+	return TRUE
+
+/datum/ritual/cruciform/priest/offering
+	name = "Offerings"
+	category = "Offerings"
+	success_message = "Your prayers have been heard."
+	fail_message = "Your prayers have not been answered."
+	power = 10
+	var/list/req_offerings = list()
+	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+
+/datum/ritual/cruciform/priest/offering/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	var/list/OBJS = get_front(H)
+
+	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
+	if(!EOTP)
+		fail("You must be in front of the Eye of the Protector.", H, C)
+		return FALSE
+
+	var/list/obj/item/item_targets = list()
+	var/turf/source_t = get_turf(EOTP)
+	for(var/turf/T in RANGE_TURFS(7, source_t))
+		for(var/obj/item/A in T)
+			item_targets.Add(A)
+
+	if(!make_offerings(item_targets))
+		fail("Your offerings are not worthy.", H, C)
+		return FALSE
+
+	EOTP.current_rewards = miracles
+	return TRUE
+
+/datum/ritual/cruciform/priest/offering/proc/make_offerings(list/offerings)
+	var/num_check = 0
+	var/list/true_offerings = list()
+	for(var/path in req_offerings)
+		var/req_num = req_offerings[path]
+		var/num_item = 0
+		for(var/obj/item/I in offerings)
+			if(istype(I, path))
+				if(num_item >= req_num)
+					break
+				if(istype(I, /obj/item/stack))
+					var/obj/item/stack/S = I
+					num_item += S.amount
+				else
+					num_item++
+				true_offerings.Add(I)
+
+		if(num_item < req_num)
+			break
+		else
+			num_check++
+
+	if(num_check >= req_offerings.len)
+		for(var/path in req_offerings)
+			var/req_num = req_offerings[path]
+			for(var/obj/item/I in true_offerings)
+				if(req_num <= 0)
+					break
+				if(istype(I, path))
+					if(istype(I, /obj/item/stack))
+						var/obj/item/stack/S = I
+						if(S.amount <= req_num)
+							var/num = S.amount
+							S.use(num)
+							req_num -= num
+						else
+							S.use(req_num)
+							req_num = 0
+					else
+						qdel(I)
+						req_num--
+		return TRUE
+
+	return FALSE
+
+/datum/ritual/cruciform/priest/offering/call_for_arms
+	name = "Call for arms"
+	phrase = "Pater da mihi fortitudinem cladem ad malum."
+	desc = "Ask the Eye of the Protector to give you weapons to fight evil. You must offer 40 metal, 20 plasteel and 150 biomatter."
+	req_offerings = list(/obj/item/stack/material/plasteel = 20, /obj/item/stack/material/steel = 40, /obj/item/stack/material/biomatter = 150)
+	miracles = list(ARMAMENTS)
+
+/datum/ritual/cruciform/priest/offering/divine_intervention
+	name = "Divine intervention"
+	phrase = "Auxilium instaurarent domum tuam."
+	desc = "Requests the Eye of the Protector for construction materials. You must offer 200 biomatter."
+	req_offerings = list(/obj/item/stack/material/biomatter = 200)
+	miracles = list(MATERIAL_REWARD)
+
+/datum/ritual/cruciform/priest/offering/holy_guidance
+	name = "Holy guidance"
+	phrase = "Domine deus, lux via"
+	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and 40 fruits."
+	req_offerings = list(/obj/item/weapon/oddity = 1, /obj/item/weapon/reagent_containers/food/snacks/grown = 40)
+	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
+
+/datum/ritual/cruciform/priest/divine_blessing
+	name = "Divine Blessing"
+	phrase = "Corpus Deus"
+	desc = "Increases the stats of an oddity."
+	success_message = "Your oddity has been blessed."
+	fail_message = "You feel cold in your active hand."
+	var/list/odditys = list()
+
+
+/datum/ritual/cruciform/priest/divine_blessing/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/obj/item/I = user.get_active_hand()
+	if(!I)
+		fail("You have nothing in your active hand.", user, C)
+		return FALSE
+
+	if(I in odditys)
+		fail("This oddity has already been blessed.", user, C)
+		return FALSE
+
+	GET_COMPONENT_FROM(inspiracion, /datum/component/inspiration, I)
+	if(!inspiracion)
+		fail("You need to hold an oddity in your active hand.", user, C)
+		return FALSE
+
+	if(!inspiracion.stats)
+		fail("This oddity cannot be blessed.", user, C)
+		return FALSE
+
+	for(var/stat in inspiracion.stats)
+		inspiracion.stats[stat] += rand(1,8)
+	odditys.Add(I)
 	return TRUE

@@ -157,7 +157,7 @@
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
 	if(bagholding.len)
 		ofholding += bagholding.len
-	var/list/pouchholding = teleatom.search_contents_for(/obj/item/weapon/storage/pouch/holding/)
+	var/list/pouchholding = teleatom.search_contents_for(/obj/item/weapon/storage/pouch/holding)
 	if(pouchholding.len)
 		ofholding += pouchholding.len
 	var/list/beltholding = teleatom.search_contents_for(/obj/item/weapon/storage/belt/holding)
@@ -171,6 +171,7 @@
 		ofholding += satchelholding.len
 
 	if(ofholding)
+		GLOB.bluespace_entropy += ofholding
 		precision = max(rand(1, 100)*ofholding, 100)
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom

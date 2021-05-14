@@ -70,6 +70,7 @@ var/const/tk_maxrange = 15
 	w_class = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
+	spawn_tags = null
 
 	var/last_throw = 0
 	var/atom/movable/focus
@@ -156,13 +157,14 @@ var/const/tk_maxrange = 15
 		return
 	new /obj/effect/overlay/pulse(get_turf(focus), 5)
 
-/obj/item/tk_grab/update_icon()
-	overlays.Cut()
+/obj/item/tk_grab/on_update_icon()
+	cut_overlays()
 	if(focus)
 		var/old_layer = focus.layer
 		var/old_plane = focus.plane
 		focus.layer = layer+0.01
 		focus.set_plane(ABOVE_HUD_PLANE)
-		overlays += focus //this is kind of ick, but it's better than using icon()
+		add_overlays(focus)
+		//this is kind of ick, but it's better than using icon()
 		focus.layer = old_layer
 		focus.set_plane(old_plane)

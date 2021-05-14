@@ -20,9 +20,9 @@
 /obj/structure/reagent_dispensers/Initialize(mapload, bolt=FALSE)
 	. = ..()
 	create_reagents(volume)
-	if (starting_reagent)
+	if(starting_reagent)
 		reagents.add_reagent(starting_reagent, volume)
-	if (!possible_transfer_amounts)
+	if(!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	anchored = bolt
 	AddComponent(/datum/component/plumbing/supply/all, anchored, FALSE)
@@ -114,12 +114,12 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
-	var/modded = FALSE
-	var/obj/item/device/assembly_holder/rig
 	volume = 500
 	starting_reagent = "fuel"
 	price_tag = 50
 	contents_cost = 750
+	var/modded = FALSE
+	var/obj/item/device/assembly_holder/rig
 
 /obj/structure/reagent_dispensers/fueltank/derelict
 	icon_state = "weldtank-derelict"
@@ -153,7 +153,7 @@
 			usr.visible_message(SPAN_NOTICE("\The [usr] detaches \the [rig] from \the [src]."), SPAN_NOTICE("You detach [rig] from \the [src]"))
 			rig.loc = get_turf(usr)
 			rig = null
-			overlays = new/list()
+			set_overlays(new/list())
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
@@ -186,7 +186,7 @@
 			var/icon/test = getFlatIcon(I)
 			test.Shift(NORTH,1)
 			test.Shift(EAST,6)
-			overlays += test
+			add_overlays(test)
 
 	var/obj/item/weapon/tool/T = I
 	if(istype(T) && T.use_fuel_cost)
@@ -274,7 +274,7 @@
 	price_tag = 50
 	contents_cost = 700
 	spawn_blacklisted = TRUE
-	
+
 
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"
@@ -367,7 +367,7 @@
 		. = ..()
 	update_icon()
 
-/obj/structure/reagent_dispensers/bidon/update_icon()
+/obj/structure/reagent_dispensers/bidon/on_update_icon()
 	cut_overlays()
 	if(lid)
 		var/mutable_appearance/lid_icon = mutable_appearance(icon, "[icon_state]_lid")

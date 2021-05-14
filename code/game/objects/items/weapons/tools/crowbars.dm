@@ -22,7 +22,7 @@
 	degradation = 5 //This one breaks REALLY fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 2
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/crowbar/onestar
 	name = "One Star crowbar"
@@ -51,3 +51,15 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
+
+/obj/item/weapon/tool/crowbar/pneumatic/hivemind
+	name = "modified pneumatic crowbar"
+	desc = "A pneumatic crowbar with numerous growths on it. Doubt you will be able to use it for anything other than prying."
+	icon_state = "hivemind_pneumo_crowbar"
+	item_state = "hivemind_pneumo_crowbar"
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BIO = 2)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_BIOMATTER = 3)
+	tool_qualities = list(QUALITY_PRYING = 50)
+	degradation = 0.4
+	use_power_cost = 0.4
+	spawn_blacklisted = TRUE

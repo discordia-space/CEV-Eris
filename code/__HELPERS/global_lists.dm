@@ -5,6 +5,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
+GLOBAL_LIST_EMPTY(mob_list)					//EVERY single mob, dead or alive
 GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
@@ -12,6 +13,7 @@ GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientl
 GLOBAL_LIST_EMPTY(dead_mob_list)				//List of all dead mobs, including clientless. Excludes /mob/new_player
 GLOBAL_LIST_EMPTY(current_antags)
 GLOBAL_LIST_EMPTY(current_factions)
+GLOBAL_LIST_EMPTY(superior_animal_list)		//A list of all superior animals; for targeting each other
 
 GLOBAL_LIST_EMPTY(cable_list)					//Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
@@ -47,8 +49,8 @@ var/list/mannequins_
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
+var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 // Posters
 GLOBAL_LIST_EMPTY(poster_designs)
@@ -89,13 +91,13 @@ GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 var/global/list/organ_structure = list(
-	chest = list(name= "Chest", children=list()),
-	groin = list(name= "Groin",     parent=BP_CHEST, children=list()),
-	head  = list(name= "Head",      parent=BP_CHEST, children=list()),
-	r_arm = list(name= "Right arm", parent=BP_CHEST, children=list()),
-	l_arm = list(name= "Left arm",  parent=BP_CHEST, children=list()),
-	r_leg = list(name= "Right leg", parent=BP_GROIN, children=list()),
-	l_leg = list(name= "Left leg",  parent=BP_GROIN, children=list()),
+	BP_CHEST = list(name= "Chest", children=list(BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, OP_HEART, OP_LUNGS, OP_STOMACH)),
+	BP_GROIN = list(name= "Groin",     parent=BP_CHEST, children=list(BP_R_LEG, BP_L_LEG, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT, OP_LIVER)),
+	BP_HEAD  = list(name= "Head",      parent=BP_CHEST, children=list(BP_BRAIN, BP_EYES)),
+	BP_R_ARM = list(name= "Right arm", parent=BP_CHEST, children=list()),
+	BP_L_ARM = list(name= "Left arm",  parent=BP_CHEST, children=list()),
+	BP_R_LEG = list(name= "Right leg", parent=BP_GROIN, children=list()),
+	BP_L_LEG = list(name= "Left leg",  parent=BP_GROIN, children=list()),
 	)
 
 var/global/list/organ_tag_to_name = list(
@@ -104,7 +106,9 @@ var/global/list/organ_tag_to_name = list(
 	eyes  = "eyes", l_arm = "left arm",
 	groin = "groin",l_leg = "left leg",
 	chest2= "back", heart = "heart",
-	lungs  = "lungs", liver = "liver"
+	lungs  = "lungs", liver = "liver",
+	"left kidney" = "left kidney", "right kidney" = "right kidney",
+	stomach = "stomach", brain = "brain"
 	)
 
 // Visual nets
@@ -115,8 +119,6 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
 var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
-
-GLOBAL_LIST_EMPTY(all_spawn_data)
 
 //////////////////////////
 /////Initial Building/////
@@ -242,8 +244,6 @@ GLOBAL_LIST_EMPTY(all_spawn_data)
 		//Rituals which are just categories for subclasses will have a null phrase
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
-
-	GLOB.all_spawn_data["loot_s_data"] = new /datum/loot_spawner_data
 
 	return 1
 

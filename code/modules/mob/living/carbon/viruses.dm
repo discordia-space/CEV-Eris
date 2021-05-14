@@ -1,5 +1,4 @@
 /mob/living/carbon/proc/handle_viruses()
-
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(bodytemperature > 406)
@@ -7,7 +6,7 @@
 			var/datum/disease2/disease/V = virus2[ID]
 			V.cure(src)
 
-	if(life_tick % 3) //don't spam checks over all objects in view every tick.
+	if(life_tick % 3 && stat != DEAD) //don't spam checks over all objects in view every tick.
 		for(var/obj/effect/decal/cleanable/O in view(1,src))
 			if(istype(O,/obj/effect/decal/cleanable/blood))
 				var/obj/effect/decal/cleanable/blood/B = O

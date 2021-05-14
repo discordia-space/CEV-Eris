@@ -96,7 +96,7 @@ LINEN BINS
 	set category = "Object"
 	set src in view(1)
 
-	if(istype(loc,/mob))
+	if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_fold(usr)
@@ -108,7 +108,7 @@ LINEN BINS
 
 	if(folded)
 		to_chat(usr, "Unfold \the [src] first.")
-	else if(istype(loc,/mob))
+	else if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_roll(usr)
@@ -146,7 +146,7 @@ LINEN BINS
 		if(folded)
 			pickup(usr)
 
-/obj/item/weapon/bedsheet/update_icon()
+/obj/item/weapon/bedsheet/on_update_icon()
 	if (folded)
 		icon_state = "sheet-folded"
 	else if (rolled)
@@ -226,7 +226,7 @@ LINEN BINS
 	to_chat(user, "There are [amount] bed sheets in the bin.")
 
 
-/obj/structure/bedsheetbin/update_icon()
+/obj/structure/bedsheetbin/on_update_icon()
 	switch(amount)
 		if(0)				icon_state = "linenbin-empty"
 		if(1 to amount / 2)	icon_state = "linenbin-half"

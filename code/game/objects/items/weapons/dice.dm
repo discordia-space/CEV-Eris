@@ -4,10 +4,13 @@
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "d66"
 	w_class = ITEM_SIZE_TINY
-	var/sides = 6
 	attack_verb = list("diced")
+	price_tag = 1
+	spawn_tags = SPAWN_TAG_DICE
+	var/sides = 6
 
-/obj/item/weapon/dice/New()
+/obj/item/weapon/dice/Initialize(mapload)
+	. = ..()
 	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/weapon/dice/d2

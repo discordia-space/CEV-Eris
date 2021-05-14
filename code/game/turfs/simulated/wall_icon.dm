@@ -69,34 +69,34 @@
 	reinf_material = newrmaterial
 	update_material()
 
-/turf/simulated/wall/update_icon()
+/turf/simulated/wall/on_update_icon()
 	if(!icon_base)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	var/image/I
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[icon_base][wall_connections[i]]", dir = GLOB.cardinal[i])
 
 		I.color = base_color
-		overlays += I
+		add_overlays(I)
 
 	if(icon_base_reinf)
 		if(construction_stage != null && construction_stage < 6)
 			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
 			I.color = reinf_color
-			overlays += I
+			add_overlays(I)
 		else
 			if("[icon_base_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
 				// Directional icon
 				for(var/i = 1 to 4)
 					I = image('icons/turf/wall_masks.dmi', "[icon_base_reinf][wall_connections[i]]", dir = 1<<(i-1))
 					I.color = reinf_color
-					overlays += I
+					add_overlays(I)
 			else
 				I = image('icons/turf/wall_masks.dmi', icon_base_reinf)
 				I.color = reinf_color
-				overlays += I
+				add_overlays(I)
 
 	if(damage != 0)
 		var/integrity = material.integrity
@@ -107,14 +107,14 @@
 		if(overlay > damage_overlays.len)
 			overlay = damage_overlays.len
 
-		overlays += damage_overlays[overlay]
+		add_overlays(damage_overlays[overlay])
 
 
 /turf/simulated/wall/proc/update_connections(propagate = 0)
 	if(!material)
 		return
 	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in trange(1, src) - src)
+	for(var/turf/simulated/wall/W in RANGE_TURFS(1, src) - src)
 		if(!W.material)
 			continue
 		if(propagate)

@@ -38,7 +38,7 @@
 	contents_list_extra = list(/obj/item/weapon/tool/knife/neotritual = 2,
 	/obj/item/weapon/implant/core_implant/cruciform = 4,
 	/obj/item/weapon/book/ritual/cruciform = 4,
-	/obj/item/clothing/suit/neotheology_jacket = 2)
+	/obj/item/clothing/suit/storage/neotheology_jacket = 2)
 	lore = "Acolyte, pirates have taken the ship.<br>\
  When you awaken, avoid arousing any suspicion.<br>\
  Focus on recovering crosses from the faithful. <br>\

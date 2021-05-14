@@ -22,9 +22,9 @@ It will also bring a hoard of roaches with it.
 	endWhen = 0
 	var/failure = FALSE
 	var/list/reward = list(
-		/obj/structure/scrap/vehicle,
-		/obj/structure/scrap/guns,
-		/obj/structure/scrap/science,
+		/obj/structure/scrap_spawner/vehicle,
+		/obj/structure/scrap_spawner/guns,
+		/obj/structure/scrap_spawner/science,
 	)
 	var/list/kaiser_rutinue = list(
 		/obj/spawner/mob/roaches/cluster,
@@ -63,7 +63,7 @@ It will also bring a hoard of roaches with it.
 
 	var/i = floors.len
 	for(i, i>0, i--)
-		var/obj/structure/scrap/scrap = pick(reward)
+		var/obj/structure/scrap_spawner/scrap = pick(reward)
 		var/turf/simulated/floor/floor = pick(floors)
 		new scrap(floor)
 		floors.Remove(floor) // To avoid multiple scrap piles on one tile

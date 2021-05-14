@@ -2,6 +2,7 @@
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/weapon/storage/internal
 	var/obj/item/master_item
+	spawn_tags = null
 
 /obj/item/weapon/storage/internal/New(obj/item/MI)
 	master_item = MI
@@ -68,7 +69,7 @@
 	else if (isturf(master_item.loc) && Adjacent(user))
 		return TRUE
 
-/obj/item/weapon/storage/internal/updating/update_icon()
+/obj/item/weapon/storage/internal/updating/on_update_icon()
 	if(master_item)
 		master_item.update_icon()
 

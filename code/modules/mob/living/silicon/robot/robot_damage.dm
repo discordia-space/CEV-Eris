@@ -74,7 +74,7 @@
 		var/absorb_brute_cost = (brute*shield.shield_level)*100
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
-		if(cell.empty())
+		if(cell.is_empty())
 			to_chat(src, "\red Your shield has overloaded!")
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100
@@ -119,7 +119,7 @@
 		var/absorb_brute_cost = (brute*shield.shield_level)*100
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
-		if(cell.empty())
+		if(cell.is_empty())
 			to_chat(src, "\red Your shield has overloaded!")
 		else
 			var/absorb_brute = cell.use(absorb_brute_cost)/100

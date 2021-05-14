@@ -21,7 +21,7 @@
 	item_flags = COVER_PREVENT_MANIPULATION
 	siemens_coefficient = 0.9
 	price_tag = 50
-	style = 0
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
@@ -31,7 +31,6 @@
 	w_class = ITEM_SIZE_BULKY//bulky item3
 	spawn_blacklisted = FALSE
 	spawn_frequency = 10
-	rarity_value = 10
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -49,6 +48,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9
 	price_tag = 100
+	style = STYLE_NONE
 
 
 //Standard biosuit, orange stripe

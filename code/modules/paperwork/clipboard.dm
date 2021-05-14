@@ -8,21 +8,23 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	throw_speed = 3
 	throw_range = 10
+	spawn_tags = SPAWN_TAG_ITEM
 	var/obj/item/weapon/pen/haspen		//The stored pen.
 	var/obj/item/weapon/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/clipboard/New()
+/obj/item/weapon/clipboard/Initialize(mapload)
+	. = ..()
 	update_icon()
 
-/obj/item/weapon/clipboard/update_icon()
-	overlays.Cut()
+/obj/item/weapon/clipboard/on_update_icon()
+	cut_overlays()
 	if(toppaper)
-		overlays += toppaper.icon_state
-		overlays += toppaper.overlays
+		add_overlays(toppaper.icon_state)
+		add_overlays(toppaper.overlays)
 	if(haspen)
-		overlays += "clipboard_pen"
-	overlays += "clipboard_over"
+		add_overlays("clipboard_pen")
+	add_overlays("clipboard_over")
 	return
 
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)

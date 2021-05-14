@@ -28,6 +28,8 @@
 
 #define isslime(A) istype(A, /mob/living/carbon/slime)
 
+#define isroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
+
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 
 #define ishuman(A) istype(A, /mob/living/carbon/human)
@@ -72,3 +74,7 @@
 #define istool(A) istype(A, /obj/item/weapon/tool)
 
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
+
+#define isstructure(A) (istype(A, /obj/structure))
+
+#define ismachinery(A) (istype(A, /obj/machinery))

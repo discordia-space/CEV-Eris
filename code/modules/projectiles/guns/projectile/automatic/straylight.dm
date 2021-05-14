@@ -16,11 +16,10 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 8)
 	price_tag = 1400
-	rarity_value = 12
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.65	 //made with rubber rounds in mind. For lethality refer to Wintermute. Still quite lethal if you manage to land most shots.
 	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
-	recoil_buildup = 3
+	recoil_buildup = 1
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -29,20 +28,22 @@
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/weapon/gun/projectile/automatic/straylight/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
-	if (silenced)
+	if(silenced)
 		iconstring += "_s"
 		itemstring += "_s"
 

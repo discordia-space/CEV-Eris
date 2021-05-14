@@ -29,7 +29,7 @@
 		STAT_MEC = 20
 	)
 
-
+	perks = list(PERK_SURVIVOR)
 
 /datum/antagonist/mercenary/equip()
 	var/mob/living/L = owner.current
@@ -52,6 +52,9 @@
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
 
+	for(var/perk in perks)
+		L.stats.addPerk(perk)
+
 	create_id("Soldier")
 	..()
 
@@ -59,7 +62,8 @@
 /obj/item/weapon/card/id/merc
 	icon_state = "syndicate"
 
-/obj/item/weapon/card/id/merc/New()
+/obj/item/weapon/card/id/merc/Initialize(mapload)
+	. = ..()
 	access = list(access_mercenary,//This access governs their ship and base
 	access_external_airlocks,
 	access_maint_tunnels)

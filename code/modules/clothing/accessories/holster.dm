@@ -6,10 +6,8 @@
 	matter = list(MATERIAL_BIOMATTER = 5)
 	price_tag = 200
 	spawn_blacklisted = FALSE
-	spawn_frequency = 10
-	rarity_value = 10
 	spawn_tags = SPAWN_TAG_HOLSTER
-	var/obj/item/holstered = null
+	var/obj/item/holstered
 
 /obj/item/clothing/accessory/holster/proc/holster(obj/item/I, mob/living/user)
 	if(holstered && istype(user))

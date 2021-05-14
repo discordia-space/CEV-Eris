@@ -21,29 +21,36 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
-	recoil_buildup = 15 // at least somewhat controllable
+	recoil_buildup = 7.4 // at least somewhat controllable
 	one_hand_penalty = 20 //automatic shotgun level
 
-				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
+					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/weapon/gun/projectile/shotgun/bojevic/update_icon()
-	overlays.Cut()
+/obj/item/weapon/gun/projectile/shotgun/bojevic/on_update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	cut_overlays()
 	icon_state = "[initial(icon_state)]"
+
+	if(wielded)
+		itemstring += "_doble"
+
 	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_color]"
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide"
-	if(wielded)//I hate this snowflake bullshit but I don't feel like messing with it.
-		if(ammo_magazine)
-			item_state = wielded_item_state + "_mag"
-		else
-			item_state = wielded_item_state
-	else
-		item_state = initial(item_state)
+		add_overlays("m12[ammo_magazine.ammo_color]")
+		itemstring += "_mag"
+
+	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		add_overlays("slide")
+
+	icon_state = iconstring
+	set_item_state(itemstring)
 
 /obj/item/weapon/gun/projectile/shotgun/bojevic/Initialize()
 	. = ..()

@@ -3,7 +3,7 @@
 	var/surgery_name
 	var/organ_tag = "limb"
 	var/body_part
-	var/parent_organ
+	var/parent_organ_base
 	var/default_type = /obj/item/organ/external
 	var/default_bone_type = /obj/item/organ/internal/bone
 
@@ -14,7 +14,7 @@
 	var/cannot_amputate = FALSE
 
 	var/w_class = ITEM_SIZE_NORMAL
-	var/cavity_max_w_class = ITEM_SIZE_TINY
+	var/max_volume = 2.5	//Space used up by specific organ size and w_class of cavity implants (ITEM_SIZE_SMALL + 0.5)
 
 	var/amputation_point = "spine"
 	var/joint = "neck"
@@ -43,7 +43,7 @@
 	cannot_amputate = TRUE
 
 	w_class = ITEM_SIZE_HUGE
-	cavity_max_w_class = ITEM_SIZE_NORMAL
+	max_volume = ITEM_SIZE_TITANIC
 
 	joint = "neck"
 	amputation_point = "spine"
@@ -55,7 +55,7 @@
 	surgery_name = "lower abdomen"
 	organ_tag = BP_GROIN
 	body_part = LOWER_TORSO
-	parent_organ = BP_CHEST
+	parent_organ_base = BP_CHEST
 	default_type = /obj/item/organ/external/groin
 	default_bone_type = /obj/item/organ/internal/bone/groin
 
@@ -64,7 +64,7 @@
 	dislocated = -1
 
 	w_class = ITEM_SIZE_BULKY
-	cavity_max_w_class = ITEM_SIZE_SMALL
+	max_volume = ITEM_SIZE_COLOSSAL
 
 	joint = "hip"
 	amputation_point = "lumbar"
@@ -75,7 +75,7 @@
 	surgery_name = "head" // Prevents "Unknown's Unkonwn's head" from popping up if the head was amputated and then reattached
 	organ_tag = BP_HEAD
 	body_part = HEAD
-	parent_organ = BP_CHEST
+	parent_organ_base = BP_CHEST
 	default_type = /obj/item/organ/external/head
 	default_bone_type = /obj/item/organ/internal/bone/head
 
@@ -84,6 +84,7 @@
 	vital = TRUE
 
 	w_class = ITEM_SIZE_NORMAL
+	max_volume = ITEM_SIZE_GARGANTUAN
 
 	joint = "jaw"
 	amputation_point = "neck"
@@ -94,7 +95,7 @@
 	functions = BODYPART_REAGENT_INTAKE | BODYPART_GAS_INTAKE
 
 /datum/organ_description/arm
-	parent_organ = BP_CHEST
+	parent_organ_base = BP_CHEST
 
 	w_class = ITEM_SIZE_NORMAL
 
@@ -122,7 +123,7 @@
 	amputation_point = "right shoulder"
 
 /datum/organ_description/leg
-	parent_organ = BP_GROIN
+	parent_organ_base = BP_GROIN
 
 	w_class = ITEM_SIZE_NORMAL
 
@@ -154,23 +155,44 @@
 ////SLIME////
 /datum/organ_description/chest/slime
 	name = "upper body"
+	max_damage = 125
+	min_broken_damage = 120
+	max_volume = 5
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/groin/slime
 	name = "fork"
+	max_damage = 100
+	min_broken_damage = 150
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/head/slime
+	max_damage = 100
+	min_broken_damage = 150
+	max_volume = 4
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/left/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/right/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/left/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/right/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable

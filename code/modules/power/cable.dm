@@ -35,7 +35,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	level = 1
-	anchored =1
+	anchored = TRUE
 	var/datum/powernet/powernet
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer"
@@ -567,9 +567,23 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		if(S.burn_dam)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
-				S.heal_damage(0,15,0,1)
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message(SPAN_DANGER("\The [user] patches some damaged wiring on \the [M]'s [S.name] with \the [src]."))
+				for(var/datum/wound/W in S.wounds)
+					if(W.internal)
+						return
+					if(W.damtype_sanitize() != BURN)
+						continue
+					if(!do_mob(user, M, W.damage/5))
+						to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+						break
+					if(!use(1))
+						to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
+						return
+					W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
+					to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+				S.update_damages()
+				if(S.burn_dam)
+					to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+				return
 			else if(S.open != 2)
 				to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 			return 1
@@ -580,7 +594,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return ..()
 
 
-/obj/item/stack/cable_coil/update_icon()
+/obj/item/stack/cable_coil/on_update_icon()
 	if (!color)
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)

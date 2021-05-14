@@ -25,11 +25,11 @@ effective or pretty fucking useless.
 	flags = CONDUCT
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 3, TECH_COVERT = 3)
-
+	spawn_blacklisted = TRUE//traitor item
 	var/times_used = 0 //Number of times it's been used.
 	var/max_uses = 2
 
-/obj/item/device/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/device/batterer/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
 	if(!user) 	return
 	if(times_used >= max_uses)
 		to_chat(user, SPAN_WARNING("The mind batterer has been burnt out!"))

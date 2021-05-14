@@ -64,7 +64,7 @@
 		var/multiplier = max(0, 1 - (owner.analgesic / 100))
 
 		if(multiplier)
-			owner.apply_effect(strength * multiplier, AGONY, armor_value = 0, check_protection = FALSE)
+			owner.adjustHalLoss(strength * multiplier)
 
 
 // Get a list of surgically treatable conditions
@@ -72,6 +72,34 @@
 /obj/item/organ/proc/get_conditions()
 	return list()
 
+/obj/item/organ/proc/get_actions(var/obj/item/organ/external/parent)
+	var/list/actions_list = list()
+
+	if(BP_IS_ROBOTIC(src))
+		actions_list.Add(list(list(
+			"name" = (status & ORGAN_CUT_AWAY) ? "Connect" : "Disconnect",
+			"organ" = "\ref[src]",
+			"step" = /datum/surgery_step/robotic/connect_organ
+		)))
+	else
+		actions_list.Add(list(list(
+			"name" = (status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
+			"organ" = "\ref[src]",
+			"step" = (status & ORGAN_CUT_AWAY) ? /datum/surgery_step/attach_organ : /datum/surgery_step/detach_organ
+		)))
+
+	return actions_list
+
+/obj/item/organ/internal/proc/get_process_data()
+	var/list/processes = list()
+	for(var/efficiency in organ_efficiency)
+		processes += list(
+			list(
+				"title" = "[capitalize(efficiency)] efficiency",
+				"efficiency" = organ_efficiency[efficiency],
+				)
+			)
+	return processes
 
 // Is body part open for most surgerical operations?
 // To be overridden in subtypes
@@ -81,5 +109,6 @@
 
 // Handling of attacks in organ-centric surgery - called from attackby and attack_hand
 // To be overridden in subtypes
-/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool)
+/obj/item/organ/proc/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
 	return FALSE
+

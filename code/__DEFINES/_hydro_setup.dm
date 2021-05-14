@@ -60,5 +60,7 @@
 #define TRAIT_CHEM_SPRAYER         	40
 #define TRAIT_WALL_HUGGER			41
 #define TRAIT_INVASIVE				42//Allows to invade already seeded tiles
+#define TRAIT_BOOSTED_GROWTH        43 // 1 by default, increase it to boost plant growth
+#define TRAIT_LARGE            	    44
 
 #define WALL_HUG_OFFSET 			12 //How many pixels a wallhugging plant is offset towards a wall

@@ -115,13 +115,22 @@ steam.start() -- spawns the effect
 // will always spawn at the items location.
 /////////////////////////////////////////////
 
+/proc/do_sparks(n, c, source)
+	// n - number of sparks
+	// c - cardinals, bool, do the sparks only move in cardinal directions?
+	// source - source of the sparks.
+
+	var/datum/effect/effect/system/spark_spread/sparks = new
+	sparks.set_up(n, c, source)
+	sparks.start()
+
 /obj/effect/sparks
 	name = "sparks"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
-	var/amount = 6
 	anchored = TRUE
 	mouse_opacity = 0
+	var/amount = 6
 
 /obj/effect/sparks/New()
 	..()
@@ -208,6 +217,7 @@ steam.start() -- spawns the effect
 
 
 /obj/effect/effect/smoke/Initialize()
+	. = ..()
 	spawn(time_to_live)
 		fade_out()
 

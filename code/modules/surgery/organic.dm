@@ -388,3 +388,70 @@
 	)
 	organ.take_damage(30, 0, sharp=TRUE, edge=TRUE)
 	organ.fracture()
+
+
+//removing shrapnel from yourself, using a knife
+/datum/surgery_step/remove_shrapnel
+	required_tool_quality = QUALITY_CUTTING
+
+	duration = 8 SECONDS
+	blood_level = 1
+
+/datum/surgery_step/remove_shrapnel/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	return organ.owner && !organ.open && (locate(/obj/item/weapon/material/shard/shrapnel) in organ.implants)
+
+/datum/surgery_step/remove_shrapnel/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] is beginning to attempt to remove shrapnel from [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You are beginning to remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
+	)
+	organ.owner_custom_pain("Your [organ.name] is being torn apart!", 1)
+
+/datum/surgery_step/remove_shrapnel/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] removes shrapnel from [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
+	)
+	var/obj/item/shrapnel = locate(/obj/item/weapon/material/shard/shrapnel) in organ.implants
+	organ.remove_item(shrapnel, user, FALSE)
+	organ.take_damage(max(tool.force/5, tool.force/(user.stats.getStat(STAT_BIO)/STAT_LEVEL_BASIC)), 0, sharp=TRUE, edge=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
+
+/datum/surgery_step/remove_shrapnel/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, catching inside [organ.get_surgery_name()] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, sawing through the flesh in [organ.get_surgery_name()] with \the [tool]!")
+	)
+	organ.take_damage(tool.force*1.5, 0, sharp=TRUE, edge=TRUE)
+
+//Cauterizing a wound to stop bleeding
+/datum/surgery_step/close_wounds
+	required_tool_quality = QUALITY_CAUTERIZING
+
+	duration = 4 SECONDS
+	blood_level = 0
+
+/datum/surgery_step/close_wounds/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	return organ.owner && !organ.open && organ.status & ORGAN_BLEEDING
+
+/datum/surgery_step/close_wounds/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] is beginning to close the wounds on [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You are beginning to close the wounds on [organ.get_surgery_name()] with \the [tool].")
+	)
+	organ.owner_custom_pain("It burns!", 1)
+
+/datum/surgery_step/close_wounds/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] closes the wounds on [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
+	)
+	organ.stopBleeding()
+	organ.take_damage(0, max(tool.force/5, tool.force/(user.stats.getStat(STAT_BIO)/STAT_LEVEL_BASIC))) //So it's a bad idea to remove shrapnel with a chainsaw
+
+/datum/surgery_step/close_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, burning across [organ.get_surgery_name()] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, char-grilling the flesh in [organ.get_surgery_name()] with \the [tool]!")
+	)
+	organ.take_damage(0, tool.force*1.5)
+

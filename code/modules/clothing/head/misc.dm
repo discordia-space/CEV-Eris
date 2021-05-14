@@ -15,7 +15,6 @@
 	desc = "Smells nice."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
-	style = 1
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -141,15 +140,12 @@
 	desc = "Yarr."
 	icon_state = "bandana"
 	flags_inv = BLOCKHEADHAIR
-	style = 1
-	rarity_value = 3.33
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	body_parts_covered = 0
-	style = 1
 
 //stylish bs12 hats
 
@@ -173,7 +169,6 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
-	style = 2
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
@@ -184,7 +179,6 @@
 	name = "fez"
 	icon_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
-	style = 1
 
 //end bs12 hats
 
@@ -257,7 +251,6 @@
 	name = "Oberth Republic beret"
 	desc = "Brown beret with emblem. Material that it made of will protect against energy projectiles."
 	icon_state = "germanberet"
-	rarity_value = 12.5
 	armor = list(
 		melee = 5,
 		bullet = 5,

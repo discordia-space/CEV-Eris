@@ -35,7 +35,7 @@
 	update_icon()
 
 
-/obj/item/weapon/emp_mine/update_icon()
+/obj/item/weapon/emp_mine/on_update_icon()
 	icon_state = "empmine[armed ? "1":"0"]"
 
 
@@ -46,7 +46,7 @@
 			return
 
 		for(var/mob/M in range(trigger_range, T))
-			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/silicon))
+			if(ishuman(M) || istype(M,/mob/living/silicon))
 				cooldown_timer = world.time
 				empulse(T, emp_range, emp_range, TRUE)
 				break

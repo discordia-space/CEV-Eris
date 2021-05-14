@@ -846,73 +846,11 @@
 
 
 // Cakes //
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake
+/obj/item/weapon/reagent_containers/food/snacks/slice
 	price_tag = 10
 
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/braincake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/limecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/applecake
-	price_tag = 10
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie
-	price_tag = 10
-
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/get_item_cost(export)
+	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
 // Misc //
 
@@ -948,29 +886,8 @@
 //----Smokes-----//
 //***************//
 
-/obj/item/weapon/storage/fancy/cigarettes
-	price_tag = 150
-
-/obj/item/weapon/storage/fancy/cigarettes/luckystars
-	price_tag = 170
-
-/obj/item/weapon/storage/fancy/cigarettes/jerichos
-	price_tag = 220
-
-/obj/item/weapon/storage/fancy/cigarettes/menthols
-	price_tag = 180
-
-/obj/item/weapon/storage/fancy/cigar
-	price_tag = 270
-
-/obj/item/weapon/storage/fancy/cigarettes/carcinomas
-	price_tag  = 230
-
-/obj/item/weapon/storage/fancy/cigarettes/professionals
-	price_tag = 250
-
-/obj/item/weapon/storage/box/matches
-	price_tag = 10
+/obj/item/clothing/mask/smokable
+	price_tag = 5 //cigarette monopoly no more
 
 /obj/item/weapon/flame/lighter
 	price_tag = 20
@@ -981,7 +898,10 @@
 /obj/item/bluespace_crystal
 	price_tag = 500
 
-
+/obj/item/weapon/storage/get_item_cost(export)
+	. = ..()
+	for(var/atom/movable/i in src)
+		. += SStrade.get_new_cost(i)
 
 /obj/machinery
 	price_tag = 100
@@ -1025,20 +945,12 @@
 
 /obj/item/weapon/stock_parts
 	price_tag = 100
+
 /obj/item/weapon/stock_parts/get_item_cost(export)
 	. = ..() * rating
 
 /obj/item/organ
 	price_tag = 500
-
-/mob/living/carbon/superior_animal/roach
-	price_tag = 150
-
-/mob/living/carbon/superior_animal/roach/roachling
-	price_tag = 100
-
-/mob/living/carbon/superior_animal/roach/hunter
-	price_tag = 200
 
 /mob/living/exosuit/get_item_cost(export)
 	. = ..() + SStrade.get_import_cost(body)
@@ -1047,6 +959,7 @@
 	return amount * ..()
 
 /obj/item/ammo_magazine/price_tag = 60
+
 /obj/item/ammo_magazine/ammobox/price_tag = 40
 
 /obj/item/ammo_magazine/get_item_cost(export)
@@ -1054,7 +967,7 @@
 	for(var/obj/item/ammo_casing/i in stored_ammo)
 		. += i.get_item_cost(export)
 
-/obj/item/ammo_casing/price_tag = 20
+/obj/item/ammo_casing/price_tag = 0
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = ..() * amount
@@ -1079,6 +992,7 @@
 	price_tag = 50
 
 /obj/item/clothing/price_tag = 30
+
 /obj/item/solar_assembly/price_tag = 100
 /obj/item/weapon/tracker_electronics/price_tag = 150
 /obj/item/weapon/handcuffs/price_tag = 30
@@ -1099,8 +1013,14 @@
 
 /obj/item/weapon/gun/launcher/grenade/price_tag = 1500
 
-/obj/item/weapon/storage/briefcase/inflatable/price_tag = 50
+/obj/item/weapon/storage/briefcase/price_tag = 50
 
 /obj/item/inflatable/price_tag = 40
 
 /obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400
+
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/price_tag = 75
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche/price_tag = 100
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125

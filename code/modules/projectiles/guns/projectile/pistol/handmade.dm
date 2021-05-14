@@ -4,15 +4,15 @@
 	icon = 'icons/obj/guns/projectile/hm_pistol.dmi'
 	icon_state = "hm_pistol"
 	item_state = "pistol"
-	caliber = CAL_PISTOL
+	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	can_dual = 1
+	can_dual = TRUE
 	load_method = SINGLE_CASING
 	max_shells = 1
-	ammo_type = /obj/item/ammo_casing/pistol
+	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
-	recoil_buildup = 45
+	recoil_buildup = 15
 	spawn_frequency = 0
 	var/chamber_open = FALSE
 	var/jammed = FALSE

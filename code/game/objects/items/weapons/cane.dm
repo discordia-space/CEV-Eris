@@ -11,6 +11,7 @@
 	matter = list(MATERIAL_PLASTIC = 5)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 	tool_qualities = list(QUALITY_PRYING = 10)
+	spawn_tags = SPAWN_TAG_ITEM
 
 /obj/item/weapon/cane/concealed
 	var/concealed_blade
@@ -49,7 +50,7 @@
 	else
 		..()
 
-/obj/item/weapon/cane/concealed/update_icon()
+/obj/item/weapon/cane/concealed/on_update_icon()
 	if(concealed_blade)
 		name = initial(name)
 		icon_state = initial(icon_state)

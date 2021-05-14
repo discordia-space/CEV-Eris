@@ -14,7 +14,7 @@
 	var/see_votes = TRUE	//Can voters see choices votes count?
 
 	var/list/choices = list()
-	var/initiator = null	//Initiator's key
+	var/initiator	//Initiator's key
 
 	var/minimum_voters = 1 //If less than this many people cast a vote, the result will be invalid
 	var/minimum_win_percentage = 0 //If less than this portion of the total votes are for the winning option, result is invalid

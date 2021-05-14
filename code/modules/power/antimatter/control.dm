@@ -126,7 +126,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/update_icon()
+/obj/machinery/power/am_control_unit/on_update_icon()
 	if(active) icon_state = "control_on"
 	else icon_state = "control"
 	//No other icons for it atm
@@ -148,7 +148,7 @@
 				user.visible_message("[user.name] unsecures the [src.name].", \
 					"You remove the anchor bolts.", \
 					"You hear a ratchet")
-				src.anchored = 0
+				src.anchored = FALSE
 				disconnect_from_network()
 			return
 

@@ -18,11 +18,11 @@
 //Now it just finds if the tile is blocked by anything solid.
 /proc/turf_clear(turf/T)
 	if (T.density)
-		return 0
+		return FALSE
 	for(var/atom/A in T)
 		if(A.density)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /proc/clear_interior(var/turf/T)
 	if (turf_clear(T))
@@ -112,7 +112,7 @@
 	if (A.flags & AREA_FLAG_EXTERNAL)
 		return TRUE
 
-	for (var/a in trange(1, T))
+	for (var/a in RANGE_TURFS(1, T))
 		var/turf/U = a //This is a speed hack.
 		//Manual casting when the type is known skips an istype check in the loop
 		if (A.flags & AREA_FLAG_EXTERNAL)

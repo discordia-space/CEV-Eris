@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/starlight = "#ffffff"	// null if turned off
 
-	var/list/ert_species = list("Human")
+	var/list/ert_species = list(SPECIES_HUMAN)
 
 	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
@@ -224,6 +224,10 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_key
 
 	var/static/regex/ic_filter_regex //For the cringe filter.
+
+	var/generate_loot_data = FALSE //for loot rework
+
+	var/profiler_permission = R_DEBUG | R_SERVER
 
 /datum/configuration/New()
 	fill_storyevents_list()
@@ -435,7 +439,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-			
+
 				if ("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
@@ -676,7 +680,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
-						config.ert_species += "Human"
+						config.ert_species += SPECIES_HUMAN
 
 				if("use_cortical_stacks")
 					config.use_cortical_stacks = 1
@@ -712,13 +716,13 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
-				
-		
+
+
 				if("random_start")
 					var/list/startlist = list(
-						"asteroid", 
-						"abandoned fortress", 
-						"space ruins") 
+						"asteroid",
+						"abandoned fortress",
+						"space ruins")
 					var/pick = rand(1, startlist.len)
 					config.start_location = startlist[pick]
 
@@ -730,6 +734,12 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ruins_start")
 					config.start_location = "space ruins"
+
+				if("profiler_permission")
+					config.profiler_permission = text2num(value)
+
+				if("generate_loot_data")
+					config.generate_loot_data = TRUE
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -849,4 +859,3 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
 		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
-

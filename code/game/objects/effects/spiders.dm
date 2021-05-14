@@ -5,6 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	density = FALSE
+	bad_type = /obj/effect/spider
 	var/health = 15
 
 //similar to weeds, but only barfed out by nurses manually
@@ -20,11 +21,11 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/I, var/mob/user)
+/obj/effect/spider/attackby(obj/item/I, mob/user)
 	if(I.attack_verb.len)
-		visible_message("<span class='warning'>\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARNING("\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]"))
 	else
-		visible_message("<span class='warning'>\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
 
 	var/damage = I.force / 4
 
@@ -77,9 +78,9 @@
 	name = "egg cluster"
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
-	var/amount_grown = 0		
+	var/amount_grown = 0
 
-/obj/effect/spider/eggcluster/New(var/location, var/atom/parent)
+/obj/effect/spider/eggcluster/New(location, atom/parent)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
@@ -209,12 +210,12 @@
 
 	if(isturf(loc))
 		if(prob(25))
-			var/list/nearby = trange(5, src) - loc
+			var/list/nearby = RANGE_TURFS(5, src) - loc
 			if(nearby.len)
 				var/target_atom = pick(nearby)
 				walk_to(src, target_atom, 5)
 				if(prob(25))
-					src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
+					src.visible_message(SPAN_NOTICE("\The [src] skitters[pick(" away"," around","")]."))
 		else if(prob(1))
 			//vent crawl!
 			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))

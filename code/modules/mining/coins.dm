@@ -12,7 +12,8 @@
 	var/string_attached
 	var/sides = 2
 
-/obj/item/weapon/coin/New()
+/obj/item/weapon/coin/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 
@@ -51,7 +52,7 @@
 			to_chat(user, SPAN_NOTICE("There already is a string attached to this coin."))
 			return
 		if (CC.use(1))
-			overlays += image('icons/obj/items.dmi',"coin_string_overlay")
+			add_overlays(image('icons/obj/items.dmi',"coin_string_overlay"))
 			string_attached = 1
 			to_chat(user, SPAN_NOTICE("You attach a string to the coin."))
 		else
@@ -63,7 +64,7 @@
 			return
 
 		new /obj/item/stack/cable_coil(user.loc, 1)
-		overlays = list()
+		set_overlays(list())
 		string_attached = null
 		to_chat(user, "\blue You detach the string from the coin.")
 	else ..()

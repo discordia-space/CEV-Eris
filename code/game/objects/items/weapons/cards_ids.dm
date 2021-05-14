@@ -16,6 +16,7 @@
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
+	bad_type = /obj/item/weapon/card
 	spawn_blacklisted = TRUE
 	var/list/files = list()
 
@@ -23,10 +24,10 @@
 	name = "data disk"
 	desc = "A disk of data."
 	icon_state = "data"
+	item_state = "card-id"
 	var/function = "storage"
 	var/data = "null"
 	var/special
-	item_state = "card-id"
 
 /obj/item/weapon/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -122,6 +123,10 @@ var/const/NO_EMAG_ACT = -50
 	if(in_range(usr, src))
 		show(usr)
 		to_chat(usr, desc)
+		to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
+		to_chat(usr, "The blood type on the card is [blood_type].")
+		to_chat(usr, "The DNA hash on the card is [dna_hash].")
+		to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	else
 		to_chat(usr, SPAN_WARNING("It is too far away."))
 
@@ -188,18 +193,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/GetIdCard()
 	return src
 
-/obj/item/weapon/card/id/verb/read()
-	set name = "Read ID Card"
-	set category = "Object"
-	set src in usr
-
-	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
-	to_chat(usr, "The blood type on the card is [blood_type].")
-	to_chat(usr, "The DNA hash on the card is [dna_hash].")
-	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
-	return
-
-
 /obj/item/weapon/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
@@ -214,6 +207,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()
@@ -225,6 +219,7 @@ var/const/NO_EMAG_ACT = -50
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Synthetic"
+	spawn_tags = null
 
 /obj/item/weapon/card/id/synthetic/New()
 	access = get_all_station_access() + access_synth
@@ -237,6 +232,8 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	registered_name = "Administrator"
 	assignment = "Administrator"
+	spawn_blacklisted = TRUE
+
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()

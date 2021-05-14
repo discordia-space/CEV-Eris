@@ -199,8 +199,8 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
-	brightness_power = 2
+	brightness_range = 3
+	brightness_power = 1
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
@@ -257,7 +257,7 @@
 //		A.update_lights()
 	. = ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/on_update_icon()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -491,7 +491,7 @@
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/machinery/light/proc/flicker(amount = rand(10, 20))
+/obj/machinery/light/proc/flick_light(amount = rand(10, 20))
 	var/on_s = on // s stands for safety
 	if(flickering)
 		return
@@ -514,7 +514,7 @@
 // ai attack - make lights flicker, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
+	flick_light(1)
 	return
 
 // attack with hand - remove tube/bulb

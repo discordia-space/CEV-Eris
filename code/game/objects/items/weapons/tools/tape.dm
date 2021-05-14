@@ -22,7 +22,7 @@
 	max_stock = 30
 	alpha = 150
 	rarity_value = 2
-	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/tape_roll/fiber
 	name = "fiber tape"
@@ -35,6 +35,15 @@
 	spawn_frequency = 8
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
+
+/obj/item/weapon/tool/tape_roll/glue
+	name = "superglue"
+	desc = "A bucket of milky white fluid. Can be used to stick things together, but unlike tape, it cannot be used to seal things."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "glue"
+	tool_qualities = list(QUALITY_ADHESIVE = 40, QUALITY_CAUTERIZING = 5) // Better than duct tape, but can't seal things and is mostly used in crafting - also, it's glue, so it can be used as an extremely shitty way of sealing wounds
+	matter = list(MATERIAL_BIOMATTER = 30)
+	worksound = NO_WORKSOUND
 
 /obj/item/weapon/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))
@@ -147,14 +156,14 @@
 	update_icon()
 	name = W.name + " (taped)"
 
-/obj/item/weapon/ducttape/update_icon()
+/obj/item/weapon/ducttape/on_update_icon()
 	if (!stuck)
 		return
 
 	if (istype(stuck, /obj/item/weapon/paper))
 		icon_state = stuck.icon_state
-		overlays.Cut()
-		overlays = stuck.overlays + "tape_overlay"
+		cut_overlays()
+		set_overlays(stuck.overlays + "tape_overlay")
 	else
 		var/mutable_appearance/MA = new(stuck)
 		MA.layer = layer-0.1
@@ -174,7 +183,7 @@
 	stuck.forceMove(get_turf(src))
 	user.put_in_hands(stuck)
 	stuck = null
-	overlays = null
+	set_overlays(null)
 	qdel(src)
 
 /obj/item/weapon/ducttape/afterattack(A, mob/user, flag, params)

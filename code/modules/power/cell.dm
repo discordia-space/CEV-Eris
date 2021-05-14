@@ -16,7 +16,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Spawn_values
 	bad_type = /obj/item/weapon/cell
-	rarity_value = 3
+	rarity_value = 2
 	spawn_tags = SPAWN_TAG_POWERCELL
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 100
@@ -26,8 +26,8 @@
 	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
-	var/autorecharge_rate = 0.03
-	var/recharge_time = 4 //How often nuclear cells will recharge
+	var/autorecharge_rate = BASE_AUTORECHARGE_RATE//0.03
+	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
@@ -61,14 +61,14 @@
 	if(drain_check)
 		return TRUE
 
-	if(empty())
+	if(is_empty())
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/update_icon()
+/obj/item/weapon/cell/on_update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
@@ -85,13 +85,13 @@
 	if (charge_status == last_charge_status)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	if (charge_status != null)
-		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
+		add_overlays(image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]"))
 
 	last_charge_status = charge_status
 
-/obj/item/weapon/cell/proc/empty()
+/obj/item/weapon/cell/proc/is_empty()
 	if(charge <= 0)
 		return TRUE
 	return FALSE
@@ -144,6 +144,10 @@
 	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
 	to_chat(user, "The charge meter reads [round(percent() )]%.")
 
+	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
+		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
+
+
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
@@ -173,7 +177,7 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (empty())
+	if(is_empty())
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)

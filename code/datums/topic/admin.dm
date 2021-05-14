@@ -1153,7 +1153,7 @@
 	if(!P.stamped)
 		P.stamped = new
 	P.stamped += /obj/item/weapon/stamp
-	P.overlays += stampoverlay
+	P.add_overlays(stampoverlay)
 	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
@@ -1366,7 +1366,7 @@
 						O.set_dir(obj_dir)
 						if(obj_name)
 							O.name = obj_name
-							if(istype(O,/mob))
+							if(ismob(O))
 								var/mob/M = O
 								M.real_name = obj_name
 						if(where == "inhand" && isliving(usr) && istype(O, /obj/item))

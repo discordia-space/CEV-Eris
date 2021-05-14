@@ -7,7 +7,6 @@
 	icon_closed = "labcoat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
-	rarity_value = 2.77
 	armor = list(
 		melee = 0,
 		bullet = 0,
@@ -17,7 +16,6 @@
 		bio = 0,
 		rad = 0
 	)
-	style = 1
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	name = "moebius biolab officer's labcoat"

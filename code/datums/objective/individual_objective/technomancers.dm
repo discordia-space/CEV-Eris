@@ -4,13 +4,13 @@
 	units_requested = 10 MINUTES
 	based_time = TRUE
 	var/area/target_area
-	var/timer	
+	var/timer
 
 /datum/individual_objective/disturbance/assign()
 	..()
-	target_area = random_ship_area()
-	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down by APC \
-	for [unit2time(units_requested)] minutes to lower bluespace interference, before worst will happen."
+	target_area = random_ship_area(need_apc=TRUE)
+	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down its APC \
+	for [unit2time(units_requested)] minutes to lower bluespace interference, before something worse will happen."
 	RegisterSignal(target_area, COMSIG_AREA_APC_OPERATING, .proc/task_completed)
 
 /datum/individual_objective/disturbance/task_completed(on=TRUE)
@@ -22,6 +22,8 @@
 		timer = world.time
 	if(check_for_completion())
 		completed()
+		target_area.local_bluespace_entropy -= rand(25,50)
+		GLOB.bluespace_entropy -= rand(5,25)
 
 /datum/individual_objective/disturbance/completed()
 	if(completed) return
@@ -85,13 +87,20 @@
 	rarity = 4
 	var/obj/item/target
 
+/datum/individual_objective/tribalism/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	if(locate(/obj/item/device/techno_tribalism))
+		return pick_faction_item(L)
+	return FALSE
+
 /datum/individual_objective/tribalism/assign()
 	..()
 	target = pick_faction_item(mind_holder)
 	desc = "It is time to greater sacrifice. Put \the [target] in Techno-Tribalism Enforcer."
 	RegisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM, .proc/task_completed)
 
-/datum/individual_objective/tribalism/task_completed(obj/item/I) 
+/datum/individual_objective/tribalism/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 

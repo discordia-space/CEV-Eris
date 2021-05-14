@@ -25,11 +25,11 @@
 				to_chat(user,"<span class='warning'>You can't load living things into the cargo compartment.</span>")
 				return
 
-			if(istype(target, /obj/structure/scrap))
+			if(istype(target, /obj/structure/scrap_spawner))
 				owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with \the [src]."))
 				if(do_after(owner, 20, O, 0, 1))
-					if(istype(O, /obj/structure/scrap))
-						var/obj/structure/scrap/S = O
+					if(istype(O, /obj/structure/scrap_spawner))
+						var/obj/structure/scrap_spawner/S = O
 						S.make_cube()
 						owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with \the [src]."))
 				return
@@ -102,7 +102,7 @@
 		update_icon()
 		owner.update_icon()
 
-/obj/item/mech_equipment/light/update_icon()
+/obj/item/mech_equipment/light/on_update_icon()
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
@@ -229,7 +229,7 @@
 
 /obj/item/mech_equipment/drill/Initialize()
 	. = ..()
-	drill_head = new /obj/item/weapon/material/drill_head(src, "steel")//You start with a basic steel head
+	drill_head = new /obj/item/weapon/material/drill_head(src, MATERIAL_STEEL)//You start with a basic steel head
 
 /obj/item/mech_equipment/drill/attack_self(var/mob/user)
 	. = ..()
@@ -331,6 +331,7 @@
 	max_water = 4000 //Good is gooder
 	icon_state = "mech_exting"
 	overlaylist = list()
+	spawn_frequency = 0
 
 /obj/item/weapon/extinguisher/mech/get_hardpoint_maptext()
 	return "[reagents.total_volume]/[max_water]"

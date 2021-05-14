@@ -15,9 +15,9 @@
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/datum/reagents/holder = null
+	var/datum/reagents/holder
 	var/reagent_state = SOLID
-	var/list/data = null
+	var/list/data
 	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0
@@ -31,10 +31,10 @@
 	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
-	var/glass_icon_state = null
-	var/glass_name = null
-	var/glass_desc = null
-	var/glass_center_of_mass = null
+	var/glass_icon_state
+	var/glass_name
+	var/glass_desc
+	var/glass_center_of_mass
 	var/color = "#000000"
 	var/color_weight = 1
 	var/sanity_gain = 0
@@ -128,9 +128,9 @@
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien, location)
 	if(!istype(M))
-		return
+		return FALSE
 	if(!affects_dead && M.stat == DEAD)
-		return
+		return FALSE
 
 	var/removed = consumed_amount(M, alien, location)
 
@@ -149,6 +149,7 @@
 	// At this point, the reagent might have removed itself entirely - safety check
 	if(volume && holder)
 		remove_self(removed)
+	return TRUE
 
 /datum/reagent/proc/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
 	if(!ishuman(H))
@@ -160,7 +161,7 @@
 
 /datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
-	
+
 	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)

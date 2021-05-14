@@ -192,10 +192,34 @@
 ////special////
 
 /datum/uplink_item/item/ammo/sniperammo
-	name = ".60 Anti material"
-	desc = "A box full of .60 AMR bullets. Have 5 bullets inside."
-	item_cost = 3
+	name = ".60 Anti material \"Penetrator\""
+	desc = "A box full of .60 AMR shells. Have 5 shells inside."
+	item_cost = 2
 	path = /obj/item/weapon/storage/box/sniperammo
+
+/datum/uplink_item/item/ammo/sniperammo/emp
+	name = ".60 Anti material \"Blackout\""
+	desc = "A box full of .60 AMR EMP shells. EMP shells release an electromagnetic pulse on impact. Have 5 shells inside."
+	item_cost = 3
+	path = /obj/item/weapon/storage/box/sniperammo/emp
+
+/datum/uplink_item/item/ammo/sniperammo/uranium
+	name = ".60 Anti material \"Meltdown\""
+	desc = "A box full of .60 AMR depleted uranium shells with high armor-piercing power. radiation sickness included. Have 5 shells inside."
+	item_cost = 3
+	path = /obj/item/weapon/storage/box/sniperammo/uranium
+
+/datum/uplink_item/item/ammo/sniperammo/breach
+	name = ".60 Anti material \"Breacher\""
+	desc = "A box full of low velocity .60 AMR breaching shells, designed not to pierce, but to destroy structures from a distance. Close-ranged shots have less destructive power. Have 5 shells inside."
+	item_cost = 3
+	path = /obj/item/weapon/storage/box/sniperammo/breach
+
+/datum/uplink_item/item/ammo/sniperammo/large
+	name = ".60 Anti material \"Penetrator\" crate"
+	desc = "A box full of .60 AMR shells. Have 30 shells inside."
+	item_cost = 9
+	path = /obj/item/ammo_magazine/ammobox/antim
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"

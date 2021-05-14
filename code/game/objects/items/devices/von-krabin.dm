@@ -23,7 +23,7 @@
 	var/stats_buff = list(STAT_BIO, STAT_COG, STAT_MEC)
 	var/list/mob/living/carbon/human/currently_affected = list()
 
-/obj/item/von_krabin/New()
+/obj/item/device/von_krabin/New()
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_moebius
 
@@ -33,6 +33,7 @@
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
+	GLOB.moebius_faction_item_loss++
 	..()
 
 /obj/item/device/von_krabin/attackby(obj/item/I, mob/user, params)

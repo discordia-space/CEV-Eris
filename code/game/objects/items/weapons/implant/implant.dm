@@ -67,12 +67,11 @@
 	if(!can_install(target, affected))
 		to_chat(user, SPAN_WARNING("You can't install [src]."))
 		return
-
 	forceMove(target)
 	wearer = target
 	implanted = TRUE
 	if(affected)
-		affected.implants += src
+		affected.implants |= src
 		part = affected
 		SSnano.update_uis(affected) // Update surgery UI window, if any
 
@@ -90,7 +89,8 @@
 /obj/item/weapon/implant/proc/uninstall()
 	on_uninstall()
 	forceMove(get_turf(wearer))
-	part.implants.Remove(src)
+	if(part)
+		part.implants.Remove(src)
 	part = null
 	implanted = FALSE
 	if(ishuman(wearer))

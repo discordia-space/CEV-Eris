@@ -5,13 +5,14 @@
 	icon = 'icons/obj/guns/matter/reclaimer.dmi'
 	slot_flags = SLOT_BACK
 	fire_sound = 'sound/weapons/Genhit.ogg'
-    
+
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5, MATERIAL_PLASTIC = 20)
 	matter_type = MATERIAL_WOOD
 
 	stored_matter = 5
 	projectile_cost = 0.5
 	projectile_type = /obj/item/weapon/arrow/reclaiming
+	spawn_blacklisted = TRUE
 
 
 /obj/item/weapon/arrow/reclaiming

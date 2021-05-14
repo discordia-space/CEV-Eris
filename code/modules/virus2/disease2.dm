@@ -10,7 +10,7 @@
 	var/list/datum/disease2/effectholder/effects = list()
 	var/antigen = list() // 16 bits describing the antigens, when one bit is set, a cure with that bit can dock here
 	var/max_stage = 4
-	var/list/affected_species = list("Human")
+	var/list/affected_species = list(SPECIES_HUMAN)
 
 /datum/disease2/disease/New()
 	uniqueID = rand(0,10000)
@@ -58,12 +58,12 @@
 				res |= picked.primitive_form
 	return res
 
-/datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/activate(mob/living/carbon/mob)
 	if(dead)
 		cure(mob)
 		return
 
-	if(mob.stat == 2)
+	if(mob.stat == DEAD)
 		return
 	if(stage <= 1 && clicks == 0) 	// with a certain chance, the mob may become immune to the disease before it starts properly
 		if(prob(5))
@@ -118,8 +118,8 @@
 	clicks+=speed
 
 /datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
-	for(var/datum/disease2/effectholder/e in effects)
-		e.effect.deactivate(mob)
+	for(var/datum/disease2/effectholder/E in effects)
+		E.effect.deactivate(mob)
 	mob.virus2.Remove("[uniqueID]")
 	BITSET(mob.hud_updateflag, STATUS_HUD)
 

@@ -168,6 +168,11 @@ meteor_act
 				if(C.armor.vars[type] > protection)
 					protection = C.armor.vars[type]
 
+	var/obj/item/weapon/shield/shield = has_shield()
+
+	if(shield)
+		protection += shield.armor[type]
+
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -195,6 +200,12 @@ meteor_act
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
+
+/mob/living/carbon/human/proc/has_shield()
+	for(var/obj/item/weapon/shield/shield in list(l_hand, r_hand))
+		if(!shield) continue
+		return shield
+	return FALSE
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
@@ -247,18 +258,6 @@ meteor_act
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(25 + (effective_force * 2)))
-		if(!stat)
-			if(headcheck(hit_zone))
-				//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(effective_force))
-					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
-					apply_effect(20, PARALYZE, getarmor(hit_zone, ARMOR_MELEE) )
-			else
-				//Easier to score a stun but lasts less time
-				if(prob(effective_force + 10))
-					visible_message(SPAN_DANGER("[src] has been knocked down!"))
-					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
 		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
@@ -411,7 +410,7 @@ meteor_act
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
+/mob/living/carbon/human/embed(var/obj/O, var/def_zone)
 	if(!def_zone) ..()
 
 	var/obj/item/organ/external/affecting = get_organ(def_zone)

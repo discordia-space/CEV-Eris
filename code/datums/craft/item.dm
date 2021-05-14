@@ -1,6 +1,7 @@
 /obj/item/craft
 	icon = 'icons/obj/crafts.dmi'
 	icon_state = "device"
+	spawn_tags = null
 	var/datum/craft_recipe/recipe
 	var/step = 1
 
@@ -14,16 +15,14 @@
 
 
 /obj/item/craft/proc/update()
-	desc = recipe.get_description(step)
-
+	desc = recipe.get_description(step-1, src)
 
 /obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
-	if (user && istype(loc, /turf))
+	if(user && istype(loc, /turf))
 		user.face_atom(src) //Look at what you're doing please
 
-	if(recipe.try_step(step+1, I, user, src)) //First step is
-		++step
-		if(recipe.is_compelete(step+1))
+	if(recipe.try_step(step, I, user, src)) //First step is
+		if(recipe.is_compelete(step))
 			recipe.spawn_result(src, user)
 		else
 			update()

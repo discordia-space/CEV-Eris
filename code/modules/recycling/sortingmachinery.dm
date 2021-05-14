@@ -3,12 +3,12 @@
 	name = "large parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
-	var/obj/wrapped = null
 	density = TRUE
-	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	var/examtext = null
+	var/obj/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/label_y
 	var/label_x
@@ -75,8 +75,8 @@
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
-/obj/structure/bigDelivery/update_icon()
-	overlays = new()
+/obj/structure/bigDelivery/on_update_icon()
+	cut_overlays()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -89,7 +89,7 @@
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
-		overlays += I
+		add_overlays(I)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		if(icon_state == "deliverycloset")
@@ -102,7 +102,7 @@
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
 			I.pixel_y = -3
-		overlays += I
+		add_overlays(I)
 
 /obj/structure/bigDelivery/examine(mob/user)
 	if(..(user, 4))
@@ -117,9 +117,9 @@
 	name = "small parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrate3"
-	var/obj/item/wrapped = null
-	var/sortTag = null
-	var/examtext = null
+	var/obj/item/wrapped
+	var/sortTag
+	var/examtext
 	var/nameset = 0
 	var/tag_x
 
@@ -186,13 +186,13 @@
 				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
-/obj/item/smallDelivery/update_icon()
-	overlays = new()
+/obj/item/smallDelivery/on_update_icon()
+	cut_overlays()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
-		overlays += I
+		add_overlays(I)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		switch(icon_state)
@@ -209,7 +209,7 @@
 				I.pixel_y = 3
 			if("deliverycrate5")
 				I.pixel_y = -3
-		overlays += I
+		add_overlays(I)
 
 /obj/item/smallDelivery/examine(mob/user)
 	if(..(user, 4))
@@ -414,7 +414,7 @@
 
 /obj/machinery/disposal/deliveryChute/flush()
 	flushing = 1
-	flick("intake-closing", src)
+	FLICK("intake-closing", src)
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
 												// travels through the pipes.
 	air_contents = new()		// new empty gas resv.

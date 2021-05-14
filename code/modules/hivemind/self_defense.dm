@@ -49,7 +49,7 @@
 //Emmits an energy wave, that short stuns the enemies and damage them
 /datum/hivemind_sdp/shockwave
 	name = "Shockwave v0.3"
-	cooldown = 5 SECONDS
+	cooldown = 20 SECONDS
 	silent = TRUE
 	var/attack_range = 3
 
@@ -134,7 +134,7 @@
 	for(var/i = 1 to amount)
 		var/turf/spawn_loc = pick(places_to_spawn)
 		champion = new champion_path(spawn_loc)
-		champion.maxHealth += 150
+		champion.adjustMaxHealth(150)
 		champion.health += 150
 		champion.malfunction_chance = 0
 		champion.name = "Champion "
@@ -177,6 +177,7 @@
 			master.visible_message("[master] vanished in the air!")
 			playsound(master, 'sound/effects/cascade.ogg', 70, 1)
 			master.forceMove(new_place)
+			bluespace_entropy(2, new_place, TRUE)
 			master.visible_message("[master] appeared from an air!")
 			playsound(master, 'sound/effects/cascade.ogg', 50, 1)
 			message_admins("Hivemind node [master] emergency run at \the [jumplink(new_place)]")

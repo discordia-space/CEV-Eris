@@ -198,7 +198,7 @@
 	if(drain_check)
 		return TRUE
 
-	if(!cell || cell.empty())
+	if(!cell || cell.is_empty())
 		return FALSE
 
 	// Actual amount to drain from cell, using CELLRATE
@@ -780,21 +780,21 @@
 	return FALSE
 
 /mob/living/silicon/robot/updateicon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
-		overlays += "eyes-[module_sprites[icontype]]"
+		add_overlays("eyes-[module_sprites[icontype]]")
 
 	if(opened)
 		var/panelprefix = custom_sprite ? ckey : "ov"
 		if(wiresexposed)
-			overlays += "[panelprefix]-openpanel +w"
+			add_overlays("[panelprefix]-openpanel +w")
 		else if(cell)
-			overlays += "[panelprefix]-openpanel +c"
+			add_overlays("[panelprefix]-openpanel +c")
 		else
-			overlays += "[panelprefix]-openpanel -c"
+			add_overlays("[panelprefix]-openpanel -c")
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		overlays += "[module_sprites[icontype]]-shield"
+		add_overlays("[module_sprites[icontype]]-shield")
 
 	if(modtype == "Combat")
 		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
@@ -1051,7 +1051,7 @@
 		return FALSE
 
 	// Power cell is empty.
-	if(cell.empty())
+	if(cell.is_empty())
 		return FALSE
 
 	var/power_use = (amount * CYBORG_POWER_USAGE_MULTIPLIER) / power_efficiency
