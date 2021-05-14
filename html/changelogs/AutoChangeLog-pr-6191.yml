@@ -1,6 +1,0 @@
-author: Jackofashepard
-delete-after: true
-changes:
-  - rscadd: Added var that enables irremovable gun mods
-  - tweak: faulty gun mod values, higher chance of faulty gun mod
-  - balance: rebalanced faulty gun mods, no longer removable
