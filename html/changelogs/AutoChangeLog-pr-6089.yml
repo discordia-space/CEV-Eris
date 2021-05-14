@@ -1,0 +1,6 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Add Junk Tractor Beam feature (junk field generation, JTB console, JTB
+      chunk system, affinity system, asteroid generation)
+  - bugfix: Prevents runtime in add_underlay function
