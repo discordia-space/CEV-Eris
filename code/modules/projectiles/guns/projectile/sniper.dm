@@ -2,7 +2,7 @@
 	name = "SA AMR \"Hristov\""
 	desc = "A portable anti-armour rifle, fitted with a night-vision scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease, but suffers from overpenetration at close range. Fires armor piercing .60 shells. Can be upgraded using thermal glasses."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
-	icon_state = "heavysniper_closed"
+	icon_state = "heavysniper"
 	item_state = "heavysniper"
 	damage_multiplier = 0.9
 	w_class = ITEM_SIZE_HUGE
@@ -48,7 +48,9 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-
+/obj/item/weapon/gun/projectile/heavysniper/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
 	if(zoom)
