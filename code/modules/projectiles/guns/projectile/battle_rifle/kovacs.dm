@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/kovacs
 	name = "SA BR \"Kovacs\""
-	desc = "The kovachs is a refined battle rifle fit for taking down heavily armoured targets. \
+	desc = "The \"Kovacs\" is a refined battle rifle fit for taking down heavily armoured targets. \
 			This extremely efficient rifle design has gone into disuse over the years but still sees use by mercenaries. \
 			Uses .20 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/kovacs.dmi'
