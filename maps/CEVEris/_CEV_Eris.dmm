@@ -14804,10 +14804,6 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
-"aKi" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel,
-/area/eris/maintenance/section2deck4central)
 "aKj" = (
 /obj/machinery/camera/network/command{
 	dir = 4
@@ -104205,10 +104201,6 @@
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
-"pJt" = (
-/obj/machinery/vending/Billomat,
-/turf/simulated/floor/tiled/steel/bluecorner,
-/area/eris/security/lobby)
 "pJI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -105022,6 +105014,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
+"vYV" = (
+/obj/machinery/vending/billomat,
+/turf/simulated/floor/tiled/steel,
+/area/eris/maintenance/section2deck4central)
 "wja" = (
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/wall/r_wall,
@@ -164720,8 +164716,8 @@ aDd
 aHN
 aHR
 aHR
+aHR
 aJB
-aKi
 aDd
 bhP
 bjd
@@ -164923,7 +164919,7 @@ aHN
 aHR
 cio
 aHR
-aHR
+vYV
 aDd
 bel
 bje
@@ -205089,7 +205085,7 @@ bVg
 bVE
 bXd
 bXx
-pJt
+bDF
 bXO
 bYp
 bYq

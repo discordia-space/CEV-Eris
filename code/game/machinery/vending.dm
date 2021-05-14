@@ -1487,7 +1487,7 @@
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
 
-/obj/machinery/vending/Billomat
+/obj/machinery/vending/billomat
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
 	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
 	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
@@ -1498,7 +1498,7 @@
 					/obj/item/ammo_magazine/hpistol = 12,
 					/obj/item/ammo_magazine/srifle = 12,
 					/obj/item/ammo_magazine/smg = 12,
-					/obj/item/part/armor = 20, 
+					/obj/item/part/armor = 20,
 					/obj/item/part/gun = 20,
 					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4,
 					/obj/item/weapon/gun/energy/retro = 4,
@@ -1516,7 +1516,7 @@
 					/obj/item/ammo_magazine/cspistol = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/ammo_magazine/smg = 400,
-					/obj/item/part/armor = 700, 
+					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
 					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 3200,
 					/obj/item/weapon/gun/energy/retro = 2000,
