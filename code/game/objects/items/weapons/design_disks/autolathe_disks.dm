@@ -45,6 +45,17 @@
 		/datum/design/autolathe/ammo/lrifle,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_br
+	disk_name = "Serbian Arms - .20 Kovacs"
+	icon_state = "serbian"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 30
+	license = 12
+	designs = list(
+		/obj/item/weapon/gun/projectile/kovacs = 3, // "SA BR .20 \"Kovacs\""
+		/obj/item/ammo_magazine/srifle,
+	)
+
 //The Dallas
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
 	disk_name = "PAR - .25 Dallas"
