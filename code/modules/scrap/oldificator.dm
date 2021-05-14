@@ -368,7 +368,7 @@
 
 /obj/item/weapon/gun/make_old(low_quality_oldification)
 	.=..()
-	if(. && prob(60))
+	if(. && prob(90))
 		var/list/trash_mods = TRASH_GUNMODS
 		while(trash_mods.len)
 			var/trash_mod_path = pick_n_take(trash_mods)
