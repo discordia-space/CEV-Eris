@@ -10,6 +10,7 @@ SUBSYSTEM_DEF(misc)
 		planet_size = list(world.maxx - 30 , world.maxy - 30)
 	initialize_cursors()
 	build_exoplanets()
+	build_junk_field()
 	return ..()
 
 GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to lists of offsets, which point to icons
@@ -25,3 +26,7 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 		var/exoplanet_type = pick(subtypesof(/obj/effect/overmap/sector/exoplanet))
 		var/obj/effect/overmap/sector/exoplanet/new_planet = new exoplanet_type(null, planet_size[1], planet_size[2])
 		new_planet.build_level()
+
+/datum/controller/subsystem/misc/proc/build_junk_field()
+	var/obj/jtb_generator/jtb_gen = locate(/obj/jtb_generator)
+	jtb_gen.generate_junk_field()
