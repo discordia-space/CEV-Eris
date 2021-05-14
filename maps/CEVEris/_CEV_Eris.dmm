@@ -66701,7 +66701,7 @@
 /area/eris/medical/medbay)
 "dbp" = (
 /obj/machinery/door/airlock{
-	name = "Kitchen Freezer";
+	name = "Kitchen Storage";
 	req_access = list(28)
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -103633,7 +103633,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "loH" = (
 /obj/machinery/door/airlock{
-	name = "Kitchen Freezer";
+	name = "Kitchen Storage";
 	req_access = list(28)
 	},
 /turf/simulated/floor/plating,
@@ -104568,7 +104568,6 @@
 /obj/structure/table/rack/shelf,
 /obj/spawner/lathe_disk,
 /obj/item/weapon/electronics/circuitboard/vending,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
