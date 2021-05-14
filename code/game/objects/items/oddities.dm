@@ -458,7 +458,7 @@
 
 /obj/item/weapon/oddity/hivemind/hive_core
 	name = "makeshift datapad"
-	desc = "A makeshift datapad covered in growths. Whatever data stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
+	desc = "A makeshift datapad covered in growths. Whatever data was stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
 	icon_state = "hivemind_core"
 	w_class = ITEM_SIZE_NORMAL
 	random_stats = FALSE

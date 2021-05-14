@@ -270,11 +270,11 @@
 	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
-	if((holder.l_hand && holder.l_hand != src && istype(holder.l_hand, /obj/item/weapon/cell)))
+	if((holder.l_hand && istype(holder.l_hand, /obj/item/weapon/cell)))
 		C = holder.l_hand
 		if(!C.fully_charged())
 			C.give(50)
-	if((holder.r_hand && holder.r_hand != src && istype(holder.r_hand, /obj/item/weapon/cell)))
+	if((holder.r_hand && istype(holder.r_hand, /obj/item/weapon/cell)))
 		C = holder.r_hand
 		if(!C.fully_charged())
 			C.give(50)
