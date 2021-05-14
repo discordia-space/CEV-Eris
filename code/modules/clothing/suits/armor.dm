@@ -428,16 +428,16 @@
 
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
-	name = "insulated armor"
+	name = "insulated technomancer armor"
 	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
 	icon_state = "armor_engineering"
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 25,
 		energy = 40,
-		bomb = 10,
+		bomb = 20,
 		bio = 0,
 		rad = 30
 	)
