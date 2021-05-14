@@ -17,6 +17,13 @@
 	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
 		flashbang_bang(get_turf(src), M)
 
+	for(var/mob/living/carbon/human/thermal_user in orange(9, loc))
+		if(!thermal_user.glasses)
+			return
+		var/obj/item/clothing/glasses/potential_thermals = thermal_user.glasses
+		if(potential_thermals.overlay == global_hud.thermal)
+			flashbang_without_the_bang(get_turf(src), thermal_user)
+
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
 		B.health -= damage
@@ -26,6 +33,29 @@
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
 	return
+/obj/item/proc/flashbang_without_the_bang(turf/T, mob/living/carbon/M) ///flashbang_bang but bang-less.
+//Checking for protections
+	var/eye_safety = 0
+	if(iscarbon(M))
+		eye_safety = M.eyecheck()
+//Flashing everyone
+	if(eye_safety < FLASH_PROTECTION_MODERATE)
+		if (M.HUDtech.Find("flash"))
+			FLICK("e_flash", M.HUDtech["flash"])
+		M.eye_blurry = max(M.eye_blurry, 15)
+		M.eye_blind = max(M.eye_blind, 5)
+
+	//This really should be in mob not every check
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
+		if (E && E.damage >= E.min_bruised_damage)
+			to_chat(M, SPAN_DANGER("Your eyes start to burn badly!"))
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
+	M.update_icons()
 
 /obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG") //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
 	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
