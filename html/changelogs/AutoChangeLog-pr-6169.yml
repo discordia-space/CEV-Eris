@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - admin: Re enable autoresponse in ticket system
