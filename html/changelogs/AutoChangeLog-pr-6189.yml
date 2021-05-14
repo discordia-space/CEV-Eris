@@ -1,0 +1,5 @@
+author: Jackofashepard
+delete-after: true
+changes:
+  - rscadd: Added kovacs to serb base and vendor.
+  - imageadd: kovacs
