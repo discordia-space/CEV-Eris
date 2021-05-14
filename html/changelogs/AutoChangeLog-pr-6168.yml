@@ -1,0 +1,8 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added new railings to engineering, the captain decided spending 50 years
+      in court claiming that lack of railings does not violate OSHA was not worth
+      it.
+  - bugfix: fixed an O2 canister appearing in engineering and that weird wire connection
+      in NT bioreactor maint
