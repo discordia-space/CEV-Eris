@@ -1,6 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Added Bill Trustworthy's Discount Firearms and Enterprising Detritus,
-      a gun vendor, now with hacking enabled
-  - rscdel: Removed Gladstone shotgun from FS vendor and moved it to Bill Trustworthy's
