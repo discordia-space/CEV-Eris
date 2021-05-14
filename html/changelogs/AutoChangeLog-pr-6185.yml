@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - code_imp: Signals added for various common actions so that contribution is easier.
