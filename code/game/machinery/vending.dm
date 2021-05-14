@@ -1484,7 +1484,7 @@
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
 
-/obj/machinery/vending/Billomat
+/obj/machinery/vending/billomat
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
 	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
 	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
