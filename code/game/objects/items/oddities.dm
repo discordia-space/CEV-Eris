@@ -428,3 +428,58 @@
 	)
 	price_tag = 8000
 	perk = /datum/perk/nt_oddity/holy_light
+
+//Hivemind oddity
+/obj/item/weapon/oddity/hivemind
+	name = "Hivemind Oddity"
+	desc = "You shouldn't be seeing this. Report to your nearest reeducation camp comrade (report it on discord)."
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/oddity/hivemind
+
+/obj/item/weapon/oddity/hivemind/old_radio
+	name = "warped radio"
+	desc = "An old radio covered in growths. You can hear nothing from it, nothing but the sound of machinery and souls begging for release."
+	icon_state = "warped_radio"
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_VIG = 8,
+		STAT_MEC = 7,
+	)
+
+/obj/item/weapon/oddity/hivemind/old_pda
+	name = "abnormal pda"
+	desc = "An old Nanotrasen era PDA covered in growths. Is the hive Nanotrasen's creation, or made by something worse?"
+	icon_state = "abnormal_pda"
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_MEC = 8,
+		STAT_VIG = 7
+	)
+
+/obj/item/weapon/oddity/hivemind/hive_core
+	name = "makeshift datapad"
+	desc = "A makeshift datapad covered in growths. Whatever data was stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
+	icon_state = "hivemind_core"
+	w_class = ITEM_SIZE_NORMAL
+	random_stats = FALSE
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_VIG = 8,
+		STAT_MEC = 8,
+		STAT_BIO = 8
+	)
+	perk = /datum/perk/oddity/hive_born
+
+//i copied the entire thing because beforehand it just did not work
+/obj/item/weapon/oddity/hivemind/hive_core/Initialize()
+	. = ..()
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	if(!perk && prob(prob_perk))
+		perk = get_oddity_perk()
+
+	if(oddity_stats)
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = rand(1, oddity_stats[stat])
+		AddComponent(/datum/component/inspiration, oddity_stats, perk)
+	set_light(2, 1, COLOR_BLUE_LIGHT)
