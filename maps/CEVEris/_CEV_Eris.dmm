@@ -62375,11 +62375,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
-"cQM" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/open,
-/area/eris/crew_quarters/kitchen_storage)
 "cQN" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan,
 /obj/machinery/meter,
@@ -103078,6 +103073,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "gkh" = (
@@ -103915,6 +103911,7 @@
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
 "mOs" = (
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "mQQ" = (
@@ -104066,10 +104063,10 @@
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemistry)
 "nPh" = (
-/obj/spawner/scrap/dense,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "nQZ" = (
@@ -104421,9 +104418,9 @@
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/storage/toolbox/electrical,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/open,
+/obj/item/weapon/tool/shovel,
+/obj/spawner/tool,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen_storage)
 "qTX" = (
 /obj/machinery/hologram/holopad,
@@ -105006,6 +105003,15 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/long_range_scanner)
+"uWR" = (
+/obj/structure/closet/crate,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "uYg" = (
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
@@ -105222,7 +105228,7 @@
 /area/eris/rnd/mixing)
 "wCR" = (
 /obj/structure/catwalk,
-/turf/simulated/open,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen_storage)
 "wEJ" = (
 /obj/structure/cable/green{
@@ -105352,7 +105358,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/open,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen_storage)
 "xLv" = (
 /obj/effect/shuttle_landmark/merc/sec2west,
@@ -163494,7 +163500,7 @@ aqa
 oic
 gjB
 pcg
-mOs
+uWR
 rRn
 csD
 cjp
@@ -163693,7 +163699,7 @@ anJ
 cYO
 cjq
 aqa
-cQM
+wCR
 wCR
 xGY
 wCR
@@ -163895,7 +163901,7 @@ anJ
 cWy
 apF
 aqa
-cQM
+wCR
 wCR
 xGY
 wCR
