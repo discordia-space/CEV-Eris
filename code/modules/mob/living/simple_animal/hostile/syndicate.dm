@@ -153,13 +153,6 @@
 	minbodytemp = 0
 
 /mob/living/simple_animal/hostile/viscerator/emp_act(severity)
-	switch(severity)
-		if(1)
-			if(malfunction_chance < 15)
-				malfunction_chance = 25
-		if(2)
-			if(malfunction_chance < 25)
-				malfunction_chance = 45
 	health -= 30*severity
 /mob/living/simple_animal/hostile/viscerator/death()
 	..(null,"is smashed into pieces!")
