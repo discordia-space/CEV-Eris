@@ -15,7 +15,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
-	price_tag = 3000
+	price_tag = 2000
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'

@@ -1479,6 +1479,7 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000,
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
+					/obj/item/weapon/gun/projectile/kovacs = 3000,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/ammo_magazine/srifle = 200,
 					/obj/item/weapon/storage/ration_pack = 800,
