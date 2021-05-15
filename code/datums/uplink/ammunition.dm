@@ -178,7 +178,7 @@
 	path = /obj/item/ammo_magazine/m12
 
 /datum/uplink_item/item/ammo/m12/beanbag
-	name = 
+	name = "M12 shotgun mag with beanbangs"
 	"M12 shotgun mag with beanbags"
 	desc = "M12 shotgun magazine with beanbag shells loaded. Can fit 8 shells."
 	item_cost = 2
