@@ -132,12 +132,24 @@
 	item_cost = 4
 	path = /obj/item/ammo_magazine/lrifle/highvelocity
 
+/datum/uplink_item/item/ammo/sl_lrifle
+	name = ".30 Rifle ammo strip"
+	desc = "An ammo strip designed for bolt action rifles.Contains 5 bullets"
+	item_cost = 1
+	path = /obj/item/ammo_magazine/sllrifle
+
+/datum/uplink_item/item/ammo/sl_lrifle/highvelocity
+	name = ".30 Rifle HV ammo strip"
+	desc = "An High Velocity ammo strip designed for bolt action rifles.Contains 5 bullets."
+	item_cost = 2
+	path = /obj/item/ammo_magazine/sllrifle/hv
+	
 //// HV ammo packets ////
 
 /datum/uplink_item/item/ammo/pistol_hv
 	name = ".35 Auto HV ammo packet"
 	desc = ".35 ammo packet with high velocity ammunition. Contain 30 bullets."
-	item_cost = 5
+	item_cost = 4
 	path = /obj/item/ammo_magazine/ammobox/pistol/hv
 
 /datum/uplink_item/item/ammo/magnum_hv

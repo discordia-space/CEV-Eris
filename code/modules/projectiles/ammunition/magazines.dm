@@ -467,6 +467,16 @@
 	max_ammo = 5
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/sllrifle/hv
+	name = "ammo strip (.30 Rifle HV)"
+	icon_state = "lrifle"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/lrifle/hv
+	max_ammo = 5
+	multiple_sprites = 1
+
 /// OTHER ///
 
 /obj/item/ammo_magazine/caps
