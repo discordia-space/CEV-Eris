@@ -1,10 +1,12 @@
 /obj/machinery/autolathe/nanoforge
-	name = "matter nanoforge"
+	name = "matter auto-nanoforge"
 	desc = "It consumes items and produces compressed matter."
 	icon_state = "nanoforge"
 	icon = 'icons/obj/machines/autolathe.dmi'
 	use_oddities = TRUE
+	use_license = FALSE
 	is_nanoforge = TRUE
+	low_quality_print = FALSE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
 	var/list/nanoforge_designs = list()
 	var/list/tags_to_spawn = list(SPAWN_DESIGN)
@@ -94,7 +96,7 @@
 		. = TRUE
 
 /obj/machinery/autolathe/nanoforge/check_user(mob/user)
-	if(user.stats.getPerk(PERK_TECHNOMANCER) || user.stat_check(STAT_MEC, STAT_LEVEL_EXPERT))
+	if(user.stats?.getPerk(PERK_TECHNOMANCER) || user.stat_check(STAT_MEC, STAT_LEVEL_EXPERT))
 		return TRUE
-	to_chat(user, SPAN_NOTICE("You don't know how to make this work[src]"))
+	to_chat(user, SPAN_NOTICE("You don't know how to make [src] work."))
 	return FALSE

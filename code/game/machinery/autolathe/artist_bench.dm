@@ -13,6 +13,7 @@
 	categories = list("Artwork")
 	use_oddities = TRUE
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
+	low_quality_print = FALSE
 	var/min_mat = 20
 	var/min_insight = 40
 
@@ -204,7 +205,7 @@
 	if(ins_used < min_insight)
 		to_chat(user, SPAN_WARNING("At least 40 insight is needed to use this bench."))
 		return
-	flick("[initial(icon_state)]_work", src)
+	FLICK("[initial(icon_state)]_work", src)
 	working = TRUE
 	if(!do_after(user, 15 * user.stats.getMult(STAT_MEC, STAT_LEVEL_GODLIKE), src))
 		error = "Lost artist."

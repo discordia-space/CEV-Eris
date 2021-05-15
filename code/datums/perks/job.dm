@@ -115,7 +115,7 @@
 		if(stash.stash_location)
 			choices += CHOICE_STASHPAPER
 	// Let's see if an additional language is feasible. If the user has them all already somehow, we aren't gonna choose this.
-	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN) // Not static, because we're gonna remove languages already known by the user
+	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN, LANGUAGE_NEOHONGO, LANGUAGE_LATIN) // Not static, because we're gonna remove languages already known by the user
 	for(var/l in valid_languages)
 		var/datum/language/L = all_languages[l]
 		if(L in holder.languages)
@@ -234,3 +234,9 @@
 	if(holder)
 		holder.sanity_damage += 2
 	..()
+
+/datum/perk/channeling
+	name = "Channeling"
+	desc = "You know how to channel spiritual energy during rituals. You gain additional skill points \
+			during group rituals and have an increased regeneration of cruciform energy."
+	icon_state = "channeling"

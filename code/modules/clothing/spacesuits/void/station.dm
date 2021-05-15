@@ -200,7 +200,6 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
-	rarity_value = 8.7
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -288,7 +287,6 @@
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
-	rarity_value = 16
 
 //Science
 /obj/item/clothing/head/space/void/science
@@ -347,5 +345,84 @@
 	price_tag = 1200
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
-	rarity_value = 50
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/space/void/riggedvoidsuit
+	name = "makeshift armored Helmet"
+	desc = "A makeshift armored helmet you can see the glue holding it, just close enough to be airtight."
+	icon_state = "makeshift_void"
+	item_state = "makeshift_void"
+	slowdown = 2
+
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	light_overlay = "helmet_light_dual"
+	siemens_coefficient = 0.8
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit
+	name = "makeshift armored voidsuit"
+	desc = "A makeshift armored voidsuit you can see the glue holding it, just close enough to be airtight."
+	icon_state = "makeshift_void"
+	item_state = "makeshift_void"
+	siemens_coefficient = 0.4
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	siemens_coefficient = 0.8
+	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
+	spawn_blacklisted = TRUE
+
+//NT
+
+/obj/item/clothing/head/space/void/NTvoid
+	name = "neotheology voidsuit helmet"
+	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	icon_state = "ntvoidhelmet"
+	item_state = "ntvoidhelmet"
+	action_button_name = "Toggle Helmet Light"
+	flags_inv = BLOCKHAIR
+	armor = list(
+		melee = 40,
+		bullet = 30,
+		energy = 30,
+		bomb = 30,
+		bio = 100,
+		rad = 50
+	)
+	siemens_coefficient = 0.35
+	species_restricted = list(SPECIES_HUMAN)
+	light_overlay = "helmet_light"
+
+/obj/item/clothing/suit/space/void/NTvoid
+	name = "neotheology voidsuit"
+	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	icon_state = "ntvoid"
+	item_state = "ntvoid"
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
+	slowdown = 0.3
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
+	armor = list(
+	    melee = 40,
+		bullet = 30,
+		energy = 30,
+		bomb = 30,
+		bio = 100,
+		rad = 50
+	)
+	siemens_coefficient = 0.35
+	breach_threshold = 10
+	resilience = 0.07
+	species_restricted = list(SPECIES_HUMAN)
+	helmet = /obj/item/clothing/head/space/void/NTvoid
 	spawn_blacklisted = TRUE

@@ -15,14 +15,13 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
-	price_tag = 600
+	price_tag = 400
 	damage_multiplier = 1.3
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
-
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/giskard/update_icon()
+/obj/item/weapon/gun/projectile/giskard/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

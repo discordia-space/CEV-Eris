@@ -126,7 +126,7 @@
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
-/obj/item/weapon/tool/sword/nt/scourge/update_icon()
+/obj/item/weapon/tool/sword/nt/scourge/on_update_icon()
 	if(extended)
 		icon_state = initial(icon_state) + "_extended"
 	else
@@ -244,6 +244,3 @@
 		on_bash(W, user)
 	else
 		..()
-
-/obj/item/weapon/shield/riot/nt/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	return base_block_chance

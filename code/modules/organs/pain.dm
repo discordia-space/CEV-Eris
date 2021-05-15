@@ -3,7 +3,7 @@ mob/proc/flash_pain()
 
 /mob/living/flash_pain()
 	if(HUDtech.Find("pain"))
-		flick("pain", HUDtech["pain"])
+		FLICK("pain", HUDtech["pain"])
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""
@@ -62,7 +62,7 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 
 	if(analgesic >= 100)
 		return
-	else if(analgesic >= 50)
+	else if(analgesic >= 40)
 		flash_strength -= 1
 		if(flash_strength < 0)
 			return
@@ -84,7 +84,7 @@ mob/living/carbon/human/proc/handle_pain()
 
 	if(stat >= DEAD)
 		return
-	if(analgesic > 70)
+	if(analgesic > 50)
 		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null

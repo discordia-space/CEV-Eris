@@ -7,21 +7,22 @@
 	throw_speed = 2
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
+	spawn_frequency = 0
 	var/welded = FALSE   //0 - not readied //1 - bomb finished with welder
-	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
-	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a plasma tank
+	var/obj/item/device/assembly_holder/bombassembly   //The first part of the bomb is an assembly holder, holding an igniter+some device
+	var/obj/item/weapon/tank/bombtank //the second part of the bomb is a plasma tank
 
 /obj/item/device/onetankbomb/examine(mob/user)
 	..(user)
 	user.examinate(bombtank)
 
-/obj/item/device/onetankbomb/update_icon()
+/obj/item/device/onetankbomb/on_update_icon()
 	if(bombtank)
 		icon_state = bombtank.icon_state
 	if(bombassembly)
-		overlays += bombassembly.icon_state
-		overlays += bombassembly.overlays
-		overlays += "bomb_assembly"
+		add_overlays(bombassembly.icon_state)
+		add_overlays(bombassembly.overlays)
+		add_overlays("bomb_assembly")
 
 /obj/item/device/onetankbomb/attackby(obj/item/I, mob/user)
 

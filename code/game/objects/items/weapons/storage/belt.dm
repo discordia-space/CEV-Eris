@@ -30,7 +30,7 @@
 	show_above_suit = !show_above_suit
 	update_icon()
 
-/obj/item/weapon/storage/update_icon()
+/obj/item/weapon/storage/on_update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()
@@ -66,6 +66,7 @@
 		/obj/item/weapon/grenade/chem_grenade/antiweed,
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
+	price_tag = 200
 /obj/item/weapon/storage/belt/utility/full
 	rarity_value = 50
 
@@ -168,7 +169,7 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/selfload/clarissa,
+		/obj/item/weapon/gun/projectile/selfload,
 		/obj/item/weapon/gun/projectile/giskard,
 		/obj/item/weapon/gun/energy/gun/martin,
 		/obj/item/taperoll

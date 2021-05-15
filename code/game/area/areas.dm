@@ -205,6 +205,7 @@
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
+	SEND_SIGNAL(src, COMSIG_AREA_APC_POWER_CHANGE)
 	if (fire || eject || party)
 		updateicon()
 
@@ -376,3 +377,21 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/drop_location()
 	CRASH("Bad op: area/drop_location() called")
+
+
+// Changes the area of T to A. Do not do this manually.
+// Area is expected to be a non-null instance.
+/proc/ChangeArea(var/turf/T, var/area/A)
+	if(!istype(A))
+		CRASH("Area change attempt failed: invalid area supplied.")
+	var/area/old_area = get_area(T)
+	if(old_area == A)
+		return
+	A.contents.Add(T)
+	if(old_area)
+		old_area.Exited(T, A)
+		for(var/atom/movable/AM in T)
+			old_area.Exited(AM, A)  // Note: this _will_ raise exited events.
+	A.Entered(T, old_area)
+	for(var/atom/movable/AM in T)
+		A.Entered(AM, old_area) // Note: this will _not_ raise moved or entered events. If you change this, you must also change everything which uses them.

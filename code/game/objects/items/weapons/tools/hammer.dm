@@ -152,3 +152,18 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
+
+/obj/item/weapon/tool/hammer/IH
+	name = "FS \"Ironhammer\" Breaching Hammer"
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "ironhammer"
+	item_state = "ironhammer"
+	wielded_icon = "ironhammer_wielded"
+	w_class = ITEM_SIZE_HUGE
+	armor_penetration = ARMOR_PEN_DEEP
+	force = WEAPON_FORCE_ROBUST
+	structure_damage_factor = STRUCTURE_DAMAGE_BORING
+	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
+	spawn_blacklisted = TRUE

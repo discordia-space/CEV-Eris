@@ -91,13 +91,13 @@ GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 var/global/list/organ_structure = list(
-	chest = list(name= "Chest", children=list()),
-	groin = list(name= "Groin",     parent=BP_CHEST, children=list()),
-	head  = list(name= "Head",      parent=BP_CHEST, children=list()),
-	r_arm = list(name= "Right arm", parent=BP_CHEST, children=list()),
-	l_arm = list(name= "Left arm",  parent=BP_CHEST, children=list()),
-	r_leg = list(name= "Right leg", parent=BP_GROIN, children=list()),
-	l_leg = list(name= "Left leg",  parent=BP_GROIN, children=list()),
+	BP_CHEST = list(name= "Chest", children=list(BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, OP_HEART, OP_LUNGS, OP_STOMACH)),
+	BP_GROIN = list(name= "Groin",     parent=BP_CHEST, children=list(BP_R_LEG, BP_L_LEG, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT, OP_LIVER)),
+	BP_HEAD  = list(name= "Head",      parent=BP_CHEST, children=list(BP_BRAIN, BP_EYES)),
+	BP_R_ARM = list(name= "Right arm", parent=BP_CHEST, children=list()),
+	BP_L_ARM = list(name= "Left arm",  parent=BP_CHEST, children=list()),
+	BP_R_LEG = list(name= "Right leg", parent=BP_GROIN, children=list()),
+	BP_L_LEG = list(name= "Left leg",  parent=BP_GROIN, children=list()),
 	)
 
 var/global/list/organ_tag_to_name = list(
@@ -106,7 +106,9 @@ var/global/list/organ_tag_to_name = list(
 	eyes  = "eyes", l_arm = "left arm",
 	groin = "groin",l_leg = "left leg",
 	chest2= "back", heart = "heart",
-	lungs  = "lungs", liver = "liver"
+	lungs  = "lungs", liver = "liver",
+	"left kidney" = "left kidney", "right kidney" = "right kidney",
+	stomach = "stomach", brain = "brain"
 	)
 
 // Visual nets

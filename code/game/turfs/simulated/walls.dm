@@ -240,7 +240,11 @@
 	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
-	var/damage = min(proj_damage, 100)
+	var/damage_taken = 0
+	if(Proj.nocap_structures)
+		damage_taken = proj_damage * 4
+	else
+		damage_taken = min(proj_damage, 100)
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
@@ -250,7 +254,7 @@
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
 		slug.throw_at(get_turf(Proj), 0, 1)
 
-	take_damage(damage)
+	take_damage(damage_taken)
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

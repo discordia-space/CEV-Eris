@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			SetElement(E,page_choices[i],angle,anim = anim,anim_order = i)
 
 /datum/radial_menu/proc/HideElement(obj/screen/radial/slice/E)
-	E.overlays.Cut()
+	E.cut_overlays()
 	E.alpha = 0
 	E.name = "None"
 	E.maptext = null
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	//Visuals
 	E.alpha = 255
 	E.mouse_opacity = MOUSE_OPACITY_ICON
-	E.overlays.Cut()
+	E.cut_overlays()
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Next Page"
 		E.next_page = TRUE

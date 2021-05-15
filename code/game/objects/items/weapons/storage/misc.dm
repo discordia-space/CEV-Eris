@@ -29,11 +29,11 @@
 		new spawn_type(src)
 	update_icon()
 
-/obj/item/weapon/storage/box/donut/update_icon()
-	overlays.Cut()
+/obj/item/weapon/storage/box/donut/on_update_icon()
+	cut_overlays()
 	var/i = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
-		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
+		add_overlays(image('icons/obj/food.dmi', "[i][D.overlay_state]"))
 		i++
 
 /obj/item/weapon/storage/box/donut/empty
@@ -72,3 +72,17 @@
 	new /obj/item/weapon/storage/fancy/mre_cracker(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/candy/mre(src)
 	new /obj/item/weapon/material/kitchen/utensil/spoon/mre(src)
+
+/obj/item/weapon/storage/box/clown
+	name = "clown costume box"
+	desc = "It's a cardboard box with a clown costume."
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/storage/box/clown/populate_contents()
+	new /obj/item/weapon/bikehorn(src)
+	new /obj/item/clothing/mask/gas/clown_hat(src)
+	new /obj/item/clothing/shoes/clown_shoes(src)
+	new /obj/item/clothing/under/rank/clown(src)
+	new /obj/item/weapon/stamp/clown(src)
+	new /obj/item/weapon/bananapeel(src)
+	

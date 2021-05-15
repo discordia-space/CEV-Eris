@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
-	name = "shotgun pump"
+	name = "FS SG \"Kammerer\""
 	desc = "When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds."
 	icon = 'icons/obj/guns/projectile/shotgun.dmi'
 	icon_state = "shotgun"
@@ -17,13 +17,9 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 1000
+	price_tag = 800
 	recoil_buildup = 12
 	one_hand_penalty = 15 //full sized shotgun level
-
-/obj/item/weapon/gun/projectile/shotgun/pump/kammerer
-	name = "FS SG \"Kammerer\""
-	desc = "When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds."
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()

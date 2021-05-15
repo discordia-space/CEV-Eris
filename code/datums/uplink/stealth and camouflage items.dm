@@ -47,6 +47,6 @@
     path = /obj/item/weapon/gun_upgrade/muzzle/silencer
 
 /datum/uplink_item/item/stealth_items/killer
-    name = "Syndicate \"Proffesional Killer\" scope"
+    name = "Syndicate \"Profesional Killer\" scope"
     item_cost = 2
     path = /obj/item/weapon/gun_upgrade/scope/killer

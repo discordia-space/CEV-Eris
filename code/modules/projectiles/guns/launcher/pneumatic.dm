@@ -11,6 +11,7 @@
 	fire_delay = 50
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	twohanded = TRUE
+	rarity_value = 10//no price tag, high rarity
 
 	var/fire_pressure                                   // Used in fire checks/pressure checks.
 	var/max_w_class = ITEM_SIZE_NORMAL                                 // Hopper intake size.
@@ -125,7 +126,7 @@
 		if(T) T.assume_air(removed)
 	..()
 
-/obj/item/weapon/gun/launcher/pneumatic/update_icon()
+/obj/item/weapon/gun/launcher/pneumatic/on_update_icon()
 	if(tank)
 		icon_state = "pneumatic-tank"
 		set_item_state("-tank")
@@ -145,7 +146,7 @@
 
 	var/buildstate = 0
 
-/obj/item/weapon/cannonframe/update_icon()
+/obj/item/weapon/cannonframe/on_update_icon()
 	icon_state = "pneumatic[buildstate]"
 
 /obj/item/weapon/cannonframe/examine(mob/user)

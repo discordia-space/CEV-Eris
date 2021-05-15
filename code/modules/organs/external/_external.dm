@@ -276,11 +276,11 @@
 		return
 	switch (severity)
 		if (1)
-			take_damage(10)
+			take_damage(20)
 		if (2)
-			take_damage(5)
+			take_damage(10)
 		if (3)
-			take_damage(1)
+			take_damage(5)
 
 /obj/item/organ/external/attack_self(var/mob/user)
 	if(!contents.len)
@@ -828,8 +828,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
-	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+	if(owner)
+		var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
+		return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
@@ -1038,3 +1039,23 @@ Note that amputating the affected organ does in fact remove the infection from t
 			conditions_list.Add(list(condition))
 
 	return conditions_list
+
+/obj/item/organ/external/attackby(obj/item/A, mob/user, params)
+	if(A.has_quality(QUALITY_CUTTING))
+		if(!(user.a_intent == I_HURT))
+			return ..()
+		user.visible_message(SPAN_WARNING("[user] begins butchering \the [src]"), SPAN_WARNING("You begin butchering \the [src]"), SPAN_NOTICE("You hear meat being cut apart"), 5)
+		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_BIO))
+			on_butcher(A, user, get_turf(src))
+
+/obj/item/organ/external/proc/on_butcher(obj/item/A, mob/living/carbon/human/user, location_meat)
+	for(var/obj/item/organ/internal/muscle/placeholder in internal_organs)
+		var/meat = species?.meat_type // One day someone will make a species with no meat type.
+		if(!meat)
+			break
+		new meat(location_meat)
+		if(user.species == species)
+			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
+			to_chat(user, SPAN_NOTICE("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+	qdel(src)
+	

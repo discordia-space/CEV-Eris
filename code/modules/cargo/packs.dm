@@ -5,7 +5,7 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Medical / Science","Hydroponics","Mining","Supply","Miscellaneous")
+var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Medical / Science","Hydroponics","Mining","Supply","Resource Integration Gear","Miscellaneous")
 
 /datum/supply_pack
 	var/name = "Crate"
@@ -157,7 +157,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "FS Handgun Pack"
 	contains = list(/obj/item/weapon/gun/projectile/colt,
 			/obj/item/weapon/gun/projectile/paco,
-			/obj/item/weapon/gun/projectile/selfload/clarissa,
+			/obj/item/weapon/gun/projectile/selfload,
 			/obj/item/weapon/gun/projectile/olivaw)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -174,10 +174,20 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "FS Revolver Pack"
 	group = "Security"
 
+/datum/supply_pack/fshunting	//3 "random" hunting rifles
+	name = "FS Hunting Rifle Pack"
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+			/obj/item/weapon/gun/projectile/automatic/ak47/fs)
+	cost = 4500
+	containertype = /obj/structure/closet/crate/secure/weapon
+	crate_name = "FS Hunting Rifle Pack"
+	group = "Security"
+
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
-	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
-			/obj/item/weapon/gun/projectile/automatic/atreides,
+	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih,
+			/obj/item/weapon/gun/projectile/automatic/z8,
 			/obj/item/weapon/gun/projectile/automatic/atreides)
 	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -198,17 +208,18 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 
 /datum/supply_pack/eweapons
-	name = "Experimental weapons crate"
+	name = "Incendiary weapons crate"
 	contains = list(/obj/item/weapon/flamethrower/full,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/tank/plasma,
 					/obj/item/weapon/grenade/chem_grenade/incendiary,
 					/obj/item/weapon/grenade/chem_grenade/incendiary,
-					/obj/item/weapon/grenade/chem_grenade/incendiary)
+					/obj/item/weapon/grenade/chem_grenade/incendiary,
+					/obj/item/weapon/storage/box/shotgunammo/incendiaryshells)
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure/weapon
-	crate_name = "Experimental weapons crate"
+	crate_name = "Incendiary weapons crate"
 	group = "Security"
 
 /datum/supply_pack/armor
@@ -259,13 +270,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 */
 /datum/supply_pack/ballisticarmor
 	name = "IH Ballistic Armor"
-	contains = list(/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/head/armor/helmet,
-					/obj/item/clothing/head/armor/helmet)
+	contains = list(/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+					/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure
-	crate_name = "FS Close Quarters Pack"
+	crate_name = "IH Ballistic Armor Pack"
 	group = "Security"
 
 /datum/supply_pack/shotgunammo_beanbag
@@ -306,10 +317,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/energyarmor
 	name = "IH Ablative Armor"
-	contains = list(/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/head/armor/helmet,
-					/obj/item/clothing/head/armor/helmet)
+	contains = list(/obj/item/clothing/suit/armor/laserproof/full,
+					/obj/item/clothing/suit/armor/laserproof/full,
+					/obj/item/clothing/head/armor/laserproof,
+					/obj/item/clothing/head/armor/laserproof)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Ablative Armor crate"
@@ -788,6 +799,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 	*/
 
+/datum/supply_pack/lrange_scanner
+	contains = list(/obj/item/weapon/electronics/circuitboard/long_range_scanner)
+	name = "Long range scanner circuitry"
+	cost = 5000
+	containertype = /obj/structure/closet/crate/secure
+	crate_name = "long range scanner circuitry crate"
+	group = "Engineering"
+
 /datum/supply_pack/smbig
 	name = "Supermatter Core (CAUTION)"
 	contains = list(/obj/machinery/power/supermatter)
@@ -1230,7 +1249,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/meat,
-					/obj/item/weapon/reagent_containers/food/snacks/meat)
+					/obj/item/weapon/reagent_containers/food/snacks/meat,
+					/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+					/obj/item/weapon/reagent_containers/food/condiment/enzyme,)
 
 	cost = 900
 	containertype = /obj/structure/closet/crate/freezer
@@ -1299,6 +1320,114 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Empty box crate"
 	group = "Supply"
 
+//----------------------------------------------
+//-----------------R.I.G------------------------
+//----------------------------------------------
+
+/datum/supply_pack/eva
+	name = "EVA Suit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/eva)
+	cost = 600
+	crate_name = "EVA Suit Control Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/hazard
+	name = "Hazard Hardsuit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/hazard)
+	cost = 1100
+	crate_name = "Hazard Hardsuit Control Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/industrial
+	name = "Industrial Hardsuit Control Module Crate"
+	contains = list(/obj/item/weapon/rig/industrial)
+	cost = 3000
+	crate_name = "Industrial Hardsuit Control Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/flash
+	name = "Mounted Flash Module Crate"
+	contains = list(/obj/item/rig_module/device/flash)
+	cost = 300
+	crate_name = "Mouned Flash Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/egun
+	name = "Mounted Energy Gun Module Crate"
+	contains = list(/obj/item/rig_module/mounted/egun)
+	cost = 2100
+	crate_name = "Mouned Energy Gun Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/taser
+	name = "Mounted Taser Gun Module Crate"
+	contains = list(/obj/item/rig_module/mounted/taser)
+	cost = 900
+	crate_name = "Mouned Taser Gun Module Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/drill
+	name = "Hardsuit Mounted Drill Crate"
+	contains = list(/obj/item/rig_module/device/drill)
+	cost = 600
+	crate_name = "Hardsuit Mounted Drill Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/orescanner
+	name = "Hardsuit Mounted Ore Scanner Crate"
+	contains = list(/obj/item/rig_module/device/orescanner)
+	cost = 300
+	crate_name = "Hardsuit Mounted Ore Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/healthscanner
+	name = "Hardsuit Mounted Health Scanner Crate"
+	contains = list(/obj/item/rig_module/device/healthscanner)
+	cost = 300
+	crate_name = "Hardsuit Mounted Health Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/maneuverjet
+	name = "Hardsuit Maneuvering Jet Crate"
+	contains = list(/obj/item/rig_module/maneuvering_jets)
+	cost = 1200
+	crate_name = "Hardsuit Maneuvering Jet Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/storage
+	name = "Internal Hardsuit Storage Compartment Crate"
+	contains = list(/obj/item/rig_module/storage)
+	cost = 1200
+	crate_name = "Internal Hardsuit Storage Compartment Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/meson
+	name = "Hardsut Meson Scanner Crate"
+	contains = list(/obj/item/rig_module/vision/meson)
+	cost = 300
+	crate_name = "Hardsut Meson Scanner Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/medhud
+	name = "Hardsuit Medical Hud Crate"
+	contains = list(/obj/item/rig_module/vision/medhud)
+	cost = 300
+	crate_name = "Hardsuit Medical Hud Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/sechud
+	name = "Hardsuit Security Hud Crate"
+	contains = list(/obj/item/rig_module/vision/sechud)
+	cost = 300
+	crate_name = "Hardsuit Security Hud Crate"
+	group = "Resource Integration Gear"
+
+/datum/supply_pack/nvgrig
+	name = "Hardsuit Night vision Interface Crate"
+	contains = list(/obj/item/rig_module/vision/nvg)
+	cost = 1800
+	crate_name = "Hardsuit Night vision Interface Crate"
+	group = "Resource Integration Gear"
 //----------------------------------------------
 //--------------MISCELLANEOUS-------------------
 //----------------------------------------------
@@ -1436,7 +1565,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/spawner/gun/cheap,
 					/obj/spawner/gun/cheap)
 	name = "Surplus Weaponry"
-	cost = 5000
+	cost = 3500
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"

@@ -145,4 +145,6 @@
 	new /obj/item/weapon/cell/small(src)
 	new /obj/item/weapon/storage/sheath(src)
 	new /obj/item/weapon/tool/sword/nt/shortsword(src)
+	new /obj/item/weapon/storage/belt/sheath(src)
+	new /obj/item/weapon/tool/sword/nt(src)
 	new /obj/item/weapon/tool/knife/dagger/nt(src)

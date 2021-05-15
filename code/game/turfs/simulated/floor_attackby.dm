@@ -3,7 +3,7 @@
 	if(!I || !user)
 		return 0
 
-	if(istype(src, /turf/simulated/floor/plating/under) && istype(I, /obj/item/stack/material/cyborg/steel))
+	if(istype(src, /turf/simulated/floor/plating/under) && (istype(I, /obj/item/stack/material/cyborg/steel) || istype(I, /obj/item/stack/material/steel)))
 		if(do_after(user, 5, src))
 			if(I:use(2))
 				ChangeTurf(/turf/simulated/floor/plating)

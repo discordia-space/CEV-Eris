@@ -150,7 +150,7 @@
 		stats.Remove(stat)
 		final_oddity += stat
 		final_oddity[stat] = rand(1,7)
-	W.AddComponent(/datum/component/inspiration, final_oddity)
+	W.AddComponent(/datum/component/inspiration, final_oddity, get_oddity_perk())
 	W.AddComponent(/datum/component/atom_sanity, 1, "") //sanity gain by area
 	W.sanity_damage -= 1 //damage by view
 	spawn(1)
@@ -205,7 +205,7 @@
 	name = "Oborin Syndrome"
 	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
 	desc = "A condition manifested at some recent point in human history. \
-			It’s origin and prevalence are unknown, but it is speculated to be a psyionic phenomenom.\
+			It’s origin and prevalence are unknown, but it is speculated to be a psionic phenomenom.\
 			Your sanity pool is higher than that of others at the cost of the colors of the world."
 
 /datum/perk/fate/oborin_syndrome/assign(mob/living/carbon/human/H)

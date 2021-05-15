@@ -15,18 +15,17 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 2400
-	rarity_value = 16
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
-	recoil_buildup = 21
+	recoil_buildup = 5
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/lamia/update_icon()
+/obj/item/weapon/gun/projectile/lamia/on_update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,2)]"

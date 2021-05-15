@@ -1,0 +1,88 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/spawner/junk,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"c" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"d" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"e" = (
+/obj/spawner/junk,
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"f" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"g" = (
+/mob/living/simple_animal/hostile/carp/pike,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"h" = (
+/turf/simulated/wall,
+/area/template_noop)
+"i" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"j" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"k" = (
+/obj/spawner/techpart,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"l" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"T" = (
+/mob/living/simple_animal/hostile/carp,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+
+(1,1,1) = {"
+T
+e
+c
+j
+l
+"}
+(2,1,1) = {"
+d
+d
+h
+h
+d
+"}
+(3,1,1) = {"
+j
+f
+i
+h
+a
+"}
+(4,1,1) = {"
+b
+g
+k
+a
+l
+"}
+(5,1,1) = {"
+j
+h
+c
+c
+j
+"}

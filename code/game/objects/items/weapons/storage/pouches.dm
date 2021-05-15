@@ -2,8 +2,8 @@
 	name = "pouch"
 	desc = "Can hold various things."
 	icon = 'icons/inventory/pockets/icon.dmi'
-	icon_state = "pouch"
-	item_state = "pouch"
+	//icon_state = "pouch" //TODO
+	//item_state = "pouch" //TODO
 
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT //Pouches can be worn on belt
@@ -207,11 +207,11 @@
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
 
-/obj/item/weapon/storage/pouch/tubular/update_icon()
+/obj/item/weapon/storage/pouch/tubular/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
 
 /obj/item/weapon/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -249,11 +249,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/pistol_holster/update_icon()
+/obj/item/weapon/storage/pouch/pistol_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
 
 /obj/item/weapon/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -272,11 +272,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/weapon/storage/pouch/baton_holster/update_icon()
+/obj/item/weapon/storage/pouch/baton_holster/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
 
 /obj/item/weapon/storage/pouch/holding
 	name = "pouch of holding"
@@ -293,3 +293,19 @@
 /obj/item/weapon/storage/pouch/holding/New()
 	..()
 	bluespace_entropy(3, get_turf(src))
+
+/obj/item/weapon/storage/pouch/gun_part
+	name = "part pouch"
+	desc = "Can hold gun parts and armor parts."
+	icon_state = "part_pouch"
+	item_state = "part_pouch"
+	rarity_value = 33
+
+	storage_slots = 10
+	max_w_class = ITEM_SIZE_NORMAL
+
+	can_hold = list(
+		/obj/item/part,
+		/obj/item/weapon/stock_parts,
+		/obj/item/weapon/electronics
+		)

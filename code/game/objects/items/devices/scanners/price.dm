@@ -21,7 +21,7 @@
 		scan_data = price_scan_results(target)
 	else
 		scan_data += "<br>[price_scan_results(target)]"
-	flick("reader1", src)
+	FLICK("reader1", src)
 	show_results(user)
 
 /obj/item/device/scanner/price/afterattack(atom/A, mob/user, proximity)

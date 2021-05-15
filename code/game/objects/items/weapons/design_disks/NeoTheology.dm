@@ -22,9 +22,10 @@
 		/datum/design/bioprinter/medical/advanced/ointment,
 
 		/datum/design/autolathe/gun/nt_sprayer,
-		/datum/design/autolathe/gun/plasma/martyr,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
-		/datum/design/autolathe/device/grenade/nt_weedkiller
+		/datum/design/autolathe/device/grenade/nt_weedkiller,
+
+		/datum/design/bioprinter/holyvacuum
 
 	)
 
@@ -38,6 +39,10 @@
 		/datum/design/bioprinter/nt_clothes/acolyte_armor,
 		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
 		/datum/design/bioprinter/nt_clothes/custodian_armor,
+
+		/datum/design/bioprinter/nt_clothes/acolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/agrolyte_armor_head,
+		/datum/design/bioprinter/nt_clothes/custodian_armor_head,
 
 		/datum/design/bioprinter/nt_clothes/preacher_coat,
 		/datum/design/bioprinter/nt_clothes/acolyte_jacket,
@@ -75,6 +80,7 @@
 		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
+		/datum/design/bioprinter/part,
 
    		/datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag
@@ -119,10 +125,15 @@
 	disk_name = "NeoTheology Armory - Crusader Armor"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/helmet/crusader,
-		/datum/design/autolathe/armor/crusader
+		/datum/design/autolathe/nt/helmet/crusader,
+		/datum/design/autolathe/nt/armor/crusader
 	)
-
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/void
+	disk_name = "NeoTheology Armory - Neotheology Voidsuit"
+	icon_state = "neotheology"
+	designs = list(
+		/datum/design/autolathe/clothing/NTvoid
+	)
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/excruciator
 	disk_name = "NeoTheology Armory - NT \"EXCRUCIATOR\" giga lens"
 	icon_state = "neotheology"
@@ -142,37 +153,37 @@
 	disk_name = "NeoTheology Armory - Basic Melee Weapons"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_dagger,
+		/datum/design/autolathe/nt/sword/nt_sword,
+		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/longsword
 	disk_name = "NeoTheology Armory - NT Longsword"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_longsword,
+		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/scourge
 	disk_name = "NeoTheology Armory - NT Scourge"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_scourge,
+		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/halberd
 	disk_name = "NeoTheology Armory - NT Halberd"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/sword/nt_halberd,
+		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/shield
@@ -185,7 +196,7 @@
 		/datum/design/autolathe/sword/nt_sword,
 		/datum/design/autolathe/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/firstaid
@@ -221,10 +232,10 @@
 	disk_name = "NeoTheology Armory - Grenades Pack"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/grenade/nt_explosive,
-		/datum/design/autolathe/grenade/nt_flashbang,
-		/datum/design/autolathe/grenade/nt_frag,
-		/datum/design/autolathe/grenade/nt_smokebomb
+		/datum/design/autolathe/nt/grenade/nt_explosive,
+		/datum/design/autolathe/nt/grenade/nt_flashbang,
+		/datum/design/autolathe/nt/grenade/nt_frag,
+		/datum/design/autolathe/nt/grenade/nt_smokebomb
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis
@@ -348,3 +359,11 @@
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
 		)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade
+	disk_name = "NeoTheology Armory - Cruciform Upgrades"
+	icon_state = "neotheology"
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade/New()
+	designs = subtypesof(/datum/design/autolathe/cruciform_upgrade)
+	..()

@@ -20,12 +20,12 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	damage_multiplier = 1.5
 	penetration_multiplier = 0.9
-	recoil_buildup = 10
+	recoil_buildup = 3
 	gun_tags = list(GUN_SILENCABLE)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/paco/update_icon()
+/obj/item/weapon/gun/projectile/paco/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

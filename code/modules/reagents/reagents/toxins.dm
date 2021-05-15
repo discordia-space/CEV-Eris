@@ -325,6 +325,9 @@
 	color = "#801E28"
 
 /datum/reagent/medicine/slimejelly/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(M.species.name == "Slime")
+		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
+		return
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
 		M.adjustToxLoss(rand(10, 30) * effect_multiplier)
@@ -432,7 +435,7 @@
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 	M.canmove = 0
 	M.icon = null
-	M.overlays.Cut()
+	M.cut_overlays()
 	M.invisibility = 101
 	for(var/obj/item/W in M)
 		if(istype(W, /obj/item/weapon/implant)) //TODO: Carn. give implants a dropped() or something
@@ -653,3 +656,19 @@
 			spill_biomass(T)
 		remove_self(volume)
 		return TRUE
+
+/datum/reagent/toxin/chlorine
+	name = "Chlorine"
+	description = "A highly poisonous liquid. Smells strongly of bleach."
+	reagent_state = LIQUID
+	taste_description = "bleach"
+	color = "#707c13"
+	strength = 15
+
+/datum/reagent/toxin/tar
+	name = "Tar"
+	description = "A dark, viscous liquid."
+	taste_description = "petroleum"
+	color = "#140b30"
+	reagent_state = LIQUID
+	strength = 4

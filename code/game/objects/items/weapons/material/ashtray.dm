@@ -20,25 +20,25 @@ var/global/list/ashtray_cache = list()
 	update_icon()
 	return
 
-/obj/item/weapon/material/ashtray/update_icon()
+/obj/item/weapon/material/ashtray/on_update_icon()
 	color = null
-	overlays.Cut()
+	cut_overlays()
 	var/cache_key = "base-[material.name]"
 	if(!ashtray_cache[cache_key])
 		var/image/I = image('icons/obj/objects.dmi',"ashtray")
 		I.color = material.icon_colour
 		ashtray_cache[cache_key] = I
-	overlays |= ashtray_cache[cache_key]
+	associate_with_overlays(ashtray_cache[cache_key])
 
 	if (contents.len == max_butts)
 		if(!ashtray_cache["full"])
 			ashtray_cache["full"] = image('icons/obj/objects.dmi',"ashtray_full")
-		overlays |= ashtray_cache["full"]
+		associate_with_overlays(ashtray_cache["full"])
 		desc = "It's stuffed full."
 	else if (contents.len > max_butts/2)
 		if(!ashtray_cache["half"])
 			ashtray_cache["half"] = image('icons/obj/objects.dmi',"ashtray_half")
-		overlays |= ashtray_cache["half"]
+		associate_with_overlays(ashtray_cache["half"])
 		desc = "It's half-filled."
 	else
 		desc = "An ashtray made of [material.display_name]."

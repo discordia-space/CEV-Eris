@@ -5,6 +5,7 @@
 	unsuitable_materials = list()
 
 	build_type = AUTOLATHE | BIOPRINTER
+	high_quality_faction_list = list(FACTION_NEOTHEOLOGY)
 
 /obj/machinery/autolathe/bioprinter/attackby(obj/item/I, mob/user)
 	//hacky way to forbid deconstruction but use ..()

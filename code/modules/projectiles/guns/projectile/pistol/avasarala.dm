@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/avasarala
-	name = "FS HG .40 Magnum \"Avasarala\""
+	name = "NT HG .40 Magnum \"Avasarala\""
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
 
 	icon = 'icons/obj/guns/projectile/avasarala.dmi'
@@ -14,11 +14,10 @@
 	magazine_type = /obj/item/ammo_magazine/magnum
 
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-
 	can_dual = TRUE
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.35
-	recoil_buildup = 33
+	recoil_buildup = 5
 
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
@@ -27,3 +26,17 @@
 
 	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/weapon/gun/projectile/avasarala/on_update_icon()
+	..()
+
+	var/iconstring = initial(icon_state)
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	SetIconState(iconstring)
+
+/obj/item/weapon/gun/projectile/avasarala/Initialize()
+	. = ..()
+	update_icon()

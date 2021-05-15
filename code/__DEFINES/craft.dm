@@ -10,3 +10,6 @@
 
 #define CRAFT_REFERENCE 0
 #define CRAFT_VARIATION 1
+
+#define IS_READY 1
+#define IN_PROGRESS 2

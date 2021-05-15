@@ -82,7 +82,7 @@
 				qdel(src)
 	return
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/on_update_icon()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -224,10 +224,10 @@
 	slot_flags = SLOT_EARS
 
 /obj/effect/foam_dart_dummy
-	name = ""
+	name = "foam dart"
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "null"
+	icon_state = "foamdart"
 	anchored = TRUE
 	density = FALSE
 
@@ -605,6 +605,12 @@
 	desc = "A plushie of a popular industrious cleaning robot! If it could feel emotions, it would love you."
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
+
+/obj/structure/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	phrase = "I just don't think about losing."
 
 //Small plushies.
 /obj/item/toy/plushie

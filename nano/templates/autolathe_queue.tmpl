@@ -23,7 +23,7 @@
 		<div class="statusDisplay">
 			{{if data.current.point_cost > 0}}
 				{{if !data.disk}}
-					<div class="{{:data.is_nanoforge ? "itemLabelWidest" : "bad"}}">
+					<div class="{{:data.use_license ? "bad" : "itemLabelWidest"}}">
 						License point cost: {{:data.current.point_cost}}
 					</div>
 				{{else}}

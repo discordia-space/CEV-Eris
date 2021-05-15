@@ -249,7 +249,6 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
@@ -266,11 +265,6 @@
 
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-			if(!(species.flags & NO_SLIP) && randn <= 20)
-				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				return
 
 			if(randn <= 50)
 				//See about breaking grips or pulls
