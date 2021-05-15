@@ -179,7 +179,7 @@
 
 /datum/uplink_item/item/ammo/m12/beanbag
 	name = "M12 shotgun mag with beanbangs"
-	"M12 shotgun mag with beanbags"
+	desc = "M12 shotgun mag with beanbags"
 	desc = "M12 shotgun magazine with beanbag shells loaded. Can fit 8 shells."
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/beanbag
@@ -204,16 +204,16 @@
 	path = /obj/item/ammo_magazine/chemdart
 
 /datum/uplink_item/item/ammo/Dallas
-    name = ".25 ammo box magazine"
+	name = ".25 ammo box magazine"
 	desc = "A box magazine designed for the use of the uncommon Dallas."
 	item_cost = 9
 	path = /obj/item/ammo_magazine/c10x24
 
 /datum/uplink_item/item/ammo/pk
-    name = ".30 Box magazine"
+	name = ".30 Box magazine"
 	desc = "A box magazine for the Light Machine gun known as Pulemyot Kalashnikova."
 	item_cost = 8
-    path = /obj/item/ammo_magazine/lrifle/pk
+	path = /obj/item/ammo_magazine/lrifle/pk
 //hyper-class cells, better than what you'll find in a vendor or maints.
 
 /datum/uplink_item/item/ammo/cell/small
