@@ -205,12 +205,13 @@
 
 /datum/uplink_item/item/ammo/Dallas
     name = ".25 ammo box magazine"
-	desc = "A box magazine designed for the use of the uncommon Dallas"
+	desc = "A box magazine designed for the use of the uncommon Dallas."
 	item_cost = 9
 	path = /obj/item/ammo_magazine/c10x24
+
 /datum/uplink_item/item/ammo/pk
     name = ".30 Box magazine"
-	desc = "A box magazine for the Light Machine gun known as Pulemyot Kalashnikova"
+	desc = "A box magazine for the Light Machine gun known as Pulemyot Kalashnikova."
 	item_cost = 8
     path = /obj/item/ammo_magazine/lrifle/pk
 //hyper-class cells, better than what you'll find in a vendor or maints.
