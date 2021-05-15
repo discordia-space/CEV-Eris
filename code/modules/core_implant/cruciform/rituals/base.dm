@@ -127,6 +127,7 @@
 	if(!T)
 		fail("No target.", H, C)
 		return FALSE
+	eotp.scanned -= T
 	T.hallucination(50,100)
 	var/sanity_gain = rand(0,10)
 	T.druggy = max(T.druggy, 10)

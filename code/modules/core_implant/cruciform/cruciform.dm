@@ -46,7 +46,7 @@ var/list/disciples = list()
 		righteous_life = max(righteous_life - 0.5, 0)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/on_ritual()
-	righteous_life = min(righteous_life + 20, max_righteous_life)
+	righteous_life = min(righteous_life + 25, max_righteous_life)
 
 
 /obj/item/weapon/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
