@@ -129,7 +129,8 @@
 	if(!canUnEquip(I))
 		return
 	SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, I)
-	SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
+	if(I)
+		SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
 	return drop_from_inventory(I,Target)
 
 //Attemps to remove an object on a mob.
