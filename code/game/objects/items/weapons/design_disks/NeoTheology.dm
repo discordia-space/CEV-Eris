@@ -191,10 +191,10 @@
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
 	designs = list(
-		/datum/design/autolathe/shield/nt_shield,
-		/datum/design/autolathe/sword/nt_spear,
-		/datum/design/autolathe/sword/nt_sword,
-		/datum/design/autolathe/sword/nt_dagger,
+		/datum/design/autolathe/nt/shield/nt_shield,
+		/datum/design/autolathe/nt/sword/nt_spear,
+		/datum/design/autolathe/nt/sword/nt_sword,
+		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)

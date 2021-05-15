@@ -283,7 +283,7 @@
 	name = "NT Shield"
 	build_path = /obj/item/weapon/shield/riot/nt
 
-/datum/design/autolathe/sword/nt_spear
+/datum/design/autolathe/nt/sword/nt_spear
 	name = "NT Spear"
 	build_path = /obj/item/weapon/tool/sword/nt/spear
 

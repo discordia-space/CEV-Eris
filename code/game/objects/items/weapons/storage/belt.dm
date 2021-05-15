@@ -192,7 +192,6 @@
 		/obj/item/weapon/gun/energy/crossbow,
 		/obj/item/weapon/tool/knife/dagger/nt,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors,
-		/obj/item/weapon/gun/energy/plasma/martyr,
 		/obj/item/weapon/gun/energy/nt_svalinn
 	)
 	spawn_blacklisted = TRUE
