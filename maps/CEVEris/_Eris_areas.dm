@@ -457,6 +457,10 @@
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
 
+/area/eris/crew_quarters/kitchen_storage
+	name = "\improper Kitchen Storage"
+	icon_state = "kitchen"
+
 /area/eris/crew_quarters/bar
 	name = "\improper Bar"
 	icon_state = "bar"

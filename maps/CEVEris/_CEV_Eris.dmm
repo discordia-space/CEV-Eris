@@ -34477,6 +34477,11 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
 "bCW" = (
@@ -49203,6 +49208,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "ckK" = (
@@ -49213,6 +49223,11 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "ckL" = (
@@ -49221,6 +49236,11 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -49261,6 +49281,11 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -52422,7 +52447,7 @@
 /area/eris/neotheology/chapel)
 "csD" = (
 /turf/simulated/wall,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen_storage)
 "csE" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -62347,11 +62372,10 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "cQM" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
+/obj/structure/catwalk,
+/obj/structure/closet/crate/radiation,
+/turf/simulated/floor/plating/under,
+/area/eris/crew_quarters/kitchen_storage)
 "cQN" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan,
 /obj/machinery/meter,
@@ -66682,12 +66706,13 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay)
 "dbp" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Kitchen Storage";
+	req_access = list(28)
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck4port)
+/area/eris/crew_quarters/kitchen_storage)
 "dbq" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -66972,6 +66997,11 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "dcf" = (
@@ -67249,6 +67279,11 @@
 	icon_state = "pipe-j2"
 	},
 /obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "dcD" = (
@@ -102928,6 +102963,15 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"fns" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/crew_quarters/kitchen_storage)
 "fow" = (
 /obj/structure/railing{
 	dir = 8
@@ -103058,6 +103102,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"gCn" = (
+/obj/machinery/hologram/holopad,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "gPD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -103113,6 +103166,9 @@
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"hBA" = (
+/turf/simulated/wall/r_wall,
+/area/eris/crew_quarters/kitchen_storage)
 "hCj" = (
 /obj/structure/railing{
 	dir = 8
@@ -103201,6 +103257,10 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
+"ifq" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -103689,6 +103749,15 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
+"lPw" = (
+/obj/structure/catwalk,
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/weapon/tool/shovel,
+/obj/spawner/tool,
+/obj/spawner/tool/advanced/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/crew_quarters/kitchen_storage)
 "lPM" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -103819,6 +103888,14 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
+"mCh" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Kitchen Storage";
+	req_access = list(28)
+	},
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/kitchen_storage)
 "mCG" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/simulated/floor/plating,
@@ -103848,6 +103925,20 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"naW" = (
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/booze,
+/obj/structure/closet/crate,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28
+	},
+/obj/structure/cable,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "ncx" = (
 /obj/effect/shuttle_landmark/merc/medbay,
 /turf/space,
@@ -104074,6 +104165,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
+"oAv" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "oAL" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -104197,6 +104292,9 @@
 /obj/structure/closet/self_pacification,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
+"pAH" = (
+/turf/simulated/wall,
+/area/space)
 "pHi" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/plating,
@@ -104297,6 +104395,19 @@
 /obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
+"qOT" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Kitchen Storage";
+	req_access = list(28)
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/crew_quarters/kitchen_storage)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -104618,6 +104729,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/long_range_scanner)
+"sFr" = (
+/obj/structure/catwalk,
+/obj/spawner/scrap/sparse/low_chance,
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
 "sGt" = (
 /obj/effect/shuttle_landmark/merc/sec2east,
 /turf/space,
@@ -104804,6 +104920,11 @@
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"ujL" = (
+/obj/structure/catwalk,
+/obj/spawner/scrap/dense,
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
 "uqX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -105018,6 +105139,26 @@
 /obj/machinery/vending/billomat,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
+"wbS" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/electronics/circuitboard/vending,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools,
+/obj/spawner/lathe_disk,
+/obj/spawner/lathe_disk,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
+"whG" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/eris/crew_quarters/kitchen_storage)
+"wix" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "wja" = (
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/wall/r_wall,
@@ -105048,6 +105189,14 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"wqk" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "wqX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -105224,6 +105373,10 @@
 /obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"xWd" = (
+/obj/machinery/autolathe,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen_storage)
 "xZK" = (
 /obj/structure/multiz/stairs/active{
 	dir = 8
@@ -162926,8 +163079,8 @@ chb
 cij
 com
 cpP
-cQe
-cQe
+ujL
+sFr
 cQe
 cQe
 cQe
@@ -163133,7 +163286,7 @@ csD
 dbp
 csD
 csD
-anJ
+hBA
 anJ
 anJ
 anJ
@@ -163329,13 +163482,13 @@ cJT
 bBE
 cYb
 cjp
-aqa
-cQe
-cQe
-cQe
-cQe
-cQe
-aqa
+csD
+oAv
+oAv
+wqk
+naW
+wbS
+csD
 cjp
 dXa
 bIy
@@ -163531,13 +163684,13 @@ anJ
 anJ
 cYO
 cjq
-aqa
+csD
 cQM
-cQM
-cQM
-cQM
-cQM
-aqa
+whG
+fns
+whG
+lPw
+csD
 dMl
 clZ
 anJ
@@ -163733,13 +163886,13 @@ cih
 anJ
 cWy
 apF
-aqV
-cPv
-cPv
-cPv
-cPv
-cPv
-aqV
+dbp
+whG
+whG
+fns
+whG
+whG
+mCh
 apF
 dTC
 anJ
@@ -163935,13 +164088,13 @@ cii
 anJ
 cXK
 cjw
-aqa
-cPv
-cPv
-cPv
-cPv
-cPv
-aqa
+csD
+ifq
+oAv
+wix
+ifq
+xWd
+csD
 dJD
 cmo
 anJ
@@ -164137,13 +164290,13 @@ cJV
 anJ
 aqa
 bCz
-aqa
-aqV
-aqV
-aqV
-aqV
-aqV
-aqa
+csD
+csD
+pAH
+qOT
+csD
+csD
+csD
 bCz
 aqa
 anJ
@@ -164342,7 +164495,7 @@ cil
 cjM
 cil
 cil
-ckE
+gCn
 cil
 cil
 cjM
