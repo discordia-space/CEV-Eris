@@ -72,13 +72,13 @@
 /datum/uplink_item/item/ammo/slmagnum
 	name = ".40 magnum SL"
 	desc = ".40 magnum speed loader, loaded with lethal ammunition. Can fit 6 bullets."
-	item_cost = 1
+	item_cost = 3
 	path = /obj/item/ammo_magazine/slmagnum
 
 /datum/uplink_item/item/ammo/slmagnum/highvelocity
 	name = ".40 magnum HV SL"
 	desc = ".40 magnum HV speed loader, loaded with high velocity ammunition. Can fit 6 bullets."
-	item_cost = 2
+	item_cost = 4
 	path = /obj/item/ammo_magazine/slmagnum/highvelocity
 
 
