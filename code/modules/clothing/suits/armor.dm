@@ -425,7 +425,7 @@
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
+	slowdown = 0.15
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
 	name = "insulated armor"
