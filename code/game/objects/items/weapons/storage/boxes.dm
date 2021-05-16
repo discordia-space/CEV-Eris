@@ -246,7 +246,7 @@
 	illustration = "ammo"
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
-	bad_type = /obj/item/weapon/storage/box/shotgunammo/uplink_category
+	bad_type = /obj/item/weapon/storage/box/shotgunammo/uplink_item
 	initial_amount = 2
 
 /obj/item/weapon/storage/box/shotgunammo/beanbags/uplink_item
