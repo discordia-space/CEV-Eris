@@ -103,6 +103,8 @@
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/list/mob/living/carbon/human/humans = list()
 	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
+		if(T == H)
+			continue
 		humans.Add(T)
 	if(humans.len)
 		for(var/mob/living/carbon/human/T in humans)
