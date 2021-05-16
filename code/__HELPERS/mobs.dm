@@ -290,7 +290,7 @@ Proc for attack log creation, because really why not
 	if(!isliving(L))
 		return FALSE
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C.get_module(CRUCIFORM_PRIEST))
+	if(C && C.get_module(CRUCIFORM_PRIEST))
 		return TRUE
 	return FALSE
 
@@ -298,7 +298,7 @@ Proc for attack log creation, because really why not
 	if(!is_acolyte(L))
 		return FALSE
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C.get_module(CRUCIFORM_REDLIGHT))
+	if(C && C.get_module(CRUCIFORM_REDLIGHT))
 		return TRUE
 	return FALSE
 
@@ -306,7 +306,7 @@ Proc for attack log creation, because really why not
 	if(!isliving(L))
 		return FALSE
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C.get_module(CRUCIFORM_INQUISITOR))
+	if(C && C.get_module(CRUCIFORM_INQUISITOR))
 		return TRUE
 	return FALSE
 
