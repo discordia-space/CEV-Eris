@@ -102,17 +102,20 @@
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/list/mob/living/carbon/human/humans = list()
+	var/cruciforms = 0
 	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
 		if(T == H)
 			continue
+		var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+		if(CI)
+			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
+			cruciforms++
 		humans.Add(T)
-	if(humans.len)
-		for(var/mob/living/carbon/human/T in humans)
-			var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-			if(CI)
-				to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
-	else
-		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
+	if(!humans.len)
+		fail("There is no one around you.", H, C)
+		return FALSE
+	else if(!cruciforms)
+		fail("No one around you has a cruciform installed.", H, C)
 		return FALSE
 	set_personal_cooldown(H)
 	return TRUE
