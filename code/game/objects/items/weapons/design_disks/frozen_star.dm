@@ -327,7 +327,7 @@
 	rarity_value = 7
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/slaught_o_matic = 2, // "FS HG .35 \"Slaught-o-Matic\""
+		/datum/design/autolathe/gun/slaught_o_matic = 1, // "FS HG .35 \"Slaught-o-Matic\""
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog

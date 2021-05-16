@@ -1448,7 +1448,7 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic = 800,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_slaught_o_matic = 1500,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_slaught_o_matic = 600,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
 					/obj/item/weapon/electronics/circuitboard/autolathe = 700,
 					/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 1000,
