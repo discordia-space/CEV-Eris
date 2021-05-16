@@ -45,3 +45,4 @@
 	name = "Nanopaste"
 	item_cost = 3
 	path = /obj/item/stack/nanopaste
+	

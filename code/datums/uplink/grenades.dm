@@ -43,3 +43,4 @@
 	name = "5x Flashbang Grenades"
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/flashbangs/uplink_item
+	
