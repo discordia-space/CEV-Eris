@@ -348,6 +348,10 @@
 	desc = "Contains pills used to heal physical harm."
 	pill_type = /obj/item/weapon/reagent_containers/pill/Meralyne
 	rarity_value = 20
+/obj/utem/weapon/storage/pill_bottle/meraline/populate_contents
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
 /*
  * Portable Freezers
  */
