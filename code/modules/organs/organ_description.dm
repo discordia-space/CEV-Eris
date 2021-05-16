@@ -62,7 +62,6 @@
 	max_damage = 100
 	min_broken_damage = 60
 	dislocated = -1
-	vital = TRUE
 
 	w_class = ITEM_SIZE_BULKY
 	max_volume = ITEM_SIZE_COLOSSAL
