@@ -201,23 +201,6 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
 
-/datum/uplink_item/item/ammo/shells/beanbag
-	name = "Shotgun beanbag shells."
-	desc = "10 beanbag Non-Lethal shotgun shells."
-	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/beanbags
-
-/datum/uplink_item/item/ammo/shells/slug
-	name = "Shotgun Slug Shells"
-	desc = "10 lethal shotgun slugs shells"
-	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/slug
-
-/datum/uplink_item/item/ammo/shells/buckshot
-	name = "Shotgun Buckshot Shells"
-	desc = "10 lethal shotgun Buckshit shells"
-	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/buckshot
 ////special////
 
 /datum/uplink_item/item/ammo/sniperammo
