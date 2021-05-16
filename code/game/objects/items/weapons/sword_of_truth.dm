@@ -15,6 +15,8 @@
 	var/last_use = 0
 
 /obj/item/weapon/tool/sword/nt_sword/crusade_activated()
+	. = ..()
+	if(!.) return
 	force += crusade_force
 
 /obj/item/weapon/tool/sword/nt_sword/New()

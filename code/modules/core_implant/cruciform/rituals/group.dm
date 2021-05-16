@@ -178,8 +178,13 @@
 	)
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
+/atom/movable/var/crusade_effect = FALSE
+
 /atom/movable/proc/crusade_activated()
-	return
+	if(crusade_effect)
+		return FALSE
+	crusade_effect = TRUE
+	return TRUE
 
 /datum/group_ritual_effect/cruciform/crusade/trigger_success(mob/starter, list/participants)
 	..()
