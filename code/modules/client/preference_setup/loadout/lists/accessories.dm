@@ -71,7 +71,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Captain", "First Officer", JOBS_SECURITY)
+	cost = 2
 
 /datum/gear/accessory/holster/New()
 	..()
