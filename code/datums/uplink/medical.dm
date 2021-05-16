@@ -40,3 +40,8 @@
 	item_cost = 5
 	path = /obj/item/gene_vial
 	antag_roles = list(ROLE_CARRION)
+
+/datum/uplink_item/medical/nanopaste
+	name = "Nanopaste"
+	item_cost = 3
+	path = /obj/item/stack/nanopaste
