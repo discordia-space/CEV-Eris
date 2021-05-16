@@ -268,7 +268,7 @@
 	name = "Box of flashbangs"
 	desc = "A box containing 5 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
 	icon_state = "box_security"
-	illumination "flashbang"
+	illustration = "flashbang"
 	rarity_value = 60
 	initial_amount = 5
 	spawn_type = /obj/item/weapon/grenade/flashbang
