@@ -240,6 +240,30 @@
 	rarity_value = 100
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
+/obj/item/weapon/storage/box/shotgunammo/uplink_item      //uplink version has less than the spawned normally
+	name = "box of shotgun slugs"
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	illustration = "ammo"
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+	bad_type = /obj/item/weapon/storage/box/shotgunammo/uplink_category
+	initial_amount = 2
+
+/obj/item/weapon/storage/box/shotgunammo/beanbags/uplink_item
+	name = "box of beanbag shells"
+	spawn_type = /obj/item/ammo_casing/shotgun/beanbag/prespawned
+	rarity_value = 10
+
+/obj/item/weapon/storage/box/shotgunammo/buckshot/uplink_item
+	name = "box of shotgun shells"
+	spawn_type = /obj/item/ammo_casing/shotgun/pellet/prespawned
+	rarity_value = 13.33
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+
+/obj/item/weapon/storage/box/shotgunammo/slug/uplink_item
+	name = "box of shotgun slugs"
+	spawn_type = /obj/item/ammo_casing/shotgun/prespawned
+	rarity_value = 20
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of .60 Anti Material shells"

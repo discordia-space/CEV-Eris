@@ -205,19 +205,19 @@
 	name = "Shotgun beanbag shells."
 	desc = "10 beanbag Non-Lethal shotgun shells."
 	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/beanbags
+	path = /obj/item/weapon/storage/box/shotgunammo/beanbags/uplink_item
 
 /datum/uplink_item/item/ammo/shells/slug
 	name = "Shotgun Slug Shells"
 	desc = "10 lethal shotgun slugs shells"
 	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/slug
+	path = /obj/item/weapon/storage/box/shotgunammo/slug/uplink_item
 
 /datum/uplink_item/item/ammo/shells/buckshot
 	name = "Shotgun Buckshot Shells"
 	desc = "10 lethal shotgun Buckshit shells"
 	item_cost = 2
-	path = /obj/item/weapon/storage/box/shotgunammo/buckshot
+	path = /obj/item/weapon/storage/box/shotgunammo/buckshot/uplink_item
 ////special////
 
 /datum/uplink_item/item/ammo/sniperammo
