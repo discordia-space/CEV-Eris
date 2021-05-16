@@ -27,7 +27,7 @@
 	to_chat(user, SPAN_NOTICE("You swallow the contents of \the [src]."))
 
 	if(C)
-		C.geneticpoints += 3
+		C.geneticpoints += 5
 	else
 		user.adjustToxLoss(40)
 
