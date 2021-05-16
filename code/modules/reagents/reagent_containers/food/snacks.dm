@@ -592,7 +592,7 @@
 	bitesize = 5
 	center_of_mass = list("x"=16, "y"=11)
 	var/list/stats_buff = list()
-	var/buff_power = 6
+	var/buff_power = 10
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
