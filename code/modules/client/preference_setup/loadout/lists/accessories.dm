@@ -71,7 +71,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	cost = 2
+	cost = 3
 
 /datum/gear/accessory/holster/New()
 	..()
