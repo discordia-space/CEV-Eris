@@ -282,12 +282,14 @@
 	for(var/reagent in reagents)
 		C.reagents.add_reagent(reagent, reagents[reagent] * C.storage_slots)
 
-/obj/item/weapon/storage/box/syndie_kit/ewar_voice
+/obj/item/weapon/storage/box/syndie_kit/ewar
 	name = "Electrowarfare and Voice Synthesiser kit"
 	desc = "Kit for confounding organic and synthetic entities alike."
 
-/obj/item/weapon/storage/box/syndie_kit/ewar_voice/populate_contents()
+/obj/item/weapon/storage/box/syndie_kit/ewar/populate_contents()
 	new /obj/item/rig_module/electrowarfare_suite(src)
+
+/obj/item/weapon/storage/box/syndie_kit/voice/populate_contents
 	new /obj/item/rig_module/voice(src)
 
 /obj/item/weapon/storage/box/syndie_kit/spy_sensor
