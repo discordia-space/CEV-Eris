@@ -208,7 +208,8 @@
 	name = "Meralyne pill"
 	desc = "Contains a powerful medicine for physical harm"
 	icon_state = "pill3"
-	preloaded_reagents = list("meraline" = 10)
+	preloaded_reagents = list("meralyne" = 10)
+
 //Pills with random content
 /obj/item/weapon/reagent_containers/pill/floorpill
 	name = "floor pill"
