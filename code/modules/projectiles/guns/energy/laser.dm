@@ -127,13 +127,13 @@
 	name = "mounted laser cannon"
 	self_recharge = TRUE
 	use_external_power = TRUE
-	recharge_time = 10
+	recharge_time = 35
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
-	charge_cost = 100
+	charge_cost = 300
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/psychic
