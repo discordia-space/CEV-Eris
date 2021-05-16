@@ -14,15 +14,10 @@
 	item_cost = 5
 	path = /obj/item/rig_module/fabricator/energy_net
 
-/datum/uplink_item/item/hardsuit_modules/ewar
-	name = "Electrowarfare Suite."
-	item_cost = 3
-	path = /obj/item/weapon/storage/box/syndie_kit/ewar
-
-/datum/uplink_item/hardsuit_modules/voice
-	name = "Voice changer module"
-	item_cost = 3
-	path = /obj/item/weapon/storage/box/syndie_kit/voice
+/datum/uplink_item/item/hardsuit_modules/ewar_voice
+	name = "Electrowarfare Suite and Voice Synthesiser"
+	item_cost = 4
+	path = /obj/item/weapon/storage/box/syndie_kit/ewar_voice
 
 /datum/uplink_item/item/hardsuit_modules/internal_storage
 	name = "Internal storage compartment"
