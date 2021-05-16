@@ -35,14 +35,13 @@
 	item_cost = 5
 	path = /obj/item/weapon/storage/box/syndie_kit/randomstim
 
-/datum/uplink_item/medical/Nanopaste
-	name = "Nanopaste"
-	item_cost = 3
-	path = /obj/item/stack/nanopaste
-
 /datum/uplink_item/item/medical/gene_vial
 	name = "Genetic material vial"
 	item_cost = 5
 	path = /obj/item/gene_vial
 	antag_roles = list(ROLE_CARRION)
 
+/datum/uplink_item/medical/Nanopaste
+	name = "Nanopaste"
+	item_cost = 3
+	path = /obj/item/stack/nanopaste
