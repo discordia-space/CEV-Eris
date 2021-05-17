@@ -361,9 +361,8 @@
 		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
 			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
 
-	switch(GLOB.bluespace_entropy)
-		if(GLOB.bluespace_hazard_threshold*0.7)
-			to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
+		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_hazard_threshold > GLOB.bluespace_hazard_threshold*0.95)
 		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
