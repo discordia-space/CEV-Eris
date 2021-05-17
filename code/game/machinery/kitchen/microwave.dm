@@ -423,30 +423,41 @@
 
 /obj/machinery/microwave/campfire/start()
 	..()
-
+	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
 	icon_state = "barrelfire1"
 	set_light(3,2)
 
 /obj/machinery/microwave/campfire/abort()
 	..()
-
+	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire"
+	set_light(0)
 	
 
 /obj/machinery/microwave/campfire/stop()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire"
+	set_light(0)
 	
 
 /obj/machinery/microwave/campfire/dispose()
-	
+	..()
+	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+	icon_state = "barrelfire"
+	set_light(0)
 
 /obj/machinery/microwave/campfire/muck_start()
+	..()
+	icon_state = "barrelfire1"
 
 /obj/machinery/microwave/campfire/muck_finish()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-
+	icon_state = "barrelfire"
+	set_light(0)
 /obj/machinery/microwave/campfire/broke()
+	..()
+	icon_state = "barrelfire"
+	set_light(0)
