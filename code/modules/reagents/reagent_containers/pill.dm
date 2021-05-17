@@ -206,7 +206,7 @@
 
 /obj/item/weapon/reagent_containers/pill/Meralyne
 	name = "Meralyne pill"
-	desc = "Contains a powerful medicine for physical harm"
+	desc = "Contains a powerful medicine that is used to treat severe physical trauma."
 	icon_state = "pill3"
 	preloaded_reagents = list("meralyne" = 10)
 
