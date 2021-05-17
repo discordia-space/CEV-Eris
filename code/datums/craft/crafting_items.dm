@@ -31,7 +31,14 @@
 
 /obj/item/part/armor/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
+	price_tag += rand(0, 500)
 	return ..()
+
+/obj/item/part/armor/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
 
 /obj/item/part/gun
 	name = "gun part"
@@ -51,7 +58,14 @@
 
 /obj/item/part/gun/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
+	price_tag += rand(0, 500)
 	return ..()
+
+/obj/item/part/gun/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
 
 /obj/item/craft_frame
 	name = "item assembly"
