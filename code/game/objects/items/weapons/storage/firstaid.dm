@@ -343,7 +343,7 @@
 	for(var/i in 1 to initial_amt)
 		new pill_type(src)
 
-/obj/item/weapon/storage/pill_bottle/meraline
+/obj/item/weapon/storage/pill_bottle/meralyne
 	name = "bottle of Meralyne pills"
 	desc = "Contains pills used to heal physical harm."
 	pill_type = /obj/item/weapon/reagent_containers/pill/Meralyne
