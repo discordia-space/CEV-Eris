@@ -400,7 +400,7 @@
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
 	icon_state = "artwork_[rand(1,6)]"
-	. = ..()
+	return ..()
 
 /obj/item/weapon/oddity/artwork/get_item_cost(export)
 	. = ..()

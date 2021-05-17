@@ -20,22 +20,38 @@
 
 /obj/item/part/armor
 	name = "armor part"
-	desc = "Spare part for clothing."
+	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
 
+/obj/item/part/armor/artwork
+	desc = "This is an artistically-made armor part."
+	spawn_frequency = 0
+
+/obj/item/part/armor/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	return ..()
+
 /obj/item/part/gun
 	name = "gun part"
-	desc = "Spare part of a gun."
+	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 1.2)
 
-/obj/item/part/gun/New()
+/obj/item/part/gun/Initialize()
 	. = ..()
 	icon_state = "gun_part_[rand(1,6)]"
+
+/obj/item/part/gun/artwork
+	desc = "This is an artistically-made gun part."
+	spawn_frequency = 0
+
+/obj/item/part/gun/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	return ..()
 
 /obj/item/craft_frame
 	name = "item assembly"
