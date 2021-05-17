@@ -69,7 +69,7 @@
 	allowed_roles = list(JOBS_SCIENCE)
 
 /datum/gear/accessory/holster
-	display_name = "holster, armpit"
+	display_name = "holster"
 	path = /obj/item/clothing/accessory/holster/armpit
 	cost = 3
 
