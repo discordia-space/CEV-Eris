@@ -346,7 +346,7 @@
 /obj/item/weapon/storage/pill_bottle/meralyne
 	name = "bottle of Meralyne pills"
 	desc = "Contains pills used to heal physical harm."
-	pill_type = /obj/item/weapon/reagent_containers/pill/Meralyne
+	pill_type = /obj/item/weapon/reagent_containers/pill/meralyne
 	rarity_value = 20
 
 /obj/item/weapon/storage/pill_bottle/meraline/populate_contents()
