@@ -13,6 +13,7 @@
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
+	var/dinger = TRUE //so we don't have the campfire dinging
 	var/global/list/datum/recipe/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
@@ -337,7 +338,8 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	if(dinger)
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
@@ -356,7 +358,8 @@
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	if(dinger)
+		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.visible_message(SPAN_WARNING("The microwave gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.reagent_flags = NONE //So you can't add condiments
@@ -406,3 +409,44 @@
 		if("dispose")
 			dispose()
 	return
+
+/obj/machinery/microwave/campfire
+	name = "Barrel Fire"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "barrelfire"
+	use_power = FALSE
+	idle_power_usage = 0
+	active_power_usage = 0
+	dinger = FALSE
+
+
+
+/obj/machinery/microwave/campfire/start()
+	..()
+
+	visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
+	icon_state = "barrelfire1"
+	set_light(3,2)
+
+/obj/machinery/microwave/campfire/abort()
+	..()
+
+	icon_state = "barrelfire"
+	
+
+/obj/machinery/microwave/campfire/stop()
+	..()
+	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+	icon_state = "barrelfire"
+	
+
+/obj/machinery/microwave/campfire/dispose()
+	
+
+/obj/machinery/microwave/campfire/muck_start()
+
+/obj/machinery/microwave/campfire/muck_finish()
+	..()
+	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+
+/obj/machinery/microwave/campfire/broke()
