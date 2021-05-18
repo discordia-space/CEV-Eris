@@ -376,6 +376,8 @@
 		return FALSE
 
 	for(var/stat in inspiracion.stats)
-		inspiracion.stats[stat] += rand(1,8)
+		var/stat_gain = rand(1,8)
+		inspiracion.stats[stat] += stat_gain
+		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
 	odditys.Add(I)
 	return TRUE
