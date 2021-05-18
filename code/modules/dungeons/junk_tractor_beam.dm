@@ -380,6 +380,10 @@
 // Fix the stuff the chunk loader does not do properly...
 /obj/jtb_generator/proc/fix_chunk_loading(var/Tx, var/Ty, var/off, var/ori)
 	for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + off, Ty + off, z)))
+		// Remove atmosphere
+		oxygen = 0
+		nitrogen = 0
+		
 		for(var/obj/O in TM)
 			if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
 				O.dir = 2
