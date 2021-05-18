@@ -411,7 +411,7 @@
 	return
 
 /obj/machinery/microwave/campfire
-	name = "Barrel Fire"
+	name = "Burn Barrel"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "barrelfire"
 	use_power = FALSE
@@ -424,6 +424,7 @@
 /obj/machinery/microwave/campfire/start()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+	//playsound(loc, 'sound/effects/campfirecrackle.ogg', 50, 1) // I don't  know how to loop stuff
 	visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
 	icon_state = "barrelfire1"
 	set_light(3,2)
