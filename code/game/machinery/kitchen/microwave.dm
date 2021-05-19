@@ -459,6 +459,7 @@
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire"
 	set_light(0)
+	
 /obj/machinery/microwave/campfire/broke()
 	..()
 	icon_state = "barrelfire"
