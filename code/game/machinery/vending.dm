@@ -1124,7 +1124,7 @@
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/weapon/reagent_containers/syringe/spaceacillin = 8,/obj/item/weapon/reagent_containers/syringe = 12,
 					/obj/item/device/scanner/health = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
+					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 6)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
@@ -1152,7 +1152,8 @@
 	products = list(
 		/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/ointment = 2,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
-		/obj/item/device/scanner/health = 1
+		/obj/item/device/scanner/health = 1,
+		/obj/item/stack/medical/splint = 6
 		)
 	contraband = list(
 		/obj/item/weapon/reagent_containers/syringe/antitoxin = 2,
@@ -1174,7 +1175,8 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacillin = 1, /obj/item/weapon/reagent_containers/syringe/spaceacillin = 1,
 
 		/obj/item/weapon/implantcase/death_alarm = 2,
-		/obj/item/weapon/implanter = 2
+		/obj/item/weapon/implanter = 2,
+		/obj/item/stack/medical/splint = 6
 		)
 	contraband = list(
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/hyperzine = 2,
@@ -1186,6 +1188,7 @@
 		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
 		/obj/item/stack/medical/advanced/bruise_pack = 200, /obj/item/stack/medical/advanced/ointment = 200,
 		/obj/item/stack/nanopaste = 1000,
+		/obj/item/stack/medical/splint = 200
 
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 100, /obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 150, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 300,
