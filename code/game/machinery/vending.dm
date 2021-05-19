@@ -1469,7 +1469,6 @@
 					/obj/item/ammo_magazine/srifle = 6,
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
-					/obj/item/weapon/storage/ration_pack = 10,
 					/obj/item/clothing/mask/balaclava = 50
 					)
 	prices = list(
@@ -1482,7 +1481,6 @@
 					/obj/item/weapon/gun/projectile/kovacs = 3000,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/ammo_magazine/srifle = 200,
-					/obj/item/weapon/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100
 					)
 	idle_power_usage = 211
