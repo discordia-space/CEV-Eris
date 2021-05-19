@@ -350,7 +350,7 @@
 /datum/ritual/cruciform/priest/divine_blessing
 	name = "Divine Blessing"
 	phrase = "Corpus Deus"
-	desc = "Increases the stats of an oddity."
+	desc = "Increase an oddity's stats by a certain amount but reduce yours by half that amount."
 	success_message = "Your oddity has been blessed."
 	fail_message = "You feel cold in your active hand."
 	var/list/odditys = list()
