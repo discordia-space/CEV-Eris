@@ -283,7 +283,6 @@
 		else if(has_extra_item())
 			if(!wzhzhzh(4))
 				abort()
-				return
 			broke()
 			cooked = fail()
 			cooked.loc = src.loc
@@ -367,17 +366,6 @@
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/broke()
-	var/datum/effect/effect/system/spark_spread/s = new
-	s.set_up(2, 1, src)
-	s.start()
-	src.icon_state = "mwb" // Make it look all busted up and shit
-	src.visible_message(SPAN_WARNING("The microwave breaks!")) //Let them know they're stupid
-	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.reagent_flags = NONE //So you can't add condiments
-	src.operating = 0 // Turn it off again aferwards
-	src.updateUsrDialog()
-
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
@@ -421,7 +409,6 @@
 	dinger = FALSE
 
 
-
 /obj/machinery/microwave/campfire/start()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
@@ -457,10 +444,5 @@
 /obj/machinery/microwave/campfire/muck_finish()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire"
-	set_light(0)
-	
-/obj/machinery/microwave/campfire/broke()
-	..()
 	icon_state = "barrelfire"
 	set_light(0)
