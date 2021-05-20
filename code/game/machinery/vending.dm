@@ -1532,7 +1532,7 @@
 					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
 					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200,
 					/obj/item/clothing/mask/thief = 300,
 					/obj/item/clothing/mask/thief/wolf = 300,
 					/obj/item/clothing/mask/thief/hoxton = 300,
