@@ -165,7 +165,7 @@
 	display_name = "battle dress uniform, serbian"
 	path = /obj/item/clothing/under/serbiansuit
 
-/datum/gear/uniform/generic/New()
+/datum/gear/uniform/battledress_serb/New()
 	..()
 	var/battledress_serb = list(
 		"green"	=	/obj/item/clothing/under/serbiansuit,
