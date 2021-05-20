@@ -252,4 +252,4 @@ obj/item/clothing/under/genericr
 	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
 	icon_state = "tuxedo"
 	style = STYLE_HIGH
-	price_tag = 400
+	price_tag = 300
