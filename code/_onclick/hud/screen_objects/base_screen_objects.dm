@@ -982,9 +982,9 @@ obj/screen/fire/DEADelize()
 /obj/screen/mov_intent/Click()
 	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
-	SEND_SIGNAL(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
 	if (newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
+		SEND_SIGNAL(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
 		update_icon()
 
 	update_icon()

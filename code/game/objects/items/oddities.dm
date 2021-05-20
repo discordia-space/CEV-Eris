@@ -348,16 +348,32 @@
 
 /obj/item/weapon/oddity/broken_necklace/New()
 	..()
-	GLOB.bluespace_gift += 1
+	GLOB.bluespace_gift++
 	GLOB.bluespace_entropy -= rand(30, 50)
+
+/obj/item/weapon/oddity/broken_necklace/examine(user, distance)
+	. = ..()
+	var/area/my_area = get_area(src)
+	switch(my_area.bluespace_entropy)
+		if(0 to my_area.bluespace_hazard_threshold*0.3)
+			to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
+
+		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
+			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+
+	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
+		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_hazard_threshold > GLOB.bluespace_hazard_threshold*0.95)
+		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
 
 /obj/item/weapon/oddity/broken_necklace/Destroy()
 	var/turf/T = get_turf(src)
 	if(T)
 		bluespace_entropy(80,T)
 		new /obj/item/bluespace_dust(T)
-	GLOB.bluespace_gift -= 1
-	. = ..()
+	GLOB.bluespace_gift--
+	return ..()
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
 	if(world.time < cooldown)
@@ -400,7 +416,7 @@
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
 	icon_state = "artwork_[rand(1,6)]"
-	. = ..()
+	return ..()
 
 /obj/item/weapon/oddity/artwork/get_item_cost(export)
 	. = ..()
