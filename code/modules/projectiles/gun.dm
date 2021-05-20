@@ -39,6 +39,7 @@
 	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
+	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
 
 	var/muzzle_flash = 3
 	var/dual_wielding
@@ -82,6 +83,23 @@
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
+
+/obj/item/weapon/gun/attackby(obj/item/I, mob/living/user, params)
+	if(!istool(I) || user.a_intent != I_HURT)
+		return FALSE
+	if(!gun_parts)
+		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
+		return FALSE
+	if(I.get_tool_quality(QUALITY_BOLT_TURNING))
+		user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING("You begin breaking apart [src] for gun parts."))
+	if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
+		for(var/target_item in gun_parts)
+			var/amount = gun_parts[target_item]
+			while(amount)
+				new target_item(get_turf(src))
+				amount--
+		qdel(src)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -127,7 +145,6 @@
 			qdel(i)
 	firemodes = null
 	return ..()
-
 
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
 	var/wield_state
@@ -272,10 +289,6 @@
 	else
 		return ..() //Pistolwhippin'
 
-
-
-
-
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
@@ -316,6 +329,7 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
+			P.multiply_projectile_accuracy(user.stats.getStat(STAT_VIG)/2)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -484,7 +498,7 @@
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
-			user.apply_effect(110,AGONY,0)
+			user.adjustHalLoss(110)
 		qdel(in_chamber)
 		mouthshoot = FALSE
 		return

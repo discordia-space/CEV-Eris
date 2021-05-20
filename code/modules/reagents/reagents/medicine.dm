@@ -19,7 +19,7 @@
 
 /datum/reagent/medicine/inaprovaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
-	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 15 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/medicine/inaprovaline/sleeper
@@ -200,7 +200,7 @@
 	metabolism = 0.02
 
 /datum/reagent/medicine/paracetamol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
+	M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/medicine/paracetamol/overdose(mob/living/carbon/M, alien)
 	..()
@@ -219,7 +219,7 @@
 	nerve_system_accumulations = 40
 
 /datum/reagent/medicine/tramadol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 130 )
+	M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/medicine/tramadol/overdose(mob/living/carbon/M, alien)
 	..()
@@ -241,7 +241,7 @@
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.add_chemical_effect(CE_PAINKILLER, 65)
 	M.druggy = max(M.druggy, 10)
 
 /datum/reagent/medicine/oxycodone/overdose(mob/living/carbon/M, alien)
@@ -276,7 +276,7 @@
 	M.adjust_hallucination(-10)
 	M.add_chemical_effect(CE_MIND, 2)
 	M.adjustToxLoss(0.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
-	M.add_chemical_effect(CE_PAINKILLER, 40)
+	M.add_chemical_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -584,27 +584,27 @@
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"
 	id = "ossisine"
-	description = "Paralyses user and restores broken bones. Medicate in critical conditions only."
+	description = "Puts the user in a great amount of pain and repairs broken bones one at a time. Medicate in critical conditions only."
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/medicine/ossisine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.paralysis = max(M.paralysis, 5)
+	M.apply_damage(15, HALLOSS)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(prob(5 * effect_multiplier + dose) || dose == overdose)
-			var/list/brokenBP = list()
-			for(var/obj/item/organ/external/E in H.organs)
-				if(E.is_broken())
-					brokenBP += E
-			if(brokenBP.len)
-				var/obj/item/organ/external/E = pick(brokenBP)
-				E.mend_fracture()
-				M.pain(E.name, 60, TRUE)
-				dose = 0
+		var/list/brokenBP = list()
+		for(var/obj/item/organ/external/E in H.organs)
+			if(E.is_broken())
+				brokenBP += E
+		if(brokenBP.len)
+			var/obj/item/organ/external/E = pick(brokenBP)
+			E.mend_fracture()
+			M.pain(E.name, 60, TRUE)
+			dose -= min(dose, metabolism)
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(2)
@@ -790,7 +790,7 @@
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
 	id = "vomitol"
-	description = "Forces patient to vomit - results in total cleaning of his stomach. Has extremely unpleasant taste."
+	description = "Forces patient to vomit - results in total cleaning of his stomach. Has extremely unpleasant taste and seems to collect on food in mushroom rich enviroments."
 	taste_description = "worst thing in the world"
 	reagent_state = LIQUID
 	color = "#a6b85b"

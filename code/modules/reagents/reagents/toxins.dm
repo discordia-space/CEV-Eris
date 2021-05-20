@@ -325,6 +325,9 @@
 	color = "#801E28"
 
 /datum/reagent/medicine/slimejelly/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(M.species.name == "Slime")
+		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
+		return
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
 		M.adjustToxLoss(rand(10, 30) * effect_multiplier)

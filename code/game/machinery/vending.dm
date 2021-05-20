@@ -998,7 +998,6 @@
 					/obj/item/weapon/gun/energy/gun/martin = 5,
 					/obj/item/weapon/gun/projectile/revolver/havelock = 5,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
 					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
@@ -1466,6 +1465,8 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 4,
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 2,
+					/obj/item/weapon/gun/projectile/kovacs = 5,
+					/obj/item/ammo_magazine/srifle = 20,
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/weapon/storage/ration_pack = 10,
@@ -1479,8 +1480,53 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
+					/obj/item/ammo_magazine/srifle = 200,
 					/obj/item/weapon/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100
+					)
+	idle_power_usage = 211
+	vendor_department = DEPARTMENT_CIVILIAN
+
+/obj/machinery/vending/billomat
+	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
+	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
+	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
+	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
+	icon_state = "trashvend"
+	products = list(
+					/obj/item/ammo_magazine/lrifle = 12,
+					/obj/item/ammo_magazine/hpistol = 12,
+					/obj/item/ammo_magazine/srifle = 12,
+					/obj/item/ammo_magazine/smg = 12,
+					/obj/item/part/armor = 20,
+					/obj/item/part/gun = 20,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4,
+					/obj/item/weapon/gun/energy/retro = 4,
+					/obj/item/weapon/gun/projectile/mk58  = 2,
+					/obj/item/weapon/gun/projectile/mk58/wood = 2,
+					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
+					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
+					/obj/item/weapon/gun/projectile/automatic/molly = 4,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4
+					)
+	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
+	prices = list(
+					/obj/item/ammo_magazine/lrifle = 400,
+					/obj/item/ammo_magazine/hpistol = 300,
+					/obj/item/ammo_magazine/cspistol = 400,
+					/obj/item/ammo_magazine/srifle = 300,
+					/obj/item/ammo_magazine/smg = 400,
+					/obj/item/part/armor = 700,
+					/obj/item/part/gun = 700,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 3200,
+					/obj/item/weapon/gun/energy/retro = 2000,
+					/obj/item/weapon/gun/projectile/mk58  = 1500,
+					/obj/item/weapon/gun/projectile/mk58/wood = 1500,
+					/obj/item/weapon/gun/projectile/mandella = 1800,
+					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
+					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
+					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN

@@ -18,6 +18,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 9)
 	price_tag = 100
 	rarity_value = 40
+	gun_parts = list(/obj/item/stack/material/plastic = 2)
 
 	safety = FALSE
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'

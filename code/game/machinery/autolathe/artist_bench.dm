@@ -13,6 +13,7 @@
 	categories = list("Artwork")
 	use_oddities = TRUE
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
+	low_quality_print = FALSE
 	var/min_mat = 20
 	var/min_insight = 40
 

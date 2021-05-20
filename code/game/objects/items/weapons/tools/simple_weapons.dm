@@ -135,6 +135,18 @@
 	spawn_tags = SPAWN_TAG_SWORD
 	rarity_value = 25
 
+/obj/item/weapon/tool/sword/saber
+	name = "officer's saber"
+	desc = "A saber with golden grip, for the real heads of this ship."
+	icon_state = "saber"
+	item_state = "saber"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
+	slot_flags = SLOT_BELT
+	force = WEAPON_FORCE_BRUTAL
+	armor_penetration = ARMOR_PEN_MODERATE
+	spawn_blacklisted = TRUE
+	price_tag = 10000
+
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"
 	desc = "Modern japanese-style blade that has no curve to it. This one looks pretty sharp."

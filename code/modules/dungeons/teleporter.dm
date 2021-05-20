@@ -182,7 +182,7 @@
 				continue
 			flash_time *= H.species.flash_mod
 			var/eye_efficiency = H.get_organ_efficiency(OP_EYES)
-			if(!eye_efficiency)
+			if(eye_efficiency < 2)
 				return
 			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
 				if (O.HUDtech.Find("flash"))

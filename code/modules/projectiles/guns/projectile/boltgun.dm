@@ -27,6 +27,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
 	spawn_blacklisted = TRUE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 	var/bolt_open = 0
 	var/item_suffix = ""
 
@@ -103,6 +104,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"

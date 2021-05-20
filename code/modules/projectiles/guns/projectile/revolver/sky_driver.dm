@@ -21,6 +21,7 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE
+	gun_parts = list(/obj/item/weapon/gun_upgrade/barrel/gauss = 3, /obj/item/stack/material/plasteel = 2)
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
