@@ -161,3 +161,4 @@
 	display_name = "beret, oberth"
 	path = /obj/item/clothing/head/beret/german
 	cost = 2
+	

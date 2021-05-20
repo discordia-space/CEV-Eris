@@ -180,3 +180,4 @@
 /datum/gear/ration_pack
 	display_name = "emergency ration pack"
 	path = /obj/item/weapon/storage/ration_pack
+	
