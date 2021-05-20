@@ -174,7 +174,7 @@
 	var/battledress_serb = list(
 		"green"	=	/obj/item/clothing/under/serbiansuit,
 		"brown"	=	/obj/item/clothing/under/serbiansuit/brown,
-		"black"	=	/obj/item/clothing/under/serbiansuit/black,
+		"black"	=	/obj/item/clothing/under/serbiansuit/black
 	)
 	gear_tweaks += new /datum/gear_tweak/path(battledress_serb)
 

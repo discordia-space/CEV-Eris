@@ -156,8 +156,3 @@
 		"Gray"		=	/obj/item/clothing/head/armor/helmet/tanker/gray,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(tanker_helmet)
-
-/datum/gear/head/beret/german
-	display_name = "beret, oberth"
-	path = /obj/item/clothing/head/beret/german
-	cost = 2

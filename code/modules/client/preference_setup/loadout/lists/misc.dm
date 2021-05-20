@@ -162,7 +162,7 @@
 		"Space Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes,
 		"DromedaryCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 		"AcmeCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-		"Nomads Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/homeless,
+		//"Nomads Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/homeless
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cigarettes_type)
 
@@ -176,7 +176,3 @@
 	cigar_type["premium"] = /obj/item/clothing/mask/smokable/cigarette/cigar
 	cigar_type["Cohiba Robusto"] = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	gear_tweaks += new/datum/gear_tweak/path(cigar_type)
-
-/datum/gear/ration_pack
-	display_name = "emergency ration pack"
-	path = /obj/item/weapon/storage/ration_pack
