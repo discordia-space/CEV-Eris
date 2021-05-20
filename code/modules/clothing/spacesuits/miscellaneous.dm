@@ -21,8 +21,9 @@
 /obj/item/clothing/head/space/emergency
 	name = "Emergency Space Helmet"
 	icon_state = "emergencyhelm"
-	item_state = "emergencyhelm"
+	item_state = "syndi_helm_erm"	//currently not working somehow
 	desc = "A simple helmet with a built in light, smells like mothballs."
+	light_overlay = "helmet_light_syndi_soft"
 	flash_protection = FLASH_PROTECTION_NONE
 
 /obj/item/clothing/suit/space/emergency
@@ -31,3 +32,4 @@
 	item_state = "emergency_suit"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 2
+	accompanying_object = /obj/item/clothing/head/space/emergency
