@@ -181,3 +181,4 @@
 /datum/gear/uniform/battledress_german
 	display_name = "battle dress uniform, oberth"
 	path = /obj/item/clothing/under/germansuit
+	
