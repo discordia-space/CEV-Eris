@@ -176,3 +176,7 @@
 	cigar_type["premium"] = /obj/item/clothing/mask/smokable/cigarette/cigar
 	cigar_type["Cohiba Robusto"] = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	gear_tweaks += new/datum/gear_tweak/path(cigar_type)
+
+/datum/gear/ration_pack
+	display_name = "emergency ration pack"
+	path = /obj/item/weapon/storage/ration_pack
