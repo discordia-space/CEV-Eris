@@ -104948,11 +104948,11 @@
 	opacity = 0
 	},
 /obj/machinery/door/blast/shutters{
-	density = 0;
+	density = 1;
 	dir = 2;
 	id = "rnddesk";
 	name = "Research Desk Shutters";
-	opacity = 0
+	opacity = 1
 	},
 /obj/machinery/door/window/westleft{
 	name = "Research Desk";

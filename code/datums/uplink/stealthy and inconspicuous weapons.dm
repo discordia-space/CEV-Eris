@@ -24,12 +24,6 @@
 	item_cost = 2
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
 
-/datum/uplink_item/item/stealthy_weapons/parapen
-	name = "Paralysis Pen"
-	item_cost = 6
-	path = /obj/item/weapon/pen/reagent/paralysis
-
-
 /datum/uplink_item/item/stealthy_weapons/boot_knife
 	name = "Boot Knife"
 	item_cost = 3
