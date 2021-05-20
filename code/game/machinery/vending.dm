@@ -1512,7 +1512,8 @@
 					/obj/item/clothing/mask/thief/wolf = 2,
 					/obj/item/clothing/mask/thief/hoxton = 2,
 					/obj/item/clothing/mask/thief/chains = 2,
-					/obj/item/clothing/under/tuxedo = 8
+					/obj/item/clothing/under/tuxedo = 8,
+					/obj/item/clothing/gloves/latex/nitrile = 8
 					)
 	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
 	prices = list(
@@ -1536,7 +1537,8 @@
 					/obj/item/clothing/mask/thief/wolf = 300,
 					/obj/item/clothing/mask/thief/hoxton = 300,
 					/obj/item/clothing/mask/thief/chains = 300,
-					/obj/item/clothing/under/tuxedo = 500
+					/obj/item/clothing/under/tuxedo = 500,
+					/obj/item/clothing/gloves/latex/nitrile = 150
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
