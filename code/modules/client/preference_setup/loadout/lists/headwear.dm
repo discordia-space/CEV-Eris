@@ -21,9 +21,9 @@
 	path = /obj/item/clothing/head/beret/purple
 
 /datum/gear/head/beret/bsec
-	display_name = "beret, navy (officer)"
+	display_name = "beret, navy"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant",JOBS_MEDICAL)
 
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
@@ -161,4 +161,3 @@
 	display_name = "beret, oberth"
 	path = /obj/item/clothing/head/beret/german
 	cost = 2
-	
