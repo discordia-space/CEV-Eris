@@ -352,19 +352,9 @@
 /obj/item/clothing/suit/space/emergency
 	rarity_value = 31.6667
 
-////////////////Syndicate suits: Base 47.5
 
 /obj/item/clothing/suit/space/syndicate
-	rarity_value = 60
-
-/obj/item/clothing/suit/space/syndicate/black
 	rarity_value = 47.5
-
-/obj/item/clothing/suit/space/syndicate/engi
-	rarity_value = 94
-
-/obj/item/clothing/suit/space/syndicate/medical
-	rarity_value = 108
 
 /obj/item/clothing/suit/space/anomaly
 	rarity_value = 46.3889
