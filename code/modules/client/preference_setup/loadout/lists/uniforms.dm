@@ -156,6 +156,10 @@
 	)
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
+/datum/gear/uniform/tuxedo
+	display_name = "black tuxedo"
+	path = /obj/item/clothing/under/tuxedo
+
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
