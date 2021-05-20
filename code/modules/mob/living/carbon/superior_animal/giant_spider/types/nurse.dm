@@ -6,7 +6,7 @@
 //nursemaids - these create webs and eggs
 /mob/living/carbon/superior_animal/giant_spider/nurse
 	name = "Kouchiku Spider"
-	desc = "A massive tangleweb spider. It's abdomen takes up the majority of the creature's mass. For a giant insect, this one seems especially fragile."
+	desc = "A massive tangleweb spider. It's abdomen takes up the majority of the creature's mass. For a giant arachnid, this one seems especially fragile."
 	icon_state = "nurse"
 	icon_living = "nurse"
 	maxHealth = 40

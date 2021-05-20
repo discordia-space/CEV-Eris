@@ -22,7 +22,7 @@
 		timer = world.time
 	if(check_for_completion())
 		completed()
-		target_area.local_bluespace_entropy -= rand(25,50)
+		target_area.bluespace_entropy -= rand(25,50)
 		GLOB.bluespace_entropy -= rand(5,25)
 
 /datum/individual_objective/disturbance/completed()

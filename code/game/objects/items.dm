@@ -178,10 +178,10 @@
 /obj/item/proc/pickup(mob/target)
 	throwing = 0
 	var/atom/old_loc = loc
-	SEND_SIGNAL(src, COMSIG_ITEM_PICKED, src, target)
 	if(target.put_in_active_hand(src) && old_loc )
 		if((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
+		SEND_SIGNAL(src, COMSIG_ITEM_PICKED, src, target)
 	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
