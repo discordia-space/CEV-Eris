@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Fixed ballistic night vision goggles appearing outside of tactical ballistic
+      helmet
