@@ -1,0 +1,5 @@
+author: CeUvi
+delete-after: true
+changes:
+  - imageadd: added new fez sprets
+  - imagedel: deleted old fez sprets
