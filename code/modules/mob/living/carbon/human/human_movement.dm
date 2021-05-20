@@ -27,10 +27,8 @@
 			var/obj/item/weapon/cruciform_upgrade/speed_of_the_chosen/sotc = upgrade
 			tally -= sotc.speed_increase
 
-	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER - nutrition)
 	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
-	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here

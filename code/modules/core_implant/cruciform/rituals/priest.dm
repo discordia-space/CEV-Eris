@@ -350,7 +350,7 @@
 /datum/ritual/cruciform/priest/divine_blessing
 	name = "Divine Blessing"
 	phrase = "Corpus Deus"
-	desc = "Increases the stats of an oddity."
+	desc = "Increase an oddity's stats by a certain amount but reduce yours by half of that amount."
 	success_message = "Your oddity has been blessed."
 	fail_message = "You feel cold in your active hand."
 	var/list/odditys = list()
@@ -376,6 +376,8 @@
 		return FALSE
 
 	for(var/stat in inspiracion.stats)
-		inspiracion.stats[stat] += rand(1,8)
+		var/stat_gain = rand(1,8)
+		inspiracion.stats[stat] += stat_gain
+		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
 	odditys.Add(I)
 	return TRUE
