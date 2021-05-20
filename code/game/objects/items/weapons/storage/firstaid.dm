@@ -132,7 +132,7 @@
 	if (empty) return
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
-	new /obj/item/weapon/storage/pill_bottle/meraline(src)
+	new /obj/item/weapon/storage/pill_bottle/meralyne(src)
 	new /obj/item/weapon/storage/pill_bottle/dermaline(src)
 	new /obj/item/weapon/storage/pill_bottle/dexalin_plus(src)
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
