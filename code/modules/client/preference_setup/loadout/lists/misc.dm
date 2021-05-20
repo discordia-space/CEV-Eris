@@ -153,7 +153,7 @@
 	cost = 2
 
 /datum/gear/cigarettes
-	display_name = "Cigarette Packet"
+	display_name = "cigarette packet"
 	path = /obj/item/weapon/storage/fancy/cigarettes
 
 /datum/gear/cigarettes/New()
@@ -180,4 +180,3 @@
 /datum/gear/ration_pack
 	display_name = "emergency ration pack"
 	path = /obj/item/weapon/storage/ration_pack
-	
