@@ -230,7 +230,7 @@ Basically a portal without time limit and failchance
 	name = "junk field portal"
 	desc = "A portal stabilized by heavy-duty machinery. It is safe to cross."
 	failchance = 0
-	entropy_value = 0
+	entropy_value = 1
 
 /obj/effect/portal/jtb/close() // Will be called by the callback of /obj/effect/portal but will do nothing
 	return
