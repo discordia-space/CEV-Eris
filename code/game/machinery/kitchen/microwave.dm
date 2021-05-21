@@ -398,7 +398,7 @@
 	return
 
 /obj/machinery/microwave/campfire
-	name = "Burn Barrel"
+	name = "burn barrel"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "barrelfire"
 	desc = "A fire in an old barrel. Perfect for campouts in the far corners of the ship."
