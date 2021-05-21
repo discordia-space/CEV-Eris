@@ -134,7 +134,7 @@
 
 /datum/uplink_item/item/ammo/sl_lrifle
 	name = ".30 Rifle ammo strip"
-	desc = "An ammo strip designed for bolt action rifles.Contains 5 bullets"
+	desc = "An ammo strip designed for bolt action rifles. Contains 5 rounds."
 	item_cost = 1
 	path = /obj/item/ammo_magazine/sllrifle
 
