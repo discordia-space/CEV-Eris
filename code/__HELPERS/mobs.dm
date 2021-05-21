@@ -290,15 +290,15 @@ Proc for attack log creation, because really why not
 	if(!isliving(L))
 		return FALSE
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C && C.get_module(CRUCIFORM_PRIEST))
+	if(C && C.get_module(CRUCIFORM_ACOLYTE))
 		return TRUE
 	return FALSE
 
 /proc/is_preacher(mob/living/L)
-	if(!is_acolyte(L))
+	if(!isliving(L))
 		return FALSE
 	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-	if(C && C.get_module(CRUCIFORM_REDLIGHT))
+	if(C && C.get_module(CRUCIFORM_PRIEST) && C.get_module(CRUCIFORM_REDLIGHT))
 		return TRUE
 	return FALSE
 
