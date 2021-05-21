@@ -1160,6 +1160,20 @@
 		/obj/item/weapon/reagent_containers/syringe/spaceacillin = 2,
 		/obj/item/weapon/reagent_containers/pill/tox = 1
 		)
+	prices = list(
+		/obj/item/device/scanner/health = 50,
+
+		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
+		/obj/item/device/scanner/health = 50,
+
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector = 100,
+
+		/obj/item/stack/medical/splint = 200,
+
+		/obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
+		/obj/item/weapon/reagent_containers/syringe/spaceacillin = 200,
+		/obj/item/weapon/reagent_containers/pill/tox = 100
+		)
 	auto_price = FALSE
 
 /obj/machinery/vending/wallmed/lobby
