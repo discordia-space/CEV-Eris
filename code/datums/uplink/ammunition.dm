@@ -214,7 +214,7 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/chemdart
 
-/datum/uplink_item/item/ammo/Dallas
+/datum/uplink_item/item/ammo/dallas
 	name = ".25 ammo box magazine"
 	desc = "A box magazine designed for the use of the uncommon Dallas Pulse Rifle. Contains 99 rounds."
 	item_cost = 9
