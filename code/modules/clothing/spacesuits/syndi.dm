@@ -50,4 +50,4 @@
 	icon_state = "syndicate_tan"
 	item_state = "space_suit_syndicate_tan"
 	desc = "A knockoff tan spacesuit sporting clean lines and durable plating."
-	accompanying_object = /obj/item/clothing/head/space/syndicate/bm
+	accompanying_object = /obj/item/clothing/head/space/syndicate/uplink
