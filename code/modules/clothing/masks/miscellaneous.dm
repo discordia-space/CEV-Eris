@@ -62,7 +62,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 200
+	price_tag = 150
 
 /obj/item/clothing/mask/thief/wolf
 	name = "technician's mask"
