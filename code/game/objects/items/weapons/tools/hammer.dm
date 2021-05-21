@@ -37,7 +37,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -81,6 +81,7 @@
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
 	rarity_value = 15
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/tool/hammer/mace/makeshift
 	name = "makeshift mace"
@@ -95,6 +96,20 @@
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_JUNKTOOL
+
+
+/obj/item/weapon/hammer/mace/makeshift/baseballbat
+	name = "bat"
+	desc = "HOME RUN!"
+	icon_state = "metalbat0"
+	wielded_icon = "metalbat1"
+	item_state = "metalbat0"
+	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MODERATE
+	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
+	hitsound = 'sound/weapons/genhit3.ogg'
+	slot_flags = SLOT_BACK
+
 
 /obj/item/weapon/tool/hammer/charge
 	name = "charge hammer"
