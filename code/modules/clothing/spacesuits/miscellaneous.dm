@@ -19,7 +19,7 @@
 
 //Orange emergency space suit
 /obj/item/clothing/head/space/emergency
-	name = "Emergency Space Helmet"
+	name = "emergency space helmet"
 	icon_state = "emergencyhelm"
 	item_state = "syndi_helm_erm"	//currently not working somehow
 	desc = "A simple helmet with a built in light, smells like mothballs."
