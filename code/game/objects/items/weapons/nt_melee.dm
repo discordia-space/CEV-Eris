@@ -155,7 +155,7 @@
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
 	price_tag = 150
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5,) // easy to mass-produce and arm the faithful
+	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
 
 /obj/item/weapon/tool/sword/nt/spear/equipped(mob/living/W)
 	. = ..()
