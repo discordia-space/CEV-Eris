@@ -47,6 +47,35 @@
 	)
 	price_tag = 10
 
+/obj/item/clothing/mask/thief
+	name = "mastermind's mask"
+	desc = "A white mask with some strange drawings. Designed to hide the wearer's face"
+	icon_state = "dallas"
+	flags_inv = HIDEFACE
+	w_class = ITEM_SIZE_SMALL
+	body_parts_covered = FACE
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 150
+
+/obj/item/clothing/mask/thief/wolf
+	name = "technician's mask"
+	icon_state = "wolf"
+
+/obj/item/clothing/mask/thief/hoxton
+	name = "fugitive's mask"
+	icon_state = "hoxton"
+
+/obj/item/clothing/mask/thief/chains
+	name = "enforcer's mask"
+	icon_state = "chains"
+
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."

@@ -306,6 +306,15 @@
 	initial_amount = 7
 	spawn_type = /obj/item/weapon/grenade/flashbang
 
+/obj/item/weapon/storage/box/flashbangs/uplink_item
+	name = "Box of flashbangs"
+	desc = "A box containing 5 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 5
+	spawn_type = /obj/item/weapon/grenade/flashbang
+
 /obj/item/weapon/storage/box/flashbangs/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)

@@ -424,8 +424,8 @@
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
+	slowdown = 0.15
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
 	name = "insulated technomancer armor"

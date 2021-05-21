@@ -42,3 +42,12 @@
 		"Brown"			=	/obj/item/clothing/gloves/color/brown
 	)
 	gear_tweaks += new /datum/gear_tweak/path(gloves)
+
+/datum/gear/gloves/german
+	display_name = "gloves, oberth"
+	path = /obj/item/clothing/gloves/german
+	cost = 3
+
+/datum/gear/gloves/fingerless
+	display_name = "gloves, fingerless"
+	path = /obj/item/clothing/gloves/fingerless

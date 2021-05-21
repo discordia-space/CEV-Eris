@@ -27,7 +27,7 @@
 		STAT_TGH = 10,
 		STAT_ROB = 20,
 		STAT_VIG = 15,
-		STAT_COG = 10,
+		STAT_COG = 20,
 	)
 
 	perks = list(/datum/perk/channeling)
@@ -84,13 +84,14 @@
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
 	stat_modifiers = list(
-	STAT_VIG = 15,
-	STAT_TGH = 15,
-	STAT_ROB = 15
+		STAT_VIG = 15,
+		STAT_TGH = 15,
+		STAT_ROB = 15,
+		STAT_COG = 10,
 	)
 
 	core_upgrades = list(
-		CRUCIFORM_PRIEST
+		CRUCIFORM_ACOLYTE
 	)
 
 	description = "You serve the NeoTheology Preacher as a disciple of the Faith.<br>\
@@ -130,6 +131,7 @@
 		STAT_BIO = 20,
 		STAT_TGH = 10,
 		STAT_ROB = 10,
+		STAT_COG = 10,
 	)
 
 	core_upgrades = list(
@@ -174,7 +176,8 @@
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 10,
-		STAT_VIG = 15
+		STAT_VIG = 15,
+		STAT_COG = 10,
 	)
 
 	core_upgrades = list(

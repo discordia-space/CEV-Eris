@@ -352,6 +352,7 @@
 /obj/item/clothing/suit/space/emergency
 	rarity_value = 31.6667
 
+
 /obj/item/clothing/suit/space/syndicate
 	rarity_value = 47.5
 
