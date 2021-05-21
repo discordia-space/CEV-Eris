@@ -15,6 +15,6 @@
 	price_tag = 700
 	damage_multiplier = 1.4 //because pistol round
 	penetration_multiplier = 1.4
-	recoil_buildup = 8
+	recoil_buildup = 3
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
