@@ -1,0 +1,5 @@
+author: bigpep
+delete-after: true
+changes:
+  - rscadd: You can now toss items a floor above yourself! Heavier objects take longer
+      to throw, slightly altered by your strength.
