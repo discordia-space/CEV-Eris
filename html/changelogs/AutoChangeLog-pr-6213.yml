@@ -1,5 +1,0 @@
-author: Sparrowbird611
-delete-after: true
-changes:
-  - balance: Removes slowdown from damage. It is now based only on limb efficiency
-      and pain.
