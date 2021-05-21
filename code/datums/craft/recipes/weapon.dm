@@ -5,7 +5,7 @@
 
 /datum/craft_recipe/weapon/baseballbat
 	name = "baseball bat"
-	result = /obj/item/weapon/material/baseballbat
+	result = /obj/item/weapon/hammer/mace/makeshift/baseballbat
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
 	)
