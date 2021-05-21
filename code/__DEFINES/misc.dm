@@ -190,6 +190,7 @@
 #define CRUCIFORM_AGROLYTE /datum/core_module/rituals/cruciform/agrolyte
 #define CRUCIFORM_CUSTODIAN /datum/core_module/rituals/cruciform/custodian
 #define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
+#define CRUCIFORM_ACOLYTE /datum/core_module/rituals/cruciform/priest/acolyte
 #define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
 #define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
 #define CRUCIFORM_UPLINK /datum/core_module/cruciform/uplink
