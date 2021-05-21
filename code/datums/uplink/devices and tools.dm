@@ -28,11 +28,6 @@
 	path = /obj/item/weapon/spacecash/bundle/c500
 	desc = "A bundle of 500 untraceable credits to cover a few basic expenses."
 
-/datum/uplink_item/item/tools/clerical
-	name = "Morphic Clerical Kit"
-	item_cost = 3
-	path = /obj/item/weapon/storage/box/syndie_kit/clerical
-
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
 	item_cost = 3
@@ -45,7 +40,7 @@
 	
 /datum/uplink_item/item/tools/full_heavy_vest
 	name = "Fullbody Heavy Armor Vest"
-	item_cost = 8
+	item_cost = 12
 	path = /obj/item/clothing/suit/storage/vest/merc/full
 
 /datum/uplink_item/item/tools/heavy_helmet
@@ -83,12 +78,12 @@
 
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
-	item_cost = 6
+	item_cost = 8
 	path = /obj/item/clothing/glasses/powered/thermal/syndi
 
 /datum/uplink_item/item/tools/thermal_lens
 	name = "Thermal Imaging Lenses"
-	item_cost = 10
+	item_cost = 12
 	path = /obj/item/clothing/glasses/powered/thermal/lens
 
 /datum/uplink_item/item/tools/powersink
@@ -107,7 +102,7 @@
 
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"
-	item_cost = 14
+	item_cost = 7
 	path = /obj/item/weapon/electronics/ai_module/syndicate
 
 /datum/uplink_item/item/tools/supply_beacon
@@ -119,7 +114,7 @@
 	name = "Mind Fryer"
 	desc = "When activated, attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns. \
 			The device owner is immune to this effect."
-	item_cost = 3
+	item_cost = 2
 	path = /obj/item/device/mind_fryer
 	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 

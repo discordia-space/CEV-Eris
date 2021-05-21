@@ -301,8 +301,8 @@
 
 
 /obj/item/weapon/storage/secure/briefcase/money
-	name = "suspicious briefcase"
-	desc = "An ominous briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
+	name = "secure briefcase"
+	desc = "A large briefcase with a digital locking system."
 
 /obj/item/weapon/storage/secure/briefcase/money/populate_contents()
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
