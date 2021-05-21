@@ -246,3 +246,10 @@ obj/item/clothing/under/genericr
 	icon_state = "gnome"
 	item_state = "gnome"
 	style = STYLE_HIGH
+
+/obj/item/clothing/under/tuxedo
+	name = "tuxedo"
+	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
+	icon_state = "tuxedo"
+	style = STYLE_HIGH
+	price_tag = 300
