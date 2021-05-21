@@ -152,6 +152,20 @@
 	path = /obj/item/weapon/storage/fancy/cigar
 	cost = 2
 
+/datum/gear/cigarettes
+	display_name = "cigarette packet"
+	path = /obj/item/weapon/storage/fancy/cigarettes
+
+/datum/gear/cigarettes/New()
+	..()
+	var/cigarettes_type = list(
+		"Space Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes,
+		"DromedaryCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+		"AcmeCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/killthroat,
+		//"Nomads Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/homeless
+	)
+	gear_tweaks += new/datum/gear_tweak/path(cigarettes_type)
+
 /datum/gear/cigar
 	display_name = "fancy cigar"
 	path = /obj/item/clothing/mask/smokable/cigarette/cigar
