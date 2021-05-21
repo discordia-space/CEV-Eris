@@ -140,7 +140,7 @@
 
 /datum/uplink_item/item/ammo/sl_lrifle/highvelocity
 	name = ".30 Rifle HV ammo strip"
-	desc = "An High Velocity ammo strip designed for bolt action rifles.Contains 5 bullets."
+	desc = "An High Velocity ammo strip designed for bolt action rifles. Contains 5 rounds."
 	item_cost = 2
 	path = /obj/item/ammo_magazine/sllrifle/hv
 	
