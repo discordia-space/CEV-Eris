@@ -8605,6 +8605,7 @@
 	frequency = 1380;
 	id_tag = "escape_pod_1";
 	pixel_x = -25;
+	tag = "escape_pod_1_controller";
 	tag_door = "escape_pod_1_hatch"
 	},
 /obj/structure/bed/chair/shuttle,
@@ -12608,6 +12609,7 @@
 	frequency = 1380;
 	id_tag = "escape_pod_2";
 	pixel_x = -25;
+	tag = "escape_pod_2_controller";
 	tag_door = "escape_pod_2_hatch"
 	},
 /turf/simulated/shuttle/floor{
