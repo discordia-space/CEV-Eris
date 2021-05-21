@@ -207,7 +207,8 @@
 
 		if(C.amount > 1)
 			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)	//Couldn't make it seperate, so it must be cloned
+			inserted_casing.name = C.name
 			inserted_casing.desc = C.desc
 			inserted_casing.caliber = C.caliber
 			inserted_casing.projectile_type = C.projectile_type
@@ -216,13 +217,22 @@
 			inserted_casing.maxamount = C.maxamount
 			if(ispath(inserted_casing.projectile_type) && C.BB)
 				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
-//			if(inserted_casing.sprite_update_spawn)
-//				var/matrix/rotation_matrix = matrix()
-//				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
-//				if(inserted_casing.sprite_use_small)
-//					C.transform = rotation_matrix * inserted_casing.sprite_scale
-//				else
-//					C.transform = rotation_matrix
+
+			inserted_casing.sprite_use_small = C.sprite_use_small
+			inserted_casing.sprite_max_rotate = C.sprite_max_rotate
+			inserted_casing.sprite_scale = C.sprite_scale
+			inserted_casing.sprite_update_spawn = C.sprite_update_spawn
+
+			if(inserted_casing.sprite_update_spawn)
+				var/matrix/rotation_matrix = matrix()
+				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
+				if(inserted_casing.sprite_use_small)
+					inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
+				else
+					inserted_casing.transform = rotation_matrix
+
+			inserted_casing.is_caseless = C.is_caseless	//How did someone forget this before!?!?!?
+
 			C.update_icon()
 			inserted_casing.update_icon()
 			loaded.Insert(1, inserted_casing)
