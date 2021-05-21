@@ -1,4 +1,0 @@
-author: Herbaon
-delete-after: true
-changes:
-  - bugfix: RnD Shutters at roundstart are properly closed now.
