@@ -1097,7 +1097,7 @@
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/roach_egg
-	name = "Boiled Roach Egg"
+	name = "boiled roach egg"
 	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
