@@ -36,7 +36,7 @@ I said no!
 /datum/recipe/roachegg
 	reagents = list("water" = 5, "sodiumchloride" = 1)
 	items = list(
-		/obj/item/weapon/roach/roach_egg
+		/obj/item/roach/roach_egg
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roach_egg
 
