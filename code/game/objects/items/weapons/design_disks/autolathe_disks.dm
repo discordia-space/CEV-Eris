@@ -53,7 +53,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .20 \"Kovacs\""
-		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle
 	)
 
 //The Dallas
