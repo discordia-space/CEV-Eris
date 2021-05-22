@@ -32,7 +32,7 @@
 "R" = (/mob/living/simple_animal/hostile/hivemind/phaser,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "T" = (/mob/living/simple_animal/hostile/hivemind/lobber{malfunction_chance = 0},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "V" = (/obj/structure/catwalk,/obj/spawner/pack/machine,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
-"W" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/item/weapon/reagent_containers/glass/beaker/hivemind,/obj/item/weapon/oddity/hivemind/old_pda,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
+"W" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/item/weapon/reagent_containers/glass/beaker/hivemind,/obj/spawner/oddities/low_chance,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "X" = (/obj/effect/window_lwall_spawn/smartspawn,/obj/structure/barricade,/turf/simulated/floor/plating/under,/area/deepmaint)
 "Y" = (/obj/item/trash/syndi_cakes,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "Z" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/spawner/soda,/obj/spawner/rations/low_chance,/obj/spawner/rations/low_chance,/obj/spawner/rations/low_chance,/obj/item/trash/tastybread,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
