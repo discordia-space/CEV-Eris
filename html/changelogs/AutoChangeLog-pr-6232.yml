@@ -1,8 +1,0 @@
-author: Sparrowbird611
-delete-after: true
-changes:
-  - rscadd: Adds splints to the medical lobby vendor for 200$.
-  - rscadd: Splints now have a chance to spawn inside maintenance medical closets.
-  - rscadd: 2 cryobags spawn in the minipharma vendor
-  - tweak: Increased the number of splints in the minipharma vendor.
-  - balance: Splints fit on every body part, instead of just the limbs.

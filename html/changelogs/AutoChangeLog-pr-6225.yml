@@ -1,6 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Vagabonds have put their brain cell (singular) together and discovered
-      how to make fire, and how to put it into a barrel
-  - rscdel: removed the microwave breaking

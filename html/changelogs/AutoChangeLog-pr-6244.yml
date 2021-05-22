@@ -1,5 +1,0 @@
-author: Shazbot194
-delete-after: true
-changes:
-  - bugfix: fixed big ammo sprite issue
-  - bugfix: Caseless ammo is now always caseless
