@@ -1,0 +1,1219 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aq" = (
+/obj/structure/table/standard,
+/obj/item/weapon/folder/blue,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"as" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/floor/wood,
+/area/space)
+"aw" = (
+/obj/spawner/junk,
+/turf/simulated/floor/wood,
+/area/space)
+"ay" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/space)
+"aH" = (
+/obj/item/modular_computer/console{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"aJ" = (
+/obj/structure/closet/bombcloset/security,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"aN" = (
+/obj/structure/closet/l3closet/security,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"aX" = (
+/obj/structure/table/rack,
+/obj/spawner/medical,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"aY" = (
+/obj/structure/table/rack,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"bi" = (
+/turf/space,
+/area/space)
+"by" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_upgrade,
+/obj/spawner/gun_upgrade,
+/obj/spawner/gun_upgrade,
+/obj/spawner/gun_upgrade,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"bB" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/plating/under,
+/area/space)
+"cW" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"dI" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	name = "Security Lookout";
+	req_access = list(1)
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"dN" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"fb" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"fH" = (
+/obj/structure/sign/department/armory{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"gJ" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/donut,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"ia" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"ip" = (
+/obj/structure/table/standard,
+/obj/item/weapon/folder/blue,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"iw" = (
+/obj/machinery/holoposter{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"ji" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"js" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/box/handcuffs,
+/obj/item/weapon/storage/box/flashbangs,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"jv" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/wood,
+/area/space)
+"jP" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	name = "Security Lookout";
+	req_access = list(1)
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"kf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"lO" = (
+/obj/structure/table/standard,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"lU" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/blue,
+/obj/item/weapon/stamp/hos,
+/turf/simulated/floor/wood,
+/area/space)
+"mZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"nu" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"oA" = (
+/obj/structure/table/woodentable,
+/obj/machinery/recharger,
+/turf/simulated/floor/wood,
+/area/space)
+"oL" = (
+/obj/structure/table/standard,
+/obj/spawner/pizza/low_chance,
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"oO" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/spawner/junk,
+/turf/simulated/floor/wood,
+/area/space)
+"pI" = (
+/obj/structure/table/rack,
+/obj/item/weapon/cell/medium/high,
+/obj/item/weapon/cell/medium/high,
+/obj/item/weapon/cell/medium/high,
+/obj/item/weapon/cell/medium/high,
+/obj/item/weapon/cell/medium/high,
+/obj/item/weapon/cell/medium/high,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"qA" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/blue,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"qL" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"rd" = (
+/obj/structure/table/rack,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/obj/item/weapon/cell/small/high,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"ru" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	name = "Secuity Access";
+	req_access = list(1)
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"sg" = (
+/obj/item/weapon/soap/deluxe,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"ss" = (
+/obj/structure/table/woodentable,
+/obj/item/device/radio/off,
+/turf/simulated/floor/wood,
+/area/space)
+"sF" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/handcuffs,
+/obj/item/weapon/handcuffs,
+/obj/item/device/flash,
+/turf/simulated/floor/wood,
+/area/space)
+"to" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"tv" = (
+/obj/structure/table/woodentable,
+/obj/spawner/knife,
+/turf/simulated/floor/wood,
+/area/space)
+"um" = (
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"uK" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"vA" = (
+/turf/simulated/floor/tiled/dark/techfloor_grid,
+/area/space)
+"wD" = (
+/obj/item/modular_computer/console{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"wR" = (
+/obj/machinery/door/airlock/centcom,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"wX" = (
+/obj/item/weapon/stool,
+/obj/spawner/soda/low_chance,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"xb" = (
+/obj/structure/table/standard,
+/obj/item/weapon/dice,
+/obj/item/weapon/dice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"yJ" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/donut,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"zg" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security{
+	name = "Secuity Access";
+	req_access = list(1)
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"zE" = (
+/turf/simulated/floor/plating/under,
+/area/space)
+"zJ" = (
+/obj/structure/table/standard,
+/obj/item/weapon/deck/cards,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"zM" = (
+/obj/item/weapon/stool,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"Al" = (
+/obj/item/modular_computer/console,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"As" = (
+/obj/structure/table/rack,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"Bv" = (
+/obj/item/modular_computer/console,
+/turf/simulated/floor/wood,
+/area/space)
+"BI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"CY" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"Di" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"DP" = (
+/obj/structure/table/woodentable,
+/obj/item/device/megaphone,
+/obj/item/device/eftpos{
+	eftpos_name = "Ironhammer EFTPOS scanner"
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"DS" = (
+/obj/machinery/light_construct,
+/turf/simulated/floor/plating/under,
+/area/space)
+"Eg" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/folder/red,
+/turf/simulated/floor/wood,
+/area/space)
+"Eo" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"EL" = (
+/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Fj" = (
+/obj/item/modular_computer/console/preset/security/camera{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"FS" = (
+/obj/structure/table/standard,
+/obj/item/weapon/book/manual/wiki/security_ironparagraphs,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"Hn" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"Jl" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/tool/tape_roll,
+/turf/simulated/floor/wood,
+/area/space)
+"Jp" = (
+/obj/machinery/light_construct{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"Km" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Kz" = (
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"La" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Lj" = (
+/turf/simulated/floor/wood,
+/area/space)
+"Mb" = (
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Mq" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/wall/r_wall,
+/area/space)
+"Nd" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"Nt" = (
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"Ou" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"OP" = (
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"Pa" = (
+/obj/item/weapon/stool,
+/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"PN" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"RC" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"So" = (
+/obj/structure/bed/chair,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Sy" = (
+/obj/structure/table/standard,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/space)
+"Ul" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"Vq" = (
+/obj/structure/sign/department/interrogation{
+	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"Vt" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"VJ" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
+/turf/simulated/floor/wood,
+/area/space)
+"WH" = (
+/obj/structure/toilet,
+/obj/spawner/junk,
+/obj/machinery/light_construct{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"Yj" = (
+/obj/structure/bed/chair,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/space)
+"Yp" = (
+/obj/structure/table/rack,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/space)
+"Ys" = (
+/obj/structure/toilet,
+/obj/spawner/junk,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/space)
+"YW" = (
+/obj/structure/sign/department/commander{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"YZ" = (
+/turf/simulated/wall/r_wall,
+/area/space)
+"Zt" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/space)
+
+(1,1,1) = {"
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+Hn
+Hn
+bi
+"}
+(2,1,1) = {"
+bi
+bi
+YZ
+Hn
+Hn
+Hn
+Hn
+Hn
+Hn
+YZ
+bi
+bi
+bi
+Zt
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Zt
+Zt
+Hn
+bi
+"}
+(3,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+bi
+bi
+bi
+bi
+Hn
+Hn
+bi
+bi
+zE
+Ou
+Ou
+qA
+YZ
+Nt
+qL
+YZ
+WH
+ru
+zE
+bi
+"}
+(4,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+bi
+bi
+bi
+bi
+Zt
+zE
+Hn
+Hn
+zE
+zE
+Mb
+dN
+YZ
+sg
+qL
+YZ
+YZ
+YZ
+zE
+bi
+"}
+(5,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+bi
+bi
+bi
+Hn
+YZ
+zE
+zE
+Zt
+bB
+Mb
+Mb
+La
+YZ
+vA
+qL
+YZ
+Ys
+ru
+zE
+bi
+"}
+(6,1,1) = {"
+bi
+bi
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+zE
+zE
+YZ
+YZ
+dI
+Mq
+YZ
+YZ
+zg
+YZ
+YZ
+YZ
+YZ
+Hn
+bi
+"}
+(7,1,1) = {"
+bi
+bi
+YZ
+aJ
+Nd
+Yp
+PN
+As
+Di
+YZ
+zE
+OP
+OP
+mZ
+OP
+OP
+OP
+OP
+OP
+mZ
+OP
+OP
+zE
+bi
+bi
+"}
+(8,1,1) = {"
+bi
+bi
+YZ
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+YZ
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+zE
+Hn
+bi
+bi
+"}
+(9,1,1) = {"
+bi
+bi
+YZ
+by
+Ul
+to
+Ul
+js
+Mb
+wR
+ia
+OP
+YZ
+YZ
+Mq
+Mq
+Mq
+Mq
+Mq
+YZ
+Zt
+bi
+bi
+bi
+bi
+"}
+(10,1,1) = {"
+bi
+bi
+YZ
+Mb
+Mb
+Mb
+Mb
+Mb
+Mb
+YZ
+fH
+OP
+YZ
+Yj
+aq
+uK
+gJ
+um
+Al
+zE
+bi
+bi
+bi
+Hn
+bi
+"}
+(11,1,1) = {"
+bi
+bi
+YZ
+aN
+aY
+aX
+pI
+rd
+Di
+YZ
+OP
+OP
+YZ
+Yj
+aH
+um
+FS
+zE
+zE
+bi
+bi
+Hn
+zE
+Hn
+bi
+"}
+(12,1,1) = {"
+bi
+bi
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+OP
+OP
+Mq
+uK
+um
+um
+gJ
+zE
+Hn
+bi
+Mq
+bB
+zE
+Hn
+bi
+"}
+(13,1,1) = {"
+bi
+bi
+ay
+jv
+Lj
+kf
+Lj
+Lj
+as
+YZ
+OP
+OP
+YZ
+Vt
+aq
+um
+um
+zE
+zE
+DS
+YZ
+Jp
+zE
+bi
+bi
+"}
+(14,1,1) = {"
+bi
+bi
+ay
+ss
+Lj
+Eg
+tv
+aw
+Lj
+Mq
+OP
+OP
+YZ
+Yj
+aH
+um
+Fj
+um
+aq
+nu
+YZ
+OP
+zE
+bi
+bi
+"}
+(15,1,1) = {"
+bi
+bi
+ay
+sF
+Lj
+Lj
+wD
+Eo
+Lj
+Mq
+OP
+OP
+Mq
+um
+um
+um
+RC
+um
+um
+uK
+Mq
+OP
+Hn
+bi
+bi
+"}
+(16,1,1) = {"
+bi
+bi
+ay
+Bv
+Lj
+oO
+lU
+Eo
+Lj
+jP
+OP
+OP
+dI
+um
+um
+uK
+lO
+um
+um
+um
+dI
+OP
+zE
+bi
+bi
+"}
+(17,1,1) = {"
+bi
+bi
+ay
+DP
+Lj
+oA
+VJ
+Eo
+Lj
+YZ
+YW
+OP
+YZ
+YZ
+Mq
+Mq
+Mq
+Mq
+Mq
+YZ
+YZ
+OP
+zE
+Hn
+bi
+"}
+(18,1,1) = {"
+bi
+bi
+ay
+Jl
+Lj
+BI
+Lj
+Lj
+Lj
+Zt
+zE
+zE
+zE
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+OP
+Hn
+bi
+"}
+(19,1,1) = {"
+bi
+bi
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Zt
+Hn
+Hn
+zE
+zE
+OP
+OP
+Vq
+OP
+OP
+OP
+OP
+OP
+OP
+zE
+bi
+"}
+(20,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+YZ
+Pa
+wX
+iw
+zE
+zE
+zE
+Zt
+YZ
+zg
+Mq
+YZ
+Mq
+zg
+YZ
+YZ
+OP
+zE
+zE
+bi
+"}
+(21,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+Mq
+Sy
+xb
+Kz
+OP
+OP
+OP
+YZ
+ji
+Mb
+Mb
+YZ
+Mb
+Mb
+ji
+YZ
+bB
+zE
+Hn
+bi
+"}
+(22,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+Mq
+yJ
+zJ
+Kz
+OP
+OP
+OP
+YZ
+EL
+Km
+Mb
+YZ
+Mb
+EL
+Km
+YZ
+zE
+Hn
+bi
+bi
+"}
+(23,1,1) = {"
+bi
+bi
+Hn
+bi
+bi
+Mq
+zM
+zM
+Kz
+oL
+fb
+CY
+YZ
+So
+ip
+cW
+YZ
+So
+ip
+cW
+YZ
+Hn
+Hn
+bi
+bi
+"}
+(24,1,1) = {"
+bi
+bi
+YZ
+Hn
+Hn
+YZ
+Mq
+Mq
+Mq
+YZ
+Mq
+Mq
+YZ
+YZ
+Mq
+YZ
+YZ
+YZ
+Mq
+YZ
+YZ
+bi
+bi
+bi
+bi
+"}
+(25,1,1) = {"
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+Hn
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+"}

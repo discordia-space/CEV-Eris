@@ -104,6 +104,9 @@
 /area/space)
 "bq" = (
 /obj/spawner/medical,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "bu" = (
@@ -314,6 +317,12 @@
 	},
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
+"Gu" = (
+/obj/machinery/light_construct{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "Hn" = (
 /obj/structure/lattice,
 /turf/space,
@@ -405,6 +414,12 @@
 /obj/structure/catwalk,
 /obj/machinery/door/airlock/external,
 /turf/space,
+/area/space)
+"YT" = (
+/obj/machinery/light_construct{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "YW" = (
 /obj/structure/table/onestar,
@@ -634,7 +649,7 @@ bL
 Wo
 OP
 SI
-SI
+YT
 SI
 by
 Wo
@@ -996,7 +1011,7 @@ bi
 bi
 zE
 zE
-bj
+Gu
 bj
 gY
 Wo
@@ -1010,7 +1025,7 @@ EL
 Wo
 Mb
 zE
-bj
+Gu
 bN
 gY
 Wo
