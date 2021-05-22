@@ -1,0 +1,1102 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"am" = (
+/turf/simulated/floor/wood,
+/area/space)
+"an" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/space)
+"ao" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/space)
+"aq" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"as" = (
+/obj/machinery/computer/prisoner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"aw" = (
+/obj/structure/low_wall/onestar,
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"ay" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/dirt,
+/area/space)
+"aA" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"aF" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/plating/under,
+/area/space)
+"aH" = (
+/obj/machinery/door/window/northright,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"aI" = (
+/obj/machinery/door/window/northleft,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"aJ" = (
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"aN" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"aY" = (
+/obj/machinery/door/window/northright{
+	dir = 2
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"bc" = (
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"bh" = (
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"bi" = (
+/turf/space,
+/area/space)
+"bj" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bm" = (
+/obj/machinery/light_construct{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"bq" = (
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"bu" = (
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"by" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"bA" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"bB" = (
+/obj/structure/sign/faction/one_star_old,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"bE" = (
+/turf/simulated/floor/dirt,
+/area/space)
+"bL" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"bN" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"ee" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/dirt,
+/area/space)
+"fv" = (
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"fH" = (
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/space)
+"gY" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"hO" = (
+/obj/structure/largecrate,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"hU" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"if" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"jd" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"jj" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"jv" = (
+/obj/structure/railing,
+/turf/space,
+/area/space)
+"kH" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"pI" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"rd" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"sf" = (
+/obj/structure/sign/faction/one_star,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"ss" = (
+/obj/spawner/material/building/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"sF" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/dirt,
+/area/space)
+"ue" = (
+/obj/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"um" = (
+/obj/structure/sign/derelict2{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"uK" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"wX" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/dirt,
+/area/space)
+"xb" = (
+/obj/structure/table/onestar,
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/turf/simulated/floor/dirt,
+/area/space)
+"zo" = (
+/obj/structure/table/onestar,
+/obj/item/weapon/deck/cards,
+/turf/simulated/floor/dirt,
+/area/space)
+"zE" = (
+/turf/simulated/floor/plating/under,
+/area/space)
+"zJ" = (
+/obj/structure/table/onestar,
+/obj/machinery/chemical_dispenser/beer,
+/turf/simulated/floor/dirt,
+/area/space)
+"zM" = (
+/obj/structure/table/onestar,
+/obj/machinery/chemical_dispenser/soda,
+/turf/simulated/floor/dirt,
+/area/space)
+"Bv" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating/under,
+/area/space)
+"CY" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/dirt,
+/area/space)
+"Di" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"Dm" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/space)
+"DP" = (
+/obj/item/weapon/beach_ball/holoball,
+/turf/simulated/floor/dirt,
+/area/space)
+"DU" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"DW" = (
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"EL" = (
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"ES" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"Hn" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"HN" = (
+/obj/structure/table/onestar,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"Jl" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/space,
+/area/space)
+"Jx" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/wood,
+/area/space)
+"Kz" = (
+/obj/spawner/soda,
+/turf/simulated/floor/wood,
+/area/space)
+"Lj" = (
+/obj/machinery/door/window/northleft{
+	dir = 2
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"LL" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/space)
+"Mb" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/plating/under,
+/area/space)
+"Mq" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/space)
+"Nd" = (
+/obj/spawner/material/building,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"NG" = (
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"NK" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"OP" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"So" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light_construct{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"SI" = (
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"TW" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"Ul" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/space)
+"Wo" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"WA" = (
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"Yp" = (
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/external,
+/turf/space,
+/area/space)
+"YW" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"YZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"Zt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/dirt,
+/area/space)
+
+(1,1,1) = {"
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+"}
+(2,1,1) = {"
+bi
+Hn
+zE
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+"}
+(3,1,1) = {"
+bi
+zE
+Mq
+Hn
+bi
+bi
+bi
+Hn
+Wo
+aw
+Wo
+jv
+Ul
+Jl
+Wo
+aw
+Wo
+bi
+bi
+bi
+bi
+bi
+Mq
+bi
+bi
+"}
+(4,1,1) = {"
+bi
+zE
+Mq
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+zE
+Wo
+Wo
+Yp
+Wo
+Wo
+zE
+Wo
+Wo
+bi
+bi
+Mq
+Mq
+Wo
+zE
+bi
+"}
+(5,1,1) = {"
+bi
+Hn
+Mq
+ss
+Nd
+Nd
+hO
+hO
+Wo
+LL
+Bv
+bu
+bu
+bu
+aF
+LL
+Wo
+SI
+zE
+bi
+bi
+zE
+Mq
+Hn
+bi
+"}
+(6,1,1) = {"
+bi
+bi
+Wo
+SI
+SI
+SI
+SI
+SI
+Wo
+NG
+NG
+bu
+bu
+bu
+NG
+NG
+Wo
+SI
+zE
+zE
+bi
+Hn
+Hn
+Hn
+bi
+"}
+(7,1,1) = {"
+bi
+bi
+Wo
+aJ
+SI
+SI
+SI
+SI
+Di
+NK
+NG
+bu
+bu
+bu
+NG
+NK
+Wo
+hO
+SI
+zE
+zE
+zE
+Hn
+zE
+bi
+"}
+(8,1,1) = {"
+bi
+Hn
+Wo
+ue
+SI
+bq
+jd
+SI
+Wo
+TW
+jj
+bu
+bu
+if
+NG
+bL
+Wo
+OP
+SI
+SI
+SI
+by
+Wo
+zE
+bi
+"}
+(9,1,1) = {"
+Hn
+Mq
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+aw
+Di
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Mq
+bi
+"}
+(10,1,1) = {"
+bi
+zE
+Wo
+bc
+bh
+bu
+kH
+bA
+Dm
+an
+fH
+bA
+aA
+bu
+aq
+bc
+Wo
+bc
+bh
+bu
+kH
+bA
+Dm
+Hn
+bi
+"}
+(11,1,1) = {"
+bi
+bi
+Wo
+aN
+aY
+bu
+pI
+rd
+ao
+ao
+ao
+rd
+hU
+bu
+aH
+aN
+Wo
+aN
+aY
+bu
+pI
+rd
+ao
+Hn
+bi
+"}
+(12,1,1) = {"
+bi
+bi
+Wo
+Wo
+Wo
+cV
+bu
+sf
+Wo
+Di
+Wo
+sf
+bu
+uK
+Wo
+Wo
+Wo
+Wo
+Wo
+bm
+bu
+bB
+Mq
+bi
+bi
+"}
+(13,1,1) = {"
+bi
+bi
+Wo
+bc
+bh
+bu
+bu
+Wo
+as
+WA
+as
+Wo
+bu
+bu
+aq
+bc
+Wo
+bc
+bh
+bu
+bu
+Mq
+zE
+bi
+bi
+"}
+(14,1,1) = {"
+bi
+bi
+Wo
+aN
+aY
+bu
+bu
+aw
+DW
+DW
+DW
+aw
+bu
+bu
+aH
+aN
+Wo
+aN
+aY
+bu
+bu
+zE
+zE
+zE
+bi
+"}
+(15,1,1) = {"
+bi
+Hn
+Wo
+Wo
+Wo
+fv
+bu
+aw
+ES
+DW
+DU
+aw
+bu
+um
+Wo
+Wo
+Wo
+Wo
+Wo
+bu
+zE
+zE
+Hn
+Hn
+bi
+"}
+(16,1,1) = {"
+bi
+bi
+Wo
+aN
+Lj
+bu
+bu
+aw
+DW
+DW
+DW
+aw
+bu
+bu
+aI
+aN
+Wo
+aN
+Lj
+bu
+bu
+zE
+zE
+Hn
+bi
+"}
+(17,1,1) = {"
+bi
+bi
+Wo
+bc
+bh
+bu
+bu
+Wo
+HN
+YZ
+YW
+Wo
+bu
+bu
+aq
+bc
+Wo
+bc
+bh
+bu
+bu
+Wo
+zE
+Hn
+bi
+"}
+(18,1,1) = {"
+bi
+bi
+Wo
+Wo
+Wo
+cV
+bu
+sf
+aw
+Wo
+aw
+sf
+bu
+uK
+Wo
+Wo
+Wo
+Wo
+Wo
+bm
+bu
+bB
+zE
+bi
+bi
+"}
+(19,1,1) = {"
+bi
+Hn
+Wo
+aN
+Lj
+bu
+bu
+am
+am
+Zt
+bE
+ay
+bu
+bu
+aI
+aN
+Wo
+aN
+Lj
+bu
+bu
+zE
+zE
+Hn
+bi
+"}
+(20,1,1) = {"
+bi
+zE
+Wo
+bc
+bh
+bu
+bu
+wX
+am
+bE
+DP
+ay
+bu
+bu
+aq
+bc
+Wo
+bc
+bh
+bu
+bu
+wX
+zE
+zE
+bi
+"}
+(21,1,1) = {"
+bi
+Mq
+Wo
+Wo
+Wo
+Wo
+Wo
+xb
+am
+bE
+bE
+ee
+Wo
+Di
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+bE
+zE
+zE
+bi
+"}
+(22,1,1) = {"
+bi
+zE
+zE
+bj
+bj
+gY
+Wo
+zJ
+Jx
+bE
+bE
+zo
+Wo
+EL
+Wo
+Mb
+zE
+bj
+bN
+gY
+Wo
+bE
+zE
+Hn
+Hn
+"}
+(23,1,1) = {"
+bi
+Hn
+zE
+zE
+bj
+bj
+Wo
+zM
+Kz
+bE
+bE
+CY
+Wo
+So
+Wo
+Hn
+zE
+zE
+bj
+bj
+Wo
+sF
+zE
+zE
+bi
+"}
+(24,1,1) = {"
+bi
+bi
+Hn
+zE
+zE
+zE
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Wo
+Mq
+Hn
+Hn
+Hn
+zE
+zE
+Wo
+Wo
+Mq
+Hn
+bi
+"}
+(25,1,1) = {"
+bi
+bi
+bi
+bi
+bi
+Hn
+Hn
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+"}
