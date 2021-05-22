@@ -1,0 +1,5 @@
+author: Jackofashepard
+delete-after: true
+changes:
+  - rscadd: Toggle to light barrel
+  - tweak: barrel stays lit
