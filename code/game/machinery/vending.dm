@@ -1529,9 +1529,9 @@
 					/obj/item/weapon/gun/projectile/automatic/molly = 4,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4,
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 2,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/drillman = 2,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/whatcocksuckingmotherfuckermeasuredthec4 = 2,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/literallywho = 2
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 2
 					)
 	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
 	prices = list(
@@ -1552,9 +1552,9 @@
 					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200,
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 1800,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/drillman = 1800,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/whatcocksuckingmotherfuckermeasuredthec4 = 1800,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/literallywho = 1800
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 1800
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN

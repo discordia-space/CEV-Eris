@@ -333,7 +333,7 @@
 	/obj/item/clothing/gloves/latex/nitrile = 1,
 	/obj/item/clothing/suit/armor/vest = 1)
 
-/obj/item/weapon/storage/deferred/crate/clown_crime/drillman
+/obj/item/weapon/storage/deferred/crate/clown_crime/wolf
 	name = "technician suit bag"
 	initial_contents = list(
 	/obj/item/clothing/mask/thief/wolf = 1,
@@ -344,7 +344,7 @@
 	/obj/item/clothing/gloves/latex/nitrile = 1,
 	/obj/item/clothing/suit/armor/vest = 1)
 
-/obj/item/weapon/storage/deferred/crate/clown_crime/whatcocksuckingmotherfuckermeasuredthec4	//https://www.youtube.com/watch?v=Hmp1da7pXTw&t=160s
+/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton	//whatcocksuckingmotherfuckermeasuredthec4 https://www.youtube.com/watch?v=Hmp1da7pXTw&t=160s
 	name = "fugitive suit bag"
 	initial_contents = list(
 	/obj/item/clothing/mask/thief/hoxton = 1,
@@ -355,7 +355,7 @@
 	/obj/item/clothing/gloves/latex/nitrile = 1,
 	/obj/item/clothing/suit/armor/vest = 1)
 
-/obj/item/weapon/storage/deferred/crate/clown_crime/literallywho
+/obj/item/weapon/storage/deferred/crate/clown_crime/chains
 	name = "enforcer suit bag"
 	initial_contents = list(
 	/obj/item/clothing/mask/thief/chains = 1,
