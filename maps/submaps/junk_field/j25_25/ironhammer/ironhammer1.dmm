@@ -427,10 +427,6 @@
 "Mb" = (
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
-"Mq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/wall/r_wall,
-/area/template_noop)
 "Nd" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
@@ -704,7 +700,7 @@ zE
 YZ
 YZ
 dI
-Mq
+ay
 YZ
 YZ
 zg
@@ -784,11 +780,11 @@ ia
 OP
 YZ
 YZ
-Mq
-Mq
-Mq
-Mq
-Mq
+ay
+ay
+ay
+ay
+ay
 YZ
 Zt
 bi
@@ -863,7 +859,7 @@ YZ
 YZ
 LB
 OP
-Mq
+ay
 uK
 um
 um
@@ -871,7 +867,7 @@ gJ
 zE
 Hn
 bi
-Mq
+ay
 bB
 zE
 Hn
@@ -914,7 +910,7 @@ Eg
 tv
 aw
 Lj
-Mq
+ay
 OP
 OP
 YZ
@@ -941,10 +937,10 @@ Lj
 wD
 Eo
 Lj
-Mq
+ay
 OP
 OP
-Mq
+ay
 um
 um
 um
@@ -952,7 +948,7 @@ RC
 um
 um
 uK
-Mq
+ay
 OP
 Hn
 bi
@@ -1000,11 +996,11 @@ YW
 OP
 YZ
 YZ
-Mq
-Mq
-Mq
-Mq
-Mq
+ay
+ay
+ay
+ay
+ay
 YZ
 YZ
 OP
@@ -1082,9 +1078,9 @@ zE
 Zt
 YZ
 zg
-Mq
+ay
 YZ
-Mq
+ay
 zg
 YZ
 YZ
@@ -1099,7 +1095,7 @@ bi
 Hn
 bi
 bi
-Mq
+ay
 Sy
 xb
 Kz
@@ -1126,7 +1122,7 @@ bi
 Hn
 bi
 bi
-Mq
+ay
 yJ
 zJ
 Kz
@@ -1153,7 +1149,7 @@ bi
 Hn
 bi
 bi
-Mq
+ay
 zM
 zM
 Kz
@@ -1181,19 +1177,19 @@ YZ
 Hn
 Hn
 YZ
-Mq
-Mq
-Mq
+ay
+ay
+ay
 YZ
-Mq
-Mq
-YZ
-YZ
-Mq
+ay
+ay
 YZ
 YZ
+ay
 YZ
-Mq
+YZ
+YZ
+ay
 YZ
 YZ
 bi

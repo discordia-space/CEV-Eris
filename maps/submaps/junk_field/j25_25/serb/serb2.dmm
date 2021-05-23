@@ -118,6 +118,10 @@
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
+"nI" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/space,
+/area/template_noop)
 "nQ" = (
 /obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -185,8 +189,12 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "uv" = (
-/obj/machinery/light_construct{
-	dir = 8
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
@@ -423,7 +431,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/light_construct{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -476,12 +484,6 @@
 "Qo" = (
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/cargo,
-/area/template_noop)
-"Qq" = (
-/obj/machinery/light_construct{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
 /area/template_noop)
 "QE" = (
 /turf/simulated/floor/tiled/steel/orangecorner,
@@ -827,11 +829,11 @@ Ze
 yJ
 Ze
 yJ
-ag
-ah
-ah
-ah
-ag
+Oz
+Pc
+yJ
+yJ
+Oz
 Pc
 yJ
 yJ
@@ -854,11 +856,11 @@ Ze
 aU
 eD
 zj
-uv
-ah
-UT
-ah
-Qq
+JA
+GZ
+XL
+XL
+JA
 GZ
 XL
 zj
@@ -882,11 +884,11 @@ dO
 eD
 XL
 XL
-ah
-UT
-UT
-ah
-ah
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -909,11 +911,11 @@ aU
 eD
 SV
 SV
-ah
-ah
-UT
-UT
-ah
+XL
+XL
+XL
+Ej
+XL
 XL
 XL
 XL
@@ -938,8 +940,8 @@ up
 Fb
 Oz
 Oz
-ag
-ag
+Oz
+Oz
 Th
 Oz
 Oz
@@ -965,7 +967,7 @@ Ze
 Ze
 Ze
 iz
-iz
+uv
 Ns
 XL
 qk
@@ -1025,12 +1027,12 @@ XL
 CD
 LZ
 Ze
-LE
-LE
-LE
-LE
-LE
-LE
+nI
+nI
+nI
+nI
+nI
+nI
 Ze
 ww
 Ze
