@@ -14,7 +14,7 @@
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 2
+	recoil_buildup = 1.5
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -100,7 +100,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 4 // higher than excel variant though not too much?
+	recoil_buildup = 2
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -108,7 +108,7 @@
 
 /obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
-	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
+	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
@@ -118,7 +118,7 @@
 	fire_delay = 17 // abit more than the serbian one
 	damage_multiplier = 1
 	penetration_multiplier = 1
-	recoil_buildup = 5 // joonk gun probably doesn't handle recoil very well
+	recoil_buildup = 2.5 // joonk gun probably doesn't handle recoil very well
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
