@@ -138,7 +138,7 @@
     item_state = "obrez"
     w_class = ITEM_SIZE_NORMAL
     force = WEAPON_FORCE_PAINFUL
-    slot_flags = SLOT_BELT
+    slot_flags = SLOT_BELT|SLOT_HOLSTER
     damage_multiplier = 1.1
     penetration_multiplier = 1
     recoil_buildup = 4
@@ -157,3 +157,33 @@
 	item_suffix  = "_wood"
 	recoil_buildup = 6
 	wielded_item_state = "_doble_wood"
+
+/obj/item/weapon/gun/projectile/boltgun/attackby(var/obj/item/A as obj, mob/user as mob)
+	if(QUALITY_SAWING in A.tool_qualities)
+		if (!istype(src, /obj/item/weapon/gun/projectile/boltgun/obrez))
+			if(!istype(src, /obj/item/weapon/gun/projectile/boltgun/handmade))
+				if (src.item_upgrades.len)
+					if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
+						return
+				to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+				if(loaded.len)
+					for(var/i in 1 to max_shells)
+						afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
+						playsound(user, fire_sound, 50, 1)
+					user.visible_message(SPAN_DANGER("The rifle goes off!"), SPAN_DANGER("The rifle goes off in your face!"))
+					return
+				if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
+					if(istype(src, /obj/item/weapon/gun/projectile/boltgun/serbian))
+						qdel(src)
+						new /obj/item/weapon/gun/projectile/boltgun/obrez/serbian(usr.loc)
+						return
+					else
+						new /obj/item/weapon/gun/projectile/boltgun/obrez(usr.loc)
+					qdel(src)
+					to_chat(user, SPAN_WARNING("You saw down \the [src]!"))
+			else
+				to_chat(user, SPAN_WARNING("You can't remove more if you want \the [src] to keep working!"))	
+		else
+			to_chat(user, SPAN_WARNING("You cannot saw down \the [src] any further!"))
+	else
+		..()
