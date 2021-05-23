@@ -137,7 +137,7 @@
     icon_state = "obrez"
     item_state = "obrez"
     w_class = ITEM_SIZE_NORMAL
-    force = WEAPON_FORCE_WEAK
+    force = WEAPON_FORCE_PAINFUL
     slot_flags = SLOT_BELT
     damage_multiplier = 1.1
     penetration_multiplier = 1
