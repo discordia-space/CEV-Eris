@@ -14,7 +14,7 @@
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 40 //same as AMR
+	recoil_buildup = 2
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -100,7 +100,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 0.4 // Double the excel variant
+	recoil_buildup = 4 // higher than excel variant though not too much?
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -118,7 +118,7 @@
 	fire_delay = 17 // abit more than the serbian one
 	damage_multiplier = 1
 	penetration_multiplier = 1
-	recoil_buildup = 40 //same as AMR
+	recoil_buildup = 5 // joonk gun probably doesn't handle recoil very well
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
