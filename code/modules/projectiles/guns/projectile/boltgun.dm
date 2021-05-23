@@ -126,3 +126,34 @@
 	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
 	spawn_blacklisted = TRUE
+
+//obrez time
+
+/obj/item/weapon/gun/projectile/boltgun/obrez
+    name = "sawn-off Excelsior BR .30 \"Kardashev-Mosin\""
+    desc = "Weapon for hunting, or endless trench warfare. \
+         This one has been sawed down into an \"Obrez\" style."
+    icon = 'icons/obj/guns/projectile/obrez.dmi'
+    icon_state = "obrez"
+    item_state = "obrez"
+    w_class = ITEM_SIZE_NORMAL
+    force = WEAPON_FORCE_WEAK
+    slot_flags = SLOT_BELT
+    damage_multiplier = 1.1
+    penetration_multiplier = 1
+    recoil_buildup = 4
+    matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5)
+    price_tag = 600
+    attack_verb = list("struck","hit","bashed")
+    one_hand_penalty = 15 //not a full rifle, but not easy either
+    sharp = FALSE
+
+/obj/item/weapon/gun/projectile/boltgun/obrez/serbian
+	name = "sawn-off SA BR .30 \"Novakovic\""
+	desc = "Weapon for hunting, or endless trench warfare. \
+         This one has been sawed down into an \"Obrez\" style."
+	icon = 'icons/obj/guns/projectile/obrez.dmi'
+	icon_state = "obrez_wood"
+	item_suffix  = "_wood"
+	recoil_buildup = 6
+	wielded_item_state = "_doble_wood"
