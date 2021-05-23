@@ -345,13 +345,14 @@
 		return FALSE
 
 	spawn(0)
-		var/newname
-		newname = sanitizeSafe(input(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
-		if (newname)
-			custom_name = newname
-
-		updatename()
-		updateicon()
+		var/name_input
+		name_input = sanitizeName(input(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN, 1)
+		if(name_input)
+			custom_name = name_input
+			updatename()
+			updateicon()
+		else
+			to_chat(src, SPAN_WARNING("Invalid first name. It may only contain the characters A-Z, a-z, 0-9, -, ' and ."))
 
 // this verb lets cyborgs see the stations manifest
 /mob/living/silicon/robot/verb/open_manifest()
