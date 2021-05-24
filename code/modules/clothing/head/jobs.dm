@@ -33,7 +33,7 @@
 
 //HOP
 /obj/item/clothing/head/caphat/hop
-	name = "crew resource's hat"
+	name = "first officer's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
 	spawn_blacklisted = TRUE
