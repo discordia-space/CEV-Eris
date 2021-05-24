@@ -1662,7 +1662,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/spawner/lathe_disk,
 		/obj/spawner/lathe_disk,
 		/obj/spawner/lathe_disk,
-		/obj/spawner/lathe_disk/advanced
+		/obj/spawner/lathe_disk
 	)
 	name = "Autolathe Disks"
 	cost = 6000
