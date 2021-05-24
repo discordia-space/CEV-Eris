@@ -406,35 +406,60 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 	dinger = FALSE
+	var/lit = FALSE
 
+/obj/machinery/microwave/campfire/verb/ToggleLight()
+	set name = "Toggle Fire"
+	set category = "Object"
+	set src in view(1)
+
+	if (!Adjacent(usr))
+		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		return
+
+	if (usr.incapacitated())
+		return
+
+	if(!lit)
+		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+		visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
+		icon_state = "barrelfire1"
+		set_light(3,2)
+		lit = TRUE
+	else
+		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+		icon_state = "barrelfire"
+		set_light(0)
+		lit = FALSE
 
 /obj/machinery/microwave/campfire/start()
 	..()
-	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	//playsound(loc, 'sound/effects/campfirecrackle.ogg', 50, 1) // I don't  know how to loop stuff
-	visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
-	icon_state = "barrelfire1"
-	set_light(3,2)
+	if(!lit)
+		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+		//playsound(loc, 'sound/effects/campfirecrackle.ogg', 50, 1) // I don't  know how to loop stuff
+		visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
+		icon_state = "barrelfire1"
+		set_light(3,2)
+		lit = TRUE
+	else
+		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
+		icon_state = "barrelfire1"
+		visible_message(SPAN_NOTICE("You hear a crackling fire."))
 
 /obj/machinery/microwave/campfire/abort()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire"
-	set_light(0)
-	
+	icon_state = "barrelfire1"	
 
 /obj/machinery/microwave/campfire/stop()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire"
-	set_light(0)
+	icon_state = "barrelfire1"
 	
-
 /obj/machinery/microwave/campfire/dispose()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire"
-	set_light(0)
+	icon_state = "barrelfire1"
 
 /obj/machinery/microwave/campfire/muck_start()
 	..()
@@ -444,4 +469,3 @@
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire"
-	set_light(0)

@@ -1,5 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - bugfix: advanced trauma kits and bandages can't be stacked anymore, don't try
-      or you are gonna waste kits.

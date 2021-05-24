@@ -1,9 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Holsters in loadout are no longer job locked
-  - tweak: tweaked holster's loadout cost
-  - rscadd: added battle dress to loadout, for larpers
-  - rscadd: added cigarettes to loadout, for my chainsmokers out there
-  - rscadd: added oberth beret and gloves (the republic lives)
-  - rscadd: ERP is now in loadout
