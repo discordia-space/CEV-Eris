@@ -546,5 +546,6 @@
 #define SPAWN_MOEBIUS "moebius"
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
+#define SPAWN_TECHNOMANCER "technomancer"
 
 #define SPAWN_CLOWN "clown"

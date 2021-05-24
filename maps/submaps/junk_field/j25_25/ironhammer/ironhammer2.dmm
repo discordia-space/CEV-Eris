@@ -55,6 +55,10 @@
 /obj/structure/cyberplant,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/template_noop)
+"bW" = (
+/obj/landmark/loot_biomes/jtb/ironhammer,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
 "dO" = (
 /obj/structure/showcase{
 	desc = "Ancient robotic frame, that is long deactivated and rusted solid. However, it still strikes am awesome pose, that somehow makes you think of justice and righteousness.";
@@ -87,7 +91,10 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "hy" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "ib" = (
@@ -145,6 +152,12 @@
 /obj/item/weapon/material/ashtray,
 /obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 /turf/simulated/floor/carpet,
+/area/template_noop)
+"po" = (
+/obj/machinery/light_construct{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "qk" = (
 /obj/structure/bed/chair{
@@ -476,12 +489,6 @@
 "Qo" = (
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/cargo,
-/area/template_noop)
-"Qq" = (
-/obj/machinery/light_construct{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
 /area/template_noop)
 "QE" = (
 /turf/simulated/floor/tiled/steel/orangecorner,
@@ -858,7 +865,7 @@ uv
 ah
 UT
 ah
-Qq
+po
 GZ
 XL
 zj
@@ -888,7 +895,7 @@ UT
 ah
 ah
 XL
-XL
+bW
 XL
 XL
 XL

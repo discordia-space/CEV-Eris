@@ -198,6 +198,10 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/derelict,
 /area/template_noop)
+"ol" = (
+/obj/landmark/loot_biomes/jtb/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/template_noop)
 "pI" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/derelict,
@@ -777,7 +781,7 @@ as
 WA
 as
 Wo
-bu
+ol
 bu
 aq
 bc

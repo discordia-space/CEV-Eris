@@ -212,6 +212,14 @@
 	icon_state = "freezerfloor"
 	},
 /area/template_noop)
+"kx" = (
+/obj/structure/table/rack,
+/obj/spawner/junk,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/template_noop)
 "kO" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/drinkingglasses{
@@ -250,10 +258,6 @@
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/template_noop)
-"nr" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
 /area/template_noop)
 "nu" = (
 /obj/structure/table/rack,
@@ -389,6 +393,12 @@
 	name = "plating"
 	},
 /area/template_noop)
+"tK" = (
+/obj/landmark/corpse/russian/ranged,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/template_noop)
 "um" = (
 /obj/item/weapon/stool,
 /turf/unsimulated/floor{
@@ -423,6 +433,16 @@
 /obj/item/weapon/storage/belt/tactical,
 /obj/item/weapon/storage/belt/tactical,
 /obj/item/weapon/storage/pouch/large_generic,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/template_noop)
+"wU" = (
+/obj/machinery/door/airlock/maintenance_interior{
+	icon_state = "door_locked";
+	locked = 1
+	},
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -499,6 +519,11 @@
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
+/area/template_noop)
+"Bz" = (
+/obj/item/weapon/stool,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "BQ" = (
 /obj/structure/table/standard,
@@ -581,19 +606,6 @@
 "Hn" = (
 /obj/structure/lattice,
 /turf/space,
-/area/template_noop)
-"Is" = (
-/obj/item/weapon/stool,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"IN" = (
-/obj/structure/table/rack,
-/obj/spawner/junk,
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
 /area/template_noop)
 "Jp" = (
 /obj/spawner/junkfood/rotten,
@@ -763,6 +775,10 @@
 	icon_state = "propulsion_r"
 	},
 /turf/space,
+/area/template_noop)
+"Xv" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "Yj" = (
 /obj/structure/table/standard,
@@ -970,7 +986,7 @@ Yp
 PN
 As
 YZ
-IN
+kx
 YW
 YW
 YW
@@ -1005,7 +1021,7 @@ YW
 YZ
 Jp
 Jp
-FS
+tK
 xN
 fM
 YZ
@@ -1080,7 +1096,7 @@ rd
 YZ
 qA
 bB
-Is
+Bz
 um
 yJ
 YZ
@@ -1113,7 +1129,7 @@ YW
 YZ
 YZ
 YZ
-Eg
+wU
 YZ
 YZ
 Km
@@ -1132,7 +1148,7 @@ YW
 Vt
 YW
 Eg
-nr
+Xv
 Hn
 Hn
 bB
@@ -1181,9 +1197,9 @@ Hn
 aH
 YZ
 DP
-VJ
-VJ
-VJ
+bB
+Hn
+bB
 Eo
 YZ
 sg
@@ -1208,9 +1224,9 @@ bi
 Hn
 YZ
 Bv
-VJ
-VJ
-VJ
+bB
+bi
+Hn
 DP
 YZ
 jP
@@ -1235,9 +1251,9 @@ bi
 bi
 YZ
 DP
-VJ
-VJ
-VJ
+bB
+bi
+bB
 js
 YZ
 ss
@@ -1263,7 +1279,7 @@ bi
 YZ
 Mb
 VJ
-VJ
+bB
 VJ
 iw
 YZ

@@ -277,7 +277,10 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "wR" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "wX" = (
@@ -388,6 +391,10 @@
 /obj/structure/table/standard,
 /obj/item/weapon/book/manual/wiki/security_ironparagraphs,
 /turf/simulated/floor/tiled/steel/gray_perforated,
+/area/template_noop)
+"GZ" = (
+/obj/landmark/loot_biomes/jtb/ironhammer,
+/turf/simulated/wall/r_wall,
 /area/template_noop)
 "Hn" = (
 /obj/structure/lattice,
@@ -886,7 +893,7 @@ as
 YZ
 OP
 OP
-YZ
+GZ
 Vt
 aq
 um
