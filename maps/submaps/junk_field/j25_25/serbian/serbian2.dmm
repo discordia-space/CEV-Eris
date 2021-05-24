@@ -176,7 +176,7 @@
 "qk" = (
 /obj/structure/lattice,
 /obj/spawner/junk,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "up" = (
 /obj/machinery/light{
@@ -344,6 +344,10 @@
 	icon_state = "white"
 	},
 /area/template_noop)
+"GS" = (
+/obj/landmark/loot_biomes/jtb/serbian,
+/turf/template_noop,
+/area/template_noop)
 "Hc" = (
 /turf/unsimulated/floor{
 	dir = 2;
@@ -454,7 +458,7 @@
 /obj/machinery/light_construct{
 	dir = 4
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Pc" = (
 /obj/structure/table/woodentable,
@@ -538,7 +542,7 @@
 /area/template_noop)
 "UT" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "VG" = (
 /obj/structure/lattice,
@@ -604,7 +608,7 @@
 	},
 /area/template_noop)
 "Zy" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -944,7 +948,7 @@ NR
 XL
 NR
 ME
-Zy
+GS
 ME
 NR
 XL

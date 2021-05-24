@@ -919,6 +919,10 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
+"GQ" = (
+/obj/landmark/loot_biomes/jtb/neutral,
+/turf/template_noop,
+/area/template_noop)
 "NP" = (
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/cargo,
@@ -1261,7 +1265,7 @@ ae
 ao
 aa
 aa
-aa
+GQ
 ae
 aA
 aA

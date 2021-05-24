@@ -103,5 +103,5 @@
 /obj/landmark/loot_biomes/jtb/ironhammer
 	main_tags = list(SPAWN_IRONHAMMER)
 
-/obj/landmark/loot_biomes/jtb/serb
+/obj/landmark/loot_biomes/jtb/serbian
 	main_tags = list(SPAWN_SERBIAN)

@@ -91,7 +91,7 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/template_noop)
 "bi" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bj" = (
 /turf/simulated/floor/tiled/derelict/white_big_edges,
@@ -192,7 +192,7 @@
 /area/template_noop)
 "jv" = (
 /obj/structure/railing,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "kH" = (
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -329,7 +329,7 @@
 /area/template_noop)
 "Hn" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "HN" = (
 /obj/structure/table/onestar,
@@ -340,7 +340,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Jx" = (
 /obj/spawner/junkfood/rotten,
@@ -406,7 +406,7 @@
 /area/template_noop)
 "Ul" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Wo" = (
 /turf/simulated/wall/untinted/onestar_reinforced,
@@ -417,7 +417,7 @@
 "Yp" = (
 /obj/structure/catwalk,
 /obj/machinery/door/airlock/external,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "YT" = (
 /obj/machinery/light_construct{

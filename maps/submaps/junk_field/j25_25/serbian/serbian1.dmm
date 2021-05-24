@@ -31,7 +31,7 @@
 	},
 /area/template_noop)
 "bi" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "by" = (
 /obj/structure/bed,
@@ -154,7 +154,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l"
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ip" = (
 /obj/spawner/scrap/dense,
@@ -290,6 +290,10 @@
 	icon_state = "cult";
 	name = "plating"
 	},
+/area/template_noop)
+"pU" = (
+/obj/landmark/loot_biomes/jtb/serbian,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "qa" = (
 /obj/structure/window/basic{
@@ -495,7 +499,7 @@
 /area/template_noop)
 "zT" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "As" = (
 /obj/item/weapon/stool,
@@ -605,7 +609,7 @@
 /area/template_noop)
 "Hn" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Jp" = (
 /obj/spawner/junkfood/rotten,
@@ -774,7 +778,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_r"
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Xv" = (
 /obj/spawner/junk/low_chance,
@@ -1151,7 +1155,7 @@ Eg
 Xv
 Hn
 Hn
-bB
+pU
 Vt
 Eg
 YW

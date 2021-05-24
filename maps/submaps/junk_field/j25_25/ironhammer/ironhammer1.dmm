@@ -48,7 +48,7 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "bi" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "by" = (
 /obj/structure/table/rack,
@@ -398,7 +398,7 @@
 /area/template_noop)
 "Hn" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Jl" = (
 /obj/structure/table/woodentable,

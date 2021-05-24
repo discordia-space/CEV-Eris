@@ -639,6 +639,11 @@
 /mob/living/simple_animal/hostile/bear,
 /turf/simulated/floor/tiled/steel,
 /area/template_noop)
+"jF" = (
+/obj/spawner/scrap/sparse,
+/obj/landmark/loot_biomes/jtb/neutral,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
 "mW" = (
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/cargo,
@@ -981,7 +986,7 @@ ab
 ao
 as
 aj
-am
+jF
 ag
 ab
 ac

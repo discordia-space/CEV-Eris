@@ -628,7 +628,7 @@
 /area/template_noop)
 "UT" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "Vu" = (
 /turf/simulated/floor/tiled/derelict/white_small_edges,
@@ -684,7 +684,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/template_noop)
 "Zy" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
