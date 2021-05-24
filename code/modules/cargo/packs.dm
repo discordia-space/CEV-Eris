@@ -1654,3 +1654,18 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Cigarettes Cartons Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Supply"
+
+/datum/supply_pack/randomised/disks
+	num_contained = 5
+	contains = list(
+		/obj/spawner/lathe_disk,
+		/obj/spawner/lathe_disk,
+		/obj/spawner/lathe_disk,
+		/obj/spawner/lathe_disk,
+		/obj/spawner/lathe_disk/advanced
+	)
+	name = "Autolathe Disks"
+	cost = 6000
+	crate_name = "Autolathe Disk Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Supply"
