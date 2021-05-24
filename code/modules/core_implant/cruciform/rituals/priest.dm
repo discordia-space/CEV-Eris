@@ -14,7 +14,7 @@
 
 /datum/ritual/targeted/cruciform/priest/acolyte
 
-/datum/ritual/cruciform/priest/epiphany
+/datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
 	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
