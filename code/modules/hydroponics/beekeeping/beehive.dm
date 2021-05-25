@@ -145,8 +145,10 @@
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
+	density = TRUE
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "centrifuge"
+	circuit = /obj/item/weapon/electronics/circuitboard/beextractor
 
 	var/processing = 0
 	var/honey = 0
