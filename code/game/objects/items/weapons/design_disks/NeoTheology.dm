@@ -205,7 +205,7 @@
 		/datum/design/autolathe/nt/grenade/nt_smokebomb
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/grenades
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/explosivegrenades
 	disk_name = "NeoTheology Armory - High Explosive Pack"
 	icon_state = "neotheology"
 	license = 2
