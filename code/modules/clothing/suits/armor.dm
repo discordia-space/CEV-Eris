@@ -507,13 +507,13 @@
 	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	slowdown = 0.3
+	slowdown = 0.15
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 70,
+		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 30,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
