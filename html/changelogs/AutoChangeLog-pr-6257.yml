@@ -1,6 +1,0 @@
-author: HerBaon
-delete-after: true
-changes:
-  - rscadd: FO & Captain spawn with Sunglasses that have a integrated SecHUD.
-  - rscadd: FO spawn with their respective hat and the name now references him.
-  - rscadd: Captain spawn with their respective gloves.
