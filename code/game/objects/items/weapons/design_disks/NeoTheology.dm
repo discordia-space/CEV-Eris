@@ -270,7 +270,7 @@
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 17
 	license = 12
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = FALSE
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
 		/datum/design/autolathe/cell/medium/high,
