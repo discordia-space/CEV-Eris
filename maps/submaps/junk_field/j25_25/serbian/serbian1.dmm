@@ -199,6 +199,12 @@
 	name = "plating"
 	},
 /area/template_noop)
+"kc" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/template_noop)
 "kl" = (
 /obj/machinery/shower{
 	pixel_y = 32
@@ -250,6 +256,13 @@
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "freezerfloor"
+	},
+/area/template_noop)
+"mi" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/template_noop)
 "mZ" = (
@@ -335,6 +348,13 @@
 /obj/item/clothing/head/ushanka,
 /turf/unsimulated/floor{
 	icon_state = "lino"
+	},
+/area/template_noop)
+"rk" = (
+/mob/living/simple_animal/hostile/russian/ranged,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/template_noop)
 "ru" = (
@@ -429,6 +449,12 @@
 /obj/item/weapon/material/kitchen/rollingpin,
 /turf/unsimulated/floor{
 	icon_state = "white"
+	},
+/area/template_noop)
+"wy" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/unsimulated/floor{
+	icon_state = "lino"
 	},
 /area/template_noop)
 "wR" = (
@@ -591,6 +617,10 @@
 	icon_state = "white"
 	},
 /area/template_noop)
+"FH" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/template_noop)
 "FS" = (
 /turf/unsimulated/floor{
 	icon_state = "white"
@@ -610,6 +640,16 @@
 "Hn" = (
 /obj/structure/lattice,
 /turf/template_noop,
+/area/template_noop)
+"Ib" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/template_noop)
+"IG" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/simulated/floor/plating/under,
 /area/template_noop)
 "Jp" = (
 /obj/spawner/junkfood/rotten,
@@ -817,6 +857,13 @@
 	name = "plating"
 	},
 /area/template_noop)
+"ZY" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/template_noop)
 
 (1,1,1) = {"
 bi
@@ -940,7 +987,7 @@ bB
 Hn
 Hn
 aw
-bB
+IG
 bB
 YW
 La
@@ -948,7 +995,7 @@ YW
 Eg
 YW
 oX
-YW
+rk
 ru
 gN
 bi
@@ -1019,7 +1066,7 @@ iw
 YZ
 nu
 YW
-YW
+mi
 YW
 YW
 YZ
@@ -1040,7 +1087,7 @@ Hn
 YZ
 by
 VJ
-VJ
+wy
 VJ
 js
 YZ
@@ -1051,7 +1098,7 @@ zJ
 um
 YZ
 Nt
-FS
+Ib
 Wj
 xN
 iY
@@ -1129,7 +1176,7 @@ Hn
 Hn
 bB
 bB
-YW
+rk
 YZ
 YZ
 YZ
@@ -1150,7 +1197,7 @@ YW
 Sy
 YW
 Vt
-YW
+ZY
 Eg
 Xv
 Hn
@@ -1158,7 +1205,7 @@ Hn
 pU
 Vt
 Eg
-YW
+ZY
 Sy
 YW
 Vt
@@ -1234,7 +1281,7 @@ Hn
 DP
 YZ
 jP
-YW
+rk
 zg
 dI
 zM
@@ -1284,7 +1331,7 @@ YZ
 Mb
 VJ
 bB
-VJ
+kc
 iw
 YZ
 Zt
@@ -1294,7 +1341,7 @@ YW
 CY
 YZ
 Ga
-kW
+FH
 du
 YZ
 bG
@@ -1372,7 +1419,7 @@ YW
 YW
 Sy
 YW
-YW
+ZY
 bB
 bB
 WC
@@ -1380,7 +1427,7 @@ YW
 Eg
 YW
 dU
-YW
+mi
 ru
 gN
 bi

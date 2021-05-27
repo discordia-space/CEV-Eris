@@ -61,6 +61,13 @@
 	icon_state = "lino"
 	},
 /area/template_noop)
+"dH" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/template_noop)
 "dO" = (
 /obj/structure/bed/chair/comfy/green,
 /obj/spawner/booze/low_chance,
@@ -121,6 +128,12 @@
 	icon_state = "white"
 	},
 /area/template_noop)
+"mW" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/template_noop)
 "nC" = (
 /obj/structure/bed/chair,
 /turf/unsimulated/floor{
@@ -141,6 +154,13 @@
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
+	},
+/area/template_noop)
+"nY" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/template_noop)
 "oi" = (
@@ -215,6 +235,10 @@
 	icon_state = "lino"
 	},
 /area/template_noop)
+"vM" = (
+/mob/living/simple_animal/hostile/russian,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
 "wg" = (
 /obj/item/modular_computer/console{
 	dir = 8
@@ -249,6 +273,12 @@
 /area/template_noop)
 "zc" = (
 /obj/structure/closet/emcloset,
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/template_noop)
+"zB" = (
+/mob/living/simple_animal/hostile/bear,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -361,6 +391,12 @@
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
+	},
+/area/template_noop)
+"Hn" = (
+/mob/living/simple_animal/hostile/russian/ranged,
+/turf/unsimulated/floor{
+	icon_state = "lino"
 	},
 /area/template_noop)
 "Js" = (
@@ -495,6 +531,13 @@
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
+	},
+/area/template_noop)
+"Qq" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/unsimulated/floor{
+	dir = 2;
+	icon_state = "dark"
 	},
 /area/template_noop)
 "QE" = (
@@ -741,7 +784,7 @@ Ze
 Ze
 Ze
 Ze
-NR
+dH
 Ze
 Zy
 Zy
@@ -791,7 +834,7 @@ Ze
 XS
 XS
 XS
-XS
+Hn
 XS
 ao
 Ze
@@ -813,13 +856,13 @@ Zy
 La
 Hc
 XL
-NR
+nY
 bm
 XS
 XS
 XS
 uQ
-XS
+Hn
 oS
 Ze
 NR
@@ -862,7 +905,7 @@ bs
 Ze
 dO
 nR
-Hc
+Qq
 VG
 Zy
 ah
@@ -895,7 +938,7 @@ Uy
 ah
 ah
 NR
-NR
+dH
 pa
 Ze
 fy
@@ -943,7 +986,7 @@ NR
 XL
 NR
 pa
-NR
+dH
 NR
 XL
 NR
@@ -993,7 +1036,7 @@ Zy
 Zy
 Zy
 Ze
-NR
+dH
 Ze
 Fb
 XS
@@ -1001,13 +1044,13 @@ XS
 zc
 Ze
 Th
-NR
+dH
 NR
 NR
 Qo
 Lz
 Zy
-ah
+vM
 xf
 ib
 Ze
@@ -1080,7 +1123,7 @@ YE
 ah
 Zy
 ah
-XS
+zB
 XS
 XL
 NR
@@ -1140,7 +1183,7 @@ Ze
 NR
 Ze
 NQ
-nI
+mW
 nI
 bm
 Zt
@@ -1197,7 +1240,7 @@ NR
 pa
 Qo
 NR
-NR
+dH
 zO
 ah
 ah

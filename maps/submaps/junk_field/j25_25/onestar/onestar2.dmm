@@ -159,6 +159,10 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/template_noop)
+"cK" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
 "dO" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced{
@@ -170,6 +174,10 @@
 "eD" = (
 /obj/structure/closet/secure_closet/medicine,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"fa" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/template_noop)
 "fy" = (
 /obj/structure/toilet{
@@ -226,6 +234,14 @@
 	},
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/dark/brown_platform,
+/area/template_noop)
+"ld" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/dirt,
+/area/template_noop)
+"lj" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/template_noop)
 "mJ" = (
 /obj/spawner/junk,
@@ -410,8 +426,17 @@
 	},
 /turf/simulated/floor/dirt,
 /area/template_noop)
+"Bj" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/cafe,
+/area/template_noop)
 "BH" = (
 /obj/structure/largecrate,
+/turf/simulated/floor/tiled/derelict,
+/area/template_noop)
+"BI" = (
+/obj/effect/floor_decal/industrial/warning,
+/mob/living/simple_animal/hostile/roomba/boomba,
 /turf/simulated/floor/tiled/derelict,
 /area/template_noop)
 "Cs" = (
@@ -423,6 +448,10 @@
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/brown_platform,
+/area/template_noop)
+"Dc" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/derelict,
 /area/template_noop)
 "Ej" = (
 /obj/structure/table/onestar,
@@ -555,6 +584,7 @@
 /obj/structure/sign/department/medbay{
 	pixel_x = 32
 	},
+/mob/living/simple_animal/hostile/roomba/slayer,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/template_noop)
 "NH" = (
@@ -620,6 +650,16 @@
 	},
 /obj/machinery/light/floor,
 /turf/simulated/floor/tiled/dark/brown_platform,
+/area/template_noop)
+"Ss" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/cafe,
 /area/template_noop)
 "SV" = (
 /obj/structure/table/onestar,
@@ -829,7 +869,7 @@ ah
 bl
 KW
 KW
-KW
+Dc
 BH
 Fz
 nC
@@ -866,7 +906,7 @@ Qe
 Vu
 Vu
 aK
-Km
+Bj
 mJ
 Km
 ah
@@ -891,7 +931,7 @@ Hc
 ES
 Vu
 Vu
-Vu
+fa
 ES
 Km
 uQ
@@ -939,7 +979,7 @@ qp
 kF
 tl
 KW
-Fz
+BI
 an
 Cs
 ES
@@ -947,7 +987,7 @@ aA
 Vu
 Vu
 ES
-fy
+Ss
 bN
 fy
 bN
@@ -1031,7 +1071,7 @@ vG
 oc
 aK
 bm
-bm
+cK
 bt
 ES
 Zy
@@ -1051,7 +1091,7 @@ KW
 ju
 Rf
 ES
-Vu
+fa
 Vu
 Vu
 XL
@@ -1102,7 +1142,7 @@ Vu
 Ze
 Vu
 Vu
-Vu
+fa
 Vu
 Vu
 Vu
@@ -1205,7 +1245,7 @@ Zy
 Zy
 ah
 bm
-bm
+cK
 zC
 bN
 bE
@@ -1236,18 +1276,18 @@ bm
 Yy
 bN
 bE
-bE
+ld
 bE
 bE
 Lz
-Vu
+fa
 oc
 aK
 bm
-bm
+cK
 bm
 bN
-NH
+lj
 NH
 ag
 Zy

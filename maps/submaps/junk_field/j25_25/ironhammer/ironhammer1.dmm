@@ -50,6 +50,10 @@
 "bi" = (
 /turf/template_noop,
 /area/template_noop)
+"bl" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/template_noop)
 "by" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_upgrade,
@@ -223,6 +227,10 @@
 /obj/item/weapon/cell/small/high,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
+"rp" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
 "ru" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -268,6 +276,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/template_noop)
 "vA" = (
+/mob/living/simple_animal/hostile/hivebot,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/template_noop)
 "wD" = (
@@ -400,6 +409,10 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
+"IK" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/wood,
+/area/template_noop)
 "Jl" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/tool/tape_roll,
@@ -456,6 +469,10 @@
 "OP" = (
 /turf/simulated/floor/tiled/steel,
 /area/template_noop)
+"OW" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/steel,
+/area/template_noop)
 "Pa" = (
 /obj/item/weapon/stool,
 /obj/spawner/soda/low_chance,
@@ -482,6 +499,10 @@
 /obj/structure/table/standard,
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled/dark/gray_perforated,
+/area/template_noop)
+"SR" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "Ul" = (
 /obj/structure/table/rack,
@@ -516,6 +537,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
+/area/template_noop)
+"WY" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/steel,
 /area/template_noop)
 "Yj" = (
 /obj/structure/bed/chair,
@@ -653,7 +678,7 @@ Hn
 Hn
 zE
 zE
-Mb
+rp
 dN
 YZ
 sg
@@ -751,9 +776,9 @@ bi
 YZ
 Mb
 Mb
+SR
 Mb
-Mb
-Mb
+rp
 Mb
 YZ
 OP
@@ -762,7 +787,7 @@ OP
 OP
 OP
 OP
-OP
+WY
 OP
 OP
 OP
@@ -805,9 +830,9 @@ bi
 YZ
 Mb
 Mb
+SR
 Mb
-Mb
-Mb
+rp
 Mb
 YZ
 fH
@@ -838,7 +863,7 @@ rd
 Di
 YZ
 OP
-OP
+WY
 YZ
 Yj
 aH
@@ -940,7 +965,7 @@ bi
 ay
 sF
 Lj
-Lj
+IK
 wD
 Eo
 Lj
@@ -952,7 +977,7 @@ um
 um
 um
 RC
-um
+bl
 um
 uK
 ay
@@ -1037,7 +1062,7 @@ OP
 OP
 OP
 OP
-OP
+OW
 OP
 Hn
 bi
@@ -1107,14 +1132,14 @@ Sy
 xb
 Kz
 OP
-OP
+WY
 OP
 YZ
 ji
 Mb
-Mb
+SR
 YZ
-Mb
+rp
 Mb
 ji
 YZ

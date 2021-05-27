@@ -6,6 +6,10 @@
 "ah" = (
 /turf/simulated/floor/plating/under,
 /area/template_noop)
+"am" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
 "ay" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -90,6 +94,10 @@
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
+"gy" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
 "hy" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
@@ -158,6 +166,10 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating/under,
+/area/template_noop)
+"qc" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "qk" = (
 /obj/structure/bed/chair{
@@ -244,6 +256,7 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "yr" = (
+/mob/living/simple_animal/hostile/hivebot/range,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/template_noop)
 "yJ" = (
@@ -273,6 +286,10 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
+/area/template_noop)
+"Av" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/carpet,
 /area/template_noop)
 "Ax" = (
 /obj/structure/table/woodentable,
@@ -346,6 +363,10 @@
 /obj/item/modular_computer/console{
 	dir = 1
 	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"II" = (
+/mob/living/simple_animal/hostile/hivebot/range,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "Jd" = (
@@ -443,6 +464,10 @@
 	},
 /turf/simulated/floor/carpet,
 /area/template_noop)
+"NL" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/steel,
+/area/template_noop)
 "NQ" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -525,6 +550,10 @@
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/steel/gray_perforated,
+/area/template_noop)
+"Xd" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "XL" = (
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -642,7 +671,7 @@ Zy
 LE
 VG
 VG
-VG
+Av
 VG
 sD
 XL
@@ -673,7 +702,7 @@ NH
 nR
 Ze
 XL
-XL
+Xd
 XL
 ah
 UT
@@ -684,7 +713,7 @@ UT
 ah
 ah
 XL
-XL
+Xd
 Ur
 Ze
 Zy
@@ -789,11 +818,11 @@ QE
 Ze
 EA
 rN
-rN
+gy
 aP
 Ze
 XL
-XL
+Xd
 LE
 Zy
 "}
@@ -815,7 +844,7 @@ QE
 QE
 Ze
 fy
-rN
+am
 rN
 xN
 Ze
@@ -870,7 +899,7 @@ GZ
 NQ
 Ze
 bm
-bm
+NL
 bm
 bs
 JW
@@ -884,7 +913,7 @@ Ze
 dO
 eD
 XL
-XL
+Xd
 ah
 UT
 UT
@@ -893,7 +922,7 @@ ah
 XL
 bW
 XL
-XL
+Xd
 XL
 Ze
 GD
@@ -970,7 +999,7 @@ Ze
 iz
 iz
 Ns
-XL
+Xd
 qk
 iz
 Ze
@@ -1003,7 +1032,7 @@ iz
 Ze
 zj
 XL
-XL
+qc
 Uy
 XL
 XL
@@ -1102,7 +1131,7 @@ UT
 Zy
 Zy
 LE
-Lz
+II
 Mf
 VG
 VG
@@ -1159,7 +1188,7 @@ LE
 bE
 Hd
 Lz
-Lz
+II
 zO
 Ax
 LE
