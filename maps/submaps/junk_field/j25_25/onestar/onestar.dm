@@ -1,7 +1,6 @@
-/datum/map_template/junk/j25_25/onestar
+/datum/map_template/junk/j25_25/onestar/onestar1
 	name = "onestar 1"
 	id = "onestar1"
-	description = "A huge drifting space wreck. It must have belonged to a OneStar structure a long time ago."
 	suffix = "onestar/onestar1.dmm"
 
 /datum/map_template/junk/j25_25/onestar/onestar2

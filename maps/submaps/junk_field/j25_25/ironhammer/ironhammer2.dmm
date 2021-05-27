@@ -223,12 +223,8 @@
 "xf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/northright{
-	dir = 8;
+	dir = 4;
 	req_access = null
-	},
-/obj/machinery/door/window{
-	name = "Security Checkpoint";
-	req_access = list(1)
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/template_noop)
@@ -347,7 +343,7 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/template_noop)
 "Hd" = (
-/obj/item/modular_computer/console/preset/security/camera{
+/obj/item/modular_computer/console{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -452,10 +448,10 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "NR" = (
-/obj/item/modular_computer/console/preset/security/camera{
+/obj/machinery/light,
+/obj/item/modular_computer/console{
 	dir = 1
 	},
-/obj/machinery/light,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/template_noop)
 "Oz" = (
@@ -481,7 +477,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/template_noop)
 "Qn" = (
-/obj/item/modular_computer/console/preset/security/camera{
+/obj/item/modular_computer/console{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
