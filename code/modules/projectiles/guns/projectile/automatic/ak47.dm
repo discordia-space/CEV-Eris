@@ -123,73 +123,10 @@
 		BURST_5_ROUND
 	)
 
-	price_tag = 3000
+	price_tag = 2000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
-	var/random_sprite = TRUE
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/Initialize()
-	. = ..()
-	if(random_sprite)
-		randomize()
-
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/proc/randomize()
-	var/random_icon = rand(1,10)
-	switch(random_icon)
-		if(1 to 6)
-			name = "FS AR .30 \"Vipr\""						// Vipr like a play on Viper and Vepr
-			desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-					This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-					It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-					This cheap copy has been made to look as least militaristic as possible to be sold to as many civilian populations as possible."
-			icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
-		if(7 to 9)
-			name = "FS AR .30 \"WASP\""						// A small play on the Romanian WASR
-			desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-					This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-					It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-					This cheap copy looks just like a classic AK, minus the longer barrel."
-			icon = 'icons/obj/guns/projectile/ak/wasp.dmi'
-		if(10)
-			name = "FS AR .30 \"Brushmaster\""						// A small play on Bushmaster
-			desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-					This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-					It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-					This cheap copy looks as tacticool as possible. Emulating the IH PD rifle in most ways, even the the fixed skeleton stock looks the same."
-			icon = 'icons/obj/guns/projectile/ak/brushmaster.dmi'
-
-
-//////////Non-random spawns for blueprints//////////
-
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/vipr
-	name = "FS AR .30 \"Vipr\""						// Vipr like a play on Viper and Vepr
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This cheap copy has been made to look as least miltaristic as possible to be sold to as many civilian populations as possible."
-	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
-	random_sprite = FALSE
-	spawn_blacklisted = TRUE
-
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/wasp
-	name = "FS AR .30 \"WASP\""						// A small play on the Romanian WASR
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This cheap copy looks just like a classic AK, minus the longer barrel."
-	icon = 'icons/obj/guns/projectile/ak/wasp.dmi'
-	random_sprite = FALSE
-	spawn_blacklisted = TRUE
-
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush
-	name = "FS AR .30 \"Brushmaster\""						// A small play on Bushmaster
-	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
-			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
-			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This cheap copy looks as tacticool as possible. Emulating the IH PD rifle in most ways, even the the fixed skeleton stock looks the same."
-	icon = 'icons/obj/guns/projectile/ak/brushmaster.dmi'
-	random_sprite = FALSE
-	spawn_blacklisted = TRUE
 
 
 //////////////////////////////////////////IH//////////////////////////////////////////
@@ -201,7 +138,6 @@
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
 			This rifle is from the Frozen Star's Planetary Defence line. Painted in IH blue and black, with a folding stock so it can be stored compactly for years without use."
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
-	random_sprite = FALSE
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 

@@ -174,12 +174,12 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "FS Revolver Pack"
 	group = "Security"
 
-/datum/supply_pack/fshunting	//3 "random" hunting rifles
+/datum/supply_pack/fshunting	//3 hunting rifles
 	name = "FS Hunting Rifle Pack"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 			/obj/item/weapon/gun/projectile/automatic/ak47/fs)
-	cost = 4500
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Hunting Rifle Pack"
 	group = "Security"
