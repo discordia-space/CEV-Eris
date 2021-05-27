@@ -31,3 +31,15 @@
 	heavy_range = 1.5
 	weak_range = 5
 	matter = list(MATERIAL_BIOMATTER = 100)
+
+/obj/item/weapon/grenade/explosive/ptank 
+    name = "plasma tank bomb"
+    desc = "A large, dangerous bomb. A weapon for the brave, foolhardy, or desperate."
+    w_class = ITEM_SIZE_NORMAL
+    icon_state = "explosive_ptank"
+    item_state = "explosive_ptank"
+    throw_speed = 2
+    throw_range = 5
+    heavy_range = 1.5
+    weak_range = 4
+    variance = 0.8

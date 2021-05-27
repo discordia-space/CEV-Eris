@@ -263,3 +263,22 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC, "time" = 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
+
+datum/craft_recipe/weapon/frag_etank
+	name = "emergency tank grenade"
+	result = /obj/item/weapon/grenade/frag/etank
+	steps = list(
+		list(/obj/item/weapon/tank/emergency_oxygen, 1),
+		list(/obj/item/stack/cable_coil, 5),
+		list(/obj/item/device/assembly/igniter, 1)
+	)
+
+datum/craft_recipe/weapon/explosive_ptank
+	name = "plasma tank bomb"
+	result = /obj/item/weapon/grenade/explosive/ptank
+	steps = list(
+		list(/obj/item/weapon/tank/plasma, 1),
+		list(QUALITY_WELDING, 10, "time" = 30), //Touch hole
+		list(/obj/item/stack/cable_coil, 15),
+		list(/obj/item/device/assembly/igniter, 1)
+	)
