@@ -989,6 +989,7 @@
 #include "code\game\objects\items\weapons\circuitboards\computer\telecomms.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\autolathes_subtypes.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\bar.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\beechinery.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\biogenerator.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\chemistry.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\cloning.dm"

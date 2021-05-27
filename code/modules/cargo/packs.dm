@@ -1071,7 +1071,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Bee crate"
 	contains = list(/obj/item/bee_pack,
 					/obj/item/bee_smoker,
-					/obj/item/weapon/electronics/circuitboard/beextractor)
+					/obj/item/weapon/electronics/circuitboard/honey_extractor)
 	cost = 700
 	containertype = /obj/structure/closet/crate
 	crate_name = "Bee crate"
