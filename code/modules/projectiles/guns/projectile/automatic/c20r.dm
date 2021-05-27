@@ -54,3 +54,5 @@
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
+	damage_multiplier = 0.9	//Not quite as good as real syndi
+	penetration_multiplier = 1.2 //6 with lethal, 12 with HV

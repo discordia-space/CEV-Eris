@@ -77,6 +77,15 @@
 
 	price_tag = 3500
 
+/obj/item/weapon/gun/projectile/automatic/ak47/sa/CtrlShiftClick()
+	. = ..()
+
+	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+		return
+
+	fold()
+
+
 /obj/item/weapon/gun/projectile/automatic/ak47/sa/verb/quick_fold()
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
@@ -99,6 +108,7 @@
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
 
+	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////FS//////////////////////////////////////////
@@ -141,6 +151,14 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
+/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick()
+	. = ..()
+
+	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+		return
+
+	fold()
+
 /obj/item/weapon/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
@@ -163,6 +181,7 @@
 		w_class = ITEM_SIZE_BULKY
 		folded = TRUE
 
+	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////Makeshift//////////////////////////////////////////
