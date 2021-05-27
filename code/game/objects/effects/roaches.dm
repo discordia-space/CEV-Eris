@@ -34,7 +34,7 @@
 
 /obj/item/roach/roach_egg
 	name = "roach egg"
-	desc = "A cockroach egg, can be eaten with proper preperation. It seems to pulse slightly with an inner life."
+	desc = "A cockroach egg, can be eaten with proper preparation. It seems to pulse slightly with an inner life."
 	icon_state = "roach_egg"
 	w_class = ITEM_SIZE_TINY
 	var/amount_grown = 0
