@@ -40,6 +40,6 @@
     item_state = "explosive_ptank"
     throw_speed = 2
     throw_range = 5
-    heavy_range = 1.5
-    weak_range = 4
+    heavy_range = 0.5
+    weak_range = 3
     variance = 0.8
