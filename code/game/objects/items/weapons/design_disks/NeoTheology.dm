@@ -273,7 +273,7 @@
 	spawn_blacklisted = FALSE
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
