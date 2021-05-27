@@ -194,8 +194,3 @@
 		return
 
 	..()
-
-/obj/item/weapon/reagent_containers/spray/chemsprayer
-	name = "chem sprayer"
-	desc = "A utility used to spray large amounts of reagent in a given area."
-	icon = 'icons/obj/weapons.dmi'

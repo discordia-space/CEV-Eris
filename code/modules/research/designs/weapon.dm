@@ -24,7 +24,7 @@
 
 /datum/design/research/item/weapon/c20r
 	name = "C20M-prototype"
-	desc = "The C-20M is a lightweight and rapid-firing SMG. Uses .35rin rounds."
+	desc = "The C-20M is a lightweight and rapid-firing SMG. Uses .35 auto rounds."
 	build_path = /obj/item/weapon/gun/projectile/automatic/c20r/moebius
 	sort_string = "TAAAF"
 
