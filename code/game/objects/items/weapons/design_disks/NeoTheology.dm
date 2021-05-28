@@ -122,16 +122,11 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/crusader
-	disk_name = "NeoTheology Armory - Crusader Armor"
+	disk_name = "NeoTheology Armory - Neotheology Armor and Voidsuits"
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/autolathe/nt/helmet/crusader,
-		/datum/design/autolathe/nt/armor/crusader
-	)
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/void
-	disk_name = "NeoTheology Armory - Neotheology Voidsuit"
-	icon_state = "neotheology"
-	designs = list(
+		/datum/design/autolathe/nt/armor/crusader,
 		/datum/design/autolathe/clothing/NTvoid
 	)
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/excruciator
@@ -159,43 +154,16 @@
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/longsword
-	disk_name = "NeoTheology Armory - NT Longsword"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/advancedmelee
+	disk_name = "NeoTheology Armory - Advanced Melee Weapons"
 	icon_state = "neotheology"
 	designs = list(
+		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/nt/tool_upgrade/sanctifier,
 		/datum/design/autolathe/nt/sword/nt_longsword,
-		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/nt/tool_upgrade/sanctifier
-	)
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/scourge
-	disk_name = "NeoTheology Armory - NT Scourge"
-	icon_state = "neotheology"
-	designs = list(
 		/datum/design/autolathe/nt/sword/nt_scourge,
-		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/nt/tool_upgrade/sanctifier
-	)
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/halberd
-	disk_name = "NeoTheology Armory - NT Halberd"
-	icon_state = "neotheology"
-	designs = list(
 		/datum/design/autolathe/nt/sword/nt_halberd,
-		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/nt/tool_upgrade/sanctifier
-	)
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/shield
-	disk_name = "NeoTheology Armory - NT Shield"
-	icon_state = "neotheology"
-	spawn_blacklisted = TRUE
-	designs = list(
-		/datum/design/autolathe/nt/sword/nt_sword,
-		/datum/design/autolathe/nt/sword/nt_dagger,
-		/datum/design/autolathe/nt/shield/nt_shield,
-		/datum/design/bioprinter/storage/sheath,
-		/datum/design/autolathe/nt/tool_upgrade/sanctifier
+		/datum/design/autolathe/nt/shield/nt_shield
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/firstaid
@@ -205,12 +173,13 @@
 		/datum/design/autolathe/firstaid/nt
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/guns/nt_dominion
 	disk_name = "NeoTheology Armory - Dominion Plasma Rifle"
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
+	spawn_blacklisted = FALSE
 	designs = list(
 		/datum/design/autolathe/gun/plasma/dominion = 3, //"NT PR \"Dominion\""
 		/datum/design/autolathe/cell/medium/high,
@@ -231,10 +200,17 @@
 	disk_name = "NeoTheology Armory - Grenades Pack"
 	icon_state = "neotheology"
 	designs = list(
-		/datum/design/autolathe/nt/grenade/nt_explosive,
 		/datum/design/autolathe/nt/grenade/nt_flashbang,
 		/datum/design/autolathe/nt/grenade/nt_frag,
 		/datum/design/autolathe/nt/grenade/nt_smokebomb
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/explosivegrenades
+	disk_name = "NeoTheology Armory - High Explosives Pack"
+	icon_state = "neotheology"
+	license = 2
+	designs = list(
+		/datum/design/autolathe/nt/grenade/nt_explosive
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis
@@ -288,15 +264,16 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt/nt_counselor
 	disk_name = "NeoTheology Armory - Councelor PDW E"
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 17
 	license = 12
+	spawn_blacklisted = FALSE
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
