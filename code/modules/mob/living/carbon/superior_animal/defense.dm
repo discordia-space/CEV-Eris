@@ -153,21 +153,27 @@
 			blinded = TRUE
 			stat = UNCONSCIOUS
 			if(halloss > 0)
-				adjustHalLoss(-3)
+				adjustHalLoss(-4)
 
 		if(sleeping)
-			adjustHalLoss(-3)
+			adjustHalLoss(-5)
+			if(BruteLoss > 50)
+				AdjustBruteLoss(-0.25)
+			if(FireLoss > 50)
+				AdjustFireLoss(-0.25)
+			if(ToxLoss > 50)
+				AdjustFireLoss(-0.25)
 			sleeping = max(sleeping-1, 0)
 			blinded = TRUE
 			stat = UNCONSCIOUS
 		else if(resting)
 			if(halloss > 0)
-				adjustHalLoss(-3)
+				adjustHalLoss(-4)
 
 		else
 			stat = CONSCIOUS
 			if(halloss > 0)
-				adjustHalLoss(-1)
+				adjustHalLoss(-2)
 
 		update_icons()
 
