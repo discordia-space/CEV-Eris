@@ -31,7 +31,7 @@
 	heavy_range = 1.5
 	weak_range = 5
 	matter = list(MATERIAL_BIOMATTER = 100)
-
+/*
 /obj/item/weapon/grenade/explosive/ptank 
     name = "plasma tank bomb"
     desc = "A large, dangerous bomb. A weapon for the brave, foolhardy, or desperate."
@@ -43,3 +43,4 @@
     heavy_range = 0.5
     weak_range = 3
     variance = 0.8
+*/

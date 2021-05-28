@@ -44,12 +44,22 @@
 	matter = list(MATERIAL_BIOMATTER = 75)
 	fragment_damage = 7
 	damage_step = 3
-
+/*
 /obj/item/weapon/grenade/frag/etank //basically a pressure bomb
 	name = "emergency tank grenade"
 	desc = "A grenade made out of an emergency tank. Why did you think this was a good idea?"
 	icon_state = "frag_etank"
 	item_state = "frggrenade_etank"
+	fragment_damage = 4
+	damage_step = 5
+	variance = 0.4
+*/
+
+/obj/item/weapon/grenade/frag/can
+	name = "soda can grenade"
+	desc = "A handful of bullets crushed and put in a can with a fuse. You sure you want to do this?"
+	icon_state = "frag_can"
+	item_state = "frggrenade_can"
 	fragment_damage = 4
 	damage_step = 5
 	variance = 0.4
