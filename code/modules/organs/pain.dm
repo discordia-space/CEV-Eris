@@ -60,7 +60,7 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(species.flags & NO_PAIN)
 		return
 
-	if(analgesic >= 100)
+	if(analgesic >= 75)
 		return
 	else if(analgesic >= 40)
 		flash_strength -= 1
@@ -84,7 +84,7 @@ mob/living/carbon/human/proc/handle_pain()
 
 	if(stat >= DEAD)
 		return
-	if(analgesic > 50)
+	if(analgesic >= 50)
 		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
