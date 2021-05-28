@@ -1,13 +1,13 @@
 //generic procs copied from obj/effect/alien
-/obj/effect/roach
+/obj/item/roach
 	name = "roach effect"
 	desc = "A cockroach effect."
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	density = FALSE
-	var/health = 5
+	health = 5
 
-/obj/effect/roach/attackby(var/obj/item/I, var/mob/user)
+/obj/item/roach/attackby(var/obj/item/I, var/mob/user)
 	if(I.attack_verb.len)
 		visible_message(SPAN_WARNING("\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]"))
 	else
@@ -16,36 +16,37 @@
 	health -= (I.force / 2)
 	healthcheck()
 
-/obj/effect/roach/bullet_act(var/obj/item/projectile/Proj)
+/obj/item/roach/bullet_act(var/obj/item/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()
 
-/obj/effect/roach/proc/healthcheck()
+/obj/item/roach/proc/healthcheck()
 	if(health <= 0)
 		visible_message(SPAN_WARNING("[src] is squished!"))
 		new /obj/effect/decal/cleanable/roach_egg_remains(loc)
 		qdel(src)
 
-/obj/effect/roach/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/roach/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300 + T0C)
 		health -= 5
 		healthcheck()
 
-/obj/effect/roach/roach_egg
+/obj/item/roach/roach_egg
 	name = "roach egg"
-	desc = "A cockroach egg. It seems to pulse slightly with an inner life."
+	desc = "A cockroach egg, can be eaten with proper preparation. It seems to pulse slightly with an inner life."
 	icon_state = "roach_egg"
+	w_class = ITEM_SIZE_TINY
 	var/amount_grown = 0
 
-/obj/effect/roach/roach_egg/New(var/location, var/atom/parent)
+/obj/item/roach/roach_egg/New(var/location, var/atom/parent)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
 	get_light_and_color(parent)
 	..()
 
-/obj/effect/roach/roach_egg/Destroy()
+/obj/item/roach/roach_egg/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(istype(loc, /obj/item/organ/external)) // In case the egg is still inside an organ
 		var/obj/item/organ/external/O = loc
@@ -53,7 +54,7 @@
 
 	. = ..()
 
-/obj/effect/roach/roach_egg/Process()
+/obj/item/roach/roach_egg/Process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		var/obj/item/organ/external/O
