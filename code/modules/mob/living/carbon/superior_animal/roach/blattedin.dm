@@ -15,11 +15,19 @@
 /datum/reagent/toxin/blattedin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(istype(M, /mob/living/carbon/superior_animal/roach))
 		var/mob/living/carbon/superior_animal/roach/bug = M
+		bug.heal_organ_damage(heal_strength*removed)
+	else
+		. = ..()
+
+/datum/reagent/toxin/blattedin/on_mob_add(mob/living/L)
+	..()
+	if(istype(L, /mob/living/carbon/superior_animal/roach))
+		var/mob/living/carbon/superior_animal/roach/bug = L
 		if(bug.stat == DEAD)
 			if((bug.blattedin_revives_left >= 0) && prob(70))//Roaches sometimes can come back to life from healing vapors
-				bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
-				bug.rejuvenate()
-		else
-			bug.heal_organ_damage(heal_strength*removed)
-	else
-		.=..()
+				bug.visible_message("<b>\The [bug.name]</b> twitches as it comes back to life!")
+				blattedin_revive(bug)
+
+/datum/reagent/toxin/blattedin/proc/blattedin_revive(var/mob/living/carbon/superior_animal/roach/bug)
+	bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
+	bug.rejuvenate()
