@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: acolytes can build through rituals.
+  - bugfix: acolytes may perform the epiphany ritual.
