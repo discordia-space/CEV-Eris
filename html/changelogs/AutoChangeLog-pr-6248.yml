@@ -1,0 +1,6 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: When the hive is destroyed all the machinery is destroyed aswell, what
+      about the little guys? A group of hive mobs have been left behind deep within
+      the ship.
