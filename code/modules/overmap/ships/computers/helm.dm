@@ -19,6 +19,9 @@
 	get_known_sectors()
 	new /obj/effect/overmap_event/movable/comet()
 
+	if (isnull(linked))
+		error("There are no map_sectors on [src]'s z.")
+		return
 	linked.check_link()
 
 /obj/machinery/computer/helm/proc/get_known_sectors()
