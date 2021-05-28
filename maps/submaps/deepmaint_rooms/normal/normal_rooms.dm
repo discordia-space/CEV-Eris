@@ -77,3 +77,8 @@
 	name = "sm_core"
 	desc = "sm_core"
 	mappath = 'maps/submaps/deepmaint_rooms/normal/sm_core.dmm'
+
+/datum/map_template/deepmaint_template/room/hive_nest
+	name = "hive_nest"
+	desc = "When a hive dies the machine die with it, but what about the little guys?"
+	mappath = 'maps/submaps/deepmaint_rooms/normal/hive_nest.dmm'
