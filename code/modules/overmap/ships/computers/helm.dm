@@ -20,7 +20,7 @@
 	new /obj/effect/overmap_event/movable/comet()
 
 	if (isnull(linked))
-		world.log << "There are no map_sectors on [src]'s z."
+		error("There are no map_sectors on [src]'s z.")
 		return
 	linked.check_link()
 
