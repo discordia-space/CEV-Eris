@@ -318,3 +318,50 @@
 	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
 
+/obj/item/weapon/storage/deferred/crate/clown_crime
+	name = "mastermind suit bag"
+	desc = "A duffelbag filled with clothing and... a second duffelbag?."
+	icon = 'icons/obj/storage/backpack.dmi'
+	icon_state = "lootbag"
+	spawn_blacklisted = TRUE
+	initial_contents = list(
+	/obj/item/clothing/mask/thief = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/wolf
+	name = "technician suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/wolf = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton	//whatcocksuckingmotherfuckermeasuredthec4 https://www.youtube.com/watch?v=Hmp1da7pXTw&t=160s
+	name = "fugitive suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/hoxton = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/chains
+	name = "enforcer suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/chains = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)

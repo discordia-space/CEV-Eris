@@ -1528,13 +1528,10 @@
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
 					/obj/item/weapon/gun/projectile/automatic/molly = 4,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4,
-					/obj/item/clothing/mask/thief = 2,
-					/obj/item/clothing/mask/thief/wolf = 2,
-					/obj/item/clothing/mask/thief/hoxton = 2,
-					/obj/item/clothing/mask/thief/chains = 2,
-					/obj/item/clothing/under/tuxedo = 8,
-					/obj/item/weapon/storage/backpack/duffelbag/loot = 8,
-					/obj/item/clothing/gloves/latex/nitrile = 8
+					/obj/item/weapon/storage/deferred/crate/clown_crime = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 2
 					)
 	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
 	prices = list(
@@ -1554,13 +1551,10 @@
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
 					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200,
-					/obj/item/clothing/mask/thief = 150,
-					/obj/item/clothing/mask/thief/wolf = 150,
-					/obj/item/clothing/mask/thief/hoxton = 150,
-					/obj/item/clothing/mask/thief/chains = 150,
-					/obj/item/clothing/under/tuxedo = 300,
-					/obj/item/weapon/storage/backpack/duffelbag/loot = 200,
-					/obj/item/clothing/gloves/latex/nitrile = 50
+					/obj/item/weapon/storage/deferred/crate/clown_crime = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 1800
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_CIVILIAN
