@@ -107,13 +107,14 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
-	slot_flags = SLOT_BELT|SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_BACK
 
 /obj/item/weapon/tool/hammer/mace/makeshift/baseballbat/bone
 	name = "bone club"
 	desc = "Seems like someone gave up an arm and a leg for this thing. And a head."
 	icon_state = "bonemace"
 	item_state = "bonemace"
+	slot_flags = SLOT_BELT
 	degradation = 1.5 //Something something bones are hard.
 	spawn_blacklisted = TRUE
 
