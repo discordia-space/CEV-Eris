@@ -1,0 +1,11 @@
+author: Sparrowbird611
+delete-after: true
+changes:
+  - rscadd: added the dominion and counselor to the EOTP spawn pool.
+  - tweak: The explosive disk was removed from the NT grenade pack. It was moved into
+      its own grenade pack, with a limit of two grenades.
+  - tweak: tweaked the EOTP disks. The crusader and voidsuit disk were merged together
+      into the armor and voidsuit disk, and all melee disks and the shield disk from
+      the EOTP were merged into the advanced melee disk.
+  - balance: nerfed the crusader armor's melee and bomb armor slightly, decreased
+      its slowdown, and nerfed NT shield slightly.
