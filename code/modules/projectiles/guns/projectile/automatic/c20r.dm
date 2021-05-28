@@ -46,3 +46,13 @@
 /obj/item/weapon/gun/projectile/automatic/c20r/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/weapon/gun/projectile/automatic/c20r/moebius
+	name = "C-20M"
+	desc = "The C-20M is a Moebius copy of the famous C-20r, a lightweight and robust bullpup SMG of ancient design. \
+			Famous as most used SMG by criminal organizations of various sorts. Uses .35 Auto rounds."
+	icon = 'icons/obj/guns/projectile/c20m.dmi'
+	icon_state = "c20r"
+	item_state = "c20r"
+	damage_multiplier = 0.9	//Not quite as good as real syndi
+	penetration_multiplier = 1.2 //6 with lethal, 12 with HV
