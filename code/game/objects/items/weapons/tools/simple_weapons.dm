@@ -147,6 +147,18 @@
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
+/obj/item/weapon/tool/sword/improvised
+	name = "junkblade"
+	desc = "Hack and slash!"
+	icon_state = "msword"
+	item_state = "msword"
+	armor_penetration = ARMOR_PEN_MODERATE
+	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
+	degradation = 1.5 //not quite as sturdy as a normal weapon
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 60
+	spawn_tags = SPAWN_TAG_JUNKTOOL
+
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"
 	desc = "Modern japanese-style blade that has no curve to it. This one looks pretty sharp."
