@@ -1,0 +1,7 @@
+author: Shazbot194
+delete-after: true
+changes:
+  - tweak: New Moebius R&D pallate.
+  - rscdel: Removed Wasp and Brushmaster
+  - tweak: All AKs have had their sprites updated
+  - tweak: Ctrl+Shft+click now folds AK stocks.
