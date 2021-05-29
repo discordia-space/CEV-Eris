@@ -1,7 +1,0 @@
-author: NotRosalimofromEris
-delete-after: true
-changes:
-  - balance: Bees when pollinizing now also affects plants making these have better
-      yield overtime.
-  - imageadd: new sprites for beekeeping structures.
-  - imagedel: deleted old beekeping sprites.

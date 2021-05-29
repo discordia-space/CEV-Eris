@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: offering rituals now increase the energy of the EOTP
-  - tweak: increases the energy cost of offering rituals
-  - tweak: reduces the energy regeneration of the preachers.
-  - tweak: the divine blessing ritual now costs energy.

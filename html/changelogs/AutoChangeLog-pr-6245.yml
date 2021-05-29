@@ -1,5 +1,0 @@
-author: Hatterhat
-delete-after: true
-changes:
-  - bugfix: Roaches now actually have their 70% chance to revive if they have blattedin
-      injected into their corpses.
