@@ -161,8 +161,8 @@
 				adjustBruteLoss(-0.25)
 			if(toxloss > 0)
 				adjustToxLoss(-0.25)
-			if(burnloss > 0)
-				adjustBurnLoss(-0.25)	
+			if(fireloss > 0)
+				adjustFireLoss(-0.25)	
 			sleeping = max(sleeping-1, 0)
 			blinded = TRUE
 			stat = UNCONSCIOUS
