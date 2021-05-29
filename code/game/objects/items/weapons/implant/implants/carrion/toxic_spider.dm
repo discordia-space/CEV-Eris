@@ -22,10 +22,10 @@
 
 /obj/item/weapon/implant/carrion_spider/toxicbomb/proc/prime()
 	var/location = get_turf(src)
-	gas_storage = new /datum/reagents(100, src)
-	gas_storage.add_reagent("lexorin", 100)
+	gas_storage = new /datum/reagents(50, src)
+	gas_storage.add_reagent("lexorin", 50)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new
 	S.attach(location)
-	S.set_up(gas_storage, 10, 100, location)
+	S.set_up(gas_storage, 10, 50, location)
 	S.start()
 	die()
