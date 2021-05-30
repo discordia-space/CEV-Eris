@@ -135,7 +135,7 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/wintermute
 
 /datum/design/autolathe/gun/kovacs
-	name = "SA BR \"Kovacs\""
+	name = "SA BR .20 \"Kovacs\""
 	build_path = /obj/item/weapon/gun/projectile/kovacs
 
 
