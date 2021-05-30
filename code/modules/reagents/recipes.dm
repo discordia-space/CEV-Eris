@@ -144,7 +144,7 @@
 	for(var/reagent in required_reagents)
 		. += reagent
 
-/datum/chemical_reaction/proc/process(datum/reagents/holder)
+/datum/chemical_reaction/process(dt, datum/reagents/holder)
 	//determine how far the reaction can proceed
 	var/list/reaction_limits = list()
 	for(var/reactant in required_reagents)
