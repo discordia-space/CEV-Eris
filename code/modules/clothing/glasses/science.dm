@@ -1,6 +1,7 @@
 /obj/item/clothing/glasses/powered/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
+	off_state = "purple"
 	icon_state = "purple"
 	item_state = "glasses"
 
