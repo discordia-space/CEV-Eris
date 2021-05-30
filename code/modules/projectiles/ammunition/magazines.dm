@@ -501,6 +501,7 @@
 	multiple_sprites = 1
 	max_ammo = 4
 	rarity_value = 100
+	spawn_blacklisted = TRUE
 
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = 0
