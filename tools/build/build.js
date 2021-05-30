@@ -49,7 +49,7 @@ if (process.env.CBT_BUILD_MODE) {
 }
 console.log(`Starting CBT in ${BUILD_MODE} mode.`)
 
-const DME_NAME = 'tgstation'
+const DME_NAME = 'cev_eris'
 
 // Main
 // --------------------------------------------------------
