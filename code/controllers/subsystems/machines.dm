@@ -5,7 +5,7 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
-	priority = SS_PRIORITY_MACHINERY
+	priority = FIRE_PRIORITY_MACHINERY
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
@@ -75,7 +75,7 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 	set background=1
 
 	if(!Master.current_runlevel)//So it only does it at roundstart
-		report_progress("Initializing atmos machinery")
+		to_chat(admins, "<span class='boldannounce'>Initializing atmos machinery</span>")
 	for(var/obj/machinery/atmospherics/A in machines)
 		A.atmos_init()
 		CHECK_TICK
@@ -89,7 +89,7 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 			T.broadcast_status()
 		CHECK_TICK
 	if(!Master.current_runlevel)//So it only does it at roundstart
-		report_progress("Initializing pipe networks")
+		to_chat(admins, "<span class='boldannounce'>Initializing pipe networks</span>")
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 		CHECK_TICK

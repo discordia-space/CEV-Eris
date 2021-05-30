@@ -408,10 +408,30 @@
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
 		if (registered_z)
-			SSmobs.mob_living_by_zlevel[registered_z] -= src
-		if (new_z)
-			SSmobs.mob_living_by_zlevel[new_z] += src
-		registered_z = new_z
+			SSmobs.clients_by_zlevel[registered_z] -= src
+		if (client)
+			if (new_z)
+				//Figure out how many clients were here before
+				// var/oldlen = SSmobs.clients_by_zlevel[new_z].len
+				SSmobs.clients_by_zlevel[new_z] += src
+				// for (var/I in length(SSidlenpcpool.idle_mobs_by_zlevel[new_z]) to 1 step -1) //Backwards loop because we're removing (guarantees optimal rather than worst-case performance), it's fine to use .len here but doesn't compile on 511
+				// 	var/mob/living/simple_animal/SA = SSidlenpcpool.idle_mobs_by_zlevel[new_z][I]
+				// 	if (SA)
+				// 		if(oldlen == 0)
+				// 			//Start AI idle if nobody else was on this z level before (mobs will switch off when this is the case)
+				// 			SA.toggle_ai(AI_IDLE)
+
+				// 		//If they are also within a close distance ask the AI if it wants to wake up
+				// 		if(get_dist(get_turf(src), get_turf(SA)) < MAX_SIMPLEMOB_WAKEUP_RANGE)
+				// 			SA.consider_wakeup() // Ask the mob if it wants to turn on it's AI
+				// 	//They should clean up in destroy, but often don't so we get them here
+				// 	else
+				// 		SSidlenpcpool.idle_mobs_by_zlevel[new_z] -= SA
+
+
+			registered_z = new_z
+		else
+			registered_z = null
 
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()

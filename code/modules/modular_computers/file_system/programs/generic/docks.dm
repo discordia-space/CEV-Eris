@@ -41,7 +41,7 @@
 				continue
 			docking_controllers += D.docking_program.id_tag
 
-/datum/nano_module/docking/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
+/datum/nano_module/docking/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/list/docks = list()
 	for(var/docktag in docking_controllers)

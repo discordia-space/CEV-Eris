@@ -496,8 +496,12 @@ ADMIN_VERB_ADD(/client/proc/view_runtimes, R_DEBUG, FALSE)
 /client/proc/view_runtimes()
 	set category = "Debug"
 	set name = "View Runtimes"
-	set desc = "Open the Runtime Viewer"
-	error_cache.showTo(usr)
+	set desc = "Open the runtime Viewer"
+
+	if(!holder)
+		return
+
+	GLOB.error_cache.show_to(src)
 
 
 ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)

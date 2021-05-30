@@ -6,7 +6,7 @@ var/list/admin_datums = list()
 	var/rights = 0
 	var/fakekey			= null
 
-	var/weakref/marked_datum_weak
+	var/datum/marked_datum
 
 	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
@@ -14,8 +14,8 @@ var/list/admin_datums = list()
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
 /datum/admins/proc/marked_datum()
-	if(marked_datum_weak)
-		return marked_datum_weak.resolve()
+	if(marked_datum)
+		return marked_datum
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
@@ -59,7 +59,7 @@ proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
 	to_chat(world, "you have enough rights!")
 
-NOTE: It checks usr by default. Supply the "Ñ" argument if you wish to check for a specific client/mob.
+NOTE: It checks usr by default. Supply the "ï¿½" argument if you wish to check for a specific client/mob.
 */
 /proc/check_rights(rights_required, show_msg=1, client/C = usr)
 	if(ismob(C))

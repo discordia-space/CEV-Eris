@@ -3,6 +3,12 @@
 	////////////
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
 
+GLOBAL_LIST_INIT(blacklisted_builds, list(
+	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
+	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
+	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
+	))
+
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -23,10 +29,37 @@
 		return
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if( findtext(href,"<script",1,0) ) // ?? what the fuck
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
-		//del(usr)
+		return
+
+	// asset_cache
+	var/asset_cache_job
+	if(href_list["asset_cache_confirm_arrival"])
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
+
+	// RATELIMIT HERE
+
+	// Tgui Topic middleware
+	if(tgui_Topic(href_list))
+		return
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
+	if(href_list["reload_statbrowser"])
+		src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	// Log all hrefs
+	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
 	//Admin PM
@@ -48,22 +81,24 @@
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
 
-
-
-	//Logs all hrefs
-	if(config && config.log_hrefs && href_logfile)
-		to_chat(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
-
 	switch(href_list["_src_"])
-		if("holder")	hsrc = holder
-		if("usr")		hsrc = mob
-		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
-		if("chat")		return chatOutput.Topic(href, href_list)
+		if("holder")
+			hsrc = holder
+		if("usr")
+			hsrc = mob
+		if("prefs")
+			return prefs.process_link(usr,href_list)
+		if("vars")
+			return view_var_Topic(href,href_list,hsrc)
 
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+
+	if (hsrc)
+		var/datum/real_src = hsrc
+		if(QDELETED(real_src))
+			return
 
 	..()	//redirect to hsrc.Topic()
 
@@ -101,25 +136,70 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
-	dir = NORTH
-	chatOutput = new /datum/chatOutput(src)
+	// var/tdata = TopicData //save this for later use
 	TopicData = null							//Prevent calls to client.Topic from connect
 
-	if(!(connection in list("seeker", "web")))					//Invalid connection type.
+	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
-	#if DM_VERSION >= 512
-	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
-		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
-		del(src)
-		return
+	clients += src
+	directory[ckey] = src
 
-	if("[byond_version].[byond_build]" in config.forbidden_versions)
-		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
-		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
-		del(src)
-		return
-	#endif
+	// Instantiate tgui panel
+	tgui_panel = new(src)
+
+	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
+	//Admin Authorisation
+	holder = admin_datums[ckey]
+	if(holder)
+		admins |= src
+		holder.owner = src
+		connecting_admin = TRUE
+
+	if(!connecting_admin)
+		var/localhost_addresses = list("127.0.0.1", "::1")
+		if(isnull(address) || (address in localhost_addresses))
+			holder = new /datum/admins("!localhost!", R_HOST, ckey)
+			holder.associate(src)
+
+	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
+	prefs = SScharacter_setup.preferences_datums[ckey]
+	if(!prefs)
+		prefs = new /datum/preferences(src)
+		SScharacter_setup.preferences_datums[ckey] = prefs
+	prefs.last_ip = address //these are gonna be used for banning
+	prefs.last_id = computer_id //these are gonna be used for banning
+	// fps = (prefs.clientfps < 0) ? RECOMMENDED_FPS : prefs.clientfps
+
+	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
+	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
+
+
+	. = ..()	//calls mob.Login()
+	if (byond_version >= 512)
+		if (!byond_build || byond_build < 1386)
+			message_admins("<span class='adminnotice'>[key_name(src)] has been detected as spoofing their byond version. Connection rejected.</span>")
+			// add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
+			log_access("Failed Login: [key] - Spoofed byond version")
+			qdel(src)
+
+		if (num2text(byond_build) in GLOB.blacklisted_builds)
+			log_access("Failed login: [key] - blacklisted byond version")
+			to_chat(src, "<span class='userdanger'>Your version of byond is blacklisted.</span>")
+			to_chat(src, "<span class='danger'>Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].</span>")
+			to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+			if(connecting_admin)
+				to_chat(src, "As an admin, you are being allowed to continue using this version, but please consider changing byond versions")
+			else
+				qdel(src)
+				return
+
+	// Initialize tgui panel
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+	tgui_panel.initialize()
+
+	winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
@@ -134,32 +214,8 @@
 	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
 
 
-	clients += src
-	directory[ckey] = src
-
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
-		admins += src
-		holder.owner = src
-
-	// Localhost connections get full admin rights and a special rank
-	else if(isnull(address) || (address in list("127.0.0.1", "::1")))
-		holder = new /datum/admins("!localhost!", R_HOST, ckey)
-		holder.associate(src)
 
 
-	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = SScharacter_setup.preferences_datums[ckey]
-	if(!prefs)
-		prefs = new /datum/preferences(src)
-		SScharacter_setup.preferences_datums[ckey] = prefs
-	prefs.last_ip = address				//these are gonna be used for banning
-	prefs.last_id = computer_id			//these are gonna be used for banning
-
-	. = ..()	//calls mob.Login()
-
-	chatOutput.start() // Starts the chat
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -167,28 +223,35 @@
 		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
+	if( (world.address == address || !address) && !GLOB.host || !host )
+		GLOB.host = key
+		host = key
+		world.update_status()
 
 	if(holder)
 		add_admin_verbs()
 		admin_memo_show()
 
-	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
-	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
-	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
-		if(src)
-			winset(src, null, "command=\".configure graphics-hwmode off\"")
-			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
-			winset(src, null, "command=\".configure graphics-hwmode on\"")
 
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+
+	// check_ip_intel()
+	// validate_key_in_db()
 	log_client_to_db()
 
 	send_resources()
 
+	// generate_clickcatcher()
+	// apply_clickcatcher()
+
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
-		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
-			src.changes()
+			changelog()
+		else
+			winset(src, "infowindow.changelog", "font-style=bold")
 
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -342,7 +405,6 @@
 				src.id = query.item[1]
 				src.registration_date = query.item[2]
 				src.first_seen = query.item[3]
-				src.VPN_whitelist = query.item[4]
 				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
@@ -360,9 +422,6 @@
 			return 0
 		query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE id = '[src.id]'")
 		query.Execute()
-		if(query.NextRow())
-			related_ip = splittext(query.item[1], ",")
-			related_cid = splittext(query.item[2], ",")
 		query = dbcon.NewQuery("SELECT id, ip, cid FROM players WHERE (ip = '[address]' OR cid = '[computer_id]') AND id <> '[src.id]'")
 		query.Execute()
 		var/changed = 0
@@ -372,13 +431,8 @@
 			var/temp_cid = query.item[3]
 			if(temp_ip == address)
 				changed = 1
-				related_ip |= temp_id
 			if(temp_cid == computer_id)
 				changed = 1
-				related_cid |= temp_id
-		if(changed)
-			query = dbcon.NewQuery("UPDATE players SET cid_related_ids = '[jointext(related_cid, ",")]', ip_related_ids = '[jointext(related_ip, ",")]' WHERE id = '[src.id]'")
-			query.Execute()
 
 
 	src.get_byond_age() // Get days since byond join
@@ -390,8 +444,6 @@
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(holder)
 			log_admin("Skipping IP reputation check on [key] with [address] because they have a staff rank")
-		else if(VPN_whitelist)
-			log_admin("Skipping IP reputation check on [key] with [address] because they have a VPN whitelist")
 		else if(update_ip_reputation()) //It is set now
 			if(ip_reputation >= config.ipr_bad_score) //It's bad
 
@@ -436,29 +488,15 @@
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/talisman.png'
-		)
-
 	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		var/list/priority_assets = list()
-		var/list/other_assets = list()
+		if (CONFIG_GET(flag/asset_simple_preload))
+			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
-		for(var/asset_type in asset_datums)
-			var/datum/asset/D = asset_datums[asset_type]
-			if(D.isTrivial)
-				other_assets += D
-			else
-				priority_assets += D
-
-		for(var/datum/asset/D in (priority_assets + other_assets))
-			D.send_slow(src)
 
 		send_all_cursor_icons(src)
 
@@ -631,3 +669,8 @@
 
 /client/proc/colour_transition(list/colour_to = null, time = 10) //Call this with no parameters to reset to default.
 	animate(src, color = colour_to, time = time, easing = SINE_EASING)
+
+/client/proc/check_panel_loaded()
+	if(statbrowser_ready)
+		return
+	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")

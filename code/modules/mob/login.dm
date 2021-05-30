@@ -3,7 +3,6 @@
 	//Multikey checks and logging
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
-	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
 	if(config.log_access)
 		var/is_multikeying = 0
 		for(var/mob/M in GLOB.player_list)
@@ -29,8 +28,11 @@
 				to_chat(src, "<b>WARNING:</b> It would seem that you are sharing connection or computer with another player. If you haven't done so already, please contact the staff via the Adminhelp verb to resolve this situation. Failure to do so may result in administrative action. You have been warned.")
 
 /mob/Login()
+	if(!client)
+		return FALSE
 	GLOB.player_list |= src
 	update_Login_details()
+	log_access("Mob Login: [key_name(src)] was assigned to a [type]")
 	world.update_status()
 
 	client.images = null				//remove the images such as AIs being unable to see runes

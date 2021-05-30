@@ -1,15 +1,40 @@
-/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	STOP_PROCESSING(SSmobs, src)
+/**
+ * Delete a mob
+ *
+ * Removes mob from the following global lists
+ * * GLOB.mob_list
+ * * GLOB.dead_mob_list
+ * * GLOB.alive_mob_list
+ * * GLOB.all_clockwork_mobs
+ * * GLOB.mob_directory
+ *
+ * Unsets the focus var
+ *
+ * Clears alerts for this mob
+ *
+ * Resets all the observers perspectives to the tile this mob is on
+ *
+ * qdels any client colours in place on this mob
+ *
+ * Ghostizes the client attached to this mob
+ *
+ * Parent call
+ */
+/mob/Destroy()
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.mob_list -= src
 	unset_machine()
-	qdel(hud_used)
+	// focus = null
+	if(length(progressbars))
+		stack_trace("[src] destroyed with elements in its progressbars list")
+		progressbars = null
 	if(client)
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
 
+	qdel(hud_used)
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
@@ -26,13 +51,31 @@
 /mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 	return
 
+/**
+ * Intialize a mob
+ *
+ * Sends global signal COMSIG_GLOB_MOB_CREATED
+ *
+ * Adds to global lists
+ * * GLOB.mob_list
+ * * GLOB.mob_directory (by tag)
+ * * GLOB.dead_mob_list - if mob is dead
+ * * GLOB.alive_mob_list - if the mob is alive
+ *
+ * Other stuff:
+ * * Sets the mob focus to itself
+ * * Generates huds
+ * * If there are any global alternate apperances apply them to this mob
+ * * set a random nutrition level
+ * * Intialize the movespeed of the mob
+ */
 /mob/Initialize()
-	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
 	GLOB.mob_list += src
+	// set_focus(src)
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
 
@@ -375,34 +418,17 @@
 
 
 
-/client/verb/changes()
+/client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
-	getFiles(
-		'html/88x31.png',
-		'html/bug-minus.png',
-		'html/cross-circle.png',
-		'html/hard-hat-exclamation.png',
-		'html/image-minus.png',
-		'html/image-plus.png',
-		'html/map-pencil.png',
-		'html/music-minus.png',
-		'html/music-plus.png',
-		'html/tick-circle.png',
-		'html/wrench-screwdriver.png',
-		'html/spell-check.png',
-		'html/burn-exclamation.png',
-		'html/chevron.png',
-		'html/chevron-expand.png',
-		'html/changelog.css',
-		'html/changelog.js',
-		'html/changelog.html'
-		)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.ui_interact(mob)
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+		winset(src, "infowindow.changelog", "font-style=;")
 
 /mob/verb/observe()
 	set name = "Observe"
@@ -1115,10 +1141,8 @@ mob/proc/yank_out_object()
 	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
 		for(var/perk in stats.perks)
 			var/datum/perk/P = perk
-			var/filename = sanitizeFileName("[P.type].png")
-			var/asset = asset_cache.cache[filename] // this is definitely a hack, but getAtomCacheFilename accepts only atoms for no fucking reason whatsoever.
-			if(asset)
-				Plist += "<td valign='middle'><img src=[filename]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
+			var/filename = sanitize_filename("[P.type].png")
+			Plist += "<td valign='middle'><img src=[SSassets.transport.get_asset_url(filename)]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
 	data += {"
 		<table width=80%>
 			<th colspan=2>Perks</th>

@@ -220,29 +220,34 @@
 
 	update_gen++
 
+// This is the define used to calculate falloff.
+
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
-
-	for (var/A in affecting_turfs)
-		var/turf/T = A
-		if (T.affecting_lights)
-			T.affecting_lights -= src
+	var/thing
+	for (thing in affecting_turfs)
+		var/turf/T = thing
+		T.affecting_lights -= src // todo: squeeze out more performance by using lazylist (it nulls it)
 
 	affecting_turfs.Cut()
 
-	for(var/A in effect_str)
-		var/datum/lighting_corner/C = A
+	var/datum/lighting_corner/C
+	for (thing in effect_str)
+		C = thing
 		REMOVE_CORNER(C)
 
 		C.affecting -= src
 
 	effect_str.Cut()
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/C)
-	if(effect_str.Find(C)) // Already have one.
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/C)
+	LAZYINITLIST(effect_str)
+	if (effect_str[C]) // Already have one.
 		REMOVE_CORNER(C)
+		effect_str[C] = 0
 
 	APPLY_CORNER(C)
+	// UNSETEMPTY(effect_str)
 
 /datum/light_source/proc/smart_vis_update()
 	var/list/datum/lighting_corner/corners = list()

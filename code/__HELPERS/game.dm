@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /proc/dopage(src, target)
 	var/href_list
 	var/href
@@ -24,16 +22,9 @@
 	if (isarea(A))
 		return A
 
-/proc/in_range(source, user)
-	if(get_dist(source, user) <= 1)
-		return TRUE
-
-	return FALSE //not in range and not telekinetic
-
 // Like view but bypasses luminosity check
 
 /proc/hear(range, atom/source)
-
 	var/lum = source.luminosity
 	source.luminosity = world.view
 	var/list/heard = view(range, source)
@@ -142,8 +133,7 @@
 
 
 /proc/get_mobs_and_objs_in_view_fast(turf/T, range, list/mobs, list/objs, checkghosts = GHOSTS_ALL_HEAR)
-	var/list/hear = list()
-	DVIEW(hear, range, T, INVISIBILITY_MAXIMUM)
+	var/list/hear = dview(range, T.loc, INVISIBILITY_MAXIMUM)
 	var/list/hearturfs = list()
 
 	for(var/am in hear)

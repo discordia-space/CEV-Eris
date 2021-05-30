@@ -1,4 +1,8 @@
 /client
+		//////////////////////
+		//BLACK MAGIC THINGS//
+		//////////////////////
+	parent_type = /datum
 		////////////////
 		//ADMIN THINGS//
 		////////////////
@@ -69,4 +73,16 @@
 	var/connection_realtime //world.realtime they connected
 	var/connection_timeofday //world.timeofday they connected
 
-	var/datum/chatOutput/chatOutput
+	/// our current tab
+	var/stat_tab
+
+	/// whether our browser is ready or not yet
+	var/statbrowser_ready = FALSE
+
+	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
+	var/list/sent_assets = list()
+	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
+	var/list/completed_asset_jobs = list()
+	/// Last asset send job id.
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0

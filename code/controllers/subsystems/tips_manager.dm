@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(rolesTips)
 GLOBAL_LIST_EMPTY(jobsTips)
 SUBSYSTEM_DEF(tips)
 	name = "Tips and Tricks"
-	priority = SS_PRIORITY_TIPS
+	priority = FIRE_PRIORITY_TIPS
 	wait = 60 MINUTES //Ticks once per 60 minute
 
 /client/verb/showRandomTip()

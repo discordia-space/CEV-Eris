@@ -148,7 +148,7 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 	..()
 
 /obj/proc/interact(mob/user)

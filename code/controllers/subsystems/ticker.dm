@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
 	init_order = INIT_ORDER_TICKER
-	priority = SS_PRIORITY_TICKER
+	priority = FIRE_PRIORITY_TICKER
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 	wait = 1 SECONDS //Tick every second
@@ -28,6 +28,9 @@ SUBSYSTEM_DEF(ticker)
 
 	var/pregame_timeleft = 180
 	var/last_player_left_timestamp = 0
+
+	var/list/round_start_events
+	var/list/round_end_events
 
 	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
 
@@ -57,6 +60,11 @@ SUBSYSTEM_DEF(ticker)
 	setup_objects()
 	setup_genetics()
 	setup_huds()
+
+	for(var/I in round_start_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(round_start_events)
 
 	return ..()
 
@@ -88,7 +96,6 @@ SUBSYSTEM_DEF(ticker)
 			if(!start_immediately)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 			current_state = GAME_STATE_PREGAME
-			send_assets()
 
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
@@ -155,6 +162,20 @@ SUBSYSTEM_DEF(ticker)
 							to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 					else
 						to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
+
+//These callbacks will fire after roundstart key transfer
+/datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
+	if(!HasRoundStarted())
+		LAZYADD(round_start_events, cb)
+	else
+		cb.InvokeAsync()
+
+//These callbacks will fire before roundend report
+/datum/controller/subsystem/ticker/proc/OnRoundend(datum/callback/cb)
+	if(current_state >= GAME_STATE_FINISHED)
+		cb.InvokeAsync()
+	else
+		LAZYADD(round_end_events, cb)
 
 // This proc will scan for player and if the game is in progress and...
 // there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
@@ -521,3 +542,9 @@ SUBSYSTEM_DEF(ticker)
 	log_game("Antagonists at round end were...")
 	for(var/i in total_antagonists)
 		log_game("[i]s[total_antagonists[i]].")
+
+/datum/controller/subsystem/ticker/proc/HasRoundStarted()
+	return current_state >= GAME_STATE_PLAYING
+
+/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
+	return current_state == GAME_STATE_PLAYING

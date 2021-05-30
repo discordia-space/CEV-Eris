@@ -427,3 +427,7 @@ Proc for attack log creation, because really why not
 	var/obj/item/organ/internal/eyes/eyes = random_organ_by_process(OP_EYES)
 	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
 		return eyes.get_colourmatrix()
+
+/// Gets the client of the mob, allowing for mocking of the client.
+/// You only need to use this if you know you're going to be mocking clients somewhere else.
+#define GET_CLIENT(mob) (##mob.client) // || ##mob.mock_client)

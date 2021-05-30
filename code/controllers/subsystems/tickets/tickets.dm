@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(tickets)
 	name = "Admin Tickets"
 	init_order = INIT_ORDER_TICKETS
 	wait = 300
-	priority = SS_PRIORITY_TICKETS
+	priority = FIRE_PRIORITY_TICKETS
 	flags = SS_BACKGROUND
 
 	var/span_class = "adminticket"

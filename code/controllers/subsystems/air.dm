@@ -63,7 +63,7 @@ Class Procs:
 
 SUBSYSTEM_DEF(air)
 	name = "Air"
-	priority = SS_PRIORITY_AIR
+	priority = FIRE_PRIORITY_AIR
 	init_order = INIT_ORDER_AIR
 	flags = SS_POST_FIRE_TIMING
 
@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(air)
 
 	// Make sure we don't rebuild mid-tick.
 	if (state != SS_IDLE)
-		report_progress("ZAS Rebuild initiated. Waiting for current air tick to complete before continuing.")
+		to_chat(admins, "<span class='boldannounce'>ZAS Rebuild initiated. Waiting for current air tick to complete before continuing.</span>")
 		while (state != SS_IDLE)
 			stoplag()
 
@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/Initialize(timeofday, simulate = TRUE)
 
 	var/starttime = REALTIMEOFDAY
-	report_progress("Processing Geometry...")
+	to_chat(admins, "<span class='boldannounce'>Processing Geometry...</span>")
 
 	var/simulated_turf_count = 0
 	for(var/turf/simulated/S)
@@ -138,23 +138,21 @@ SUBSYSTEM_DEF(air)
 		S.update_air_properties()
 
 		CHECK_TICK
-
-	report_progress({"Total Simulated Turfs: [simulated_turf_count]
+	to_chat(admins, {"<span class='boldannounce'>Total Simulated Turfs: [simulated_turf_count]
 Total Zones: [zones.len]
 Total Edges: [edges.len]
 Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
-Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
-"})
+Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]</span>"})
 
-	report_progress("Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!")
+	to_chat(admins, "<span class='boldannounce'>Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>")
 
 	if (simulate)
-		report_progress("Settling air...")
+		to_chat(admins, "<span class='boldannounce'>Settling air...</span>")
 
 		starttime = REALTIMEOFDAY
 		fire(FALSE, TRUE)
 
-		report_progress("Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!")
+		to_chat(admins, "<span class='boldannounce'>Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>")
 
 	..(timeofday)
 

@@ -95,13 +95,13 @@ var/round_start_time = 0
 	return last_roundduration2text
 
 
-var/global/midnight_rollovers = 0
-var/global/rollovercheck_last_timeofday = 0
-
+GLOBAL_VAR_INIT(midnight_rollovers, 0)
+GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 /proc/update_midnight_rollover()
-	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
-		return midnight_rollovers++
-	return midnight_rollovers
+	if (world.timeofday < GLOB.rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
+		GLOB.midnight_rollovers++
+	GLOB.rollovercheck_last_timeofday = world.timeofday
+	return GLOB.midnight_rollovers
 
 
 //Increases delay as the server gets more overloaded,
