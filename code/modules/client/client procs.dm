@@ -424,15 +424,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		query.Execute()
 		query = dbcon.NewQuery("SELECT id, ip, cid FROM players WHERE (ip = '[address]' OR cid = '[computer_id]') AND id <> '[src.id]'")
 		query.Execute()
-		var/changed = 0
-		while(query.NextRow())
-			var/temp_id = query.item[1]
-			var/temp_ip = query.item[2]
-			var/temp_cid = query.item[3]
-			if(temp_ip == address)
-				changed = 1
-			if(temp_cid == computer_id)
-				changed = 1
+		// var/changed = 0
+		// while(query.NextRow())
+		// 	var/temp_id = query.item[1]
+		// 	var/temp_ip = query.item[2]
+		// 	var/temp_cid = query.item[3]
+		// 	if(temp_ip == address)
+		// 		changed = 1
+		// 	if(temp_cid == computer_id)
+		// 		changed = 1
 
 
 	src.get_byond_age() // Get days since byond join

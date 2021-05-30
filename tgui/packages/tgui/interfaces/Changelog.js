@@ -175,7 +175,7 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>Traditional Games Space Station 13</h1>
+        <h1>CEV Eris</h1>
         <p>
           <b>Thanks to: </b>
           Baystation 12, /vg/station, NTstation, CDK Station devs,
@@ -185,17 +185,17 @@ export class Changelog extends Component {
         </p>
         <p>
           {'Current project maintainers can be found '}
-          <a href="https://github.com/tgstation?tab=members">
+          <a href="https://github.com/discordia-space?tab=members">
             here
           </a>
           {', recent GitHub contributors can be found '}
-          <a href="https://github.com/tgstation/tgstation/pulse/monthly">
+          <a href="https://github.com/discordia-space/CEV-Eris/pulse/monthly">
             here
           </a>.
         </p>
         <p>
           {'You can also join our discord '}
-          <a href="https://tgstation13.org/phpBB/viewforum.php?f=60">
+          <a href="https://discordapp.com/invite/uc7nk29">
             here
           </a>.
         </p>
@@ -218,7 +218,7 @@ export class Changelog extends Component {
           I Said No
         </p>
         <p>
-          Traditional Games Space Station 13 is thankful to the
+          CEV Eris is thankful to the
           GoonStation 13 Development Team for its work on the game up to the
           {' r4407 release. The changelog for changes up to r4407 can be seen '}
           <a href="https://wiki.ss13.co/Changelog#April_2010">
@@ -235,8 +235,8 @@ export class Changelog extends Component {
           <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
           {' only.'}
         </p>
-        <h3>Traditional Games Space Station 13 License</h3>
-        <p>
+        <h3>CEV Eris</h3>
+        {/* <p>
           {'All code after '}
           <a href={'https://github.com/tgstation/tgstation/commit/'
             + '333c566b88108de218d882840e61928a9b759d8f'}>
@@ -261,8 +261,8 @@ export class Changelog extends Component {
             GPLv3.txt
           </a>
           {' for more details.'}
-        </p>
-        <p>
+        </p> */}
+        {/* <p>
           The TGS DMAPI API is licensed as a subproject under the MIT license.
           {' See the footer of '}
           <a href={'https://github.com/tgstation/tgstation/blob/master'
@@ -275,7 +275,7 @@ export class Changelog extends Component {
             code/modules/tgs/LICENSE
           </a>
           {' for the MIT license.'}
-        </p>
+        </p> */}
         <p>
           {'All assets including icons and sound are under a '}
           <a href="https://creativecommons.org/licenses/by-sa/3.0/">
