@@ -14,7 +14,7 @@
 
 /datum/ritual/targeted/cruciform/priest/acolyte
 
-/datum/ritual/cruciform/priest/epiphany
+/datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
 	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
@@ -259,9 +259,10 @@
 	category = "Offerings"
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
-	power = 10
+	power = 15
 	var/list/req_offerings = list()
 	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+	var/reward_power = 5
 
 /datum/ritual/cruciform/priest/offering/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	var/list/OBJS = get_front(H)
@@ -282,6 +283,7 @@
 		return FALSE
 
 	EOTP.current_rewards = miracles
+	EOTP.power += reward_power
 	return TRUE
 
 /datum/ritual/cruciform/priest/offering/proc/make_offerings(list/offerings)
@@ -356,6 +358,7 @@
 	desc = "Increase an oddity's stats by a certain amount but reduce yours by half of that amount."
 	success_message = "Your oddity has been blessed."
 	fail_message = "You feel cold in your active hand."
+	power = 30
 	var/list/odditys = list()
 
 

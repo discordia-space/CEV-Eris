@@ -4,10 +4,10 @@
 	fail_message = "The Cruciform feels cold against your chest."
 	var/high_ritual = TRUE
 
-/datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+/datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, targets)
 	if(!..())
 		return FALSE
-	if(high_ritual && !C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
+	if(high_ritual && !C.get_module(CRUCIFORM_PRIEST) && !is_inquisidor(user))
 		return FALSE
 	return TRUE
 
@@ -178,8 +178,13 @@
 	)
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
+/atom/movable/var/crusade_effect = FALSE
+
 /atom/movable/proc/crusade_activated()
-	return
+	if(crusade_effect)
+		return FALSE
+	crusade_effect = TRUE
+	return TRUE
 
 /datum/group_ritual_effect/cruciform/crusade/trigger_success(mob/starter, list/participants)
 	..()

@@ -10,12 +10,14 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	force = WEAPON_FORCE_ROBUST
-	var/crusade_force = WEAPON_FORCE_LETHAL
+	var/crusade_force = WEAPON_FORCE_PAINFUL
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
 /obj/item/weapon/tool/sword/nt_sword/crusade_activated()
-	force += crusade_force - initial(force)
+	. = ..()
+	if(!.) return
+	force += crusade_force
 
 /obj/item/weapon/tool/sword/nt_sword/New()
 	..()

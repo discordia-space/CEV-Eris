@@ -232,6 +232,10 @@
 						beakers = list()
 	..()
 
+/obj/item/weapon/grenade/chem_grenade/large/moebius
+	name = "large moebius chem grenade"
+	desc = "An oversized grenade that affects a larger area. Has Moebius markings"
+	icon_state = "moebius_grenade"
 
 /obj/item/weapon/grenade/chem_grenade/metalfoam
 	name = "Asters \"Stop-Space\""

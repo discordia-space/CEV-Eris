@@ -33,10 +33,9 @@
 
 	if(pod.start())
 		var/damage_modifier = 1
-		var/obj/item/weapon/implant/core_implant/cruciform/C_user = user.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-		if(C_user.get_module(CRUCIFORM_INQUISITOR) || (C_user.get_module(CRUCIFORM_PRIEST) && C_user.get_module(CRUCIFORM_REDLIGHT)))
+		if(is_inquisidor(user) || is_preacher(user))
 			damage_modifier = 0
-		else if(C_user.get_module(CRUCIFORM_PRIEST))
+		else if(is_acolyte(user))
 			damage_modifier = 0.5
 		pod.clone_damage = clone_damage * damage_modifier
 	return TRUE

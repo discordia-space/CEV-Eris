@@ -159,17 +159,9 @@
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
-/datum/design/autolathe/gun/ak47_fs_vipr
+/datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/vipr
-
-/datum/design/autolathe/gun/ak47_fs_wasp
-	name = "FS AR .30 \"Wasp\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/wasp
-
-/datum/design/autolathe/gun/ak47_fs_brush
-	name = "FS AR .30 \"Brushmaster\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/brush
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""

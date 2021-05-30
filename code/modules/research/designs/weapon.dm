@@ -10,7 +10,7 @@
 		..()
 
 /datum/design/research/item/weapon/stunrevolver
-	build_path = /obj/item/weapon/gun/energy/stunrevolver
+	build_path = /obj/item/weapon/gun/energy/stunrevolver/moebius
 	sort_string = "TAAAA"
 
 /datum/design/research/item/weapon/nuclear_gun
@@ -23,9 +23,9 @@
 	sort_string = "TAAAC"
 
 /datum/design/research/item/weapon/c20r
-	name = "C20R-prototype"
-	desc = "The C-20r is a lightweight and rapid-firing SMG. Uses 10mm rounds."
-	build_path = /obj/item/weapon/gun/projectile/automatic/c20r
+	name = "C20M-prototype"
+	desc = "The C-20M is a lightweight and rapid-firing SMG. Uses .35 auto rounds."
+	build_path = /obj/item/weapon/gun/projectile/automatic/c20r/moebius
 	sort_string = "TAAAF"
 
 /datum/design/research/item/weapon/plasmapistol
@@ -51,7 +51,7 @@
 	sort_string = "TABAC"
 
 /datum/design/research/item/weapon/large_grenade
-	build_path = /obj/item/weapon/grenade/chem_grenade/large
+	build_path = /obj/item/weapon/grenade/chem_grenade/large/moebius
 	sort_string = "TACAA"
 
 /datum/design/research/item/weapon/flora_gun

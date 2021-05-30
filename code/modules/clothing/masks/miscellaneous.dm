@@ -76,6 +76,31 @@
 	name = "enforcer's mask"
 	icon_state = "chains"
 
+//Adminbus versions with extremly high armor, should never spawn in game
+/obj/item/clothing/mask/thief/adminspawn
+	spawn_blacklisted = TRUE
+	body_parts_covered = HEAD|FACE
+	armor = list(
+		melee = 60,
+		bullet = 65,
+		energy = 60,
+		bomb = 75,
+		bio = 100,
+		rad = 30
+	)
+
+/obj/item/clothing/mask/thief/adminspawn/wolf
+	name = "technician's mask"
+	icon_state = "wolf"
+
+/obj/item/clothing/mask/thief/adminspawn/hoxton
+	name = "fugitive's mask"
+	icon_state = "hoxton"
+
+/obj/item/clothing/mask/thief/adminspawn/chains
+	name = "enforcer's mask"
+	icon_state = "chains"
+
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
