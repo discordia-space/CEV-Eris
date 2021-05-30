@@ -266,6 +266,7 @@
 	icon_state = "carrion_maw"
 	organ_efficiency = list(OP_MAW = 100)
 	var/last_call = -5 MINUTES
+	var/target_to_tear
 
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/maw/proc/consume_flesh,
@@ -286,18 +287,37 @@
 	if(istype(food, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
+		if (grab.state == GRAB_PASSIVE)
+			to_chat(owner, SPAN_WARNING("Your grip upon [H] is too weak."))
+			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
+			if (!isnull(target_to_tear) && target_to_tear != E)
+				to_chat(owner, SPAN_WARNING("Your maw is already focused on tearing something else off."))
+				return
+			target_to_tear = E
+
 			if(E.is_stump())
 				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
 				return
 
 			visible_message(SPAN_DANGER("\The [owner] bites into \the [H]'s \the [E] and starts tearing it off!"))
 			if(do_after(owner, 5 SECONDS, H))
+				target_to_tear = null
+				if(E.organ_tag == BP_GROIN) // would be able to tear off both legs at once in one consumption otherwise.
+					E.take_damage(30)
+					var/obj/item/organ/internal/organ_to_remove = pick(E.internal_organs)
+					organ_to_remove?.loc = get_turf(src)
+					E.internal_organs -= organ_to_remove
+					visible_message(SPAN_DANGER("\The [owner] tears [organ_to_remove] out of \the [H]'s [E]!"))
+					playsound(loc, 'sound/voice/shriek1.ogg', 50)
+					return
 				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
 				playsound(loc, 'sound/voice/shriek1.ogg', 50)
 				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s \the [E]!"))
 				return
+			else
+				target_to_tear = null
 		else
 			to_chat(owner, SPAN_WARNING("You can only tear limbs off of humanoids!"))	
 			return
