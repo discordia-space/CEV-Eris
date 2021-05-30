@@ -6,7 +6,7 @@ import sys
 folders = ["_maps/RandomRuins", "_maps/RandomZLevels", "_maps/shuttles",
            "_maps/templates"]
 
-generated = "_maps/templates.dm"
+# generated = "_maps/templates.dm"
 
 template_filenames = []
 
@@ -23,7 +23,7 @@ def find_dm(path):
 for folder in folders:
     template_filenames.extend(find_dm(folder))
 
-with open(generated, 'w') as f:
-    for template in template_filenames:
-        f.write('''#include "{}"\n'''.format(template))
+# with open(generated, 'w') as f:
+#     for template in template_filenames:
+#         f.write('''#include "{}"\n'''.format(template))
 
