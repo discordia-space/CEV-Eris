@@ -401,7 +401,7 @@
 	illustration = "flashbang"
 	rarity_value = 60
 	initial_amount = 5
-	spawn_type = /obj/item/weapon/implantcase/tracking
+	spawn_type = /obj/item/weapon/grenade/chem_grenade/incendiary
 
 /obj/item/weapon/storage/box/incendiary/populate_contents()
 	for(var/i in 1 to initial_amount)
