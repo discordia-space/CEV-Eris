@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "tgui-panel",
+  "version": "4.3.0",
+  "dependencies": {
+    "common": "workspace:*",
+    "discord-rpc": "^3.2.0",
+    "dompurify": "^2.2.7",
+    "inferno": "^7.4.8",
+    "tgui": "workspace:*",
+    "tgui-dev-server": "workspace:*",
+    "tgui-polyfill": "workspace:*"
+  }
+}
