@@ -10,10 +10,6 @@ export const SETTINGS_TABS = [
     name: 'General',
   },
   {
-    id: 'richPresence',
-    name: 'Rich Presence',
-  },
-  {
     id: 'chatPage',
     name: 'Chat Tabs',
   },
