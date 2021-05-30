@@ -74,7 +74,7 @@
 
 /obj/item/weapon/storage/box/disks
 	name = "Diskette Box"
-	icon = "icons/obj/storage/boxes.dmi"
+	icon = 'icons/obj/storage/boxes.dmi'
 	icon_state = "box"
 	initial_amount = 7
 	spawn_type = /obj/item/weapon/disk/data
