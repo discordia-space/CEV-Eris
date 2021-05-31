@@ -49,6 +49,7 @@
 	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
 	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
 	new /obj/item/clothing/head/chefhat(src)
+	new /obj/item/weapon/storage/ration_pack/uwu(src)
 
 /*
  * Janitor
