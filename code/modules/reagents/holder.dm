@@ -199,7 +199,8 @@
 
 	for(var/thing in active_reactions)
 		var/datum/chemical_reaction/C = thing
-		C.process(src, active_reactions[C])
+		// todo: deshit chem
+		C.process("DT_INTERNAL" , src, active_reactions[C])
 
 	for(var/thing in active_reactions)
 		var/datum/chemical_reaction/C = thing

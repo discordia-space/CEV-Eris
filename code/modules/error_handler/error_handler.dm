@@ -21,7 +21,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
 		log_world("BYOND out of memory. Restarting ([E?.file]:[E?.line])")
-		TgsEndProcess()
+		// TgsEndProcess()
 		. = ..()
 		Reboot(reason = 1)
 		return
@@ -59,7 +59,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	var/configured_error_cooldown
 	var/configured_error_limit
 	var/configured_error_silence_time
-	if(config?.entries)
+	if(config_tg?.entries)
 		configured_error_cooldown = CONFIG_GET(number/error_cooldown)
 		configured_error_limit = CONFIG_GET(number/error_limit)
 		configured_error_silence_time = CONFIG_GET(number/error_silence_time)

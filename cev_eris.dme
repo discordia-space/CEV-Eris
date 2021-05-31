@@ -7,6 +7,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\_compile_options.dm"
 #include "code\client_macros.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
@@ -210,6 +211,7 @@
 #include "code\controllers\verbs.dm"
 #include "code\controllers\configuration\config_entry.dm"
 #include "code\controllers\configuration\configuration.dm"
+#include "code\controllers\configuration\entries\general.dm"
 #include "code\controllers\configuration\entries\resources.dm"
 #include "code\controllers\evacuation\evacuation.dm"
 #include "code\controllers\evacuation\evacuation_eta.dm"
