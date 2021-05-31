@@ -86,7 +86,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks,
 		/obj/item/weapon/storage/fancy/mre_cracker,
 		/obj/item/weapon/material/kitchen/utensil/spoon/mre,
-		/obj/item/weapon/storage/fancy/crayons,\
+		/obj/item/weapon/storage/fancy/crayons,
 	)
 
 /obj/item/weapon/storage/ration_pack/ihr/open(mob/user)
