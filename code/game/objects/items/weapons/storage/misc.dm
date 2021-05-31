@@ -86,8 +86,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks,
 		/obj/item/weapon/storage/fancy/mre_cracker,
 		/obj/item/weapon/material/kitchen/utensil/spoon/mre,
-		/obj/item/weapon/storage/fancy/crayons,
-		/obj/item/weapon/reagent_containers/syringe
+		/obj/item/weapon/storage/fancy/crayons,\
 	)
 
 /obj/item/weapon/storage/ration_pack/ihr/open(mob/user)
@@ -103,7 +102,6 @@
 	new /obj/item/weapon/reagent_containers/food/snacks/candy/mre(src)
 	new /obj/item/weapon/material/kitchen/utensil/spoon/mre(src)
 	new /obj/item/weapon/storage/fancy/crayons(src)
-	new /obj/item/weapon/reagent_containers/syringe/hyperzine(src)
 
 /obj/item/weapon/storage/box/clown
 	name = "clown costume box"
