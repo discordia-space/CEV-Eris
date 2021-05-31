@@ -206,7 +206,7 @@ var/list/holder_mob_icon_cache = list()
 	//update_icon()
 
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/mob/user = null)
+/mob/living/proc/get_scooped(mob/living/carbon/grabber, mob/user)
 	if(!holder_type || buckled || pinned.len || !Adjacent(grabber))
 		return
 
@@ -258,7 +258,7 @@ var/list/holder_mob_icon_cache = list()
 			//If the scooping up failed something must have gone wrong
 			H.release_mob()
 
-		return success
+		return
 
 
 /mob/living/proc/get_holder_location()

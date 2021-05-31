@@ -1093,7 +1093,7 @@ var/list/rank_prefix = list(\
 
 	species = all_species[new_species]
 
-	if(species.language)
+	if(species?.language)
 		add_language(species.language)
 
 	if(species.default_language)

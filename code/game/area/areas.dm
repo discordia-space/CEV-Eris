@@ -206,8 +206,7 @@
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
 	SEND_SIGNAL(src, COMSIG_AREA_APC_POWER_CHANGE)
-	if (fire || eject || party)
-		updateicon()
+	updateicon()
 
 /area/proc/usage(var/chan)
 	var/used = 0

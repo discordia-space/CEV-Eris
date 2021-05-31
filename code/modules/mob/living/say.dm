@@ -344,9 +344,9 @@ var/list/channel_to_radio_key = new
 	if(!client)
 		return
 
-	if(sdisabilities&DEAF || ear_deaf)
+	if((sdisabilities & DEAF) || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
-		if(!language || !language.flags&INNATE)
+		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
 				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 			else

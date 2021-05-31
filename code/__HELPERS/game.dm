@@ -133,6 +133,8 @@
 
 
 /proc/get_mobs_and_objs_in_view_fast(turf/T, range, list/mobs, list/objs, checkghosts = GHOSTS_ALL_HEAR)
+	if(!T) // fucking lobby on nullspace
+		return
 	var/list/hear = dview(range, T.loc, INVISIBILITY_MAXIMUM)
 	var/list/hearturfs = list()
 
@@ -345,16 +347,16 @@
 
 	return new /datum/projectile_data(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
 
-/proc/GetRedPart(const/hexa)
-	return hex2num(copytext(hexa, 2, 4))
+/proc/GetRedPart(hexa)
+	return GETREDPART(hexa)
 
-/proc/GetGreenPart(const/hexa)
-	return hex2num(copytext(hexa, 4, 6))
+/proc/GetGreenPart(hexa)
+	return GETGREENPART(hexa)
 
-/proc/GetBluePart(const/hexa)
-	return hex2num(copytext(hexa, 6, 8))
+/proc/GetBluePart(hexa)
+	return GETBLUEPART(hexa)
 
-/proc/GetHexColors(const/hexa)
+/proc/GetHexColors(hexa)
 	return list(
 			GetRedPart(hexa),
 			GetGreenPart(hexa),

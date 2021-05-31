@@ -1439,7 +1439,17 @@
 	require_perms = list(R_DEBUG)
 
 /datum/admin_topic/viewruntime/Run(list/input)
-	GLOB.error_cache.show_to(usr)
+	var/datum/error_viewer/error_viewer = locate(input["viewruntime"])
+	var/client/owner = source.owner
+	if(!istype(error_viewer))
+		to_chat(owner, "<span class='warning'>That runtime viewer no longer exists.</span>", confidential = TRUE)
+		return
+
+	if(input["viewruntime_backto"])
+		error_viewer.show_to(owner, locate(input["viewruntime_backto"]), input["viewruntime_linear"])
+	else
+		error_viewer.show_to(owner, null, input["viewruntime_linear"])
+
 
 /datum/admin_topic/admincaster
 	keyword = "admincaster"

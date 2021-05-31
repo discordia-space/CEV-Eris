@@ -39,26 +39,31 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				var/datum/catalog_entry/reagent/E = get_catalog_entry(D.type)
 				if(E)
 					E.add_decomposition_from(D.type)
-	try
-		var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
-		C.associated_template = "catalog_list_reagents.tmpl"
-		C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-		C = GLOB.catalogs[CATALOG_CHEMISTRY]
-		C.associated_template = "catalog_list_reagents.tmpl"
-		C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
-		C = GLOB.catalogs[CATALOG_DRINKS]
-		C.associated_template = "catalog_list_drinks.tmpl"
-		C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-		C = GLOB.catalogs[CATALOG_ALL]
-		C.associated_template = "catalog_list_general.tmpl"
-		C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	catch
-		return FALSE
+
+	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
+	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+
+	C = GLOB.catalogs[CATALOG_CHEMISTRY]
+	C.associated_template = "catalog_list_reagents.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
+
+	C = GLOB.catalogs[CATALOG_DRINKS]
+	C.associated_template = "catalog_list_drinks.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+
+	C = GLOB.catalogs[CATALOG_ALL]
+	C.associated_template = "catalog_list_general.tmpl"
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+
 	return 1
 
-/proc/create_catalog_entry(var/datum/thing, var/catalog_id)
+/proc/create_catalog_entry(datum/thing, catalog_id)
+	testing("we have thing [thing] with an id of [catalog_id]")
 	if(catalog_id && !GLOB.catalogs[catalog_id])
+		testing("it didn't exist, created a new one")
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
+
 	if(!GLOB.all_catalog_entries_by_type[thing.type])
 		if(istype(thing, /datum/reagent))
 			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/ethanol) && thing.type != /datum/reagent/ethanol))
