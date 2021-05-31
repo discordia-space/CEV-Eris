@@ -292,29 +292,40 @@
 			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
-			if (!isnull(target_to_tear) && target_to_tear != E)
-				to_chat(owner, SPAN_WARNING("Your maw is already focused on tearing something else off."))
+			if (!isnull(target_to_tear)) // one at a time, thank you.
+				to_chat(owner, SPAN_WARNING("Your maw is already focused on something."))
 				return
-			target_to_tear = E
 
 			if(E.is_stump())
 				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
 				return
+			target_to_tear = E // here is where it chooses what the maw is "focused on".
 
-			visible_message(SPAN_DANGER("\The [owner] bites into \the [H]'s \the [E] and starts tearing it off!"))
+			visible_message(SPAN_DANGER("[owner] bites into [H]'s [E.name] and starts tearing it [E.functions ? "off": "apart"]!"))
 			if(do_after(owner, 5 SECONDS, H))
 				target_to_tear = null
-				if(E.organ_tag == BP_GROIN) // would be able to tear off both legs at once in one consumption otherwise.
+				if (E.organ_tag == BP_HEAD)
+					if(!(H.incapacitated(INCAPACITATION_UNCONSCIOUS)))
+						var/datum/gender/G = gender_datums[H.gender]
+						for(var/obj/item/organ/external/smacker in H.organs)
+							if(smacker.functions == BODYPART_GRASP || smacker.functions == BODYPART_STAND)
+								if(!(smacker.is_broken() || smacker.is_dislocated() || smacker.limb_efficiency < 50))
+									owner.Stun(5) // I don't know how stun works, so magic number.
+									owner.drop_item()
+									visible_message(SPAN_DANGER("[H] smacks away [owner]'s maw with [G.his] [smacker.name]."))
+									return
+			
+				if (E.organ_tag == BP_GROIN || E.organ_tag == BP_CHEST) // torso bits should not be torn off.
 					E.take_damage(30)
 					var/obj/item/organ/internal/organ_to_remove = pick(E.internal_organs)
 					organ_to_remove?.loc = get_turf(src)
 					E.internal_organs -= organ_to_remove
-					visible_message(SPAN_DANGER("\The [owner] tears [organ_to_remove] out of \the [H]'s [E]!"))
+					visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H]'s [E.name]!"))
 					playsound(loc, 'sound/voice/shriek1.ogg', 50)
 					return
 				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
 				playsound(loc, 'sound/voice/shriek1.ogg', 50)
-				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s \the [E]!"))
+				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s [E.name]!"))
 				return
 			else
 				target_to_tear = null
