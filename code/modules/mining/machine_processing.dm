@@ -110,7 +110,7 @@
 	var/list/ores_stored
 	var/static/list/alloy_data
 	var/active = 0
-	var/speed_process = 0 // are we on SSfastprocess?
+	var/speed_process = FALSE // are we on SSfastprocess?
 	var/tick = 0 // if we're on SSfastprocess, how many processes have we done? once we hit 10 processes then we update the linked console UI
 	var/input_dir = 0
 	var/output_dir = 0
