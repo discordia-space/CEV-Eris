@@ -35,7 +35,7 @@
 	user.set_machine(src)
 
 	var/dat = "<h1>Ore processor console</h1>"
-
+	dat += "High-speed processing is <A href='?src=\ref[src];toggle_speed=1'>[(machine.speed_process ? "<font color='green'>active</font>" : "<font color='red'>inactive</font>")].</a>"
 	dat += "<hr><table>"
 
 	for(var/ore in machine.ores_processing)
@@ -70,6 +70,8 @@
 		return 1
 	usr.set_machine(src)
 
+	if(href_list["toggle_speed"])
+		machine.toggle_speed()
 	if(href_list["toggle_smelting"])
 		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
 		if(!choice) return
@@ -108,6 +110,8 @@
 	var/list/ores_stored
 	var/static/list/alloy_data
 	var/active = 0
+	var/speed_process = 0 // are we on SSfastprocess?
+	var/tick = 0 // if we're on SSfastprocess, how many processes have we done? once we hit 10 processes then we update the linked console UI
 	var/input_dir = 0
 	var/output_dir = 0
 
@@ -140,10 +144,32 @@
 		if(marker)
 			output_dir = get_dir(src, marker)
 
+/obj/machinery/mineral/processing_unit/proc/toggle_speed(var/forced)
+	var/area/refinery_area = get_area(src)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_PROCESSING(SSmachines, src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_PROCESSING(SSmachines, src)
+	for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
+		unloader.toggle_speed()
+	for(var/obj/machinery/conveyor_switch/cswitch in refinery_area.contents)
+		cswitch.toggle_speed()
+	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
+		stacker.toggle_speed()
+
 /obj/machinery/mineral/processing_unit/Process()
 
 	if(!output_dir || !input_dir)
 		return
+
+	if(speed_process)
+		tick++
 
 	var/list/tick_alloys = list()
 
@@ -235,4 +261,8 @@
 		else
 			continue
 
-	console.updateUsrDialog()
+	if(!(tick % 10) && speed_process)
+		console.updateUsrDialog()
+		tick = 0
+	else
+		console.updateUsrDialog()

@@ -7,6 +7,7 @@
 	icon_state = "unloader"
 	density = TRUE
 	anchored = TRUE
+	var/speed_process = FALSE // are we on SSfastprocess?
 	var/input_dir = null
 	var/output_dir = null
 
@@ -22,6 +23,18 @@
 		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
 		if(marker)
 			output_dir = get_dir(src, marker)
+
+/obj/machinery/mineral/unloading_machine/proc/toggle_speed(var/forced)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_PROCESSING(SSmachines, src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_PROCESSING(SSmachines, src)
 
 /obj/machinery/mineral/unloading_machine/Process()
 	if(output_dir && input_dir)
