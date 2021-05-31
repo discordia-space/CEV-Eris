@@ -266,7 +266,7 @@
 	icon_state = "carrion_maw"
 	organ_efficiency = list(OP_MAW = 100)
 	var/last_call = -5 MINUTES
-	var/target_to_tear
+	var/tearing = FALSE
 
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/maw/proc/consume_flesh,
@@ -287,23 +287,23 @@
 	if(istype(food, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
-		if (grab.state == GRAB_PASSIVE)
+		if (grab.state < GRAB_AGGRESSIVE)
 			to_chat(owner, SPAN_WARNING("Your grip upon [H] is too weak."))
 			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
-			if (!isnull(target_to_tear)) // one at a time, thank you.
+			if (tearing) // one at a time, thank you.
 				to_chat(owner, SPAN_WARNING("Your maw is already focused on something."))
 				return
 
 			if(E.is_stump())
 				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
 				return
-			target_to_tear = E // here is where it chooses what the maw is "focused on".
+			tearing = TRUE
 
 			visible_message(SPAN_DANGER("[owner] bites into [H]'s [E.name] and starts tearing it [E.functions ? "off": "apart"]!"))
 			if(do_after(owner, 5 SECONDS, H))
-				target_to_tear = null
+				tearing = FALSE
 				if (E.organ_tag == BP_HEAD)
 					if(!(H.incapacitated(INCAPACITATION_UNCONSCIOUS)))
 						var/datum/gender/G = gender_datums[H.gender]
@@ -328,7 +328,7 @@
 				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s [E.name]!"))
 				return
 			else
-				target_to_tear = null
+				tearing = FALSE
 		else
 			to_chat(owner, SPAN_WARNING("You can only tear limbs off of humanoids!"))	
 			return
