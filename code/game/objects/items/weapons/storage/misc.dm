@@ -81,7 +81,7 @@
 	The packaging holds usage information within the fineprint: \
 	\"Instructions: Remove contents from packaging, open ration can, use them in-hand to activate thermal heater. \
 	Thermal insulation will keep them warm for over four hours. Crayons for taste. \
-	Nutrient paste, morale bar, and injector contain medicinal additives for field performace, DO NOT OVERCONSUME.\""
+	Nutrient paste and morale bar medicinal additives for field performace, DO NOT OVERCONSUME.\""
 	can_hold = list(
 		/obj/item/weapon/reagent_containers/food/snacks,
 		/obj/item/weapon/storage/fancy/mre_cracker,
