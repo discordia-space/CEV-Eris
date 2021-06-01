@@ -288,7 +288,7 @@
 		var/obj/item/weapon/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
 		if (grab.state < GRAB_AGGRESSIVE)
-			to_chat(owner, SPAN_WARNING("Your grip upon [H] is too weak."))
+			to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
 			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
@@ -301,7 +301,7 @@
 				return
 			tearing = TRUE
 
-			visible_message(SPAN_DANGER("[owner] bites into [H]'s [E.name] and starts tearing it [E.functions ? "off": "apart"]!"))
+			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it [E.functions ? "off": "apart"]!"))
 			if(do_after(owner, 5 SECONDS, H))
 				tearing = FALSE
 				if (E.organ_tag == BP_HEAD)
@@ -312,20 +312,26 @@
 								if(!(smacker.is_broken() || smacker.is_dislocated() || smacker.limb_efficiency < 50))
 									owner.Stun(5) // I don't know how stun works, so magic number.
 									owner.drop_item()
-									visible_message(SPAN_DANGER("[H] smacks away [owner]'s maw with [G.his] [smacker.name]."))
+									visible_message(SPAN_DANGER("[H.name] smacks away [owner]'s maw with [G.his] [smacker.name]."))
 									return
 			
 				if (E.organ_tag == BP_GROIN || E.organ_tag == BP_CHEST) // torso bits should not be torn off.
 					E.take_damage(30)
-					var/obj/item/organ/internal/organ_to_remove = pick(E.internal_organs)
-					organ_to_remove?.loc = get_turf(src)
-					E.internal_organs -= organ_to_remove
-					visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H]'s [E.name]!"))
+					var/list/blacklist
+					for (var/obj/item/organ/internal/bone/to_blacklist in E.internal_organs)
+						blacklist += to_blacklist// removing bones from a valid_organs list based on
+					var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
+					if (!valid_organs.len)
+						visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
+						return
+					var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
+					organ_to_remove.removed(owner)
+					visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
 					playsound(loc, 'sound/voice/shriek1.ogg', 50)
 					return
 				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
 				playsound(loc, 'sound/voice/shriek1.ogg', 50)
-				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s [E.name]!"))
+				visible_message(SPAN_DANGER("\The [owner] tears off \the [H.name]'s [E.name]!"))
 				return
 			else
 				tearing = FALSE
