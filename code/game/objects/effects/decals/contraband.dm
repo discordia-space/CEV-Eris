@@ -19,8 +19,11 @@
 	bad_type = /obj/item/weapon/contraband/poster
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
-	if(!new_design || !GLOB.poster_designs.len)
+/obj/item/weapon/contraband/poster/New(turf/loc, datum/poster/new_design)
+	if(!new_design)
+		if(!GLOB.poster_designs.len)
+			log_mapping("Contraband didn't have any random designs, this has been qdeleted(). ([x], [y], [z]) [src.loc]")
+			qdel(src)
 		design = pick(GLOB.poster_designs)
 	else
 		design = new_design

@@ -182,7 +182,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/robot/RB in SSmobs.mob_list)
+	for(var/mob/living/silicon/robot/RB in GLOB.mob_living_list)
 		if(isdrone(RB))
 			continue
 		if(RB.connected_ai == A)
@@ -200,7 +200,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/ai/AT in SSmobs.mob_list)
+	for(var/mob/living/silicon/ai/AT in GLOB.mob_living_list)
 		if(L == A)
 			continue
 		L.Add(AT)

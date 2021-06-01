@@ -164,12 +164,12 @@
 	// 		var/icon_state = initial(L.icon_state)
 	// 		Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
-/*
+
 /datum/asset/simple/lobby
 	assets = list(
 		"playeroptions.css" = 'html/browser/playeroptions.css'
 	)
-*/
+
 /datum/asset/simple/namespaced/common
 	// assets = list("padlock.png" = 'icons/ui_icons/common/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')

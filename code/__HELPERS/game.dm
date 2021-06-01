@@ -260,13 +260,15 @@
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(key)
-	for(var/mob/M in SSmobs.mob_list)
-		if(M.ckey == lowertext(key))
+	var/ckey = ckey(key)
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(M.ckey == ckey)
 			return M
 	return null
 
 /proc/get_client_by_ckey(key)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.ckey == lowertext(key))
 			return M.client
 	return null

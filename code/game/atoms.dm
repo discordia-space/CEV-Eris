@@ -241,6 +241,10 @@
 	P.on_hit(src, def_zone)
 	. = FALSE
 
+///Generate a tag for this atom
+/atom/proc/GenerateTag()
+	return
+
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
 		if(istype(src.loc, container))

@@ -109,6 +109,10 @@ var/global/log_end = "\n" //AGONY
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
 		game_log("ATTACK", text)
 
+/proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
+	// if (CONFIG_GET(flag/log_manifest))
+	WRITE_LOG(GLOB.world_manifest_log, "[ckey] \\ [body.real_name] \\ [mind.assigned_role] \\ ["NONE"] \\ [latejoin ? "LATEJOIN":"ROUNDSTART"]")
+
 /proc/log_say(text)
 	if (config.log_say) // (CONFIG_GET(flag/log_say))
 		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")

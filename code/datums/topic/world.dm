@@ -150,7 +150,7 @@
 
 	var/list/match = list()
 
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in GLOB.player_list)
 		var/strings = list(M.name, M.ckey)
 		if(M.mind)
 			strings += M.mind.assigned_role

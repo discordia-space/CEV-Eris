@@ -7,12 +7,11 @@ SUBSYSTEM_DEF(mobs)
 
 	var/list/currentrun = list()
 
-	var/list/mob_list
 	var/static/list/clients_by_zlevel[][]
 	var/static/list/dead_players_by_zlevel[][] = list(list()) // Needs to support zlevel 1 here, MaxZChanged only happens when z2 is created and new_players can login before that.
 
 /datum/controller/subsystem/mobs/stat_entry(msg)
-	msg = "P:[length(mob_list)]"
+	msg = "P:[length(GLOB.mob_living_list)]"
 	return ..()
 
 /datum/controller/subsystem/mobs/PreInit()
@@ -30,7 +29,7 @@ SUBSYSTEM_DEF(mobs)
 
 /datum/controller/subsystem/mobs/fire(resumed = FALSE)
 	if (!resumed)
-		src.currentrun = mob_list.Copy()
+		src.currentrun = GLOB.mob_living_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -42,6 +41,6 @@ SUBSYSTEM_DEF(mobs)
 		if(L)
 			L.Life(delta_time, times_fired)
 		else
-			mob_list.Remove(L)
+			GLOB.mob_living_list.Remove(L)
 		if (MC_TICK_CHECK)
 			return

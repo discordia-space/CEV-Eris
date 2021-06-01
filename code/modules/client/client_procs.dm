@@ -199,6 +199,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
 	tgui_panel.initialize()
 
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	if(!config.guests_allowed && IsGuestKey(key))
@@ -211,11 +215,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.preload_rsc = pick(config.resource_urls)
 	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
 
-	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
-
-
-
-
+	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -223,7 +223,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
-	if( (world.address == address || !address) && !GLOB.host || !host )
+	if( (world.address == address || !address) && (!GLOB.host || !host) )
 		GLOB.host = key
 		host = key
 		world.update_status()
@@ -231,11 +231,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		add_admin_verbs()
 		admin_memo_show()
-
-
-	connection_time = world.time
-	connection_realtime = world.realtime
-	connection_timeofday = world.timeofday
 
 	// check_ip_intel()
 	// validate_key_in_db()
@@ -253,56 +248,102 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		else
 			winset(src, "infowindow.changelog", "font-style=bold")
 
+	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
+		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
+
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
 
-	//////////////
-	//DISCONNECT//
-	//////////////
+	// view_size = new(src, getScreenSize(prefs.widescreenpref))
+	// view_size.resetFormat()
+	// view_size.setZoomMode()
+	fit_viewport()
+	Master.UpdateTickRate()
+
+
+//////////////
+//DISCONNECT//
+//////////////
 /client/Del()
+	if(!gc_destroyed)
+		Destroy() //Clean up signals and timers.
+	return ..()
+
+/client/Destroy()
+	// if(mob)
+	// 	var/stealth_admin = mob.client?.holder?.fakekey
+	// 	var/announce_join = mob.client?.prefs?.broadcast_login_logout
+	// 	if (!stealth_admin)
+	// 		deadchat_broadcast(" has disconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_join)
+
+	clients -= src
+	directory -= ckey
+	log_access("Logout: [key_name(src)]")
+	// GLOB.ahelp_tickets.ClientLogout(src)
+	// GLOB.interviews.client_logout(src)
+	// SSserver_maint.UpdateHubStatus()
+	// if(credits)
+	// 	QDEL_LIST(credits)
 	if(holder)
+		// adminGreet(1)
 		holder.owner = null
 		admins -= src
+		if (!admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+			var/cheesy_message = pick(
+				"I have no admins online!",\
+				"I'm all alone :(",\
+				"I'm feeling lonely :(",\
+				"I'm so lonely :(",\
+				"Why does nobody love me? :(",\
+				"I want a man :(",\
+				"Where has everyone gone?",\
+				"I need a hug :(",\
+				"Someone come hold me :(",\
+				"I need someone on me :(",\
+				"What happened? Where has everyone gone?",\
+				"Forever alone :("\
+			)
+
+			send2adminchat("Server", "[cheesy_message] (No admins online)")
+	// QDEL_LIST_ASSOC_VAL(char_render_holders)
+	// if(movingmob != null)
+	// 	movingmob.client_mobs_in_contents -= mob
+	// 	UNSETEMPTY(movingmob.client_mobs_in_contents)
+	// 	movingmob = null
+	// active_mousedown_item = null
+	// SSambience.ambience_listening_clients -= src
+	// QDEL_NULL(view_size)
+	// QDEL_NULL(void)
+	QDEL_NULL(tooltips)
+	// seen_messages = null
+	Master.UpdateTickRate()
+
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
 		if(!query.Execute())
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
-	directory -= ckey
-	clients -= src
-	return ..()
-/*
-/client/Destroy()
-	..()
+
+	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
-*/
+
 /client/proc/get_registration_date()
-	// Return data:
-	// Success: "2017-07-28"
-	// Fail: null
-
-	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
-	if(http)
-		var/F = file2text(http["CONTENT"])
-		if(F)
-			var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
-			if(R.Find(F))
-				var/year = R.group[1]
-				var/month = R.group[2]
-				var/day = R.group[3]
-				src.registration_date = "[year]-[month]-[day]"
-				return src.registration_date
-			else
-				log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
-	else
-		log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
-	return null
-
+	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+	if(!http)
+		log_world("Failed to connect to byond member page to age check [ckey]")
+		return
+	var/F = file2text(http["CONTENT"])
+	if(F)
+		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
+		if(R.Find(F))
+			var/year = R.group[1]
+			var/month = R.group[2]
+			var/day = R.group[3]
+			registration_date = "[year]-[month]-[day]"
+			return registration_date
+		else
+			CRASH("Age check regex failed for [src.ckey]")
 
 /client/proc/get_country()
-	// Return data:
-	// Success: list("country" = "United States", "country_code" = "US")
-	// Fail: null
-
 	var/address_check[] = world.Export("http://ip-api.com/line/[sql_sanitize_text(src.address)]")
 	/*
 	Response
@@ -335,7 +376,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			src.country_code = response[3]
 			return list("country" = src.country, "country_code" = src.country_code)
 
-	log_world("Failed on retrieving location for player [src.ckey] from byond site.")
+	log_world("Failed on retrieving location for player [src.ckey] from ip-api.com .")
 	return null
 
 
@@ -485,8 +526,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/seconds = inactivity/10
 	return "[round(seconds / 60)] minute\s, [seconds % 60] second\s"
 
-
-//send resources to the client. It's here in its own proc so we can move it around easiliy if need be
+/// Send resources to the client.
+/// Sends both game resources and browser assets.
 /client/proc/send_resources()
 	spawn (10) //removing this spawn causes all clients to not get verbs.
 
@@ -500,9 +541,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 		send_all_cursor_icons(src)
 
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
+
 /mob/proc/MayRespawn()
 	return FALSE
-
 
 /client/proc/MayRespawn()
 	if(mob)
@@ -517,14 +562,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)
-/*
-/client/proc/apply_fps(var/client_fps)
-	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)
-		vars["fps"] = prefs.clientfps
 
-*/
-
-// Byond seemingly calls stat, each tick.
+// Byond seemingly calls stat, each tick (which is bad (not bad, terrible) for performance)
 // Calling things each tick can get expensive real quick.
 // So we slow this down a little.
 // See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat

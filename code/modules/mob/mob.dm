@@ -21,9 +21,9 @@
  * Parent call
  */
 /mob/Destroy()
-	GLOB.dead_mob_list -= src
-	GLOB.living_mob_list -= src
-	GLOB.mob_list -= src
+	remove_from_mob_list()
+	remove_from_dead_mob_list()
+	remove_from_alive_mob_list()
 	unset_machine()
 	// focus = null
 	if(length(progressbars))
@@ -38,18 +38,6 @@
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
-
-/mob/proc/despawn()
-	return
-
-/mob/get_fall_damage(var/turf/from, var/turf/dest)
-	return 0
-
-/mob/fall_impact(var/turf/from, var/turf/dest)
-	return
-
-/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	return
 
 /**
  * Intialize a mob
@@ -69,29 +57,60 @@
  * * set a random nutrition level
  * * Intialize the movespeed of the mob
  */
-/mob/Initialize()
+/mob/Initialize(mapload)
+	// SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)
+	add_to_mob_list()
 	if(stat == DEAD)
-		GLOB.dead_mob_list += src
+		add_to_dead_mob_list()
 	else
-		GLOB.living_mob_list += src
-	GLOB.mob_list += src
+		add_to_alive_mob_list()
 	// set_focus(src)
+	// prepare_huds()
+	// for(var/v in GLOB.active_alternate_appearances)
+	// 	if(!v)
+	// 		continue
+	// 	var/datum/atom_hud/alternate_appearance/AA = v
+	// 	AA.onNewMob(src)
+
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/**
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
+/mob/GenerateTag()
+	// tag = "mob_[next_mob_id++]"
 
-	if(!client)	return
+/mob/proc/despawn()
+	return
 
-	if (type)
+/mob/get_fall_damage(var/turf/from, var/turf/dest)
+	return 0
+
+/mob/fall_impact(var/turf/from, var/turf/dest)
+	return
+
+/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+	return
+
+/**
+ * Show a message to this mob (visual or audible)
+ */
+/mob/proc/show_message(msg, type, alt, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+	if(!client)
+		return
+
+	if(type)
 		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
-			if (!( alt ))
+			if(!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
-		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
-			if (!( alt ))
+		if(type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
+			if (!alt)
 				return
 			else
 				msg = alt
@@ -100,10 +119,10 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
-	else
-		to_chat(src, msg)
-	return
+		if(type & 2) //audio
+			to_chat(src, "<I>... You can almost hear something ...</I>")
+		return
+	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
 
 // Show a message to all mobs and objects in sight of this one
 // This would be for visible actions by the src mob
@@ -180,7 +199,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in GLOB.mob_living_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -482,7 +501,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortNames(SSmobs.mob_list))
+	for(var/mob/M in sortNames(GLOB.mob_living_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++

@@ -30,19 +30,40 @@
 /mob/Login()
 	if(!client)
 		return FALSE
-	GLOB.player_list |= src
+	add_to_player_list()
 	update_Login_details()
 	log_access("Mob Login: [key_name(src)] was assigned to a [type]")
 	world.update_status()
+	client.screen = list() //remove hud items just in case
+	client.images = list()
 
-	client.images = null				//remove the images such as AIs being unable to see runes
-	client.screen = null				//remove hud items just in case
-	if(hud_used)	qdel(hud_used)		//remove the hud objects
-	hud_used = new /datum/hud(src)
+	// todo: see if this is needed
+	if(hud_used)
+		qdel(hud_used)		//remove the hud objects
+	if(!hud_used)
+		hud_used = new /datum/hud(src)
 
 	next_move = 1
 	sight |= SEE_SELF
 	..()
+
+	if(!client)
+		return FALSE
+
+	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+
+	if (key != client.key)
+		key = client.key
+	// reset_perspective(loc)
+
+	//readd this mob's HUDs (antag, med, etc)
+	// reload_huds()
+
+	// reload_fullscreen() // Reload any fullscreen overlays this mob has.
+
+	add_click_catcher()
+
+	// sync_mind()
 
 	if(loc && !isturf(loc))
 		client.eye = loc
@@ -54,6 +75,8 @@
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	winset(src, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
 
+	update_client_colour()
+	// update_mouse_pointer()
 	if (client)
 		if(client.UI)
 			client.UI.show()
@@ -62,6 +85,14 @@
 		add_click_catcher()
 		client.CAN_MOVE_DIAGONALLY = FALSE
 
-	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+		// for(var/foo in client.player_details.post_login_callbacks)
+		// 	var/datum/callback/CB = foo
+		// 	CB.Invoke()
+		// log_played_names(client.ckey,name,real_name)
+		// auto_deadmin_on_login()
 
-	update_client_colour(0)
+	// log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
+	// SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+	// client.init_verbs()
+
+	return TRUE

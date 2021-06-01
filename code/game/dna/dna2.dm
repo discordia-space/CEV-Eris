@@ -174,7 +174,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		return
 	if (value == 0)
 		value = 1   // FIXME: hair/beard/eye RGB values if they are 0 are not set, this is a work around we'll encode it in the DNA to be 1 instead.
-	ASSERT(maxvalue == 0) // SHOULD EXIST AND NOT === 0 (div by 0)
+	ASSERT(maxvalue != 0) // SHOULD EXIST AND NOT === 0 (div by 0)
 	ASSERT(maxvalue <= 4095)
 	var/range = (4095 / maxvalue)
 	if(value)

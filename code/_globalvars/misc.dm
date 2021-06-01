@@ -12,15 +12,16 @@ GLOBAL_DATUM(lobbyScreen, /datum/lobbyscreen)
 GLOBAL_VAR(topic_status_lastcache)
 GLOBAL_LIST(topic_status_cache)
 
-// Extools vars
-//This var is updated every tick by a DLL if present, used to reduce lag
-//If no DLL is present, the default during MC init is 5% of tick_lag
-//It's bumped to MAPTICK_DEFAULT_ITU during runtime (set once MC init is done)
-GLOBAL_VAR_INIT(internal_tick_usage, 0.05 * world.tick_lag)
-GLOBAL_PROTECT(internal_tick_usage) // NO TOUCHY
+// adminbusing is allowed here, shut the fuck up
+GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)
 
 GLOBAL_VAR_INIT(fallback_alerted, FALSE)
 GLOBAL_PROTECT(fallback_alerted) // NO TOUCHY
 
 GLOBAL_VAR_INIT(next_promise_id, 0)
 GLOBAL_PROTECT(next_promise_id) // NO TOUCHY
+
+// MOVE TO mob.dm in this same dir
+GLOBAL_LIST_EMPTY(mob_living_list) //all instances of /mob/living and subtypes
+GLOBAL_LIST_EMPTY(new_player_list) //all /mob/dead/new_player, in theory all should have clients and those that don't are in the process of spawning and get deleted when done.
+GLOBAL_LIST_EMPTY(joined_player_list) //all clients that have joined the game at round-start or as a latejoin.

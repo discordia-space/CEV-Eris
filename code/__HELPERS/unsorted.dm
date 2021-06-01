@@ -446,7 +446,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortNames(SSmobs.mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/ai/M in sortmob)
@@ -998,7 +998,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in GLOB.mob_living_list)
 		if(M.client)
 			mobs += M
 	return mobs
@@ -1265,6 +1265,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		log_world("EVACUATE THE SHITCODE IS TRYING TO STEAL MUH JOBS")
 		GLOB.dview_mob = new
 	return ..()
+
+#define UNTIL(X) while(!(X)) stoplag()
 
 /atom/proc/get_light_and_color(atom/origin)
 	if(origin)
