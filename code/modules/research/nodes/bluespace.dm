@@ -153,9 +153,7 @@
 	required_technologies = list(/datum/technology/teleportation)
 	cost = 800
 
-	unlocks_designs = list(	/datum/design/research/circuit/telesci/console,
-							/datum/design/research/circuit/telesci/hub,
-							/datum/design/research/item/part/artificialbscrystal,
+	unlocks_designs = list(	/datum/design/research/item/part/artificialbscrystal,
 							/datum/design/research/circuit/bssilk/hub,
 							/datum/design/research/circuit/bssilk/console,
 							/datum/design/research/item/bs_snare,

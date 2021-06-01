@@ -436,18 +436,6 @@
 	sort_string = "VAAAC"
 
 //BS
-/datum/design/research/circuit/telesci/console
-	name = "TeleSci Console"
-	build_path = /obj/item/weapon/electronics/circuitboard/telesci_console
-	sort_string = "VAAAD"
-	category = CAT_BLUE
-
-/datum/design/research/circuit/telesci/hub
-	name = "TeleSci Pad"
-	build_path = /obj/item/weapon/electronics/circuitboard/telesci_pad
-	sort_string = "VAAAE"
-	category = CAT_BLUE
-
 /datum/design/research/circuit/bssilk/console
 	name = "Bluespace Snare Control Console"
 	build_path = /obj/item/weapon/electronics/circuitboard/bssilk_cons
