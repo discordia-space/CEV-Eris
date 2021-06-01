@@ -258,6 +258,25 @@
 	I.gun_loc_tag = GUN_MECHANISM
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+/obj/item/weapon/gun_upgrade/mechanism/cell_mount_egun
+	name = "energy gun cell mount"
+	desc = "A bulky adapter which allows oversized power cells to be installed into energy weapons."
+	icon_state = "cell_mount"
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun_upgrade/mechanism/cell_mount/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_CELLPLUS = TRUE,
+		GUN_UPGRADE_CHARGECOST = 2,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.5
+	)
+	I.req_fuel_cell = REQ_CELL
+	I.gun_loc_tag = GUN_MECHANISM
+	I.req_gun_tags = list(GUN_ENERGY)
+	
+
 //Trash mods, for putting on old guns
 
 /obj/item/weapon/gun_upgrade/trigger/faulty

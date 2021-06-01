@@ -263,3 +263,18 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC, "time" = 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
+
+/datum/craft_recipe/weapon/cell_mount_egun
+	name = "energy gun cell mount"
+	result = /obj/item/weapon/gun_upgrade/mechanism/cell_mount
+	steps = list(
+		list(/obj/item/weapon/tool_upgrade/augment/cell_mount, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, "time" = 20),
+		list(/obj/item/weapon/cell, 1), 
+		list(QUALITY_HAMMERING, 10, 10), //smashing the cell for its guts
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(/obj/item/trash/material/circuit, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)

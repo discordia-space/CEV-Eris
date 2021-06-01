@@ -73,6 +73,9 @@
 
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
 
+	var/suitable_cell = FALSE //Allows changing of cell type in _upgrades
+	var/cell_type = FALSE
+
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1

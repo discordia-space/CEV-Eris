@@ -79,6 +79,7 @@
 #define GUN_UPGRADE_RIGGED "rigged"
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
+#define GUN_UPGRADE_CELLPLUS "cell mount"
 
 //Location Tag defines
 
@@ -97,6 +98,7 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
+#define GUN_SMALL_CELL "small cell slot"
 
 #define GUN_CALIBRE_35 "caliber .35"
 

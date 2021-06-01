@@ -315,6 +315,13 @@
 			user.update_action_buttons()
 	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
 		G.vision_flags = SEE_MOBS
+	if(weapon_upgrades[GUN_UPGRADE_CELLPLUS])
+		switch(G.suitable_cell)
+			if(/obj/item/weapon/cell/medium)
+				G.suitable_cell = /obj/item/weapon/cell/large
+				prefix = "large-cell"
+			if(/obj/item/weapon/cell/small)
+				G.suitable_cell = /obj/item/weapon/cell/medium
 
 	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
