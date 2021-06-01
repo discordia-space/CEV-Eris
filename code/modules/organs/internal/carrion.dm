@@ -354,23 +354,26 @@
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
 			else if(istype(O, /obj/item/organ/internal))
-				geneticpointgain = 3
-				chemgain = 10
-				taste_description = "internal organs are delicious"
+				var/organ_rotten = FALSE
+				if (O.status & ORGAN_DEAD)
+					organ_rotten = TRUE
+				geneticpointgain = organ_rotten ? 1 : 3
+				chemgain = organ_rotten ? 4 : 10
+				taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
 			else
 				geneticpointgain = 2
 				chemgain = 5
-				taste_description = "limbs are satisfying"
+				taste_description = "limbs are satisfying."
 
 		else if(istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/human))
 			geneticpointgain = 2
 			chemgain = 5
-			taste_description = "human meat is satisfying"
+			taste_description = "human meat is satisfying."
 
 		else
 			chemgain = 5
 			owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
-			taste_description = "this meat is bland"
+			taste_description = "this meat is bland."
 
 		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
