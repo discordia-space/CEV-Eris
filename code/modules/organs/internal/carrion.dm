@@ -297,46 +297,34 @@
 				return
 
 			if(E.is_stump())
-				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
+				to_chat(owner, SPAN_WARNING("There is nothing there!"))
 				return
 			tearing = TRUE
 
-			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it [E.functions ? "off": "apart"]!"))
+			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it apart!"))
 			if(do_after(owner, 5 SECONDS, H))
 				tearing = FALSE
-				if (E.organ_tag == BP_HEAD)
-					if(!(H.incapacitated(INCAPACITATION_UNCONSCIOUS)))
-						var/datum/gender/G = gender_datums[H.gender]
-						for(var/obj/item/organ/external/smacker in H.organs)
-							if(smacker.functions == BODYPART_GRASP || smacker.functions == BODYPART_STAND)
-								if(!(smacker.is_broken() || smacker.is_dislocated() || smacker.limb_efficiency < 50))
-									owner.Stun(5) // I don't know how stun works, so magic number.
-									owner.drop_item()
-									visible_message(SPAN_DANGER("[H.name] smacks away [owner]'s maw with [G.his] [smacker.name]."))
-									return
-			
-				if (E.organ_tag == BP_GROIN || E.organ_tag == BP_CHEST) // torso bits should not be torn off.
-					E.take_damage(30)
-					var/list/blacklist
-					for (var/obj/item/organ/internal/bone/to_blacklist in E.internal_organs)
-						blacklist += to_blacklist// removing bones from a valid_organs list based on
-					var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
-					if (!valid_organs.len)
-						visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
-						return
-					var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
-					organ_to_remove.removed(owner)
-					visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
-					playsound(loc, 'sound/voice/shriek1.ogg', 50)
+				E.take_damage(30)
+				var/blacklist = list()
+				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
+					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
+						blacklist += to_blacklist
+						continue
+					if (istype(to_blacklist, /obj/item/organ/internal/brain/))
+						blacklist += to_blacklist// removing bones from a valid_organs list based on			
+				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
+				if (!valid_organs.len)
+					visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
 					return
-				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
+				var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
+				organ_to_remove.removed(owner)
+				visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
 				playsound(loc, 'sound/voice/shriek1.ogg', 50)
-				visible_message(SPAN_DANGER("\The [owner] tears off \the [H.name]'s [E.name]!"))
 				return
 			else
 				tearing = FALSE
 		else
-			to_chat(owner, SPAN_WARNING("You can only tear limbs off of humanoids!"))	
+			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))	
 			return
 
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
