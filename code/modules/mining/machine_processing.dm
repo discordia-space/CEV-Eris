@@ -71,11 +71,14 @@
 	usr.set_machine(src)
 
 	if(href_list["change_sheetspertick"])
-		var/spt_value = input(usr, "How many sheets do you want to process per cycle?", "Material Processing Rate", machine.sheets_per_tick) as null|num
+		var/spt_value = input(usr, "How many sheets do you want to process per cycle? (max 60, default 10)", "Material Processing Rate", 10) as null|num
 		if(!isnum(spt_value) || spt_value < 1)
 			return
 		if(spt_value > 60)
 			spt_value = 60
+		var/area/refinery_area = get_area(src)
+		for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
+			unloader.unload_amt = spt_value
 		machine.sheets_per_tick = spt_value
 	if(href_list["toggle_smelting"])
 		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
@@ -241,5 +244,4 @@
 				new /obj/item/weapon/ore/slag(get_step(src, output_dir))
 		else
 			continue
-
-		console.updateUsrDialog()
+	console.updateUsrDialog()
