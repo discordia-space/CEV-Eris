@@ -59491,6 +59491,7 @@
 /obj/structure/table/rack,
 /obj/spawner/tool_upgrade/low_chance,
 /obj/spawner/tool_upgrade/rare/low_chance,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/technomancer_rig,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cJr" = (

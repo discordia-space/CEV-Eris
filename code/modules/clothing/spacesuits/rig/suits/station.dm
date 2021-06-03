@@ -19,6 +19,7 @@
 /obj/item/clothing/head/space/rig/techno
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ENGINEERING)
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 
 
 
@@ -268,11 +269,12 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "technomancer RIG suit"
 	desc = "An advanced RIG suit that protects against hazardous, low pressure and high temperature environments."
 	icon_state = "techno_rig"
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 1)
 	rarity_value = 20
 	armor = list(
-		melee = 45,
-		bullet = 35,
-		energy = 45,
+		melee = 50,
+		bullet = 40,
+		energy = 50,
 		bomb = 50,
 		bio = 100,
 		rad = 100
@@ -302,18 +304,18 @@ Advanced Voidsuit: Technomancer Exultant
 /obj/item/weapon/rig/techno/equipped
 	rarity_value = 40
 	initial_modules = list(
-		/obj/item/rig_module/ai_container,
-		/obj/item/rig_module/vision/meson,
 		/obj/item/rig_module/storage,
 		)
 
 /obj/item/clothing/gloves/rig/techno
 	name = "insulated gloves"
 	siemens_coefficient = 0
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 1)
 
 /obj/item/clothing/shoes/magboots/rig/techno
 	name = "Advanced Magboots"
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
 	mag_slow = 1
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 1)
 
 

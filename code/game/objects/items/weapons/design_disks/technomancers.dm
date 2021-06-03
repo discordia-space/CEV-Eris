@@ -96,7 +96,7 @@
 	disk_name = "Technomancers SPC-249 RIG Suit"
 	icon_state = "technomancers"
 	spawn_blacklisted = TRUE
-	license = 10
+	license = -1
 	designs = list(
 		/datum/design/autolathe/clothing/technomancer_rig
 	)
