@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ab" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ac" = (
 /turf/simulated/floor/plating/under,
@@ -71,7 +71,7 @@
 /area/template_noop)
 "au" = (
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "av" = (
 /obj/structure/closet/onestar/tier2/mineral,
@@ -142,16 +142,16 @@
 "aI" = (
 /obj/structure/catwalk,
 /obj/structure/ore_box,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aJ" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aK" = (
 /obj/structure/lattice,
 /obj/item/weapon/storage/bag/ore,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aL" = (
 /turf/simulated/mineral,
@@ -160,7 +160,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aN" = (
 /obj/structure/railing{
@@ -169,7 +169,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aO" = (
 /obj/structure/railing{
@@ -179,18 +179,18 @@
 	dir = 8
 	},
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aP" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aQ" = (
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aR" = (
 /obj/structure/salvageable/os/server,
@@ -201,26 +201,26 @@
 	dir = 4
 	},
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aT" = (
 /obj/structure/catwalk,
 /obj/structure/inflatable/door,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aU" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aV" = (
 /turf/simulated/mineral/random,
 /area/template_noop)
 "aW" = (
 /obj/structure/inflatable/door,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aX" = (
 /obj/structure/sign/directions/medical{
@@ -294,18 +294,18 @@
 "bj" = (
 /obj/structure/catwalk,
 /obj/item/weapon/storage/bag/ore,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bk" = (
 /obj/structure/inflatable/door,
 /obj/structure/catwalk,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bl" = (
 /obj/structure/lattice,
 /obj/item/weapon/tool/pickaxe/onestar,
 /obj/item/remains,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bI" = (
 /obj/effect/floor_decal/industrial/loading{
@@ -354,7 +354,7 @@
 "qP" = (
 /obj/structure/catwalk,
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "sD" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,

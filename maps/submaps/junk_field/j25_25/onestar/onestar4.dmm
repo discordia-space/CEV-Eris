@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ab" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ac" = (
 /turf/simulated/floor/plating/under,
@@ -84,7 +84,7 @@
 /area/template_noop)
 "au" = (
 /obj/structure/railing,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "av" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
@@ -92,18 +92,18 @@
 /area/template_noop)
 "aw" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ax" = (
 /obj/structure/catwalk,
 /obj/machinery/door/airlock/external,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ay" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "az" = (
 /obj/machinery/light/floor,
@@ -332,7 +332,7 @@
 "bp" = (
 /obj/structure/railing,
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bq" = (
 /obj/spawner/soda,
@@ -347,7 +347,7 @@
 	dir = 1
 	},
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bK" = (
 /obj/spawner/scrap/sparse,

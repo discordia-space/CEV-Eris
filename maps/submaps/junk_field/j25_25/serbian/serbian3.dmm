@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ab" = (
 /turf/simulated/wall/r_wall,
@@ -150,7 +150,7 @@
 /area/template_noop)
 "ax" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ay" = (
 /obj/structure/bed/chair/comfy/black{
@@ -303,7 +303,7 @@
 /area/template_noop)
 "aU" = (
 /obj/item/weapon/material/shard,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aV" = (
 /obj/structure/closet,
@@ -481,7 +481,7 @@
 "bu" = (
 /obj/spawner/junk,
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bv" = (
 /obj/structure/sink{
@@ -594,7 +594,7 @@
 "bJ" = (
 /obj/structure/lattice,
 /obj/item/weapon/storage/pouch/medium_generic,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bK" = (
 /mob/living/simple_animal/hostile/bear,
@@ -610,7 +610,7 @@
 "bN" = (
 /obj/item/weapon/material/shard,
 /obj/item/weapon/material/shard,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "bO" = (
 /obj/structure/girder/low,

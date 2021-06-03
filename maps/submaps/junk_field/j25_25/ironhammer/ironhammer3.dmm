@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ab" = (
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "ac" = (
 /obj/structure/girder,
@@ -27,7 +27,7 @@
 "ai" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aj" = (
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -134,7 +134,7 @@
 /obj/machinery/light_construct{
 	dir = 1
 	},
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aG" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -189,7 +189,7 @@
 /area/template_noop)
 "aS" = (
 /obj/effect/window_lwall_spawn/smartspawn,
-/turf/space,
+/turf/template_noop,
 /area/template_noop)
 "aT" = (
 /obj/spawner/junk,
