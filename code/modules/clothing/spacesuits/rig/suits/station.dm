@@ -272,16 +272,16 @@ Advanced Voidsuit: Technomancer Exultant
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 1)
 	rarity_value = 20
 	armor = list(
-		melee = 50,
-		bullet = 40,
-		energy = 50,
+		melee = 40,
+		bullet = 35,
+		energy = 40,
 		bomb = 50,
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 0
-	drain = 2
-	offline_slowdown = 0
+	slowdown = 1
+	drain = 3
+	offline_slowdown = 3
 	offline_vision_restriction = 0
 
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
