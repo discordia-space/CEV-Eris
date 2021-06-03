@@ -245,7 +245,6 @@
 #include "code\controllers\subsystems\wireless.dm"
 #include "code\controllers\subsystems\xenoarch.dm"
 #include "code\controllers\subsystems\initialization\character_setup.dm"
-#include "code\controllers\subsystems\processing\fastprocess.dm"
 #include "code\controllers\subsystems\processing\fluids.dm"
 #include "code\controllers\subsystems\processing\mobs.dm"
 #include "code\controllers\subsystems\processing\nano.dm"

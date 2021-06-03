@@ -69,7 +69,6 @@
 	var/output_dir = null
 	var/list/stack_storage
 	var/stack_amt = 120 // Amount to stack before releassing
-	var/speed_process = FALSE // are we on SSfastprocess?
 
 /obj/machinery/mineral/stacking_machine/Initialize(mapload, d)
 	. = ..()
@@ -99,18 +98,6 @@
 		stack_storage[material_name] -= amount
 		var/stacktype = material_stack_type(material_name)
 		new stacktype (get_step(src, output_dir), amount)
-
-/obj/machinery/mineral/stacking_machine/proc/toggle_speed(var/forced)
-	if(forced)
-		speed_process = forced
-	else
-		speed_process = !speed_process // switching gears
-	if(speed_process) // high gear
-		STOP_PROCESSING(SSmachines, src)
-		START_PROCESSING(SSfastprocess, src)
-	else // low gear
-		STOP_PROCESSING(SSfastprocess, src)
-		START_PROCESSING(SSmachines, src)
 
 /obj/machinery/mineral/stacking_machine/Process()
 	if (src.output_dir && src.input_dir)

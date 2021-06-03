@@ -26,7 +26,6 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	var/list/affecting		// the list of all items that will be moved this ptick
 	var/reversed = FALSE	// set to TRUE to have the conveyor belt be reversed
 	var/id					// ID of the connected lever
-	var/speed_process = FALSE // are we on SSfastprocess?
 
 
 // create a conveyor
@@ -118,18 +117,6 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 			icon_state += "_r"
 	else
 		icon_state = "conveyor_stopped_[clockwise ? "cw" : "ccw"]"
-
-/obj/machinery/conveyor/proc/toggle_speed(var/forced)
-	if(forced)
-		speed_process = forced
-	else
-		speed_process = !speed_process // switching gears
-	if(speed_process) // high gear
-		STOP_PROCESSING(SSmachines, src)
-		START_PROCESSING(SSfastprocess, src)
-	else // low gear
-		STOP_PROCESSING(SSfastprocess, src)
-		START_PROCESSING(SSmachines, src)
 
 /obj/machinery/conveyor/proc/update_move_direction()
 	update_icon()
@@ -264,19 +251,9 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	var/one_way = FALSE	// Do we go in one direction?
 	var/id
 	var/list/conveyors = list()
-	var/speed_active = FALSE // are the linked conveyors on SSfastprocess?
 
 	// DEPRECATED: remove once map is updated
 	var/convdir
-
-/obj/machinery/conveyor_switch/proc/toggle_speed(var/forced)
-	speed_active = !speed_active // switching gears
-	if(speed_active) // high gear
-		for(var/obj/machinery/conveyor/C in conveyors)
-			C.toggle_speed(TRUE)
-	else // low gear
-		for(var/obj/machinery/conveyor/C in conveyors)
-			C.toggle_speed(FALSE)
 
 /obj/machinery/conveyor_switch/New(newloc, new_id)
 	..(newloc)
