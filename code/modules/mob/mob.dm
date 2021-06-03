@@ -81,7 +81,7 @@
  * This is simply "mob_"+ a global incrementing counter that goes up for every mob
  */
 /mob/GenerateTag()
-	// tag = "mob_[next_mob_id++]"
+	tag = "mob_[next_mob_id++]"
 
 /mob/proc/despawn()
 	return
@@ -214,8 +214,9 @@
 	. += move_intent.move_delay
 
 
-/mob/proc/Life()
-	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
+/mob/proc/Life(delta_time = SSMOBS_DT, times_fired)
+	set waitfor = FALSE
+	SEND_SIGNAL(src, COMSIG_MOB_LIFE) //possible comsig microwave background issue here
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.

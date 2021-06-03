@@ -258,7 +258,7 @@
 
 	SSjob.AssignRole(src, rank, 1)
 
-	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
+	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 
 	var/equip = SSjob.EquipRank(character, rank) //, TRUE, is_captain)
 	if(isliving(equip)) //Borgs get borged in the equip, so we need to make sure we handle the new mob.
@@ -312,7 +312,7 @@
 
 	GLOB.joined_player_list += character.ckey
 
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, rank, late = TRUE)
 	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
 	equip_custom_items(character)
 	character.lastarea = get_area(loc)

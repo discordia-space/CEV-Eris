@@ -14,16 +14,14 @@
 	maximum_volume = max
 	my_atom = A
 
-	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!GLOB.chemical_reagents_list)
-		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-		var/paths = typesof(/datum/reagent) - /datum/reagent
-		GLOB.chemical_reagents_list = list()
-		for(var/path in paths)
-			var/datum/reagent/D = new path()
-			if(!D.name)
-				continue
-			GLOB.chemical_reagents_list[D.id] = D
+	/// SILENCE
+	//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
+	var/paths = typesof(/datum/reagent) - /datum/reagent
+	for(var/path in paths)
+		var/datum/reagent/D = new path()
+		if(!D.name)
+			continue
+		GLOB.chemical_reagents_list[D.id] = D
 
 /datum/reagents/proc/get_price()
 	var/price = 0

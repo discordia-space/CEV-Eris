@@ -161,6 +161,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(isnull(address) || (address in localhost_addresses))
 			holder = new /datum/admins("!localhost!", R_HOST, ckey)
 			holder.associate(src)
+			holder.reassociate()
+			SSticker.OnRoundstart(CALLBACK(holder, /datum/admins.proc/reassociate))
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = SScharacter_setup.preferences_datums[ckey]
@@ -336,8 +338,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
 		if(R.Find(F))
 			var/year = R.group[1]
-			var/month = R.group[2]
-			var/day = R.group[3]
+			var/month = 00
+			var/day = 00
+			if(R.group.len > 2)
+				month = R.group[2]
+			if(R.group.len == 3)
+				day = R.group[3]
 			registration_date = "[year]-[month]-[day]"
 			return registration_date
 		else

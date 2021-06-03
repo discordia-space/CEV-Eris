@@ -5,6 +5,7 @@ var/list/admin_datums = list()
 	var/client/owner	= null
 	var/rights = 0
 	var/fakekey			= null
+	var/name = "nobody's admin datum (no rank)" //Makes for better runtimes
 
 	var/datum/marked_datum
 
@@ -19,12 +20,14 @@ var/list/admin_datums = list()
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
-		error("Admin datum created without a ckey argument. Datum has been deleted")
-		qdel(src)
-		return
-	admincaster_signature = "[company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+		QDEL_IN(src, 0)
+		CRASH("Admin datum created without a ckey")
+	name = "[ckey]'s admin datum ([initial_rank])"
 	rank = initial_rank
+	admincaster_signature = "[company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rights = initial_rights
+	if(rights & R_DEBUG) //grant profile access
+		world.SetConfig("APP/admin", ckey, "role=admin")
 	admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)

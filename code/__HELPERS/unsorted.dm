@@ -626,16 +626,25 @@ proc/GaussRandRound(var/sigma, var/roundto)
 /proc/return_sorted_areas()
 	return sortNames(GLOB.map_areas)
 
+//Takes: Area type as a text string from a variable.
+//Returns: Instance for the area in the world.
+/proc/get_area_instance_from_text(areatext)
+	if(istext(areatext))
+		areatext = text2path(areatext)
+	return get_area_name(areatext)
+
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
 /proc/get_areas(var/areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
-	if(isarea(areatype))
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
 
-	var/list/areas = new/list()
+	var/list/areas = list()
 	for(var/area/N in GLOB.map_areas)
 		if(istype(N, areatype)) areas += N
 	return areas
@@ -1303,14 +1312,14 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
 /proc/REF(input)
-	// if(istype(input, /datum))
-	// 	var/datum/thing = input
-	// 	if(thing.datum_flags & DF_USE_TAG)
-	// 		if(!thing.tag)
-	// 			stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
-	// 			thing.datum_flags &= ~DF_USE_TAG
-	// 		else
-	// 			return "\[[url_encode(thing.tag)]\]"
+	if(istype(input, /datum))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+				thing.datum_flags &= ~DF_USE_TAG
+			else
+				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
 
 // Makes a call in the context of a different usr

@@ -68,28 +68,30 @@ datum/preferences
 	// show_character_previews(mutable_appearance/MA)
 	var/mutable_appearance/MA = new /mutable_appearance(mannequin)
 
-	preview_east = getFlatIcon(mannequin, EAST, always_use_defdir = 1)
+	MA.dir = EAST
+	var/image/I = image(MA)
+	preview_east = I.icon // image(MA)
 
 	MA.dir = WEST
 	// var/icon/stamp = getFlatIcon(mannequin, WEST, always_use_defdir = 1)
 	// preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 3, preview_icon.Height()/100 * 29)
-	preview_west = MA
+	preview_west = image(MA)
 
 	MA.dir = NORTH
 	// stamp = getFlatIcon(mannequin, NORTH, always_use_defdir = 1)
 	// preview_icon.Blend(stamp, ICON_OVERLAY,preview_icon.Width()/100 * 35, preview_icon.Height()/100 * 53)
-	preview_north = MA
+	preview_north = image(MA)
 
 	MA.dir = SOUTH
 	// stamp = getFlatIcon(mannequin, SOUTH, always_use_defdir = 1)
 	// preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 68,preview_icon.Height()/100 * 5)
-	preview_south = MA
+	preview_south = image(MA)
 
 	// Scaling here to prevent blurring in the browser.
-	preview_east.Scale(preview_east.Width() * 2, preview_east.Height() * 2)
-	preview_west.Scale(preview_west.Width() * 2, preview_west.Height() * 2)
-	preview_north.Scale(preview_north.Width() * 2, preview_north.Height() * 2)
-	preview_south.Scale(preview_south.Width() * 2, preview_south.Height() * 2)
+	// preview_east.Scale(preview_east.Width() * 2, preview_east.Height() * 2)
+	// preview_west.Scale(preview_west.Width() * 2, preview_west.Height() * 2)
+	// preview_north.Scale(preview_north.Width() * 2, preview_north.Height() * 2)
+	// preview_south.Scale(preview_south.Width() * 2, preview_south.Height() * 2)
 	// preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 

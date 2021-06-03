@@ -77,11 +77,11 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
+#define INIT_ORDER_DBCORE 95
+#define INIT_ORDER_BLACKBOX 94
+#define INIT_ORDER_SERVER_MAINT 93
+#define INIT_ORDER_JOBS 65
 #define INIT_ORDER_SKYBOX 20
-#define INIT_ORDER_DBCORE 19
-#define INIT_ORDER_BLACKBOX 18
-#define INIT_ORDER_SERVER_MAINT 17
-#define INIT_ORDER_JOBS 16
 #define INIT_ORDER_EVENTS 15
 #define INIT_ORDER_TICKER 14
 #define INIT_ORDER_SPAWN_DATA 13
@@ -106,12 +106,13 @@
 #define INIT_ORDER_LIGHTING -20
 #define INIT_ORDER_SHUTTLE -21
 #define INIT_ORDER_SQUEAK -40
-#define INIT_ORDER_XENOARCH	-50
-#define INIT_ORDER_PERSISTENCE -100
-#define INIT_OPEN_SPACE -150
-#define INIT_ORDER_CRAFT -175
-#define INIT_ORDER_LATELOAD -180
-#define INIT_ORDER_CHAT	-185
+#define INIT_ORDER_XENOARCH	-41 // minor mapping 2
+#define INIT_ORDER_PERSISTENCE -94
+#define INIT_OPEN_SPACE -95
+#define INIT_ORDER_CRAFT -96
+#define INIT_ORDER_LATELOAD -97
+#define INIT_ORDER_STATPANELS -98
+#define INIT_ORDER_CHAT	-100
 
 // SS runlevels
 
@@ -123,6 +124,7 @@
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
+/// ss machine process on a different hook. fucking dumb solution
 #define START_PROCESSING_IN_LIST(Datum, List) \
 if (Datum.is_processing) {\
 	if(Datum.is_processing != "SSmachines.[#List]")\
@@ -130,17 +132,12 @@ if (Datum.is_processing) {\
 		crash_with("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on SSmachines.[#List]."); \
 	}\
 } else {\
-	Datum.is_processing = "SSmachines.[#List]";\
-	SSmachines.List += Datum;\
+	START_PROCESSING(SSmachinery, Datum)\
 }
 
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
-	if(SSmachines.List.Remove(Datum)) {\
-		Datum.is_processing = null;\
-	} else {\
-		crash_with("Failed to stop processing. [log_info_line(Datum)] is being processed by [is_processing] and not found in SSmachines.[#List]"); \
-	}\
+	STOP_PROCESSING(SSmachinery, Datum)\
 }
 
 #define START_PROCESSING_PIPENET(Datum) START_PROCESSING_IN_LIST(Datum, pipenets)
@@ -151,6 +148,25 @@ if(Datum.is_processing) {\
 
 #define START_PROCESSING_POWER_OBJECT(Datum) START_PROCESSING_IN_LIST(Datum, power_objects)
 #define STOP_PROCESSING_POWER_OBJECT(Datum) STOP_PROCESSING_IN_LIST(Datum, power_objects)
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
+
+// Air subsystem subtasks
+#define SSAIR_PIPENETS 1
+#define SSAIR_ATMOSMACHINERY 2
+#define SSAIR_ACTIVETURFS 3 // (cost_tiles)
+#define SSAIR_DEFER_AT 4
+#define SSAIR_EDGES 5 // (cost_edges)
+#define SSAIR_FIRE 6 // (cost_fire)
+#define SSAIR_HOTSPOTS 7 // (cost_hotspot)
+#define SSAIR_ZONE 8
 
 // Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
 // Only use these defines if you want to access some other objects processing delta_time, otherwise use the delta_time that is sent as a parameter to process()

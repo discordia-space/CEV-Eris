@@ -118,7 +118,7 @@ const taskPrependDefines = (...defines) => new Task('prepend-defines')
   });
 
 const taskDm = (...injectedDefines) => new Task('dm')
-  .depends('_maps/map_files/generic/**')
+  .depends('maps/**')
   .depends('code/**')
   .depends('goon/**')
   .depends('html/**')

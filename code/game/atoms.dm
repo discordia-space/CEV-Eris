@@ -68,8 +68,8 @@
 	// if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 	// 	world.preloader_load(src)
 
-	// if(datum_flags & DF_USE_TAG)
-	// 	GenerateTag()
+	if(datum_flags & DF_USE_TAG)
+		GenerateTag()
 
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
@@ -135,6 +135,10 @@
 			create_reagents(volume)
 		for(var/reagent in preloaded_reagents)
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+
+	if(opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	ComponentInitialize()
 
@@ -718,18 +722,44 @@ its easier to just keep the beam vertical.
 		var/obj/O = o
 		O.show_message(message,2,deaf_message,1)
 
-/atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+/**
+ * An atom has entered this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_ENTERED]
+ */
+/atom/Entered(atom/movable/AM, atom/oldLoc, special_event)
+	// SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
+	// SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, oldLoc)
 	if(loc)
 		for(var/i in AM.contents)
 			var/atom/movable/A = i
-			A.entered_with_container(old_loc)
+			A.entered_with_container(oldLoc)
 		if(MOVED_DROP == special_event)
 			AM.forceMove(loc, MOVED_DROP)
 			return CANCEL_MOVE_EVENT
 	return ..()
 
-/turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	return ..(AM, old_loc, 0)
+/**
+ * An atom is attempting to exit this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EXIT]
+ */
+/atom/Exit(atom/movable/AM, atom/newLoc)
+	// Don't call `..()` here, otherwise `Uncross()` gets called.
+	// See the doc comment on `Uncross()` to learn why this is bad.
+
+	// if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newLoc) & COMPONENT_ATOM_BLOCK_EXIT)
+	// 	return FALSE
+
+	return TRUE
+
+/**
+ * An atom has exited this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EXITED]
+ */
+/atom/Exited(atom/movable/AM, atom/newLoc)
+	// SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newLoc)
 
 /atom/proc/get_footstep_sound()
 	return

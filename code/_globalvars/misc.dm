@@ -25,3 +25,6 @@ GLOBAL_PROTECT(next_promise_id) // NO TOUCHY
 GLOBAL_LIST_EMPTY(mob_living_list) //all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(new_player_list) //all /mob/dead/new_player, in theory all should have clients and those that don't are in the process of spawning and get deleted when done.
 GLOBAL_LIST_EMPTY(joined_player_list) //all clients that have joined the game at round-start or as a latejoin.
+
+// MOVE TO objects.dm in the same dir
+GLOBAL_LIST_EMPTY(machines)         //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !

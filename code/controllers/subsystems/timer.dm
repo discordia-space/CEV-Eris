@@ -517,41 +517,59 @@ SUBSYSTEM_DEF(timer)
 	else
 		. = "[callBack.object.type]"
 
-
-/proc/addtimer(datum/callback/callback, wait, flags)
+/**
+ * Create a new timer and insert it in the queue.
+ * You should not call this directly, and should instead use the addtimer macro, which includes source information.
+ *
+ * Arguments:
+ * * callback the callback to call on timer finish
+ * * wait deciseconds to run the timer for
+ * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+ */
+/proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, datum/controller/subsystem/timer/timer_subsystem, file, line)
 	if (!callback)
-		return
+		CRASH("addtimer called without a callback")
 
-	wait = max(wait, 0)
+	if (wait < 0)
+		stack_trace("addtimer called with a negative wait. Converting to [world.tick_lag]")
 
+	if (callback.object != GLOBAL_PROC && QDELETED(callback.object) && !QDESTROYING(callback.object))
+		stack_trace("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not \
+			be supported and may refuse to run or run with a 0 wait")
+
+	wait = max(CEILING(wait, world.tick_lag), world.tick_lag)
+
+	if(wait >= INFINITY)
+		CRASH("Attempted to create timer with INFINITY delay")
+
+	timer_subsystem = timer_subsystem || SStimer
+
+	// Generate hash if relevant for timed events with the TIMER_UNIQUE flag
 	var/hash
-
 	if (flags & TIMER_UNIQUE)
-		var/list/hashlist = list(callback.object, "(\ref[callback.object])", callback.delegate, wait, flags & TIMER_CLIENT_TIME)
+		var/list/hashlist = list(callback.object, "([REF(callback.object)])", callback.delegate, flags & TIMER_CLIENT_TIME)
+		if(!(flags & TIMER_NO_HASH_WAIT))
+			hashlist += wait
 		hashlist += callback.arguments
 		hash = hashlist.Join("|||||||")
 
-		var/datum/timedevent/hash_timer = SStimer.hashes[hash]
+		var/datum/timedevent/hash_timer = timer_subsystem.hashes[hash]
 		if(hash_timer)
-			if (hash_timer.spent)  // It's pending deletion, pretend it doesn't exist.
-				hash_timer.hash = null
-				SStimer.hashes -= hash
+			if (hash_timer.spent) // it's pending deletion, pretend it doesn't exist.
+				hash_timer.hash = null // but keep it from accidentally deleting us
 			else
 				if (flags & TIMER_OVERRIDE)
+					hash_timer.hash = null // no need having it delete it's hash if we are going to replace it
 					qdel(hash_timer)
 				else
 					if (hash_timer.flags & TIMER_STOPPABLE)
 						. = hash_timer.id
 					return
+	else if(flags & TIMER_OVERRIDE)
+		stack_trace("TIMER_OVERRIDE used without TIMER_UNIQUE")
 
-	var/timeToRun = world.time + wait
-	if (flags & TIMER_CLIENT_TIME)
-		timeToRun = REALTIMEOFDAY + wait
-
-	var/datum/timedevent/timer = new(callback, timeToRun, flags, hash)
-
-	if (flags & TIMER_STOPPABLE)
-		return timer.id
+	var/datum/timedevent/timer = new(callback, wait, flags, timer_subsystem, hash, file && "[file]:[line]")
+	return timer.id
 
 /**
  * Delete a timer

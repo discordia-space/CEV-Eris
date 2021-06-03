@@ -1,150 +1,183 @@
-/*
-Overview:
-   Used to create objects that need a per step proc call.  Default definition of 'New()'
-   stores a reference to src machine in global 'machines list'.  Default definition
-   of 'Del' removes reference to src machine in global 'machines list'.
-
-Class Variables:
-   use_power (num)
-      current state of auto power use.
-      Possible Values:
-         0 -- no auto power use
-         1 -- machine is using power at its idle power level
-         2 -- machine is using power at its active power level
-
-   active_power_usage (num)
-      Value for the amount of power to use when in active power mode
-
-   idle_power_usage (num)
-      Value for the amount of power to use when in idle power mode
-
-   power_channel (num)
-      What channel to draw from when drawing power for power mode
-      Possible Values:
-         EQUIP:0 -- Equipment Channel
-         LIGHT:2 -- Lighting Channel
-         ENVIRON:3 -- Environment Channel
-
-   component_parts (list)
-      A list of component parts of machine used by frame based machines.
-
-   panel_open (num)
-      Whether the panel is open
-
-   uid (num)
-      Unique id of machine across all machines.
-
-   gl_uid (global num)
-      Next uid value in sequence
-
-   stat (bitflag)
-      Machine status bit flags.
-      Possible bit flags:
-         BROKEN:1 -- Machine is broken
-         NOPOWER:2 -- No power is being supplied to machine.
-         POWEROFF:4 -- tbd
-         MAINT:8 -- machine is currently under going maintenance.
-         EMPED:16 -- temporary broken by EMP pulse
-
-Class Procs:
-   New()                     'game/machinery/machine.dm'
-
-   Destroy()                     'game/machinery/machine.dm'
-
-   auto_use_power()            'modules/power/power.dm'
-      This proc determines how power mode power is deducted by the machine.
-      'auto_use_power()' is called by the 'SSmachines' subsystem every
-      SSmachines tick.
-
-      Return Value:
-         return:1 -- if object is powered
-         return:0 -- if object is not powered.
-
-      Default definition uses 'use_power', 'power_channel', 'active_power_usage',
-      'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
-
-   powered(chan = EQUIP)         'modules/power/power.dm'
-      Checks to see if area that contains the object has power available for power
-      channel given in 'chan'.
-
-   use_power(amount, chan=EQUIP, autocalled)   'modules/power/power.dm'
-      Deducts 'amount' from the power channel 'chan' of the area that contains the object.
-      If it's autocalled then everything is normal, if something else calls use_power we are going to
-      need to recalculate the power two ticks in a row.
-
-   power_change()               'modules/power/power.dm'
-      Called by the area that contains the object when ever that area under goes a
-      power state change (area runs out of power, or area channel is turned off).
-
-   InitCircuit()
-      Called in New. If circuit is not null, create Parts.
-
-   RefreshParts()               'game/machinery/machine.dm'
-      Called to refresh the variables in the machine that are contributed to by parts
-      contained in the component_parts list. (example: glass and material amounts for
-      the autolathe)
-
-      Default definition does nothing.
-
-   assign_uid()               'game/machinery/machine.dm'
-      Called by machine to assign a value to the uid variable.
-
-   process()                  'game/machinery/machine.dm'
-      Called by the 'SSmachines' once SSmachines tick for each machine that is listed in the 'machines' list.
-
-	Compiled by Aygar
-*/
-
+/**
+ * Machines in the world, such as computers, pipes, and airlocks.
+ *
+ *Overview:
+ *  Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+ *  stores a reference to src machine in global 'machines list'.  Default definition
+ *  of 'Destroy' removes reference to src machine in global 'machines list'.
+ *
+ *Class Variables:
+ *  use_power (num)
+ *     current state of auto power use.
+ *     Possible Values:
+ *        NO_POWER_USE -- no auto power use
+ *        IDLE_POWER_USE -- machine is using power at its idle power level
+ *        ACTIVE_POWER_USE -- machine is using power at its active power level
+ *
+ *  active_power_usage (num)
+ *     Value for the amount of power to use when in active power mode
+ *
+ *  idle_power_usage (num)
+ *     Value for the amount of power to use when in idle power mode
+ *
+ *  power_channel (num)
+ *     What channel to draw from when drawing power for power mode
+ *     Possible Values:
+ *        AREA_USAGE_EQUIP:0 -- Equipment Channel
+ *        AREA_USAGE_LIGHT:2 -- Lighting Channel
+ *        AREA_USAGE_ENVIRON:3 -- Environment Channel
+ *
+ *  component_parts (list)
+ *     A list of component parts of machine used by frame based machines.
+ *
+ *  stat (bitflag)
+ *     Machine status bit flags.
+ *     Possible bit flags:
+ *        BROKEN -- Machine is broken
+ *        NOPOWER -- No power is being supplied to machine.
+ *        MAINT -- machine is currently under going maintenance.
+ *        EMPED -- temporary broken by EMP pulse
+ *
+ *Class Procs:
+ *  Initialize()                     'game/machinery/machine.dm'
+ *
+ *  Destroy()                   'game/machinery/machine.dm'
+ *
+ *  auto_use_power()            'game/machinery/machine.dm'
+ *     This proc determines how power mode power is deducted by the machine.
+ *     'auto_use_power()' is called by the 'master_controller' game_controller every
+ *     tick.
+ *
+ *     Return Value:
+ *        return:1 -- if object is powered
+ *        return:0 -- if object is not powered.
+ *
+ *     Default definition uses 'use_power', 'power_channel', 'active_power_usage',
+ *     'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
+ *
+ *  powered(chan = -1)         'modules/power/power.dm'
+ *     Checks to see if area that contains the object has power available for power
+ *     channel given in 'chan'. -1 defaults to power_channel
+ *
+ *  use_power(amount, chan=-1)   'modules/power/power.dm'
+ *     Deducts 'amount' from the power channel 'chan' of the area that contains the object.
+ *
+ *  power_change()               'modules/power/power.dm'
+ *     Called by the area that contains the object when ever that area under goes a
+ *     power state change (area runs out of power, or area channel is turned off).
+ *
+ *  RefreshParts()               'game/machinery/machine.dm'
+ *     Called to refresh the variables in the machine that are contributed to by parts
+ *     contained in the component_parts list. (example: glass and material amounts for
+ *     the autolathe)
+ *
+ *     Default definition does nothing.
+ *
+ *  process()                  'game/machinery/machine.dm'
+ *     Called by the 'machinery subsystem' once per machinery tick for each machine that is listed in its 'machines' list.
+ *
+ *  process_atmos()
+ *     Called by the 'air subsystem' once per atmos tick for each machine that is listed in its 'atmos_machines' list.
+ * Compiled by Aygar
+ */
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
+	desc = "Some kind of machine."
 	w_class = ITEM_SIZE_GARGANTUAN
 
-	var/stat = 0
-	var/emagged = 0
+	anchored = TRUE
+
+	var/stat = NONE
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
-	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
-	var/uid
-	var/panel_open = 0
+	var/power_channel = EQUIP
+		//EQUIP, ENVIRON or LIGHT
+
+	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/panel_open = FALSE
+	/// Viable flags to go here are START_PROCESSING_ON_INIT, or START_PROCESSING_MANUALLY. See code\__DEFINES\machines.dm for more information on these flags.
+	var/processing_flags = START_PROCESSING_ON_INIT
+	/// What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.
+	var/subsystem_type = /datum/controller/subsystem/machines
+	var/obj/item/weapon/electronics/circuitboard/circuit
+
+	// For storing and overriding ui id
+	var/tgui_id // ID of TGUI interface
+	///Is this machine currently in the atmos machinery queue?
+	var/atmos_processing = FALSE
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
+
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
+	var/emagged = 0
+	var/uid
 
 /obj/machinery/Initialize(mapload, d=0)
+	// if(!armor)
+	// 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
 	. = ..()
+	GLOB.machines += src
 	if(d)
 		set_dir(d)
 	InitCircuit()
-	START_PROCESSING(SSmachines, src)
+
+	if(processing_flags & START_PROCESSING_ON_INIT)
+		begin_processing()
+
+	return INITIALIZE_HINT_LATELOAD
+
+/// Helper proc for telling a machine to start processing with the subsystem type that is located in its `subsystem_type` var.
+/obj/machinery/proc/begin_processing()
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	START_PROCESSING(subsystem, src)
+
+/// Helper proc for telling a machine to stop processing with the subsystem type that is located in its `subsystem_type` var.
+/obj/machinery/proc/end_processing()
+	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
+	STOP_PROCESSING(subsystem, src)
+
+/obj/machinery/LateInitialize()
+	. = ..()
+	power_change()
+	// become_area_sensitive(ROUNDSTART_TRAIT)
+	// RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
 
 /obj/machinery/Destroy()
-	STOP_PROCESSING(SSmachines, src)
-	if(component_parts)
-		for(var/atom/A in component_parts)
-			qdel(A)
+	GLOB.machines.Remove(src)
+	end_processing()
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			qdel(A)
+	QDEL_LIST(component_parts)
+	if(circuit)
+		circuit = null
+		// QDEL_NULL(circuit)
 	return ..()
 
+/obj/machinery/process()//If you dont use process or power why are you here
+	return PROCESS_KILL
+
+/obj/machinery/proc/process_atmos()//If you dont use process why are you here
+	return PROCESS_KILL
+
 /obj/machinery/Process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
-		return PROCESS_KILL
+	return process()
 
 /obj/machinery/emp_act(severity)
+	. = ..()
 	if(use_power && !stat)
 		use_power(7500/severity)
-
 		new /obj/effect/overlay/pulse(loc)
-	..()
 
 /obj/machinery/ex_act(severity)
 	switch(severity)

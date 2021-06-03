@@ -28,42 +28,125 @@
 	var/spawn_blacklisted = FALSE
 	var/bad_type //path
 
-/atom/movable/Del()
-	if(isnull(gc_destroyed) && loc)
-		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
-//	else if(isnull(gcDestroyed))
-//		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
-//	else
-//		testing("GC: [type] was deleted via GC with qdel()")
-	..()
-
-/atom/movable/Destroy()
+/atom/movable/Initialize(mapload)
 	. = ..()
-	for(var/atom/movable/AM in contents)
-		qdel(AM)
 
+	if(opacity && isturf(loc))
+		var/turf/T = loc // AddElement(/datum/element/light_blocking)
+		T.reconsider_lights()
+
+	if(istype(loc, /turf/simulated/open))
+		var/turf/simulated/open/open = loc
+		if(open.isOpen())
+			open.fallThrough(src)
+
+/atom/movable/Destroy(force)
 	if(loc)
 		loc.handle_atom_del(src)
 
+	// if(opacity)
+	// 	var/turf/T = loc // AddElement(/datum/element/light_blocking)
+	// 	T.reconsider_lights()
+
+	invisibility = 101
+
+
+	if(pulledby)
+		pulledby.stop_pulling()
+
+	// if(orbiting)
+	// 	orbiting.end_orbit(src)
+	// 	orbiting = null
+
+	. = ..()
+
+	for(var/movable_content in contents)
+		qdel(movable_content)
+
+	// LAZYCLEARLIST(client_mobs_in_contents)
+
 	forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
 
-/atom/movable/Bump(var/atom/A, yes)
-	if(src.throwing)
-		src.throw_impact(A)
-		src.throwing = 0
+	//We add ourselves to this list, best to clear it out
+	//DO it after moveToNullspace so memes can be had
+	// LAZYCLEARLIST(area_sensitive_contents)
 
-	spawn(0)
-		if (A && yes)
-			A.last_bumped = world.time
-			A.Bumped(src)
-		return
-	..()
-	return
+	vis_contents.Cut()
+
+// Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
+// You probably want CanPass() (not implimented YET)
+/atom/movable/Cross(atom/movable/AM)
+	. = TRUE
+	// SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
+	// SEND_SIGNAL(AM, COMSIG_MOVABLE_CROSS_OVER, src)
+	// return CanPass(AM, AM.loc, TRUE)
+
+///default byond proc that is deprecated for us in lieu of signals. do not call
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	// SHOULD_NOT_OVERRIDE(TRUE)
+	// CRASH("atom/movable/Crossed() was called!")
+
+/**
+ * `Uncross()` is a default BYOND proc that is called when something is *going*
+ * to exit this atom's turf. It is prefered over `Uncrossed` when you want to
+ * deny that movement, such as in the case of border objects, objects that allow
+ * you to walk through them in any direction except the one they block
+ * (think side windows).
+ *
+ * While being seemingly harmless, most everything doesn't actually want to
+ * use this, meaning that we are wasting proc calls for every single atom
+ * on a turf, every single time something exits it, when basically nothing
+ * cares.
+ *
+ * This overhead caused real problems on Sybil round #159709, where lag
+ * attributed to Uncross was so bad that the entire master controller
+ * collapsed and people made Among Us lobbies in OOC.
+ *
+ * If you want to replicate the old `Uncross()` behavior, the most apt
+ * replacement is [`/datum/element/connect_loc`] while hooking onto
+ * [`COMSIG_ATOM_EXIT`].
+ */
+/atom/movable/Uncross()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	CRASH("Uncross() should not be being called, please read the doc-comment for it for why.")
+
+/**
+ * default byond proc that is normally called on everything inside the previous turf
+ * a movable was in after moving to its current turf
+ * this is wasteful since the vast majority of objects do not use Uncrossed
+ * use connect_loc to register to COMSIG_ATOM_EXITED instead
+ */
+/atom/movable/Uncrossed(atom/movable/AM)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	// CRASH("/atom/movable/Uncrossed() was called")
+
+/atom/movable/Bump(atom/A)
+	if(!A)
+		CRASH("Bump was called with no argument.")
+	// SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+	. = ..()
+	if(throwing)
+		throw_impact(A)
+		throwing = FALSE
+		. = TRUE
+		if(QDELETED(A))
+			return
+
+	A.last_bumped = world.time
+	A.Bumped(src)
+
+/atom/movable/Exited(atom/movable/AM, atom/newLoc)
+	. = ..()
+	// if(AM.area_sensitive_contents)
+	// 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+	// 		LAZYREMOVE(location.area_sensitive_contents, AM.area_sensitive_contents)
+
+/atom/movable/Entered(atom/movable/AM, atom/oldLoc)
+	. = ..()
+	// if(AM.area_sensitive_contents)
+	// 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
+	// 		LAZYADD(location.area_sensitive_contents, AM.area_sensitive_contents)
+
 
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return

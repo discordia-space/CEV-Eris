@@ -34,7 +34,7 @@
 				return console_id
 
 /obj/machinery/bssilk_hub/proc/sync_with_parts()
-	for(var/obj/machinery/computer/bssilk_control/CON in SSmachines.machinery)
+	for(var/obj/machinery/computer/bssilk_control/CON in GLOB.machines)
 		if(!CON.connected_hub && CON.hub_id && CON.hub_id == console_id)
 			connected_console = CON
 			CON.connected_hub = src
@@ -125,7 +125,7 @@
 		ui.open()
 
 /obj/machinery/computer/bssilk_control/proc/find_hub()
-	for(var/obj/machinery/bssilk_hub/HUB in SSmachines.machinery)
+	for(var/obj/machinery/bssilk_hub/HUB in GLOB.machines)
 		if(!HUB.connected_console && HUB.console_id && HUB.console_id == hub_id)
 			connected_hub = HUB
 			HUB.connected_console = src

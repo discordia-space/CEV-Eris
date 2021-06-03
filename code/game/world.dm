@@ -67,7 +67,6 @@ GLOBAL_VAR(restart_counter)
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	callHook("startup")
 	load_mods()
 
 	generate_body_modification_lists()
@@ -86,8 +85,6 @@ GLOBAL_VAR(restart_counter)
 // 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 // #endif
 
-	// Set up roundstart seed list.
-	plant_controller = new()
 
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
@@ -95,6 +92,9 @@ GLOBAL_VAR(restart_counter)
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
 	initialize_integrated_circuits_list()
+
+	// Set up roundstart seed list AFTER CHEM **INITIALIZES**
+	plant_controller = new()
 
 	// GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
@@ -107,6 +107,9 @@ GLOBAL_VAR(restart_counter)
 
 	Master.Initialize(10, FALSE, TRUE)
 
+	// sync based startup, hook delays the init!!!
+	callHook("startup_sync")
+	_addtimer(CALLBACK(GLOBAL_PROC, .proc/callHook, "startup"), 5 SECONDS) // fixes 90% of the race conditions
 	call_restart_webhook()
 
 #ifdef UNIT_TEST
@@ -114,7 +117,7 @@ GLOBAL_VAR(restart_counter)
 #endif
 
 	if(config.ToRban)
-		addtimer(CALLBACK(src, .proc/ToRban_autoupdate), 20 SECONDS)
+		_addtimer(CALLBACK(GLOBAL_PROC, .proc/ToRban_autoupdate), 20 SECONDS)
 
 	return
 
@@ -129,7 +132,7 @@ GLOBAL_VAR(restart_counter)
 // #else
 // 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
 
 
 /world/proc/SetupLogs()
@@ -412,7 +415,7 @@ var/world_topic_spam_protect_time = world.timeofday
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
-/hook/startup/proc/connectDB()
+/hook/startup_sync/proc/connectDB()
 	if(!setup_database_connection())
 		log_world("Your server failed to establish a connection with the feedback database.")
 	else

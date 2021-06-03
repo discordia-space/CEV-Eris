@@ -22,7 +22,6 @@ ADMIN_VERB_ADD(/client/proc/debug_variables, R_ADMIN | R_MOD, FALSE)
 		return
 
 	var/title = ""
-	var/refid = REF(D)
 	var/icon/sprite
 	var/hash
 

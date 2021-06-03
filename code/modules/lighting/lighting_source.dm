@@ -32,6 +32,8 @@
 	var/force_update
 
 /datum/light_source/New(atom/owner, atom/top)
+	if(source_turf)
+		CRASH("Light tried to spawn on nullspace or a null tile")
 	source_atom = owner // Set our new owner.
 	LAZYADD(source_atom.light_sources, src)
 	top_atom = top

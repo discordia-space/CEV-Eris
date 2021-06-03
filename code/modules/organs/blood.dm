@@ -57,7 +57,7 @@
 	if(in_stasis)
 		return
 
-	if(!species.has_process[OP_HEART])
+	if(!species?.has_process[OP_HEART])
 		return
 
 

@@ -259,9 +259,10 @@ SUBSYSTEM_DEF(ticker)
 		CreateModularRecord(H)
 	data_core.manifest()
 
-	for(var/I in round_start_events)
-		var/datum/callback/cb = I
-		cb.InvokeAsync()
+	if(round_start_events.len)
+		for(var/I in round_start_events)
+			var/datum/callback/cb = I
+			cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
 	callHook("roundstart") // logical to call it here as this is where the async events happen too

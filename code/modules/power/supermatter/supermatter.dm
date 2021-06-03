@@ -87,6 +87,8 @@
 	var/obj/item/device/radio/radio
 
 	var/debug = 0
+	///Disables the sm's proccessing totally.
+	var/processes = TRUE
 
 /obj/machinery/power/supermatter/Initialize()
 	. = ..()
@@ -180,13 +182,18 @@
 
 	return ..()
 
-/obj/machinery/power/supermatter/Process()
+/obj/machinery/power/supermatter/process_atmos()
+	if(!processes) //Just fuck me up bro
+		return
 	var/turf/L = loc
 
 	if(isnull(L))		// We have a null turf...something is wrong, stop processing this entity.
 		return PROCESS_KILL
 
 	if(!istype(L)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
+		return  //Yeah just stop.
+
+	if(!istype(L))//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
 	if(damage > explosion_point)

@@ -59,9 +59,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	return 1
 
 /proc/create_catalog_entry(datum/thing, catalog_id)
-	testing("we have thing [thing] with an id of [catalog_id]")
-	if(catalog_id && !GLOB.catalogs[catalog_id])
-		testing("it didn't exist, created a new one")
+	if(catalog_id && !LAZYISIN(GLOB.catalogs, catalog_id))
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
 
 	if(!GLOB.all_catalog_entries_by_type[thing.type])
@@ -73,13 +71,12 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		else if(istype(thing, /atom))
 			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
 		else
-			var/list/element = GLOB.catalogs[catalog_id]
-			if(!element.len)
+			var/datum/catalog/element = GLOB.catalogs[catalog_id]
+			if(!element)
 				qdel(element)
 				GLOB.catalogs.Remove(catalog_id)
 				return FALSE
-			error("Unsupported type passed to /proc/create_catalog_entry()")
-			return FALSE
+			CRASH("Unsupported type \"[catalog_id]\" passed to /proc/create_catalog_entry()")
 		if(catalog_id)
 			var/datum/catalog/C = GLOB.catalogs[catalog_id]
 			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])

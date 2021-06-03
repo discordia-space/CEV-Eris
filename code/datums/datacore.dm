@@ -1,7 +1,7 @@
 var/global/list/PDA_Manifest = list()
 var/global/ManifestJSON
 
-/hook/startup/proc/createDatacore()
+/hook/startup_sync/proc/createDatacore()
 	data_core = new /datum/datacore()
 	return 1
 

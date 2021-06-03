@@ -36,7 +36,7 @@
 	var/list/list/datum/callback/signal_procs
 
 	/// Datum level flags
-	// var/datum_flags = NONE
+	var/datum_flags = NONE
 
 	// todo: flag these guys
 	var/signal_enabled = FALSE
@@ -99,7 +99,7 @@
 /datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	tag = null
-	// datum_flags &= ~DF_USE_TAG //In case something tries to REF us
+	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null //ensure prompt GCing of weakref.
 
 	var/list/timers = active_timers

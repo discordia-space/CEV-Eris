@@ -88,8 +88,7 @@
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
 /obj/Process()
-	STOP_PROCESSING(SSobj, src)
-	return 0
+	return ..()
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)

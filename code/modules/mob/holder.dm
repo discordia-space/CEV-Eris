@@ -136,10 +136,7 @@ var/list/holder_mob_icon_cache = list()
 		//Repeat this check
 		//If we're still on the turf a few frames later, then we have actually been dropped or thrown
 		//Release the mob accordingly
-		//addtimer(CALLBACK(src, .proc/post_drop), 3)
-		//TODO: Uncomment the above once addtimer is ported
-		spawn(3)
-			post_drop()
+		addtimer(CALLBACK(src, .proc/post_drop), 3)
 		return
 
 	if (istype(loc, /obj/item/weapon/storage))	//The second drop reads the container its placed into as the location
