@@ -8,7 +8,7 @@
 	name = "Words of purging"
 	phrase = "Purificati a peccatis et in remissionem peccatorum"
 	desc = "Addictions are common afflictions among ship denizens. This littany helps those people by easing or removing their addictions."
-	power = 50
+	power = 5
 
 /datum/ritual/cruciform/custodian/purging/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/mob/living/carbon/human/T = get_front_human_in_range(user, 1)
