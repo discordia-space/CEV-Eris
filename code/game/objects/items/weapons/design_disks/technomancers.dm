@@ -92,3 +92,14 @@
 		/datum/design/autolathe/circuit/sorter = 2
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/technomancer_rig
+	disk_name = "Technomancers SPC-249 RIG Suit"
+	icon_state = "technomancers"
+	spawn_blacklisted = TRUE
+	license = 10
+	designs = list(
+		/datum/design/autolathe/clothing/technomancer_rig
+	)
+		
+	
+

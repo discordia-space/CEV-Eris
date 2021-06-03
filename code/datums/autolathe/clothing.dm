@@ -3,6 +3,10 @@
 	name = "excelsior armor"
 	build_path = /obj/item/clothing/suit/space/void/excelsior
 
+/datum/design/autolathe/clothing/technomancer_rig
+	name = "technomancer rig suit"
+	build_path = /obj/item/weapon/rig/techno/equipped
+
 // Standard
 
 /datum/design/autolathe/clothing/generic_helmet_basic
