@@ -419,10 +419,6 @@
 /obj/machinery/light/floor,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/template_noop)
-"Oz" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/dirt,
-/area/template_noop)
 "OP" = (
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -457,10 +453,6 @@
 /obj/structure/catwalk,
 /obj/machinery/door/airlock/external,
 /turf/template_noop,
-/area/template_noop)
-"YK" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/template_noop)
 "YT" = (
 /obj/machinery/light_construct{
@@ -664,7 +656,7 @@ SI
 SI
 Di
 NK
-YK
+NG
 bu
 bu
 bu
@@ -963,7 +955,7 @@ aw
 Wo
 aw
 sf
-Lk
+bu
 uK
 Wo
 Wo
@@ -1041,7 +1033,7 @@ Wo
 Wo
 xb
 am
-Oz
+bE
 bE
 ee
 Wo

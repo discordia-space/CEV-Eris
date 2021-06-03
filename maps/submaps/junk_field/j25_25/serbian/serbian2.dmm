@@ -129,7 +129,7 @@
 	},
 /area/template_noop)
 "mW" = (
-/mob/living/simple_animal/hostile/russian,
+/mob/living/simple_animal/hostile/bear,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -154,13 +154,6 @@
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
-	},
-/area/template_noop)
-"nY" = (
-/mob/living/simple_animal/hostile/russian,
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
 	},
 /area/template_noop)
 "oi" = (
@@ -236,7 +229,7 @@
 	},
 /area/template_noop)
 "vM" = (
-/mob/living/simple_animal/hostile/russian,
+/mob/living/simple_animal/hostile/bear,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "wg" = (
@@ -391,12 +384,6 @@
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
-	},
-/area/template_noop)
-"Hn" = (
-/mob/living/simple_animal/hostile/russian/ranged,
-/turf/unsimulated/floor{
-	icon_state = "lino"
 	},
 /area/template_noop)
 "Js" = (
@@ -833,8 +820,8 @@ Hd
 Ze
 XS
 XS
+zB
 XS
-Hn
 XS
 ao
 Ze
@@ -856,13 +843,13 @@ Zy
 La
 Hc
 XL
-nY
+NR
 bm
 XS
 XS
 XS
 uQ
-Hn
+XS
 oS
 Ze
 NR
@@ -938,7 +925,7 @@ Uy
 ah
 ah
 NR
-dH
+NR
 pa
 Ze
 fy
@@ -986,7 +973,7 @@ NR
 XL
 NR
 pa
-dH
+NR
 NR
 XL
 NR

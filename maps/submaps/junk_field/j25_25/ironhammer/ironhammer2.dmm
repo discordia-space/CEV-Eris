@@ -94,10 +94,6 @@
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
-"gy" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
 "hy" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
@@ -166,10 +162,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating/under,
-/area/template_noop)
-"qc" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "qk" = (
 /obj/structure/bed/chair{
@@ -256,7 +248,6 @@
 /turf/simulated/floor/wood,
 /area/template_noop)
 "yr" = (
-/mob/living/simple_animal/hostile/hivebot/range,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/template_noop)
 "yJ" = (
@@ -702,7 +693,7 @@ NH
 nR
 Ze
 XL
-Xd
+XL
 XL
 ah
 UT
@@ -818,7 +809,7 @@ QE
 Ze
 EA
 rN
-gy
+rN
 aP
 Ze
 XL
@@ -1032,7 +1023,7 @@ iz
 Ze
 zj
 XL
-qc
+XL
 Uy
 XL
 XL
@@ -1188,7 +1179,7 @@ LE
 bE
 Hd
 Lz
-II
+Lz
 zO
 Ax
 LE

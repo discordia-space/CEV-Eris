@@ -235,10 +235,6 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/template_noop)
-"ld" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/dirt,
-/area/template_noop)
 "lj" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
@@ -1091,7 +1087,7 @@ KW
 ju
 Rf
 ES
-fa
+Vu
 Vu
 Vu
 XL
@@ -1276,7 +1272,7 @@ bm
 Yy
 bN
 bE
-ld
+bE
 bE
 bE
 Lz

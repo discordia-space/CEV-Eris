@@ -1,0 +1,1046 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/space,
+/area/template_noop)
+"ab" = (
+/obj/structure/lattice,
+/turf/space,
+/area/template_noop)
+"ac" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ad" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ae" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"af" = (
+/obj/spawner/junk,
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"ag" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/template_noop)
+"ah" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/template_noop)
+"ai" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aj" = (
+/obj/structure/sign/derelict3,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/template_noop)
+"ak" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/template_noop)
+"al" = (
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"am" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"an" = (
+/obj/structure/closet/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"ao" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"ap" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/template_noop)
+"aq" = (
+/obj/structure/sign/derelict1,
+/turf/simulated/wall/untinted/onestar,
+/area/template_noop)
+"as" = (
+/obj/structure/sign/derelict2,
+/turf/simulated/wall/untinted/onestar,
+/area/template_noop)
+"au" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/space,
+/area/template_noop)
+"av" = (
+/obj/structure/closet/onestar/tier2/mineral,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aw" = (
+/obj/item/remains,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"ax" = (
+/obj/structure/salvageable/os/computer,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"ay" = (
+/obj/structure/salvageable/os/console_broken,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"az" = (
+/obj/structure/salvageable/os/console,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aA" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"aB" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aC" = (
+/obj/structure/closet/onestar/tier1/mineral/empty,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aD" = (
+/obj/effect/floor_decal/industrial/loading,
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"aE" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"aF" = (
+/obj/structure/salvageable/os/machine,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aG" = (
+/turf/simulated/wall/untinted/onestar,
+/area/template_noop)
+"aH" = (
+/obj/structure/salvageable/os/data,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aI" = (
+/obj/structure/catwalk,
+/obj/structure/ore_box,
+/turf/space,
+/area/template_noop)
+"aJ" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/template_noop)
+"aK" = (
+/obj/structure/lattice,
+/obj/item/weapon/storage/bag/ore,
+/turf/space,
+/area/template_noop)
+"aL" = (
+/turf/simulated/mineral,
+/area/template_noop)
+"aM" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/space,
+/area/template_noop)
+"aN" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/space,
+/area/template_noop)
+"aO" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/inflatable/wall,
+/turf/space,
+/area/template_noop)
+"aP" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/inflatable/wall,
+/turf/space,
+/area/template_noop)
+"aQ" = (
+/obj/structure/inflatable/wall,
+/turf/space,
+/area/template_noop)
+"aR" = (
+/obj/structure/salvageable/os/server,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"aS" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/inflatable/wall,
+/turf/space,
+/area/template_noop)
+"aT" = (
+/obj/structure/catwalk,
+/obj/structure/inflatable/door,
+/turf/space,
+/area/template_noop)
+"aU" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/inflatable/wall,
+/turf/space,
+/area/template_noop)
+"aV" = (
+/turf/simulated/mineral/random,
+/area/template_noop)
+"aW" = (
+/obj/structure/inflatable/door,
+/turf/space,
+/area/template_noop)
+"aX" = (
+/obj/structure/sign/directions/medical{
+	dir = 1;
+	icon_state = "direction_med"
+	},
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/template_noop)
+"aY" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	icon_state = "direction_evac"
+	},
+/obj/structure/sign/directions/engineering{
+	dir = 8;
+	icon_state = "direction_eng";
+	pixel_y = 10
+	},
+/turf/simulated/wall/untinted/onestar,
+/area/template_noop)
+"aZ" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"ba" = (
+/obj/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"bb" = (
+/obj/item/weapon/gun/projectile/handmade_pistol,
+/obj/item/ammo_casing/pistol/scrap,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"bc" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"bd" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/template_noop)
+"be" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"bf" = (
+/obj/item/remains,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bg" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bh" = (
+/obj/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bi" = (
+/obj/item/weapon/storage/bag/ore,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bj" = (
+/obj/structure/catwalk,
+/obj/item/weapon/storage/bag/ore,
+/turf/space,
+/area/template_noop)
+"bk" = (
+/obj/structure/inflatable/door,
+/obj/structure/catwalk,
+/turf/space,
+/area/template_noop)
+"bl" = (
+/obj/structure/lattice,
+/obj/item/weapon/tool/pickaxe/onestar,
+/obj/item/remains,
+/turf/space,
+/area/template_noop)
+"bI" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"bJ" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bQ" = (
+/obj/effect/floor_decal/industrial/loading,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"bT" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"bY" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"ch" = (
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"fR" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"jf" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"jN" = (
+/obj/spawner/junk,
+/obj/landmark/loot_biomes/jtb/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+"nf" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"qP" = (
+/obj/structure/catwalk,
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/space,
+/area/template_noop)
+"sD" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"xF" = (
+/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/template_noop)
+"Vr" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/template_noop)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ad
+ac
+ab
+ac
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ad
+ac
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ag
+ac
+ag
+ab
+ab
+aa
+aa
+aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+aa
+"}
+(4,1,1) = {"
+aa
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ai
+ag
+ae
+ag
+ab
+aa
+aa
+aa
+aa
+ag
+aF
+aF
+aF
+aR
+aR
+ag
+aa
+"}
+(5,1,1) = {"
+ab
+ab
+ad
+ac
+ac
+ag
+ag
+ag
+ag
+ag
+be
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+nf
+al
+al
+al
+fR
+ag
+aa
+"}
+(6,1,1) = {"
+aa
+ad
+ac
+ac
+ac
+ag
+aw
+bb
+an
+aY
+ch
+ch
+ch
+bg
+al
+al
+al
+al
+al
+al
+aH
+al
+aR
+ag
+aa
+"}
+(7,1,1) = {"
+aa
+ab
+ac
+ac
+ac
+ag
+an
+af
+an
+aG
+ch
+ch
+ch
+aG
+al
+al
+al
+sD
+al
+al
+aH
+al
+aR
+ag
+aa
+"}
+(8,1,1) = {"
+ab
+ad
+ac
+ac
+ai
+ag
+an
+bc
+an
+aG
+ch
+ch
+ba
+aG
+ax
+aB
+al
+al
+al
+al
+aH
+al
+aR
+ag
+aa
+"}
+(9,1,1) = {"
+ab
+ag
+ag
+ag
+ag
+ag
+aG
+bd
+aG
+aq
+ch
+ch
+ba
+aG
+ay
+aB
+al
+nf
+al
+al
+aH
+al
+aR
+ag
+aa
+"}
+(10,1,1) = {"
+ab
+ab
+ag
+ap
+ah
+ag
+aZ
+ch
+ch
+aG
+ch
+ch
+ba
+aG
+az
+aB
+al
+ag
+aH
+al
+al
+al
+fR
+ag
+aa
+"}
+(11,1,1) = {"
+ab
+ac
+ag
+ah
+ah
+aj
+ch
+ch
+ch
+aG
+ch
+Vr
+ch
+aG
+az
+aB
+al
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+aa
+"}
+(12,1,1) = {"
+ab
+ac
+ag
+ah
+ah
+aX
+ch
+ch
+ch
+aG
+ch
+ch
+ch
+aG
+al
+al
+al
+ag
+aI
+aI
+aM
+aQ
+aL
+aL
+aa
+"}
+(13,1,1) = {"
+ab
+ac
+ak
+ah
+ah
+ak
+ch
+ch
+ch
+ak
+ch
+ch
+jN
+aG
+ag
+au
+am
+ag
+aI
+aI
+aN
+aS
+aL
+aV
+aL
+"}
+(14,1,1) = {"
+ab
+ac
+ag
+ah
+ah
+ag
+ch
+jf
+ch
+aG
+ch
+ch
+aZ
+ch
+aA
+bQ
+bY
+aD
+aJ
+aJ
+aJ
+aT
+aJ
+aW
+aa
+"}
+(15,1,1) = {"
+ab
+ac
+ag
+ap
+ah
+ag
+ao
+ch
+ch
+aG
+ch
+ch
+ch
+ch
+ag
+ag
+ag
+ag
+aJ
+qP
+aJ
+aT
+aJ
+aW
+aa
+"}
+(16,1,1) = {"
+ab
+ai
+ag
+ap
+ah
+ag
+ao
+ch
+ch
+aG
+ch
+ch
+ch
+ch
+aA
+bI
+bY
+aE
+aJ
+aJ
+aO
+aU
+aL
+aQ
+aa
+"}
+(17,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ag
+ao
+ch
+ch
+aG
+as
+au
+bJ
+bJ
+ag
+am
+am
+ag
+aJ
+bj
+aP
+aV
+aL
+aV
+aa
+"}
+(18,1,1) = {"
+ab
+ab
+ab
+ab
+aa
+ag
+ch
+ch
+ch
+ch
+aG
+bf
+bT
+bT
+bi
+al
+bi
+ag
+aK
+aJ
+aQ
+aL
+aL
+aL
+aa
+"}
+(19,1,1) = {"
+ab
+ab
+ab
+aa
+aa
+am
+aZ
+ch
+ch
+ch
+aG
+al
+al
+al
+al
+al
+av
+ag
+aL
+bk
+aL
+aV
+aL
+aL
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+am
+aZ
+aZ
+aZ
+ch
+ak
+al
+al
+xF
+al
+al
+av
+ag
+aL
+ab
+bl
+aL
+aL
+aL
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+am
+aZ
+aZ
+aZ
+ch
+aG
+al
+al
+al
+al
+al
+aC
+ag
+ab
+aL
+aL
+aL
+aL
+aL
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+am
+ba
+ba
+aZ
+ch
+aG
+av
+av
+bh
+bh
+bh
+aC
+ag
+ab
+ab
+aL
+aa
+aL
+aL
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+aL
+aL
+aL
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aL
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

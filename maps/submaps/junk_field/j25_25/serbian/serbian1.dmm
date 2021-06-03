@@ -258,13 +258,6 @@
 	icon_state = "freezerfloor"
 	},
 /area/template_noop)
-"mi" = (
-/mob/living/simple_animal/hostile/russian,
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
-/area/template_noop)
 "mZ" = (
 /obj/structure/closet/emcloset,
 /turf/unsimulated/floor{
@@ -348,13 +341,6 @@
 /obj/item/clothing/head/ushanka,
 /turf/unsimulated/floor{
 	icon_state = "lino"
-	},
-/area/template_noop)
-"rk" = (
-/mob/living/simple_animal/hostile/russian/ranged,
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
 	},
 /area/template_noop)
 "ru" = (
@@ -449,12 +435,6 @@
 /obj/item/weapon/material/kitchen/rollingpin,
 /turf/unsimulated/floor{
 	icon_state = "white"
-	},
-/area/template_noop)
-"wy" = (
-/mob/living/simple_animal/hostile/russian,
-/turf/unsimulated/floor{
-	icon_state = "lino"
 	},
 /area/template_noop)
 "wR" = (
@@ -618,7 +598,7 @@
 	},
 /area/template_noop)
 "FH" = (
-/mob/living/simple_animal/hostile/russian,
+/mob/living/simple_animal/hostile/bear,
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/template_noop)
 "FS" = (
@@ -995,7 +975,7 @@ YW
 Eg
 YW
 oX
-rk
+ZY
 ru
 gN
 bi
@@ -1066,7 +1046,7 @@ iw
 YZ
 nu
 YW
-mi
+YW
 YW
 YW
 YZ
@@ -1087,12 +1067,12 @@ Hn
 YZ
 by
 VJ
-wy
+kc
 VJ
 js
 YZ
 wR
-YW
+ZY
 um
 zJ
 um
@@ -1176,7 +1156,7 @@ Hn
 Hn
 bB
 bB
-rk
+YW
 YZ
 YZ
 YZ
@@ -1197,7 +1177,7 @@ YW
 Sy
 YW
 Vt
-ZY
+YW
 Eg
 Xv
 Hn
@@ -1254,7 +1234,7 @@ bB
 Eo
 YZ
 sg
-YW
+ZY
 um
 yJ
 um
@@ -1281,7 +1261,7 @@ Hn
 DP
 YZ
 jP
-rk
+YW
 zg
 dI
 zM
@@ -1427,7 +1407,7 @@ YW
 Eg
 YW
 dU
-mi
+YW
 ru
 gN
 bi
