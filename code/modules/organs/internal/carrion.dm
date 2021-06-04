@@ -267,6 +267,7 @@
 	icon_state = "carrion_maw"
 	organ_efficiency = list(OP_MAW = 100)
 	var/last_call = -5 MINUTES
+	var/tearing = FALSE
 
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/maw/proc/consume_flesh,
@@ -287,20 +288,44 @@
 	if(istype(food, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
+		if (grab.state < GRAB_AGGRESSIVE)
+			to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
+			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
-			if(E.is_stump())
-				to_chat(owner, SPAN_WARNING("You can't tear off a limb stump"))
+			if (tearing) // one at a time, thank you.
+				to_chat(owner, SPAN_WARNING("Your maw is already focused on something."))
 				return
 
-			visible_message(SPAN_DANGER("\The [owner] bites into \the [H]'s \the [E] and starts tearing it off!"))
-			if(do_after(owner, 5 SECONDS, H))
-				E.droplimb(TRUE, DROPLIMB_EDGE, 1)
-				playsound(loc, 'sound/voice/shriek1.ogg', 50)
-				visible_message(SPAN_DANGER("\The [owner] tears off \the [H]'s \the [E]!"))
+			if(E.is_stump())
+				to_chat(owner, SPAN_WARNING("There is nothing there!"))
 				return
+			tearing = TRUE
+
+			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it apart!"))
+			if(do_after(owner, 5 SECONDS, H))
+				tearing = FALSE
+				E.take_damage(30)
+				var/blacklist = list()
+				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
+					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
+						blacklist += to_blacklist
+						continue
+					if (istype(to_blacklist, /obj/item/organ/internal/brain/))
+						blacklist += to_blacklist// removing bones from a valid_organs list based on			
+				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
+				if (!valid_organs.len)
+					visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
+					return
+				var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
+				organ_to_remove.removed(owner)
+				visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
+				playsound(loc, 'sound/voice/shriek1.ogg', 50)
+				return
+			else
+				tearing = FALSE
 		else
-			to_chat(owner, SPAN_WARNING("You can only tear limbs off of humanoids!"))	
+			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))	
 			return
 
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
@@ -318,23 +343,26 @@
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
 			else if(istype(O, /obj/item/organ/internal))
-				geneticpointgain = 3
-				chemgain = 10
-				taste_description = "internal organs are delicious"
+				var/organ_rotten = FALSE
+				if (O.status & ORGAN_DEAD)
+					organ_rotten = TRUE
+				geneticpointgain = organ_rotten ? 1 : 3
+				chemgain = organ_rotten ? 4 : 10
+				taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
 			else
 				geneticpointgain = 2
 				chemgain = 5
-				taste_description = "limbs are satisfying"
+				taste_description = "limbs are satisfying."
 
 		else if(istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/human))
 			geneticpointgain = 2
 			chemgain = 5
-			taste_description = "human meat is satisfying"
+			taste_description = "human meat is satisfying."
 
 		else
 			chemgain = 5
 			owner.carrion_hunger -= 1 //Prevents meat eating spam for infinate chems
-			taste_description = "this meat is bland"
+			taste_description = "this meat is bland."
 
 		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
