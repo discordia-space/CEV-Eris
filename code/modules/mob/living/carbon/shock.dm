@@ -129,7 +129,7 @@
 		enter_hard_crit()
 
 /mob/living/carbon/human/proc/enter_hard_crit()
-	var/knockout_time = rand(2 MINUTES, 3 MINUTES)
+	var/knockout_time = 90 SECONDS
 	to_chat(src, SPAN_DANGER("[pick("You are knocked out", "You can't feel anything anymore", "You just can't keep going anymore")]!"))
 	visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
 	Weaken(knockout_time)
