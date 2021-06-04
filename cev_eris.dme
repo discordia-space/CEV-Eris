@@ -1064,7 +1064,6 @@
 #include "code\game\objects\items\weapons\implant\implants\carrion\talking_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\toxic_spider.dm"
 #include "code\game\objects\items\weapons\material\ashtray.dm"
-#include "code\game\objects\items\weapons\material\bats.dm"
 #include "code\game\objects\items\weapons\material\kitchen.dm"
 #include "code\game\objects\items\weapons\material\knives.dm"
 #include "code\game\objects\items\weapons\material\material_weapons.dm"

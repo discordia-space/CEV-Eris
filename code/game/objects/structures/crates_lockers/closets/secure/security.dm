@@ -138,6 +138,7 @@
 	new	/obj/item/weapon/gun/projectile/paco(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
+	new /obj/item/weapon/storage/ration_pack/ihr(src)
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"

@@ -1,0 +1,8 @@
+author: HerBaon
+delete-after: true
+changes:
+  - bugfix: Exultant has NTNET Access now, and MEO spawns with the NTNET Program in
+      their laptop.
+  - bugfix: IH Hammer no longer appears when holding IH Disks.
+  - bugfix: fixed a lot of bugs and typos around.
+  - bugfix: Serbian Magboots work properly now.

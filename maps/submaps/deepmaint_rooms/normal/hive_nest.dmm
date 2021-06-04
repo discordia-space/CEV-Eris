@@ -13,7 +13,7 @@
 "u" = (/turf/simulated/wall,/area/deepmaint)
 "v" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "w" = (/obj/structure/catwalk,/obj/item/clothing/suit/storage/toggle/labcoat,/obj/item/clothing/shoes/reinforced/medical,/obj/structure/table/standard,/obj/spawner/pizza,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
-"x" = (/mob/living/simple_animal/hostile/hivemind{malfunction_chance = 0},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
+"x" = (/mob/living/simple_animal/hostile/hivemind/stinger{malfunction_chance = 0},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "A" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/spawner/booze/low_chance,/obj/item/trash/cigbutt/cigarbutt,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "B" = (/obj/item/weapon/material/shard/plasma{pixel_y = -14},/obj/effect/decal/cleanable/blood/drip,/obj/machinery/door/blast/regular/open,/obj/item/trash/material/metal{pixel_x = 7; pixel_y = 12},/obj/item/trash/material/metal{pixel_x = -10; pixel_y = -6},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "C" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)

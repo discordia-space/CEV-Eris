@@ -17,6 +17,7 @@
 	initial_balance = 3000
 	perks = list(PERK_CLUB)
 	wage = WAGE_NONE // Makes his own money
+	department_account_access = TRUE
 	stat_modifiers = list(
 		STAT_ROB = 15,
 		STAT_TGH = 15,
@@ -53,6 +54,7 @@
 	initial_balance = 750
 	perks = list(PERK_CLUB)
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
+	department_account_access = TRUE
 	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,
