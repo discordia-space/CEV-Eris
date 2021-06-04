@@ -17,25 +17,15 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
-
+	rarity_value = 16
 	damage_multiplier = 1
 	recoil_buildup = 2
-	silenced = 0
-	can_dual = 1
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		FULL_AUTO_800
 		)
-
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-
-	rarity_value = 16
-	price_tag = 1200
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/weapon/gun/projectile/selfload/on_update_icon()

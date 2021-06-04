@@ -188,8 +188,7 @@ var/global/obj/machinery/power/eotp/eotp
 		for(var/mob/living/carbon/human/H in disciples)
 			var/obj/item/weapon/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 			C.power_regen += initial(C.power_regen)
-			for(var/mob/living/carbon/human/disciple in disciples)
-				to_chat(disciple, SPAN_NOTICE("Your cruciform vibrates."))
+			to_chat(H, SPAN_NOTICE("Your cruciform vibrates."))
 
 	for(var/disciple in disciples)
 		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))

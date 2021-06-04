@@ -50,6 +50,7 @@
 	if((src.amount > 1) && (src == user.get_inactive_hand()))
 		src.amount -= 1
 		var/obj/item/ammo_casing/new_casing = new /obj/item/ammo_casing(get_turf(user))
+		new_casing.name = src.name
 		new_casing.desc = src.desc
 		new_casing.caliber = src.caliber
 		new_casing.projectile_type = src.projectile_type
@@ -60,6 +61,23 @@
 			new_casing.BB = new new_casing.projectile_type(new_casing)
 		else
 			new_casing.BB = null
+
+		new_casing.sprite_max_rotate = src.sprite_max_rotate
+		new_casing.sprite_scale = src.sprite_scale
+		new_casing.sprite_use_small = src.sprite_use_small
+		new_casing.sprite_update_spawn = src.sprite_update_spawn
+
+		if(new_casing.sprite_update_spawn)
+			var/matrix/rotation_matrix = matrix()
+			rotation_matrix.Turn(round(45 * rand(0, new_casing.sprite_max_rotate) / 2))
+			if(new_casing.sprite_use_small)
+				new_casing.transform = rotation_matrix * new_casing.sprite_scale
+			else
+				new_casing.transform = rotation_matrix
+
+		new_casing.is_caseless = src.is_caseless
+
+
 		new_casing.update_icon()
 		src.update_icon()
 		user.put_in_active_hand(new_casing)
@@ -294,7 +312,9 @@
 		return FALSE
 	if(C.amount > 1)
 		C.amount -= 1
+
 		var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+		inserted_casing.name = C.name
 		inserted_casing.desc = C.desc
 		inserted_casing.caliber = C.caliber
 		inserted_casing.projectile_type = C.projectile_type
@@ -303,6 +323,22 @@
 		inserted_casing.maxamount = C.maxamount
 		if(ispath(inserted_casing.projectile_type) && C.BB)
 			inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+
+		inserted_casing.sprite_max_rotate = C.sprite_max_rotate
+		inserted_casing.sprite_scale = C.sprite_scale
+		inserted_casing.sprite_use_small = C.sprite_use_small
+		inserted_casing.sprite_update_spawn = C.sprite_update_spawn
+
+		if(inserted_casing.sprite_update_spawn)
+			var/matrix/rotation_matrix = matrix()
+			rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
+			if(inserted_casing.sprite_use_small)
+				inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
+			else
+				inserted_casing.transform = rotation_matrix
+
+		inserted_casing.is_caseless = C.is_caseless
+
 		C.update_icon()
 		inserted_casing.update_icon()
 		stored_ammo.Insert(1, inserted_casing)

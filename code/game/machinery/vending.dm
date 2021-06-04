@@ -964,7 +964,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea/black = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/tea/green = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
-
+	vendor_department = DEPARTMENT_CIVILIAN
 
 
 
@@ -982,7 +982,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 45,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 40,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 40,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 40, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/syndicake = 60)
-
+	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/weapon_machine
 	name = "Frozen Star Guns&Ammo"
@@ -1074,6 +1074,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 30,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 30,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 50, /obj/item/weapon/reagent_containers/food/snacks/liquidfood = 60)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/cigarette
 	name = "Cigarette machine" //OCD had to be uppercase to look nice with the new formating
@@ -1246,7 +1247,8 @@
 					/obj/item/weapon/storage/box/evidence = 2,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 2,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih = 2,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1)
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1,
+					/obj/item/weapon/storage/ration_pack/ihr = 3)
 	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
@@ -1505,7 +1507,7 @@
 					/obj/item/clothing/mask/balaclava = 100
 					)
 	idle_power_usage = 211
-	vendor_department = DEPARTMENT_CIVILIAN
+	vendor_department = DEPARTMENT_OFFSHIP
 
 /obj/machinery/vending/billomat
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
@@ -1520,7 +1522,7 @@
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 20,
 					/obj/item/part/gun = 20,
-					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 4,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/weapon/gun/energy/retro = 4,
 					/obj/item/weapon/gun/projectile/mk58  = 2,
 					/obj/item/weapon/gun/projectile/mk58/wood = 2,
@@ -1528,13 +1530,10 @@
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
 					/obj/item/weapon/gun/projectile/automatic/molly = 4,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4,
-					/obj/item/clothing/mask/thief = 2,
-					/obj/item/clothing/mask/thief/wolf = 2,
-					/obj/item/clothing/mask/thief/hoxton = 2,
-					/obj/item/clothing/mask/thief/chains = 2,
-					/obj/item/clothing/under/tuxedo = 8,
-					/obj/item/weapon/storage/backpack/duffelbag/loot = 8,
-					/obj/item/clothing/gloves/latex/nitrile = 8
+					/obj/item/weapon/storage/deferred/crate/clown_crime = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 2
 					)
 	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
 	prices = list(
@@ -1545,7 +1544,7 @@
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
-					/obj/item/weapon/gun/projectile/automatic/ak47/fs/brush = 3200,
+					/obj/item/weapon/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/weapon/gun/energy/retro = 2000,
 					/obj/item/weapon/gun/projectile/mk58  = 1500,
 					/obj/item/weapon/gun/projectile/mk58/wood = 1500,
@@ -1554,16 +1553,13 @@
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
 					/obj/item/weapon/gun/projectile/automatic/molly = 2000,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2200,
-					/obj/item/clothing/mask/thief = 150,
-					/obj/item/clothing/mask/thief/wolf = 150,
-					/obj/item/clothing/mask/thief/hoxton = 150,
-					/obj/item/clothing/mask/thief/chains = 150,
-					/obj/item/clothing/under/tuxedo = 300,
-					/obj/item/weapon/storage/backpack/duffelbag/loot = 200,
-					/obj/item/clothing/gloves/latex/nitrile = 50
+					/obj/item/weapon/storage/deferred/crate/clown_crime = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 1800,
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 1800
 					)
 	idle_power_usage = 211
-	vendor_department = DEPARTMENT_CIVILIAN
+	vendor_department = DEPARTMENT_OFFSHIP
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

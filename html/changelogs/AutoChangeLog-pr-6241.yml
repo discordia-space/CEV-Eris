@@ -1,4 +1,0 @@
-author: Herbaon
-delete-after: true
-changes:
-  - bugfix: pods can launch again.

@@ -367,9 +367,6 @@
 
 /obj/item/weapon/storage/backpack/duffelbag/loot
 	name = "lootbag"
-	desc = "You wear this on your back and put items into it."
 	icon_state = "lootbag"
-	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTIC = 3)
-	equip_access = FALSE
 	rarity_value = 7.5

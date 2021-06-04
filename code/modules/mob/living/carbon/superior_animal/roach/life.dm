@@ -95,8 +95,8 @@
 					stop_automated_movement = 1
 					spawn(50)
 						if(busy == LAYING_EGG)
-							if(!(locate(/obj/effect/roach/roach_egg) in get_turf(src)))
-								new /obj/effect/roach/roach_egg(loc, src)
+							if(!(locate(/obj/item/roach/roach_egg) in get_turf(src)))
+								new /obj/item/roach/roach_egg(loc, src)
 								fed--
 								update_openspace()
 							busy = 0

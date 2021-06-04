@@ -49,11 +49,11 @@
 	disk_name = "Serbian Arms - .20 Kovacs"
 	icon_state = "serbian"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 30
+	rarity_value = 80
 	license = 12
 	designs = list(
-		/obj/item/weapon/gun/projectile/kovacs = 3, // "SA BR .20 \"Kovacs\""
-		/obj/item/ammo_magazine/srifle,
+		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .20 \"Kovacs\""
+		/datum/design/autolathe/ammo/srifle
 	)
 
 //The Dallas

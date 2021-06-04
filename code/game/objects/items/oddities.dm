@@ -239,6 +239,7 @@
 	name = "old knife"
 	desc = "Is this blood older then you? You can't tell, and will never know."
 	icon_state = "old_knife"
+	item_state = "knife"
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	force = WEAPON_FORCE_DANGEROUS

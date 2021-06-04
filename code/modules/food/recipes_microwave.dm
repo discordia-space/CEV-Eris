@@ -33,6 +33,13 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg
 
+/datum/recipe/roachegg
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/roach/roach_egg
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/roach_egg
+
 /datum/recipe/jellydonut
 	reagents = list("berryjuice" = 5, "sugar" = 5)
 	items = list(

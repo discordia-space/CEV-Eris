@@ -13,13 +13,13 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		list[pb.name] = pb
 	return list
 
-/datum/ritual/cruciform/priest/blueprint_check
+/datum/ritual/cruciform/priest/acolyte/blueprint_check
 	name = "Divine Guidance"
 	phrase = "Dirige me in veritate tua, et doce me, quia tu es Deus salvator meus, et te sustinui tota die."
 	desc = "Building needs mainly faith but resources as well. Find out what it takes."
 	power = 5
 
-/datum/ritual/cruciform/priest/blueprint_check/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
+/datum/ritual/cruciform/priest/acolyte/blueprint_check/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
 	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
 	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
 	var/list/listed_components = list()
@@ -30,13 +30,13 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
 	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
 
-/datum/ritual/cruciform/priest/construction
+/datum/ritual/cruciform/priest/acolyte/construction
 	name = "Manifestation"
 	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
 	desc = "Build and expand. Shape your faith in something more sensible."
 	power = 40
 
-/datum/ritual/cruciform/priest/construction/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
+/datum/ritual/cruciform/priest/acolyte/construction/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
 	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
 	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
 	var/turf/target_turf = get_step(user,user.dir)
@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	new build_path(target_turf)
 
 
-/datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
+/datum/ritual/cruciform/priest/acolyte/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
 
 	for(var/item_type in blueprint.materials)

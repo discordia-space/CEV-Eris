@@ -377,9 +377,7 @@
 	license = 12
 	designs = list(
 
-		/datum/design/autolathe/gun/ak47_fs_vipr = 3, // "FS AR .30 \"Vipr\""
-		/datum/design/autolathe/gun/ak47_fs_wasp = 3, // "FS AR .30 \"Wasp\""
-		/datum/design/autolathe/gun/ak47_fs_brush = 3, // "FS AR .30 \"Brushmaster\""
+		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Vipr\""
 		/datum/design/autolathe/ammo/lrifle,
 		/datum/design/autolathe/ammo/lrifle/practice = 0,
 		/datum/design/autolathe/ammo/lrifle/rubber,

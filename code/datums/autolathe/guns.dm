@@ -93,7 +93,7 @@
 // SMGs
 
 /datum/design/autolathe/gun/zoric
-	name = "FS SMG .40 \"Zoric\""
+	name = "SA SMG .40 \"Zoric\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/zoric
 
 /datum/design/autolathe/gun/atreides
@@ -131,14 +131,18 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/z8
 
 /datum/design/autolathe/gun/wintermute
-	name = "FS BR .20 \"Wintermute\""
+	name = "FS AR .20 \"Wintermute\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/wintermute
+
+/datum/design/autolathe/gun/kovacs
+	name = "SA BR .20 \"Kovacs\""
+	build_path = /obj/item/weapon/gun/projectile/kovacs
 
 
 // .25 Rifles
 
 /datum/design/autolathe/gun/sol
-	name = "FS CAR .25 caseless \"Sol\""
+	name = "FS CAR .25 CS \"Sol\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/sol
 
 /datum/design/autolathe/gun/dallas
@@ -159,17 +163,9 @@
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
-/datum/design/autolathe/gun/ak47_fs_vipr
+/datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/vipr
-
-/datum/design/autolathe/gun/ak47_fs_wasp
-	name = "FS AR .30 \"Wasp\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/wasp
-
-/datum/design/autolathe/gun/ak47_fs_brush
-	name = "FS AR .30 \"Brushmaster\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/brush
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""
@@ -179,17 +175,9 @@
 	name = "SA Car .30 \"Krinkov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
 
-/datum/design/autolathe/gun/ak47_sa
-	name = "SA Car .30 \"Krinkov\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
-
 /datum/design/autolathe/gun/sts35
 	name = "STS-35"
 	build_path = /obj/item/weapon/gun/projectile/automatic/sts35
-
-/datum/design/autolathe/gun/kovacs
-	name = "SA BR \"Kovacs\""
-	build_path = /obj/item/weapon/gun/projectile/kovacs
 
 // Heavy
 

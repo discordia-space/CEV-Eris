@@ -1096,6 +1096,18 @@
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
 
+/obj/item/weapon/reagent_containers/food/snacks/roach_egg
+	name = "boiled roach egg"
+	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "roach_egg"
+	w_class = ITEM_SIZE_TINY
+	bitesize = 4
+	nutriment_amt = 8
+	preloaded_reagents = list("protein" = 14)
+	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/omelette
 	name = "Omelette Du Fromage"

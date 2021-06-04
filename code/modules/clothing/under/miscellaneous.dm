@@ -253,3 +253,15 @@ obj/item/clothing/under/genericr
 	icon_state = "tuxedo"
 	style = STYLE_HIGH
 	price_tag = 300
+
+//Adminbus versions with extremly high armor, should never spawn in game
+/obj/item/clothing/under/tuxedo/adminspawn
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 60,
+		bullet = 65,
+		energy = 60,
+		bomb = 75,
+		bio = 100,
+		rad = 30
+	)

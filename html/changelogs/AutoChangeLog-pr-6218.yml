@@ -1,6 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Added Slaught-o-Matic disk
-  - rscadd: Slaught-o-Matic disk now in disk vendor
-  - spellcheck: fixed a few typos in code

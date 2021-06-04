@@ -37,3 +37,8 @@
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode
+
+/obj/item/weapon/gun/energy/stunrevolver/moebius
+	name = "Moebius SP \"Zeus\""	//Should get it's own name
+	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
+	icon = 'icons/obj/guns/energy/stunrevolver_moebius.dmi'

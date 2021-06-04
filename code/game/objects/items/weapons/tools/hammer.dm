@@ -179,9 +179,9 @@
 	name = "FS \"Ironhammer\" Breaching Hammer"
 	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "ironhammer"
-	item_state = "ironhammer"
-	wielded_icon = "ironhammer_wielded"
+	icon_state = "iron_hammer"
+	item_state = "iron_hammer"
+	wielded_icon = "iron_hammer_wielded"
 	w_class = ITEM_SIZE_HUGE
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_ROBUST

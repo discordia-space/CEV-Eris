@@ -1,6 +1,0 @@
-author: CeUvi
-delete-after: true
-changes:
-  - rscadd: lootbags (you can even start a round with one)
-  - imageadd: lootbag sprites
-  - tweak: payday stuff prices
