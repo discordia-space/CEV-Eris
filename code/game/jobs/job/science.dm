@@ -37,6 +37,7 @@
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							///datum/computer_file/program/aidiag,
 							/datum/computer_file/program/signaller,
+							/datum/computer_file/program/ntnetmonitor,
 							/datum/computer_file/program/camera_monitor,
 							/datum/computer_file/program/chem_catalog,
 							/datum/computer_file/program/reports)

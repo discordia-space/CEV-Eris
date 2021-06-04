@@ -257,6 +257,7 @@
 			OD.create_organ(owner)
 	owner.status_flags &= ~FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
+	owner.update_body()
 	owner.update_icons()
 	to_chat(owner, SPAN_NOTICE("You have regenerated."))
 
