@@ -1246,7 +1246,8 @@
 					/obj/item/weapon/storage/box/evidence = 2,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 2,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih = 2,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1)
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1,
+					/obj/item/weapon/storage/ration_pack/ihr = 3)
 	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
