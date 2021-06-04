@@ -3,6 +3,7 @@
 /mob/proc/minimalize_HUD()
 
 /mob/proc/destroy_HUD()
+	hide_HUD()
 	HUDprocess.Cut()
 	for(var/p in HUDneed)
 		qdel(HUDneed[p])
@@ -19,44 +20,34 @@
 
 /mob/proc/show_HUD()
 	if(client)
-		for(var/p in HUDneed)
-			client.screen |= HUDneed[p]
-		for(var/obj/screen/HUDinv in HUDinventory)
-			client.screen |= HUDinv
-		for(var/p in HUDtech)
-			client.screen |= HUDtech[p]
+		for(var/HUDname in HUDneed)
+			client.screen |= HUDneed[HUDname]
+		for(var/HUDname in HUDtech)
+			client.screen |= HUDtech[HUDname]
+		for(var/obj/screen/HUD in HUDinventory + HUDfrippery + HUDprocess)
+			client.screen |= HUD
 
 /mob/proc/hide_HUD()
 	if(client)
-		for(var/i = 1 to HUDneed.len)
-			client.screen.Remove(HUDneed[HUDneed[i]])
+		for(var/HUDname in HUDneed)
+			client.screen.Remove(HUDneed[HUDname])
+		for(var/HUDname in HUDtech)
+			client.screen.Remove(HUDtech[HUDname])
+		for(var/obj/screen/HUD in HUDinventory + HUDfrippery + HUDprocess) // Removing of unnamed SOs
+			client.screen.Remove(HUD)
 
-		for(var/obj/screen/HUDinv in HUDinventory)
-			client.screen.Remove(HUDinv)
-
-		for(var/obj/screen/HUDinv in HUDfrippery)
-			client.screen.Remove(HUDinv)
-
-		for(var/obj/screen/HUDinv in HUDprocess)
-			client.screen.Remove(HUDinv)
-
-		for(var/i = 1 to HUDtech.len)
-			client.screen.Remove(HUDtech[HUDtech[i]])
 
 //For HUD checking needs
-
-
 /mob/proc/recolor_HUD(var/_color, var/_alpha)
-	for(var/i=1,i<=HUDneed.len,i++)
-		var/p = HUDneed[i]
-		var/obj/screen/HUDelm = HUDneed[p]
-		HUDelm.color = _color
-		HUDelm.alpha = _alpha
-	for(var/obj/screen/HUDinv in src.HUDinventory)
-		HUDinv.color = _color
-		HUDinv.alpha = _alpha
+	for(var/HUDName in HUDneed)
+		var/obj/screen/HUD = HUDneed[HUDName] // DO NOT NAME VARIABLES AS SHORTNAMES example of bad naming ["HUDelem", "HUDinv"], example of good naming ["HUDElement", "HUD"]
+		HUD.color = _color
+		HUD.alpha = _alpha
+	for(var/obj/screen/HUD in HUDinventory)
+		HUD.color = _color
+		HUD.alpha = _alpha
 
-/mob/proc/check_HUD()//Main HUD check process
+/mob/proc/check_HUD()
 	check_HUDdatum() //Elar was here :angrycanvas:
 	check_HUDinventory()
 	check_HUDneed()

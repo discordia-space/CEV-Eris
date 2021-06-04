@@ -18,9 +18,9 @@
 	var/DefaultMemoryForInstalledPrograms = 64
 
 	var/datum/MemoryStack/memory_buffer = new // Grip of programs, icebreakers and etc. Installed programs handling in cyberspace eye
-	var/memory_count = 64
+	var/initial_memory_buffer = 64
 
-	var/hardware_slots = 8
+	var/hardware_slots = 4
 	var/chip_slots = 4 // Slots for chips, to extend or buy better deck or get hardware extending them.
 	var/list/hardware = list()
 
@@ -34,7 +34,29 @@
 			projected_mind = new projected_mind()
 			projected_mind.owner = src
 		if(istype(memory_buffer))
-			memory_buffer.Memory = memory_count
+			memory_buffer.Memory = initial_memory_buffer
+
+	proc/CancelCyberspaceConnection()
+		if(istype(projected_mind))
+			projected_mind.PutInAnotherMob(get_user())
+			projected_mind.relocateTo(src)
+			projected_mind.destroy_HUD()
+
+	disabled()
+		. = ..()
+		CancelCyberspaceConnection()
+
+	proc/SetCable(obj/item/mind_cable/_cable) //returns new location if set successful, else return null
+		if(cable != _cable && istype(cable))
+			cable.DisconnectFromDeck()
+		if(istype(_cable))
+			cable = _cable
+			return cable.ConnectToDeck(src)
+
+	proc/SetUpProjectedMind()
+		projected_mind.InstalledPrograms.Memory = DefaultMemoryForInstalledPrograms
+		projected_mind.reset_HUD()
+
 	attackby(obj/item/W, mob/living/user)
 		. = ..()
 		if(!.)
@@ -49,8 +71,6 @@
 			if(.)
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 			SetUpProjectedMind()
-	disabled()
-		CancelCyberspaceConnection()
 
 /obj/item/weapon/computer_hardware/deck/proc
 	IsWorking()
@@ -70,12 +90,6 @@
 			power_usage = power_usage_idle
 		else
 			power_usage = power_usage_using
-	SetCable(obj/item/mind_cable/_cable) //returns new location if set successful, else return null
-		if(cable != _cable && istype(cable))
-			cable.DisconnectFromDeck()
-		if(istype(_cable))
-			cable = _cable
-			return cable.ConnectToDeck(src)
 
 	get_user()
 		if(istype(cable) && istype(cable.owner))
@@ -91,15 +105,6 @@
 			SetUpProjectedMind()
 			projected_mind.dropInto(src)
 			return owner.PutInAnotherMob(projected_mind)
-
-	CancelCyberspaceConnection()
-		if(istype(projected_mind))
-			projected_mind.PutInAnotherMob(get_user())
-			projected_mind.relocateTo(src)
-
-	SetUpProjectedMind()
-		projected_mind.InstalledPrograms.Memory = DefaultMemoryForInstalledPrograms
-		projected_mind.reset_HUD()
 	
 	AddLinkStreight(count)
 		link_streight += count

@@ -17,23 +17,93 @@
 			E.update_icon()
 	show_HUD()
 
+/mob/observer/cyberspace_eye/create_HUDfrippery()
+	. = ..()
+	if(istype(owner))
+		var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
+		if(HUDdatum.use_borders)
+			init_HUDpanel(
+				1,
+				owner.chip_slots,
+				HUDdatum.ChipPanel.template,
+				HUDdatum.ChipPanel.states,
+				HUDdatum.ChipPanel.dirs_of_edges,
+				HUDdatum.ChipPanel.direction,
+				icon_file = HUDdatum.icon,
+			)
+			init_HUDpanel(
+				1,
+				owner.hardware_slots,
+				HUDdatum.HardwarePanel.template,
+				HUDdatum.HardwarePanel.states,
+				HUDdatum.HardwarePanel.dirs_of_edges,
+				HUDdatum.HardwarePanel.direction,
+				icon_file = HUDdatum.icon,
+			)
+			init_HUDpanel(
+				1,
+				owner.memory_buffer.Memory / 16,
+				HUDdatum.GripPanel.template,
+				HUDdatum.GripPanel.states,
+				HUDdatum.GripPanel.dirs_of_edges,
+				HUDdatum.GripPanel.direction,
+				icon_file = HUDdatum.icon,
+			)
+			init_HUDpanel(
+				1,
+				owner.DefaultMemoryForInstalledPrograms / 16,
+				HUDdatum.ProgramPanel.template,
+				HUDdatum.ProgramPanel.states,
+				HUDdatum.ProgramPanel.dirs_of_edges,
+				HUDdatum.ProgramPanel.direction,
+				icon_file = HUDdatum.icon,
+			)
+
+/mob/observer/cyberspace_eye/proc/init_HUDpanel(
+		start = 1,
+		limiter = 4,
+		screen_loc_template, // "WEST+%X:11,CENTER+%Y:4"
+		list/borders_states, // bottom, upper
+		list/borders_dir, // bottom, upper, center
+		list/location_dirs, //X, Y, negative and positive numba to invert or double
+		icon_file
+	)
+	limiter += 2
+	for(var/i in start to limiter)
+		var/obj/screen/border = new(_name = "border", _parentmob = src)
+		border.icon_state = "border"
+		border.icon = icon_file
+
+		if(i == 1)
+			border.dir = length(borders_dir) >= 1 ? borders_dir[1] : borders_dir
+			border.icon_state = borders_states[1]
+		else if(i == limiter)
+			border.dir = length(borders_dir) >= 2 ? borders_dir[2] : borders_dir
+			border.icon_state = borders_states[2]
+		else
+			border.dir = length(borders_dir) >= 3 ? borders_dir[3] : borders_dir
+
+		var/position = screen_loc_template
+		position = replacetextEx(position, "%X", i - (limiter*location_dirs[1])/2)
+		position = replacetextEx(position, "%Y", i - (limiter*location_dirs[2])/2)//"WEST:11,CENTER+[i - owner.chip_slots + 2]:4"
+		border.screen_loc = position
+		HUDfrippery += border
+
 /mob/observer/cyberspace_eye/create_HUDneed()
 	. = ..()
-	var/datum/hud/HUDdatum = GLOB.HUDdatums[defaultHUD]
-
+	var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
 	for(var/HUDname in HUDdatum.HUDneed)
-		if(HUDdatum.HUDneed)
-			var/obj/screen/movable/cyberspace_eye/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-			var/obj/screen/movable/cyberspace_eye/SO = new HUDtype(src)
-			NEWorNOACTION(SO.name, HUDname)
-			NEWorNOACTION(SO.icon, HUDdatum.icon)
-			NEWorNOACTION(SO.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
-			NEWorNOACTION(SO.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
+		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
+		var/obj/screen/movable/cyberspace_eye/SO = new HUDtype(_parentmob = src)
+		NEWorNOACTION(SO.name, HUDname)
+		NEWorNOACTION(SO.icon, HUDdatum.icon)
+		NEWorNOACTION(SO.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
+		NEWorNOACTION(SO.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
 
-			HUDneed[HUDname] = SO
-			if(SO.process_flag)
-				HUDprocess += SO
-	
+		HUDneed[HUDname] = SO
+		if(SO.process_flag)
+			HUDprocess += SO
+
 	if(istype(owner))
 		var/hardwareI = 0
 		var/chipI = 0
@@ -42,11 +112,19 @@
 			var/screen_position = ""
 			if(istype(H, /obj/item/weapon/deck_hardware/chip))
 				number = chipI
-				screen_position = "CENTER+[chipI - owner.chip_slots + 2]:4,SOUTH:11"
+
+				screen_position = HUDdatum.ChipPanel.template
+				screen_position = replacetextEx(screen_position, "%X", number - owner.chip_slots/2)
+				screen_position = replacetextEx(screen_position, "%Y", number - owner.chip_slots/2)//"WEST:11,CENTER+[i - owner.chip_slots + 2]:4"
+
 				chipI++
 			else
 				number = hardwareI
-				screen_position = "WEST:4,CENTER+[hardwareI - owner.hardware_slots + 4]:11"
+
+				screen_position = HUDdatum.HardwarePanel.template
+				screen_position = replacetextEx(screen_position, "%X", number - owner.hardware_slots/2)
+				screen_position = replacetextEx(screen_position, "%Y", number - owner.hardware_slots/2)
+
 				hardwareI++
 			
 			var/obj/screen/movable/cyberspace_eye/hardware/screenObject = new(_name = "[number + 1]> [H]", _parentmob = src)
