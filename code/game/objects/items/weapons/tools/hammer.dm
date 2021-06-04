@@ -37,7 +37,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -76,25 +76,47 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "mace"
 	item_state = "mace"
+	w_class = ITEM_SIZE_NORMAL
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
 	rarity_value = 15
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/tool/hammer/mace/makeshift
 	name = "makeshift mace"
 	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
 	icon_state = "ghetto_mace"
 	item_state = "ghetto_mace"
-
 	force = WEAPON_FORCE_PAINFUL
-
 	tool_qualities = list(QUALITY_HAMMERING = 15)
-	degradation = 5 //This one breaks REALLY fast
+	degradation = 3 //This one breaks fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_JUNKTOOL
+
+
+/obj/item/weapon/tool/hammer/mace/makeshift/baseballbat
+	name = "baseball bat"
+	desc = "HOME RUN!"
+	icon_state = "woodbat0"
+	wielded_icon = "woodbat1"
+	item_state = "woodbat0"
+	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MODERATE
+	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
+	hitsound = 'sound/weapons/genhit3.ogg'
+	slot_flags = SLOT_BELT|SLOT_BACK
+
+/obj/item/weapon/tool/hammer/mace/makeshift/baseballbat/bone
+	name = "bone club"
+	desc = "Seems like someone gave up an arm and a leg for this thing. And a head."
+	icon_state = "bonemace"
+	item_state = "bonemace"
+	slot_flags = SLOT_BELT
+	degradation = 1.5 //Something something bones are hard.
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/hammer/charge
 	name = "charge hammer"
