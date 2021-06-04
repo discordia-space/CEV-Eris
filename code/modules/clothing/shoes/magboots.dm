@@ -58,8 +58,7 @@
 	species_restricted = null
 	force = WEAPON_FORCE_PAINFUL
 	overslot = FALSE
-	magpulse = TRUE
+	magpulse = FALSE
 	mag_slow = 0
 	icon_base = null
 	can_hold_knife = TRUE
-	action_button_name = null

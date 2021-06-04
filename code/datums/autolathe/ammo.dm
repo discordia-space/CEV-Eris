@@ -213,7 +213,7 @@
 	build_path = /obj/item/ammo_magazine/ammobox/srifle
 
 /datum/design/autolathe/ammo/srifle_ammobox/rubber
-	name = "ammunition box (.20 Rifle practice)"
+	name = "ammunition box (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle/rubber
 
 /datum/design/autolathe/ammo/srifle_ammobox_small

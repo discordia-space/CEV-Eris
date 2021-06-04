@@ -58,6 +58,9 @@
 			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
 				return 1
 			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
+				if(H == src)
+					to_chat(H, SPAN_NOTICE("You can't perform CPR on yourself."))
+					return
 				if(!H.check_has_mouth())
 					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return

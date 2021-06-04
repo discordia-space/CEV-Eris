@@ -12,7 +12,7 @@
 	cooldown_time = 5 MINUTES
 	effect_time = 5 MINUTES
 	cooldown_category = "accelerated_growth"
-	power = 50
+	power = 10
 
 	var/boost_value = 1.5  // How much the aging process of the plant is sped up
 
@@ -48,7 +48,7 @@
 	name = "Hand of mercy"
 	phrase = "Non est verus dolor"
 	desc = "Relieves the pain of a person in front of you."
-	power = 50
+	power = 5
 
 /datum/ritual/cruciform/agrolyte/mercy/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/mob/living/carbon/human/T = get_front_human_in_range(user, 1)
@@ -67,7 +67,7 @@
 	name = "Absolution of wounds"
 	phrase = "Surge et ambula"
 	desc = "Stabilizes the health of a person in front of you."
-	power = 50
+	power = 10
 
 /datum/ritual/cruciform/agrolyte/absolution/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/mob/living/carbon/human/T = get_front_human_in_range(user, 1)

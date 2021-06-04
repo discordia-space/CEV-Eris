@@ -1,0 +1,6 @@
+author: Wouju
+delete-after: true
+changes:
+  - bugfix: Shadow Banishes a creature in the hivemind nest into eternal pit of torment
+      known as discord admin channel. (fixes a hive mob not spawning properly in the
+      hivemind deepmaint room)

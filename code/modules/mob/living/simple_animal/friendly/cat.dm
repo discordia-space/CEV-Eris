@@ -263,3 +263,110 @@
 /mob/living/simple_animal/cat/kitten/New()
 	gender = pick(MALE, FEMALE)
 	..()
+
+// Runtime cat
+
+var/cat_cooldown = 20 SECONDS
+var/cat_max_number = 10
+var/cat_teleport = 0.0
+var/cat_number = 0
+
+/mob/living/simple_animal/cat/runtime
+	name = "Dusty"
+	desc = "A bluespace denizen that purrs its way into our dimension when the very fabric of reality is teared apart."
+	icon_state = "runtimecat"
+	item_state = "runtimecat"
+	density = 0
+
+	status_flags = GODMODE // Bluespace cat
+	min_oxy = 0
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	autoseek_food = 0
+	metabolic_factor = 0.0
+
+	harm_intent_damage = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+	attacktext = "slashed"
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+
+	var/cat_life_duration = 1 MINUTES
+
+/mob/living/simple_animal/cat/runtime/New(loc)
+	..(loc)
+	cat_number += 1
+	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
+	spawn(cat_life_duration)
+		qdel(src)
+
+/mob/living/simple_animal/cat/runtime/Destroy()
+	// We teleport Dusty in the corner of one of the ship zlevel for stylish disparition
+	do_teleport(src, get_turf(locate(1, 1, pick(GLOB.maps_data.station_levels))), 2, 0, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
+	cat_number -= 1
+	return ..()
+
+/mob/living/simple_animal/cat/runtime/attackby(var/obj/item/O, var/mob/user)
+	visible_message(SPAN_DANGER("[user]'s [O.name] harmlessly passes through \the [src]."))
+	strike_back(user)
+
+/mob/living/simple_animal/cat/runtime/attack_hand(mob/living/carbon/human/M as mob)
+
+	switch(M.a_intent)
+
+		if(I_HELP)  // Pet the cat
+			M.visible_message(SPAN_NOTICE("[M] pets \the [src]."))
+
+		if(I_DISARM)
+			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.do_attack_animation(src)
+
+		if(I_GRAB)
+			if (M == src)
+				return
+			if (!(status_flags & CANPUSH))
+				return
+
+			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.do_attack_animation(src)
+
+		if(I_HURT)
+			var/datum/gender/G = gender_datums[M.gender]
+			M.visible_message(SPAN_WARNING("[M] tries to kick \the [src] but [G.his] foot passes through."))
+			M.do_attack_animation(src)
+			visible_message(SPAN_WARNING("\The [src] hisses."))
+			strike_back(M)
+	
+	return
+
+/mob/living/simple_animal/cat/runtime/proc/strike_back(var/mob/target_mob)
+	if(!Adjacent(target_mob))
+		return
+	if(isliving(target_mob))
+		var/mob/living/L = target_mob
+		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		return L
+	if(istype(target_mob,/mob/living/exosuit))
+		var/mob/living/exosuit/M = target_mob
+		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		return M
+	if(istype(target_mob,/obj/machinery/bot))
+		var/obj/machinery/bot/B = target_mob
+		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+		return B
+
+/mob/living/simple_animal/cat/runtime/set_flee_target(atom/A)
+	return
+
+/mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
+	return PROJECTILE_FORCE_MISS
+
+/mob/living/simple_animal/cat/runtime/ex_act(severity)
+	return
+
+/mob/living/simple_animal/cat/runtime/singularity_act()
+	return
+
+/mob/living/simple_animal/cat/runtime/start_pulling(var/atom/movable/AM)
+	to_chat(src, SPAN_WARNING("Your hand passes through \the [src]."))
+	return

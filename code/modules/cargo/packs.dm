@@ -134,7 +134,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/grenade/smokebomb,
 					/obj/item/weapon/grenade/smokebomb,
 					/obj/item/weapon/grenade/smokebomb,
-					/obj/item/weapon/pen/reagent/paralysis,
 					/obj/item/weapon/grenade/chem_grenade/incendiary)
 	cost = 1700
 	crate_name = "Special Ops crate"
