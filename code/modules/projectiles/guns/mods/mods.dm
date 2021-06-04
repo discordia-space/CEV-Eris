@@ -260,7 +260,8 @@
 
 /obj/item/weapon/gun_upgrade/mechanism/cell_mount_egun
 	name = "energy gun cell mount"
-	desc = "A bulky adapter which allows oversized power cells to be installed into energy weapons."
+	desc = "A bulky adapter which allows oversized power cells to be installed into energy weapons.\
+	Convoluted wiring makes it slow and less efficient."
 	icon_state = "cell_mount"
 	spawn_blacklisted = TRUE
 
@@ -269,8 +270,8 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_CELLPLUS = TRUE,
-		GUN_UPGRADE_CHARGECOST = 2,
-		GUN_UPGRADE_FIRE_DELAY_MULT = 1.5
+		GUN_UPGRADE_CHARGECOST = 4,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 3.5
 	)
 	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
