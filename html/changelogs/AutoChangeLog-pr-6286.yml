@@ -1,8 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - balance: The carrion's Maw's Consume Flesh ability now removes a random organ
-      from and damages the target instead of tearing it off, can't be initiated while
-      in progress, and does not work with a weak grab.
-  - balance: Rotten organs are now worth only a third of the points to carrions.
-  - spellcheck: Cleaned up the Maw's Consume Flesh ability text.
