@@ -52,13 +52,11 @@
 	name = "ammunition packet (.35 Auto practice)"
 	icon_state = "pistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
-	spawn_blacklisted = TRUE
 
 /obj/item/ammo_magazine/ammobox/pistol/hv
 	name = "ammunition packet (.35 Auto high-velocity)"
 	icon_state = "pistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
-	spawn_blacklisted = TRUE
 
 /obj/item/ammo_magazine/ammobox/pistol/rubber
 	name = "ammunition packet (.35 Auto rubber)"
@@ -257,10 +255,11 @@
 	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
+	rarity_value = 50
 
 /obj/item/ammo_magazine/ammobox/antim/scrap
 	name = "ammunition box (old .60 Anti Material)"
 	icon_state = "antim_s"
 	ammo_type = /obj/item/ammo_casing/antim/scrap
 	max_ammo = 30
-	rarity_value = 1
+	rarity_value = 15
