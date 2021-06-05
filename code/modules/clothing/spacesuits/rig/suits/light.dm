@@ -14,17 +14,17 @@
 	)
 	emp_protection = 10
 	slowdown = 0
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
+	item_flags = THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 	drain = 2
+
+	airtight = 0
 
 	chest_type = /obj/item/clothing/suit/space/rig/light
 	helm_type =  /obj/item/clothing/head/space/rig/light
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
 	glove_type = /obj/item/clothing/gloves/rig/light
-
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
@@ -41,13 +41,10 @@
 /obj/item/weapon/rig/light/hacker
 	name = "cybersuit control module"
 	suit_type = "cyber"
-	desc = "An advanced powered armour suit with many cyberwarfare enhancements. Comes with built-in insulated gloves for safely tampering with electronics."
+	desc = "An advanced powered armour suit with multiple cyberwarfare enhancements. Comes with built-in insulated gloves for safely tampering with electronics."
 	icon_state = "hacker_rig"
 
-	req_access = list(access_syndicate)
-
-	airtight = 0
-	seal_delay = 5 //not being vaccum-proof has an upside I guess
+	seal_delay = 5 //not being vacuum-proof has an upside I guess
 
 	helm_type = /obj/item/clothing/head/lightrig/hacker
 	chest_type = /obj/item/clothing/suit/lightrig/hacker
@@ -57,10 +54,9 @@
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/power_sink,
-		/obj/item/rig_module/datajack,
 		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/voice,
-		/obj/item/rig_module/vision,
+		/obj/item/rig_module/vision/meson,
+		/obj/item/rig_module/voice
 		)
 
 //The cybersuit is not space-proof. It does however, have good siemens_coefficient values
@@ -74,7 +70,6 @@
 
 /obj/item/clothing/shoes/lightrig/hacker
 	siemens_coefficient = 0.4
-	flags = NOSLIP //All the other rigs have magboots anyways, hopefully gives the hacker suit something more going for it.
 
 /obj/item/clothing/gloves/lightrig/hacker
 	siemens_coefficient = 0
@@ -99,6 +94,8 @@
 	glove_type = /obj/item/clothing/gloves/rig/light/ninja
 
 	req_access = list(access_syndicate)
+
+	spawn_blacklisted = TRUE
 
 	initial_modules = list(
 		/obj/item/rig_module/teleporter,
@@ -129,6 +126,8 @@
 	icon_state = "stealth_rig"
 
 	req_access = list(access_syndicate)
+
+	spawn_blacklisted = TRUE
 
 	initial_modules = list(
 		/obj/item/rig_module/stealth_field,
