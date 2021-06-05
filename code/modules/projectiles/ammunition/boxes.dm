@@ -67,7 +67,7 @@
 /obj/item/ammo_magazine/ammobox/pistol/scrap
 	name = "ammunition packet (old .35 Auto)"
 	icon_state = "pistol_s"
-	rarity_value = 30
+	rarity_value = 5
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 
 //// . 40 ////
@@ -261,4 +261,4 @@
 	icon_state = "antim_s"
 	ammo_type = /obj/item/ammo_casing/antim/scrap
 	max_ammo = 30
-	rarity_value = 15
+	rarity_value = 20
