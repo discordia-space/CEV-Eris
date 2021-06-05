@@ -1,5 +1,0 @@
-author: greggbot
-delete-after: true
-changes:
-  - bugfix: Wire splicings no longer get stuck in a state of being used if you attempt
-      to add wires past the max.
