@@ -255,7 +255,6 @@
 	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
-	rarity_value = 50
 
 /obj/item/ammo_magazine/ammobox/antim/scrap
 	name = "ammunition box (old .60 Anti Material)"
