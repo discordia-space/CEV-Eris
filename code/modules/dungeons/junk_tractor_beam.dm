@@ -146,8 +146,8 @@
 
 /obj/jtb_generator/proc/field_release()
 
-	cleanup_junk_field(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	qdel(ship_portal)
+	cleanup_junk_field(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	beam_cooldown_start = world.time
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
