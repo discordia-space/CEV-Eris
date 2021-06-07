@@ -367,6 +367,5 @@ var/cat_number = 0
 /mob/living/simple_animal/cat/runtime/singularity_act()
 	return
 
-/mob/living/simple_animal/cat/runtime/start_pulling(var/atom/movable/AM)
-	to_chat(src, SPAN_WARNING("Your hand passes through \the [src]."))
+/mob/living/simple_animal/cat/runtime/MouseDrop(atom/over_object)
 	return
