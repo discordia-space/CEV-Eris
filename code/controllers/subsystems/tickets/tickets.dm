@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(tickets)
 	var/datum/ticket/T = new(url_title, title, passedContent, new_ticket_num)
 	allTickets += T
 	T.client_ckey = C.ckey
-	T.locationSent = C.mob.loc.name
+	T.locationSent = get_area(C.mob)
 	T.mobControlled = C.mob
 
 	//Inform the user that they have opened a ticket

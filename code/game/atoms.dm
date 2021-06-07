@@ -371,10 +371,11 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
+	// rp reasons
 	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
+		to_chat(user, "[icon2html(src, user)] This is [full_name] [suffix]")
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "[icon2html(src, user)] This is [full_name] [suffix]")
 
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 

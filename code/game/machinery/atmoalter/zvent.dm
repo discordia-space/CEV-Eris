@@ -1,6 +1,6 @@
 /obj/machinery/zvent
 	name = "Interfloor Air Transfer System"
-
+	desc = "An adapter which allows vents to connect to other pipenets on different decks."
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "vent-db"
 	density = FALSE

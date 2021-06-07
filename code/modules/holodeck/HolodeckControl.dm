@@ -163,10 +163,9 @@
 	..()
 
 /obj/machinery/computer/HolodeckControl/power_change()
-	var/oldstat
-	..()
-	if (stat != oldstat && active && (stat & NOPOWER))
-		emergencyShutdown()
+	. = ..()
+	if (active && (stat & NOPOWER))
+		INVOKE_ASYNC(src, /obj/machinery/computer/HolodeckControl.proc/emergencyShutdown)
 
 /obj/machinery/computer/HolodeckControl/Process()
 	for(var/item in holographic_objs) // do this first, to make sure people don't take items out when power is down.

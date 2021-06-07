@@ -352,6 +352,8 @@
 		graphic -= graphic_remove
 		. = 1
 
+	// if(.) //If we changed the mix to any degree
+	// 	garbage_collect()
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
@@ -489,3 +491,26 @@
 	var/M = get_total_moles()
 	if(M)
 		return get_mass()/M
+
+/// Pumps gas from src to output_air. Amount depends on target_pressure
+// /datum/gas_mixture/proc/pump_gas_to(datum/gas_mixture/output_air, target_pressure, specific_gas = null)
+// 	var/output_starting_pressure = output_air.return_pressure()
+
+// 	if((target_pressure - output_starting_pressure) < 0.01)
+// 		//No need to pump gas if target is already reached!
+// 		return FALSE
+
+// 	//Calculate necessary moles to transfer using PV=nRT
+// 	if((get_total_moles() > 0) && (temperature>0))
+// 		var/pressure_delta = target_pressure - output_starting_pressure
+// 		var/transfer_moles = (pressure_delta*output_air.volume)/(temperature * R_IDEAL_GAS_EQUATION)
+
+// 		//Actually transfer the gas
+// 		if(specific_gas)
+// 			var/datum/gas_mixture/removed = remove_specific(specific_gas, transfer_moles)
+// 			output_air.merge(removed)
+// 			return TRUE
+// 		var/datum/gas_mixture/removed = remove(transfer_moles)
+// 		output_air.merge(removed)
+// 		return TRUE
+// 	return FALSE

@@ -116,7 +116,7 @@
 	var/client/owner			// Client this is actually running in
 	var/forced=0				// If true, current url overrides area media sources
 	var/playerstyle				// Choice of which player plugin to use
-	var/const/WINDOW_ID = "rpane.mediapanel"	// Which elem in skin.dmf to use
+	var/const/WINDOW_ID = "infowindow.mediapanel"	// Which elem in skin.dmf to use
 
 /datum/media_manager/New(var/client/C)
 	ASSERT(istype(C))

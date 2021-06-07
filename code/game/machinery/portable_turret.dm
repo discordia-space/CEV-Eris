@@ -272,16 +272,6 @@ var/list/turret_icons
 
 		return 1
 
-/obj/machinery/porta_turret/power_change()
-	if(powered())
-		stat &= ~NOPOWER
-		update_icon()
-	else
-		spawn(rand(0, 15))
-			stat |= NOPOWER
-			update_icon()
-
-
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
 
 	var/obj/item/weapon/card/id/ID = I.GetIdCard()

@@ -20,7 +20,7 @@
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
-	var/obj/machinery/light/newlight = null
+	var/obj/machinery/light/newlight
 
 /obj/machinery/light_construct/New()
 	..()
@@ -652,6 +652,7 @@
 
 // called when area power state changes
 /obj/machinery/light/power_change()
+	. = ..()
 	seton(has_power())
 
 // called when on fire

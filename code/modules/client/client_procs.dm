@@ -161,8 +161,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(isnull(address) || (address in localhost_addresses))
 			holder = new /datum/admins("!localhost!", R_HOST, ckey)
 			holder.associate(src)
-			holder.reassociate()
-			SSticker.OnRoundstart(CALLBACK(holder, /datum/admins.proc/reassociate))
+			// add_admin_verbs()
+			// holder.disassociate()
+			// holder.reassociate()
+			SSticker.OnRoundstart(CALLBACK(src, /client.proc/add_admin_verbs))
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = SScharacter_setup.preferences_datums[ckey]
@@ -234,14 +236,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		add_admin_verbs()
 		admin_memo_show()
 
+	add_verbs_from_config()
+
 	// check_ip_intel()
 	// validate_key_in_db()
 	log_client_to_db()
 
 	send_resources()
-
-	// generate_clickcatcher()
-	// apply_clickcatcher()
+	generate_clickcatcher()
+	apply_clickcatcher()
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
@@ -261,6 +264,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// view_size.setZoomMode()
 	fit_viewport()
 	Master.UpdateTickRate()
+
+/client/proc/add_verbs_from_config()
+	// if (interviewee)
+	// 	return
+	// if(CONFIG_GET(flag/see_own_notes))
+	// 	add_verb(src, /client/proc/self_notes)
+	// if(CONFIG_GET(flag/use_exp_tracking))
+	// 	add_verb(src, /client/proc/self_playtime)
 
 
 //////////////
@@ -315,7 +326,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// active_mousedown_item = null
 	// SSambience.ambience_listening_clients -= src
 	// QDEL_NULL(view_size)
-	// QDEL_NULL(void)
+	QDEL_NULL(void)
 	QDEL_NULL(tooltips)
 	// seen_messages = null
 	Master.UpdateTickRate()
@@ -552,6 +563,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/setDir(newdir)
 	dir = newdir
 
+/client/proc/generate_clickcatcher()
+	if(!void)
+		void = new()
+		screen += void
+
+/client/proc/apply_clickcatcher()
+	generate_clickcatcher()
+	var/list/actualview = getviewsize(view)
+	void.UpdateGreed(actualview[1],actualview[2])
+
+
 /mob/proc/MayRespawn()
 	return FALSE
 
@@ -714,6 +736,30 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/colour_transition(list/colour_to = null, time = 10) //Call this with no parameters to reset to default.
 	animate(src, color = colour_to, time = time, easing = SINE_EASING)
+
+/// compiles a full list of verbs and sends it to the browser
+/client/proc/init_verbs()
+	// if(IsAdminAdvancedProcCall())
+	// 	return
+	var/list/verblist = list()
+	var/list/verbstoprocess = verbs.Copy()
+	if(mob)
+		verbstoprocess += mob.verbs
+		for(var/AM in mob.contents)
+			var/atom/movable/thing = AM
+			verbstoprocess += thing.verbs
+	panel_tabs.Cut() // panel_tabs get reset in init_verbs on JS side anyway
+	for(var/thing in verbstoprocess)
+		var/procpath/verb_to_init = thing
+		if(!verb_to_init)
+			continue
+		if(verb_to_init.hidden)
+			continue
+		if(!istext(verb_to_init.category))
+			continue
+		panel_tabs |= verb_to_init.category
+		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
+	src << output("[url_encode(json_encode(panel_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
 
 /client/proc/check_panel_loaded()
 	if(statbrowser_ready)

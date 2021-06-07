@@ -113,7 +113,8 @@
 			// SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 		stat |= NOPOWER
-	return
+
+	update_icon()
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()

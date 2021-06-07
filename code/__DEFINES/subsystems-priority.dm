@@ -27,6 +27,7 @@
 #define FIRE_PRIORITY_TICKETS	       10
 
 // SS_BACKGROUND
+#define FIRE_PRIORITY_STATPANEL 390
 #define FIRE_PRIORITY_TGUI 110 // TGUI go brrrr
 #define FIRE_PRIORITY_OBJECTS       60	// processing_objects processing.
 #define FIRE_PRIORITY_PROCESSING    30	// Generic datum processor. Replaces objects processor.

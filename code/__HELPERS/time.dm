@@ -72,10 +72,6 @@ var/next_duration_update = 0
 var/last_roundduration2text = 0
 var/round_start_time = 0
 
-/hook/roundstart/proc/start_timer()
-	round_start_time = world.time
-	return 1
-
 /proc/roundduration2text()
 	if(!round_start_time)
 		return "00:00"

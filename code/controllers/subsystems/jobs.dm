@@ -517,8 +517,7 @@ SUBSYSTEM_DEF(job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
-
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(client/C, rank, late = FALSE)
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
 

@@ -32,11 +32,10 @@
 /datum/mind
 	var/key
 	var/name				//replaces mob/var/original_name
+	var/ghostname //replaces name for observers name if set
 	var/mob/living/current
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
-
-
 
 	var/memory
 
@@ -74,37 +73,62 @@
 
 	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
 
-/datum/mind/New(var/key)
-	src.key = key
+/datum/mind/New(_key)
+	key = _key
 	creation_time = world.time
-	..()
 
-/datum/mind/proc/transfer_to(mob/living/new_character)
-	if(!istype(new_character))
-		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
-	if(current)					//remove ourself from our old body's mind variable
+/datum/mind/Destroy()
+	SSticker.minds -= src
+	current = null
+	return ..()
+
+/datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
+	// original_character = null
+	if(current) // remove ourself from our old body's mind variable
 		current.mind = null
-
+		// UnregisterSignal(current, COMSIG_LIVING_DEATH)
+		SStgui.on_transfer(current, new_character)
+		/// nanoui sphere BEGIN!
 		SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
-
 		if(current.client)
 			current.client.destroy_UI()
+		/// nanoui sphere END.
 
-	if(new_character.mind)		//remove any mind currently in our new body's mind variable
+	if(key)
+		if(new_character.key != key) //if we're transferring into a body with a key associated which is not ours
+			new_character.ghostize(1) //we'll need to ghostize so that key isn't mobless.
+	else
+		key = new_character.key
+
+	if(new_character.mind) //disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
-	current = new_character		//link ourself to our new body
-	new_character.mind = src	//and link our new body to ourself
-
-
-	if(active)
-		new_character.key = key		//now transfer the key to link the client to our new body
+	// var/mob/living/old_current = current
+	// if(current)
+	// 	current.transfer_observers_to(new_character) //transfer anyone observing the old character to the new one
+	current = new_character //associate ourself with our new body
+	new_character.mind = src //and associate our new body with ourself
+	// for(var/a in antag_datums) //Makes sure all antag datums effects are applied in the new body
+	// 	var/datum/antagonist/A = a
+	// 	A.on_body_transfer(old_current, current)
+	// if(iscarbon(new_character))
+	// 	var/mob/living/carbon/C = new_character
+	// 	C.last_mind = src
+	if(active || force_key_move)
+		new_character.key = key //now transfer the key to link the client to our new body
 		last_activity = world.time
 	if(new_character.client)
 		new_character.client.create_UI(new_character.type)
+		new_character.client.init_verbs() // re-initialize character specific verbs
 
 /datum/mind/proc/store_memory(new_text)
+	var/newlength = length_char(memory) + length_char(new_text)
+	if (newlength > MAX_MESSAGE_LEN * 100)
+		memory = copytext_char(memory, -newlength-MAX_MESSAGE_LEN * 100)
 	memory += "[new_text]<BR>"
+
+/datum/mind/proc/wipe_memory()
+	memory = null
 
 /datum/mind/proc/print_individualobjectives()
 	var/output
@@ -122,8 +146,10 @@
 			output += la_explanation
 	return output
 
-/datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<B>[current.real_name]'s Memory</B><HR>"
+/datum/mind/proc/show_memory(mob/recipient, window=1)
+	if(!recipient)
+		recipient = current
+	var/output = "<B>[current.real_name]'s Memory</B><br>"
 	output += memory
 
 	for(var/datum/antagonist/A in antagonist)
@@ -274,13 +300,12 @@
 	var/list/L = current.get_contents()
 	for (var/obj/item/I in L)
 		if (I.hidden_uplink)
-			return I.hidden_uplink
-	return null
+			. = I.hidden_uplink
+		if(.)
+			break
 
 /datum/mind/proc/take_uplink()
-	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
-	if(H)
-		qdel(H)
+	qdel(find_syndicate_uplink())
 
 
 // check whether this mind's mob has been brigged for the given duration
@@ -320,21 +345,38 @@
 /mob/living/proc/check_special_role(role)
 	return role && mind && player_is_antag_id(mind, role)
 
+/mob/proc/sync_mind()
+	mind_initialize() //updates the mind (or creates and initializes one if one doesn't exist)
+	mind.active = TRUE //indicates that the mind is currently synced with a client
+
+/mob/new_player/sync_mind()
+	return
+
+/mob/observer/sync_mind()
+	return
+
 //Initialisation procs
-/mob/living/proc/mind_initialize()
+/mob/proc/mind_initialize()
 	if(mind)
 		mind.key = key
+
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
 		SSticker.minds += mind
-	if(!mind.name)	mind.name = real_name
+	if(!mind.name)
+		mind.name = real_name
 	mind.current = src
+
+/mob/living/carbon/mind_initialize()
+	..()
+	// last_mind = mind
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = ASSISTANT_TITLE	//defualt
+	if(!mind.assigned_role)
+		mind.assigned_role = ASSISTANT_TITLE	//defualt
 
 //slime
 /mob/living/carbon/slime/mind_initialize()

@@ -1184,8 +1184,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
 /proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
-		if(rights_required && !(rights_required & subject.holder.rights))
-			return 0
-		return 1
-	return 0
+	if(subject?.holder)
+		return subject.holder.check_for_rights(rights_required)
+	return FALSE

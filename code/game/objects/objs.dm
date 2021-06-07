@@ -109,27 +109,35 @@
 		return null
 
 /obj/proc/updateUsrDialog()
-	if(in_use)
-		var/is_in_use = 0
+	if(in_use) // && !(obj_flags & USES_TGUI))
+		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.attack_hand(M)
-		if (isAI(usr) || isrobot(usr))
+				is_in_use = TRUE
+				ui_interact(M)
+				nano_ui_interact(M)
+		if(issilicon(usr)) // || isAdminGhostAI(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(usr)
+					is_in_use = TRUE
+					ui_interact(usr)
+					nano_ui_interact(usr)
 
 		// check for TK users
 
-		if (ishuman(usr))
-			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-				if(!(usr in nearby))
-					if(usr.client && usr.machine==src)
-						is_in_use = 1
-						src.attack_hand(usr)
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if(!(usr in nearby))
+				if(usr.client && usr.machine==src)
+					if(istype(H.l_hand, /obj/item/tk_grab) || istype(H.r_hand, /obj/item/tk_grab))
+						is_in_use = TRUE
+						ui_interact(usr)
+						nano_ui_interact(usr)
+		// if (is_in_use)
+		// 	obj_flags |= IN_USE
+		// else
+		// 	obj_flags &= ~IN_USE
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
@@ -147,8 +155,12 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
+	. = ..()
+	if(.)
+		return
+	// SEND_SIGNAL(src, COMSIG_ATOM_UI_INTERACT, user)
+	ui_interact(user)
 	nano_ui_interact(user)
-	..()
 
 /mob/proc/unset_machine()
 	src.machine = null

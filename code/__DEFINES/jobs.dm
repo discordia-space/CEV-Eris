@@ -1,3 +1,10 @@
+#define JOB_AVAILABLE 0
+#define JOB_UNAVAILABLE_GENERIC 1
+#define JOB_UNAVAILABLE_BANNED 2
+#define JOB_UNAVAILABLE_PLAYTIME 3
+#define JOB_UNAVAILABLE_ACCOUNTAGE 4
+#define JOB_UNAVAILABLE_SLOTFULL 5
+
 #define ASSISTANT_TITLE "Vagabond"
 
 //Jobs depatment lists for use in constant expressions

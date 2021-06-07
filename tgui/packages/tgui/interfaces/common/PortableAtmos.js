@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { AnimatedNumber, Box, Button, LabeledList, Section } from '../../components';
+import { AnimatedNumber, Box, Button, LabeledList, ProgressBar, Section } from '../../components';
 
 export const PortableBasicInfo = (props, context) => {
   const { act, data } = useBackend(context);
@@ -8,6 +8,9 @@ export const PortableBasicInfo = (props, context) => {
     holding,
     on,
     pressure,
+    power_draw,
+    cell_charge,
+    cell_max_charge
   } = data;
   return (
     <>
@@ -30,6 +33,25 @@ export const PortableBasicInfo = (props, context) => {
             color={connected ? 'good' : 'average'}>
             {connected ? 'Connected' : 'Not Connected'}
           </LabeledList.Item>
+          {!!power_draw && (
+            <LabeledList.Item
+              label="Power Draw">
+                <AnimatedNumber value={power_draw}/>
+            </LabeledList.Item>
+          )}
+          {(!!cell_charge || !!cell_max_charge) && (
+            <LabeledList.Item
+              label="Cell Charge">
+                <ProgressBar
+                  // weirdly, cell charge value gets inflated by about *10
+                  value={(cell_charge / cell_max_charge) || 0}
+                  ranges={{
+                    good: [0.5, Infinity],
+                    average: [0.15, 0.5],
+                    bad: [-Infinity, 0.15],
+                  }} />
+            </LabeledList.Item>
+          )}
         </LabeledList>
       </Section>
       <Section

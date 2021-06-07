@@ -66,6 +66,7 @@
 		//Mouse things//
 		////////////////
 	var/datum/click_handler/CH
+	var/obj/screen/click_catcher/void
 
 	var/datum/interface/UI	//interface for current mob
 	//datum that controls the displaying and hiding of tooltips

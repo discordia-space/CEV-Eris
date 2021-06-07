@@ -117,7 +117,7 @@
  * use connect_loc to register to COMSIG_ATOM_EXITED instead
  */
 /atom/movable/Uncrossed(atom/movable/AM)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	// SHOULD_NOT_OVERRIDE(TRUE)
 	// CRASH("/atom/movable/Uncrossed() was called")
 
 /atom/movable/Bump(atom/A)
@@ -409,9 +409,15 @@
 		AM.set_glide_size(glide_size, min, max)
 
 */
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-// Spoiler alert: it is, in moved.dm
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	// var/atom/movable/pullee = pulling
+	// var/turf/T = loc
+	// if(!moving_from_pull)
+	// 	check_pulling()
+	// if(!loc || !newloc)
+	// 	return FALSE
+	// var/atom/oldloc = loc
+	//Early override for some cases like diagonal movement
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 

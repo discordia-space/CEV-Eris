@@ -1,3 +1,4 @@
+/// WHOEVER THOUGHT THIS WAS A GOOD IDEA FUCK YOU
 /datum/click_handler
 //	var/mob_type
 	var/species
@@ -101,7 +102,7 @@
 		while(target)
 			owner.mob.face_atom(target)
 			do_fire()
-			sleep(reciever.burst_delay)		
+			sleep(reciever.burst_delay)
 	return TRUE
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)

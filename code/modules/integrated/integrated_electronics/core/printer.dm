@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(circuit_fabricator_recipe_list)
 
-/hook/startup/proc/populate_circuit_fabricator_recipe_list()
+/hook/startup_sync/proc/populate_circuit_fabricator_recipe_list()
 	for(var/path in typesof(/obj/item/integrated_circuit))
 		var/obj/item/integrated_circuit/IC = path
 

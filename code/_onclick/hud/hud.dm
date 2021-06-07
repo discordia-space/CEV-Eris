@@ -331,10 +331,18 @@ datum/hud/New(mob/owner)
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()*/
 	update_action_buttons()
+//MOB PROCS
+/mob/proc/reload_huds()
+	// for(var/datum/atom_hud/hud in GLOB.all_huds)
+	// 	if(hud?.hudusers[src])
+	// 		for(var/atom/A in hud.hudatoms)
+	// 			hud.add_to_single_hud(src, A)
 
+/mob/dead/new_player/reload_huds()
+	return
 
 /mob/proc/add_click_catcher()
-	client.screen |= GLOB.click_catchers
+	client.screen += client.void
 
 /mob/new_player/add_click_catcher()
 	return

@@ -19,15 +19,56 @@ item/apply_hit_effect() can be overriden to do whatever you want. However "stand
 avoid code duplication. This includes items that may sometimes act as a standard weapon in addition to having other effects (e.g. stunbatons on harm intent).
 */
 
-// Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
-/obj/item/proc/attack_self(mob/user)
-	return
+/**
+ * This is the proc that handles the order of an item_attack.
+ *
+ * The order of procs called is:
+ * * [/atom/proc/tool_act] on the target. If it returns TOOL_ACT_TOOLTYPE_SUCCESS or TOOL_ACT_SIGNAL_BLOCKING, the chain will be stopped.
+ * * [/obj/item/proc/pre_attack] on src. If this returns TRUE, the chain will be stopped.
+ * * [/atom/proc/attackby] on the target. If it returns TRUE, the chain will be stopped.
+ * * [/obj/item/proc/afterattack]. The return value does not matter.
+ */
+/obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
+	// if(tool_behaviour && (target.tool_act(user, src, tool_behaviour, FALSE) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
+	// 	return TRUE
+
+	var/pre_attack_result = pre_attack(target, user, params)
+
+	if(pre_attack_result)
+		return TRUE
+
+	var/attackby_result = target.attackby(src, user, params)
+
+	if (attackby_result)
+		return TRUE
+
+	if(QDELETED(src) || QDELETED(target))
+		attack_qdeleted(target, user, TRUE, params)
+		return TRUE
+
+	return afterattack(target, user, TRUE, params)
+
+/// Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
+/obj/item/proc/attack_self(mob/user, modifiers)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	interact(user)
 
 
-// Called at the start of resolve_attackby(), before the actual attack.
-// Return a nonzero value to abort the attack
-/obj/item/proc/pre_attack(atom/a, mob/user, var/params)
-	return
+/**
+ * Called on the item before it hits something
+ *
+ * Arguments:
+ * * atom/A - The atom about to be hit
+ * * mob/living/user - The mob doing the htting
+ * * params - click params such as alt/shift etc
+ *
+ * See: [/obj/item/proc/melee_attack_chain]
+ */
+/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
+	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user, params)
@@ -38,9 +79,20 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	add_fingerprint(user)
 	return A.attackby(src, user, params)
 
-// No comment
+/**
+ * Called on an object being hit by an item
+ *
+ * Arguments:
+ * * obj/item/W - The item hitting this atom
+ * * mob/user - The wielder of this item
+ * * params - click params such as alt/shift etc
+ *
+ * See: [/obj/item/proc/melee_attack_chain]
+ */
 /atom/proc/attackby(obj/item/W, mob/user, params)
-	return
+	// if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
+	// 	return TRUE
+	return FALSE
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
@@ -52,6 +104,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+/obj/attackby(obj/item/I, mob/living/user, params)
+	return ..() // || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user, params))
+
+/mob/living/attackby(obj/item/I, mob/living/user, params)
+	if(..())
+		return TRUE
+	var/surgery_check = can_operate(src, user)
+	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
+		return TRUE
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	return I.attack(src, user, user.targeted_organ)
 
 /obj/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
 	. = FALSE
@@ -74,24 +138,42 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			qdel(src)
 		. = TRUE
 
-/obj/item/attackby(obj/item/I, mob/living/user, var/params)
-	return
+/**
+ * Last proc in the [/obj/item/proc/melee_attack_chain]
+ *
+ * Arguments:
+ * * atom/target - The thing that was hit
+ * * mob/user - The mob doing the hitting
+ * * proximity_flag - is 1 if this afterattack was called on something adjacent, in your square, or on your person.
+ * * click_parameters - is the params string from byond [/atom/proc/Click] code, see that documentation.
+ */
+/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 
-/mob/living/attackby(obj/item/I, mob/living/user, var/params)
-	if(!ismob(user))
-		return FALSE
-	var/surgery_check = can_operate(src, user)
-	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
-		return TRUE
-	return I.attack(src, user, user.targeted_organ)
+/// Called if the target gets deleted by our attack
+/obj/item/proc/attack_qdeleted(atom/target, mob/user, proximity_flag, click_parameters)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_QDELETED, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK_QDELETED, target, user, proximity_flag, click_parameters)
 
-// Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
-// Click parameters is the params string from byond Click() code, see that documentation.
-/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, params)
-	return
 
-//I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
+/**
+ * Called from [/mob/living/proc/attackby]
+ *
+ * Arguments:
+ * * mob/living/M - The mob being hit by this item
+ * * mob/living/user - The mob hitting with this item
+ * * params - Click params of this attack
+ */
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
+	// var/signal_return = SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user, params)
+	// if(signal_return & COMPONENT_CANCEL_ATTACK_CHAIN)
+	// 	return TRUE
+	// if(signal_return & COMPONENT_SKIP_ATTACK)
+	// 	return
+
+	// SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, params)
+
 	if(!force || (flags & NOBLUDGEON))
 		return FALSE
 
@@ -108,14 +190,14 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
 	/////////////////////////
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone)
 
-	return TRUE
+	// log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	add_fingerprint(user)
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)

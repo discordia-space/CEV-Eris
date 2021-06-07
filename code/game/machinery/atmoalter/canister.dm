@@ -1,26 +1,50 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
+	desc = "A canister for the storage of gas."
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
 	density = TRUE
-	var/health = 100
+	volume = 1000
+	req_access = list()
+	var/health = 250
 	flags = CONDUCT
 	w_class = ITEM_SIZE_HUGE
 
-	var/valve_open = 0
+	///Is the valve open?
+	var/valve_open = FALSE
+	///Used to log opening and closing of the valve, available on VV
+	var/release_log = ""
+	///Player controlled var that set the release pressure of the canister
 	var/release_pressure = ONE_ATMOSPHERE
+	///Maximum amount of heat that the canister can handle before taking damage
+	var/temperature_resistance = 1000 + T0C
+
+
 	var/release_flow_rate = ATMOS_DEFAULT_VOLUME_PUMP //in L/s
 
 	var/canister_color = "yellow"
 	var/can_label = 1
 	var/sealed = FALSE
 	start_pressure = 45 * ONE_ATMOSPHERE
-	var/temperature_resistance = 1000 + T0C
-	volume = 1000
 	use_power = NO_POWER_USE
 	interact_offline = 1 // Allows this to be used when not in powered area.
-	var/release_log = ""
 	var/update_flag = 0
+
+/obj/machinery/portable_atmospherics/canister/Initialize(mapload, datum/gas_mixture/existing_mixture)
+	. = ..()
+
+	if(existing_mixture)
+		air_contents.copy_from(existing_mixture)
+	// else
+	// 	create_gas()
+
+	// update_window()
+
+	// var/random_quality = rand()
+	// pressure_limit = initial(pressure_limit) * (1 + 0.2 * random_quality)
+
+	update_icon()
+	// AddElement(/datum/element/atmos_sensitive, mapload)
 
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
@@ -122,15 +146,15 @@
 		return 0
 
 /obj/machinery/portable_atmospherics/canister/on_update_icon()
-/*
-update_flag
-1 = holding
-2 = connected_port
-4 = tank_pressure < 10
-8 = tank_pressure < ONE_ATMOS
-16 = tank_pressure < 15*ONE_ATMOS
-32 = tank_pressure go boom.
-*/
+	/*
+	update_flag
+	1 = holding
+	2 = connected_port
+	4 = tank_pressure < 10
+	8 = tank_pressure < ONE_ATMOS
+	16 = tank_pressure < 15*ONE_ATMOS
+	32 = tank_pressure go boom.
+	*/
 
 	if (src.destroyed)
 		src.set_overlays(0)
@@ -185,27 +209,39 @@ update_flag
 	else
 		return 1
 
-/obj/machinery/portable_atmospherics/canister/Process()
-	if (destroyed)
-		return
-
+/obj/machinery/portable_atmospherics/canister/process_atmos()
+	if(stat & BROKEN)
+		return PROCESS_KILL
 	..()
 
-	if(valve_open)
-		var/datum/gas_mixture/environment
-		if(holding)
-			environment = holding.air_contents
-		else
-			environment = loc.return_air()
+	var/turf/location = get_turf(src)
 
-		var/env_pressure = environment.return_pressure()
+	var/mix_air = FALSE
+	// var/pressure = release_pressure
+	var/gas_mix = holding?.return_air()
+	// var/air_update = FALSE
+
+	if(valve_open)
+		mix_air = TRUE
+
+	// Handle gas transfer.
+	if(mix_air)
+		// var/datum/gas_mixture/target_air = gas_mix || location.return_air()
+		excited = TRUE
+
+		// if(air_contents.release_gas_to(target_air, pressure) && (!holding || air_update))
+		// 	air_update_turf(FALSE, FALSE)
+
+	if(valve_open)
+		var/datum/gas_mixture/target_air = gas_mix || location.return_air()
+		var/env_pressure = target_air.return_pressure()
 		var/pressure_delta = release_pressure - env_pressure
 
 		if((air_contents.temperature > 0) && (pressure_delta > 0))
-			var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
+			var/transfer_moles = calculate_transfer_moles(air_contents, target_air, pressure_delta)
 			transfer_moles = min(transfer_moles, (release_flow_rate/air_contents.volume)*air_contents.total_moles) //flow rate limit
 
-			var/returnval = pump_gas_passive(src, air_contents, environment, transfer_moles)
+			var/returnval = pump_gas_passive(src, air_contents, target_air, transfer_moles)
 			if(returnval >= 0)
 				src.update_icon()
 
@@ -388,67 +424,67 @@ update_flag
 
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/plasma/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/plasma/Initialize()
+	. = ..()
 
 	src.air_contents.adjust_gas("plasma", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/oxygen/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/oxygen/Initialize()
+	. = ..()
 
 	src.air_contents.adjust_gas("oxygen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()
+	. = ..()
 	src.air_contents.temperature = 80
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/sleeping_agent/Initialize()
+	. = ..()
 
 	air_contents.adjust_gas("sleeping_agent", MolesForPressure())
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/Initialize()
+	. = ..()
 	air_contents.gas["sleeping_agent"] = 9*4000
-	spawn(10)
-		var/turf/simulated/location = src.loc
-		if (istype(src.loc))
-			while (!location.air)
-				sleep(10)
-			location.assume_air(air_contents)
-			air_contents = new
+
+	var/turf/simulated/location = src.loc
+	if (istype(src.loc))
+		while (!location.air)
+			sleep(10)
+		location.assume_air(air_contents)
+		air_contents = new
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/nitrogen/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled/Initialize()
+	. = ..()
 	src.air_contents.temperature = 80
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
 
-/obj/machinery/portable_atmospherics/canister/air/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/air/Initialize()
+	. = ..()
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
 
@@ -458,20 +494,20 @@ update_flag
 
 
 // Special types used for engine setup admin verb, they contain double amount of that of normal canister.
-/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/plasma/engine_setup/New()
-	..()
+/obj/machinery/portable_atmospherics/canister/plasma/engine_setup/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("plasma", MolesForPressure())
 	src.update_icon()
 	return 1

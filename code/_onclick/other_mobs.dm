@@ -27,8 +27,8 @@
 	. = FALSE
 	// if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 	// 	add_fingerprint(user)
-	// if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
-	// 	. = TRUE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		. = TRUE
 	// if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 	. = _try_interact(user)
 
@@ -41,8 +41,8 @@
 	return FALSE
 
 /atom/proc/can_interact(mob/user)
-	// if(!user.can_interact_with(src))
-	// 	return FALSE
+	if(!user.can_interact_with(src))
+		return FALSE
 	if(!user.IsAdvancedToolUser()) // (interaction_flags_atom & INTERACT_ATOM_REQUIRES_DEXTERITY) &&
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
@@ -52,6 +52,8 @@
 
 /atom/ui_status(mob/user)
 	. = ..()
+	if(isobserver(user)) // currently banaid
+		return
 	if(!can_interact(user))
 		. = min(., UI_UPDATE)
 

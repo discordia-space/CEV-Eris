@@ -42,6 +42,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
+	// var/round_start_time = 0 // globalized for now
 	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
 	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
 	var/ship_nuke_code_rotation_part = 1 // What part of code next Head will get.

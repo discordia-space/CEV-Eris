@@ -104,16 +104,6 @@
 	forceful_toggle = TRUE
 	set_on(!on)
 
-/obj/machinery/light_switch/power_change()
-
-	if(!otherarea)
-		if(powered(LIGHT))
-			stat &= ~NOPOWER
-		else
-			stat |= NOPOWER
-
-		updateicon()
-
 /obj/machinery/light_switch/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
 		..(severity)

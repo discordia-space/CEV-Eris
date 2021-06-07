@@ -142,15 +142,27 @@ SUBSYSTEM_DEF(air)
 	next_fire = world.time + wait
 	can_fire = TRUE
 
-/datum/controller/subsystem/air/stat_entry()
-	var/list/out = list(
-		"TtU:[tiles_to_update.len] ",
-		"ZtU:[zones_to_update.len] ",
-		"AFZ:[active_fire_zones.len] ",
-		"AH:[active_hotspots.len] ",
-		"AE:[active_edges.len]"
-	)
-	..(out.Join())
+/datum/controller/subsystem/air/stat_entry(msg)
+	msg += "C:{"
+	msg += "PN:[round(cost_pipenets,1)]|"
+	msg += "AM:[round(cost_atmos_machinery,1)]|"
+	msg += "AT:[round(cost_tiles,1)]|"
+	msg += "ATD:[round(cost_tiles_defered,1)]|"
+	msg += "HS:[round(cost_hotspots,1)]|"
+	msg += "FIR:[round(cost_fire,1)]|"
+	msg += "ZO:[round(cost_zone,1)]|"
+	msg += "EDG:[round(cost_edges, 1)]"
+	msg += "} "
+	msg += "PN:[networks.len]|"
+	msg += "AM:[atmos_machinery.len]|"
+	msg += "AT:[tiles_to_update.len]|"
+	msg += "ATD:[deferred.len]|"
+	msg += "HS:[processing_hotspots.len]|"
+	msg += "FIR:[processing_fires.len]|"
+	msg += "ZO:[processing_zones.len]|"
+	msg += "EDG:[processing_edges.len]|"
+	msg += "AT/MS:[round((cost ? (tiles_to_update.len + deferred.len)/cost : 0),0.1)]"
+	return ..()
 
 /datum/controller/subsystem/air/Initialize(timeofday, simulate = TRUE)
 	map_loading = FALSE

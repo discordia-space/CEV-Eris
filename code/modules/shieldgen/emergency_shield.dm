@@ -119,24 +119,30 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shieldoff"
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	anchored = FALSE
 	req_access = list(access_engine)
-	var/const/max_health = 100
-	var/health = max_health
-	var/active = 0
-	var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
-	var/list/deployed_shields = list()
-	var/list/regenerating = list()
-	var/is_open = 0 //Whether or not the wires are exposed
-	var/locked = 0
-	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
+	var/const/max_health = 100
+	var/health = max_health
+	var/active = FALSE
+	var/list/deployed_shields
+	var/locked = FALSE
+	var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
+	var/list/regenerating = list()
+	var/is_open = 0 //Whether or not the wires are exposed
+	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
+
+/obj/machinery/shieldgen/Initialize(mapload)
+	. = ..()
+	deployed_shields = list()
+	if(mapload && active && anchored)
+		shields_up()
 
 /obj/machinery/shieldgen/Destroy()
-	collapse_shields()
-	. = ..()
+	QDEL_LIST(deployed_shields)
+	return ..()
 
 /obj/machinery/shieldgen/proc/shields_up()
 	if(active) return 0 //If it's already turned on, how did this get called?
@@ -162,48 +168,25 @@
 	update_use_power(0)
 
 /obj/machinery/shieldgen/proc/create_shields()
-	for(var/turf/target_tile in range(2, src))
-		if (istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
-			if (malfunction && prob(33) || !malfunction)
-				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
+	active = TRUE
+	update_icon()
+
+	for(var/turf/target_tile as anything in RANGE_TURFS(2, src))
+		if(istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+			if(!(stat & BROKEN) || prob(33))
+				var/obj/machinery/shield/S = new /obj/machinery/shield(target_tile)
 				deployed_shields += S
 				use_power(S.shield_generate_power)
 
 /obj/machinery/shieldgen/proc/collapse_shields()
-	for(var/obj/machinery/shield/shield_tile in deployed_shields)
-		qdel(shield_tile)
-
-/obj/machinery/shieldgen/power_change()
-	..()
-	if(!active) return
-	if (stat & NOPOWER)
-		collapse_shields()
-	else
-		create_shields()
+	active = FALSE
 	update_icon()
+	QDEL_LIST(deployed_shields)
 
-/obj/machinery/shieldgen/Process()
-	if (!active || (stat & NOPOWER))
-		return
-
-	if(malfunction)
-		if(deployed_shields.len && prob(5))
+/obj/machinery/shieldgen/process(delta_time)
+	if(((stat & BROKEN) || malfunction) && active)
+		if(deployed_shields.len && DT_PROB(2.5, delta_time))
 			qdel(pick(deployed_shields))
-	else
-		if (check_delay <= 0)
-			create_shields()
-
-			var/new_power_usage = 0
-			for(var/obj/machinery/shield/shield_tile in deployed_shields)
-				new_power_usage += shield_tile.shield_idle_power
-
-			if (new_power_usage != idle_power_usage)
-				idle_power_usage = new_power_usage
-				use_power(0)
-
-			check_delay = 60
-		else
-			check_delay--
 
 /obj/machinery/shieldgen/proc/checkhp()
 	if(health <= 30)
@@ -242,27 +225,30 @@
 				malfunction = 1
 	checkhp()
 
-/obj/machinery/shieldgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldgen/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(locked)
-		to_chat(user, "The machine is locked, you are unable to use it.")
+		to_chat(user, "<span class='warning'>The machine is locked, you are unable to use it!</span>")
 		return
 	if(is_open)
-		to_chat(user, "The panel must be closed before operating this machine.")
+		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
 		return
 
-	if (src.active)
-		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
-			"\blue \icon[src] You deactivate the shield generator.", \
-			"You hear heavy droning fade out.")
-		src.shields_down()
+	if (active)
+		user.visible_message("<span class='notice'>[user] deactivated \the [src].</span>", \
+			"<span class='notice'>You deactivate \the [src].</span>", \
+			"<span class='hear'>You hear heavy droning fade out.</span>")
+		shields_down()
 	else
 		if(anchored)
-			user.visible_message("\blue \icon[src] [user] activated the shield generator.", \
-				"\blue \icon[src] You activate the shield generator.", \
-				"You hear heavy droning.")
-			src.shields_up()
+			user.visible_message("<span class='notice'>[user] activated \the [src].</span>", \
+				"<span class='notice'>You activate \the [src].</span>", \
+				"<span class='hear'>You hear heavy droning.</span>")
+			shields_up()
 		else
-			to_chat(user, "The device must first be secured to the floor.")
+			to_chat(user, "<span class='warning'>The device must first be secured to the floor!</span>")
 	return
 
 /obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
@@ -278,11 +264,11 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(locked)
-				to_chat(user, SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers."))
+				to_chat(user, "<span class='warning'>The bolts are covered! Unlocking this would retract the covers.</span>")
 				return
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				if(anchored)
-					to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+					to_chat(user, "<span class='notice'>You unsecure \the [src] from the floor!</span>")
 					if(active)
 						to_chat(user, SPAN_NOTICE("The [src] shuts off!"))
 						src.shields_down()

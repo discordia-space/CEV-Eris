@@ -28,24 +28,50 @@
 /mob/proc/put_in_l_hand(var/obj/item/Item)
 /mob/proc/put_in_r_hand(var/obj/item/Item)
 
-//Puts the item into our active hand if possible. returns 1 on success.
-/mob/proc/put_in_active_hand(var/obj/item/W)
+//Puts the item into our active hand if possible. returns TRUE on success.
+/mob/proc/put_in_active_hand(obj/item/I, forced = FALSE, ignore_animation = TRUE)
 	return FALSE // Moved to human procs because only they need to use hands.
 
-//Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/proc/put_in_inactive_hand(var/obj/item/W)
+//Puts the item into our inactive hand if possible, returns TRUE on success
+/mob/proc/put_in_inactive_hand(obj/item/I, forced = FALSE)
 	return FALSE // As above.
 
-//Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
-//If both fail it drops it on the floor and returns 0.
+//Puts the item our active hand if possible. Failing that it tries other hands. Returns TRUE on success.
+//If both fail it drops it on the floor and returns FALSE.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)
+/mob/proc/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE)
+	if(!I)
 		return FALSE
-	W.forceMove(get_turf(src))
-	W.layer = initial(W.layer)
-	W.set_plane(initial(W.plane))
-	W.dropped(usr)
+
+	// If the item is a stack and we're already holding a stack then merge
+	// if (istype(I, /obj/item/stack))
+	// 	var/obj/item/stack/I_stack = I
+	// 	var/obj/item/stack/active_stack = get_active_hand()
+
+	// 	if (I_stack.amount == 0)
+	// 		return FALSE
+
+	// 	if (merge_stacks)
+	// 		if (istype(active_stack) && active_stack.can_merge(I_stack))
+	// 			if (I_stack.merge(active_stack))
+	// 				to_chat(usr, "<span class='notice'>Your [active_stack.name] stack now contains [active_stack.get_amount()] [active_stack.singular_name]\s.</span>")
+	// 				return TRUE
+	// 		else
+	// 			var/obj/item/stack/inactive_stack = get_inactive_held_item()
+	// 			if (istype(inactive_stack) && inactive_stack.can_merge(I_stack))
+	// 				if (I_stack.merge(inactive_stack))
+	// 					to_chat(usr, "<span class='notice'>Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s.</span>")
+	// 					return TRUE
+
+	if(put_in_active_hand(I, forced))
+		return TRUE
+	if(del_on_fail)
+		qdel(I)
+		return FALSE
+	I.forceMove(drop_location())
+	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
+	I.dropped(src)
 	return FALSE
 
 // Removes an item from inventory and places it in the target atom.

@@ -654,6 +654,44 @@
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
 
+
+/// Adds this list to the output to the stat browser
+/mob/proc/get_status_tab_items()
+	. = list()
+
+/// Gets all relevant proc holders for the browser statpenl
+/mob/proc/get_proc_holders()
+	. = list()
+	// if(mind)
+	// 	. += get_spells_for_statpanel(mind.spell_list)
+	// . += get_spells_for_statpanel(mob_spell_list)
+
+/**
+ * Convert a list of spells into a displyable list for the statpanel
+ *
+ * Shows charge and other important info
+ */
+// /mob/proc/get_spells_for_statpanel(list/spells)
+// 	var/list/L = list()
+// 	for(var/obj/effect/proc_holder/spell/S in spells)
+// 		if(S.can_be_cast_by(src))
+// 			switch(S.charge_type)
+// 				if("recharge")
+// 					L[++L.len] = list("[S.panel]", "[S.charge_counter/10.0]/[S.charge_max/10]", S.name, REF(S))
+// 				if("charges")
+// 					L[++L.len] = list("[S.panel]", "[S.charge_counter]/[S.charge_max]", S.name, REF(S))
+// 				if("holdervar")
+// 					L[++L.len] = list("[S.panel]", "[S.holder_var_type] [S.holder_var_amount]", S.name, REF(S))
+// 	return L
+
+///Can the mob interact() with an atom?
+/mob/proc/can_interact_with(atom/A)
+	if(Adjacent(A)) // isAdminGhostAI(src) ||
+		return TRUE
+	// var/datum/dna/mob_dna = has_dna()
+	// if(mob_dna?.check_mutation(TK) && tkMaxRangeCheck(src, A))
+	// 	return TRUE
+
 /mob/proc/can_use_hands()
 	return
 

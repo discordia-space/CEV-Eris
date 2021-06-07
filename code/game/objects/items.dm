@@ -106,6 +106,14 @@
 
 	return ..()
 
+/obj/item/interact(mob/user)
+	add_fingerprint(user)
+	ui_interact(user)
+
+/obj/item/ui_act(action, list/params)
+	add_fingerprint(usr)
+	return ..()
+
 /obj/item/get_fall_damage()
 	return w_class * 2
 

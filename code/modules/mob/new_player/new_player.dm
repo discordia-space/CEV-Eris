@@ -1,9 +1,10 @@
+#define LINKIFY_READY(string, value) "<a href='byond://?src=[REF(src)];ready=[value]'>[string]</a>"
+
 /mob/new_player
 	var/ready = 0
 	var/spawning = 0 //Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
-	var/datum/browser/panel
 	universal_speak = 1
 
 	invisibility = 101
@@ -46,7 +47,7 @@
  */
 /mob/new_player/verb/new_player_panel()
 	set src = usr
-	new_player_panel_proc()
+	return new_player_panel_proc()
 
 
 /mob/new_player/proc/new_player_panel_proc()
@@ -89,10 +90,10 @@
 
 	output += "</center>"
 
-	panel = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265, src)
-	panel.set_window_options("can_close=0")
-	panel.set_content(output.Join())
-	panel.open(FALSE)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output.Join())
+	popup.open(FALSE)
 	return
 
 /mob/new_player/Stat()
@@ -117,17 +118,20 @@
 
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
-		return 1
+		return TRUE
 
 	if(href_list["ready"])
+		//Avoid updating ready if we're after PREGAME (they should use latejoin instead)
+		//This is likely not an actual issue but I don't have time to prove that this
+		//no longer is required
 		if(SSticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
 		else
 			ready = 0
 
 	if(href_list["refresh"])
-		panel.close()
-		new_player_panel_proc()
+		src << browse(null, "window=playersetup") //closes the player setup window
+		new_player_panel()
 
 	if(href_list["observe"])
 
@@ -168,9 +172,12 @@
 			return 1
 
 	if(href_list["late_join"])
+		if(!SSticker?.IsRoundInProgress())
+			to_chat(usr, "<span class='boldwarning'>The round is either not ready, or has already finished...</span>")
+			return
 
-		if(SSticker.current_state != GAME_STATE_PLAYING)
-			to_chat(usr, "\red The round is either not ready, or has already finished...")
+		if(href_list["late_join"] == "override")
+			LateChoices()
 			return
 
 		if(!check_rights(R_ADMIN, 0))
@@ -207,12 +214,12 @@
 
 		AttemptLateSpawn(href_list["SelectedJob"], client.prefs.spawnpoint)
 		return
-
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
+
+	if(!ready && href_list["preference"]) // what the fuck?
+		if(client)
+			client.prefs.process_link(src, href_list)
 
 	if(href_list["showpoll"])
 		handle_player_polling()
@@ -237,17 +244,47 @@
 				var/reply_text = href_list["reply_text"]
 				log_text_poll_reply(poll_id, reply_text)
 
+/proc/get_job_unavailable_error_message(retval, jobtitle)
+	switch(retval)
+		if(JOB_AVAILABLE)
+			return "[jobtitle] is available."
+		if(JOB_UNAVAILABLE_GENERIC)
+			return "[jobtitle] is unavailable."
+		if(JOB_UNAVAILABLE_BANNED)
+			return "You are currently banned from [jobtitle]."
+		if(JOB_UNAVAILABLE_PLAYTIME)
+			return "You do not have enough relevant playtime for [jobtitle]."
+		if(JOB_UNAVAILABLE_ACCOUNTAGE)
+			return "Your account is not old enough for [jobtitle]."
+		if(JOB_UNAVAILABLE_SLOTFULL)
+			return "[jobtitle] is already filled to capacity."
+	return "Error: Unknown job availability."
 
-/mob/new_player/proc/IsJobAvailable(rank)
+/mob/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	return 0
-	if(!job.is_position_available()) return 0
-	if(jobban_isbanned(src,rank))	return 0
-	return 1
+	if(!job)
+		return JOB_UNAVAILABLE_GENERIC
+	if((job.current_positions >= job.total_positions) && job.total_positions != -1) // it's job.is_position_available()'s bigger brother
+		if(job.title == ASSISTANT_TITLE)
+			// if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assistants
+			// 	return JOB_AVAILABLE
+			for(var/datum/job/J in SSjob.occupations)
+				if(J && J.current_positions < J.total_positions && J.title != job.title)
+					return JOB_UNAVAILABLE_SLOTFULL
+		else
+			return JOB_UNAVAILABLE_SLOTFULL
+	if(jobban_isbanned(src, rank))
+		return JOB_UNAVAILABLE_BANNED
+	if(QDELETED(src))
+		return JOB_UNAVAILABLE_GENERIC
+	// if(latejoin && !job.special_check_latejoin(client))
+	// 	return JOB_UNAVAILABLE_GENERIC
+	return JOB_AVAILABLE
 
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
-	if(!IsJobAvailable(rank))
-		alert(src, "[rank] is not available. Please try another.")
+	var/error = IsJobUnavailable(rank)
+	if(error != JOB_AVAILABLE)
+		alert(src, get_job_unavailable_error_message(error, rank))
 		return FALSE
 
 	if(SSticker.late_join_disabled)
@@ -257,7 +294,7 @@
 	close_spawn_windows()
 
 	SSjob.AssignRole(src, rank, 1)
-
+	var/client/cached_client = client
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 
 	var/equip = SSjob.EquipRank(character, rank) //, TRUE, is_captain)
@@ -288,6 +325,7 @@
 	// 	character.update_parallax_teleport()
 
 	SSticker.minds |= character.mind
+	character.client.init_verbs() // init verbs for the late join
 
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
@@ -312,7 +350,7 @@
 
 	GLOB.joined_player_list += character.ckey
 
-	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(client, rank, late = TRUE)
+	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client ? character.client : cached_client, rank, late = TRUE)
 	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
 	equip_custom_items(character)
 	character.lastarea = get_area(loc)
@@ -323,33 +361,33 @@
 
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
-
-	var/dat = "<html><body><center>"
-	dat += "<b>Welcome, [name].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
-
-	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
-		dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
+	var/list/dat = list("<b>Welcome, [name].</b><br><div class='notice'>Round Duration: [roundduration2text()]</div>")
+	if(evacuation_controller.has_evacuated())
+		dat += "<div class='notice red'>The vessel has been evacuated.</div><br>"
 	else if(evacuation_controller.is_evacuating())
-		if(evacuation_controller.emergency_evacuation) // Emergency shuttle is past the point of no recall
-			dat += "<font color='red'>The vessel is currently undergoing evacuation procedures.</font><br>"
-		else                                           // Crew transfer initiated
-			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
+		if(evacuation_controller.emergency_evacuation)
+			dat += "<div class='notice red'>The vessel is currently undergoing evacuation procedures.</div><br>"
+		else
+			dat += "<div class='notice red'>The vessel is currently undergoing crew transfer procedures.</div><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in SSjob.occupations)
-		if(job && IsJobAvailable(job.title))
+		if(job && IsJobUnavailable(job.title, TRUE) == JOB_AVAILABLE)
 			if(job.is_restricted(client.prefs))
 				continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			var/command_bold = ""
+			if(job in command_positions)
+				command_bold = " command"
+			dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
-	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=400x640;can_close=1")
-
+	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 580)
+	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
+	popup.set_content(jointext(dat, ""))
+	popup.open(FALSE) // 0 is passed to open so that it doesn't use the onclose() proc
 
 /mob/new_player/proc/create_character(transfer_after)
 	spawning = 1
@@ -418,6 +456,7 @@
 	H.regenerate_icons()
 
 	H.name = real_name
+	client.init_verbs()
 	. = H
 	new_character = .
 	if(transfer_after)
@@ -432,12 +471,15 @@
 		new_character = null
 		qdel(src)
 
-/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/new_player/Move()
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
-	panel.close()
+	src << browse(null, "window=playersetup") //closes the player setup window
+	src << browse(null, "window=preferences") //closes job selection
+	src << browse(null, "window=mob_occupation")
+	src << browse(null, "window=latechoices") //closes late job selection
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)
 	if(!S) return 1

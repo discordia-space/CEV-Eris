@@ -57,7 +57,7 @@
 	// reset_perspective(loc)
 
 	//readd this mob's HUDs (antag, med, etc)
-	// reload_huds()
+	reload_huds()
 
 	// reload_fullscreen() // Reload any fullscreen overlays this mob has.
 
@@ -93,6 +93,6 @@
 
 	// log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	// SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
-	// client.init_verbs()
+	client.init_verbs()
 
 	return TRUE
