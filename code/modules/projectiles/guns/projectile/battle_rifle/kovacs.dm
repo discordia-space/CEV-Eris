@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/kovacs
-	name = "SA BR \"Kovacs\""
+	name = "SA BR .20 \"Kovacs\""
 	desc = "The \"Kovacs\" is a refined battle rifle fit for taking down heavily armoured targets. \
 			This extremely efficient rifle design has gone into disuse over the years but still sees use by mercenaries. \
 			Uses .20 Rifle rounds."
