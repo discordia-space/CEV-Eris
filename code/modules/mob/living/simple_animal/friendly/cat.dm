@@ -277,6 +277,8 @@ var/cat_number = 0
 	icon_state = "runtimecat"
 	item_state = "runtimecat"
 	density = 0
+	anchored = TRUE  // So that people cannot pull Dusty
+	mob_size = MOB_HUGE // So that people cannot put Dusty in lockers to move it
 
 	status_flags = GODMODE // Bluespace cat
 	min_oxy = 0
@@ -295,6 +297,7 @@ var/cat_number = 0
 
 /mob/living/simple_animal/cat/runtime/New(loc)
 	..(loc)
+	stats.addPerk(PERK_TERRIBLE_FATE)
 	cat_number += 1
 	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
 	spawn(cat_life_duration)
