@@ -72,10 +72,9 @@
 
 	if(href_list["change_sheetspertick"])
 		var/spt_value = input(usr, "How many sheets do you want to process per cycle? (max 60, default 10)", "Material Processing Rate", 10) as null|num
-		if(!isnum(spt_value) || spt_value < 1)
+		if(!isnum(spt_value))
 			return
-		if(spt_value > 60)
-			spt_value = 60
+		spt_value = clamp(spt_value, 1, 60)
 		var/area/refinery_area = get_area(src)
 		for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
 			unloader.unload_amt = spt_value
