@@ -197,7 +197,7 @@
 	color = "#C8A5DC"
 	overdose = 60
 	scannable = 1
-	metabolism = 0.02
+	metabolism = REM * 0.25
 
 /datum/reagent/medicine/paracetamol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 25)
@@ -215,7 +215,7 @@
 	color = "#CB68FC"
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
-	metabolism = 0.02
+	metabolism = REM * 0.25
 	nerve_system_accumulations = 40
 
 /datum/reagent/medicine/tramadol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -237,7 +237,7 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = REAGENTS_OVERDOSE * 0.66
-	metabolism = 0.02
+	metabolism = REM * 0.25
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -262,7 +262,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#99CCFF"
-	metabolism = REM * 0.05
+	metabolism = REM * 0.25
 	overdose = 5
 	scannable = 1
 	nerve_system_accumulations = 50
@@ -425,7 +425,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C1C1C1"
-	metabolism = REM * 0.05
+	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
@@ -483,7 +483,7 @@
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#BF80BF"
-	metabolism = 0.01
+	metabolism = REM * 0.25
 	data = 0
 
 /datum/reagent/medicine/methylphenidate/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -502,7 +502,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FF80FF"
-	metabolism = 0.01
+	metabolism = REM * 0.25
 	data = 0
 
 /datum/reagent/medicine/citalopram/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -521,7 +521,7 @@
 	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
 	reagent_state = LIQUID
 	color = "#FF80BF"
-	metabolism = 0.01
+	metabolism = REM * 0.25
 	data = 0
 
 /datum/reagent/medicine/paroxetine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
