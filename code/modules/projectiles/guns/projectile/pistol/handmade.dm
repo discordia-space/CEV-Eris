@@ -10,6 +10,8 @@
 	can_dual = TRUE
 	load_method = SINGLE_CASING
 	max_shells = 1
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_WOOD = 5)
+	gun_parts = list(/obj/item/stack/material/steel = 2)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
 	recoil_buildup = 15
