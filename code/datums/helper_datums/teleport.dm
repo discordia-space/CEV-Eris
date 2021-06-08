@@ -186,8 +186,9 @@
 			if(satchelholding.len)
 				to_chat(MM, SPAN_DANGER("The bluespace interface of your satchel of holding interferes with the teleport!"))
 	return 1
-
 /datum/teleport/instant/science/teleportChecks()
+	if(istype(teleatom, /obj/effect/sparks))
+		return 0
 	if(istype(teleatom, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 		return 0
