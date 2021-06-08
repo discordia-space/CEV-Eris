@@ -82,7 +82,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm
 	name = "Ion Storm Announcement"
-	desc = "Interferes with the station's ion sensors. Triggers immediately upon investment."
+	desc = "Interferes with the ship's ion sensors. Triggers immediately upon investment."
 	item_cost = 2
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/device/uplink/U, var/loc)
@@ -91,7 +91,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
-	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
+	desc = "Interferes with the ship's radiation sensors. Triggers immediately upon investment."
 	item_cost = 4
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
@@ -101,7 +101,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_serb
 	name = "Unknown ship Announcement"
-	desc = "Interferes with the station's array sensors. Triggers immediately upon investment."
+	desc = "Interferes with the ship's array sensors. Triggers immediately upon investment."
 	item_cost = 3
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)

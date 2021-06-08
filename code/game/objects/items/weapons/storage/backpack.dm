@@ -155,7 +155,7 @@
 
 /obj/item/weapon/storage/backpack/industrial
 	name = "industrial backpack"
-	desc = "It's a tough backpack for the daily grind of station life."
+	desc = "It's a tough backpack for the daily grind of ship life."
 	icon_state = "backpack_industrial"
 	rarity_value = 8.33
 

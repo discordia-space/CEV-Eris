@@ -492,7 +492,7 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_self, R_ADMIN, FALSE)
 ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 /client/proc/change_security_level()
 	set name = "Set security level"
-	set desc = "Sets the station security level"
+	set desc = "Sets the ship security level"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return

@@ -87,7 +87,7 @@
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/janitor
-	desc = "It's the official uniform of the station's janitor."
+	desc = "It's the official uniform of the ship's janitor."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
 	item_state = "janitor"
