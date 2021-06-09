@@ -281,6 +281,7 @@
 
 /datum/ritual/cruciform/base/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/mob/living/carbon/human/H = get_victim(user)
+
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)
@@ -308,6 +309,10 @@
 
 	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
 		fail("[H] must lie on the altar.", user, C)
+		return FALSE
+
+	if(isslime(H) || isroach(H) || ismonkey(H))
+		fail("\The lesser creatures are unworthy.", user, C)
 		return FALSE
 
 	for(var/obj/item/clothing/CL in H)
