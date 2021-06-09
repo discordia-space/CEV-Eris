@@ -435,9 +435,9 @@
 	M.add_side_effect("Headache", 11)
 	M.make_jittery(5)
 	M.add_chemical_effect(CE_PULSE, 2)
-	if(prob(90))
+	if(prob(30))
 		to_chat(M, "<span class='danger'>You have too much sugar in your body.</span>")
-	else
+	if(prob(10))
 		to_chat(M, "<span class='danger'>A sweet yet disgusting taste o sugar comes to your mouth.</span>")
 		M.vomit()
 	
