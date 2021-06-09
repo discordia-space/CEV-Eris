@@ -249,6 +249,8 @@
 /obj/item/ammo_casing/antim/emp
 	name = "\"Blackout\" shell casing"
 	desc = "A .60 Anti-Material \"Blackout\" shell."
+	icon_state = "atmr-emp"
+	spent_icon = "atmr-emp-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/emp
 
 /obj/item/ammo_casing/antim/emp/prespawned
@@ -257,6 +259,8 @@
 /obj/item/ammo_casing/antim/uranium
 	name = "\"Meltdown\" shell casing"
 	desc = "A .60 Anti-Material \"Meltdown\" shell."
+	icon_state = "atmr-DU"
+	spent_icon = "atmr-DU-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/uranium
 
 /obj/item/ammo_casing/antim/uranium/prespawned
@@ -265,6 +269,8 @@
 /obj/item/ammo_casing/antim/breach
 	name = "\"Breacher\" shell casing"
 	desc = "A .60 Anti-Material \"Breacher\" shell."
+	icon_state = "atmr-HE"
+	spent_icon = "atmr-HE-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/breach
 
 /obj/item/ammo_casing/antim/breach/prespawned
