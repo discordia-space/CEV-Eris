@@ -13050,7 +13050,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aFq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -13777,7 +13777,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aHw" = (
 /obj/machinery/atmospherics/valve/digital{
@@ -14208,7 +14208,7 @@
 /area/eris/engineering/atmos)
 "aIF" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aIG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
