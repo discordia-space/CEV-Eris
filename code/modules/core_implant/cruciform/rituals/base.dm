@@ -312,7 +312,7 @@
 		return FALSE
 
 	if(isslime(H) || isroach(H) || ismonkey(H))
-		fail("\The lesser creatures are unworthy.", user, C)
+		fail("The lesser creatures are unworthy.", user, C)
 		return FALSE
 
 	for(var/obj/item/clothing/CL in H)

@@ -82,11 +82,11 @@ var/list/disciples = list()
 /obj/item/weapon/implant/core_implant/cruciform/activate()
 	if(!wearer || active)
 		return
-
-	if(is_carrion(wearer))
+	
+	if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
-		if(eotp)
+		if(eotp)  // le mutants reward
 			eotp.addObservation(200)
 		return
 	..()
