@@ -311,7 +311,7 @@
 		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
-	if(isslime(H) || isroach(H) || ismonkey(H))
+	if(isanimal(H) || isslime(H) || issuperioranimal(H) || ismonkey(H))
 		fail("The lesser creatures are unworthy.", user, C)
 		return FALSE
 
