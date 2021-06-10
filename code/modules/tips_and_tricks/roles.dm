@@ -39,4 +39,7 @@
     roles_list = list(/datum/antagonist)
     tipText = "The AI of the ship can do your bidding if you update its laws accordingly. It can also affect cyborgs if they are in sync with the AI."
 
+/tipsAndTricks/roles/carrionsurgery
+    roles_list = list(/datum/antagonist/carrion)
+    tipText = "As a carrion, you have complete control of your body, if you require to do self-surgery for emergencys, you don't need to get a chair and your body cooperates, making it easier."
 
