@@ -195,7 +195,7 @@
 	..()
 
 
-/obj/item/weapon/reagent_containers/spray/WD40
+/obj/item/weapon/reagent_containers/spray/wd40
 	name = "WD-40"
 	desc = "Relic of ancient times, rumoured to fix anything duct tape can't."
 	icon = 'icons/obj/tools.dmi'
