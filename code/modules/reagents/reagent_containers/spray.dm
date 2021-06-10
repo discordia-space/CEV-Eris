@@ -193,4 +193,14 @@
 	if(istype(A, /obj/effect/blob)) // blob damage in blob code
 		return
 
+/obj/item/weapon/reagent_containers/spray/WD40
+	name = "WD-40"
+	desc = "Relic of ancient times, rumoured to fix anything duct tape can't."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rejuvenating_agent_spray"
+	item_state = "rejuvenating_agent_spray"
+	volume = 100
+	preloaded_reagents = list("rejuvenating_agent" = 50)
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_TOOL
 	..()
