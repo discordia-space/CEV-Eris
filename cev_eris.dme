@@ -2026,6 +2026,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\doomba.dm"
 #include "code\modules\mob\living\simple_animal\hostile\hivebot.dm"
 #include "code\modules\mob\living\simple_animal\hostile\hostile.dm"
+#include "code\modules\mob\living\simple_animal\hostile\maintdweller.dm"
 #include "code\modules\mob\living\simple_animal\hostile\mimic.dm"
 #include "code\modules\mob\living\simple_animal\hostile\misc.dm"
 #include "code\modules\mob\living\simple_animal\hostile\onestar_drone.dm"

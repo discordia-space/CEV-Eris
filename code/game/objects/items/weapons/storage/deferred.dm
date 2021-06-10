@@ -131,7 +131,18 @@
 	/obj/item/weapon/storage/pill_bottle/spaceacillin,
 	/obj/item/stack/medical/splint)
 
+//Loot
 
+/obj/item/weapon/storage/deferred/vagabot
+	name = "android internal storage"
+	icon = 'icons/obj/rig_modules.dmi'
+	initial_contents = list(
+		/obj/spawner/lathe_disk/low_chance,
+		/obj/spawner/lathe_disk/low_chance,
+		/obj/spawner/lathe_disk/low_chance,
+		/obj/spawner/lathe_disk/low_chance,
+		/obj/spawner/lathe_disk/low_chance
+	)
 
 //Crates
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
