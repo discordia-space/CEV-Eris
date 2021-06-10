@@ -254,6 +254,14 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 300
 
+/obj/item/clothing/under/johnny
+	name = "rockerboy outfit"
+	desc = "A padded vest with brown leather pants. Never stop fightin'"
+	icon_state = "johnny"
+	item_state = "johnny"
+	style = STYLE_HIGH
+	price_tag = 450
+
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE

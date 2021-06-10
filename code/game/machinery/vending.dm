@@ -1561,6 +1561,23 @@
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
 
+/obj/machinery/vending/style
+	name = "Style vendor"
+	desc = "Vendor selling stolen stylish clothing."
+	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
+	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
+	icon_state = "style"
+	products = list(
+
+					)
+	contraband = list(
+
+					)
+	prices = list(
+
+					)
+	vendor_department = DEPARTMENT_OFFSHIP
+
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."
