@@ -192,6 +192,8 @@
 
 	if(istype(A, /obj/effect/blob)) // blob damage in blob code
 		return
+	..()
+
 
 /obj/item/weapon/reagent_containers/spray/WD40
 	name = "WD-40"
@@ -203,4 +205,3 @@
 	preloaded_reagents = list("rejuvenating_agent" = 50)
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_TOOL
-	..()
