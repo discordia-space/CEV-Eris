@@ -518,7 +518,7 @@
 
 /datum/reagent/other/rejuvenating_agent
 	name = "Rejuvenating agent"
-	id = "rejuvetaning_agent"
+	id = "rejuvenating_agent"
 	description = "A complex reagent that, applied to an object, is capable of eliminating most of the effects of the passage of time"
 	taste_description = "nothing"
 	reagent_state = LIQUID
