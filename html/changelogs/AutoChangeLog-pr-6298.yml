@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: True Faith gave the benefit by itself and was added and removed by obelisks;
+      now obelisks activate and deactivate it similarly to Exotic Inspiration.
