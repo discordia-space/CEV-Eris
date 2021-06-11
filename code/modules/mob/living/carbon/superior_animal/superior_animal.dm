@@ -83,6 +83,14 @@
 	var/fleshcolor = "#666600"
 	var/bloodcolor = "#666600"
 
+	var/ranged = 0 //will it shoot?
+	var/rapid = 0 //will it shoot fast?
+	var/projectiletype
+	var/projectilesound
+	var/casingtype
+	var/ranged_cooldown
+	var/fire_verb //what does it do when it shoots?
+
 /mob/living/carbon/superior_animal/New()
 	..()
 
