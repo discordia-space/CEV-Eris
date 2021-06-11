@@ -260,3 +260,28 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/metaljacket
+	name = "sergeant hat"
+	desc = "A rather generic sergeant hat."
+	icon_state = "metaljacket"
+	item_state = "metaljacket"
+	price_tag = 400
+
+/obj/item/clothing/head/inhailer
+	name = "odd looking helmet"
+	desc = "A confusingly complex helmet. It is capable of protecting you so it's more useful than being a simple decoration."
+	icon_state = "inhailer"
+	item_state = "inhailer"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	siemens_coefficient = 1
+	price_tag = 600
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 10,
+		bomb = 0,
+		bio = 20,
+		rad = 25
+	)
