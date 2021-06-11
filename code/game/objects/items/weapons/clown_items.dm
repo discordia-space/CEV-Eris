@@ -11,7 +11,7 @@
 /obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
 	if (isliving(AM))
 		var/mob/living/M = AM
-		if(locate(/obj/structure/multiz/stairs) in get_turf(loc) || locate(/obj/structure/multiz/ladder) in get_turf(loc))
+		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
 			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
 			return
 		M.slip("the [src.name]",4)
@@ -43,7 +43,7 @@
 /obj/item/weapon/soap/Crossed(AM as mob|obj)
 	if (isliving(AM))
 		var/mob/living/M = AM
-		if(locate(/obj/structure/multiz/stairs) in get_turf(loc) || locate(/obj/structure/multiz/ladder) in get_turf(loc))
+		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
 			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
 			return
 		M.slip("the [src.name]",3)
