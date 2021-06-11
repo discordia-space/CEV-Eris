@@ -80,14 +80,17 @@ var/list/disciples = list()
 	s.start()
 
 /obj/item/weapon/implant/core_implant/cruciform/activate()
+	var/observation_points = 200
+
+	if(wearer.get_species() == "Monkey")
+		observation_points /= 20
 	if(!wearer || active)
 		return
-	
 	if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
 		if(eotp)  // le mutants reward
-			eotp.addObservation(200)
+			eotp.addObservation(observation_points)
 		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
@@ -97,7 +100,7 @@ var/list/disciples = list()
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
 	if(eotp)
-		eotp.addObservation(50)
+		eotp.addObservation(observation_points*0.25)
 	return TRUE
 
 /obj/item/weapon/implant/core_implant/cruciform/examine(mob/user)
