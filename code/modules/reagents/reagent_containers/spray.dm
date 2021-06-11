@@ -200,8 +200,8 @@
 	desc = "Relic of ancient times, rumoured to fix anything duct tape can't."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rejuvenating_agent_spray"
-	item_state = "rejuvenating_agent_spray"
 	volume = 100
-	preloaded_reagents = list("rejuvenating_agent" = 25)
-	rarity_value = 50
+	preloaded_reagents = list("rejuvenating_agent" = 50)
+	spawn_blacklisted = TRUE
+	rarity_value = 40
 	spawn_tags = SPAWN_TAG_TOOL
