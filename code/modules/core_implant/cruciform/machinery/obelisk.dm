@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 /obj/machinery/power/nt_obelisk/Destroy()
 	for(var/i in currently_affected)
 		var/mob/living/carbon/human/H = i
-		H.stats.removePerk(/datum/perk/sanityboost)
+		H.stats.removePerk(/datum/perk/active_sanityboost)
 	currently_affected = null
 	return ..()
 
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 	var/list/no_longer_affected = currently_affected - affected
 	for(var/i in no_longer_affected)
 		var/mob/living/carbon/human/H = i
-		H.stats.removePerk(/datum/perk/sanityboost)
+		H.stats.removePerk(/datum/perk/active_sanityboost)
 	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
 		var/obj/item/weapon/implant/core_implant/I = mob.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 				eotp.addObservation(10)
 		if(I && I.active && I.wearer)
 			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
-				mob.stats.addPerk(/datum/perk/sanityboost)
+				mob.stats.addPerk(/datum/perk/active_sanityboost)
 				currently_affected += mob
 			I.restore_power(I.power_regen*2)
 			for(var/r_tag in mob.personal_ritual_cooldowns)

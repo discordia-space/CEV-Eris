@@ -154,12 +154,16 @@
 	desc = "When near an obelisk, you feel your mind at ease. Your sanity regeneration is boosted."
 	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
 
-/datum/perk/sanityboost/assign(mob/living/carbon/human/H)
+/datum/perk/active_sanityboost
+	name = "True Faith (Active)"
+	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
+
+/datum/perk/active_sanityboost/assign(mob/living/carbon/human/H)
 	..()
 	if(holder)
 		holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
-/datum/perk/sanityboost/remove()
+/datum/perk/active_sanityboost/remove()
 	if(holder)
 		holder.sanity.sanity_passive_gain_multiplier /= 1.5
 	..()

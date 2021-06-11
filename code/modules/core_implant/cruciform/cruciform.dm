@@ -58,6 +58,7 @@ var/list/disciples = list()
 /obj/item/weapon/implant/core_implant/cruciform/uninstall()
 	unregister_wearer()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
+	wearer.stats.removePerk(/datum/perk/active_sanityboost)
 	return ..()
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender)
