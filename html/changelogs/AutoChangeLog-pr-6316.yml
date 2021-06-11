@@ -1,0 +1,6 @@
+author: Herbaon
+delete-after: true
+changes:
+  - bugfix: Mesons can properly detect minerals when turned on.
+  - bugfix: A lot of typos & references of "station" to ship
+  - bugfix: Bugfixes overall, removed some exploits.
