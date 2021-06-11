@@ -39,6 +39,7 @@
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight,
+			/obj/item/weapon/storage/deferred/disks
 		)
 	)
 

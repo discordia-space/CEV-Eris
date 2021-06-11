@@ -90,6 +90,12 @@
 	icon_state = "box_serbian"
 	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already made.
 
+/obj/item/weapon/storage/deferred/disks //for the beacon, cause we want it priced right and actually functional
+	name = "autolathe disk box"
+	desc = "A small collection of autolathe disks"
+	initial_contents = list(/obj/spawner/lathe_disk = 7)
+	price_tag = 2800
+
 //Medical
 /obj/item/weapon/storage/deferred/surgery
 	name = "combat surgery kit"
