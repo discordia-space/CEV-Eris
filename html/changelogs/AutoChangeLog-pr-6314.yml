@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Fix zpipes display on standard tiles
+  - rscadd: Add normal tiles to atmos room to cover unecessary plating
