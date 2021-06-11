@@ -262,7 +262,7 @@
 
 /obj/item/clothing/head/metaljacket
 	name = "sergeant hat"
-	desc = "A rather generic sergeant hat."
+	desc = "A rather generic sergeant-like hat."
 	icon_state = "metaljacket"
 	item_state = "metaljacket"
 	price_tag = 400

@@ -261,7 +261,7 @@ obj/item/clothing/under/genericr
 	icon_state = "suit_white"
 	item_state = "suit_white"
 	style = STYLE_HIGH
-	price_tag = 500
+	price_tag = 450
 
 /obj/item/clothing/under/style/red
 	name = "blood red outfit"
@@ -270,7 +270,7 @@ obj/item/clothing/under/genericr
 	item_state = "suit_red"
 
 /obj/item/clothing/under/style/green
-	name = "questionable outfit"
+	name = "questionable outfit"//Riddler reference, you probably knew that
 	desc = "Green suit, green pants and a green tie. Quite a riddle to solve."
 	icon_state = "riddler"
 	item_state = "riddler"
@@ -300,7 +300,7 @@ obj/item/clothing/under/genericr
 	item_state = "white_yellow"
 
 /obj/item/clothing/under/style/johnny
-	name = "rockerboy outfit"
+	name = "rockerboy outfit"//Cyberpunk 2077, Johnny Silverhand's outfit
 	desc = "A padded vest with brown leather pants. Never stop fightin'"
 	icon_state = "johnny"
 	item_state = "johnny"
@@ -316,13 +316,13 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/style/johnny/raider
 	name = "leather outfit"
-	desc = "A rather generic leather outfit. Smells of sand and apocalyptic wastes"
+	desc = "A rather generic leather outfit. Smells like waste"
 	icon_state = "raider"
 	item_state = "raider"
 
 /obj/item/clothing/under/style/johnny/helltaker
-	name = "charming outfit"
-	desc = "A red shirt with a black tie and black pants. Seems like it went to hell and back."
+	name = "charming outfit"//Helltaker reference
+	desc = "A red shirt with a black tie and black pants. Stylish enough to impress the devil."
 	icon_state = "helltaker"
 	item_state = "helltaker"
 

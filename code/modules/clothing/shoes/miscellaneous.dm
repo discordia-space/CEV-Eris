@@ -122,10 +122,12 @@
 	icon_state = "redboots"
 	item_state = "redboots"
 	style = STYLE_HIGH
+	price_tag = 300
 
-/obj/item/clothing/shoes/longboot
+/obj/item/clothing/shoes/jackboots/longboot
 	name = "long boots"
 	desc = "A pair of stylish vertically long boots."
 	icon_state = "longboots"
 	item_state = "longboots"
 	style = STYLE_HIGH
+	price_tag = 400

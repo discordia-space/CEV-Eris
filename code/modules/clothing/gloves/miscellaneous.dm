@@ -123,4 +123,6 @@
 	desc = "Gloves with additional reinforcment on the knuckles."
 	icon_state = "knuckles"
 	item_state = "knuckles"
+	style = HIGH_STYLE
 	armor = list(melee = 20, bullet = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+	price_tag = 500

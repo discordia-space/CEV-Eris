@@ -1564,16 +1564,46 @@
 /obj/machinery/vending/style
 	name = "Style vendor"
 	desc = "Vendor selling stolen stylish clothing."
-	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
-	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
+	product_slogans = "Highly stylish clothing for sale!;Latest fashion trends right here!"
+	product_ads = "Contact our consumer department for refunds, fees apply.;Coolness sold here."
 	icon_state = "style"
 	products = list(
-
-					)
-	contraband = list(
-
+		/obj/item/clothing/gloves/knuckles = 3,
+		/obj/item/clothing/head/metaljacket = 4,
+		/obj/item/clothing/head/inhailer = 2,
+		/obj/item/clothing/shoes/redboot = 4,
+		/obj/item/clothing/shoes/jackboots/longboot = 3,
+		/obj/item/clothing/under/style = 4,
+		/obj/item/clothing/under/style/red = 4,
+		/obj/item/clothing/under/style/green = 4,
+		/obj/item/clothing/under/style/grey = 4,
+		/obj/item/clothing/under/style/black = 4,
+		/obj/item/clothing/under/style/dress = 4,
+		/obj/item/clothing/under/style/dress/white = 4,
+		/obj/item/clothing/under/style/johnny = 3,
+		/obj/item/clothing/under/style/johnny/raider = 3,
+		/obj/item/clothing/under/style/johnny/helltaker = 3,
+		/obj/item/clothing/suit/storage/triad = 2,
+		/obj/item/clothing/suit/storage/akira = 2,
 					)
 	prices = list(
+		/obj/item/clothing/gloves/knuckles = 650,
+		/obj/item/clothing/head/metaljacket = 550,
+		/obj/item/clothing/head/inhailer = 750,
+		/obj/item/clothing/shoes/redboot = 450,
+		/obj/item/clothing/shoes/jackboots/longboot = 550,
+		/obj/item/clothing/under/style = 600,
+		/obj/item/clothing/under/style/red = 600,
+		/obj/item/clothing/under/style/green = 600,
+		/obj/item/clothing/under/style/grey = 600,
+		/obj/item/clothing/under/style/black = 600,
+		/obj/item/clothing/under/style/dress = 600,
+		/obj/item/clothing/under/style/dress/white = 600,
+		/obj/item/clothing/under/style/johnny = 750,
+		/obj/item/clothing/under/style/johnny/raider = 750,
+		/obj/item/clothing/under/style/johnny/helltaker = 750,
+		/obj/item/clothing/suit/storage/triad = 1200,
+		/obj/item/clothing/suit/storage/akira = 750,
 
 					)
 	vendor_department = DEPARTMENT_OFFSHIP
