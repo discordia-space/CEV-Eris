@@ -1761,7 +1761,7 @@
 
 	glass_icon_state = "gargleblasterglass"
 	glass_name = "Pan-Galactic Gargle Blaster"
-	glass_desc = "Does... does this mean that Arthur and Ford are on the station? Oh joy."
+	glass_desc = "Does... does this mean that Arthur and Ford are on the ship? Oh joy."
 	glass_center_of_mass = list("x"=17, "y"=6)
 	taste_tag = list(TASTE_SOUR, TASTE_SPICY,TASTE_STRONG)
 
@@ -1913,7 +1913,7 @@
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
 	id = "manhattan_proj"
-	description = "A scientist's drink of choice, for pondering ways to blow up the station."
+	description = "A scientist's drink of choice, for pondering ways to blow up the ship."
 	taste_description = "death, the destroyer of worlds"
 	color = "#664300"
 	strength = 10
@@ -1921,7 +1921,7 @@
 
 	glass_icon_state = "proj_manhattanglass"
 	glass_name = "Manhattan Project"
-	glass_desc = "A scienitst drink of choice, for thinking how to blow up the station."
+	glass_desc = "A scienitst drink of choice, for thinking how to blow up the ship."
 	glass_center_of_mass = list("x"=17, "y"=8)
 	taste_tag = list(TASTE_LIGHT,TASTE_DRY)
 
@@ -2278,14 +2278,14 @@
 /datum/reagent/ethanol/specialwhiskey // I have no idea what this is and where it comes from
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
-	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+	description = "Just when you thought regular ship whiskey was good... This silky, amber goodness has to come along and ruin everything."
 	taste_description = "the whiskey gods pissed in your mouth"
 	color = "#664300"
 	strength = 5
 
 	glass_icon_state = "whiskeyglass"
 	glass_name = "special blend whiskey"
-	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
+	glass_desc = "Just when you thought regular ship whiskey was good... This silky, amber goodness has to come along and ruin everything."
 	glass_center_of_mass = list("x"=16, "y"=12)
 	taste_tag = list(TASTE_LIGHT,TASTE_STRONG)
 

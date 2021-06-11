@@ -44,7 +44,7 @@
 	description = "You are an exultant, the head of a technomancer clan, nomadic spacefaring engineers. You and your clan have taken up residence on Eris, it is your work, your home, and your pride. <br>\
 You are to keep the ship running and constantly improve it as much as you are able. Let none question the efficacy of your labours."
 
-	loyalties = "Your first loyalty is to your pride. The engineering department is your territory, and machinery across the station are your responsibility. Do not tolerate others interfering with them, intruding on your space, or questioning your competence. You don't need inspections, oversight or micromanagement. Outsiders should only enter your spaces by invitation, or out of necessity. Even the captain and other command staff are no exception.<br>\
+	loyalties = "Your first loyalty is to your pride. The engineering department is your territory, and machinery across the ship are your responsibility. Do not tolerate others interfering with them, intruding on your space, or questioning your competence. You don't need inspections, oversight or micromanagement. Outsiders should only enter your spaces by invitation, or out of necessity. Even the captain and other command staff are no exception.<br>\
 
 Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't risk their lives unnecessarily. If an area is infested with monsters, there's no reason to risk lives trying to repair anything inside there. If one of your people is imprisoned, endangered or accused, you should fight for them. Treat every technomancer like your family"
 

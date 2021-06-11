@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(drones, list())
 
 /obj/machinery/computer/drone_control
 	name = "Maintenance Drone Control"
-	desc = "Used to monitor the station's drone population and the assembler that services them."
+	desc = "Used to monitor the ship's drone population and the assembler that services them."
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "power_key"
 	icon_screen = "dron_control_monitor"

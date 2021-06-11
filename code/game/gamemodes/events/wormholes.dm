@@ -42,7 +42,7 @@
 		wormhole_tiles.Add(T)
 
 /datum/event/wormholes/announce()
-	command_announcement.Announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", new_sound = 'sound/AI/spanomalies.ogg')
+	command_announcement.Announce("Space-time anomalies detected on the ship. There is no additional data.", "Anomaly Alert", new_sound = 'sound/AI/spanomalies.ogg')
 
 
 /datum/event/wormholes/start()

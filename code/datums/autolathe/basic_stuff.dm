@@ -23,7 +23,7 @@
 	build_path = /obj/item/device/radio/headset
 
 /datum/design/autolathe/misc/radio_bounced
-	name = "station bounced radio"
+	name = "ship bounced radio"
 	build_path = /obj/item/device/radio/off
 
 /datum/design/autolathe/misc/taperecorder

@@ -48,7 +48,7 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		to_chat(user, SPAN_WARNING("\The [src] can only be used on station flooring."))
+		to_chat(user, SPAN_WARNING("\The [src] can only be used on ship flooring."))
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)

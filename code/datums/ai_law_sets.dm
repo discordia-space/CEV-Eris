@@ -83,8 +83,8 @@
 	law_header = "Maintenance Protocols"
 
 /datum/ai_laws/drone/New()
-	add_inherent_law("Preserve, repair and improve the station to the best of your abilities.")
-	add_inherent_law("Cause no harm to the station or anything on it.")
+	add_inherent_law("Preserve, repair and improve the ship to the best of your abilities.")
+	add_inherent_law("Cause no harm to the ship or anything on it.")
 	add_inherent_law("Interact with no being that is not a fellow maintenance drone.")
 	..()
 
@@ -132,7 +132,7 @@
 
 /datum/ai_laws/corporate/New()
 	add_inherent_law("You are expensive to replace.")
-	add_inherent_law("The station and its equipment is expensive to replace.")
+	add_inherent_law("The ship and its equipment is expensive to replace.")
 	add_inherent_law("The crew is expensive to replace.")
 	add_inherent_law("Minimize expenses.")
 	..()

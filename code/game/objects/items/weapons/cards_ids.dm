@@ -61,6 +61,7 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COVERT = 2)
+	matter = list(MATERIAL_SILVER = 1, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
