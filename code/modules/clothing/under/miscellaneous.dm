@@ -254,13 +254,77 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 300
 
-/obj/item/clothing/under/johnny
+//stylish vendor clothes
+/obj/item/clothing/under/style
+	name = "ivory white outfit"
+	desc = "White suit, white pants and a white tie. Very stylish."
+	icon_state = "suit_white"
+	item_state = "suit_white"
+	style = STYLE_HIGH
+	price_tag = 500
+
+/obj/item/clothing/under/style/red
+	name = "blood red outfit"
+	desc = "Red suit, red pants and a red tie. Very stylish."
+	icon_state = "suit_red"
+	item_state = "suit_red"
+
+/obj/item/clothing/under/style/green
+	name = "questionable outfit"
+	desc = "Green suit, green pants and a green tie. Quite a riddle to solve."
+	icon_state = "riddler"
+	item_state = "riddler"
+
+/obj/item/clothing/under/style/grey
+	name = "ash grey outfit"
+	desc = "Grey suit, grey pants and a grey tie. Very stylish."
+	icon_state = "suit_grey"
+	item_state = "suit_grey"
+
+/obj/item/clothing/under/style/black
+	name = "charcoal black outfit"
+	desc = "Black suit, black pants and a black tie. Very stylish."
+	icon_state = "suit_black"
+	item_state = "suit_black"
+
+/obj/item/clothing/under/style/dress
+	name = "black and purple dress"
+	desc = "A black and purple dress, quite stylish"
+	icon_state = "black_purple"
+	item_state = "black_purple"
+
+/obj/item/clothing/under/style/dress/white
+	name = "white and yellow dress"
+	desc = "A white and yellow dress, quite stylish"
+	icon_state = "white_yellow"
+	item_state = "white_yellow"
+
+/obj/item/clothing/under/style/johnny
 	name = "rockerboy outfit"
 	desc = "A padded vest with brown leather pants. Never stop fightin'"
 	icon_state = "johnny"
 	item_state = "johnny"
-	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 600
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/under/style/johnny/raider
+	name = "leather outfit"
+	desc = "A rather generic leather outfit. Smells of sand and apocalyptic wastes"
+	icon_state = "raider"
+	item_state = "raider"
+
+/obj/item/clothing/under/style/johnny/helltaker
+	name = "charming outfit"
+	desc = "A red shirt with a black tie and black pants. Seems like it went to hell and back."
+	icon_state = "helltaker"
+	item_state = "helltaker"
 
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
