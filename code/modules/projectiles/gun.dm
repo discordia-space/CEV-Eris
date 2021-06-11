@@ -802,6 +802,8 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
+	if(!sharp)
+		gun_tags |= SLOT_BAYONET
 
 /obj/item/weapon/gun/zoom(tileoffset, viewsize)
 	..()
@@ -812,6 +814,3 @@
 		H.using_scope = src
 	else
 		H.using_scope = null
-
-	if(!sharp)
-		gun_tags |= SLOT_BAYONET
