@@ -84,9 +84,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"at" = (
-/turf/simulated/wall,
-/area/template_noop)
 "au" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -114,7 +111,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "az" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/wall,
 /area/template_noop)
 "aA" = (
@@ -193,23 +189,14 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "aN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
 	},
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "aO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
@@ -219,28 +206,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"aP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "aQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
@@ -249,9 +217,6 @@
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "aR" = (
@@ -259,9 +224,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
@@ -272,9 +234,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
@@ -284,9 +243,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
@@ -303,21 +259,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"aV" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "aW" = (
@@ -325,9 +267,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
@@ -341,9 +280,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -379,9 +315,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/template_noop)
 "be" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bf" = (
@@ -394,7 +328,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bg" = (
@@ -435,9 +368,7 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bm" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/spawner/traps/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -468,9 +399,7 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bs" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -486,7 +415,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -549,24 +477,13 @@
 /obj/spawner/traps/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"bA" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "bB" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bC" = (
@@ -584,7 +501,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -610,12 +526,10 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bJ" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bK" = (
@@ -624,7 +538,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bL" = (
@@ -804,7 +717,7 @@ ac
 ad
 bb
 bd
-at
+az
 aJ
 bw
 ah
@@ -879,7 +792,7 @@ ah
 ah
 aw
 ad
-at
+az
 aG
 aB
 ad
@@ -906,15 +819,15 @@ an
 aj
 aj
 aA
-at
-at
+az
+az
 aL
 ad
 bc
 ac
 ac
 ad
-bA
+bB
 ad
 ag
 ag
@@ -933,7 +846,7 @@ ao
 aj
 bE
 aA
-at
+az
 aH
 aM
 ag
@@ -941,7 +854,7 @@ ag
 ab
 ad
 ad
-bA
+bB
 ah
 ab
 ac
@@ -960,7 +873,7 @@ ao
 ah
 aj
 ax
-at
+az
 ab
 ab
 ab
@@ -1046,7 +959,7 @@ ab
 ab
 ab
 ag
-at
+az
 bh
 bo
 aE
@@ -1067,7 +980,7 @@ ag
 ad
 ad
 ar
-at
+az
 ag
 ah
 aN
@@ -1095,7 +1008,7 @@ ab
 ah
 ah
 aC
-at
+az
 bE
 aN
 aS
@@ -1119,10 +1032,10 @@ ac
 ab
 ad
 ap
-at
-at
-at
-at
+az
+az
+az
+az
 ar
 aN
 aT
@@ -1149,7 +1062,7 @@ aj
 au
 ax
 ax
-at
+az
 aI
 aN
 aR
@@ -1176,7 +1089,7 @@ aj
 ar
 ay
 aD
-at
+az
 aq
 aO
 aU
@@ -1203,10 +1116,10 @@ bE
 aj
 ah
 ah
-at
+az
 aK
-aP
-aV
+bJ
+bx
 ad
 ad
 ad
@@ -1232,11 +1145,11 @@ ah
 ab
 ag
 aj
-aP
+bJ
 aW
-at
+az
 bN
-at
+az
 bv
 ag
 ah
@@ -1259,13 +1172,13 @@ ah
 ab
 ag
 aj
-aP
+bJ
 aR
-at
+az
 bj
-at
+az
 bj
-at
+az
 bj
 ac
 ac
@@ -1281,14 +1194,14 @@ ac
 ac
 ad
 ap
-at
-at
+az
+az
 ab
 ab
 aa
 aQ
 aX
-at
+az
 ah
 bp
 ah

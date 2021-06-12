@@ -2,14 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"ac" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "ad" = (
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/dark/danger,
@@ -31,42 +23,8 @@
 /obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/dark/danger,
 /area/template_noop)
-"ai" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1379;
-	id_tag = "atmos_airlock_pump";
-	name = "Atmospherics Airlock Pump"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"aj" = (
-/obj/machinery/camera/network/engineering{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"ak" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"al" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"am" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 9
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "an" = (
 /obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"ao" = (
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "ap" = (
@@ -91,39 +49,6 @@
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
-"au" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"av" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5;
-	tag = "icon-intact (NORTHEAST)"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"aw" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"ax" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"ay" = (
-/obj/machinery/atmospherics/valve/digital/open{
-	dir = 4;
-	name = "Nitrogen Outlet Valve"
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "az" = (
 /obj/machinery/camera/network/engineering{
 	dir = 1
@@ -134,40 +59,12 @@
 "aA" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
-"aB" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
 "aC" = (
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/dark/danger,
 /area/template_noop)
-"aD" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
 "aE" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aF" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aG" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 4;
-	name = "O2 to Propulsion"
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aH" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 10
-	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/template_noop)
 "aI" = (
@@ -179,41 +76,6 @@
 "aJ" = (
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
-/area/template_noop)
-"aK" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 5;
-	tag = "icon-intact (NORTHEAST)"
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aL" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4;
-	tag = "icon-intact (EAST)"
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aM" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 10;
-	tag = "icon-intact (SOUTHWEST)"
-	},
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aN" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5;
-	tag = "icon-intact (NORTHEAST)"
-	},
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"aO" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/dark/danger,
 /area/template_noop)
 "aP" = (
 /mob/living/simple_animal/hostile/bear,
@@ -228,78 +90,17 @@
 /mob/living/simple_animal/hostile/carp,
 /turf/template_noop,
 /area/template_noop)
-"aS" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aT" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"aU" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"aV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 6
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"aW" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"aX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"aY" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 8;
-	name = "N2 to Core"
-	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
 "aZ" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 4;
-	tag = "icon-map (EAST)"
-	},
 /turf/simulated/floor/tiled/dark/danger,
-/area/template_noop)
-"ba" = (
-/turf/simulated/wall,
 /area/template_noop)
 "bb" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"bc" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
 "bd" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
-/area/template_noop)
-"be" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/machinery/meter,
-/turf/simulated/floor/plating/under,
 /area/template_noop)
 "bf" = (
 /mob/living/simple_animal/hostile/carp,
@@ -323,30 +124,14 @@
 /obj/spawner/traps,
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
-"bj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"bk" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "bl" = (
 /obj/structure/sign/atmos_co2{
 	pixel_y = 32
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"bm" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/template_noop,
-/area/template_noop)
 "bn" = (
 /obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/template_noop,
 /area/template_noop)
 "bo" = (
@@ -396,27 +181,12 @@
 "bt" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
-"bu" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"bv" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/simulated/floor/plating,
-/area/template_noop)
 "bw" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/plasma,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "bx" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 10
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "by" = (
@@ -431,8 +201,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bA" = (
@@ -473,15 +241,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"bL" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"bM" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "bS" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating,
@@ -494,7 +253,6 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/template_noop)
 "bX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/structure/catwalk,
 /obj/structure/sign/atmos_o2{
 	pixel_x = -32
@@ -504,9 +262,6 @@
 "ca" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
-/area/template_noop)
-"cb" = (
-/turf/simulated/floor/tiled/dark/techfloor,
 /area/template_noop)
 "cc" = (
 /obj/machinery/firealarm{
@@ -522,16 +277,7 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/template_noop)
-"cj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/template_noop)
 "ck" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/template_noop)
 "cn" = (
@@ -573,8 +319,6 @@
 	name = "Atmospherics Maintenance";
 	req_access = list(24)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -591,9 +335,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
 	},
 /obj/spawner/powercell/low_chance,
 /turf/simulated/floor/plating/under,
@@ -612,12 +353,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -633,12 +368,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cH" = (
@@ -647,12 +376,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -671,12 +394,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cJ" = (
@@ -690,27 +407,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"cK" = (
-/obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cL" = (
@@ -719,12 +415,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -740,12 +430,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cO" = (
@@ -753,12 +437,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -772,12 +450,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -788,30 +460,10 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cT" = (
 /obj/structure/railing,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/template_noop)
-"cU" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4;
-	tag = "icon-railing0 (EAST)"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cV" = (
@@ -821,7 +473,6 @@
 /area/template_noop)
 "cW" = (
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cX" = (
@@ -831,7 +482,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "cY" = (
@@ -869,7 +519,6 @@
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "de" = (
@@ -882,7 +531,6 @@
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "df" = (
@@ -893,19 +541,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "dh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /turf/simulated/wall,
 /area/template_noop)
 "di" = (
-/obj/machinery/atmospherics/pipe/tank/air{
-	dir = 8
-	},
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "dj" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
@@ -915,7 +557,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/blue,
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/template_noop)
@@ -929,15 +570,15 @@
 /area/template_noop)
 
 (1,1,1) = {"
-ab
-ao
+bn
+bx
 ae
 aa
 aa
 aa
-ab
-ab
-ab
+bn
+bn
+bn
 ae
 aa
 aa
@@ -947,18 +588,18 @@ aa
 aa
 aa
 aa
-ab
+bn
 aa
 aa
 aa
-ao
+bx
 ae
-ab
+bn
 "}
 (2,1,1) = {"
-ab
+bn
 NP
-ab
+bn
 aa
 aa
 aA
@@ -966,36 +607,36 @@ aA
 bs
 aA
 aA
-ab
+bn
 aa
 aa
-ab
-ab
+bn
+bn
 aA
 aA
 aA
 aA
 aa
 aa
-ab
-ab
-ao
-ao
+bn
+bn
+bx
+bx
 "}
 (3,1,1) = {"
-ao
+bx
 bt
 ae
-ao
+bx
 aa
 aA
-bk
+cT
 bt
 aP
 aA
 aA
 aA
-ab
+bn
 aA
 aA
 aA
@@ -1003,18 +644,18 @@ ar
 aq
 aA
 aA
-ab
-ab
+bn
+bn
 aa
 aa
 aa
 "}
 (4,1,1) = {"
-ab
-ao
-ao
+bn
+bx
+bx
 ae
-ab
+bn
 aA
 bl
 aA
@@ -1027,9 +668,9 @@ aA
 cn
 bt
 bD
-bk
+cT
 bt
-aT
+dj
 aa
 aa
 aa
@@ -1038,14 +679,14 @@ aa
 "}
 (5,1,1) = {"
 aa
-ab
-ao
-aB
+bn
+bx
+bd
 aa
-aB
+bd
 an
-ao
-ao
+bx
+bx
 aA
 af
 bW
@@ -1056,7 +697,7 @@ bt
 cE
 cT
 bt
-aT
+dj
 aa
 aa
 aa
@@ -1064,15 +705,15 @@ aa
 aa
 "}
 (6,1,1) = {"
-ab
-ao
+bn
+bx
 ap
 aA
-ab
+bn
 aA
 aA
 aA
-ao
+bx
 aA
 aA
 aA
@@ -1081,7 +722,7 @@ aA
 aA
 cv
 cF
-cU
+cZ
 ca
 aA
 aa
@@ -1091,24 +732,24 @@ aa
 aa
 "}
 (7,1,1) = {"
-ab
-ao
+bn
+bx
 bo
 aA
 aa
-ab
-ab
+bn
+bn
 aA
 aq
 aA
 bS
 aA
-bL
+cW
 bh
 aA
 bB
 cG
-bL
+cW
 bt
 aA
 aa
@@ -1118,24 +759,24 @@ aa
 aa
 "}
 (8,1,1) = {"
-ab
-ao
-ao
-aB
+bn
+bx
+bx
+bd
 aa
-ab
-ab
+bn
+bn
 aA
 ar
 as
-ao
-bk
-bL
+bx
+cT
+cW
 aA
 aA
 cx
 cH
-bL
+cW
 ag
 aA
 aa
@@ -1146,8 +787,8 @@ aa
 "}
 (9,1,1) = {"
 ae
-ao
-ao
+bx
+bx
 aA
 aA
 aA
@@ -1157,14 +798,14 @@ aA
 aA
 ae
 aA
-bL
+cW
 aA
 cn
 ca
 cH
-bL
+cW
 bt
-aT
+dj
 aa
 aa
 aa
@@ -1173,26 +814,26 @@ aa
 "}
 (10,1,1) = {"
 aa
-ao
-ac
-aD
-aS
-bc
-bm
-bu
+bx
+bx
+aZ
+aZ
+bd
+bn
+bw
 aQ
-ab
-ab
+bn
+bn
 aA
 bK
 aA
 cn
 aP
 cH
-bL
+cW
 ca
-aT
-ab
+dj
+bn
 aa
 aa
 aa
@@ -1200,23 +841,23 @@ aa
 "}
 (11,1,1) = {"
 aa
-ao
-ao
+bx
+bx
 ad
 aE
-aB
-ab
-bv
-ab
+bd
+bn
+bw
+bn
 aa
 aa
 ae
-ab
+bn
 aA
 aA
 cz
 cH
-bL
+cW
 bt
 aA
 aA
@@ -1226,16 +867,16 @@ aa
 aa
 "}
 (12,1,1) = {"
-ab
-ak
-al
-aF
-aO
+bn
+bx
+bx
+aZ
+aZ
 bd
 bn
 bw
-ab
-ab
+bn
+bn
 aa
 aa
 aa
@@ -1243,26 +884,26 @@ ar
 aA
 cA
 cH
-bL
+cW
 bt
 df
 aA
-ab
-ab
+bn
+bn
 aa
 aa
 "}
 (13,1,1) = {"
 aa
-ao
-au
-aG
-aT
+bx
+bx
+aZ
+dj
 aA
 aA
 aA
 ae
-ao
+bx
 aa
 aa
 GQ
@@ -1270,53 +911,53 @@ ae
 aA
 aA
 cI
-bL
+cW
 db
 aA
 aA
 ae
-ab
+bn
 aa
 aa
 "}
 (14,1,1) = {"
-ab
-ak
-av
-aH
-aU
-be
-ak
-aN
+bn
+bx
+bx
+aZ
+dj
+bx
+bx
+bn
 ae
-ao
+bx
 aa
 aa
-ab
+bn
 bo
-ao
+bx
 bW
 cH
-bL
+cW
 dc
-ai
-aj
-ao
-ab
+bx
+bx
+bx
+bn
 aa
 aa
 "}
 (15,1,1) = {"
 aa
-ab
-aw
+bn
+bx
 ah
-aT
-ab
-ao
-aw
+dj
+bn
+bx
+bx
 aA
-bL
+cW
 aA
 aA
 aA
@@ -1329,47 +970,47 @@ aA
 dh
 aA
 ae
-ab
+bn
 aa
 aa
 "}
 (16,1,1) = {"
 aa
-ab
-aw
+bn
+bx
 az
 aA
 ae
 ar
 bx
-aU
-bM
-bM
+dj
+cW
+cW
 bX
-bM
+cW
 bC
 ar
 ae
-cK
-bL
-aT
+cL
+cW
+dj
 di
 aA
-ab
-ab
+bn
+bn
 aa
 aa
 "}
 (17,1,1) = {"
 aa
-ab
-aw
+bn
+bx
 aC
-aT
-ab
-ao
+dj
+bn
+bx
 bo
-aT
+dj
 bA
 aA
 bt
@@ -1377,8 +1018,8 @@ ca
 aA
 aA
 aA
-cK
-bL
+cL
+cW
 aA
 aA
 aA
@@ -1389,11 +1030,11 @@ aa
 "}
 (18,1,1) = {"
 aa
-ao
-ax
-aK
-aV
-ab
+bx
+bx
+aZ
+dj
+bn
 bo
 bo
 aA
@@ -1408,7 +1049,7 @@ cL
 cW
 dd
 dj
-ab
+bn
 aa
 aa
 aa
@@ -1416,10 +1057,10 @@ aa
 "}
 (19,1,1) = {"
 aa
-ak
-am
-aL
-aW
+bx
+bx
+aZ
+dj
 aA
 aA
 aA
@@ -1435,7 +1076,7 @@ cM
 cX
 de
 dk
-ab
+bn
 aa
 aa
 aa
@@ -1443,23 +1084,23 @@ aa
 "}
 (20,1,1) = {"
 aa
-al
-av
-aM
-aX
-aB
+bx
+bx
+aZ
+aZ
+bd
 aJ
-ao
-ab
-ab
-ab
+bx
+bn
+bn
+bn
 aA
-cb
-cb
+ck
+ck
 bp
 aA
-cK
-bL
+cL
+cW
 aA
 aA
 aA
@@ -1469,44 +1110,44 @@ aa
 aa
 "}
 (21,1,1) = {"
-ab
-am
-ay
+bn
+bx
+bx
 ad
-aY
-aB
-ab
+aZ
+bd
+bn
 aa
 aR
 aa
-ab
+bn
 aA
-cb
-cj
+ck
+ck
 bq
 aA
-cK
-bL
+cL
+cW
 bi
 bW
 at
 aA
-ab
+bn
 aa
 aa
 "}
 (22,1,1) = {"
-ab
-ao
+bn
 bx
-aO
+bx
 aZ
-aB
-ab
+aZ
+bd
+bn
 aa
 aa
-ab
-ab
+bn
+bn
 aA
 cc
 ck
@@ -1518,15 +1159,15 @@ bt
 aA
 aA
 aA
-ab
+bn
 aa
 aa
 "}
 (23,1,1) = {"
 aa
-ab
-ao
-ao
+bn
+bx
+bx
 aA
 aA
 aa
@@ -1536,52 +1177,52 @@ ae
 aA
 aA
 bg
-bj
+bx
 by
 aA
 cP
 cZ
 aP
 aA
-ab
-ab
-ab
+bn
+bn
+bn
 ae
-ab
+bn
 "}
 (24,1,1) = {"
 aa
-ab
-ao
-ao
-ba
+bn
+bx
+bx
+dh
 aI
 aa
 aa
 aa
 bb
 ae
-ab
-ab
-ab
+bn
+bn
+bn
 bz
 cB
 cQ
-bL
+cW
 bt
 aA
 aa
 aa
-ao
+bx
 ae
-ab
+bn
 "}
 (25,1,1) = {"
 aa
 aa
 aa
-ab
-ab
+bn
+bn
 aa
 aa
 aa
@@ -1594,12 +1235,12 @@ aa
 ae
 aA
 aA
-aT
-aT
+dj
+dj
 aA
 aa
 aa
-ao
+bx
 ar
-ab
+bn
 "}
