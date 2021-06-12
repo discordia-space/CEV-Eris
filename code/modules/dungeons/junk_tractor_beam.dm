@@ -147,7 +147,7 @@
 /obj/jtb_generator/proc/field_release()
 
 	qdel(ship_portal)
-	cleanup_junk_field(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
+	cleanup_junk_field_progressive(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	beam_cooldown_start = world.time
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
@@ -167,9 +167,21 @@
 	current_jf = JF
 	return
 
+/obj/jtb_generator/proc/cleanup_junk_field_progressive(var/x1, var/x2, var/y1, var/y2)
+	log_world("Starting junk field cleanup at zlevel [loc.z].")
+	var/n = 10
+	var/dt = beam_cooldown_time / (n+1)
+	var/dx = round((x2 - x1 + 1) / n)
+	for(var/i = 1 to n)
+		var/a = x1 + (i-1) * dx
+		var/b = x1 + i * dx - 1
+		spawn(i * dt)
+			cleanup_junk_field(a, b, y1, y2)
+		
+	log_world("Junk field cleanup is over at zlevel [loc.z].")
+
 /obj/jtb_generator/proc/cleanup_junk_field(var/x1, var/x2, var/y1, var/y2)
 
-	log_world("Starting junk field cleanup at zlevel [loc.z].")
 	for(var/i = x1 to x2)
 		for(var/j = y1 to y2)
 			var/turf/T = get_turf(locate(i, j, z))
@@ -192,7 +204,6 @@
 				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 	// All mobs and turfs have already been handled so no need to deal with that during second pass
 
-	log_world("Junk field cleanup is over at zlevel [loc.z].")
 
 /obj/jtb_generator/proc/generate_junk_field()
 	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
