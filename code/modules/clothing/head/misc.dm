@@ -260,18 +260,18 @@
 		rad = 0
 	)
 
-/obj/item/clothing/head/metaljacket
-	name = "sergeant hat"
-	desc = "A rather generic sergeant-like hat."
-	icon_state = "metaljacket"
-	item_state = "metaljacket"
+/obj/item/clothing/head/ranger
+	name = "ranger hat"
+	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
+	icon_state = "ranger"
+	item_state = "ranger"
 	price_tag = 400
 
-/obj/item/clothing/head/inhailer
+/obj/item/clothing/head/inhaler
 	name = "odd looking helmet"
 	desc = "A confusingly complex helmet. It is capable of protecting you so it's more useful than being a simple decoration."
-	icon_state = "inhailer"
-	item_state = "inhailer"
+	icon_state = "inhaler"
+	item_state = "inhaler"
 	item_flags = THICKMATERIAL
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
