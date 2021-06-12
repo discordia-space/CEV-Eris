@@ -202,6 +202,10 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/derelict,
 /area/template_noop)
+"lU" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/template_noop)
 "ol" = (
 /obj/landmark/loot_biomes/jtb/onestar,
 /turf/simulated/floor/tiled/derelict,
@@ -547,13 +551,13 @@ bi
 bi
 Hn
 Wo
-aw
+lU
 Wo
 jv
 Ul
 Jl
 Wo
-aw
+lU
 Wo
 bi
 bi
@@ -842,11 +846,11 @@ aN
 aY
 bu
 bu
-aw
+lU
 DW
 DW
 DW
-aw
+lU
 bu
 bu
 aH
@@ -869,11 +873,11 @@ Wo
 Wo
 fv
 bu
-aw
+lU
 ES
 Ny
 DU
-aw
+lU
 bu
 um
 Wo
@@ -896,11 +900,11 @@ aN
 Lj
 bu
 bu
-aw
+lU
 DW
 DW
 DW
-aw
+lU
 bu
 bu
 aI
@@ -951,9 +955,9 @@ Wo
 cV
 bu
 sf
-aw
+lU
 Wo
-aw
+lU
 sf
 bu
 uK

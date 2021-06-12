@@ -7,3 +7,8 @@
 	name = "ironhammer 2"
 	id = "ironhammer2"
 	suffix = "ironhammer/ironhammer2.dmm"
+
+/datum/map_template/junk/j25_25/ironhammer/ironhammer3
+	name = "ironhammer 3"
+	id = "ironhammer3"
+	suffix = "ironhammer/ironhammer3.dmm"

@@ -45,10 +45,6 @@
 "al" = (
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/template_noop)
-"am" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating,
-/area/template_noop)
 "an" = (
 /obj/structure/closet/onestar,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
@@ -71,7 +67,7 @@
 /area/template_noop)
 "au" = (
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/template_noop,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/template_noop)
 "av" = (
 /obj/structure/closet/onestar/tier2/mineral,
@@ -710,7 +706,7 @@ jN
 aG
 ag
 au
-am
+au
 ag
 aI
 aI
@@ -817,8 +813,8 @@ au
 bJ
 bJ
 ag
-am
-am
+au
+au
 ag
 aJ
 bj
@@ -861,7 +857,7 @@ ab
 ab
 aa
 aa
-am
+au
 aZ
 ch
 ch
@@ -888,7 +884,7 @@ aa
 aa
 aa
 aa
-am
+au
 aZ
 aZ
 aZ
@@ -915,7 +911,7 @@ aa
 aa
 aa
 aa
-am
+au
 aZ
 aZ
 aZ
@@ -942,7 +938,7 @@ aa
 aa
 aa
 aa
-am
+au
 ba
 ba
 aZ
