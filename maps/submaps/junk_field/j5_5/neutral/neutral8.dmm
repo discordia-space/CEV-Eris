@@ -29,7 +29,6 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "g" = (
-/obj/machinery/atmospherics/pipe/zpipe/up,
 /obj/structure/railing,
 /turf/simulated/floor/plating/under,
 /area/template_noop)

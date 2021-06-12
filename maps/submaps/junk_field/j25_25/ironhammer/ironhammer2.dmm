@@ -189,9 +189,6 @@
 	name = "Inspector Office";
 	req_access = list(4)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
