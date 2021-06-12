@@ -80,10 +80,6 @@
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "j" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/blue{
-	dir = 4;
-	tag = "icon-intact (EAST)"
-	},
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
@@ -98,13 +94,6 @@
 "m" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
-/area/template_noop)
-"n" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/blue{
-	dir = 4;
-	tag = "icon-intact (EAST)"
-	},
-/turf/simulated/floor/plating/under,
 /area/template_noop)
 "Q" = (
 /turf/template_noop,
@@ -122,14 +111,14 @@ Q
 k
 l
 g
-n
+a
 "}
 (3,1,1) = {"
 Q
 d
 m
 h
-n
+a
 "}
 (4,1,1) = {"
 b
