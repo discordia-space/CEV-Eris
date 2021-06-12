@@ -223,7 +223,10 @@
 	},
 /area/template_noop)
 "uQ" = (
-/obj/landmark/corpse/russian/ranged,
+/obj/item/remains/human,
+/obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/under/turtleneck,
+/obj/item/clothing/head/ushanka,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -310,7 +313,10 @@
 /obj/structure/toilet{
 	dir = 1
 	},
-/obj/landmark/corpse/russian/ranged,
+/obj/item/remains/human,
+/obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/under/turtleneck,
+/obj/item/clothing/head/ushanka,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
