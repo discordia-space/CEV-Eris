@@ -374,6 +374,7 @@
 
 		var/infection = "None"
 		switch (I.germ_level)
+			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
 			if (1 to INFECTION_LEVEL_ONE + 200)
 				infection = "Mild Infection"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
