@@ -109,7 +109,7 @@
 	icon_state = "satchel"
 	slot_flags = SLOT_BELT | SLOT_POCKET
 	w_class = ITEM_SIZE_NORMAL
-	max_storage_space = 100
+	max_storage_space = 200
 	max_w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
 

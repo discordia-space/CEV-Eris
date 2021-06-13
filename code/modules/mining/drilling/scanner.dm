@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 
-	charge_per_use = 2
+	charge_per_use = 0.5
 	var/precision = FALSE
 
 /obj/item/device/scanner/mining/is_valid_scan_target(atom/O)
