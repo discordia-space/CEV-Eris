@@ -59,10 +59,6 @@
 /obj/structure/cyberplant,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/template_noop)
-"bW" = (
-/obj/landmark/loot_biomes/jtb/ironhammer,
-/turf/simulated/floor/tiled/steel/bluecorner,
-/area/template_noop)
 "dO" = (
 /obj/structure/showcase{
 	desc = "Ancient robotic frame, that is long deactivated and rusted solid. However, it still strikes am awesome pose, that somehow makes you think of justice and righteousness.";
@@ -908,7 +904,7 @@ UT
 ah
 ah
 XL
-bW
+XL
 XL
 Xd
 XL

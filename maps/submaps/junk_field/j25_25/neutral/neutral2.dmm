@@ -370,11 +370,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"yu" = (
-/obj/structure/lattice,
-/obj/landmark/loot_biomes/jtb/neutral,
-/turf/template_noop,
-/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -713,7 +708,7 @@ az
 ag
 af
 ab
-yu
+ab
 af
 ag
 af

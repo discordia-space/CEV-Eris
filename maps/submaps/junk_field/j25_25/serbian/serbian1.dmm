@@ -297,10 +297,6 @@
 	name = "plating"
 	},
 /area/template_noop)
-"pU" = (
-/obj/landmark/loot_biomes/jtb/serbian,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "qa" = (
 /obj/structure/window/basic{
 	dir = 8
@@ -1185,7 +1181,7 @@ Eg
 Xv
 Hn
 Hn
-pU
+bB
 Vt
 Eg
 ZY

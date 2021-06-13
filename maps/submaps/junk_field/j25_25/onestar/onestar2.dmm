@@ -687,10 +687,6 @@
 /obj/item/weapon/paper_bin,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/template_noop)
-"We" = (
-/obj/landmark/loot_biomes/jtb/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/template_noop)
 "Xm" = (
 /obj/structure/table/onestar,
 /obj/item/weapon/pen/reagent/sleepy,
@@ -1060,7 +1056,7 @@ KW
 KW
 as
 ES
-We
+Vu
 Vu
 Vu
 vG

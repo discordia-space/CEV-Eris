@@ -208,10 +208,6 @@
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/template_noop)
-"aV" = (
-/obj/landmark/loot_biomes/jtb/onestar,
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/template_noop)
 "aW" = (
 /obj/structure/noticeboard,
 /turf/simulated/wall/untinted/onestar,
@@ -712,7 +708,7 @@ ag
 ag
 ag
 ag
-aV
+ag
 ae
 ae
 uc

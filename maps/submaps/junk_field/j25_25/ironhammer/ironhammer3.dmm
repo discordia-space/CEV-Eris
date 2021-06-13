@@ -244,7 +244,6 @@
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
 /obj/item/weapon/paper,
-/obj/landmark/loot_biomes/jtb/ironhammer,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
 "bf" = (

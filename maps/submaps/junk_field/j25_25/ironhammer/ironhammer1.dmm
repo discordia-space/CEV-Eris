@@ -401,10 +401,6 @@
 /obj/item/weapon/book/manual/wiki/security_ironparagraphs,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/template_noop)
-"GZ" = (
-/obj/landmark/loot_biomes/jtb/ironhammer,
-/turf/simulated/wall/r_wall,
-/area/template_noop)
 "Hn" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -918,7 +914,7 @@ as
 YZ
 OP
 OP
-GZ
+YZ
 Vt
 aq
 um

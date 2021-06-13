@@ -338,11 +338,6 @@
 /mob/living/simple_animal/hostile/roomba/gun_ba,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/template_noop)
-"jN" = (
-/obj/spawner/junk,
-/obj/landmark/loot_biomes/jtb/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/template_noop)
 "nf" = (
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -702,7 +697,7 @@ ch
 ak
 ch
 ch
-jN
+aZ
 aG
 ag
 au

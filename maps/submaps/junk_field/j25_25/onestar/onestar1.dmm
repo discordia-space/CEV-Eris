@@ -206,10 +206,6 @@
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/template_noop)
-"ol" = (
-/obj/landmark/loot_biomes/jtb/onestar,
-/turf/simulated/floor/tiled/derelict,
-/area/template_noop)
 "pA" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -824,7 +820,7 @@ as
 WA
 as
 Wo
-ol
+bu
 bu
 aq
 bc

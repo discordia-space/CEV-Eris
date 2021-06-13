@@ -373,10 +373,6 @@
 	icon_state = "white"
 	},
 /area/template_noop)
-"GS" = (
-/obj/landmark/loot_biomes/jtb/serbian,
-/turf/template_noop,
-/area/template_noop)
 "Hc" = (
 /turf/unsimulated/floor{
 	dir = 2;
@@ -984,7 +980,7 @@ NR
 XL
 NR
 ME
-GS
+Zy
 ME
 NR
 XL

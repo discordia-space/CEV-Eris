@@ -587,10 +587,6 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"bI" = (
-/obj/landmark/loot_biomes/jtb/serbian,
-/turf/simulated/wall/r_wall,
-/area/template_noop)
 "bJ" = (
 /obj/structure/lattice,
 /obj/item/weapon/storage/pouch/medium_generic,
@@ -965,7 +961,7 @@ ac
 ab
 ab
 ab
-bI
+ab
 ab
 ab
 ab
