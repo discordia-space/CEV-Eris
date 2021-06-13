@@ -442,7 +442,6 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	price_tag = 1050
-	style = STYLE_HIGH
 
 
 /obj/item/clothing/suit/storage/akira
@@ -460,4 +459,3 @@
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 600
-	style = STYLE_HIGH
