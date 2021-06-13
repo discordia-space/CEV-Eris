@@ -219,7 +219,6 @@
 	)
 	siemens_coefficient = 0.8
 	price_tag = 250
-	style = STYLE_HIGH
 
 /obj/item/clothing/suit/storage/detective/ironhammer
 	name = "Inspector's armored trenchcoat"
