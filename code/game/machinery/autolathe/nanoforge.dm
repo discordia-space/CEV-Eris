@@ -1,13 +1,12 @@
 /obj/machinery/autolathe/nanoforge
-	name = "matter nanoforge"
+	name = "matter auto-nanoforge"
 	desc = "It consumes items and produces compressed matter."
 	icon_state = "nanoforge"
 	icon = 'icons/obj/machines/autolathe.dmi'
 	use_oddities = TRUE
-	use_license = FALSE
 	is_nanoforge = TRUE
+	low_quality_print = FALSE
 	circuit = /obj/item/weapon/electronics/circuitboard/nanoforge
-	var/list/nanoforge_designs = list()
 	var/list/tags_to_spawn = list(SPAWN_DESIGN)
 	var/list/nano_disks = list()
 
@@ -79,13 +78,8 @@
 	var/path = SSspawn_data.pick_spawn(candidates)
 	nano_disks += list(path)
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/design/D = new path
-	nanoforge_designs |= D.find_files_by_type(/datum/computer_file/binary/design)
+	saved_designs |= D.find_files_by_type(/datum/computer_file/binary/design)
 	remove_oddity(user, TRUE)
-
-/obj/machinery/autolathe/nanoforge/design_list()
-	if(disk)
-		return disk.find_files_by_type(/datum/computer_file/binary/design)
-	return nanoforge_designs
 
 /obj/machinery/autolathe/nanoforge/icon_off()
 	. = ..()

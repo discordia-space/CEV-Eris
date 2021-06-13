@@ -155,7 +155,7 @@
 
 /obj/item/weapon/storage/backpack/industrial
 	name = "industrial backpack"
-	desc = "It's a tough backpack for the daily grind of station life."
+	desc = "It's a tough backpack for the daily grind of ship life."
 	icon_state = "backpack_industrial"
 	rarity_value = 8.33
 
@@ -364,3 +364,9 @@
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
 	equip_access = FALSE
 	rarity_value = 5
+
+/obj/item/weapon/storage/backpack/duffelbag/loot
+	name = "lootbag"
+	icon_state = "lootbag"
+	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTIC = 3)
+	rarity_value = 7.5

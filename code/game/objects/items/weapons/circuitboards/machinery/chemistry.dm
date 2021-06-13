@@ -52,4 +52,3 @@
 	req_components = list(
 		/obj/item/weapon/stock_parts/capacitor = 1,
 	)
-

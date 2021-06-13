@@ -22,6 +22,7 @@
 	darkness_view = 7
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flags = ABSTRACT
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/bullet_proof_ironhammer/Initialize()
 	. = ..()

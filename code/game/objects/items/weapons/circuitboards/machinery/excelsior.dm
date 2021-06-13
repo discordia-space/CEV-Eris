@@ -13,7 +13,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/electronics/circuitboard/excelsiorautolathe
-	name = T_BOARD("excelsior autolathe")
+	name = T_BOARD("excelsior autoforge")
 	build_path = /obj/machinery/autolathe/excelsior
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_COVERT = 2)

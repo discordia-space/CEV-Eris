@@ -1,4 +1,0 @@
-author: ''
-delete-after: true
-changes:
-  - balance: internal storage for RIGs is now satchel sized

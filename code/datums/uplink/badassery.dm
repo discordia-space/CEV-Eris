@@ -78,7 +78,7 @@
 
 /datum/uplink_item/item/badassery/donut_case
 	name = "Special Donut Delivery Case"
-	item_cost = 20
+	item_cost = 18
 	path = /obj/item/weapon/storage/case/donut
 	desc = "A rare donut case, that can only be purchased on the black market. Contains masterfully made donuts, with unique effects for those who eat them."
 

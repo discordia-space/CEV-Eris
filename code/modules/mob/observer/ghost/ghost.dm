@@ -457,7 +457,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (spawnpoint)
 		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
 	else
-		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The station must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
+		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The ship must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
 
 	if(host)
 		if(config.uneducated_mice)

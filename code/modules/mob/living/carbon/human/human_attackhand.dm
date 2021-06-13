@@ -58,6 +58,9 @@
 			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
 				return 1
 			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
+				if(H == src)
+					to_chat(H, SPAN_NOTICE("You can't perform CPR on yourself."))
+					return
 				if(!H.check_has_mouth())
 					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return
@@ -249,7 +252,6 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
@@ -266,11 +268,6 @@
 
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-			if(!(species.flags & NO_SLIP) && randn <= 20)
-				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				return
 
 			if(randn <= 50)
 				//See about breaking grips or pulls

@@ -34,11 +34,12 @@
 			/obj/item/inflatable/door,
 			/obj/item/inflatable/wall,
 			/obj/item/stack/material/steel/full,
-			/obj/item/weapon/storage/belt/utility/full,
+			/obj/item/weapon/storage/belt/utility,
 			/obj/item/clothing/head/welding,
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/machinery/floodlight
+			/obj/machinery/floodlight,
+			/obj/item/weapon/storage/deferred/disks
 		)
 	)
 

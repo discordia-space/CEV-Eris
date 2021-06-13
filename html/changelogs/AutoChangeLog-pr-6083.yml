@@ -1,6 +1,0 @@
-author: CeUvi
-delete-after: true
-changes:
-  - bugfix: fixed overlay layering for beakers and bottles.
-  - imagedel: deleted "labeled" states for all reagent containers, as there is no
-      need in them anymore.

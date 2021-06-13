@@ -131,7 +131,7 @@
 		if(CHOICE_TCONTRACT)
 			var/datum/antag_contract/A = pick(GLOB.various_antag_contracts)
 			desc += " You feel like you remembered something important."
-			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
+			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the ship. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
 		if(CHOICE_STASHPAPER)
 			desc += " You have a special note in your storage."
 			stash.spawn_stash()
@@ -154,12 +154,16 @@
 	desc = "When near an obelisk, you feel your mind at ease. Your sanity regeneration is boosted."
 	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
 
-/datum/perk/sanityboost/assign(mob/living/carbon/human/H)
+/datum/perk/active_sanityboost
+	name = "True Faith (Active)"
+	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
+
+/datum/perk/active_sanityboost/assign(mob/living/carbon/human/H)
 	..()
 	if(holder)
 		holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
-/datum/perk/sanityboost/remove()
+/datum/perk/active_sanityboost/remove()
 	if(holder)
 		holder.sanity.sanity_passive_gain_multiplier /= 1.5
 	..()

@@ -18,7 +18,7 @@
 	item_state = "ba_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
+	desc = "It's a red jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
@@ -87,7 +87,7 @@
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/janitor
-	desc = "It's the official uniform of the station's janitor."
+	desc = "It's the official uniform of the ship's janitor."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
 	item_state = "janitor"

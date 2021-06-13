@@ -19,7 +19,7 @@
 	name = "Relief"
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
-	power = 50
+	power = 20
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -45,7 +45,7 @@
 	name = "Entreaty"
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
-	power = 50
+	cooldown_time = 1 MINUTES
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -98,19 +98,25 @@
 	name = "Cruciform sense"
 	phrase = "Et si medio umbrae"
 	desc = "Very short litany to identify NeoTheology followers. Targets individuals directly in front of caster or being grabbed by caster."
+	cooldown_time = 1 MINUTES
 	power = 20
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/list/mob/living/carbon/human/humans = list()
+	var/cruciforms = 0
 	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
+		if(T == H)
+			continue
+		var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+		if(CI)
+			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
+			cruciforms++
 		humans.Add(T)
-	if(humans.len)
-		for(var/mob/living/carbon/human/T in humans)
-			var/obj/item/weapon/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-			if(CI)
-				to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
-	else
-		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
+	if(!humans.len)
+		fail("There is no one around you.", H, C)
+		return FALSE
+	else if(!cruciforms)
+		fail("No one around you has a cruciform installed.", H, C)
 		return FALSE
 	set_personal_cooldown(H)
 	return TRUE
@@ -119,7 +125,7 @@
 	name = "Revelation"
 	phrase = "Patris ostendere viam"
 	desc = "A person close to you will have a vision that could increase ther sanity... or that's what you hope will happen."
-	power = 50
+	power = 10
 
 /datum/ritual/cruciform/base/revelation/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/mob/living/carbon/human/T = get_front_human_in_range(H, 4)
@@ -127,9 +133,9 @@
 	if(!T)
 		fail("No target.", H, C)
 		return FALSE
+	eotp.scanned -= T
 	T.hallucination(50,100)
 	var/sanity_gain = rand(0,10)
-	T.druggy = max(T.druggy, 10)
 	T.sanity.changeLevel(sanity_gain)
 	SEND_SIGNAL(H, COMSIG_RITUAL_REVELATION, src, T)
 	set_personal_cooldown(H)
@@ -220,7 +226,6 @@
 	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
-	var/clone_damage = 60
 
 /datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)

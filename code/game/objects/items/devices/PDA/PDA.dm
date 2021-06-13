@@ -37,7 +37,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/lock_code = "" // Lockcode to unlock uplink
 	var/honkamt = 0 //How many honks left when infected with honk.exe
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
+	var/note = "Congratulations, your ship has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
 	var/notehtml = ""
 	var/cart = "" //A place to stick cartridge menu information
 	var/detonate = 1 // Can the PDA be blown up?
@@ -1333,7 +1333,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if (isliving(AM))
 		var/mob/living/M = AM
-
+		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
+			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
+			return
 		if(M.slip("the PDA",8) && M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
 			if(src.cartridge.charges < 5)
 				src.cartridge.charges++

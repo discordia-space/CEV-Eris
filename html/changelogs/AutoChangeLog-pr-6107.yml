@@ -1,6 +1,0 @@
-author: Shazbot
-delete-after: true
-changes:
-  - rscadd: Added IH, 2 new FS AKs, and makeshift
-  - balance: Minor tweaks to SA AK size and AP
-  - refactor: AK icons are now in separate files

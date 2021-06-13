@@ -2,7 +2,7 @@
 	name = "propaganda chip"
 	icon_state = "implant_evil" //placeholder
 	desc = "A delicate chip with an integrated speaker, you shouldn't disturb it"
-	origin_tech = list(TECH_MAGNETS = 3)
+	origin_tech = list(TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 5) //Needs to be a bit expensive so people cant spam messages
 	var/active = FALSE
 	var/last_talk_time = 0

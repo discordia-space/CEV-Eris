@@ -239,6 +239,7 @@
 	name = "old knife"
 	desc = "Is this blood older then you? You can't tell, and will never know."
 	icon_state = "old_knife"
+	item_state = "knife"
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	force = WEAPON_FORCE_DANGEROUS
@@ -348,16 +349,32 @@
 
 /obj/item/weapon/oddity/broken_necklace/New()
 	..()
-	GLOB.bluespace_gift += 1
+	GLOB.bluespace_gift++
 	GLOB.bluespace_entropy -= rand(30, 50)
+
+/obj/item/weapon/oddity/broken_necklace/examine(user, distance)
+	. = ..()
+	var/area/my_area = get_area(src)
+	switch(my_area.bluespace_entropy)
+		if(0 to my_area.bluespace_hazard_threshold*0.3)
+			to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
+
+		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
+			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+
+	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
+		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_hazard_threshold > GLOB.bluespace_hazard_threshold*0.95)
+		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
 
 /obj/item/weapon/oddity/broken_necklace/Destroy()
 	var/turf/T = get_turf(src)
 	if(T)
 		bluespace_entropy(80,T)
 		new /obj/item/bluespace_dust(T)
-	GLOB.bluespace_gift -= 1
-	. = ..()
+	GLOB.bluespace_gift--
+	return ..()
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
 	if(world.time < cooldown)
@@ -400,7 +417,7 @@
 /obj/item/weapon/oddity/artwork/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
 	icon_state = "artwork_[rand(1,6)]"
-	. = ..()
+	return ..()
 
 /obj/item/weapon/oddity/artwork/get_item_cost(export)
 	. = ..()
@@ -428,3 +445,58 @@
 	)
 	price_tag = 8000
 	perk = /datum/perk/nt_oddity/holy_light
+
+//Hivemind oddity
+/obj/item/weapon/oddity/hivemind
+	name = "Hivemind Oddity"
+	desc = "You shouldn't be seeing this. Report to your nearest reeducation camp comrade (report it on discord)."
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/weapon/oddity/hivemind
+
+/obj/item/weapon/oddity/hivemind/old_radio
+	name = "warped radio"
+	desc = "An old radio covered in growths. You can hear nothing from it, nothing but the sound of machinery and souls begging for release."
+	icon_state = "warped_radio"
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_VIG = 8,
+		STAT_MEC = 7,
+	)
+
+/obj/item/weapon/oddity/hivemind/old_pda
+	name = "abnormal pda"
+	desc = "An old Nanotrasen era PDA covered in growths. Is the hive Nanotrasen's creation, or made by something worse?"
+	icon_state = "abnormal_pda"
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_MEC = 8,
+		STAT_VIG = 7
+	)
+
+/obj/item/weapon/oddity/hivemind/hive_core
+	name = "makeshift datapad"
+	desc = "A makeshift datapad covered in growths. Whatever data was stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
+	icon_state = "hivemind_core"
+	w_class = ITEM_SIZE_NORMAL
+	random_stats = FALSE
+	oddity_stats = list(
+		STAT_COG = 8,
+		STAT_VIG = 8,
+		STAT_MEC = 8,
+		STAT_BIO = 8
+	)
+	perk = /datum/perk/oddity/hive_born
+
+//i copied the entire thing because beforehand it just did not work
+/obj/item/weapon/oddity/hivemind/hive_core/Initialize()
+	. = ..()
+	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	if(!perk && prob(prob_perk))
+		perk = get_oddity_perk()
+
+	if(oddity_stats)
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = rand(1, oddity_stats[stat])
+		AddComponent(/datum/component/inspiration, oddity_stats, perk)
+	set_light(2, 1, COLOR_BLUE_LIGHT)

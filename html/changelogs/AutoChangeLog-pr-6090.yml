@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - tweak: Coolant tanks and coolant behaviour was changed not to cool down entire
-      ship at once.

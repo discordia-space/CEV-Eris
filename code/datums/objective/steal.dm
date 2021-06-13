@@ -10,7 +10,7 @@
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"the Technomancer Exultant's advanced voidsuit control module" = /obj/item/weapon/rig/ce,
-		"the station blueprints" = /obj/item/blueprints,
+		"the ship blueprints" = /obj/item/blueprints,
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
