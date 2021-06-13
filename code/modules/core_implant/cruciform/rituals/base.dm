@@ -64,7 +64,7 @@
 /datum/ritual/cruciform/base/reveal
 	name = "Reveal Adversaries"
 	phrase = "Et fumus tormentorum eorum ascendet in saecula saeculorum: nec habent requiem die ac nocte, qui adoraverunt bestiam, et imaginem ejus, et si quis acceperit caracterem nominis ejus."
-	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a carrion."
+	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps."
 	power = 35
 
 /datum/ritual/cruciform/base/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -311,7 +311,7 @@
 		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
-	if(isanimal(H) || isslime(H) || issuperioranimal(H) || ismonkey(H))
+	if(isanimal(H) || isslime(H) || issuperioranimal(H) || H.get_species() == "Monkey")
 		fail("The lesser creatures are unworthy.", user, C)
 		return FALSE
 
