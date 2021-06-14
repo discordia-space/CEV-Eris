@@ -13,8 +13,8 @@
 	build_path = /obj/item/weapon/gun/energy/stunrevolver/moebius
 	sort_string = "TAAAA"
 
-/datum/design/research/item/weapon/nuclear_gun
-	build_path = /obj/item/weapon/gun/energy/gun/nuclear
+/datum/design/research/item/weapon/mindflayer
+	build_path = /obj/item/weapon/gun/energy/mindflayer
 	sort_string = "TAAAB"
 
 /datum/design/research/item/weapon/lasercannon

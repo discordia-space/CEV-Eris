@@ -201,7 +201,7 @@
 	required_tech_levels = list()
 	cost = 5000
 
-	unlocks_designs = list(/datum/design/research/item/weapon/nuclear_gun, /datum/design/research/item/weapon/lasercannon)
+	unlocks_designs = list(/datum/design/research/item/weapon/mindflayer, /datum/design/research/item/weapon/lasercannon)
 
 /datum/technology/advanced_armor
 	name = "Advanced Armor Solutions"
