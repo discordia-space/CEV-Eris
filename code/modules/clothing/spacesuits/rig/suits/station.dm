@@ -201,8 +201,6 @@ Technomancer RIG
 		/obj/item/weapon/rcd
 	)
 
-	req_access = list(access_engine)
-	req_one_access = list()
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/rig/techno/equipped
