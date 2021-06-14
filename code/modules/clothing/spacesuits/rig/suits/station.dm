@@ -117,9 +117,9 @@ Advanced Voidsuit: Technomancer Exultant
 	icon_state = "ce_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 40,
+		bullet = 40,
+		energy = 40,
 		bomb = 50,
 		bio = 100,
 		rad = 100
@@ -176,9 +176,9 @@ Technomancer RIG
 	icon_state = "techno_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 40,
+		melee = 30,
+		bullet = 30,
+		energy = 30,
 		bomb = 50,
 		bio = 100,
 		rad = 100
