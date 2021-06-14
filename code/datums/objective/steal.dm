@@ -37,7 +37,7 @@
 	)
 
 	var/global/possible_items_special[] = list(
-		"mindflayer" = /obj/item/weapon/gun/energy/mindflayer,
+		"mindflayer" = /obj/item/weapon/gun/energy/psychic/mindflayer,
 		"diamond drill" = /obj/item/weapon/tool/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/large/hyper,

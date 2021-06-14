@@ -231,6 +231,19 @@
 		)
 	twohanded = FALSE
 
+/obj/item/weapon/gun/energy/psychic/mindflayer
+	name = "Prototype: mind flayer"
+	desc = "A cruel weapon designed to break the minds of those it targets, causing sanity loss and mental breakdowns."
+	icon = 'icons/obj/guns/energy/xray.dmi'
+	icon_state = "xray"
+	projectile_type = /obj/item/projectile/beam/psychic
+	fire_sound = 'sound/weapons/Laser.ogg'
+	slot_flags = SLOT_BELT|SLOT_BACK
+	fire_delay = 10
+	price_tag = 3000
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_SILVER = 5, MATERIAL_PLASMA = 3)
+	twohanded = FALSE
+
 /obj/item/weapon/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"
 	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"

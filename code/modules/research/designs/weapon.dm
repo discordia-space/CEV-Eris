@@ -14,7 +14,7 @@
 	sort_string = "TAAAA"
 
 /datum/design/research/item/weapon/mindflayer
-	build_path = /obj/item/weapon/gun/energy/mindflayer
+	build_path = /obj/item/weapon/gun/energy/psychic/mindflayer
 	sort_string = "TAAAB"
 
 /datum/design/research/item/weapon/lasercannon

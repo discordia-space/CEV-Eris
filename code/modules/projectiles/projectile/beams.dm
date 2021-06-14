@@ -43,6 +43,7 @@
 	icon_state = "psychic_heavylaser"
 	var/obj/item/weapon/gun/energy/psychic/holder
 	var/traitor = FALSE //Check if it's a traitor psychic beam
+	damage_types = list(PSY = 30)
 	armor_penetration = 100
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
@@ -60,13 +61,6 @@
 	icon_state = "psychic_heavylaser"
 	damage_types = list(PSY = 40)
 	traitor = TRUE
-
-	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
-	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
-	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
-
-/obj/item/projectile/beam/psychic/mindflayer
-	damage_types = list(PSY = 30)
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
