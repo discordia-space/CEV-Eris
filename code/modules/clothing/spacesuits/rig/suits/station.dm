@@ -206,7 +206,6 @@ Technomancer RIG
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/rig/techno/equipped
-	rarity_value = 40
 	initial_modules = list(
 		/obj/item/rig_module/storage,
 		/obj/item/rig_module/maneuvering_jets,
