@@ -68,6 +68,10 @@
 /obj/item/projectile/beam/psychic/mindflayer
 	damage_types = list(PSY = 30)
 
+	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
+	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
+	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
+
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
