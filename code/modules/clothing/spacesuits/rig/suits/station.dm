@@ -16,6 +16,10 @@
 /obj/item/clothing/head/space/rig/medical
 	camera_networks = list(NETWORK_MEDICAL)
 
+/obj/item/clothing/head/space/rig/techno
+	light_overlay = "helmet_light_dual"
+	camera_networks = list(NETWORK_ENGINEERING)
+
 
 
 /***************************************
@@ -161,6 +165,64 @@ Advanced Voidsuit: Technomancer Exultant
 	name = "Advanced Magboots"
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
 	mag_slow = 1
+
+/***************************************
+Technomancer RIG
+***************************************/
+/obj/item/weapon/rig/techno
+	name = "technomancer RIG suit control module"
+	suit_type = "technomancer RIG suit"
+	desc = "An advanced RIG suit that protects against hazardous, low pressure and high temperature environments."
+	icon_state = "techno_rig"
+	rarity_value = 20
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 50,
+		bio = 100,
+		rad = 100
+	)
+	slowdown = 1
+	drain = 3
+	offline_slowdown = 3
+	offline_vision_restriction = 0
+
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+
+	helm_type = /obj/item/clothing/head/space/rig/techno
+	glove_type = /obj/item/clothing/gloves/rig/techno
+	boot_type = /obj/item/clothing/shoes/magboots/rig/techno
+
+	extra_allowed = list(
+		/obj/item/weapon/storage/toolbox,
+		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/rcd
+	)
+
+	req_access = list(access_engine)
+	req_one_access = list()
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/rig/techno/equipped
+	rarity_value = 40
+	initial_modules = list(
+		/obj/item/rig_module/storage,
+		/obj/item/rig_module/maneuvering_jets,
+		)
+
+/obj/item/clothing/gloves/rig/techno
+	name = "insulated gloves"
+	siemens_coefficient = 0
+
+
+/obj/item/clothing/shoes/magboots/rig/techno
+	name = "Advanced Magboots"
+	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	mag_slow = 1
+
+
 
 /***************************************
 	Hazmat: Moebius Overseer
