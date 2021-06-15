@@ -4810,12 +4810,7 @@
 /area/eris/security/exerooms)
 "alp" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tool/cautery{
-	pixel_y = 4
-	},
-/obj/item/weapon/tool/hemostat{
-	pixel_y = 4
-	},
+/obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alq" = (
@@ -5095,7 +5090,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alX" = (
-/obj/machinery/optable,
+/obj/machinery/computer/operating{
+	name = "Brig Operating Computer"
+	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alY" = (
@@ -5142,16 +5139,11 @@
 /area/eris/hallway/side/eschangarb)
 "ame" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tool/retractor{
-	pixel_y = 6
-	},
-/obj/item/weapon/tool/scalpel,
-/obj/item/weapon/tool/surgicaldrill,
-/obj/item/weapon/tool/saw/circular,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
 	},
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amf" = (
@@ -5266,6 +5258,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
+/obj/item/weapon/storage/firstaid/o2,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amp" = (
@@ -5346,9 +5339,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amB" = (
-/obj/machinery/computer/operating{
+/obj/machinery/sleeper{
 	dir = 4;
-	name = "Brig Operating Computer"
+	req_access = list(67)
 	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
@@ -5366,7 +5359,6 @@
 	pixel_x = 1;
 	pixel_y = 1
 	},
-/obj/item/weapon/tool/bonesetter,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amE" = (
@@ -104295,8 +104287,9 @@
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "pAH" = (
-/turf/simulated/wall,
-/area/space)
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "pHi" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/plating,
@@ -125865,8 +125858,8 @@ aht
 ako
 akO
 aeH
-aln
 alX
+aln
 amB
 aht
 aaa
@@ -126067,7 +126060,7 @@ ajH
 akp
 akT
 aeH
-aln
+pAH
 aln
 amC
 aht
@@ -164294,7 +164287,7 @@ aqa
 bCz
 csD
 csD
-pAH
+csD
 qOT
 csD
 csD
