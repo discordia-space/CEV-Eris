@@ -71,7 +71,7 @@
 			if (W.disposable)
 				to_chat(user, SPAN_NOTICE("Your gun is disposable, it cannot be charged."))
 				return
-		if(istype(I, /obj/item/weapon/gun/energy/gun/nuclear) || istype(I, /obj/item/weapon/gun/energy/crossbow))
+		if(istype(I, /obj/item/weapon/gun/energy/nuclear) || istype(I, /obj/item/weapon/gun/energy/crossbow))
 			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
 		var/obj/item/weapon/cell/cell = I.get_cell()

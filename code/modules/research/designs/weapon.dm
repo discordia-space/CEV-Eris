@@ -36,6 +36,10 @@
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
 
+/datum/design/research/item/weapon/nuclear
+	build_path = /obj/item/weapon/gun/energy/nuclear
+	sort_string = "TAAAG"
+
 /datum/design/research/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."
 	build_path = /obj/item/weapon/reagent_containers/spray/chemsprayer
