@@ -300,3 +300,15 @@
 		list(QUALITY_WELDING, 10, 10)
 	)
 	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/gun_part
+	name = "Gun part"
+	result = /obj/item/part/gun
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 10),
+		list(QUALITY_SAWING, 10, 40),
+		list(/obj/item/stack/rods, 2),
+		list(QUALITY_WIRE_CUTTING, 10, 60)
+	)
+	related_stats = list(STAT_MEC)
