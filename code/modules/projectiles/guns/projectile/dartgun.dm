@@ -50,6 +50,7 @@
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_parts = list(/obj/item/stack/material/steel = 15 ,/obj/item/stack/material/plastic = 2)
 	recoil_buildup = 0
 	silenced = TRUE
 	load_method = MAGAZINE

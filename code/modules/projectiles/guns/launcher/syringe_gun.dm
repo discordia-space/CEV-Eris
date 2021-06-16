@@ -70,6 +70,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = 7
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
+	gun_parts = list(obj/item/stack/material/plastic = 5)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
 	fire_sound = 'sound/weapons/empty.ogg'
