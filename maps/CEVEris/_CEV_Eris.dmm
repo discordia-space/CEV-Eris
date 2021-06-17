@@ -80444,6 +80444,8 @@
 "dHh" = (
 /obj/structure/multiz/ladder/up,
 /obj/effect/floor_decal/rust,
+/obj/spawner/flora/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHi" = (
@@ -80490,11 +80492,17 @@
 "dHl" = (
 /obj/spawner/mob/roaches/cluster,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHm" = (
 /obj/spawner/junk/low_chance,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHn" = (
@@ -80595,16 +80603,18 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "dHw" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHx" = (
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/flora/low_chance,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 1;
+	initialize_directions = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHy" = (
