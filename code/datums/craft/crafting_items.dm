@@ -90,6 +90,7 @@
 	desc = "Add some weapon parts to complete this, use your knowledge of mechanics and create a gun."
 	matter = list(MATERIAL_PLASTEEL = 5)
 	suitable_part = /obj/item/part/gun
+	req_parts = 8
 	spawn_frequency = 0
 	tags_to_spawn = list(SPAWN_GUN)
 
@@ -120,7 +121,7 @@
 
 /obj/item/craft_frame/proc/generate_guns()
 	for(var/i in 1 to total_items)
-		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, null, TRUE, null, paths, null)
+		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, i*1700, TRUE, null, paths, null)
 		paths += list(SSspawn_data.pick_spawn(canidates))
 	for(var/path in paths)
 		items += new path()
