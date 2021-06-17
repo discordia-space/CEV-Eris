@@ -240,7 +240,7 @@
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
-	owner.timeofdeath = world.time
+//	owner.timeofdeath = world.time
 
 	addtimer(CALLBACK(src, .proc/carrion_revive), rand(1 MINUTES, 3 MINUTES))
 
@@ -248,13 +248,13 @@
 	if(!owner)
 		return
 
-//	owner.rejuvenate()
-//	for(var/limb_tag in owner.species.has_limbs)
-//		var/obj/item/organ/external/E = owner.get_organ(limb_tag)
-//		if(E.is_stump())
-//			qdel(E)
-//			var/datum/organ_description/OD = owner.species.has_limbs[limb_tag]
-//			OD.create_organ(owner)
+	owner.rejuvenate()
+	for(var/limb_tag in owner.species.has_limbs)
+		var/obj/item/organ/external/E = owner.get_organ(limb_tag)
+		if(E.is_stump())
+			qdel(E)
+			var/datum/organ_description/OD = owner.species.has_limbs[limb_tag]
+			OD.create_organ(owner)
 	owner.status_flags &= ~FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.update_body()
