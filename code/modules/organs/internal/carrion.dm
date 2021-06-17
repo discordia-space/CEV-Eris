@@ -248,7 +248,7 @@
 	if(!owner)
 		return
 
-	owner.rejuvenate()
+//	owner.rejuvenate()
 	for(var/limb_tag in owner.species.has_limbs)
 		var/obj/item/organ/external/E = owner.get_organ(limb_tag)
 		if(E.is_stump())
