@@ -215,7 +215,7 @@ Technomancer RIG
 
 
 /obj/item/clothing/shoes/magboots/rig/techno
-	name = "Advanced Magboots"
+	name = "advanced magboots"
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
 	mag_slow = 1
 
