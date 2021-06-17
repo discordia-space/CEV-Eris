@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/nuclear
 	name = "Prototype: advanced energy gun"
-	desc = "An energy handgun with an experimental miniaturized reactor. Able to fire in two round bursts."
+	desc = "An energy handgun with an experimental miniaturized reactor. Able to fire in two shot bursts."
 	icon = 'icons/obj/guns/energy/nucgun.dmi'
 	icon_state = "nucgun"
 	item_charge_meter = TRUE
