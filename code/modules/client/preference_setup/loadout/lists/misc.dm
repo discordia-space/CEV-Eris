@@ -15,6 +15,12 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
+/datum/gear/clown
+	display_name = "clown pack"
+	path = /obj/item/weapon/storage/box/clown
+	cost = 3
+	allowed_roles = list("Vagabond")
+
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
@@ -145,6 +151,20 @@
 	display_name = "fancy cigar case"
 	path = /obj/item/weapon/storage/fancy/cigar
 	cost = 2
+
+/datum/gear/cigarettes
+	display_name = "cigarette packet"
+	path = /obj/item/weapon/storage/fancy/cigarettes
+
+/datum/gear/cigarettes/New()
+	..()
+	var/cigarettes_type = list(
+		"Space Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes,
+		"DromedaryCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+		"AcmeCo Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/killthroat,
+		//"Nomads Cigarettes"	=	/obj/item/weapon/storage/fancy/cigarettes/homeless
+	)
+	gear_tweaks += new/datum/gear_tweak/path(cigarettes_type)
 
 /datum/gear/cigar
 	display_name = "fancy cigar"

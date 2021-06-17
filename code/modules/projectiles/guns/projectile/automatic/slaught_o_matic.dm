@@ -18,6 +18,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 9)
 	price_tag = 100
 	rarity_value = 40
+	gun_parts = list(/obj/item/stack/material/plastic = 2)
 
 	safety = FALSE
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
@@ -27,7 +28,7 @@
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.2
 	recoil_buildup = 3
-	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
+	one_hand_penalty = 5 //despite it being handgun, it's better to hold in two hands while shooting. SMG level.
 
 	init_firemodes = list(
 		FULL_AUTO_300,

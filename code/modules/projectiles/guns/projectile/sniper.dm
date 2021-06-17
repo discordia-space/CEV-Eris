@@ -1,9 +1,10 @@
 /obj/item/weapon/gun/projectile/heavysniper
 	name = "SA AMR \"Hristov\""
-	desc = "A portable anti-armour rifle, fitted with a scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells. Alt click it to access the chamber."
+	desc = "A portable anti-armour rifle, fitted with a night-vision scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease, but suffers from overpenetration at close range. Fires armor piercing .60 shells. Can be upgraded using thermal glasses."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
+	damage_multiplier = 0.9
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
@@ -21,6 +22,11 @@
 	one_hand_penalty = 10
 	zoom_factor = 2
 	twohanded = TRUE
+	darkness_view = 7
+	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
+	var/extra_damage_mult_scoped = 0.2
+	gun_tags = list(GUN_AMR, GUN_SCOPE)
+	rarity_value = 90
 	no_internal_mag = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
@@ -42,7 +48,9 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-
+/obj/item/weapon/gun/projectile/heavysniper/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
 	if(zoom)
@@ -138,3 +146,10 @@
 				user.equip_to_slot_if_possible(HS, equip_slot)
 		qdel(W)
 		qdel(src)
+
+/obj/item/weapon/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
+	..()
+	if(zoom)
+		damage_multiplier += extra_damage_mult_scoped
+	else
+		refresh_upgrades()

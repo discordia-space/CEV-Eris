@@ -33,7 +33,7 @@
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 	removed(null, ignore_children)
-	victim.traumatic_shock += 60
+	victim.adjustHalLoss(30)
 
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)

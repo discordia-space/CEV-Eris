@@ -1,6 +1,0 @@
-author: CeUvi (sprites)
-delete-after: true
-changes:
-  - rscadd: New sprites by CeUvi
-  - tweak: added a rarity value to LMG (woops)
-  - rscdel: old sprites and broken hud code

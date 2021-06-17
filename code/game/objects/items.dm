@@ -181,6 +181,7 @@
 	if(target.put_in_active_hand(src) && old_loc )
 		if((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
+		SEND_SIGNAL(src, COMSIG_ITEM_PICKED, src, target)
 	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
@@ -215,11 +216,13 @@
 	return TRUE
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/obj/item/proc/on_exit_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_exit_storage(obj/item/weapon/storage/the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src, the_storage)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/obj/item/proc/on_enter_storage(obj/item/weapon/storage/S as obj)
+/obj/item/proc/on_enter_storage(obj/item/weapon/storage/the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.

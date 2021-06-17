@@ -95,6 +95,12 @@
 					floor_type = "icy"
 					slip_stun = 4
 
+			if(locate(/obj/structure/multiz/ladder) in get_turf(M.loc))  // Avoid slipping on ladder tiles
+				visible_message(SPAN_DANGER("\The [M] supports themself with the ladder to avoid slipping."))
+				return ..()
+			if(locate(/obj/structure/multiz/stairs) in get_turf(M.loc))  // Avoid slipping on stairs tiles
+				visible_message(SPAN_DANGER("\The [M] supports themself with the handrail to avoid slipping."))
+				return ..()
 			if(M.slip("the [floor_type] floor",slip_stun))
 				for(var/i = 0;i<slip_dist;i++)
 					step(M, M.dir)

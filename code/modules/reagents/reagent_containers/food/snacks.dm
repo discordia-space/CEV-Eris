@@ -592,7 +592,7 @@
 	bitesize = 5
 	center_of_mass = list("x"=16, "y"=11)
 	var/list/stats_buff = list()
-	var/buff_power = 6
+	var/buff_power = 10
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
@@ -1093,6 +1093,18 @@
 	nutriment_desc = list("bun" = 2)
 	nutriment_amt = 3
 	preloaded_reagents = list("protein" = 10)
+	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/roach_egg
+	name = "boiled roach egg"
+	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "roach_egg"
+	w_class = ITEM_SIZE_TINY
+	bitesize = 4
+	nutriment_amt = 8
+	preloaded_reagents = list("protein" = 14)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
 
@@ -3426,11 +3438,11 @@
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_desc = list("chalk" = 6)
-	nutriment_amt = 20
 	preloaded_reagents = list("iron" = 3)
+	nutriment_amt = 20
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
-	rarity_value = 5
+	rarity_value = 70
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread

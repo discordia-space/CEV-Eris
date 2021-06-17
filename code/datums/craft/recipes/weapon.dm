@@ -5,9 +5,19 @@
 
 /datum/craft_recipe/weapon/baseballbat
 	name = "baseball bat"
-	result = /obj/item/weapon/material/baseballbat
+	result = /obj/item/weapon/tool/hammer/mace/makeshift/baseballbat
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
+	)
+
+/datum/craft_recipe/weapon/junkblade
+	name = "junkblade"
+	result = /obj/item/weapon/tool/sword/improvised
+	steps = list(
+		list(/obj/item/stack/rods, 2,),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/weapon/grenade_casing
@@ -71,11 +81,16 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
 	)
 
-/datum/craft_recipe/weapon/crossbow_frame
-	name = "crossbow frame"
-	result = /obj/item/weapon/crossbowframe
+/datum/craft_recipe/weapon/crossbow
+	name = "crossbow"
+	result = /obj/item/weapon/gun/launcher/crossbow
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //old frame recipe
+		list(/obj/item/stack/rods, 3, "time" = 20),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 10, "time" = 10),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 10),
+		list(QUALITY_SCREW_DRIVING, 5, 10,"time" = 3)
 	)
 
 /datum/craft_recipe/weapon/teleportation_spear
@@ -149,7 +164,7 @@
 		list(/obj/item/weapon/rcd, 1, "time" = 30),
 		list(QUALITY_SCREW_DRIVING, 10, 30),
 		list(QUALITY_SAWING, 10, "time" = 60),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20),
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //same as the old crossbow frame
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)
@@ -175,6 +190,25 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/spear
+	name = "spear"
+	result = /obj/item/weapon/tool/spear
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_HAMMERING, 5, 10),
+	)
+
+/datum/craft_recipe/weapon/bone
+	name = "bone club"
+	result = /obj/item/weapon/tool/hammer/mace/makeshift/baseballbat/bone
+	steps = list(
+		list(/obj/item/organ/internal/bone/head, 1, "time" = 10),
+		list(/obj/item/stack/rods, 2, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
 
 /datum/craft_recipe/weapon/sonic_grenade
 	name = "Loudmouth grenade"

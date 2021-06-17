@@ -54,6 +54,7 @@ GLOBAL_LIST_EMPTY(circuit_fabricator_recipe_list)
 	desc = "A portable(ish) machine that makes modular circuitry seemingly out of thin air."
 	upgraded = TRUE
 	debug = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/item/device/electronics/integrated/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))

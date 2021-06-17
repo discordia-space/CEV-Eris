@@ -155,23 +155,44 @@
 ////SLIME////
 /datum/organ_description/chest/slime
 	name = "upper body"
+	max_damage = 125
+	min_broken_damage = 120
+	max_volume = 5
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/groin/slime
 	name = "fork"
+	max_damage = 100
+	min_broken_damage = 150
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/head/slime
+	max_damage = 100
+	min_broken_damage = 150
+	max_volume = 4
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/left/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/right/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/left/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/right/slime
+	max_damage = 85
+	min_broken_damage = 15
+	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable

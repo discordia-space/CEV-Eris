@@ -70,12 +70,16 @@
 	var/tmp/obj/effect/flicker_overlay/image_load
 	var/tmp/obj/effect/flicker_overlay/image_load_material
 
-	//for nanoforge and artist bench
+	// If it prints high quality or bulky/deformed/debuffed items, or if it prints good items for one faction only.
+	var/low_quality_print = TRUE
+	var/list/high_quality_faction_list = list()
+
+	//for nanoforge and/or artist bench
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
 	var/obj/item/oddity
-	var/use_license = TRUE
 	var/is_nanoforge = FALSE
+	var/list/saved_designs = list()
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
@@ -95,6 +99,10 @@
 	QDEL_NULL(image_load_material)
 	return ..()
 
+/obj/machinery/autolathe/proc/requiere_license(datum/computer_file/binary/design/_design_file)
+	if(_design_file in saved_designs)
+		return FALSE
+	return TRUE
 
 // Also used by R&D console UI.
 /obj/machinery/autolathe/proc/materials_data()
@@ -215,7 +223,7 @@
 		data["oddity_name"] = oddity.name
 		data["oddity_stats"] = stats
 
-	data["use_license"] = use_license
+	data["use_license"] = !!disk
 	data["is_nanoforge"] = is_nanoforge
 	return data
 
@@ -530,8 +538,8 @@
 		return FALSE
 
 	if(istype(eating, /obj/item/weapon/computer_hardware/hard_drive/portable))
-		var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = eating
-		if(disk.license)
+		var/obj/item/weapon/computer_hardware/hard_drive/portable/DISK = eating
+		if(DISK.license)
 			to_chat(user, SPAN_WARNING("\The [src] refuses to accept \the [eating] as it has non-null license."))
 			return FALSE
 
@@ -660,7 +668,7 @@
 //////////////////////////////////////////
 /obj/machinery/autolathe/proc/design_list()
 	if(!disk)
-		return list()
+		return saved_designs
 
 	return disk.find_files_by_type(/datum/computer_file/binary/design)
 
@@ -736,7 +744,7 @@
 		if(!design_file || !design_file.design)
 			return ERR_NOTFOUND
 
-		if(use_license && !design_file.check_license())
+		if(requiere_license(design_file) && !design_file.check_license())
 			return ERR_NOLICENSE
 
 		var/datum/design/design = design_file.design
@@ -910,7 +918,7 @@
 
 //Finishing current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	if(!use_license || current_file.use_license()) //In the case of an an unprotected design, this will always be true
+	if(!requiere_license(current_file) || current_file.use_license()) //In the case of an an unprotected design, this will always be true
 		fabricate_design(current_file.design)
 	else
 		//If we get here, then the user attempted to print something but the disk had run out of its limited licenses

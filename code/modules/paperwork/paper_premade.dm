@@ -4,7 +4,7 @@
 /obj/item/weapon/paper/court
 	name = "Judgement"
 	spawn_blacklisted = TRUE
-	info = {"For crimes against the station, the offender is sentenced to:
+	info = {"For crimes against the ship, the offender is sentenced to:
 	\[br\]
 	\[br\]"}
 
@@ -96,7 +96,7 @@
 	name = "Greetings from Billy Bob"
 	info = {"\[b\]Hey fellow botanist!\[/b\]
 	
-	I didn't trust the station folk so I left \
+	I didn't trust the ship folk so I left \
 	a couple of weeks ago. But here's some \
 	instructions on how to operate things here. \
 	You can grow plants and each iteration they become \

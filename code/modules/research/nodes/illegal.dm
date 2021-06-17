@@ -15,7 +15,7 @@
 
 /datum/technology/night_sight
 	name = "Undark Vision"
-	desc = "A better look into the shadows that hunt the station, allows for the manufacturing of night vision goggles and RIG night vison huds "
+	desc = "A better look into the shadows that hunt the ship, allows for the manufacturing of night vision goggles and RIG night vison huds "
 	tech_type = RESEARCH_COVERT
 
 	x = 0.1

@@ -9,6 +9,16 @@
 	price_tag = 900
 	spawn_blacklisted = TRUE
 
+/obj/item/weapon/shield/riot/arm/on_update_icon()
+   return
+
+/obj/item/weapon/shield/riot/arm/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+	if(istype(damage_source, /obj/item/projectile))
+		var/obj/item/projectile/P = damage_source	//plastic shields do not stop bullets or lasers, even in space. Will block beanbags, rubber bullets, and stunshots just fine though.
+		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
+			return 0
+	return base_block_chance
+
 /obj/item/organ_module/active/simple/armshield
 	name = "embedded shield"
 	desc = "An embedded shield designed to be inserted into an arm."

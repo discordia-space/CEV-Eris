@@ -8,7 +8,11 @@
 
 	language = null //todo?
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
+	inherent_verbs = list(/mob/living/carbon/human/proc/regenerate_organs)
 	flags = NO_SCAN | NO_SLIP | NO_BREATHE | NO_MINOR_CUT
+	total_health = 200
+	brute_mod = 1.2
+	burn_mod = 0.7
 	spawn_flags = IS_RESTRICTED
 	siemens_coefficient = 3 //conductive
 	darksight = 3
@@ -44,3 +48,30 @@
 	spawn(1)
 		if(H)
 			H.gib()
+
+/mob/living/carbon/human/proc/regenerate_organs()
+	set name = "Regenerate missing limb"
+	set desc = "Regenerate a missing limb at the cost of nutrition"
+	set category = "Abilities"
+	var/mob/living/carbon/human/user = usr
+	var/missing_limb_tag
+	if(!user || !species)
+		return
+	if(user.stat)
+		return 
+	for(var/limb_tag in BP_ALL_LIMBS)
+		var/obj/item/organ/external/organ_to_check = organs_by_name[limb_tag]
+		if(!organ_to_check || istype(organ_to_check , /obj/item/organ/external/stump))
+			missing_limb_tag = limb_tag
+			break
+	if(!missing_limb_tag)
+		to_chat(user, "You don't have any limbs to replace!")
+		return
+	if(user.species.has_limbs.Find(missing_limb_tag))
+		var/stump_to_delete = organs_by_name[missing_limb_tag]
+		if(stump_to_delete)
+			qdel(stump_to_delete)
+		user.adjustNutrition(-50)
+		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
+		OD.create_organ(src)
+		to_chat(user, "You regenerate your [missing_limb_tag]")

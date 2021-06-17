@@ -3,7 +3,7 @@
 // These abilities are dependent on hardware, they may not be researched. They are not tiered.
 // Destroy Core - Allows the AI to initiate a 15 second countdown that will destroy it's core. Use again to stop countdown.
 // Toggle APU Generator - Allows the AI to toggle it's integrated APU generator.
-// Destroy Station - Allows the AI to initiate station self destruct. Takes 2 minutes, gives warnings to crew. Use again to stop countdown.
+// Destroy Ship - Allows the AI to initiate ship self destruct. Takes 2 minutes, gives warnings to crew. Use again to stop countdown.
 
 
 /datum/game_mode/malfunction/verb/ai_self_destruct()
@@ -65,8 +65,8 @@
 
 /datum/game_mode/malfunction/verb/ai_destroy_station()
 	set category = "Hardware"
-	set name = "Destroy Station"
-	set desc = "Activates or deactivates self destruct sequence of this station. Sequence takes two minutes, and if you are shut down before timer reaches zero it will be cancelled."
+	set name = "Destroy Ship"
+	set desc = "Activates or deactivates self destruct sequence of this ship. Sequence takes two minutes, and if you are shut down before timer reaches zero it will be cancelled."
 	var/mob/living/silicon/ai/user = usr
 	var/obj/item/device/radio/radio = new/obj/item/device/radio()
 
@@ -82,12 +82,12 @@
 		user.bombing_station = 0
 		return
 
-	var/choice = alert("Really destroy station?", "Station self-destruct", "YES", "NO")
+	var/choice = alert("Really destroy ship?", "Ship self-destruct", "YES", "NO")
 	if(choice != "YES")
 		return
 	if(!ability_prechecks(user, 0, 0))
 		return
-	to_chat(user, "***** STATION SELF-DESTRUCT SEQUENCE INITIATED *****")
+	to_chat(user, "***** SHIP SELF-DESTRUCT SEQUENCE INITIATED *****")
 	to_chat(user, "Self-destructing in 2 minutes. Use this command again to abort.")
 	user.bombing_station = 1
 	radio.autosay("Self destruct sequence has been activated. Self-destructing in 120 seconds.", "Self-Destruct Control")

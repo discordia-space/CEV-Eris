@@ -187,9 +187,8 @@ var/global/obj/machinery/power/eotp/eotp
 	else if(type_release == ENERGY_REWARD)
 		for(var/mob/living/carbon/human/H in disciples)
 			var/obj/item/weapon/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-			C.power_regen += initial(C.power_regen) * 0.5
-			for(var/mob/living/carbon/human/disciple in disciples)
-				to_chat(disciple, SPAN_NOTICE("Your cruciform vibrates."))
+			C.power_regen += initial(C.power_regen)
+			to_chat(H, SPAN_NOTICE("Your cruciform vibrates."))
 
 	for(var/disciple in disciples)
 		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))

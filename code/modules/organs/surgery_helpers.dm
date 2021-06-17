@@ -64,7 +64,7 @@
 		var/multiplier = max(0, 1 - (owner.analgesic / 100))
 
 		if(multiplier)
-			owner.apply_effect(strength * multiplier, AGONY, armor_value = 0, check_protection = FALSE)
+			owner.adjustHalLoss(strength * multiplier)
 
 
 // Get a list of surgically treatable conditions

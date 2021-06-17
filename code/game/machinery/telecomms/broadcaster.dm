@@ -280,7 +280,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
 	for (var/mob/R in receive)
-
+		SEND_SIGNAL(radio, COMSIG_MESSAGE_RECEIVED, R)
 	  /* --- Loop through the receivers and categorize them --- */
 		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue

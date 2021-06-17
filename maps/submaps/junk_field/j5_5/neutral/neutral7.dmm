@@ -1,0 +1,147 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"b" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/turf/simulated/wall/r_wall,
+/area/template_noop)
+"e" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"f" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/structure/railing{
+	dir = 1;
+	tag = "icon-railing0 (NORTH)"
+	},
+/obj/spawner/traps/wire_splicing/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"g" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/structure/railing{
+	dir = 1;
+	tag = "icon-railing0 (NORTH)"
+	},
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"h" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/structure/railing{
+	dir = 1;
+	tag = "icon-railing0 (NORTH)"
+	},
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"i" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/structure/railing{
+	dir = 1;
+	tag = "icon-railing0 (NORTH)"
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"j" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/blue{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"k" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"l" = (
+/mob/living/simple_animal/hostile/carp,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"m" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"n" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/blue{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"Q" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+Q
+b
+b
+f
+b
+"}
+(2,1,1) = {"
+Q
+k
+l
+g
+n
+"}
+(3,1,1) = {"
+Q
+d
+m
+h
+n
+"}
+(4,1,1) = {"
+b
+d
+e
+i
+j
+"}
+(5,1,1) = {"
+k
+d
+a
+f
+b
+"}

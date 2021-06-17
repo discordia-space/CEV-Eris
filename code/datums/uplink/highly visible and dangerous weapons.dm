@@ -42,12 +42,12 @@
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
-	item_cost = 8
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/sts35
 
 /datum/uplink_item/item/visible_weapons/pug
 	name = "Pug Shotgun"
-	item_cost = 12
+	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/pug
 
 /datum/uplink_item/item/visible_weapons/heavysniper

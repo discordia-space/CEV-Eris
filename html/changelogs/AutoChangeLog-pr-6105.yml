@@ -1,6 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - balance: AI Emergency forcefield health quadruped (100 > 400)
-  - balance: AI Emergency forcefield no longer dissipates
-  - bugfix: Fixed AI Emergency forcefield not being useable

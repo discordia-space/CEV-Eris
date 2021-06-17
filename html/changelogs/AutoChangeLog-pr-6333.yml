@@ -1,0 +1,5 @@
+author: Omni44
+delete-after: true
+changes:
+  - tweak: tweaked birgmed's equipment
+  - bugfix: fixed a shield tiel appearing in bar

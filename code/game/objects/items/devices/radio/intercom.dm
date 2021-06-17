@@ -1,5 +1,5 @@
 /obj/item/device/radio/intercom
-	name = "station intercom (General)"
+	name = "ship intercom (General)"
 	desc = "Talk through this."
 	icon_state = "intercom"
 	anchored = TRUE
@@ -9,19 +9,19 @@
 	canhear_range = 2
 	flags = CONDUCT | NOBLOODY
 	var/number = 0
-	var/last_tick //used to delay the powercheck
+	var/area/linked_area
 
 /obj/item/device/radio/intercom/custom
-	name = "station intercom (Custom)"
+	name = "ship intercom (Custom)"
 	broadcasting = 0
 	listening = 0
 
 /obj/item/device/radio/intercom/interrogation
-	name = "station intercom (Interrogation)"
+	name = "ship intercom (Interrogation)"
 	frequency  = 1449
 
 /obj/item/device/radio/intercom/private
-	name = "station intercom (Private)"
+	name = "ship intercom (Private)"
 	frequency = AI_FREQ
 
 /obj/item/device/radio/intercom/department
@@ -30,16 +30,16 @@
 	listening = 1
 
 /obj/item/device/radio/intercom/department/medbay
-	name = "station intercom (Medbay)"
+	name = "ship intercom (Medbay)"
 	frequency = MED_I_FREQ
 
 /obj/item/device/radio/intercom/department/security
-	name = "station intercom (Security)"
+	name = "ship intercom (Security)"
 	frequency = SEC_I_FREQ
 
 /obj/item/device/radio/intercom/New()
 	..()
-	START_PROCESSING(SSobj, src)
+	loop_area_check()
 
 /obj/item/device/radio/intercom/department/medbay/New()
 	..()
@@ -63,10 +63,6 @@
 /obj/item/device/radio/intercom/syndicate/New()
 	..()
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
-
-/obj/item/device/radio/intercom/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	. = ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
@@ -93,23 +89,26 @@
 
 	return canhear_range
 
-/obj/item/device/radio/intercom/Process()
-	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
-		last_tick = world.timeofday
+/obj/item/device/radio/intercom/proc/change_status()
+	on = linked_area.powered(EQUIP)
+	icon_state = on ? "intercom" : "intercom-p"
 
-		if(!src.loc)
-			on = FALSE
-		else
-			var/area/A = get_area(src)
-			if(!A)
-				on = FALSE
-			else
-				on = A.powered(EQUIP) // set "on" to the power status
+/obj/item/device/radio/intercom/proc/loop_area_check()
+	var/area/target_area = get_area(src)
+	if(!target_area?.apc)
+		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS) // We don't proces if there is no APC , no point in doing so is there ?
+		return FALSE
+	linked_area = target_area
+	RegisterSignal(target_area, COMSIG_AREA_APC_DELETED, .proc/on_apc_removal)
+	RegisterSignal(target_area, COMSIG_AREA_APC_POWER_CHANGE, .proc/change_status)
 
-		if(!on)
-			icon_state = "intercom-p"
-		else
-			icon_state = "intercom"
+/obj/item/device/radio/intercom/proc/on_apc_removal()
+	UnregisterSignal(linked_area , COMSIG_AREA_APC_DELETED)
+	UnregisterSignal(linked_area, COMSIG_AREA_APC_POWER_CHANGE)
+	linked_area = null
+	on = FALSE
+	icon_state = "intercom-p"
+	addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS)
 
 /obj/item/device/radio/intercom/broadcasting
 	broadcasting = 1
