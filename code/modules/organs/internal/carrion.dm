@@ -240,7 +240,7 @@
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
-//	owner.timeofdeath = world.time
+	owner.timeofdeath = world.time
 
 	addtimer(CALLBACK(src, .proc/carrion_revive), rand(1 MINUTES, 3 MINUTES))
 
