@@ -21,7 +21,7 @@
 		var/obj/item/I = parent
 		I.armor = getArmor(arglist(armor))
 	O.update_icon()
-	qdel(src)
+	QDEL_NULL(src)
 
 //Defined at atom level for convenience, not currently used for mobs and turfs, but there are possible applications
 /obj/proc/make_young()
@@ -85,7 +85,7 @@
 		for(var/i = 1 to del_count)
 			var/removed_item = pick(contents)
 			contents -= removed_item
-			qdel(removed_item)
+			QDEL_NULL(removed_item)
 
 		if(storage_slots && prob(75))
 			storage_slots = max(contents.len, max(0, storage_slots - pick(2, 2, 2, 3, 3, 4)))
@@ -134,11 +134,11 @@
 	return
 
 /obj/item/ammo_magazine/make_old()
-	var/del_count = rand(0,contents.len)
+	var/del_count = rand(0, stored_ammo.len)
 	for(var/i = 1 to del_count)
 		var/removed_item = pick(stored_ammo)
 		stored_ammo -= removed_item
-		qdel(removed_item)
+		QDEL_NULL(removed_item)
 	..()
 
 /obj/item/weapon/cell/make_old()
@@ -191,7 +191,7 @@
 		brokenmodule.name = src.name
 		brokenmodule.desc = src.desc
 		brokenmodule.make_old()
-		qdel(src)
+		QDEL_NULL(src)
 	else
 		.=..()
 
@@ -244,7 +244,7 @@
 	IonStorm(0)
 	explosion(sender.loc, 1, 1, 1, 3)
 	sender.drop_from_inventory(src)
-	qdel(src)
+	QDEL_NULL(src)
 
 /obj/item/weapon/dnainjector/make_old()
 	.=..()
@@ -267,7 +267,7 @@
 		brokenhud.icon_state = src.icon_state
 		brokenhud.item_state = src.item_state
 		brokenhud.make_old()
-		qdel(src)
+		QDEL_NULL(src)
 	else
 		.=..()
 
@@ -358,4 +358,4 @@
 			var/obj/item/trash_mod = new trash_mod_path
 			if(SEND_SIGNAL(trash_mod, COMSIG_IATTACK, src, null))
 				break
-			qdel(trash_mod)
+			QDEL_NULL(trash_mod)

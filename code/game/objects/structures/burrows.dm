@@ -146,7 +146,7 @@
 	//Creatures only. No humans or robots
 	if (!isanimal(L) && !issuperioranimal(L))
 		return FALSE
-	
+
 	//Kaisers are too fat, they can't fit in
 	if(istype(L, /mob/living/carbon/superior_animal/roach/kaiser))
 		return FALSE
@@ -620,6 +620,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/attack_generic(mob/living/L)
 	if (is_valid(L))
 		enter_burrow(L)
+	if (issuperioranimal(L))//So they don't carry burrow's reference and never qdel
+		var/mob/living/carbon/superior_animal/SA = L
+		SA.target_mob = null
 
 
 /obj/structure/burrow/proc/pull_mob(mob/living/L)
