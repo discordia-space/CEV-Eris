@@ -170,7 +170,7 @@ Advanced Voidsuit: Technomancer Exultant
 Technomancer RIG
 ***************************************/
 /obj/item/weapon/rig/techno
-	name = "technomancer RIG suit control module"
+	name = "technomancer suit control module"
 	suit_type = "technomancer RIG suit"
 	desc = "An advanced RIG suit that protects against hazardous, low pressure and high temperature environments."
 	icon_state = "techno_rig"
