@@ -121,7 +121,9 @@
 
 /datum/sanity/proc/handle_view()
 	. = 0
-	if(sanity_invulnerability)
+	if(sanity_invulnerability)//Sorry, but that needed to be added here :C
+		for(var/mob/living/L in view(owner.client ? owner.client : owner))
+			L.try_activate_ai()
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
