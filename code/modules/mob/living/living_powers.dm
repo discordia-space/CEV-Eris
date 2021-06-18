@@ -21,6 +21,10 @@
 	AI_inactive = FALSE
 	life_cycles_before_sleep = initial(life_cycles_before_sleep)
 
+/mob/living/proc/try_activate_ai()
+	if(AI_inactive)
+		activate_ai()
+
 
 /mob/living/proc/check_surrounding_area(var/dist = 7)
 
@@ -29,6 +33,9 @@
 		return TRUE
 
 	if(faction == "station")
+		return TRUE
+
+	if(faction == "CEV Eris")
 		return TRUE
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)

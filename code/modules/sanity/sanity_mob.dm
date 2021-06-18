@@ -127,6 +127,9 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+			if(isliving(A))
+				var/mob/living/L = A
+				L.try_activate_ai()
 
 		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
