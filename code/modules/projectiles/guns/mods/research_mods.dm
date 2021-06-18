@@ -104,7 +104,7 @@
 // Add radiation damage to your weapon
 /obj/item/weapon/gun_upgrade/barrel/isotope_diffuser
 	name = "Moebius \"Atomik\" isotope diffuser"
-	desc = "This experimental barrel constantly sprays a thin mist of radioactive isotopes to make projectiles leaving the weapons deadlier, whether bullets, lasers or energy bolts. Do not put it in your mouth."
+	desc = "This experimental barrel constantly sprays a thin mist of radioactive isotopes to make projectiles leaving the weapons deadlier. Do not put it in your mouth."
 	icon_state = "isotope_diffuser"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_URANIUM = 2)
 	spawn_blacklisted = TRUE

@@ -1,0 +1,4 @@
+author: Sparrowbird611
+delete-after: true
+changes:
+  - rscdel: Removed one second detonation option from grenades.

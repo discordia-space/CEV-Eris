@@ -4810,12 +4810,7 @@
 /area/eris/security/exerooms)
 "alp" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tool/cautery{
-	pixel_y = 4
-	},
-/obj/item/weapon/tool/hemostat{
-	pixel_y = 4
-	},
+/obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alq" = (
@@ -5095,7 +5090,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alX" = (
-/obj/machinery/optable,
+/obj/machinery/computer/operating{
+	name = "Brig Operating Computer"
+	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alY" = (
@@ -5142,16 +5139,11 @@
 /area/eris/hallway/side/eschangarb)
 "ame" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tool/retractor{
-	pixel_y = 6
-	},
-/obj/item/weapon/tool/scalpel,
-/obj/item/weapon/tool/surgicaldrill,
-/obj/item/weapon/tool/saw/circular,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
 	},
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amf" = (
@@ -5266,6 +5258,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
+/obj/item/weapon/storage/firstaid/o2,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amp" = (
@@ -5346,9 +5339,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amB" = (
-/obj/machinery/computer/operating{
+/obj/machinery/sleeper{
 	dir = 4;
-	name = "Brig Operating Computer"
+	req_access = list(67)
 	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
@@ -5366,7 +5359,6 @@
 	pixel_x = 1;
 	pixel_y = 1
 	},
-/obj/item/weapon/tool/bonesetter,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amE" = (
@@ -59569,19 +59561,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cJB" = (
-/obj/item/device/radio/off{
-	pixel_y = 6
-	},
-/obj/item/device/radio/off{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/device/radio/off{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/device/radio/off,
-/obj/structure/table/steel,
+/obj/machinery/suit_storage_unit/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cJC" = (
@@ -59806,12 +59786,19 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/engine_room)
 "cKc" = (
-/obj/item/weapon/storage/briefcase/inflatable{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/item/device/radio/off{
+	pixel_y = 6
 	},
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/off{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/device/radio/off{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/device/radio/off,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKd" = (
@@ -59825,6 +59812,8 @@
 	pixel_x = -2;
 	pixel_y = -2
 	},
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKe" = (
@@ -60051,11 +60040,35 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cKD" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/steel,
+/obj/structure/window/reinforced{
+	dir = 8;
+	req_access = list(24)
+	},
+/obj/machinery/door/window/northleft{
+	name = "Resource Integration Gear Modules";
+	req_access = list(11)
+	},
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKE" = (
-/obj/machinery/suit_storage_unit/engineering,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/northright{
+	name = "Resource Integration Gear Modules";
+	req_access = list(11)
+	},
+/obj/structure/table/rack,
+/obj/item/weapon/rig/techno/equipped,
+/obj/item/weapon/rig/techno/equipped,
+/obj/item/weapon/rig/techno/equipped,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKF" = (
@@ -80423,6 +80436,8 @@
 "dHh" = (
 /obj/structure/multiz/ladder/up,
 /obj/effect/floor_decal/rust,
+/obj/spawner/flora/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHi" = (
@@ -80469,11 +80484,17 @@
 "dHl" = (
 /obj/spawner/mob/roaches/cluster,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHm" = (
 /obj/spawner/junk/low_chance,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHn" = (
@@ -80574,16 +80595,18 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "dHw" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHx" = (
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/flora/low_chance,
 /obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 1;
+	initialize_directions = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHy" = (
@@ -103906,6 +103929,10 @@
 /obj/machinery/atmospherics/unary/heat_exchanger,
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"mOz" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/steel,
+/area/eris/engineering/engeva)
 "mQQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/floor/hull{
@@ -104295,8 +104322,9 @@
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "pAH" = (
-/turf/simulated/wall,
-/area/space)
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "pHi" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/plating,
@@ -125865,8 +125893,8 @@ aht
 ako
 akO
 aeH
-aln
 alX
+aln
 amB
 aht
 aaa
@@ -126067,7 +126095,7 @@ ajH
 akp
 akT
 aeH
-aln
+pAH
 aln
 amC
 aht
@@ -164294,7 +164322,7 @@ aqa
 bCz
 csD
 csD
-pAH
+csD
 qOT
 csD
 csD
@@ -203111,7 +203139,7 @@ cwU
 cwU
 cUy
 cza
-cGA
+mOz
 cKe
 cUy
 cxw

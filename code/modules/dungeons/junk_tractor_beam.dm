@@ -15,6 +15,12 @@
 	var/name // name of the junk field
 	var/asteroid_belt_status // if it has an asteroid belt
 	var/affinity // affinity of the junk field
+	var/list/affinities = list(
+		"Neutral" = 10,
+		"OneStar" = 3,
+		"IronHammer" = 3,
+		"Serbian" = 3
+		) // available affinities
 
 /datum/junk_field/New(var/ID)
 	name = "Junk Field #[ID]"
@@ -27,12 +33,7 @@
 	return FALSE
 
 /datum/junk_field/proc/get_random_affinity()
-	return pickweight(list(
-					"Neutral" = 10,
-					"OneStar" = 3,
-					"IronHammer" = 3,
-					"Serbian" = 3
-					))
+	return pickweight(affinities)
 
 //////////////////////////////
 // Generator used for the junk tractor beam level
@@ -99,6 +100,12 @@
 	var/list/preloaded_25_25 = list()  // Need to preload maps in SOUTH direction
 	var/list/preloaded_5_5 = list()  // Need to preload maps in SOUTH direction
 
+	var/list/affinities = list(  // Put them in the same order than the affinities of /datum/junk_field
+		/datum/map_template/junk/j25_25/neutral,
+		/datum/map_template/junk/j25_25/onestar,
+		/datum/map_template/junk/j25_25/ironhammer,
+		/datum/map_template/junk/j25_25/serbian)
+
 /obj/jtb_generator/New()
 	current_jf = new /datum/junk_field(jf_counter)
 	jf_counter++
@@ -139,8 +146,8 @@
 
 /obj/jtb_generator/proc/field_release()
 
-	cleanup_junk_field(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	qdel(ship_portal)
+	cleanup_junk_field_progressive(1+JTB_OFFSET, maxx+JTB_OFFSET, 1+JTB_OFFSET, maxy+JTB_OFFSET)
 	beam_cooldown_start = world.time
 	beam_state = BEAM_COOLDOWN
 	spawn(beam_cooldown_time)
@@ -160,9 +167,21 @@
 	current_jf = JF
 	return
 
+/obj/jtb_generator/proc/cleanup_junk_field_progressive(var/x1, var/x2, var/y1, var/y2)
+	log_world("Starting junk field cleanup at zlevel [loc.z].")
+	var/n = 10
+	var/dt = beam_cooldown_time / (n+1)
+	var/dx = round((x2 - x1 + 1) / n)
+	for(var/i = 1 to n)
+		var/a = x1 + (i-1) * dx
+		var/b = x1 + i * dx - 1
+		spawn(i * dt)
+			cleanup_junk_field(a, b, y1, y2)
+		
+	log_world("Junk field cleanup is over at zlevel [loc.z].")
+
 /obj/jtb_generator/proc/cleanup_junk_field(var/x1, var/x2, var/y1, var/y2)
 
-	log_world("Starting junk field cleanup at zlevel [loc.z].")
 	for(var/i = x1 to x2)
 		for(var/j = y1 to y2)
 			var/turf/T = get_turf(locate(i, j, z))
@@ -185,7 +204,6 @@
 				qdel(O)  // JTB related objects are safe near the (1, 1) of the map, no need to check with istype
 	// All mobs and turfs have already been handled so no need to deal with that during second pass
 
-	log_world("Junk field cleanup is over at zlevel [loc.z].")
 
 /obj/jtb_generator/proc/generate_junk_field()
 	log_world("Generating Asteroid Belt: [current_jf.asteroid_belt_status] - Affinity: [current_jf.affinity]")
@@ -195,20 +213,25 @@
 	map = new/list(numR,numC,0)
 	grid = new/list(numR,numC,0)
 
-	// Get pool of 25 by 25 junk chunks
-	for(var/T in subtypesof(/datum/map_template/junk/j25_25))
-		var/datum/map_template/junk/j25_25/junk_tmpl = T
-		pool_25_25 += new junk_tmpl
+	// Get pool of 25 by 25 junk chunks (list of lists, one list for each affinity)
+	for(var/k = 1 to affinities.len)
+		var/list/pool_affinity = list()
+		for(var/T in subtypesof(affinities[k]))
+			var/datum/map_template/junk/j25_25/junk_tmpl = T
+			pool_affinity += new junk_tmpl
+		pool_25_25 += list(pool_affinity)
 
-	// Get pool of 5 by 5 junk chunks
+	// Get pool of 5 by 5 junk chunks (just a list since 5x5 have no affinity)
 	for(var/T in subtypesof(/datum/map_template/junk/j5_5))
 		var/datum/map_template/junk/j5_5/junk_tmpl = T
 		pool_5_5 += new junk_tmpl
 
-	// All maps have yet to be loaded at least once
-	preloaded_25_25 = new /list(pool_25_25.len)
-	for(var/i = 1 to pool_25_25.len)
-		preloaded_25_25[i] = 0
+	// All maps have yet to be loaded at least once with south orientation or else the loading is broken
+	for(var/m = 1 to affinities.len)
+		var/list/preloaded_affinity = new /list((pool_25_25[m]).len)
+		for(var/i = 1 to preloaded_affinity.len)
+			preloaded_affinity[i] = 0
+		preloaded_25_25 += list(preloaded_affinity)
 	preloaded_5_5 = new /list(pool_5_5.len)
 	for(var/j = 1 to pool_5_5.len)
 		preloaded_5_5[j] = 0
@@ -345,13 +368,18 @@
 	if(!current_jf.asteroid_belt_status)
 		number_25_25 += number_25_25_bonus
 
+	// Get the ID of the affinity to fetch from the correct map pool
+	var/affinity_ID = 1
+	while(current_jf.affinities[affinity_ID] != current_jf.affinity)
+		affinity_ID++
+
 	for(var/i = 1 to number_25_25)
 		// Pick a ruin
 		var/datum/map_template/junk/j25_25/chunk = null
 		var/i_chunk = 1
 		if(pool_25_25?.len)
-			i_chunk = rand(1, pool_25_25.len)
-			chunk = pool_25_25[i_chunk] // TODO AFFINITY PICK (5 different pools?)
+			i_chunk = rand(1, (pool_25_25[affinity_ID]):len)
+			chunk = pool_25_25[affinity_ID][i_chunk]
 		else
 			log_world("Junk loader had no 25 by 25 chunks to pick from.")
 			break
@@ -366,9 +394,9 @@
 		var/Ty = T.y
 		var/ori = pick(cardinal)
 
-		if(preloaded_25_25[i_chunk] == 0)
+		if(preloaded_25_25[affinity_ID][i_chunk] == 0)
 			ori = SOUTH
-			preloaded_25_25[i_chunk] = 1  // Map is going to be loaded
+			preloaded_25_25[affinity_ID][i_chunk] = 1  // Map is going to be loaded
 
 		// log_world("Chunk \"[chunk.name]\" of size 25 by 25 placed at ([T.x], [T.y], [T.z]) with dir [ori]")
 		load_chunk(T, chunk, ori)  // Load chunk with random orientation for variety purpose
@@ -380,10 +408,14 @@
 // Fix the stuff the chunk loader does not do properly...
 /obj/jtb_generator/proc/fix_chunk_loading(var/Tx, var/Ty, var/off, var/ori)
 	for(var/turf/TM in block(locate(Tx, Ty, z), locate(Tx + off, Ty + off, z)))
+		// Remove atmosphere
+		TM.oxygen = 0
+		TM.nitrogen = 0
+		
 		for(var/obj/O in TM)
 			if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
 				O.dir = 2
-			else if(istype(O, /obj/structure/sign))  // Fix magical sign offset, don't ask why...
+			else if(istype(O, /obj/structure/sign) || istype(O, /obj/machinery/holoposter))  // Fix magical sign offset, don't ask why...
 				if(ori == NORTH)
 					O.pixel_y = - O.pixel_y
 				else if(ori == EAST)
@@ -465,7 +497,7 @@
 
 // Detect if the object is a type that should be rotated
 /obj/jtb_generator/proc/intypes(var/obj/O)
-	return (istype(O, /obj/structure) || istype(O, /obj/machinery/camera) || istype(O, /obj/machinery/light) || istype(O, /obj/machinery/atmospherics/pipe/))
+	return (istype(O, /obj/structure) || istype(O, /obj/machinery/camera) || istype(O, /obj/machinery/light) || istype(O, /obj/machinery/atmospherics/pipe/) || istype(O, /obj/item/modular_computer) || istype(O, /obj/machinery/door/window/))
 
 // Make all junk field mobs friends with one another
 /obj/jtb_generator/proc/tame_mobs()

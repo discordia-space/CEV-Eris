@@ -55,6 +55,7 @@
 		/obj/item/weapon/tool/minihoe,
 		/obj/item/weapon/tool/hatchet,
 		/obj/item/device/scanner/plant,
+		/obj/item/device/scanner/mining,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
