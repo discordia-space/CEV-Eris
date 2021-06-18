@@ -65,11 +65,6 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/template_noop)
-"m" = (
-/obj/structure/lattice,
-/mob/living/simple_animal/hostile/carp,
-/turf/template_noop,
-/area/template_noop)
 "n" = (
 /mob/living/simple_animal/hostile/carp,
 /turf/simulated/floor/plating/under,
@@ -120,7 +115,7 @@ p
 (5,1,1) = {"
 e
 a
-m
+h
 h
 p
 "}

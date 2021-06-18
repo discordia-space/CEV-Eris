@@ -1,0 +1,13 @@
+author: granodd
+delete-after: true
+changes:
+  - rscadd: added toolbelt, large cell mount, high powered motor, and jackhammer to
+      mining locker
+  - tweak: upgraded the cells in mining locker to high tier capacity and added two
+      large cells plus an additional small cell
+  - tweak: made toolbelt capable of holding the mining scanner
+  - tweak: doubled capacity of the mining ore satchel
+  - tweak: reduced charge cost on jackhammers from 0.6 -> 0.4, and One Star jackhammers
+      from 0.8 -> 0.6
+  - tweak: reduced charge cost of mining scanner significantly from 2 -> 0.5
+  - tweak: reduced charge cost of optical meson scanners from 0.5 -> 0.3

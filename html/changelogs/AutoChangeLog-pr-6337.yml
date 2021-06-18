@@ -1,0 +1,5 @@
+author: Herbaon
+delete-after: true
+changes:
+  - imageadd: updated the sechud icons
+  - imagedel: old sechud icons

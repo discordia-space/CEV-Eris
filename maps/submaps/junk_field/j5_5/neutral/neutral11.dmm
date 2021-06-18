@@ -7,9 +7,6 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "c" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /turf/simulated/wall,
 /area/template_noop)
 "d" = (
