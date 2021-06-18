@@ -1,0 +1,4 @@
+author: Herbaon
+delete-after: true
+changes:
+  - bugfix: fixed carrion being permanently paralyzed 10 minutes after using reg.stasis
