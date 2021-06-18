@@ -1,5 +1,3 @@
-#define TESTING 1
-
 SUBSYSTEM_DEF(garbage)
 	name = "Garbage"
 	priority = SS_PRIORITY_GARBAGE
