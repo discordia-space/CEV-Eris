@@ -43,7 +43,7 @@
 			return TRUE
 
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
-		if((M.stat != DEAD) && (M.faction != faction) && (get_dist(src, M) <= dist) && isInSight(src, M))
+		if((M.stat != DEAD) && (M.faction != faction) && (get_dist(src, M) <= dist))
 			return TRUE
 
 	return FALSE
