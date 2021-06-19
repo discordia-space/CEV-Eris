@@ -1130,6 +1130,7 @@
 
 /mob/living/carbon/human/rejuvenate()
 	sanity.setLevel(sanity.max_level)
+	timeofdeath = 0
 	restore_blood()
 	..()
 

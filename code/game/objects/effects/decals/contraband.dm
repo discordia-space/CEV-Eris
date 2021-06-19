@@ -105,7 +105,7 @@
 	else
 		placement_dir = reverse_dir[placement_dir]
 		for(var/t_dir in cardinal)
-			if(!t_dir&placement_dir) continue
+			if(!(t_dir & placement_dir)) continue
 			if(iswall(get_step(W, t_dir)))
 				if(iswall(get_step(W, placement_dir-t_dir)))
 					break

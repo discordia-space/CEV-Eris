@@ -1,0 +1,4 @@
+author: Herbaon
+delete-after: true
+changes:
+  - bugfix: fixed Preacher making all stats oddities with cube and artist oddities

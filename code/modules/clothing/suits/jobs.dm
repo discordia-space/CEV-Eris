@@ -208,11 +208,11 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 30,
-		bullet = 20,
-		energy = 20,
+		bullet = 30,
+		energy = 30,
 		bomb = 0,
 		bio = 0,
 		rad = 0
