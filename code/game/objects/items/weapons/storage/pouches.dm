@@ -237,7 +237,7 @@
 		/obj/item/weapon/gun/projectile/mandella,
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/gun/energy/chameleon,
-		/obj/item/weapon/gun/energy/captain, //too unwieldy, use belt/suit slot or other storage
+		/obj/item/weapon/gun/energy/captain,
 		/obj/item/weapon/gun/energy/stunrevolver,
 		/obj/item/weapon/gun/projectile/revolver,
 		/obj/item/weapon/gun/projectile/automatic/molly,
