@@ -96,7 +96,7 @@
 	var/armor_penetration_extended = ARMOR_PEN_HALF
 	var/extended = FALSE
 	var/agony = 20
-	var/agony_extended = 55
+	var/agony_extended = 45
 	var/stun = 0
 	w_class = ITEM_SIZE_BULKY
 	price_tag = 1000
@@ -155,7 +155,6 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT 
 	throwforce = 75 
-
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
 	price_tag = 150

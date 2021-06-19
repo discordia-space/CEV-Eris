@@ -10,7 +10,7 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	force = WEAPON_FORCE_BRUTAL
-	var/crusade_force = WEAPON_FORCE_NORMAL
+	var/crusade_force = WEAPON_FORCE_NORMAL * 0.8
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
@@ -95,6 +95,13 @@
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	last_use = world.time
 	return
+
+/obj/item/weapon/tool/sword/nt_sword/equipped(mob/living/M)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(M))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/structure/nt_pedestal
 	name = "Sword of Truth Pedestal"

@@ -74,8 +74,16 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	force = WEAPON_FORCE_PAINFUL
+	embed_mult = 3
 	max_upgrades = 3
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/tool/knife/neotritual/equipped(mob/living/H)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(H))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/item/weapon/tool/knife/tacknife
 	name = "tactical knife"
