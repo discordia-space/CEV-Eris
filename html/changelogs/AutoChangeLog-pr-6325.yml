@@ -1,8 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: New affinity chunks for JTB
-  - code_imp: Deletion of JTB is now progressive to reduce lag
-  - code_imp: JTB tiles have no atmosphere by default
-  - code_imp: JTB ship-side portal is now directly deleted when JTB is released
-  - rscdel: Removed pipes, vents and scrubbers from JTB chunks
