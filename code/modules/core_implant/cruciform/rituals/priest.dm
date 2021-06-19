@@ -383,7 +383,7 @@
 
 	for(var/stat in inspiracion.stats)
 		if(inspiracion.stats[stat] == 0)
-          continue
+			continue
 		var/stat_gain = rand(1,8)
 		inspiracion.stats[stat] += stat_gain
 		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
