@@ -17,8 +17,3 @@ SUBSYSTEM_DEF(holomaps)
 /datum/controller/subsystem/holomaps/Initialize(timeofday)
 	generateHoloMinimaps()
 	. = ..()
-
-/datum/controller/subsystem/holomaps/stat_entry(msg)
-	if (!Debug2)
-		return // Only show up in stat panel if debugging is enabled.
-	. = ..()

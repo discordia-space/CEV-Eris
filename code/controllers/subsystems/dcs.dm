@@ -8,20 +8,20 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 /datum/controller/subsystem/processing/dcs/Recover()
 	comp_lookup = SSdcs.comp_lookup
 
-// /datum/controller/subsystem/processing/dcs/proc/GetElement(list/arguments)
-// 	var/datum/element/eletype = arguments[1]
-// 	var/element_id = eletype
+/datum/controller/subsystem/processing/dcs/proc/GetElement(list/arguments)
+	var/datum/element/eletype = arguments[1]
+	var/element_id = eletype
 
-// 	if(!ispath(eletype, /datum/element))
-// 		CRASH("Attempted to instantiate [eletype] as a /datum/element")
+	if(!ispath(eletype, /datum/element))
+		CRASH("Attempted to instantiate [eletype] as a /datum/element")
 
-// 	if(initial(eletype.element_flags) & ELEMENT_BESPOKE)
-// 		element_id = GetIdFromArguments(arguments)
+	if(initial(eletype.element_flags) & ELEMENT_BESPOKE)
+		element_id = GetIdFromArguments(arguments)
 
-// 	. = elements_by_type[element_id]
-// 	if(.)
-// 		return
-// 	. = elements_by_type[element_id] = new eletype
+	. = elements_by_type[element_id]
+	if(.)
+		return
+	. = elements_by_type[element_id] = new eletype
 
 /****
 	* Generates an id for bespoke elements when given the argument list
@@ -29,26 +29,26 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 	* Named arguments can appear in any order and we need them to appear after ordered arguments
 	* We assume that no one will pass in a named argument with a value of null
 	**/
-// /datum/controller/subsystem/processing/dcs/proc/GetIdFromArguments(list/arguments)
-// 	var/datum/element/eletype = arguments[1]
-// 	var/list/fullid = list("[eletype]")
-// 	var/list/named_arguments = list()
-// 	for(var/i in initial(eletype.id_arg_index) to length(arguments))
-// 		var/key = arguments[i]
-// 		var/value
-// 		if(istext(key))
-// 			value = arguments[key]
-// 		if(!(istext(key) || isnum(key)))
-// 			key = REF(key)
-// 		key = "[key]" // Key is stringified so numbers dont break things
-// 		if(!isnull(value))
-// 			if(!(istext(value) || isnum(value)))
-// 				value = REF(value)
-// 			named_arguments["[key]"] = value
-// 		else
-// 			fullid += "[key]"
+/datum/controller/subsystem/processing/dcs/proc/GetIdFromArguments(list/arguments)
+	var/datum/element/eletype = arguments[1]
+	var/list/fullid = list("[eletype]")
+	var/list/named_arguments = list()
+	for(var/i in initial(eletype.id_arg_index) to length(arguments))
+		var/key = arguments[i]
+		var/value
+		if(istext(key))
+			value = arguments[key]
+		if(!(istext(key) || isnum(key)))
+			key = REF(key)
+		key = "[key]" // Key is stringified so numbers dont break things
+		if(!isnull(value))
+			if(!(istext(value) || isnum(value)))
+				value = REF(value)
+			named_arguments["[key]"] = value
+		else
+			fullid += "[key]"
 
-// 	if(length(named_arguments))
-// 		named_arguments = sortList(named_arguments)
-// 		fullid += named_arguments
-// 	return list2params(fullid)
+	if(length(named_arguments))
+		named_arguments = sortList(named_arguments)
+		fullid += named_arguments
+	return list2params(fullid)

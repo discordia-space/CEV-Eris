@@ -89,7 +89,7 @@
 	// need these two below?
 	// SSmachines.setup_template_powernets(cables)
 	SSmachines.setup_powernets_for_cables(cables)
-	SSair.setup_template_machinery(atmos_machines)
+	// SSair.setup_template_machinery(atmos_machines)
 	// SSmachines.setup_atmos_machinery(atmos_machines)
 
 

@@ -4,12 +4,14 @@ SUBSYSTEM_DEF(mapping)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
+
 	var/dmm_suite/maploader = null
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-
+	if(initialized)
+		return
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
@@ -42,9 +44,11 @@ SUBSYSTEM_DEF(mapping)
 		GLOB.map_areas += A
 
 	// Do the same for teleport locs
-	for(var/area/AR in world)
-		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
+	for(var/area/AR in GLOB.map_areas) // let's not bog down the mc with checking world AGAIN
+		if(istype(AR, /area/shuttle) || istype(AR, /area/wizard_station))
+			continue
+		if(teleportlocs.Find(AR.name))
+			continue
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			teleportlocs += AR.name
@@ -55,8 +59,9 @@ SUBSYSTEM_DEF(mapping)
 	// And the same for ghost teleport locs
 
 
-	for(var/area/AR in world)
-		if(ghostteleportlocs.Find(AR.name)) continue
+	for(var/area/AR in GLOB.map_areas)
+		if(ghostteleportlocs.Find(AR.name))
+			continue
 		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
@@ -66,10 +71,7 @@ SUBSYSTEM_DEF(mapping)
 			ghostteleportlocs[AR.name] = AR
 
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
-
-	return 1
-
-
+	return ..()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	log_mapping("Building overmap...")

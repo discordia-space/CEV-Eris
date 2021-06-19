@@ -13,9 +13,16 @@
 	use_power = NO_POWER_USE	//uses powernet power, not APC power
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
-	var/active = 0
-	var/powered = 0
-	var/fire_delay = 100
+	///Is the machine active?
+	var/active = FALSE
+	///Does the machine have power?
+	var/powered = FALSE
+	///Seconds before the next shot
+	var/fire_delay = 10 SECONDS
+	///Max delay before firing
+	var/maximum_fire_delay = 10 SECONDS
+	///Min delay before firing
+	var/minimum_fire_delay = 2 SECONDS
 	var/max_burst_delay = 100
 	var/min_burst_delay = 20
 	var/burst_shots = 3
@@ -23,6 +30,15 @@
 	var/shot_number = 0
 	var/state = 0
 	var/locked = 0
+	///What's the projectile sound?
+	var/projectile_sound = 'sound/weapons/emitter.ogg'
+	///Sparks emitted with every shot
+	var/datum/effect/effect/system/spark_spread/sparks
+	// The following 3 vars are mostly for the prototype
+	///manual shooting? (basically you hop onto the emitter and choose the shooting direction, is very janky since you can only shoot at the 8 directions and i don't think is ever used since you can't build those)
+	var/manual = FALSE
+	///Amount of power inside
+	var/charge = 0
 
 	var/_wifi_id
 	var/datum/wifi/receiver/button/emitter/wifi_receiver
@@ -50,11 +66,12 @@
 			wifi_receiver = new(_wifi_id, src)
 
 /obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("Emitter deleted at ([x],[y],[z])")
-	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
-	qdel(wifi_receiver)
-	wifi_receiver = null
+	if(SSticker.IsRoundInProgress())
+		var/turf/T = get_turf(src)
+		message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(T)]")
+		log_game("Emitter deleted at [AREACOORD(T)]")
+		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_SINGULO)
+	QDEL_NULL(wifi_receiver)
 	return ..()
 
 /obj/machinery/power/emitter/on_update_icon()
@@ -104,49 +121,68 @@
 			src.use_power = IDLE_POWER_USE	*/
 	return 1
 
-/obj/machinery/power/emitter/Process()
+/obj/machinery/power/emitter/process(delta_time)
 	if(stat & (BROKEN))
 		return
-	if(src.state != 2 || (!powernet && active_power_usage))
-		src.active = 0
+	if(state != 2 || (!powernet && active_power_usage))
+		active = 0
 		update_icon()
 		return
-	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
+	if(!active)
+		return
+	// dont actualy pull 30KW, calc it first
+	if(active_power_usage && surplus() < active_power_usage)
+		if(powered)
+			powered = FALSE
+			update_icon()
+			investigate_log("lost power and turned <font color='red'>OFF</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
+			log_game("Emitter lost power in [AREACOORD(src)]")
+		return
 
-		var/actual_load = draw_power(active_power_usage)
-		if(actual_load >= active_power_usage) //does the laser have enough power to shoot?
-			if(!powered)
-				powered = 1
-				update_icon()
-				investigate_log("regained power and turned <font color='green'>on</font>","singulo")
+	// ok now we can draw power
+	draw_power(active_power_usage)
+	if(!powered)
+		powered = TRUE
+		update_icon()
+		investigate_log("regained power and turned <font color='green'>ON</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
+	if(charge <= 80)
+		charge += 2.5 * delta_time
+	if(!check_delay() || manual == TRUE)
+		return FALSE
+	fire_beam()
+
+/obj/machinery/power/emitter/proc/check_delay()
+	if((last_shot + fire_delay) <= world.time)
+		return TRUE
+	return FALSE
+
+/obj/machinery/power/emitter/proc/fire_beam(mob/user)
+	var/obj/item/projectile/beam/projectile = new /obj/item/projectile/beam/emitter(get_turf(src))
+	playsound(src, projectile_sound, 50, TRUE)
+	if(prob(35))
+		sparks.start()
+	//need to calculate the power per shot as the emitter doesn't fire continuously.
+	var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
+	var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
+	// projectile.firer = user ? user : src
+	// projectile.fired_from = src
+	// if(last_projectile_params)
+	// 	projectile.p_x = last_projectile_params[2]
+	// 	projectile.p_y = last_projectile_params[3]
+	// 	projectile.fire(last_projectile_params[1])
+	// else
+	// 	projectile.fire(dir2angle(dir))
+	projectile.damage_types[BURN] = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
+	projectile.launch( get_step(src.loc, src.dir) )
+	if(!manual)
+		last_shot = world.time
+		if(shot_number < 3)
+			fire_delay = 20
+			shot_number ++
 		else
-			if(powered)
-				powered = 0
-				update_icon()
-				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
-			return
-
-		src.last_shot = world.time
-		if(src.shot_number < burst_shots)
-			src.fire_delay = 2
-			src.shot_number ++
-		else
-			src.fire_delay = rand(min_burst_delay, max_burst_delay)
-			src.shot_number = 0
-
-		//need to calculate the power per shot as the emitter doesn't fire continuously.
-		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
-		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-
-		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
-		if(prob(35))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(5, 1, src)
-			s.start()
-
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
-		A.damage_types[BURN] = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
-		A.launch( get_step(src.loc, src.dir) )
+			fire_delay = rand(minimum_fire_delay,maximum_fire_delay)
+			shot_number = 0
+	return projectile
 
 /obj/machinery/power/emitter/attackby(obj/item/I, mob/user)
 

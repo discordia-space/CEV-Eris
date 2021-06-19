@@ -18,14 +18,23 @@ SUBSYSTEM_DEF(lighting)
 
 	var/resuming_stage = 0
 
-/datum/controller/subsystem/lighting/stat_entry()
-	..("L:[lighting_update_lights.len]|C:[lighting_update_corners.len]|O:[lighting_update_overlays.len]")
+/datum/controller/subsystem/lighting/stat_entry(msg)
+	msg = "L:[length(currentrun_lights)]|C:[length(currentrun_corners)]|O:[length(currentrun_overlays)]"
+	return ..()
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
-	create_all_lighting_overlays()
-	. = ..()
+	if(!initialized)
+		create_all_lighting_overlays()
+		initialized = TRUE
 
-/datum/controller/subsystem/lighting/fire(resumed=FALSE)
+	fire(FALSE, TRUE)
+
+	return ..()
+
+/datum/controller/subsystem/lighting/fire(resumed, init_tick_checks)
+	MC_SPLIT_TICK_INIT(3)
+	if(!init_tick_checks)
+		MC_SPLIT_TICK
 	if (resuming_stage == 0 || !resumed)
 		src.currentrun_lights   = lighting_update_lights
 		lighting_update_lights   = list()
@@ -50,8 +59,13 @@ SUBSYSTEM_DEF(lighting)
 		L.force_update = FALSE
 		L.needs_update = FALSE
 
-		if (MC_TICK_CHECK)
-			return
+		if(init_tick_checks)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
+			break
+
+	if(!init_tick_checks)
+		MC_SPLIT_TICK
 
 	if (resuming_stage == STAGE_SOURCES || !resumed)
 		// PJB left this in, was causing crashes.
@@ -71,8 +85,13 @@ SUBSYSTEM_DEF(lighting)
 
 		C.update_overlays()
 		C.needs_update = FALSE
-		if (MC_TICK_CHECK)
-			return
+		if(init_tick_checks)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
+			break
+
+	if(!init_tick_checks)
+		MC_SPLIT_TICK
 
 	if (resuming_stage == STAGE_CORNERS || !resumed)
 		src.currentrun_overlays = lighting_update_overlays
@@ -88,8 +107,10 @@ SUBSYSTEM_DEF(lighting)
 
 		O.update_overlay()
 		O.needs_update = FALSE
-		if (MC_TICK_CHECK)
-			return
+		if(init_tick_checks)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
+			break
 
 	resuming_stage = 0
 

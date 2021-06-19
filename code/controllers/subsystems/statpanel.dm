@@ -205,9 +205,3 @@ SUBSYSTEM_DEF(statpanels)
 	set hidden = TRUE
 
 	init_verbs()
-
-/client/verb/fix_stat_panel()
-	set name = "Fix Stat Panel"
-	set hidden = TRUE
-
-	init_verbs()

@@ -1,4 +1,4 @@
-/proc/cmd_registrate_verb(var/verb_path, var/rights, var/not_hideable)
+/proc/cmd_registrate_verb(verb_path, rights, not_hideable)
 	if(!not_hideable)
 		admin_verbs["hideable"] += verb_path
 	if(!rights)
@@ -12,7 +12,7 @@
 					admin_verbs[text_rigth] = list()
 				admin_verbs[text_rigth] += verb_path
 
-/hook/startup/proc/registrate_verbs()
+/hook/startup_sync/proc/registrate_verbs()
 	world.registrate_verbs()
 	return TRUE
 
@@ -23,18 +23,24 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 
 /client/proc/add_admin_verbs()
 	if(holder)
-		verbs += admin_verbs["default"]
-		for(var/text_right in admin_verbs)
-			if(text2num(text_right) & holder.rights)
-				verbs += admin_verbs[text_right]
 		control_freak = CONTROL_FREAK_SKIN | CONTROL_FREAK_MACROS
+		add_verb(src, admin_verbs["default"])
+		var/list/vta = list()
+		for(var/text_right in admin_verbs)
+			if(text_right == "default" || text_right == "hideable")
+				continue
+			if(text2num(text_right) & holder.rights)
+				vta += admin_verbs[text_right]
 
 		if(check_rights(config.profiler_permission))
 			control_freak = 0 // enable profiler
+		add_verb(src, vta)
 
 /client/proc/remove_admin_verbs()
+	var/list/VTR = list()
 	for(var/right in admin_verbs)
-		verbs.Remove(admin_verbs[right])
+		VTR += admin_verbs[right]
+	remove_verb(src, VTR)
 	control_freak = initial(control_freak)
 
 ADMIN_VERB_ADD(/client/proc/hide_most_verbs, null, FALSE)
@@ -44,8 +50,8 @@ ADMIN_VERB_ADD(/client/proc/hide_most_verbs, null, FALSE)
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin"
 
-	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs["hideable"])
-	verbs += /client/proc/show_verbs
+	remove_verb(src, list(/client/proc/hide_most_verbs,  admin_verbs["hideable"]))
+	add_verb(src, /client/proc/show_verbs)
 
 	to_chat(src, "<span class='interface'>Most of your adminverbs have been hidden.</span>")
 
@@ -57,9 +63,9 @@ ADMIN_VERB_ADD(/client/proc/hide_verbs, null, TRUE)
 	set category = "Admin"
 
 	remove_admin_verbs()
-	verbs += /client/proc/show_verbs
+	add_verb(src, /client/proc/show_verbs)
 
-	to_chat(src, "<span class='interface'>Almost all of your adminverbs have been hidden.</span>")
+	to_chat(src, "<span class='interface'>Almost all of your adminverbs have been hidden.</span>", confidential = TRUE)
 
 	return
 
@@ -67,10 +73,10 @@ ADMIN_VERB_ADD(/client/proc/hide_verbs, null, TRUE)
 	set name = "Adminverbs - Show"
 	set category = "Admin"
 
-	verbs -= /client/proc/show_verbs
+	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
 
-	to_chat(src, "<span class='interface'>All of your adminverbs are now visible.</span>")
+	to_chat(src, "<span class='interface'>All of your adminverbs are now visible.</span>", confidential = TRUE)
 
 
 
@@ -78,57 +84,55 @@ ADMIN_VERB_ADD(/client/proc/hide_verbs, null, TRUE)
 ADMIN_VERB_ADD(/client/proc/admin_ghost, R_ADMIN|R_MOD, TRUE)
 //allows us to ghost/reenter body at will
 /client/proc/admin_ghost()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Aghost"
-	if(!holder)	return
-	if(isghost(mob))
+	if(!holder)
+		return
+	. = TRUE
+	if(isobserver(mob))
 		//re-enter
 		var/mob/observer/ghost/ghost = mob
-		if(!is_mentor(usr.client))
-			ghost.can_reenter_corpse = 1
-		if(ghost.can_reenter_corpse)
-			ghost.reenter_corpse()
-		else
-			to_chat(ghost, "<font color='red'>Error:  Aghost:  Can't reenter corpse, mentors that use adminHUD while aghosting are not permitted to enter their corpse again</font>")
-			return
-
-
-
+		if(!ghost.mind || !ghost.mind.current) //won't do anything if there is no body
+			return FALSE
+		if(!ghost.can_reenter_corpse)
+			log_admin("[key_name(usr)] re-entered corpse")
+			message_admins("[key_name_admin(usr)] re-entered corpse")
+		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
+		ghost.reenter_corpse()
+		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
-		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>")
+		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>", confidential = TRUE)
+		return FALSE
 	else
 		//ghostize
+		log_admin("[key_name(usr)] admin ghosted.")
+		message_admins("[key_name_admin(usr)] admin ghosted.")
 		var/mob/body = mob
-		var/mob/observer/ghost/ghost = body.ghostize(1)
-		ghost.admin_ghosted = 1
-		if(body)
-			body.teleop = ghost
-			if(!body.key)
-				body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
-
+		body.ghostize(1)
+		init_verbs()
+		if(body && !body.key)
+			body.key = "@[key]" //Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
+		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Ghost") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB_ADD(/client/proc/invisimin, R_ADMIN, TRUE)
 //allows our mob to go invisible/visible
 /client/proc/invisimin()
 	set name = "Invisimin"
-	set category = "Admin"
+	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "\red <b>Invisimin off. Invisibility reset.</b>")
-			mob.alpha = max(mob.alpha + 100, 255)
+			to_chat(mob, "<span class='boldannounce'>Invisimin off. Invisibility reset.</span>", confidential = TRUE)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>")
-			mob.alpha = max(mob.alpha - 100, 0)
-
+			to_chat(mob, "<span class='adminnotice'><b>Invisimin on. You are now as invisible as a ghost.</b></span>", confidential = TRUE)
 
 ADMIN_VERB_ADD(/client/proc/player_panel_new, R_ADMIN, TRUE)
 //shows an interface for all players, with links to various panels
 /client/proc/player_panel_new()
 	set name = "Player Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.player_panel_new()
 
@@ -136,7 +140,7 @@ ADMIN_VERB_ADD(/client/proc/player_panel_new, R_ADMIN, TRUE)
 ADMIN_VERB_ADD(/client/proc/storyteller_panel, R_ADMIN|R_MOD, TRUE)
 /client/proc/storyteller_panel()
 	set name = "Storyteller Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.storyteller_panel()
 
@@ -156,7 +160,7 @@ ADMIN_VERB_ADD(/client/proc/game_panel, R_ADMIN, FALSE)
 //game panel, allows to change game-mode etc
 /client/proc/game_panel()
 	set name = "Game Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.Game()
 
@@ -164,7 +168,8 @@ ADMIN_VERB_ADD(/client/proc/game_panel, R_ADMIN, FALSE)
 ADMIN_VERB_ADD(/client/proc/secrets, R_ADMIN, FALSE)
 /client/proc/secrets()
 	set name = "Secrets"
-	set category = "Admin"
+	set desc = "Abuse harder than you ever have before with this handy dandy semi-misc stuff menu"
+	set category = "Admin.Game"
 	if (holder)
 		holder.Secrets()
 
@@ -182,6 +187,24 @@ ADMIN_VERB_ADD(/client/proc/colorooc, R_ADMIN, FALSE)
 		prefs.ooccolor = initial(prefs.ooccolor)
 	prefs.save_preferences()
 
+/client/proc/findStealthKey(txt)
+	if(txt)
+		for(var/P in GLOB.stealthminID)
+			if(GLOB.stealthminID[P] == txt)
+				return P
+	txt = GLOB.stealthminID[ckey]
+	return txt
+
+/client/proc/createStealthKey()
+	var/num = (rand(0,1000))
+	var/i = 0
+	while(i == 0)
+		i = 1
+		for(var/P in GLOB.stealthminID)
+			if(num == GLOB.stealthminID[P])
+				num++
+				i = 0
+	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
 ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 /client/proc/stealth()
@@ -190,15 +213,31 @@ ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
+			if(isobserver(mob))
+				mob.invisibility = initial(mob.invisibility)
+				mob.alpha = initial(mob.alpha)
+				if(mob.mind)
+					if(mob.mind.ghostname)
+						mob.name = mob.mind.ghostname
+					else
+						mob.name = mob.mind.name
+				else
+					mob.name = mob.real_name
+				mob.mouse_opacity = initial(mob.mouse_opacity)
 		else
-			var/new_key = ckeyEx(input("Enter your desired display name.", "Fake Key", key) as text|null)
-			if(!new_key)	return
-			if(length(new_key) >= 26)
-				new_key = copytext(new_key, 1, 26)
+			var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Fake Key", key, 26))
+			if(!new_key)
+				return
+			holder.fakekey = new_key
+			createStealthKey()
+			if(isobserver(mob))
+				mob.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
+				mob.alpha = 0 //JUUUUST IN CASE
+				mob.name = " "
+				mob.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			holder.fakekey = new_key
 		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
-		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
-
+		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 
 #define MAX_WARNS 3
 #define AUTOBANTIME 10
@@ -244,14 +283,15 @@ ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 #undef AUTOBANTIME
 
 ADMIN_VERB_ADD(/client/proc/drop_bomb, R_FUN, FALSE)
-/client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs"
+/client/proc/drop_bomb()
+	set category = "Admin.Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
-	var/turf/epicenter = mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) (not yet implimented, blame LetterN) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap", "Drop Bomb", choices)
+	var/turf/epicenter = mob.loc
+
 	switch(choice)
 		if(null)
 			return 0
@@ -262,12 +302,27 @@ ADMIN_VERB_ADD(/client/proc/drop_bomb, R_FUN, FALSE)
 		if("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
-			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
+			var/range_devastation = input("Devastation range (in tiles):") as null|num
+			if(range_devastation == null)
+				return
+			var/range_heavy = input("Heavy impact range (in tiles):") as null|num
+			if(range_heavy == null)
+				return
+			var/range_light = input("Light impact range (in tiles):") as null|num
+			if(range_light == null)
+				return
+			var/range_flash = input("Flash range (in tiles):") as null|num
+			if(range_flash == null)
+				return
+			// if(range_devastation > GLOB.MAX_EX_DEVESTATION_RANGE || range_heavy > GLOB.MAX_EX_HEAVY_RANGE || range_light > GLOB.MAX_EX_LIGHT_RANGE || range_flash > GLOB.MAX_EX_FLASH_RANGE)
+			// 	if(alert("Bomb is bigger than the maxcap. Continue?",,"Yes","No") != "Yes")
+			// 		return
+			epicenter = mob.loc //We need to reupdate as they may have moved again
+
+			explosion(epicenter, range_devastation, range_heavy, range_light, range_flash)
+	message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion at [epicenter.loc].")
+	log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
+
 
 
 /client/proc/give_disease2(mob/T as mob in GLOB.mob_living_list) // -- Giacom
@@ -593,3 +648,10 @@ ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
 		UI.toggleDebugMode()
 	else
 		log_debug("This mob has no UI.")
+
+ADMIN_VERB_ADD(/client/proc/debugstatpanel, R_DEBUG, FALSE)
+/client/proc/debugstatpanel()
+	set name = "Debug Stat Panel"
+	set category = "Debug"
+
+	src << output("", "statbrowser:create_debug")

@@ -5,10 +5,6 @@
 	else
 		forceMove(T)
 
-/mob/observer/ghost/on_mob_jump()
-	stop_following()
-	..()
-
 ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/Jump(area/A in return_sorted_areas())
 	set name = "Jump to Area"

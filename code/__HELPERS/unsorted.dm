@@ -443,6 +443,34 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return creatures
 
+//Returns a list of all items of interest with their name
+/proc/getpois(mobs_only = FALSE, skip_mindless = FALSE, specify_dead_role = TRUE)
+	var/list/mobs = sortmobs()
+	var/list/namecounts = list()
+	var/list/pois = list()
+	for(var/mob/M in mobs)
+		if(skip_mindless && (!M.mind && !M.ckey))
+			// if(!isbot(M) && !iscameramob(M) && !ismegafauna(M))
+			continue
+		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
+			continue
+		var/name = avoid_assoc_duplicate_keys(M.name, namecounts) + M.get_realname_string()
+
+		if(M.stat == DEAD) // && specify_dead_role)
+			if(isobserver(M))
+				name += " \[ghost\]"
+			else
+				name += " \[dead\]"
+		pois[name] = M
+
+	if(!mobs_only)
+		for(var/atom/A in GLOB.poi_list)
+			if(!A || !A.loc)
+				continue
+			pois[avoid_assoc_duplicate_keys(A.name, namecounts)] = A
+
+	return pois
+
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
@@ -587,6 +615,11 @@ proc/GaussRandRound(var/sigma, var/roundto)
 		if(A.density)//&&A.anchored
 			cant_pass = 1
 	return cant_pass
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return 0
 
 /proc/get_step_towards2(var/atom/ref , var/atom/trg)
 	var/base_dir = get_dir(ref, get_step_towards(ref, trg))
@@ -1217,6 +1250,36 @@ var/list/FLOORITEMS = list(
 			colour += temp_col
 	return "#[colour]"
 
+/proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		if (isnull(value))
+			return
+	value = trim(value)
+
+	var/random = FALSE
+	if(findtext(value, "?"))
+		value = replacetext(value, "?", "")
+		random = TRUE
+
+	if(!isnull(value) && value != "")
+		matches = filter_fancy_list(matches, value)
+
+	if(matches.len==0)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else if(random)
+		chosen = pick(matches) || null
+	else
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in sortList(matches)
+	if(!chosen)
+		return
+	chosen = matches[chosen]
+	return chosen
+
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
@@ -1345,10 +1408,10 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		list_or_datum[var_name] = var_value
 		return
 	var/datum/D = list_or_datum
-	// if(IsAdminAdvancedProcCall())
-	// 	D.vv_edit_var(var_name, var_value) //same result generally, unless badmemes
-	// else
-	D.vars[var_name] = var_value
+	if(IsAdminAdvancedProcCall())
+		D.vv_edit_var(var_name, var_value) //same result generally, unless badmemes
+	else
+		D.vars[var_name] = var_value
 
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE

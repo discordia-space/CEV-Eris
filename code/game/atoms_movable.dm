@@ -1,5 +1,6 @@
 /atom/movable
 	layer = OBJ_LAYER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move
 	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
@@ -27,6 +28,12 @@
 	var/prob_aditional_object = 100
 	var/spawn_blacklisted = FALSE
 	var/bad_type //path
+
+	var/datum/component/orbiter/orbiting
+	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
+
+	/// Whether this atom should have its dir automatically changed when it moves. Setting this to FALSE allows for things such as directional windows to retain dir on moving without snowflake code all of the place.
+	var/set_dir_on_move = TRUE
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -409,79 +416,197 @@
 		AM.set_glide_size(glide_size, min, max)
 
 */
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+
+/**
+ * meant for movement with zero side effects. only use for objects that are supposed to move "invisibly" (like camera mobs or ghosts)
+ * if you want something to move onto a tile with a beartrap or recycler or tripmine or mouse without that object knowing about it at all, use this
+ * most of the time you want forceMove()
+ */
+/atom/movable/proc/abstract_move(atom/new_loc)
+	var/atom/old_loc = loc
+	loc = new_loc
+	Moved(old_loc)
+
+////////////////////////////////////////
+// Here's where we rewrite how byond handles movement except slightly different
+// To be removed on step_ conversion
+// All this work to prevent a second bump
+/atom/movable/Move(atom/newloc, direct=0, glide_size_override = 0)
+	. = FALSE
+	if(!newloc || newloc == loc)
+		return
+
+	if(!direct)
+		direct = get_dir(src, newloc)
+
+	if(set_dir_on_move)
+		dir = direct
+		// setDir(direct)
+
+	if(!loc.Exit(src, newloc))
+		return
+
+	if(!newloc.Enter(src, src.loc))
+		return
+
+	// if (SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+	// 	return
+
+	// Past this is the point of no return
+	var/atom/oldloc = loc
+	var/area/oldarea = get_area(oldloc)
+	var/area/newarea = get_area(newloc)
+	// move_stacks++
+
+	loc = newloc
+
+	. = TRUE
+	oldloc.Exited(src, newloc)
+	if(oldarea != newarea)
+		oldarea.Exited(src, newloc)
+
+	newloc.Entered(src, oldloc)
+	if(oldarea != newarea)
+		newarea.Entered(src, oldloc)
+
+	Moved(oldloc, direct)
+
+////////////////////////////////////////
+
+/atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
 	// var/atom/movable/pullee = pulling
 	// var/turf/T = loc
 	// if(!moving_from_pull)
 	// 	check_pulling()
-	// if(!loc || !newloc)
-	// 	return FALSE
-	// var/atom/oldloc = loc
+	if(!loc || !newloc)
+		return FALSE
+	var/atom/oldloc = loc
 	//Early override for some cases like diagonal movement
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
-	// To prevent issues, diagonal movements are broken up into two cardinal movements.
-
 	// Is this a diagonal movement?
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PREMOVE, src)
-	if (Dir & (Dir - 1))
-		if (Dir & NORTH)
-			if (Dir & EAST)
-				// Pretty simple really, try to move north -> east, else try east -> north
-				// Pretty much exactly the same for all the other cases here.
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (Dir & WEST)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (Dir & SOUTH)
-				if (Dir & EAST)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (Dir & WEST)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		var/atom/oldloc = src.loc
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 
-		. = ..()
+	if(loc != newloc)
+		if (!(direct & (direct - 1))) //Cardinal move
+			. = ..()
+		else //Diagonal move, split it into cardinal moves
+			moving_diagonally = FIRST_DIAG_STEP
+			var/first_step_dir
+			// The `&& moving_diagonally` checks are so that a forceMove taking
+			// place due to a Crossed, Bumped, etc. call will interrupt
+			// the second half of the diagonal movement, or the second attempt
+			// at a first half if step() fails because we hit something.
+			if (direct & NORTH)
+				if (direct & EAST)
+					if (step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+				else if (direct & WEST)
+					if (step(src, NORTH) && moving_diagonally)
+						first_step_dir = NORTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, NORTH)
+			else if (direct & SOUTH)
+				if (direct & EAST)
+					if (step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, EAST)
+					else if (moving_diagonally && step(src, EAST))
+						first_step_dir = EAST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+				else if (direct & WEST)
+					if (step(src, SOUTH) && moving_diagonally)
+						first_step_dir = SOUTH
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, WEST)
+					else if (moving_diagonally && step(src, WEST))
+						first_step_dir = WEST
+						moving_diagonally = SECOND_DIAG_STEP
+						. = step(src, SOUTH)
+			if(moving_diagonally == SECOND_DIAG_STEP)
+				if(!. && set_dir_on_move)
+					dir = first_step_dir
+					// setDir(first_step_dir)
+				// else if (!inertia_moving)
+				// 	inertia_next_move = world.time + inertia_move_delay
+				// 	newtonian_move(direct)
+			moving_diagonally = 0
+			return
 
-		if(Dir != olddir)
-			dir = olddir
-			set_dir(Dir)
+	if(!loc || (loc == oldloc && oldloc != newloc))
+		last_move = 0
+		return
 
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = 1
+	// if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
+	// 	if(pulling.anchored)
+	// 		stop_pulling()
+	// 	else
+	// 		var/pull_dir = get_dir(src, pulling)
+	// 		//puller and pullee more than one tile away or in diagonal position and whatever the pullee is pulling isn't already moving from a pull as it'll most likely result in an infinite loop a la ouroborus.
+	// 		if(!pulling.pulling?.moving_from_pull && (get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir))))
+	// 			pulling.moving_from_pull = src
+	// 			pulling.Move(T, get_dir(pulling, T), glide_size) //the pullee tries to reach our previous position
+	// 			pulling.moving_from_pull = null
+	// 		check_pulling()
 
-		if (oldloc != src.loc && oldloc && oldloc.z == src.z)
-			src.last_move = get_dir(oldloc, src.loc)
 
-		// Only update plane if we're located on map
-		if(isturf(loc))
-			// if we wasn't on map OR our Z coord was changed
-			if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
-				update_plane()
-				onTransitZ(get_z(oldloc, get_z(loc)))
+	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
+	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
-		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+	last_move = direct
+
+	if(set_dir_on_move)
+		// setDir(direct)
+		dir = direct
+	// if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc, direct, glide_size_override)) //movement failed due to buckled mob(s)
+	// 	return FALSE
+
+	move_speed = world.time - l_move_time
+	l_move_time = world.time
+	m_flag = 1
+
+	if (oldloc != loc && oldloc && oldloc.z == z)
+		last_move = get_dir(oldloc, loc)
+
+	// Only update plane if we're located on map
+	if(isturf(loc))
+		// if we wasn't on map OR our Z coord was changed
+		if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
+			update_plane()
+			onTransitZ(get_z(oldloc, get_z(loc)))
+
+//Called after a successful Move(). By this point, we've already moved
+/atom/movable/proc/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+
+	// if (!inertia_moving)
+	// 	inertia_next_move = world.time + inertia_move_delay
+	// 	newtonian_move(Dir)
+	// if (length(client_mobs_in_contents))
+	// 	update_parallax_contents()
+
+	// move_stacks--
+	// if(move_stacks > 0)
+	// 	return
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, OldLoc, Dir, Forced)
+
+	return TRUE
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)

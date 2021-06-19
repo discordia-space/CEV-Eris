@@ -51,17 +51,11 @@ var/global/use_preloader = FALSE
 	if(!measureOnly)
 		Master.StopLoadingMap()
 
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
+/dmm_suite/proc/load_map_impl(dmm_file, x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, measureOnly, no_changeturf = FALSE, orientation)
+	PRIVATE_PROC(TRUE)
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
 		tfile = file2text(tfile)
-
-	if(!x_offset)
-		x_offset = 1
-	if(!y_offset)
-		y_offset = 1
-	if(!z_offset)
-		z_offset = world.maxz + 1
 
 	// If it's not a single dir, default to north (Default orientation)
 	if(!(orientation in cardinal))
@@ -159,10 +153,10 @@ var/global/use_preloader = FALSE
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
-						#ifdef TESTING
-						else
-							++turfsSkipped
-						#endif
+						// #ifdef TESTING
+						// else
+						// 	++turfsSkipped
+						// #endif
 						CHECK_TICK
 					maxx = max(maxx, xcrd++)
 				key_list[++key_list.len] = line_keys

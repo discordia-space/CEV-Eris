@@ -145,7 +145,7 @@ export const Orbit = (props, context) => {
               <Divider vertical />
             </Flex.Item>
             <Flex.Item>
-              <Button
+              {/* <Button
                 inline
                 color="transparent"
                 tooltip={multiline`Toggle Auto-Observe. When active, you'll
@@ -153,7 +153,7 @@ export const Orbit = (props, context) => {
                 tooltipPosition="bottom-start"
                 selected={auto_observe}
                 icon={auto_observe ? "toggle-on" : "toggle-off"}
-                onClick={() => act("toggle_observe")} />
+                onClick={() => act("toggle_observe")} /> */}
               <Button
                 inline
                 color="transparent"

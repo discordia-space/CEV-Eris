@@ -132,12 +132,12 @@ if (Datum.is_processing) {\
 		crash_with("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on SSmachines.[#List]."); \
 	}\
 } else {\
-	START_PROCESSING(SSmachinery, Datum)\
+	START_PROCESSING(SSmachines, Datum)\
 }
 
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
-	STOP_PROCESSING(SSmachinery, Datum)\
+	STOP_PROCESSING(SSmachines, Datum)\
 }
 
 #define START_PROCESSING_PIPENET(Datum) START_PROCESSING_IN_LIST(Datum, pipenets)

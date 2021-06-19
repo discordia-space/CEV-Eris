@@ -29,3 +29,4 @@ GLOBAL_LIST_EMPTY(stealthminID) //reference list with IDs that store ckeys, for 
 
 // MOVE TO objects.dm in the same dir
 GLOBAL_LIST_EMPTY(machines)         //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
+GLOBAL_LIST_EMPTY(poi_list) //list of points of interest for observe/follow

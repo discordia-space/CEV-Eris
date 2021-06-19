@@ -66,11 +66,6 @@
 	var/list/cached_vars
 #endif
 
-#ifdef TESTING
-	var/tmp/running_find_references
-	var/tmp/last_find_references = 0
-#endif
-
 /**
  * Called when a href for this datum is clicked
  *

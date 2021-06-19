@@ -24,7 +24,7 @@
 	air_contents = new
 	air_contents.volume = volume
 	air_contents.temperature = T20C
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
 
 	var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
 	if(port)
@@ -32,14 +32,14 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.stop_processing_machine(src)
+	// SSair.stop_processing_machine(src)
 
 	qdel(holding)
 	QDEL_NULL(air_contents)
 
 	return ..()
 
-/obj/machinery/portable_atmospherics/process_atmos()
+/obj/machinery/portable_atmospherics/process() //process_atmos()
 	if(!connected_port) // Pipe network handles reactions if connected, and we can't stop processing if there's a port effecting our mix
 		excited = (excited | air_contents.react(src))
 		if(!excited)
@@ -47,7 +47,8 @@
 	excited = FALSE
 
 /obj/machinery/portable_atmospherics/return_air()
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
+	begin_processing()
 	return air_contents
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
@@ -92,7 +93,8 @@
 		network.gases += air_contents
 		network.update = 1
 
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
+	begin_processing()
 	update_icon()
 	return TRUE
 
@@ -117,7 +119,8 @@
 	if(network)
 		network.gases -= air_contents
 
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
+	begin_processing()
 	update_icon()
 	return TRUE
 
@@ -155,7 +158,8 @@
 	if(new_tank)
 		holding = new_tank
 
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
+	begin_processing()
 	update_icon()
 	return TRUE
 

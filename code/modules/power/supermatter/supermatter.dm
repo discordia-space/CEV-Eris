@@ -92,13 +92,19 @@
 
 /obj/machinery/power/supermatter/Initialize()
 	. = ..()
-	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	assign_uid()
+	radio = new(src)
+	radio.listening = FALSE
+	radio.channels = list("Engineering")
+	investigate_log("has been created.", INVESTIGATE_SUPERMATTER)
+	// SSair.start_processing_machine(src)
 
 
 /obj/machinery/power/supermatter/Destroy()
-	qdel(radio)
-	. = ..()
+	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
+	// SSair.stop_processing_machine(src)
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/power/supermatter/ex_act(var/severity)
 	switch(severity)
@@ -182,7 +188,7 @@
 
 	return ..()
 
-/obj/machinery/power/supermatter/process_atmos()
+/obj/machinery/power/supermatter/process() //MOVE TO PROCESS ATMOS
 	if(!processes) //Just fuck me up bro
 		return
 	var/turf/L = loc

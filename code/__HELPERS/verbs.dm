@@ -9,8 +9,8 @@
 /proc/add_verb(client/target, verb_or_list_to_add)
 	if(!target)
 		CRASH("add_verb called without a target")
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 	var/mob/mob_target = null
 
 	if(ismob(target))
@@ -56,8 +56,8 @@
  * * verb - typepath to a verb, or a list of verbs, supports lists of lists
  */
 /proc/remove_verb(client/target, verb_or_list_to_remove)
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 
 	var/mob/mob_target = null
 	if(ismob(target))

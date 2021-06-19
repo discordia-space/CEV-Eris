@@ -161,10 +161,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(isnull(address) || (address in localhost_addresses))
 			holder = new /datum/admins("!localhost!", R_HOST, ckey)
 			holder.associate(src)
-			// add_admin_verbs()
-			// holder.disassociate()
-			// holder.reassociate()
-			SSticker.OnRoundstart(CALLBACK(src, /client.proc/add_admin_verbs))
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = SScharacter_setup.preferences_datums[ckey]
@@ -591,19 +587,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(prefs)
 		prefs.ShowChoices(usr)
 
-// Byond seemingly calls stat, each tick (which is bad (not bad, terrible) for performance)
-// Calling things each tick can get expensive real quick.
-// So we slow this down a little.
-// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
-/client/Stat()
-	if(!usr)
-		return
-	// Add always-visible stat panel calls here, to define a consistent display order.
-	statpanel("Status")
-
-	. = ..()
-	sleep(1)
-
 /client/proc/create_UI(var/mob_type)
 	destroy_UI()
 	if(!mob_type)
@@ -739,8 +722,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /// compiles a full list of verbs and sends it to the browser
 /client/proc/init_verbs()
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 	var/list/verblist = list()
 	var/list/verbstoprocess = verbs.Copy()
 	if(mob)
@@ -765,3 +748,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(statbrowser_ready)
 		return
 	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")
+
+/client/proc/open_filter_editor(atom/in_atom)
+	if(holder)
+		holder.filteriffic = new /datum/filter_editor(in_atom)
+		holder.filteriffic.ui_interact(mob)

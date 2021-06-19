@@ -1,3 +1,9 @@
+///Returns a mob's real name between brackets. Useful when you want to display a mob's name alongside their real name
+/mob/proc/get_realname_string()
+	if(real_name && real_name != name)
+		return " \[[real_name]\]"
+	return ""
+
 /proc/issmall(A)
 	if(A && isliving(A))
 		var/mob/living/L = A

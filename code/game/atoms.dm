@@ -1,13 +1,20 @@
+/**
+ * The base type for nearly all physical objects in SS13
+
+ * Lots and lots of functionality lives here, although in general we are striving to move
+ * as much as possible to the components/elements system
+ */
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	appearance_flags = TILE_BOUND
 
 	var/level = ABOVE_PLATING_LEVEL
 	///the lesser flag_1
 	var/flags = 0
 	///First atom flags var
 	var/flags_1 = NONE
+
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast
@@ -25,10 +32,14 @@
 
 	///Chemistry.
 	var/reagent_flags = NONE
+	///Reagents holder
 	var/datum/reagents/reagents
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
+
+	//List of datums orbiting this atom
+	var/datum/component/orbiter/orbiters
 
 	var/auto_init = TRUE
 
@@ -38,12 +49,16 @@
 
 	var/sanity_damage = 0
 
+	var/list/filter_data //For handling persistent filters
+
 		/**
 	  * used to store the different colors on an atom
 	  *
 	  * its inherent color, the colored paint applied on it, special color effect etc...
 	  */
 	var/list/atom_colours
+	///Reference to atom being orbited
+	var/atom/orbit_target
 
 /atom/proc/update_icon()
 	return on_update_icon(arglist(args))
@@ -176,6 +191,8 @@
 	if(reagents)
 		QDEL_NULL(reagents)
 
+	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
+
 	// LAZYCLEARLIST(overlays)
 	// LAZYCLEARLIST(managed_overlays)
 
@@ -248,6 +265,108 @@
 ///Generate a tag for this atom
 /atom/proc/GenerateTag()
 	return
+
+/atom/proc/add_filter(name,priority,list/params)
+	LAZYINITLIST(filter_data)
+	var/list/p = params.Copy()
+	p["priority"] = priority
+	filter_data[name] = p
+	update_filters()
+
+/atom/proc/update_filters()
+	filters = null
+	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	for(var/f in filter_data)
+		var/list/data = filter_data[f]
+		var/list/arguments = data.Copy()
+		arguments -= "priority"
+		filters += filter(arglist(arguments))
+	UNSETEMPTY(filter_data)
+
+/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
+	var/filter = get_filter(name)
+	if(!filter)
+		return
+
+	var/list/old_filter_data = filter_data[name]
+
+	var/list/params = old_filter_data.Copy()
+	for(var/thing in new_params)
+		params[thing] = new_params[thing]
+
+	animate(filter, new_params, time = time, easing = easing, loop = loop)
+	for(var/param in params)
+		filter_data[name][param] = params[param]
+
+/atom/proc/change_filter_priority(name, new_priority)
+	if(!filter_data || !filter_data[name])
+		return
+
+	filter_data[name]["priority"] = new_priority
+	update_filters()
+
+/obj/item/update_filters()
+	. = ..()
+	// for(var/X in actions)
+	// 	var/datum/action/A = X
+	// 	A.UpdateButtonIcon()
+
+/atom/proc/get_filter(name)
+	if(filter_data && filter_data[name])
+		return filters[filter_data.Find(name)]
+
+/atom/proc/remove_filter(name_or_names)
+	if(!filter_data)
+		return
+
+	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
+
+	for(var/name in names)
+		if(filter_data[name])
+			filter_data -= name
+	update_filters()
+
+/atom/proc/clear_filters()
+	filter_data = null
+	filters = null
+
+///Passes Stat Browser Panel clicks to the game and calls client click on an atom
+/atom/Topic(href, list/href_list)
+	. = ..()
+	if(!usr?.client)
+		return
+	var/client/usr_client = usr.client
+	var/list/paramslist = list()
+	if(href_list["statpanel_item_shiftclick"])
+		paramslist["shift"] = "1"
+	if(href_list["statpanel_item_ctrlclick"])
+		paramslist["ctrl"] = "1"
+	if(href_list["statpanel_item_altclick"])
+		paramslist["alt"] = "1"
+	if(href_list["statpanel_item_click"])
+		// first of all make sure we valid
+		var/mouseparams = list2params(paramslist)
+		usr_client.Click(src, loc, null, mouseparams)
+		return TRUE
+
+/**
+ * Recursive getter method to return a list of all ghosts orbitting this atom
+ *
+ * This will work fine without manually passing arguments.
+ */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/o in orbiters?.orbiter_list)
+		var/atom/atom_orbiter = o
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
@@ -722,6 +841,198 @@ its easier to just keep the beam vertical.
 	for(var/o in objs)
 		var/obj/O = o
 		O.show_message(message,2,deaf_message,1)
+
+/**
+ * call back when a var is edited on this atom
+ *
+ * Can be used to implement special handling of vars
+ *
+ * At the atom level, if you edit a var named "color" it will add the atom colour with
+ * admin level priority to the atom colours list
+ *
+ * Also, if GLOB.Debug2 is FALSE, it sets the [ADMIN_SPAWNED_1] flag on [flags_1][/atom/var/flags_1], which signifies
+ * the object has been admin edited
+ */
+/atom/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		// if(NAMEOF(src, light_range))
+		// 	if(light_system == STATIC_LIGHT)
+		// 		set_light(l_range = var_value)
+		// 	else
+		// 		set_light_range(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, light_power))
+		// 	if(light_system == STATIC_LIGHT)
+		// 		set_light(l_power = var_value)
+		// 	else
+		// 		set_light_power(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, light_color))
+		// 	if(light_system == STATIC_LIGHT)
+		// 		set_light(l_color = var_value)
+		// 	else
+		// 		set_light_color(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, light_on))
+		// 	set_smoothed_icon_state(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, light_flags))
+		// 	set_light_flags(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, smoothing_junction))
+		// 	set_smoothed_icon_state(var_value)
+		// 	. =  TRUE
+		if(NAMEOF(src, opacity))
+			set_opacity(var_value)
+			. =  TRUE
+		// if(NAMEOF(src, base_pixel_x))
+		// 	set_base_pixel_x(var_value)
+		// 	. =  TRUE
+		// if(NAMEOF(src, base_pixel_y))
+		// 	set_base_pixel_y(var_value)
+		// 	. =  TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	if(!Debug2)
+		flags_1 |= ADMIN_SPAWNED_1
+
+	. = ..()
+
+	switch(var_name)
+		if(NAMEOF(src, color))
+			add_atom_colour(color, ADMIN_COLOUR_PRIORITY)
+
+
+/**
+ * Return the markup to for the dropdown list for the VV panel for this atom
+ *
+ * Override in subtypes to add custom VV handling in the VV panel
+ */
+/atom/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	if(!ismovable(src))
+		var/turf/curturf = get_turf(src)
+		if(curturf)
+			. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]'>Jump To</option>"
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
+	// VV_DROPDOWN_OPTION(VV_HK_SHOW_HIDDENPRINTS, "Show Hiddenprint log")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add Reagent")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Explosion")
+	// VV_DROPDOWN_OPTION(VV_HK_RADIATE, "Radiate")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_FILTERS, "Edit Filters")
+	// VV_DROPDOWN_OPTION(VV_HK_ADD_AI, "Add AI controller")
+	// if(greyscale_colors)
+	// 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE, "Modify greyscale colors")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_ADD_REAGENT] && check_rights(R_ADMIN))
+		if(!reagents)
+			var/amount = input(usr, "Specify the reagent size of [src]", "Set Reagent Size", 50) as num|null
+			if(amount)
+				create_reagents(amount)
+
+		if(reagents)
+			var/chosen_id
+			switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
+				if("Search")
+					var/valid_id
+					while(!valid_id)
+						chosen_id = input(usr, "Enter the ID of the reagent you want to add.", "Search reagents") as null|text
+						if(isnull(chosen_id)) //Get me out of here!
+							break
+						if (!ispath(text2path(chosen_id)))
+							chosen_id = pick_closest_path(chosen_id, make_types_fancy(subtypesof(/datum/reagent)))
+							if (ispath(chosen_id))
+								valid_id = TRUE
+						else
+							valid_id = TRUE
+						if(!valid_id)
+							to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+				if("Choose from a list")
+					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in sortList(subtypesof(/datum/reagent), /proc/cmp_typepaths_asc)
+				if("I'm feeling lucky")
+					chosen_id = pick(subtypesof(/datum/reagent))
+			if(chosen_id)
+				var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", reagents.maximum_volume) as num|null
+				if(amount)
+					reagents.add_reagent(chosen_id, amount)
+					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src]")
+					message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to [src]</span>")
+
+	if(href_list[VV_HK_TRIGGER_EXPLOSION] && check_rights(R_FUN))
+		usr.client.cmd_admin_explosion(src)
+
+	if(href_list[VV_HK_TRIGGER_EMP] && check_rights(R_FUN))
+		usr.client.cmd_admin_emp(src)
+
+	// if(href_list[VV_HK_RADIATE] && check_rights(R_FUN))
+	// 	var/strength = input(usr, "Choose the radiation strength.", "Choose the strength.") as num|null
+	// 	if(!isnull(strength))
+	// 		AddComponent(/datum/component/radioactive, strength, src)
+
+	// if(href_list[VV_HK_SHOW_HIDDENPRINTS] && check_rights(R_ADMIN))
+	// 	usr.client.cmd_show_hiddenprints(src)
+
+
+	// if(href_list[VV_HK_ADD_AI])
+	// 	if(!check_rights(R_ADMIN))
+	// 		return
+	// 	var/result = input(usr, "Choose the AI controller to apply to this atom WARNING: Not all AI works on all atoms.", "AI controller") as null|anything in subtypesof(/datum/ai_controller)
+	// 	if(!result)
+	// 		return
+	// 	ai_controller = new result(src)
+
+	if(href_list[VV_HK_MODIFY_TRANSFORM] && check_rights(R_ADMIN))
+		var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate")
+		var/matrix/M = transform
+		switch(result)
+			if("Scale")
+				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
+				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				if(!isnull(x) && !isnull(y))
+					transform = M.Scale(x,y)
+			if("Translate")
+				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
+				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				if(!isnull(x) && !isnull(y))
+					transform = M.Translate(x,y)
+			if("Rotate")
+				var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
+				if(!isnull(angle))
+					transform = M.Turn(angle)
+
+	// if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_ADMIN))
+	// 	var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
+	// 	// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
+	// 	if(newname && !(CHAT_FILTER_CHECK(newname) && alert(usr, "Your selected name contains words restricted by IC chat filters. Confirm this new name?", "IC Chat Filter Conflict", "Confirm", "Cancel") != "Confirm"))
+	// 		vv_auto_rename(newname)
+
+	if(href_list[VV_HK_EDIT_FILTERS] && check_rights(R_ADMIN))
+		var/client/C = usr.client
+		C?.open_filter_editor(src)
+
+/atom/vv_get_header()
+	. = ..()
+	var/refid = REF(src)
+	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
+	. += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+
+/**
+ * Hook for running code when a dir change occurs
+ *
+ * Not recommended to use, listen for the [COMSIG_ATOM_DIR_CHANGE] signal instead (sent by this proc)
+ * also, do NOT use observer datums.
+ */
+/atom/proc/setDir(newdir)
+	SHOULD_CALL_PARENT(TRUE)
+	// SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
+	dir = newdir
 
 /**
  * An atom has entered this atom's contents

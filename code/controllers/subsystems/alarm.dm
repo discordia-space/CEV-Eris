@@ -24,8 +24,8 @@ SUBSYSTEM_DEF(alarm)
 	power_alarm = new()
 
 /datum/controller/subsystem/alarm/Initialize(start_timeofday)
+	. = ..()
 	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
-	return ..()
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)
 	if (!resumed)
@@ -42,5 +42,6 @@ SUBSYSTEM_DEF(alarm)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/alarm/stat_entry()
-	..("[active_alarm_cache.len] alarm\s")
+/datum/controller/subsystem/alarm/stat_entry(msg)
+	msg = "[active_alarm_cache.len] alarm[active_alarm_cache.len > 1 ? "s" : null]"
+	return ..()

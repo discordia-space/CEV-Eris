@@ -16,4 +16,4 @@ SUBSYSTEM_DEF(spawn_data)
 /datum/controller/subsystem/spawn_data/stat_entry(msg)
 	if (!Debug2)
 		return // Only show up in stat panel if debugging is enabled.
-	. = ..()
+	return ..()

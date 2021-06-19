@@ -13,6 +13,7 @@ var/list/admin_datums = list()
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
+	var/datum/filter_editor/filteriffic
 
 /datum/admins/proc/marked_datum()
 	if(marked_datum)
@@ -116,3 +117,6 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 		holder.disassociate()
 		//qdel(holder)
 	return 1
+
+/proc/HrefToken(forceGlobal = FALSE)
+	return "admin_token=CODEMEPLS" // [RawHrefToken(forceGlobal)]

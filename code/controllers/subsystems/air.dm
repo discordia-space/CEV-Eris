@@ -62,23 +62,10 @@ Class Procs:
 */
 
 SUBSYSTEM_DEF(air)
-	name = "Atmospherics"
-	init_order = INIT_ORDER_AIR
+	name = "Air"
 	priority = FIRE_PRIORITY_AIR
-	wait = 0.5 SECONDS
-	flags = SS_BACKGROUND
-	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
-
-	var/cached_cost = 0
-
-	var/cost_pipenets = 0
-	var/cost_atmos_machinery = 0
-	var/cost_tiles = 0
-	var/cost_tiles_defered = 0
-	var/cost_hotspots = 0
-	var/cost_fire = 0
-	var/cost_zone = 0
-	var/cost_edges = 0
+	init_order = INIT_ORDER_AIR
+	flags = SS_POST_FIRE_TIMING
 
 	//Geometry lists
 	var/list/zones = list()
@@ -89,28 +76,16 @@ SUBSYSTEM_DEF(air)
 	var/list/zones_to_update = list()
 	var/list/active_fire_zones = list()
 	var/list/active_hotspots = list()
-	var/list/networks = list()
 	var/list/active_edges = list()
-	/// A list of machines that will be processed when currentpart == SSAIR_ATMOSMACHINERY. Use SSair.begin_processing_machine and SSair.stop_processing_machine to add and remove machines.
-	var/list/obj/machinery/atmos_machinery = list()
-	var/list/pipe_init_dirs_cache = list()
 
-	var/list/deferred = list() // todo: see if this is needed at all with the new system
-	var/list/processing_edges = list()
-	var/list/processing_fires = list()
-	var/list/processing_hotspots = list()
-	var/list/processing_zones = list()
+	var/tmp/list/deferred = list()
+	var/tmp/list/processing_edges
+	var/tmp/list/processing_fires
+	var/tmp/list/processing_hotspots
+	var/tmp/list/processing_zones
 
 	var/active_zones = 0
 	var/next_id = 1
-
-	/// A cache of objects that perisists between processing runs when resumed == TRUE. Dangerous, qdel'd objects not cleared from this may cause runtimes on processing.
-	var/list/currentrun = list() // defered 2
-	var/currentpart = SSAIR_PIPENETS
-
-	var/map_loading = TRUE
-	// var/list/queued_for_activation
-	var/display_all_groups = FALSE
 
 /datum/controller/subsystem/air/proc/reboot()
 	// Stop processing while we rebuild.
@@ -143,32 +118,21 @@ SUBSYSTEM_DEF(air)
 	can_fire = TRUE
 
 /datum/controller/subsystem/air/stat_entry(msg)
-	msg += "C:{"
-	msg += "PN:[round(cost_pipenets,1)]|"
-	msg += "AM:[round(cost_atmos_machinery,1)]|"
-	msg += "AT:[round(cost_tiles,1)]|"
-	msg += "ATD:[round(cost_tiles_defered,1)]|"
-	msg += "HS:[round(cost_hotspots,1)]|"
-	msg += "FIR:[round(cost_fire,1)]|"
-	msg += "ZO:[round(cost_zone,1)]|"
-	msg += "EDG:[round(cost_edges, 1)]"
-	msg += "} "
-	msg += "PN:[networks.len]|"
-	msg += "AM:[atmos_machinery.len]|"
-	msg += "AT:[tiles_to_update.len]|"
-	msg += "ATD:[deferred.len]|"
-	msg += "HS:[processing_hotspots.len]|"
-	msg += "FIR:[processing_fires.len]|"
-	msg += "ZO:[processing_zones.len]|"
-	msg += "EDG:[processing_edges.len]|"
-	msg += "AT/MS:[round((cost ? (tiles_to_update.len + deferred.len)/cost : 0),0.1)]"
+	var/list/out = list(
+		"TtU:[tiles_to_update.len] ",
+		"ZtU:[zones_to_update.len] ",
+		"AFZ:[active_fire_zones.len] ",
+		"AH:[active_hotspots.len] ",
+		"AE:[active_edges.len]"
+	)
+	msg = out.Join()
 	return ..()
 
 /datum/controller/subsystem/air/Initialize(timeofday, simulate = TRUE)
-	map_loading = FALSE
+
 	var/starttime = REALTIMEOFDAY
-	// setup allturfs
 	to_chat(admins, "<span class='boldannounce'>Processing Geometry...</span>")
+
 	var/simulated_turf_count = 0
 	for(var/turf/simulated/S)
 		simulated_turf_count++
@@ -180,262 +144,133 @@ Total Zones: [zones.len]
 Total Edges: [edges.len]
 Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]</span>"})
+
 	to_chat(admins, "<span class='boldannounce'>Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>")
-	// setup allturfs 2
+
 	if (simulate)
 		to_chat(admins, "<span class='boldannounce'>Settling air...</span>")
+
 		starttime = REALTIMEOFDAY
-		process_active_turfs(FALSE, TRUE)
-		process_active_turfs_defered(FALSE, TRUE)
-		process_edges(FALSE, TRUE)
-		process_zasfire(FALSE, TRUE)
-		process_hotspots(FALSE, TRUE)
-		process_zone(FALSE, TRUE)
+		fire(FALSE, TRUE)
+
 		to_chat(admins, "<span class='boldannounce'>Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!</span>")
 
-	setup_atmos_machinery()
-	setup_pipenets()
-
-	return ..()
+	..(timeofday)
 
 /datum/controller/subsystem/air/fire(resumed = FALSE, no_mc_tick = FALSE)
-	var/timer = TICK_USAGE_REAL
-
-	if(currentpart == SSAIR_PIPENETS || !resumed)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_pipenets(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_ATMOSMACHINERY
-
-	if(currentpart == SSAIR_ATMOSMACHINERY)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_atmos_machinery(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_atmos_machinery = MC_AVERAGE(cost_atmos_machinery, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_ACTIVETURFS
-
-	if(currentpart == SSAIR_ACTIVETURFS)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_active_turfs(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_tiles = MC_AVERAGE(cost_tiles, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_DEFER_AT
-
-	if(currentpart == SSAIR_DEFER_AT)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_active_turfs_defered(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_tiles_defered = MC_AVERAGE(cost_tiles_defered, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_EDGES
-
-	if(currentpart == SSAIR_EDGES)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_edges(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_edges = MC_AVERAGE(cost_edges, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_FIRE
-
-	if(currentpart == SSAIR_FIRE) //We do this before excited groups to allow breakdowns to be independent of adding turfs while still *mostly preventing mass fires
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_zasfire(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_fire = MC_AVERAGE(cost_fire, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_HOTSPOTS
-
-	if(currentpart == SSAIR_HOTSPOTS) //We do this before excited groups to allow breakdowns to be independent of adding turfs while still *mostly preventing mass fires
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_hotspots(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_ZONE
-
-	if(currentpart == SSAIR_ZONE) //We do this before excited groups to allow breakdowns to be independent of adding turfs while still *mostly preventing mass fires
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_zone(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_zone = MC_AVERAGE(cost_zone, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-
-	currentpart = SSAIR_PIPENETS
-	SStgui.update_uis(SSair) //Lightning fast debugging motherfucker
-
-/datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
-		src.currentrun = networks.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/datum/thing = currentrun[currentrun.len]
-		currentrun.len--
-		if(thing)
-			thing.process()
-		else
-			networks.Remove(thing)
-		if(MC_TICK_CHECK)
+		processing_edges = active_edges.Copy()
+		processing_fires = active_fire_zones.Copy()
+		processing_hotspots = active_hotspots.Copy()
+
+	var/list/curr_tiles = tiles_to_update
+	var/list/curr_defer = deferred
+	var/list/curr_edges = processing_edges
+	var/list/curr_fire = processing_fires
+	var/list/curr_hotspot = processing_hotspots
+	var/list/curr_zones = zones_to_update
+
+	while (curr_tiles.len)
+		var/turf/T = curr_tiles[curr_tiles.len]
+		curr_tiles.len--
+
+		if (!T)
+			if (no_mc_tick)
+				CHECK_TICK
+			else if (MC_TICK_CHECK)
+				return
+
+			continue
+
+		//check if the turf is self-zone-blocked
+		if(T.c_airblock(T) & ZONE_BLOCKED)
+			deferred += T
+			if (no_mc_tick)
+				CHECK_TICK
+			else if (MC_TICK_CHECK)
+				return
+			continue
+
+		T.update_air_properties()
+		T.post_update_air_properties()
+		T.needs_air_update = 0
+		#ifdef ZASDBG
+		T.remove_overlays(mark)
+		updated++
+		#endif
+
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = FALSE)
-	if (!resumed)
-		src.currentrun = atmos_machinery.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
-		currentrun.len--
-		if(!M)
-			atmos_machinery -= M
-		if(M.process_atmos() == PROCESS_KILL)
-			stop_processing_machine(M)
-		if(MC_TICK_CHECK)
+	while (curr_defer.len)
+		var/turf/T = curr_defer[curr_defer.len]
+		curr_defer.len--
+
+		T.update_air_properties()
+		T.post_update_air_properties()
+		T.needs_air_update = 0
+		#ifdef ZASDBG
+		T.remove_overlays(mark)
+		updated++
+		#endif
+
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_active_turfs(resumed = FALSE, setup = FALSE)
-	//cache for sanic speed
-	// var/fire_count = times_fired
-	if (!resumed)
-		src.currentrun = tiles_to_update.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/turf/T = currentrun[currentrun.len]
-		currentrun.len--
-		if (T)
-			//check if the turf is self-zone-blocked
-			if(T.c_airblock(T) & ZONE_BLOCKED)
-				deferred += T
-				if (MC_TICK_CHECK)
-					return
-			// T.process_cell(fire_count)
-			T.update_air_properties()
-			T.post_update_air_properties()
-			T.needs_air_update = FALSE
-			#ifdef ZASDBG
-			T.remove_overlays(mark)
-			#endif
+	while (curr_edges.len)
+		var/connection_edge/edge = curr_edges[curr_edges.len]
+		curr_edges.len--
 
-		if (MC_TICK_CHECK && !setup)
+		if (!edge)
+			if (no_mc_tick)
+				CHECK_TICK
+			else if (MC_TICK_CHECK)
+				return
+			continue
+
+		edge.tick()
+
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_active_turfs_defered(resumed = FALSE, setup = FALSE)
-	//cache for sanic speed
-	// var/fire_count = times_fired
-	if (!resumed)
-		src.currentrun = deferred.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/turf/T = currentrun[currentrun.len]
-		currentrun.len--
-		if (T)
-			// T.process_cell(fire_count)
-			T.update_air_properties()
-			T.post_update_air_properties()
-			T.needs_air_update = FALSE
-			#ifdef ZASDBG
-			T.remove_overlays(mark)
-			#endif
+	while (curr_fire.len)
+		var/zone/Z = curr_fire[curr_fire.len]
+		curr_fire.len--
 
-		if (MC_TICK_CHECK && !setup)
+		Z.process_fire()
+
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_edges(resumed = FALSE, setup = FALSE)
-	if (!resumed)
-		src.currentrun = processing_edges.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/connection_edge/E = currentrun[currentrun.len]
-		currentrun.len--
-		if (E)
-			E.tick()
+	while (curr_hotspot.len)
+		var/obj/fire/F = curr_hotspot[curr_hotspot.len]
+		curr_hotspot.len--
 
-		if (MC_TICK_CHECK && !setup)
+		F.Process()
+
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_zasfire(resumed = FALSE, setup = FALSE)
-	if (!resumed)
-		src.currentrun = processing_fires.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while (currentrun.len)
-		var/zone/Z = currentrun[currentrun.len]
-		currentrun.len--
-		if(Z)
-			Z.process_fire()
-		else
-			processing_fires -= Z
-		if (MC_TICK_CHECK && !setup)
-			return
+	while (curr_zones.len)
+		var/zone/Z = curr_zones[curr_zones.len]
+		curr_zones.len--
 
-/datum/controller/subsystem/air/proc/process_hotspots(resumed = FALSE, setup = FALSE)
-	if (!resumed)
-		src.currentrun = processing_hotspots.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len) // i kid you not, hotspots are fire
-		var/obj/fire/H = currentrun[currentrun.len]
-		currentrun.len--
-		if (H)
-			H.process()
-		else
-			processing_hotspots -= H
-		if (MC_TICK_CHECK && !setup)
-			return
+		Z.tick()
+		Z.needs_update = FALSE
 
-/datum/controller/subsystem/air/proc/process_zone(resumed = FALSE, setup = FALSE)
-	if (!resumed)
-		src.currentrun = processing_zones.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len) // i kid you not, hotspots are fire
-		var/zone/Z = currentrun[currentrun.len]
-		currentrun.len--
-		if (Z)
-			Z.tick()
-			Z.needs_update = FALSE
-		else
-			processing_zones -= Z // merging zones probably has a chance to null, so safety is gud
-		if (MC_TICK_CHECK && !setup)
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/add_zone(zone/z)
@@ -589,72 +424,3 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		active_edges -= E
 	if(processing_edges)
 		processing_edges -= E
-
-/datum/controller/subsystem/air/proc/setup_atmos_machinery()
-	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
-		AM.atmos_init()
-		CHECK_TICK
-	for(var/obj/machinery/atmospherics/unary/U in atmos_machinery)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status() // move this to unary level
-		CHECK_TICK
-
-//this can't be done with setup_atmos_machinery() because
-// all atmos machinery has to initalize before the first
-// pipenet can be built.
-/datum/controller/subsystem/air/proc/setup_pipenets()
-	for(var/obj/machinery/atmospherics/AM in atmos_machinery)
-		AM.build_network()
-		CHECK_TICK
-
-/datum/controller/subsystem/air/proc/setup_template_machinery(list/atmos_machines)
-	var/obj/machinery/atmospherics/AM
-	for(var/A in 1 to atmos_machines.len)
-		AM = atmos_machines[A]
-		AM.atmos_init()
-		if(istype(AM, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = AM
-			T.broadcast_status()
-		else if(istype(AM, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = AM
-			T.broadcast_status() // move this to unary level
-		CHECK_TICK
-
-	for(var/A in 1 to atmos_machines.len)
-		AM = atmos_machines[A]
-		AM.build_network()
-		CHECK_TICK
-
-/**
- * Adds a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
- *
- * Arguments:
- * * machine - The machine to start processing. Can be any /obj/machinery.
- */
-/datum/controller/subsystem/air/proc/start_processing_machine(obj/machinery/machine)
-	if(machine.atmos_processing)
-		return
-	machine.atmos_processing = TRUE
-	atmos_machinery += machine
-
-/**
- * Removes a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
- *
- * Arguments:
- * * machine - The machine to stop processing.
- */
-/datum/controller/subsystem/air/proc/stop_processing_machine(obj/machinery/machine)
-	if(!machine.atmos_processing)
-		return
-	machine.atmos_processing = FALSE
-	atmos_machinery -= machine
-
-	// If we're currently processing atmos machines, there's a chance this machine is in
-	// the currentrun list, which is a cache of atmos_machinery. Remove it from that list
-	// as well to prevent processing qdeleted objects in the cache.
-	if(currentpart == SSAIR_ATMOSMACHINERY)
-		currentrun -= machine

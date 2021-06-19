@@ -8,7 +8,7 @@
 	///Is the machine on?
 	var/on = FALSE
 	///the rate the machine will scrub air
-	var/volume_rate = 1000
+	var/volume_rate = 8 * ONE_ATMOSPHERE
 	///Multiplier with ONE_ATMOSPHERE, if the enviroment pressure is higher than that, the scrubber won't work
 	var/overpressure_m = 80
 
@@ -53,7 +53,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/powered/scrubber/process_atmos()
+/obj/machinery/portable_atmospherics/powered/scrubber/process() //process_atmos()
 	if(!on || !cell || (cell && !cell.charge))
 		return ..()
 
@@ -106,6 +106,9 @@
 	// for(var/path in GLOB.meta_gas_info)
 	// 	var/list/gas = GLOB.meta_gas_info[path]
 	// 	data["filter_types"] += list(list("gas_id" = gas[META_GAS_ID], "gas_name" = gas[META_GAS_NAME], "enabled" = (path in scrubbing)))
+	data["min_rate"] = minrate
+	data["max_rate"] = maxrate
+	data["current_rate"] = volume_rate
 
 	if(holding)
 		data["holding"] = list()
@@ -135,12 +138,30 @@
 		if("power")
 			on = !on
 			if(on)
-				SSair.start_processing_machine(src)
+				// SSair.start_processing_machine(src)
+				begin_processing()
 			. = TRUE
 		if("eject")
 			if(holding)
 				replace_tank(usr, FALSE)
 				. = TRUE
+		if("rate")
+			var/rate = params["rate"]
+			if(rate == "reset")
+				rate = 800
+				. = TRUE
+			else if(rate == "min")
+				rate = minrate
+				. = TRUE
+			else if(rate == "max")
+				rate = maxrate
+				. = TRUE
+			else if(text2num(rate) != null)
+				rate = text2num(rate)
+				. = TRUE
+			if(.)
+				volume_rate = clamp(round(rate), minrate, maxrate)
+				investigate_log("was set to [volume_rate] kPa by [key_name(usr)].", INVESTIGATE_ATMOS)
 		// if("toggle_filter")
 		// 	scrubbing ^= gas_id2path(params["val"])
 		// 	. = TRUE
@@ -189,12 +210,12 @@
 	if (old_stat != stat)
 		update_icon()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/Process()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/process()
 	if(!on || (stat & (NOPOWER|BROKEN)))
 		update_use_power(0)
 		last_flow_rate = 0
 		last_power_draw = 0
-		return 0
+		return PROCESS_KILL
 
 	var/power_draw = -1
 

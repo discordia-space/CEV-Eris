@@ -197,8 +197,15 @@
 		. = PROCESS_KILL
 
 /obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
-	var/datum/gas_mixture/environment = loc.return_air()
+	if(!SSticker.HasRoundStarted())
+		return
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
 
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!environment)
+		CRASH("This pipe is placed somewhere without air, this cannot burst!")
 	var/pressure_difference = pressure - environment.return_pressure()
 
 	if(pressure_difference > maximum_pressure)
@@ -209,7 +216,7 @@
 		if(prob(5))
 			burst()
 
-	else return 1
+	return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
 	src.visible_message(SPAN_DANGER("\The [src] bursts!"));

@@ -15,13 +15,13 @@
 /obj/machinery/meter/Initialize(mapload, new_piping_layer)
 	// if(!isnull(new_piping_layer))
 	// 	target_layer = new_piping_layer
-	SSair.start_processing_machine(src)
+	// SSair.start_processing_machine(src)
 	if(!target)
 		target = locate(/obj/machinery/atmospherics/pipe) in loc
 		// reattach_to_layer()
 	return ..()
 
-/obj/machinery/meter/process_atmos()
+/obj/machinery/meter/process() //process_atmos()
 	if(!(target?.flags_1 & INITIALIZED_1) || !initialized)
 		icon_state = "meterX"
 		return FALSE
@@ -62,7 +62,7 @@
 		signal.source = src
 		signal.transmission_method = 1
 		signal.data = list(
-			"id_tag" = id_tag, // future
+			"id_tag" = id, // future
 			"tag" = id,
 			"device" = "AM",
 			"pressure" = round(env_pressure),

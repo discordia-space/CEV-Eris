@@ -298,7 +298,9 @@
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
-
+// Diagonal movement
+#define FIRST_DIAG_STEP 1
+#define SECOND_DIAG_STEP 2
 
 //Planet habitability class
 #define HABITABILITY_IDEAL  1
@@ -329,6 +331,11 @@
 #define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33)
+
+//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+#define LUMA_R 0.213
+#define LUMA_G 0.715
+#define LUMA_B 0.072
 
 //different types of atom colorations
 #define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color

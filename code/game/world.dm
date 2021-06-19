@@ -59,6 +59,8 @@ GLOBAL_VAR(restart_counter)
 
 	GLOB.revdata = new
 
+	GLOB.round_id = game_id //BANAID FIX
+
 	config_tg.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 	// old cfg
 	config.post_load()
@@ -447,14 +449,13 @@ proc/setup_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
+		return FALSE
 
 	if(!dbcon || !dbcon.IsConnected())
 		return setup_database_connection()
-	else
-		return 1
+	return TRUE
 
 /world/proc/incrementMaxZ()
 	maxz++

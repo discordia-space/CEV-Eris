@@ -1,7 +1,14 @@
-//This is the proc for gibbing a mob. Cannot gib ghosts.
-//added different sort of gibs and animations. N
+/**
+ * Blow up the mob into giblets
+ *
+ * Arguments:
+ * * no_brain - Should the mob NOT drop a brain?
+ * * no_organs - Should the mob NOT drop organs?
+ * * no_bodyparts - Should the mob NOT drop bodyparts?
+*/
 /mob/proc/gib(anim="gibbed-m",do_gibs)
-	death(1)
+	if(stat != DEAD)
+		death(TRUE)
 	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
@@ -10,7 +17,8 @@
 	update_lying_buckled_and_verb_status()
 	GLOB.dead_mob_list -= src
 
-	if(do_gibs) gibs(loc, dna)
+	if(do_gibs)
+		gibs(loc, dna)
 
 	var/atom/movable/overlay/animation = null
 	if (anim)
@@ -20,16 +28,26 @@
 		animation.master = src
 		FLICK(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	qdel(src)
 
-/mob/proc/check_delete(var/atom/movable/overlay/animation)
-	if(animation)	qdel(animation)
-	if(src)			qdel(src)
+/mob/proc/check_delete(atom/movable/overlay/animation)
+	if(!QDELETED(animation))
+		qdel(animation)
+	if(!QDELETED(src))
+		qdel(src)
 
-//This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
-//Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
-//Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
+/**
+ * This is the proc for turning a mob into ash.
+ * Dusting robots does not eject the MMI, so it's a bit more powerful than gib()
+ *
+ * Arguments:
+ * * just_ash - If TRUE, ash will spawn where the mob was, as opposed to remains
+ * * drop_items - Should the mob drop their items before dusting?
+ * * force - Should this mob be FORCABLY dusted?
+*/
 /mob/proc/dust(anim = "dust-m", remains = /obj/effect/decal/cleanable/ash, iconfile = 'icons/mob/mob.dmi')
-	death(1)
+	death(TRUE)
+
 	if (istype(loc, /obj/item/weapon/holder))
 		var/obj/item/weapon/holder/H = loc
 		H.release_mob()
@@ -40,8 +58,6 @@
 	icon = null
 	invisibility = 101
 
-	new remains(loc)
-
 	remove_from_dead_mob_list()
 	var/atom/movable/overlay/animation = null
 	if(anim)
@@ -50,17 +66,56 @@
 		animation.icon = iconfile
 		animation.master = src
 		FLICK(anim, animation)
-	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
-
-
+	new remains(loc)
+	// tg: 5, this coderbase: 15
+	QDEL_IN(src, 10) // since this is sometimes called in the middle of movement, allow half a second for movement to finish, ghosting to happen and animation to play. Looks much nicer and doesn't cause multiple runtimes.
+	QDEL_IN(anim, 10)
+/*
+ * Called when the mob dies. Can also be called manually to kill a mob.
+ *
+ * Arguments:
+ * * gibbed - Was the mob gibbed?
+*/
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")
-	if(stat == DEAD)
-		return 0
+	stat = DEAD
+	unset_machine()
+	timeofdeath = world.time // cannot fail, unless the time machine works
+	if (isanimal(src))
+		set_death_time(ANIMAL, world.time)
+	else if (ispAI(src) || isdrone(src))
+		set_death_time(MINISYNTH, world.time)
+	else if (isliving(src))
+		set_death_time(CREW, world.time)//Crew is the fallback
+	var/tod = stationtime2text() //station_time_timestamp()
+	// var/turf/T = get_turf(src)
+	// if(mind && mind.name && mind.active && !istype(T.loc, /area/ctf))
+	// 	deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
+	if(mind)
+		mind.store_memory("Time of death: [tod]", 0)
+	// set_drugginess(0)
+	// set_disgust(0)
+	SetSleeping(0) //, 0)
+	// reset_perspective(null)
+	set_sight(sight|SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	set_see_in_dark(8)
+	set_see_invisible(SEE_INVISIBLE_LEVEL_TWO)
+	// reload_fullscreen()
+	// update_action_buttons_icon()
+	// update_damage_hud()
+	// update_health_hud()
+	// med_hud_set_health()
+	// med_hud_set_status()
+	stop_pulling()
+	update_lying_buckled_and_verb_status()
+	reset_plane_and_layer()
+
+	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
 
 	facing_dir = null
 
 	if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
-		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
+		visible_message("<b>\The [src.name]</b> [deathmessage]")
 
 	// Drop all embedded items if gibbed/dusted
 	if(gibbed)
@@ -70,25 +125,15 @@
 
 	for(var/mob/living/carbon/human/H in oviewers(src))
 		H.sanity.onSeeDeath(src)
-		SEND_SIGNAL(H, COMSIG_MOB_DEATH, src)
+		SEND_SIGNAL(H, COMSIG_MOB_DEATH, src) // LOCAL death
 
-	stat = DEAD
 	for(var/obj/item/weapon/implant/carrion_spider/control/C in src)
 		C.return_mind()
-
-	update_lying_buckled_and_verb_status()
-	reset_plane_and_layer()
-
-	set_sight(sight|SEE_TURFS|SEE_MOBS|SEE_OBJS)
-	set_see_in_dark(8)
-	set_see_invisible(SEE_INVISIBLE_LEVEL_TWO)
 
 	drop_r_hand()
 	drop_l_hand()
 
-	//Bay statistics system would be hooked in here, but we're not porting it
-
-
+	//Bay statistics (cringe) system would be hooked in here, but we're not porting it
 	if(isliving(src))
 		var/mob/living/L = src
 		if(L.HUDneed.Find("health"))
@@ -96,23 +141,13 @@
 			//H.icon_state = "health7" hm... need recode this moment...
 			H.DEADelize()
 	if(client)
-		kill_CH() //We dead... clear any prepared abilities...
+		kill_CH() //We dead... clear any prepared abilities... (don't worry, our OWN click handler is still alive)
 
-	timeofdeath = world.time
-	if (isanimal(src))
-		set_death_time(ANIMAL, world.time)
-	else if (ispAI(src) || isdrone(src))
-		set_death_time(MINISYNTH, world.time)
-	else if (isliving(src))
-		set_death_time(CREW, world.time)//Crew is the fallback
-	if(mind)
-		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	switch_from_living_to_dead_mob_list()
 	updateicon()
 	to_chat(src,"<span class='deadsay'>[show_dead_message]</span>")
-	return 1
 
-
+	return TRUE
 
 
 //This proc retrieves the relevant time of death from

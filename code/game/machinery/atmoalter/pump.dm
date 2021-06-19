@@ -57,7 +57,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/powered/pump/process_atmos()
+/obj/machinery/portable_atmospherics/powered/pump/process() //process_atmos()
 	if(!on || !cell || (cell && !cell.charge))
 		return ..()
 
@@ -113,7 +113,8 @@
 	if(prob(50 / severity))
 		on = !on
 		if(on)
-			SSair.start_processing_machine(src)
+			// SSair.start_processing_machine(src)
+			begin_processing()
 	if(prob(100 / severity))
 		direction_out = !direction_out //direction = PUMP_OUT
 	target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
@@ -167,7 +168,8 @@
 		if("power")
 			on = !on
 			if(on)
-				SSair.start_processing_machine(src)
+				// SSair.start_processing_machine(src)
+				begin_processing()
 			// if(on && !holding)
 				// var/plasma = air_contents.gas[/datum/gas/plasma]
 				// var/n2o = air_contents.gas[/datum/gas/nitrous_oxide]

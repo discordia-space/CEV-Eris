@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section } from '../components';
+import { Button, Section, Slider } from '../components';
 import { getGasLabel } from '../constants';
 import { Window } from '../layouts';
 import { PortableBasicInfo } from './common/PortableAtmos';
@@ -10,21 +10,32 @@ export const PortableScrubber = (props, context) => {
   return (
     <Window
       width={320}
-      height={filter_types ? 396 : 296}>
+      height={filter_types ? 426 : 396}>
       <Window.Content>
         <PortableBasicInfo />
-        {!!filter_types && (<Section title="Filters">
-          {filter_types.map(filter => (
-            <Button
-              key={filter.id}
-              icon={filter.enabled ? 'check-square-o' : 'square-o'}
-              content={getGasLabel(filter.gas_id, filter.gas_name)}
-              selected={filter.enabled}
-              onClick={() => act('toggle_filter', {
-                val: filter.gas_id,
-              })} />
-          ))}
-        </Section>)}
+        <Section title="Volume Rate">
+          {/* todo, easy minmax reset */}
+          <Slider
+            value={data.current_rate}
+            minValue={data.min_rate}
+            maxValue={data.max_rate}
+            unit={"L/s"} onChange={(e, value) => {
+              act('rate', { 'rate': value });
+            }} />
+        </Section>
+        {(!!filter_types || !!filter_types.length) && (
+          <Section title="Filters">
+            {filter_types.map(filter => (
+              <Button
+                key={filter.id}
+                icon={filter.enabled ? 'check-square-o' : 'square-o'}
+                content={getGasLabel(filter.gas_id, filter.gas_name)}
+                selected={filter.enabled}
+                onClick={() => act('toggle_filter', {
+                  val: filter.gas_id,
+                })} />
+            ))}
+          </Section>)}
       </Window.Content>
     </Window>
   );

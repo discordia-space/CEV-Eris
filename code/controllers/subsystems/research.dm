@@ -4,7 +4,6 @@
 	It holds instantiated designs, instantiated technologies (nodes) and tech tree types.
 	It sets research datums' designs and creates a new tree for each datum.
 */
-
 SUBSYSTEM_DEF(research)
 	name = "Research"
 	flags = SS_NO_FIRE

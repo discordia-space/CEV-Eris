@@ -22,8 +22,3 @@ SUBSYSTEM_DEF(sanity)
 		-9 = "Accursed",
 		-10 = "Soul Crushing",
 	)
-
-
-
-
-

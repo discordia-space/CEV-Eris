@@ -19,34 +19,36 @@
 	bad_type = /obj/item/weapon/contraband/poster
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/weapon/contraband/poster/New(turf/loc, datum/poster/new_design)
+/obj/item/weapon/contraband/poster/Initialize(mapload, turf/loc, datum/poster/new_design)
+	. = ..()
 	if(!new_design)
-		if(!GLOB.poster_designs.len)
-			log_mapping("Contraband didn't have any random designs, this has been qdeleted(). ([x], [y], [z]) [src.loc]")
-			qdel(src)
 		design = pick(GLOB.poster_designs)
 	else
 		design = new_design
-	..(loc)
 
 /obj/item/weapon/contraband/poster/placed
 	icon_state = "random"
 	anchored = TRUE
 	spawn_tags = null
-	New(turf/loc)
-		if(icon_state != "random")
-			for(var/datum/poster/new_design in GLOB.poster_designs)
-				if(new_design.icon_state == icon_state)
-					return ..(loc, new_design)
-		..()
-		if(iswall(loc) && !pixel_x && !pixel_y)
-			for(var/dir in cardinal)
-				if(isfloor(get_step(src, dir)))
-					switch(dir)
-						if(NORTH) pixel_y = -32
-						if(SOUTH) pixel_y = 32
-						if(EAST)  pixel_x = 32
-						if(WEST)  pixel_x = -32
+
+/obj/item/weapon/contraband/poster/placed/Initialize(mapload, turf/loc)
+	. = ..()
+	if(icon_state != "random")
+		for(var/datum/poster/new_design in GLOB.poster_designs)
+			if(new_design.icon_state == icon_state)
+				return
+	if(iswall(loc) && !pixel_x && !pixel_y)
+		for(var/dir in cardinal)
+			if(isfloor(get_step(src, dir)))
+				switch(dir)
+					if(NORTH)
+						pixel_y = -32
+					if(SOUTH)
+						pixel_y = 32
+					if(EAST)
+						pixel_x = 32
+					if(WEST)
+						pixel_x = -32
 
 /obj/item/weapon/contraband/poster/attack_hand(mob/user)
 	if(!anchored)

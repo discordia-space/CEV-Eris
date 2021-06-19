@@ -33,7 +33,13 @@
 	locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
 	)
 
-#define get_turf(atom) get_step(atom, 0)
+/**
+ * Get the turf that `A` resides in, regardless of any containers.
+ *
+ * Use in favor of `A.loc` or `src.loc` so that things work correctly when
+ * stored inside an inventory, locker, or other container.
+ */
+#define get_turf(A) (get_step(A, 0))
 
 /proc/dist3D(atom/A, atom/B)
 	var/turf/a = get_turf(A)

@@ -81,5 +81,6 @@ SUBSYSTEM_DEF(event)
 
 		to_chat(world, message)
 
-/datum/controller/subsystem/event/stat_entry()
-	..("E:[active_events.len]")
+/datum/controller/subsystem/event/stat_entry(msg)
+	msg = "E:[active_events.len]"
+	return ..()

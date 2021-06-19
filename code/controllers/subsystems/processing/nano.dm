@@ -9,14 +9,14 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key and try to update it with data
   *
-  * @param user /mob The mob who opened/owns the ui
-  * @param src_object /obj|/mob The obj or mob which the ui belongs to
-  * @param ui_key string A string key used for the ui
-  * @param ui /datum/nanoui An existing instance of the ui (can be null)
-  * @param data list The data to be passed to the ui, if it exists
-  * @param force_open boolean The ui is being forced to (re)open, so close ui if it exists (instead of updating)
+  * * user /mob The mob who opened/owns the ui
+  * * src_object /obj|/mob The obj or mob which the ui belongs to
+  * * ui_key string A string key used for the ui
+  * * ui /datum/nanoui An existing instance of the ui (can be null)
+  * * data list The data to be passed to the ui, if it exists
+  * * force_open boolean The ui is being forced to (re)open, so close ui if it exists (instead of updating)
   *
-  * @return /nanoui Returns the found ui, for null if none exists
+  * * /nanoui Returns the found ui, for null if none exists
   */
 /datum/controller/subsystem/processing/nano/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data, force_open = 0)
 	if (!ui) // no ui has been passed, so we'll search for one
@@ -43,11 +43,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key
   *
-  * @param user /mob The mob who opened/owns the ui
-  * @param src_object /obj|/mob The obj or mob which the ui belongs to
-  * @param ui_key string A string key used for the ui
+  * * user /mob The mob who opened/owns the ui
+  * * src_object /obj|/mob The obj or mob which the ui belongs to
+  * * ui_key string A string key used for the ui
   *
-  * @return /nanoui Returns the found ui, or null if none exists
+  * * /nanoui Returns the found ui, or null if none exists
   */
 /datum/controller/subsystem/processing/nano/proc/get_open_ui(mob/user, src_object, ui_key)
 	var/src_object_key = "\ref[src_object]"
@@ -66,9 +66,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Update all /nanoui uis attached to src_object
   *
-  * @param src_object /obj|/mob The obj or mob which the uis are attached to
+  * * src_object /obj|/mob The obj or mob which the uis are attached to
   *
-  * @return int The number of uis updated
+  * * int The number of uis updated
   */
 /datum/controller/subsystem/processing/nano/proc/update_uis(src_object)
 	. = 0
@@ -87,9 +87,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Close all /nanoui uis attached to src_object
   *
-  * @param src_object /obj|/mob The obj or mob which the uis are attached to
+  * * src_object /obj|/mob The obj or mob which the uis are attached to
   *
-  * @return int The number of uis close
+  * * int The number of uis close
   */
 /datum/controller/subsystem/processing/nano/proc/close_uis(src_object)
 	. = 0
@@ -105,11 +105,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Update /nanoui uis belonging to user
   *
-  * @param user /mob The mob who owns the uis
-  * @param src_object /obj|/mob If src_object is provided, only update uis which are attached to src_object (optional)
-  * @param ui_key string If ui_key is provided, only update uis with a matching ui_key (optional)
+  * * user /mob The mob who owns the uis
+  * * src_object /obj|/mob If src_object is provided, only update uis which are attached to src_object (optional)
+  * * ui_key string If ui_key is provided, only update uis with a matching ui_key (optional)
   *
-  * @return int The number of uis updated
+  * * int The number of uis updated
   */
 /datum/controller/subsystem/processing/nano/proc/update_user_uis(mob/user, src_object, ui_key)
 	. = 0
@@ -124,11 +124,11 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Close /nanoui uis belonging to user
   *
-  * @param user /mob The mob who owns the uis
-  * @param src_object /obj|/mob If src_object is provided, only close uis which are attached to src_object (optional)
-  * @param ui_key string If ui_key is provided, only close uis with a matching ui_key (optional)
+  * * user /mob The mob who owns the uis
+  * * src_object /obj|/mob If src_object is provided, only close uis which are attached to src_object (optional)
+  * * ui_key string If ui_key is provided, only close uis with a matching ui_key (optional)
   *
-  * @return int The number of uis closed
+  * * int The number of uis closed
   */
 /datum/controller/subsystem/processing/nano/proc/close_user_uis(mob/user, src_object, ui_key)
 	. = 0
@@ -144,9 +144,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * Add a /nanoui ui to the list of open uis
   * This is called by the /nanoui open() proc
   *
-  * @param ui /nanoui The ui to add
+  * * ui /nanoui The ui to add
   *
-  * @return nothing
+  * * nothing
   */
 /datum/controller/subsystem/processing/nano/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
@@ -159,9 +159,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * Remove a /nanoui ui from the list of open uis
   * This is called by the /nanoui close() proc
   *
-  * @param ui /nanoui The ui to remove
+  * * ui /nanoui The ui to remove
   *
-  * @return int 0 if no ui was removed, 1 if removed successfully
+  * * int 0 if no ui was removed, 1 if removed successfully
   */
 /datum/controller/subsystem/processing/nano/proc/ui_closed(var/datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
@@ -182,9 +182,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * This is called on user logout
   * Closes/clears all uis attached to the user's /mob
   *
-  * @param user /mob The user's mob
+  * * user /mob The user's mob
   *
-  * @return nothing
+  * * nothing
   */
 /datum/controller/subsystem/processing/nano/proc/user_logout(mob/user)
 	return close_user_uis(user)
@@ -193,10 +193,10 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * This is called when a player transfers from one mob to another
   * Transfers all open UIs to the new mob
   *
-  * @param oldMob /mob The user's old mob
-  * @param newMob /mob The user's new mob
+  * * oldMob /mob The user's old mob
+  * * newMob /mob The user's new mob
   *
-  * @return nothing
+  * * nothing
   */
 /datum/controller/subsystem/processing/nano/proc/user_transferred(mob/oldMob, mob/newMob)
 	if (!oldMob || !oldMob.open_uis)

@@ -27,16 +27,16 @@
 	var/static/regex/ic_filter_regex
 
 /datum/controller/configuration/proc/admin_reload()
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 	log_admin("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
 	message_admins("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 /datum/controller/configuration/proc/Load(_directory)
-	// if(IsAdminAdvancedProcCall()) //If admin proccall is detected down the line it will horribly break everything.
-	// 	return
+	if(IsAdminAdvancedProcCall()) //If admin proccall is detected down the line it will horribly break everything.
+		return
 	if(_directory)
 		directory = _directory
 	if(entries)
@@ -62,8 +62,8 @@
 		Master.OnConfigLoad()
 
 /datum/controller/configuration/proc/full_wipe()
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
 	entries = null
@@ -102,8 +102,8 @@
 	entries_by_type -= CE.type
 
 /datum/controller/configuration/proc/LoadEntries(filename, list/stack = list())
-	// if(IsAdminAdvancedProcCall())
-	// 	return
+	if(IsAdminAdvancedProcCall())
+		return
 
 	var/filename_to_test = world.system_type == MS_WINDOWS ? lowertext(filename) : filename
 	if(filename_to_test in stack)
@@ -203,9 +203,9 @@
 	E = entries_by_type[entry_type]
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
-	// if((E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
-	// 	log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
-	// 	return
+	if((E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
+		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
+		return
 	return E.config_entry_value
 
 /datum/controller/configuration/proc/Set(entry_type, new_val)
@@ -216,9 +216,9 @@
 	E = entries_by_type[entry_type]
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
-	// if((E.protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Set" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
-	// 	log_admin_private("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
-	// 	return
+	if((E.protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Set" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
+		log_admin_private("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
+		return
 	return E.ValidateAndSet("[new_val]")
 /*
 /datum/controller/configuration/proc/LoadModes()

@@ -91,16 +91,21 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		admin_ranks[rank] = rights
 		previous_rights = rights
 
-
+/// nukes admin datums EXEPT `!localhost!`
 /proc/clear_admin_datums()
-	admin_datums.Cut()
+	for(var/datum/admins/A in admin_datums)
+		if(A.rank == "!localhost!")
+			continue
+		admin_datums -= A
+	// DO NOT CUT IT!
 	for(var/client/C in admins)
-		C.remove_admin_verbs()
-		C.holder = null
-	admins.Cut()
+		if(C?.holder.rank == "!localhost!")
+			continue
+		C?.holder.disassociate()
+		C.deadmin_holder = null // make sure they aren't just deadmined
+		admins -= C
 
-
-/hook/startup/proc/loadAdmins()
+/hook/startup_sync/proc/loadAdmins()
 	clear_admin_datums()
 
 	if(config.admin_legacy_system)
@@ -109,8 +114,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		error("Failed to connect to database in load_admins(). Reverting to legacy system.")
-		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
+		log_sql("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		load_admins_legacy()
 		return FALSE
 
@@ -118,12 +122,11 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		load_admins()
 
 		if(!LAZYLEN(admin_datums))
-			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+			log_sql("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			config.admin_legacy_system = 1
 			load_admins_legacy()
 			return FALSE
-	
+
 	return TRUE
 
 /proc/load_admins()

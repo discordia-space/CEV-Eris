@@ -29,8 +29,9 @@ SUBSYSTEM_DEF(supply)
 	return ..()
 
 
-/datum/controller/subsystem/supply/stat_entry()
-	..("Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]")
+/datum/controller/subsystem/supply/stat_entry(msg)
+	msg = "Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]"
+	return ..()
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)

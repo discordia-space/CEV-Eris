@@ -15,6 +15,13 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	var/ghost_image_flag = GHOST_IMAGE_DARKNESS
 	var/image/ghost_image = null //this mobs ghost image, for deleting and stuff
 
+/mob/observer/abstract_move(atom/destination)
+	var/turf/old_turf = get_turf(src)
+	var/turf/new_turf = get_turf(destination)
+	if (old_turf?.z != new_turf?.z)
+		onTransitZ(old_turf?.z, new_turf?.z)
+	return ..()
+
 /mob/observer/can_fall()
 	return FALSE
 
