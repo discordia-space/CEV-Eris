@@ -312,7 +312,7 @@
 
 /obj/item/stack/material/glass/plasmaglass
 	name = "borosilicate glass"
-	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures"
+	desc = "This sheet is special plasma-glass alloy designed to withstand large temperatures"
 	singular_name = "borosilicate glass sheet"
 	icon_state = "sheet-plasmaglass"
 	default_type = MATERIAL_PLASMAGLASS
@@ -326,7 +326,7 @@
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"
-	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
+	desc = "This sheet is special plasma-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-plasmarglass"
 	default_type = MATERIAL_RPLASMAGLASS
