@@ -8,7 +8,7 @@
 	health = 90
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	poison_per_bite = 5
+	poison_per_bite = 8
 	move_to_delay = 4
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider/hunter
 	meat_amount = 4

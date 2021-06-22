@@ -59,7 +59,7 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded_reagents = list("protein" = 7, "pararein" = 12)
+	preloaded_reagents = list("protein" = 9, "pararein" = 8)
 
 /obj/item/reagent_containers/food/snacks/meat/spider/hunter
 	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
@@ -67,7 +67,7 @@
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
-	preloaded_reagents = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
+	preloaded_reagents = list("protein" = 7, "pararein" = 12)
 
 /obj/item/reagent_containers/food/snacks/meat/spider/nurse
 	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
@@ -75,7 +75,7 @@
 	filling_color = "#E2FFDE"
 	
 	bitesize = 6
-	preloaded_reagents = list("protein" = 8, "pararein" = 8)
+	preloaded_reagents = list("protein" = 6, "aranecolmin" = 8,"pararein" = 8)
 
 /obj/item/reagent_containers/food/snacks/meat/carp
 	name = "carp fillet"

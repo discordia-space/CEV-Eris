@@ -471,11 +471,60 @@
 	color = "#a37d9c"
 	metabolism = REM * 2
 	overdose = REAGENTS_OVERDOSE/3
-	nerve_system_accumulations = 5
+	nerve_system_accumulations = 10
 	strength = 0.01
 	sanityloss = 3
 	heating_point = 523
 	heating_products = list("toxin")
+
+/datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
+	sanity_gain = 1.2
+
+/datum/reagent/toxin/aranecolmin
+	name = "Aranecolmin"
+	id = "aranecolmin"
+	description = "Toxin used by Nurse spiders. Speeds up metabolism of other spider toxins immensely."
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#acc107"
+	overdose = REAGENTS_OVERDOSE
+	strength = 0.1
+	metabolism = REM * 2
+	addiction_chance = 10
+	nerve_system_accumulations = 5
+
+/datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_PAINKILLER, 15)
+	if(M.bloodstr)
+		for(var/current in M.bloodstr.reagent_list)
+			var/datum/reagent/toxin/pararein/R = current
+			if(istype(R))
+				R.metabolism = initial(R.metabolism) * 3
+
+/datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_ANTITOX, 0.3)
+	if(M.bloodstr)
+		for(var/current in M.bloodstr.reagent_list)
+			var/datum/reagent/toxin/pararein/R = current
+			if(istype(R))
+				R.metabolism = initial(R.metabolism) * 3
+				break
+
+/datum/reagent/toxin/aranecolmin/on_mob_delete(mob/living/carbon/M)
+	..()
+	if(istype(M))
+		if(M.bloodstr)
+			for(var/current in M.bloodstr.reagent_list)
+				var/datum/reagent/toxin/pararein/R = current
+				if(istype(R))
+					R.metabolism = initial(R.metabolism)
+					break
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"
