@@ -25,9 +25,10 @@
 	..()
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
-		if(prob(5))
+		if(prob(poison_per_bite))
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
+				to_chat(H, "SPAN_DANGER("It feels like the [src] just injected something big into your [O]!"")
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.add_item(eggs, src)
 

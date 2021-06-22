@@ -43,3 +43,15 @@
 	..()
 	get_light_and_color(parent)
 
+
+/mob/living/carbon/superior_animal/giant_spider/UnarmedAttack(atom/A, proximity)
+	. = ..()
+
+	if(isliving(A))
+		var/mob/living/L = A
+		if(istype(L) && L.reagents)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/carbon/superior_animal/giant_spider/Life()
+	. = ..()
+>>>>>>> 63ec6dd1e... removes TWO single-proc files what on earth
