@@ -19,7 +19,7 @@
 
 /datum/reagent/medicine/inaprovaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
-	M.add_chemical_effect(CE_PAINKILLER, 15 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 15)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/medicine/inaprovaline/sleeper
@@ -291,7 +291,7 @@
 
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 10 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 10)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
