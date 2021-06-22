@@ -22,14 +22,14 @@
 	var/fed = 0
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
-	var/target = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(prob(poison_per_bite))
+	..()
+	if(ishuman(target_mob))
+		var/mob/living/carbon/human/H = target_mob
+		if(prob(5))
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
-				O.implants += eggs
+				O.add_item(eggs, src)
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)
