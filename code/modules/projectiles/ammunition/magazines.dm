@@ -377,12 +377,23 @@
 
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (.30 Rifle)"
-	icon_state = "maxim"
+	icon_state = "maxim_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 96
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/maxim/rubber
+	name = "pan magazine (.30 Rifle rubber)"
+	icon_state = "maxim_r"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PAN
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 10)
+	ammo_type = /obj/item/ammo_casing/lrifle/rubber
 	max_ammo = 96
 	multiple_sprites = 1
 

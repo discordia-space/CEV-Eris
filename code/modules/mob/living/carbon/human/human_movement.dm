@@ -47,6 +47,12 @@
 
 	if(slowdown)
 		tally += 1
+	
+	if(l_hand.slowdown_hold)
+		tally += l_hand.slowdown_hold
+	
+	if(r_hand.slowdown_hold)
+		tally += r_hand.slowdown_hold
 
 	return tally
 

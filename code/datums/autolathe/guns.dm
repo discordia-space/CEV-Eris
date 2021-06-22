@@ -203,6 +203,10 @@
 	name = "FS GL \"Lenar\""
 	build_path = /obj/item/weapon/gun/launcher/grenade/lenar
 
+/datum/design/autolathe/gun/hmg_maxim
+	name = "Excelsior HMG .30 \"Maxim\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/maxim
+
 // Energy small arms
 
 /datum/design/autolathe/gun/taser
