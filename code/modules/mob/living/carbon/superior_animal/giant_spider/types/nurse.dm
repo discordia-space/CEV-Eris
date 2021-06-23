@@ -30,8 +30,10 @@
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
 				src.visible_message(SPAN_DANGER("[src] injects something into the [O] of [H]!"))
-				var/eggs = new /obj/effect/spider/eggcluster(O, src)
-				O.add_item(eggs, src)
+				var/obj/effect/spider/eggcluster/minor/S = new()
+				S.loc = O
+				O.implants += S
+
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)
