@@ -20,15 +20,16 @@
 	meat_amount = 3
 	rarity_value = 75
 	var/fed = 0
+	var/egg_inject_chance = 4
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
 	..()
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
-		if(prob(poison_per_bite))
+		if(prob(egg_inject_chance))
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
-				to_chat(H, "SPAN_DANGER("It feels like the [src] just injected something big into your [O]!"")
+				src.visible_message(SPAN_DANGER("[src] injects something into the [O] of [H]!"))
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.add_item(eggs, src)
 
