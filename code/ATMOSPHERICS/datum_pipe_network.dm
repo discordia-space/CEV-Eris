@@ -17,7 +17,7 @@ datum/pipe_network
 		..()
 
 	Destroy()
-		STOP_PROCESSING_PIPENET(src)
+		STOP_PROCESSING(SSmachines, src)
 
 		for(var/obj/machinery/atmospherics/normal_member in normal_members)
 			normal_member.reassign_network(src,null)
@@ -54,7 +54,7 @@ datum/pipe_network
 		update_network_gases()
 
 		if((normal_members.len>0)||(line_members.len>0))
-			START_PROCESSING_PIPENET(src)
+			START_PROCESSING(SSmachines, src)
 		else
 			qdel(src)
 

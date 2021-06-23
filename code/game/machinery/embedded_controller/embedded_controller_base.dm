@@ -42,7 +42,7 @@ obj/machinery/embedded_controller/radio/Destroy()
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	density = FALSE
 
 	var/id_tag

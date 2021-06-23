@@ -6,6 +6,7 @@
 	overlay = over
 	ckey = key
 
+
 var/list/ai_status_emotions = list(
 	"Very Happy" 				= new /datum/ai_emotion("ai_veryhappy"),
 	"Happy" 					= new /datum/ai_emotion("ai_happy"),
@@ -39,7 +40,7 @@ var/list/ai_status_emotions = list(
 /proc/set_ai_status_displays(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
-	for (var/obj/machinery/M in SSmachines.machinery) //change status
+	for (var/obj/machinery/M in GLOB.ai_status_display_list) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote
@@ -72,6 +73,16 @@ var/list/ai_status_emotions = list(
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	src.emotion = emote
+
+/obj/machinery/ai_status_display/New()
+	GLOB.ai_status_display_list += src
+
+	..()
+
+/obj/machinery/ai_status_display/Destroy()
+	GLOB.ai_status_display_list -= src
+
+	..()
 
 /obj/machinery/ai_status_display/Process()
 	return

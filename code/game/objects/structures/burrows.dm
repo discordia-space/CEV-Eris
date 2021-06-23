@@ -63,7 +63,7 @@
 
 /obj/structure/burrow/New(var/loc, turf/anchor)
 	.=..()
-	all_burrows.Add(src)
+	GLOB.all_burrows.Add(src)
 	var/obj/machinery/power/nt_obelisk/obelisk = locate(/obj/machinery/power/nt_obelisk) in range(7, src)
 	if(obelisk && obelisk.active)
 		qdel(src)
@@ -96,7 +96,7 @@
 
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
-	all_burrows.Remove(src)
+	GLOB.all_burrows.Remove(src)
 	target = null
 	recieving = null
 	//Eject any mobs that tunnelled through us
