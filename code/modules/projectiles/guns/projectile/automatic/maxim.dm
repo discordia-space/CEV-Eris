@@ -36,10 +36,18 @@
 
 /obj/item/weapon/gun/projectile/automatic/maxim/on_update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full[ammo_magazine.ammo_color]"
-		set_item_state("-full")
-	else
-		icon_state = initial(icon_state)
-		set_item_state()
-	return
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (ammo_magazine)
+		iconstring += "[ammo_magazine? "-full[ammo_magazine.ammo_color]": ""]"
+		itemstring += "_full"
+
+	if(wielded)
+		itemstring += "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+
+
