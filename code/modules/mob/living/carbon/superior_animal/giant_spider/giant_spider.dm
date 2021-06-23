@@ -24,7 +24,7 @@
 	move_to_delay = 6
 	turns_per_move = 5
 	see_in_dark = 10
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider
 	meat_amount = 3
 	stop_automated_movement_when_pulled = 0
 
@@ -39,10 +39,9 @@
 	pass_flags = PASSTABLE
 	faction = "spiders"
 
-/mob/living/carbon/superior_animal/giant_spider/New(location, atom/parent)
-	..()
+/mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
-
+	..()
 
 /mob/living/carbon/superior_animal/giant_spider/UnarmedAttack(atom/A, proximity)
 	. = ..()
@@ -52,6 +51,3 @@
 		if(istype(L) && L.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/carbon/superior_animal/giant_spider/Life()
-	. = ..()
->>>>>>> 63ec6dd1e... removes TWO single-proc files what on earth
