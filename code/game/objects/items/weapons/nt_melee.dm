@@ -206,7 +206,7 @@
 	var/obj/item/weapon/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE
-	var/list/can_hold = new/list(
+	var/list/can_hold = list(
 		/obj/item/weapon/tool/sword/nt/shortsword,
 		/obj/item/weapon/tool/sword/nt/spear,
 		/obj/item/weapon/tool/knife/dagger/nt,
@@ -220,7 +220,7 @@
 	container.can_hold = can_hold
 	container.max_w_class = max_w_class
 	container.master_item = src
-	.=..()
+	..()
 
 /obj/item/weapon/shield/riot/nt/proc/handle_attack_hand(mob/user as mob)
 	return container.handle_attack_hand(user)
@@ -240,7 +240,7 @@
 		container.close_all()
 		..()
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/item/weapon/shield/riot/nt/attackby(obj/item/weapon/W as obj, mob/user as mob)
