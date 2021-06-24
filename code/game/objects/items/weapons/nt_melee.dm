@@ -184,7 +184,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
 
 /obj/item/weapon/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
-	. = ..()
+	..()
 	if (I.has_quality(QUALITY_WELDING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair \the damaged spear-tip."))
