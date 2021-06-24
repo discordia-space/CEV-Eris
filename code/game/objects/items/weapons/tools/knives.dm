@@ -324,6 +324,7 @@
 	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it
 	slot_flags = SLOT_BACK
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	allow_spin = FALSE
 
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_KNIFE

@@ -158,6 +158,7 @@
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
 	price_tag = 150
+	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
 
 /obj/item/weapon/tool/sword/nt/spear/equipped(mob/living/W)
@@ -166,9 +167,6 @@
 		embed_mult = 0.1
 	else
 		embed_mult = initial(embed_mult)
-	if(isBroken)
-		force = WEAPON_FORCE_NORMAL
-		throwforce = WEAPON_FORCE_HARMLESS
 
 /obj/item/weapon/tool/sword/nt/spear/dropped(mob/living/W)
 	embed_mult = 300
@@ -182,6 +180,8 @@
 	. = ..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
+		force = WEAPON_FORCE_NORMAL
+		throwforce = WEAPON_FORCE_HARMLESS
 
 /obj/item/weapon/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	. = ..()
@@ -189,6 +189,8 @@
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair \the damaged spear-tip."))
 			tipbroken = FALSE
+			force = initial(force)
+			throwforce = initial(throwforce)		
 
 
 /obj/item/weapon/shield/riot/nt
