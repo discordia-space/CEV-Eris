@@ -175,7 +175,7 @@
 	..()
 
 /obj/item/weapon/tool/sword/nt/spear/on_embed(mob/user)
-	. = ..()
+	..()
 	tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
