@@ -137,7 +137,7 @@
 	..()
 
 /obj/item/weapon/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
-	. = ..()
+	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/O = target
 		target.stun_effect_act(stun, agony, hit_zone, src)
