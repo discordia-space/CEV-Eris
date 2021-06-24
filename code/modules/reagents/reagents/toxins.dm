@@ -465,7 +465,7 @@
 /datum/reagent/toxin/pararein
 	name = "Pararein"
 	id = "pararein"
-	description = "Venom used by spiders."
+	description = "Venom used by spiders. Infamous for influencing the central nervous system in many ways."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#a37d9c"
@@ -479,10 +479,19 @@
 
 /datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pararein")
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
+	if(prob(30))
+		M.druggy = max(M.druggy, 5 * effect_multiplier)
+	if(prob(10))
+		M.eye_blurry = max(M.eye_blurry, 15)
+
+/datum/reagent/toxin/pararein/on_mob_delete(mob/living/carbon/M)
+	..()
+	M.druggy =
+	M.eye_blurry = 
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"
