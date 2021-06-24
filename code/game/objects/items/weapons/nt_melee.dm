@@ -64,7 +64,7 @@
 
 
 /obj/item/weapon/tool/knife/dagger/nt/equipped(mob/living/H)
-	. = ..()
+	..()
 	if(is_held() && is_neotheology_disciple(H))
 		embed_mult = 0.1
 	else
