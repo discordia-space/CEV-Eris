@@ -190,7 +190,6 @@
 		/obj/item/weapon/implant/core_implant/cruciform,
 		/obj/item/weapon/tool/knife/neotritual,
 		/obj/item/weapon/gun/energy/crossbow,
-		/obj/item/weapon/gun/energy/crossbow,
 		/obj/item/weapon/tool/knife/dagger/nt,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors
 	)
