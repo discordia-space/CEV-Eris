@@ -154,9 +154,9 @@
 	var/tipbroken = FALSE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT 
-	throwforce = 75 
+	throwforce = 45
 	armor_penetration = ARMOR_PEN_HALF
-	throw_speed = 3
+	throw_speed = 5
 	price_tag = 150
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
 
