@@ -216,6 +216,12 @@
 	desc = "Just by looking at the item you can know how much it cost."
 	icon_state = "market_prof"
 
+/datum/perk/oddity/gunsmith
+	name = "Gunsmith"
+	desc = "You are skilled in gun production. \
+			You produce twice as much ammo from ammo kits, and have more options to pick from when assembling a gun."
+	icon_state = "ammo_box"
+
 ///////////////////////////////////////
 //////// NT ODDITYS PERKS /////////////
 ///////////////////////////////////////

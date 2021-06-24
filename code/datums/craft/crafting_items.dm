@@ -135,6 +135,8 @@
 		to_chat(user, SPAN_WARNING("[src] is not yet complete."))
 	else
 		view_only = round((total_items - 1) * (1 - user.stats.getMult(req_sat, STAT_LEVEL_GODLIKE))) + 1
+		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
+			view_only += 3
 		ui_interact(user)
 		SSnano.update_uis(src)
 

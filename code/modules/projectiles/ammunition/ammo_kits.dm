@@ -40,7 +40,8 @@
 	var/ammo_type = options[choice]
 
 	var/dice_roll = (rand(0,20)*(1+cog_stat/20))	//0 cog means you get between 0 and 20, negative means you only over get minimum
-
+	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
+		dice_roll = dice_roll * 2
 	switch(ammo_type)
 		if("pistol")
 			spawn_pistol(dice_roll,user)
