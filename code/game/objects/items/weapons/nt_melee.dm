@@ -179,7 +179,7 @@
 	tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
-	. = ..()
+	..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
 
