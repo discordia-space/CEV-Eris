@@ -15,7 +15,7 @@
 	bad_type = /obj/item/weapon/tool/sword/nt
 
 /obj/item/weapon/tool/sword/nt/equipped(mob/living/M)
-	. = ..()
+	..()
 	if(is_held() && is_neotheology_disciple(M))
 		embed_mult = 0.1
 	else
@@ -64,7 +64,7 @@
 
 
 /obj/item/weapon/tool/knife/dagger/nt/equipped(mob/living/H)
-	. = ..()
+	..()
 	if(is_held() && is_neotheology_disciple(H))
 		embed_mult = 0.1
 	else
@@ -137,7 +137,7 @@
 	..()
 
 /obj/item/weapon/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
-	. = ..()
+	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/O = target
 		target.stun_effect_act(stun, agony, hit_zone, src)
@@ -162,7 +162,7 @@
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
 
 /obj/item/weapon/tool/sword/nt/spear/equipped(mob/living/W)
-	. = ..()
+	..()
 	if(is_held() && is_neotheology_disciple(W))
 		embed_mult = 0.1
 	else
@@ -173,18 +173,18 @@
 	..()
 
 /obj/item/weapon/tool/sword/nt/spear/on_embed(mob/user)
-	. = ..()
+	..()
 	tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
-	. = ..()
+	..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
 		force = WEAPON_FORCE_NORMAL
 		throwforce = WEAPON_FORCE_HARMLESS
 
 /obj/item/weapon/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
-	. = ..()
+	..()
 	if (I.has_quality(QUALITY_WELDING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair \the damaged spear-tip."))
