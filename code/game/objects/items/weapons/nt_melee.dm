@@ -15,7 +15,7 @@
 	bad_type = /obj/item/weapon/tool/sword/nt
 
 /obj/item/weapon/tool/sword/nt/equipped(mob/living/M)
-	. = ..()
+	..()
 	if(is_held() && is_neotheology_disciple(M))
 		embed_mult = 0.1
 	else
