@@ -198,10 +198,10 @@
 	slot = "armor"
 	icon_state = "armor"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 10,
+		melee = 25,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
@@ -213,16 +213,17 @@
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
 	has_suit.armor = armor
+	has_suit.style -= 2
 
 /obj/item/clothing/accessory/armor/bullet
 	name = "bulletproof armor plates"
 	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
 	icon_state = "armor_bullet"
 	armor = list(
-		melee = 25,
-		bullet = 55,
-		energy = 25,
-		bomb = 10,
+		melee = 20,
+		bullet = 45,
+		energy = 20,
+		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
