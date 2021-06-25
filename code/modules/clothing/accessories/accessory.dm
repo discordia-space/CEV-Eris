@@ -191,3 +191,42 @@
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by company officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+
+/obj/item/clothing/accessory/armor
+	name = "armor plates"
+	desc = "Plates from an armored vest, now usable to reinforce clothes."
+	slot = "armor"
+	icon_state = "armor"
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+	)
+
+/obj/item/clothing/accessory/armor/on_attached()
+	..()
+	has_suit.armor = armor
+
+/obj/item/clothing/accessory/armor/bullet
+	name = "bulletproof armor plates"
+	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
+	icon_state = "armor_bullet"
+	armor = list(
+		melee = 25,
+		bullet = 55,
+		energy = 25,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 10,
+		MATERIAL_PLASTEEL = 3,
+	)

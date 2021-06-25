@@ -85,3 +85,21 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
+
+/datum/craft_recipe/clothing/armor_attach
+	name = "Armor plates"
+	result = /obj/item/clothing/accessory/armor
+	steps = list(
+		list(/obj/item/clothing/suit/armor/vest, 1),
+		list(/obj/item/part/armor, 2),
+		list(QUALITY_ADHESIVE, 15, 15)
+	)
+
+/datum/craft_recipe/clothing/armor_attach
+	name = "Bulletproof armor plates"
+	result = /obj/item/clothing/accessory/armor/bullet
+	steps = list(
+		list(/obj/item/clothing/suit/armor/bulletproof, 1),
+		list(/obj/item/part/armor, 2),
+		list(QUALITY_ADHESIVE, 15, 15)
+	)

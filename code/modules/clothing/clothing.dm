@@ -602,8 +602,8 @@ BLIND     // can't see anything
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
-	valid_accessory_slots = list("utility","armband","decor")
-	restricted_accessory_slots = list("utility", "armband")
+	valid_accessory_slots = list("utility","armband","decor","armor")
+	restricted_accessory_slots = list("utility", "armband", "armor")
 
 
 /obj/item/clothing/under/attack_hand(mob/user)
