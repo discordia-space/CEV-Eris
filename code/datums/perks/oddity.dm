@@ -220,7 +220,7 @@
 	name = "Gunsmith"
 	desc = "You are skilled in gun production. \
 			You produce twice as much ammo from ammo kits, and have more options to pick from when assembling a gun."
-	icon_state = "ammo_box"
+	icon_state = "ammo_box" //https://game-icons.net/1x1/sbed/ammo-box.html
 
 ///////////////////////////////////////
 //////// NT ODDITYS PERKS /////////////
