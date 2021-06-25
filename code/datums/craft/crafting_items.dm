@@ -79,7 +79,7 @@
 	var/suitable_part
 	var/view_only = 0
 	var/tags_to_spawn = list()
-	var/req_parts = 15
+	var/req_parts = 10
 	var/complete = FALSE
 	var/total_items = 20
 	var/list/items = list()
