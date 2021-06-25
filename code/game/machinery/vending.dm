@@ -1568,6 +1568,10 @@
 	product_ads = "Contact our consumer department for refunds, fees apply.;Coolness sold here."
 	icon_state = "style"
 	products = list(
+		/obj/item/clothing/mask/scarf/style = 8,
+		/obj/item/clothing/mask/scarf/style/bluestyle = 8,
+		/obj/item/clothing/mask/scarf/style/yellowstyle = 8,
+		/obj/item/clothing/mask/scarf/style/redstyle = 8,
 		/obj/item/clothing/gloves/knuckles = 3,
 		/obj/item/clothing/head/ranger = 4,
 		/obj/item/clothing/head/inhaler = 2,
@@ -1587,6 +1591,10 @@
 		/obj/item/clothing/suit/storage/akira = 2,
 					)
 	prices = list(
+		/obj/item/clothing/mask/scarf/style = 250,
+		/obj/item/clothing/mask/scarf/style/bluestyle = 250,
+		/obj/item/clothing/mask/scarf/style/yellowstyle = 250,
+		/obj/item/clothing/mask/scarf/style/redstyle = 250,
 		/obj/item/clothing/gloves/knuckles = 650,
 		/obj/item/clothing/head/ranger = 550,
 		/obj/item/clothing/head/inhaler = 750,
