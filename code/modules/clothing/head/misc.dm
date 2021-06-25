@@ -285,3 +285,46 @@
 		bio = 20,
 		rad = 25
 	)
+
+/obj/item/clothing/head/skull
+	name = "white skull"
+	desc = "This is actually a white plastic skull, don't expect much protection."
+	icon_state = "skull-white"
+	item_state = "skull-white"
+	flags_inv = HIDEMASK|HIDEEARS|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	price_tag = 300
+	style = STYLE_HIGH
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/skull/black
+	name = "black skull"
+	desc = "This is actually a black plastic skull, don't expect much protection."
+	icon_state = "skull-black"
+	item_state = "skull-black"
+	price_tag = 300
+	style = STYLE_HIGH
+
+/obj/item/clothing/head/skull/drip
+	name = "golden skull"
+	desc = "This is actually a skull made of gold! How the hell did this show up here?"
+	icon_state = "skull-drip"
+	item_state = "skull-drip"
+	spawn_blacklisted = TRUE //its 10k, also decent armour
+	price_tag = 10000
+	style = STYLE_HIGH
+	armor = list(
+		melee = 30,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

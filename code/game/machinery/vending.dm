@@ -1575,6 +1575,8 @@
 		/obj/item/clothing/gloves/knuckles = 3,
 		/obj/item/clothing/head/ranger = 4,
 		/obj/item/clothing/head/inhaler = 2,
+		/obj/item/clothing/head/skull = 3,
+		/obj/item/clothing/head/skull/black = 3,
 		/obj/item/clothing/shoes/redboot = 4,
 		/obj/item/clothing/shoes/jackboots/longboot = 3,
 		/obj/item/clothing/under/white = 4,
@@ -1598,6 +1600,8 @@
 		/obj/item/clothing/gloves/knuckles = 650,
 		/obj/item/clothing/head/ranger = 550,
 		/obj/item/clothing/head/inhaler = 750,
+		/obj/item/clothing/head/skull = 450,
+		/obj/item/clothing/head/skull/black = 450,
 		/obj/item/clothing/shoes/redboot = 450,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
 		/obj/item/clothing/under/white = 600,
@@ -1612,9 +1616,10 @@
 		/obj/item/clothing/under/raider = 750,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 750,
-
+		/obj/item/clothing/head/skull/drip = 100000,
 					)
-	vendor_department = DEPARTMENT_GUILD
+	contraband = list(
+		/obj/item/clothing/head/skull/drip = 1)	//drip
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
