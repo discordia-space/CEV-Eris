@@ -174,6 +174,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	force = 5
+	price_tag = 500
 	max_grenades = 0
 
 /obj/item/weapon/gun/launcher/grenade/makeshift/chek_grenades(mob/user)

@@ -1,0 +1,7 @@
+author: zombiemimic
+delete-after: true
+changes:
+  - rscadd: Added the Maxim machine gun to excel roster
+  - tweak: tweaked mosin disk rarity
+  - tweak: changed excel turret as the maxim on a stand that it is
+  - code_imp: added slowdown_hold for slowdown caused by holding items

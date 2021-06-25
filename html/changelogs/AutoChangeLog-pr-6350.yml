@@ -1,0 +1,5 @@
+author: Anonmare
+delete-after: true
+changes:
+  - balance: Malfunctioning AIs have deleted system32 and generate CPU 20x as fast
+      now.
