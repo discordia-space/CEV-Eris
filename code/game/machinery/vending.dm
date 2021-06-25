@@ -1618,6 +1618,7 @@
 		/obj/item/clothing/suit/storage/akira = 750,
 		/obj/item/clothing/head/skull/drip = 100000,
 					)
+
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
 
