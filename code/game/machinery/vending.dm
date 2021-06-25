@@ -1621,6 +1621,7 @@
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
+	
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
