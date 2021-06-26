@@ -147,7 +147,7 @@
 	var/del_count = rand(0, stored_ammo.len)
 	if(low_quality_oldification)
 		del_count = rand(0, contents.len / 2)
-	
+
 	for(var/i = 1 to del_count)
 		var/removed_item = pick(stored_ammo)
 		stored_ammo -= removed_item
@@ -230,7 +230,7 @@
 			heat_protection = rand(0, round(heat_protection * 0.5))
 		if(prob(40))
 			cold_protection = rand(0, round(cold_protection * 0.5))
-		
+
 		if(!low_quality_oldification)
 			if(prob(20))
 				contaminate()
