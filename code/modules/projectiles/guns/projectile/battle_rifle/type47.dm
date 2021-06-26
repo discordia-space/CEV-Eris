@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/type_47
-	name = "OS CAR .25 CS \"Type 47\""
+	name = "OS CAR .25 CS \"Type XLVII\""
 	desc = "A standard-issue weapon used by Onestar peacekeeping forces. Compact and reliable. Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/os/type_47.dmi'
 	icon_state = "type_47"
