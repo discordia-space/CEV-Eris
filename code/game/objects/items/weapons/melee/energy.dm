@@ -59,6 +59,7 @@
 /obj/item/weapon/melee/energy/axe
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "axe0"
 	active_force = WEAPON_FORCE_GODLIKE
 	active_throwforce = 50
@@ -181,6 +182,7 @@
 /obj/item/weapon/melee/energy/blade
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
 	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100

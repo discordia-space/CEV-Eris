@@ -2,6 +2,7 @@
 /obj/item/weapon/melee/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT

@@ -123,6 +123,7 @@
 
 /obj/item/weapon/twohanded/offhand
 	name = "offhand"
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
 	w_class = ITEM_SIZE_COLOSSAL
 	item_flags = ABSTRACT
