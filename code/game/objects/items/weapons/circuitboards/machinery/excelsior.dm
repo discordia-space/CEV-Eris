@@ -76,7 +76,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_COMBAT = 3, TECH_COVERT = 2)
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/gun/projectile/automatic/maxim = 1,
 		/obj/item/device/assembly/prox_sensor = 1,
 		/obj/item/cell/medium = 1
 	)

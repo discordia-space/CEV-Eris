@@ -62,7 +62,8 @@
 	var/initialhealth = health
 
 	if (!ignore_resistance)
-		damage -= resistance
+		damage = damage * (1 - silicate / 200) // up to 50% damage resistance 
+		damage -= resistance // then flat resistance from material
 	if (damage <= 0)
 		return 0
 
