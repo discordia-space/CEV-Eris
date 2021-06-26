@@ -1,0 +1,4 @@
+author: drexample
+delete-after: true
+changes:
+  - tweak: Drastically reworks several subsystems for the sake of optimization.
