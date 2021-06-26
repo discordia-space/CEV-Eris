@@ -48,12 +48,14 @@
 
 /obj/machinery/status_display/Destroy()
 	SSradio.remove_object(src,frequency)
+	GLOB.ai_status_display_list -= src
 	return ..()
 
 // register for radio system
 /obj/machinery/status_display/Initialize()
 	. = ..()
 	SSradio.add_object(src, frequency)
+	GLOB.ai_status_display_list += src
 
 // timed process
 /obj/machinery/status_display/Process()

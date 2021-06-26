@@ -99,6 +99,8 @@
 	var/foodtarget = 0
 	//Used to control how often ian scans for nearby food
 
+	sanity_damage = -0.01
+
 	mob_classification = CLASSIFICATION_ORGANIC
 
 /mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)

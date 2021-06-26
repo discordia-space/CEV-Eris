@@ -6,7 +6,7 @@
 	layer = GAS_PUMP_LAYER
 	var/obj/machinery/atmospherics/pipe/target = null
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	var/frequency = 0
 	var/id
 	use_power = IDLE_POWER_USE

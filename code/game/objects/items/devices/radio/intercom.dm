@@ -90,7 +90,7 @@
 	return canhear_range
 
 /obj/item/device/radio/intercom/proc/change_status()
-	on = linked_area.powered(EQUIP)
+	on = linked_area.powered(STATIC_EQUIP)
 	icon_state = on ? "intercom" : "intercom-p"
 
 /obj/item/device/radio/intercom/proc/loop_area_check()
