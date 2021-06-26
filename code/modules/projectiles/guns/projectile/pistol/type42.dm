@@ -12,13 +12,14 @@
 	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.2
+	penetration_multiplier = 1.3
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS
 
-	spawn_blacklisted = TRUE //until I can figure out how to get them to spawn
+	spawn_blacklisted = TRUE //until loot rework
 
 
 /obj/item/weapon/gun/projectile/type_42/on_update_icon()

@@ -11,18 +11,19 @@
     magazine_type = /obj/item/ammo_magazine/magnum
     matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
     can_dual = TRUE
+    slot_flags = SLOT_BELT|SLOT_HOLSTER
     one_hand_penalty = 10 //a bit more than smg level
     damage_multiplier = 1.2
     penetration_multiplier = 1.1
-    recoil_buildup = 2.7
+    recoil_buildup = 2.5
     init_firemodes = list(
-        FULL_AUTO_300,
+        FULL_AUTO_400,
         SEMI_AUTO_NODELAY
         )
     spawn_tags = SPAWN_TAG_GUN_OS
     price_tag = 2500
 
-    spawn_blacklisted = TRUE //until I can figure out how to get them to spawn
+    spawn_blacklisted = TRUE //until loot rework
 
 /obj/item/weapon/gun/projectile/type_69/on_update_icon()
 	..()

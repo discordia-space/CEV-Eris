@@ -21,14 +21,14 @@
     zoom_factor = 0.6
     recoil_buildup = 1.5
     one_hand_penalty = 15 //automatic rifle level
-    damage_multiplier = 1
-    penetration_multiplier = 1.2
+    damage_multiplier = 1.3
+    penetration_multiplier = 1.7
     spawn_tags = SPAWN_TAG_GUN_OS
     init_firemodes = list(
 		BURST_3_ROUND,
         SEMI_AUTO_NODELAY
 		)
-    spawn_blacklisted = TRUE //until I can figure out how to get them to spawn
+    spawn_blacklisted = TRUE //until loot rework
 
 /obj/item/weapon/gun/projectile/automatic/type_17/on_update_icon()
 	..()
