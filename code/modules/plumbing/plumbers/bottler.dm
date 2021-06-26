@@ -63,8 +63,8 @@
 	///see if machine has enough to fill
 	if(reagents.total_volume >= wanted_amount && anchored)
 		var/obj/AM = pick(inputspot.contents)///pick a reagent_container that could be used
-		if(istype(AM, /obj/item/weapon/reagent_containers))
-			var/obj/item/weapon/reagent_containers/B = AM
+		if(istype(AM, /obj/item/reagent_containers))
+			var/obj/item/reagent_containers/B = AM
 			///see if it would overflow else inject
 			var/to_transfer = min(B.reagents.total_volume + wanted_amount, B.reagents.maximum_volume)
 			if(to_transfer < B.reagents.maximum_volume)

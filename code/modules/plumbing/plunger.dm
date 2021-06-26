@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/plunger
+/obj/item/tool/plunger
 	name = "plunger"
 	desc = "It's a plunger for plunging."
 	icon = 'icons/obj/watercloset.dmi'

@@ -1,5 +1,5 @@
-/obj/item/weapon/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
-	bad_type = /obj/item/weapon/gun/projectile/automatic/maxim
+/obj/item/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
+	bad_type = /obj/item/gun/projectile/automatic/maxim
 	name = "Excelsior machine gun"
 	desc = "Whatever happens, we have got the Maxim gun, and they have not."
 	icon = 'icons/obj/guns/projectile/maxim.dmi'
@@ -33,7 +33,7 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 
-/obj/item/weapon/gun/projectile/automatic/maxim/on_update_icon()
+/obj/item/gun/projectile/automatic/maxim/on_update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"

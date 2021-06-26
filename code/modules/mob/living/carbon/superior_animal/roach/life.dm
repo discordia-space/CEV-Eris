@@ -52,7 +52,7 @@
 										var/mob/living/carbon/human/H = M
 
 										// Process Cruciform
-										var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform, FALSE)
+										var/obj/item/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/implant/core_implant/cruciform, FALSE)
 										if (CI)
 											var/mob/N = CI.wearer
 											CI.name = "[N]'s Cruciform"

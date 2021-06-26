@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/gun/nuclear
+/obj/item/gun/energy/gun/nuclear
 	name = "Prototype: advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon = 'icons/obj/guns/energy/nucgun.dmi'
@@ -21,7 +21,7 @@
 	var/lightfail = 0
 
 //override for failcheck behaviour
-/obj/item/weapon/gun/energy/gun/nuclear/Process()
+/obj/item/gun/energy/gun/nuclear/Process()
 	charge_tick++
 	if(charge_tick < 4) return 0
 	charge_tick = 0
@@ -31,12 +31,12 @@
 		update_icon()
 	return 1
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
+/obj/item/gun/energy/gun/nuclear/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "nucgun-stun"
 		if("lethal") overlays += "nucgun-kill"
 
-/obj/item/weapon/gun/energy/gun/nuclear/on_update_icon()
+/obj/item/gun/energy/gun/nuclear/on_update_icon()
 	cut_overlays()
 	update_mode()

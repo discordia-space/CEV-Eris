@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/mindflayer
+/obj/item/gun/energy/mindflayer
 	name = "Prototype: mind flayer"
 	desc = "A custom-built weapon of some kind."
 	icon = 'icons/obj/guns/energy/xray.dmi'
