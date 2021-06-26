@@ -1,5 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - bugfix: reinforcing windows with silicate actually works now, and beaker splashes
-      now apply touch effects.
