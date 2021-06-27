@@ -28,5 +28,10 @@
 				spawn_type = /mob/living/carbon/superior_animal/roach/fuhrer
 			else
 				spawn_type = /obj/spawner/mob/roaches
-			new spawn_type(src.loc, src)
+			
+			if (ispath(spawn_type, /obj/spawner))
+				new spawn_type(src.loc, src, list("friends" = src.friends.Copy()))
+			else if(ispath(spawn_type, /mob))
+				var/mob/living/carbon/superior_animal/roach/roach = new spawn_type(src.loc, src)
+				roach.friends += src.friends
 			qdel(src)
