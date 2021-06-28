@@ -1,6 +1,3 @@
-/mob/living/carbon/superior_animal/roach
-	var/taming_window = 30 //How long you have to tame this roach, once it's pacified.
-
 /mob/living/carbon/superior_animal/roach/Move()
 	. = ..()
 	if(buckled_mob)
