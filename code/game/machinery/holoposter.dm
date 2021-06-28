@@ -6,7 +6,7 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	var/icon_forced = FALSE
 	var/seclevel = ""
 	var/last_launch = 0

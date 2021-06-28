@@ -26,6 +26,9 @@
 			src.death_notified = TRUE
 	update_lying_buckled_and_verb_status()
 
+	for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
+		L.try_activate_ai()
+
 /mob/living/silicon/robot/proc/clamp_values()
 
 //	SetStunned(min(stunned, 30))

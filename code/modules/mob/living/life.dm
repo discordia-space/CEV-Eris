@@ -5,73 +5,101 @@
 	. = FALSE
 	..()
 	if(config.enable_mob_sleep)
-		if(life_cycles_before_scan > 0)
-			life_cycles_before_scan--
-		else
-			if(check_surrounding_area(7))
-				activate_ai()
-				life_cycles_before_scan = 3
-
-		if(life_cycles_before_sleep)
-			life_cycles_before_sleep--
-
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
-			AI_inactive = TRUE
-
-
-	if(!stasis)
-		if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
-			return
-		if(!loc)
-			return
-		var/datum/gas_mixture/environment = loc.return_air()
-
 		if(stat != DEAD)
-			//Breathing, if applicable
-			handle_breathing()
+			if(life_cycles_before_scan > 0)
+				life_cycles_before_scan--
+			else
+				if(check_surrounding_area(7))
+					activate_ai()
+					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+				else
+					life_cycles_before_scan = 240
 
-			//Mutations and radiation
-			handle_mutations_and_radiation()
+			if(life_cycles_before_sleep)
+				life_cycles_before_sleep--
 
-			//Blood
-			handle_blood()
+			if(life_cycles_before_sleep < 1 && !AI_inactive)
+				AI_inactive = TRUE
 
-			//Random events (vomiting etc)
-			handle_random_events()
 
+	if((!stasis && !AI_inactive) || ishuman(src)) //god fucking forbid we do this to humanmobs somehow
+		if(Life_Check())
 			. = TRUE
 
-		//Handle temperature/pressure differences between body and environment
-		if(environment)
-			handle_environment(environment)
+	else
+		if((life_cycles_before_scan % 60) == 0)
+			Life_Check_Light()
 
-		//Chemicals in the body
-		handle_chemicals_in_body()
-
-		//Check if we're on fire
-		handle_fire()
-
-		update_pulling()
-
-		for(var/obj/item/grab/G in src)
-			G.Process()
-
-		blinded = FALSE // Placing this here just show how out of place it is.
-		// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
-		if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
-			handle_disabilities() // eye, ear, brain damages
-			handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
-
-		handle_actions()
-
-		update_lying_buckled_and_verb_status()
-
-		handle_regular_hud_updates()
 
 	var/turf/T = get_turf(src)
 	if(T)
 		if(registered_z != T.z)
 			update_z(T.z)
+
+
+/mob/living/proc/Life_Check()
+	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+		return
+	if(!loc)
+		return
+	var/datum/gas_mixture/environment = loc.return_air()
+
+	if(stat != DEAD)
+		//Breathing, if applicable
+		handle_breathing()
+
+		//Mutations and radiation
+		handle_mutations_and_radiation()
+
+		//Blood
+		handle_blood()
+
+		//Random events (vomiting etc)
+		handle_random_events()
+
+		. = TRUE
+
+	//Handle temperature/pressure differences between body and environment
+	if(environment)
+		handle_environment(environment)
+
+	//Chemicals in the body
+	handle_chemicals_in_body()
+
+	//Check if we're on fire
+	handle_fire()
+
+	update_pulling()
+
+	for(var/obj/item/weapon/grab/G in src)
+		G.Process()
+
+	blinded = FALSE // Placing this here just show how out of place it is.
+	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
+	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
+		handle_disabilities() // eye, ear, brain damages
+		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+
+	handle_actions()
+
+	update_lying_buckled_and_verb_status()
+
+	handle_regular_hud_updates()
+
+
+
+/mob/living/proc/Life_Check_Light()
+	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+		return
+	if(!loc)
+		return
+	var/datum/gas_mixture/environment = loc.return_air()
+
+	//Handle temperature/pressure differences between body and environment
+	if(environment)
+		handle_environment(environment)
+
+	update_pulling()
 
 /mob/living/proc/handle_breathing()
 	return

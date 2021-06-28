@@ -90,8 +90,8 @@
 
 /obj/machinery/disease2/incubator/Process()
 	if(dish && on && dish.virus2)
-		use_power(50,EQUIP)
-		if(!powered(EQUIP))
+		use_power(50,STATIC_EQUIP)
+		if(!powered(STATIC_EQUIP))
 			on = FALSE
 			icon_state = "incubator"
 

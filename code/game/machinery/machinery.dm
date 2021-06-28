@@ -108,7 +108,7 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
+	var/power_channel = STATIC_EQUIP //STATIC_EQUIP, STATIC_ENVIRON or STATIC_LIGHT
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
@@ -117,12 +117,16 @@ Class Procs:
 	var/obj/item/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
+	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
+	var/area/current_power_area // What area are we powering currently
+
 
 /obj/machinery/Initialize(mapload, d=0)
 	. = ..()
 	if(d)
 		set_dir(d)
 	InitCircuit()
+	GLOB.machines += src
 	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()
@@ -133,11 +137,12 @@ Class Procs:
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			qdel(A)
+	GLOB.machines -= src
+	set_power_use(NO_POWER_USE)
 	return ..()
 
 /obj/machinery/Process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
-		return PROCESS_KILL
+	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && !stat)
@@ -394,3 +399,33 @@ Class Procs:
 
 /datum/proc/apply_visual(mob/M)
 	return
+
+/obj/machinery/proc/update_power_use()
+	set_power_use(use_power)
+
+// The main proc that controls power usage of a machine, change use_power only with this proc
+/obj/machinery/proc/set_power_use(new_use_power)
+	if(current_power_usage && current_power_area) // We are tracking the area that is powering us so we can remove power from the right one if we got moved or something
+		current_power_area.removeStaticPower(current_power_usage, power_channel)
+		current_power_area = null
+
+	current_power_usage = 0
+	use_power = new_use_power
+
+	var/area/A = get_area(src)
+	if(!A || !anchored || stat & NOPOWER) // Unwrenched machines aren't plugged in, unpowered machines don't use power
+		return
+
+	if(use_power == IDLE_POWER_USE && idle_power_usage)
+		current_power_area = A
+		current_power_usage = idle_power_usage
+		current_power_area.addStaticPower(current_power_usage, power_channel)
+	else if(use_power == ACTIVE_POWER_USE && active_power_usage)
+		current_power_area = A
+		current_power_usage = active_power_usage
+		current_power_area.addStaticPower(current_power_usage, power_channel)
+
+
+// Unwrenching = unpluging from a power source
+/obj/machinery/wrenched_change()
+	update_power_use()

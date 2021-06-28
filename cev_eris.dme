@@ -2786,7 +2786,6 @@
 #include "maps\submaps\planetary_ruins\ec_old_crash\ec_old_crash.dm"
 #include "maps\submaps\planetary_ruins\fountain\fountain_ruin.dm"
 #include "maps\submaps\planetary_ruins\hut\hut.dm"
-#include "maps\submaps\planetary_ruins\hydrobase\hydrobase.dm"
 #include "maps\submaps\planetary_ruins\lodge\lodge.dm"
 #include "maps\submaps\planetary_ruins\marooned\marooned.dm"
 #include "maps\submaps\planetary_ruins\monoliths\monoliths.dm"

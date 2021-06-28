@@ -41,7 +41,7 @@
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/Life()
 	..()
-	if(!stat)
+	if(!stat && !AI_inactive)
 		if(stance == HOSTILE_STANCE_IDLE)
 			//30% chance to stop wandering and do something
 			if(!busy && prob(30))

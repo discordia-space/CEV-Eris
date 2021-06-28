@@ -63,14 +63,9 @@
 				atmos_machines += A
 	atoms |= areas
 
-	////admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
-
-	//admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
-	SSmachines.setup_atmos_machinery(atmos_machines)
-
-	//admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	SSmachines.setup_powernets_for_cables(cables)
+	SSmachines.setup_template_powernets(cables)
+	SSair.setup_template_machinery(atmos_machines)
 
 	// Ensure all machines in loaded areas get notified of power status
 	for(var/I in areas)
