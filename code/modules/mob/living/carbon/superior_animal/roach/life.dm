@@ -12,7 +12,7 @@
 
 /mob/living/carbon/superior_animal/roach/Life()
 	. = ..()
-	if(!stat) // if the roach is conscious
+	if(check_AI_act()) // if the roach is able to act
 		if(stance == HOSTILE_STANCE_IDLE)
 			switch(busy)
 				if(0)
@@ -92,6 +92,9 @@
 									src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
 									// Get fed
 									fed += rand(1,tasty.meat_amount)
+									if (isroach(tasty))
+										var/mob/living/carbon/superior_animal/roach/cannibalism = tasty
+										fed += cannibalism.fed
 									if(istype(src, /mob/living/carbon/superior_animal/roach/roachling))
 										if(tasty.meat_amount >= 6)// ate a fuhrer or kaiser
 											var/mob/living/carbon/superior_animal/roach/roachling/bigboss = src

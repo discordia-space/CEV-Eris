@@ -90,6 +90,7 @@
 	var/casingtype
 	var/ranged_cooldown
 	var/fire_verb //what does it do when it shoots?
+	var/kept_distance //how far away will it be before it stops moving closer
 
 /mob/living/carbon/superior_animal/New()
 	..()
