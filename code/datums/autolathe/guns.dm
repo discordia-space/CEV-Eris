@@ -205,7 +205,7 @@
 
 /datum/design/autolathe/gun/hmg_maxim
 	name = "Excelsior HMG .30 \"Maxim\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/maxim
+	build_path = /obj/item/gun/projectile/automatic/maxim
 
 // Energy small arms
 

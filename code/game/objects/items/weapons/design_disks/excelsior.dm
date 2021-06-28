@@ -159,7 +159,7 @@
 		/datum/design/autolathe/ammo/magazine_pistol/rubber
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/maxim
+/obj/item/computer_hardware/hard_drive/portable/design/excelsior/maxim
 	disk_name = "Excelsior - .30 Maxim HMG"
 	desc = {"The back has a machine etching:\n \
 	\"Whatever happens, we have got the Maxim gun, and they have not.\""}
