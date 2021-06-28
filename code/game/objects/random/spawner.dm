@@ -50,8 +50,8 @@
 			if(editvar.len)
 				for(var/atom/tospawn in spawns)
 					for(var/replacewith in editvar)
-						if(replacewith in tospawn.vars) //without it errors, with it stops roaches from spawning roach cubes, a lose-lose scenario -vode.
-							tospawn.vars[replacewith] = editvar[replacewith]
+						if(replacewith in tospawn.vars) //this broke roachcubes spawning near roaches somehow
+							tospawn.vars[replacewith] = editvar[replacewith]// kaisers laying roachcubes was compensation
 			if(biome)
 				biome.price_tag += price_tag
 

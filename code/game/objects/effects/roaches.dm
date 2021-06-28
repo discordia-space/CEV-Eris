@@ -62,7 +62,7 @@
 			src.loc = O.owner ? O.owner.loc : O.loc
 
 		var/spawn_type = /mob/living/carbon/superior_animal/roach/roachling
-		if (isturf(src.loc) || istype(src.loc, obj/structure/closet)) // suppresses hatching when not in a suitable loc
+		if (isturf(src.loc) || istype(src.loc, /obj/structure/closet)) // suppresses hatching when not in a suitable loc
 			new spawn_type(src.loc, src)
 			qdel(src)
 	else

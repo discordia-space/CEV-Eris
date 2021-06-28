@@ -85,19 +85,28 @@
 									fed += rand(4,6)
 								else if (istype(M, /mob/living/carbon/superior_animal) && (M.icon)) // Eating a spider or roach
 									// Gib victim
+									var/mob/living/carbon/superior_animal/tasty = M
 									M.gib(null, FALSE)
 									gibs(targetTurf, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 									// End message
 									src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
 									// Get fed
-									fed += rand(1,2)
+									fed += rand(1,tasty.meat_amount)
+									if(istype(src, /mob/living/carbon/superior_animal/roach/roachling))
+										if(tasty.meat_amount >= 6)// ate a fuhrer or kaiser
+											var/mob/living/carbon/superior_animal/roach/roachling/bigboss = src
+											bigboss.big_boss = TRUE
 							eat_target = null
 						busy = 0
 						stop_automated_movement = 0
 
 				if(LAYING_EGG)
-					if (world.timeofday >= busy_start_time + busy_time)						
-						new /obj/item/roach_egg(loc, src)
+					if (world.timeofday >= busy_start_time + busy_time)				
+						if (istype(src, /mob/living/carbon/superior_animal/roach/kaiser))// kaiser roaches now lay roachcubes
+							var/roachcube = pick(subtypesof(/obj/item/weapon/reagent_containers/food/snacks/roachcube))
+							new roachcube(get_turf(src))
+						else
+							new /obj/item/roach_egg(loc, src)
 						fed--
 						update_openspace()
 						busy = 0
