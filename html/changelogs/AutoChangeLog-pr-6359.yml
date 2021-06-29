@@ -1,0 +1,4 @@
+author: drexample
+delete-after: true
+changes:
+  - rscdel: Removed plumbing
