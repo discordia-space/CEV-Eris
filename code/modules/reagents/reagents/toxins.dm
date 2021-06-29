@@ -490,8 +490,8 @@
 
 /datum/reagent/toxin/pararein/on_mob_delete(mob/living/carbon/M)
 	..()
-	M.druggy =
-	M.eye_blurry = 
+	M.druggy = 0
+	M.eye_blurry =  0
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"

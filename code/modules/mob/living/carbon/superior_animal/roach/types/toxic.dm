@@ -10,7 +10,7 @@
 
 	contaminant_immunity = TRUE
 
-	melee_damage_lower = 3
+	melee_damage_lower = 4
 	melee_damage_upper = 7 //Weaker than hunter
 	rarity_value = 22.5
 
