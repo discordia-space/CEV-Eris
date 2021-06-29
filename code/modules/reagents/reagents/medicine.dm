@@ -16,7 +16,7 @@
 /datum/reagent/medicine/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
-	M.add_chemical_effect(CE_PULSE, 1)	
+	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
