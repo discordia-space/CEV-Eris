@@ -16,7 +16,7 @@
 	l_ear = /obj/item/device/radio/headset/heads/rd
 	shoes = /obj/item/clothing/shoes/reinforced
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science/rd
 	l_hand = /obj/item/weapon/clipboard
 	id_type = /obj/item/weapon/card/id/rd
 	pda_type = /obj/item/modular_computer/pda/heads/rd
