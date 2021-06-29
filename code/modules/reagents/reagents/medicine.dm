@@ -1,10 +1,6 @@
 /* General medicine */
 /datum/reagent/medicine
 	reagent_type = "Medicine"
-	
-/datum/reagent/medicine/overdose(var/mob/living/carbon/M, var/alien)
-M.add_chemical_effect(CE_TOXIN, 1)
-M.adjustToxLoss(5)
 
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
@@ -20,19 +16,7 @@ M.adjustToxLoss(5)
 /datum/reagent/medicine/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
-	M.add_chemical_effect(CE_PULSE, 1)
-
-/datum/reagent/medicine/inaprovaline/overdose(var/mob/living/carbon/M, var/alien)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
-		if(heart)
-			heart.damage += 0.2
-			if(prob(30))
-				to_chat(H, SPAN_DANGER("Your heart hurts."))
-	M.make_jittery(5)
-	M.add_chemical_effect(CE_PULSE, rand(3,4)) //Out of control heart
-				
+	M.add_chemical_effect(CE_PULSE, 1)	
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
