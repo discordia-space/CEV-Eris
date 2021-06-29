@@ -53469,12 +53469,16 @@
 "cvv" = (
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/paper_bin,
+/obj/structure/cable/green{
+	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "cvw" = (
+/obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1379;
 	master_tag = "eng_post_access_console";
