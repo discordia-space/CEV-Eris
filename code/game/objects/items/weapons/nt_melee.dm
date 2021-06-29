@@ -175,12 +175,13 @@
 	..()
 
 /obj/item/weapon/tool/sword/nt/spear/throw_impact(atom/hit_atom, speed)
+	..()
 	if(ismob(hit_atom) || isobj(hit_atom))
 		tipbroken = TRUE
 		force = force_broken
 		throwforce = throwforce_broken
-		visible_message(SAPN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
-	..()
+		visible_message(SPAN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
+
 
 /obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
 	..()
