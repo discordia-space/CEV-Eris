@@ -982,21 +982,19 @@ var/list/rank_prefix = list(\
 			continue
 
 		for(var/obj/item/O in organ.implants)
+			var/mob/living/carbon/human/H = organ.owner
 			// Shrapnel hurts when you move, and implanting knives is a bad idea
-			if(prob(5) && is_sharp(O))
+			if(prob(5) && is_sharp(O) && !MOVING_DELIBERATELY(H))
 				if(!organ.can_feel_pain())
 					to_chat(src, SPAN_WARNING("You feel [O] moving inside your [organ.name]."))
 				else
 					var/msg = pick( \
 						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
-						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."), \
-						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."))
+						SPAN_WARNING("Your hasty movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
-				var/mob/living/carbon/human/H = organ.owner
-				if(!MOVING_DELIBERATELY(H))
-					organ.take_damage(rand(1,3), 0, 0)
-					if(organ.setBleeding())
-						src.adjustToxLoss(rand(1,3))
+				organ.take_damage(rand(1,3), 0, 0)
+				if(organ.setBleeding())
+					src.adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/browse_sanity()
 	set name		= "Show sanity"

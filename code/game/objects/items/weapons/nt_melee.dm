@@ -152,6 +152,8 @@
 	force = 24
 	force_wielded_multiplier = 1.08
 	var/tipbroken = FALSE
+	var/force_broken = WEAPON_FORCE_NORMAL
+	var/throwforce_broken = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT 
 	throwforce = 75
@@ -172,22 +174,24 @@
 	embed_mult = 300
 	..()
 
-/obj/item/weapon/tool/sword/nt/spear/on_embed(mob/user)
+/obj/item/weapon/tool/sword/nt/spear/throw_impact(atom/hit_atom, speed)
+	if(ismob(hit_atom) || isobj(hit_atom))
+		tipbroken = TRUE
+		force = force_broken
+		throwforce = throwforce_broken
+		visible_message(SAPN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
 	..()
-	tipbroken = TRUE
 
 /obj/item/weapon/tool/sword/nt/spear/examine(mob/user)
 	..()
 	if (tipbroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
-		force = WEAPON_FORCE_NORMAL
-		throwforce = WEAPON_FORCE_HARMLESS
 
 /obj/item/weapon/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	..()
 	if (I.has_quality(QUALITY_WELDING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
-			to_chat(user, SPAN_NOTICE("You repair \the damaged spear-tip."))
+			to_chat(user, SPAN_NOTICE("You repair the damaged spear-tip."))
 			tipbroken = FALSE
 			force = initial(force)
 			throwforce = initial(throwforce)		
