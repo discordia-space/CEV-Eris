@@ -303,8 +303,8 @@
 
 	for(var/obj/item/organ/external/e in occ["external_organs"])
 		var/list/other_wounds = list()
+		var/significant = FALSE
 
-		dat += "<tr>"
 
 		for(var/datum/wound/W in e.wounds) if(W.internal)
 			other_wounds += "Internal bleeding"
@@ -350,11 +350,15 @@
 					unknown_body = TRUE
 			if(unknown_body)
 				other_wounds += "Unknown body present"
-
-		if(!e.is_stump())
+		if (e.is_stump() || e.burn_dam || e.brute_dam || other_wounds.len)
+			significant = TRUE
+			dat += "<tr>"
+		if(!e.is_stump() && significant)
 			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td>"
-		else
+		else if (significant)
 			dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
+		else
+			continue
 		dat += "</tr>"
 
 	for(var/obj/item/organ/internal/I in occ["internal_organs"])
@@ -372,26 +376,26 @@
 			if(B.parent.status & ORGAN_BROKEN)
 				other_wounds += "[B.broken_description]"
 
-		var/infection = "None"
 		switch (I.germ_level)
 			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
 			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection"
+				other_wounds += "Mild Infection"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+"
+				other_wounds += "Mild Infection+"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++"
+				other_wounds += "Mild Infection++"
 			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection"
+				other_wounds += "Acute Infection"
 			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection+"
+				other_wounds += "Acute Infection+"
 			if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-				infection = "Acute Infection++"
+				other_wounds += "Acute Infection++"
 		if(I.rejecting)
-			infection += "being rejected"
-		dat += "<tr>"
-		dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
-		dat += "</tr>"
+			other_wounds += "being rejected"
+		if (I.damage || other_wounds.len)
+			dat += "<tr>"
+			dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+			dat += "</tr>"
 	dat += "</table>"
 
 	var/list/species_organs = occ["species_organs"]
