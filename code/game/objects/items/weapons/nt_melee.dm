@@ -40,7 +40,7 @@
 
 /obj/item/weapon/tool/sword/nt/longsword
 	name = "NT Spatha"
-	desc = "A saint looking longsword, recommended by experianced crusaders."
+	desc = "A saint looking longsword, recommended by experienced crusaders."
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
 	force = 30
