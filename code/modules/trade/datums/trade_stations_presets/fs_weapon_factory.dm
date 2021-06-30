@@ -1,6 +1,6 @@
 /datum/trade_station/fs_factory
 	name_pool = list("FSTB 'Kaida'" = "Frozen Star Trade Beacon 'Kaida'. Maybe they have an extra batch of weapon?")
-	markup = 0.5
+	markup = 0.4
 	assortiment = list(
 		"Ammunition" = list(
 			/obj/item/ammo_magazine/ammobox/magnum = custom_good_amount_range(list(1, 10)),
@@ -18,10 +18,7 @@
 		),
 		category_data("Projectiles", list(SPAWN_FS_PROJECTILE)),
 		category_data("Shotguns", list(SPAWN_FS_SHOTGUN)),
-		category_data("Energy", list(SPAWN_FS_ENERGY)),/* = list(
-			/obj/item/weapon/gun/energy/gun,
-			/obj/item/weapon/gun/energy/gun/martin,
-		),*/
+		category_data("Energy", list(SPAWN_FS_ENERGY)),
 		"Grenades" = list(
 			/obj/item/weapon/gun/launcher/grenade/lenar,
 			/obj/item/weapon/grenade/chem_grenade/incendiary,
@@ -30,5 +27,10 @@
 			/obj/item/weapon/grenade/empgrenade/low_yield,
 			/obj/item/weapon/grenade/flashbang,
 			/obj/item/weapon/grenade/smokebomb,
-		)
+		),
+	)
+	offer_types = list(
+			/obj/item/stack/material/steel,
+			/obj/item/stack/material/plasteel,
+			/obj/item/stack/material/plastic
 	)

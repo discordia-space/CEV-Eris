@@ -1,16 +1,13 @@
 /datum/trade_station/suit_up
-	name_pool = list("GTB 'Suit Up!'" = "Guild Trade Beacon 'Suit Up!'. They're broadcasting a message. \"Suits, voidsuits and more for you, traveler!\"")
+	name_pool = list("ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!'. They're broadcasting a message. \"Suits, voidsuits and more for you, traveler!\"")
+	start_discovered = TRUE
 	assortiment = list(
-		"Voidsuits" = list(
+		"Spacesuits" = list(
 			/obj/item/clothing/suit/space/void,
-			/obj/item/clothing/suit/space/void/engineering,
-			/obj/item/clothing/suit/space/void/mining,
-			/obj/item/clothing/suit/space/void/medical,
 			/obj/item/clothing/suit/space/void/atmos,
-			/obj/item/clothing/suit/space/void/science,
-			/obj/item/clothing/suit/space/void/security
+			/obj/item/weapon/rig/eva,
 		),
-		"Costumes" = list(
+		"Costumes and Uniforms" = list(
 			/obj/item/clothing/suit/pirate,
 			/obj/item/clothing/suit/judgerobe,
 			/obj/item/clothing/suit/wcoat,
@@ -43,19 +40,21 @@
 			/obj/item/clothing/head/collectable/swat,
 			/obj/item/clothing/head/collectable/slime,
 			/obj/item/clothing/head/collectable/police,
-			/obj/item/clothing/head/collectable/slime,
 			/obj/item/clothing/head/collectable/xenom,
 			/obj/item/clothing/head/collectable/petehat
 		),
+		// Here the "Expensive-Stylized-Fancy" Clothes of the Vendor probably can go here aswell if they get merged.
 		"Formal Wear" = list(
 			/obj/item/clothing/head/bowler,
 			/obj/item/clothing/head/that,
 			/obj/item/clothing/under/suit_jacket,
 			/obj/item/clothing/under/suit_jacket/red,
 			/obj/item/clothing/shoes/color/black,
-			/obj/item/clothing/shoes/color/black,
 			/obj/item/clothing/shoes/leather,
 			/obj/item/clothing/suit/wcoat
-		)
+		),
+	)
+
+	offer_types = list(
 	)
 

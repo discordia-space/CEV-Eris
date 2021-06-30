@@ -15,6 +15,9 @@
 			/obj/item/weapon/storage/firstaid/toxin,
 			/obj/item/weapon/storage/firstaid/o2,
 			/obj/item/weapon/storage/firstaid/adv,
+			/obj/item/stack/medical/bruise_pack,
+			/obj/item/stack/medical/ointment,
+			/obj/item/stack/medical/splint
 		),
 		"Surgery" = list(
 			/obj/item/weapon/tool/cautery,
@@ -37,6 +40,7 @@
 			/obj/item/weapon/reagent_containers/blood/OMinus,
 		),
 		"Misc" = list(
+			/obj/item/weapon/storage/pouch/medical_supply,
 			/obj/item/weapon/virusdish/random,
 			/obj/structure/reagent_dispensers/coolanttank,
 			/obj/item/clothing/mask/breath/medical,
@@ -46,7 +50,9 @@
 			/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
 			/obj/machinery/suspension_gen,
-			/obj/item/weapon/computer_hardware/hard_drive/portable/design
+			/obj/item/weapon/computer_hardware/hard_drive/portable/design,
+			/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites = good_data("Nanites Vial", list(1, 10)),
+			/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites = good_data("Uncapped Nanites Vial", list(1, 10)),
 		),
 	)
 
@@ -62,4 +68,7 @@
 			/obj/item/weapon/storage/firstaid/toxin,
 			/obj/item/weapon/storage/firstaid/o2,
 			/obj/item/weapon/storage/firstaid/adv,
+			/obj/item/stack/medical/bruise_pack,
+			/obj/item/stack/medical/splint,
+			/obj/item/stack/medical/ointment
 		)

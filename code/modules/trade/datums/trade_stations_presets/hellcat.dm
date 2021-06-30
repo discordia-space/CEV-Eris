@@ -42,10 +42,16 @@
 			/obj/item/ammo_magazine/hpistol
 		),
 		"Armor" = list(
+			/obj/item/clothing/suit/armor/heavy/riot,
 			/obj/item/clothing/head/armor/riot_hud,
 			/obj/item/clothing/suit/armor/vest,
 			/obj/item/clothing/head/armor/helmet,
 			/obj/item/clothing/suit/armor/bulletproof,
-			/obj/item/clothing/suit/armor/laserproof,
+			/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
+			/obj/item/clothing/suit/armor/laserproof/full,
+			/obj/item/clothing/head/armor/laserproof
 		),
+	)
+	
+	offer_types = list(
 	)
