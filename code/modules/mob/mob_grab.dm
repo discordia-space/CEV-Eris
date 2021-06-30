@@ -423,7 +423,7 @@
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
 		if (issuperioranimal(affecting))
 			var/mob/living/carbon/superior_animal/wrangled = affecting
-			if (wrangled.grabbed_by_friend && assailant && assailant in wrangled.friends)
+			if (wrangled.grabbed_by_friend && assailant && (assailant in wrangled.friends))
 				wrangled.grabbed_by_friend = FALSE
 		affecting.reset_plane_and_layer()
 		affecting.grabbed_by -= src
