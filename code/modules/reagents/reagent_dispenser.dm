@@ -25,7 +25,6 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	anchored = bolt
-	AddComponent(/datum/component/plumbing/supply/all, anchored, FALSE)
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 
