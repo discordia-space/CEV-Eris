@@ -915,7 +915,7 @@
 	price_tag = 200
 
 /obj/machinery/power/supermatter
-	price_tag = 5000
+	price_tag = 10000
 
 /obj/machinery/portable_atmospherics/canister/get_item_cost(export)
 	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
@@ -968,16 +968,19 @@
 		. += i.get_item_cost(export)
 
 /obj/item/ammo_casing/price_tag = 0
+/obj/item/ammo_casing/shotgun/price_tag = 1
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = ..() * amount
 
 /obj/item/weapon/tool/price_tag = 20
-/obj/item/weapon/tool/get_item_cost(export)
-	. = 1
-	for(var/i in tool_qualities)
-		. += tool_qualities[i] / 5
-	. *= ..()
+
+// This one is exploitable as fuck. I say should be removed or nerfed hard. 
+///obj/item/weapon/tool/get_item_cost(export)
+//	. = 1
+//	for(var/i in tool_qualities)
+//		. += tool_qualities[i] / 5
+//	. *= ..()
 
 /obj/structure/medical_stand/price_tag = 100
 /obj/item/weapon/virusdish/price_tag = 300
@@ -1011,10 +1014,6 @@
 /obj/item/mech_component/price_tag = 150
 /obj/item/mech_equipment/price_tag = 200
 
-/obj/item/weapon/gun/launcher/grenade/price_tag = 1500
-
-/obj/item/weapon/storage/briefcase/price_tag = 50
-
 /obj/item/inflatable/price_tag = 40
 
 /obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400
@@ -1024,3 +1023,39 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125
+
+
+/obj/item/weapon/storage/briefcase/price_tag = 50
+/obj/item/weapon/storage/pouch/price_tag = 100
+/obj/item/weapon/storage/pouch/small_generic/price_tag = 80
+/obj/item/weapon/storage/pouch/medium_generic/price_tag = 120
+/obj/item/weapon/storage/pouch/large_generic/price_tag = 200
+
+//***************//
+//----ORES-----//
+//***************//
+/obj/item/weapon/ore
+	price_tag = 1
+/obj/item/weapon/ore/uranium
+	price_tag = 10
+/obj/item/weapon/ore/iron
+	price_tag = 2
+/obj/item/weapon/ore/coal
+	price_tag = 2
+/obj/item/weapon/ore/glass
+	price_tag = 1
+/obj/item/weapon/ore/plasma
+	price_tag = 5
+/obj/item/weapon/ore/silver
+	price_tag = 5
+/obj/item/weapon/ore/gold
+	price_tag = 5
+/obj/item/weapon/ore/diamond
+	price_tag = 20
+/obj/item/weapon/ore/osmium
+	price_tag = 5
+/obj/item/weapon/ore/hydrogen
+	price_tag = 5
+/obj/item/weapon/ore/slag
+	price_tag = 1
+

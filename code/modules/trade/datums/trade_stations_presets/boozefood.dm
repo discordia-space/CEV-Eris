@@ -1,9 +1,17 @@
-/datum/trade_station/boozetraders
-	name_pool = list("BSV 'Vermouth'" = "Booze Supply Vessel 'Vermouth'. \nBest Drinks! Best Beverages! Anything that is needed for your private bars and more!")
+/datum/trade_station/boozefood
+	name_pool = list("ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth'. \nBest Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!")
 	start_discovered = TRUE
 	spawn_always = TRUE
 
 	assortiment = list(
+		"Basic Ingredients" = list(
+			/obj/item/weapon/reagent_containers/food/condiment/flour,
+			/obj/item/weapon/reagent_containers/food/drinks/milk,
+			/obj/item/weapon/storage/fancy/egg_box,
+			/obj/item/weapon/reagent_containers/food/snacks/tofu,
+			/obj/item/weapon/reagent_containers/food/snacks/meat,
+			/obj/item/weapon/reagent_containers/food/condiment/enzyme
+		),
 		"Drinks" = list(
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
@@ -30,7 +38,6 @@
 			/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater,
 			/obj/item/weapon/reagent_containers/food/drinks/cans/tonic
 		),
-
 		"Flasks, Glasses" = list(
 			/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
 			/obj/item/weapon/reagent_containers/food/drinks/teapot,

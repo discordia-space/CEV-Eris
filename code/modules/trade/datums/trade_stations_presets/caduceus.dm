@@ -63,11 +63,6 @@
 			/obj/item/weapon/reagent_containers/blood/BMinus,
 			/obj/item/weapon/reagent_containers/blood/OPlus,
 			/obj/item/weapon/reagent_containers/blood/OMinus,
-			/obj/item/weapon/storage/firstaid/regular,
-			/obj/item/weapon/storage/firstaid/fire,
-			/obj/item/weapon/storage/firstaid/toxin,
-			/obj/item/weapon/storage/firstaid/o2,
-			/obj/item/weapon/storage/firstaid/adv,
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/splint,
 			/obj/item/stack/medical/ointment

@@ -82,6 +82,7 @@
 	desc = "Streamlined, sleek, and sterile."
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 	model = "moebius"
+	price_tag = 250
 	bad_type = /obj/item/organ/external/robotic/moebius
 
 /obj/item/organ/external/robotic/moebius/l_arm

@@ -1,5 +1,5 @@
 /datum/trade_station/rigvider
-	name_pool = list("RIGS 'Boris'" = "SFB Supply Vessel 'Boris'. They're sending a message. \"Hello there, we are from PLACEHOLDERSENDHELPWHENDOINGTHEPR,THANKYOU. We will be around the system for a time and we have spares. We can sell some if you require these.")
+	name_pool = list("HTB 'Boris'" = "Hardsuit Trade Beacon 'Boris'. They're sending a message. \"Hello there, we are from PLACEHOLDERSENDHELPWHENDOINGTHEPR,THANKYOU. We will be around the system for a time and we have spares. We can sell some if you require these.")
 	assortiment = list(
 		"Voidsuits" = list(
 			/obj/item/clothing/suit/space/void,
@@ -27,9 +27,9 @@
 			/obj/item/rig_module/device/drill = good_data("Mounted Drill", list(1, 10)),
 			/obj/item/rig_module/device/orescanner = good_data("Mounted Ore Scanner", list(1, 10)),
 			/obj/item/rig_module/device/anomaly_scanner = good_data("Mounted Anomaly Scanner", list(1,10)),
-			/obj/item/rig_module/device/rcd = good_data("Mounted RCD", list(-2, 2)),
+			/obj/item/rig_module/device/rcd = good_data("Mounted RCD", list(1, 10)),
 			/obj/item/rig_module/device/healthscanner = good_data("Mounted Health Scanner", list(1, 10)),
-			/obj/item/rig_module/chem_dispenser/ninja = good_data("Mounted Chemical Dispenser (small version)", list(-3, -2)),
+			/obj/item/rig_module/chem_dispenser/ninja = good_data("Mounted Chemical Dispenser (small version)", list(-3, 2)),
 			/obj/item/rig_module/ai_container,
 			/obj/item/rig_module/power_sink,
 			/obj/item/rig_module/vision/meson,

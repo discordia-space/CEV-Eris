@@ -21,6 +21,7 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/item/clothing/gloves/insulated,
 			/obj/item/weapon/storage/toolbox/emergency,
 			/obj/item/clothing/head/welding,
+			/obj/item/weapon/storage/belt/utility,
 			/obj/item/weapon/storage/pouch/engineering_supply,
 			/obj/item/weapon/storage/pouch/engineering_tools,
 			/obj/item/weapon/storage/briefcase/inflatable/empty,

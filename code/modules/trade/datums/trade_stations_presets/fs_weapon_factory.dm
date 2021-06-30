@@ -30,7 +30,4 @@
 		),
 	)
 	offer_types = list(
-			/obj/item/stack/material/steel,
-			/obj/item/stack/material/plasteel,
-			/obj/item/stack/material/plastic
 	)
