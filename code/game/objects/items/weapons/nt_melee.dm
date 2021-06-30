@@ -87,7 +87,7 @@
 
 /obj/item/weapon/tool/sword/nt/scourge
 	name = "NT Scourge"
-	desc = "A saint looking scourge, extreme punisment. Can be extended to hurt more."
+	desc = "A saint looking scourge, extreme punishment. Can be extended to hurt more."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
