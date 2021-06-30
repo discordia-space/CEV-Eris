@@ -10,7 +10,7 @@
 		return FALSE
 	if(prob(40))
 		visible_message("[src] hesitates for a moment...and then charges at [user]!")
-		return FALSE //Sometimes roach just be like that
+		return TRUE //Setting this to true because the only current usage is attack, and it says it hesitates.
 	//fruits and veggies are not there own type, they are all the grown type and contain certain reagents. This is why it didnt work before
 	if(isnull(thefood.seed.chems["potato"]))
 		return FALSE
