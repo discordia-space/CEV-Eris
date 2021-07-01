@@ -53,6 +53,7 @@ SUBSYSTEM_DEF(ticker)
 	//station_explosion used to be a variable for every mob's hud. Which was a waste!
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
+	var/ready_for_reboot = FALSE //all roundend preparation done with, all that's left is reboot
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
 	if(!syndicate_code_phrase)
@@ -128,7 +129,7 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
-			GLOB.storyteller.Process()
+			GLOB.storyteller.process(wait * 0.1)
 			GLOB.storyteller.process_events()
 
 			if(!process_empty_server())
@@ -138,30 +139,11 @@ SUBSYSTEM_DEF(ticker)
 
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
+				// toggle_ooc(TRUE) // Turn it on
+				// toggle_dooc(TRUE)
+				declare_completion()
+				callHook("roundend")
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
-				spawn
-					declare_completion()
-
-				spawn(50)
-					callHook("roundend")
-
-					if(universe_has_ended)
-						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>"))
-					else
-						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>"))
-
-
-					if(!delay_end)
-						sleep(restart_timeout)
-						if(!delay_end)
-							world.Reboot()
-						else
-							to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
-					else
-						to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 
 // This proc will scan for player and if the game is in progress and...
 // there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
@@ -260,10 +242,9 @@ SUBSYSTEM_DEF(ticker)
 		CreateModularRecord(H)
 	data_core.manifest()
 
-	if(round_start_events.len)
-		for(var/I in round_start_events)
-			var/datum/callback/cb = I
-			cb.InvokeAsync()
+	for(var/I in round_start_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
 	callHook("roundstart") // logical to call it here as this is where the async events happen too
@@ -538,8 +519,33 @@ SUBSYSTEM_DEF(ticker)
 		SP.put_mob(player)
 		CHECK_TICK
 
+/datum/controller/subsystem/ticker/proc/GetTimeLeft()
+	// if(isnull(SSticker.pregame_timeleft))
+	// 	return max(0, start_at - world.time)
+	return pregame_timeleft
+
+/datum/controller/subsystem/ticker/proc/HasRoundStarted()
+	return current_state >= GAME_STATE_PLAYING
+
+/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
+	return current_state == GAME_STATE_PLAYING
+
 /datum/controller/subsystem/ticker/proc/declare_completion()
-	to_chat(world, "<br><br><br><H1>A round has ended!</H1>")
+	set waitfor = FALSE
+
+	to_chat(world, "<span class='infoplain'><BR><BR><BR><span class='big bold'>The round has ended.</span></span>")
+	log_game("The round has ended.")
+
+	for(var/I in round_end_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(round_end_events)
+
+	// achivements, soon.
+	// var/speed_round = FALSE
+	// if(world.time - SSticker.round_start_time <= 300 SECONDS)
+	// 	speed_round = TRUE
+
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
@@ -564,6 +570,8 @@ SUBSYSTEM_DEF(ticker)
 					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
 	to_chat(world, "<br>")
 
+	CHECK_TICK
+
 	for(var/mob/living/silicon/ai/aiPlayer in GLOB.mob_living_list)
 		if(aiPlayer.stat != DEAD)
 			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
@@ -577,7 +585,7 @@ SUBSYSTEM_DEF(ticker)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
 			to_chat(world, "[robolist]")
 
-
+	CHECK_TICK
 
 	for(var/mob/living/silicon/robot/robo in GLOB.mob_living_list)
 		if(!isdrone(robo) && !robo.connected_ai)
@@ -588,6 +596,9 @@ SUBSYSTEM_DEF(ticker)
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
+
+	CHECK_TICK
+
 	var/dronecount = GLOB.drones.len
 	if(dronecount)
 		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
@@ -607,19 +618,58 @@ SUBSYSTEM_DEF(ticker)
 				total_antagonists.Add(temprole)
 			total_antagonists[temprole] += ", [antag.owner.name]([antag.owner.key])"
 
-
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
 	for(var/i in total_antagonists)
 		log_game("[i]s[total_antagonists[i]].")
 
-/datum/controller/subsystem/ticker/proc/GetTimeLeft()
-	// if(isnull(SSticker.pregame_timeleft))
-	// 	return max(0, start_at - world.time)
-	return pregame_timeleft
+	sleep(50)
+	ready_for_reboot = TRUE
+	standard_reboot()
 
-/datum/controller/subsystem/ticker/proc/HasRoundStarted()
-	return current_state >= GAME_STATE_PLAYING
+/datum/controller/subsystem/ticker/proc/standard_reboot()
+	if(ready_for_reboot)
+		if(ship_was_nuked)
+			Reboot("Ship destroyed by Nuclear Device.", "nuke")
+		else if(universe_has_ended)
+			Reboot("Universe destroyed by Supermatter.", "reso_cascade")
+		else
+			Reboot("Round ended.", "proper completion")
+	else
+		CRASH("Attempted standard reboot without ticker roundend completion")
 
-/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
-	return current_state == GAME_STATE_PLAYING
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+	set waitfor = FALSE
+	if(usr && !check_rights(R_SERVER, TRUE))
+		return
+
+	if(!delay)
+		delay = restart_timeout //CONFIG_GET(number/round_end_countdown) * 10
+
+	var/skip_delay = check_rights()
+	if(delay_end && !skip_delay)
+		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
+		return
+
+	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+
+	var/start_wait = world.time
+	UNTIL((world.time - start_wait) > (delay * 2)) //don't wait forever
+	sleep(delay - (world.time - start_wait))
+
+	if(delay_end && !skip_delay)
+		to_chat(world, "<span class='boldannounce'>Reboot was cancelled by an admin.</span>")
+		return
+	// if(end_string)
+	// 	end_state = end_string
+
+	// var/statspage = CONFIG_GET(string/roundstatsurl)
+	// var/gamelogloc = CONFIG_GET(string/gamelogurl)
+	// if(statspage)
+	// 	to_chat(world, "<span class='info'>Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a></span>")
+	// else if(gamelogloc)
+	// 	to_chat(world, "<span class='info'>Round logs can be located <a href=\"[gamelogloc]\">at this website!</a></span>")
+
+	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
+
+	world.Reboot()

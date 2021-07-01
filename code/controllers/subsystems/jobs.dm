@@ -370,8 +370,7 @@ SUBSYSTEM_DEF(job)
 			if("AI")
 				return H
 			if("Captain")
-				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+				SSticker.OnRoundstart(CALLBACK(captain_announcement, /datum/announcement/minor.proc/Announce, "All hands, Captain [H.real_name] on deck!", null, sound('sound/misc/boatswain.ogg', volume=20)))
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)

@@ -147,3 +147,12 @@ ADMIN_VERB_ADD(/client/proc/Getkey, R_ADMIN, FALSE)
 	message_admins("[key_name_admin(usr)] teleported [key_name(M)]", 1)
 	if(M)
 		M.on_mob_jump(get_turf(usr))
+
+/// Proc to hook user-enacted teleporting behavior and keep logging of the event.
+/atom/movable/proc/admin_teleport(atom/new_location)
+	if(isnull(new_location))
+		log_admin("[key_name(usr)] teleported [key_name(src)] to nullspace")
+		forceMove(null)
+	else
+		log_admin("[key_name(usr)] teleported [key_name(src)] to [AREACOORD(loc)]")
+		forceMove(new_location)

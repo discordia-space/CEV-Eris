@@ -25,14 +25,15 @@ var/list/client_preference_stats_
 	if(istype(scp))
 		scp.Click()
 
-/mob/Stat()
-	. = ..()
-	if(!client || !statpanel("Preferences"))
-		return
-	var/list/preferences = client_preference_stats_for_usr(src)
-	for(var/client_preference_description in preferences)
-		var/stat_client_preference/scp = client_preference_stats_[client_preference_description]
-		stat(scp.client_preference.description, scp)
+// TODO: reimpliment on new statpan
+// /mob/Stat()
+// 	. = ..()
+// 	if(!client || !statpanel("Preferences"))
+// 		return
+// 	var/list/preferences = client_preference_stats_for_usr(src)
+// 	for(var/client_preference_description in preferences)
+// 		var/stat_client_preference/scp = client_preference_stats_[client_preference_description]
+// 		stat(scp.client_preference.description, scp)
 
 /stat_client_preference
 	parent_type = /atom/movable

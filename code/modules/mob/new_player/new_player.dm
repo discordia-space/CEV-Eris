@@ -134,42 +134,58 @@
 		new_player_panel()
 
 	if(href_list["observe"])
+		if(QDELETED(src) || !src.client)
+			ready = 0
+			return FALSE
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
-			var/mob/observer/ghost/observer = new()
+		var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No")
 
-			spawning = 1
-			sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+		if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
+			ready = 0
+			src << browse(null, "window=playersetup") //closes the player setup window
+			new_player_panel()
+			return FALSE
 
-			observer.started_as_observer = 1
-			close_spawn_windows()
-			var/turf/T = pick_spawn_location("Observer")
-			if(istype(T))
-				to_chat(src, SPAN_NOTICE("You are observer now."))
-				observer.forceMove(T)
-			else
-				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
-			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
+		var/mob/observer/ghost/observer = new()
+		spawning = TRUE
 
-			announce_ghost_joinleave(src)
-			observer.icon = client.prefs.update_preview_icon()
-			observer.alpha = 127
+		observer.started_as_observer = TRUE
+		close_spawn_windows()
+		var/turf/T = pick_spawn_location("Observer")
+		to_chat(src, "<span class='notice'>Now teleporting.</span>")
+		if (T)
+			observer.forceMove(T.loc)
+		else
+			to_chat(src, "<span class='notice'>Teleporting failed. Ahelp an admin please</span>")
+			stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 
-			if(client.prefs.be_random_name)
-				client.prefs.real_name = random_name(client.prefs.gender)
-			observer.real_name = client.prefs.real_name
+		// death time handler
+		observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
+		// end
+		observer.key = key
+		observer.client = client
+		// observer.set_ghost_appearance()
+		observer.icon = observer.client.prefs.update_preview_icon()
+		if(observer?.client?.prefs)
+			observer.real_name = observer.client.prefs.real_name
+			if(observer.client.prefs.be_random_name)
+				observer.client.prefs.real_name = random_name(observer.client.prefs.gender)
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
-			//observer.key = key
-			observer.ckey = ckey
-			observer.initialise_postkey()
+			if(!observer.client.holder && !config.antag_hud_allowed) // For new ghosts we remove the verb from even showing up if it's not allowed.
+				observer.remove_statverb(/mob/observer/ghost/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
+		observer.update_icon()
+		observer.client.create_UI(observer.type)
+		observer.initialise_postkey() // ??
+		add_verb(observer.client, /mob/observer/ghost/proc/dead_tele) // banaid
+		observer.client.init_verbs()
 
-			observer.client.create_UI(observer.type)
-			qdel(src)
-
-			return 1
+		sound_to(observer, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+		// observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+		announce_ghost_joinleave(src)
+		// deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
+		QDEL_NULL(mind)
+		qdel(src)
+		return TRUE
 
 	if(href_list["late_join"])
 		if(!SSticker?.IsRoundInProgress())

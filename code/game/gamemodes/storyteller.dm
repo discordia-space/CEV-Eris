@@ -120,7 +120,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 /********************************
 	MAIN PROCESS
 *********************************/
-/datum/storyteller/Process()
+/datum/storyteller/process(dt)
 	if(can_tick())
 
 		//Update these things so we can accurately select events

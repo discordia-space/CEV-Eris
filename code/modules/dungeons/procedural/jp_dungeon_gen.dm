@@ -539,7 +539,6 @@
 	out_numPaths = 0
 	out_numLongPaths = 0
 
-	var/tempseed = rand(-65535, 65535)
 	var/numits
 	var/paths
 	var/obj/procedural/jp_DungeonRoomEntry/nextentry
@@ -559,14 +558,6 @@
 	var/obj/procedural/jp_DungeonRegion/region2
 
 	var/timer = world.timeofday
-
-	if(seed==null)
-		out_seed = rand(-65535, 65535)
-		rand_seed(out_seed)
-	else
-		out_seed = seed
-		rand_seed(seed)
-
 
 	z = corner1.z
 	minx = min(corner1.x, corner2.x) + roomMaxSize + 1
@@ -701,12 +692,6 @@
 	out_rooms = rooms
 	out_region = region1
 	out_numRooms = out_rooms.len
-	rand_seed(tempseed)
-
-
-
-
-
 
 
 
@@ -907,13 +892,14 @@
 			CHECK_TICK
 	return retPath(end, previous, pathWidth, start, end)
 
-/obj/procedural/jp_DungeonGenerator/proc/retPath(var/list/end, var/list/previous, var/pathWidth, var/turf/start, var/turf/end)
+/obj/procedural/jp_DungeonGenerator/proc/retPath(list/end, list/previous, pathWidth, turf/start, turf/endT)
 	var/list/ret = list()
-	ret += GetSquare(end, pathWidth)
-	var/turf/last = end
+	ret += GetSquare(endT, pathWidth)
+	var/turf/last = endT
 	while(1)
-		if(last==start) break
-		ret+= GetSquare(previous["\ref[last]"], pathWidth)
+		if(last == start || !endT)
+			break
+		ret += GetSquare(previous["\ref[last]"], pathWidth)
 		last=previous["\ref[last]"]
 
 	return ret

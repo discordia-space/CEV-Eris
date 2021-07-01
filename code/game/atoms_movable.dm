@@ -61,9 +61,9 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 
-	// if(orbiting)
-	// 	orbiting.end_orbit(src)
-	// 	orbiting = null
+	if(orbiting)
+		orbiting.end_orbit(src)
+		orbiting = null
 
 	. = ..()
 
@@ -79,6 +79,52 @@
 	// LAZYCLEARLIST(area_sensitive_contents)
 
 	vis_contents.Cut()
+
+/atom/movable/vv_edit_var(var_name, var_value)
+	var/static/list/banned_edits = list("step_x" = TRUE, "step_y" = TRUE, "step_size" = TRUE, "bounds" = TRUE)
+	var/static/list/careful_edits = list("bound_x" = TRUE, "bound_y" = TRUE, "bound_width" = TRUE, "bound_height" = TRUE)
+	if(banned_edits[var_name])
+		return FALSE //PLEASE no.
+	if((careful_edits[var_name]) && (var_value % world.icon_size) != 0)
+		return FALSE
+
+	switch(var_name)
+		if(NAMEOF(src, x))
+			var/turf/T = locate(var_value, y, z)
+			if(T)
+				admin_teleport(T)
+				return TRUE
+			return FALSE
+		if(NAMEOF(src, y))
+			var/turf/T = locate(x, var_value, z)
+			if(T)
+				admin_teleport(T)
+				return TRUE
+			return FALSE
+		if(NAMEOF(src, z))
+			var/turf/T = locate(x, y, var_value)
+			if(T)
+				admin_teleport(T)
+				return TRUE
+			return FALSE
+		if(NAMEOF(src, loc))
+			if(isatom(var_value) || isnull(var_value))
+				admin_teleport(var_value)
+				return TRUE
+			return FALSE
+		if(NAMEOF(src, anchored))
+			set_anchored(var_value)
+			. = TRUE
+		// if(NAMEOF(src, pulledby))
+		// 	set_pulledby(var_value)
+		// 	. = TRUE
+		if(NAMEOF(src, glide_size))
+			set_glide_size(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass() (not implimented YET)

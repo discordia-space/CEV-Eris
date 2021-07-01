@@ -559,6 +559,19 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/setDir(newdir)
 	dir = newdir
 
+/client/vv_edit_var(var_name, var_value)
+	switch (var_name)
+		if (NAMEOF(src, holder))
+			return FALSE
+		if (NAMEOF(src, ckey))
+			return FALSE
+		if (NAMEOF(src, key))
+			return FALSE
+		// if(NAMEOF(src, view))
+		// 	view_size.setDefault(var_value)
+		// 	return TRUE
+	. = ..()
+
 /client/proc/generate_clickcatcher()
 	if(!void)
 		void = new()

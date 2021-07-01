@@ -148,7 +148,6 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  GLOB.hair_styles_list.len,       1)
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, GLOB.facial_hair_styles_list.len,1)
-
 	UpdateUI()
 
 // Set a DNA UI block's raw value.

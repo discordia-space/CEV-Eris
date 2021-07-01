@@ -46,7 +46,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if((M.z in (zlevels | GLOB.maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
-			sound_to(M, message_sound)
+			SEND_SOUND(M, message_sound)
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)

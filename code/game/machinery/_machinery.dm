@@ -165,14 +165,14 @@
 	return ..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
-	return PROCESS_KILL
+	return process()
 
 /obj/machinery/proc/process_atmos()//If you dont use process why are you here
 	return PROCESS_KILL
 
 /// DO NOT USE! USE THE LOWERCASE PROCESS INSTEAD
 /obj/machinery/Process()//If you dont use process or power why are you here
-	return process()
+	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	. = ..()
