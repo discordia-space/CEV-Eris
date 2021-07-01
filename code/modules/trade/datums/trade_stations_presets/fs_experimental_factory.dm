@@ -21,8 +21,5 @@
 			/obj/item/ammo_magazine/ammobox/pistol/hv,
 			/obj/item/ammo_magazine/ammobox/magnum/hv,
 			/obj/item/weapon/storage/box/shotgunammo/incendiaryshells,
-			/obj/item/projectile/bullet/batonround,
-			/obj/item/projectile/bullet/grenade,
-			/obj/item/projectile/bullet/grenade/frag/weak
 		),
 	)

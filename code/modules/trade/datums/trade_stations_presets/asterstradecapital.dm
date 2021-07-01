@@ -98,7 +98,6 @@
 			/obj/item/weapon/mop,
 			/obj/item/weapon/caution,
 			/obj/item/weapon/storage/bag/trash,
-			/obj/item/device/lightreplacer,
 			/obj/item/weapon/reagent_containers/spray/cleaner,
 			/obj/item/weapon/reagent_containers/glass/rag,
 		),

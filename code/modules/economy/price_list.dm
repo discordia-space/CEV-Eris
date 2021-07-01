@@ -853,9 +853,10 @@
 	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
 // Misc //
-
+/obj/item/weapon/reagent_containers/food/snacks/egg
+	price_tag = 5
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg
-	price_tag = 20
+	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
 	price_tag = 10
@@ -914,6 +915,7 @@
 /obj/machinery/portable_atmospherics
 	price_tag = 200
 
+/obj/machinery/power/emitter/price_tag = 2000
 /obj/machinery/power/supermatter
 	price_tag = 10000
 
@@ -967,7 +969,7 @@
 	for(var/obj/item/ammo_casing/i in stored_ammo)
 		. += i.get_item_cost(export)
 
-/obj/item/ammo_casing/price_tag = 0
+/obj/item/ammo_casing/price_tag = 0.1
 /obj/item/ammo_casing/shotgun/price_tag = 1
 
 /obj/item/ammo_casing/get_item_cost(export)
@@ -998,6 +1000,7 @@
 
 /obj/item/solar_assembly/price_tag = 100
 /obj/item/weapon/tracker_electronics/price_tag = 150
+/obj/item/weapon/electronics/tracker/price_tag = 120
 /obj/item/weapon/handcuffs/price_tag = 30
 /obj/item/weapon/handcuffs/get_item_cost(export)
 	. = ..()
@@ -1024,6 +1027,23 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125
 
+/obj/item/weapon/light/bulb/price_tag = 5
+/obj/item/weapon/light/tube/price_tag = 5
+
+/obj/item/device/toner/price_tag = 50
+
+/obj/item/device/camera_film/price_tag = 25
+
+/obj/item/device/camera/price_tag = 50
+/obj/item/weapon/storage/photo_album/price_tag = 50
+
+/obj/item/weapon/wrapping_paper/price_tag = 20
+/obj/item/weapon/packageWrap/price_tag = 20
+/obj/item/weapon/mop/price_tag = 15
+/obj/item/weapon/caution/price_tag = 10
+/obj/item/weapon/storage/bag/trash/price_tag = 25
+
+/obj/item/weapon/storage/lunchbox/price_tag = 25
 
 /obj/item/weapon/storage/briefcase/price_tag = 50
 /obj/item/weapon/storage/pouch/price_tag = 100
