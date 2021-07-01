@@ -2706,7 +2706,6 @@
 #include "code\modules\trade\datums\trade_stations_presets\material_refine.dm"
 #include "code\modules\trade\datums\trade_stations_presets\McRonalds.dm"
 #include "code\modules\trade\datums\trade_stations_presets\mechas.dm"
-#include "code\modules\trade\datums\trade_stations_presets\moebius_augmentstation.dm"
 #include "code\modules\trade\datums\trade_stations_presets\nt_cruisers.dm"
 #include "code\modules\trade\datums\trade_stations_presets\rigprovider.dm"
 #include "code\modules\trade\datums\trade_stations_presets\serbianship.dm"

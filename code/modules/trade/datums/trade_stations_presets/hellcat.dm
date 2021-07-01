@@ -14,13 +14,13 @@
 			/obj/item/weapon/shield/riot,
 			/obj/item/weapon/melee/baton,
 			/obj/machinery/deployable/barrier,
-			/obj/machinery/shieldwallgen,
+			/obj/machinery/shieldwallgen
 		),
-		"Energy weapon" = list(
+		"Energy weapons" = list(
 			/obj/item/weapon/gun/energy/gun/martin,
-			/obj/item/weapon/gun/energy/laser,
+			/obj/item/weapon/gun/energy/laser
 		),
-		"Ballistic weapon" = list(
+		"Ballistic weapons" = list(
 			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/selfload,
 			/obj/item/weapon/gun/projectile/olivaw,

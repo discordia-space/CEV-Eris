@@ -72,6 +72,3 @@
 			/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
 		),
 	)
-	offer_types = list(
-	)
-

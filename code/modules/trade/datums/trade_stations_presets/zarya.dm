@@ -63,5 +63,4 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 	)
 
 	offer_types = list(
-
 	)

@@ -99,9 +99,6 @@
 			/obj/item/weapon/caution,
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/weapon/reagent_containers/spray/cleaner,
-			/obj/item/weapon/reagent_containers/glass/rag,
+			/obj/item/weapon/reagent_containers/glass/rag
 		),
-	)
-
-	offer_types = list(
 	)

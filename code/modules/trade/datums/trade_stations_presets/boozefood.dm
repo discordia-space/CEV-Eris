@@ -47,5 +47,3 @@
 			/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask
 		),
 	)
-	offer_types = list(
-	)

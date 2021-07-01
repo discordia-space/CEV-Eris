@@ -27,7 +27,7 @@
 			/obj/item/weapon/tool/scalpel,
 			/obj/item/weapon/tool/retractor,
 			/obj/item/weapon/tool/bonesetter,
-			/obj/item/weapon/tool/saw/circular,
+			/obj/item/weapon/tool/saw/circular
 		),
 		"Blood" = list(
 			/obj/structure/medical_stand,
@@ -37,7 +37,7 @@
 			/obj/item/weapon/reagent_containers/blood/BPlus,
 			/obj/item/weapon/reagent_containers/blood/BMinus,
 			/obj/item/weapon/reagent_containers/blood/OPlus,
-			/obj/item/weapon/reagent_containers/blood/OMinus,
+			/obj/item/weapon/reagent_containers/blood/OMinus
 		),
 		"Misc" = list(
 			/obj/item/weapon/storage/pouch/medical_supply,
@@ -50,9 +50,9 @@
 			/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
 			/obj/machinery/suspension_gen,
-			/obj/item/weapon/computer_hardware/hard_drive/portable/design,
-			/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites = good_data("Nanites Vial", list(1, 10)),
-			/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites = good_data("Uncapped Nanites Vial", list(1, 10)),
+			/obj/item/weapon/computer_hardware/hard_drive/portable/design
+//			/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites = good_data("Nanites Vial", list(1, 10)),
+//			/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites = good_data("Uncapped Nanites Vial", list(1, 10))
 		),
 	)
 

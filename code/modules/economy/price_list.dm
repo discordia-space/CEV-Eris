@@ -969,12 +969,11 @@
 	for(var/obj/item/ammo_casing/i in stored_ammo)
 		. += i.get_item_cost(export)
 
-/obj/item/ammo_casing/price_tag = 0.1
+/obj/item/ammo_casing/price_tag = 0.2
 /obj/item/ammo_casing/shotgun/price_tag = 1
 
 /obj/item/ammo_casing/get_item_cost(export)
-	. = ..() * amount
-
+	. = round(..() * amount)
 /obj/item/weapon/tool/price_tag = 20
 
 // This one is exploitable as fuck. I say should be removed or nerfed hard. 
@@ -1051,31 +1050,20 @@
 /obj/item/weapon/storage/pouch/medium_generic/price_tag = 120
 /obj/item/weapon/storage/pouch/large_generic/price_tag = 200
 
+/obj/item/rig_module/price_tag = 150
 //***************//
 //----ORES-----//
 //***************//
-/obj/item/weapon/ore
-	price_tag = 1
-/obj/item/weapon/ore/uranium
-	price_tag = 10
-/obj/item/weapon/ore/iron
-	price_tag = 2
-/obj/item/weapon/ore/coal
-	price_tag = 2
-/obj/item/weapon/ore/glass
-	price_tag = 1
-/obj/item/weapon/ore/plasma
-	price_tag = 5
-/obj/item/weapon/ore/silver
-	price_tag = 5
-/obj/item/weapon/ore/gold
-	price_tag = 5
-/obj/item/weapon/ore/diamond
-	price_tag = 20
-/obj/item/weapon/ore/osmium
-	price_tag = 5
-/obj/item/weapon/ore/hydrogen
-	price_tag = 5
-/obj/item/weapon/ore/slag
-	price_tag = 1
+/obj/item/weapon/ore/price_tag = 1
+/obj/item/weapon/ore/uranium/price_tag = 10
+/obj/item/weapon/ore/iron/price_tag = 2
+/obj/item/weapon/ore/coal/price_tag = 2
+/obj/item/weapon/ore/glass/price_tag = 1
+/obj/item/weapon/ore/plasma/price_tag = 5
+/obj/item/weapon/ore/silver/price_tag = 5
+/obj/item/weapon/ore/gold/price_tag = 5
+/obj/item/weapon/ore/diamond/price_tag = 20
+/obj/item/weapon/ore/osmium/price_tag = 5
+/obj/item/weapon/ore/hydrogen/price_tag = 5
+/obj/item/weapon/ore/slag/price_tag = 1
 

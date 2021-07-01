@@ -35,5 +35,3 @@
 			/obj/item/stack/material/osmium = good_data("osmium ingot (x1)", list(0, 2))
 		),
 	)
-	offer_types = list(
-	)

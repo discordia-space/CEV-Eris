@@ -127,7 +127,3 @@
 			/obj/item/clothing/head/collectable/festive
 		),
 	)
-
-	offer_types = list(
-	)
-

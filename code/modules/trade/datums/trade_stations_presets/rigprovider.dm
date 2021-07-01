@@ -11,8 +11,8 @@
 		),
 		"RIGs" =  list(
 			/obj/item/weapon/rig/eva = custom_good_amount_range(list(1, 5)),
-///			obj/item/weapon/rig/medical = custom_good_amount_range(list(1, 5)),
-//			/obj/item/weapon/rig/light = custom_good_amount_range(list(1, 5)), // if the light PR mini-buff/rework thing pass.
+//			/obj/item/weapon/rig/medical = custom_good_amount_range(list(1, 5))
+//			/obj/item/weapon/rig/light = custom_good_amount_range(list(1, 5)) light rigs PR???
 			/obj/item/weapon/rig/hazmat = custom_good_amount_range(list(1, 5)),
 			/obj/item/weapon/rig/combat = custom_good_amount_range(list(1, 5)),
 			/obj/item/weapon/rig/hazard = custom_good_amount_range(list(1, 5)),
@@ -37,7 +37,4 @@
 			/obj/item/rig_module/vision/sechud,
 			/obj/item/rig_module/vision/medhud
 		),
-	)
-
-	offer_types = list(
 	)

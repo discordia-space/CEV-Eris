@@ -26,7 +26,7 @@
 			/obj/item/weapon/grenade/empgrenade,
 			/obj/item/weapon/grenade/empgrenade/low_yield,
 			/obj/item/weapon/grenade/flashbang,
-			/obj/item/weapon/grenade/smokebomb,
+			/obj/item/weapon/grenade/smokebomb
 		),
 	)
 	offer_types = list(
