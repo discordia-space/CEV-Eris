@@ -238,7 +238,7 @@
 	icon_state = "xray"
 	projectile_type = /obj/item/projectile/beam/psychic
 	fire_sound = 'sound/weapons/Laser.ogg'
-	slot_flags = SLOT_BELT|SLOT_BACK
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	fire_delay = 10
 	price_tag = 2200
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_SILVER = 5, MATERIAL_PLASMA = 3)
