@@ -72,9 +72,9 @@
 /obj/item/clothing/suit/storage/toggle/labcoat/science/rd //sprite pending
 	name = "moebius expedition overseer's labcoat"
 	desc = "Somehow fancier than the standard model. Comes with nano-reinforced fabrics, for those psychotic bots."
-	icon_state = "labcoat_tox_open"
-	icon_open = "labcoat_tox_open"
-	icon_closed = "labcoat_tox"
+	icon_state = "labcoat_rd_open"
+	icon_open = "labcoat_rd_open"
+	icon_closed = "labcoat_rd"
 	armor = list(
 		melee = 20,
 		bullet = 15,
