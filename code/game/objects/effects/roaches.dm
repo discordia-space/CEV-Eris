@@ -51,22 +51,22 @@
 	. = ..()
 
 /obj/item/roach_egg/Process()	
-	if(amount_grown >= 100)
-		var/obj/item/organ/external/O
-		if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
-			O = loc
-			src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
-			if(O.owner)
-				O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
-			O.implants -= src // Remove from implants and spawn the roachling on the ground
-			src.loc = O.owner ? O.owner.loc : O.loc
+	if (isturf(src.loc) || istype(src.loc, /obj/structure/closet) || istype(src.loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
+		if(amount_grown >= 100)
+			var/obj/item/organ/external/O
+			if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
+				O = loc
+				src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
+				if(O.owner)
+					O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
+				O.implants -= src // Remove from implants and spawn the roachling on the ground
+				src.loc = O.owner ? O.owner.loc : O.loc
 
-		var/spawn_type = /mob/living/carbon/superior_animal/roach/roachling
-		if (isturf(src.loc) || istype(src.loc, /obj/structure/closet)) // suppresses hatching when not in a suitable loc
+			var/spawn_type = /mob/living/carbon/superior_animal/roach/roachling
 			new spawn_type(src.loc, src)
 			qdel(src)
-	else
-		amount_grown += rand(0,2)
+		else
+			amount_grown += rand(0,2)
 
 /obj/effect/decal/cleanable/roach_egg_remains
 	name = "roach egg remains"
