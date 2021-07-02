@@ -105328,6 +105328,10 @@
 /obj/landmark/join/start/acolyte,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"wKT" = (
+/obj/machinery/vending/style,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/crew_quarters/clothingstorage)
 "wOW" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/structure/catwalk,
@@ -204148,7 +204152,7 @@ bYu
 bRU
 bwS
 bwY
-bRZ
+wKT
 agD
 aEe
 aEe
