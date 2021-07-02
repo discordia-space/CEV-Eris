@@ -1,6 +1,6 @@
-/datum/trade_station/syndievider
+/datum/trade_station/illegaltrader
 	name_pool = list("NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized message. \"Hey, Buddie. Interested on something?")
-	spawn_probability = 10
+	spawn_probability = 5
 	spawn_cost = 2
 	markup = 1
 	assortiment = list(

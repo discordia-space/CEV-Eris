@@ -1,16 +1,18 @@
 /datum/trade_station/nt_cruisers
-	icon_states = "nt_cruiser" // Because we lack NT noncombat ships.
-	spawn_cost = 2
-	spawn_probability = 15
+	icon_states = "nt_cruiser"
+	spawn_cost = 1
 	markup = 1
 	name_pool = list(
 		"NTV 'Faith'" = "'NeoTheology Vessel 'Faith' something, something, NeoTheology is good, buy us, convert, something something",
-		"NTV 'Hope'" = "'NeoTheology Vessel 'Hope' something something, this PR is unfinished and I need feedback something, something."
+		"NTV 'Hope'" = "'NeoTheology Vessel 'Hope' something something, this PR requires better descriptions, something, something."
 	)
 
 //Types of items sold by the station
 	assortiment = list(
-		"Holsters n' Pockets" = list(
+		"Biomatter products" = list(
+			/obj/item/weapon/reagent_containers/food/snacks/meat,
+			/obj/item/weapon/reagent_containers/food/drinks/milk,
+			/obj/item/weapon/soap/nanotrasen,
 			/obj/item/weapon/storage/pouch/small_generic,
 			/obj/item/weapon/storage/pouch/medium_generic,
 			/obj/item/weapon/storage/pouch/large_generic,
@@ -38,7 +40,7 @@
 		),
 		"Ballistic weapons" = list(
 			/obj/item/weapon/gun/projectile/mk58,
-			/obj/item/weapon/gun/projectile/mk58/wood = custom_good_name("NT HG .35 \"Mk58\" Wood Version"),
+			/obj/item/weapon/gun/projectile/mk58/wood,
 			/obj/item/weapon/gun/projectile/shotgun/pump/regulator,
 			/obj/item/weapon/gun/launcher/grenade
 		),

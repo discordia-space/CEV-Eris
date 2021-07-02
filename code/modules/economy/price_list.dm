@@ -1020,7 +1020,6 @@
 
 /obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400
 
-
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/price_tag = 75
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
@@ -1029,6 +1028,7 @@
 /obj/item/weapon/light/bulb/price_tag = 5
 /obj/item/weapon/light/tube/price_tag = 5
 
+/obj/item/toy/price_tag = 40
 /obj/item/device/toner/price_tag = 50
 
 /obj/item/device/camera_film/price_tag = 25
