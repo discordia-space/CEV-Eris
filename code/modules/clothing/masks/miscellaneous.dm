@@ -183,21 +183,18 @@
 	desc = "A stylish, blue scarf."
 	icon_state = "bluescarf"
 	item_state = "bluescarf"
-	style = STYLE_HIGH
 
 /obj/item/clothing/mask/scarf/style/yellowstyle
 	name = "yellow scarf"
 	desc = "A stylish, yellow scarf."
 	icon_state = "yellowscarf"
 	item_state = "yellowscarf"
-	style = STYLE_HIGH
 
 /obj/item/clothing/mask/scarf/style/redstyle
 	name = "red scarf"
 	desc = "A stylish, red scarf."
 	icon_state = "redscarf"
 	item_state = "redscarf"
-	style = STYLE_HIGH
 
 /obj/item/clothing/mask/pig
 	name = "pig mask"

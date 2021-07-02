@@ -1562,10 +1562,10 @@
 	vendor_department = DEPARTMENT_OFFSHIP
 
 /obj/machinery/vending/style
-	name = "Style vendor"
-	desc = "Vendor selling stolen stylish clothing."
+	name = "Asters Guild Style-o-matic"
+	desc = "Asters Guild vendor selling, possibly stolen, most likely overpriced, stylish clothing."
 	product_slogans = "Highly stylish clothing for sale!;Latest fashion trends right here!"
-	product_ads = "Contact our consumer department for refunds, fees apply.;Coolness sold here."
+	product_ads = "Stylish!;Cheap!;Legal within this sector!"
 	icon_state = "style"
 	products = list(
 		/obj/item/clothing/mask/scarf/style = 8,
@@ -1590,7 +1590,7 @@
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
 		/obj/item/clothing/suit/storage/triad = 2,
-		/obj/item/clothing/suit/storage/akira = 2,
+		/obj/item/clothing/suit/storage/akira = 2
 					)
 	prices = list(
 		/obj/item/clothing/mask/scarf/style = 250,
@@ -1616,7 +1616,7 @@
 		/obj/item/clothing/under/raider = 750,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 750,
-		/obj/item/clothing/head/skull/drip = 100000,
+		/obj/item/clothing/head/skull/drip = 100000
 					)
 
 	contraband = list(

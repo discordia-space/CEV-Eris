@@ -294,7 +294,6 @@
 	flags_inv = HIDEMASK|HIDEEARS|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	price_tag = 300
-	style = STYLE_HIGH
 	armor = list(
 		melee = 10,
 		bullet = 5,
@@ -310,7 +309,6 @@
 	icon_state = "skull-black"
 	item_state = "skull-black"
 	price_tag = 300
-	style = STYLE_HIGH
 
 /obj/item/clothing/head/skull/drip
 	name = "golden skull"
@@ -319,7 +317,6 @@
 	item_state = "skull-drip"
 	spawn_blacklisted = TRUE //its 10k, also decent armour
 	price_tag = 10000
-	style = STYLE_HIGH
 	armor = list(
 		melee = 30,
 		bullet = 25,
