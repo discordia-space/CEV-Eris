@@ -1561,6 +1561,68 @@
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
 
+/obj/machinery/vending/style
+	name = "Asters Guild Style-o-matic"
+	desc = "Asters Guild vendor selling, possibly stolen, most likely overpriced, stylish clothing."
+	product_slogans = "Highly stylish clothing for sale!;Latest fashion trends right here!"
+	product_ads = "Stylish!;Cheap!;Legal within this sector!"
+	icon_state = "style"
+	products = list(
+		/obj/item/clothing/mask/scarf/style = 8,
+		/obj/item/clothing/mask/scarf/style/bluestyle = 8,
+		/obj/item/clothing/mask/scarf/style/yellowstyle = 8,
+		/obj/item/clothing/mask/scarf/style/redstyle = 8,
+		/obj/item/clothing/gloves/knuckles = 3,
+		/obj/item/clothing/head/ranger = 4,
+		/obj/item/clothing/head/inhaler = 2,
+		/obj/item/clothing/head/skull = 3,
+		/obj/item/clothing/head/skull/black = 3,
+		/obj/item/clothing/shoes/redboot = 4,
+		/obj/item/clothing/shoes/jackboots/longboot = 3,
+		/obj/item/clothing/under/white = 4,
+		/obj/item/clothing/under/red = 4,
+		/obj/item/clothing/under/green = 4,
+		/obj/item/clothing/under/grey = 4,
+		/obj/item/clothing/under/black = 4,
+		/obj/item/clothing/under/dress = 4,
+		/obj/item/clothing/under/dress/white = 4,
+		/obj/item/clothing/under/helltaker = 4,
+		/obj/item/clothing/under/johnny = 3,
+		/obj/item/clothing/under/raider = 3,
+		/obj/item/clothing/suit/storage/triad = 2,
+		/obj/item/clothing/suit/storage/akira = 2
+					)
+	prices = list(
+		/obj/item/clothing/mask/scarf/style = 250,
+		/obj/item/clothing/mask/scarf/style/bluestyle = 250,
+		/obj/item/clothing/mask/scarf/style/yellowstyle = 250,
+		/obj/item/clothing/mask/scarf/style/redstyle = 250,
+		/obj/item/clothing/gloves/knuckles = 650,
+		/obj/item/clothing/head/ranger = 550,
+		/obj/item/clothing/head/inhaler = 750,
+		/obj/item/clothing/head/skull = 450,
+		/obj/item/clothing/head/skull/black = 450,
+		/obj/item/clothing/shoes/redboot = 450,
+		/obj/item/clothing/shoes/jackboots/longboot = 550,
+		/obj/item/clothing/under/white = 600,
+		/obj/item/clothing/under/red = 600,
+		/obj/item/clothing/under/green = 600,
+		/obj/item/clothing/under/grey = 600,
+		/obj/item/clothing/under/black = 600,
+		/obj/item/clothing/under/dress = 600,
+		/obj/item/clothing/under/dress/white = 600,
+		/obj/item/clothing/under/helltaker = 600,
+		/obj/item/clothing/under/johnny = 750,
+		/obj/item/clothing/under/raider = 750,
+		/obj/item/clothing/suit/storage/triad = 1200,
+		/obj/item/clothing/suit/storage/akira = 750,
+		/obj/item/clothing/head/skull/drip = 100000
+					)
+
+	contraband = list(
+		/obj/item/clothing/head/skull/drip = 1)	//drip
+	
+
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."

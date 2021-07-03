@@ -13,8 +13,8 @@
 	build_path = /obj/item/gun/energy/stunrevolver/moebius
 	sort_string = "TAAAA"
 
-/datum/design/research/item/weapon/nuclear_gun
-	build_path = /obj/item/gun/energy/gun/nuclear
+/datum/design/research/item/weapon/mindflayer
+	build_path = /obj/item/gun/energy/psychic/mindflayer
 	sort_string = "TAAAB"
 
 /datum/design/research/item/weapon/lasercannon
@@ -35,6 +35,10 @@
 /datum/design/research/item/weapon/decloner
 	build_path = /obj/item/gun/energy/decloner
 	sort_string = "TAAAE"
+
+/datum/design/research/item/weapon/nuclear
+	build_path = /obj/item/gun/energy/nuclear
+	sort_string = "TAAAG"
 
 /datum/design/research/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."

@@ -86,7 +86,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/grab/proc/headbut(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -95,13 +95,14 @@
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
+	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_MELEE)
 	if(istype(hat))
 		damage += hat.force * 3
 
 	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
 	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 
-	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
+	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
 		target.visible_message(SPAN_DANGER("[target] [target.species.knockout_message]"))
 
