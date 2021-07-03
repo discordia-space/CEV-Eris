@@ -87,7 +87,7 @@
 
 	var/obj/item/robot_parts/robot_component/RC = pick(damageable_components)
 	if(RC.take_damage(brute, burn))
-		qdel(RC)
+		QDEL_NULL(RC)
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))

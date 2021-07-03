@@ -63,6 +63,7 @@
 /obj/machinery/power/smes/New()
 	..()
 	spawn(5)
+		GLOB.smes_list += src
 		if(!powernet)
 			connect_to_network()
 
@@ -88,6 +89,10 @@
 			warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
 
 	return
+
+/obj/machinery/power/smes/Destroy()
+	GLOB.smes_list -= src
+	..()
 
 /obj/machinery/power/smes/add_avail(var/amount)
 	if(..(amount))
