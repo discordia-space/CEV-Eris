@@ -423,7 +423,7 @@
 		bio = 0,
 		rad = 0
 	)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
 

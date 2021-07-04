@@ -97,8 +97,8 @@
 		new /obj/item/weapon/storage/backpack/medical(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel(src)
-	new /obj/item/clothing/suit/bio_suit/cmo(src)
-	new /obj/item/clothing/head/bio_hood/cmo(src)
+	new /obj/item/clothing/suit/bio_suit(src)
+	new /obj/item/clothing/head/bio_hood(src)
 	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/reinforced/medical(src)
 	new /obj/item/clothing/gloves/latex/nitrile(src)
