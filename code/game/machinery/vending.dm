@@ -1452,7 +1452,10 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
 					/obj/item/weapon/electronics/circuitboard/autolathe = 3,
 					/obj/item/weapon/electronics/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3)
+	contraband = list(
+			/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3,
+			/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3,
+			)
 	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50,
 					/obj/item/weapon/storage/box/data_disk/basic = 100,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
@@ -1535,7 +1538,10 @@
 					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 2
 					)
-	contraband = list(/obj/item/weapon/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
+	contraband = list(
+					/obj/item/weapon/gun/projectile/mandella = 4,
+					/obj/item/ammo_magazine/cspistol = 12,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/scaramanga = 1)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
@@ -1556,7 +1562,8 @@
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 1800,
-					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 1800
+					/obj/item/weapon/storage/deferred/crate/clown_crime/chains = 1800,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/scaramanga = 7000
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP

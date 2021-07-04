@@ -79,6 +79,18 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/scaramanga
+	disk_name = "\"Scaramanga\" gold set"
+	icon_state = "onestar"
+	rarity_value = 10
+	license = 15
+	designs = list(
+		/datum/design/autolathe/sec/gold = 3,
+		/datum/design/autolathe/gun/colt = 3,
+		/datum/design/autolathe/gun/atreides = 6,
+		/datum/design/autolathe/gun/avasarala = 6
+	)
+
 // ARMOR
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
