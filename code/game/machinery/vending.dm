@@ -1454,7 +1454,7 @@
 					/obj/item/weapon/electronics/circuitboard/vending = 10)
 	contraband = list(
 			/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3,
-			/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3,
+			/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3
 			)
 	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50,
 					/obj/item/weapon/storage/box/data_disk/basic = 100,
