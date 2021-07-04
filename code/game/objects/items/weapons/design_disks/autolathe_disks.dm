@@ -82,7 +82,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/scaramanga
 	disk_name = "\"Scaramanga\" gold set"
 	icon_state = "onestar"
-	rarity_value = 10
+	rarity_value = 40
 	license = 15
 	designs = list(
 		/datum/design/autolathe/sec/gold = 3,
