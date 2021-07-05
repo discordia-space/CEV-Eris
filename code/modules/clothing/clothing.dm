@@ -570,6 +570,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
+	valid_accessory_slots = list("armor")
+	restricted_accessory_slots = list("armor")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -602,8 +604,8 @@ BLIND     // can't see anything
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
-	valid_accessory_slots = list("utility","armband","decor","armor")
-	restricted_accessory_slots = list("utility", "armband", "armor")
+	valid_accessory_slots = list("utility","armband","decor")
+	restricted_accessory_slots = list("utility", "armband")
 
 
 /obj/item/clothing/under/attack_hand(mob/user)

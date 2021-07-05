@@ -95,7 +95,7 @@
 		list(QUALITY_ADHESIVE, 15, 15)
 	)
 
-/datum/craft_recipe/clothing/armor_attach
+/datum/craft_recipe/clothing/armor_attach/bullet
 	name = "Bulletproof armor plates"
 	result = /obj/item/clothing/accessory/armor/bullet
 	steps = list(

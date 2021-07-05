@@ -197,6 +197,7 @@
 	desc = "Plates from an armored vest, now usable to reinforce clothes."
 	slot = "armor"
 	icon_state = "armor"
+	w_class = ITEM_SIZE_NORMAL
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -214,6 +215,7 @@
 	..()
 	has_suit.armor = armor
 	has_suit.style -= 2
+	has_suit.slowdown += 0.05
 
 /obj/item/clothing/accessory/armor/bullet
 	name = "bulletproof armor plates"
@@ -221,7 +223,7 @@
 	icon_state = "armor_bullet"
 	armor = list(
 		melee = 20,
-		bullet = 45,
+		bullet = 40,
 		energy = 20,
 		bomb = 0,
 		bio = 0,
