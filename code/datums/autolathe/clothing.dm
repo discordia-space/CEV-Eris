@@ -9,7 +9,7 @@
 	name = "helmet"
 	build_path = /obj/item/clothing/head/armor/helmet
 
-/datum/design/autolathe/clothing/generic_helmet_visored // Unused ATM
+/datum/design/autolathe/clothing/generic_helmet_visored 
 	name = "visored helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/visor
 
@@ -21,9 +21,17 @@
 	name = "fullbody armor vest"
 	build_path = /obj/item/clothing/suit/armor/vest/full
 
-/datum/design/autolathe/clothing/generic_vest_security // Unused ATM
+/datum/design/autolathe/clothing/generic_vest_security 
 	name = "security armor"
 	build_path = /obj/item/clothing/suit/armor/vest/security
+
+/datum/design/autolathe/clothing/generic_vest_webbing
+	name = "webbed armor vest"
+	build_path = /obj/item/clothing/suit/storage/vest
+
+/datum/design/autolathe/clothing/riot_helmet
+	name = "riot helmet"
+	build_path = /obj/item/clothing/head/armor/faceshield/riot
 
 // Bulletproof
 
