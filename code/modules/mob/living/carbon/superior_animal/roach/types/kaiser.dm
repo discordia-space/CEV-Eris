@@ -34,6 +34,10 @@ Has ability of every roach.
 	meat_amount = 15
 	sanity_damage = 3
 
+	ranged = 1 // RUN, COWARD!
+	projectiletype = /obj/item/projectile/roach_spit
+	fire_verb = "spits glowing bile"
+
 	var/distress_call_stage = 3
 
 	var/health_marker_1 = 1500
@@ -69,11 +73,12 @@ Has ability of every roach.
 
 	if(isliving(A))
 		var/mob/living/L = A
-		if(istype(L) && prob(10))
+		if(prob(10))
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
-			L.damage_through_armor(damage, TOX)
+			L.apply_effect(200, IRRADIATE) // as much as a radioactive AMR shot or five times the gestrahlte's
+			L.damage_through_armor(damage, TOX, ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some toxic bile all over \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
 
 // SUPPORT ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/gas_attack()
@@ -134,9 +139,8 @@ Has ability of every roach.
 	if(!istype(thefood))
 		return FALSE
 	if(prob(40))
-		// TODO: Make Kaiser bite user's arm off here.
 		visible_message("[src] hesitates for a moment... and then charges at [user]!")
-		return FALSE //Sometimes roach just be like that
+		return TRUE //Setting this to true because the only current usage is attack, and it says it hesitates.
 	//fruits and veggies are not there own type, they are all the grown type and contain certain reagents. This is why it didnt work before
 	if(isnull(thefood.seed.chems["singulo"]))
 		return FALSE

@@ -58,6 +58,8 @@
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
+			if (M in friends)
+				grabbed_by_friend = TRUE // disables AI for easier wrangling
 			M.put_in_active_hand(G)
 			G.synch()
 			LAssailant = M

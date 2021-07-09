@@ -1,0 +1,9 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Clothing from style vendor now appears on females
+  - bugfix: Chest rig now appears on females
+  - rscdel: All old bio suits were replaced by default bio suit. There were no differences
+      at all except the sprites.
+  - bugfix: Scavenger armor now covers arms and legs as intended
+  - tweak: Scavenger armor is now scavenger armor

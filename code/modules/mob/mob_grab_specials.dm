@@ -35,7 +35,7 @@
 			to_chat(user, SPAN_WARNING("[H] has an unhealthy skin discoloration."))
 			bad = 1
 		if(H.getOxyLoss() >= 20)
-			to_chat(user, SPAN_WARNING("[H]'s skin is unusaly pale."))
+			to_chat(user, SPAN_WARNING("[H]'s skin is unusually pale."))
 			bad = 1
 		if(E.status & ORGAN_DEAD)
 			to_chat(user, SPAN_WARNING("[E] is decaying!"))

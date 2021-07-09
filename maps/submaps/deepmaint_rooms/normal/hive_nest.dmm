@@ -19,7 +19,7 @@
 "C" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "D" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "E" = (/obj/structure/catwalk,/obj/item/material/shard/plasma{pixel_x = -5},/obj/item/stack/material/steel/random,/obj/effect/decal/cleanable/blood/drip,/obj/item/trash/material/metal{pixel_x = 13; pixel_y = -4},/obj/item/trash/material/metal{pixel_x = -6; pixel_y = 11},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
-"F" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/item/reagent_containers/glass/beaker/hivemind,/obj/item/clothing/head/bio_hood/virology,/obj/item/clothing/suit/bio_suit/virology,/obj/item/clothing/shoes/reinforced/medical,/obj/spawner/firstaid/low_chance,/obj/spawner/medical,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
+"F" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/item/reagent_containers/glass/beaker/hivemind,/obj/item/clothing/head/bio_hoo,/obj/item/clothing/suit/bio_suit,/obj/item/clothing/shoes/reinforced/medical,/obj/spawner/firstaid/low_chance,/obj/spawner/medical,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "H" = (/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "J" = (/obj/structure/table/standard,/obj/structure/catwalk,/obj/spawner/gun_parts/low_chance,/obj/item/device/lighting/toggleable/lamp,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "K" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)

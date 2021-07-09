@@ -93,6 +93,24 @@
 		list(QUALITY_SCREW_DRIVING, 10, 40)
 	)
 
+/datum/craft_recipe/tool/toolimplant
+	name = "Multitool implant"
+	result = /obj/item/organ_module/active/multitool/improvised
+	steps = list(
+		list(/obj/item/weapon/storage/toolbox, 1),
+		list(/obj/item/weapon/electronics/circuitboard, 1),
+		list(/obj/item/organ/external/robotic, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(/obj/item/weapon/tool/shiv, 1),
+		list(/obj/item/weapon/tool/screwdriver/improvised, 1),
+		list(/obj/item/weapon/tool/wirecutters/improvised, 1),
+		list(/obj/item/weapon/tool/crowbar/improvised, 1),
+		list(/obj/item/weapon/tool/wrench/improvised, 1),
+		list(/obj/item/weapon/tool/shovel/improvised, 1),
+		list(/obj/item/weapon/tool/saw/improvised, 1),
+		list(/obj/item/weapon/tool/weldingtool/improvised, 1),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
 
 /*************************
 	TOOL MODS

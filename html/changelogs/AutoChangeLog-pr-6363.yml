@@ -1,0 +1,21 @@
+author: Chickenish
+delete-after: true
+changes:
+  - rscadd: You can now reinforce railings, which means that they block projectiles
+      and roaches, along with some extra health.
+  - rscadd: a roach's friend can now wrangle them for uneventful transport.
+  - rscadd: Gestrahlte roaches are now ranged attackers, and their bile is radioactive.
+  - rscadd: grown up roachlings and nanoroach swarms now inherit their friends lists.
+  - rscdel: Roaches no longer spawn roach cubes with their presence, sorry.
+  - tweak: roaches no longer bite you immediately after you get the message that they
+      hesitate.
+  - balance: roaches now lay more eggs, except for when they ate a roachling or kampfer
+      corpse, then just one.
+  - balance: roaches now take much less time to eat roaches or spiders.
+  - bugfix: roaches no longer try to lay all the eggs at once.
+  - bugfix: roach eggs now fit in containers.
+  - imageadd: added reinforced railing icons.
+  - spellcheck: Limb examination used to say "unusaly pale" for oxyloss, now it says
+      "unusually pale".
+  - refactor: refactored a bit of roach code, along with changing an atom/New() override
+      to init_light().
