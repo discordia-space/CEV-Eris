@@ -50,6 +50,7 @@
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
+	init_light()
 	var/do_initialize = SSatoms.init_state
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD

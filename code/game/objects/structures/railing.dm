@@ -14,6 +14,8 @@
 	var/health=70
 	var/maxhealth=70
 	var/check = 0
+	var/reinforced = FALSE
+	var/reinforcement_security = 0 // extra health from being reinforced, hardcoded to 40 on add
 	var/icon_modifier = ""	//adds string to icon path for color variations
 
 /obj/structure/railing/grey
@@ -49,7 +51,7 @@
 	if(!mover)
 		return 1
 
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(!reinforced && istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	if(get_dir(loc, target) == dir)
 		return !density
@@ -61,14 +63,34 @@
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
-			if(0 to 0.5)
+			if(0 to 0.25)
 				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
 			if(0.25 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks damaged!"))
 			if(0.5 to 1)
 				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
+	if(reinforced)
+		var/reinforcement_text = "It is reinforced with rods"
+		switch(reinforcement_security)
+			if (0 to 1)
+				reinforcement_text += ", which are barely hanging on"
+			if (1 to 20)
+				reinforcement_text += ", which are loosely attached"
+			if (20 to 30)
+				reinforcement_text += ", which are a bit loose"
+		to_chat(user, SPAN_NOTICE("[reinforcement_text].")) // MY rods(?) were a bit loose while writing this
 
 /obj/structure/railing/proc/take_damage(amount)
+	if (reinforced)
+		if (reinforcement_security == 0)
+			visible_message(SPAN_WARNING("[src]'s reinforcing rods fall off!"))
+			reinforced = FALSE
+			var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(src.loc)
+			rodtoedit.amount = 2
+			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+			return
+		reinforcement_security = max(0, reinforcement_security - amount)
+		return
 	health -= amount
 	if(health <= 0)
 		visible_message(SPAN_WARNING("\The [src] breaks down!"))
@@ -113,13 +135,13 @@
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-/obj/structure/railing/on_update_icon(var/UpdateNeighgors = 1)
-	NeighborsCheck(UpdateNeighgors)
+/obj/structure/railing/on_update_icon(var/UpdateNeighbors = 1)
+	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
 	if (!check || !anchored)
-		icon_state = "[icon_modifier]railing0"
+		icon_state = "[icon_modifier][reinforced ? "reinforced_": null]railing0"
 	else
-		icon_state = "[icon_modifier]railing1"
+		icon_state = "[icon_modifier][reinforced ? "reinforced_": null]railing1"
 		//left side
 		if (check & 32)
 			add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay"))
@@ -194,7 +216,7 @@
 
 
 /obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
+	if(!reinforced && istype(O) && O.checkpass(PASSTABLE))
 		return 1
 	if(get_dir(O.loc, target) == dir)
 		return 0
@@ -235,17 +257,27 @@
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
-	if(!anchored)
+	if(!anchored || reinforced)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor.")))
-				anchored = !anchored
-				update_icon()
+			if(reinforcement_security)
+				to_chat(user, SPAN_NOTICE("You cannot remove [src]'s reinforcement when it's this tightly secured."))
+			else if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if(!reinforced)
+					to_chat(user, (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor.")))
+					anchored = !anchored
+					update_icon()
+				else if (!reinforcement_security)
+					to_chat(user, SPAN_NOTICE("You remove the reinforcing rods from [src]"))
+					var/obj/item/stack/rodtoedit = new /obj/item/stack/rods(get_turf(usr))
+					rodtoedit.amount = 2
+					reinforced = FALSE
+					reinforcement_security = 0
+					update_icon()
 			return
 
 		if(QUALITY_WELDING)
@@ -261,12 +293,36 @@
 					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
 					drop_materials(get_turf(user))
 					qdel(src)
+			if(reinforced)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if(reinforcement_security)
+						user.visible_message(SPAN_NOTICE("[user] unsecures [src]'s reinforcing rods."), SPAN_NOTICE("You unsecure [src]'s reinforcing rods."))
+						reinforcement_security = 0
+					else
+						user.visible_message(SPAN_NOTICE("[user] secures [src]'s reinforcing rods."), SPAN_NOTICE("You secure [src]'s reinforcing rods."))
+						reinforcement_security = 40
+
 			return
 
 		if(ABORT_CHECK)
 			return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(istype(I, /obj/item/stack/rods) && user.a_intent != I_HURT)
+		if(!reinforced && anchored)
+			var/obj/item/stack/rod = I
+			if(rod.get_amount() >= 2)
+				rod.use(2)
+				reinforced = TRUE
+				reinforcement_security = 40
+				user.visible_message(SPAN_NOTICE("[user] reinforces [src] with rods."), SPAN_NOTICE("You reinforce [src] with rods."))
+				update_icon()
+				return
+			else
+				to_chat(user, SPAN_NOTICE("This is not enough rods to reinforce [src], it requires two."))
+		else
+			to_chat(user, SPAN_NOTICE("In its current state, [src] is not valid to reinforce."))
+			return
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 	take_damage(I.force)
 
@@ -324,3 +380,8 @@
 		damage *= abs(from.z - dest.z)
 
 	return damage
+
+/obj/structure/railing/bullet_act(obj/item/projectile/P, def_zone)
+	. = ..()
+	take_damage(P.get_structure_damage())
+	
