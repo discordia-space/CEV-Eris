@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - code_imp: fixed the code causing ambiguous code warnings

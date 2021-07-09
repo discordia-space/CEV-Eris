@@ -1,9 +1,0 @@
-author: Herbaon
-delete-after: true
-changes:
-  - bugfix: Artist and Kube Oddities turning all-stats oddities by Preacher Blessing
-      Litany.
-  - bugfix: Secure Briefcase being able to be opened by altclick.
-  - bugfix: Borosilicate/Plasma glass being called Platinum glass and incorrect Moebius
-      isotope diffuser description.
-  - bugfix: dartgun and syringe guns gunpart exploit
