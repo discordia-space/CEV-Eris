@@ -91,6 +91,7 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 			current_state = GAME_STATE_PREGAME
 			send_assets()
+			fire()
 
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
@@ -113,7 +114,8 @@ SUBSYSTEM_DEF(ticker)
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
-
+				if(start_immediately)
+					fire()
 			first_start_trying = FALSE
 
 		if(GAME_STATE_SETTING_UP)
