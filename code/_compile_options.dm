@@ -58,9 +58,9 @@
 #endif
 
 //Don't load extools on 514 and 513.1539+
-#if DM_VERSION < 514 && DM_BUILD < 1540
-#define USE_EXTOOLS
-#endif
+// #if DM_VERSION < 514 && DM_BUILD < 1540
+// #define USE_EXTOOLS
+// #endif
 
 //Additional code for the above flags.
 #ifdef TESTING

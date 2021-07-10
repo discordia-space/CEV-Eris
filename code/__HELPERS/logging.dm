@@ -11,6 +11,12 @@
 
 /var/global/log_end= world.system_type == UNIX ? ascii2text(13) : ""
 
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+/proc/log_test(text)
+	// WRITE_LOG(GLOB.test_log, text)
+	log_world("## CI: [text]")
+	SEND_TEXT(world.log, text)
+#endif
 
 /proc/error(msg)
 	log_world("## ERROR: [msg][log_end]")

@@ -337,3 +337,6 @@
 
 //Sounds list
 #define WALLHIT_SOUNDS list('sound/effects/wallhit.ogg', 'sound/effects/wallhit2.ogg', 'sound/effects/wallhit3.ogg')
+
+//Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"
