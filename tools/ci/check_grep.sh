@@ -22,11 +22,11 @@ if grep -P 'pixel_[^xy]' maps/**/*.dmm;	then
     echo "ERROR: incorrect pixel offset variables detected in maps, please remove them."
     st=1
 fi;
-echo "Checking for cable varedits"
-if grep -P '/obj/structure/cable(/\w+)+\{' maps/**/*.dmm;	then
-    echo "ERROR: vareditted cables detected, please remove them."
-    st=1
-fi;
+# echo "Checking for cable varedits"
+# if grep -P '/obj/structure/cable(/\w+)+\{' maps/**/*.dmm;	then
+#     echo "ERROR: vareditted cables detected, please remove them."
+#     st=1
+# fi;
 # if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
 #     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
 #     st=1
@@ -80,25 +80,25 @@ if grep -ni 'nanotransen' maps/**/*.dmm; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
     st=1
 fi;
-if ls maps/*.json | grep -P "[A-Z]"; then
-    echo "Uppercase in a map json detected, these must be all lowercase."
-    st=1
-fi;
+# if ls maps/*.json | grep -P "[A-Z]"; then
+#     echo "Uppercase in a map json detected, these must be all lowercase."
+#     st=1
+# fi;
 if grep -i '/obj/effect/mapping_helpers/custom_icon' maps/**/*.dmm; then
     echo "Custom icon helper found. Please include dmis as standard assets instead for built-in maps."
     st=1
 fi;
-for json in maps/*.json
-do
-    map_path=$(jq -r '.map_path' $json)
-    while read map_file; do
-        filename="maps/$map_path/$map_file"
-        if [ ! -f $filename ]
-        then
-            echo "found invalid file reference to $filename in maps/$json"
-            st=1
-        fi
-    done < <(jq -r '[.map_file] | flatten | .[]' $json)
-done
+# for json in maps/*.json
+# do
+#     map_path=$(jq -r '.map_path' $json)
+#     while read map_file; do
+#         filename="maps/$map_path/$map_file"
+#         if [ ! -f $filename ]
+#         then
+#             echo "found invalid file reference to $filename in maps/$json"
+#             st=1
+#         fi
+#     done < <(jq -r '[.map_file] | flatten | .[]' $json)
+# done
 
 exit $st

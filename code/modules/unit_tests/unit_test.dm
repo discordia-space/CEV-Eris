@@ -121,7 +121,7 @@ GLOBAL_VAR(test_log)
 	fdel(file_name)
 	file(file_name) << json_encode(test_results)
 
-	SSticker.universe_has_ended = TRUE
+	global.universe_has_ended = TRUE
 
 /datum/map_template/unit_tests
 	name = "Unit Tests Zone"

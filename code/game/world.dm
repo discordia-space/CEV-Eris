@@ -141,7 +141,7 @@ var/game_id
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
 #else
-	cb = VARSET_CALLBACK(SSticker, universe_has_ended, TRUE) // yes i ended the universe.
+	cb = VARSET_CALLBACK(global, universe_has_ended, TRUE) // yes i ended the universe.
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
