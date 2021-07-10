@@ -1,13 +1,10 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-	"FTS 'Zarya'" = "Free Trade Station 'Zarya', they sending message \"Privet, this is the trade station 'Zarya'. We focus on selling electronics, construction and anything related to energy! If you are looking for a more general shop, you should contact our main station: The 'Solaris'")
+	"FTB 'Zarya'" = "Free Trade Beacon 'Zarya', they sending message \"Privet, this is the trade beacon 'Zarya'. We selling electronics, construction and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'")
 	start_discovered = TRUE
 	spawn_always = TRUE
 	assortiment = list(
-/*
-TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
-*/
-		"Atmospherics" = list(
+		"BO3DYX" = list(
 			/obj/item/weapon/tank/air,
 			/obj/item/weapon/tank/plasma,
 			/obj/machinery/portable_atmospherics/canister/sleeping_agent,
@@ -15,7 +12,7 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/machinery/portable_atmospherics/canister/oxygen,
 			/obj/machinery/portable_atmospherics/canister/air
 		),
-		"Equipment" = list(
+		"CHAPR*EHNE" = list(
 			/obj/item/clothing/mask/gas,
 			/obj/item/clothing/suit/storage/hazardvest,
 			/obj/item/clothing/gloves/insulated,
@@ -28,7 +25,7 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/item/inflatable/door,
 			/obj/item/inflatable/wall
 		),
-		"Circuit boards" = list(
+		"E/\\EKTPOHNKA" = list(
 			/obj/item/weapon/electronics/circuitboard/shield_diffuser,
 			/obj/item/weapon/electronics/circuitboard/shield_generator,
 			/obj/item/weapon/electronics/circuitboard/long_range_scanner,
@@ -37,7 +34,7 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/item/weapon/electronics/circuitboard/breakerbox,
 			/obj/item/weapon/electronics/circuitboard/recharger
 		),
-		"Power Generators" = list(
+		"EHEPLNR" = list(
 			/obj/item/weapon/electronics/tracker,
 			/obj/machinery/power/emitter,
 			/obj/machinery/power/rad_collector,
@@ -45,10 +42,10 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/machinery/power/generator,
 			/obj/machinery/atmospherics/binary/circulator,
 			/obj/item/solar_assembly,
-//			/obj/item/weapon/tracker_electronics,
+//			/obj/item/weapon/tracker_electronics, // broken for now? This is even used for something?
 			/obj/machinery/field_generator
 		),
-		"Unsorted Stock" = list(
+		"BCRKAR BCR4NHA" = list(
 			/obj/machinery/pipedispenser/orderable,
 			/obj/machinery/pipedispenser/disposal/orderable,
 			/obj/machinery/pipelayer, // is this unused for some reason? its broken????
@@ -60,7 +57,4 @@ TODO: ADD MORE SHIT? LOOK THAT NOTHING FROM PACK.DM IS MISSING
 			/obj/item/weapon/storage/box/lights/tubes,
 			/obj/machinery/floodlight
 		),
-	)
-
-	offer_types = list(
 	)

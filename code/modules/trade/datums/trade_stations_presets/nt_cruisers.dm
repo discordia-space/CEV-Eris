@@ -45,5 +45,3 @@
 			/obj/item/weapon/gun/launcher/grenade
 		),
 	)
-	offer_types = list(
-	)
