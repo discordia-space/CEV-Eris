@@ -27,27 +27,19 @@ if grep -P '/obj/structure/cable(/\w+)+\{' maps/**/*.dmm;	then
     echo "ERROR: vareditted cables detected, please remove them."
     st=1
 fi;
-if grep -P '\td[1-2] =' maps/**/*.dmm;	then
-    echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
-    st=1
-fi;
-# echo "Checking for stacked cables"
-# if grep -P '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' maps/**/*.dmm;	then
-#     echo "found multiple cables on the same tile, please remove them."
+# if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
+#     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
 #     st=1
 # fi;
-if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
-    echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
-    st=1
-fi;
 if grep -P '\W\/turf\s*[,\){]' maps/**/*.dmm; then
     echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
     st=1
 fi;
-if grep -P '^/*var/' code/**/*.dm; then
-    echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
-    # st=1
-fi;
+# this is gonna block out the sun
+# if grep -P '^/*var/' code/**/*.dm; then
+#     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
+#     st=1
+# fi;
 echo "Checking for space indentation"
 if grep -P '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
     echo "space indentation detected"
