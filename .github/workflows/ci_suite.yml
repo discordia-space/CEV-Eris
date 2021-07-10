@@ -27,12 +27,12 @@ jobs:
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh cev_eris.dme
-          find . -name "*.php" -print0 | xargs -0 -n1 php -l
+          # find . -name "*.php" -print0 | xargs -0 -n1 php -l
           find . -name "*.json" -not -path "*/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           bash tools/ci/check_grep.sh
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
-          # ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v1
         if: always()
