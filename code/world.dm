@@ -115,7 +115,9 @@ var/game_id
 	initialize_unit_tests()
 #endif
 
-
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 	spawn(2000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
