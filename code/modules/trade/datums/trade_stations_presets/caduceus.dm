@@ -51,8 +51,6 @@
 			/obj/item/bodybag,
 			/obj/machinery/suspension_gen,
 			/obj/item/weapon/computer_hardware/hard_drive/portable/design
-//			/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites = good_data("Nanites Vial", list(1, 10)),
-//			/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites = good_data("Uncapped Nanites Vial", list(1, 10))
 		),
 	)
 

@@ -976,7 +976,7 @@
 	. = round(..() * amount)
 /obj/item/weapon/tool/price_tag = 20
 
-// This one is exploitable as fuck. I say should be removed or nerfed hard. 
+// This one is exploitable as fuck. I say should be removed or nerfed hard.
 ///obj/item/weapon/tool/get_item_cost(export)
 //	. = 1
 //	for(var/i in tool_qualities)
@@ -1025,9 +1025,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125
 
-/obj/item/weapon/light/bulb/price_tag = 5
-/obj/item/weapon/light/tube/price_tag = 5
-
 /obj/item/toy/price_tag = 40
 /obj/item/device/toner/price_tag = 50
 
@@ -1046,9 +1043,10 @@
 
 /obj/item/weapon/storage/briefcase/price_tag = 50
 /obj/item/weapon/storage/pouch/price_tag = 100
-/obj/item/weapon/storage/pouch/small_generic/price_tag = 80
-/obj/item/weapon/storage/pouch/medium_generic/price_tag = 120
-/obj/item/weapon/storage/pouch/large_generic/price_tag = 200
+/obj/item/weapon/storage/pouch/ammo/price_tag = 200
+/obj/item/weapon/storage/pouch/tubular/price_tag = 140
+/obj/item/weapon/storage/pouch/medium_generic/price_tag = 255
+/obj/item/weapon/storage/pouch/large_generic/price_tag = 410
 
 /obj/item/rig_module/price_tag = 150
 //***************//

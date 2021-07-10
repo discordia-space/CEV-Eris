@@ -53,8 +53,6 @@
 			/obj/item/weapon/cell/large/high,
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/item/weapon/storage/box/lights,
-			/obj/item/weapon/storage/box/lights/tubes,
 			/obj/machinery/floodlight
 		),
 	)
