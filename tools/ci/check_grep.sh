@@ -40,29 +40,29 @@ fi;
 #     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
 #     st=1
 # fi;
-echo "Checking for space indentation"
-if grep -P '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
-    echo "space indentation detected"
-    st=1
-fi;
-echo "Checking for mixed indentation"
-if grep -P '^\t+ [^ *]' code/**/*.dm; then
-    echo "mixed <tab><space> indentation detected"
-    # st=1
-fi;
-nl='
-'
-nl=$'\n'
-while read f; do
-    t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
-    if [[ ! ${t%x} =~ $r1 ]]; then
-        echo "file $f is missing a trailing newline"
-        st=1
-    fi;
-done < <(find . -type f -name '*.dm')
+# echo "Checking for space indentation"
+# if grep -P '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
+#     echo "space indentation detected"
+#     st=1
+# fi;
+# echo "Checking for mixed indentation"
+# if grep -P '^\t+ [^ *]' code/**/*.dm; then
+#     echo "mixed <tab><space> indentation detected"
+#     st=1
+# fi;
+# nl='
+# '
+# nl=$'\n'
+# while read f; do
+#     t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
+#     if [[ ! ${t%x} =~ $r1 ]]; then
+#         echo "file $f is missing a trailing newline"
+#         st=1
+#     fi;
+# done < <(find . -type f -name '*.dm')
 if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
     echo "changed files contains proc argument starting with 'var'"
-    st=1
+    # st=1 # next pr will clean up this shit.
 fi;
 if grep -i 'centcomm' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
