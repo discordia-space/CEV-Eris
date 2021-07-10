@@ -135,12 +135,13 @@ var/game_id
 	//trigger things to run the whole process
 	// Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
+	config.empty_server_restart_time = 0
 	// CONFIG_SET(number/round_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
 #else
-// 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
+	cb = VARSET_CALLBACK(SSticker, universe_has_ended, TRUE) // yes i ended the universe.
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
