@@ -168,17 +168,50 @@ var/world_topic_spam_protect_time = world.timeofday
 	handler = new handler()
 	return handler.TryRun(input)
 
+/world/proc/FinishTestRun()
+	set waitfor = FALSE
+	var/list/fail_reasons
+	if(GLOB)
+		if(total_runtimes != 0)
+			fail_reasons = list("Total runtimes: [total_runtimes]")
+#ifdef UNIT_TESTS
+		if(GLOB.failed_any_test)
+			LAZYADD(fail_reasons, "Unit Tests failed!")
+#endif
+		// if(!GLOB.log_directory)
+		// 	LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+	else
+		fail_reasons = list("Missing GLOB!")
+	if(!fail_reasons)
+		text2file("Success!", "data/logs/ci/clean_run.lk") // [GLOB.log_directory]
+	else
+		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
+	qdel(src) //shut it down
 
-/world/Reboot(var/reason)
-	/*spawn(0)
+/world/Reboot(reason = 0, fast_track = FALSE)
+	/* spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
+	 */
+	if (reason || fast_track) //special reboot, do none of the normal stuff
+		if (usr)
+			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
+			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
+		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
+	else
+		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		Master.Shutdown() //run SS shutdowns
+
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
 
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
-	..(reason)
+	..()
 
 /hook/startup/proc/loadMode()
 	world.load_storyteller()
