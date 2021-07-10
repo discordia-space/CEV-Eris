@@ -7,11 +7,11 @@
 			/obj/item/clothing/suit/space/void/atmos,
 			/obj/item/weapon/rig/eva
 		),
-		"Cosmetics Accesories" = list(
+		"Cosmetic Accesories" = list(
 			/obj/item/clothing/ears/earmuffs,
 			/obj/item/clothing/glasses/eyepatch,
 			/obj/item/clothing/glasses/regular,
-			/obj/item/clothing/glasses/regular/hipster,
+			/obj/item/clothing/glasses/regular/hipster = custom_good_name("Hipster Prescription Glasses"),
 			/obj/item/clothing/glasses/regular/scanners,
 			/obj/item/clothing/glasses/sunglasses,
 			/obj/item/clothing/glasses/monocle

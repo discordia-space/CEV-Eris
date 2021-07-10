@@ -2,7 +2,7 @@
 	name_pool = list("NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized message. \"Hey, Buddie. Interested on something?")
 	spawn_probability = 5
 	spawn_cost = 2
-	markup = 1
+	markup = 2
 	assortiment = list(
 		"Ballistics" = list(
 			/obj/item/weapon/gun/projectile/selfload,

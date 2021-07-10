@@ -3,8 +3,8 @@
 	assortiment = list(
 		"Voidsuits" = list(
 			/obj/item/clothing/suit/space/void,
-			/obj/item/clothing/suit/space/void/atmos = custom_good_amount_range(list(0, 5)),
-			/obj/item/clothing/suit/space/void/mining = custom_good_amount_range(list(0, 5)),
+			/obj/item/clothing/suit/space/void/atmos = custom_good_amount_range(list(1, 5)),
+			/obj/item/clothing/suit/space/void/mining = custom_good_amount_range(list(1, 5)),
 			/obj/item/clothing/suit/space/void/engineering = custom_good_amount_range(list(-5, 3)),
 			/obj/item/clothing/suit/space/void/medical = custom_good_amount_range(list(-5, 3)),
 			/obj/item/clothing/suit/space/void/security = custom_good_amount_range(list(-5, 1))

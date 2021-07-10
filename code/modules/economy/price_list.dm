@@ -1042,13 +1042,15 @@
 /obj/item/weapon/storage/lunchbox/price_tag = 25
 
 /obj/item/weapon/storage/briefcase/price_tag = 50
+/obj/item/weapon/soap/nanotrasen/price_tag = 60
 /obj/item/weapon/storage/pouch/price_tag = 100
 /obj/item/weapon/storage/pouch/ammo/price_tag = 200
 /obj/item/weapon/storage/pouch/tubular/price_tag = 140
 /obj/item/weapon/storage/pouch/medium_generic/price_tag = 255
 /obj/item/weapon/storage/pouch/large_generic/price_tag = 410
 
-/obj/item/rig_module/price_tag = 150
+/obj/item/weapon/rig/price_tag = 300
+/obj/item/rig_module/price_tag = 500
 //***************//
 //----ORES-----//
 //***************//

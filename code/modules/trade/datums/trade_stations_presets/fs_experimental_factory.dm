@@ -1,5 +1,6 @@
 /datum/trade_station/fs_experimental_factory
 	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. This is the experimental weaponry seller, requires a better description because I suck at this, please someone on the PR send help.")
+	markup = 1
 	spawn_probability = 10
 	assortiment = list(
 		"Gunmods" = list(
@@ -14,11 +15,11 @@
 			/obj/item/weapon/grenade/chem_grenade/incendiary
 		),
 		"Experimental Ammunition" = list(
-			/obj/item/ammo_magazine/ammobox/srifle_small/hv,
-			/obj/item/ammo_magazine/ammobox/clrifle_small/hv,
-			/obj/item/ammo_magazine/ammobox/lrifle_small/hv,
-			/obj/item/ammo_magazine/ammobox/pistol/hv,
-			/obj/item/ammo_magazine/ammobox/magnum/hv,
+			/obj/item/ammo_magazine/ammobox/srifle_small/hv = custom_good_amount_range(list(-3, 2)),
+			/obj/item/ammo_magazine/ammobox/clrifle_small/hv = custom_good_amount_range(list(-3, 2)),
+			/obj/item/ammo_magazine/ammobox/lrifle_small/hv = custom_good_amount_range(list(-3, 2)),
+			/obj/item/ammo_magazine/ammobox/pistol/hv = custom_good_amount_range(list(-1, 2)),
+			/obj/item/ammo_magazine/ammobox/magnum/hv = custom_good_amount_range(list(-1, 2)),
 			/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
 		),
 	)

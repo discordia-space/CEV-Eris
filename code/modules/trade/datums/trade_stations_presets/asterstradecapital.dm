@@ -1,5 +1,5 @@
 /datum/trade_station/asterstradecapital
-	name_pool = list("FTS 'Solnishko'" = "Free Trade Station 'Solnishko', they sending message \"Zdravstvuite, this is the Trade Station 'Solaris'. We have all of the bests products on sale at Hansa! You couldn't get even better prices!.\ Everything for sale here, don't be afraid to come aboard and check our wares!\".")
+	name_pool = list("FTS 'Solnishko'" = "Free Trade Station 'Solnishko', they sending message \"Zdravstvuite, this is the Trade Station 'Solaris'. We have all of the bests products on sale at Hansa! You couldn't get even better prices!.\ Everything for sale here, don't be afraid to come aboard and check our wares!\"")
 	start_discovered = TRUE
 	spawn_always = TRUE
 	forced_overmap_zone = list(
@@ -77,7 +77,7 @@
 			/obj/item/ammo_magazine/ammobox/pistol,
 			/obj/item/ammo_magazine/ammobox/pistol/rubber
 		),
-		"Utilities" = list(
+		"Miscellanous" = list(
 			/obj/item/device/camera,
 			/obj/item/device/camera_film,
 			/obj/item/device/toner,
@@ -98,6 +98,7 @@
 			/obj/item/weapon/caution,
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/weapon/reagent_containers/spray/cleaner,
-			/obj/item/weapon/reagent_containers/glass/rag
+			/obj/item/weapon/reagent_containers/glass/rag,
+			/obj/item/organ_module/active/simple/armshield
 		),
 	)
