@@ -53449,9 +53449,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/item/weapon/paper_bin,
 /obj/structure/cable/green{
-	d1 = 4;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
@@ -84586,7 +84586,12 @@
 "dQy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/rack/shelf,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "dQz" = (
 /obj/structure/multiz/stairs/active/bottom{
@@ -84799,6 +84804,11 @@
 /area/eris/medical/chemstor)
 "dQV" = (
 /obj/machinery/hologram/holopad,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/office)
 "dQW" = (
@@ -84930,7 +84940,6 @@
 	},
 /obj/structure/cable/green{
 	d2 = 8;
-	dir = 4;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/steel,
@@ -98071,14 +98080,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"ewr" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
-/area/eris/quartermaster/office)
 "ews" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -104139,16 +104140,6 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"nXM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	dir = 1;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/quartermaster/office)
 "nYI" = (
 /obj/structure/catwalk,
 /obj/structure/closet/wall_mounted/firecloset{
@@ -105337,6 +105328,10 @@
 /obj/landmark/join/start/acolyte,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"wKT" = (
+/obj/machinery/vending/style,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/crew_quarters/clothingstorage)
 "wOW" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/structure/catwalk,
@@ -204157,7 +204152,7 @@ bYu
 bRU
 bwS
 bwY
-bRZ
+wKT
 agD
 aEe
 aEe
@@ -209050,7 +209045,7 @@ ctr
 evJ
 ctN
 dQV
-ewr
+cvx
 cvx
 cxQ
 cvx
@@ -209252,7 +209247,7 @@ cwq
 evI
 cyy
 dRn
-nXM
+ctV
 ctV
 cxX
 czc

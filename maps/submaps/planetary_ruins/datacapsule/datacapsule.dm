@@ -26,8 +26,8 @@
 /decl/hierarchy/outfit/zombie_science
 	name = OUTFIT_JOB_NAME("Dead Scientist")
 	uniform = /obj/item/clothing/under/rank/scientist
-	suit = /obj/item/clothing/suit/bio_suit/anomaly
-	head = /obj/item/clothing/head/bio_hood/anomaly
+	suit = /obj/item/clothing/suit/bio_suit
+	head = /obj/item/clothing/head/bio_hood
 
 /datum/reagent/toxin/zombie/science
 	name = "Isolated Corruption"
