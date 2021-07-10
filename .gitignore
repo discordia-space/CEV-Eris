@@ -9,7 +9,7 @@ Thumbs.db
 *.backup
 *.before
 *~Stashed changes
-#tools/ #bad idea
+./tools/
 data/
 cfg/
 tmp/

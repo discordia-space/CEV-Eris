@@ -97,18 +97,18 @@
 	name = "Multitool implant"
 	result = /obj/item/organ_module/active/multitool/improvised
 	steps = list(
-		list(/obj/item/weapon/storage/toolbox, 1),
-		list(/obj/item/weapon/electronics/circuitboard, 1),
+		list(/obj/item/storage/toolbox, 1),
+		list(/obj/item/electronics/circuitboard, 1),
 		list(/obj/item/organ/external/robotic, 1),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
-		list(/obj/item/weapon/tool/shiv, 1),
-		list(/obj/item/weapon/tool/screwdriver/improvised, 1),
-		list(/obj/item/weapon/tool/wirecutters/improvised, 1),
-		list(/obj/item/weapon/tool/crowbar/improvised, 1),
-		list(/obj/item/weapon/tool/wrench/improvised, 1),
-		list(/obj/item/weapon/tool/shovel/improvised, 1),
-		list(/obj/item/weapon/tool/saw/improvised, 1),
-		list(/obj/item/weapon/tool/weldingtool/improvised, 1),
+		list(/obj/item/tool/shiv, 1),
+		list(/obj/item/tool/screwdriver/improvised, 1),
+		list(/obj/item/tool/wirecutters/improvised, 1),
+		list(/obj/item/tool/crowbar/improvised, 1),
+		list(/obj/item/tool/wrench/improvised, 1),
+		list(/obj/item/tool/shovel/improvised, 1),
+		list(/obj/item/tool/saw/improvised, 1),
+		list(/obj/item/tool/weldingtool/improvised, 1),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
