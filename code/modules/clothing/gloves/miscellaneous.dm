@@ -117,3 +117,12 @@
 	icon_state = "germangloves"
 	item_state = "germangloves"
 	armor = list(melee = 10, bullet = 0, energy = 25, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/gloves/knuckles
+	name = "knuckle gloves"
+	desc = "Gloves with additional reinforcment on the knuckles."
+	icon_state = "knuckles"
+	item_state = "knuckles"
+	style = STYLE_HIGH
+	armor = list(melee = 20, bullet = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+	price_tag = 500

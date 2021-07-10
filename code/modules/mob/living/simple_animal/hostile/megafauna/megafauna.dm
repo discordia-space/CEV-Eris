@@ -23,6 +23,7 @@
 	var/list/attack_action_types = list()
 	var/megafauna_min_cooldown = 10
 	var/megafauna_max_cooldown = 20
+	sanity_damage = 0.5
 
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
