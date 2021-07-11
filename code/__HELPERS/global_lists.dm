@@ -24,8 +24,19 @@ GLOBAL_LIST_EMPTY(shuttle_landmarks_list)		//list of all /obj/effect/shuttle_lan
 GLOBAL_LIST_EMPTY(old_surgery_steps)			//list of all old-style (not bound to organs) surgery steps
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all new organ-based surgery steps
 GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking. Not sure this is used anymore
+GLOBAL_LIST_EMPTY(all_burrows)				//list of all burrows
+GLOBAL_LIST_EMPTY(all_maintshrooms)			//list of all maintshrooms
 
-
+//Machinery lists
+GLOBAL_LIST_EMPTY(alarm_list) //List of fire alarms
+GLOBAL_LIST_EMPTY(ai_status_display_list) //List of AI status displays
+GLOBAL_LIST_EMPTY(apc_list) //List of Area Power Controllers
+GLOBAL_LIST_EMPTY(smes_list) //List of SMES
+GLOBAL_LIST_EMPTY(machines) //List of classless machinery. Removed from SSmachinery because that subsystem is half-dead by just existing
+GLOBAL_LIST_EMPTY(firealarm_list) //List of fire alarms
+GLOBAL_LIST_EMPTY(computer_list) //List of all computers
+GLOBAL_LIST_EMPTY(all_doors) //List of all airlocks
+GLOBAL_LIST_EMPTY(atmos_machinery) //All things atmos
 
 GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob say
 

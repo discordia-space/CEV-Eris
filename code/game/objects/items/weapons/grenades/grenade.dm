@@ -81,9 +81,6 @@
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			switch(det_time)
 				if (1)
-					det_time = 10
-					to_chat(user, SPAN_NOTICE("You set the [name] for 1 second detonation time."))
-				if (10)
 					det_time = 30
 					to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
 				if (30)

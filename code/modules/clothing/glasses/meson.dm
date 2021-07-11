@@ -10,7 +10,7 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	price_tag = 500
 
-	tick_cost = 0.5
+	tick_cost = 0.3
 
 /obj/item/clothing/glasses/powered/meson/Initialize()
 	. = ..()

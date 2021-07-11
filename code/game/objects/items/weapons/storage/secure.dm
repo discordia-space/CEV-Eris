@@ -163,6 +163,8 @@
 	src.add_fingerprint(user)
 	return
 
+/obj/item/weapon/storage/secure/briefcase/AltClick(mob/user)
+	return attack_hand(user)
 // -----------------------------
 //        Secure Safe
 // -----------------------------

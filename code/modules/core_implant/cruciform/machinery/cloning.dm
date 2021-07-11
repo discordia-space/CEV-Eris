@@ -346,7 +346,6 @@
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		reagents.add_reagent("biomatter", 300)
 	anchored = bolt
-	AddComponent(/datum/component/plumbing/demand/all/biomass, bolt, FALSE)
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 

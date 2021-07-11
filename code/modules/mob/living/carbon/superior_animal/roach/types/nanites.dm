@@ -34,7 +34,9 @@
 		if(istype(L) && prob(25) && nanite_swarms.len < max_swarms)
 			var/sound/screech = pick('sound/machines/robots/robot_talk_light1.ogg','sound/machines/robots/robot_talk_light2.ogg','sound/machines/robots/robot_talk_heavy4.ogg')
 			playsound(src, screech, 30, 1, -3)
-			nanite_swarms.Add(new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src))
+			var/mob/living/simple_animal/hostile/naniteswarm/M = new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src)
+			nanite_swarms.Add(M)
+			M.friends += src.friends
 			say("10101010011100010101")
 
 /mob/living/carbon/superior_animal/roach/nanite/death()

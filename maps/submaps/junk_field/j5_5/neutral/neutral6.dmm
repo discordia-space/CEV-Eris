@@ -24,7 +24,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "g" = (
-/mob/living/simple_animal/hostile/carp/pike,
 /turf/simulated/floor/tiled/techmaint,
 /area/template_noop)
 "h" = (

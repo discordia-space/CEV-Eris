@@ -51,6 +51,7 @@
 		/datum/design/autolathe/gun/vintorez,
 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/gun/hmg_maxim,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -68,6 +69,8 @@
 		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/lrifle,						//AK ammo
 		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/maxim,							//Maxim ammo
+		/datum/design/autolathe/ammo/maxim/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 		/datum/design/autolathe/sec/silencer,						//misc
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -130,8 +133,8 @@
 	it is their wisdom which has brought the great work to bear - \
 	with tools such as these, their great vision was brought to light.\""}
 	icon_state = "excelsior"
-	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
-	rarity_value = 50
+	spawn_tags = SPAWN_TAG_DESIGN_COMMON_EXCELSIOR
+	rarity_value = 45
 	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/boltgun,
@@ -154,4 +157,18 @@
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior/maxim
+	disk_name = "Excelsior - .30 Maxim HMG"
+	desc = {"The back has a machine etching:\n \
+	\"Whatever happens, we have got the Maxim gun, and they have not.\""}
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
+	rarity_value = 90
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/hmg_maxim,
+		/datum/design/autolathe/ammo/maxim,							//Maxim ammo
+		/datum/design/autolathe/ammo/maxim/rubber,
 	)

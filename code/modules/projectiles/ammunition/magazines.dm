@@ -377,7 +377,7 @@
 
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (.30 Rifle)"
-	icon_state = "maxim"
+	icon_state = "maxim_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	caliber = CAL_LRIFLE
@@ -385,6 +385,13 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
 	multiple_sprites = 1
+	ammo_color = "-l"
+
+/obj/item/ammo_magazine/maxim/rubber
+	name = "pan magazine (.30 Rifle rubber)"
+	icon_state = "maxim_r"
+	ammo_type = /obj/item/ammo_casing/lrifle/rubber
+	ammo_color = "-r"
 
 ///////// SPEEDLOADERS ///////////
 
