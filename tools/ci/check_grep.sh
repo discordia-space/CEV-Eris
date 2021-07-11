@@ -10,10 +10,11 @@ if grep -El '^\".+\" = \(.+\)' maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
-    echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
-    st=1
-fi;
+# todo: fixme
+# if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
+#     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
+#     st=1
+# fi;
 if grep -P 'step_[xy]' maps/**/*.dmm;	then
     echo "ERROR: step_x/step_y variables detected in maps, please remove them."
     st=1
@@ -60,10 +61,11 @@ fi;
 #         st=1
 #     fi;
 # done < <(find . -type f -name '*.dm')
-if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
-    echo "changed files contains proc argument starting with 'var'"
-    # st=1 # next pr will clean up this shit.
-fi;
+# todo: fixme
+# if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
+#     echo "changed files contains proc argument starting with 'var'"
+#     st=1
+# fi;
 if grep -i 'centcomm' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
