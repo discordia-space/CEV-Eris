@@ -33,7 +33,7 @@
 	var/use_biome_range = FALSE
 
 // creates a new object and deletes itself
-/obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
+/obj/spawner/Initialize(mapload, with_aditional_object=TRUE, list/editvar = list())
 	. = ..()
 	price_tag = 0
 	allow_aditional_object = with_aditional_object
@@ -47,6 +47,11 @@
 			burrow()
 			if(has_postspawn)
 				post_spawn(spawns)
+			if(editvar.len)
+				for(var/atom/tospawn in spawns)
+					for(var/replacewith in editvar)
+						if(hasvar(tospawn, replacewith)) //this broke roachcubes spawning near roaches somehow
+							tospawn.vars[replacewith] = editvar[replacewith]// kaisers laying roachcubes was compensation
 			if(biome)
 				biome.price_tag += price_tag
 

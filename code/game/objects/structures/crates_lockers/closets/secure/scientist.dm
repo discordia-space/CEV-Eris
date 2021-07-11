@@ -24,8 +24,8 @@
 
 /obj/structure/closet/secure_closet/reinforced/RD/populate_contents()
 	new /obj/item/weapon/storage/backpack/satchel/leather/withwallet(src)
-	new /obj/item/clothing/suit/bio_suit/scientist(src)
-	new /obj/item/clothing/head/bio_hood/scientist(src)
+	new /obj/item/clothing/suit/bio_suit(src)
+	new /obj/item/clothing/head/bio_hood(src)
 	new /obj/item/clothing/under/rank/expedition_overseer(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/science/rd(src)
 	new /obj/item/clothing/shoes/color/white(src)
