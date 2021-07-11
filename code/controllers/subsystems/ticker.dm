@@ -200,6 +200,7 @@ SUBSYSTEM_DEF(ticker)
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/setup()
+	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
 	//Create and announce mode
 
 	if(!GLOB.storyteller)

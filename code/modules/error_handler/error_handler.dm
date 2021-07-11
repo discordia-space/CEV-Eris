@@ -112,6 +112,12 @@ var/total_runtimes_skipped = 0
 		log_to_dd(line)
 	if(error_cache)
 		error_cache.logError(e, desclines, e_src = e_src)
+#ifdef UNIT_TESTS
+	if(GLOB.current_test)
+		//good day, sir
+		GLOB.current_test.Fail("[main_line]\n[desclines.Join("\n")]")
+#endif
+
 #endif
 
 /proc/log_runtime(exception/e, datum/e_src, extra_info)

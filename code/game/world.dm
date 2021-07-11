@@ -76,9 +76,10 @@ var/game_id
  */
 /world/New()
 	// Begin loading of extools DLL and components
-	extools_initialize()
-	maptick_initialize()
-	debugger_initialize()
+	if(world.system_type == MS_WINDOWS) // IT ONLY WORKS ON WINDOWS
+		extools_initialize()
+		maptick_initialize()
+		debugger_initialize()
 	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
@@ -105,7 +106,7 @@ var/game_id
 
 	generate_body_modification_lists()
 
-	src.update_status()
+	update_status()
 
 	. = ..()
 
@@ -123,7 +124,8 @@ var/game_id
 	call_restart_webhook()
 
 	#ifdef UNIT_TESTS
-	load_unit_test_changes() // ??
+	#error Unit test defined.
+	// load_unit_test_changes() // ??
 	HandleTestRun()
 	#endif
 
@@ -140,6 +142,7 @@ var/game_id
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+	#error HTRCB READY
 #else
 	cb = VARSET_CALLBACK(global, universe_has_ended, TRUE) // yes i ended the universe.
 #endif
