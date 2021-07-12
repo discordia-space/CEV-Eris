@@ -96,6 +96,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
 				pregame_timeleft = 0
+				SSvote.active_vote.stop_vote()
 
 			if(!process_empty_server() && !start_immediately)
 				return
