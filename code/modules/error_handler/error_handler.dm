@@ -77,7 +77,7 @@ var/total_runtimes_skipped = 0
 	var/list/desclines = list()
 	if(splitlines.len > 2) // If there aren't at least three lines, there's no info
 		for(var/line in splitlines)
-			if(length(line) < 3 || findtext(line, "source file:") || findtext(line, "usr.loc:")))
+			if(length(line) < 3 || findtext(line, "source file:") || findtext(line, "usr.loc:"))
 				continue // Blank line, skip it
 			if(findtext(line, "usr:"))
 				if(usrinfo)
@@ -101,7 +101,6 @@ var/total_runtimes_skipped = 0
 		desclines.Add(usrinfo)
 	if(silencing)
 		desclines += "  (This error will now be item_flags & SILENT for [ERROR_SILENCE_TIME / 600] minutes)"
-
 	if(error_cache)
 		error_cache.logError(e, desclines, e_src = e_src)
 
@@ -117,7 +116,6 @@ var/total_runtimes_skipped = 0
 		//good day, sir
 		GLOB.current_test.Fail("[main_line]\n[desclines.Join("\n")]")
 #endif
-
 #endif
 
 /proc/log_runtime(exception/e, datum/e_src, extra_info)
