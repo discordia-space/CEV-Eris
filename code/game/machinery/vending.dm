@@ -998,7 +998,9 @@
 					/obj/item/weapon/gun/energy/gun/martin = 5,
 					/obj/item/weapon/gun/projectile/revolver/havelock = 5,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+					/obj/item/weapon/gun/projectile/automatic/molly = 2,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 4,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 					/obj/item/weapon/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
@@ -1524,12 +1526,10 @@
 					/obj/item/part/gun = 20,
 					/obj/item/weapon/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/weapon/gun/energy/retro = 4,
-					/obj/item/weapon/gun/projectile/mk58  = 2,
-					/obj/item/weapon/gun/projectile/mk58/wood = 2,
+					/obj/item/weapon/gun/projectile/mk58  = 4,
+					/obj/item/weapon/gun/projectile/mk58/wood = 4,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
-					/obj/item/weapon/gun/projectile/automatic/molly = 4,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 4,
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
@@ -1545,9 +1545,9 @@
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
 					/obj/item/weapon/gun/projectile/automatic/ak47/fs = 3200,
-					/obj/item/weapon/gun/energy/retro = 2000,
-					/obj/item/weapon/gun/projectile/mk58  = 1500,
-					/obj/item/weapon/gun/projectile/mk58/wood = 1500,
+					/obj/item/weapon/gun/energy/retro = 1350,
+					/obj/item/weapon/gun/projectile/mk58  = 500,
+					/obj/item/weapon/gun/projectile/mk58/wood = 550,
 					/obj/item/weapon/gun/projectile/mandella = 1800,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
@@ -1621,7 +1621,7 @@
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
-	
+
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
