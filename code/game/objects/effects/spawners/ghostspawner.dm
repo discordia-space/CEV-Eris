@@ -115,6 +115,14 @@
 	var/alt_title = null
 	var/equip_adjustments
 	assignedrole = "Ghost Role"
+	var/list/stat_modifiers = list(
+		STAT_ROB = 8,
+		STAT_TGH = 8,
+		STAT_BIO = 8,
+		STAT_MEC = 8,
+		STAT_VIG = 8,
+		STAT_COG = 8
+	)
 
 	var/husk = null
 	//these vars are for lazy mappers to override parts of the outfit
@@ -143,6 +151,11 @@
 	var/facial_haircolor
 	var/skin_tone
 
+/obj/effect/mob_spawn/human/proc/add_stats(var/mob/living/carbon/human/target)
+	for(var/name in src.stat_modifiers)
+		target.stats.changeStat(name, stat_modifiers[name])
+	return TRUE
+
 /obj/effect/mob_spawn/human/Initialize()
 	if(ispath(outfit))
 		outfit = new outfit()
@@ -155,6 +168,7 @@
 		H.set_species(mob_species)
 	if(outfit)
 		outfit.equip(H, title, alt_title)
+	add_stats(H)
 
 /obj/effect/mob_spawn/human/alive
 	icon = 'icons/obj/Cryogenic2.dmi'

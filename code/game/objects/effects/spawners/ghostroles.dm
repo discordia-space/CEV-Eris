@@ -10,6 +10,14 @@
 	though fate has other plans for you."
 	flavour_text = "Good. It seems as though your ship crashed. You remember that you were convicted of "
 	assignedrole = "Escaped Prisoner"
+	stat_modifiers = list(
+		STAT_ROB = 16,
+		STAT_TGH = 16,
+		STAT_BIO = 8,
+		STAT_MEC = 8,
+		STAT_VIG = 8,
+		STAT_COG = 8
+	)
 
 /obj/effect/mob_spawn/human/prisoner_transport/special(mob/living/L)
 	L.fully_replace_character_name(null,"NTP #LL-0[rand(111,999)]") //Nanotrasen Prisoner #Lavaland-(numbers)
@@ -27,6 +35,14 @@
 	mask = /obj/item/clothing/mask/breath
 	shoes = /obj/item/clothing/shoes/color/orange
 	r_pocket = /obj/item/weapon/tank/emergency_oxygen
+	back = /obj/item/weapon/storage/backpack/sport/orange
+
+/decl/hierarchy/outfit/escapedprisoner/hobo
+	belt = /obj/item/weapon/gun/projectile/revolver/handmade
+	l_pocket = /obj/item/ammo_casing/magnum/scrap/prespawned
+
+/obj/effect/mob_spawn/human/prisoner_transport/hobo
+	outfit = /decl/hierarchy/outfit/escapedprisoner/hobo
 
 /obj/effect/mob_spawn/human/scavenger
 	name = "long storage sleeper"
@@ -36,8 +52,8 @@
 	icon_state = "sleeper_1"
 	outfit = /decl/hierarchy/outfit/scavenger
 	short_desc = "You're a scavenger, who barely even owns the clothes on your back and the rifle in your hands."
-	flavour_text = "It seems you've arrived. You're here to get the good stuff and skedaddle with your life intact. There may be others to cooperate with, but don't count on it. \
-	There aren't any cops this far out, and laws don't carry much truck around here."
+	flavour_text = "It seems you've arrived. You're here to get the good stuff and skedaddle with your life intact. \
+	There may be others to cooperate with, but don't count on it. There aren't any cops this far out, and laws don't carry much truck around here."
 	assignedrole = "Scavenger"
 	title = "Asters Comission Scavenger"
 
