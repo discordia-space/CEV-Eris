@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(ticker)
 			if(start_immediately)
 				pregame_timeleft = 0
 
-			if(!process_empty_server())
+			if(!process_empty_server() && !start_immediately)
 				return
 
 			if(round_progressing)
@@ -128,17 +128,15 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.storyteller.Process()
 			GLOB.storyteller.process_events()
 
-			if(!process_empty_server())
+			if(!process_empty_server() && !start_immediately)
 				return
 
-			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
+			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended)
 
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
-				spawn
-					declare_completion()
+				declare_completion()
 
 				spawn(50)
 					callHook("roundend")
