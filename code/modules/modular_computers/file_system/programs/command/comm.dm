@@ -185,7 +185,7 @@
 					var/input = sanitize(input("Please choose a message to transmit to [GLOB.maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
-					Centcomm_announce(input, usr)
+					Centcom_announce(input, usr)
 					to_chat(usr, "<span class='notice'>Message transmitted.</span>")
 					log_say("[key_name(usr)] has made an IA [GLOB.maps_data.boss_short] announcement: [input]")
 					centcom_message_cooldown = 1
