@@ -825,6 +825,8 @@
 #include "code\game\objects\effects\decals\posters\tgposters.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\corpsespawner.dm"
+#include "code\game\objects\effects\spawners\ghostroles.dm"
+#include "code\game\objects\effects\spawners\ghostspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\loot.dm"
 #include "code\game\objects\effects\spawners\maintshroom.dm"
