@@ -1127,11 +1127,11 @@
 		H.show(source.owner)
 
 
-/datum/admin_topic/centcommfaxreply
-	keyword = "CentcommFaxReply"
+/datum/admin_topic/centcomfaxreply
+	keyword = "CentcomFaxReply"
 
-/datum/admin_topic/centcommfaxreply/Run(list/input)
-	var/mob/sender = locate(input["CentcommFaxReply"])
+/datum/admin_topic/centcomfaxreply/Run(list/input)
+	var/mob/sender = locate(input["CentcomFaxReply"])
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
 	//todo: sanitize

@@ -124,7 +124,6 @@ var/game_id
 	call_restart_webhook()
 
 	#ifdef UNIT_TESTS
-	#error Unit test defined.
 	// load_unit_test_changes() // ??
 	HandleTestRun()
 	#endif
@@ -142,7 +141,6 @@ var/game_id
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
-	#error HTRCB READY
 #else
 	cb = VARSET_CALLBACK(global, universe_has_ended, TRUE) // yes i ended the universe.
 #endif

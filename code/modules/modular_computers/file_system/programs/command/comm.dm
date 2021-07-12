@@ -30,7 +30,7 @@
 	var/current_status = STATE_DEFAULT
 	var/msg_line1 = ""
 	var/msg_line2 = ""
-	var/centcomm_message_cooldown = 0
+	var/centcom_message_cooldown = 0
 	var/announcment_cooldown = 0
 	var/datum/announcement/priority/crew_announcement = new
 	var/current_viewing_message_id = 0
@@ -159,7 +159,7 @@
 			if(href_list["target"] == "emagged")
 				if(program)
 					if(is_autenthicated(user) && program.computer_emagged && !issilicon(usr) && ntn_comm)
-						if(centcomm_message_cooldown)
+						if(centcom_message_cooldown)
 							to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
 							SSnano.update_uis(src)
 							return
@@ -169,12 +169,12 @@
 						//Syndicate_announce(input, usr)	TODO : THIS
 						to_chat(usr, "<span class='notice'>Message transmitted.</span>")
 						log_say("[key_name(usr)] has made an illegal announcement: [input]")
-						centcomm_message_cooldown = 1
+						centcom_message_cooldown = 1
 						spawn(300)//30 second cooldown
-							centcomm_message_cooldown = 0
+							centcom_message_cooldown = 0
 			else if(href_list["target"] == "regular")
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
-					if(centcomm_message_cooldown)
+					if(centcom_message_cooldown)
 						to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
 						SSnano.update_uis(src)
 						return
@@ -188,9 +188,9 @@
 					Centcomm_announce(input, usr)
 					to_chat(usr, "<span class='notice'>Message transmitted.</span>")
 					log_say("[key_name(usr)] has made an IA [GLOB.maps_data.boss_short] announcement: [input]")
-					centcomm_message_cooldown = 1
+					centcom_message_cooldown = 1
 					spawn(300) //30 second cooldown
-						centcomm_message_cooldown = 0
+						centcom_message_cooldown = 0
 
 						*/
 		if("evac")
