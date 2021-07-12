@@ -137,6 +137,7 @@ var/game_id
 	// Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
 	config.empty_server_restart_time = 0
+	config.vote_autogamemode_timeleft = 0
 	// CONFIG_SET(number/round_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS

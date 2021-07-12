@@ -4,7 +4,6 @@ SUBSYSTEM_DEF(ticker)
 	priority = SS_PRIORITY_TICKER
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
-	wait = 1 SECONDS //Tick every second
 
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_STARTUP
@@ -95,8 +94,8 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
-				pregame_timeleft = 0
 				SSvote.stop_vote()
+				pregame_timeleft = 0
 
 			if(!process_empty_server() && !start_immediately)
 				return
@@ -200,6 +199,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
+	var/init_start = world.timeofday
 	//Create and announce mode
 
 	if(!GLOB.storyteller)
@@ -215,6 +215,7 @@ SUBSYSTEM_DEF(ticker)
 	CHECK_TICK
 
 	if(!GLOB.storyteller.can_start(TRUE))
+		log_game("Game failed pre_setup")
 		to_chat(world, "<B>Unable to start game.</B> Reverting to pre-game lobby.")
 		//GLOB.storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
 		//story_vote_ended = FALSE
@@ -225,9 +226,6 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
-
-	current_state = GAME_STATE_PLAYING
-	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	create_characters() //Create player characters and transfer them
 	collect_minds()
@@ -244,12 +242,21 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 
+	for(var/I in round_start_events)
+		var/datum/callback/cb = I
+		cb.InvokeAsync()
+	LAZYCLEARLIST(round_start_events)
+	log_world("Game start took [(world.timeofday - init_start)/10]s")
+
+	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
+
 	callHook("roundstart")
 
 	// no, block the main thread.
 	GLOB.storyteller.set_up()
 	to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
-	world << sound('sound/AI/welcome.ogg') // Skie
+	SEND_SOUND(world, sound('sound/AI/welcome.ogg')) // Skie
 	//Holiday Round-start stuff	~Carn
 	Holiday_Game_Start()
 
@@ -271,11 +278,6 @@ SUBSYSTEM_DEF(ticker)
 			admins_number++
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
-
-	for(var/I in round_start_events)
-		var/datum/callback/cb = I
-		cb.InvokeAsync()
-	LAZYCLEARLIST(round_start_events)
 
 	return TRUE
 
