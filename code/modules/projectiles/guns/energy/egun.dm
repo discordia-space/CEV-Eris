@@ -9,7 +9,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
-	price_tag = 2500
+	price_tag = 1600
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)

@@ -9,7 +9,7 @@
 	max_shells = 7 //less ammo and regular recoil, decided not to give 1.2 because Gladstone would be anyhow better in this case
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
-	price_tag = 1500
+	price_tag = 2000
 	damage_multiplier = 1.15
 	penetration_multiplier = 0.9
 	recoil_buildup = 10
