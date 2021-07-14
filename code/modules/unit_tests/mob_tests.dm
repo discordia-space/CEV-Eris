@@ -1,32 +1,21 @@
 
 /*
- *
  *  Mob Unit Tests.
  *
  *  Human suffocation in Space.
  *  Mob damage Template
- *
  */
 
-#define SUCCESS 1
-#define FAILURE 0
-
-//
-// Tests Life() and mob breathing in space.
-//
-
-
-
-datum/unit_test/human_breath
-	name = "MOB: Human Suffocates in Space"
+/datum/unit_test/human_breath
 	var/starting_oxyloss
 	var/ending_oxyloss
 	var/mob/living/carbon/human/H
-	async = 1
 
-
-datum/unit_test/human_breath/start_test()
+/datum/unit_test/human_breath/Run()
 	var/turf/T = locate(20,20,1) //TODO:  Find better way.
+
+	// Pause natural mob life so it can be handled entirely by the test
+	SSmobs.pause()
 
 	if(!istype(T, /turf/space))	//If the above isn't a space turf then we force it to find one will most likely pick 1,1,1
 		T = locate(/turf/space)
@@ -35,21 +24,15 @@ datum/unit_test/human_breath/start_test()
 
 	starting_oxyloss = damage_check(H, OXY)
 
-	return 1
-
-datum/unit_test/human_breath/check_result()
-
-	if(H.life_tick < 10) 	// Finish Condition
-		return 0	// Return 0 to try again later.
+	for(var/__i in 1 to 10)
+		H.life() // fire it 10 times
 
 	ending_oxyloss = damage_check(H, OXY)
+	TEST_ASSERT(starting_oxyloss < ending_oxyloss, "Mob is not taking oxygen damage. Damange is [ending_oxyloss]")
 
-	if(starting_oxyloss < ending_oxyloss)
-		pass("Oxyloss = [ending_oxyloss]")
-	else
-		fail("Mob is not taking oxygen damage.  Damange is [ending_oxyloss]")
-
-	return 1	// return 1 to show we're done and don't want to recheck the result.
+/datum/unit_test/human_breath/Destroy()
+	SSmobs.ignite()
+	return ..()
 
 // ============================================================================
 
@@ -59,9 +42,8 @@ datum/unit_test/human_breath/check_result()
 //#define OXY       "oxy"
 //#define CLONE     "clone"
 //#define HALLOSS   "halloss"
-
-
-proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human)
+/*
+/proc/create_test_mob_with_mind(turf/mobloc = null, mobtype = /mob/living/carbon/human)
 	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
 
 	if(isnull(mobloc))
@@ -82,8 +64,7 @@ proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living
 
 //Generic Check
 // TODO: Need to make sure I didn't just recreate the wheel here.
-
-proc/damage_check(var/mob/living/M, var/damage_type)
+/proc/damage_check(mob/living/M, damage_type)
 	var/loss
 
 	switch(damage_type)
@@ -113,10 +94,7 @@ proc/damage_check(var/mob/living/M, var/damage_type)
 #define IMMUNE 3              // Will take no damage
 
 //==============================================================================================================
-
-
-datum/unit_test/mob_damage
-	name = "MOB: Template for mob damage"
+/datum/unit_test/mob_damage
 	var/mob/living/carbon/human/testmob = null
 	var/damagetype = BRUTE
 	var/mob_type = /mob/living/carbon/human
@@ -124,32 +102,25 @@ datum/unit_test/mob_damage
 	var/check_health = 0
 	var/damage_location = BP_CHEST
 
-datum/unit_test/mob_damage/start_test()
+/datum/unit_test/mob_damage/Run()
 	var/list/test = create_test_mob_with_mind(null, mob_type)
 	var/damage_amount = 5	// Do not raise, if damage >= 10 there is a % chance to reduce damage by half in /obj/item/organ/external/take_damage()
                                 // Which makes checks impossible.
-
-	if(isnull(test))
-		fail("Check Runtimed in Mob creation")
+	TEST_ASSERT(isnull(test), "Check Runtimed in Mob creation")
 
 	if(test["result"] == FAILURE)
-		fail(test["msg"])
+		Fail(test["msg"])
 		return 0
 
 	var/mob/living/carbon/human/H = locate(test["mobref"])
 
 	if(isnull(H))
-		fail("Test unable to set test mob from reference")
-		return 0
-
+		Fail("Test unable to set test mob from reference (Skipping test)")
+		return
 	if(H.stat)
-
-		fail("Test needs to be re-written, mob has a stat = [H.stat]")
-		return 0
-
+		Fail("Test needs to be re-written, mob has a stat = [H.stat]")
 	if(H.sleeping)
-		fail("Test needs to be re-written, mob is sleeping for some unknown reason")
-		return 0
+		Fail("Test needs to be re-written, mob is sleeping for some unknown reason")
 
 	// Damage the mob
 
@@ -200,9 +171,7 @@ datum/unit_test/mob_damage/start_test()
 	var/msg = "Damage taken: [ending_damage] out of [damage_amount] || expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]"
 
 	if(failure)
-		fail(msg)
-	else
-		pass(msg)
+		Fail(msg)
 
 	return 1
 
@@ -271,3 +240,4 @@ datum/unit_test/robot_module_icons/start_test()
 #undef ARMORED
 #undef EXTRA_VULNERABLE
 #undef IMMUNE
+*/

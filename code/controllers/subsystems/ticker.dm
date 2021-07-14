@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(ticker)
 				SSvote.stop_vote()
 				pregame_timeleft = 0
 
-			if(!process_empty_server() && !start_immediately)
+			if(!process_empty_server())
 				return
 
 			if(round_progressing)
@@ -128,7 +128,7 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.storyteller.Process()
 			GLOB.storyteller.process_events()
 
-			if(!process_empty_server() && !start_immediately)
+			if(!process_empty_server())
 				return
 
 			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended)

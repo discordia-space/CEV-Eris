@@ -39,7 +39,7 @@ GLOBAL_VAR(test_log)
 	// 	var/datum/map_template/unit_tests/template = new
 	// 	reservation = template.load_new_z()
 
-	allocated = new
+	// allocated = new
 	// run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
 	// run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
 
@@ -47,13 +47,13 @@ GLOBAL_VAR(test_log)
 	// TEST_ASSERT(isfloorturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
 
 /datum/unit_test/Destroy()
-	QDEL_LIST(allocated)
+	// QDEL_LIST(allocated)
 	// clear the test area
-	for (var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
-		for (var/content in turf.contents)
-			if (istype(content, /obj/effect/landmark))
-				continue
-			qdel(content)
+	// for (var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
+	// 	for (var/content in turf.contents)
+	// 		if (istype(content, /obj/effect/landmark))
+	// 			continue
+	// 		qdel(content)
 	return ..()
 
 /datum/unit_test/proc/Run()
@@ -69,15 +69,15 @@ GLOBAL_VAR(test_log)
 
 /// Allocates an instance of the provided type, and places it somewhere in an available loc
 /// Instances allocated through this proc will be destroyed when the test is over
-/datum/unit_test/proc/allocate(type, ...)
-	var/list/arguments = args.Copy(2)
-	if (!arguments.len)
-		arguments = list(run_loc_floor_bottom_left)
-	else if (arguments[1] == null)
-		arguments[1] = run_loc_floor_bottom_left
-	var/instance = new type(arglist(arguments))
-	allocated += instance
-	return instance
+// /datum/unit_test/proc/allocate(type, ...)
+// 	var/list/arguments = args.Copy(2)
+// 	if (!arguments.len)
+// 		arguments = list(run_loc_floor_bottom_left)
+// 	else if (arguments[1] == null)
+// 		arguments[1] = run_loc_floor_bottom_left
+// 	var/instance = new type(arglist(arguments))
+// 	allocated += instance
+// 	return instance
 
 /proc/RunUnitTests()
 	CHECK_TICK

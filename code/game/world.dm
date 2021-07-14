@@ -135,6 +135,7 @@ var/game_id
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
 	// Master.sleep_offline_after_initializations = FALSE
+	world.sleep_offline = FALSE // iirc mc SHOULD handle this
 	SSticker.start_immediately = TRUE
 	config.empty_server_restart_time = 0
 	config.vote_autogamemode_timeleft = 0
@@ -204,14 +205,14 @@ var/world_topic_spam_protect_time = world.timeofday
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown() //run SS shutdowns
 
+	for(var/client/C in clients)
+		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[config.server]")
+
 	#ifdef UNIT_TESTS
 	FinishTestRun()
 	return
 	#endif
-
-	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
 
 	..()
 
@@ -226,7 +227,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			master_storyteller = Lines[1]
 			log_misc("Saved storyteller is '[master_storyteller]'")
 
-/world/proc/save_storyteller(var/the_mode)
+/world/proc/save_storyteller(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
