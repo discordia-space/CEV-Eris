@@ -1,7 +1,7 @@
 "ah" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass_security{name = "Airlock"; req_access = list(1)},/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "am" = (/obj/item/weapon/storage/briefcase/inflatable/empty,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk)
 "bi" = (/turf/simulated/wall/r_wall,/area/outpost/prisonhulk/food)
-"bD" = (/obj/machinery/power/apc{dir = 8; name = "West APC"; pixel_x = -28},/turf/simulated/floor/tiled/techmaint,/area/outpost/prisonhulk/security)
+"bD" = (/obj/machinery/power/apc{dir = 8; name = "West APC"; pixel_x = -28},/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/tiled/techmaint,/area/outpost/prisonhulk/security)
 "bU" = (/obj/machinery/door/airlock/glass_medical{id_tag = null; name = "Chemistry Lab"; req_access = list(33)},/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
 "ca" = (/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "dJ" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
@@ -30,7 +30,7 @@
 "jS" = (/turf/space,/area/outpost/prisonhulk/security)
 "kh" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "kz" = (/turf/space,/area/space)
-"kB" = (/obj/structure/table/rack,/obj/spawner/junk,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
+"kB" = (/obj/structure/table/rack,/obj/item/stack/material/plasma/random,/obj/item/stack/material/plasma/random,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "kF" = (/obj/structure/table/woodentable,/obj/spawner/knife,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "kZ" = (/obj/structure/catwalk,/obj/spawner/traps/low_chance,/turf/simulated/floor/plating/under,/area/outpost/prisonhulk)
 "lu" = (/obj/structure/table/rack,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
@@ -63,6 +63,7 @@
 "tg" = (/obj/structure/table/woodentable,/obj/item/device/radio/off,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "ts" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "us" = (/obj/structure/table/rack,/obj/item/weapon/tool/knife/butch,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
+"ut" = (/obj/effect/shuttle_landmark/prisonhulk/nav1,/turf/space,/area/space)
 "uH" = (/obj/item/device/radio/beacon,/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
 "uR" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "uS" = (/obj/structure/table/rack,/obj/spawner/rations,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
@@ -154,6 +155,7 @@
 "Uq" = (/obj/machinery/firealarm{dir = 1; pixel_y = -28},/obj/machinery/light,/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
 "Ut" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 2},/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
 "UX" = (/obj/structure/table/rack,/obj/spawner/gun_parts,/obj/spawner/gun/normal/low_chance,/obj/spawner/gun/normal/low_chance,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
+"Vj" = (/obj/effect/shuttle_landmark/prisonhulk/nav2,/turf/space,/area/space)
 "Vy" = (/obj/machinery/teleport/station,/turf/simulated/floor/tiled/techmaint,/area/outpost/prisonhulk/security)
 "VE" = (/obj/machinery/door/airlock/maintenance_common,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/outpost/prisonhulk)
 "VP" = (/mob/living/simple_animal/hostile/hivebot,/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
@@ -260,9 +262,9 @@ kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzVjkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzutkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
