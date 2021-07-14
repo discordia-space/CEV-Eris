@@ -110,23 +110,25 @@
 		for(var/obj/item/weapon/deck_hardware/H in owner.hardware)
 			var/number = 0
 			var/screen_position = ""
+			var/slots = 1
 			if(istype(H, /obj/item/weapon/deck_hardware/chip))
 				number = chipI
+				slots += number - owner.chip_slots / 2
 
 				screen_position = HUDdatum.ChipPanel.template
-				screen_position = replacetextEx(screen_position, "%X", number - owner.chip_slots/2)
-				screen_position = replacetextEx(screen_position, "%Y", number - owner.chip_slots/2)//"WEST:11,CENTER+[i - owner.chip_slots + 2]:4"
 
 				chipI++
 			else
 				number = hardwareI
+				slots += number - owner.hardware_slots / 2
 
 				screen_position = HUDdatum.HardwarePanel.template
-				screen_position = replacetextEx(screen_position, "%X", number - owner.hardware_slots/2)
-				screen_position = replacetextEx(screen_position, "%Y", number - owner.hardware_slots/2)
 
 				hardwareI++
-			
+
+			screen_position = replacetextEx(screen_position, "%X", slots)
+			screen_position = replacetextEx(screen_position, "%Y", slots)//"WEST:11,CENTER+[i - owner.chip_slots + 2]:4"
+
 			var/obj/screen/movable/cyberspace_eye/hardware/screenObject = new(_name = "[number + 1]> [H]", _parentmob = src)
 			screenObject.screen_loc = screen_position
 

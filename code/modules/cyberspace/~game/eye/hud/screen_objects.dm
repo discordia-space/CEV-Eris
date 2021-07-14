@@ -40,7 +40,7 @@
 	Click(location, control, params)
 		. = ..()
 		if(istype(myObject))
-			myObject.Activate()
+			myObject.Activate(usr)
 		update_icon()
 
 	on_update_icon()
@@ -48,20 +48,21 @@
 		if(!istype(cachedObjectImage))
 			cachedObjectImage = new
 		if(istype(myObject))
+			cachedObjectImage.SyncWithAtom(myObject)
+			/*
 			cachedObjectImage.icon = myObject.icon
 			cachedObjectImage.icon_state = myObject.icon_state
 			cachedObjectImage.overlays = myObject.overlays
+			*/
 		else
 			cachedObjectImage.icon = null
 			cachedObjectImage.icon_state = null
 			cachedObjectImage.overlays = null
+		overlays |= cachedObjectImage
 
-	proc
-		SetObject(obj/item/weapon/deck_hardware/H)
-			if(istype(myObject) && myObject != H)
-				overlays -= myObject
-			myObject = H
-			update_icon()
+	proc/SetObject(obj/item/weapon/deck_hardware/H)
+		myObject = H
+		update_icon()
 
 /obj/screen/movable/cyberspace_eye/program
 	name = "Program To Install"
@@ -72,7 +73,7 @@
 		. = ..()
 		if(istype(myObject))
 			var/mob/observer/cyberspace_eye/avatar = parentmob
-			if(istype(avatar))
+			if(istype(avatar) && avatar.TryInstallProgram(myObject))
 				avatar.InstallProgram(myObject)
 			
 	on_update_icon()
