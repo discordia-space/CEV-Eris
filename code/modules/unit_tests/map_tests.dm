@@ -12,7 +12,7 @@
 	var/static/list/exempt_from_atmos = typesof(
 		/area/eris/maintenance, /area/eris/storage,
 		/area/eris/engineering/atmos/storage,
-		/area/eris/engineering/construction
+		/area/eris/engineering/construction,
 		/area/eris/rnd/server)
 
 	var/static/list/exempt_from_apc = typesof(
