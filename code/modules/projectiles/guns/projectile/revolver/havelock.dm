@@ -12,7 +12,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	magazine_type = /obj/item/ammo_magazine/slpistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
-	price_tag = 700
+	price_tag = 350
 	damage_multiplier = 1.4 //because pistol round
 	penetration_multiplier = 1.4
 	recoil_buildup = 3
