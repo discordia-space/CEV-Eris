@@ -20,6 +20,7 @@
 "gI" = (/obj/structure/inflatable/wall,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk)
 "gO" = (/obj/structure/closet/oldstyle,/obj/spawner/junkfood,/obj/spawner/material/building,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
 "hd" = (/obj/structure/empty_sleeper{dir = 8},/turf/simulated/floor/tiled/white/gray_platform,/area/outpost/prisonhulk)
+"hj" = (/obj/structure/table/rack,/obj/item/stack/material/plasma/random,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "hw" = (/mob/living/simple_animal/hostile/hivebot,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "hK" = (/obj/spawner/junk/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
 "ie" = (/obj/structure/closet/oldstyle,/obj/spawner/material/building,/obj/spawner/ammo/lowcost/low_chance,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
@@ -30,10 +31,10 @@
 "jS" = (/turf/space,/area/outpost/prisonhulk/security)
 "kh" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "kz" = (/turf/space,/area/space)
-"kB" = (/obj/structure/table/rack,/obj/item/stack/material/plasma/random,/obj/item/stack/material/plasma/random,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
+"kB" = (/obj/structure/table/rack,/obj/spawner/gun/normal/low_chance,/obj/spawner/gun/normal/low_chance,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "kF" = (/obj/structure/table/woodentable,/obj/spawner/knife,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "kZ" = (/obj/structure/catwalk,/obj/spawner/traps/low_chance,/turf/simulated/floor/plating/under,/area/outpost/prisonhulk)
-"lu" = (/obj/structure/table/rack,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
+"lu" = (/obj/structure/table/rack,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts,/obj/spawner/gun/normal/low_chance,/obj/spawner/gun/normal/low_chance,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "lI" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/outpost/prisonhulk)
 "lN" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/obj/item/weapon/folder/red,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "mg" = (/obj/structure/table/standard,/obj/item/weapon/book/manual/wiki/security_ironparagraphs,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
@@ -50,6 +51,7 @@
 "qT" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "ro" = (/obj/effect/window_lwall_spawn/reinforced,/turf/space,/area/outpost/prisonhulk)
 "ru" = (/obj/item/device/radio/beacon,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
+"ry" = (/obj/structure/inflatable/wall,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "rO" = (/obj/structure/table/standard,/obj/machinery/recharger,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
 "sf" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass_security{name = "Inspector Office"; req_access = list(4)},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/steel/cargo,/area/outpost/prisonhulk/security)
 "si" = (/obj/spawner/junk,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
@@ -63,10 +65,10 @@
 "tg" = (/obj/structure/table/woodentable,/obj/item/device/radio/off,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "ts" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "us" = (/obj/structure/table/rack,/obj/item/weapon/tool/knife/butch,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
-"ut" = (/obj/effect/shuttle_landmark/prisonhulk/nav1,/turf/space,/area/space)
 "uH" = (/obj/item/device/radio/beacon,/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
 "uR" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/tiled/dark/cargo,/area/outpost/prisonhulk)
 "uS" = (/obj/structure/table/rack,/obj/spawner/rations,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
+"uV" = (/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "vj" = (/obj/structure/closet/oldstyle,/obj/spawner/ammo/lowcost,/obj/spawner/ammo/lowcost,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
 "vF" = (/obj/item/weapon/gun/projectile/paco,/obj/item/ammo_casing/pistol,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "wc" = (/obj/structure/catwalk,/obj/spawner/traps/low_chance,/turf/simulated/floor/plating/under,/area/outpost/prisonhulk/cells)
@@ -77,6 +79,7 @@
 "xw" = (/obj/machinery/door/airlock/maintenance_common,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/outpost/prisonhulk/cells)
 "xA" = (/mob/living/simple_animal/hostile/hivebot/range,/turf/space,/area/space)
 "yc" = (/obj/structure/lattice,/turf/space,/area/outpost/prisonhulk/security)
+"yu" = (/obj/structure/table/rack,/turf/space,/area/space)
 "yG" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
 "zn" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/briefcase,/obj/item/weapon/storage/briefcase,/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
 "zK" = (/obj/structure/table/woodentable,/obj/item/weapon/handcuffs,/obj/item/weapon/handcuffs,/obj/item/device/flash,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
@@ -111,6 +114,7 @@
 "HY" = (/obj/machinery/door/airlock/centcom{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "Ii" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk)
 "Io" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
+"II" = (/mob/living/simple_animal/hostile/hivebot/range,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
 "IS" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/outpost/prisonhulk/security)
 "Je" = (/obj/item/modular_computer/console/preset/security/camera{dir = 4},/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/prisonhulk/security)
 "Jf" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
@@ -119,6 +123,7 @@
 "Jx" = (/obj/structure/table/woodentable,/obj/machinery/recharger,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "Ka" = (/obj/machinery/sleeper{dir = 4},/turf/simulated/floor/tiled/white/gray_platform,/area/outpost/prisonhulk/medical)
 "Kn" = (/obj/structure/inflatable/wall,/turf/space,/area/outpost/prisonhulk)
+"Ko" = (/obj/item/stack/material/plasma,/turf/space,/area/space)
 "KA" = (/turf/simulated/wall/r_wall,/area/outpost/prisonhulk/cells)
 "Le" = (/obj/structure/bed/chair/comfy/black,/obj/spawner/junk,/turf/simulated/floor/wood,/area/outpost/prisonhulk/security)
 "Lu" = (/obj/structure/closet/oldstyle,/obj/spawner/gun_parts,/obj/spawner/material/building,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
@@ -149,14 +154,17 @@
 "St" = (/obj/structure/table/standard,/obj/machinery/centrifuge,/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
 "Su" = (/obj/structure/bed,/obj/item/weapon/bedsheet/orange,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
 "SC" = (/obj/structure/inflatable/door,/turf/space,/area/space)
+"Tb" = (/obj/effect/shuttle_landmark/prisonhulk/nav2,/turf/space,/area/space)
+"Tt" = (/obj/structure/sign/atmos_plasma,/turf/simulated/wall/r_wall,/area/outpost/prisonhulk/security)
+"Tu" = (/obj/effect/shuttle_landmark/prisonhulk/nav1,/turf/space,/area/space)
 "Tx" = (/obj/structure/table/rack,/obj/item/weapon/tool/knife,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/food)
 "TO" = (/obj/structure/table/woodentable,/obj/item/weapon/book/manual/wiki/security_ironparagraphs,/obj/structure/noticeboard{pixel_x = 30},/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
 "Un" = (/obj/structure/sign/department/medbay,/turf/simulated/wall/r_wall,/area/outpost/prisonhulk/medical)
 "Uq" = (/obj/machinery/firealarm{dir = 1; pixel_y = -28},/obj/machinery/light,/turf/simulated/floor/carpet,/area/outpost/prisonhulk/security)
 "Ut" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 2},/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
 "UX" = (/obj/structure/table/rack,/obj/spawner/gun_parts,/obj/spawner/gun/normal/low_chance,/obj/spawner/gun/normal/low_chance,/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
-"Vj" = (/obj/effect/shuttle_landmark/prisonhulk/nav2,/turf/space,/area/space)
 "Vy" = (/obj/machinery/teleport/station,/turf/simulated/floor/tiled/techmaint,/area/outpost/prisonhulk/security)
+"VD" = (/obj/machinery/door/airlock/glass_security{name = "Airlock"; req_access = list(1)},/turf/simulated/floor/tiled/steel/bluecorner,/area/outpost/prisonhulk/security)
 "VE" = (/obj/machinery/door/airlock/maintenance_common,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/outpost/prisonhulk)
 "VP" = (/mob/living/simple_animal/hostile/hivebot,/turf/simulated/floor/tiled/white,/area/outpost/prisonhulk/medical)
 "VR" = (/obj/structure/closet/oldstyle,/obj/spawner/ammo/lowcost,/obj/spawner/ammo/lowcost,/obj/spawner/gun_parts/low_chance,/turf/simulated/floor/tiled/steel,/area/outpost/prisonhulk/cells)
@@ -233,19 +241,19 @@ kzkzkzkzkzkzkzkzkzkzkzkzkzWTJqIiJqJqJqJqJqIiJqNWkzkzkzkzkzkzkzkzkzkzfOQEQEJqUnWX
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqNWkzkzkzkzkzxAkzkzkzkzfOQEQEJqWXXJMigEWXwRMiVVWXJqJqKAwMCuOVKAXRCuCmKACgCuXbKAJqMSWTkzkzkzkzkzkzHHcacacacaycycHHkzwWkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqFHnyhdJqFHnyhdJqNWNWkzkzkzkzkzkzkzkzkzkzWTQEJqWXmCVPCAWXwRMiZFWXJqJqKABHCuYmKABHCuYmKABHCuYmKAJqamWTkzkzkzkzkzkzHHZtlNepLeJxCHHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqEXnyhdJqEXnymzJqJqWTkzkzkzkzkzkzkzkzkzkzWTJqJqWXStRfsOWXwRMiSnWXJqJqKASuCuSuKASuCuSuKASuCuSuKAJqJqWTkzkzkzkzkzkzHHcakFikmieVcajSkzkzkzHHISYKjSkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzWTJqJqEXnymzJqEXnymzJqexJqSCkzkzkzkzkzkzkzkzkzWTJqJqWXWXWXWXWXWXWXWXWXCqJqKAKAKAKAKAKAKAKAKAKAKAKAKACqJqWTkzkzkzkzkzkzjScasiJfJfyccaHHkzkzkzyGteteHHkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqFHnyhdJqFHnyhdJqexGkSCkzkzkzkzkzkzkzkzkzQEQEJqVElIkZlIlIlIkZlIVEJqJqxwXzwcXzXzXzwcXzXzXzwcXzxwJqJqKnkzkzkzkzkzkzHHGVyccacacacaHHkzkzkzZUteycISkzkzkzWKkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqFHnyhdJqEXnyhdJqJqWTkzkzkzkzkzkzkzfOkzkzQEQEJqbibiPMbibibiPMbibiCqJqKAKAKAKAKAKAKAKAKAKAKAKAKACqJqWTkzkzkzkzkzkzHHjSISISahjSgFgFkzkzkztetehKISkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzWTJqJqEXnymzJqEXnymzJqexJqSCkzkzkzkzkzkzkzkzkzWTJqJqWXWXWXWXWXWXWXWXWXCqJqKAKAKAKAKAKAKAKAKAKAKAKAKACqJqWTkzkzkzkzkzkzjScasiJfJfyccaHHkzkzkzyGteIIHHkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqFHnyhdJqFHnyhdJqexGkSCkzkzkzkzkzkzkzkzkzQEQEJqVElIkZlIlIlIkZlIVEJqJqxwXzwcXzXzXzwcXzXzXzwcXzxwJqJqKnkzkzkzkzkzkzHHGVyccacacacaHHkzkzkzZUteycISkzkzkzWKkzkzkzkzkzkzKokzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqFHnyhdJqEXnyhdJqJqWTkzkzkzkzkzkzkzfOkzkzQEQEJqbibiPMbibibiPMbibiCqJqKAKAKAKAKAKAKAKAKAKAKAKAKACqJqWTkzkzkzkzkzkzHHjSISISahjSgFgFkzkzkztetehKISkzkzyukzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqWTkzkzkzkzkzkzkzfOkzkzQEQEJqbiExExExExExExExbiJqJqKASuCuSuKASuCuSuKASuCuSuKAJqJqWTkzkzkzwWkzkzkzkzkzkzkzkzkzkzkzkzkzJePwrOISkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzWTJqJqJqJqJqJqJqJqJqJqJqWTkzkzkzkzkzkzWKkzfOkzQEJqJqbieXNEpdExeXNEpdbiJqJqKABHCuYmKABHCuYmKABHCuYmKAJqJqWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzxAkzteteteISkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqMSJqWTkzkzkzkzkzkzkzkzkzkzWTJqJqbieXNEpdrueXNEpdbiJqJqKACmCuXbKAvjCuXbKAXbCugOKAJqJqWTkzkzkzgFHHHHNCWMISHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqWTkzkzkzkzkzkzkzfOkzkzWTJqJqbieXNEpdExeXNEpdbiJqJqZEPAsMPAKAPAsMPAKAPAsMPAZEJqJqWTkzkzkzycHHdJOZoZYgHHkzWKkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJtJqJqJqJqJqNWkzkzkzFjkzkzfOkzkzkzQEQEJqExExExExExExExExExJqJqCuCuCuCuCuCuCuCuCuCuCuCuCuJqJqQEkzkzkzjSHHznPEnOTOHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqNWkzkzkzkzkzkzkzkzkzkzQEQEJqWhExExExExExExExWhJqJqUtCuCuCuCuCuCuCuCuCuCuCuUtJqJqArkzkzkzycHHoVOZRQIoHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqNWkzkzkzkzkzkzkzkzkzkzQEQEQEbiNENENENENENENEbiJqJqZEPAsMPAKAPAsMPAKAPAsMPAZEIiIiWTkzkzkzWpHHDhOZUqOZHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqWTkzkzkzkzkzkzkzfOkzkzWTJqJqbieXNEpdExeXNEpdbiJqJqZEPAsMPAKAPAsMPAKAPAsMPAZEJqJqWTkzkzkzycHHdJOZoZYgHHkzWKkzkzkzkzkzkzkzkzkzyukzkzkzTtVDHHHHHHkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJtJqJqJqJqJqNWkzkzkzFjkzkzfOkzkzkzQEQEJqExExExExExExExExExJqJqCuCuCuCuCuCuCuCuCuCuCuCuCuJqJqQEkzkzkzjSHHznPEnOTOHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzryuVuVuVuVHHkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqNWkzkzkzkzkzkzkzkzkzkzQEQEJqWhExExExExExExExWhJqJqUtCuCuCuCuCuCuCuCuCuCuCuUtJqJqArkzkzkzycHHoVOZRQIoHHkzkzkzkzkzkzkzkzkzkzkzkzkzHHuVuVhjhjhjHHkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqJqJqJqJqJqJqJqJqJqNWkzkzkzkzkzkzkzkzkzkzQEQEQEbiNENENENENENENEbiJqJqZEPAsMPAKAPAsMPAKAPAsMPAZEIiIiWTkzkzkzWpHHDhOZUqOZHHkzkzkzkzkzkzkzkzkzkzkzkzkzHHHHHHHHHHHHHHkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzWTJqJqtsqTqTqTqTqTDmJqJqNWkzkzkzkzkzkzkzkzfOkzQEJqJqbiExExExExExExExQrJqIiKAVRCuAeKALuCuXbKAScCuXbKAWTWTWTkzkzkzgFHHjSsfHHHHHHkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXJqJqNWkzkzkzkzkzkzkzkzkzkzWTWTWTbiExExExExExExZwbiWTWTKABHCuYmKABHCuYmKABHCuYmKAkzkzWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXgIgIWTkzkzkzkzkzkzkzkzkzkzWTQEQEbiuSuSYuusTxExZwbikzkzKASuCuSuKASuCuSuKASuCuSuKAkzkzWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXJqJqNWkzkzkzkzkzkzkzkzkzkzWTWTWTbiExExExExExExZwbiWTWTKABHCuYmKABHCuYmKABHCuYmKAkzkzWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzKokzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXgIgIWTkzkzkzkzkzkzkzkzkzkzWTQEQEbiuSuSYuusTxExZwbikzkzKASuCuSuKASuCuSuKASuCuSuKAkzkzWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzxAkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXexJqexkzkzkzkzkzHVkzkzkzkzWTQEQEbibibibibibibibibikzkzKAKAKAKAKAKAKAKAKAKAKAKAKAkzkzWTkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzWTJqJqsSzMzMzMzMzMVXexJqexkzkzkzkzxAkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzroJqJqsSzMzMzMzMzMVXgIgIWTkzHVkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
@@ -262,9 +270,9 @@ kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzVjkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzTbkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
-kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzutkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
+kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzTukzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
 kzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkzkz
