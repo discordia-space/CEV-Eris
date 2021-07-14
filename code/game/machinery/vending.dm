@@ -996,7 +996,7 @@
 					/obj/item/weapon/gun/projectile/olivaw = 5,
 					/obj/item/weapon/gun/projectile/giskard = 5,
 					/obj/item/weapon/gun/energy/gun/martin = 5,
-					/obj/item/weapon/gun/energy/gun = 3
+					/obj/item/weapon/gun/energy/gun = 3,
 					/obj/item/weapon/gun/projectile/revolver/havelock = 5,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
 					/obj/item/weapon/gun/projectile/automatic/molly = 3,
