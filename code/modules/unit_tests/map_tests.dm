@@ -25,7 +25,6 @@
 			TEST_ASSERT((!A.air_scrub_info?.len || !A.air_vent_info?.len) && !(A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
 
 /datum/unit_test/wire_stacking/Run()
-	var/wire_test_count = 0
 	var/turf/T
 	var/list/cable_turfs = list()
 	var/list/dirs_checked = list()
@@ -39,7 +38,6 @@
 	for(T in cable_turfs)
 		dirs_checked.Cut()
 		for(C in T)
-			wire_test_count++
 			var/combined_dir = "[C.d1]-[C.d2]"
 			// is this really needed? grep already handles this i think
 			TEST_ASSERT((combined_dir in dirs_checked),"[T.name] ([T.x],[T.y],[T.z]) Contains multiple wires with same direction on top of each other.")

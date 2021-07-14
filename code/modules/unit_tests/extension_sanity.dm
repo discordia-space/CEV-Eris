@@ -1,16 +1,17 @@
-/datum/unit_test/shall_initalize_as_expected/Run()
+/obj/test/extensions/Initialize() // yes, init is fine here because ci begins at gamestart
+	. = ..()
 	set_extension(src, /datum/extension, /datum/extension)
 	set_extension(src, /datum/extension/multitool, /datum/extension/multitool/cryo, list(/proc/is_operable, /proc/is_operable))
 
+/datum/unit_test/shall_initalize_as_expected/Run()
 	var/turf/start = locate(20,20,1)
 	var/obj/test/extensions/expansion_obj = new(start, TRUE)
 
-	var/number_of_failures = 0
 	for(var/extension in expansion_obj)
 		TEST_ASSERT(ispath(extension), "[extension] was uninitalized.")
 
 	var/datum/extension/exp = get_extension(expansion_obj, /datum/extension)
-	TEST_ASSERT(!istype(exp, /datum/extension), "[extension] is not a subtype of /datum/extension")
+	TEST_ASSERT(!istype(exp, /datum/extension), "[exp] is not a subtype of /datum/extension")
 
 	var/datum/extension/multitool/multi = get_extension(expansion_obj, /datum/extension/multitool)
 	if(!istype(multi, /datum/extension/multitool/cryo))
