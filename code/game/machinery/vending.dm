@@ -1531,7 +1531,7 @@
 					/obj/item/weapon/gun/projectile/mk58/wood = 4,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 2,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 4,
-					/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 2
+					/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 2,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 2,
@@ -1553,7 +1553,7 @@
 					/obj/item/weapon/gun/projectile/mandella = 1800,
 					/obj/item/weapon/gun/projectile/revolver/deckard = 3600,
 					/obj/item/weapon/gun/projectile/automatic/z8 = 3500,
-					/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 2500
+					/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 2500,
 					/obj/item/weapon/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton = 1800,
