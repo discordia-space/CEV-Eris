@@ -1,5 +1,5 @@
 /datum/trade_station/fs_experimental_factory
-	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sending a message. \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""))
+	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sending a message. \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\"")
 	markup = 1
 	spawn_probability = 10
 	assortiment = list(

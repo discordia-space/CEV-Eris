@@ -18,7 +18,7 @@
 
 		"Refined Materials" = list(
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(-4, 6)),
-			/obj/item/stack/material/cardboard/full = good_data("cardboard sheets (x120)", list(-4, 6),
+			/obj/item/stack/material/cardboard/full = good_data("cardboard sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/steel/full = good_data("steel sheets (x120)", list(-3, 5)),
 			/obj/item/stack/material/plasteel/full = good_data("plasteel sheets (x120)", list(-3, 5)),
 			/obj/item/stack/material/wood/full = good_data("wood planks (x120)", list(-3, 5)),
