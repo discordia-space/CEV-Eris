@@ -1,0 +1,5 @@
+author: Herbaon
+delete-after: true
+changes:
+  - rscadd: Added more trade stations/beacons, making exploration and roundstart beacons
+      more useful.
