@@ -1,0 +1,14 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: Added the NT pilum, printable from the general melee disk
+  - tweak: reworked the scourge to have a weak agony-inducing mode and a strong armor-piercing
+      mode.
+  - balance: rebalanced most NT melee weapons
+  - tweak: the NT shield can no store some NT melee weapons.
+  - tweak: the sheath now fits onto the suit slot.
+  - tweak: NT weapons are less likely to embed when used by someone with a cruciform
+  - tweak: the Sword of truth special attack now causes a stat decrease for some time.
+  - tweak: the NT belts can now hold more NT-related items
+  - bugfix: the fireaxe and hammers will now properly factor in toolmods into their
+      damage calculation.
