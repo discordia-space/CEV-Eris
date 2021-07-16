@@ -1,0 +1,4 @@
+author: Herbaon
+delete-after: true
+changes:
+  - bugfix: fixes placeholder text in stations.
