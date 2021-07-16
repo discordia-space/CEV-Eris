@@ -1,0 +1,5 @@
+author: zombiemimic
+delete-after: true
+changes:
+  - rscadd: Added gold paint and scaramanga disk
+  - code_imp: reformatted some contraband in vendors
