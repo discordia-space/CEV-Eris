@@ -62,6 +62,7 @@
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
 	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
+	var/gilded = FALSE
 	/*	SILENCER HANDLING */
 	var/silenced = FALSE
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced

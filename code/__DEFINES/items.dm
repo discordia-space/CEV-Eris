@@ -79,6 +79,7 @@
 #define GUN_UPGRADE_RIGGED "rigged"
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
+#define GUN_UPGRADE_GILDED "gilded"
 
 //Location Tag defines
 
@@ -89,6 +90,7 @@
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
 #define GUN_GRIP "grip slot"
+#define GUN_COSMETIC "cosmetic slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
@@ -97,6 +99,7 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
+#define GUN_GILDABLE "gildable"
 
 #define GUN_CALIBRE_35 "caliber .35"
 
