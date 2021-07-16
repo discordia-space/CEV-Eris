@@ -137,3 +137,10 @@
 	icon_state = "gnome_hat"
 	spawn_blacklisted = FALSE
 	body_parts_covered = 0
+
+/obj/item/clothing/head/collectable/festive
+	name = "collectable festive paper hat"
+	icon_state = "xmashat"
+	desc = "A crappy paper hat that you are REQUIRED to wear."
+	flags_inv = 0
+	body_parts_covered = 0
