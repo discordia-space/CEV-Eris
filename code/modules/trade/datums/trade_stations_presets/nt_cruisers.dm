@@ -1,13 +1,10 @@
 /datum/trade_station/nt_cruisers
 	icon_states = "nt_cruiser"
-	spawn_cost = 1
-	markup = 1
+	markup = 1.2
 	name_pool = list(
 		"NTV 'Faith'" = "'NeoTheology Vessel 'Faith' something, something, NeoTheology is good, buy us, convert, something something",
 		"NTV 'Hope'" = "'NeoTheology Vessel 'Hope' something something, this PR requires better descriptions, something, something."
 	)
-
-//Types of items sold by the station
 	assortiment = list(
 		"Biomatter products" = list(
 			/obj/item/weapon/reagent_containers/food/snacks/meat,
@@ -28,7 +25,7 @@
 			/obj/item/clothing/accessory/holster/waist,
 			/obj/item/clothing/accessory/holster/hip
 		),
-		"Energy Weapon" = list(
+		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/taser,
 			/obj/item/weapon/gun/energy/nt_svalinn,
 			/obj/item/weapon/gun/energy/laser = custom_good_amount_range(list(1, 5)),

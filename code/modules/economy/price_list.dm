@@ -1049,7 +1049,10 @@
 /obj/item/weapon/storage/pouch/medium_generic/price_tag = 255
 /obj/item/weapon/storage/pouch/large_generic/price_tag = 410
 
-/obj/item/weapon/rig/price_tag = 300
+/obj/item/weapon/rig/price_tag = 150
+/obj/item/weapon/rig/industrial/price_tag = 350
+/obj/item/weapon/rig/hazmat/price_tag = 350
+/obj/item/weapon/rig/combat/price_tag = 500
 /obj/item/rig_module/price_tag = 500
 //***************//
 //----ORES-----//
