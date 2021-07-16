@@ -2,8 +2,8 @@
 	icon_states = "nt_cruiser"
 	markup = 1.2
 	name_pool = list(
-		"NTV 'Faith'" = "'NeoTheology Vessel 'Faith' something, something, NeoTheology is good, buy us, convert, something something",
-		"NTV 'Hope'" = "'NeoTheology Vessel 'Hope' something something, this PR requires better descriptions, something, something."
+		"NTV 'Faith'" = "They are sending message, \"The most holy purveyors of ecclesiarchic goods!\"",
+		"NTV 'Hope'" = "They are sending message, \"Reliable, blessed and sanctified goods for the correct price.\""
 	)
 	assortiment = list(
 		"Biomatter products" = list(

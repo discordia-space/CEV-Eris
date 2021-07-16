@@ -3,16 +3,16 @@
 	markup = 0.4
 	name_pool = list(
 		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it is illegal enough!",
-		"AFTB 'Hispa'" = "'Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
+		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
 	)
 	assortiment = list(
 		".35 Caliber"  = list(
 			/obj/item/ammo_magazine/slpistol,
 			/obj/item/ammo_magazine/slpistol/rubber,
-			/obj/item/ammo_magazine/pistol/rubber,
 			/obj/item/ammo_magazine/pistol,
-			/obj/item/ammo_magazine/hpistol/rubber,
+			/obj/item/ammo_magazine/pistol/rubber,
 			/obj/item/ammo_magazine/hpistol,
+			/obj/item/ammo_magazine/hpistol/rubber,
 
 			/obj/item/ammo_magazine/smg,
 			/obj/item/ammo_magazine/smg/rubber,
