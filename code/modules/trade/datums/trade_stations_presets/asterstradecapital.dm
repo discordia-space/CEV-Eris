@@ -1,5 +1,5 @@
 /datum/trade_station/asterstradecapital
-	name_pool = list("FTS 'Solnishko'" = "Free Trade Station 'Solnishko', they sending message \"Zdravstvuite, this is the Trade Station 'Solaris'. We have all of the bests products on sale at Hansa! You couldn't get even better prices!.\ Everything for sale here, don't be afraid to come aboard and check our wares!\"")
+	name_pool = list("FTS 'Solnishko'" = "Free Trade Station 'Solnishko', they sending message \"Zdravstvuite, this is the Trade Station 'Solaris'. We have all of the bests products on sale at Hansa! You couldn't get even better prices!. Everything for sale here, don't be afraid to come aboard and check our wares!\"")
 	start_discovered = TRUE
 	spawn_always = TRUE
 	forced_overmap_zone = list(
