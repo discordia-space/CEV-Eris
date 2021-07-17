@@ -102,7 +102,7 @@
 /datum/design/autolathe/container/prefilled/ale
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	chemicals = list(
-	"ethanol" = 10, // i think ale has a slightly higher alcohol content than beer
+	"ethanol" = 10, 
 	"water" = 20
 	)
 	
@@ -127,7 +127,7 @@
 	chemicals = list(
 	"ethanol" = 40,
 	"water" = 30,
-	"berryjuice" = 30 // juniper berries, i guess?
+	"berryjuice" = 30 
 	)
 	
 /datum/design/autolathe/container/prefilled/rum
@@ -142,7 +142,7 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	chemicals = list(
 	"ethanol" = 60, 
-	"flour" = 40 // alright i'm totally butchering the recipe for making whiskey, please let me know if you have a better chem to use here - also, can't use water because water+flour makes dough
+	"flour" = 40 // grain mash
 	)
 	
 // prefilled soda
@@ -150,7 +150,7 @@
 /datum/design/autolathe/container/prefilled/soda
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/cola
 	chemicals = list(
-	"sugar" = 20, // basic, crappy cola consists of mostly sugar to imitate 'flavoring' - doesn't have a really unique taste to it
+	"sugar" = 20, 
 	"sodawater" = 10
 	)
 	
@@ -158,7 +158,7 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
 	chemicals = list(
 	"sugar" = 10,
-	"lemonjuice" = 10, // gives the drink it's citrus-y taste
+	"lemonjuice" = 10, 
 	"sodawater" = 10
 	)
 	
@@ -166,7 +166,7 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
 	chemicals = list(
 	"sugar" = 10,
-	"berryjuice" = 10, // mixture of berries in the juice give gibb all it's flavors! amazing!
+	"berryjuice" = 10, 
 	"sodawater" = 10
 	)
 	
@@ -174,7 +174,7 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
 	chemicals = list(
 	"sugar" = 10,
-	"limejuice" = 10, // i don't really know what tastes like a hull breach, so i'm just going to assume it's an alternate form of citric acid
+	"limejuice" = 10, 
 	"sodawater" = 10
 	)
 
@@ -199,8 +199,8 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko
 	chemicals = list(
 	"sugar" = 5,
-	"ethanol" = 15, // a metric shit ton of alcohol - 50% of the drink is straight booze
-	"coffee" = 15, // the other half is straight-up coffee
+	"ethanol" = 15, 
+	"coffee" = 15, 
 	"sodawater" = 5
 	)
 
@@ -211,11 +211,11 @@
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater
 	chemicals = list(
 	"water" = 50,
-	"carbon" = 5 // carbon is "lost" in this recipe, as the can only contains 50 units of soda water instead of 55
+	"carbon" = 5 
 	)
 
 /datum/design/autolathe/container/prefilled/water
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	chemicals = list(
-	"water" = 30 // it's literally a bottle of mineral(?) water
+	"water" = 30 
 	)
