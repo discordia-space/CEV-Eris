@@ -6,26 +6,43 @@
  *  Mob damage Template
  */
 
+/proc/damage_check(mob/living/M, damage_type)
+	var/loss
+
+	switch(damage_type)
+		if(BRUTE)
+			loss = M.getBruteLoss()
+		if(BURN)
+			loss = M.getFireLoss()
+		if(TOX)
+			loss = M.getToxLoss()
+		if(OXY)
+			loss = M.getOxyLoss()
+		if(CLONE)
+			loss = M.getCloneLoss()
+		if(HALLOSS)
+			loss = M.getHalLoss()
+	return loss
+
+/// Used to test mob breathing in space
 /datum/unit_test/human_breath
-	var/starting_oxyloss
-	var/ending_oxyloss
-	var/mob/living/carbon/human/H
 
 /datum/unit_test/human_breath/Run()
-	var/turf/T = locate(20,20,1) //TODO:  Find better way.
-
+	var/starting_oxyloss
+	var/ending_oxyloss
 	// Pause natural mob life so it can be handled entirely by the test
 	SSmobs.pause()
 
-	if(!istype(T, /turf/space))	//If the above isn't a space turf then we force it to find one will most likely pick 1,1,1
-		T = locate(/turf/space)
-
+	var/turf/T = locate(/turf/space)
+	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
 	H = new(T)
+	TEST_ASSERT(istype(T, /turf/space), "Turf is not space even though locate says so.")
 
 	starting_oxyloss = damage_check(H, OXY)
 
 	for(var/__i in 1 to 10)
-		H.life() // fire it 10 times
+		H.breathe()
+		// H.life() // fire it 10 times
 
 	ending_oxyloss = damage_check(H, OXY)
 	TEST_ASSERT(starting_oxyloss < ending_oxyloss, "Mob is not taking oxygen damage. Damange is [ending_oxyloss]")
@@ -64,23 +81,7 @@
 
 //Generic Check
 // TODO: Need to make sure I didn't just recreate the wheel here.
-/proc/damage_check(mob/living/M, damage_type)
-	var/loss
 
-	switch(damage_type)
-		if(BRUTE)
-			loss = M.getBruteLoss()
-		if(BURN)
-			loss = M.getFireLoss()
-		if(TOX)
-			loss = M.getToxLoss()
-		if(OXY)
-			loss = M.getOxyLoss()
-		if(CLONE)
-			loss = M.getCloneLoss()
-		if(HALLOSS)
-			loss = M.getHalLoss()
-	return loss
 
 // ==============================================================================================================
 
