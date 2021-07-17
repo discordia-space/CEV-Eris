@@ -41,3 +41,4 @@
 	chemicals = list(
 	"nutriment" = 20 // the 3u of iron is freeeeeee! grinding the mre destroys the trash so they lose the 1 plastic they used to make it, so its fair nuff
 	)
+	
