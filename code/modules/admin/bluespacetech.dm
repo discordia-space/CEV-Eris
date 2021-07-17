@@ -26,6 +26,16 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.real_name = "Bluespace Technician"
 	bst.voice_name = "Bluespace Technician"
 	bst.h_style = "Crewcut"
+	var/list/stat_modifiers = list(
+		STAT_ROB = 99,
+		STAT_TGH = 99,
+		STAT_BIO = 99,
+		STAT_MEC = 99,
+		STAT_VIG = 99,
+		STAT_COG = 99
+	)
+	for(var/stat in stat_modifiers)
+		bst.stats.changeStat(stat, stat_modifiers[stat])
 
 	//Items
 	bst.equip_to_slot_or_del(new /obj/item/clothing/under/assistantformal/bst(bst), slot_w_uniform)
@@ -62,11 +72,19 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.add_language(LANGUAGE_CYRILLIC)
 	bst.add_language(LANGUAGE_SERBIAN)
 	bst.add_language(LANGUAGE_MONKEY)
+	bst.add_language(LANGUAGE_JIVE)
+	bst.add_language(LANGUAGE_GERMAN)
+	bst.add_language(LANGUAGE_NEOHONGO)
+	bst.add_language(LANGUAGE_LATIN)
+	// Robot languages
+	bst.add_language(LANGUAGE_ROBOT)
+	bst.add_language(LANGUAGE_DRONE)
 	// Antagonist languages
 	bst.add_language(LANGUAGE_HIVEMIND)
 	bst.add_language(LANGUAGE_CORTICAL)
 	bst.add_language(LANGUAGE_CULT)
 	bst.add_language(LANGUAGE_OCCULT)
+	bst.add_language(LANGUAGE_BLITZ)
 
 	spawn(10)
 		bst_post_spawn(bst)
@@ -292,7 +310,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /obj/item/weapon/card/id/bst
 	icon_state = "centcom"
-	desc = "An ID straight from Central Command. This one looks highly classified."
+	desc = "An ID straight from Hansa. This one looks as though its very existence is a trade secret."
 	spawn_frequency = 0
 
 /obj/item/weapon/card/id/bst/Initialize(mapload)

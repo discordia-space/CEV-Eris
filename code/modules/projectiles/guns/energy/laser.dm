@@ -83,12 +83,12 @@
 	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	force = WEAPON_FORCE_PAINFUL
 	fire_sound = 'sound/weapons/Laser.ogg'
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/midlaser
 	zoom_factor = 0
-	damage_multiplier = 1
+	damage_multiplier = 1.2
 	origin_tech = null
 	self_recharge = TRUE
 	charge_cost = 100
@@ -127,13 +127,13 @@
 	name = "mounted laser cannon"
 	self_recharge = TRUE
 	use_external_power = TRUE
-	recharge_time = 10
+	recharge_time = 35
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
-	charge_cost = 100
+	charge_cost = 300
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/psychic
@@ -211,10 +211,11 @@
 	icon_state = "psychic_lasercannon"
 	item_state = "psychic_lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-	item_charge_meter = TRUE
+	item_charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
 	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	traitor = TRUE
 	pierce_multiplier = 2
@@ -228,8 +229,20 @@
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 		)
-	one_hand_penalty = 5
-	twohanded = TRUE
+	twohanded = FALSE
+
+/obj/item/weapon/gun/energy/psychic/mindflayer
+	name = "Prototype: mind flayer"
+	desc = "A cruel weapon designed to break the minds of those it targets, causing sanity loss and mental breakdowns."
+	icon = 'icons/obj/guns/energy/xray.dmi'
+	icon_state = "xray"
+	projectile_type = /obj/item/projectile/beam/psychic
+	fire_sound = 'sound/weapons/Laser.ogg'
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	fire_delay = 10
+	price_tag = 2200
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_SILVER = 5, MATERIAL_PLASMA = 3)
+	twohanded = FALSE
 
 /obj/item/weapon/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"

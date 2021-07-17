@@ -11,7 +11,7 @@
 
 /datum/uplink_item/abstract/announcements/announce
 	name = "Shipwide Announcement"
-	item_cost = 2
+	item_cost = 1
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
@@ -25,7 +25,7 @@
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
-	item_cost = 8
+	item_cost = 6
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/New()
 	..()
@@ -82,7 +82,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm
 	name = "Ion Storm Announcement"
-	desc = "Interferes with the station's ion sensors. Triggers immediately upon investment."
+	desc = "Interferes with the ship's ion sensors. Triggers immediately upon investment."
 	item_cost = 2
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/device/uplink/U, var/loc)
@@ -91,8 +91,8 @@
 
 /datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
-	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
-	item_cost = 7
+	desc = "Interferes with the ship's radiation sensors. Triggers immediately upon investment."
+	item_cost = 4
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)
@@ -101,8 +101,8 @@
 
 /datum/uplink_item/abstract/announcements/fake_serb
 	name = "Unknown ship Announcement"
-	desc = "Interferes with the station's array sensors. Triggers immediately upon investment."
-	item_cost = 8
+	desc = "Interferes with the ship's array sensors. Triggers immediately upon investment."
+	item_cost = 3
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary

@@ -39,6 +39,7 @@
 	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
+	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
 
 	var/muzzle_flash = 3
 	var/dual_wielding
@@ -61,6 +62,7 @@
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
 	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
+	var/gilded = FALSE
 	/*	SILENCER HANDLING */
 	var/silenced = FALSE
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
@@ -75,8 +77,31 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
+	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
+	var/darkness_view = 0
+	var/vision_flags = 0
+	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
+	var/inversed_carry = FALSE
+
+/obj/item/weapon/gun/attackby(obj/item/I, mob/living/user, params)
+	if(!istool(I) || user.a_intent != I_HURT)
+		return FALSE
+	if(!gun_parts)
+		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
+		return FALSE
+	if(I.get_tool_quality(QUALITY_BOLT_TURNING))
+		user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING("You begin breaking apart [src] for gun parts."))
+	if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
+		for(var/target_item in gun_parts)
+			var/amount = gun_parts[target_item]
+			while(amount)
+				new target_item(get_turf(src))
+				amount--
+		qdel(src)
+
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -96,6 +121,7 @@
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
 		hud_actions += action
+	verbs += /obj/item/weapon/gun/proc/toggle_carry_state_verb
 
 
 	if(icon_contained)
@@ -121,7 +147,6 @@
 	firemodes = null
 	return ..()
 
-
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
@@ -136,11 +161,16 @@
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
 	state = initial(state)
-	if(back)
-		item_state_slots[slot_back_str]   = "back"      + state
-	if(onsuit)
-		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
+	var/carry_state = inversed_carry
+	if(back && !carry_state)
+		item_state_slots[slot_back_str]   = "back"      + state
+	if(back && carry_state)
+		item_state_slots[slot_back_str]   = "onsuit"      + state
+	if(onsuit && !carry_state)
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
+	if(onsuit && carry_state)
+		item_state_slots[slot_s_store_str]= "back"    + state
 
 /obj/item/weapon/gun/on_update_icon()
 	if(wielded_item_state)
@@ -260,10 +290,6 @@
 	else
 		return ..() //Pistolwhippin'
 
-
-
-
-
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
 
@@ -298,10 +324,13 @@
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
+		projectile.multiply_projectile_agony(proj_agony_multiplier)
+
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
+			P.multiply_projectile_accuracy(user.stats.getStat(STAT_VIG)/2)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -357,7 +386,7 @@
 /obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, pointblank=0, reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
-		playsound(user, fire_sound_silenced, 15, 1, -3)
+		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
 
@@ -470,7 +499,7 @@
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
-			user.apply_effect(110,AGONY,0)
+			user.adjustHalLoss(110)
 		qdel(in_chamber)
 		mouthshoot = FALSE
 		return
@@ -534,13 +563,13 @@
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
 			hud_actions += action
-			if(ismob(src.loc))
-				var/mob/user = src.loc
-				user.client.screen += action
+			if(ismob(loc))
+				var/mob/user = loc
+				user.client?.screen += action
 	else
-		if(ismob(src.loc))
-			var/mob/user = src.loc
-			user.client.screen -= action
+		if(ismob(loc))
+			var/mob/user = loc
+			user.client?.screen -= action
 		hud_actions -= action
 		qdel(action)
 
@@ -599,6 +628,11 @@
 	else
 		user.update_cursor()
 
+/obj/item/weapon/gun/proc/toggle_carry_state(mob/living/user)
+	inversed_carry = !inversed_carry
+	to_chat(user, SPAN_NOTICE("You adjust the way the gun will be worn on your back and on your suit."))
+	set_item_state()
+
 /obj/item/weapon/gun/proc/get_total_damage_adjust()
 	var/val = 0
 	for(var/i in proj_damage_adjust)
@@ -647,6 +681,13 @@
 	set src in view(1)
 
 	toggle_safety(usr)
+
+/obj/item/weapon/gun/proc/toggle_carry_state_verb()
+	set name = "Toggle gun's carry position"
+	set category = "Object"
+	set src in view(1)
+
+	toggle_carry_state(usr)
 
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
@@ -725,6 +766,7 @@
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
+	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
@@ -737,6 +779,14 @@
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
+	darkness_view = initial(darkness_view)
+	vision_flags = initial(vision_flags)
+	see_invisible_gun = initial(see_invisible_gun)
+	force = initial(force)
+	armor_penetration = initial(armor_penetration)
+	sharp = initial(sharp)
+	attack_verb = list()
+	one_hand_penalty = initial(one_hand_penalty)
 	initialize_scope()
 	initialize_firemodes()
 
@@ -753,3 +803,15 @@
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
+	if(!sharp)
+		gun_tags |= SLOT_BAYONET
+
+/obj/item/weapon/gun/zoom(tileoffset, viewsize)
+	..()
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/H = usr
+	if(zoom)
+		H.using_scope = src
+	else
+		H.using_scope = null

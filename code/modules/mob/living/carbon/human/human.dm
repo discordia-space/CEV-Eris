@@ -8,6 +8,7 @@
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
+	var/obj/item/weapon/gun/using_scope // This is not very good either, because I've copied it. Sorry.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species)
 
@@ -88,11 +89,11 @@
 			stat(null, "Suit charge: [cell_status]")
 
 		var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
-		if(chemvessel_efficiency)
+		if(chemvessel_efficiency > 1)
 			stat("Chemical Storage", "[carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
 
 		var/maw_efficiency = get_organ_efficiency(OP_MAW)
-		if(maw_efficiency > 0)
+		if(maw_efficiency > 1)
 			stat("Gnawing hunger", "[carrion_hunger]/[round(maw_efficiency/10)]")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
@@ -595,7 +596,7 @@ var/list/rank_prefix = list(\
 		return FLASH_PROTECTION_MAJOR
 
 	var/eye_efficiency = get_organ_efficiency(OP_EYES)
-	if(eye_efficiency <= 0)
+	if(eye_efficiency <= 1)
 		return FLASH_PROTECTION_MAJOR
 
 	return flash_protection
@@ -981,21 +982,19 @@ var/list/rank_prefix = list(\
 			continue
 
 		for(var/obj/item/O in organ.implants)
+			var/mob/living/carbon/human/H = organ.owner
 			// Shrapnel hurts when you move, and implanting knives is a bad idea
-			if(prob(5) && is_sharp(O))
+			if(prob(5) && is_sharp(O) && !MOVING_DELIBERATELY(H))
 				if(!organ.can_feel_pain())
 					to_chat(src, SPAN_WARNING("You feel [O] moving inside your [organ.name]."))
 				else
 					var/msg = pick( \
 						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
-						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."), \
-						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."))
+						SPAN_WARNING("Your hasty movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
-				var/mob/living/carbon/human/H = organ.owner
-				if(!MOVING_DELIBERATELY(H))
-					organ.take_damage(rand(1,3), 0, 0)
-					if(organ.setBleeding())
-						src.adjustToxLoss(rand(1,3))
+				organ.take_damage(rand(1,3), 0, 0)
+				if(organ.setBleeding())
+					src.adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/browse_sanity()
 	set name		= "Show sanity"
@@ -1016,6 +1015,12 @@ var/list/rank_prefix = list(\
 	data["desires"] = sanity.desires
 	data["rest"] = sanity.resting
 	data["insight_rest"] = sanity.insight_rest
+
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C)
+		data["cruciform"] = TRUE
+		data["righteous_life"] = C.righteous_life
+
 	return data
 
 /mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -1218,6 +1223,8 @@ var/list/rank_prefix = list(\
 			var/obj/item/I = organs_by_name[limb_tag]
 			if(I && I.type == OD.default_type)
 				continue
+			else if(I)
+				qdel(I)
 			OD.create_organ(src)
 
 		for(var/organ_tag in species.has_process)
@@ -1225,6 +1232,8 @@ var/list/rank_prefix = list(\
 			var/obj/item/I = random_organ_by_process(organ_tag)
 			if(I && I.type == organ_type)
 				continue
+			else if(I)
+				qdel(I)
 			new organ_type(src)
 
 		if(checkprefcruciform)

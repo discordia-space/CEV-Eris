@@ -108,8 +108,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						)
 
 	var/overmap_z
-	var/overmap_size = 50
-	var/overmap_event_areas = 40
+	var/overmap_size = 50 * 4
+	var/overmap_event_areas = 40 * 16
 
 	var/emergency_shuttle_docked_message = "The escape pods are now armed. You have approximately %ETD% to board the escape pods."
 	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."

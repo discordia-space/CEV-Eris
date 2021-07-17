@@ -1,6 +1,6 @@
 #define MERGE_SPAWN_TAGS(first, second) first + ";" + second
 
-#define CHEAP_ITEM_PRICE 800
+#define CHEAP_ITEM_PRICE 400
 
 //guns defines
 #define GUN_CHEAP_PRICE 1700
@@ -16,7 +16,7 @@
 #define  BASE_RECHARGE_TIME 4
 
 //clothing
-#define CLOTH_PRICE_DIVISOR 50
+#define CLOTH_PRICE_DIVISOR 40
 
 //biomes defines
 #define LOOT_LEVEL_VERY_LOW 4000
@@ -196,6 +196,7 @@
 #define SPAWN_GUN_ENERGY "gun_energy"
 #define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
+#define SPAWN_GUN_OS "gun_os"
 
 #define SPAWN_TAG_GUNS SPAWN_TAG_ITEM+";"+SPAWN_GUNS
 #define SPAWN_TAG_GUN SPAWN_TAG_GUNS+";"+SPAWN_GUN
@@ -205,6 +206,7 @@
 #define SPAWN_TAG_GUN_SHOTGUN MERGE_SPAWN_TAGS(SPAWN_TAG_GUN_PROJECTILE, SPAWN_GUN_SHOTGUN)
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY MERGE_SPAWN_TAGS(SPAWN_TAG_GUN_ENERGY, SPAWN_GUN_SHOTGUN)
 #define SPAWN_TAG_GUN_ENERGY_BOTANICAL SPAWN_TAG_GUN_ENERGY+";botanical"
+#define SPAWN_TAG_GUN_OS SPAWN_TAG_GUN+";"+SPAWN_GUN_OS
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammo"
@@ -538,6 +540,7 @@
 
 // FACTION KEYWORDS
 #define SPAWN_ASTERS "asters"
+#define SPAWN_EXCELSIOR "excelsior"
 #define SPAWN_FROZEN_STAR "frozen_star"
 #define SPAWN_IRONHAMMER "ironhammer"
 #define SPAWN_NANOTRASEN "nanotrasen"
@@ -545,5 +548,6 @@
 #define SPAWN_MOEBIUS "moebius"
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
+#define SPAWN_TECHNOMANCER "technomancer"
 
 #define SPAWN_CLOWN "clown"

@@ -86,11 +86,11 @@
 	return 1
 
 /obj/machinery/shieldwallgen/on_update_icon()
-	icon_state = "Shield_Gen"
+	SetIconState("Shield_Gen")
 	if(active)
-		icon_state = "Shield_Gen_active"
+		SetIconState("Shield_Gen_active")
 		if(stunmode)
-			icon_state = "Shield_Gen_emagged"
+			SetIconState("Shield_Gen_emagged")
 
 	cut_overlays()
 	if(panel_open)

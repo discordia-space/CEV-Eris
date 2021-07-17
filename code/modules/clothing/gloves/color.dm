@@ -6,7 +6,6 @@
 	icon_state = "latex"
 	item_state = "lgloves"
 	bad_type = /obj/item/clothing/gloves/color
-	rarity_value = 3
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"

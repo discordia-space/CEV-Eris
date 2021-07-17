@@ -3,6 +3,7 @@
 	icon_state = "blood_vessel"
 	organ_efficiency = list(OP_BLOOD_VESSEL= 100)
 	price_tag = 100
+	max_damage = 50
 	specific_organ_size = 0.5
 	max_blood_storage = 100
 	oxygen_req = 2

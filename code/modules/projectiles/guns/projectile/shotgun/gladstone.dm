@@ -14,5 +14,5 @@
 	one_hand_penalty = 15 //full sized shotgun level
 	damage_multiplier = 0.8
 
-	price_tag = 2000
+	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN

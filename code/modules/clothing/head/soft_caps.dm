@@ -9,7 +9,6 @@
 		)
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
-	rarity_value = 3.5
 	var/flipped = 0
 
 /obj/item/clothing/head/soft/dropped()

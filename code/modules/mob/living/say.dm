@@ -173,7 +173,7 @@ var/list/channel_to_radio_key = new
 		if (message_mode == "headset")
 			message = copytext(message,2)//parse ;
 		else
-			message = copytext_char(message,3)//parse :s 
+			message = copytext_char(message,3)//parse :s
 
 	message = trim_left(message)
 
@@ -195,7 +195,7 @@ var/list/channel_to_radio_key = new
 	verb = say_quote(message, speaking)
 
 	message = trim_left(message)
-
+	var/message_pre_stutter = message
 	if(!(speaking && speaking.flags&NO_STUTTER))
 
 		var/list/handle_s = handle_speech_problems(message, verb)
@@ -306,8 +306,8 @@ var/list/channel_to_radio_key = new
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
-			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message))
+			if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
+				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message), message_pre_stutter)
 
 
 	log_say("[name]/[key] : [message]")
@@ -346,7 +346,7 @@ var/list/channel_to_radio_key = new
 
 	if(sdisabilities&DEAF || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
-		if(!language || !language.flags&INNATE)
+		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
 				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 			else

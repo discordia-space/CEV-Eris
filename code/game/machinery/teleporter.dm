@@ -1,6 +1,6 @@
 /obj/machinery/computer/teleporter
 	name = "Teleporter Control Console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	desc = "Used to control a linked teleportation Hub and Ship."
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	circuit = /obj/item/weapon/electronics/circuitboard/teleporter
@@ -165,7 +165,7 @@
 
 		if(istype(L, /obj/landmark/) && istype(L.loc, /turf))
 			to_chat(usr, "You insert the coordinates into the machine.")
-			to_chat(usr, "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times.")
+			to_chat(usr, "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the ship at all times.")
 			user.drop_item()
 			qdel(I)
 

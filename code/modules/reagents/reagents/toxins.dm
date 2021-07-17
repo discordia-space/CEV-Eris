@@ -204,6 +204,7 @@
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
+		M.timeofdeath = 0
 	. = ..()
 
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
@@ -325,6 +326,9 @@
 	color = "#801E28"
 
 /datum/reagent/medicine/slimejelly/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(M.species.name == "Slime")
+		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
+		return
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
 		M.adjustToxLoss(rand(10, 30) * effect_multiplier)
@@ -653,3 +657,19 @@
 			spill_biomass(T)
 		remove_self(volume)
 		return TRUE
+
+/datum/reagent/toxin/chlorine
+	name = "Chlorine"
+	description = "A highly poisonous liquid. Smells strongly of bleach."
+	reagent_state = LIQUID
+	taste_description = "bleach"
+	color = "#707c13"
+	strength = 15
+
+/datum/reagent/toxin/tar
+	name = "Tar"
+	description = "A dark, viscous liquid."
+	taste_description = "petroleum"
+	color = "#140b30"
+	reagent_state = LIQUID
+	strength = 4

@@ -45,25 +45,34 @@
 /datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
 	if(A != current_location)
 		next_location = A
-		move_time = initial(move_time) * (1 + get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))
+		move_time = initial(move_time) * (1 + 0.01 * get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))
 
 /datum/shuttle/autodock/overmap/proc/get_possible_destinations()
 	var/list/res = list()
-	for (var/obj/effect/overmap/S in range(waypoint_sector(current_location), range))
+	var/area/overmap/map = locate() in world
+	for(var/obj/effect/overmap/sector/S in map) // Infinite range to avoid depending on ship position
+		if(S.known)
+			for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
+				if(LZ.is_valid(src))
+					res["[S.name_stages[1]] - [LZ.name]"] = LZ
+
+	for(var/obj/effect/overmap/ship/eris/S in map)
 		for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
 			if(LZ.is_valid(src))
-				res["[S.name] - [LZ.name]"] = LZ
+				res["[S.name_stages[1]] - [LZ.name]"] = LZ
 	return res
 
 /datum/shuttle/autodock/overmap/proc/get_location_name()
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return "In transit"
-	return "[waypoint_sector(current_location)] - [current_location]"
+	var/obj/effect/overmap/sector/S = waypoint_sector(current_location)
+	return "[S.name_stages[1]] - [current_location]"
 
 /datum/shuttle/autodock/overmap/proc/get_destination_name()
 	if(!next_location)
 		return "None"
-	return "[waypoint_sector(next_location)] - [next_location]"
+	var/obj/effect/overmap/sector/S = waypoint_sector(next_location)
+	return "[S.name_stages[1]] - [next_location]"
 
 /datum/shuttle/autodock/overmap/proc/try_consume_fuel() //returns 1 if sucessful, returns 0 if error (like insufficient fuel)
 	if(!fuel_consumption)

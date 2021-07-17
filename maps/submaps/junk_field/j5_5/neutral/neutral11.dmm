@@ -1,0 +1,92 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/r_wall,
+/area/template_noop)
+"b" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"c" = (
+/turf/simulated/wall,
+/area/template_noop)
+"d" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"e" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"f" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"g" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"h" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"i" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+"j" = (
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/template_noop)
+"k" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"l" = (
+/turf/template_noop,
+/area/template_noop)
+"m" = (
+/obj/spawner/traps,
+/turf/simulated/floor/tiled/techmaint,
+/area/template_noop)
+
+(1,1,1) = {"
+d
+f
+d
+k
+l
+"}
+(2,1,1) = {"
+a
+c
+c
+j
+a
+"}
+(3,1,1) = {"
+b
+e
+h
+m
+a
+"}
+(4,1,1) = {"
+b
+g
+i
+i
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+f
+"}

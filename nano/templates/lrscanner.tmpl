@@ -1,0 +1,95 @@
+{{if data.shutdown}}
+	<h1>EMERGENCY SHUTDOWN</h1>
+	<b>An emergency shutdown has been initiated - scanner cooling down</b><br>
+	<i>Please wait until the long range scanner cools down before resuming operation. Estimated time left: {{:data.offline_for}} seconds.</i>
+{{else data.nogen}}
+	<h1>NO CONNECTION</h1>
+	<b>Not currently connected to any long range scanner</b><br>
+	<i>Please press Connect to attempt to locate an active long range scanner.</i>
+	</br></br>
+	{{:helper.link('Connect', null, {'connect' : '1'})}}
+	</br></br>
+	<i>If this fails, your long range scanner may be missing, uninstalled, destroyed, or have its software control disabled. Please contact your local Technomancers for assistance.</i>
+{{else}}
+	<h2>SYSTEM STATUS</h2>
+	
+	<div class="item">
+		<div class="itemLabel">
+			Scanner is:
+		</div>
+		<div class="itemContent">
+			{{if data.running == 2}}
+				{{if data.overloaded}}
+					<span class='bad'>Recovering.</span> Estimated time left: {{:data.offline_for}} seconds.
+				{{else}}
+					<span class='good'>Online</span>
+				{{/if}}
+			{{else data.running == 1}}
+				<span class='bad'>Shutting Down.</span> Estimated time left: {{:data.offline_for}} seconds.
+			{{else}}
+				<span class='neutral'>Offline</span> {{if data.offline_for}} Cooling down for approximately {{:data.offline_for}} seconds. {{/if}}
+			{{/if}}
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabel">
+			Scanner Capacity:
+		</div>
+		<div class="itemContent">
+			{{:data.current_energy}}/{{:data.max_energy}} MJ
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabel">
+			Upkeep Energy Use:
+		</div>
+		<div class="itemContent">
+			{{:data.upkeep_power_usage}} kW
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabel">
+			Total Energy Use:
+		</div>
+		<div class="itemContent">
+			{{if data.input_cap_kw}}
+				{{:data.power_usage}} / {{:data.input_cap_kw}} kW
+			{{else}}
+				{{:data.power_usage}} kW (No Limit)
+			{{/if}}
+		</div>
+	</div>
+	</br>
+	{{if data.genloc}}
+	<div style="width:100%;">
+			{{:data.genloc}}
+	</div>
+	{{/if}}
+	<h2>CONTROLS</h2>
+		<table>
+			<tr>
+			{{if (data.running == 2)}}
+				<td>{{:helper.link('Turn off', null, {'begin_shutdown' : '1'})}}
+			{{else}}
+				<td>{{:helper.link('Turn on', null, {'start_generator' : '1'})}}
+			{{/if}}
+			{{if data.running}}
+				<td>{{:helper.link('EMERGENCY SHUTDOWN', null, {'emergency_shutdown' : '1'})}}
+			{{/if}}
+			
+			<tr>
+			<td>{{:helper.link('Set Input Cap', null, {'set_input_cap' : '1'})}}
+		</table>
+		
+		
+		
+		
+	<h2>LOGGING</h2>	
+	<div style="height:120px;width:550px;border:1px solid #ccc;overflow:auto;line-height:15px;">
+	{{for data.logs}}
+		{{:value.entry}}</br>
+	{{/for}}
+	</div>
+
+{{/if}}
+

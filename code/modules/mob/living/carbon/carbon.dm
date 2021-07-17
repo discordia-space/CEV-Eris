@@ -293,15 +293,29 @@
 				return
 
 	//Grab processing has a chance of returning null
-	if(item && src.unEquip(item, loc))
-		src.visible_message("\red [src] has thrown [item].")
+	if(item)
+		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
+			var/obj/item/I = item
+			var/robust = stats.getStat(STAT_ROB)
+			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
+			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
+			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
+				item.throwing = TRUE
+				unEquip(item, loc)
+				item.forceMove(get_turf(GetAbove(src)))
+			else
+				to_chat(src, SPAN_WARNING("You were interrupted!"))
+				return
+		visible_message(SPAN_DANGER("[src] has thrown [item]."))
 		if(incorporeal_move)
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
-			src.inertia_dir = get_dir(target, src)
+			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
+		unEquip(item, loc)
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
+		item.throwing = FALSE
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()

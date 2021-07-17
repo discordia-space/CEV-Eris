@@ -10,7 +10,6 @@
 	item_state = "ass_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -27,7 +26,6 @@
 	item_state = "artist_armor"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	rarity_value = 0
 	armor = list(
 		melee = 5,
 		bullet = 0,
@@ -46,7 +44,6 @@
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -64,7 +61,6 @@
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -103,6 +99,25 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
+
+//Captain
+/obj/item/clothing/suit/storage/captain
+	name = "captain's coat"
+	desc = "A very stylish black coat with fancy shoulder straps. Shows who the boss here."
+	icon_state = "captain"
+	item_state = "captain"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 25,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 5000
 
 //Chaplain
 /obj/item/clothing/suit/storage/neotheology_jacket
@@ -193,11 +208,11 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 30,
-		bullet = 20,
-		energy = 20,
+		bullet = 30,
+		energy = 30,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -211,7 +226,6 @@
 	icon_state = "insp_coat"
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"
-	rarity_value = 16.66
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -223,7 +237,6 @@
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
-	rarity_value = 8
 
 /obj/item/clothing/suit/storage/hazardvest/orange
 	icon_state = "hazard_orange"
@@ -262,7 +275,6 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
-	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 0,

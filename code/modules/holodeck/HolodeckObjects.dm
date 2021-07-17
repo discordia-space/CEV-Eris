@@ -306,10 +306,10 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user as mob)
-	to_chat(user, "The station AI is not to interact with these devices!")
+	to_chat(user, "The ship AI is not to interact with these devices!")
 	return
 
 /obj/machinery/readybutton/New()

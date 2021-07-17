@@ -7,7 +7,6 @@
 	icon_closed = "labcoat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
-	rarity_value = 3
 	armor = list(
 		melee = 0,
 		bullet = 0,

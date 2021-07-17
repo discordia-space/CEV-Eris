@@ -457,6 +457,10 @@
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
 
+/area/eris/crew_quarters/kitchen_storage
+	name = "\improper Kitchen Storage"
+	icon_state = "kitchen"
+
 /area/eris/crew_quarters/bar
 	name = "\improper Bar"
 	icon_state = "bar"
@@ -554,6 +558,10 @@
 
 /area/eris/engineering/shield_generator
 	name = "Shield Generator Room"
+	icon_state = "blueold"
+
+/area/eris/engineering/long_range_scanner
+	name = "Long Range Scanner Room"
 	icon_state = "blueold"
 
 /area/eris/engineering/atmos

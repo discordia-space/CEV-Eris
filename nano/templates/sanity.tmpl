@@ -105,7 +105,34 @@
 				Currently you don't have desires
 			{{/if}}
 		</div>
-		{{if data.rest}}
-		{{/if}}
 	</div>
 </div>
+
+{{if data.cruciform}}
+<br>
+<div class="item">
+	<div class="statusDisplay">
+		<div class="itemLabel" style="padding-right:4px;">
+			<div style="padding: 1px; overflow:auto;text-align:center;">
+				<h3><!-- kneeling.png was taken from: https://game-icons.net/-->
+					<img src='kneeling.png' style ="float: left; width: 41%;margin: auto;padding-right: 1px; ">
+					<br>
+					Righteous life:
+				</h3>
+			</div>
+		</div>
+		<div class="itemContent">
+			<div>
+				Living righteously and actively participating 
+				in group rituals increases the amount of energy 
+				regeneration of your cruciform.
+			</div>
+			<div style="padding: 1px; overflow:auto;">
+				<h3>holiness:</h3>
+			</div>
+			{{:helper.displayBar(data.righteous_life, 0, 100, data.righteous_life < 33 ? 'bad' : data.righteous_life > 66 ? 'good': 'average')}}
+			<br>
+		</div>
+	</div>
+</div>
+{{/if}}

@@ -160,10 +160,10 @@ var/list/flooring_cache = list()
 
 
 		//If we get here then its a normal floor
-		else if (istype(T, /turf/simulated/floor))
+		else if (istype(T, /turf/simulated/floor) && !istype(T, /turf/simulated/floor/exoplanet))
 			var/turf/simulated/floor/t = T
 			//If the floor is the same as us,then we're linked,
-			if (t.flooring.type == type)
+			if (t.flooring?.type == type) // Because it can , and will be null
 				is_linked = TRUE
 				/*
 					But there's a caveat. To make atom black/whitelists work correctly, we also need to check that

@@ -16,11 +16,11 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
-	price_tag = 1200
+	price_tag = 800
 	damage_multiplier = 0.8
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
-	gun_tags = list(GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -33,6 +33,10 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
+	
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"

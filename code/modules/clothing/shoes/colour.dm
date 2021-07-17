@@ -9,7 +9,6 @@
 	heat_protection = LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	bad_type = /obj/item/clothing/shoes/color
-	rarity_value = 10
 
 /obj/item/clothing/shoes/color/black
 	name = "black shoes"

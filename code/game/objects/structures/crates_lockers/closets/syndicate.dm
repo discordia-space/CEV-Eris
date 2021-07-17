@@ -36,6 +36,7 @@
 
 /obj/structure/closet/syndicate/nuclear
 	desc = "It's a storage unit for nuclear-operative gear."
+	spawn_blacklisted = TRUE
 
 /obj/structure/closet/syndicate/nuclear/populate_contents()
 	new /obj/item/ammo_magazine/smg(src)
@@ -57,4 +58,3 @@
 	new /obj/item/weapon/pinpointer/nukeop(src)
 	var/obj/item/device/radio/uplink/U = new(src)
 	U.hidden_uplink.uses = 40
-	return

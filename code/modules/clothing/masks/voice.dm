@@ -9,7 +9,6 @@
 	desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
 	var/obj/item/voice_changer/changer
 	origin_tech = list(TECH_COVERT = 4)
-	rarity_value = 100
 
 /obj/item/clothing/mask/gas/voice/verb/Toggle_Voice_Changer()
 	set category = "Object"

@@ -97,6 +97,13 @@ var/list/custom_table_appearance = list(
 		T.update_icon()
 	. = ..()
 
+/obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(isliving(mover))
+		var/mob/living/L = mover
+		if(L.weakened)
+			return 1
+	return ..()	
+
 /obj/structure/table/examine(mob/user)
 	. = ..()
 	if(health < maxhealth)

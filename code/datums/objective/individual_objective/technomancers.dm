@@ -8,7 +8,7 @@
 
 /datum/individual_objective/disturbance/assign()
 	..()
-	target_area = random_ship_area()
+	target_area = random_ship_area(need_apc=TRUE)
 	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down its APC \
 	for [unit2time(units_requested)] minutes to lower bluespace interference, before something worse will happen."
 	RegisterSignal(target_area, COMSIG_AREA_APC_OPERATING, .proc/task_completed)
@@ -22,7 +22,7 @@
 		timer = world.time
 	if(check_for_completion())
 		completed()
-		target_area.local_bluespace_entropy -= rand(25,50)
+		target_area.bluespace_entropy -= rand(25,50)
 		GLOB.bluespace_entropy -= rand(5,25)
 
 /datum/individual_objective/disturbance/completed()

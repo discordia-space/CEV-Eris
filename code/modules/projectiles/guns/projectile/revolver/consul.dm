@@ -13,5 +13,5 @@
 	price_tag = 1700
 	damage_multiplier = 1.35
 	penetration_multiplier = 1.5
-	recoil_buildup = 35
+	recoil_buildup = 6
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

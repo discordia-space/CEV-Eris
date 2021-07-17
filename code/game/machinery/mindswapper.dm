@@ -13,6 +13,8 @@
 	var/operating = FALSE  // Is it on?
 	var/swap_time = 200  // Time from starting until minds are swapped
 	var/swap_range = 1
+	var/list/swap_blacklist = list(/mob/living/simple_animal/hostile/megafauna,
+	                               /mob/living/simple_animal/cat/runtime)
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -78,11 +80,10 @@
 	// Get all candidates in range for the mind swapping
 	var/list/swapBoddies = list()
 	var/list/swapMinds = list()
-	for(var/mob/living/carbon/C in range(swap_range,src))
-		if (C.stat != DEAD)  // candidates should not be dead
-			swapBoddies += C
-			swapMinds += C.ghostize(0)
-	
+	for(var/mob/living/M in range(swap_range,src))
+		if (M.stat != DEAD && M.mob_classification != CLASSIFICATION_SYNTHETIC && !(M.type in swap_blacklist))  // candidates should not be dead
+			swapBoddies += M
+			swapMinds += M.ghostize(0)
 	// Shuffle the list containing the candidates' boddies
 	swapBoddies = shuffle(swapBoddies)
 
@@ -98,9 +99,9 @@
 		i += 1
 
 	// Knock out all candidates
-	for(var/mob/living/carbon/C in swapBoddies)
-		C.Stun(2)
-		C.Weaken(10)
+	for(var/mob/living/M in swapBoddies)
+		M.Stun(2)
+		M.Weaken(10)
 
 	visible_message(SPAN_DANGER("You hear a loud electrical crack before the mind swapper shuts down."))
 	update_icon()

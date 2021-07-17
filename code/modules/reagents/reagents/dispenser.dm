@@ -126,9 +126,7 @@
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
-	return
+	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
 
 /datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
@@ -175,6 +173,7 @@
 		M.adjust_hallucination(halluci, halluci)
 
 	apply_sanity_effect(M, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/ethanol/touch_obj(obj/O)
 	if(istype(O, /obj/item/weapon/paper))
@@ -421,9 +420,10 @@
 /datum/reagent/organic/sugar
 	name = "Sugar"
 	id = "sugar"
-	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
+	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste. It is not a good idea to inject too much raw sugar into your bloodstream."
 	taste_description = "sugar"
 	taste_mult = 1.8
+	overdose = 40
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	glass_icon_state = "iceglass"
@@ -431,8 +431,21 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 
 /datum/reagent/organic/sugar/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustNutrition(4 * effect_multiplier)
+	M.adjustNutrition(1 * effect_multiplier)
 
+/datum/reagent/organic/sugar/overdose(mob/living/carbon/M, alien)
+	..()
+	M.add_side_effect("Headache", 11)
+	M.make_jittery(5)
+	M.add_chemical_effect(CE_PULSE, 2)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
+		if(istype(L))
+			L.take_damage(1, 0)
+	if(prob(5))
+		M.emote(pick("twitch", "blink_r", "shiver"))
+	
 /datum/reagent/sulfur
 	name = "Sulfur"
 	id = "sulfur"

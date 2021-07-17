@@ -46,8 +46,7 @@
 			light = new/datum/light_source(src, .)
 
 // Incase any lighting vars are on in the typepath we turn the light on in New().
-/atom/New()
-	. = ..()
+/atom/proc/init_light()
 	if(light_power && light_range)
 		update_light()
 
@@ -62,7 +61,7 @@
 		light = null
 	return ..()
 
-/atom/movable/New()
+/atom/movable/init_light()
 	. = ..()
 
 	if(opacity && isturf(loc))
@@ -130,4 +129,5 @@
 
 /obj/item/dropped()
 	. = ..()
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, src)
 	update_light()

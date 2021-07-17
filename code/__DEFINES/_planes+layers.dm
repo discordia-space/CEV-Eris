@@ -183,3 +183,8 @@ What is the naming convention for planes or layers?
 /atom/proc/reset_plane_and_layer()
 	set_plane(original_plane)
 	layer = initial(layer)
+
+
+/image/proc/plating_decal_layerise()
+	plane = SPACE_LAYER
+	layer = TURF_PLATING_DECAL_LAYER

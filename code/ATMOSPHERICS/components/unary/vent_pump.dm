@@ -15,7 +15,7 @@
 	desc = "Has a valve and pump attached to it"
 	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 7500			//7500 W ~ 10 HP
+	power_rating = 12000		//12000 W ~ 16 HP
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
@@ -73,7 +73,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2
 
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
@@ -87,7 +87,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
-	power_channel = EQUIP
+	power_channel = STATIC_EQUIP
 	power_rating = 15000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
@@ -96,7 +96,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	power_rating = 30000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/engine/New()

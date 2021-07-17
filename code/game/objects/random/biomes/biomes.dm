@@ -83,3 +83,25 @@
 	name = "biome trap spawner"
 	icon_state = "trap-purple-spawner-low"
 	spawn_nothing_percentage = 60
+
+// Junk Tractor Beam (JTB)
+/obj/landmark/loot_biomes/jtb
+	range = 10 // Maximum could be 12 since we have 25x25 chunks and landmark is at the center
+	min_loot_amount = 4
+	max_loot_amount = 8
+	min_traps_amount = 4
+	max_traps_amount = 8
+	min_mobs_amount = 0 // Mobs are hardcoded in map file
+	max_mobs_amount = 0
+
+/obj/landmark/loot_biomes/jtb/neutral
+	main_tags = list(SPAWN_ASTERS, SPAWN_IRONHAMMER, SPAWN_NEOTHEOLOGY, SPAWN_MOEBIUS, SPAWN_TECHNOMANCER)
+
+/obj/landmark/loot_biomes/jtb/onestar
+	main_tags = list(SPAWN_ONESTAR)
+
+/obj/landmark/loot_biomes/jtb/ironhammer
+	main_tags = list(SPAWN_IRONHAMMER)
+
+/obj/landmark/loot_biomes/jtb/serbian
+	main_tags = list(SPAWN_SERBIAN)

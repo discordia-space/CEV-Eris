@@ -7,7 +7,6 @@
 	body_parts_covered = HEAD|FACE
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 3
-	rarity_value = 100
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "Tecnicos Mask"

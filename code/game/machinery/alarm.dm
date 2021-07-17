@@ -14,7 +14,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
@@ -74,12 +74,14 @@
 	target_temperature = 90
 
 /obj/machinery/alarm/Destroy()
+	GLOB.alarm_list -= src
 	unregister_radio(src, frequency)
 	qdel(wires)
 	wires = null
 	return ..()
 
 /obj/machinery/alarm/New(loc, dir, building = 0)
+	GLOB.alarm_list += src
 	if(building)
 		if(dir)
 			src.set_dir(dir)
@@ -121,6 +123,9 @@
 	set_frequency(frequency)
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
+
+/obj/machinery/alarm/fire_act()
+	return
 
 /obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -925,7 +930,7 @@ FIRE ALARM
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
@@ -1081,15 +1086,15 @@ FIRE ALARM
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(src.timing)
-		if(src.time > 0)
-			src.time = src.time - ((world.timeofday - last_process)/10)
+	if(timing)
+		if(time > 0)
+			time -= (world.timeofday - last_process)/10
 		else
-			src.alarm()
-			src.time = 0
-			src.timing = 0
+			alarm()
+			time = 0
+			timing = 0
 			STOP_PROCESSING(SSmachines, src)
-		src.updateDialog()
+		updateDialog()
 	last_process = world.timeofday
 
 	if(locate(/obj/fire) in loc)
@@ -1192,6 +1197,12 @@ FIRE ALARM
 		wiresexposed = 1
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+
+	GLOB.firealarm_list += src
+
+/obj/machinery/firealarm/Destroy()
+	GLOB.firealarm_list -= src
+	..()
 
 /*
 FIRE ALARM CIRCUIT
@@ -1301,4 +1312,3 @@ Just a object used in constructing fire alarms
 		var/tp = text2num(href_list["tp"])
 		time += tp
 		time = min(max(round(time), 0), 120)
-

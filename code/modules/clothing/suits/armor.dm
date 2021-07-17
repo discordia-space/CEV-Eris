@@ -8,7 +8,6 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	price_tag = 200
-	rarity_value = 20
 	style = STYLE_NEG_HIGH
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
@@ -41,7 +40,6 @@
 	icon_state = "armor_fullbody"
 	blood_overlay_type = "armor"
 	slowdown = 0.1
-	rarity_value = 30 // little bit rarer than just vests
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
 	matter = list(
 		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
@@ -68,7 +66,6 @@
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	price_tag = 350
-	rarity_value = 35
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
@@ -93,7 +90,6 @@
 		rad = 0
 	)
 	price_tag = 150
-	rarity_value = 15
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/vest/handmade/full
@@ -101,7 +97,6 @@
 	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
 	icon_state = "armor_handmade_fullbody"
 	slowdown = 0.1
-	rarity_value = 20 // bit rarer than the version without kneepads
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
 
 /obj/item/clothing/suit/armor/greatcoat
@@ -119,7 +114,6 @@
 		rad = 0
 	)
 	price_tag = 600
-	rarity_value = 60
 
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
@@ -143,7 +137,6 @@
 	icon_state = "flakvest"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	rarity_value = 18
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -162,7 +155,6 @@
 	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
 	icon_state = "flakvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
-	rarity_value = 25 // rarer than version without pads
 	slowdown = 0.1
 
 /obj/item/clothing/suit/armor/flak/full/green
@@ -176,7 +168,6 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	slowdown = 0.15
-	rarity_value = 6
 	armor = list(
 		melee = 25,
 		bullet = 55,
@@ -190,14 +181,12 @@
 		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
-	rarity_value = 50
 
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "bulletproof_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	rarity_value = 55
 	matter = list(
 		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
 		MATERIAL_PLASTEEL = 3,
@@ -234,7 +223,6 @@
 		rad = 0
 	)
 	price_tag = 400
-	rarity_value = 40
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/green
 	name = "green platecarrier vest"
@@ -249,7 +237,6 @@
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	rarity_value = 45
 	slowdown = 0.1
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/full/green
@@ -260,6 +247,9 @@
 	name = "full tan platecarrier vest"
 	icon_state = "platecarrier_tan_fullbody"
 
+/obj/item/clothing/suit/armor/laserproof
+	bad_type = /obj/item/clothing/suit/armor/laserproof
+
 /obj/item/clothing/suit/armor/laserproof/full
 	name = "full ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
@@ -268,7 +258,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	blood_overlay_type = "armor"
 	slowdown = 0.15
-	rarity_value = 45
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -279,7 +268,6 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 650
-	rarity_value = 65
 	matter = list(
 		MATERIAL_STEEL = 6, // slightly less steel cost to make room for reflective glass
 		MATERIAL_PLASTEEL = 1,
@@ -339,7 +327,6 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	rarity_value = 50
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -350,7 +337,6 @@
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 250
-	rarity_value = 25
 	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/suit/armor/heavy/red
@@ -376,7 +362,6 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_inv = NONE
-	rarity_value = 90
 	armor = list(
 		melee = 75,
 		bullet = 25,
@@ -386,7 +371,6 @@
 		rad = 0
 	)
 	price_tag = 500
-	rarity_value = 50
 
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer
 	icon_state = "riot_ironhammer"
@@ -421,13 +405,18 @@
 	bad_type = /obj/item/clothing/suit/storage/vest
 	style = STYLE_NEG_HIGH
 
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3, //for webbing
+	)
+
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
 	name = "heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	rarity_value = 90
 	armor = list(
 		melee = 50,
 		bullet = 50,
@@ -441,21 +430,20 @@
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
-	rarity_value = 95
+	slowdown = 0.15
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
-	name = "insulated armor"
+	name = "insulated technomancer armor"
 	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
 	icon_state = "armor_engineering"
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 25,
 		energy = 40,
-		bomb = 10,
+		bomb = 20,
 		bio = 0,
 		rad = 30
 	)
@@ -465,7 +453,6 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	price_tag = 600
-	rarity_value = 60
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
 /*
@@ -486,7 +473,6 @@
 		bio = 0,
 		rad = 0
 	)
-	rarity_value = 50
 	var/active = FALSE
 	var/entropy_value = 2
 
@@ -524,16 +510,16 @@
 
 /obj/item/clothing/suit/armor/crusader
 	name = "crusader armor"
-	desc = "God will protect those who belive."
+	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	slowdown = 0.3
+	slowdown = 0.15
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 70,
+		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 30,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)

@@ -28,7 +28,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			in_hack_mode = !in_hack_mode
-			to_chat(user, SPAN_NOTICE("You [in_hack_mode? "enable" : "disable"] the hach mode."))
+			to_chat(user, SPAN_NOTICE("You [in_hack_mode? "enable" : "disable"] the hack mode."))
 	else
 		..()
 

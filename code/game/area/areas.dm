@@ -16,6 +16,13 @@
 	layer = AREA_LAYER
 	var/ship_area = FALSE
 
+	var/used_equip = 0
+	var/used_light = 0
+	var/used_environ = 0
+	var/static_equip
+	var/static_light = 0
+	var/static_environ
+
 /area/New()
 	icon_state = ""
 	layer = AREA_LAYER
@@ -192,11 +199,11 @@
 	if(always_unpowered)
 		return 0
 	switch(chan)
-		if(EQUIP)
+		if(STATIC_EQUIP)
 			return power_equip
-		if(LIGHT)
+		if(STATIC_LIGHT)
 			return power_light
-		if(ENVIRON)
+		if(STATIC_ENVIRON)
 			return power_environ
 
 	return 0
@@ -205,21 +212,34 @@
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
+	SEND_SIGNAL(src, COMSIG_AREA_APC_POWER_CHANGE)
 	if (fire || eject || party)
 		updateicon()
 
 /area/proc/usage(var/chan)
 	var/used = 0
 	switch(chan)
-		if(LIGHT)
-			used += used_light
-		if(EQUIP)
-			used += used_equip
-		if(ENVIRON)
-			used += used_environ
 		if(TOTAL)
-			used += used_light + used_equip + used_environ
+			used += static_light + static_equip + static_environ + used_equip + used_light + used_environ
+		if(STATIC_EQUIP)
+			used += static_equip + used_equip
+		if(STATIC_LIGHT)
+			used += static_light + used_light
+		if(STATIC_ENVIRON)
+			used += static_environ + used_environ
 	return used
+
+/area/proc/addStaticPower(value, powerchannel)
+	switch(powerchannel)
+		if(STATIC_EQUIP)
+			static_equip += value
+		if(STATIC_LIGHT)
+			static_light += value
+		if(STATIC_ENVIRON)
+			static_environ += value
+
+/area/proc/removeStaticPower(value, powerchannel)
+	addStaticPower(-value, powerchannel)
 
 /area/proc/clear_usage()
 	used_equip = 0
@@ -228,11 +248,11 @@
 
 /area/proc/use_power(var/amount, var/chan)
 	switch(chan)
-		if(EQUIP)
+		if(STATIC_EQUIP)
 			used_equip += amount
-		if(LIGHT)
+		if(STATIC_LIGHT)
 			used_light += amount
-		if(ENVIRON)
+		if(STATIC_ENVIRON)
 			used_environ += amount
 
 
@@ -376,3 +396,21 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/drop_location()
 	CRASH("Bad op: area/drop_location() called")
+
+
+// Changes the area of T to A. Do not do this manually.
+// Area is expected to be a non-null instance.
+/proc/ChangeArea(var/turf/T, var/area/A)
+	if(!istype(A))
+		CRASH("Area change attempt failed: invalid area supplied.")
+	var/area/old_area = get_area(T)
+	if(old_area == A)
+		return
+	A.contents.Add(T)
+	if(old_area)
+		old_area.Exited(T, A)
+		for(var/atom/movable/AM in T)
+			old_area.Exited(AM, A)  // Note: this _will_ raise exited events.
+	A.Entered(T, old_area)
+	for(var/atom/movable/AM in T)
+		A.Entered(AM, old_area) // Note: this will _not_ raise moved or entered events. If you change this, you must also change everything which uses them.

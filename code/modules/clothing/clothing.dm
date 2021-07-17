@@ -9,7 +9,8 @@
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	bad_type = /obj/item/clothing
-	rarity_value = 10
+	rarity_value = 5
+	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
@@ -432,7 +433,7 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 
-	var/can_hold_knife
+	var/can_hold_knife = 0
 	var/obj/item/holding
 	var/noslip = 0
 	var/module_inside = 0
@@ -497,6 +498,7 @@ BLIND     // can't see anything
 			/obj/item/weapon/tool/knife/butterfly,
 			/obj/item/weapon/material/kitchen/utensil,
 			/obj/item/weapon/tool/knife/tacknife,
+			/obj/item/weapon/tool/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
@@ -544,6 +546,7 @@ BLIND     // can't see anything
 		/obj/item/weapon/storage/pouch/,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/melee,
+		/obj/item/weapon/tool,
 		/obj/item/weapon/material,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
@@ -557,7 +560,8 @@ BLIND     // can't see anything
 		/obj/item/device/scanner,
 		/obj/item/weapon/reagent_containers/spray,
 		/obj/item/device/radio,
-		/obj/item/clothing/mask)
+		/obj/item/clothing/mask,
+		/obj/item/weapon/storage/belt/sheath)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
@@ -567,6 +571,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
+	valid_accessory_slots = list("armor")
+	restricted_accessory_slots = list("armor")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()

@@ -1,4 +1,5 @@
 #define TRADE_SYSTEM_IC_NAME "Asters Automated Trading System"
+GLOBAL_LIST_EMPTY(price_cache)
 SUBSYSTEM_DEF(trade)
 	name = "Trade"
 	priority = SS_PRIORITY_SUPPLY
@@ -96,12 +97,12 @@ SUBSYSTEM_DEF(trade)
 		else
 			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
 			return 0
-	var/static/list/price_cache = list()
-	if(!price_cache[path])
+	
+	if(!GLOB.price_cache[path])
 		var/atom/movable/AM = new path
-		price_cache[path] = get_cost(AM)
+		GLOB.price_cache[path] = get_cost(AM)
 		qdel(AM)
-	return price_cache[path]
+	return GLOB.price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
 	. = get_cost(target) * 0.6
@@ -152,13 +153,13 @@ SUBSYSTEM_DEF(trade)
 			for(var/path in category)
 				. += category[path]
 
-/datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList)
+/datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList, datum/trade_station/tradeStation = null)
 	. = 0
 	for(var/categoryName in shopList)
 		var/category = shopList[categoryName]
 		if(length(category))
 			for(var/path in category)
-				. += get_import_cost(path) * category[path]
+				. += get_import_cost(path, tradeStation) * category[path]
 
 /datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, datum/trade_station/station)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList) || !istype(station))
@@ -166,7 +167,7 @@ SUBSYSTEM_DEF(trade)
 
 	var/obj/structure/closet/crate/C
 	var/count_of_all = collect_counts_from(shopList)
-	var/price_for_all = collect_price_for_list(shopList)
+	var/price_for_all = collect_price_for_list(shopList, station)
 	if(isnum(count_of_all) && count_of_all > 1)
 		price_for_all += station.commision
 		C = senderBeacon.drop(/obj/structure/closet/crate)

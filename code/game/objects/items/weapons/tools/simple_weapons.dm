@@ -63,8 +63,8 @@
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_BRUTAL
+	force = WEAPON_FORCE_NORMAL
+	force_wielded_multiplier = 3.3
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
@@ -134,6 +134,30 @@
 	spawn_frequency = 8
 	spawn_tags = SPAWN_TAG_SWORD
 	rarity_value = 25
+
+/obj/item/weapon/tool/sword/saber
+	name = "officer's saber"
+	desc = "A saber with golden grip, for the real heads of this ship."
+	icon_state = "saber"
+	item_state = "saber"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
+	slot_flags = SLOT_BELT
+	force = WEAPON_FORCE_BRUTAL
+	armor_penetration = ARMOR_PEN_MODERATE
+	spawn_blacklisted = TRUE
+	price_tag = 10000
+
+/obj/item/weapon/tool/sword/improvised
+	name = "junkblade"
+	desc = "Hack and slash!"
+	icon_state = "msword"
+	item_state = "msword"
+	armor_penetration = ARMOR_PEN_MODERATE
+	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
+	degradation = 1.5 //not quite as sturdy as a normal weapon
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 60
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"

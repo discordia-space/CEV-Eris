@@ -388,6 +388,7 @@
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
+#define COOLANT_LATENT_HEAT 19000 //Twice as good at cooling than water is, but may cool below 20c. It'll cause freezing that atmos will have to deal with..
 /datum/reagent/other/coolant
 	name = "Coolant"
 	id = "coolant"
@@ -396,6 +397,27 @@
 	taste_mult = 1.1
 	reagent_state = LIQUID
 	color = "#C8A5DC"
+
+/datum/reagent/coolant/touch_turf(var/turf/simulated/T)
+	if(!istype(T))
+		return
+
+	var/datum/gas_mixture/environment = T.return_air()
+	var/min_temperature = 0 // Room temperature + some variance. An actual diminishing return would be better, but this is *like* that. In a way. . This has the potential for weird behavior, but I says fuck it. Water grenades for everyone.
+
+	var/hotspot = (locate(/obj/fire) in T)
+	if(hotspot && !istype(T, /turf/space))
+		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+		lowertemp.react()
+		T.assume_air(lowertemp)
+		qdel(hotspot)
+
+	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
+		var/removed_heat = between(0, volume * COOLANT_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
+		environment.add_thermal_energy(-removed_heat)
+		if (prob(5) && environment && environment.temperature > T100C)
+			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
 
 /datum/reagent/other/ultraglue
 	name = "Ultra Glue"
@@ -496,7 +518,7 @@
 
 /datum/reagent/other/rejuvenating_agent
 	name = "Rejuvenating agent"
-	id = "rejuvetaning_agent"
+	id = "rejuvenating_agent"
 	description = "A complex reagent that, applied to an object, is capable of eliminating most of the effects of the passage of time"
 	taste_description = "nothing"
 	reagent_state = LIQUID

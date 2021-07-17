@@ -50,7 +50,6 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/soap, 5, 100)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/concealed_cane, 50, 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/parapen)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/cigarette_kit)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/id)
@@ -64,7 +63,6 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_radio)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_binary)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/emag, 100, 50)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/clerical)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/space_suit, 50, 10)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/thermal)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/heavy_vest)

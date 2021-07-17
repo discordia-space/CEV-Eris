@@ -21,7 +21,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
-	recoil_buildup = 21
+	recoil_buildup = 2
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(score_moebius_autopsies_mobs, 0)
 
 //ironhammer
 GLOBAL_VAR_INIT(ironhammer_score, 0)
-GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
+GLOBAL_VAR_INIT(initial_ironhammer_score, 500)
 
 GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
 GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
@@ -166,7 +166,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 				GLOB.area_powerloss++
 
 	var/smes_count = 0
-	for(var/obj/machinery/power/smes/S in SSmachines.machinery)
+	for(var/obj/machinery/power/smes/S in GLOB.smes_list)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(S.charge < S.capacity*0.7)
@@ -175,7 +175,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	if(smes_count == 0)
 		GLOB.all_smes_powered = FALSE
 
-	for(var/obj/machinery/power/shield_generator/S in SSmachines.machinery)
+	for(var/obj/machinery/power/shield_generator/S in GLOB.machines)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(!S.running) continue
@@ -246,7 +246,8 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 
 	for(var/mob/E in GLOB.player_list)
-		E.scorestats()
+		if(E.mind)
+			E.scorestats()
 
 /proc/get_color_score(msg, score, maxscore=MAX_FACTION_SCORE)
 	if(score >= maxscore*0.5)
@@ -304,7 +305,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	<b>Biomatter produced:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
 	<b>Total of conversions:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
 	<b>Group rituals performed:</b> [GLOB.grup_ritual_performed] ([to_score_color(GLOB.grup_ritual_score)] Points)<br>
-	<b>Final Neotechnology score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
+	<b>Final Neotheology score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
 	"}
 
 	//guild

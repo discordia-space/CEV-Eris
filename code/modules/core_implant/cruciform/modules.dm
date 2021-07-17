@@ -3,8 +3,9 @@
 
 /datum/core_module/cruciform/red_light/install()
 	implant.icon_state = "cruciform_red"
-	implant.max_power += 30
-	implant.power_regen += 0.3
+	implant.max_power += initial(implant.max_power) * 0.6
+	implant.power_regen += initial(implant.power_regen) * 0.15
+	implant.restore_power(implant.max_power)
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
@@ -12,8 +13,9 @@
 
 /datum/core_module/cruciform/red_light/uninstall()
 	implant.icon_state = "cruciform_green"
-	implant.max_power -= 30
-	implant.power_regen -= 0.3
+	implant.max_power -= initial(implant.max_power) * 0.6
+	implant.power_regen -= initial(implant.power_regen) * 0.15
+	implant.power = implant.max_power
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
@@ -176,6 +178,9 @@
 	ritual_types = list(/datum/ritual/cruciform/priest,
 	/datum/ritual/targeted/cruciform/priest)
 
+/datum/core_module/rituals/cruciform/priest/acolyte
+	ritual_types = list(/datum/ritual/cruciform/priest/acolyte,
+	/datum/ritual/targeted/cruciform/priest/acolyte)
 
 
 /datum/core_module/rituals/cruciform/inquisitor
@@ -185,15 +190,15 @@
 
 /datum/core_module/rituals/cruciform/inquisitor/install()
 	..()
-	implant.max_power += 50
-	implant.power_regen += 0.5
-
+	implant.max_power += initial(implant.max_power)
+	implant.power_regen += initial(implant.power_regen) * 0.25
+	implant.restore_power(implant.max_power)
 
 /datum/core_module/rituals/cruciform/inquisitor/uninstall()
 	..()
-	implant.max_power -= 50
-	implant.power_regen -= 0.5
-
+	implant.max_power -= initial(implant.max_power)
+	implant.power_regen -= initial(implant.power_regen) * 0.25
+	implant.power = implant.max_power
 
 
 /datum/core_module/rituals/cruciform/crusader

@@ -106,3 +106,15 @@
 		/datum/design/autolathe/cell/small/high = 2,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/asters
+	disk_name = "Asters Enforcement Armor Pack"
+	icon_state = "guild"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
+	rarity_value = 13 // between standard and bulletproof armor
+	license = 6
+	designs = list(
+		/datum/design/autolathe/clothing/generic_helmet_visored,
+		/datum/design/autolathe/clothing/riot_helmet = 2,
+		/datum/design/autolathe/clothing/generic_vest_security,
+		/datum/design/autolathe/clothing/generic_vest_webbing = 2
+	)

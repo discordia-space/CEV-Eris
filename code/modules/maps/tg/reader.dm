@@ -132,7 +132,8 @@ var/global/use_preloader = FALSE
 				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
 
 			bounds[MAP_MINY] = min(bounds[MAP_MINY], ycrd)
-			ycrd += gridLines.len - 1 // Start at the top and work down
+			if (orientation == SOUTH || orientation == NORTH) // Fix to avoid improper loading with EAST and WEST orientation
+				ycrd += gridLines.len - 1 // Start at the top and work down
 
 			if(!cropMap && ycrd > world.maxy)
 				if(!measureOnly)
@@ -159,8 +160,8 @@ var/global/use_preloader = FALSE
 						var/model_key = copytext(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
-						else
-							++turfsSkipped
+					else
+						++turfsSkipped
 						#endif
 						CHECK_TICK
 					maxx = max(maxx, xcrd++)

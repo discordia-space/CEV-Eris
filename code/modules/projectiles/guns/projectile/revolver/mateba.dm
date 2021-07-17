@@ -8,6 +8,6 @@
 	price_tag = 3000 //more op and rare than miller, hits harder, but have fun with hittin anything
 	damage_multiplier = 1.35
 	penetration_multiplier = 1.5
-	recoil_buildup = 38
+	recoil_buildup = 6
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

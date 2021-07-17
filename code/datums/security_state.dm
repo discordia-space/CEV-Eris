@@ -188,7 +188,7 @@
 	notify_station()
 
 /decl/security_level/default/proc/notify_station()
-	for(var/obj/machinery/firealarm/FA in SSmachines.machinery)
+	for(var/obj/machinery/firealarm/FA in GLOB.firealarm_list)
 		if(FA.z in GLOB.maps_data.contact_levels)
 			FA.update_icon()
 	post_status("alert")
@@ -208,7 +208,7 @@
 
 	overlay_status_display = "status_display_green"
 
-	down_description = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	down_description = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 
 /decl/security_level/default/code_blue
 	name = "code blue"
@@ -224,7 +224,7 @@
 
 	overlay_status_display = "status_display_blue"
 
-	up_description = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	up_description = "The ship has received reliable information about possible hostile activity on the ship. Security staff may have weapons visible, random searches are permitted."
 	down_description = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 
 /decl/security_level/default/code_red
@@ -241,8 +241,8 @@
 
 	overlay_status_display = "status_display_red"
 
-	up_description = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	up_description = "There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
 /decl/security_level/default/code_delta
 	name = "code delta"

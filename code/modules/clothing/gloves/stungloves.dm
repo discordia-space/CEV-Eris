@@ -5,7 +5,6 @@
 	item_state = "bgloves"
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
-	rarity_value = 99
 	var/stunforce = 0
 	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not

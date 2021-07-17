@@ -13,7 +13,7 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_BOX
-	magazine_type = /obj/item/ammo_magazine/lrifle
+	magazine_type = /obj/item/ammo_magazine/lrifle/pk
 	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	price_tag = 5000
@@ -24,6 +24,8 @@
 	recoil_buildup = 1.9
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
+	rarity_value = 80
+	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
 	init_firemodes = list(
 		FULL_AUTO_600,
@@ -65,7 +67,7 @@
 /obj/item/weapon/gun/projectile/automatic/lmg/on_update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state("-[cover_open ? "open" : null][ammo_magazine ?"mag":"nomag"]", hands = TRUE)
-	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE)
+	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE, onsuit = TRUE)
 	update_wear_icon()
 
 /obj/item/weapon/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
@@ -94,3 +96,17 @@
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state(ammo_magazine ? null : "-empty")
 	update_wear_icon()
+
+
+/obj/item/weapon/gun/projectile/automatic/lmg/tk
+	name = "FS LMG .30 Takeshi"
+	desc = "The \"Takeshi LMG\" is FS's answer to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
+	icon = 'icons/obj/guns/projectile/tk.dmi'
+	icon_base = "tk"
+	icon_state = "tkclosed-empty"
+	item_state = "tkclosedmag"
+	damage_multiplier = 0.9
+	penetration_multiplier = 1.1
+	recoil_buildup = 1.7
+	spawn_blacklisted = FALSE
+

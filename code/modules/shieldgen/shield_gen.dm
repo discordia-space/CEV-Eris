@@ -233,12 +233,12 @@
 
 /obj/machinery/shield_gen/on_update_icon()
 	if(stat & BROKEN)
-		icon_state = "broke"
+		SetIconState("broke")
 	else
 		if (src.active)
-			icon_state = "generator1"
+			SetIconState("generator1")
 		else
-			icon_state = "generator0"
+			SetIconState("generator0")
 		cut_overlays()
 		if (owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))

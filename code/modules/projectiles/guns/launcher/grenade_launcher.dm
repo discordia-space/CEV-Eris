@@ -7,7 +7,7 @@
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
-
+	price_tag = 3000
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
 	recoil_buildup = 0
@@ -173,7 +173,7 @@
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
-	force = 5
+	price_tag = 500
 	max_grenades = 0
 
 /obj/item/weapon/gun/launcher/grenade/makeshift/chek_grenades(mob/user)

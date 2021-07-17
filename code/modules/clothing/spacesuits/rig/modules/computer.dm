@@ -29,7 +29,7 @@
 /obj/item/rig_module/ai_container
 	name = "IIS module"
 	desc = "An integrated intelligence system module suitable for most hardsuits."
-	icon_state = "IIS"
+	icon_state = "iis"
 	toggleable = 1
 	usable = 1
 	disruptive = 0

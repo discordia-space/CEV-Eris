@@ -8,11 +8,9 @@
 	projectile_type = /obj/item/projectile/bullet/pistol
 	maxamount = 15
 
-/obj/item/ammo_casing/pistol/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/pistol/hv
 	desc = "A .35 Auto high-velocity bullet casing."
@@ -55,11 +53,9 @@
 	projectile_type = /obj/item/projectile/bullet/magnum
 	maxamount = 6
 
-/obj/item/ammo_casing/magnum/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/magnum/practice
 	desc = "A .40 Magnum practice bullet casing."
@@ -102,11 +98,9 @@
 	projectile_type = /obj/item/projectile/bullet/srifle
 	maxamount = 10
 
-/obj/item/ammo_casing/srifle/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/srifle/practice
 	desc = "A .20 Rifle practice bullet casing."
@@ -150,11 +144,9 @@
 	is_caseless = TRUE
 	maxamount = 10
 
-/obj/item/ammo_casing/clrifle/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/clrifle/practice
 	desc = "A .25 Caseless Rifle practice bullet casing."
@@ -200,11 +192,9 @@
 	projectile_type = /obj/item/projectile/bullet/lrifle
 	maxamount = 10
 
-/obj/item/ammo_casing/lrifle/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/lrifle/practice
 	desc = "A .30 rifle practice bullet casing."
@@ -240,8 +230,8 @@
 //// .60 ////
 
 /obj/item/ammo_casing/antim
-	name = "shell casing"
-	desc = "A .60 Anti-Material shell."
+	name = "\"Penetrator\" shell casing"
+	desc = "A .60 Anti-Material \"Penetrator\" shell."
 	icon_state = "atmr"
 	spent_icon = "atmr-spent"
 	caliber = CAL_ANTIM
@@ -249,13 +239,41 @@
 	matter = list(MATERIAL_STEEL = 2)
 	maxamount = 5
 
-/obj/item/ammo_casing/antim/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 32) / 2))
-	src.transform = rotation_matrix * 0.5
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 0.5
 
 /obj/item/ammo_casing/antim/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/emp
+	name = "\"Blackout\" shell casing"
+	desc = "A .60 Anti-Material \"Blackout\" shell."
+	icon_state = "atmr-emp"
+	spent_icon = "atmr-emp-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/emp
+
+/obj/item/ammo_casing/antim/emp/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/uranium
+	name = "\"Meltdown\" shell casing"
+	desc = "A .60 Anti-Material \"Meltdown\" shell."
+	icon_state = "atmr-DU"
+	spent_icon = "atmr-DU-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/uranium
+
+/obj/item/ammo_casing/antim/uranium/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/antim/breach
+	name = "\"Breacher\" shell casing"
+	desc = "A .60 Anti-Material \"Breacher\" shell."
+	icon_state = "atmr-HE"
+	spent_icon = "atmr-HE-spent"
+	projectile_type = /obj/item/projectile/bullet/antim/breach
+
+/obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
 
 /obj/item/ammo_casing/antim/scrap
@@ -281,11 +299,9 @@
 	matter = list(MATERIAL_STEEL = 1)
 	maxamount = 5
 
-/obj/item/ammo_casing/shotgun/Initialize()
-	. = ..()
-	var/matrix/rotation_matrix = matrix()
-	rotation_matrix.Turn(round(45 * rand(0, 22) / 2))
-	src.transform = rotation_matrix * 0.75
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 22
+	sprite_scale = 0.75
 
 /obj/item/ammo_casing/shotgun/prespawned
 	amount = 5

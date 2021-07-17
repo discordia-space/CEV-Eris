@@ -40,6 +40,7 @@
 	var/auto_eject_sound
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
+	var/no_internal_mag = FALSE // to bar sniper and double-barrel from installing overshooter.
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -206,7 +207,8 @@
 
 		if(C.amount > 1)
 			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)	//Couldn't make it seperate, so it must be cloned
+			inserted_casing.name = C.name
 			inserted_casing.desc = C.desc
 			inserted_casing.caliber = C.caliber
 			inserted_casing.projectile_type = C.projectile_type
@@ -215,6 +217,22 @@
 			inserted_casing.maxamount = C.maxamount
 			if(ispath(inserted_casing.projectile_type) && C.BB)
 				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+
+			inserted_casing.sprite_use_small = C.sprite_use_small
+			inserted_casing.sprite_max_rotate = C.sprite_max_rotate
+			inserted_casing.sprite_scale = C.sprite_scale
+			inserted_casing.sprite_update_spawn = C.sprite_update_spawn
+
+			if(inserted_casing.sprite_update_spawn)
+				var/matrix/rotation_matrix = matrix()
+				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
+				if(inserted_casing.sprite_use_small)
+					inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
+				else
+					inserted_casing.transform = rotation_matrix
+
+			inserted_casing.is_caseless = C.is_caseless	//How did someone forget this before!?!?!?
+
 			C.update_icon()
 			inserted_casing.update_icon()
 			loaded.Insert(1, inserted_casing)
@@ -371,5 +389,5 @@
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
 		//Others to be implemented when needed
-	if(max_shells)
+	if(max_shells && !no_internal_mag) // so the overshooter can't be attached to the AMR and double-barrel anymore
 		gun_tags |= GUN_INTERNAL_MAG

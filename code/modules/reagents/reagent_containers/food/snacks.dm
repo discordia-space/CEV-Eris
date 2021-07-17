@@ -594,7 +594,7 @@
 	bitesize = 5
 	center_of_mass = list("x"=16, "y"=11)
 	var/list/stats_buff = list()
-	var/buff_power = 6
+	var/buff_power = 10
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
@@ -1095,6 +1095,18 @@
 	nutriment_desc = list("bun" = 2)
 	nutriment_amt = 3
 	preloaded_reagents = list("protein" = 10)
+	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/roach_egg
+	name = "boiled roach egg"
+	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "roach_egg"
+	w_class = ITEM_SIZE_TINY
+	bitesize = 4
+	nutriment_amt = 8
+	preloaded_reagents = list("protein" = 14)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
 
@@ -1747,15 +1759,11 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	src.visible_message(SPAN_NOTICE("\The [src] expands!"))
-	var/mob/living/carbon/human/H = new(get_turf(src))
-	H.set_species(monkey_type)
-	H.real_name = H.species.get_random_name()
-	H.name = H.real_name
-	if(ismob(loc))
-		var/mob/M = loc
-		M.unEquip(src)
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		new /mob/living/carbon/human/monkey(T)
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
@@ -1773,6 +1781,78 @@
 	icon_state = "monkeycubewrap"
 	reagent_flags = NONE
 	wrapped = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube
+	name = "Roach cube"
+	desc = "It still twitches. Just add blood!"
+	spawn_tags = SPAWN_TAG_ROACH
+	spawn_frequency = 5
+	rarity_value = 65
+	reagent_flags = REFILLABLE
+	icon_state = "roach"
+	bitesize = 12
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks/roachcube
+	preloaded_reagents = list("protein" = 10, "diplopterum" = 2)
+	taste_tag = list(MEAT_FOOD)
+	var/roach_type
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/on_reagent_change()
+	if(reagents.has_reagent("blood"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/proc/Expand()
+	visible_message(SPAN_NOTICE("\The [src] expands!"))
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		new roach_type(T)
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/kampfer
+	name = "Kampfer cube"
+	icon_state = "roach"
+	roach_type = /mob/living/carbon/superior_animal/roach
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/roachling
+	name = "Roachling cube"
+	rarity_value = 60
+	icon_state = "roachling"
+	roach_type = /mob/living/carbon/superior_animal/roach/roachling
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/jager
+	name = "Jager cube"
+	rarity_value = 80
+	icon_state = "jager"
+	roach_type = /mob/living/carbon/superior_animal/roach/hunter
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/panzer
+	name = "Panzer cube"
+	rarity_value = 85
+	icon_state = "panzer"
+	roach_type = /mob/living/carbon/superior_animal/roach/tank
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/seuche
+	name = "Seuche cube"
+	rarity_value = 80
+	icon_state = "seuche"
+	roach_type = /mob/living/carbon/superior_animal/roach/support
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/gestrahlte
+	name = "Gestrahlte cube"
+	rarity_value = 85
+	icon_state = "toxic"
+	roach_type = /mob/living/carbon/superior_animal/roach/toxic
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/kraftwerk
+	name = "Kraftwerk cube"
+	rarity_value = 85
+	icon_state = "techno"
+	roach_type = /mob/living/carbon/superior_animal/roach/nanite
+
+/obj/item/weapon/reagent_containers/food/snacks/roachcube/fuhrer
+	name = "Fuhrer cube"
+	rarity_value = 98
+	icon_state = "fuhrer"
+	roach_type = /mob/living/carbon/superior_animal/roach/fuhrer
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
@@ -2308,10 +2388,14 @@
 		open()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
+	if(warm)
+		to_chat(user, SPAN_NOTICE("You are pretty sure \the [src] can't be heated again."))
+		return
 	user.visible_message(
 		SPAN_NOTICE("[user] crushes \the [src] package."),
 		"You crush \the [src] package and feel a comfortable heat build up."
 	)
+	warm = TRUE
 	spawn(300)
 		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
@@ -2323,7 +2407,6 @@
 		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
 
 /obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
-	warm = TRUE
 	for(var/reagent in heated_reagents)
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
@@ -2457,7 +2540,7 @@
 	nutriment_desc = list("bread" = 2)
 	preloaded_reagents = list("protein" = 4)
 	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
-	
+
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 	name = "Banana-nut bread"
@@ -3361,11 +3444,11 @@
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_desc = list("chalk" = 6)
-	nutriment_amt = 20
 	preloaded_reagents = list("iron" = 3)
+	nutriment_amt = 20
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
-	rarity_value = 5
+	rarity_value = 70
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
@@ -3382,3 +3465,18 @@
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
 	taste_tag = list(SWEET_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "A pickle. You smirk just from looking at it. \red Still funniest shit ever."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pickle"
+	filling_color = "#5bd63c"
+	preloaded_reagents = list("protein" = 100)
+
+/obj/item/weapon/reagent_containers/food/snacks/pickle/On_Consume(mob/eater, mob/feeder)
+	. = ..()
+	to_chat(eater, SPAN_DANGER("You are feeling kind of funny"))
+	var/mob/living/simple_animal/hostile/pickle/XD = new /mob/living/simple_animal/hostile/pickle(get_turf(eater))
+	eater.mind?.transfer_to(XD)
+	eater.gib()

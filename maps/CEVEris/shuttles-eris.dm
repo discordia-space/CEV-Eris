@@ -76,7 +76,7 @@
 	default_docking_controller = "vasiliy_dokuchaev_shuttle"
 	current_location = "nav_dock_expl"
 	landmark_transition = "nav_transit_expl"
-	range = 4
+	range = INFINITY  // Can go anywhere on overmap to avoidance depending on the jobs with bridge access to direct the ship
 	fuel_consumption = 3
 
 /obj/effect/shuttle_landmark/eris/dock/exploration_shuttle
@@ -101,7 +101,7 @@
 	default_docking_controller = "hulk_shuttle"
 	current_location = "nav_dock_hulk"
 	landmark_transition = "nav_transit_hulk"
-	range = 2
+	range = INFINITY  // Can go anywhere on overmap to avoidance depending on the jobs with bridge access to direct the ship
 	fuel_consumption = 4
 
 /obj/effect/shuttle_landmark/eris/dock/hulk

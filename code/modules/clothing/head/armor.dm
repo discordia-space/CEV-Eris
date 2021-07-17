@@ -15,7 +15,6 @@
 	price_tag = 100
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
-	rarity_value = 10
 	style = STYLE_NEG_HIGH
 
 /*
@@ -25,7 +24,6 @@
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
-	rarity_value = 5
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -43,7 +41,6 @@
 	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
-	rarity_value = 6.66
 	matter = list(
 		MATERIAL_STEEL = 5,
 		MATERIAL_PLASTEEL = 1,
@@ -72,16 +69,15 @@
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
-	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
-	rarity_value = 50
+	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
 /obj/item/clothing/head/armor/helmet/technomancer
-	name = "technomancer helmet"
+	name = "insulated technomancer helmet"
 	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -90,11 +86,11 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 45,
-		bullet = 35,
-		energy = 35,
-		bomb = 30,
-		bio = 15,
+		melee = 35,
+		bullet = 25,
+		energy = 40,
+		bomb = 20,
+		bio = 0,
 		rad = 30
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -140,6 +136,7 @@
 		rad = 0
 	)
 	price_tag = 400
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -225,8 +222,6 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
-	action_button_name = "Toggle Security Hud"
-	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
 	matter = list(
 		MATERIAL_STEEL = 10, // also comes with a hud with it's own prices
@@ -234,65 +229,12 @@
 		MATERIAL_GLASS = 2
 	)
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
-	..()
-	hud = new(src)
-	hud.canremove = FALSE
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/ui_action_click()
-	if(..())
-		return TRUE
-	toggle()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/verb/toggle()
-	set name = "Toggle Security HUD"
-	set desc = "Shows you jobs and criminal statuses"
-	set category = "Object"
-	var/mob/user = loc
-	if(usr.stat || user.restrained())
-		return
-	if(user.get_equipped_item(slot_head) != src)
-		return
-	if(hud in src)
-		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
-			update_icon()
-	else
-		if(ismob(hud.loc))
-			var/mob/hud_loc = hud.loc
-			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
-		hud.forceMove(src)
-		update_icon()
-	usr.update_action_buttons()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/dropped(usr)
-	..()
-	if(hud.loc != src)
-		if(ismob(hud.loc))
-			var/mob/hud_loc = hud.loc
-			hud_loc.drop_from_inventory(hud, src)
-			to_chat(hud_loc, "[hud] automaticly retract in [src].")
-		hud.forceMove(src)
-		update_icon()
-
-/obj/item/clothing/head/armor/bulletproof/ironhammer_full/on_update_icon()
-	if(hud in src)
-		icon_state = "ironhammer_full"
-		set_light(0, 0)
-	else
-		icon_state = "ironhammer_full_on"
-		set_light(2, 2, COLOR_LIGHTING_ORANGE_MACHINERY)
-	update_wear_icon()
-	..()
-
 /obj/item/clothing/head/armor/laserproof //TODO: Give it reflection capabilities after refactor
 	name = "ablative helmet"
 	desc = "A ablative security helmet that excels in protecting the wearer against energy and laser projectiles."
 	icon_state = "ablative"
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
-	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 25,
@@ -334,7 +276,11 @@
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
-	rarity_value = 25
+	matter = list(
+		MATERIAL_STEEL = 6, // more covered by helmet
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 6,
+	)
 
 /obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()
@@ -398,6 +344,7 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
@@ -473,7 +420,6 @@
 	armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
 	armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0)
 	siemens_coefficient = 1
-	rarity_value = 50
 	up = TRUE
 
 /obj/item/clothing/head/armor/faceshield/altyn/brown
@@ -487,7 +433,6 @@
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
-	rarity_value = 100
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
@@ -495,7 +440,6 @@
 	icon_state = "cyberpunkgoggle"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 0.9	//More conductive than most helmets
-	rarity_value = 5.55
 	armor = list(
 		melee = 5,
 		bullet = 20,

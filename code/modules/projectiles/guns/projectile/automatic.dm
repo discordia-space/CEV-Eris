@@ -17,6 +17,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
 	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
 	bad_type = /obj/item/weapon/gun/projectile/automatic
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,

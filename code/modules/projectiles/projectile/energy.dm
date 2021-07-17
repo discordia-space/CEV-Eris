@@ -62,11 +62,11 @@
 	agony = 80
 
 /obj/item/projectile/energy/declone
-	name = "declone"
+	name = "demolecularisor"
 	icon_state = "declone"
 	nodamage = 1
 	damage_types = list(CLONE = 0)
-	irradiate = 40
+	irradiate = 150
 
 
 /obj/item/projectile/energy/dart
@@ -97,5 +97,4 @@
 /obj/item/projectile/energy/plasma
 	name = "plasma bolt"
 	icon_state = "energy"
-	damage_types = list(TOX = 10)
-	irradiate = 30
+	damage_types = list(TOX = 25)

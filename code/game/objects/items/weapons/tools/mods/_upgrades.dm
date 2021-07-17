@@ -19,6 +19,7 @@
 	var/destroy_on_removal = FALSE
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
+	var/removable = TRUE
 
 	//The upgrade can not be applied to a tool that has any of these qualities
 	var/list/negative_qualities = list()
@@ -312,7 +313,21 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
+	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
+		G.vision_flags = SEE_MOBS
+	if(weapon_upgrades[GUN_UPGRADE_GILDED])
+		G.gilded = TRUE
 
+	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
+		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		G.sharp = TRUE
+	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
+		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
+	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
+		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
+	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
+		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
+	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -324,6 +339,8 @@
 			E.overcharge_rate *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+		if(weapon_upgrades[GUN_UPGRADE_AGONY_MULT])
+			E.proj_agony_multiplier *= weapon_upgrades[GUN_UPGRADE_AGONY_MULT]
 
 	if(istype(G, /obj/item/weapon/gun/projectile))
 		var/obj/item/weapon/gun/projectile/P = G
@@ -569,30 +586,33 @@
 		if(toremove == "Cancel")
 			return 1
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
-			//If you pass the check, then you manage to remove the upgrade intact
-			if(!IU.destroy_on_removal && user)
-				to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
-			upgrade_loc.refresh_upgrades()
-			return 1
+		if(IU.removable == FALSE)
+			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]"))
 		else
-			//You failed the check, lets see what happens
-			if(prob(50))
-				//50% chance to break the upgrade and remove it
-				to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
-				QDEL_NULL(toremove)
+			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
+				//If you pass the check, then you manage to remove the upgrade intact
+				if(!IU.destroy_on_removal && user)
+					to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
+				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
-				user.update_action_buttons()
 				return 1
-			else if(T && T.degradation) //Because robot tools are unbreakable
-				//otherwise, damage the host tool a bit, and give you another try
-				to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
-				T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
-				upgrade_loc.refresh_upgrades()
-				user.update_action_buttons()
-				return 1
+			else
+				//You failed the check, lets see what happens
+				if(prob(50))
+					//50% chance to break the upgrade and remove it
+					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
+					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+					QDEL_NULL(toremove)
+					upgrade_loc.refresh_upgrades()
+					user.update_action_buttons()
+					return 1
+				else if(T && T.degradation) //Because robot tools are unbreakable
+					//otherwise, damage the host tool a bit, and give you another try
+					to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
+					T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
+					upgrade_loc.refresh_upgrades()
+					user.update_action_buttons()
+					return 1
 	return 0
 
 /obj/item/weapon/tool_upgrade

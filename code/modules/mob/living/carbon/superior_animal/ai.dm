@@ -35,6 +35,8 @@
 
 /mob/living/carbon/superior_animal/proc/attemptAttackOnTarget()
 	if (!Adjacent(target_mob))
+		if(ranged)
+			return RangedAttack()
 		return
 
 	return UnarmedAttack(target_mob,1)

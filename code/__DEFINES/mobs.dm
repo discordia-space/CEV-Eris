@@ -12,6 +12,7 @@
 #define REBUILDING_ORGANS     0x20
 #define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
 #define BLEEDOUT    0x80
+#define HARDCRIT    0x100
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like carrion.carrion_fakedeath.
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code

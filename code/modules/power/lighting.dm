@@ -169,7 +169,7 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = STATIC_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/autoattach = 0			//If this attaches to a wall automatically
@@ -199,8 +199,8 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness_range = 4
-	brightness_power = 2
+	brightness_range = 3
+	brightness_power = 1
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
@@ -647,7 +647,7 @@
 
 /obj/machinery/light/Process()
 	if(on)
-		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
+		use_power(light_range * LIGHTING_POWER_FACTOR, STATIC_LIGHT)
 
 
 // called when area power state changes

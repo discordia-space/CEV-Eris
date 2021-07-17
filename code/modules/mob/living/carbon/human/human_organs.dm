@@ -126,7 +126,7 @@
 		if(!E || !(E.functions & BODYPART_GRASP) || (E.status & ORGAN_SPLINTED))
 			continue
 
-		if(E.is_broken() || E.is_dislocated() || E.limb_efficiency < 50)
+		if(E.is_broken() || E.is_dislocated() || E.limb_efficiency <= 50)
 			switch(E.body_part)
 				if(ARM_LEFT)
 					if(!l_hand)
@@ -138,7 +138,7 @@
 					drop_from_inventory(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			if(E.limb_efficiency < 50)
+			if(E.limb_efficiency <= 50)
 				var/emote_2 = pick("unable to grasp it", "unable to feel it", "too weak to hold it")
 				emote("me", 1, "drops what they were holding in their [E.name], [emote_2]!")
 

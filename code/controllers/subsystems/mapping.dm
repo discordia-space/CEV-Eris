@@ -69,22 +69,27 @@ SUBSYSTEM_DEF(mapping)
 
 	return 1
 
+
+
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
 	world.incrementMaxZ()
 	GLOB.maps_data.overmap_z = world.maxz
 	var/list/turfs = list()
 	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))
-		var/turf/T = square
-		if(T.x == GLOB.maps_data.overmap_size || T.y == GLOB.maps_data.overmap_size)
-			T = T.ChangeTurf(/turf/unsimulated/map/edge)
-		else
-			T = T.ChangeTurf(/turf/unsimulated/map/)
+		// Switch to space turf with green grid overlay
+		var/turf/space/T = square
+		T.SetIconState("grid")
+		T.update_starlight()
 		turfs += T
 		CHECK_TICK
 
 	var/area/overmap/A = new
 	A.contents.Add(turfs)
+
+    // Spawn star at the center of the overmap
+	var/turf/T = locate(round(GLOB.maps_data.overmap_size/2),round(GLOB.maps_data.overmap_size/2),GLOB.maps_data.overmap_z)
+	new /obj/effect/star(T)
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")

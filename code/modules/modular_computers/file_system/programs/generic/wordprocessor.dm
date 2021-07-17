@@ -62,8 +62,8 @@
 		\[small\] - \[/small\] : Decreases the size of the text.
 		\[large\] - \[/large\] : Increases the size of the text.
 		\[field\] : Inserts a blank text field, which can be filled later. Useful for forms.
-		\[date\] : Current station date.
-		\[time\] : Current station time.
+		\[date\] : Current ship date.
+		\[time\] : Current ship time.
 		\[list\] - \[/list\] : Begins and ends a list.
 		\[*\] : A list item.
 		\[hr\] : Horizontal rule.

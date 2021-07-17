@@ -72,7 +72,7 @@ And who better than that haughty thing in a dress uniform. Think I'll stick her 
  I will have them know I am neither aloof, nor foolish, nor hare-brained, nor all the other petty little words they call me!<br>\
  I will let them call me tyrant and monster! <br>\
 <br>\
-First, I will put the accouterments of my station somewhere safe. Then, I shall roam among the swine and take names of the ringleaders.<br>\
+First, I will put the accouterments of my ship somewhere safe. Then, I shall roam among the swine and take names of the ringleaders.<br>\
  Lastly, the airlocks will need to be waxed down, extra slick. Oh. But I admit, I can be prone to slips of the mind.<br>\
 <br>\
 %D, and godspeed my return."

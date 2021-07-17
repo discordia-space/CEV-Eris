@@ -90,7 +90,7 @@
 	target = pick(valid_targets)
 	desc = "[target] may submit to evil forces if the [ritual_name] is not performed on them."
 	ritual = GLOB.all_rituals[ritual_name]
-	RegisterSignal(mind_holder, COMSIG_RITUAL, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_RITUAL_REVELATION, .proc/task_completed)
 
 /datum/individual_objective/spread/task_completed(datum/ritual/cruciform/R, mob/M)
 	if(R.type == ritual.type && M == target)
@@ -98,7 +98,7 @@
 
 /datum/individual_objective/spread/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSIG_RITUAL)
+	UnregisterSignal(mind_holder, COMSIG_RITUAL_REVELATION)
 	..()
 
 /datum/individual_objective/sanctify

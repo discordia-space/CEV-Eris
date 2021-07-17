@@ -21,7 +21,6 @@
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
 	icon_state = "mime"
-	rarity_value = 14.3
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain, wooden sandals."
@@ -30,7 +29,6 @@
 	species_restricted = null
 	body_parts_covered = 0
 	siemens_coefficient = 0
-	rarity_value = 14.3
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
@@ -47,7 +45,6 @@
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN + 0.4
 	force = NONE
-	rarity_value = 14.3
 	//	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
 	species_restricted = null
 	var/footstep = 1	//used for squeeks whilst walking
@@ -113,4 +110,24 @@
 	name = "leather shoes"
 	desc = "A sturdy pair of leather shoes."
 	icon_state = "leather"
-	rarity_value = 14.3
+
+/obj/item/clothing/shoes/leather
+	name = "leather shoes"
+	desc = "A sturdy pair of leather shoes."
+	icon_state = "leather"
+
+/obj/item/clothing/shoes/redboot
+	name = "red boots"
+	desc = "A pair of stylish red boots."
+	icon_state = "redboots"
+	item_state = "redboots"
+	style = STYLE_HIGH
+	price_tag = 300
+
+/obj/item/clothing/shoes/jackboots/longboot
+	name = "long boots"
+	desc = "A pair of stylish vertically long boots."
+	icon_state = "longboots"
+	item_state = "longboots"
+	style = STYLE_HIGH
+	price_tag = 400

@@ -42,12 +42,12 @@
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
-	item_cost = 8
+	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/sts35
 
 /datum/uplink_item/item/visible_weapons/pug
 	name = "Pug Shotgun"
-	item_cost = 12
+	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/pug
 
 /datum/uplink_item/item/visible_weapons/heavysniper
@@ -81,3 +81,9 @@
 	if(.)
 		var/obj/item/weapon/gun/energy/psychic/lasercannon/L = .
 		L.owner = U.uplink_owner
+/*
+/datum/uplink_item/item/visible_weapons/pickle
+	name = "Pickle"
+	item_cost = 100
+	path = /obj/item/weapon/storage/box/syndie_kit/pickle
+*/

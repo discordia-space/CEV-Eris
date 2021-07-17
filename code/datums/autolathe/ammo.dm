@@ -213,7 +213,7 @@
 	build_path = /obj/item/ammo_magazine/ammobox/srifle
 
 /datum/design/autolathe/ammo/srifle_ammobox/rubber
-	name = "ammunition box (.20 Rifle practice)"
+	name = "ammunition box (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle/rubber
 
 /datum/design/autolathe/ammo/srifle_ammobox_small
@@ -308,15 +308,23 @@
 	name = "long magazine (.30 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/lrifle/rubber
 
-// .30 Boxmag + Speedloader
+// .30 Boxmag + Speedloader + pan mag
 
 /datum/design/autolathe/ammo/sl_lrifle
 	name = "ammo strip (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/sllrifle
 
 /datum/design/autolathe/ammo/lrifle_pk
-	name = "PK munitions box (.30 Rifle)"
+	name = "LMG munitions box (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/lrifle/pk
+
+/datum/design/autolathe/ammo/maxim
+	name = "pan magazine (.30 Rifle)"
+	build_path = /obj/item/ammo_magazine/maxim
+
+/datum/design/autolathe/ammo/maxim/rubber
+	name = "pan magazine (.30 Rifle rubber)"
+	build_path = /obj/item/ammo_magazine/maxim/rubber
 
 // .30 ammoboxes
 

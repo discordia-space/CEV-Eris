@@ -40,6 +40,14 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation
 
+/obj/machinery/door/New()
+	GLOB.all_doors += src
+	..()
+
+/obj/machinery/door/Destroy()
+	GLOB.all_doors -= src
+	..()
+
 /obj/machinery/door/can_prevent_fall()
 	return density
 
@@ -179,8 +187,11 @@
 			qdel(src)
 
 	if(damage)
+		if(Proj.nocap_structures)
+			take_damage(damage)
+		else
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
-		take_damage(min(damage, 100))
+			take_damage(min(damage, 100))
 
 
 

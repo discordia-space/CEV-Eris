@@ -3,7 +3,6 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state = "boxing"
-	rarity_value = 11
 	armor = list(melee = 25, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/gloves/boxing/attackby(obj/item/weapon/W, mob/user)

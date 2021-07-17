@@ -13,6 +13,18 @@
 		H.sanity.onDrug(src, effect_multiplier)
 	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
+/datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(sanity_gain && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.sanity.onDrug(src, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+
+/datum/reagent/drug/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	if(sanity_gain && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.sanity.onDrug(src, effect_multiplier)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+
 /datum/reagent/drug/on_mob_delete(mob/living/L)
 	..()
 	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
@@ -108,6 +120,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 
 /datum/reagent/drug/mindwipe
@@ -124,6 +137,7 @@
 	sanity_gain = 2
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 	M.druggy = max(M.druggy, 5 * effect_multiplier)
 	M.make_jittery(10 * effect_multiplier)
@@ -195,7 +209,7 @@
 /datum/reagent/drug/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 1)
-	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 5)
 	if(M.stats.getPerk(PERK_CHAINGUN_SMOKER))
 		M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
 		M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)
@@ -225,6 +239,7 @@
 
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
@@ -247,6 +262,7 @@
 	addiction_chance = 30
 
 /datum/reagent/drug/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
 	if(prob(2))
 		spawn

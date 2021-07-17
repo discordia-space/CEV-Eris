@@ -11,6 +11,10 @@
 	var/nitrogen = 0
 	var/plasma = 0
 
+	var/list/initial_gas
+
+	var/footstep_type
+
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
@@ -25,6 +29,8 @@
 	var/blessed = 0             // Has the turf been blessed?
 
 	var/list/decals
+
+	var/movement_delay
 
 	var/is_hole = FALSE			// If true, turf is open to vertical transitions through it.
 								// This is a more generic way of handling open space turfs
@@ -261,6 +267,7 @@ var/const/enterloopsanity = 100
 	var/sound
 
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	sound =  footstep_sound("floor")
 	if(catwalk)
 		sound = footstep_sound("catwalk")
 	else if(flooring)

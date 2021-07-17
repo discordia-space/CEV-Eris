@@ -1,6 +1,7 @@
 /datum/design/bioprinter
 	build_type = BIOPRINTER
 	materials = list(MATERIAL_BIOMATTER = 6)
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/bioprinter/meat
 	name = "Meat"
@@ -196,32 +197,42 @@
 	name= "Vial pouch"
 	build_path = /obj/item/weapon/storage/pouch/tubular/vial
 
+/datum/design/bioprinter/part
+	name = "Part pouch"
+	build_path = /obj/item/weapon/storage/pouch/gun_part
+
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
 //[MISC]
 /datum/design/bioprinter/storage/sheath
 	name = "sheath"
-	build_path = /obj/item/weapon/storage/sheath
+	build_path = /obj/item/weapon/storage/belt/sheath
 
 /datum/design/bioprinter/leather/cash_bag
 	name = "Cash Bag"
 	build_path = /obj/item/weapon/storage/bag/money
 
+/datum/design/bioprinter/holyvacuum
+	name = "\"Tersus\" Vacuum Cleaner"
+	build_path = /obj/item/weapon/holyvacuum
+
 //[/THINGS]
-/datum/design/autolathe/gun/plasma/martyr
-	name = "NT PR \"Martyr\""
-	build_path = /obj/item/weapon/gun/energy/plasma/martyr
+/datum/design/autolathe/nt
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/firstaid/nt
 	name = "NeoTheologian Medkit"
 	build_path = /obj/item/weapon/storage/firstaid/nt
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	build_path = /obj/item/weapon/gun_upgrade/barrel/excruciator
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/cruciform_upgrade
 	build_path = /obj/item/weapon/cruciform_upgrade
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/cruciform_upgrade/natures_blessing
 	name = "Natures blessing"
@@ -248,59 +259,70 @@
 	build_path = /obj/item/weapon/cruciform_upgrade/speed_of_the_chosen
 
 //[MELEE]
-/datum/design/autolathe/sword/nt_sword
+/datum/design/autolathe/nt/sword/nt_sword
 	name = "NT Shortsword"
-	build_path = /obj/item/weapon/tool/sword/nt
+	build_path = /obj/item/weapon/tool/sword/nt/shortsword
 
-/datum/design/autolathe/sword/nt_longsword
+/datum/design/autolathe/nt/sword/nt_longsword
 	name = "NT Longsword"
 	build_path = /obj/item/weapon/tool/sword/nt/longsword
 
-/datum/design/autolathe/sword/nt_dagger
+/datum/design/autolathe/nt/sword/nt_dagger
 	name = "NT Dagger"
 	build_path = /obj/item/weapon/tool/knife/dagger/nt
 
-/datum/design/autolathe/sword/nt_halberd
+/datum/design/autolathe/nt/sword/nt_halberd
 	name = "NT Halberd"
 	build_path = /obj/item/weapon/tool/sword/nt/halberd
 
-/datum/design/autolathe/sword/nt_scourge
+/datum/design/autolathe/nt/sword/nt_scourge
 	name = "NT Scourge"
 	build_path = /obj/item/weapon/tool/sword/nt/scourge
 
-/datum/design/autolathe/shield/nt_shield
+/datum/design/autolathe/nt/shield/nt_shield
 	name = "NT Shield"
 	build_path = /obj/item/weapon/shield/riot/nt
 
-/datum/design/autolathe/tool_upgrade/sanctifier
+
+/datum/design/autolathe/nt/sword/nt_spear
+	name = "NT Spear"
+	build_path = /obj/item/weapon/tool/sword/nt/spear
+
+
+/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"
 	build_path = /obj/item/weapon/tool_upgrade/augment/sanctifier
 
 //[GRENADES]
-/datum/design/autolathe/grenade/nt_smokebomb
+/datum/design/autolathe/nt/grenade/nt_smokebomb
 	name = "NT SG \"Holy Fog\""
 	build_path = /obj/item/weapon/grenade/smokebomb/nt
 
-/datum/design/autolathe/grenade/nt_frag
+/datum/design/autolathe/nt/grenade/nt_frag
 	name = "NT DFG \"Holy Thunder\""
 	build_path = /obj/item/weapon/grenade/frag/nt
 
-/datum/design/autolathe/grenade/nt_flashbang
+/datum/design/autolathe/nt/grenade/nt_flashbang
 	name = "NT FBG \"Holy Light\""
 	build_path = /obj/item/weapon/grenade/flashbang/nt
 
-/datum/design/autolathe/grenade/nt_explosive
+/datum/design/autolathe/nt/grenade/nt_explosive
 	name = "NT OBG \"Holy Grail\""
 	build_path = /obj/item/weapon/grenade/explosive/nt
 
 //[CRUSADE]
-/datum/design/autolathe/armor/crusader
+/datum/design/autolathe/nt/armor/crusader
 	name = "crusader armor"
 	build_path = /obj/item/clothing/suit/armor/crusader
 
-/datum/design/autolathe/helmet/crusader
+/datum/design/autolathe/nt/helmet/crusader
 	name = "crusader helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/crusader
+
+/datum/design/autolathe/clothing/NTvoid
+	name = "neotheology voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/NTvoid
+	factions = list(FACTION_NEOTHEOLOGY)
 
 //[MED]
 /datum/design/bioprinter/medical

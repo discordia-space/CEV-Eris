@@ -1,27 +1,29 @@
-/obj/item/weapon/gun/energy/gun/nuclear
+/obj/item/weapon/gun/energy/nuclear
 	name = "Prototype: advanced energy gun"
-	desc = "An energy gun with an experimental miniaturized reactor."
+	desc = "An energy handgun with an experimental miniaturized reactor. Able to fire in two shot bursts."
 	icon = 'icons/obj/guns/energy/nucgun.dmi'
 	icon_state = "nucgun"
 	item_charge_meter = TRUE
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFUL //looks heavier than a pistol
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	self_recharge = TRUE
+	twohanded = FALSE
+	projectile_type = /obj/item/projectile/beam
+	charge_cost = 50
 	modifystate = null
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_URANIUM = 6)
 	price_tag = 4000
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		STUNBOLT,
-		LETHAL
+		WEAPON_NORMAL,
+		BURST_2_ROUND
 		)
 
 	var/lightfail = 0
 
 //override for failcheck behaviour
-/obj/item/weapon/gun/energy/gun/nuclear/Process()
+/obj/item/weapon/gun/energy/nuclear/Process()
 	charge_tick++
 	if(charge_tick < 4) return 0
 	charge_tick = 0
@@ -31,29 +33,12 @@
 		update_icon()
 	return 1
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
-	var/ratio = cell.charge / cell.maxcharge
-	ratio = round(ratio, 0.25) * 100
-	add_overlays("nucgun-[ratio]")
-	set_item_state("-[ratio]")
-
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
-	if(lightfail)
-		add_overlays("nucgun-medium")
-	else if ((cell.charge/cell.maxcharge) <= 0.5)
-		add_overlays("nucgun-light")
-	else
-		add_overlays("nucgun-clean")
-
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
+/obj/item/weapon/gun/energy/nuclear/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "nucgun-stun"
 		if("lethal") overlays += "nucgun-kill"
 
-/obj/item/weapon/gun/energy/gun/nuclear/on_update_icon()
+/obj/item/weapon/gun/energy/nuclear/on_update_icon()
 	cut_overlays()
-	if(cell)
-		update_charge()
-		update_reactor()
 	update_mode()

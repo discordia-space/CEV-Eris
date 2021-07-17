@@ -355,7 +355,6 @@
 	anchored = 1;
 	dir = 2;
 	icon_state = "0";
-	tag = "icon-0 (NORTH)"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -411,7 +410,6 @@
 /area/outpost/abandoned)
 "ca" = (
 /obj/structure/computerframe{
-	tag = "icon-0 (NORTH)";
 	icon_state = "0";
 	dir = 1;
 	anchored = 1
@@ -420,7 +418,6 @@
 /area/outpost/abandoned)
 "cb" = (
 /obj/structure/cable/orange{
-	tag = "icon-0-4 (WEST)";
 	icon_state = "0-4";
 	dir = 8
 	},
@@ -429,7 +426,6 @@
 /area/outpost/abandoned)
 "cc" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/asteroid,
@@ -481,7 +477,6 @@
 /area/outpost/abandoned)
 "cm" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/asteroid,
@@ -489,7 +484,6 @@
 /area/outpost/abandoned)
 "cn" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/vault{
@@ -529,7 +523,6 @@
 	dir = 1
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -542,12 +535,10 @@
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (EAST)";
 	icon_state = "0-1";
 	dir = 4
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -560,12 +551,10 @@
 	dir = 1
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (EAST)";
 	icon_state = "0-1";
 	dir = 4
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -576,7 +565,6 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-2 (EAST)";
 	icon_state = "1-2";
 	dir = 4
 	},
@@ -585,7 +573,6 @@
 "cw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-2 (EAST)";
 	icon_state = "1-2";
 	dir = 4
 	},
@@ -593,12 +580,10 @@
 /area/outpost/abandoned)
 "cx" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-4 (EAST)";
 	icon_state = "1-4";
 	dir = 4
 	},
@@ -610,7 +595,6 @@
 /area/outpost/abandoned)
 "cz" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/rust,
@@ -637,7 +621,6 @@
 	},
 /obj/structure/cable/orange,
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (NORTH)";
 	icon_state = "0-1";
 	dir = 1
 	},

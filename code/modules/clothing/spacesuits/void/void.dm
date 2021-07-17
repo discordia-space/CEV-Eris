@@ -39,7 +39,6 @@
 	resilience = 0.09
 	can_breach = 1
 	spawn_tags = SPAWN_TAG_VOID_SUIT
-	rarity_value = 10
 	accompanying_object = /obj/item/clothing/shoes/magboots
 
 	//Inbuilt devices.

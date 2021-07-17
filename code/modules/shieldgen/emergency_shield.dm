@@ -15,21 +15,17 @@
 
 /obj/machinery/shield/malfai
 	name = "emergency forcefield"
-	desc = "A weak forcefield which seems to be projected by the station's emergency atmosphere containment field"
-	health = max_health/2 // Half health, it's not suposed to resist much.
-
-/obj/machinery/shield/malfai/Process()
-	health -= 0.5 // Slowly lose integrity over time
-	check_failure()
+	desc = "A powerful forcefield which seems to be projected by the vessel's emergency atmosphere containment field."
+	health = 400
 
 /obj/machinery/shield/proc/check_failure()
-	if (src.health <= 0)
+	if (health <= 0)
 		visible_message(SPAN_NOTICE("\The [src] dissipates!"))
 		qdel(src)
 		return
 
 /obj/machinery/shield/New()
-	src.set_dir(pick(1,2,3,4))
+	set_dir(pick(1,2,3,4))
 	..()
 	update_nearby_tiles(need_rebuild=1)
 
@@ -102,10 +98,10 @@
 	else
 		tforce = AM:throwforce
 
-	src.health -= tforce
+	health -= tforce
 
 	//This seemed to be the best sound for hitting a force field.
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 100, 1)
+	playsound(loc, 'sound/effects/EMPulse.ogg', 100, 1)
 
 	check_failure()
 
@@ -329,7 +325,7 @@
 
 /obj/machinery/shieldgen/on_update_icon()
 	if(active && !(stat & NOPOWER))
-		src.icon_state = malfunction ? "shieldonbr":"shieldon"
+		src.SetIconState(malfunction ? "shieldonbr":"shieldon")
 	else
-		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"
+		src.SetIconState(malfunction ? "shieldoffbr":"shieldoff")
 	return

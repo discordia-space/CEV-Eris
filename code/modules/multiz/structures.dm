@@ -211,16 +211,19 @@
 						user.client.perspective = MOB_PERSPECTIVE
 						user.hud_used.updatePlaneMasters(user)
 						user.is_watching = FALSE
+						user.can_multiz_pb = FALSE
 					else if(user.is_watching == FALSE)
 						user.client.eye = target
 						user.client.perspective = EYE_PERSPECTIVE
 						user.hud_used.updatePlaneMasters(user)
 						user.is_watching = TRUE
+						if(Adjacent(user))
+							user.can_multiz_pb = TRUE
 				return
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
 		return
-	else 
+	else
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 		user.hud_used.updatePlaneMasters(user)
@@ -313,7 +316,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
 		return
-	else 
+	else
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 		user.hud_used.updatePlaneMasters(user)
@@ -339,7 +342,7 @@
 
 /obj/structure/multiz/ladder/up/deepmaint/climb()
 	if(!target)
-		var/obj/structure/burrow/my_burrow = pick(all_burrows)
+		var/obj/structure/burrow/my_burrow = pick(GLOB.all_burrows)
 		var/obj/structure/multiz/ladder/burrow_hole/my_hole = new /obj/structure/multiz/ladder/burrow_hole(my_burrow.loc)
 		my_burrow.deepmaint_entry_point = FALSE
 		target = my_hole

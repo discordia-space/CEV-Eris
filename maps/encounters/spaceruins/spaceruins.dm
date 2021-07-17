@@ -10,14 +10,16 @@
 
 
 /obj/effect/overmap/sector/spaceruins
-	name = "space ruins"
+	name = "unknown spatial phenomenon"
 	desc = "An assorted clutter of small asteroids and space trash, seems to be long abandoned."
-	icon_state = "sector"
 	generic_waypoints = list(
 		"nav_ruin_1",
 		"nav_ruin_2"
 	)
 	known = 1
+
+	name_stages = list("space ruins", "unknown object", "unknown spatial phenomenon")
+	icon_stages = list("os_ruins", "object", "poi")
 
 /obj/effect/shuttle_landmark/spaceruins/nav1
 	name = "Abandoned Space Ruins #1"

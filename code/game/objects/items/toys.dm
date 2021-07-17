@@ -606,6 +606,12 @@
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
 
+/obj/structure/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	phrase = "I just don't think about losing."
+
 //Small plushies.
 /obj/item/toy/plushie
 	name = "generic small plush"

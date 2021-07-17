@@ -10,7 +10,7 @@
 	//This armor only applies to legs
 	style = STYLE_NEG_LOW
 	spawn_blacklisted = TRUE
-	var/magpulse = 0
+	var/magpulse = FALSE
 	var/mag_slow = 3
 	var/icon_base = "magboots"
 
@@ -23,14 +23,14 @@
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	if(magpulse)
 		item_flags &= ~NOSLIP
-		magpulse = 0
+		magpulse = FALSE
 		set_slowdown()
 		force = WEAPON_FORCE_WEAK
 		if(icon_base) icon_state = "[icon_base]0"
 		to_chat(user, "You disable the mag-pulse traction system.")
 	else
 		item_flags |= NOSLIP
-		magpulse = 1
+		magpulse = TRUE
 		set_slowdown()
 		force = WEAPON_FORCE_PAINFUL
 		if(icon_base) icon_state = "[icon_base]1"
@@ -58,8 +58,7 @@
 	species_restricted = null
 	force = WEAPON_FORCE_PAINFUL
 	overslot = FALSE
-	magpulse = TRUE
+	magpulse = FALSE
 	mag_slow = 0
 	icon_base = null
 	can_hold_knife = TRUE
-	action_button_name = null

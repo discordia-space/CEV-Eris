@@ -5,6 +5,7 @@
 	item_state = "bl_suit"
 	has_sensor = 0
 	price_tag = 50
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/turtleneck/Initialize(mapload, ...)
 	. = ..()

@@ -22,7 +22,6 @@
 	desc = "A heavy armored space suit designed for safety when handling explosives."
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
-	rarity_value = 35
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01

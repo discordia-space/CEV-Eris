@@ -2,14 +2,6 @@ GLOBAL_VAR_INIT(miracle_points, 0)
 
 var/global/obj/machinery/power/eotp/eotp
 
-#define ARMAMENTS "Armaments"
-#define ALERT "Antag Alert"
-#define INSPIRATION "Inspiration"
-#define ODDITY "Oddity"
-#define STAT_BUFF "Stat Buff"
-#define MATERIAL_REWARD "Materials"
-
-
 /obj/machinery/power/eotp
 	name = "Eye of the Protector"
 	desc = "He observe, he protects."
@@ -24,7 +16,8 @@ var/global/obj/machinery/power/eotp/eotp
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD, ENERGY_REWARD)
+	var/list/current_rewards
 
 	var/list/materials = list(/obj/item/stack/material/gold = 60,
 							/obj/item/stack/material/uranium = 30,
@@ -123,7 +116,12 @@ var/global/obj/machinery/power/eotp/eotp
 	disk_types =  subtypesof(/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt) - unneeded_disk_types
 
 /obj/machinery/power/eotp/proc/power_release()
-	var/type_release = pick(rewards)
+	var/type_release
+	if(current_rewards)
+		type_release = pick(current_rewards)
+		current_rewards = null
+	else
+		type_release = pick(rewards)
 
 	if(type_release == ARMAMENTS)
 		if(!length(disk_types))
@@ -144,33 +142,28 @@ var/global/obj/machinery/power/eotp/eotp
 				if(!isghost(L))
 					antagonist_area = get_area(L)
 					break
-		if(!antagonist_area)
-			for(var/disciple in disciples)
-				to_chat(disciple, SPAN_NOTICE("You feel a wave of calm pass over you. The Angels are watching with their benevolent Eye."))
-				if(ishuman(disciple))
-					var/mob/living/carbon/human/H = disciple
-					if(H.sanity)
-						H.sanity.changeLevel(20)
-			return
 
-		for(var/disciple in disciples)
-			if(ishuman(disciple))
-				var/mob/living/carbon/human/H = disciple
+		if(!antagonist_area)
+			for(var/mob/living/carbon/human/H in disciples)
+				to_chat(H, SPAN_NOTICE("You feel a wave of calm pass over you. The Angels are watching with their benevolent Eye."))
+				if(H.sanity && prob(50))
+					H.sanity.changeLevel(20)
+
+		else
+			for(var/mob/living/carbon/human/H in disciples)
 				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
 					preacher = H
 
-		if(!preacher && length(disciples))
-			preacher = pick(disciples)
+			if(!preacher && length(disciples))
+				preacher = pick(disciples)
 
-		if(preacher)
-			to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+			if(preacher)
+				to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
-		for(var/disciple in disciples)
-			if(ishuman(disciple))
-				var/mob/living/carbon/human/H = disciple
-				if(H.sanity && prob(50))
-					H.sanity.breakdown(TRUE)
+		for(var/mob/living/carbon/human/H in disciples)
+			if(H.sanity && prob(50))
+				H.sanity.breakdown(TRUE)
 
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/weapon/oddity/nt))
@@ -179,12 +172,10 @@ var/global/obj/machinery/power/eotp/eotp
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)
-		for(var/disciple in disciples)
-			if(ishuman(disciple))
-				var/mob/living/carbon/human/H = disciple
-				if(H.stats)
-					to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
-					H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
+		for(var/mob/living/carbon/human/H in disciples)
+			if(H.stats)
+				to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
+				H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
 
 	else if(type_release == MATERIAL_REWARD)
 		var/materials_reward = pick(materials)
@@ -193,13 +184,13 @@ var/global/obj/machinery/power/eotp/eotp
 		_item.amount = rand(reward_min_amount, _item.max_amount)
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
 
+	else if(type_release == ENERGY_REWARD)
+		for(var/mob/living/carbon/human/H in disciples)
+			var/obj/item/weapon/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+			C.power_regen += initial(C.power_regen)
+			to_chat(H, SPAN_NOTICE("Your cruciform vibrates."))
+
 	for(var/disciple in disciples)
 		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))
-	GLOB.miracle_points++
 
-#undef ARMAMENTS
-#undef ALERT
-#undef INSPIRATION
-#undef ODDITY
-#undef STAT_BUFF
-#undef MATERIAL_REWARD
+	GLOB.miracle_points++

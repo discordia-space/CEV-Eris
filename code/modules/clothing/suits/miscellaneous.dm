@@ -140,7 +140,7 @@
 	siemens_coefficient = 2
 
 //swimsuit
-/obj/item/clothing/under/swimsuit/
+/obj/item/clothing/under/swimsuit
 	siemens_coefficient = 1
 	body_parts_covered = 0
 
@@ -175,15 +175,12 @@
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
 	spawn_tags = SPAWN_TAG_CLOTHING_SUIT_PONCHO
-	rarity_value = 5
 
 /obj/item/clothing/suit/poncho/tactical
 	name = "blue poncho"
 	desc = "A simple, comfortable poncho in blue colors."
 	icon_state = "tacticalponcho"
 	item_state = "tacticalponcho"
-	rarity_value = 80
-
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
@@ -202,7 +199,6 @@
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. And remember, Tunnel Snakes rule!"
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
-	rarity_value = 5.55
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -242,7 +238,6 @@
 	icon_closed = "grey_hoodie"
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	rarity_value = 5
 
 /obj/item/clothing/suit/storage/toggle/hoodie/black
 	name = "black hoodie"
@@ -257,7 +252,6 @@
 	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek"
 	item_state = "brown_jacket"
-	rarity_value = 6.25
 	armor = list(
 		melee = 5,
 		bullet = 20,
@@ -328,7 +322,6 @@
 	desc = "An old leather coat. Has probably seen things you wouldn't believe."
 	icon_state = "bladerunner_coat"
 	item_state = "bladerunner_coat"
-	rarity_value = 6.25
 	armor = list(
 		melee = 10,
 		bullet = 20,
@@ -345,7 +338,6 @@
 	icon_state = "drive_jacket"
 	item_state = "drive_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
-	rarity_value = 16.66
 
 /obj/item/clothing/suit/storage/violet_jacket
 	name = "violet jacket"
@@ -353,7 +345,6 @@
 	icon_state = "violet_jacket"
 	item_state = "violet_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
-	rarity_value = 16.66
 
 /obj/item/clothing/suit/storage/bomj
 	name = "bomj coat"
@@ -420,7 +411,7 @@
 	)
 
 /obj/item/clothing/suit/storage/scavengerarmor
-	name = "Scavenger armor"
+	name = "scavenger armor"
 	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
@@ -432,6 +423,39 @@
 		bio = 0,
 		rad = 0
 	)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/storage/triad
+	name = "triad jacket"//RUINER reference
+	desc = "A well armoured trench coat. The label on the inside claims it comes from Hanza."
+	icon_state = "triadkillers"
+	item_state = "triadkillers"
+	armor = list(
+		melee = 35,
+		bullet = 35,
+		energy = 35,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	price_tag = 1050
+
+
+/obj/item/clothing/suit/storage/akira
+	name = "red jacket"//Akira, preety obvious
+	desc = "A red jacket designed for riding on a bike. Has a pill icon on the back."
+	icon_state = "akira"
+	item_state = "akira"
+	armor = list(
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|ARMS
+	price_tag = 600

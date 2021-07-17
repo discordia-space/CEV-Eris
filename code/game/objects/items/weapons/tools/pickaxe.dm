@@ -75,7 +75,7 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 35)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	degradation = 0.7
-	use_power_cost = 0.6
+	use_power_cost = 0.4
 	suitable_cell = /obj/item/weapon/cell/medium
 	rarity_value = 48
 
@@ -92,7 +92,7 @@
 	degradation = 0.6
 	workspeed = 1.7
 	max_upgrades = 2
-	use_power_cost = 0.8
+	use_power_cost = 0.6
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
@@ -151,7 +151,7 @@
 /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0
 	passive_fuel_cost = 0
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 
 /obj/item/weapon/tool/pickaxe/excavation
 	name = "hand pickaxe"

@@ -8,15 +8,15 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define ALIEN_SELECT_AFK_BUFFER  1    // How many minutes that a person can be AFK before not being allowed to be an alien.
 
 // Channel numbers for power.
-#define EQUIP   1
-#define LIGHT   2
-#define ENVIRON 3
-#define TOTAL   4 // For total power used only.
+#define TOTAL           1	//for total power used only
+#define STATIC_EQUIP    2
+#define STATIC_LIGHT    3
+#define STATIC_ENVIRON  4
 
-//Power use var/use_power
-#define NO_POWER_USE		0
-#define IDLE_POWER_USE		1
-#define ACTIVE_POWER_USE	2
+//Power use
+#define NO_POWER_USE 0
+#define IDLE_POWER_USE 1
+#define ACTIVE_POWER_USE 2
 
 // Bitflags for machine stat variable.
 #define BROKEN   0x1
@@ -89,7 +89,7 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
  *	Atmospherics Machinery.
 */
 #define MAX_SIPHON_FLOWRATE   2500 // L/s. This can be used to balance how fast a room is siphoned. Anything higher than CELL_VOLUME has no effect.
-#define MAX_SCRUBBER_FLOWRATE 200  // L/s. Max flow rate when scrubbing from a turf.
+#define MAX_SCRUBBER_FLOWRATE 400  // L/s. Max flow rate when scrubbing from a turf.
 
 // These balance how easy or hard it is to create huge pressure gradients with pumps and filters.
 // Lower values means it takes longer to create large pressures differences.
@@ -177,3 +177,12 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 
 //AUTOLATHE
 #define SANITIZE_LATHE_COST(n) round(n * mat_efficiency, 0.01)
+
+//EOTP
+#define ARMAMENTS "Armaments"
+#define ALERT "Antag Alert"
+#define INSPIRATION "Inspiration"
+#define ODDITY "Oddity"
+#define STAT_BUFF "Stat Buff"
+#define MATERIAL_REWARD "Materials"
+#define ENERGY_REWARD "Energy"

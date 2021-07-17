@@ -2,7 +2,6 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	bad_type = /obj/item/clothing/suit/storage
 	spawn_tags = SPAWN_TAG_CLOTHING_SUIT_STORAGE
-	rarity_value = 10
 	var/obj/item/weapon/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
@@ -79,6 +78,7 @@
 		bio = 0,
 		rad = 0
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/storage/vest/chestrig/New()
 	..()

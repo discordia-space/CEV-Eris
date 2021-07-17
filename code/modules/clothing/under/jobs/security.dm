@@ -122,7 +122,6 @@
 	icon_state = "hoshat"
 	body_parts_covered = NONE
 	siemens_coefficient = 0.8
-	rarity_value = 50
 
 /*
  * Navy uniforms

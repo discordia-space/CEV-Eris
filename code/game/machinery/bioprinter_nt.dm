@@ -3,8 +3,10 @@
 	desc = "NeoTheology machine for printing things using biomass."
 	icon_state = "bioprinter"
 	unsuitable_materials = list()
-
+	speed = 3 
+	storage_capacity = 360
 	build_type = AUTOLATHE | BIOPRINTER
+	high_quality_faction_list = list(FACTION_NEOTHEOLOGY)
 
 /obj/machinery/autolathe/bioprinter/attackby(obj/item/I, mob/user)
 	//hacky way to forbid deconstruction but use ..()

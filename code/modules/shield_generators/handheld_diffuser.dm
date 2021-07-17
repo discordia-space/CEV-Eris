@@ -5,14 +5,15 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "hdiffuser_off"
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_frequency = 0
 	var/active_power_use = 10 KILOWATTS * CELLRATE
 	var/enabled = 0
 
 /obj/item/device/shield_diffuser/on_update_icon()
 	if(enabled)
-		icon_state = "hdiffuser_on"
+		SetIconState("hdiffuser_on")
 	else
-		icon_state = "hdiffuser_off"
+		SetIconState("hdiffuser_off")
 
 /obj/item/device/shield_diffuser/Destroy()
 	if(enabled)

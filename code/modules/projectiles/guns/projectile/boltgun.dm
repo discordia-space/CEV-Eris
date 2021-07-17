@@ -7,13 +7,14 @@
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
+	armor_penetration = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 40 //same as AMR
+	recoil_buildup = 1.6 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -21,11 +22,12 @@
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 1600
+	price_tag = 1000
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
 	spawn_blacklisted = TRUE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 	var/bolt_open = 0
 	var/item_suffix = ""
 
@@ -96,15 +98,17 @@
 			If you’re on a budget, it’s a darn good rifle for just about everything. \
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
-	item_suffix = "_wood"
-	recoil_buildup = 0.4 // Double the excel variant
+	item_suffix  = "_wood"
+	force = 23
+	recoil_buildup = 1.7 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/weapon/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
-	desc = "A handmade bolt action rifle, made from junk. and some spare parts."
+	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
@@ -114,7 +118,7 @@
 	fire_delay = 17 // abit more than the serbian one
 	damage_multiplier = 1
 	penetration_multiplier = 1
-	recoil_buildup = 40 //same as AMR
+	recoil_buildup = 1.9 // joonk gun
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'

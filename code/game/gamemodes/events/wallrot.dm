@@ -21,7 +21,7 @@
 	endWhen = announceWhen + 1
 
 /datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on station. Station structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
+	command_announcement.Announce("Harmful fungi detected on ship. ship structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
 
 /datum/event/wallrot/start()
 	set waitfor = FALSE

@@ -97,9 +97,8 @@
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
 			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
 		if(!do_after(usr, reagents.total_volume))
-			if(!Adjacent(usr))
-				return
-			standard_splash_mob(src, src)
+			standard_splash_mob(usr, usr)
+			return
 
 		if(!Adjacent(usr))
 			return
