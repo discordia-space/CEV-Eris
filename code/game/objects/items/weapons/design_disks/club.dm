@@ -3,7 +3,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/club/silverware 
 	disk_name = "Chef's Choice Silverware" 
 	icon_state = "club"
-	rarity_value = 5 
+	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = -1 
 	designs = list(
@@ -19,7 +19,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/club/glassware 
 	disk_name = "Barman's Best Glassware" 
 	icon_state = "club"
-	rarity_value = 5
+	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = -1
 	designs = list(
@@ -41,7 +41,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/club/basic_barstuff
 	disk_name = "Mike's Bar Staples" 
 	icon_state = "club"
-	rarity_value = 2 
+	rarity_value = 6
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON
 	license = -1 
 	designs = list(
@@ -58,7 +58,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/club/soda_variety
 	disk_name = "Fizzpop's Variety"
 	icon_state = "club"
-	rarity_value = 20 
+	rarity_value = 10
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 50 
 	designs = list(
@@ -75,7 +75,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/club/booze_variety
 	disk_name = "Uncle Git's Cookbook"
 	icon_state = "club"
-	rarity_value = 18 
+	rarity_value = 12
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 20 
 	designs = list(
