@@ -1,6 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Added ghost roles
-  - rscadd: Added prison hulk, in which prisoners must escape their prison ship's
-      wreck

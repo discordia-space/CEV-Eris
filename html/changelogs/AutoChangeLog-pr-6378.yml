@@ -1,5 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - tweak: Body Scanners now display organs before the applicable limb and damaged
-      organs will make the limb it's in be shown.
