@@ -90,10 +90,6 @@
 	name = "metal coffee mug"
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/mug/metal
 	
-/datum/design/autolathe/container/metal_mug
-	name = "metal coffee mug"
-	build_path = /obj/item/weapon/reagent_containers/food/drinks/mug/metal
-	
 // prefilled booze
 
 /datum/design/autolathe/container/prefilled/beer
