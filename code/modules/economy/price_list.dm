@@ -853,9 +853,10 @@
 	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
 // Misc //
-
+/obj/item/weapon/reagent_containers/food/snacks/egg
+	price_tag = 5
 /obj/item/weapon/reagent_containers/food/snacks/boiledegg
-	price_tag = 20
+	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
 	price_tag = 10
@@ -914,8 +915,9 @@
 /obj/machinery/portable_atmospherics
 	price_tag = 200
 
+/obj/machinery/power/emitter/price_tag = 2000
 /obj/machinery/power/supermatter
-	price_tag = 5000
+	price_tag = 10000
 
 /obj/machinery/portable_atmospherics/canister/get_item_cost(export)
 	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
@@ -967,17 +969,19 @@
 	for(var/obj/item/ammo_casing/i in stored_ammo)
 		. += i.get_item_cost(export)
 
-/obj/item/ammo_casing/price_tag = 0
+/obj/item/ammo_casing/price_tag = 0.2
+/obj/item/ammo_casing/shotgun/price_tag = 1
 
 /obj/item/ammo_casing/get_item_cost(export)
-	. = ..() * amount
-
+	. = round(..() * amount)
 /obj/item/weapon/tool/price_tag = 20
-/obj/item/weapon/tool/get_item_cost(export)
-	. = 1
-	for(var/i in tool_qualities)
-		. += tool_qualities[i] / 5
-	. *= ..()
+
+// This one is exploitable as fuck. I say should be removed or nerfed hard.
+///obj/item/weapon/tool/get_item_cost(export)
+//	. = 1
+//	for(var/i in tool_qualities)
+//		. += tool_qualities[i] / 5
+//	. *= ..()
 
 /obj/structure/medical_stand/price_tag = 100
 /obj/item/weapon/virusdish/price_tag = 300
@@ -995,6 +999,7 @@
 
 /obj/item/solar_assembly/price_tag = 100
 /obj/item/weapon/tracker_electronics/price_tag = 150
+/obj/item/weapon/electronics/tracker/price_tag = 120
 /obj/item/weapon/handcuffs/price_tag = 30
 /obj/item/weapon/handcuffs/get_item_cost(export)
 	. = ..()
@@ -1011,16 +1016,57 @@
 /obj/item/mech_component/price_tag = 150
 /obj/item/mech_equipment/price_tag = 200
 
-/obj/item/weapon/gun/launcher/grenade/price_tag = 1500
-
-/obj/item/weapon/storage/briefcase/price_tag = 50
-
 /obj/item/inflatable/price_tag = 40
 
 /obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400
-
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/price_tag = 75
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125
+
+/obj/item/toy/price_tag = 40
+/obj/item/device/toner/price_tag = 50
+
+/obj/item/device/camera_film/price_tag = 25
+
+/obj/item/device/camera/price_tag = 50
+/obj/item/weapon/storage/photo_album/price_tag = 50
+
+/obj/item/weapon/wrapping_paper/price_tag = 20
+/obj/item/weapon/packageWrap/price_tag = 20
+/obj/item/weapon/mop/price_tag = 15
+/obj/item/weapon/caution/price_tag = 10
+/obj/item/weapon/storage/bag/trash/price_tag = 25
+
+/obj/item/weapon/storage/lunchbox/price_tag = 25
+
+/obj/item/weapon/storage/briefcase/price_tag = 50
+/obj/item/weapon/soap/nanotrasen/price_tag = 60
+/obj/item/weapon/storage/pouch/price_tag = 100
+/obj/item/weapon/storage/pouch/ammo/price_tag = 200
+/obj/item/weapon/storage/pouch/tubular/price_tag = 140
+/obj/item/weapon/storage/pouch/medium_generic/price_tag = 255
+/obj/item/weapon/storage/pouch/large_generic/price_tag = 410
+
+/obj/item/weapon/rig/price_tag = 150
+/obj/item/weapon/rig/industrial/price_tag = 350
+/obj/item/weapon/rig/hazmat/price_tag = 350
+/obj/item/weapon/rig/combat/price_tag = 500
+/obj/item/rig_module/price_tag = 500
+//***************//
+//----ORES-----//
+//***************//
+/obj/item/weapon/ore/price_tag = 1
+/obj/item/weapon/ore/uranium/price_tag = 10
+/obj/item/weapon/ore/iron/price_tag = 2
+/obj/item/weapon/ore/coal/price_tag = 2
+/obj/item/weapon/ore/glass/price_tag = 1
+/obj/item/weapon/ore/plasma/price_tag = 5
+/obj/item/weapon/ore/silver/price_tag = 5
+/obj/item/weapon/ore/gold/price_tag = 5
+/obj/item/weapon/ore/diamond/price_tag = 20
+/obj/item/weapon/ore/osmium/price_tag = 5
+/obj/item/weapon/ore/hydrogen/price_tag = 5
+/obj/item/weapon/ore/slag/price_tag = 1
+

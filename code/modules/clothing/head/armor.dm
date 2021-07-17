@@ -276,6 +276,11 @@
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
+	matter = list(
+		MATERIAL_STEEL = 6, // more covered by helmet
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 6,
+	)
 
 /obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()

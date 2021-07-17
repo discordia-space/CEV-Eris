@@ -405,6 +405,12 @@
 	bad_type = /obj/item/clothing/suit/storage/vest
 	style = STYLE_NEG_HIGH
 
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3, //for webbing
+	)
+
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
 	name = "heavy armor vest"

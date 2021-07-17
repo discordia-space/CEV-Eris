@@ -21,8 +21,8 @@
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	armor_penetration = ARMOR_PEN_DEEP
-	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_NORMAL
+	force_wielded_multiplier = 2.6
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 15)
@@ -56,8 +56,8 @@
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	armor_penetration = ARMOR_PEN_EXTREME
-	force_unwielded = WEAPON_FORCE_DANGEROUS
-	force_wielded = WEAPON_FORCE_BRUTAL
+	force= WEAPON_FORCE_DANGEROUS
+	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
