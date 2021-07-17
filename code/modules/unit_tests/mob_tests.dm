@@ -51,41 +51,6 @@
 	SSmobs.ignite()
 	return ..()
 
-// ============================================================================
-
-//#define BRUTE     "brute"
-//#define BURN      "fire"
-//#define TOX       "tox"
-//#define OXY       "oxy"
-//#define CLONE     "clone"
-//#define HALLOSS   "halloss"
-/*
-/proc/create_test_mob_with_mind(turf/mobloc = null, mobtype = /mob/living/carbon/human)
-	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
-
-	if(isnull(mobloc))
-		mobloc = pick_spawn_location("Aft Cryogenic Storage")
-	if(!mobloc)
-		test_result["msg"] = "Unable to find a location to create test mob"
-		return test_result
-
-	var/mob/living/carbon/human/H = new mobtype(mobloc)
-
-	H.mind_initialize("TestKey[rand(0,10000)]")
-
-	test_result["result"] = SUCCESS
-	test_result["msg"] = "Mob created"
-	test_result["mobref"] = "\ref[H]"
-
-	return test_result
-
-//Generic Check
-// TODO: Need to make sure I didn't just recreate the wheel here.
-
-
-// ==============================================================================================================
-
-//
 //DAMAGE EXPECTATIONS
 // used with expectected_vunerability
 
@@ -94,65 +59,43 @@
 #define EXTRA_VULNERABLE 2    // Will take more dmage than applied
 #define IMMUNE 3              // Will take no damage
 
-//==============================================================================================================
-/datum/unit_test/mob_damage
-	var/mob/living/carbon/human/testmob = null
-	var/damagetype = BRUTE
-	var/mob_type = /mob/living/carbon/human
-	var/expected_vulnerability = STANDARD
-	var/check_health = 0
-	var/damage_location = BP_CHEST
-
 /datum/unit_test/mob_damage/Run()
-	var/list/test = create_test_mob_with_mind(null, mob_type)
-	var/damage_amount = 5	// Do not raise, if damage >= 10 there is a % chance to reduce damage by half in /obj/item/organ/external/take_damage()
-                                // Which makes checks impossible.
-	TEST_ASSERT(isnull(test), "Check Runtimed in Mob creation")
+	var/list/damtypes = list(
+		BRUTE, BURN, TOX,
+		OXY, CLONE, HALLOSS)
 
-	if(test["result"] == FAILURE)
-		Fail(test["msg"])
-		return 0
+	for(var/i in damtypes)
+		var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
+		check_damage(H, i)// hi
+		qdel(H)
 
-	var/mob/living/carbon/human/H = locate(test["mobref"])
-
-	if(isnull(H))
-		Fail("Test unable to set test mob from reference (Skipping test)")
-		return
-	if(H.stat)
-		Fail("Test needs to be re-written, mob has a stat = [H.stat]")
-	if(H.sleeping)
-		Fail("Test needs to be re-written, mob is sleeping for some unknown reason")
-
+/datum/unit_test/mob_damage/proc/check_damage(mob/living/carbon/human/H, damtype = BRUTE, expected_vulnerability = STANDARD)
 	// Damage the mob
-
 	var/initial_health = H.health
 
-	H.apply_damage(damage_amount, damagetype, damage_location)
-
+	H.apply_damage(5, damtype, BP_CHEST)
 	H.updatehealth() // Just in case, though at this time apply_damage does this for us.
                          // We operate with the assumption that someone might mess with that proc one day.
 
-	var/ending_damage = damage_check(H, damagetype)
-
+	var/ending_damage = damage_check(H, damtype)
 	var/ending_health = H.health
 
 	// Now test this stuff.
 
-	var/failure = 0
-
+	var/failure = FALSE
 	var/damage_ratio = STANDARD
 
 	if (ending_damage == 0)
 		damage_ratio = IMMUNE
 
-	else if (ending_damage < damage_amount)
+	else if (ending_damage < 5)
 		damage_ratio = ARMORED
 
-	else if (ending_damage > damage_amount)
+	else if (ending_damage > 5)
 		damage_ratio = EXTRA_VULNERABLE
 
 	if(damage_ratio != expected_vulnerability)
-		failure = 1
+		failure = TRUE
 
 	// Now generate the message for this test.
 
@@ -168,77 +111,19 @@
 		if(IMMUNE)
 			expected_msg = "To take no damage"
 
-
-	var/msg = "Damage taken: [ending_damage] out of [damage_amount] || expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]"
-
 	if(failure)
-		Fail(msg)
-
-	return 1
-
-// =================================================================
-// Human damage check.
-// =================================================================
-
-datum/unit_test/mob_damage/brute
-	name = "MOB: Human Brute damage check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/fire
-	name = "MOB: Human Fire damage check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/tox
-	name = "MOB: Human Toxin damage check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/oxy
-	name = "MOB: Human Oxygen damage check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/clone
-	name = "MOB: Human Clone damage check"
-	damagetype = CLONE
-
-datum/unit_test/mob_damage/halloss
-	name = "MOB: Human Halloss damage check"
-	damagetype = HALLOSS
-
-// ==============================================================================
+		Fail("Failed at damage type [damtype]. Damage taken: [ending_damage] out of 5 => expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]")
 
 
-datum/unit_test/robot_module_icons
-	name = "MOB: Robot module icon check"
+/datum/unit_test/robot_module_icons/Run()
 	var/icon_file = 'icons/mob/screen1_robot.dmi'
-
-datum/unit_test/robot_module_icons/start_test()
-	var/failed = 0
-	if(!isicon(icon_file))
-		fail("[icon_file] is not a valid icon file.")
-		return 1
-
 	var/list/valid_states = icon_states(icon_file)
 
-	if(!valid_states.len)
-		return 1
+	for(var/i in robot_modules)
+		if(!(lowertext(i) in valid_states))
+			Fail("[i] does not contain a valid icon state in [icon_file]")
 
-	for(var/i=1, i<=robot_modules.len, i++)
-		var/bad_msg = "[ascii_red]--------------- [robot_modules[i]]"
-		if(!(lowertext(robot_modules[i]) in valid_states))
-			log_unit_test("[bad_msg] does not contain a valid icon state in [icon_file][ascii_reset]")
-			failed=1
-
-	if(failed)
-		fail("Some icon states did not exist")
-	else
-		pass("All modules had valid icon states")
-
-	return 1
-
-#undef SUCCESS
-#undef FAILURE
 #undef STANDARD
 #undef ARMORED
 #undef EXTRA_VULNERABLE
 #undef IMMUNE
-*/
