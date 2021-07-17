@@ -107,3 +107,4 @@
 	/datum/design/autolathe/food/packaged/jerky,
 	/datum/design/autolathe/food/packaged/liquidfood = 2 // its got a lot of nutriment so it's worth 2 license points
 	)
+	
