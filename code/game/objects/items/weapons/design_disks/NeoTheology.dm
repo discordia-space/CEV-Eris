@@ -25,6 +25,13 @@
 		/datum/design/autolathe/device/grenade/nt_cleaner,
 		/datum/design/autolathe/device/grenade/nt_weedkiller,
 
+		/datum/design/bioprinter/nt_cells/large,
+		/datum/design/bioprinter/nt_cells/large/plasma,
+		/datum/design/bioprinter/nt_cells/medium,
+		/datum/design/bioprinter/nt_cells/medium/plasma,
+		/datum/design/bioprinter/nt_cells/small,
+		/datum/design/bioprinter/nt_cells/small/plasma,
+
 		/datum/design/bioprinter/holyvacuum
 
 	)

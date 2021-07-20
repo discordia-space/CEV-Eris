@@ -74,6 +74,22 @@
 	maxcharge = 15000
 	rarity_value = 32
 
+/obj/item/weapon/cell/large/neotheology
+	name = "NeoTheology \"Spark 13000L\""
+	desc = "NeoTheology branded non-rechargeable L-standardized power cell."
+	icon_state = "b_nt"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 3)
+	maxcharge = 13000
+	max_chargerate = 0
+	spawn_charged = 1
+
+/obj/item/weapon/cell/large/neotheology/plasma
+	name = "NeoTheology \"Radiance 20000L\""
+	desc = "NeoTheology branded non-rechargeable L-standardized power cell. This advanced version can store even more energy."
+	icon_state = "b_nt_pl"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 4)
+	maxcharge = 20000
+
 //Meme cells - for fun and cancer
 
 /obj/item/weapon/cell/large/potato
@@ -179,6 +195,21 @@
 	maxcharge = 1000
 	rarity_value = 27
 
+/obj/item/weapon/cell/medium/neotheology
+	name = "NeoTheology \"Spark 1000M\""
+	desc = "NeoTheology branded non-rechargeable M-standardized power cell."
+	icon_state = "m_nt"
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_BIOMATTER = 2)
+	maxcharge = 1000
+	max_chargerate = 0
+	spawn_charged = 1
+
+/obj/item/weapon/cell/medium/neotheology/plasma
+	name = "NeoTheology \"Radiance 1500M\""
+	desc = "NeoTheology branded non-rechargeable M-standardized power cell. This advanced version can store even more energy."
+	icon_state = "m_nt_pl"
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_BIOMATTER = 3)
+	maxcharge = 1500
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 /obj/item/weapon/cell/small
@@ -273,6 +304,22 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
 	rarity_value = 32
+
+/obj/item/weapon/cell/small/neotheology
+	name = "NeoTheology \"Spark 300S\""
+	desc = "NeoTheology branded non-rechargeable S-standardized power cell."
+	icon_state = "s_nt"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_BIOMATTER = 1)
+	maxcharge = 300
+	max_chargerate = 0
+	spawn_charged = 1
+
+/obj/item/weapon/cell/small/neotheology/plasma
+	name = "NeoTheology \"Radiance 500S\""
+	desc = "NeoTheology branded non-rechargeable S-standardized power cell. This advanced version can store even more energy."
+	icon_state = "s_nt_pl"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_BIOMATTER = 2)
+	maxcharge = 500
 
 /obj/item/weapon/cell/disposable
 	name = "a disposable cell"

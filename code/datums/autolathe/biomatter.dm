@@ -216,6 +216,37 @@
 	name = "\"Tersus\" Vacuum Cleaner"
 	build_path = /obj/item/weapon/holyvacuum
 
+//[CELLS]
+/datum/design/bioprinter/nt_cells
+	materials = list(MATERIAL_BIOMATTER = 1)
+
+/datum/design/bioprinter/nt_cells/large
+	name = "NT \"Spark 13000L\""
+	build_path = /obj/item/weapon/cell/large/neotheology
+
+/datum/design/bioprinter/nt_cells/large/plasma
+	name = "NT \"Radiance 20000L\""
+	build_path = /obj/item/weapon/cell/large/neotheology/plasma
+	materials = list(MATERIAL_PLASMA = 3)
+
+/datum/design/bioprinter/nt_cells/medium
+	name = "NT \"Spark 1000M\""
+	build_path = /obj/item/weapon/cell/medium/neotheology/
+
+/datum/design/bioprinter/nt_cells/medium/plasma
+	name = "NT \"Radiance 1500M\""
+	build_path = /obj/item/weapon/cell/medium/neotheology/plasma
+	materials = list(MATERIAL_PLASMA = 2)
+
+/datum/design/bioprinter/nt_cells/small
+	name = "NT \"Spark 300S\""
+	build_path = /obj/item/weapon/cell/small/neotheology/
+
+/datum/design/bioprinter/nt_cells/small/plasma
+	name = "NT \"Radiance 500S\""
+	build_path = /obj/item/weapon/cell/small/neotheology/plasma
+	materials = list(MATERIAL_PLASMA = 1)
+
 //[/THINGS]
 /datum/design/autolathe/nt
 	factions = list(FACTION_NEOTHEOLOGY)
