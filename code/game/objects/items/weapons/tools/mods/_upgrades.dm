@@ -328,6 +328,11 @@
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
 	
+	if(weapon_upgrades[GUN_UPGRADE_DNALOCK])
+		G.dna_locked = TRUE
+		var/datum/dna/dna = usr.dna
+		G.dna_lock_sample = dna.unique_enzymes
+	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]

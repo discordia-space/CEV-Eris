@@ -69,7 +69,6 @@
 #define GUN_UPGRADE_ZOOM "zoom"
 
 
-
 //boolean
 #define GUN_UPGRADE_SILENCER "silencable"
 #define GUN_UPGRADE_FORCESAFETY "safety force"
@@ -80,6 +79,7 @@
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
 #define GUN_UPGRADE_GILDED "gilded"
+#define GUN_UPGRADE_DNALOCK "biocoded"
 
 //Location Tag defines
 
