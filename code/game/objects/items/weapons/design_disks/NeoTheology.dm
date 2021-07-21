@@ -30,7 +30,7 @@
 	)
 
 // Batteries that printed fully charged, at the cost of some biomatter or plasma being non-refundable
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_cells
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt/cells
 	disk_name = "NeoTheology Armory - Power Cells Pack"
 	icon_state = "neotheology"
 
