@@ -9,8 +9,8 @@
 	price_tag = 20000
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
-	force = WEAPON_FORCE_ROBUST
-	var/crusade_force = WEAPON_FORCE_PAINFUL
+	force = WEAPON_FORCE_BRUTAL
+	var/crusade_force = WEAPON_FORCE_NORMAL * 0.8
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
@@ -65,14 +65,26 @@
 				var/obj/item/implant/core_implant/I = M.get_core_implant(/obj/item/implant/core_implant/cruciform)
 				if(I && I.active && I.wearer)
 					continue
-				flashbang_bang(get_turf(src), M, bang_text)
+				M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+				flashbang_bang(get_turf(src), M, bang_text, FALSE)
 
 
 	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
 		var/obj/item/implant/core_implant/I = M.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
 			continue
-		flashbang_bang(get_turf(src), M, bang_text)
+		M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 45 SECONDS, "Sword of truth")
+		flashbang_bang(get_turf(src), M, bang_text, FALSE)
 
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
@@ -83,6 +95,13 @@
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	last_use = world.time
 	return
+
+/obj/item/tool/sword/nt_sword/equipped(mob/living/M)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(M))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/structure/nt_pedestal
 	name = "Sword of Truth Pedestal"

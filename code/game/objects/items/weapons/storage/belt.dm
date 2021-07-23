@@ -88,7 +88,8 @@
 		/obj/item/book/ritual/cruciform,
 		/obj/item/implant/core_implant/cruciform,
 		/obj/item/soap,
-		/obj/item/reagent_containers/spray/cleaner
+		/obj/item/reagent_containers/spray/cleaner,
+		/obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE
 
@@ -190,7 +191,9 @@
 		/obj/item/book/ritual/cruciform,
 		/obj/item/implant/core_implant/cruciform,
 		/obj/item/tool/knife/neotritual,
-		/obj/item/gun/energy/crossbow
+		/obj/item/gun/energy/crossbow,
+		/obj/item/tool/knife/dagger/nt,
+		/obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE
 

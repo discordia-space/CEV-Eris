@@ -41,6 +41,10 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
+
 	if (ammo_magazine)
 		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 		itemstring += "_full"

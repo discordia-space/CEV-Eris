@@ -258,6 +258,26 @@
 	I.gun_loc_tag = GUN_MECHANISM
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+/obj/item/gun_upgrade/cosmetic
+	bad_type = /obj/item/gun_upgrade/cosmetic
+
+/obj/item/gun_upgrade/cosmetic/gold
+	name = "\"Scaramanga\" gold paint"
+	desc = "A small pot of gold paint, for the kingpin in your life."
+	icon_state = "gold_pot"
+	matter = list(MATERIAL_GOLD = 15)
+	rarity_value = 20
+	price_tag = 1600
+
+/obj/item/gun_upgrade/cosmetic/gold/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_GILDED = TRUE
+		)
+	I.gun_loc_tag = GUN_COSMETIC
+	I.req_gun_tags = list(GUN_GILDABLE)
+
 //Trash mods, for putting on old guns
 
 /obj/item/gun_upgrade/trigger/faulty

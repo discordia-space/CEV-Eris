@@ -37,3 +37,7 @@
 /datum/design/autolathe/sec/watchman
 	name = "Frozen Star \"Watchman\" scope"
 	build_path = /obj/item/gun_upgrade/scope/watchman
+
+/datum/design/autolathe/sec/gold
+	name = "\"Scaramanga\" gold paint"
+	build_path = /obj/item/gun_upgrade/cosmetic/gold

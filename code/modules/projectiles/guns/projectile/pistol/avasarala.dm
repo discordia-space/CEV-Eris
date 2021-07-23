@@ -25,17 +25,24 @@
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 
 	price_tag = 1600
+	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/gun/projectile/avasarala/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
-	SetIconState(iconstring)
+	icon_state = iconstring
+	set_item_state(itemstring)
 
 /obj/item/gun/projectile/avasarala/Initialize()
 	. = ..()

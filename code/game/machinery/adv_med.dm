@@ -305,6 +305,42 @@
 		var/list/other_wounds = list()
 		var/significant = FALSE
 
+		for(var/obj/item/organ/internal/I in e.internal_organs) // I put this before the actual external organ
+			if(I.scanner_hidden) // so that I could set significant based on internal organ results.
+				continue
+	
+			var/list/internal_wounds = list()
+			if(BP_IS_ASSISTED(I))
+				internal_wounds += "Assisted"
+			if(BP_IS_ROBOTIC(I))
+				internal_wounds += "Prosthetic"
+	
+			var/obj/item/organ/internal/bone/B = I
+			if(istype(B))
+				if(B.parent.status & ORGAN_BROKEN)
+					internal_wounds += "[B.broken_description]"
+	
+			switch (I.germ_level)
+				if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
+				if (1 to INFECTION_LEVEL_ONE + 200)
+					internal_wounds += "Mild Infection"
+				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
+					internal_wounds += "Mild Infection+"
+				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
+					internal_wounds += "Mild Infection++"
+				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
+					internal_wounds += "Acute Infection"
+				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
+					internal_wounds += "Acute Infection+"
+				if (INFECTION_LEVEL_TWO + 300 to INFINITY)
+					internal_wounds += "Acute Infection++"
+			if(I.rejecting)
+				internal_wounds += "being rejected"
+			if (I.damage || internal_wounds.len)
+				significant = TRUE
+				dat += "<tr>"
+				dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+				dat += "</tr>"
 
 		for(var/datum/wound/W in e.wounds) if(W.internal)
 			other_wounds += "Internal bleeding"
@@ -361,41 +397,7 @@
 			continue
 		dat += "</tr>"
 
-	for(var/obj/item/organ/internal/I in occ["internal_organs"])
-		if(I.scanner_hidden)
-			continue
 
-		var/list/other_wounds = list()
-		if(BP_IS_ASSISTED(I))
-			other_wounds += "Assisted"
-		if(BP_IS_ROBOTIC(I))
-			other_wounds += "Prosthetic"
-
-		var/obj/item/organ/internal/bone/B = I
-		if(istype(B))
-			if(B.parent.status & ORGAN_BROKEN)
-				other_wounds += "[B.broken_description]"
-
-		switch (I.germ_level)
-			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
-			if (1 to INFECTION_LEVEL_ONE + 200)
-				other_wounds += "Mild Infection"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				other_wounds += "Mild Infection+"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				other_wounds += "Mild Infection++"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				other_wounds += "Acute Infection"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				other_wounds += "Acute Infection+"
-			if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-				other_wounds += "Acute Infection++"
-		if(I.rejecting)
-			other_wounds += "being rejected"
-		if (I.damage || other_wounds.len)
-			dat += "<tr>"
-			dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
-			dat += "</tr>"
 	dat += "</table>"
 
 	var/list/species_organs = occ["species_organs"]

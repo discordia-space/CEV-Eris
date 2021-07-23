@@ -74,8 +74,16 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	force = WEAPON_FORCE_PAINFUL
+	embed_mult = 3
 	max_upgrades = 3
 	spawn_blacklisted = TRUE
+
+/obj/item/tool/knife/neotritual/equipped(mob/living/H)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(H))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/item/tool/knife/tacknife
 	name = "tactical knife"
@@ -316,6 +324,7 @@
 	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it
 	slot_flags = SLOT_BACK
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	allow_spin = FALSE
 
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_KNIFE
