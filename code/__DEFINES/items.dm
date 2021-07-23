@@ -80,6 +80,7 @@
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
 #define GUN_UPGRADE_GILDED "gilded"
+#define GUN_UPGRADE_DNALOCK "biocoded"
 
 //Location Tag defines
 
