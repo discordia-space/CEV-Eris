@@ -69,6 +69,7 @@
 #define GUN_UPGRADE_ZOOM "zoom"
 
 
+
 //boolean
 #define GUN_UPGRADE_SILENCER "silencable"
 #define GUN_UPGRADE_FORCESAFETY "safety force"
