@@ -217,12 +217,10 @@
 	build_path = /obj/item/weapon/holyvacuum
 
 //[CELLS]
-/datum/design/bioprinter/nt_cells
-	materials = list(MATERIAL_BIOMATTER = 1)
-
 /datum/design/bioprinter/nt_cells/large
 	name = "NT \"Spark 13000L\""
 	build_path = /obj/item/weapon/cell/large/neotheology
+	materials = list(MATERIAL_BIOMATTER = 15)
 
 /datum/design/bioprinter/nt_cells/large/plasma
 	name = "NT \"Radiance 20000L\""
@@ -232,6 +230,7 @@
 /datum/design/bioprinter/nt_cells/medium
 	name = "NT \"Spark 1000M\""
 	build_path = /obj/item/weapon/cell/medium/neotheology/
+	materials = list(MATERIAL_BIOMATTER = 10)
 
 /datum/design/bioprinter/nt_cells/medium/plasma
 	name = "NT \"Radiance 1500M\""
@@ -241,6 +240,7 @@
 /datum/design/bioprinter/nt_cells/small
 	name = "NT \"Spark 300S\""
 	build_path = /obj/item/weapon/cell/small/neotheology/
+	materials = list(MATERIAL_BIOMATTER = 5)
 
 /datum/design/bioprinter/nt_cells/small/plasma
 	name = "NT \"Radiance 500S\""
