@@ -65,6 +65,11 @@
 	item_cost = 5
 	path = /obj/item/weapon/gun_upgrade/trigger/boom
 
+/datum/uplink_item/item/visible_weapons/
+	name = "Frozen Star \"DNA lock\" trigger"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/trigger/dnalock
+
 /datum/uplink_item/item/visible_weapons/gauss
 	name = "Syndicate \"Gauss Coil\" barrel"
 	item_cost = 7
