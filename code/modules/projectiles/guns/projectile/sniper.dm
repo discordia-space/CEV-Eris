@@ -92,40 +92,40 @@
 		return
 	..()
 
-/obj/item/weaponparts
+/obj/itemparts
 	name = "weaponpart"
 	desc = "how did you get it?"
 	icon = 'icons/obj/weaponparts.dmi'
-	bad_type = /obj/item/weaponparts
+	bad_type = /obj/itemparts
 	var/part_color = ""
 
-/obj/item/weaponparts/heavysniper
-	bad_type = /obj/item/weaponparts/heavysniper
+/obj/itemparts/heavysniper
+	bad_type = /obj/itemparts/heavysniper
 
-/obj/item/weaponparts/heavysniper/stock
+/obj/itemparts/heavysniper/stock
 	name = "sniper stock"
 	desc = "This is a sniper stock. You need to attach the reciever."
 	icon_state = "sniper_stock"
 
-/obj/item/weaponparts/heavysniper/reciever
+/obj/itemparts/heavysniper/reciever
 	name = "sniper reciever"
 	desc = "This is a sniper reciever. You need to attach it to the stock."
 	icon_state = "sniper_reciever"
 
-/obj/item/weaponparts/heavysniper/stockreciever
+/obj/itemparts/heavysniper/stockreciever
 	name = "sniper stock with reciever"
 	desc = "This is a sniper stock with reciever. Now attach the barrel."
 	icon_state = "sniper_stockreciever"
 
-/obj/item/weaponparts/heavysniper/barrel
+/obj/itemparts/heavysniper/barrel
 	name = "sniper rifle barrel"
 	desc = "This is a barrel from a sniper rifle."
 	icon_state = "sniper_barrel"
 
-/obj/item/weaponparts/heavysniper/stock/attackby(obj/item/W, mob/user,)
-	if(istype(W,/obj/item/weaponparts/heavysniper/reciever))
+/obj/itemparts/heavysniper/stock/attackby(obj/item/W, mob/user,)
+	if(istype(W,/obj/itemparts/heavysniper/reciever))
 		to_chat(user, "You attach the reciever to the stock")
-		var/obj/item/weaponparts/heavysniper/stockreciever/HS = new (get_turf(src))
+		var/obj/itemparts/heavysniper/stockreciever/HS = new (get_turf(src))
 		if(loc == user)
 			equip_slot = user.get_inventory_slot(src)
 			if(equip_slot in list(slot_r_hand, slot_l_hand))
@@ -135,8 +135,8 @@
 		qdel(src)
 
 
-/obj/item/weaponparts/heavysniper/stockreciever/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weaponparts/heavysniper/barrel))
+/obj/itemparts/heavysniper/stockreciever/attackby(obj/item/W, mob/user)
+	if(istype(W,/obj/itemparts/heavysniper/barrel))
 		to_chat(user, "You attach the barrel to the stock")
 		var/obj/item/gun/projectile/heavysniper/HS = new (get_turf(src))
 		if(loc == user)
