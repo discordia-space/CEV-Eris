@@ -57,7 +57,7 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.update_icons()
 
-/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG") //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
 	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
@@ -127,10 +127,11 @@
 	else
 		if (M.ear_damage >= 5)
 			to_chat(M, SPAN_DANGER("Your ears start to ring!"))
-	M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
+	if(stat_reduction)
+		M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
 	M.update_icons()
 
 /obj/item/grenade/flashbang/nt

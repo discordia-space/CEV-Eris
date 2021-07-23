@@ -163,7 +163,8 @@
 		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/autolathe/nt/sword/nt_halberd,
-		/datum/design/autolathe/nt/shield/nt_shield
+		/datum/design/autolathe/nt/shield/nt_shield,
+		/datum/design/autolathe/nt/sword/nt_spear
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/firstaid

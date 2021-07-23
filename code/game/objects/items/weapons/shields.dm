@@ -77,6 +77,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	var/picked_by_human = FALSE
 	var/mob/living/carbon/human/picking_human
+	var/initial_armor
 
 /obj/item/shield/riot/handle_shield(mob/user)
 	. = ..()
@@ -110,13 +111,15 @@
 /obj/item/shield/riot/proc/update_state()
 	if(!picking_human)
 		return
+	if(!initial_armor)
+		initial_armor = armor
 	if(MOVING_QUICKLY(picking_human))
 		item_state = "[initial(item_state)]_run"
 		armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 		visible_message("[picking_human] lowers [gender_datums[picking_human.gender].his] [src.name].")
 	else
 		item_state = "[initial(item_state)]_walk"
-		armor = initial(armor)
+		armor = initial_armor
 		visible_message("[picking_human] raises [gender_datums[picking_human.gender].his] [src.name] to cover [gender_datums[picking_human.gender].him]self!")
 	update_wear_icon()
 

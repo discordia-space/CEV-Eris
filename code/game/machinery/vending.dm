@@ -1091,13 +1091,18 @@
 					/obj/item/flame/lighter/random = 4,
 					/obj/item/storage/fancy/cigar = 5,
 					/obj/item/storage/fancy/cigarettes/killthroat = 5,
+					/obj/item/storage/fancy/cigcartons/killthroat = 3,
+					/obj/item/storage/fancy/cigarettes/dromedaryco = 5,
+					/obj/item/storage/fancy/cigcartons/dromedaryco = 3,
 					/obj/item/clothing/mask/vape = 5,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/berry = 10,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/banana = 10,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/lemon = 10,
 					/obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 5
 				   )
-
+	contraband = list(/obj/item/storage/fancy/cigarettes/homeless = 3,
+					  /obj/item/storage/fancy/cigcartons/homeless = 1,
+					)
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
 				  /obj/item/storage/fancy/cigarettes = 100,
 				  /obj/item/storage/fancy/cigcartons = 800,
@@ -1105,12 +1110,17 @@
 				  /obj/item/flame/lighter/random = 5,
 				  /obj/item/storage/fancy/cigar = 450,
 				  /obj/item/storage/fancy/cigarettes/killthroat = 100,
+				  /obj/item/storage/fancy/cigcartons/killthroat = 800,
+				  /obj/item/storage/fancy/cigarettes/dromedaryco = 100,
+				  /obj/item/storage/fancy/cigcartons/dromedaryco = 800,
 				  /obj/item/flame/lighter/zippo = 250,
 				  /obj/item/clothing/mask/vape = 300,
 				  /obj/item/reagent_containers/glass/beaker/vial/vape/berry = 100,
 				  /obj/item/reagent_containers/glass/beaker/vial/vape/banana = 100,
 				  /obj/item/reagent_containers/glass/beaker/vial/vape/lemon = 100,
-				  /obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 100
+				  /obj/item/reagent_containers/glass/beaker/vial/vape/nicotine = 100,
+				  /obj/item/storage/fancy/cigarettes/homeless = 300,
+				  /obj/item/storage/fancy/cigcartons/homeless = 2400
 				  )
 
 
@@ -1446,13 +1456,16 @@
 					/obj/item/computer_hardware/hard_drive/portable/design/computer = 10,
 					/obj/item/computer_hardware/hard_drive/portable/design/medical = 10,
 					/obj/item/computer_hardware/hard_drive/portable/design/security = 5,
-					/obj/item/computer_hardware/hard_drive/portable/design/armor/generic = 5,
+					/obj/item/computer_hardware/hard_drive/portable/design/armor/asters = 5,
 					/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
 					/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_slaught_o_matic = 5,
 					/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
 					/obj/item/electronics/circuitboard/autolathe = 3,
 					/obj/item/electronics/circuitboard/vending = 10)
-	contraband = list(/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/electronics/circuitboard/autolathe_disk_cloner = 3)
+	contraband = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = 3,
+			/obj/item/electronics/circuitboard/autolathe_disk_cloner = 3
+			)
 	prices = list(/obj/item/computer_hardware/hard_drive/portable = 50,
 					/obj/item/storage/box/data_disk/basic = 100,
 					/obj/item/computer_hardware/hard_drive/portable/design/misc = 300,
@@ -1465,7 +1478,7 @@
 					/obj/item/computer_hardware/hard_drive/portable/design/medical = 400,
 					/obj/item/computer_hardware/hard_drive/portable/design/computer = 500,
 					/obj/item/computer_hardware/hard_drive/portable/design/security = 600,
-					/obj/item/computer_hardware/hard_drive/portable/design/armor/generic = 800,
+					/obj/item/computer_hardware/hard_drive/portable/design/armor/asters = 900,
 					/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
 					/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_slaught_o_matic = 600,
 					/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
@@ -1535,7 +1548,10 @@
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 2,
 					/obj/item/storage/deferred/crate/clown_crime/chains = 2
 					)
-	contraband = list(/obj/item/gun/projectile/mandella = 4,/obj/item/ammo_magazine/cspistol = 12)
+	contraband = list(
+					/obj/item/gun/projectile/mandella = 4,
+					/obj/item/ammo_magazine/cspistol = 12,
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 1)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
@@ -1556,7 +1572,8 @@
 					/obj/item/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 1800,
-					/obj/item/storage/deferred/crate/clown_crime/chains = 1800
+					/obj/item/storage/deferred/crate/clown_crime/chains = 1800,
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 7000
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP

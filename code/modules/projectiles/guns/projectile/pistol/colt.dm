@@ -14,6 +14,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.5
 	recoil_buildup = 4
+	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 
@@ -21,11 +22,17 @@
 	..()
 
 	var/iconstring = initial(icon_state)
+	var/itemstring
+
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	icon_state = iconstring
+	set_item_state(itemstring)
 
 /obj/item/gun/projectile/colt/Initialize()
 	. = ..()

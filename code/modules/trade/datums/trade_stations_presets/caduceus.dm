@@ -15,6 +15,9 @@
 			/obj/item/storage/firstaid/toxin,
 			/obj/item/storage/firstaid/o2,
 			/obj/item/storage/firstaid/adv,
+			/obj/item/stack/medical/bruise_pack,
+			/obj/item/stack/medical/ointment,
+			/obj/item/stack/medical/splint
 		),
 		"Surgery" = list(
 			/obj/item/tool/cautery,
@@ -24,7 +27,7 @@
 			/obj/item/tool/scalpel,
 			/obj/item/tool/retractor,
 			/obj/item/tool/bonesetter,
-			/obj/item/tool/saw/circular,
+			/obj/item/tool/saw/circular
 		),
 		"Blood" = list(
 			/obj/structure/medical_stand,
@@ -34,9 +37,10 @@
 			/obj/item/reagent_containers/blood/BPlus,
 			/obj/item/reagent_containers/blood/BMinus,
 			/obj/item/reagent_containers/blood/OPlus,
-			/obj/item/reagent_containers/blood/OMinus,
+			/obj/item/reagent_containers/blood/OMinus
 		),
 		"Misc" = list(
+			/obj/item/storage/pouch/medical_supply,
 			/obj/item/virusdish/random,
 			/obj/structure/reagent_dispensers/coolanttank,
 			/obj/item/clothing/mask/breath/medical,
@@ -57,9 +61,7 @@
 			/obj/item/reagent_containers/blood/BMinus,
 			/obj/item/reagent_containers/blood/OPlus,
 			/obj/item/reagent_containers/blood/OMinus,
-			/obj/item/storage/firstaid/regular,
-			/obj/item/storage/firstaid/fire,
-			/obj/item/storage/firstaid/toxin,
-			/obj/item/storage/firstaid/o2,
-			/obj/item/storage/firstaid/adv,
+			/obj/item/stack/medical/bruise_pack,
+			/obj/item/stack/medical/splint,
+			/obj/item/stack/medical/ointment
 		)

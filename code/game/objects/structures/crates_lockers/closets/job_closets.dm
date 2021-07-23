@@ -145,5 +145,5 @@
 	new /obj/item/gun/energy/nt_svalinn(src)
 	new /obj/item/cell/small(src)
 	new /obj/item/storage/belt/sheath(src)
-	new /obj/item/tool/sword/nt(src)
+	new /obj/item/tool/sword/nt/shortsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)

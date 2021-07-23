@@ -244,6 +244,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
+/obj/item/clothing/mask/smokable/cigarette/light(flavor_text)
+	. = ..()
+	tool_qualities = list(QUALITY_CAUTERIZING = 10)
+
 /obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 

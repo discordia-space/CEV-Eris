@@ -153,13 +153,13 @@ SUBSYSTEM_DEF(trade)
 			for(var/path in category)
 				. += category[path]
 
-/datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList)
+/datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList, datum/trade_station/tradeStation = null)
 	. = 0
 	for(var/categoryName in shopList)
 		var/category = shopList[categoryName]
 		if(length(category))
 			for(var/path in category)
-				. += get_import_cost(path) * category[path]
+				. += get_import_cost(path, tradeStation) * category[path]
 
 /datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, datum/trade_station/station)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList) || !istype(station))
@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(trade)
 
 	var/obj/structure/closet/crate/C
 	var/count_of_all = collect_counts_from(shopList)
-	var/price_for_all = collect_price_for_list(shopList)
+	var/price_for_all = collect_price_for_list(shopList, station)
 	if(isnum(count_of_all) && count_of_all > 1)
 		price_for_all += station.commision
 		C = senderBeacon.drop(/obj/structure/closet/crate)
