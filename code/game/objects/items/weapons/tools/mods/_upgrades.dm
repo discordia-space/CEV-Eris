@@ -513,7 +513,7 @@
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
 		
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
-			to_chat(user, SPAN_WARNING("Enables the DNA-scanner of the weapon."))
+			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]-1
