@@ -1,10 +1,10 @@
 /datum/movement_handler/mob/incorporeal/cyberspace/DoMove(direction, mob/mover, is_external)
 	var/turf/movedTo = get_step(mover, direction)
 
-	var/list/denseAvatar = GetDenseCyberspaceAvatars(movedTo)
+	var/list/collidedAvatars = GetDenseCyberspaceAvatars(movedTo)
 
-	if(islist(denseAvatar) && length(denseAvatar))
-		for(var/datum/CyberSpaceAvatar/CA in denseAvatar)
+	if(islist(collidedAvatars) && length(collidedAvatars))
+		for(var/datum/CyberSpaceAvatar/CA in collidedAvatars)
 			CA.BumpedBy(mover.CyberAvatar)
 	else
 		. = ..()

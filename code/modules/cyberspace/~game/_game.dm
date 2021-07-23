@@ -20,3 +20,4 @@
 	#include "eye/hud/_hud.dm"
 	#include "eye/hud/datum.dm"
 	#include "eye/hud/screen_objects.dm"
+	#include "eye/hud/cyberspace_hider.dm"

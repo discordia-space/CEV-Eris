@@ -18,3 +18,13 @@
 	Owner = nOwner
 	nOwner ? AddToAtoms(Owner) : RemoveFromAtoms(Owner)
 	UpdateIcon(TRUE)
+
+/atom/proc/CreateCA(_color)
+	if(istype(CyberAvatar))
+		qdel(CyberAvatar)
+	if(ispath(CyberAvatar_inittype))
+		CyberAvatar = new CyberAvatar_inittype(src)
+	else
+		CyberAvatar = new(src)
+	if(_color)
+		CyberAvatar.SetColor(_color)
