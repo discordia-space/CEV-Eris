@@ -65,7 +65,7 @@
 	item_cost = 5
 	path = /obj/item/weapon/gun_upgrade/trigger/boom
 
-/datum/uplink_item/item/visible_weapons/
+/datum/uplink_item/item/visible_weapons/dna_trigger
 	name = "Frozen Star \"DNA lock\" trigger"
 	item_cost = 5
 	path = /obj/item/weapon/gun_upgrade/trigger/dnalock
