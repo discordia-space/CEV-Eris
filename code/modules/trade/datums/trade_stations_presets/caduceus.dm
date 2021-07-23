@@ -10,57 +10,57 @@
 	)
 	assortiment = list(
 		"First Aid" = list(
-			/obj/item/weapon/storage/firstaid/regular,
-			/obj/item/weapon/storage/firstaid/fire,
-			/obj/item/weapon/storage/firstaid/toxin,
-			/obj/item/weapon/storage/firstaid/o2,
-			/obj/item/weapon/storage/firstaid/adv,
+			/obj/item/storage/firstaid/regular,
+			/obj/item/storage/firstaid/fire,
+			/obj/item/storage/firstaid/toxin,
+			/obj/item/storage/firstaid/o2,
+			/obj/item/storage/firstaid/adv,
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/ointment,
 			/obj/item/stack/medical/splint
 		),
 		"Surgery" = list(
-			/obj/item/weapon/tool/cautery,
-			/obj/item/weapon/tool/surgicaldrill,
-			/obj/item/weapon/tank/anesthetic,
-			/obj/item/weapon/tool/hemostat,
-			/obj/item/weapon/tool/scalpel,
-			/obj/item/weapon/tool/retractor,
-			/obj/item/weapon/tool/bonesetter,
-			/obj/item/weapon/tool/saw/circular
+			/obj/item/tool/cautery,
+			/obj/item/tool/surgicaldrill,
+			/obj/item/tank/anesthetic,
+			/obj/item/tool/hemostat,
+			/obj/item/tool/scalpel,
+			/obj/item/tool/retractor,
+			/obj/item/tool/bonesetter,
+			/obj/item/tool/saw/circular
 		),
 		"Blood" = list(
 			/obj/structure/medical_stand,
-			/obj/item/weapon/reagent_containers/blood/empty,
-			/obj/item/weapon/reagent_containers/blood/APlus,
-			/obj/item/weapon/reagent_containers/blood/AMinus,
-			/obj/item/weapon/reagent_containers/blood/BPlus,
-			/obj/item/weapon/reagent_containers/blood/BMinus,
-			/obj/item/weapon/reagent_containers/blood/OPlus,
-			/obj/item/weapon/reagent_containers/blood/OMinus
+			/obj/item/reagent_containers/blood/empty,
+			/obj/item/reagent_containers/blood/APlus,
+			/obj/item/reagent_containers/blood/AMinus,
+			/obj/item/reagent_containers/blood/BPlus,
+			/obj/item/reagent_containers/blood/BMinus,
+			/obj/item/reagent_containers/blood/OPlus,
+			/obj/item/reagent_containers/blood/OMinus
 		),
 		"Misc" = list(
-			/obj/item/weapon/storage/pouch/medical_supply,
-			/obj/item/weapon/virusdish/random,
+			/obj/item/storage/pouch/medical_supply,
+			/obj/item/virusdish/random,
 			/obj/structure/reagent_dispensers/coolanttank,
 			/obj/item/clothing/mask/breath/medical,
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/gloves/latex,
-			/obj/item/weapon/reagent_containers/syringe,
-			/obj/item/weapon/reagent_containers/hypospray/autoinjector,
+			/obj/item/reagent_containers/syringe,
+			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
 			/obj/machinery/suspension_gen,
-			/obj/item/weapon/computer_hardware/hard_drive/portable/design
+			/obj/item/computer_hardware/hard_drive/portable/design
 		),
 	)
 
 	offer_types = list(
-			/obj/item/weapon/reagent_containers/blood/APlus,
-			/obj/item/weapon/reagent_containers/blood/AMinus,
-			/obj/item/weapon/reagent_containers/blood/BPlus,
-			/obj/item/weapon/reagent_containers/blood/BMinus,
-			/obj/item/weapon/reagent_containers/blood/OPlus,
-			/obj/item/weapon/reagent_containers/blood/OMinus,
+			/obj/item/reagent_containers/blood/APlus,
+			/obj/item/reagent_containers/blood/AMinus,
+			/obj/item/reagent_containers/blood/BPlus,
+			/obj/item/reagent_containers/blood/BMinus,
+			/obj/item/reagent_containers/blood/OPlus,
+			/obj/item/reagent_containers/blood/OMinus,
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/splint,
 			/obj/item/stack/medical/ointment

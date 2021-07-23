@@ -31,15 +31,15 @@
 		if(BOX)
 			var/turf/output = get_step(src, output_dir)
 			var/i = 0
-			for(var/obj/item/weapon/ore/O in BOX.contents)
+			for(var/obj/item/ore/O in BOX.contents)
 				O.forceMove(output)
 				if(++i>=unload_amt)
 					return
 
-		if(locate(/obj/item/weapon/ore) in input)
-			var/obj/item/weapon/ore/O
+		if(locate(/obj/item/ore) in input)
+			var/obj/item/ore/O
 			for(var/i = 0; i<unload_amt; i++)
-				O = locate(/obj/item/weapon/ore) in input
+				O = locate(/obj/item/ore) in input
 				if(O)
 					O.forceMove(get_step(src, output_dir))
 				else

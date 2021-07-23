@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/ak47
+/obj/item/gun/projectile/automatic/ak47
 	name = "Excelsior .30 AKMS"
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -35,7 +35,7 @@
 
 	var/folded = FALSE
 
-/obj/item/weapon/gun/projectile/automatic/ak47/on_update_icon()
+/obj/item/gun/projectile/automatic/ak47/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -59,13 +59,13 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/ak47/Initialize()
+/obj/item/gun/projectile/automatic/ak47/Initialize()
 	. = ..()
 	update_icon()
 
 //////////////////////////////////////////SA//////////////////////////////////////////
 
-/obj/item/weapon/gun/projectile/automatic/ak47/sa
+/obj/item/gun/projectile/automatic/ak47/sa
 	name = "SA Car .30 \"Krinkov\""					// US nickname for AKSu
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -81,7 +81,7 @@
 
 	price_tag = 3500
 
-/obj/item/weapon/gun/projectile/automatic/ak47/sa/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick()
 	. = ..()
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
@@ -90,7 +90,7 @@
 	fold()
 
 
-/obj/item/weapon/gun/projectile/automatic/ak47/sa/verb/quick_fold()
+/obj/item/gun/projectile/automatic/ak47/sa/verb/quick_fold()
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
@@ -99,7 +99,7 @@
 		return
 	fold()
 
-/obj/item/weapon/gun/projectile/automatic/ak47/sa/proc/fold()
+/obj/item/gun/projectile/automatic/ak47/sa/proc/fold()
 
 	if(folded)
 		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
@@ -117,7 +117,7 @@
 
 //////////////////////////////////////////FS//////////////////////////////////////////
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs
+/obj/item/gun/projectile/automatic/ak47/fs
 	name = "FS AR .30 \"Vipr\""						// Vipr like a play on Viper and Vepr
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -145,7 +145,7 @@
 
 //////////////////////////////////////////IH//////////////////////////////////////////
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih
+/obj/item/gun/projectile/automatic/ak47/fs/ih
 	name = "FS AR .30 \"Venger\""						// From a song
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -155,7 +155,7 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick()
 	. = ..()
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
@@ -163,7 +163,7 @@
 
 	fold()
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
+/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
@@ -172,7 +172,7 @@
 		return
 	fold()
 
-/obj/item/weapon/gun/projectile/automatic/ak47/fs/ih/proc/fold()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold()
 
 	if(folded)
 		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
@@ -190,7 +190,7 @@
 
 //////////////////////////////////////////Makeshift//////////////////////////////////////////
 
-/obj/item/weapon/gun/projectile/automatic/ak47/makeshift
+/obj/item/gun/projectile/automatic/ak47/makeshift
 	name = "Makeshift AR .30 \"Kalash\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
