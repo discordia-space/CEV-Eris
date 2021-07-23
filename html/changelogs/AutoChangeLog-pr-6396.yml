@@ -1,0 +1,6 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Biocoded trigger gunmod
+  - tweak: Cop Lock now cannot be removed instantly
+  - imageadd: sprite for dna lock trigger, same as danger zone, but blue
