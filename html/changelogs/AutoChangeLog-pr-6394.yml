@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: two types of NT-branded cells, that cannot be recharged
+  - imageadd: sprites for neoteo cells

@@ -30,6 +30,7 @@
 	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
+	var/spawn_charged = 0 //For non-rechargeable cells
 
 /obj/item/cell/Initialize()
 	. = ..()
@@ -51,9 +52,12 @@
 
 	return TRUE
 
-//Newly manufactured cells start off empty. You can't create energy
+//Newly manufactured cells start off empty, except for non-rechargeable ones.
 /obj/item/cell/Created()
-	charge = 0
+	if (spawn_charged == 1)
+		charge = maxcharge
+	else
+		charge = 0
 	update_icon()
 
 /obj/item/cell/drain_power(drain_check, surge, power = 0)
