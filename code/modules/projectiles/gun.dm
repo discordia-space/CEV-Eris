@@ -51,9 +51,9 @@
 	var/safety = TRUE//is safety will be toggled on spawn() or not
 	var/restrict_safety = FALSE //To restrict the users ability to toggle the safety
 
-	var/dna_locked = FALSE //If DNA-lock installed
-	var/dna_lock_sample = "not_set" //Unique_enzymes from mob who installed DNA-lock
-	var/dna_user_sample = "not_set" //Gun user's unique_enzymes
+	var/dna_compare_samples = FALSE //If DNA-lock installed
+	var/dna_lock_sample = "not_set" //real_name from mob who installed DNA-lock
+	var/dna_user_sample = "not_set" //Current user's real_name
 
 	var/next_fire_time = 0
 
@@ -218,7 +218,7 @@
 		return FALSE
 
 	if(!dna_check(M))
-		to_chat(user, SPAN_DANGER("The gun's DNA scanner prevent you from firing!"))
+		to_chat(user, SPAN_DANGER("The gun's biometric scanner prevents you from firing!"))
 		handle_click_empty(user)
 		return FALSE
 
@@ -260,10 +260,9 @@
 			return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/proc/dna_check(mob/user)
-	if(dna_locked)
-		var/datum/dna/dna = usr.dna
-		dna_user_sample = dna.unique_enzymes
+/obj/item/weapon/gun/proc/dna_check(user)
+	if(dna_compare_samples)
+		dna_user_sample = usr.real_name
 		if(dna_lock_sample != dna_user_sample)
 			return FALSE
 	return TRUE
@@ -794,6 +793,7 @@
 	proj_damage_adjust = list()
 	fire_sound = initial(fire_sound)
 	restrict_safety = initial(restrict_safety)
+	dna_compare_samples = initial(dna_compare_samples)
 	rigged = initial(rigged)
 	zoom_factor = initial(zoom_factor)
 	darkness_view = initial(darkness_view)

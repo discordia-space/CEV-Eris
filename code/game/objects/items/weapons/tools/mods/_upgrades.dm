@@ -20,6 +20,7 @@
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
 	var/removable = TRUE
+	var/breakable = TRUE //Some mods meant to be tamper-resistant and should be removed only in a hard way
 
 	//The upgrade can not be applied to a tool that has any of these qualities
 	var/list/negative_qualities = list()
@@ -327,11 +328,17 @@
 		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
-	
+
 	if(weapon_upgrades[GUN_UPGRADE_DNALOCK])
-		G.dna_locked = TRUE
-		var/datum/dna/dna = usr.dna
-		G.dna_lock_sample = dna.unique_enzymes
+		G.dna_compare_samples = TRUE
+		if(G.dna_lock_sample == "not_set")
+			G.dna_lock_sample = usr.real_name
+
+	if(G.dna_compare_samples == FALSE)
+		G.dna_lock_sample = "not_set"
+
+	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
+		G.dna_compare_samples = FALSE
 	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
@@ -504,6 +511,9 @@
 			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
+		
+		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
+			to_chat(user, SPAN_WARNING("Enables the DNA-scanner of the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]-1
@@ -603,7 +613,11 @@
 				return 1
 			else
 				//You failed the check, lets see what happens
-				if(prob(50))
+				if(IU.breakable == FALSE)
+					to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
+					upgrade_loc.refresh_upgrades()
+					user.update_action_buttons()
+				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
 					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
