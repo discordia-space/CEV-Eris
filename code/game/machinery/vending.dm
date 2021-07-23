@@ -1091,13 +1091,18 @@
 					/obj/item/weapon/flame/lighter/random = 4,
 					/obj/item/weapon/storage/fancy/cigar = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
+					/obj/item/weapon/storage/fancy/cigcartons/killthroat = 3,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
+					/obj/item/weapon/storage/fancy/cigcartons/dromedaryco = 3,
 					/obj/item/clothing/mask/vape = 5,
 					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 10,
 					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana = 10,
 					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon = 10,
 					/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine = 5
 				   )
-
+	contraband = list(/obj/item/weapon/storage/fancy/cigarettes/homeless = 3,
+					  /obj/item/weapon/storage/fancy/cigcartons/homeless = 1,
+					)
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
 				  /obj/item/weapon/storage/fancy/cigarettes = 100,
 				  /obj/item/weapon/storage/fancy/cigcartons = 800,
@@ -1105,12 +1110,17 @@
 				  /obj/item/weapon/flame/lighter/random = 5,
 				  /obj/item/weapon/storage/fancy/cigar = 450,
 				  /obj/item/weapon/storage/fancy/cigarettes/killthroat = 100,
+				  /obj/item/weapon/storage/fancy/cigcartons/killthroat = 800,
+				  /obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 100,
+				  /obj/item/weapon/storage/fancy/cigcartons/dromedaryco = 800,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
 				  /obj/item/clothing/mask/vape = 300,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry = 100,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana = 100,
 				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon = 100,
-				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine = 100
+				  /obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine = 100,
+				  /obj/item/weapon/storage/fancy/cigarettes/homeless = 300,
+				  /obj/item/weapon/storage/fancy/cigcartons/homeless = 2400
 				  )
 
 
