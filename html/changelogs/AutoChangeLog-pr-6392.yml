@@ -1,0 +1,5 @@
+author: zombiemimic
+delete-after: true
+changes:
+  - rscadd: Added more cigarettes to cigarette vendor
+  - rscadd: gave lit cigarettes/cigars cauterizing quality
