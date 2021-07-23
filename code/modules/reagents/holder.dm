@@ -381,6 +381,7 @@
 		return trans_to_holder(target, amount, multiplier, copy)
 	else if(istype(target, /atom))
 		var/atom/A = target
+		touch(A)
 		if(ismob(target))
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))

@@ -235,16 +235,20 @@
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
 			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)
-		var/dam_prob = min(100,material.hardness*1.5)
+		var/dam_prob = material.hardness * 1.4
 		if (locate(/obj/effect/overlay/wallrot) in src)
 			dam_prob *= 0.5 //Rot makes reinforced walls breakable
+		if(ishuman(user))
+			var/mob/living/carbon/human/attacker = user
+			dam_prob -= attacker.stats.getStat(STAT_ROB)
 		if(dam_prob < 100 && attackforce > (dam_threshhold/10))
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
-				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I] and it [material.destruction_desc]!"))
-				dismantle_wall(1)
-			else
 				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
+				playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
+				take_damage(attackforce)
+			else
+				visible_message(SPAN_WARNING("\The [user] attacks \the [src] with \the [I]!"))
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I], but it bounces off!"))
 		user.do_attack_animation(src)

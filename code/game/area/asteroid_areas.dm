@@ -139,3 +139,19 @@
 
 /area/outpost/research/disposal
 	name = "Research Outpost Waste Disposal"
+
+//Prison hulk
+/area/outpost/prisonhulk
+	icon_state = "security"
+
+/area/outpost/prisonhulk/cells
+	name = "Prison Hulk Cells"
+
+/area/outpost/prisonhulk/food
+	name = "Prison Hulk Mess"
+
+/area/outpost/prisonhulk/security
+	name = "Prison Hulk Brig"
+
+/area/outpost/prisonhulk/medical
+	name = "Prison Hulk Infirmary"

@@ -79,6 +79,10 @@
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
+/obj/structure/closet/Destroy()
+	dump_contents()
+	return ..()
+
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
 		var/content_size = 0
@@ -166,14 +170,15 @@
 
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
+	var/turf/T = get_turf(src)
 	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.forceMove(loc)
+		AD.forceMove(T)
 
 	for(var/obj/I in src)
-		I.forceMove(loc)
+		I.forceMove(T)
 
 	for(var/mob/M in src)
-		M.forceMove(loc)
+		M.forceMove(T)
 		if(M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
@@ -305,19 +310,15 @@
 	switch(severity)
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.forceMove(src.loc)
 				A.ex_act(severity + 1)
 			qdel(src)
 		if(2)
 			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
 					A.ex_act(severity + 1)
 				qdel(src)
 		if(3)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
 				qdel(src)
 
 /obj/structure/closet/proc/populate_contents()
@@ -326,8 +327,6 @@
 /obj/structure/closet/proc/damage(damage)
 	health -= damage
 	if(health <= 0)
-		for(var/atom/movable/A in src)
-			A.forceMove(src.loc)
 		qdel(src)
 
 /obj/structure/closet/bullet_act(obj/item/projectile/Proj)

@@ -10,7 +10,7 @@
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"the Technomancer Exultant's advanced voidsuit control module" = /obj/item/weapon/rig/ce,
-		"the station blueprints" = /obj/item/blueprints,
+		"the ship blueprints" = /obj/item/blueprints,
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
@@ -37,7 +37,8 @@
 	)
 
 	var/global/possible_items_special[] = list(
-		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
+		"mindflayer" = /obj/item/weapon/gun/energy/psychic/mindflayer,
+		"advanced energy gun" = /obj/item/weapon/gun/energy/nuclear,
 		"diamond drill" = /obj/item/weapon/tool/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/large/hyper,

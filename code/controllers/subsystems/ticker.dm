@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(ticker)
 
 					if(universe_has_ended)
 						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>"))
+							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of ship in [restart_timeout/10] seconds</b>"))
 					else
 						if(!delay_end)
 							to_chat(world, SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>"))

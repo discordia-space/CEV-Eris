@@ -20,22 +20,52 @@
 
 /obj/item/part/armor
 	name = "armor part"
-	desc = "Spare part for clothing."
+	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
 
+/obj/item/part/armor/artwork
+	desc = "This is an artistically-made armor part."
+	spawn_frequency = 0
+
+/obj/item/part/armor/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
+	price_tag += rand(0, 500)
+	return ..()
+
+/obj/item/part/armor/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
+
 /obj/item/part/gun
 	name = "gun part"
-	desc = "Spare part of a gun."
+	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 1.2)
 
-/obj/item/part/gun/New()
+/obj/item/part/gun/Initialize()
 	. = ..()
 	icon_state = "gun_part_[rand(1,6)]"
+
+/obj/item/part/gun/artwork
+	desc = "This is an artistically-made gun part."
+	spawn_frequency = 0
+
+/obj/item/part/gun/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
+	price_tag += rand(0, 500)
+	return ..()
+
+/obj/item/part/gun/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
 
 /obj/item/craft_frame
 	name = "item assembly"
@@ -49,7 +79,7 @@
 	var/suitable_part
 	var/view_only = 0
 	var/tags_to_spawn = list()
-	var/req_parts = 15
+	var/req_parts = 10
 	var/complete = FALSE
 	var/total_items = 20
 	var/list/items = list()
@@ -90,7 +120,7 @@
 
 /obj/item/craft_frame/proc/generate_guns()
 	for(var/i in 1 to total_items)
-		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, null, TRUE, null, paths, null)
+		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, i*500, TRUE, null, paths, null)
 		paths += list(SSspawn_data.pick_spawn(canidates))
 	for(var/path in paths)
 		items += new path()
@@ -104,7 +134,9 @@
 	if(!complete)
 		to_chat(user, SPAN_WARNING("[src] is not yet complete."))
 	else
-		view_only = round((total_items - 1) * (1 - user.stats.getMult(req_sat, STAT_LEVEL_GODLIKE))) + 1
+		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
+		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
+			view_only += 3
 		ui_interact(user)
 		SSnano.update_uis(src)
 

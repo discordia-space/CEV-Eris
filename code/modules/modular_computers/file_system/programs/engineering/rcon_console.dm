@@ -33,7 +33,7 @@
 		"charge" = round(SMES.Percentage()),
 		"input_set" = SMES.input_attempt,
 		"input_val" = round(SMES.input_level/1000, 0.1),
-		"input_load" = round(SMES.input_available/1000, 0.1),
+		"input_load" = round(SMES.target_load/1000, 0.1),
 		"output_set" = SMES.output_attempt,
 		"output_val" = round(SMES.output_level/1000, 0.1),
 		"output_load" = round(SMES.output_used/1000, 0.1),
@@ -123,11 +123,11 @@
 // Description: Refreshes local list of known devices.
 /datum/nano_module/rcon/proc/FindDevices()
 	known_SMESs = new /list()
-	for(var/obj/machinery/power/smes/buildable/SMES in SSmachines.machinery)
+	for(var/obj/machinery/power/smes/buildable/SMES in GLOB.smes_list)
 		if(AreConnectedZLevels(get_host_z(), get_z(SMES)) && SMES.RCon_tag && (SMES.RCon_tag != "NO_TAG") && SMES.RCon)
 			known_SMESs.Add(SMES)
 
 	known_breakers = new /list()
-	for(var/obj/machinery/power/breakerbox/breaker in SSmachines.machinery)
+	for(var/obj/machinery/power/breakerbox/breaker in GLOB.machines)
 		if(AreConnectedZLevels(get_host_z(), get_z(breaker)) && breaker.RCon_tag != "NO_TAG")
 			known_breakers.Add(breaker)

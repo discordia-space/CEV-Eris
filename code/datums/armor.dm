@@ -1,3 +1,4 @@
+
 #define ARMORID "armor-[melee]-[bullet]-[energy]-[bomb]-[bio]-[rad]"
 
 /proc/getArmor(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)

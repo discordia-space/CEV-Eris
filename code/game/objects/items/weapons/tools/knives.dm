@@ -74,8 +74,16 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	force = WEAPON_FORCE_PAINFUL
+	embed_mult = 3
 	max_upgrades = 3
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/tool/knife/neotritual/equipped(mob/living/H)
+	. = ..()
+	if(is_held() && is_neotheology_disciple(H))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
 
 /obj/item/weapon/tool/knife/tacknife
 	name = "tactical knife"
@@ -293,3 +301,31 @@
 	w_class = initial(w_class)
 	update_icon()
 	update_wear_icon()
+
+
+/obj/item/weapon/tool/spear
+	name = "spear"
+	desc = "A piece of glass tied using cable coil onto two welded rods. Impressive work."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "spear"
+	item_state = "spear"
+	wielded_icon = "spear_wielded"
+	flags = CONDUCT
+	sharp = TRUE
+	edge = TRUE
+	worksound = WORKSOUND_HARD_SLASH
+	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
+	force = WEAPON_FORCE_NORMAL * 1.6 //16
+	throwforce = WEAPON_FORCE_DANGEROUS //20
+	armor_penetration = ARMOR_PEN_MODERATE //15
+	max_upgrades = 3
+	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
+	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it
+	slot_flags = SLOT_BACK
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	allow_spin = FALSE
+
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_KNIFE
+

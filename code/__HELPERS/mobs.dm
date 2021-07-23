@@ -284,7 +284,30 @@ Proc for attack log creation, because really why not
 /proc/is_neotheology_disciple(mob/living/L)
 	if(istype(L) && L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 		return TRUE
+	return FALSE
 
+/proc/is_acolyte(mob/living/L)
+	if(!isliving(L))
+		return FALSE
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C && C.get_module(CRUCIFORM_ACOLYTE))
+		return TRUE
+	return FALSE
+
+/proc/is_preacher(mob/living/L)
+	if(!isliving(L))
+		return FALSE
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C && C.get_module(CRUCIFORM_PRIEST) && C.get_module(CRUCIFORM_REDLIGHT))
+		return TRUE
+	return FALSE
+
+/proc/is_inquisidor(mob/living/L)
+	if(!isliving(L))
+		return FALSE
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(C && C.get_module(CRUCIFORM_INQUISITOR))
+		return TRUE
 	return FALSE
 
 /proc/is_carrion(mob/living/carbon/human/H)

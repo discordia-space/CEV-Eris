@@ -26,10 +26,12 @@
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk58\""
 	build_path = /obj/item/weapon/gun/projectile/mk58
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
 	name = "NT HG .35 \"Mk58\""
 	build_path = /obj/item/weapon/gun/projectile/mk58/wood
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/colt
 	name = "FS HG .35 Auto \"Colt M1911\""
@@ -78,6 +80,7 @@
 /datum/design/autolathe/gun/regulator
 	name = "NT SG \"Regulator 1000\""
 	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/regulator
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/gladstone
 	name = "FS SG \"Gladstone\""
@@ -90,7 +93,7 @@
 // SMGs
 
 /datum/design/autolathe/gun/zoric
-	name = "FS SMG .40 \"Zoric\""
+	name = "SA SMG .40 \"Zoric\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/zoric
 
 /datum/design/autolathe/gun/atreides
@@ -110,8 +113,12 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/molly
 
 /datum/design/autolathe/gun/drozd
-	name = "Excelsior.35 \"Drozd\""
+	name = "Excelsior .40 \"Drozd\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/drozd
+
+/datum/design/autolathe/gun/slaught_o_matic //alledgedly a handgun, but practically an SMG
+	name = "FS HG .35 \"Slaught-o-Matic\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/slaught_o_matic
 
 // .20 Rifles
 
@@ -124,14 +131,18 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/z8
 
 /datum/design/autolathe/gun/wintermute
-	name = "FS BR .20 \"Wintermute\""
+	name = "FS AR .20 \"Wintermute\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/wintermute
+
+/datum/design/autolathe/gun/kovacs
+	name = "SA BR .20 \"Kovacs\""
+	build_path = /obj/item/weapon/gun/projectile/kovacs
 
 
 // .25 Rifles
 
 /datum/design/autolathe/gun/sol
-	name = "FS CAR .25 caseless \"Sol\""
+	name = "FS CAR .25 CS \"Sol\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/sol
 
 /datum/design/autolathe/gun/dallas
@@ -152,25 +163,13 @@
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
-/datum/design/autolathe/gun/ak47_fs_vipr
+/datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/vipr
-
-/datum/design/autolathe/gun/ak47_fs_wasp
-	name = "FS AR .30 \"Wasp\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/wasp
-
-/datum/design/autolathe/gun/ak47_fs_brush
-	name = "FS AR .30 \"Brushmaster\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/brush
+	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs/ih
-
-/datum/design/autolathe/gun/ak47_sa
-	name = "SA Car .30 \"Krinkov\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/ak47_sa
 	name = "SA Car .30 \"Krinkov\""
@@ -185,6 +184,7 @@
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
 	build_path = /obj/item/weapon/gun/projectile/heavysniper
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
@@ -197,16 +197,22 @@
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
 	build_path = /obj/item/weapon/gun/launcher/grenade
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/grenade_launcher_lenar
 	name = "FS GL \"Lenar\""
 	build_path = /obj/item/weapon/gun/launcher/grenade/lenar
+
+/datum/design/autolathe/gun/hmg_maxim
+	name = "Excelsior HMG .30 \"Maxim\""
+	build_path = /obj/item/weapon/gun/projectile/automatic/maxim
 
 // Energy small arms
 
 /datum/design/autolathe/gun/taser
 	name = "NT SP \"Counselor\""
 	build_path = /obj/item/weapon/gun/energy/taser
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/energygun
 	name = "FS PDW E \"Spider Rose\""
@@ -219,20 +225,24 @@
 /datum/design/autolathe/gun/nt_svalinn
 	name = "NT LP \"Svalinn\""
 	build_path = /obj/item/weapon/gun/energy/nt_svalinn
+	factions = list(FACTION_NEOTHEOLOGY)
 
 // Energy general
 
 /datum/design/autolathe/gun/energy_crossbow
 	name = "NT EC \"Nemesis\""
 	build_path = /obj/item/weapon/gun/energy/crossbow
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/large_energy_crossbow
 	name = "NT EC \"Themis\""
 	build_path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/laser
 	name = "NT LG \"Lightfall\""
 	build_path = /obj/item/weapon/gun/energy/laser
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/retro
 	name = "OS LG \"Cog\""
@@ -241,24 +251,29 @@
 /datum/design/autolathe/gun/ionrifle
 	name = "NT IR \"Halicon\""
 	build_path = /obj/item/weapon/gun/energy/ionrifle
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
 	build_path = /obj/item/weapon/gun/energy/sniperrifle
+	factions = list(FACTION_NEOTHEOLOGY)
 
 // Plasma
 
 /datum/design/autolathe/gun/plasma/dominion
 	name = "NT PR \"Dominion\""
 	build_path = /obj/item/weapon/gun/energy/plasma
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/plasma/destroyer
 	name = "NT PR \"Purger\""
 	build_path = /obj/item/weapon/gun/energy/plasma/destroyer
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/plasma/cassad
 	name = "FS PR \"Cassad\""
 	build_path = /obj/item/weapon/gun/energy/plasma/cassad
+	factions = list(FACTION_NEOTHEOLOGY)
 
 // Special
 /datum/design/autolathe/gun/reclaimer
@@ -268,6 +283,7 @@
 /datum/design/autolathe/gun/nt_sprayer
 	name = "NT cleansing carbine"
 	build_path = /obj/item/weapon/gun/matter/launcher/nt_sprayer
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/syringe_gun
 	name = "syringe gun"

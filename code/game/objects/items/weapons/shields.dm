@@ -58,8 +58,8 @@
 	return ..()
 
 /obj/item/weapon/shield/riot
-	name = "riot shield"
-	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
+	name = "tactical shield"
+	desc = "A personal shield made of pre-preg aramid fibres designed to stop or deflect bullets and other projectiles fired at its wielder."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
 	item_state = "riot"
@@ -71,22 +71,54 @@
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10)
 	price_tag = 500
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
+	var/picked_by_human = FALSE
+	var/mob/living/carbon/human/picking_human
 
 /obj/item/weapon/shield/riot/handle_shield(mob/user)
 	. = ..()
 	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
 
 /obj/item/weapon/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
-		var/obj/item/projectile/P = damage_source
-		//plastic shields do not stop bullets or lasers, even in space. Will block beanbags, rubber bullets, and stunshots just fine though.
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
-			return 0
-	return base_block_chance
+	if(MOVING_QUICKLY(user))
+		return 0
+	if(MOVING_DELIBERATELY(user))
+		return base_block_chance
+
+/obj/item/weapon/shield/riot/New()
+	RegisterSignal(src, COMSIG_ITEM_PICKED, .proc/is_picked)
+	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/is_dropped)
+	return ..()
+
+/obj/item/weapon/shield/riot/proc/is_picked()
+	var/mob/living/carbon/human/user = loc
+	if(istype(user))
+		picked_by_human = TRUE
+		picking_human = user
+		RegisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE, .proc/update_state)
+		update_state()
+
+/obj/item/weapon/shield/riot/proc/is_dropped()
+	if(picked_by_human && picking_human)
+		UnregisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE)
+		picked_by_human = FALSE
+		picking_human = null
+
+/obj/item/weapon/shield/riot/proc/update_state()
+	if(!picking_human)
+		return
+	if(MOVING_QUICKLY(picking_human))
+		item_state = "[initial(item_state)]_run"
+		armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+		visible_message("[picking_human] lowers [gender_datums[picking_human.gender].his] [src.name].")
+	else
+		item_state = "[initial(item_state)]_walk"
+		armor = initial(armor)
+		visible_message("[picking_human] raises [gender_datums[picking_human.gender].his] [src.name] to cover [gender_datums[picking_human.gender].him]self!")
+	update_wear_icon()
 
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton))

@@ -38,14 +38,14 @@
 				if("feet")
 					zone = pick(BP_L_LEG , BP_R_LEG)
 					if(!H.shoes)
-						H.apply_effect(500/(target.mob_size), AGONY)//Halloss instead of instant knockdown
+						H.adjustHalLoss(500/(target.mob_size))//Halloss instead of instant knockdown
 						//Mainly for the benefit of giant monsters like vaurca breeders
 				if(BP_L_ARM , BP_R_ARM)
 					zone = type
 					if(!H.gloves)
-						H.apply_effect(250/(target.mob_size), AGONY)
+						H.adjustHalLoss(250/(target.mob_size))
 		if (!isrobot(target))
-			target.damage_through_armor(rand(15,30), AGONY, zone, ARMOR_MELEE, used_weapon = src)
+			target.damage_through_armor(rand(15,30), HALLOSS, zone, ARMOR_MELEE, used_weapon = src)
 			target.damage_through_armor(rand(8,15), BRUTE, zone, ARMOR_MELEE, used_weapon = src)
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)

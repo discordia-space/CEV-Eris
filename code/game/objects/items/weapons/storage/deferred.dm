@@ -90,6 +90,12 @@
 	icon_state = "box_serbian"
 	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already made.
 
+/obj/item/weapon/storage/deferred/disks //for the beacon, cause we want it priced right and actually functional
+	name = "autolathe disk box"
+	desc = "A small collection of autolathe disks"
+	initial_contents = list(/obj/spawner/lathe_disk = 7)
+	price_tag = 2800
+
 //Medical
 /obj/item/weapon/storage/deferred/surgery
 	name = "combat surgery kit"
@@ -163,6 +169,13 @@
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/sa  = 6,
 	/obj/item/ammo_magazine/lrifle = 18)
+
+/obj/item/weapon/storage/deferred/crate/kovacs
+	name = "designated marksman crate"
+	desc = "A crate containing six \"Kovacs\" battle rifles, and plenty of mags."
+	icon_state = "serbcrate_deferred_green"
+	initial_contents = list(/obj/item/weapon/gun/projectile/kovacs = 6,
+	/obj/item/ammo_magazine/srifle = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
 	name = "grenadier crate"
@@ -311,3 +324,50 @@
 	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
 
+/obj/item/weapon/storage/deferred/crate/clown_crime
+	name = "mastermind suit bag"
+	desc = "A duffelbag filled with clothing and... a second duffelbag?."
+	icon = 'icons/obj/storage/backpack.dmi'
+	icon_state = "lootbag"
+	spawn_blacklisted = TRUE
+	initial_contents = list(
+	/obj/item/clothing/mask/thief = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/wolf
+	name = "technician suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/wolf = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/hoxton	//whatcocksuckingmotherfuckermeasuredthec4 https://www.youtube.com/watch?v=Hmp1da7pXTw&t=160s
+	name = "fugitive suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/hoxton = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)
+
+/obj/item/weapon/storage/deferred/crate/clown_crime/chains
+	name = "enforcer suit bag"
+	initial_contents = list(
+	/obj/item/clothing/mask/thief/chains = 1,
+	/obj/item/weapon/storage/belt/tactical = 1,
+	/obj/item/weapon/storage/backpack/duffelbag/loot = 1,
+	/obj/item/clothing/under/tuxedo = 1,
+	/obj/item/clothing/shoes/reinforced = 1,
+	/obj/item/clothing/gloves/latex/nitrile = 1,
+	/obj/item/clothing/suit/armor/vest = 1)

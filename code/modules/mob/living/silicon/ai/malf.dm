@@ -64,13 +64,13 @@
 // Recalculates CPU time gain and storage capacities.
 /mob/living/silicon/ai/proc/recalc_cpu()
 	// AI Starts with these values.
-	var/cpu_gain = 0.01
+	var/cpu_gain = 0.2
 	var/cpu_storage = 10
 
 	// Off-Station APCs should not count towards CPU generation.
 	for(var/obj/machinery/power/apc/A in hacked_apcs)
 		if(isOnStationLevel(A))
-			cpu_gain += 0.004
+			cpu_gain += 0.08
 			cpu_storage += 10
 
 	research.max_cpu = cpu_storage + override_CPUStorage

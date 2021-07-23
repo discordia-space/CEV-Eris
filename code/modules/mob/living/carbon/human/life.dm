@@ -357,7 +357,7 @@
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
 
-	if(get_organ_efficiency(OP_LUNGS))
+	if(get_organ_efficiency(OP_LUNGS) > 1)
 		failed_last_breath = !handle_breath_lungs(breath)
 	else
 		failed_last_breath = 1
@@ -829,17 +829,11 @@
 				return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
+		if(getOxyLoss() > (species.total_health/2))
 			Paralyse(3)
 
 		if(hallucination_power)
 			handle_hallucinations()
-
-		if(halloss >= species.total_health)
-			to_chat(src, SPAN_WARNING("[species.halloss_message_self]"))
-			src.visible_message("<B>[src]</B> [species.halloss_message].")
-			Paralyse(10)
-			setHalLoss(species.total_health-1)
 
 		if(paralysis || sleeping)
 			blinded = TRUE
@@ -971,63 +965,6 @@
 		var/turf/T = loc
 		if(T.get_lumcount() == 0)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-
-/mob/living/carbon/human/handle_shock()
-	..()
-	if(status_flags & GODMODE)	return 0	//godmode
-	if(species && species.flags & NO_PAIN) return
-
-	var/health_threshold_softcrit = HEALTH_THRESHOLD_SOFTCRIT - stats.getStat(STAT_TGH)
-	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
-		health_threshold_softcrit -= 20
-	if(health < health_threshold_softcrit)// health 0 - stat makes you immediately collapse
-		shock_stage = max(shock_stage, 61)
-	else if(shock_resist)
-		shock_stage = min(shock_stage, 58)
-
-	if(traumatic_shock >= 80)
-		shock_stage += 1
-	else if(health < health_threshold_softcrit)
-		shock_stage = max(shock_stage, 61)
-	else
-		shock_stage = min(shock_stage, 160)
-		shock_stage = max(shock_stage-1, 0)
-		return
-
-	sanity.onShock(shock_stage)
-
-	if(shock_stage == 10)
-		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")
-
-	if(shock_stage >= 30)
-		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
-		stuttering = max(stuttering, 5)
-
-	if(shock_stage == 40)
-		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-
-	if (shock_stage >= 60)
-		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
-		if (prob(2))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-			Weaken(20)
-
-	if(shock_stage >= 80)
-		if (prob(5))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-			Weaken(20)
-
-	if(shock_stage >= 120)
-		if (prob(2))
-			to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-			Paralyse(5)
-
-	if(shock_stage == 150)
-		emote("me",1,"can no longer stand, collapsing!")
-		Weaken(20)
-
-	if(shock_stage >= 150)
-		Weaken(20)
 
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
@@ -1193,6 +1130,7 @@
 
 /mob/living/carbon/human/rejuvenate()
 	sanity.setLevel(sanity.max_level)
+	timeofdeath = 0
 	restore_blood()
 	..()
 

@@ -90,7 +90,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 
 /obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the centcomm server so wild griffins can't fuck up R&D's work
-	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
+	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		C.files.download_from(files)
 
 /obj/machinery/computer/rdconsole/Initialize()
@@ -332,7 +332,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	reset_screen()
 
 /obj/machinery/computer/rdconsole/proc/sync_tech()
-	for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
+	for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 		var/server_processed = FALSE
 		if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
 			S.files.download_from(files)

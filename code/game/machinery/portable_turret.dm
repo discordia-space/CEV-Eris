@@ -17,7 +17,7 @@
 	use_power = IDLE_POWER_USE				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
-	power_channel = EQUIP	//drains power from the EQUIPMENT channel
+	power_channel = STATIC_EQUIP	//drains power from the EQUIPMENT channel
 
 	var/raised = 0			//if the turret cover is "open" and the turret is raised
 	var/raising= 0			//if the turret is currently opening or closing its cover
@@ -155,7 +155,7 @@
 			eshot_sound = 'sound/weapons/Laser.ogg'
 			egun = 1
 
-		if(/obj/item/weapon/gun/energy/gun/nuclear)
+		if(/obj/item/weapon/gun/energy/nuclear)
 			eprojectile = /obj/item/projectile/beam	//If it has, going to kill mode
 			eshot_sound = 'sound/weapons/Laser.ogg'
 			egun = 1

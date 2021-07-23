@@ -209,7 +209,7 @@
 /datum/reagent/drug/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 1)
-	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 5)
 	if(M.stats.getPerk(PERK_CHAINGUN_SMOKER))
 		M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
 		M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)

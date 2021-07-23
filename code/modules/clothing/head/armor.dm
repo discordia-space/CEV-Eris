@@ -77,7 +77,7 @@
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
 /obj/item/clothing/head/armor/helmet/technomancer
-	name = "technomancer helmet"
+	name = "insulated technomancer helmet"
 	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -86,11 +86,11 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 45,
-		bullet = 35,
-		energy = 35,
-		bomb = 30,
-		bio = 15,
+		melee = 35,
+		bullet = 25,
+		energy = 40,
+		bomb = 20,
+		bio = 0,
 		rad = 30
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -276,6 +276,11 @@
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
+	matter = list(
+		MATERIAL_STEEL = 6, // more covered by helmet
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 6,
+	)
 
 /obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()

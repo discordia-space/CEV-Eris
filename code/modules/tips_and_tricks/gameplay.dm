@@ -8,6 +8,9 @@
 /tipsAndTricks/gameplay/fightBlob
     tipText = "If you're trying to take on a blob, a flamethrower is your best weapon."
 
+/tipsAndTricks/gameplay/dismantleGun
+    tipText = "Did you know you can dismantle guns by using a wrench on them with harm intent ? Dismantling guns gives you gun parts."
+
 /tipsAndTricks/gameplay/fuhrerRoachReinforcement
     tipText = "The Fuhrer roach can call for an entire battalion of reinforcement roaches. If you hear it scream, RUN!"
 

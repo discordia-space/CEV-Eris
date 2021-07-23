@@ -4,7 +4,7 @@
 /proc/spacevine_infestation(var/turf/T = null, var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	//Vines will spawn at a burrow
 	var/obj/structure/burrow/origin
-	var/list/burrows = all_burrows.Copy()
+	var/list/burrows = GLOB.all_burrows.Copy()
 	while (burrows.len)
 		var/obj/structure/burrow/B = pick_n_take(burrows)
 

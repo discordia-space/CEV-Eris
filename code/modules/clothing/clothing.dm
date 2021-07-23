@@ -546,6 +546,7 @@ BLIND     // can't see anything
 		/obj/item/weapon/storage/pouch/,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/melee,
+		/obj/item/weapon/tool,
 		/obj/item/weapon/material,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
@@ -559,7 +560,8 @@ BLIND     // can't see anything
 		/obj/item/device/scanner,
 		/obj/item/weapon/reagent_containers/spray,
 		/obj/item/device/radio,
-		/obj/item/clothing/mask)
+		/obj/item/clothing/mask,
+		/obj/item/weapon/storage/belt/sheath)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
@@ -569,6 +571,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
+	valid_accessory_slots = list("armor")
+	restricted_accessory_slots = list("armor")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()

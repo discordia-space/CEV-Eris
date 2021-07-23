@@ -16,7 +16,7 @@
 
 /datum/uplink_item/item/stealth_items/id
 	name = "Agent ID card"
-	item_cost = 3
+	item_cost = 5
 	path = /obj/item/weapon/card/id/syndicate
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 

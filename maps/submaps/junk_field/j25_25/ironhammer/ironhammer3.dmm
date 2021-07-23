@@ -1,0 +1,1026 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"ac" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ad" = (
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ae" = (
+/turf/simulated/wall/r_wall,
+/area/template_noop)
+"ag" = (
+/obj/machinery/door/airlock/command,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ah" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ai" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"aj" = (
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"al" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"am" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"an" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"ao" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"ap" = (
+/obj/item/remains/human,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aq" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"ar" = (
+/obj/structure/computerframe{
+	anchored = 1;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"as" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"at" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"au" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"av" = (
+/obj/item/remains/human,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aw" = (
+/obj/machinery/light_construct{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ax" = (
+/mob/living/simple_animal/hostile/hivebot,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"ay" = (
+/obj/item/modular_computer/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"az" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aA" = (
+/obj/machinery/light_construct{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aB" = (
+/obj/spawner/closet/tech/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aD" = (
+/obj/machinery/light_construct,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aE" = (
+/obj/spawner/junk,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aF" = (
+/obj/structure/lattice,
+/obj/machinery/light_construct{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"aG" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aH" = (
+/obj/machinery/telecomms/relay,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aI" = (
+/obj/machinery/light_construct,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aK" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aL" = (
+/obj/machinery/door/airlock/command,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aM" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_parts,
+/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aN" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aO" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aP" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aQ" = (
+/obj/spawner/structures/common/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aR" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aS" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/template_noop,
+/area/template_noop)
+"aT" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aU" = (
+/obj/spawner/junkfood,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aV" = (
+/obj/spawner/structures/common,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aW" = (
+/obj/spawner/structures/common/low_chance,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"aX" = (
+/obj/structure/table/rack,
+/obj/spawner/firstaid,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aY" = (
+/obj/structure/table/rack,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"aZ" = (
+/obj/structure/noticeboard,
+/turf/simulated/wall/r_wall,
+/area/template_noop)
+"ba" = (
+/obj/item/weapon/paper,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bb" = (
+/obj/structure/bed/chair/comfy/blue,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bc" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bd" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/paper,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"be" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/obj/item/weapon/paper,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"bf" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"bg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bh" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/pen,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"bi" = (
+/obj/item/remains/human,
+/obj/spawner/structures/common/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bj" = (
+/obj/structure/bed/chair/comfy/blue{
+	dir = 1;
+	icon_state = "comfychair_preview"
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bk" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_upgrade,
+/obj/spawner/firstaid,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bl" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_upgrade,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bm" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_upgrade,
+/obj/spawner/gun_upgrade/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bn" = (
+/obj/structure/bed/chair/office/light,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bo" = (
+/obj/item/remains,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bp" = (
+/obj/structure/table/rack,
+/obj/spawner/ammo/ihs,
+/obj/spawner/ammo/ihs,
+/obj/spawner/ammo/ihs,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bq" = (
+/obj/spawner/junk,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"br" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bs" = (
+/obj/item/weapon/gun/projectile/paco,
+/obj/item/ammo_casing/pistol,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bt" = (
+/obj/structure/table/rack,
+/obj/item/clothing/mask/gas/ihs,
+/obj/item/clothing/mask/gas/ihs,
+/obj/item/clothing/gloves/security,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"bw" = (
+/obj/structure/table/rack,
+/obj/spawner/ammo/shotgun,
+/obj/spawner/rig_module/low_chance,
+/obj/spawner/rig_module/rare/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"Qv" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+"Uz" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/plating/under,
+/area/template_noop)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+ae
+ae
+ae
+ae
+aa
+ab
+aa
+aa
+ab
+ab
+aa
+ab
+ab
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+ae
+aq
+aK
+ae
+ab
+ab
+aa
+aa
+aa
+ab
+Uz
+ad
+ad
+aa
+ab
+ab
+ab
+ae
+Uz
+ad
+ad
+ad
+ab
+"}
+(4,1,1) = {"
+aa
+aa
+ae
+aq
+ad
+ae
+ae
+ae
+ae
+ae
+ae
+ab
+ab
+ad
+ad
+ax
+ad
+ad
+ad
+ae
+ae
+ae
+ae
+ad
+ab
+"}
+(5,1,1) = {"
+aa
+aa
+ae
+ad
+aj
+aH
+ae
+aM
+bo
+aX
+ae
+ab
+ab
+aw
+ad
+ad
+aw
+Uz
+ab
+ae
+bt
+bp
+ae
+ad
+aa
+"}
+(6,1,1) = {"
+aa
+ab
+ac
+ad
+ah
+aj
+ae
+aN
+bs
+aX
+ae
+ae
+ae
+ae
+ad
+al
+ae
+ae
+ae
+ae
+aj
+bp
+ae
+ab
+ab
+"}
+(7,1,1) = {"
+aa
+ab
+ac
+aB
+ad
+aj
+ae
+aN
+an
+aY
+ae
+aR
+aj
+aQ
+aQ
+aj
+aj
+aj
+ae
+bk
+aj
+bw
+ae
+ad
+aa
+"}
+(8,1,1) = {"
+aa
+ab
+ac
+Uz
+ad
+aj
+ae
+ae
+am
+ae
+aZ
+ba
+aj
+aQ
+aj
+aT
+aT
+aj
+ae
+bl
+an
+bm
+ae
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+ac
+ac
+aE
+aI
+ae
+aj
+bq
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aD
+ae
+bm
+aj
+bm
+ae
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+ab
+ac
+ad
+aj
+aL
+aj
+aj
+an
+aj
+bb
+bc
+aj
+ad
+ad
+aT
+aj
+ae
+ae
+am
+ae
+ae
+ab
+ab
+"}
+(11,1,1) = {"
+aa
+aa
+ab
+ac
+ad
+ad
+ae
+as
+aj
+aj
+aj
+bb
+bd
+ad
+ab
+ab
+bj
+aj
+aj
+aj
+br
+ae
+ab
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+ab
+ac
+ad
+aK
+ae
+aO
+aU
+aj
+aj
+bb
+az
+ad
+ab
+bh
+ad
+aj
+aj
+aj
+aQ
+ae
+ab
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+ab
+ac
+aw
+aK
+ae
+aP
+aU
+aj
+aj
+ad
+be
+bf
+az
+az
+bj
+aj
+aj
+bn
+aQ
+ae
+ab
+ab
+aa
+"}
+(14,1,1) = {"
+aa
+ab
+ab
+ab
+ae
+ae
+ae
+aQ
+aV
+aQ
+aj
+ad
+aj
+bg
+aT
+aT
+aj
+aj
+aj
+bn
+aQ
+ae
+aF
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+ab
+ab
+ac
+Qv
+ae
+ae
+ae
+ae
+ag
+ag
+ae
+ae
+ae
+ae
+ae
+ag
+ag
+ae
+ae
+ae
+ab
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+ab
+ad
+ac
+ad
+ad
+aR
+aj
+aj
+aj
+at
+aA
+aj
+aQ
+bi
+aA
+aj
+aj
+aT
+as
+ac
+ac
+ad
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+aj
+aj
+aj
+aT
+aj
+aT
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aE
+ad
+aE
+ac
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ad
+ad
+ah
+ad
+aj
+at
+aj
+aj
+ar
+ay
+ar
+aj
+an
+at
+aj
+aE
+ab
+ab
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ad
+aj
+ad
+ad
+ay
+ar
+aj
+aj
+aj
+aj
+aj
+aT
+ay
+ar
+aj
+ac
+ab
+ab
+ab
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+ab
+ad
+ac
+ad
+aj
+aE
+ad
+ad
+ad
+ad
+aE
+ad
+ad
+ad
+ad
+aE
+aj
+aE
+ac
+ab
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+aG
+ao
+aj
+ad
+aW
+ad
+ad
+aE
+ad
+aW
+aW
+aW
+ad
+ad
+aj
+ad
+aE
+ab
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aG
+ap
+ao
+ad
+aE
+aj
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+Qv
+au
+av
+ac
+ab
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+aG
+aG
+aG
+aS
+aS
+aG
+aG
+aG
+ac
+aG
+ac
+aG
+aG
+ac
+ac
+ac
+ac
+ab
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+aa
+aa
+ab
+aa
+ab
+ab
+ab
+ab
+ab
+ai
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+ab
+aa
+ab
+ab
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -20,8 +20,7 @@
 		/datum/design/autolathe/part/voice_analyzer,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/camera_assembly,
-		/datum/design/autolathe/part/laserguide,
-		/datum/design/research/item/ducts
+		/datum/design/autolathe/part/laserguide
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools

@@ -4,15 +4,19 @@
 #define REALTIMEOFDAY (world.timeofday + (MIDNIGHT_ROLLOVER * MIDNIGHT_ROLLOVER_CHECK))
 #define MIDNIGHT_ROLLOVER_CHECK ( rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : midnight_rollovers )
 
+#define SECOND *10
 #define SECONDS *10
 #define SECOND SECONDS
 
+#define MINUTE SECONDS*60
 #define MINUTES SECONDS*60
 #define MINUTE MINUTES
 
+#define HOUR MINUTES*60
 #define HOURS MINUTES*60
 #define HOUR HOURS
 
+#define DAY *864000
 #define DAYS *864000
 #define DAY DAYS
 

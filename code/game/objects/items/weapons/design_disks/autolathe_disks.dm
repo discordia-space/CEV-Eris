@@ -45,6 +45,17 @@
 		/datum/design/autolathe/ammo/lrifle,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_br
+	disk_name = "Serbian Arms - .20 Kovacs"
+	icon_state = "serbian"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 80
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .20 \"Kovacs\""
+		/datum/design/autolathe/ammo/srifle
+	)
+
 //The Dallas
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
 	disk_name = "PAR - .25 Dallas"
@@ -66,6 +77,18 @@
 	designs = list(
 		/datum/design/autolathe/gun/retro = 3, //"OS LG \"Cog\""
 		/datum/design/autolathe/cell/medium/high,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/scaramanga
+	disk_name = "\"Scaramanga\" gold set"
+	icon_state = "onestar"
+	rarity_value = 40
+	license = 15
+	designs = list(
+		/datum/design/autolathe/sec/gold = 3,
+		/datum/design/autolathe/gun/colt = 3,
+		/datum/design/autolathe/gun/atreides = 6,
+		/datum/design/autolathe/gun/avasarala = 6
 	)
 
 // ARMOR

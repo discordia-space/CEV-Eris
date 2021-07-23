@@ -47,6 +47,9 @@
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
 		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
 		return
+	if(locate(/obj/structure/multiz/stairs) in get_turf(user))
+		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, it needs a flat surface."))
+		return
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
@@ -80,13 +83,13 @@
 			return
 	if (deployed)
 		user.visible_message(
-				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
+				SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
 				SPAN_DANGER("you extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
 				)
 		if (do_after(user, 5))
 			user.visible_message(
-				SPAN_DANGER("[user] attempts to pick up the [src] only to hear a beep as it explodes in your hands!"),
-				SPAN_DANGER("you attempts to pick up the [src] only to hear a beep as it explodes in your hands!")
+				SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in your hands!"),
+				SPAN_DANGER("you attempts to pick up \the [src] only to hear a beep as it explodes in your hands!")
 				)
 			explode()
 			return
@@ -113,15 +116,21 @@
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(
-				SPAN_DANGER("the [src] is hit with [I] and it explodes!"),
-				SPAN_DANGER("You hit the [src] with [I] and it explodes!"))
+				SPAN_DANGER("\The [src] is hit with [I] and it explodes!"),
+				SPAN_DANGER("You hit \the [src] with [I] and it explodes!"))
 			explode()
 		return
 
 
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
-		if (isliving(AM))
+		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
+			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			return
+		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
+			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
+			return ..()
+		if(isliving(AM))
 			for(var/datum/antagonist/A in AM.mind.antagonist)
 				if(A.id == ROLE_EXCELSIOR_REV)
 					return

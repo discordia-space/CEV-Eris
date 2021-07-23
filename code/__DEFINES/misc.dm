@@ -170,8 +170,8 @@
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
 
-// Default name for announsment system
-#define ANNOUNSER_NAME "CEV Eris System Announcer"
+// Default name for announcement system
+#define ANNOUNCER_NAME "CEV Eris System Announcer"
 
 
 #define LIST_OF_CONSONANT list("a", "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
@@ -190,6 +190,7 @@
 #define CRUCIFORM_AGROLYTE /datum/core_module/rituals/cruciform/agrolyte
 #define CRUCIFORM_CUSTODIAN /datum/core_module/rituals/cruciform/custodian
 #define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
+#define CRUCIFORM_ACOLYTE /datum/core_module/rituals/cruciform/priest/acolyte
 #define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
 #define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
 #define CRUCIFORM_UPLINK /datum/core_module/cruciform/uplink
@@ -333,3 +334,6 @@
 #define WASHABLE_COLOUR_PRIORITY 	3 //color splashed onto an atom (e.g. paint on turf)
 #define FIXED_COLOUR_PRIORITY 		4 //color inherent to the atom (e.g. blob color)
 #define COLOUR_PRIORITY_AMOUNT      4 //how many priority levels there are.
+
+//Sounds list
+#define WALLHIT_SOUNDS list('sound/effects/wallhit.ogg', 'sound/effects/wallhit2.ogg', 'sound/effects/wallhit3.ogg')

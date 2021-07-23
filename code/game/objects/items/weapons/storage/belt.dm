@@ -55,6 +55,7 @@
 		/obj/item/weapon/tool/minihoe,
 		/obj/item/weapon/tool/hatchet,
 		/obj/item/device/scanner/plant,
+		/obj/item/device/scanner/mining,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
 		/obj/item/clothing/gloves,
@@ -66,6 +67,7 @@
 		/obj/item/weapon/grenade/chem_grenade/antiweed,
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
+	price_tag = 200
 /obj/item/weapon/storage/belt/utility/full
 	rarity_value = 50
 
@@ -86,7 +88,8 @@
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
 		/obj/item/weapon/soap,
-		/obj/item/weapon/reagent_containers/spray/cleaner
+		/obj/item/weapon/reagent_containers/spray/cleaner,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE
 
@@ -188,7 +191,9 @@
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
 		/obj/item/weapon/tool/knife/neotritual,
-		/obj/item/weapon/gun/energy/crossbow
+		/obj/item/weapon/gun/energy/crossbow,
+		/obj/item/weapon/tool/knife/dagger/nt,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE
 

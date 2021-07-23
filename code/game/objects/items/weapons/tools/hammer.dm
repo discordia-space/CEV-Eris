@@ -21,8 +21,8 @@
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	armor_penetration = ARMOR_PEN_DEEP
-	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_NORMAL
+	force_wielded_multiplier = 2.6
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 15)
@@ -37,7 +37,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -56,8 +56,8 @@
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	armor_penetration = ARMOR_PEN_EXTREME
-	force_unwielded = WEAPON_FORCE_DANGEROUS
-	force_wielded = WEAPON_FORCE_BRUTAL
+	force= WEAPON_FORCE_DANGEROUS
+	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
@@ -76,25 +76,47 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "mace"
 	item_state = "mace"
+	w_class = ITEM_SIZE_NORMAL
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
 	rarity_value = 15
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/tool/hammer/mace/makeshift
 	name = "makeshift mace"
 	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
 	icon_state = "ghetto_mace"
 	item_state = "ghetto_mace"
-
 	force = WEAPON_FORCE_PAINFUL
-
 	tool_qualities = list(QUALITY_HAMMERING = 15)
-	degradation = 5 //This one breaks REALLY fast
+	degradation = 3 //This one breaks fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_JUNKTOOL
+
+
+/obj/item/weapon/tool/hammer/mace/makeshift/baseballbat
+	name = "baseball bat"
+	desc = "HOME RUN!"
+	icon_state = "woodbat0"
+	wielded_icon = "woodbat1"
+	item_state = "woodbat0"
+	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MODERATE
+	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
+	hitsound = 'sound/weapons/genhit3.ogg'
+	slot_flags = SLOT_BELT|SLOT_BACK
+
+/obj/item/weapon/tool/hammer/mace/makeshift/baseballbat/bone
+	name = "bone club"
+	desc = "Seems like someone gave up an arm and a leg for this thing. And a head."
+	icon_state = "bonemace"
+	item_state = "bonemace"
+	slot_flags = SLOT_BELT
+	degradation = 1.5 //Something something bones are hard.
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/hammer/charge
 	name = "charge hammer"
@@ -152,3 +174,18 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
+
+/obj/item/weapon/tool/hammer/IH
+	name = "FS \"Ironhammer\" Breaching Hammer"
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "iron_hammer"
+	item_state = "iron_hammer"
+	wielded_icon = "iron_hammer_wielded"
+	w_class = ITEM_SIZE_HUGE
+	armor_penetration = ARMOR_PEN_DEEP
+	force = WEAPON_FORCE_ROBUST
+	structure_damage_factor = STRUCTURE_DAMAGE_BORING
+	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
+	spawn_blacklisted = TRUE

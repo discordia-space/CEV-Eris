@@ -13,6 +13,7 @@
 	categories = list("Artwork")
 	use_oddities = TRUE
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
+	low_quality_print = FALSE
 	var/min_mat = 20
 	var/min_insight = 40
 
@@ -79,17 +80,23 @@
 	var/weight_artwork_tool = 2 + LStats[STAT_MEC] * 2
 	var/weight_artwork_toolmod = 2 + LStats[STAT_MEC] * 2
 	var/weight_artwork_gunmod = 2 + LStats[STAT_COG] * 2
+	var/weight_artwork_gunPart = 1 + LStats[STAT_COG] + LStats[STAT_MEC]
+	var/weight_artwork_armorPart = 2 + LStats[STAT_TGH] + LStats[STAT_BIO]
 
 	if(ins_used >= 85)//Arbitrary values
 		weight_artwork_revolver += 9
 		weight_artwork_weapon += 9
+		weight_artwork_gunPart += 5
 	if(ins_used >= 70)
 		weight_artwork_revolver += 4
 		weight_artwork_weapon += 4
+		weight_artwork_gunPart += 8
 		weight_artwork_oddity += 13
 		weight_artwork_gunmod += 8
+		weight_artwork_armorPart += 8
 	if(ins_used >= 55)
 		weight_artwork_gunmod += 4
+		weight_artwork_armorPart += 4
 		weight_artwork_tool += 12
 		weight_artwork_toolmod += 12
 	else
@@ -99,7 +106,9 @@
 		"artwork_revolver" = weight_artwork_revolver,
 		"artwork_oddity" = weight_artwork_oddity,
 		"artwork_toolmod" = weight_artwork_toolmod,
-		"artwork_statue" = weight_artwork_statue
+		"artwork_statue" = weight_artwork_statue,
+		"artwork_gunPart" = weight_artwork_gunPart,
+		"artwork_armorPart" = weight_artwork_armorPart
 	))
 
 /obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/carbon/human/user)
@@ -109,14 +118,12 @@
 	if(inspiration && user.stats.getPerk(PERK_ARTIST))
 		LStats = inspiration.calculate_statistics()
 
-//	var/weight_mechanical = 0 + LStats[STAT_MEC]
-//	var/weight_cognition = 0 + LStats[STAT_COG]
+	//var/weight_mechanical = 0 + LStats[STAT_MEC]
+	//var/weight_cognition = 0 + LStats[STAT_COG]
 	var/weight_biology = 0 + LStats[STAT_BIO]
 	var/weight_robustness = 0 + LStats[STAT_ROB]
-//	var/weight_toughness = 0 + LStats[STAT_TGH]
+	//var/weight_toughness = 0 + LStats[STAT_TGH]
 	var/weight_vigilance = 0 + LStats[STAT_VIG]
-
-	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
 
 	if(full_artwork == "artwork_revolver")
 		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new(src)
@@ -173,6 +180,12 @@
 	else if(full_artwork == "artwork_statue")
 		var/obj/structure/artwork_statue/S = new(src)
 		return S
+	else if(full_artwork == "artwork_gunPart")
+		var/obj/item/part/gun/artwork/P = new(src)
+		return P
+	else if(full_artwork == "artwork_armorPart")
+		var/obj/item/part/armor/artwork/P = new(src)
+		return P
 
 	else if(full_artwork == "artwork_oddity")
 		var/obj/item/weapon/oddity/artwork/O = new(src)

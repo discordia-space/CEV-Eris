@@ -69,10 +69,12 @@
 /datum/design/autolathe/device/grenade/nt_cleaner
 	name = "NT \"Cleanse Capsule\""
 	build_path = /obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/device/grenade/nt_weedkiller
 	name = "NT \"Kudzu Killer\""
 	build_path = /obj/item/weapon/grenade/chem_grenade/antiweed/nt_antiweed
+	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/device/floorpainter
 	name = "floor painter"

@@ -7,10 +7,9 @@
 	var/total_burn  = 0
 	var/total_brute = 0
 	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
-		if(BP_IS_ROBOTIC(O) && !O.vital)
-			continue //*non-vital* robot limbs don't count towards shock and crit
-		total_brute += O.brute_dam
-		total_burn  += O.burn_dam
+		if(O.vital) //*non-vital* limbs don't count towards shock and crit
+			total_brute += O.brute_dam
+			total_burn  += O.burn_dam
 
 	var/oxy_l = ((species.flags & NO_BREATHE) ? 0 : getOxyLoss())
 	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())

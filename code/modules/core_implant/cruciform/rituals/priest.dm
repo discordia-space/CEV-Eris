@@ -10,13 +10,16 @@
 	desc = ""
 	category = "Priest"
 
+/datum/ritual/cruciform/priest/acolyte
 
-/datum/ritual/cruciform/priest/epiphany
+/datum/ritual/targeted/cruciform/priest/acolyte
+
+/datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
 	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
 
-/datum/ritual/cruciform/priest/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+/datum/ritual/cruciform/priest/acolyte/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 
 	if(!CI)
@@ -53,12 +56,12 @@
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
 
-/datum/ritual/cruciform/priest/ejection
+/datum/ritual/cruciform/priest/acolyte/ejection
 	name = "Deprivation"
 	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
 	desc = "This litany will command cruciform to detach from bearer, if the one bearing it is dead. You will be able to use it in scanner for Resurrection."
 
-/datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+/datum/ritual/cruciform/priest/acolyte/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
 
 	if(!CI)
@@ -90,12 +93,12 @@
 		return FALSE
 
 
-/datum/ritual/cruciform/priest/unupgrade
+/datum/ritual/cruciform/priest/acolyte/unupgrade
 	name = "Asacris"
 	phrase = "A caelo usque ad centrum"
 	desc = "This litany will remove any upgrade from the target's Cruciform implant"
 
-/datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+/datum/ritual/cruciform/priest/acolyte/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI)
@@ -121,7 +124,7 @@
 ///////////SHORT BOOST LITANIES////////
 ///////////////////////////////////////
 
-/datum/ritual/cruciform/priest/short_boost
+/datum/ritual/cruciform/priest/acolyte/short_boost
 	name = "Short boost ritual"
 	phrase = null
 	desc = "This litany boosts mechanical stats of everyone who's hear you on the short time. "
@@ -132,11 +135,11 @@
 	power = 30
 	var/list/stats_to_boost = list()
 
-/datum/ritual/cruciform/priest/short_boost/New()
+/datum/ritual/cruciform/priest/acolyte/short_boost/New()
 	..()
 	desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
 
-/datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+/datum/ritual/cruciform/priest/acolyte/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/people_around = list()
 	for(var/mob/living/carbon/human/H in view(user))
 		if(H != user && !isdeaf(H))
@@ -155,7 +158,7 @@
 		return FALSE
 
 
-/datum/ritual/cruciform/priest/short_boost/proc/give_boost(mob/living/carbon/human/participant)
+/datum/ritual/cruciform/priest/acolyte/short_boost/proc/give_boost(mob/living/carbon/human/participant)
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
 		participant.stats.addTempStat(stat, amount, effect_time, src.name)
@@ -164,12 +167,12 @@
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 
 
-/datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
+/datum/ritual/cruciform/priest/acolyte/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the participant
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
 		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
-/datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
+/datum/ritual/cruciform/priest/acolyte/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)
 		return lowertext(stats_to_boost[1])
 	var/stats_text = ""
@@ -184,12 +187,12 @@
 			stats_text += ", [stat]"
 	return lowertext(stats_text)
 
-/datum/ritual/cruciform/priest/short_boost/wisdom
+/datum/ritual/cruciform/priest/acolyte/short_boost/wisdom
 	name = "Grace of Perseverance"
 	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus"
 	stats_to_boost = list(STAT_MEC = 10, STAT_COG = 10, STAT_BIO = 10)
 
-/datum/ritual/cruciform/priest/short_boost/courage
+/datum/ritual/cruciform/priest/acolyte/short_boost/courage
 	name = "To Uphold the Holy Word"
 	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi"
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
@@ -221,7 +224,7 @@
 	s.set_up(1, 1, M.loc)
 	s.start()
 
-	M.apply_effect(50, AGONY, 0)
+	M.adjustHalLoss(50)
 
 	return TRUE
 
@@ -231,14 +234,14 @@
 		if(target.wearer && (target.loc && (target.locs[1] in view())))
 			return target
 
-/datum/ritual/cruciform/priest/records
+/datum/ritual/cruciform/priest/acolyte/records
 	name = "Baptismal Record"
 	phrase = "Memento nomina..."
 	desc = "Requests a copy of the Church's local parishoner records from your altar."
 	power = 30
 	success_message = "On the verge of audibility you hear pleasant music, a piece of paper slides out from a slit in the altar."
 
-/datum/ritual/cruciform/priest/records/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+/datum/ritual/cruciform/priest/acolyte/records/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/OBJS = get_front(user)
 
 	var/obj/machinery/optable/altar = locate(/obj/machinery/optable/altar) in OBJS
@@ -256,9 +259,10 @@
 	category = "Offerings"
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
-	power = 30
+	power = 15
 	var/list/req_offerings = list()
 	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+	var/reward_power = 5
 
 /datum/ritual/cruciform/priest/offering/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	var/list/OBJS = get_front(H)
@@ -279,6 +283,7 @@
 		return FALSE
 
 	EOTP.current_rewards = miracles
+	EOTP.power += reward_power
 	return TRUE
 
 /datum/ritual/cruciform/priest/offering/proc/make_offerings(list/offerings)
@@ -350,9 +355,10 @@
 /datum/ritual/cruciform/priest/divine_blessing
 	name = "Divine Blessing"
 	phrase = "Corpus Deus"
-	desc = "Increases the stats of an oddity."
+	desc = "Increase an oddity's stats by a certain amount but reduce yours by half of that amount."
 	success_message = "Your oddity has been blessed."
 	fail_message = "You feel cold in your active hand."
+	power = 30
 	var/list/odditys = list()
 
 
@@ -376,6 +382,10 @@
 		return FALSE
 
 	for(var/stat in inspiracion.stats)
-		inspiracion.stats[stat] += rand(1,8)
+		if(inspiracion.stats[stat] == 0)
+			continue
+		var/stat_gain = rand(1,8)
+		inspiracion.stats[stat] += stat_gain
+		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
 	odditys.Add(I)
 	return TRUE

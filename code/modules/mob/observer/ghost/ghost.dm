@@ -457,7 +457,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (spawnpoint)
 		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
 	else
-		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The station must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
+		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The ship must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
 
 	if(host)
 		if(config.uneducated_mice)
@@ -471,7 +471,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /proc/find_mouse_near_spawnpoint(var/turf/T)
 	var/obj/machinery/atmospherics/unary/vent_pump/nearest_safe_vent = null
 	var/nearest_dist = 999999
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
 		if(!v.welded && v.z == T.z && !(is_turf_atmos_unsafe(get_turf(v))))
 			var/distance = dist3D(v, T)
 			if (distance < nearest_dist)
@@ -487,7 +487,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//If we hit the limit without finding a valid one, then the best one we found is selected
 
 	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
 		if(!v.welded && v.z == ZLevel)
 			found_vents.Add(v)
 

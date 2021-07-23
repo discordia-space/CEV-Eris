@@ -258,6 +258,26 @@
 	I.gun_loc_tag = GUN_MECHANISM
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+/obj/item/weapon/gun_upgrade/cosmetic
+	bad_type = /obj/item/weapon/gun_upgrade/cosmetic
+
+/obj/item/weapon/gun_upgrade/cosmetic/gold
+	name = "\"Scaramanga\" gold paint"
+	desc = "A small pot of gold paint, for the kingpin in your life."
+	icon_state = "gold_pot"
+	matter = list(MATERIAL_GOLD = 15)
+	rarity_value = 20
+	price_tag = 1600
+
+/obj/item/weapon/gun_upgrade/cosmetic/gold/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_GILDED = TRUE
+		)
+	I.gun_loc_tag = GUN_COSMETIC
+	I.req_gun_tags = list(GUN_GILDABLE)
+
 //Trash mods, for putting on old guns
 
 /obj/item/weapon/gun_upgrade/trigger/faulty
@@ -275,9 +295,8 @@
 		GUN_UPGRADE_FIRE_DELAY_MULT = rand(11,18)/10
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= rand(10.14)/10
-	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_TRIGGER
+	I.removable = FALSE
 
 /obj/item/weapon/gun_upgrade/barrel/faulty
 	name = "Warped Barrel"
@@ -291,13 +310,12 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_OFFSET = rand(5,15),
-		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
-		GUN_UPGRADE_DAMAGE_MULT = rand(4,9)/10
+		GUN_UPGRADE_PEN_MULT = rand(0.8,1.2),
+		GUN_UPGRADE_DAMAGE_MULT = rand(0.8,1.2)
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= rand(10.14)/10
-	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_BARREL
+	I.removable = FALSE
 
 /obj/item/weapon/gun_upgrade/muzzle/faulty
 	name = "Failed Makeshift Silencer"
@@ -311,12 +329,12 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
-		GUN_UPGRADE_STEPDELAY_MULT = rand(12,18)/10
+		GUN_UPGRADE_STEPDELAY_MULT = rand(10,12)/10,
+		GUN_UPGRADE_SILENCER = TRUE
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= rand(10.14)/10
-	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_MUZZLE
+	I.removable = FALSE
 
 /obj/item/weapon/gun_upgrade/mechanism/faulty
 	name = "Unknown Clockwork Mechanism"
@@ -329,12 +347,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = rand(5, 50)/10
+		GUN_UPGRADE_RECOIL = rand(5, 20)/10
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= rand(10.14)/10
-	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_MECHANISM
+	I.removable = FALSE
 
 /obj/item/weapon/gun_upgrade/scope/faulty
 	name = "Misaligned sights"
@@ -347,12 +364,12 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_OFFSET = rand(3,6)
+		GUN_UPGRADE_OFFSET = rand(1,3),
+		GUN_UPGRADE_ZOOM = rand(0.4,0.8)
 	)
 	I.destroy_on_removal = TRUE
-	I.removal_time *= rand(10.14)/10
-	I.removal_difficulty *= rand(5, 15)/10
 	I.gun_loc_tag = GUN_SCOPE
+	I.removable = FALSE
 
 #define TRASH_GUNMODS list(/obj/item/weapon/gun_upgrade/trigger/faulty, /obj/item/weapon/gun_upgrade/barrel/faulty, \
 		/obj/item/weapon/gun_upgrade/muzzle/faulty, /obj/item/weapon/gun_upgrade/mechanism/faulty, \

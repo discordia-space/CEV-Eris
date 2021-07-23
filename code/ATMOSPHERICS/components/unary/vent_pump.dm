@@ -87,7 +87,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
-	power_channel = EQUIP
+	power_channel = STATIC_EQUIP
 	power_rating = 15000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
@@ -96,7 +96,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	power_rating = 30000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/engine/New()

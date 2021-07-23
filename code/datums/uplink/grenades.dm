@@ -6,7 +6,7 @@
 
 /datum/uplink_item/item/grenades/anti_photon
 	name = "5xPhoton Disruption Grenades"
-	item_cost = 4
+	item_cost = 2
 	path = /obj/item/weapon/storage/box/anti_photons
 
 /datum/uplink_item/item/grenades/teargas
@@ -16,7 +16,7 @@
 
 /datum/uplink_item/item/grenades/smoke
 	name = "5xSmoke Grenades"
-	item_cost = 4
+	item_cost = 3
 	path = /obj/item/weapon/storage/box/smokes
 
 /datum/uplink_item/item/grenades/emp
@@ -36,5 +36,10 @@
 
 /datum/uplink_item/item/grenades/viscerator
 	name = "viscerator grenade"
-	item_cost = 4
+	item_cost = 5
 	path = /obj/item/weapon/grenade/spawnergrenade/manhacks
+	
+/datum/uplink_item/item/grenades/flash
+	name = "5x Flashbang Grenades"
+	item_cost = 5
+	path = /obj/item/weapon/storage/box/flashbangs/uplink_item

@@ -20,8 +20,8 @@
 			new /obj/effect/spawner/newbomb/timer/syndicate(src)
 			new /obj/effect/spawner/newbomb/timer/syndicate(src)
 			new /obj/item/device/powersink(src)
-			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/space/syndicate(src)
+			new /obj/item/clothing/suit/space/syndicate/uplink(src)
+			new /obj/item/clothing/head/space/syndicate/uplink(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			return
@@ -57,8 +57,8 @@
 
 /*			if("lordsingulo")
 			new /obj/item/device/radio/beacon/syndicate(src)
-			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/space/syndicate(src)
+			new /obj/item/clothing/suit/space/syndicate/uplink(src)
+			new /obj/item/clothing/head/space/syndicate/uplink(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			new /obj/item/weapon/card/emag(src)
@@ -301,8 +301,8 @@
 
 
 /obj/item/weapon/storage/secure/briefcase/money
-	name = "suspicious briefcase"
-	desc = "An ominous briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
+	name = "secure briefcase"
+	desc = "A large briefcase with a digital locking system."
 
 /obj/item/weapon/storage/secure/briefcase/money/populate_contents()
 	new /obj/item/weapon/spacecash/bundle/c1000(src)

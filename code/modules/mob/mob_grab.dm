@@ -385,7 +385,7 @@
 					if(hit_zone == BP_EYES)
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
-						headbut(affecting, assailant)
+						headbutt(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
 
@@ -421,6 +421,10 @@
 				O.post_buckle_mob(affecting) //A hack to fix offsets on altars and tables
 		else
 			animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+		if (issuperioranimal(affecting))
+			var/mob/living/carbon/superior_animal/wrangled = affecting
+			if (wrangled.grabbed_by_friend && assailant && (assailant in wrangled.friends))
+				wrangled.grabbed_by_friend = FALSE
 		affecting.reset_plane_and_layer()
 		affecting.grabbed_by -= src
 		affecting = null

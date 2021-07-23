@@ -49,8 +49,7 @@
 		/mob/living/proc/ventcrawl,
 		/mob/living/proc/hide,
 		/mob/living/simple_animal/borer/proc/paralyze_victim,
-		/mob/living/simple_animal/borer/proc/infest,
-
+		/mob/living/simple_animal/borer/proc/infest
 		)
 
 	// Abilities borer can use when inside the host, but not in control
@@ -124,7 +123,7 @@
 
 	// Borer gets host abilities before actually getting inside the host
 	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
-	if(force_host)
+	/*if(force_host)
 		if(ishuman(host))
 			verbs += abilities_in_host
 			return
@@ -132,7 +131,7 @@
 			if(istype(ability, /mob/living/carbon/human))
 				continue
 			verbs += ability
-		return
+		return*/
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
@@ -142,12 +141,7 @@
 			verbs += abilities_in_host
 			Stat()
 			return
-		for(var/ability in abilities_in_host)
-			if(istype(ability, /mob/living/carbon/human))
-				continue
-			verbs += ability
 	else
-
 		host.verbs += abilities_in_control
 	Stat()
 
@@ -196,6 +190,9 @@
 
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
+
+	for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
+		L.try_activate_ai()
 
 /mob/living/simple_animal/borer/Stat()
 	. = ..()
@@ -340,7 +337,7 @@
 
 	update_abilities()
 
-	to_chat(src, SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
+	to_chat(get_borer_control(), SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
 	max_chemicals += (borer_level * 10)
 	max_chemicals_inhost = max_chemicals * 5
 

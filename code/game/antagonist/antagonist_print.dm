@@ -110,7 +110,7 @@
 		if(owner.current.stat == DEAD)
 			text += "died"
 		else if(isNotStationLevel(owner.current.z))
-			text += "fled the station"
+			text += "fled the ship"
 		else
 			text += "survived"
 		if(owner.current.real_name != owner.name)

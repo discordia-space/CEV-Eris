@@ -1,6 +1,6 @@
 #define MERGE_SPAWN_TAGS(first, second) first + ";" + second
 
-#define CHEAP_ITEM_PRICE 800
+#define CHEAP_ITEM_PRICE 400
 
 //guns defines
 #define GUN_CHEAP_PRICE 1700
@@ -196,6 +196,7 @@
 #define SPAWN_GUN_ENERGY "gun_energy"
 #define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
+#define SPAWN_GUN_OS "gun_os"
 
 #define SPAWN_TAG_GUNS SPAWN_TAG_ITEM+";"+SPAWN_GUNS
 #define SPAWN_TAG_GUN SPAWN_TAG_GUNS+";"+SPAWN_GUN
@@ -205,6 +206,7 @@
 #define SPAWN_TAG_GUN_SHOTGUN MERGE_SPAWN_TAGS(SPAWN_TAG_GUN_PROJECTILE, SPAWN_GUN_SHOTGUN)
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY MERGE_SPAWN_TAGS(SPAWN_TAG_GUN_ENERGY, SPAWN_GUN_SHOTGUN)
 #define SPAWN_TAG_GUN_ENERGY_BOTANICAL SPAWN_TAG_GUN_ENERGY+";botanical"
+#define SPAWN_TAG_GUN_OS SPAWN_TAG_GUN+";"+SPAWN_GUN_OS
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammo"
@@ -546,5 +548,6 @@
 #define SPAWN_MOEBIUS "moebius"
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
+#define SPAWN_TECHNOMANCER "technomancer"
 
 #define SPAWN_CLOWN "clown"

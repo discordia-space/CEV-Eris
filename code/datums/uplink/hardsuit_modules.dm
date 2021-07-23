@@ -6,7 +6,7 @@
 
 /datum/uplink_item/item/hardsuit_modules/thermal
 	name = "Thermal Scanner"
-	item_cost = 4
+	item_cost = 6
 	path = /obj/item/rig_module/vision/thermal
 
 /datum/uplink_item/item/hardsuit_modules/energy_net
@@ -26,12 +26,12 @@
 
 /datum/uplink_item/item/chem_injector
 	name = "Mounted chemical injector"
-	item_cost = 8
+	item_cost = 6
 	path = /obj/item/rig_module/chem_dispenser
 
 /datum/uplink_item/item/hardsuit_modules/portable_autodoc
 	name = "Portable autodoc"
-	item_cost = 16
+	item_cost = 11
 	path = /obj/item/rig_module/autodoc
 
 /datum/uplink_item/item/hardsuit_modules/maneuvering_jets
@@ -41,7 +41,7 @@
 
 /datum/uplink_item/item/hardsuit_modules/egun
 	name = "Mounted Energy Gun"
-	item_cost = 8
+	item_cost = 7
 	path = /obj/item/rig_module/mounted/egun
 
 /datum/uplink_item/item/hardsuit_modules/power_sink
@@ -51,7 +51,7 @@
 
 /datum/uplink_item/item/hardsuit_modules/laser_canon
 	name = "Mounted Laser Cannon"
-	item_cost = 12
+	item_cost = 14
 	path = /obj/item/rig_module/mounted
 
 /datum/uplink_item/item/hardsuit_modules/ric_merc

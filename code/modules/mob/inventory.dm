@@ -128,6 +128,9 @@
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!canUnEquip(I))
 		return
+	SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, I)
+	if(I)
+		SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
 	return drop_from_inventory(I,Target)
 
 //Attemps to remove an object on a mob.

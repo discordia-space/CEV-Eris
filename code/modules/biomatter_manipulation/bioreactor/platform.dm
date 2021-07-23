@@ -239,7 +239,7 @@
 		if(user.loc != loc)
 			to_chat(user, SPAN_WARNING("You need to be inside to clean it up."))
 			return
-		to_chat(user, SPAN_NOTICE("You begin cleaning [src] with your [I]..."))
+		to_chat(user, SPAN_NOTICE("You begin cleaning [src] with [I]..."))
 		if(do_after(user, CLEANING_TIME * contamination_level, src))
 			to_chat(user, SPAN_NOTICE("You clean \the [src]."))
 			toxin_attack(user, 5*contamination_level)

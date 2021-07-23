@@ -1,10 +1,12 @@
 /decl/hierarchy/outfit/job/captain
 	name = OUTFIT_JOB_NAME("Captain")
 	head = /obj/item/clothing/head/caphat
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	uniform = /obj/item/clothing/under/rank/captain
+	suit = /obj/item/clothing/suit/storage/captain
 	l_ear = /obj/item/device/radio/headset/heads/captain
-	shoes = /obj/item/clothing/shoes/color/brown
+	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/captain
 	id_type = /obj/item/weapon/card/id/gold
 	pda_type = /obj/item/modular_computer/pda/captain
 	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1, /obj/item/weapon/tool/knife/dagger/ceremonial = 1)
@@ -29,6 +31,8 @@
 
 /decl/hierarchy/outfit/job/hop
 	name = OUTFIT_JOB_NAME("First Officer")
+	head = /obj/item/clothing/head/caphat/hop
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	uniform = /obj/item/clothing/under/rank/first_officer
 	suit = /obj/item/clothing/suit/armor/vest
 	l_ear = /obj/item/device/radio/headset/heads/hop

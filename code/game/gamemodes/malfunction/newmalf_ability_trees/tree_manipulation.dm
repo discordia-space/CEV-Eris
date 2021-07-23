@@ -40,14 +40,14 @@
 
 /datum/game_mode/malfunction/verb/electrical_pulse()
 	set name = "Electrical Pulse"
-	set desc = "15 CPU - Sends feedback pulse through station's power grid, overloading some sensitive systems, such as lights."
+	set desc = "15 CPU - Sends feedback pulse through ship's power grid, overloading some sensitive systems, such as lights."
 	set category = "Software"
 	var/price = 15
 	var/mob/living/silicon/ai/user = usr
 	if(!ability_prechecks(user, price) || !ability_pay(user,price))
 		return
 	to_chat(user, "Sending feedback pulse...")
-	for(var/obj/machinery/power/apc/AP in SSmachines.machinery)
+	for(var/obj/machinery/power/apc/AP in GLOB.apc_list)
 		if(prob(5))
 			AP.overload_lighting()
 		if(prob(1) && prob(1)) // Very very small chance to actually destroy the APC.
@@ -113,7 +113,7 @@
 
 /datum/game_mode/malfunction/verb/emergency_forcefield()
 	set name = "Emergency Forcefield"
-	set desc = "275 CPU - Uses station's emergency shielding system to create temporary barrier which lasts indefinetely, but won't resist EMP pulses."
+	set desc = "275 CPU - Uses ship's emergency shielding system to create temporary barrier which lasts indefinetely, but won't resist EMP pulses."
 	set category = "Software"
 	var/price = 275
 	var/mob/living/silicon/ai/user = usr
@@ -130,7 +130,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in SSmachines.machinery)
+/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in GLOB.machines)
 	set name = "Machine Overload"
 	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
 	set category = "Software"

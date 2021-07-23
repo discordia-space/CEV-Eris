@@ -302,106 +302,102 @@
 	dat += "</tr>"
 
 	for(var/obj/item/organ/external/e in occ["external_organs"])
-		var/AN = ""
-		var/open = ""
-		var/infected = ""
-		var/imp = ""
-		var/bled = ""
-		var/robot = ""
-		var/splint = ""
-		var/internal_bleeding = ""
-		var/lung_ruptured = ""
+		var/list/other_wounds = list()
+		var/significant = FALSE
 
-		dat += "<tr>"
+		for(var/obj/item/organ/internal/I in e.internal_organs) // I put this before the actual external organ
+			if(I.scanner_hidden) // so that I could set significant based on internal organ results.
+				continue
+	
+			var/list/internal_wounds = list()
+			if(BP_IS_ASSISTED(I))
+				internal_wounds += "Assisted"
+			if(BP_IS_ROBOTIC(I))
+				internal_wounds += "Prosthetic"
+	
+			var/obj/item/organ/internal/bone/B = I
+			if(istype(B))
+				if(B.parent.status & ORGAN_BROKEN)
+					internal_wounds += "[B.broken_description]"
+	
+			switch (I.germ_level)
+				if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
+				if (1 to INFECTION_LEVEL_ONE + 200)
+					internal_wounds += "Mild Infection"
+				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
+					internal_wounds += "Mild Infection+"
+				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
+					internal_wounds += "Mild Infection++"
+				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
+					internal_wounds += "Acute Infection"
+				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
+					internal_wounds += "Acute Infection+"
+				if (INFECTION_LEVEL_TWO + 300 to INFINITY)
+					internal_wounds += "Acute Infection++"
+			if(I.rejecting)
+				internal_wounds += "being rejected"
+			if (I.damage || internal_wounds.len)
+				significant = TRUE
+				dat += "<tr>"
+				dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+				dat += "</tr>"
 
 		for(var/datum/wound/W in e.wounds) if(W.internal)
-			internal_bleeding = "<br>Internal bleeding"
+			other_wounds += "Internal bleeding"
 			break
 		if(e.organ_tag == BP_CHEST && occ["lung_ruptured"])
-			lung_ruptured = "Lung ruptured:"
+			other_wounds += "Lung ruptured"
 		if(e.status & ORGAN_SPLINTED)
-			splint = "Splinted:"
+			other_wounds += "Splinted"
 		if(e.status & ORGAN_BLEEDING)
-			bled = "Bleeding:"
+			other_wounds += "Bleeding"
 		if(BP_IS_ASSISTED(e))
-			robot = "Assisted:"
+			other_wounds += "Assisted"
 		if(BP_IS_ROBOTIC(e))
-			robot = "Prosthetic:"
+			other_wounds += "Prosthetic"
 		if(e.open)
-			open = "Open:"
+			other_wounds += "Open"
 
 		switch (e.germ_level)
+			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
 			if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-				infected = "Mild Infection:"
+				other_wounds += "Mild Infection"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infected = "Mild Infection+:"
+				other_wounds += "Mild Infection+"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infected = "Mild Infection++:"
+				other_wounds += "Mild Infection++"
 			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				infected = "Acute Infection:"
+				other_wounds += "Acute Infection"
 			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infected = "Acute Infection+:"
+				other_wounds += "Acute Infection+"
 			if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
-				infected = "Acute Infection++:"
+				other_wounds += "Acute Infection++"
 			if (INFECTION_LEVEL_THREE to INFINITY)
-				infected = "Septic:"
+				other_wounds += "Septic"
 		if(e.rejecting)
-			infected += "(being rejected)"
+			other_wounds += "being rejected"
 		if (e.implants.len)
-			var/unknown_body = 0
+			var/unknown_body = FALSE
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
 					var/obj/item/weapon/implant/device = I
-					imp += "[device.get_scanner_name()] implanted:"
+					other_wounds += "[device.get_scanner_name()] implanted"
 				else
-					unknown_body++
+					unknown_body = TRUE
 			if(unknown_body)
-				imp += "Unknown body present:"
-
-		if(!AN && !open && !infected & !imp)
-			AN = "None:"
-		if(!e.is_stump())
-			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured]</td>"
-		else
+				other_wounds += "Unknown body present"
+		if (e.is_stump() || e.burn_dam || e.brute_dam || other_wounds.len)
+			significant = TRUE
+			dat += "<tr>"
+		if(!e.is_stump() && significant)
+			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td>"
+		else if (significant)
 			dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
-		dat += "</tr>"
-
-	for(var/obj/item/organ/internal/I in occ["internal_organs"])
-		if(I.scanner_hidden)
+		else
 			continue
-
-		var/mech = ""
-		var/bone_fracture = ""
-		if(BP_IS_ASSISTED(I))
-			mech = "Assisted:"
-		if(BP_IS_ROBOTIC(I))
-			mech = "Prosthetic:"
-
-		var/obj/item/organ/internal/bone/B = I
-		if(istype(B))
-			if(B.parent.status & ORGAN_BROKEN)
-				bone_fracture = "[B.broken_description]:"
-
-		var/infection = "None"
-		switch (I.germ_level)
-			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection:"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+:"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++:"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection:"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection+:"
-			if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-				infection = "Acute Infection++:"
-		if(I.rejecting)
-			infection += "(being rejected)"
-
-		dat += "<tr>"
-		dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[infection]:[bone_fracture]:[mech]</td><td></td>"
 		dat += "</tr>"
+
+
 	dat += "</table>"
 
 	var/list/species_organs = occ["species_organs"]

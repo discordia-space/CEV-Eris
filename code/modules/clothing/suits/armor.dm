@@ -405,6 +405,12 @@
 	bad_type = /obj/item/clothing/suit/storage/vest
 	style = STYLE_NEG_HIGH
 
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3, //for webbing
+	)
+
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
 	name = "heavy armor vest"
@@ -424,20 +430,20 @@
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
+	slowdown = 0.15
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
-	name = "insulated armor"
+	name = "insulated technomancer armor"
 	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
 	icon_state = "armor_engineering"
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 25,
 		energy = 40,
-		bomb = 10,
+		bomb = 20,
 		bio = 0,
 		rad = 30
 	)
@@ -507,13 +513,13 @@
 	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	slowdown = 0.3
+	slowdown = 0.15
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 70,
+		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 30,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)

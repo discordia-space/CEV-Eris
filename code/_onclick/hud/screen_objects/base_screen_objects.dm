@@ -984,6 +984,7 @@ obj/screen/fire/DEADelize()
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
+		SEND_SIGNAL(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
 		update_icon()
 
 	update_icon()
@@ -1088,20 +1089,15 @@ obj/screen/fire/DEADelize()
 /obj/screen/intent/Click(location, control, params)
 	var/_x = text2num(params2list(params)["icon-x"])
 	var/_y = text2num(params2list(params)["icon-y"])
-
 	if(_x<=16 && _y<=16)
 		parentmob.a_intent_change(I_HURT)
-
-	else if(_x<=16 && _y>=17)
+	if(_x<=16 && _y>=17)
 		parentmob.a_intent_change(I_HELP)
-
-	else if(_x>=17 && _y<=16)
+	if(_x>=17 && _y<=16)
 		parentmob.a_intent_change(I_GRAB)
-
-	else if(_x>=17 && _y>=17)
+	if(_x>=17 && _y>=17)
 		parentmob.a_intent_change(I_DISARM)
-	else
-		return ..()
+	SEND_SIGNAL(parentmob, COMSIG_HUMAN_ACTIONINTENT_CHANGE, parentmob)
 
 /obj/screen/intent/on_update_icon()
 	src.cut_overlays()

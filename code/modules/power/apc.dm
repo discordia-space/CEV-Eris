@@ -165,6 +165,8 @@
 	..()
 	wires = new(src)
 
+	GLOB.apc_list += src
+
 	// offset 28 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
@@ -188,6 +190,7 @@
 /obj/machinery/power/apc/Destroy()
 	update()
 	area.apc = null
+	SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED)
 	area.power_light = 0
 	area.power_equip = 0
 	area.power_environ = 0
@@ -203,6 +206,8 @@
 	// Malf AI, removes the APC from AI's hacked APCs list.
 	if((hacker) && (hacker.hacked_apcs) && (src in hacker.hacked_apcs))
 		hacker.hacked_apcs -= src
+
+	GLOB.apc_list -= src
 
 	return ..()
 
@@ -1051,9 +1056,9 @@
 		force_update = 1
 		return
 
-	lastused_light = area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_environ = area.usage(ENVIRON)
+	lastused_light = area.usage(STATIC_LIGHT)
+	lastused_equip = area.usage(STATIC_EQUIP)
+	lastused_environ = area.usage(STATIC_ENVIRON)
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ
