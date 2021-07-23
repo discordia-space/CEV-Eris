@@ -102,6 +102,24 @@
 		)
 	I.removal_time *= 10
 	I.gun_loc_tag = GUN_TRIGGER
+	I.breakable = FALSE
+
+/obj/item/weapon/gun_upgrade/trigger/dnalock
+	name = "Frozen Star \"DNA lock\" Trigger"
+	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	icon_state = "DNA_lock"
+	rarity_value = 15
+
+/obj/item/weapon/gun_upgrade/trigger/dnalock/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DNALOCK = TRUE
+		)
+	I.removal_time *= 10
+	I.gun_loc_tag = GUN_TRIGGER
+	I.breakable = FALSE
+	I.removal_difficulty = FAILCHANCE_VERY_HARD
 
 /obj/item/weapon/gun_upgrade/mechanism
 	bad_type = /obj/item/weapon/gun_upgrade/mechanism
