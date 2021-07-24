@@ -1,5 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscdel: 'code: obj/item/weapon is gone.'
-  - config: gitignore now has ./tools/ instead of tools/
