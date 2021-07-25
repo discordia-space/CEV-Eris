@@ -26,6 +26,5 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/attack_hand(mob/user as mob), attacked_by_hand
 CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 /datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)
 
-
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Bumped(AM as mob|obj), BumpedBy)
 /datum/CyberSpaceAvatar/proc/BumpedBy(atom/movable/AM)
