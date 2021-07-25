@@ -312,7 +312,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		dig_amount--
 		for (var/a in matter)
 			matter[a] *=RAND_DECIMAL(0.6, 0.8)//remove some amount of matter from the pile
-		//new /obj/item/scrap_lump(src) //Todo: uncomment this once purposes and machinery for scrap are implemented
+		if(prob(55))
+			new /obj/item/trash/scrap_lump(src) //Todo: uncomment this once purposes and machinery for scrap are implemented
 		return TRUE
 
 

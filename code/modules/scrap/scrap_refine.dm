@@ -25,28 +25,37 @@
 	else
 		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], but [W] is too weak to break it!"))
 
-/obj/item/scrap_lump
+/obj/item/trash/scrap_lump
 	name = "unrefined scrap"
 	desc = "This thing is messed up beyond any recognition. Into the grinder it goes!"
 	icon = 'icons/obj/structures/scrap/refine.dmi'
 	icon_state = "unrefined"
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 
-/obj/item/scrap_lump/Initialize()
+/obj/item/trash/scrap_lump/Initialize()
 	. = ..()
-	create_reagents(10)
+	/*create_reagents(10)
 	var/reag_num = rand(0, 3)
 	for(var/i in 1 to reag_num)
 		if(reagents.total_volume == reagents.maximum_volume)
 			break
-		reagents.add_reagent(pick(GLOB.chemical_reagents_list), rand(1, reagents.maximum_volume))
+		reagents.add_reagent(pick(GLOB.chemical_reagents_list), rand(1, reagents.maximum_volume))*/
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
+	matter = list(	MATERIAL_STEEL = rand(0, 2.5),
+					MATERIAL_WOOD = rand(0, 1.5), 
+					MATERIAL_GLASS = rand(0, 1.5), 
+					MATERIAL_PLASTIC = rand(0, 2.5),
+					MATERIAL_PLASTEEL = rand(0, 0.75),
+					MATERIAL_URANIUM = rand(0, 0.5),
+					MATERIAL_REFSCRAP = 1
+					)
 
-/obj/item/stack/refined_scrap
+/obj/item/stack/material/refined_scrap
 	name = "refined scrap"
-	desc = "This is ghetto gold! It could be used as fuel or building material. Even central Command would give cargo points for this."
+	desc = "This is ghetto gold! It could be used as fuel or as building material."
 	icon = 'icons/obj/structures/scrap/refine.dmi'
 	icon_state = "refined"
-	max_amount = 20
+	default_type = MATERIAL_REFSCRAP
 	amount = 1
+	price_tag = 20

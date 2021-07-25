@@ -98,9 +98,9 @@ var/list/name_to_material
 
 	// Icons
 	var/icon_colour                                      // Colour applied to products of this material.
-	var/icon_base = "metal"                              // Wall and table base icon tag. See header.
+	var/icon_base = "solid"                              // Wall and table base icon tag. See header.
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
-	var/icon_reinf = "reinf_metal"                       // Overlay used
+	var/icon_reinf = "reinf_over"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
 
 	// Attributes
@@ -558,6 +558,20 @@ var/list/name_to_material
 	display_name = "plastic"
 	stack_type = null
 	shard_type = SHARD_NONE
+
+/material/refscrap
+	name = MATERIAL_REFSCRAP
+	stack_type = /obj/item/stack/material/refined_scrap
+	flags = MATERIAL_BRITTLE
+	icon_base = "solid"
+	icon_reinf = "reinf_over"
+	icon_colour = "#bbb690"
+	hardness = 10
+	weight = 12
+	melting_point = T0C+371 //assuming heat resistant plastic
+	stack_origin_tech = list(TECH_MATERIAL = 3)
+	sheet_singular_name = "lump"
+	sheet_plural_name = "lumps"
 
 /material/osmium
 	name = MATERIAL_OSMIUM

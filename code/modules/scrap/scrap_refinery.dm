@@ -111,10 +111,10 @@
 	if(sound)
 		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 	var/chance_mod = 1
-	if(!istype(I, /obj/item/scrap_lump))
+	if(!istype(I, /obj/item/trash/scrap_lump))
 		chance_mod = 5
 	if(prob(chance_to_recycle / chance_mod))
-		new /obj/item/stack/refined_scrap(loc)
+		new /obj/item/stack/material/refined_scrap(loc)
 	qdel(I)
 
 /obj/machinery/recycler/proc/stop(mob/living/L)
