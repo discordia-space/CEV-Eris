@@ -1,6 +1,6 @@
 /mob/living/simple_animal/iriska
 	name = "Iriska"
-	desc = "A very fat cat."
+	desc = "The captain's own cat. Fat and lazy."
 	icon = 'icons/mob/iriska.dmi'
 	icon_state = "iriska"
 	health = 80
@@ -15,6 +15,9 @@
 	response_help  = "pets"
 	response_disarm = "rubs"
 	response_harm   = "makes terrible mistake by kicking"
+	min_oxy = 16
+	minbodytemp = 223
+	maxbodytemp = 323
 	mob_size = MOB_HUGE
 	harm_intent_damage = 20
 	melee_damage_lower = 10
