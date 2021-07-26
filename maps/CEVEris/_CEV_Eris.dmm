@@ -64476,9 +64476,9 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/storage)
 "cWg" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/captain,
-/turf/simulated/floor/carpet/turcarpet,
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma,
+/turf/simulated/floor/plating,
 /area/eris/command/captain)
 "cWh" = (
 /obj/structure/closet/l3closet/scientist,
@@ -68224,17 +68224,16 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deI" = (
-/mob/living/simple_animal/iriska,
+/obj/structure/table/rack,
+/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/space/captain,
+/obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
 /obj/structure/table/woodentable,
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "captain_laser";
-	name = "Destiny id lock";
-	req_access = list(20)
-	},
-/obj/item/weapon/card/id/captains_spare,
+/obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/sign/faction/astersguild{
 	pixel_y = 32
 	},
@@ -68434,11 +68433,8 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfg" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/energy/captain,
-/obj/machinery/door/blast/shutters/glass{
-	id = "captain_laser"
-	},
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/captain,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfh" = (
@@ -68591,15 +68587,23 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/space/capspace,
+/obj/item/weapon/gun/energy/captain,
+/obj/machinery/door/blast/shutters/glass{
+	id = "captain_laser"
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfz" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/disk/nuclear,
+/obj/machinery/camera/network/command{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "captain_laser";
+	name = "Destiny id lock";
+	req_access = list(20)
+	},
+/obj/item/weapon/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfA" = (
@@ -68609,9 +68613,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/flask{
 	pixel_x = 8
 	},
-/obj/machinery/camera/network/command{
-	dir = 1
-	},
+/obj/item/weapon/disk/nuclear,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfB" = (
@@ -102851,7 +102853,14 @@
 /area/eris/engineering/propulsion/left)
 "eMk" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/obj/item/device/camera,
+/obj/item/weapon/storage/photo_album{
+	pixel_y = -10
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "eMP" = (
@@ -103872,11 +103881,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"mmE" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/simulated/floor/plating,
-/area/eris/command/captain)
 "mpe" = (
 /obj/item/modular_computer/console/preset/engineering/power{
 	dir = 8;
@@ -104677,18 +104681,6 @@
 /obj/spawner/mob/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
-"sbV" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera,
-/obj/item/weapon/storage/photo_album{
-	pixel_y = -10
-	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/eris/command/captain)
 "sbX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -249191,7 +249183,7 @@ ddo
 ddo
 ddo
 deJ
-dfN
+dfg
 eMk
 bXj
 bXD
@@ -249392,9 +249384,9 @@ abF
 abF
 abF
 ddo
-dfg
+ddo
 cWg
-sbV
+ddo
 bXj
 ctA
 ctW
@@ -249593,10 +249585,10 @@ abF
 abF
 abF
 abF
-ddo
-ddo
-mmE
-ddo
+abF
+abF
+abF
+abF
 bXj
 ctJ
 ctW
@@ -289994,10 +289986,10 @@ aaa
 aaa
 aaa
 aaa
-abF
-abF
-abF
-abF
+aaa
+aaa
+aaa
+aaa
 abF
 abF
 abF
