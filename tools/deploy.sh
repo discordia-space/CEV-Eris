@@ -13,8 +13,7 @@ mkdir -p \
     $1/maps \
     $1/icons/runtime \
     $1/sound/runtime \
-    $1/strings \
-	$1/config/names
+    $1/strings
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
