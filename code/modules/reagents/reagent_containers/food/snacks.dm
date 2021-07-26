@@ -181,8 +181,10 @@
 
 		var/m_bitesize = bitesize * SA.bite_factor//Modified bitesize based on creature size
 		var/amount_eaten = m_bitesize
-
-		if(reagents && SA.reagents)
+		if (!SA.eat_from_hand)
+			to_chat(user, SPAN_WARNING("[M.name] won't take food from hands!"))
+			return 0
+		else if(reagents && SA.reagents)
 			m_bitesize = min(m_bitesize, reagents.total_volume)
 			//If the creature can't even stomach half a bite, then it eats nothing
 			if (!SA.can_eat() || ((user.reagents.maximum_volume - user.reagents.total_volume) < m_bitesize * 0.5))

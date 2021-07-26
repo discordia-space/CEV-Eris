@@ -35,6 +35,7 @@
 	var/stop_automated_movement_when_pulled = TRUE //When set to 1 this stops the animal from moving when someone is pulling it.
 	var/atom/movement_target = null//Thing we're moving towards
 	var/turns_since_scan = 0
+	var/eat_from_hand = TRUE
 
 	//Interaction
 	var/response_help   = "tries to help"
