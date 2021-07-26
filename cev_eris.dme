@@ -1,4 +1,3 @@
-// END_INCLUDE
 // BEGIN_INTERNALS
 // END_INTERNALS
 // BEGIN_FILE_DIR
@@ -2677,7 +2676,6 @@
 #include "code\modules\tables\tables.dm"
 #include "code\modules\tables\update_triggers.dm"
 #include "code\modules\telesci\bcrystal.dm"
-#include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\telesci\circuits.dm"
 #include "code\modules\telesci\telepads.dm"
 #include "code\modules\telesci\telesci_computer.dm"
@@ -2708,6 +2706,7 @@
 #include "code\modules\trade\datums\trade_stations_presets\zarya.dm"
 #include "code\modules\trade\machinery\trade_beacon.dm"
 #include "code\modules\trade\machinery\circuits\trade_beacon.dm"
+#include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\train.dm"
 #include "code\modules\vehicles\vehicle.dm"
