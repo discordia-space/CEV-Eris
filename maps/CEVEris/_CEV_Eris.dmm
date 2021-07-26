@@ -68613,6 +68613,7 @@
 	pixel_x = 8
 	},
 /obj/item/weapon/disk/nuclear,
+/obj/machinery/light,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfB" = (
