@@ -425,6 +425,7 @@
 	movement_target = null
 	icon_state = icon_dead
 	density = FALSE
+	stasis = TRUE
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/ex_act(severity)
