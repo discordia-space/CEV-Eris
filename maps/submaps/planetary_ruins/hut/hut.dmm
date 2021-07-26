@@ -49,11 +49,6 @@
 /obj/structure/bed/chair/wheelchair,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
-"m" = (
-/obj/structure/table/marble,
-/obj/item/weapon/paper_bin,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
 "n" = (
 /turf/template_noop,
 /area/template_noop)
@@ -65,24 +60,29 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
-"q" = (
-/obj/item/weapon/pen/multi,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
 "r" = (
 /mob/living/bot/medbot,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
-"t" = (
+"C" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "G" = (
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
+"I" = (
+/obj/item/pen/multi,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
 "K" = (
 /turf/simulated/floor/plating,
+/area/template_noop)
+"Z" = (
+/obj/structure/table/marble,
+/obj/item/paper_bin,
+/turf/simulated/floor/tiled/dark,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -108,7 +108,7 @@ b
 o
 G
 G
-q
+I
 d
 b
 "}
@@ -118,7 +118,7 @@ a
 G
 r
 k
-m
+Z
 b
 "}
 (5,1,1) = {"
@@ -136,7 +136,7 @@ h
 h
 G
 g
-t
+C
 b
 "}
 (7,1,1) = {"

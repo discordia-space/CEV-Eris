@@ -59,34 +59,7 @@
 /obj/machinery/complant_maker,
 /turf/simulated/floor,
 /area/testing/first)
-"am" = (
-/obj/machinery/power/apc/high{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
-	},
-/obj/item/weapon/disk/autolathe_disk/excelsior,
-/mob/living/carbon/human/dummy,
-/turf/simulated/floor,
-/area/testing/first)
 "an" = (
-/turf/simulated/floor,
-/area/testing/first)
-"ao" = (
-/obj/item/weapon/implantcase/excelsior,
-/turf/simulated/floor,
-/area/testing/first)
-"ap" = (
-/obj/item/weapon/implant/adrenalin,
-/turf/simulated/floor,
-/area/testing/first)
-"aq" = (
-/obj/item/weapon/implant/compressed,
 /turf/simulated/floor,
 /area/testing/first)
 "ar" = (
@@ -96,20 +69,6 @@
 /area/testing/first)
 "as" = (
 /obj/item/prosthesis/l_arm,
-/turf/simulated/floor,
-/area/testing/first)
-"at" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/item/weapon/disk/autolathe_disk/blank,
-/turf/simulated/floor,
-/area/testing/first)
-"au" = (
-/obj/item/weapon/implanter/excelsior,
 /turf/simulated/floor,
 /area/testing/first)
 "av" = (
@@ -122,24 +81,6 @@
 /area/testing/first)
 "ax" = (
 /obj/landmark/join/start,
-/turf/simulated/floor,
-/area/testing/first)
-"ay" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/weapon/disk/autolathe_disk/blank,
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
 /turf/simulated/floor,
 /area/testing/first)
 "az" = (
@@ -195,14 +136,6 @@
 /obj/structure/cable,
 /turf/simulated/floor,
 /area/space)
-"aD" = (
-/obj/item/weapon/mine,
-/turf/simulated/floor,
-/area/testing/first)
-"aE" = (
-/obj/item/weapon/implanter,
-/turf/simulated/floor,
-/area/testing/first)
 "aF" = (
 /mob/living/carbon/human/dummy,
 /turf/simulated/floor,
@@ -223,81 +156,12 @@
 	},
 /turf/simulated/floor,
 /area/testing/first)
-"aJ" = (
-/obj/item/weapon/storage/toolbox/mechanical,
-/turf/simulated/floor,
-/area/testing/first)
-"aK" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
-	},
-/obj/item/weapon/mine,
-/turf/simulated/floor,
-/area/testing/first)
-"aL" = (
-/obj/item/weapon/implant/revolution/excelsior,
-/turf/simulated/floor,
-/area/testing/first)
-"aM" = (
-/obj/item/weapon/mine,
-/mob/living/carbon/human/dummy,
-/turf/simulated/floor,
-/area/testing/first)
-"aN" = (
-/obj/item/weapon/reagent_containers/glass/beaker/tungsten,
-/obj/item/weapon/tool/screwdriver,
-/turf/simulated/floor,
-/area/testing/first)
-"aO" = (
-/obj/item/weapon/disk/autolathe_disk/security,
-/obj/item/weapon/stock_parts/scanning_module/adv,
-/obj/item/weapon/stock_parts/scanning_module/phasic,
-/turf/simulated/floor,
-/area/testing/first)
-"aP" = (
-/obj/item/weapon/disk/autolathe_disk/security,
-/obj/item/weapon/stock_parts/micro_laser/ultra,
-/obj/item/weapon/stock_parts/micro_laser/ultra,
-/turf/simulated/floor,
-/area/testing/first)
-"aQ" = (
-/obj/item/weapon/stock_parts/micro_laser/high,
-/obj/item/weapon/stock_parts/micro_laser/high,
-/turf/simulated/floor,
-/area/testing/first)
-"aR" = (
-/obj/item/weapon/grenade/frag,
-/turf/simulated/floor,
-/area/testing/first)
-"aS" = (
-/obj/item/weapon/grenade/explosive,
-/turf/simulated/floor,
-/area/testing/first)
-"aT" = (
-/obj/item/weapon/disk/autolathe_disk/basic,
-/turf/simulated/floor,
-/area/testing/first)
-"aU" = (
-/obj/item/weapon/reagent_containers/glass/beaker/water,
-/turf/simulated/floor,
-/area/testing/first)
 "aV" = (
 /obj/machinery/power/smes/magical,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
-/area/testing/first)
-"aW" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
-	},
-/obj/item/weapon/disk/autolathe_disk/lethal_ammo,
 /turf/simulated/floor,
 /area/testing/first)
 "aX" = (
@@ -472,14 +336,6 @@
 	},
 /turf/simulated/floor,
 /area/testing/second)
-"by" = (
-/obj/structure/window/reinforced/full,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4;
-	icon_state = "intact"
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	icon_state = "intact";
@@ -567,10 +423,6 @@
 	},
 /turf/simulated/floor,
 /area/testing/second)
-"bK" = (
-/obj/item/weapon/storage/toolbox/mechanical,
-/turf/simulated/floor,
-/area/testing/second)
 "bL" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -634,9 +486,157 @@
 "bV" = (
 /turf/simulated/floor/hull,
 /area/space)
-"bW" = (
-/obj/item/weapon/book/ritual,
+"bX" = (
+/obj/item/mine,
+/mob/living/carbon/human/dummy,
+/turf/simulated/floor,
+/area/testing/first)
+"fA" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor,
+/area/testing/first)
+"he" = (
+/obj/item/implantcase/excelsior,
+/turf/simulated/floor,
+/area/testing/first)
+"hO" = (
+/obj/item/disk/autolathe_disk/basic,
+/turf/simulated/floor,
+/area/testing/first)
+"jn" = (
+/obj/item/implant/compressed,
+/turf/simulated/floor,
+/area/testing/first)
+"jP" = (
+/obj/item/grenade/frag,
+/turf/simulated/floor,
+/area/testing/first)
+"ky" = (
+/obj/item/disk/autolathe_disk/security,
+/obj/item/stock_parts/micro_laser/ultra,
+/obj/item/stock_parts/micro_laser/ultra,
+/turf/simulated/floor,
+/area/testing/first)
+"mc" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/obj/item/disk/autolathe_disk/lethal_ammo,
+/turf/simulated/floor,
+/area/testing/first)
+"pd" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/item/mine,
+/turf/simulated/floor,
+/area/testing/first)
+"pv" = (
+/obj/item/mine,
+/turf/simulated/floor,
+/area/testing/first)
+"wA" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor,
+/area/testing/second)
+"AG" = (
+/obj/item/stock_parts/micro_laser/high,
+/obj/item/stock_parts/micro_laser/high,
+/turf/simulated/floor,
+/area/testing/first)
+"Dt" = (
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/plating,
+/area/space)
+"Gc" = (
+/obj/item/reagent_containers/glass/beaker/tungsten,
+/obj/item/tool/screwdriver,
+/turf/simulated/floor,
+/area/testing/first)
+"Hc" = (
+/obj/item/reagent_containers/glass/beaker/water,
+/turf/simulated/floor,
+/area/testing/first)
+"LZ" = (
+/obj/item/implanter,
+/turf/simulated/floor,
+/area/testing/first)
+"QE" = (
+/obj/item/implanter/excelsior,
+/turf/simulated/floor,
+/area/testing/first)
+"QJ" = (
+/obj/item/disk/autolathe_disk/security,
+/obj/item/stock_parts/scanning_module/adv,
+/obj/item/stock_parts/scanning_module/phasic,
+/turf/simulated/floor,
+/area/testing/first)
+"RE" = (
+/obj/item/book/ritual,
 /obj/landmark/join/late/cryo,
+/turf/simulated/floor,
+/area/testing/first)
+"Tb" = (
+/obj/item/implant/adrenalin,
+/turf/simulated/floor,
+/area/testing/first)
+"TG" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/disk/autolathe_disk/blank,
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/simulated/floor,
+/area/testing/first)
+"Up" = (
+/obj/item/grenade/explosive,
+/turf/simulated/floor,
+/area/testing/first)
+"Vb" = (
+/obj/item/implant/revolution/excelsior,
+/turf/simulated/floor,
+/area/testing/first)
+"Xr" = (
+/obj/machinery/power/apc/high{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
+	},
+/obj/item/disk/autolathe_disk/excelsior,
+/mob/living/carbon/human/dummy,
+/turf/simulated/floor,
+/area/testing/first)
+"Ze" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/item/disk/autolathe_disk/blank,
 /turf/simulated/floor,
 /area/testing/first)
 
@@ -1344,11 +1344,11 @@ aa
 ab
 af
 an
-ao
-aD
-aK
-aR
-aR
+he
+pv
+pd
+jP
+jP
 ab
 aa
 aa
@@ -1445,12 +1445,12 @@ aa
 aa
 ab
 ag
-ao
-ao
-aE
-aL
-aS
-aS
+he
+he
+LZ
+Vb
+Up
+Up
 ab
 aa
 aa
@@ -1548,10 +1548,10 @@ aa
 ab
 ah
 an
-au
+QE
 aF
-aM
-aT
+bX
+hO
 aZ
 ab
 aa
@@ -1649,11 +1649,11 @@ aa
 aa
 ab
 ai
-ap
-bW
+Tb
+RE
 aG
-aN
-aU
+Gc
+Hc
 ba
 ab
 aa
@@ -1751,10 +1751,10 @@ aa
 aa
 ab
 aj
-aq
+jn
 av
 aH
-aO
+QJ
 aV
 bb
 ab
@@ -1856,8 +1856,8 @@ ak
 ar
 aw
 aI
-aP
-aW
+ky
+mc
 an
 ab
 aa
@@ -1957,8 +1957,8 @@ ab
 al
 as
 ax
-aJ
-aQ
+fA
+AG
 aX
 an
 ab
@@ -2056,11 +2056,11 @@ aa
 aa
 aa
 ab
-am
-at
-ay
-at
-at
+Xr
+Ze
+TG
+Ze
+Ze
 aY
 bc
 ab
@@ -11750,7 +11750,7 @@ bm
 bp
 bv
 bD
-bK
+wA
 bv
 bR
 bR
@@ -12360,12 +12360,12 @@ aa
 aa
 ab
 bl
-by
+Dt
 bl
 bl
 bl
 bl
-by
+Dt
 ab
 aa
 aa

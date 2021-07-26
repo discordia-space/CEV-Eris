@@ -5,14 +5,14 @@
 	markup = 2
 	assortiment = list(
 		"Ballistics" = list(
-			/obj/item/weapon/gun/projectile/selfload,
-			/obj/item/weapon/gun/projectile/automatic/c20r = custom_good_amount_range(list(-3, 1)),
-			/obj/item/weapon/gun/energy/crossbow = custom_good_amount_range(list(-3, 1))
+			/obj/item/gun/projectile/selfload,
+			/obj/item/gun/projectile/automatic/c20r = custom_good_amount_range(list(-3, 1)),
+			/obj/item/gun/energy/crossbow = custom_good_amount_range(list(-3, 1))
 		),
 		"Useful stuff" = list(
-			/obj/item/weapon/reagent_containers/hypospray/autoinjector/hyperzine,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
 			/obj/item/clothing/glasses/powered/night,
 			/obj/item/clothing/suit/space/void/merc = custom_good_amount_range(list(-3, 1)),
-			/obj/item/weapon/rig/merc/empty = custom_good_amount_range(list(-3, 1))
+			/obj/item/rig/merc/empty = custom_good_amount_range(list(-3, 1))
 		),
 	)

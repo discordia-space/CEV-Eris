@@ -51,19 +51,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
-"k" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 0;
-	pixel_y = 0
-	},
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
 "l" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/portables_connector{
@@ -158,6 +145,19 @@
 	},
 /turf/simulated/floor/tiled/white/panels,
 /area/deepmaint)
+"J" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -189,7 +189,7 @@ a
 a
 d
 x
-k
+J
 c
 n
 o
@@ -267,7 +267,7 @@ a
 a
 d
 y
-k
+J
 c
 n
 r

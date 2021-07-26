@@ -82,14 +82,14 @@
 #define FIND_REF_NO_CHECK_TICK
 #endif
 
-#ifdef TGS
+// #ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
-#define CBT
-#endif
+// #define CBT
+// #endif
 
 // A reasonable number of maximum overlays an object needs
 // If you think you need more, rethink it
-#define MAX_ATOM_OVERLAYS 100
+// #define MAX_ATOM_OVERLAYS 100
 /* not yet done
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
 #warn "Building with Dream Maker is no longer supported and will result in errors."

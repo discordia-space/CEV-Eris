@@ -63,13 +63,6 @@
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/deepmaint)
-"o" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/item/weapon/storage/toolbox/mechanical,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
 "p" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light/small{
@@ -127,6 +120,13 @@
 	range = 6
 	},
 /turf/simulated/wall,
+/area/deepmaint)
+"K" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -188,7 +188,7 @@ c
 g
 j
 c
-o
+K
 g
 c
 c

@@ -140,27 +140,27 @@ code\modules\client\preference_setup\loadout\lists\tactical.dm:13:error: /obj/it
 code\modules\client\preference_setup\loadout\lists\tactical.dm:18:error: /obj/item/clothing/accessory/kneepads: undefined type path
 code\modules\client\preference_setup\loadout\lists\tactical.dm:22:error: /obj/item/clothing/accessory/storage/holster: undefined type path
 code\modules\client\preference_setup\loadout\lists\tactical.dm:28:error: /obj/item/clothing/under/syndicate/tacticool: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:7:error: /obj/item/weapon/card/union: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:7:error: /obj/item/card/union: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:13:error: card.signed_by: undefined type: card.signed_by
-code\modules\client\preference_setup\loadout\lists\misc.dm:21:error: /obj/item/weapon/storage/pill_bottle/dice_nerd: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:21:error: /obj/item/storage/pill_bottle/dice_nerd: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:49:error: lunchables_ethanol_reagents: undefined proc
 code\modules\client\preference_setup\loadout\lists\misc.dm:57:error: lunchables_drink_reagents: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:61:error: /obj/item/weapon/reagent_containers/food/drinks/coffeecup: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:66:error: /obj/item/weapon/material/kitchen/utensil/knife/boot: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:61:error: /obj/item/reagent_containers/food/drinks/coffeecup: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:66:error: /obj/item/material/kitchen/utensil/knife/boot: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_lunches: undefined proc
 code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_snacks: undefined proc
 code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_drinks: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:87:error: /obj/item/weapon/towel: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:87:error: /obj/item/towel: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:98:error: /obj/item/toy/plushie/nymph: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:109:error: /obj/item/weapon/paper/workvisa: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:109:error: /obj/item/paper/workvisa: undefined type path
 code\modules\client\preference_setup\loadout\lists\xenowear.dm:78:error: /obj/item/clothing/mask/monitor: undefined type path
 code\modules\client\preference_setup\loadout\lists\xenowear.dm:80:error: SPECIES_IPC: undefined var
 code\modules\client\preference_setup\loadout\lists\xenowear.dm:154:error: /obj/item/clothing/mask/gas/vox: undefined type path
 code\modules\client\preference_setup\loadout\lists\xenowear.dm:156:error: SPECIES_VOX: undefined var
-code\modules\client\preference_setup\loadout\lists\misc.dm:153:error: /obj/item/weapon/material/ashtray/plastic: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:153:error: /obj/item/material/ashtray/plastic: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:173:error: /obj/item/clothing/mask/smokable/ecig/util: undefined type path
 code\modules\client\preference_setup\loadout\lists\misc.dm:177:error: /obj/item/clothing/mask/smokable/ecig/deluxe: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:182:error: /obj/item/weapon/storage/bible: undefined type path
+code\modules\client\preference_setup\loadout\lists\misc.dm:182:error: /obj/item/storage/bible: undefined type path
 code\modules\client\preference_setup\loadout\lists\storage.dm:8:error: /obj/item/clothing/accessory/storage/brown_vest: undefined type path
 code\modules\client\preference_setup\loadout\lists\storage.dm:10:error: /datum/job/engineer: undefined type path
 code\modules\client\preference_setup\loadout\lists\storage.dm:10:error: /datum/job/qm: undefined type path
@@ -182,8 +182,8 @@ code\modules\client\preference_setup\loadout\lists\storage.dm:40:error: /obj/ite
 code\modules\client\preference_setup\loadout\lists\storage.dm:46:error: /obj/item/clothing/accessory/storage/webbing: undefined type path
 code\modules\client\preference_setup\loadout\lists\storage.dm:51:error: /obj/item/clothing/accessory/storage/webbing_large: undefined type path
 code\modules\client\preference_setup\loadout\lists\storage.dm:56:error: /obj/item/clothing/accessory/storage/bandolier: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:61:error: /obj/item/weapon/storage/belt/waistpack: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:68:error: /obj/item/weapon/storage/belt/waistpack/big: undefined type path
+code\modules\client\preference_setup\loadout\lists\storage.dm:61:error: /obj/item/storage/belt/waistpack: undefined type path
+code\modules\client\preference_setup\loadout\lists\storage.dm:68:error: /obj/item/storage/belt/waistpack/big: undefined type path
 code\modules\client\preference_setup\loadout\lists\suits.dm:8:error: /obj/item/clothing/suit/poncho/colored: undefined type path
 code\modules\client\preference_setup\loadout\lists\suits.dm:14:error: /obj/item/clothing/suit/poncho/roles/security: undefined type path
 code\modules\client\preference_setup\loadout\lists\suits.dm:18:error: /obj/item/clothing/suit/poncho/roles/medical: undefined type path

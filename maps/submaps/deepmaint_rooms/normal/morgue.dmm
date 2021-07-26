@@ -62,18 +62,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/deepmaint)
-"m" = (
-/obj/structure/table/standard,
-/obj/item/weapon/autopsy_scanner{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/weapon/tool/scalpel,
-/obj/item/weapon/tool/cautery{
-	pixel_y = 4
-	},
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
 "n" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/dark/panels,
@@ -113,6 +101,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/deepmaint)
+"S" = (
+/obj/structure/table/standard,
+/obj/item/autopsy_scanner{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/tool/scalpel,
+/obj/item/tool/cautery{
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/dark/panels,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -147,7 +147,7 @@ f
 g
 g
 h
-m
+S
 k
 q
 c

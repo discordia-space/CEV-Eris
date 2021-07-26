@@ -6,7 +6,7 @@
 */
 
 /*/client/verb/debugupgrades()
-	for (var/t in subtypesof(/obj/item/weapon/tool_upgrade))
+	for (var/t in subtypesof(/obj/item/tool_upgrade))
 		new t(usr.loc)
 */
 /datum/component/item_upgrade
@@ -20,6 +20,7 @@
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
 	var/removable = TRUE
+	var/breakable = TRUE //Some mods meant to be tamper-resistant and should be removed only in a hard way
 
 	//The upgrade can not be applied to a tool that has any of these qualities
 	var/list/negative_qualities = list()
@@ -72,10 +73,10 @@
 			to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
 		return FALSE
 	var/list/robotools = list()
-	for(var/obj/item/weapon/tool/robotool in R.module.modules)
+	for(var/obj/item/tool/robotool in R.module.modules)
 		robotools.Add(robotool)
 	if(robotools.len)
-		var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
+		var/obj/item/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
 		if(chosen_tool == "Cancel")
 			return FALSE
 		return can_apply(chosen_tool,user)
@@ -83,7 +84,7 @@
 		to_chat(user, SPAN_WARNING("[R] has no modifiable tools."))
 	return FALSE
 
-/datum/component/item_upgrade/proc/check_tool(obj/item/weapon/tool/T, mob/living/user)
+/datum/component/item_upgrade/proc/check_tool(obj/item/tool/T, mob/living/user)
 	if(!tool_upgrades.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be attached to a tool."))
 		return FALSE
@@ -134,7 +135,7 @@
 			return FALSE
 
 	if(tool_upgrades[UPGRADE_CELLPLUS])
-		if(!(T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small))
+		if(!(T.suitable_cell == /obj/item/cell/medium || T.suitable_cell == /obj/item/cell/small))
 			if(user)
 				to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
 			return FALSE
@@ -145,7 +146,7 @@
 
 	return TRUE
 
-/datum/component/item_upgrade/proc/check_gun(obj/item/weapon/gun/G, mob/living/user)
+/datum/component/item_upgrade/proc/check_gun(obj/item/gun/G, mob/living/user)
 	if(!weapon_upgrades.len)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
@@ -169,7 +170,7 @@
 				to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
 			return FALSE
 
-	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/weapon/gun/energy))
+	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/gun/energy))
 		if(user)
 			to_chat(user, SPAN_WARNING("This weapon does not use power!"))
 		return FALSE
@@ -220,7 +221,7 @@
 		add_values_gun(holder)
 	return TRUE
 
-/datum/component/item_upgrade/proc/apply_values_tool(obj/item/weapon/tool/T)
+/datum/component/item_upgrade/proc/apply_values_tool(obj/item/tool/T)
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		T.aspects += list(SANCTIFIED)
 	if(tool_upgrades[UPGRADE_PRECISION])
@@ -253,16 +254,16 @@
 		T.item_flags |= tool_upgrades[UPGRADE_ITEMFLAGPLUS]
 	if(tool_upgrades[UPGRADE_CELLPLUS])
 		switch(T.suitable_cell)
-			if(/obj/item/weapon/cell/medium)
-				T.suitable_cell = /obj/item/weapon/cell/large
+			if(/obj/item/cell/medium)
+				T.suitable_cell = /obj/item/cell/large
 				prefix = "large-cell"
-			if(/obj/item/weapon/cell/small)
-				T.suitable_cell = /obj/item/weapon/cell/medium
+			if(/obj/item/cell/small)
+				T.suitable_cell = /obj/item/cell/medium
 	T.force = initial(T.force) * T.force_upgrade_mults + T.force_upgrade_mods
 	T.switched_on_force = initial(T.switched_on_force) * T.force_upgrade_mults + T.force_upgrade_mods
 	T.prefixes |= prefix
 
-/datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/weapon/gun/G)
+/datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
@@ -327,12 +328,23 @@
 		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.one_hand_penalty *= weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY]
+
+	if(weapon_upgrades[GUN_UPGRADE_DNALOCK])
+		G.dna_compare_samples = TRUE
+		if(G.dna_lock_sample == "not_set")
+			G.dna_lock_sample = usr.real_name
+
+	if(G.dna_compare_samples == FALSE)
+		G.dna_lock_sample = "not_set"
+
+	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
+		G.dna_compare_samples = FALSE
 	
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
-	if(istype(G, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/E = G
+	if(istype(G, /obj/item/gun/energy))
+		var/obj/item/gun/energy/E = G
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			E.charge_cost *= weapon_upgrades[GUN_UPGRADE_CHARGECOST]
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
@@ -342,15 +354,15 @@
 		if(weapon_upgrades[GUN_UPGRADE_AGONY_MULT])
 			E.proj_agony_multiplier *= weapon_upgrades[GUN_UPGRADE_AGONY_MULT]
 
-	if(istype(G, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/P = G
+	if(istype(G, /obj/item/gun/projectile))
+		var/obj/item/gun/projectile/P = G
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			P.max_shells += weapon_upgrades[GUN_UPGRADE_MAGUP]
 
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
 
-/datum/component/item_upgrade/proc/add_values_gun(obj/item/weapon/gun/G)
+/datum/component/item_upgrade/proc/add_values_gun(obj/item/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
 		G.add_firemode(FULL_AUTO_400)
 
@@ -499,6 +511,9 @@
 			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
+		
+		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
+			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]-1
@@ -570,7 +585,7 @@
 
 	var/obj/item/upgrade_loc = parent
 
-	var/obj/item/weapon/tool/T //For dealing damage to the item
+	var/obj/item/tool/T //For dealing damage to the item
 
 	if(istool(upgrade_loc))
 		T = upgrade_loc
@@ -582,7 +597,7 @@
 	if(upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
 		var/list/possibles = upgrade_loc.item_upgrades.Copy()
 		possibles += "Cancel"
-		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
+		var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
 		if(toremove == "Cancel")
 			return 1
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
@@ -598,7 +613,11 @@
 				return 1
 			else
 				//You failed the check, lets see what happens
-				if(prob(50))
+				if(IU.breakable == FALSE)
+					to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
+					upgrade_loc.refresh_upgrades()
+					user.update_action_buttons()
+				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
 					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
@@ -615,7 +634,7 @@
 					return 1
 	return 0
 
-/obj/item/weapon/tool_upgrade
+/obj/item/tool_upgrade
 	name = "tool upgrade"
 	icon = 'icons/obj/tool_upgrades.dmi'
 	force = WEAPON_FORCE_HARMLESS
@@ -623,4 +642,4 @@
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE
 	price_tag = 200
 	rarity_value = 15
-	bad_type = /obj/item/weapon/tool_upgrade
+	bad_type = /obj/item/tool_upgrade

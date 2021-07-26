@@ -83,10 +83,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/deepmaint)
-"as" = (
-/obj/item/weapon/tool/pickaxe,
-/turf/simulated/floor/asteroid,
-/area/deepmaint)
 "at" = (
 /obj/spawner/material/ore,
 /obj/spawner/material/ore,
@@ -280,11 +276,6 @@
 /obj/item/device/lighting/toggleable/lamp/green,
 /turf/simulated/floor/carpet,
 /area/deepmaint)
-"bd" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
-/turf/simulated/floor/carpet,
-/area/deepmaint)
 "be" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -314,6 +305,15 @@
 	range = 10
 	},
 /turf/simulated/floor/tiled/steel,
+/area/deepmaint)
+"dq" = (
+/obj/item/tool/pickaxe,
+/turf/simulated/floor/asteroid,
+/area/deepmaint)
+"ni" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/turf/simulated/floor/carpet,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -493,7 +493,7 @@ aN
 ak
 aW
 ba
-bd
+ni
 ak
 ah
 ah
@@ -712,7 +712,7 @@ ab
 ab
 ad
 ad
-as
+dq
 az
 ay
 ah
@@ -759,7 +759,7 @@ aj
 ab
 ad
 af
-as
+dq
 ad
 aq
 ah

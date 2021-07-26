@@ -44,17 +44,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
-"aj" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/weapon/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/weapon/material/kitchen/rollingpin,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/deepmaint)
 "ak" = (
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -172,11 +161,6 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/deepmaint)
-"aH" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
-/turf/simulated/floor/wood,
-/area/deepmaint)
 "aI" = (
 /obj/structure/girder,
 /turf/simulated/floor/wood,
@@ -244,18 +228,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/deepmaint)
-"aV" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/pen/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/weapon/pen/red{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/turf/simulated/floor/wood,
-/area/deepmaint)
 "aW" = (
 /obj/machinery/libraryscanner,
 /turf/simulated/floor/wood,
@@ -319,17 +291,6 @@
 /area/deepmaint)
 "bi" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/deepmaint)
-"bj" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/item/weapon/storage/firstaid/regular,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/deepmaint)
-"bk" = (
-/obj/item/weapon/stool,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "bl" = (
@@ -489,6 +450,45 @@
 	},
 /turf/simulated/floor/wood,
 /area/deepmaint)
+"gY" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/deepmaint)
+"ir" = (
+/obj/structure/table/woodentable,
+/obj/item/pen/blue{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/turf/simulated/floor/wood,
+/area/deepmaint)
+"rp" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/deepmaint)
+"se" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin,
+/turf/simulated/floor/wood,
+/area/deepmaint)
+"GO" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/deepmaint)
 
 (1,1,1) = {"
 aa
@@ -577,7 +577,7 @@ ab
 aw
 an
 an
-aH
+se
 au
 ab
 aa
@@ -600,7 +600,7 @@ af
 aw
 bt
 an
-aV
+ir
 aY
 ab
 aa
@@ -615,7 +615,7 @@ ar
 af
 ar
 aD
-aH
+se
 be
 an
 bt
@@ -646,7 +646,7 @@ af
 aw
 an
 bt
-aH
+se
 au
 ab
 aa
@@ -669,7 +669,7 @@ af
 aw
 an
 an
-aV
+ir
 aY
 ab
 aa
@@ -715,7 +715,7 @@ aP
 bH
 an
 an
-aH
+se
 au
 ab
 am
@@ -723,7 +723,7 @@ am
 (11,1,1) = {"
 aa
 ab
-aj
+rp
 ao
 ba
 bd
@@ -738,7 +738,7 @@ af
 aw
 an
 bC
-aV
+ir
 aY
 ab
 aa
@@ -888,7 +888,7 @@ al
 ap
 ab
 bh
-bj
+gY
 bl
 af
 aT
@@ -911,7 +911,7 @@ ab
 ab
 ab
 bi
-bk
+GO
 bm
 aJ
 br

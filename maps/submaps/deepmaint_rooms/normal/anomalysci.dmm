@@ -53,10 +53,6 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
-"n" = (
-/obj/item/weapon/stool,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
 "o" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/rare,
@@ -90,6 +86,10 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
+"H" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -113,7 +113,7 @@ b
 c
 c
 l
-n
+H
 p
 a
 "}
@@ -126,8 +126,8 @@ b
 c
 c
 m
-n
-n
+H
+H
 a
 "}
 (4,1,1) = {"
@@ -204,8 +204,8 @@ b
 c
 c
 m
-n
-n
+H
+H
 a
 "}
 (10,1,1) = {"
@@ -217,7 +217,7 @@ b
 c
 c
 l
-n
+H
 p
 a
 "}

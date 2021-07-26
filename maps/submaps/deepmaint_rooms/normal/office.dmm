@@ -14,11 +14,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/deepmaint)
-"e" = (
-/obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
 "f" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -88,6 +83,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
+"N" = (
+/obj/structure/table/standard,
+/obj/item/paper_bin,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -118,13 +118,13 @@ b
 (3,1,1) = {"
 a
 d
-e
+N
 h
 l
 n
 l
 h
-e
+N
 d
 a
 "}
@@ -157,13 +157,13 @@ a
 (6,1,1) = {"
 a
 d
-e
+N
 h
 l
 n
 l
 h
-e
+N
 d
 a
 "}

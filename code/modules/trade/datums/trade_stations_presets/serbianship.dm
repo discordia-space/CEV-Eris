@@ -10,17 +10,17 @@
 //Types of items sold by the station
 	assortiment = list(
 		"Guns" = list(
-			/obj/item/weapon/gun/projectile/boltgun/serbian = custom_good_amount_range(list(1, 10)),
-			/obj/item/weapon/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(-5, 2)),
-			/obj/item/weapon/gun/projectile/automatic/ak47/sa = custom_good_amount_range(list(-5, 2)),
-			/obj/item/weapon/gun/projectile/kovacs = custom_good_amount_range(list(-5, 2)),
-			/obj/item/weapon/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(-8, 1)),
+			/obj/item/gun/projectile/boltgun/serbian = custom_good_amount_range(list(1, 10)),
+			/obj/item/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(-5, 2)),
+			/obj/item/gun/projectile/automatic/ak47/sa = custom_good_amount_range(list(-5, 2)),
+			/obj/item/gun/projectile/kovacs = custom_good_amount_range(list(-5, 2)),
+			/obj/item/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(-8, 1)),
 			/obj/item/ammo_magazine/sllrifle,
 			/obj/item/ammo_magazine/lrifle,
 			/obj/item/ammo_magazine/lrifle/pk = custom_good_amount_range(list(-4, 1)),
 			/obj/item/ammo_magazine/m12/empty,
-			/obj/item/weapon/storage/box/shotgunammo/slug,
-			/obj/item/weapon/storage/box/shotgunammo/buckshot,
-			/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
+			/obj/item/storage/box/shotgunammo/slug,
+			/obj/item/storage/box/shotgunammo/buckshot,
+			/obj/item/storage/box/shotgunammo/incendiaryshells
 		),
 	)

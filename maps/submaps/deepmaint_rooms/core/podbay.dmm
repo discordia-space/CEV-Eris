@@ -397,10 +397,6 @@
 "bl" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
-"bm" = (
-/obj/item/weapon/stool,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
 "bn" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
@@ -467,15 +463,6 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bx" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "by" = (
@@ -702,10 +689,6 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
-"bX" = (
-/obj/item/weapon/stool,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
 "bY" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -722,6 +705,23 @@
 	range = 10
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
+/area/deepmaint)
+"tD" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/welding,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/deepmaint)
+"zl" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/deepmaint)
+"Oi" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -836,7 +836,7 @@ bK
 bR
 bb
 ag
-bX
+Oi
 aa
 "}
 (6,1,1) = {"
@@ -872,9 +872,9 @@ aL
 aU
 bd
 af
-bm
+zl
 bu
-bm
+zl
 af
 an
 bE
@@ -895,9 +895,9 @@ aK
 aV
 be
 af
-bm
+zl
 bv
-bm
+zl
 af
 ao
 bF
@@ -918,9 +918,9 @@ aL
 aW
 bf
 af
-bm
+zl
 bw
-bm
+zl
 af
 ap
 bG
@@ -965,7 +965,7 @@ aE
 bh
 af
 bo
-bx
+tD
 ca
 af
 ar

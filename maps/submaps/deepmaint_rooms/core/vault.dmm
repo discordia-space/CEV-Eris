@@ -338,11 +338,6 @@
 /obj/spawner/science/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
-"bf" = (
-/obj/structure/table/rack,
-/obj/item/weapon/pinpointer/nukeop,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
 "bg" = (
 /obj/machinery/nuclearbomb,
 /turf/simulated/floor/tiled/dark/techfloor,
@@ -566,17 +561,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
-"bQ" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/weapon/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/weapon/material/kitchen/rollingpin,
-/turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
 "bR" = (
 /obj/structure/table/reinforced,
 /obj/spawner/pack/rare/low_chance,
@@ -595,17 +579,6 @@
 /obj/spawner/rations/low_chance,
 /obj/spawner/rations/low_chance,
 /obj/machinery/light,
-/turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bU" = (
-/obj/structure/table/standard,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
 /turf/simulated/floor/tiled/cafe,
 /area/deepmaint)
 "bV" = (
@@ -778,6 +751,33 @@
 /obj/spawner/mob/biome_spawner_mob/low_chance,
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
+"ls" = (
+/obj/structure/table/rack,
+/obj/item/pinpointer/nukeop,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/deepmaint)
+"vo" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled/cafe,
+/area/deepmaint)
+"MK" = (
+/obj/structure/table/standard,
+/obj/item/packageWrap,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/deepmaint)
 
 (1,1,1) = {"
 aa
@@ -885,8 +885,8 @@ ab
 ab
 bG
 bK
-bQ
-bU
+vo
+MK
 ab
 aj
 cp
@@ -992,7 +992,7 @@ aI
 ab
 aB
 ab
-bf
+ls
 ah
 ap
 ab
