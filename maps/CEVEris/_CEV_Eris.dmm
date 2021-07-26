@@ -68596,7 +68596,7 @@
 /obj/item/clothing/suit/space/captain,
 /obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
-/area/space)
+/area/eris/command/captain)
 "dfz" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/disk/nuclear,
@@ -103856,11 +103856,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemistry)
-"mhC" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/simulated/floor/plating,
-/area/eris/command/captain)
 "mjD" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -103877,6 +103872,11 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"mmE" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma,
+/turf/simulated/floor/plating,
+/area/eris/command/captain)
 "mpe" = (
 /obj/item/modular_computer/console/preset/engineering/power{
 	dir = 8;
@@ -104081,18 +104081,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/neotheology/chapelritualroom)
-"nvS" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera,
-/obj/item/weapon/storage/photo_album{
-	pixel_y = -10
-	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/eris/command/captain)
 "nDL" = (
 /obj/structure/railing{
 	dir = 8
@@ -104689,6 +104677,18 @@
 /obj/spawner/mob/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
+"sbV" = (
+/obj/structure/table/woodentable,
+/obj/item/device/camera,
+/obj/item/weapon/storage/photo_album{
+	pixel_y = -10
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/eris/command/captain)
 "sbX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -104841,9 +104841,6 @@
 /obj/spawner/rations,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
-"sHp" = (
-/turf/space,
-/area/eris/command/captain)
 "sHI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -249397,7 +249394,7 @@ abF
 ddo
 dfg
 cWg
-nvS
+sbV
 bXj
 ctA
 ctW
@@ -249598,7 +249595,7 @@ abF
 abF
 ddo
 ddo
-mhC
+mmE
 ddo
 bXj
 ctJ
@@ -250405,7 +250402,7 @@ aaa
 aaa
 aaa
 aaa
-sHp
+aaa
 aaa
 aaa
 aaa
@@ -289997,10 +289994,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
 abF
 abF
 abF
