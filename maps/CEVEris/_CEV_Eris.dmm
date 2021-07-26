@@ -68224,19 +68224,20 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deI" = (
-/obj/structure/table/rack,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/space/capspace,
+/mob/living/simple_animal/iriska,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/sign/faction/astersguild{
 	pixel_y = 32
 	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "captain_laser";
+	name = "Destiny id lock";
+	req_access = list(20)
+	},
+/obj/item/weapon/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deK" = (
@@ -68587,10 +68588,10 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/captain,
-/obj/machinery/door/blast/shutters/glass{
-	id = "captain_laser"
-	},
+/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/space/captain,
+/obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfz" = (
@@ -68598,12 +68599,10 @@
 /obj/machinery/camera/network/command{
 	dir = 1
 	},
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "captain_laser";
-	name = "Destiny id lock";
-	req_access = list(20)
+/obj/item/device/camera,
+/obj/item/weapon/storage/photo_album{
+	pixel_y = -10
 	},
-/obj/item/weapon/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfA" = (
@@ -102852,14 +102851,14 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/engineering/propulsion/left)
 "eMk" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera,
-/obj/item/weapon/storage/photo_album{
-	pixel_y = -10
-	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 25
+	},
+/obj/structure/table/rack,
+/obj/item/weapon/gun/energy/captain,
+/obj/machinery/door/blast/shutters/glass{
+	id = "captain_laser"
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
