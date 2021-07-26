@@ -64476,9 +64476,9 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/storage)
 "cWg" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/simulated/floor/plating,
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/captain,
+/turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "cWh" = (
 /obj/structure/closet/l3closet/scientist,
@@ -68224,16 +68224,17 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deI" = (
-/obj/structure/table/rack,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/space/capspace,
+/mob/living/simple_animal/iriska,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "captain_laser";
+	name = "Destiny id lock";
+	req_access = list(20)
+	},
+/obj/item/weapon/card/id/captains_spare,
 /obj/structure/sign/faction/astersguild{
 	pixel_y = 32
 	},
@@ -68433,8 +68434,11 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfg" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/captain,
+/obj/structure/table/rack,
+/obj/item/weapon/gun/energy/captain,
+/obj/machinery/door/blast/shutters/glass{
+	id = "captain_laser"
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfh" = (
@@ -68587,23 +68591,15 @@
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/captain,
-/obj/machinery/door/blast/shutters/glass{
-	id = "captain_laser"
-	},
+/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/space/captain,
+/obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
-/area/eris/command/captain)
+/area/space)
 "dfz" = (
 /obj/structure/table/woodentable,
-/obj/machinery/camera/network/command{
-	dir = 1
-	},
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "captain_laser";
-	name = "Destiny id lock";
-	req_access = list(20)
-	},
-/obj/item/weapon/card/id/captains_spare,
+/obj/item/weapon/disk/nuclear,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfA" = (
@@ -68613,7 +68609,9 @@
 /obj/item/weapon/reagent_containers/food/drinks/flask{
 	pixel_x = 8
 	},
-/obj/item/weapon/disk/nuclear,
+/obj/machinery/camera/network/command{
+	dir = 1
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfB" = (
@@ -102853,14 +102851,7 @@
 /area/eris/engineering/propulsion/left)
 "eMk" = (
 /obj/structure/table/woodentable,
-/obj/item/device/camera,
-/obj/item/weapon/storage/photo_album{
-	pixel_y = -10
-	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
-	},
+/obj/item/device/lighting/toggleable/lamp/green,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "eMP" = (
@@ -103865,6 +103856,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemistry)
+"mhC" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma,
+/turf/simulated/floor/plating,
+/area/eris/command/captain)
 "mjD" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -104085,6 +104081,18 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/neotheology/chapelritualroom)
+"nvS" = (
+/obj/structure/table/woodentable,
+/obj/item/device/camera,
+/obj/item/weapon/storage/photo_album{
+	pixel_y = -10
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/eris/command/captain)
 "nDL" = (
 /obj/structure/railing{
 	dir = 8
@@ -104833,6 +104841,9 @@
 /obj/spawner/rations,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
+"sHp" = (
+/turf/space,
+/area/eris/command/captain)
 "sHI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -249183,7 +249194,7 @@ ddo
 ddo
 ddo
 deJ
-dfg
+dfN
 eMk
 bXj
 bXD
@@ -249384,9 +249395,9 @@ abF
 abF
 abF
 ddo
-ddo
+dfg
 cWg
-ddo
+nvS
 bXj
 ctA
 ctW
@@ -249585,10 +249596,10 @@ abF
 abF
 abF
 abF
-abF
-abF
-abF
-abF
+ddo
+ddo
+mhC
+ddo
 bXj
 ctJ
 ctW
@@ -250394,7 +250405,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+sHp
 aaa
 aaa
 aaa
