@@ -68224,19 +68224,20 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deI" = (
-/obj/structure/table/rack,
-/obj/item/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/space/capspace,
+/mob/living/simple_animal/iriska,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/sign/faction/astersguild{
 	pixel_y = 32
 	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "captain_laser";
+	name = "Destiny id lock";
+	req_access = list(20)
+	},
+/obj/item/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deK" = (
@@ -68579,17 +68580,17 @@
 /turf/simulated/floor/wood,
 /area/eris/command/captain)
 "dfy" = (
+/obj/structure/table/rack,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/space/captain,
+/obj/item/clothing/head/space/capspace,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -28
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
-	},
-/obj/structure/table/rack,
-/obj/item/gun/energy/captain,
-/obj/machinery/door/blast/shutters/glass{
-	id = "captain_laser"
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
@@ -68598,12 +68599,10 @@
 /obj/machinery/camera/network/command{
 	dir = 1
 	},
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "captain_laser";
-	name = "Destiny id lock";
-	req_access = list(20)
+/obj/item/device/camera,
+/obj/item/storage/photo_album{
+	pixel_y = -10
 	},
-/obj/item/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfA" = (
@@ -68614,6 +68613,7 @@
 	pixel_x = 8
 	},
 /obj/item/disk/nuclear,
+/obj/machinery/light,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfB" = (
@@ -102852,10 +102852,10 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/engineering/propulsion/left)
 "eMk" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera,
-/obj/item/storage/photo_album{
-	pixel_y = -10
+/obj/structure/table/rack,
+/obj/item/gun/energy/captain,
+/obj/machinery/door/blast/shutters/glass{
+	id = "captain_laser"
 	},
 /obj/machinery/alarm{
 	dir = 8;
