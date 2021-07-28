@@ -11,6 +11,7 @@
 	var/saved_icon
 	var/saved_icon_state
 	var/saved_overlays
+	var/saved_dir
 	var/saved_appearance
 	var/dummy_active = FALSE
 	var/scan_mobs = FALSE
@@ -57,6 +58,7 @@
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
 			saved_description = target.desc
+			saved_dir = target.dir
 			saved_appearance = target.appearance
 			return
 		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
@@ -82,10 +84,8 @@
 		var/obj/O = new saved_item(src)
 		if(!O) 
 			return
-		else if(istype(O, /mob))
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, new_dir saved_appearance)
 		else
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, new_dir saved_description)		
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir)		
 		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 		qdel(O)
 
