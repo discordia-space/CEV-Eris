@@ -66,6 +66,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 5
 	spiderpath = /obj/item/implant/carrion_spider/toxicbomb
 
+/datum/power/carrion/smoke_spider
+	name = "Smoke spider"
+	desc = "Creates a spider filled with smoke that it releases on activation."
+	genomecost = 3
+	spiderpath = /obj/item/implant/carrion_spider/smokebomb
+
 /datum/power/carrion/mindboil_spider
 	name = "Mindboil spider"
 	desc = "Creates a horrible spider able to drive everyone around him insane."
@@ -91,6 +97,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	desc = "Creates a spider with the ability to extract and transmit human DNA to you."
 	genomecost = 3
 	spiderpath = /obj/item/implant/carrion_spider/identity
+
+/datum/power/carrion/holo_spider
+	name = "Holographic spider"
+	desc = "Creates a spider that is able to alter it's appearance to mimic scanned objects"
+	genomecost = 4
+	spiderpath = /obj/item/implant/carrion_spider/holographic
 
 /datum/power/carrion/signal_spider
 	name = "Electrocurrent spider"

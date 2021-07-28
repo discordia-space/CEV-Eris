@@ -1061,6 +1061,8 @@
 #include "code\game\objects\items\weapons\implant\implants\carrion\spark_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\talking_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\toxic_spider.dm"
+#include "code\game\objects\items\weapons\implant\implants\carrion\smoke_spider.dm"
+#include "code\game\objects\items\weapons\implant\implants\carrion\holo_spider.dm"
 #include "code\game\objects\items\weapons\material\ashtray.dm"
 #include "code\game\objects\items\weapons\material\kitchen.dm"
 #include "code\game\objects\items\weapons\material\knives.dm"
