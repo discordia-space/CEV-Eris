@@ -85,7 +85,7 @@
 		if(!O) 
 			return
 		else
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir)		
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_appearance)		
 		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 		qdel(O)
 
