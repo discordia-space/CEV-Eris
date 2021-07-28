@@ -57,9 +57,7 @@
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
 			saved_description = target.desc
-			if(istype(/mob, target))
-				saved_appearance = target.appearance
-				to_chat(world, "GHJJHGGHJHJG")
+			saved_appearance = target.appearance
 			return
 		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
 
@@ -84,29 +82,28 @@
 		var/obj/O = new saved_item(src)
 		if(!O) 
 			return
+		else if(istype(O, /mob))
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, new_dir saved_appearance)
 		else
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_appearance)
-			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, new_dir saved_description)		
+		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 		qdel(O)
 
-/obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_appearance)
+/obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_appearance)
 	name = new_name
 	desc = new_description
 	icon = new_icon
 	icon_state = new_iconstate
 	overlays = new_overlays
-	if(istype(/mob, O))
+	if(new_appearance)
+		to_chat(world, "WHATAPPERANCE")
 		appearance = new_appearance
-	set_dir(O.dir)
+	set_dir(new_dir)
 	dummy_active = TRUE
 
 
 /obj/item/implant/carrion_spider/holographic/proc/disrupt()
 	if(dummy_active)
-		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start()
 		toggle()
 		can_use = 0
 		spawn(5) 
