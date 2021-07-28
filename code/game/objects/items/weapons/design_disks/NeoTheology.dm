@@ -153,12 +153,17 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt
+	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
+	icon_state = "neotheology"
+	designs = list(
+		/datum/design/autolathe/firstaid/nt
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/nt_blank
 	disk_name = "NeoTheology Armory - Blank"
 	rarity_value = 50
 	license = -1
-	spawn_blacklisted = TRUE
 	price_tag = 1000
-	bad_type = /obj/item/computer_hardware/hard_drive/portable/design/nt
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/melee
 	disk_name = "NeoTheology Armory - Basic Melee Weapons"
@@ -181,13 +186,6 @@
 		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/autolathe/nt/shield/nt_shield,
 		/datum/design/autolathe/nt/sword/nt_spear
-	)
-
-/obj/item/computer_hardware/hard_drive/portable/design/nt/firstaid
-	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
-	icon_state = "neotheology"
-	designs = list(
-		/datum/design/autolathe/firstaid/nt
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/guns/nt_dominion
