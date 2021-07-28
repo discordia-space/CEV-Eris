@@ -163,6 +163,7 @@
 	disk_name = "NeoTheology Armory - Blank"
 	rarity_value = 50
 	license = -1
+	spawn_blacklisted = TRUE
 	price_tag = 1000
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/melee
