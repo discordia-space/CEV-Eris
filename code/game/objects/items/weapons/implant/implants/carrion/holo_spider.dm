@@ -47,10 +47,14 @@
 		if(scan_item(target))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			to_chat(user, SPAN_NOTICE("Scanned [target]."))
+            saved_name = target.name
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
+            var/datum/log/L = new
+	        saved_descripton = target.examine(L)
+            saved_appearance = target.appearance
 			return
 		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
 
@@ -58,7 +62,8 @@
 /obj/item/weapon/implant/carrion_spider/holographic/proc/scan_item(atom/I)
 	if(istype(I, /turf))
 		return FALSE
-	return TRUE
+    else
+    	return TRUE
 
 /obj/item/weapon/implant/carrion_spider/holographic/proc/toggle()
 	if(!can_use || !saved_item) return
@@ -70,16 +75,29 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		overlays = initial(overlays)
+        appearance = initial(appearance)
 		set_dir(initial(dir))
 		nosize = FALSE
 	else
 		var/obj/O = new saved_item(src)
 		if(!O) return
-		activate_holo(O, saved_icon, saved_icon_state, saved_overlays)
+		activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_appearance)
 		if(istype(O, /obj/structure) || istype(O, /mob))
 			nosize = TRUE
+ 		if(istype(O, /mob)) 
+              
 		qdel(O)
 		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
+
+/obj/item/weapon/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name new_icon, new_iconstate, new_overlays, new_description, new_appearance)
+	name = new_name
+	desc = new_description
+	icon = new_icon
+	icon_state = new_iconstate
+	overlays = new_overlays
+    appearance = new_appearance
+	set_dir(O.dir)
+	dummy_active = TRUE
 
 
 /obj/item/weapon/implant/carrion_spider/holographic/proc/disrupt(var/delete_dummy = 1)
@@ -91,15 +109,6 @@
 		toggle()
 		can_use = 0
 		spawn(5) can_use = 1
-
-/obj/item/weapon/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_icon, new_iconstate, new_overlays)
-	name = O.name
-	desc = O.desc
-	icon = new_icon
-	icon_state = new_iconstate
-	overlays = new_overlays
-	set_dir(O.dir)
-	dummy_active = TRUE
 
 /obj/item/weapon/implant/carrion_spider/holographic/attackby()
 	..()
