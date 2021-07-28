@@ -28,6 +28,8 @@
 	pass_flags = PASSTABLE
 
 /mob/living/simple_animal/cat/Life()
+	..()
+
 	if(!stasis)
 		if (turns_since_move > 5 || (flee_target || mousetarget))
 			walk_to(src,0)
@@ -55,7 +57,6 @@
 				if(visible.len)
 					var/atom/A = pick(visible)
 					visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
-	return
 
 /mob/living/simple_animal/cat/proc/handle_movement_target()
 	//if our target is neither inside a turf or inside a human(???), stop
