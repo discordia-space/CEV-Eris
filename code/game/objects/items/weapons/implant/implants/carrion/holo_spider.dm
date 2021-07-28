@@ -3,6 +3,7 @@
 	desc = "A spider with a strangely reflective surface"
 	icon_state = "spiderling_breeding"
 	spider_price = 5
+	gibs_color = "#1e9fa3"
 	var/can_use = 1
 	var/saved_name
 	var/saved_description
@@ -58,6 +59,7 @@
 			saved_description = target.desc
 			if(istype(/mob, target))
 				saved_appearance = target.appearance
+				to_chat(world, "GHJJHGGHJHJG")
 			return
 		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
 
@@ -77,14 +79,15 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		overlays = initial(overlays)
-		appearance = initial(appearance)
 		set_dir(initial(dir))
 	else
 		var/obj/O = new saved_item(src)
-		if(!O) return
-		activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_appearance)
+		if(!O) 
+			return
+		else
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_appearance)
+			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 		qdel(O)
-		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 
 /obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_appearance)
 	name = new_name
@@ -92,7 +95,8 @@
 	icon = new_icon
 	icon_state = new_iconstate
 	overlays = new_overlays
-	appearance = new_appearance
+	if(istype(/mob, O))
+		appearance = new_appearance
 	set_dir(O.dir)
 	dummy_active = TRUE
 
