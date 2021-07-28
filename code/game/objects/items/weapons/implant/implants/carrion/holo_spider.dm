@@ -1,5 +1,6 @@
 /obj/item/implant/carrion_spider/holographic
 	name = "holographic spider"
+	desc = "A spider with a strangely reflective surface"
 	icon_state = "spiderling_breeding"
 	spider_price = 5
 	var/can_use = 1
@@ -45,20 +46,18 @@
 /obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user , proximity)
 	if(istype(target, /obj/item/storage)) return
 	if(!proximity) return
-	if(!dummy_active)
+	if(!dummy_active && scan_mobs)
 		if(scan_item(target))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			to_chat(user, SPAN_NOTICE("Scanned [target]."))
-			var/datum/log/L = new
-			target.examine(L)
 			saved_name = target.name
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
-			saved_description = L.log
-			saved_appearance = target.appearance
-			qdel(L)
+			saved_description = target.desc
+			if(istype(/mob, target))
+				saved_appearance = target.appearance
 			return
 		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
 
