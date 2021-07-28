@@ -2,7 +2,7 @@
 	name = "black haze spider"
 	desc = "A spider bloated with ebony gasses, it looks ready to burst!"
 	icon_state = "spiderling_toxicbomb"
-	spider_price = 
+	spider_price = 4
 	var/datum/reagents/gas_storage
 	var/det_time = 1 SECONDS
 
