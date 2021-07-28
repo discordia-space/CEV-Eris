@@ -22,7 +22,7 @@
 
 
 /obj/item/weapon/implant/carrion_spider/holographic/toggle_attack(mob/user)
-	if (ready_to_attack)
+	if(ready_to_attack)
 		ready_to_attack = FALSE
 		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore."))
 		scan_mobs = FALSE
