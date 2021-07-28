@@ -35,8 +35,6 @@
 
 var/atom/snack = null
 
-var/befriend_job = "Captain"
-
 var/list/mob/living/carbon/human/tolerated = list()
 var/list/mob/living/carbon/human/despised = list()
 
@@ -58,33 +56,19 @@ var/list/mob/living/carbon/human/despised = list()
 	turns_since_scan++
 	if(turns_since_scan >= scan_interval)
 		turns_since_scan = 0
-		if(snack && (!(isturf(snack.loc) || ishuman(snack.loc)) || (foodtarget && !can_eat()) ))
+		if(snack && (!(isturf(snack.loc) || (foodtarget && !can_eat()) )))
 			snack = null
 			foodtarget = 0
-		if(!snack || !(snack.loc in oview(src, 4)))
+		if(!snack || !(snack.loc in oview(src, 1)))
 			snack = null
 			foodtarget = 0
 			if (can_eat())
-				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,4))
-					if(S.name != "banana")
-						if(isturf(S.loc) || ishuman(S.loc))
+				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,1))
+					if(!istype(S, /obj/item/reagent_containers/food/snacks/grown))
+						if(isturf(S.loc))
 							snack = S
 							foodtarget = 1
 							break
-
-					if (!snack)
-						var/obj/item/reagent_containers/food/snacks/F = null
-						for(var/mob/living/carbon/human/H in oview(src, 4))
-							if(istype(H.l_hand, /obj/item/reagent_containers/food/snacks))
-								F = H.l_hand
-
-							if(istype(H.r_hand, /obj/item/reagent_containers/food/snacks))
-								F = H.r_hand
-
-							if(F.name != "banana")
-								snack = F
-								foodtarget = 1
-								break
 
 		if(snack)
 			scan_interval = min_scan_interval
@@ -105,9 +89,6 @@ var/list/mob/living/carbon/human/despised = list()
 				UnarmedAttack(snack)
 				if(!(mob in despised))
 					tolerate(mob)
-
-			else if(ishuman(snack.loc) && Adjacent(src, get_turf(snack)) && prob(15))
-				beg(snack, snack.loc)
 	else
 		scan_interval = max(min_scan_interval, min(scan_interval+1, max_scan_interval))
 
@@ -126,7 +107,7 @@ var/list/mob/living/carbon/human/despised = list()
 				if(M in tolerated)
 					if(prob(2)) say("Meoow!")
 
-				else if ((M.job == befriend_job) && !(M in despised)) // Recognize captain
+				else if ((M.job == "Captain") && !(M in despised)) // Recognize captain
 					tolerated |= M
 					visible_emote("looks at [M] with a hint of respect.")
 
@@ -145,10 +126,6 @@ var/list/mob/living/carbon/human/despised = list()
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
-	if(istype(target_mob,/mob/living/exosuit))
-		var/mob/living/exosuit/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
 	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
@@ -200,4 +177,4 @@ var/list/mob/living/carbon/human/despised = list()
 		H.sanity.level = 0
 		for(var/stat in ALL_STATS)
 			H.stats.changeStat(stat, -10)
-		to_chat(H, SPAN_DANGER("THE SHADOWS SEEM TO LENGTHEN AND WALLS ARE GETTING CLOSER. SHIP ITSELF WANTS YOU DEAD."))
+		to_chat(H, SPAN_DANGER("The shadows seem to lengthen, the walls are closing in. The ship itself wants you dead."))
