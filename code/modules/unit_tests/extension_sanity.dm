@@ -11,7 +11,7 @@
 		TEST_ASSERT(ispath(extension), "[extension] was uninitalized.")
 
 	var/datum/extension/exp = get_extension(expansion_obj, /datum/extension)
-	TEST_ASSERT(!istype(exp), "[exp] is not /datum/extension")
+	TEST_ASSERT(istype(exp), "[exp] is not /datum/extension")
 
 	var/datum/extension/multitool/multi = get_extension(expansion_obj, /datum/extension/multitool)
 	if(!istype(multi, /datum/extension/multitool/cryo))
