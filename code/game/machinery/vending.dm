@@ -1516,7 +1516,7 @@
 					/obj/item/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/gun/projectile/kovacs = 3000,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
-					/obj/item/ammo_magazine/srifle = 200,
+					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
 					/obj/item/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100
