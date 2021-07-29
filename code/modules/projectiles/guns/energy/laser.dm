@@ -67,7 +67,7 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
-	price_tag = 2000
+	price_tag = 750
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		BURST_2_ROUND

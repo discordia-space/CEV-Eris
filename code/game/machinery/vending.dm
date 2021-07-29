@@ -1526,7 +1526,7 @@
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
 	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
 	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
-	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;No refunds before you die.;Coolness sold seperately."
+	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;Lifetime warranty! (it won't last that long.);Coolness sold seperately.;Also see Rent-A-Nuke!"
 	icon_state = "trashvend"
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
@@ -1561,13 +1561,13 @@
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
-					/obj/item/gun/energy/retro = 2000,
-					/obj/item/gun/projectile/mk58  = 1500,
-					/obj/item/gun/projectile/mk58/wood = 1500,
+					/obj/item/gun/energy/retro = 1200,
+					/obj/item/gun/projectile/mk58  = 900,
+					/obj/item/gun/projectile/mk58/wood = 900,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
-					/obj/item/gun/projectile/automatic/molly = 2000,
+					/obj/item/gun/projectile/automatic/molly = 1700,
 					/obj/item/gun/projectile/shotgun/pump/gladstone = 2200,
 					/obj/item/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,

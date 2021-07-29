@@ -4,8 +4,8 @@
 	icon = 'icons/obj/guns/projectile/colt.dmi'
 	icon_state = "colt"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 1200
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
+	price_tag = 900
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = TRUE
 	caliber = CAL_PISTOL
