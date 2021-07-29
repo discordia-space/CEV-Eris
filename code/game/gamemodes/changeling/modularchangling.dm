@@ -55,8 +55,8 @@ var/list/datum/power/carrion/powerinstances = list()
 	spiderpath = /obj/item/implant/carrion_spider/explosive
 
 /datum/power/carrion/spark_spider
-	name = "Spark spider"
-	desc = "Creates a spider that makes a small spark."
+	name = "Electric spider"
+	desc = "Creates a spider that can pulse wires in machines or make a small spark."
 	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/spark
 
@@ -100,15 +100,9 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/holographic_spider
 	name = "Holographic spider"
-	desc = "Creates a spider with the ability to mimic the appearances."
+	desc = "Creates a spider with the ability to mimic appearances."
 	genomecost = 4
 	spiderpath = /obj/item/implant/carrion_spider/holographic
-
-/datum/power/carrion/signal_spider
-	name = "Electrocurrent spider"
-	desc = "Creates a spider that can pulse wires in machines."
-	genomecost = 2
-	spiderpath = /obj/item/implant/carrion_spider/signal
 
 /datum/power/carrion/smooth_spider
 	name = "Smooth spider"

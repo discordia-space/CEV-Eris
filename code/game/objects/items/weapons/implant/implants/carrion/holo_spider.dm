@@ -1,6 +1,6 @@
 /obj/item/implant/carrion_spider/holographic
 	name = "holographic spider"
-	desc = "A spider with a strangely reflective surface"
+	desc = "A spider with a peculiarly reflective surface"
 	icon_state = "spiderling_breeding"
 	spider_price = 5
 	gibs_color = "#1e9fa3"
@@ -29,15 +29,12 @@
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
 		ready_to_attack = FALSE
-		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore."))
-		scan_mobs = FALSE
-	else if(scan_mobs)
-		ready_to_attack = TRUE
-		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures."))
-		scan_mobs = FALSE
-	else 
-		to_chat(user, SPAN_NOTICE("\The [src] can now be used to scan creatures without attaching itself to them."))
+		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore and can be used to scan creatures without attaching itself to them."))
 		scan_mobs = TRUE
+	else
+		ready_to_attack = TRUE
+		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures or to be attached manually"))
+		scan_mobs = FALSE
 
 /obj/item/implant/carrion_spider/holographic/attack(mob/living/M, mob/living/user)
 	if(scan_mobs)
@@ -49,7 +46,7 @@
 	if(istype(target, /obj/item/storage)) return
 	if(!proximity) return
 	if(!dummy_active && scan_mobs)
-		if(scan_item(target))
+		if(!istype(target, /turf))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			to_chat(user, SPAN_NOTICE("Scanned [target]."))
 			saved_name = target.name
@@ -61,7 +58,8 @@
 			saved_dir = target.dir
 			saved_appearance = target.appearance
 			return
-		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+		else
+			to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
 
 
 /obj/item/implant/carrion_spider/holographic/proc/scan_item(atom/I)
