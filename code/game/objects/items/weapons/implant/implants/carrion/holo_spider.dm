@@ -12,9 +12,9 @@
 	var/saved_icon_state
 	var/saved_overlays
 	var/saved_dir
-	var/saved_appearance
+	var/saved_mob
 	var/dummy_active = FALSE
-	var/scan_mobs = FALSE
+	var/scan_mobs = TRUE
 
 /obj/item/implant/carrion_spider/holographic/activate()
 	..()
@@ -25,6 +25,18 @@
 		toggle()
 	..()
 
+
+/obj/item/implant/carrion_spider/holographic/examine(mob/user)
+	if(dummy_active)
+		if(saved_mob)
+			to_chat(world, "GHHJGGHJ")
+			saved_mob.examine(user)
+		else if(saved_item)
+			saved_item.examine(user)
+		//for(var/mob/living/L in src)
+			//L.examine(user)
+	else
+		. = ..()
 
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
@@ -45,27 +57,39 @@
 /obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user , proximity)
 	if(istype(target, /obj/item/storage)) return
 	if(!proximity) return
-	if(!dummy_active && scan_mobs)
-		if(!istype(target, /turf))
-			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-			to_chat(user, SPAN_NOTICE("Scanned [target]."))
-			saved_name = target.name
-			saved_item = target.type
-			saved_icon = target.icon
-			saved_icon_state = target.icon_state
-			saved_overlays = target.overlays
-			saved_description = target.desc
-			saved_dir = target.dir
-			saved_appearance = target.appearance
-			return
-		else
-			to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+	if(dummy_active) return
+	if(istype(target, /turf))
+		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+		return
+	reset_data()
+	playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
+	to_chat(user, SPAN_NOTICE("Scanned [target]."))
+	saved_name = target.name
+	saved_item = target.type
+	saved_icon = target.icon
+	saved_icon_state = target.icon_state
+	saved_overlays = target.overlays
+	saved_description = target.desc
+	saved_dir = target.dir
+	if(istype(target, /mob))
+		saved_mob = target // help
+	else
+	return
 
+/obj/item/implant/carrion_spider/holographic/proc/reset_data()
+	saved_name = initial(saved_name)
+	saved_item = initial(saved_item)
+	saved_icon = initial(saved_icon)
+	saved_icon_state = initial(saved_icon_state)
+	saved_overlays = initial(saved_overlays)
+	saved_description = initial(saved_description)
+	saved_dir = initial(saved_dir)
+	saved_mob = initial(saved_mob)
 
-/obj/item/implant/carrion_spider/holographic/proc/scan_item(atom/I)
-	if(istype(I, /turf))
-		return FALSE
-	return TRUE
+/obj/item/implant/carrion_spider/holographic/proc/scan_eligible(atom/I)
+	if(scan_mobs && !istype(I, /turf))
+		return TRUE
+	return FALSE
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
 	if(!can_use || !saved_item) return
@@ -81,21 +105,19 @@
 	else
 		var/obj/O = new saved_item(src)
 		if(!O) 
+			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
 			return
 		else
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_appearance)		
-		to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
-		qdel(O)
+			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir)		
+			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
+			qdel(O)
 
-/obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_appearance)
+/obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir)
 	name = new_name
 	desc = new_description
 	icon = new_icon
 	icon_state = new_iconstate
 	overlays = new_overlays
-	if(new_appearance)
-		to_chat(world, "WHATAPPERANCE")
-		appearance = new_appearance
 	set_dir(new_dir)
 	dummy_active = TRUE
 
