@@ -32,8 +32,9 @@
 	if(dummy_active)
 		if(saved_mob)
 			to_chat(world, "GHHJGGHJ")
-			var/mob/O = new saved_mob(src)
-			for(var/mob/L in src)
+			var/mob/O = new saved_mob
+			O.forceMove(src)
+			for(var/mob/L in contents)
 				L.examine(user)
 			qdel(O)
 		else if(saved_item)
@@ -41,7 +42,7 @@
 			var/obj/G = new saved_item(src)
 			G.examine(user)
 			qdel(G)
-		//for(var/mob/living/L in src)
+		//for(var/mob/living/L in )
 			//L.examine(user)
 	else
 		. = ..()
