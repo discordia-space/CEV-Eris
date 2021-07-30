@@ -47,15 +47,14 @@
 					MATERIAL_GLASS = rand(0, 1.5), 
 					MATERIAL_PLASTIC = rand(0, 2.5),
 					MATERIAL_PLASTEEL = rand(0, 0.75),
-					MATERIAL_URANIUM = rand(0, 0.5),
 					MATERIAL_REFSCRAP = 1
 					)
 
 /obj/item/stack/material/refined_scrap
 	name = "refined scrap"
-	desc = "This is ghetto gold! It could be used as fuel or as building material."
+	desc = "This is ghetto gold! It could be used as fuel or sold abroad."
 	icon = 'icons/obj/structures/scrap/refine.dmi'
 	icon_state = "refined"
 	default_type = MATERIAL_REFSCRAP
 	amount = 1
-	price_tag = 20
+	price_tag = 30
