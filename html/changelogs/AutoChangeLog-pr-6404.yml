@@ -1,0 +1,4 @@
+author: Wouju
+delete-after: true
+changes:
+  - tweak: tweaked Von-Krabin Stimulator stat increase to 15 (from 5)
