@@ -20,6 +20,6 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/hv = custom_good_amount_range(list(-3, 2)),
 			/obj/item/ammo_magazine/ammobox/pistol/hv = custom_good_amount_range(list(-1, 2)),
 			/obj/item/ammo_magazine/ammobox/magnum/hv = custom_good_amount_range(list(-1, 2)),
-			/obj/item/storage/box/shotgunammo/incendiaryshells
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)

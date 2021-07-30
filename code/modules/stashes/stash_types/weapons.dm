@@ -116,7 +116,7 @@
 /datum/stash/weapon/mutiny/starvation
  	//Make sure there's a shotgun with slugs in the stash, as described in the text.
  	//Also the wardens were hoarding food
- 	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/storage/box/shotgunammo/slug = 1, /obj/spawner/rations = 6)
+ 	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/ammo_magazine/ammobox/shotgun = 1, /obj/spawner/rations = 6)
  	lore = "Convicts figured out the starvation rations are neither accidental nor temporary.<br>\
  Plan B is to shoot troublemakers until we balance the calorie equation.<br>\
  Just keep it semi-justifiable, don't leave any slugs in the walls, and stick the lethals back at %D when you're done.<br>\

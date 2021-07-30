@@ -19,8 +19,8 @@
 			/obj/item/ammo_magazine/lrifle,
 			/obj/item/ammo_magazine/lrifle/pk = custom_good_amount_range(list(-4, 1)),
 			/obj/item/ammo_magazine/m12/empty,
-			/obj/item/storage/box/shotgunammo/slug,
-			/obj/item/storage/box/shotgunammo/buckshot,
-			/obj/item/storage/box/shotgunammo/incendiaryshells
+			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)
