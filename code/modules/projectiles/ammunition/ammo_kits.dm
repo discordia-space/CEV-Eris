@@ -101,7 +101,10 @@
 			new /obj/item/ammo_magazine/ammobox/pistol/scrap(user.loc)
 	if(mags)
 		for(var/j = 1 to mags)
-			new /obj/item/ammo_magazine/pistol/scrap(user.loc)
+			if(prob(50))
+				new /obj/item/ammo_magazine/pistol/scrap(user.loc)
+			else
+				new /obj/item/ammo_magazine/smg/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,7 +143,10 @@
 			new /obj/item/ammo_magazine/ammobox/magnum/scrap(user.loc)
 	if(mags)
 		for(var/j = 1 to mags)
-			new /obj/item/ammo_magazine/magnum/scrap(user.loc)
+			if(prob(50))
+				new /obj/item/ammo_magazine/magnum/scrap(user.loc)
+			else
+				new /obj/item/ammo_magazine/msmg/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
