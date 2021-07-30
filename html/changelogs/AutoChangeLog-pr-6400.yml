@@ -1,0 +1,6 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Iriska the cat
+  - bugfix: Bones should no longer hiss in dead chat
+  - imageadd: Iriska sprites by Bloodpriest
