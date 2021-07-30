@@ -41,7 +41,7 @@
 				var/datum/reagent/organic/nutriment/N = reagent
 				reagent_amount = N.volume
 				N.remove_self(reagent_amount)
-				resuscitator_amount += (reagent_amount / 8)
+				resuscitator_amount += (reagent_amount / 4)
 			else
 				reagent_amount = reagent.volume
 				reagent.remove_self(reagent_amount) //Purge useless reagents out
