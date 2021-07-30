@@ -1,7 +1,8 @@
-/datum/CyberSpaceAvatar/eye
+/datum/CyberSpaceAvatar/runner
 	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner)
 /mob/observer/cyberspace_eye
 	alpha = 200
 	icon = 'icons/obj/cyberspace/cyberspace.dmi'
@@ -19,10 +20,10 @@ CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 			else
 				to_chat(src, SPAN_WARNING("You can't feel your shell."))
 
-/datum/CyberSpaceAvatar/eye/ai
+/datum/CyberSpaceAvatar/runner/ai
 	icon_state = "ai_observer"
 
-CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/eye/ai)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner/ai)
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
 	ReturnToBody()

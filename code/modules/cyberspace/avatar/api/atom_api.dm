@@ -12,7 +12,7 @@
 
 /atom/update_icon()
 	. = ..()
-	if(istype(CyberAvatar))
+	if(istype(CyberAvatar) && CyberAvatar.enabled)
 		CyberAvatar.UpdateIcon()
 
 /datum/CyberSpaceAvatar/Destroy()

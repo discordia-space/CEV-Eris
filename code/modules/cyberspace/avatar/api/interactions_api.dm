@@ -1,4 +1,4 @@
-#define CYBERAVATAR_CONNECT_PROC_TO(Proc2Connect, TargetProc) ##Proc2Connect{. = ..(); if(istype(CyberAvatar) && CyberAvatar.enabled)CyberAvatar.##TargetProc(arglist(args))}
+#define CYBERAVATAR_CONNECT_PROC_TO(Proc2Connect, TargetProc) ##Proc2Connect{. = ..(); if(istype(CyberAvatar) && CyberAvatar.enabled) CyberAvatar.##TargetProc(arglist(args))}
 
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Crossed(atom/movable/O), OnCrossedBy)
 /datum/CyberSpaceAvatar/proc/OnCrossedBy(atom/movable/O)
@@ -28,3 +28,8 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Bumped(AM as mob|obj), BumpedBy)
 /datum/CyberSpaceAvatar/proc/BumpedBy(atom/movable/AM)
+	if(istype(AM.CyberAvatar) && AM.CyberAvatar.enabled)
+		AffectedByAvatar(AM.CyberAvatar)
+
+/datum/CyberSpaceAvatar/proc/AffectedByAvatar(datum/CyberSpaceAvatar/avatar)
+
