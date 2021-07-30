@@ -38,6 +38,7 @@
 	icon_state = "pistol_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
+	spawn_tags = SPAWN_AMMO_COMMON
 
 /////////////HighCap/////////////
 /obj/item/ammo_magazine/hpistol
@@ -117,6 +118,7 @@
 	name = "smg magazine (old .35 Auto)"
 	icon_state = "smg_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 /////////////.40 SMG/////////////
 
@@ -160,6 +162,7 @@
 	name = "smg magazine (old .40 Magnum)"
 	icon_state = "msmg_s"
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 ///////////// .40 pistol ///////////
 
@@ -204,6 +207,7 @@
 	icon_state = "magnum_s"
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
 	rarity_value = 3
+	spawn_tags = SPAWN_AMMO_COMMON
 
 ///////////// .20 RIFLE /////////////
 
@@ -243,6 +247,7 @@
 	name = "magazine (old .20 Rifle)"
 	icon_state = "srifle_s"
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 ////////// .25 RIFLE ///////////
 
@@ -295,6 +300,7 @@
 	name = "magazine (old .25 Caseless Rifle)"
 	icon_state = "ihclrifle_s"
 	ammo_type = /obj/item/ammo_casing/clrifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 ////////// .25 PISTOL //////////
 
@@ -408,6 +414,7 @@
 	name = "long magazine (old .30 Rifle)"
 	icon_state = "lrifle_s"
 	ammo_type = /obj/item/ammo_casing/lrifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (.30 Rifle)"
@@ -467,6 +474,7 @@
 	icon_state = "slpistol_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
+	spawn_tags = SPAWN_AMMO_COMMON
 
 //////// .40 SPEEDLOADERS //////////
 
@@ -507,6 +515,7 @@
 	name = "speed loader (old .40 Magnum)"
 	icon_state = "slmagnum_s"
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
 
 //////// .30 RIFLE SPEEDLOADERS ////////
 /obj/item/ammo_magazine/sllrifle
