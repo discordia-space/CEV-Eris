@@ -21,6 +21,9 @@
 
 	var/obj/item/weapon/computer_hardware/deck/myDeck
 
+	var/Memory = 0
+	var/LinkStreight = 0
+
 	proc
 		TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck) // Return TRUE if successful, if TRUE returned this will automaticaly moved in deck. You shouldn't move it forced.
 			. = _deck?.IsHardwareSuits(hardware_size)
@@ -51,23 +54,23 @@
 			do_sparks(3, 0, get_turf(src))
 			broken = TRUE
 
-	var/Memory = 0
-	var/LinkStreight = 0
+		AddEffects(obj/item/weapon/computer_hardware/deck/_deck)
+			_deck.AddMemory(Memory)
+			_deck.AddLinkStreight(LinkStreight)
+		RemoveEffects(obj/item/weapon/computer_hardware/deck/_deck)
+			_deck.AddMemory(-Memory)
+			_deck.AddLinkStreight(-LinkStreight)
 
 	Installed(obj/item/weapon/computer_hardware/deck/_deck)
 		. = ..()
 		if(. && CheckIntegrity())
-			_deck.AddMemory(Memory)
-			_deck.AddLinkStreight(LinkStreight)
+			AddEffects(_deck)
 
 	Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
 		. = ..()
 		if(!broken)
-			_deck.AddMemory(-Memory)
-			_deck.link_streight -= LinkStreight
+			AddEffects(_deck)
 	Broken()
 		. = ..()
-		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
-			var/obj/item/weapon/computer_hardware/deck/_deck = loc
-			_deck.AddMemory(-Memory)
-			_deck.AddLinkStreight(-LinkStreight)
+		if(istype(myDeck))
+			RemoveEffects(loc)
