@@ -13,6 +13,8 @@
 	var/saved_overlays
 	var/saved_dir
 	var/saved_mob
+	var/saved_alpha
+	var/saved_opacity
 	var/dummy_active = FALSE
 	var/scan_mobs = TRUE
 
@@ -30,9 +32,15 @@
 	if(dummy_active)
 		if(saved_mob)
 			to_chat(world, "GHHJGGHJ")
-			saved_mob.examine(user)
+			var/mob/O = new saved_mob(src)
+			for(var/mob/L in src)
+				L.examine(user)
+			qdel(O)
 		else if(saved_item)
-			saved_item.examine(user)
+			to_chat(world, "ITEMEXAMINED")
+			var/obj/G = new saved_item(src)
+			G.examine(user)
+			qdel(G)
 		//for(var/mob/living/L in src)
 			//L.examine(user)
 	else
@@ -71,9 +79,11 @@
 	saved_overlays = target.overlays
 	saved_description = target.desc
 	saved_dir = target.dir
+	saved_alpha = target.alpha
+	saved_opacity = target.opacity
+	to_chat(world, "HJJJJJJJKKKKK")
 	if(istype(target, /mob))
 		saved_mob = target // help
-	else
 	return
 
 /obj/item/implant/carrion_spider/holographic/proc/reset_data()
@@ -85,6 +95,8 @@
 	saved_description = initial(saved_description)
 	saved_dir = initial(saved_dir)
 	saved_mob = initial(saved_mob)
+	saved_alpha = initial(saved_alpha)
+	saved_opacity = initial(saved_opacity)
 
 /obj/item/implant/carrion_spider/holographic/proc/scan_eligible(atom/I)
 	if(scan_mobs && !istype(I, /turf))
@@ -101,23 +113,25 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		overlays = initial(overlays)
+		alpha = initial(alpha)
+		opacity = initial(opacity)
 		set_dir(initial(dir))
 	else
-		var/obj/O = new saved_item(src)
-		if(!O) 
+		if(!saved_item)
 			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
 			return
 		else
-			activate_holo(O, saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir)		
+			activate_holo(saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_alpha, saved_opacity)		
 			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
-			qdel(O)
 
-/obj/item/implant/carrion_spider/holographic/proc/activate_holo(var/obj/O, new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir)
+/obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_alpha, new_opacity)
 	name = new_name
-	desc = new_description
+	//desc = new_description
 	icon = new_icon
 	icon_state = new_iconstate
 	overlays = new_overlays
+	alpha = new_alpha
+	opacity = new_opacity
 	set_dir(new_dir)
 	dummy_active = TRUE
 
