@@ -35,8 +35,8 @@
 
 var/atom/snack = null
 
-var/list/mob/living/carbon/human/tolerated = list()
-var/list/mob/living/carbon/human/despised = list()
+var/list/tolerated = list()
+var/list/despised = list()
 
 /mob/living/simple_animal/iriska/fall_asleep()
 	return
@@ -104,11 +104,11 @@ var/list/mob/living/carbon/human/despised = list()
 				if(prob(5)) visible_emote("[verb] at [M].")
 
 			else if(ishuman(M))
-				if(M in tolerated)
+				if(M.real_name in tolerated)
 					if(prob(2)) say("Meoow!")
 
-				else if ((M.job == "Captain") && !(M in despised)) // Recognize captain
-					tolerated |= M
+				else if ((M.job == "Captain") && !(M.real_name in despised)) // Recognize captain
+					tolerated |= M.real_name
 					visible_emote("looks at [M] with a hint of respect.")
 
 				else
@@ -132,14 +132,14 @@ var/list/mob/living/carbon/human/despised = list()
 		return B
 
 /mob/living/simple_animal/iriska/proc/despise(mob/living/carbon/human/M as mob)
-	despised |= M
-	if(M in tolerated)
-		tolerated -= M
+	despised |= M.real_name
+	if(M.real_name in tolerated)
+		tolerated -= M.real_name
 
 /mob/living/simple_animal/iriska/proc/tolerate(mob/living/carbon/human/M as mob)
-	if(!(M in tolerated) && prob(30))
+	if(!(M.real_name in tolerated) && prob(30))
 		visible_emote("looks at [M] approvingly.")
-		tolerated += M
+		tolerated += M.real_name
 
 /mob/living/simple_animal/iriska/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
