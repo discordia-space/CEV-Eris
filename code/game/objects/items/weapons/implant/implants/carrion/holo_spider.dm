@@ -4,6 +4,7 @@
 	icon_state = "spiderling_breeding"
 	spider_price = 5
 	gibs_color = "#1e9fa3"
+	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK
 	var/can_use = 1
 	var/saved_name
 	var/saved_description
@@ -32,10 +33,8 @@
 	if(dummy_active)
 		if(saved_mob)
 			to_chat(world, "GHHJGGHJ")
-			var/mob/O = new saved_mob
-			O.forceMove(src)
-			for(var/mob/L in contents)
-				L.examine(user)
+			var/mob/O = saved_mob
+			O.examine(user)
 			qdel(O)
 		else if(saved_item)
 			to_chat(world, "ITEMEXAMINED")
