@@ -392,22 +392,26 @@
 	cut_overlays()
 	var/image/ovrl
 
-	switch(H.sanity.level / H.sanity.max_level)
-		if(-INFINITY to 0)
-			add_overlays(ovrls["sanity6"])
-			return
-		if(1 to INFINITY)
-			ovrl = ovrls["sanity0"]
-		if(0.8 to 1)
-			ovrl = ovrls["sanity1"]
-		if(0.6 to 0.8)
-			ovrl = ovrls["sanity2"]
-		if(0.4 to 0.6)
-			ovrl = ovrls["sanity3"]
-		if(0.2 to 0.4)
-			ovrl = ovrls["sanity4"]
-		if(0 to 0.2)
-			ovrl = ovrls["sanity5"]
+	if (H.sanity?.max_level > 0)
+		switch(H.sanity.level / H.sanity.max_level)
+			if(-INFINITY to 0)
+				add_overlays(ovrls["sanity6"])
+				return
+			if(1 to INFINITY)
+				ovrl = ovrls["sanity0"]
+			if(0.8 to 1)
+				ovrl = ovrls["sanity1"]
+			if(0.6 to 0.8)
+				ovrl = ovrls["sanity2"]
+			if(0.4 to 0.6)
+				ovrl = ovrls["sanity3"]
+			if(0.2 to 0.4)
+				ovrl = ovrls["sanity4"]
+			if(0 to 0.2)
+				ovrl = ovrls["sanity5"]
+	else
+		add_overlays(ovrls["sanity6"])
+		return
 
 	switch(H.sanity.insight)
 		if(-INFINITY to 20)
