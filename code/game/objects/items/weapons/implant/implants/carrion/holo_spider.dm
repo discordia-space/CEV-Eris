@@ -16,6 +16,7 @@
 	var/saved_mob
 	var/saved_alpha
 	var/saved_opacity
+	var/saved_message
 	var/dummy_active = FALSE
 	var/scan_mobs = TRUE
 
@@ -33,9 +34,7 @@
 	if(dummy_active)
 		if(saved_mob)
 			to_chat(world, "GHHJGGHJ")
-			var/mob/O = saved_mob
-			O.examine(user)
-			qdel(O)
+			to_chat(user, saved_message)
 		else if(saved_item)
 			to_chat(world, "ITEMEXAMINED")
 			var/obj/G = new saved_item(src)
@@ -84,6 +83,7 @@
 	to_chat(world, "HJJJJJJJKKKKK")
 	if(istype(target, /mob))
 		saved_mob = target // help
+		saved_message = target.examine()
 	return
 
 /obj/item/implant/carrion_spider/holographic/proc/reset_data()
@@ -97,6 +97,7 @@
 	saved_mob = initial(saved_mob)
 	saved_alpha = initial(saved_alpha)
 	saved_opacity = initial(saved_opacity)
+	saved_message = initial(saved_message)
 
 /obj/item/implant/carrion_spider/holographic/proc/scan_eligible(atom/I)
 	if(scan_mobs && !istype(I, /turf))
@@ -140,7 +141,7 @@
 	if(dummy_active)
 		toggle()
 		can_use = 0
-		spawn(5) 
+		spawn(5 SECONDS) 
 			can_use = 1
 
 /obj/item/implant/carrion_spider/holographic/attackby()
