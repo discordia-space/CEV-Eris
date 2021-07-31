@@ -169,12 +169,13 @@ var/list/despised = list()
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/iriska/proc/destroy_lifes()
-	for(var/mob/living/carbon/human/H in despised)
-		H.sanity.insight = 0
-		H.sanity.environment_cap_coeff = 0
-		H.sanity.negative_prob += 30
-		H.sanity.positive_prob = 0
-		H.sanity.level = 0
-		for(var/stat in ALL_STATS)
-			H.stats.changeStat(stat, -10)
-		to_chat(H, SPAN_DANGER("The shadows seem to lengthen, the walls are closing in. The ship itself wants you dead."))
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		if(H.real_name in despised)
+			H.sanity.insight = 0
+			H.sanity.environment_cap_coeff = 0
+			H.sanity.negative_prob += 30
+			H.sanity.positive_prob = 0
+			H.sanity.level = 0
+			for(var/stat in ALL_STATS)
+				H.stats.changeStat(stat, -10)
+			to_chat(H, SPAN_DANGER("The shadows seem to lengthen, the walls are closing in. The ship itself wants you dead."))
