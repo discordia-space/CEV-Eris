@@ -1,7 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscadd: Added scrap magazines
-  - rscadd: added shotgun shell boxes
-  - rscadd: ammo kits are now craftable
-  - tweak: ammo kits now create magazines
