@@ -11,9 +11,8 @@ fi
 
 mkdir -p \
     $1/maps \
-    $1/icons/runtime \
-    $1/sound/runtime \
-    $1/strings
+    $1/strings \
+	$1/config/names
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
@@ -22,8 +21,6 @@ fi
 
 cp cev_eris.dmb cev_eris.rsc $1/
 cp -r maps/* $1/maps/
-# cp -r icons/runtime/* $1/icons/runtime/
-# cp -r sound/runtime/* $1/sound/runtime/
 cp -r strings/* $1/strings/
 cp -r config/names/* $1/config/names
 #remove .dm files from _maps
