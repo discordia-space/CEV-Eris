@@ -28,6 +28,8 @@
 	sharp = TRUE
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
+	saw_off = TRUE
+	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
 
@@ -105,6 +107,7 @@
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
+	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
@@ -126,3 +129,34 @@
 	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
 	spawn_blacklisted = TRUE
+	saw_off = FALSE
+
+//// OBREZ ////
+
+/obj/item/gun/projectile/boltgun/obrez
+    name = "sawn-off Excelsior BR .30 \"Kardashev-Mosin\""
+    desc = "Weapon for hunting, or endless trench warfare. \
+         This one has been sawed down into an \"Obrez\" style."
+    icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
+    icon_state = "obrez"
+    item_state = "obrez"
+    w_class = ITEM_SIZE_NORMAL
+    force = WEAPON_FORCE_PAINFUL
+    slot_flags = SLOT_BELT|SLOT_HOLSTER
+    damage_multiplier = 1
+    penetration_multiplier = 0.8
+    recoil_buildup = 1.8
+    matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5)
+    price_tag = 600
+    attack_verb = list("struck","hit","bashed")
+    one_hand_penalty = 15 //not a full rifle, but not easy either
+	can_dual = TRUE
+    sharp = FALSE
+
+/obj/item/gun/projectile/boltgun/obrez/serbian
+	name = "sawn-off SA BR .30 \"Novakovic\""
+	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
+	icon_state = "obrez_wood"
+	item_suffix  = "_wood"
+	recoil_buildup = 1.9
+	wielded_item_state = "_doble_wood"

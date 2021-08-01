@@ -21,6 +21,7 @@
 	ammo_type = /obj/item/ammo_casing/grenade/frag
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'	//Placeholder, could use a new sound
+	saw_off = FALSE
 
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)

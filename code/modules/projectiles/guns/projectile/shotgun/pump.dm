@@ -21,6 +21,8 @@
 	recoil_buildup = 12
 	one_hand_penalty = 15 //full sized shotgun level
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
+	saw_off = TRUE
+	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -46,3 +48,23 @@
 		chambered = AC
 
 	update_icon()
+
+/obj/item/gun/projectile/shotgun/pump/sawn
+	name = "sawn-off FS SG \"Kammerer\""
+	desc = "When an old Remington design meets a hacksaw, this is the result. Hacked up, sawn down, and ready to rob a liquor store."
+	icon = 'icons/obj/guns/projectile/obrez_sg.dmi'
+	icon_state = "obrez"
+	item_state = "obrez"
+	max_shells = 3
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
+	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	price_tag = 350
+	damage_multiplier = 0.7
+	penetration_multiplier = 0.7
+	recoil_buildup = 24
+	one_hand_penalty = 20 //more than shotgun
+	can_dual = TRUE
+	saw_off = FALSE
