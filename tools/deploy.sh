@@ -9,13 +9,9 @@ if [[ $# -eq 2 ]] ; then
   cd $2
 fi
 
-#i do not know why but this clean folder has a config "file." Fucking disgusting.
-rm -rf $1/config/
-
 mkdir -p \
     $1/maps \
-    $1/strings \
-	$1/config/names/
+    $1/strings
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs

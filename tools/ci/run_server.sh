@@ -2,7 +2,7 @@
 set -euo pipefail
 
 tools/deploy.sh ci_test
-mkdir ci_test/config
+mkdir ci_test/config/
 
 #test config
 cp tools/ci/ci_config.txt ci_test/config/config.txt
