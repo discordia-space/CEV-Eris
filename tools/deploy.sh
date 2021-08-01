@@ -10,7 +10,7 @@ if [[ $# -eq 2 ]] ; then
 fi
 
 #i do not know why but this clean folder has a config "file." Fucking disgusting.
-rm -rf $1/config
+rm -rf $1/config/
 
 mkdir -p \
     $1/maps \
