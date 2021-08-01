@@ -64,11 +64,11 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/rubber
 		),
 		"Shotgun shells" = list(
-			/obj/item/storage/box/shotgunammo/slug,
-			/obj/item/storage/box/shotgunammo/buckshot,
-			/obj/item/storage/box/shotgunammo/beanbags,
-			/obj/item/storage/box/shotgunammo/blanks,
-			/obj/item/storage/box/shotgunammo/flashshells,
-			/obj/item/storage/box/shotgunammo/incendiaryshells
+			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+			/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
+			/obj/item/ammo_magazine/ammobox/shotgun/blanks,
+			/obj/item/ammo_magazine/ammobox/shotgun/flashshells,
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)
