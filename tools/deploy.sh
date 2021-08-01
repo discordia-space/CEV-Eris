@@ -13,6 +13,8 @@ mkdir -p \
     $1/maps \
     $1/strings
 
+mkdir $1/config/names/
+
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
   cp -r .git/logs/* $1/.git/logs/
