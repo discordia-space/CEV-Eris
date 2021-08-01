@@ -9,6 +9,9 @@ if [[ $# -eq 2 ]] ; then
   cd $2
 fi
 
+#i do not know why but this clean folder has a config "file." Fucking disgusting.
+rm -f $1/config
+
 mkdir -p \
     $1/maps \
     $1/strings \
