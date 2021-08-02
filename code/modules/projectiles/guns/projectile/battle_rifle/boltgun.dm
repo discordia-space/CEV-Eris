@@ -134,24 +134,25 @@
 //// OBREZ ////
 
 /obj/item/gun/projectile/boltgun/obrez
-    name = "sawn-off Excelsior BR .30 \"Kardashev-Mosin\""
-    desc = "Weapon for hunting, or endless trench warfare. \
-         This one has been sawed down into an \"Obrez\" style."
-    icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
-    icon_state = "obrez"
-    item_state = "obrez"
-    w_class = ITEM_SIZE_NORMAL
-    force = WEAPON_FORCE_PAINFUL
-    slot_flags = SLOT_BELT|SLOT_HOLSTER
-    damage_multiplier = 1
-    penetration_multiplier = 0.8
-    recoil_buildup = 1.8
-    matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5)
-    price_tag = 600
-    attack_verb = list("struck","hit","bashed")
-    one_hand_penalty = 15 //not a full rifle, but not easy either
+	name = "sawn-off Excelsior BR .30 \"Kardashev-Mosin\""
+	desc = "Weapon for hunting, or endless trench warfare. \
+	     This one has been sawed down into an \"Obrez\" style."
+	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
+	icon_state = "obrez"
+	item_state = "obrez"
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	damage_multiplier = 1
+	penetration_multiplier = 0.8
+	recoil_buildup = 1.8
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5)
+	price_tag = 600
+	attack_verb = list("struck","hit","bashed")
+	one_hand_penalty = 15 //not a full rifle, but not easy either
 	can_dual = TRUE
-    sharp = FALSE
+	sharp = FALSE
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/boltgun/obrez/serbian
 	name = "sawn-off SA BR .30 \"Novakovic\""

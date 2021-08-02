@@ -60,7 +60,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
 	price_tag = 350
 	damage_multiplier = 0.7
 	penetration_multiplier = 0.7
@@ -68,3 +68,4 @@
 	one_hand_penalty = 20 //more than shotgun
 	can_dual = TRUE
 	saw_off = FALSE
+	spawn_blacklisted = TRUE

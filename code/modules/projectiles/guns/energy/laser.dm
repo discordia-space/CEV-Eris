@@ -58,7 +58,7 @@
 	item_state = "retro"
 	desc = "A One Star cheaply produced laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
@@ -73,6 +73,27 @@
 		BURST_2_ROUND
 	)
 	twohanded = TRUE
+	saw_off = TRUE
+	sawn = /obj/item/gun/energy/retro/short
+	
+/obj/item/gun/energy/retro/short
+	name = "sawn down OS LG \"Cog\""
+	icon = 'icons/obj/guns/energy/obrez_retro.dmi'
+	desc = "A modified One Star cheaply produced laser gun. \
+		 In the distant past - this was the main weapon of low-rank police forces, and thus widely used by criminals."
+	icon_state = "shorty"
+	item_state = "shorty"
+	slot_flags = SLOT_BACK|SLOT_HOLSTER
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5)
+	damage_multiplier = 0.8
+	charge_cost = 125
+	price_tag = 400
+	init_firemodes = list(
+		WEAPON_NORMAL
+	)
+	twohanded = FALSE
+	saw_off = FALSE
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""
