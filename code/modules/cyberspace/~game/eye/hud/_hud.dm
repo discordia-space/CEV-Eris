@@ -51,7 +51,7 @@
 			)
 			init_HUDpanel(
 				1,
-				owner.DefaultMemoryForInstalledPrograms / 16,
+				owner.MemoryForInstalledPrograms / 16,
 				HUDdatum.ProgramPanel.template,
 				HUDdatum.ProgramPanel.states,
 				HUDdatum.ProgramPanel.dirs_of_edges,

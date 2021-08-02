@@ -17,3 +17,7 @@
 #define CYBERSPACE_NT					rgb(CYBERSPACE_NT_raw)
 #define CYBERSPACE_MOEBIUS				rgb(CYBERSPACE_MOEBIUS_raw)
 #define CYBERSPACE_IRONHAMMER			rgb(CYBERSPACE_IRONHAMMER_raw)
+
+#define SUBROUTINE_FAILED_TO_BREAK	"Failed to Break"
+#define SUBROUTINE_BUMPED			"Bumped"
+#define SUBROUTINE_SPOTTED			"Someone in range!!!"

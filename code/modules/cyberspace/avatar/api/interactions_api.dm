@@ -29,7 +29,6 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 CYBERAVATAR_CONNECT_PROC_TO(/atom/Bumped(AM as mob|obj), BumpedBy)
 /datum/CyberSpaceAvatar/proc/BumpedBy(atom/movable/AM)
 	if(istype(AM.CyberAvatar) && AM.CyberAvatar.enabled)
-		AffectedByAvatar(AM.CyberAvatar)
+		BumpedByAvatar(AM.CyberAvatar)
 
-/datum/CyberSpaceAvatar/proc/AffectedByAvatar(datum/CyberSpaceAvatar/avatar)
-
+/datum/CyberSpaceAvatar/proc/BumpedByAvatar(datum/CyberSpaceAvatar/avatar)

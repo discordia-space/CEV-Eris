@@ -1,5 +1,5 @@
 #define CYBERAVATAR_INITIALIZATION(typeOfAtom, DefaultColor) ##typeOfAtom/CyberAvatar = DefaultColor
-	#define CYBERAVATAR_CUSTOM_TYPE(typeOfAtom, CType) ##typeOfAtom/CyberAvatar_inittype = CType
+	#define CYBERAVATAR_CUSTOM_TYPE(typeOfAtom, CType) ##typeOfAtom/CyberAvatar_inittype = ##CType
 
 //CYBERAVATAR_INITIALIZATION(/obj/item, CYBERSPACE_SHADOW_COLOR)
 CYBERAVATAR_INITIALIZATION(/obj/machinery, CYBERSPACE_MAIN_COLOR)

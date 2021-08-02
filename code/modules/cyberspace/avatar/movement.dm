@@ -3,11 +3,17 @@
 
 	var/list/collidedAvatars = GetDenseCyberspaceAvatars(movedTo)
 
-	if(islist(collidedAvatars) && length(collidedAvatars))
+/*
+	if(length(collidedAvatars))
 		for(var/datum/CyberSpaceAvatar/CA in collidedAvatars)
 			CA.BumpedBy(mover.CyberAvatar)
 	else
+*/
+	if(!length(collidedAvatars))
 		. = ..()
+		for(var/datum/CyberSpaceAvatar/A in GLOB.CyberListeners)
+			if(get_dist(A.Owner, mover) <= world.view)
+				A.AnotherAvatarFound(mover.CyberAvatar)
 
 /proc/GetDenseCyberspaceAvatars(turf/T)
 	. = list()

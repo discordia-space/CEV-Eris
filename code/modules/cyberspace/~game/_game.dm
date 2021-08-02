@@ -21,3 +21,8 @@
 	#include "eye/hud/datum.dm"
 	#include "eye/hud/screen_objects.dm"
 	#include "eye/hud/cyberspace_hider.dm"
+
+#include "ICE/_ice.dm"
+	#include "ICE/nt.dm"
+	#include "ICE/technomancers.dm"
+	#include "ICE/subroutines/manager.dm"
