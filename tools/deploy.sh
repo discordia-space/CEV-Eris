@@ -12,8 +12,6 @@ fi
 mkdir -p \
     $1/maps \
     $1/strings
-#i hate this one \/
-mkdir -p $1/config/names
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
