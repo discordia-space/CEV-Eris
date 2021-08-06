@@ -352,6 +352,11 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/security_nt
+	name = "nanotrasen security uniform"
+	desc = "A uniform from the defunct Nanotrasen corporation. Probably old enough to have seen the corporate wars."
+	icon_state = "security_nt"
+	item_state = "security_nt"
 
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn

@@ -92,6 +92,12 @@
 	desc = "It's field cap in corporate colors."
 	icon_state = "corpsoft"
 
+/obj/item/clothing/head/soft/sec/nt
+	name = "nanotrasen security cap"
+	initial_name = "nanotrasen security cap"
+	desc = "It's a field cap of the defunct Nanotrasen corporation. Probably old enough to have seen the corporate wars."
+	icon_state = "securityntsoft"
+
 // S E R B I A //
 
 /obj/item/clothing/head/soft/green2soft

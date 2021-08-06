@@ -290,6 +290,16 @@ area/space/atmosalert()
 /area/shuttle/thunderdome/redshuttle/station
 	name = "\improper RED Station"
 	icon_state = "shuttlered2"
+
+/area/shuttle/junkpod
+	name = "\improper Delta Station Emergency Pod"
+	icon_state = "shuttle"
+	base_turf = /turf/simulated/floor/asteroid
+
+/area/shuttle/junkpod/planet
+
+/area/shuttle/junkpod/station
+
 // === Trying to remove these areas:
 
 /area/shuttle/research

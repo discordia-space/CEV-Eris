@@ -103967,6 +103967,10 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"mFm" = (
+/obj/effect/shuttle_landmark/junkpod/medmaint,
+/turf/space,
+/area/space)
 "mNb" = (
 /obj/machinery/atmospherics/unary/heat_exchanger,
 /turf/simulated/floor/tiled/steel/danger,
@@ -104635,6 +104639,10 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"rOD" = (
+/obj/effect/shuttle_landmark/junkpod/podbay,
+/turf/space,
+/area/space)
 "rPr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/closet/crate,
@@ -117712,7 +117720,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+mFm
 aaa
 aaa
 aaa
@@ -133474,7 +133482,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+rOD
 aaa
 aaa
 aaa

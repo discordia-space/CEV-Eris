@@ -37,13 +37,6 @@
 	r_pocket = /obj/item/tank/emergency_oxygen
 	back = /obj/item/storage/backpack/sport/orange
 
-/decl/hierarchy/outfit/escapedprisoner/hobo
-	belt = /obj/item/gun/projectile/revolver/handmade
-	l_pocket = /obj/item/ammo_casing/magnum/scrap/prespawned
-
-/obj/effect/mob_spawn/human/prisoner_transport/hobo
-	outfit = /decl/hierarchy/outfit/escapedprisoner/hobo
-
 /obj/effect/mob_spawn/human/scavenger
 	name = "long storage sleeper"
 	desc = "An old sleeper, with an unconscious body inside. The occupant seems to be covered in armor."
@@ -66,5 +59,75 @@
 	suit_store = /obj/item/gun/projectile/boltgun/serbian
 	back = /obj/item/storage/backpack/satchel
 	r_pocket = /obj/item/ammo_magazine/sllrifle
+	id_slot = slot_wear_id
+	id_type = /obj/item/card/id
+
+/obj/effect/mob_spawn/human/hermit
+	name = "modified storage sleeper"
+	desc = "An old sleeper, with an sleeping body inside. The sleeper seems to have been gutted and padded into a bed."
+	mob_name = "a hermit"
+	icon = 'icons/obj/Cryogenic2.dmi'
+	icon_state = "sleeper_1"
+	outfit = /decl/hierarchy/outfit/hermit
+	short_desc = "You're a castaway, stuck on this rock looking for a way out."
+	flavour_text = "Once upon a time, you were free in the stars. Now you are stuck in this junkyard. \
+	The crash last night held promise, but now all these beasts are running around."
+	assignedrole = "Hermit"
+	title = "MHS Geary Amputator 3rd Class"
+	stat_modifiers = list(
+		STAT_ROB = 12,
+		STAT_TGH = 24,
+		STAT_BIO = 8,
+		STAT_MEC = 12,
+		STAT_VIG = 16,
+		STAT_COG = 8
+	)
+
+/*obj/effect/mob_spawn/human/hermit/Initialize(mapload)
+	var/list/hermit_title = list("HTU Canterbury Longshoreman", "NSS Rocinante Marine", "MHS Geary Amputator 3rd Class", "HTU Epstein Bartender", "HTU Lehrer Miner")
+	title = "[pick(hermit_title)]"*/
+
+/decl/hierarchy/outfit/hermit
+	name = "hermit"
+	suit = /obj/item/clothing/suit/storage/ass_jacket
+	uniform = /obj/item/clothing/under/rank/assistant
+	l_ear = /obj/item/device/radio/headset
+	shoes = /obj/item/clothing/shoes/color/black
+	id_slot = slot_wear_id
+	id_type = /obj/item/card/id
+	suit_store = /obj/item/gun/projectile/revolver/handmade
+	l_pocket = /obj/item/ammo_casing/magnum/scrap/prespawned
+	r_pocket = /obj/item/device/lighting/toggleable/flashlight
+
+/obj/effect/mob_spawn/human/nt_sec
+	name = "nanotrasen long storage sleeper"
+	desc = "An old sleeper, with an unconscious body inside. The occupant seems to be dressed in red."
+	mob_name = "a nanotrasen security officer"
+	icon = 'icons/obj/Cryogenic2.dmi'
+	icon_state = "sleeper_1"
+	outfit = /decl/hierarchy/outfit/nt_sec
+	short_desc = "You're a security officer from a long-gone time. Where the hell are you?"
+	flavour_text = "NOTICE: Nanotrasen is hereby dissolved and all contracts void. \
+					NOTICE: Insufficient funds in account for 30.53 years of sleeper hibernation. \
+					NOTICE: Sleeper hibernation terminated."
+	assignedrole = "Nanotrasen Security Officer"
+	title = "Security Officer"
+	stat_modifiers = list(
+		STAT_ROB = 16,
+		STAT_TGH = 24,
+		STAT_BIO = 8,
+		STAT_MEC = 8,
+		STAT_VIG = 12,
+		STAT_COG = 8
+	)
+
+/decl/hierarchy/outfit/nt_sec
+	name = "Nanotrasen Security"
+	uniform = /obj/item/clothing/under/security_nt
+	shoes = /obj/item/clothing/shoes/jackboots
+	l_ear = /obj/item/device/radio/headset
+	suit = /obj/item/clothing/suit/armor/vest/security
+	head = /obj/item/clothing/head/soft/sec/nt
+	belt = /obj/item/gun/energy/gun/martin
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id
