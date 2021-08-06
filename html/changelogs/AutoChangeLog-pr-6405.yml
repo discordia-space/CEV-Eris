@@ -1,0 +1,4 @@
+author: Wouju
+delete-after: true
+changes:
+  - tweak: enricher rejects virus food
