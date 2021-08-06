@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: fixed division by zero runtime in sanity HUD
