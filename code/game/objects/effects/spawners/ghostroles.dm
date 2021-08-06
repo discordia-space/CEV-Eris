@@ -5,7 +5,7 @@
 	mob_name = "an escaped prisoner"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
-	outfit = /decl/hierarchy/outfit/escapedprisoner
+	outfit = /decl/hierarchy/outfit/antagonist/escapedprisoner
 	short_desc = "You're a prisoner, sentenced to hard work in one of Ironhammer's labor camps, but it seems as \
 	though fate has other plans for you."
 	flavour_text = "Good. It seems as though your ship crashed. You remember that you were convicted of "
@@ -29,7 +29,7 @@
 	flavour_text += "[pick(crimes)]. but regardless of that, it seems like your crime doesn't matter now. You don't know where you are, but you know that it's out to kill you, and you're not going \
 	to lose this opportunity. Find a way to get out of this mess and back to where you rightfully belong - your [pick("house", "apartment", "spaceship", "station")]. There should be a teleporter somewhere, if it's still intact."
 
-/decl/hierarchy/outfit/escapedprisoner
+/decl/hierarchy/outfit/antagonist/escapedprisoner
 	name = "Escaped Prisoner"
 	uniform = /obj/item/clothing/under/color/orange
 	mask = /obj/item/clothing/mask/breath
@@ -43,14 +43,14 @@
 	mob_name = "a scavenger"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
-	outfit = /decl/hierarchy/outfit/scavenger
+	outfit = /decl/hierarchy/outfit/antagonist/scavenger
 	short_desc = "You're a scavenger, who barely even owns the clothes on your back and the rifle in your hands."
 	flavour_text = "It seems you've arrived. You're here to get the good stuff and skedaddle with your life intact. \
 	There may be others to cooperate with, but don't count on it. There aren't any cops this far out, and laws don't carry much truck around here."
 	assignedrole = "Scavenger"
 	title = "Asters Comission Scavenger"
 
-/decl/hierarchy/outfit/scavenger
+/decl/hierarchy/outfit/antagonist/scavenger
 	name = "Scavenger"
 	uniform = /obj/item/clothing/under/genericb
 	head = /obj/item/clothing/head/armor/steelpot
@@ -68,7 +68,7 @@
 	mob_name = "a hermit"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
-	outfit = /decl/hierarchy/outfit/hermit
+	outfit = /decl/hierarchy/outfit/antagonist/hermit
 	short_desc = "You're a castaway, stuck on this rock looking for a way out."
 	flavour_text = "Once upon a time, you were free in the stars. Now you are stuck in this junkyard. \
 	The crash last night held promise, but now all these beasts are running around."
@@ -87,7 +87,7 @@
 	var/list/hermit_title = list("HTU Canterbury Longshoreman", "NSS Rocinante Marine", "MHS Geary Amputator 3rd Class", "HTU Epstein Bartender", "HTU Lehrer Miner")
 	title = "[pick(hermit_title)]"*/
 
-/decl/hierarchy/outfit/hermit
+/decl/hierarchy/outfit/antagonist/hermit
 	name = "hermit"
 	suit = /obj/item/clothing/suit/storage/ass_jacket
 	uniform = /obj/item/clothing/under/rank/assistant
@@ -105,7 +105,7 @@
 	mob_name = "a nanotrasen security officer"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
-	outfit = /decl/hierarchy/outfit/nt_sec
+	outfit = /decl/hierarchy/outfit/antagonist/nt_sec
 	short_desc = "You're a security officer from a long-gone time. Where the hell are you?"
 	flavour_text = "NOTICE: Nanotrasen is hereby dissolved and all contracts void. \
 					NOTICE: Insufficient funds in account for 30.53 years of sleeper hibernation. \
@@ -121,7 +121,7 @@
 		STAT_COG = 8
 	)
 
-/decl/hierarchy/outfit/nt_sec
+/decl/hierarchy/outfit/antagonist/nt_sec
 	name = "Nanotrasen Security"
 	uniform = /obj/item/clothing/under/security_nt
 	shoes = /obj/item/clothing/shoes/jackboots

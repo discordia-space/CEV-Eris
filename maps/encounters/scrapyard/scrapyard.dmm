@@ -19,12 +19,10 @@
 "aX" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "aZ" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Bar"},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "ba" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
-"bb" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "bg" = (/obj/structure/closet/crate/freezer/rations,/obj/item/reagent_containers/food/snacks/tastybread,/obj/item/reagent_containers/food/snacks/tastybread,/obj/item/reagent_containers/food/snacks/tastybread,/obj/item/reagent_containers/food/snacks/tastybread,/turf/simulated/floor/tiled/dark/techfloor,/area/outpost/junkyard/ship/canterbury)
 "bj" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/obj/machinery/light/small,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "bn" = (/obj/structure/closet/crate,/obj/spawner/material/building,/obj/spawner/material/building,/obj/spawner/material/building,/obj/spawner/material/building,/obj/spawner/material/building,/obj/spawner/material/building,/obj/machinery/light/small,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "bo" = (/obj/structure/closet{name = "patient's wardrobe"},/obj/item/clothing/under/color/white,/obj/item/clothing/under/color/white,/obj/item/clothing/under/color/white,/obj/item/clothing/shoes/color,/obj/item/clothing/shoes/color,/obj/item/clothing/shoes/color,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
-"br" = (/obj/machinery/door/airlock/maintenance_hatch,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "bw" = (/obj/structure/table/rack,/obj/item/clothing/head/welding{pixel_x = -3; pixel_y = 5},/obj/item/storage/toolbox/mechanical,/obj/item/tool/multitool{pixel_x = 7; pixel_y = -4},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "by" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "bA" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
@@ -36,7 +34,6 @@
 "bR" = (/obj/machinery/door/airlock{name = "Cabin 2"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
 "bS" = (/turf/simulated/wall/r_wall,/area/outpost/junkyard/ship/epstein)
 "bT" = (/obj/structure/inflatable/wall,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/hermitage)
-"bV" = (/obj/structure/transit_tube,/obj/structure/catwalk,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
 "bX" = (/obj/machinery/conveyor{dir = 8; id = "beta"},/obj/structure/plasticflaps,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "bZ" = (/obj/structure/transit_tube{dir = 4},/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
 "cc" = (/obj/machinery/mineral/unloading_machine{dir = 4},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -105,15 +102,11 @@
 "fK" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/item/storage/backpack/duffelbag,/obj/structure/closet,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "fL" = (/obj/machinery/door/blast/shutters{id = "proto"},/obj/machinery/door/window/eastleft,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "fQ" = (/obj/structure/closet/crate,/obj/spawner/ammo/lowcost,/obj/spawner/ammo/lowcost,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
-"fR" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"fT" = (/obj/effect/window_lwall_spawn/reinforced{dir = 8},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
-"fV" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/transit_tube{dir = 4},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "fX" = (/obj/structure/closet/crate,/obj/item/tool/shovel,/obj/item/tool/pickaxe,/obj/item/storage/box/lights/mixed,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "gb" = (/obj/structure/cable,/obj/machinery/door/firedoor,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "gm" = (/obj/machinery/washing_machine,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "gn" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "gp" = (/obj/machinery/door/airlock/command{name = "Bridge"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
-"gr" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
 "gt" = (/obj/structure/shuttle/window,/obj/effect/shuttle_landmark/junkpod/start,/turf/simulated/floor/plating,/area/shuttle/junkpod/planet)
 "gu" = (/obj/effect/window_lwall_spawn/reinforced,/turf/space,/area/outpost/junkyard/ship/prison)
 "gB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
@@ -136,7 +129,6 @@
 "hI" = (/obj/effect/window_lwall_spawn/reinforced,/turf/space,/area/outpost/junkyard/ship/geary)
 "hP" = (/obj/machinery/sleeper{dir = 1},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "hS" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/seeds/harebell,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"hT" = (/obj/machinery/door/airlock/command{name = "NTMS-037 Ship Control"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "hU" = (/obj/structure/table/standard,/obj/machinery/recharger,/obj/spawner/powercell/medium,/obj/spawner/powercell/small,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "hV" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/portable_atmospherics/canister,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "hY" = (/obj/structure/salvageable/autolathe,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
@@ -144,14 +136,11 @@
 "ib" = (/obj/item/tool/crowbar,/obj/item/tool/wrench,/obj/item/tool/multitool,/obj/structure/table/rack,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "ic" = (/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "if" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/wall,/area/outpost/junkyard/station)
-"ig" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/station)
 "ik" = (/obj/structure/closet/crate{name = "food crate"},/turf/simulated/floor/tiled/dark/techfloor,/area/outpost/junkyard/ship/canterbury)
 "im" = (/obj/structure/bed,/obj/item/bedsheet/brown,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/wood,/area/outpost/junkyard/ship/epstein)
-"ip" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "it" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "iB" = (/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/rocinante)
 "iC" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/research{name = "Research and Development"},/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"iE" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "iJ" = (/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "iL" = (/obj/structure/closet/crate/medical,/obj/item/storage/firstaid/fire,/obj/item/reagent_containers/syringe,/turf/simulated/floor/tiled/dark/techfloor,/area/outpost/junkyard/ship/canterbury)
 "iP" = (/obj/machinery/door/airlock/security,/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -163,7 +152,6 @@
 "jf" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks{dir = 6},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "jl" = (/obj/structure/closet/crate/secure/weapon,/obj/item/gun/energy/retro,/obj/item/gun/projectile/mk58,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "jm" = (/turf/simulated/floor/tiled/white{dir = 1},/area/outpost/junkyard/station)
-"jo" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "jq" = (/obj/structure/table/standard,/obj/item/tool/wrench,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "jr" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/reagent_containers/food/condiment/enzyme{layer = 5},/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/station)
 "js" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
@@ -179,11 +167,7 @@
 "jN" = (/obj/machinery/door/airlock/engineering{name = "Engineering"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "jO" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "jQ" = (/obj/structure/bed/chair/shuttle{dir = 1},/obj/item/clothing/suit/space/emergency,/obj/item/clothing/head/space/emergency,/obj/item/storage/box/survival,/turf/simulated/floor/tiled/white/brown_perforated,/area/shuttle/junkpod/planet)
-"jV" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "jY" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; name = "Broken Computer"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"ka" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"kd" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"kf" = (/obj/effect/window_lwall_spawn/reinforced,/obj/machinery/door/blast/regular{id = "ancient"},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "km" = (/obj/structure/dispenser/oxygen,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "kn" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/pen,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "kt" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
@@ -192,7 +176,6 @@
 "ky" = (/obj/structure/cable,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
 "kz" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table,/obj/machinery/microwave{pixel_x = -3; pixel_y = 6},/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/station)
 "kC" = (/obj/effect/window_lwall_spawn/reinforced,/obj/machinery/door/blast/regular{id = "ancient"},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
-"kF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "kG" = (/obj/machinery/door/airlock/research{name = "Research and Development"},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "kH" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "kJ" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/white/bluecorner,/area/outpost/junkyard/ship/rocinante)
@@ -207,12 +190,10 @@
 "lp" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "lq" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "lt" = (/obj/machinery/door/airlock/glass_medical{name = "Medical Bay"},/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"lw" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "ly" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 1; name = "Broken Computer"},/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "lE" = (/obj/structure/closet/crate,/obj/item/clothing/gloves/color/yellow,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "lH" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/structure/closet/crate,/obj/spawner/powercell/small,/obj/spawner/powercell/small,/obj/spawner/powercell/small,/obj/spawner/powercell/small,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "lI" = (/obj/structure/table/rack,/obj/item/reagent_containers/glass/bucket,/obj/item/mop,/obj/item/storage/bag/trash{pixel_x = 6},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
-"lL" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/science,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "lO" = (/obj/structure/table/standard,/obj/spawner/gun/normal,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "lP" = (/obj/machinery/door/airlock/research{name = "Research and Development"},/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "lQ" = (/obj/structure/catwalk,/obj/landmark/corpse/engineer/rig,/obj/spawner/gun/energy_cheap,/obj/spawner/gun/energy_cheap,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
@@ -222,7 +203,6 @@
 "lY" = (/obj/effect/decal/cleanable/dirt,/obj/structure/toilet,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "ma" = (/obj/machinery/door/airlock{name = "Bunk B"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "md" = (/turf/simulated/wall,/area/outpost/junkyard/hermitage)
-"mg" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "mk" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "mn" = (/obj/structure/table/standard,/obj/spawner/gun_parts,/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/ship/rocinante)
 "mo" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Hydroponics"},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
@@ -260,7 +240,6 @@
 "nZ" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "oh" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/status_display{pixel_x = 32; pixel_y = -32},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "ok" = (/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
-"ol" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "ox" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/obj/item/clothing/gloves/color/yellow,/obj/item/clothing/head/welding{pixel_x = -3; pixel_y = 5},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "oz" = (/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "oC" = (/obj/structure/table/standard,/obj/item/paper_bin{pixel_x = -4},/obj/item/pen{pixel_x = -4},/obj/item/storage/photo_album{pixel_x = 14},/obj/machinery/power/apc{dir = 1; name = "North APC"; pixel_y = 28},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
@@ -287,7 +266,6 @@
 "pB" = (/obj/machinery/meter,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
 "pC" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "pD" = (/obj/structure/closet,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
-"pE" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/highsecurity{name = "Prototype Laboratory"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "pG" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 8; name = "Broken Computer"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "pH" = (/obj/structure/girder,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/rocinante)
 "pO" = (/obj/structure/closet/crate,/obj/item/clothing/suit/armor/vest/security,/obj/item/clothing/suit/armor/vest/security,/obj/item/clothing/head/armor/helmet/visor,/obj/item/clothing/head/armor/helmet/visor,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
@@ -307,7 +285,6 @@
 "qp" = (/obj/effect/decal/cleanable/blood,/obj/structure/bed/chair/shuttle{dir = 4},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/rocinante)
 "qs" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "qx" = (/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/chef,/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/station)
-"qA" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/maintenance_hatch,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "qE" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/external{name = "External Freight Airlock"},/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "qF" = (/obj/machinery/shower{pixel_y = 15},/obj/item/soap,/obj/structure/curtain,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "qH" = (/obj/machinery/door/airlock/medical{name = "Medical Storage"},/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
@@ -335,9 +312,7 @@
 "si" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc{dir = 8; name = "Beta Storage APC"; pixel_x = -25; start_charge = 0},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "sj" = (/obj/structure/table/rack,/obj/item/storage/box/lights/mixed,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "sl" = (/obj/structure/closet/firecloset,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
-"sn" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Crew Quarters"},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "su" = (/obj/structure/table/rack,/obj/item/storage/belt/utility,/obj/machinery/light/small,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
-"sy" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/firealarm,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "sz" = (/obj/structure/closet/crate/internals,/obj/item/clothing/mask/breath{pixel_x = -3; pixel_y = 3},/obj/item/clothing/mask/breath,/obj/effect/decal/cleanable/cobweb,/obj/item/gun/projectile/mandella,/obj/item/clothing/suit/armor/greatcoat/german_overcoat,/obj/item/tank/emergency_oxygen,/obj/item/tank/emergency_oxygen,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "sD" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/junkyard/hermitage)
 "sF" = (/obj/effect/mob_spawn/human/prisoner_transport,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
@@ -353,13 +328,11 @@
 "ty" = (/obj/structure/dispenser,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/lehrer)
 "tB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/clown,/obj/item/gun/projectile/automatic/sts35,/obj/item/ammo_magazine/lrifle,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "tC" = (/obj/structure/lattice,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
-"tD" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "tE" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/handcuffs,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "tG" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "tH" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "tL" = (/obj/structure/closet/secure_closet/freezer{locked = 0; name = "fridge"},/obj/item/reagent_containers/food/drinks/bottle/small/beer{pixel_x = -3; pixel_y = 3},/obj/item/reagent_containers/food/drinks/bottle/small/beer,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "tN" = (/obj/item/storage/photo_album{pixel_y = 12},/obj/structure/table/standard,/obj/item/device/camera,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/rocinante)
-"tO" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "tV" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/cobweb,/obj/effect/decal/cleanable/dirt,/obj/item/folder/yellow{pixel_x = -4; pixel_y = 6},/obj/item/paper/crumpled/bloody{info = "We struck gold, literally. We found some good rocks out near Centurai-II rich with the stuff. Kae said he and Milos found something out while prospecting, some sort of glowing cube. It's jammed in there good, so we're anchoring until we sort this out..."; pixel_x = 4; pixel_y = 4},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "ua" = (/obj/structure/table/reinforced,/obj/item/gun/energy/plasma/stranger,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "ue" = (/obj/machinery/conveyor{dir = 10; id = "beta"},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
@@ -373,7 +346,6 @@
 "uz" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/crate,/obj/machinery/power/apc{dir = 4; name = "Charlie Main Corridor APC"; pixel_x = 24; start_charge = 0},/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "uA" = (/obj/machinery/computer/rdconsole,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "uC" = (/obj/machinery/mineral/processing_unit_console,/turf/simulated/wall,/area/outpost/junkyard/station)
-"uE" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Cryo Room"},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "uK" = (/obj/structure/bed,/obj/item/bedsheet,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "uM" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks{dir = 4},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "uN" = (/obj/structure/table/standard,/obj/item/storage/fancy{pixel_x = -11; pixel_y = 3},/obj/item/reagent_containers/food/drinks/bottle/small/beer{pixel_x = 6; pixel_y = 14},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
@@ -399,8 +371,6 @@
 "vW" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/firealarm,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks{dir = 1},/mob/living/simple_animal/hostile/alien,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "vX" = (/obj/spawner/exosuit/damaged,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "vY" = (/obj/effect/decal/cleanable/dirt,/obj/item/electronics/airlock,/obj/item/electronics/airlock,/obj/item/electronics/airlock,/obj/item/electronics/airlock,/obj/item/electronics/airalarm,/obj/item/electronics/airalarm,/obj/item/electronics/airalarm,/obj/item/electronics/airalarm,/obj/structure/closet/crate{name = "electronics crate"},/obj/item/electronics/tracker,/obj/item/stack/cable_coil,/obj/item/clothing/gloves/color/yellow,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
-"wb" = (/obj/machinery/door/airlock/science,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"wd" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "wm" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/item/storage/backpack,/obj/structure/closet,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "wo" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "wq" = (/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/engineer,/obj/spawner/gun/shotgun,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
@@ -422,18 +392,15 @@
 "xo" = (/obj/machinery/door/airlock/command{name = "NTMS-037 Captain's Quarters"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "xr" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/obj/item/storage/box/donkpockets{pixel_x = -6; pixel_y = 4},/obj/item/storage/box/donkpockets{pixel_x = -6; pixel_y = 8},/obj/item/reagent_containers/food/condiment/enzyme{layer = 5; pixel_x = 12; pixel_y = 6},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "xu" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
-"xy" = (/obj/structure/transit_tube{dir = 4},/obj/structure/catwalk,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
 "xD" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "xE" = (/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/geary)
 "xH" = (/obj/machinery/door/airlock{name = "Cabin 1"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
 "xI" = (/obj/structure/table/standard,/obj/item/tool/crowbar,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"xK" = (/obj/machinery/door/airlock/glass_medical{name = "Medbay"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "xM" = (/obj/structure/closet/crate{name = "spare equipment crate"},/obj/item/storage/toolbox/mechanical,/obj/item/clothing/glasses/welding,/obj/item/storage/deferred/disks,/obj/item/oddity/common/disk,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "xN" = (/obj/structure/table/rack,/obj/effect/decal/cleanable/dirt,/obj/item/ammo_magazine/ammobox/shotgun,/obj/item/ammo_magazine/ammobox/shotgun,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "xR" = (/obj/machinery/power/smes{charge = 1e+006},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
 "xY" = (/obj/structure/catwalk,/turf/simulated/floor/beach/sand/desert,/area/outpost/junkyard/station)
 "xZ" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
-"ya" = (/obj/effect/window_lwall_spawn/reinforced{dir = 4},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "yb" = (/turf/simulated/mineral,/area/outpost/junkyard/station)
 "ye" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "yj" = (/obj/effect/window_lwall_spawn/reinforced{dir = 8},/obj/machinery/door/blast/regular{id = "ancient"},/turf/simulated/floor/plating,/area/outpost/junkyard/station)
@@ -479,7 +446,6 @@
 "AF" = (/obj/structure/cable,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "AJ" = (/obj/machinery/status_display{pixel_x = 32; pixel_y = 32},/obj/item/stack/rods,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "AK" = (/obj/item/gun/energy/retro,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/rocinante)
-"AO" = (/obj/structure/catwalk,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
 "AQ" = (/obj/structure/table/standard,/obj/machinery/light/small{dir = 8},/obj/spawner/gun/energy_cheap,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "AU" = (/obj/structure/shuttle/engine/heater{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
 "Bg" = (/obj/machinery/space_heater,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
@@ -487,7 +453,6 @@
 "Bi" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/obj/structure/bed/chair/shuttle,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "Bk" = (/obj/machinery/door/airlock{name = "cockpit"},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/lehrer)
 "Bm" = (/obj/structure/catwalk,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/station)
-"Bq" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/canterbury)
 "Bw" = (/turf/simulated/wall/r_wall,/area/outpost/junkyard/station)
 "By" = (/obj/item/ammo_magazine/ammobox/magnum/scrap,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/junkyard/hermitage)
 "BA" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/reagent_containers/food/drinks/cans/cola,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -570,7 +535,6 @@
 "FS" = (/obj/structure/curtain,/obj/machinery/shower{pixel_y = 15},/obj/item/soap,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
 "FU" = (/obj/item/stack/rods,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "FW" = (/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"FX" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/rods,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "FY" = (/obj/landmark/corpse/scientist,/obj/item/gun/energy/shrapnel,/obj/spawner/powercell/small,/obj/spawner/powercell/small,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/station)
 "Ga" = (/obj/machinery/pipedispenser/disposal,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Gi" = (/obj/structure/table/standard,/obj/item/storage/firstaid,/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc{dir = 1; name = "Beta Station Medbay APC"; pixel_y = 23; start_charge = 0},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -625,7 +589,6 @@
 "Jg" = (/obj/structure/cable,/obj/machinery/door/airlock{name = "NTMS-037 Saloon"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "Ji" = (/obj/item/reagent_containers/syringe,/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "Jp" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
-"Jt" = (/obj/machinery/door/airlock/engineering{name = "Engineering"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
 "Ju" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/mob/living/simple_animal/hostile/alien,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Jz" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/rad_collector,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "JD" = (/obj/machinery/space_heater,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
@@ -717,7 +680,6 @@
 "OD" = (/obj/structure/table/standard,/obj/machinery/recharger,/obj/item/stack/cable_coil,/obj/item/tool/multitool,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
 "OF" = (/obj/machinery/door/window/brigdoor/westleft,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/station)
 "OH" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/obj/structure/salvageable/autolathe,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
-"OK" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "OP" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/external{name = "NTMS-037 Port Airlock"},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "OW" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/command{name = "Delta Station Access"},/obj/machinery/door/blast/regular{id = "ancient"},/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Pd" = (/obj/structure/table/standard,/obj/machinery/power/apc{dir = 1; name = "North APC"; pixel_y = 28},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
@@ -736,7 +698,6 @@
 "Qr" = (/obj/structure/grille,/obj/item/stack/rods,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/rocinante)
 "Qu" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "Qv" = (/obj/effect/decal/cleanable/dirt,/obj/structure/transit_tube/station,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"Qx" = (/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "QA" = (/obj/machinery/door/airlock/external{name = "E.V.A Access"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "QG" = (/obj/effect/window_lwall_spawn/reinforced,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "QH" = (/obj/item/gun/projectile/mk58,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
@@ -781,7 +742,6 @@
 "SC" = (/obj/machinery/meter,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/geary)
 "SD" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "SE" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/blast/shutters{id = "proto"},/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
-"SJ" = (/obj/machinery/door/firedoor,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "SX" = (/obj/effect/mob_spawn/human/hermit,/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/junkyard/hermitage)
 "Ta" = (/obj/structure/salvageable/autolathe,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "Tc" = (/obj/machinery/meter,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating,/area/outpost/junkyard/ship/epstein)
@@ -808,7 +768,6 @@
 "TX" = (/obj/machinery/suit_storage_unit/standard_unit,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "Ub" = (/obj/structure/cable,/obj/effect/decal/cleanable/blood/tracks,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/station)
 "Ui" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/rack,/obj/item/gun/projectile/automatic/wintermute,/obj/item/gun/projectile/automatic/wintermute,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"Uj" = (/obj/machinery/door/airlock/command{name = "Beta Station Access"},/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Ul" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/cobweb,/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "Us" = (/obj/structure/closet/crate,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts/low_chance,/obj/spawner/gun_parts,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "Uv" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/folder/red,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -825,7 +784,6 @@
 "Va" = (/obj/machinery/power/smes{charge = 0},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Vf" = (/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/security,/obj/item/gun/projectile/automatic/sol,/obj/item/ammo_magazine/ihclrifle,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Vi" = (/obj/item/storage/box/gloves{pixel_x = 5; pixel_y = 8},/obj/item/storage/box/masks{pixel_x = -6; pixel_y = 6},/obj/structure/table/standard,/obj/item/storage/firstaid/surgery,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
-"Vj" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "Vn" = (/obj/structure/table/standard,/obj/spawner/gun/energy_cheap,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "Vs" = (/obj/machinery/door/airlock{name = "mech bay external airlock"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "Vt" = (/obj/effect/decal/cleanable/dirt,/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
@@ -949,16 +907,16 @@ LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSp
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhCgBhbRBhxHBhrDBhzHBhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHaHkXaHkXaHaHKWaHaHaHkXaHaHaHkXaHaHSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhBhViXgwsXgXgXgGRXgZyXgGEBhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHaHaHaHqFVTaHpZaHpZaHUxmMaHIKyTYAyTLdEVUsfQaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhBhxZBhXgXgCgBhdxIhqeBhYgErZyCgAhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQHDcJaHaHaHmOaHnGaHUCaHaHKWaHaHEJSfEJEJEVaHaHaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhBhBhBhBhBhBhkMEBROSCJtXgCMJcBhBhBhBhBhBhBHXgoHBhBhhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQmMmMjNEVEVEVIjEVEVEVQAmMmMwTEsEJEJSfEJMXpWBPQrpHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcROROROROROROrDROROROmpBhwsBhBhBhDHVVYzIpBhBhtgBhBhpmhIhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHDRmMaHEVdYaHaHsnzJaHaHnsIdqhaHWxWxWxEJEVaHaHaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhrDBhBhBhBhBhBhBhBhBhBhXgAwBhZVCgeWOKXgBhPkXgBhJYZtTdhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQlpRHeMaHgpaHaHiJEVEVKwaHaHkXaHaHSjJdmngZEVWZibaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpxExExExExExExExExExExExESBEiZycSZIOKCgOKOKXguEXgXgnFZybCTdhISpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpMETQqoRHaHaHSlqYjzjzEVEVaHaHSpSpSpaHaHkXaHaHaHkXaHaHSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhrDBhBhBhBhBhBhBhBhBhBhXgAwBhhPOKctCgCgBhGjXgBhvDZtTdhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHRHRHaHFjiBeBYdjzQHKokXSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhBhBhBhBhBhBhkMEBROSCRWXgCMJcBhBhBhBhBhBhBHXgoHBhBhhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQmMmMjNEVEVEVIjEVEVEVQAmMmMwTEsEJEJSfEJMXpWBPQrpHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcROROROROROROrDROROROmpBhwsBhBhBhDHVVYzIpBhBhtgBhBhpmhIhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHDRmMaHEVdYaHaHzJzJaHaHnsIdqhaHWxWxWxEJEVaHaHaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhrDBhBhBhBhBhBhBhBhBhBhXgAwBhZVCgeWZyXgBhPkXgBhJYZtTdhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQlpRHeMaHgpaHaHiJEVEVKwaHaHkXaHaHSjJdmngZEVWZibaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpxExExExExExExExExExExExESBEiZycSZIZyCgZyZyXgZIXgXgnFZybCTdhISpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpMETQqoRHaHaHSlqYjzjzEVEVaHaHSpSpSpaHaHkXaHaHaHkXaHaHSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhrDBhBhBhBhBhBhBhBhBhBhXgAwBhhPZyctCgCgBhGjXgBhvDZtTdhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHRHRHaHFjiBeBYdjzQHKokXSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcROROROROROROrDkykyZfnuBhVIBhBhBhBhBhBhBhBhBhqHBhBhVnhIhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHjNaHtNAKqpYdjzeyKoaHSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhBhBhBhBhBhBhQVRyROkyRWXgbovkztvkBhezajBhStXgDeBhBhhISpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHusRHaHptiBqpYdjzEVKokXSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhBhWrBhXgXgOKCgOKBhvlBhBhedZyCgtfBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQWSRHaHaHSlwLjzjzEVEVaHaHSpSpSpaHaHkXaHaHaHkXaHaHSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhBhWrBhXgXgZyCgZyBhvlBhBhedZyCgtfBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQWSRHaHaHSlwLjzjzEVEVaHaHSpSpSpaHaHkXaHaHaHkXaHaHSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpdAOcBhBhXgXgXgZyXgXgVIZyKuZyRJBhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQJDRHXTaHgpaHaHItEVEVXWaHaHkXaHaHpROjMOeOEVEVjlaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhvkmtCgOKCgBhrDBhjwBhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHDRmMaHqnMOaHaHxKRqaHaHXlIdIJaHEVEVKlfQEVaHaHaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhBhvkmtCgZyCgBhrDBhjwBhBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHDRmMaHqnMOaHaHRqRqaHaHXlIdIJaHEVEVKlfQEVaHaHaHaHSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBhhIBhvkLDvkBhROBhhIBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQmMmMjNEVEVGQkJaAaAaAEsmMmMADQAeyKoeyeyMXdKQUPQcxSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpBhBhBhBhBhrDBhSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpMETQdPfXaHmwEVaHNbYtaAKKaHaHKWaHaHEVKoKoEVEVaHaHaHaHSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpaHaHaHaHaHaHJiaHUGrNaAWoaHUxmMaHhYeyEVpOryEVEVEVaHaHSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
@@ -981,65 +939,65 @@ LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSp
 LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwBwBwBwBwBwBwRFNlRFBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwpdBwnVnVBwvGnVRFjQRFoRBwBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwnVnVBwnVnVBwoRnVNYddNYnVBwvGBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpKLabKLSpSpSpSpSpSpSpSpSpSpSpSpSpSpayayyjkfkfkfgLayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwnVnVBwnVnVBwnVnVnVnVnVnVBwnVnVBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSkBQSkSpSpSpSpSpSpSpSpSpSpSpSpSpayaykHkajYjYjYkakaayaySpSpSpSpSpSpSpSpIuIuIuSpSpSpRdSpheSpSpBwnVnVBwfanVBwfHnVnVpdnVnVBwnVObBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSkBQSkSpSpSpSpSpSpSpSpSpSpSpayayayyYxDTjbyzaRQtDkakaayayayaySpSpheRdIuIuIuIuSpheSpSpSpheSpSpBwTSnVeNnVoReNnVnVnVnVnVnVeNnVOFnVBwSpSpSpSpSpSpSpSpSpSpbSbSbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpRdayfTQGMVabzxQGSkaySpSpSpSpSpSpSpSpayBVayMKbyfRTjTjtDtDbyMKayjslYayheheSpSpSpIuIuIuSpSpSpSpheSpSpSpBwMsnVBwnVTWBwnVnVnVnVFYnVBwfaObBwBwSpSpSpSpSpSpSpSpSpbSbSjoOPSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpIuSpSpSpSpSpSpheayxNICtDkakaccLTayheheheheheheheayayBVayMStDtDtDTjtDtDtDMSayiEzvaySpSpRdheSpIuIuSpSpSpheSpSpSpSpSpBwMsnVBwnVUbBwfHnVnVnVnVnVBwpdnVBwSpSpSpSpSpSpSpSpSpSpbScRnHbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuheSpIuIuIuSpSpheheheSpayrKtDtDtDlkQGLTaySpSpSpSpSpSpSpayLoBVayMKHYtDLmTjtDtDbyMKaynZifaySpSpSpSpSpSpSpSpRdSpSpSpSpRdSpSpBwMsnVBwnVUbBwnVhFnVfanVnVBwSuBwBwSpSpSpSpSpSpSpSpSpSpwvpCitwvSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybybNRKhKhybybybMJheSpSpSpSpayIatDmktDKRuCtuaySpSpSpSpSpSpSpayDSBVayMSkatDtDTjcrtDkaMSayiEutaySpIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwnVBwnVUbBwnVnVnVnVnVfHBwBwBwSpSpSpSpSpSpSpSpSpSpbSbSbSOPbSwvwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybDXayACACybybybPlRdSpSpSpSpQGeRFgxDxDtDbXueQGSpSpSpSpSpSpSpayBVBVayayBNrYBXTjkaAjrqayayiEBCayIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpBwBwBwhgLsBwBwBwBwBwBwBwBwSpSpSpSpSpSpSpSpSpSpSpSpbSurbSiawzvaYbbSbSWvqEcpbSwvbSbSwvwvbSbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybmUACayayayXLayayayayayayayayQGayayayQGlVQGayayayQGayayayayayayayayyHayayaypcyaWcpcyaayayaydQayayIuIuIuIuIuSpbZSpSpSpayayayaySpSpSpSpaynenelqneayPlPlPlPlPlPlayayayaySpSpSpSpSpSpSpSpvhitKYPHxiDhgBbSsztOGStOInYmbSMljOAFNKbSAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybPlKhSJuuTjtDtDYYtDtDkakaXJXJkakaFWkatDTjtDkatDtDtDBTkakakatDtDUjTjTjTjTuTjTjiStDkakatDQxtDkatDayybybybybJGSpSpSpSpSpQGdEtDayayayayayayayymZMayayayayayayayayayneniaySpSpSpSpSpSpSpSpTynAgCLnCuPHiaaBJpQuQNfFtOInppaXTcktMLwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybtCACSJuuTjTjTjGsUMzZphphkUkUphphzZzZzZphzZphwOzZphphzZzZzZTjTjZWTjEatDQxtDtDtDtDkakakaQxkakatDOWtDKynQxyAODIAOAOQPxynQQvmHEwcfipwbTjfRTjTjkdJuwdtDtDtDWqtDtDbrneneaySpSpSpSpSpSpSpSpbSYIbSbasusekmbScnokKGEuFctlbSdlAibjdJwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayayayayayTjtDayayayayayayayayayayfTQGQGQGSkayayayayayifayayayayTjtDayayfTQGQGQGQGQGSkayaytDtDaytDtDQGPlPlJGSpSpSpSpQGvJtDayipolWqtDtDwdtDTjtDtDmktDtDWqtDtDaynedWaySpSpSpSpSpSpSpSpbSbSbSWebSbSbSbSsjJTInOHbSbSbSbSbSbSbSbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayyrpQGiayTjwYaylEIqIqayPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlayHHGNZTayTjtDaykakaCcCcOnCcCckakaaytDtDayayayayayPlPlSpSpSpSpayayayayTjtDayayayayaykGiCayayayayaytDtDayACACaySpSpSpSpanSpSpSpSpwvtVRTyehUbSbSbSYFJgbSbSLvbSimbSZRFObSAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayXJkaXhQGTjtDayBQBQpTNRPlPlPlPlPlPlPlPlPlPlPlPlPlayayaytDtDkaayTjtDQGtDkaXJXJkaXJXJXJkaQGtDtDayyWMKNgayayaySpSpIuIuybybybayKQtDayiEiEvQuXTjtDiEiEiEiEaytDtDaypDxcQGSpSpSpSpSpSpSpSpSpbSDbTLuRAJUlbSdDRYbbsUbSEbbSmabSzpCbwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybXYXJkaxDltTjmkayBQBQBQayPlPlPlPlPlPlPlPlPlnnPlPlPlayMKBXtDkaFWayTjtDjEtDtDkajAcshSXJXJtDjEtDLHayxDtDVfkarYaySpgHIuIuybybybayTjcTayiEuAHZiEkakaiWTVvViEayXJlRayayayaySpSpSpSpSpSpSpSpSpwvfoELrJtHbbbSUFgUMoEhMyMojDRTxoUFYqwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybNCFUkaFiQGXCSJayNMpTBQayPlPlPlPlPlPlPlPlPlPlPlPlPlaykakatDtDkaayxDEaQGkakatDtDTjxDTjTjxDQGtDtDayxDkakakarYaySpSpSpIuybybybayTuQxayiEiEiEiWkaZqiWdviWiEayQxQxayrXrXayaySpSpSpSpSpSpSpSpwvwvlOBidBClhTtHbbohITbSzCTOgmbSwvwvbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayTnqsFsayxDkaayNiBQBQfzPlPlPlPlPlPlPlPlPlPlPlPlPlKLxDTeVakakaayXCQxayNwCcCckaxDBXCcCcXmayQxQxayLyREHukaBXaySpSpSpSpayayayayTjtDayiEQiCOiWtDkaiWGkUOiEaytDwdayrXJzJzaySpSpSpSpSpSpSpSpSpwvwvwNBLmKbSRgxrtLbSbSwvbSwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayayNCayNRDGkaayDSBQKDlWPlPlPlPlPlPlPlPlPlPlfTQGQGMVTjXRkFTKtDyoTjtDayayayayayyHayayayayaytDtDEAxDknFbtDzLayheheheheaynineayTjwdayiEoziEiEkakaiEiEiEiEaytDtDayrXJzJzaySpSpSpSpSpSpSpSpSpSpwvwvbSwvbSwvbSwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybgQybACIQmgujjVBVBQayPlPlPlPlPlPlPlAOBmxYalmgmgsgkFSDkFmgTjkCTjTjyQmgmgmgmgkFmgmgmgmgyQTjTjkCTjmktDtDkaQGSpSpfwfwQGdWACqATjHiaytDnwkWcQtDkaWGgELetDaykakabDBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJybayzmneaysivtZsayPlPlPlPlPlPlPlAOPlPlfTQGQGUBTjSDkFkaTjkNTjtDayayayayayyHayayayayaytDxDiPkaBAjYkazLayheheheheayslneayTjkaayqNAmAmRwzOzOayayayayaytDkaayFqBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJMJayzmACayNCayayayPlPlVzPlPlPlPlBmPlPlPlPlPlQGxDTeVakaxDayXCQxayEGRrigigqxnxnxigkzaySJXCaykaUvHukasyaySpheSpSpayayayayTuSJaycQtDtDtDtDtDayaFririayQxQxayBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJybayzmACNRPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlayxDtDtDMwxDayxDtDQGigigigmDjrbPigHoHoQGXJvqaykatDtDkarYaySpheSpSpSpSpSpayxDkaayraraiEtDZHkaaykatDkuaytDXJayBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJybXYACKhNCPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlayrhcWkatDxDaylwtDqiigigigHoHoHooQHoHoqiXJxDaykatDkakatEayhefwheheheheheayxDkaayFkEIkacLtDkanUkaMxriaywdSmayjbBKDDaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJybybKhACaytCtCACtCtCtCtCtCtCtCtClQtCtCtCtCtCayayaytDtDipayTjtDQGigbLHoHoHoigigbLHoQGkaTjayysFRUiayayaySpheSpSpSpSpSpayOitDaynwUNXJFMAfkaaykatDkuaytDPiaypuBKlHaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybMJybybKhHqNCPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlayoxTlvTayTjtDayEtoSqcigcoigEtmDqcaytDTjayayayayaySpSpSpheSpSpayayayayTjtDayafafiWkajmtDayrinwriaytDvWayayayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybybybybybaygbaTaytCtCACtCtCtCtCtCtCtCtCBmtCtCtCtCtCtCtCayayayayayTjtDayayfTQGQGQGQGQGSkayaytDTjaytDtDQGSpSpSpSpheSpSpQGyrkaayTjtDayayayayaylPlPayayayayaytDPiayBVLuaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybayFXkapwACwqneXYPlPltCPlPlPlPlPlPlPlPlBmPlPlPlQhPlPlPlaySrazPWayTjtDtDQxtDtDtDoltDtDtDQxtDtDTjhnTjhtfVzUzUzUbVzUzUzUfVNnTjQSTjtDTUtDoTkatDtDtDtDtDuMGMPvuMjfbrBVyxaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayaykaHVuizmzmkaaytCtCACtCtCtCtCtCtCtCtCAOtCtCtCtCtCtCtCayBVjVBVkwTjTjtDQxkakakaoltDtDtDickakatDaytDtDQGSpSpSpSpheSpSpQGXJkaayTjTjlLTjxDTjTjTjtDtDtDtDtDWqtDtDayBVVtaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuaykakazZayqstGdOayPlPlPlPlPlnnPlPlPlPlPlAOPlPlPlPlPlPlPlayXUsIIWayayyHayayayfTSkvofTSkayayaymZayayayayaySpSpSpSpheSpSpayayayayayayBwBwBwBwBwpEqbBwBwBwBwBwayayayayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayHJkaWaayayayayayaytCPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlayayayayayLfjVayayzstDtDtDtDtDtDayayBVVYaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwTkfLiEuXuXiEiEiEftVFBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuaykakakaXJXJWKBQJaKLPlPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlPlPlPlPlayBVjVaywmtDtDLmtDtDtDtDcQayBVVYaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwgnZBiEiWiWiEiWiWSEgnBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayaykakaXJkaVMWbWbQGPlPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlPlPlPlPlayaGjVayiUtDtDuptDtDtDtDtDayBVbOaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwBwBwiEiEiWiEiWiEBwBwBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuybaykakakatDiTBVBKayACtCtCtCtCtCtCtCtCtCAOtCtCtCtCtCtCtCtCtCtCtCayayjVayxItDtDtDtDmktDtDnwayBVayayhehehehehehehefwheheheheheheheheBwgnZBiEiWVUiEiEiESEgnBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayayhVkaXJXJgVsYsYKLPlPlPlPlPlPlPlPlPlPlAOPlPlPlPlPlPlPlPlPlPlPlPlayuzayxItDtDtDtDEZtDtDpGayvYaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwuaJZiEjslyjsjsiERKqjBwheheheheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuaymzkakaXJkaWKBQHjQGPlPlvcvcACtCACTfACtCBmtCACACACtCACvcTfPlPlPlPlayayaywmtDtBEZtDtDtDtDfKayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwBwBwBwfTSkBwBwBwBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayGaXJkaayayayayayaytCPlAOBmBmAOAOAOAOBmBmAOAOAOAOAOAOAOAOPlPlPlPlPlPlayaywmEZybEZtDtDwmayaySpSpSpSpSpSpSpSpSpSpIuIuSpSpSpSpSpSpSpSpSpheheheSpSpheheheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuayayayayayybybPlXrPlPlPlTfACTftCACvcACtCAOtCTfACvctCACACACPlPlPlPlPlPlPlayayybybybayQGayaySpSpSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpSpheSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpKLabKLSpSpSpSpSpSpSpSpSpSpSpSpSpSpayayyjkCkCkCgLayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwnVnVBwnVnVBwnVnVnVnVnVnVBwnVnVBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSkBQSkSpSpSpSpSpSpSpSpSpSpSpSpSpayaykHxDjYjYjYxDxDayaySpSpSpSpSpSpSpSpIuIuIuSpSpSpRdSpheSpSpBwnVnVBwfanVBwfHnVnVpdnVnVBwnVObBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSkBQSkSpSpSpSpSpSpSpSpSpSpSpayayayyYxDTjbyzaRQTjxDxDayayayaySpSpheRdIuIuIuIuSpheSpSpSpheSpSpBwTSnVeNnVoReNnVnVnVnVnVnVeNnVOFnVBwSpSpSpSpSpSpSpSpSpSpbSbSbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpRdaypcQGMVabzxQGSkaySpSpSpSpSpSpSpSpayBVayMKbymkTjTjTjTjbyMKayjslYayheheSpSpSpIuIuIuSpSpSpSpheSpSpSpBwMsnVBwnVTWBwnVnVnVnVFYnVBwfaObBwBwSpSpSpSpSpSpSpSpSpbSbSuROPSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpIuSpSpSpSpSpSpheayxNICTjxDxDccLTayheheheheheheheayayBVayMSTjTjTjTjTjTjTjMSayuXzvaySpSpRdheSpIuIuSpSpSpheSpSpSpSpSpBwMsnVBwnVUbBwfHnVnVnVnVnVBwpdnVBwSpSpSpSpSpSpSpSpSpSpbScRnHbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuheSpIuIuIuSpSpheheheSpayrKTjTjTjlkQGLTaySpSpSpSpSpSpSpayLoBVayMKHYTjLmTjTjTjbyMKaynZifaySpSpSpSpSpSpSpSpRdSpSpSpSpRdSpSpBwMsnVBwnVUbBwnVhFnVfanVnVBwSuBwBwSpSpSpSpSpSpSpSpSpSpwvpCitwvSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybybNRKhKhybybybMJheSpSpSpSpayIaTjmkTjKRuCtuaySpSpSpSpSpSpSpayDSBVayMSxDTjTjTjcrTjxDMSayuXutaySpIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwnVBwnVUbBwnVnVnVnVnVfHBwBwBwSpSpSpSpSpSpSpSpSpSpbSbSbSOPbSwvwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybDXayACACybybybPlRdSpSpSpSpQGeRFgxDxDTjbXueQGSpSpSpSpSpSpSpayBVBVayayBNrYBXTjxDAjrqayayuXBCayIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpBwBwBwhgLsBwBwBwBwBwBwBwBwSpSpSpSpSpSpSpSpSpSpSpSpbSurbSiawzvaYbbSbSWvqEcpbSwvbSbSwvwvbSbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybmUACayayayXLayayayayayayayayQGayayayQGlVQGayayayQGayayayayayayayayyHayayaypcSkWcpcSkayayaydQayayIuIuIuIuIuSpbZSpSpSpayayayaySpSpSpSpaynenelqneayPlPlPlPlPlPlayayayaySpSpSpSpSpSpSpSpvhitKYPHxiDhgBbSszJTGSJTInYmbSMljOAFNKbSAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybPlKhXCuuTjTjTjYYTjTjxDxDXJXJxDxDFWxDTjTjTjxDTjTjTjBTxDxDxDTjTjZWTjTjTjTuTjTjiSTjxDxDTjTuTjxDTjayybybybybJGSpSpSpSpSpQGdETjayayayayayayayymZMayayayayayayayayayneniaySpSpSpSpSpSpSpSpTynAgCLnCuPHiaaBJpQuQNfFJTInppaXTcktMLwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybtCACXCuuTjTjTjGsUMzZphphkUkUphphzZzZzZphzZphwOzZphphzZzZzZTjTjZWTjEaTjTuTjTjTjTjxDxDxDTuxDxDTjOWTjKynQzUBmDIBmBmQPzUnQQvmHEwcfUMWqTjmkTjTjPiJuKQTjTjTjWqTjTjyQneneaySpSpSpSpSpSpSpSpbSYIbSbasusekmbScnokKGEuFctlbSdlAibjdJwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayayayayayTjTjayayayayayayayayayaypcQGQGQGSkayayayayayifayayayayTjTjayaypcQGQGQGQGQGSkayayTjTjayTjTjQGPlPlJGSpSpSpSpQGvJTjayUMUMWqTjTjKQTjTjTjTjmkTjTjWqTjTjaynedWaySpSpSpSpSpSpSpSpbSbSbSWebSbSbSbSsjJTInOHbSbSbSbSbSbSbSbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayyrpQGiayTjwYaylEIqIqayPlPlPlPlPlPlPlPlPlPlPlPlPlPlPlayHHGNZTayTjTjayxDxDCcCcOnCcCcxDxDayTjTjayayayayayPlPlSpSpSpSpayayayayTjTjayayayayaykGiCayayayayayTjTjayACACaySpSpSpSpanSpSpSpSpwvtVRTyehUbSbSbSYFJgbSbSLvbSimbSZRFObSAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayXJxDXhQGTjTjayBQBQpTNRPlPlPlPlPlPlPlPlPlPlPlPlPlayayayTjTjxDayTjTjQGTjxDXJXJxDXJXJXJxDQGTjTjayyWMKNgayayaySpSpIuIuybybybayKQTjayuXuXvQuXTjTjuXuXuXuXayTjTjaypDxcQGSpSpSpSpSpSpSpSpSpbSDbTLuRAJUlbSdDRYRTsUbSEbbSmabSzpCbwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybXYXJxDxDltTjmkayBQBQBQayPlPlPlPlPlPlPlPlPlnnPlPlPlayMKBXTjxDFWayTjTjjETjTjxDjAcshSXJXJTjjETjLHayxDTjVfxDrYaySpgHIuIuybybybayTjcTayuXuAHZuXxDxDiWTVvVuXayXJlRayayayaySpSpSpSpSpSpSpSpSpwvfoELrJtHRTbSUFgUMoEhMyMojDRTxoUFYqwvAURBSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybNCFUxDFiQGXCXCayNMpTBQayPlPlPlPlPlPlPlPlPlPlPlPlPlayxDxDTjTjxDayxDEaQGxDxDTjTjTjxDTjTjxDQGTjTjayxDxDxDxDrYaySpSpSpIuybybybayTuTuayuXuXuXiWxDZqiWdviWuXayTuTuayrXrXayaySpSpSpSpSpSpSpSpwvwvlOBidBClWetHRTohITbSzCTOgmbSwvwvbSbSbSSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayTnqsFsayxDxDayNiBQBQfzPlPlPlPlPlPlPlPlPlPlPlPlPlKLxDTeVaxDxDayXCTuayNwCcCcxDxDBXCcCcXmayTuTuayLyREHuxDBXaySpSpSpSpayayayayTjTjayuXQiCOiWTjxDiWGkUOuXayTjKQayrXJzJzaySpSpSpSpSpSpSpSpSpwvwvwNBLmKbSRgxrtLbSbSwvbSwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayayNCayNRDGxDayDSBQKDlWPlPlPlPlPlPlPlPlPlPlpcQGQGMVTjXRSDTKTjyoTjTjayayayayayyHayayayayayTjTjEAxDknFbTjzLayheheheheaynineayTjKQayuXozuXuXxDxDuXuXuXuXayTjTjayrXJzJzaySpSpSpSpSpSpSpSpSpSpwvwvbSwvbSwvbSwvbSSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybgQybACIQneujBVBVBQayPlPlPlPlPlPlPlBmBmxYalnenesgSDSDSDneTjkCTjTjyQneneneneSDneneneneyQTjTjkCTjmkTjTjxDQGSpSpfwfwQGdWACyHTjHiayTjnwkWcQTjxDWGgELeTjayxDxDbDBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJybayzmneaysivtZsayPlPlPlPlPlPlPlBmPlPlpcQGQGUBTjSDSDxDTjkNTjTjayayayayayyHayayayayayTjxDiPxDBAjYxDzLayheheheheayslneayTjxDayqNAmAmRwzOzOayayayayayTjxDayFqBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJMJayzmACayNCayayayPlPlVzPlPlPlPlBmPlPlPlPlPlQGxDTeVaxDxDayXCTuayEGRrnxnxqxnxnxnxkzayXCXCayxDUvHuxDvqaySpheSpSpayayayayTuXCaycQTjTjTjTjTjayaFririayTuTuayBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJybayzmACNRPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlayxDTjTjMwxDayxDTjQGnxnxnxmDjrbPnxHoHoQGXJvqayxDTjTjxDrYaySpheSpSpSpSpSpayxDxDayrarauXTjZHxDayxDTjkuayTjXJayBVBVBVaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJybXYACKhNCPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlayrhcWxDTjxDayEaTjqinxnxnxHoHoHooQHoHoqiXJxDayxDTjxDxDtEayhefwheheheheheayxDxDayFkEIxDcLTjxDnUxDMxriayKQSmayjbBKDDaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJybybKhACaytCtCACtCtCtCtCtCtCtCtClQtCtCtCtCtCayayayTjTjUMayTjTjQGnxbLHoHoHonxnxbLHoQGxDTjayysFRUiayayaySpheSpSpSpSpSpayOiTjaynwUNXJFMAfxDayxDTjkuayTjPiaypuBKlHaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybMJybybKhHqNCPlPltCPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlayoxTlvTayTjTjayEtoSqcnxconxEtmDqcayTjTjayayayayaySpSpSpheSpSpayayayayTjTjayafafiWxDjmTjayrinwriayTjvWayayayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybybybybybaygbaTaytCtCACtCtCtCtCtCtCtCtCBmtCtCtCtCtCtCtCayayayayayTjTjayaypcQGQGQGQGQGSkayayTjTjayTjTjQGSpSpSpSpheSpSpQGyrxDayTjTjayayayayaylPlPayayayayayTjPiayBVLuaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayHVxDpwACwqneXYPlPltCPlPlPlPlPlPlPlPlBmPlPlPlQhPlPlPlaySrazPWayTjTjTjTuTjTjTjUMTjTjTjTuTjTjTjhnTjhtnQzUzUzUQPzUzUzUnQNnTjQSTjTjTUTjoTxDTjTjTjTjTjuMGMPvuMjfyQBVyxaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayayxDHVuizmzmxDaytCtCACtCtCtCtCtCtCtCtCBmtCtCtCtCtCtCtCayBVBVBVkwTjTjTjTuxDxDxDUMTjTjTjicxDxDTjayTjTjQGSpSpSpSpheSpSpQGXJxDayTjTjTUTjxDTjTjTjTjTjTjTjTjWqTjTjayBVVtaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayxDxDzZayqstGdOayPlPlPlPlPlnnPlPlPlPlPlBmPlPlPlPlPlPlPlayXUsIIWayayyHayayaypcSkvopcSkayayaymZayayayayaySpSpSpSpheSpSpayayayayayayBwBwBwBwBwqbqbBwBwBwBwBwayayayayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayHJxDWaayayayayayaytCPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlayayayayayLfBVayayzsTjTjTjTjTjTjayayBVVYaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwTkfLuXuXuXuXuXuXftVFBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayxDxDxDXJXJWKBQJaKLPlPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlPlPlPlPlayBVBVaywmTjTjLmTjTjTjTjcQayBVVYaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwgnZBuXiWiWuXiWiWSEgnBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayayxDxDXJxDVMWbWbQGPlPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlPlPlPlPlayaGBVayiUTjTjupTjTjTjTjTjayBVbOaySpSpSpSpSpSpSpheSpSpSpSpSpSpSpSpBwBwBwuXuXiWuXiWuXBwBwBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuybayxDxDxDTjiTBVBKayACtCtCtCtCtCtCtCtCtCBmtCtCtCtCtCtCtCtCtCtCtCayayBVayxITjTjTjTjmkTjTjnwayBVayayhehehehehehehefwheheheheheheheheBwgnZBuXiWVUuXuXuXSEgnBwSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayayhVxDXJXJgVsYsYKLPlPlPlPlPlPlPlPlPlPlBmPlPlPlPlPlPlPlPlPlPlPlPlayuzayxITjTjTjTjEZTjTjpGayvYaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwuaJZuXjslyjsjsuXRKqjBwheheheheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuaymzxDxDXJxDWKBQHjQGPlPlvcvcACtCACTfACtCBmtCACACACtCACvcTfPlPlPlPlayayaywmTjtBEZTjTjTjTjfKayayaySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpBwBwBwBwBwpcSkBwBwBwBwBwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayGaXJxDayayayayayaytCPlBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmPlPlPlPlPlPlayaywmEZybEZTjTjwmayaySpSpSpSpSpSpSpSpSpSpIuIuSpSpSpSpSpSpSpSpSpheheheSpSpheheheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuayayayayayybybPlXrPlPlPlTfACTftCACvcACtCBmtCTfACvctCACACACPlPlPlPlPlPlPlayayybybybayQGayaySpSpSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpSpheSpSpSpSpheSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuTEIuIuIuIuSpSpSpSpPltCPlPlPlPlPlPlBmPlPlPlPlPlPltCPlSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpfwSpSpSpSpfwSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpACACTftCvcACTftCAOtCACACACtCACACTfSpSpSpSpSpSpIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuTEIuIuIuIuIuSpSpSpSpBmBmBmAOBmBmAOBmBmAOAOBmBmBmBmBmAOSpSpSpSpSpIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpACACTftCvcACTftCBmtCACACACtCACACTfSpSpSpSpSpSpIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuTEIuIuIuIuIuSpSpSpSpBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmBmSpSpSpSpSpIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpRdSpSpSpACTfvctCACACACtCPltCACACTftCACTfTfSpSpSpSpSpSpIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCmCSpSpmCYCYCYCYCYCmCSpSpmCBqmCmCEnmCEnmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCmCSpSpmCYCYCYCYCYCmCSpSpmCRPmCmCEnmCEnmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCPwBgmCEnmCmCDTDTbgikDTmCmCEnmCoEmCcZDZmCkPcZmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeivratfvcKmCrjLBDTDTDTDTvfmCTXmCBqmCmCaJmCykmCmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeivratfvcKmCrjLBDTDTDTDTvfmCTXmCRPmCmCaJmCykmCmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeipBatvrjuRPKkKkKkKkKkKkKkxuKkSqKkUYMiMiDuMiladqmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCvrENatjumCScPJDTLODTDTHUmCPoKkqUmCmCyXmCXKxgmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCmCgYmCmCFfDTLOXODTmCmCmCaZmCmCFSKMmCmCmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpEnTmKkCRmChxDTLODTDTmCEDPdMihsmCmCmCmCefefSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCKkjqOhDTDTLODTIYOhbAbAMipjmCoCzDrbLEefSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlHlHlVsHlHlHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpVXjuVXKkMgOhLOLOLOLOLOOhdNuNMigrrLVjLOXjLEefSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlHlHlVsHlHlHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpVXjuVXKkMgOhLOLOLOLOLOOhdNuNMiFCrLYVLOXjLEefSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpXQHlCSjICSCSjICSEEHlXQSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCKkGWOhIYDTYVPJDTOhFFFFMiYQmCAQwSXjLEefSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpacHlnSCSCSCSjICSvXHlacSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpEnqUKkHCmCrBDTYVDTLhmCeQMkMiNzmCmCmCmCefefSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlTFdrCSjICSdrZXHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCmCmCgYmCmCaLtaLODTDTmCmCmCaZmCmCFCFCmCmCmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpXQHlHlHlHlCepaCeHlHlHlHlXQSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCxRODjujumClIaLDTLODTDTmVmCbwKkqUmCrVHpmCMBWEmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpacHlHlFyYGLCCSCSLUdpHlHlacSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeiNevrvrjuRPKkKkKkKkKkKkKkxuKkEeLOHfHpZzmolalaFEmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlHlLCaNYJCSCSCSSAHlHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeijuvrDwoXmCwoDTDTDTDThxOlmCTXmCBqmCYhjtAldglaFzmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlHlLCaNYJCSCSCSSAHlHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmqeijuvrDwoXmCwoDTDTDTDThxOlmCTXmCRPmCYhjtAldglaFzmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpLbCSCSCSCSCSCSCSCSCSCSCSLbSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpmCmCOznomCEnmCmCDTDTDTiLDTmCmCEnmCoEmCNHoYmCWEWEmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpLbCSCSCSCSCSCSCSCSCSCSCSLbSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpmCmCmCmCSpSpmCYCYCYCYCYCmCSpSpmCBqmCmCEnmCEnmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpLbCSCSCSCSCSCSCSCSCSCSCSLbSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpmCmCmCmCSpSpmCYCYCYCYCYCmCSpSpmCRPmCmCEnmCEnmCmCSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlxMTabnCSCSCSdrCxCSHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlzEHlHlBkpaBkHlHltyHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpHlHlHlSzJQJQJQYXHlHlHlSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi

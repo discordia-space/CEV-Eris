@@ -337,7 +337,6 @@
 	landmark_transition = "nav_junk_transit"
 
 /obj/effect/shuttle_landmark/junkpod
-	docking_controller = "junkpod_shuttle"
 
 /obj/effect/shuttle_landmark/junkpod/start
 	name = "Delta Station"
