@@ -324,7 +324,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/proc/welcome_drone()
 	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
 	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
-	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
+	to_chat(src, "Remember,  you are <b>lawed against harming the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
 	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
