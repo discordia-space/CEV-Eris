@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-tools/deploy.sh ci_test
+# ordering. we still need to drop names in the config folder
 mkdir ci_test/config
+tools/deploy.sh ci_test
 
 #test config
 cp tools/ci/ci_config.txt ci_test/config/config.txt
