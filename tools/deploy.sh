@@ -21,7 +21,7 @@ fi
 cp cev_eris.dmb cev_eris.rsc $1/
 cp -r maps/* $1/maps/
 cp -r strings/* $1/strings/
-cp -r config/names/* $1/config/names/
+cp -r config/names $1/config/
 #remove .dm files from _maps
 
 #this regrettably doesn't work with windows find
