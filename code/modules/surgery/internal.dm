@@ -7,6 +7,10 @@
 	return organ.is_open() && organ.can_add_item(tool, user)
 
 /datum/surgery_step/insert_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(istype(tool, /obj/item/gripper/surgery)) // Robots have to do surgery somehow
+		var/obj/item/gripper/surgery/SG = tool
+		if(SG.wrapped)
+			tool = SG.wrapped // We want to install whatever the gripper is holding, not the gripper itself
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
 			SPAN_NOTICE("[user] starts connecting [tool] to [organ.get_surgery_name()]."),
@@ -20,6 +24,11 @@
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/insert_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(istype(tool, /obj/item/gripper/surgery))
+		var/obj/item/gripper/surgery/SG = tool
+		if(SG.wrapped)
+			tool = SG.wrapped
+			SG.wrapped = null // When item successfully inserted - stop referencing it in gripper
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
 			SPAN_NOTICE("[user] connects [tool] to [organ.get_surgery_name()]."),
@@ -35,6 +44,10 @@
 		playsound(get_turf(organ), 'sound/effects/squelch1.ogg', 50, 1)
 
 /datum/surgery_step/insert_item/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(istype(tool, /obj/item/gripper/surgery))
+		var/obj/item/gripper/surgery/SG = tool
+		if(SG.wrapped)
+			tool = SG.wrapped
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
 		SPAN_WARNING("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
@@ -60,6 +73,13 @@
 /obj/item/organ/external/proc/can_add_item(obj/item/I, mob/living/user)
 	if(!istype(I))
 		return FALSE
+
+	if(istype(I, /obj/item/gripper/surgery))
+		var/obj/item/gripper/surgery/SG = I
+		if(SG.wrapped)
+			I = SG.wrapped
+		else
+			return FALSE
 
 	var/total_volume = get_total_occupied_volume()	//Used for internal organs and cavity implants
 
@@ -157,6 +177,11 @@
 /obj/item/organ/external/proc/add_item(atom/movable/I, mob/living/user, do_check=TRUE)
 	if(do_check && !can_add_item(I, user))
 		return
+
+	if(istype(I, /obj/item/gripper/surgery))
+		var/obj/item/gripper/surgery/SG = I
+		if(SG.wrapped)
+			I = SG.wrapped
 
 	user.unEquip(I, src)
 

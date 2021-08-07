@@ -429,21 +429,30 @@
 	//random_icon = FALSE
 	spawn_tags = null
 
-/obj/item/tool/multitool/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	spawn_tags = null
-
-/obj/item/tool/wirecutters/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
-	spawn_tags = null
-
-/obj/item/tool/weldingtool/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
-	spawn_tags = null
-
 /obj/item/tool/shovel/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_SHOVELING = 40, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20, QUALITY_HAMMERING = 20)
 	spawn_tags = null
+
+/obj/item/tool/robotic_medical_omnitool
+	name = "Medical Omnitool"
+	desc = "An all-in-one medical omnitool."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "medmulti"
+	force = WEAPON_FORCE_PAINFUL
+	sharp = TRUE
+	edge = TRUE
+	worksound = WORKSOUND_DRIVER_TOOL
+	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 15)
+	spawn_tags = null
+
+/obj/item/tool/robotic_engineering_omnitool
+	name = "Engineering Omnitool"
+	desc = "An all-in-one engineering omnitool."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "engimplant"
+	force = WEAPON_FORCE_DANGEROUS
+	worksound = WORKSOUND_DRIVER_TOOL
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
+	spawn_tags = null
+
