@@ -11,7 +11,7 @@ fi
 
 mkdir -p \
     $1/maps \
-    $1/strings
+    $1/strings \
 	$1/config
 
 if [ -d ".git" ]; then
