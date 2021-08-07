@@ -37,7 +37,7 @@
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)
 			var/reagent_amount = 0
-			if(istype(reagent, /datum/reagent/organic/nutriment))
+			if(istype(reagent, /datum/reagent/organic/nutriment) && !istype(reagent, /datum/reagent/organic/nutriment/virus_food))
 				var/datum/reagent/organic/nutriment/N = reagent
 				reagent_amount = N.volume
 				N.remove_self(reagent_amount)
@@ -52,7 +52,7 @@
 			bottle.name = "resuscitator bottle"
 			resuscitator_amount = 0
 			bottle.update_icon()
-			visible_message(SPAN_NOTICE("[src] drop [bottle]."))
+			visible_message(SPAN_NOTICE("[src] drops [bottle]."))
 		else
 			visible_message("\The [src] beeps, \"Not enough nutriment to produce resuscitator.\".")
 	else
