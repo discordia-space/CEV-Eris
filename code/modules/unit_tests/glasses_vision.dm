@@ -14,6 +14,7 @@
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
 	H.update_equipment_vision()	// Because Life has a client check that bypasses updating vision
+	H.handle_vision()
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 1 Cleanup
 	QDEL_NULL(H.glasses)
@@ -26,6 +27,7 @@
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
 	H.update_equipment_vision()
+	H.handle_vision()
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 2 Cleanup
 	QDEL_NULL(H.glasses)
@@ -39,6 +41,7 @@
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
 	H.update_equipment_vision()
+	H.handle_vision()
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 3 Cleanup
 	QDEL_NULL(H.glasses)
