@@ -10,9 +10,10 @@
 	// Test 1: NVG
 	var/expectation = SEE_INVISIBLE_NOLIGHTING
 	var/obj/item/clothing/glasses/G = new /obj/item/clothing/glasses/powered/night()
+	G.active = TRUE
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.process_glasses(H.glasses, TRUE)	// Because Life has a client check that bypasses updating vision
+	H.update_equipment_vision()	// Because Life has a client check that bypasses updating vision
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 1 Cleanup
 	QDEL_NULL(H.glasses)
@@ -21,9 +22,10 @@
 	// Test 2: Mesons
 	TEST_ASSERT_EQUAL(H.glasses, null, "QDEL_NULL didn't null/delete the item in time.")
 	G = new /obj/item/clothing/glasses/powered/meson()
+	G.active = TRUE
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.process_glasses(H.glasses, TRUE)
+	H.update_equipment_vision()
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 2 Cleanup
 	QDEL_NULL(H.glasses)
@@ -33,9 +35,10 @@
 	expectation = SEE_INVISIBLE_LIVING
 	TEST_ASSERT_EQUAL(H.glasses, null, "QDEL_NULL didn't null/delete the item in time.")
 	G = new /obj/item/clothing/glasses/regular()
+	G.active = TRUE
 	H.glasses = G
 	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.process_glasses(H.glasses, TRUE)
+	H.update_equipment_vision()
 	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation].")
 	// Test 3 Cleanup
 	QDEL_NULL(H.glasses)
