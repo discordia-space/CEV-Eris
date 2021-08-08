@@ -13,8 +13,8 @@
 		log_admin("[key_name(src)] has modified world.tick_lag to [newtick]", 0)
 		message_admins("[key_name(src)] has modified world.tick_lag to [newtick]", 0)
 		world.tick_lag = newtick
-		// Fallback ITU value - will be overwritten next tick by extools lib if it's present
-		GLOB.internal_tick_usage = world.tick_lag * MAPTICK_FALLBACK_ITU * 0.01
+		// No, extools CANNOT change defines, but they can change globals/runtime values.
+		GLOB.internal_tick_usage = world.tick_lag * MAPTICK_MC_MIN_RESERVE * 0.01
 	else
 		to_chat(src, "\red Error: ticklag(): Invalid world.ticklag value. No changes made.")
 

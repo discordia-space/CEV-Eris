@@ -1,14 +1,31 @@
 /datum
-	var/tmp/gc_destroyed //Time when this object was destroyed.
+	/**
+	  * Tick count time when this object was destroyed.
+	  *
+	  * If this is non zero then the object has been garbage collected and is awaiting either
+	  * a hard del by the GC subsystme, or to be autocollected (if it has no references)
+	  */
+	var/gc_destroyed
 	var/tmp/is_processing = FALSE
 	var/list/datum_components //for /datum/components
 	var/list/comp_lookup //it used to be for looking up components which had registered a signal but now anything can register
 	var/list/list/datum/callback/signal_procs
 	var/signal_enabled = FALSE
 
-#ifdef TESTING
-	var/tmp/running_find_references
-	var/tmp/last_find_references = 0
+	/// A weak reference to another datum
+	var/datum/weakref/weak_reference
+
+#ifdef REFERENCE_TRACKING
+	var/running_find_references
+	var/last_find_references = 0
+	#ifdef REFERENCE_TRACKING_DEBUG
+	///Stores info about where refs are found, used for sanity checks and testing
+	var/list/found_refs
+	#endif
+#endif
+
+#ifdef DATUMVAR_DEBUGGING_MODE
+	var/list/cached_vars
 #endif
 
 /*

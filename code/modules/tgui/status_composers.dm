@@ -33,7 +33,7 @@
 			return UI_INTERACTIVE
 
 		// Regular ghosts can always at least view if in range.
-		var/datum/client_interface/client = GET_CLIENT(user)
+		var/client/client = GET_CLIENT(user)
 		if(client)
 			var/clientviewlist = getviewsize(client.view)
 			if(get_dist(source, user) < max(clientviewlist[1], clientviewlist[2]))
@@ -51,7 +51,7 @@
 /// Returns a UI status such that those without blocked hands will be able to interact,
 /// but everyone else can only watch.
 /proc/ui_status_user_has_free_hands(mob/user, atom/source)
-	return HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) ? UI_UPDATE : UI_INTERACTIVE
+	return (user.l_hand && user.r_hand) ? UI_UPDATE : UI_INTERACTIVE
 
 /// Returns a UI status such that advanced tool users will be able to interact,
 /// but everyone else can only watch.

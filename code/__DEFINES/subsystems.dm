@@ -81,6 +81,7 @@
 #define INIT_ORDER_CHAT	-185
 
 
+#define FIRE_PRIORITY_DEFAULT 50
 #define FIRE_PRIORITY_TGUI 110
 
 // SS runlevels
