@@ -53,7 +53,7 @@
   *
   * @return nothing
   */
-/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
+/datum/proc/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
 	return
 
  /**
@@ -65,7 +65,7 @@
   *
   * @return data /list Data to be sent to the UI
  **/
-/datum/proc/ui_data(mob/user, ui_key = "main")
+/datum/proc/nano_ui_data(mob/user, ui_key = "main")
 	return list() // Not implemented.
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob

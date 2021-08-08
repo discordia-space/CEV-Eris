@@ -63,7 +63,7 @@
 
 
 
-/datum/nano_module/crew_monitor/ui_data(mob/user)
+/datum/nano_module/crew_monitor/nano_ui_data(mob/user)
 	var/list/data = host.initial_data()
 
 	data["isAI"] = isAI(user)
@@ -92,8 +92,8 @@
 	data["search"] = search ? search : "Search"
 	return data
 
-/datum/nano_module/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
-	var/list/data = ui_data(user)
+/datum/nano_module/crew_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)

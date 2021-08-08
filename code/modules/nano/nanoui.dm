@@ -581,4 +581,4 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/update(var/force_open = 0)
-	src_object.ui_interact(user, ui_key, src, force_open, master_ui, state)
+	src_object.nano_ui_interact(user, ui_key, src, force_open, master_ui, state)

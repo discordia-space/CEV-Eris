@@ -352,7 +352,7 @@
 	unload_ammo(usr)
 */
 
-/obj/item/gun/projectile/ui_data(mob/user)
+/obj/item/gun/projectile/nano_ui_data(mob/user)
 	var/list/data = ..()
 	data["caliber"] = caliber
 	data["current_ammo"] = get_ammo()

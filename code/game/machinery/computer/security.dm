@@ -51,9 +51,9 @@
 /obj/machinery/computer/secure_data/attack_hand(mob/user)
 	if(..())
 		return
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/computer/secure_data/ui_interact(user)
+/obj/machinery/computer/secure_data/nano_ui_interact(user)
 	if (src.z > 6)
 		to_chat(user, "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!")
 		return

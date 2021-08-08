@@ -153,7 +153,7 @@
 		ui_data["chemicals"] = RS
 
 
-/datum/design/ui_data()
+/datum/design/nano_ui_data()
 	RETURN_TYPE(/list)
 	return ui_data
 
