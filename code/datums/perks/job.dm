@@ -250,7 +250,6 @@
 	desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
 	var/list/codespeak_procs = list(
-		/mob/living/carbon/human/proc/codesay,
 		/mob/living/carbon/human/proc/codespeak_help,
 		/mob/living/carbon/human/proc/codespeak_clear,
 		/mob/living/carbon/human/proc/codespeak_romch,
