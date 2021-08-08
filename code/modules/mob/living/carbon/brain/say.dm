@@ -18,8 +18,10 @@
 		else
 			if(ending=="!")
 				verb=pick("exclaims","shouts","yells")
-			if(ending=="?")
+			else if(ending=="?")
 				verb="asks"
+			else if(ending=="¿")
+				verb="reports"
 
 		if(prob(emp_damage*4))
 			if(prob(10))//10% chane to drop the message entirely

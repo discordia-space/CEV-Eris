@@ -175,6 +175,8 @@
 			verb=pick("exclaims", "shouts", "yells")
 		else if(ending == "?")
 			verb="asks"
+		else if(ending=="¿")
+			verb="reports"
 
 	return verb
 

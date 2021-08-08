@@ -4,6 +4,10 @@
 	if(!client)
 		return
 
+	var/cop_code
+	if(verb == "reports")
+		cop_code = get_cop_code()
+
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
@@ -27,7 +31,7 @@
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(language)
+	else if(language)
 		var/nverb = null
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
@@ -46,6 +50,12 @@
 		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
+	if(verb == "reports")
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			message = cop_code
+		else
+			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
+			
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 
@@ -60,6 +70,14 @@
 		return
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
+	var/cop_code
+
+	if(verb == "reports")
+		cop_code = get_cop_code()
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			message = cop_code
+		else
+			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
 
 	if(language)
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.

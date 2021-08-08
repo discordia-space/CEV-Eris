@@ -112,8 +112,10 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
 		return pick("exclaims", "shouts", "yells")
-	if(ending=="?")
+	else if(ending=="?")
 		return "asks"
+	else if(ending=="¿")
+		verb="reports"
 	return verb
 
 // returns message
@@ -302,7 +304,7 @@ var/list/channel_to_radio_key = new
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
-	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40)
+	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -391,6 +393,14 @@ var/list/channel_to_radio_key = new
 					message = language.scramble(message)
 				else
 					message = stars(message)
+
+	var/cop_code
+	if(verb == "reports")
+		cop_code = get_cop_code()
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			message = cop_code
+		else
+			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
 
 	..()
 

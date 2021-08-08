@@ -244,3 +244,35 @@
 	desc = "You know how to channel spiritual energy during rituals. You gain additional skill points \
 			during group rituals and have an increased regeneration of cruciform energy."
 	icon_state = "channeling"
+
+/datum/perk/codespeak
+	name = "Codespeak"
+	desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
+	var/list/codespeak_procs = list(
+		/mob/living/carbon/human/proc/codesay,
+		/mob/living/carbon/human/proc/codespeak_help,
+		/mob/living/carbon/human/proc/codespeak_clear,
+		/mob/living/carbon/human/proc/codespeak_romch,
+		/mob/living/carbon/human/proc/codespeak_bigromch,
+		/mob/living/carbon/human/proc/codespeak_serb,
+		/mob/living/carbon/human/proc/codespeak_commie,
+		/mob/living/carbon/human/proc/codespeak_carrion,
+		/mob/living/carbon/human/proc/codespeak_understood,
+		/mob/living/carbon/human/proc/codespeak_yes,
+		/mob/living/carbon/human/proc/codespeak_no,
+		/mob/living/carbon/human/proc/codespeak_understood_local,
+		/mob/living/carbon/human/proc/codespeak_yes_local,
+		/mob/living/carbon/human/proc/codespeak_no_local
+		)
+
+/datum/perk/codespeak/assign(mob/living/carbon/human/H)
+	..()
+	if(holder)
+		holder.verbs += codespeak_procs
+
+
+/datum/perk/codespeak/remove()
+	if(holder)
+		holder.verbs -= codespeak_procs
+	..()
