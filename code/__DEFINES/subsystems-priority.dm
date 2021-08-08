@@ -35,3 +35,6 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_EVAC          20	// Processes the evac controller.
 #define SS_PRIORITY_WIRELESS      10	// Wireless connection setup.
 #define SS_PRIORITY_TIPS          10	// Tips and tricks manager.
+
+
+#define FIRE_PRIORITY_TGUI 110

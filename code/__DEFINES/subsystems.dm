@@ -80,6 +80,9 @@
 #define INIT_ORDER_LATELOAD -180
 #define INIT_ORDER_CHAT	-185
 
+
+#define FIRE_PRIORITY_TGUI 110
+
 // SS runlevels
 
 #define RUNLEVEL_INIT 0

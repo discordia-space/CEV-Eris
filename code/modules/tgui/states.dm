@@ -24,7 +24,7 @@
 
 	if(isobserver(user))
 		// If they turn on ghost AI control, admins can always interact.
-		if(isAdminGhostAI(user))
+		if(is_admin(user)) //isAdminGhostAI(user))
 			. = max(., UI_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
@@ -61,7 +61,7 @@
  */
 /mob/proc/shared_ui_interaction(src_object)
 	// Close UIs if mindless.
-	if(!client && !HAS_TRAIT(src, TRAIT_PRESERVE_UI_WITHOUT_CLIENT))
+	if(!client) // && !HAS_TRAIT(src, TRAIT_PRESERVE_UI_WITHOUT_CLIENT))
 		return UI_CLOSE
 	// Disable UIs if unconcious.
 	else if(stat)
@@ -73,13 +73,13 @@
 
 /mob/living/shared_ui_interaction(src_object)
 	. = ..()
-	if(!(mobility_flags & MOBILITY_UI) && . == UI_INTERACTIVE)
+	if(. == UI_INTERACTIVE) // !(mobility_flags & MOBILITY_UI) && 
 		return UI_UPDATE
 
 /mob/living/silicon/ai/shared_ui_interaction(src_object)
 	// Disable UIs if the AI is unpowered.
-	if(apc_override == src_object) //allows AI to (eventually) use the interface for their own APC even when out of power
-		return UI_INTERACTIVE
+	// if(apc_override == src_object) //allows AI to (eventually) use the interface for their own APC even when out of power
+	// 	return UI_INTERACTIVE
 	if(lacks_power())
 		return UI_DISABLED
 	return ..()
@@ -118,6 +118,6 @@
 	return UI_CLOSE
 
 /mob/living/carbon/human/shared_living_ui_distance(atom/movable/src_object, viewcheck = TRUE)
-	if(dna.check_mutation(TK) && tkMaxRangeCheck(src, src_object))
-		return UI_INTERACTIVE
+	// if(dna.check_mutation(TK) && tkMaxRangeCheck(src, src_object))
+	// 	return UI_INTERACTIVE
 	return ..()

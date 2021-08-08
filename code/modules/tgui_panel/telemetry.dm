@@ -77,4 +77,4 @@
 	if(found)
 		var/msg = "[key_name(client)] has a banned account in connection history! (Matched: [found["ckey"]], [found["address"]], [found["computer_id"]])"
 		message_admins(msg)
-		log_admin_private(msg)
+		// log_admin_private(msg)
