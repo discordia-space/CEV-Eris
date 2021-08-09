@@ -183,18 +183,15 @@
 
 /obj/landmark/corpse/security
 	name = "Security Officer"
-	corpseuniform = /obj/item/clothing/under/security_nt
-	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpseradio = /obj/item/device/radio/headset
-	corpsesuit = /obj/item/clothing/suit/armor/vest/security
-	corpsehelmet = /obj/item/clothing/head/soft/sec/nt
-
-/obj/landmark/corpse/prisonguard
-	name = "Prison Guard"
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpseradio = /obj/item/device/radio/headset
 	corpsesuit = /obj/item/clothing/suit/armor/vest/ironhammer
+	corpsehelmet = /obj/item/clothing/head/armor/helmet/ironhammer
+
+/obj/landmark/corpse/security/prisonguard
+	name = "Prison Guard"
+	corpsehelmet = null
 
 /////////////////Officers//////////////////////
 
