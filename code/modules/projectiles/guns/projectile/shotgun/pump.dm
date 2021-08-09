@@ -62,9 +62,9 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
 	price_tag = 350
-	damage_multiplier = 0.7
+	damage_multiplier = 0.5
 	penetration_multiplier = 0.7
-	recoil_buildup = 24
+	recoil_buildup = 24 //double that of full version
 	one_hand_penalty = 20 //more than shotgun
 	can_dual = TRUE
 	saw_off = FALSE

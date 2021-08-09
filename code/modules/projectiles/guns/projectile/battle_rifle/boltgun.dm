@@ -143,10 +143,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	damage_multiplier = 1
+	damage_multiplier = 0.7
 	penetration_multiplier = 0.8
 	recoil_buildup = 1.8
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
 	one_hand_penalty = 15 //not a full rifle, but not easy either
@@ -161,3 +161,4 @@
 	item_suffix  = "_wood"
 	recoil_buildup = 1.9
 	wielded_item_state = "_doble_wood"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

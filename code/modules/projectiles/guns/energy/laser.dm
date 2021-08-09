@@ -76,7 +76,7 @@
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/short
 	
-/obj/item/gun/energy/retro/short
+/obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/obrez_retro.dmi'
 	desc = "A modified One Star cheaply produced laser gun. \
