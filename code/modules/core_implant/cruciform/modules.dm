@@ -166,15 +166,12 @@
 	/datum/ritual/cruciform/machines)
 
 /datum/core_module/rituals/cruciform/agrolyte
-	access = list(access_nt_agrolyte)
 	ritual_types = list(/datum/ritual/cruciform/agrolyte)
 
 /datum/core_module/rituals/cruciform/custodian
-	access = list(access_nt_custodian)
 	ritual_types = list(/datum/ritual/cruciform/custodian)
 
 /datum/core_module/rituals/cruciform/priest
-	access = list(access_nt_preacher, access_nt_custodian, access_nt_agrolyte)
 	ritual_types = list(/datum/ritual/cruciform/priest,
 	/datum/ritual/targeted/cruciform/priest)
 
@@ -182,9 +179,7 @@
 	ritual_types = list(/datum/ritual/cruciform/priest/acolyte,
 	/datum/ritual/targeted/cruciform/priest/acolyte)
 
-
 /datum/core_module/rituals/cruciform/inquisitor
-	access = list(access_nt_inquisitor)
 	ritual_types = list(/datum/ritual/cruciform/inquisitor,
 	/datum/ritual/targeted/cruciform/inquisitor)
 

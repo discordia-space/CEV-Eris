@@ -9421,7 +9421,7 @@
 "aww" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
@@ -9835,7 +9835,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
@@ -9905,7 +9905,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
@@ -9991,7 +9991,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
@@ -10184,7 +10184,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -11715,7 +11715,7 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
@@ -11890,7 +11890,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
@@ -34333,7 +34333,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
 	name = "Hydroponics";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
@@ -36762,7 +36762,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_interior{
 	name = "Hydroponics Maintenance";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -36942,7 +36942,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
 	name = "Hydroponics";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -47880,7 +47880,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
@@ -48089,7 +48089,7 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Custodial Closet";
-	req_access = list(26)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/janitor)
@@ -48487,7 +48487,7 @@
 	id = "last_shelter";
 	name = "Last shelter lock control";
 	pixel_y = 28;
-	req_access = list(74)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/neotheology/chapelritualroom)
@@ -48904,7 +48904,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Hydroponics";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics)
@@ -49770,7 +49770,7 @@
 "cmf" = (
 /obj/machinery/door/airlock/glass{
 	name = "Hydroponics";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
@@ -51478,7 +51478,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Church";
-	req_access = list(27)
+	req_access = list(70)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
@@ -55754,7 +55754,7 @@
 	},
 /obj/machinery/door/airlock/glass{
 	name = "Hydroponics";
-	req_access = list(35)
+	req_access = list(70)
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
@@ -70520,7 +70520,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Chapel Office";
-	req_access = list(22)
+	req_access = list(74)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/office)
@@ -101201,7 +101201,7 @@
 "eCX" = (
 /obj/machinery/door/airlock{
 	name = "Preacher's Quarters";
-	req_access = list(22)
+	req_access = list(74)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -102164,7 +102164,7 @@
 "eFj" = (
 /obj/machinery/door/airlock{
 	name = "Chapel Office";
-	req_access = list(22)
+	req_access = list(74)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -103371,7 +103371,7 @@
 /area/eris/hallway/main/section2)
 "ize" = (
 /obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
+	req_access = list(70)
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techmaint,

@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/personal/hydroponics
 	name = "botanist's locker"
-	req_access = list(access_hydroponics)
-	access_occupy = list(access_hydroponics)
+	req_access = list(access_nt_disciple)
+	access_occupy = list(access_nt_disciple)
 	icon_state = "hydro"
 
 /obj/structure/closet/secure_closet/personal/hydroponics/populate_contents()
@@ -25,13 +25,13 @@
 
 /obj/structure/closet/secure_closet/personal/hydroponics/public
 	name = "gardener's locker"
-	req_access = list(access_hydroponics)
+	req_access = list(access_nt_disciple)
 	access_occupy = list()
 
 /obj/structure/closet/secure_closet/personal/agrolyte
 	name = "agrolyte's locker"
-	req_access = list(access_hydroponics)
-	access_occupy = list(access_hydroponics)
+	req_access = list(access_nt_disciple)
+	access_occupy = list(access_nt_disciple)
 	icon_state = "agrolyte"
 
 /obj/structure/closet/secure_closet/personal/agrolyte/populate_contents()

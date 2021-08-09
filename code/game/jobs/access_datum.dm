@@ -142,12 +142,6 @@
 	desc = "Personal Lockers"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_chapel_office = 22
-/datum/access/chapel_office
-	id = access_chapel_office
-	desc = "Chapel Office"
-	region = ACCESS_REGION_CHURCH
-
 /var/const/access_tech_storage = 23
 /datum/access/tech_storage
 	id = access_tech_storage
@@ -169,14 +163,8 @@
 /var/const/access_janitor = 26
 /datum/access/janitor
 	id = access_janitor
-	desc = "Custodial Closet"
-	region = ACCESS_REGION_CHURCH
-
-/var/const/access_crematorium = 27
-/datum/access/crematorium
-	id = access_crematorium
-	desc = "Crematorium"
-	region = ACCESS_REGION_CHURCH
+	desc = "Janitor"
+	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_kitchen = 28
 /datum/access/kitchen
@@ -219,12 +207,6 @@
 	id = access_cargo_bot
 	desc = "Cargo Bot Delivery"
 	region = ACCESS_REGION_SUPPLY
-
-/var/const/access_hydroponics = 35
-/datum/access/hydroponics
-	id = access_hydroponics
-	desc = "Hydroponics"
-	region = ACCESS_REGION_CHURCH
 
 /var/const/access_manufacturing = 36
 /datum/access/manufacturing
@@ -415,34 +397,10 @@
 	desc = "NeoTheology Disciple"
 	region = ACCESS_REGION_CHURCH
 
-/var/const/access_nt_acolyte = 71
-/datum/access/nt_acolyte
-	id = access_nt_acolyte
-	desc = "NeoTheology Acolyte"
-	region = ACCESS_REGION_CHURCH
-
-/var/const/access_nt_custodian = 72
-/datum/access/nt_custodian
-	id = access_nt_custodian
-	desc = "NeoTheology Custodian"
-	region = ACCESS_REGION_CHURCH
-
-/var/const/access_nt_agrolyte = 73
-/datum/access/nt_agrolyte
-	id = access_nt_agrolyte
-	desc = "NeoTheology Agrolyte"
-	region = ACCESS_REGION_CHURCH
-
 /var/const/access_nt_preacher = 74
 /datum/access/nt_preacher
 	id = access_nt_preacher
 	desc = "NeoTheology Preacher"
-	region = ACCESS_REGION_CHURCH
-
-/var/const/access_nt_inquisitor = 75
-/datum/access/nt_inquisitor
-	id = access_nt_inquisitor
-	desc = "NeoTheology Inquisitor"
 	region = ACCESS_REGION_CHURCH
 
 /****************

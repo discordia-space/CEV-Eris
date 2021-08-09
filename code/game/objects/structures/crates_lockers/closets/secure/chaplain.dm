@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/reinforced/chaplain
 	name = "preacher's locker"
-	req_access = list(access_chapel_office)
+	req_access = list(access_nt_preacher)
 	icon_state = "head_preacher"
 
 /obj/structure/closet/secure_closet/reinforced/chaplain/populate_contents()

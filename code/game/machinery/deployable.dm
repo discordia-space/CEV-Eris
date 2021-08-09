@@ -25,12 +25,10 @@ for reference:
 	access_heads = 19
 	access_captain = 20
 	access_all_personal_lockers = 21
-	access_chapel_office = 22
 	access_tech_storage = 23
 	access_atmospherics = 24
 	access_bar = 25
 	access_janitor = 26
-	access_crematorium = 27
 	access_kitchen = 28
 	access_robotics = 29
 	access_rd = 30
@@ -38,7 +36,6 @@ for reference:
 	access_construction = 32
 	access_chemistry = 33
 	access_cargo_bot = 34
-	access_hydroponics = 35
 	access_manufacturing = 36
 	access_virology = 39
 	access_cmo = 40

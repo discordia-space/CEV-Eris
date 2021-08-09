@@ -230,7 +230,7 @@
 	icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/hydrosec/prelocked
-	req_access = list(access_hydroponics)
+	req_access = list(access_nt_disciple)
 
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
