@@ -3,6 +3,12 @@
 	if (silent)
 		return
 
+	var/last_symbol = copytext(message, length(message))
+	if(last_symbol=="@")
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			to_chat(src, "You don't know the codes, pal.")
+			return FALSE
+
 	message = sanitize(message)
 
 	if(!(container && istype(container, /obj/item/device/mmi)))
