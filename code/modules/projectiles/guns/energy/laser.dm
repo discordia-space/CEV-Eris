@@ -74,7 +74,7 @@
 	)
 	twohanded = TRUE
 	saw_off = TRUE
-	sawn = /obj/item/gun/energy/retro/short
+	sawn = /obj/item/gun/energy/retro/sawn
 	
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
@@ -86,6 +86,7 @@
 	slot_flags = SLOT_BACK|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5)
 	damage_multiplier = 0.8
+	penetration_multiplier = 0.8
 	charge_cost = 125
 	price_tag = 400
 	init_firemodes = list(
