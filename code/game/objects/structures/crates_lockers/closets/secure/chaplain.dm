@@ -34,3 +34,4 @@
 	new /obj/item/cell/small(src)
 	new /obj/item/tool/sword/nt/longsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)
+	new /obj/item/storage/box/ids(src)
