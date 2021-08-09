@@ -301,6 +301,13 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		assets[filename] = I
 	..()
 
+/datum/asset/simple/codicon
+	isTrivial = TRUE
+	verify = FALSE
+	assets = list(
+		"codicon.css" = 'html/codicon/codicon.css',
+		"codicon.ttf" = 'html/codicon/codicon.ttf'
+	)
 
 /datum/asset/directories/nanoui
 	isTrivial = FALSE
