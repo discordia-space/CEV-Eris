@@ -180,6 +180,7 @@
 	/datum/ritual/targeted/cruciform/priest/acolyte)
 
 /datum/core_module/rituals/cruciform/inquisitor
+	access = list(access_nt_preacher, access_nt_disciple)
 	ritual_types = list(/datum/ritual/cruciform/inquisitor,
 	/datum/ritual/targeted/cruciform/inquisitor)
 
