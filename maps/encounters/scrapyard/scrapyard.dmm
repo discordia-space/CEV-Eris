@@ -45,7 +45,7 @@
 "cs" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/seed_extractor,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "ct" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "cx" = (/obj/structure/grille/broken,/obj/item/stack/rods{amount = 3},/obj/item/stack/cable_coil/cut,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/rocinante)
-"cB" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
+"cB" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "cH" = (/obj/effect/mob_spawn/human/hermit{dir = 1},/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/junkyard/hermitage)
 "cJ" = (/obj/structure/reagent_dispensers/fueltank/derelict,/obj/item/tool/weldingtool,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "cK" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
@@ -108,7 +108,7 @@
 "gn" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/white,/area/outpost/junkyard/station)
 "gp" = (/obj/machinery/door/airlock/command{name = "Bridge"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "gt" = (/obj/structure/shuttle/window,/obj/effect/shuttle_landmark/junkpod/start,/turf/simulated/floor/plating,/area/shuttle/junkpod/planet)
-"gu" = (/obj/effect/window_lwall_spawn/reinforced,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
+"gu" = (/obj/effect/window_lwall_spawn/reinforced,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/prison)
 "gB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
 "gC" = (/obj/machinery/door/airlock/external{name = "NTMS-037 Mining Airlock"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "gE" = (/obj/structure/table/standard,/obj/item/stock_parts/matter_bin,/obj/item/stock_parts/scanning_module{pixel_x = 2; pixel_y = 3},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -359,7 +359,7 @@
 "vq" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/firealarm,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "vr" = (/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
 "vt" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
-"vy" = (/obj/machinery/floodlight,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
+"vy" = (/obj/machinery/floodlight,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "vD" = (/obj/item/storage/toolbox/emergency,/obj/item/tool/wrench,/obj/structure/table/rack,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "vG" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/station)
 "vJ" = (/obj/effect/decal/cleanable/dirt,/obj/item/tool/pickaxe,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -385,7 +385,7 @@
 "xc" = (/obj/machinery/space_heater,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "xg" = (/obj/machinery/washing_machine,/turf/simulated/floor/tiled/cafe,/area/outpost/junkyard/ship/canterbury)
 "xi" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
-"xj" = (/obj/structure/bed/chair{dir = 4},/obj/item/device/lighting/toggleable/flashlight/seclite,/obj/landmark/corpse/prisonguard,/obj/item/gun/projectile/paco,/obj/item/ammo_magazine/pistol/rubber,/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
+"xj" = (/obj/structure/bed/chair{dir = 4},/obj/item/device/lighting/toggleable/flashlight/seclite,/obj/landmark/corpse/prisonguard,/obj/item/gun/projectile/paco,/obj/item/ammo_magazine/pistol/rubber,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "xn" = (/obj/structure/closet/emcloset,/obj/item/ammo_magazine/ammobox/shotgun/pellet/scrap,/obj/spawner/gun/shotgun,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/lehrer)
 "xo" = (/obj/machinery/door/airlock/command{name = "NTMS-037 Captain's Quarters"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "xr" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/dirt,/obj/item/storage/box/donkpockets{pixel_x = -6; pixel_y = 4},/obj/item/storage/box/donkpockets{pixel_x = -6; pixel_y = 8},/obj/item/reagent_containers/food/condiment/enzyme{layer = 5; pixel_x = 12; pixel_y = 6},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
@@ -469,6 +469,7 @@
 "Cc" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/turf/simulated/floor/grass,/area/outpost/junkyard/station)
 "Ce" = (/obj/machinery/door/airlock{name = "mech bay"},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
 "Cg" = (/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
+"Ch" = (/obj/effect/mob_spawn/human/prisoner_transport,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "Cl" = (/obj/structure/cable,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "Cu" = (/obj/structure/cable,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
 "Cx" = (/obj/structure/closet/crate,/obj/spawner/material/ore,/obj/spawner/material/ore,/obj/spawner/material/ore,/obj/spawner/material/ore,/obj/spawner/material/ore,/obj/spawner/material/ore,/obj/spawner/material/ore,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/lehrer)
@@ -482,6 +483,7 @@
 "Dh" = (/turf/simulated/floor/tiled/steel/brown_perforated,/area/outpost/junkyard/ship/epstein)
 "Du" = (/obj/structure/cable,/mob/living/simple_animal/hostile/alien/drone,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/canterbury)
 "Dw" = (/obj/structure/closet/crate,/obj/machinery/power/apc{name = "South APC"; pixel_y = -28},/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/canterbury)
+"DA" = (/turf/simulated/wall/r_wall,/area/outpost/junkyard/ship/prison)
 "DD" = (/obj/effect/decal/cleanable/dirt,/obj/structure/closet/crate,/obj/spawner/powercell/medium,/obj/spawner/powercell/medium,/obj/spawner/powercell/medium,/obj/spawner/powercell/medium,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "DG" = (/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/pirate,/obj/item/gun/projectile/mandella,/obj/item/ammo_magazine/cspistol,/turf/simulated/floor/plating,/area/outpost/junkyard/station)
 "DH" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/unary/cryo_cell,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
@@ -547,6 +549,7 @@
 "GS" = (/obj/structure/cable,/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/epstein)
 "GU" = (/obj/structure/bed/chair/wood/wings{dir = 8},/turf/simulated/floor/tiled/steel/gray_perforated,/area/outpost/junkyard/hermitage)
 "GW" = (/obj/structure/table/standard,/obj/machinery/recharger,/obj/item/stack/cable_coil{pixel_x = 2; pixel_y = 6},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
+"Hb" = (/obj/item/storage/toolbox/emergency,/obj/item/storage/toolbox/emergency,/obj/structure/closet/emcloset,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/device/lighting/glowstick/random,/obj/item/gun/projectile/shotgun/doublebarrel/flare,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "Hf" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/glass{name = "Kitchen"},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "Hi" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc{dir = 4; name = "Delta Station Corridor APC"; pixel_x = 24; start_charge = 0},/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "Hj" = (/obj/machinery/portable_atmospherics/canister/nitrogen,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
@@ -572,6 +575,7 @@
 "Iq" = (/obj/machinery/portable_atmospherics/canister/air,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/station)
 "It" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/rocinante)
 "Iu" = (/turf/simulated/mineral,/area/outpost/junkyard)
+"Iw" = (/obj/effect/mob_spawn/human/prisoner_transport{dir = 1},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "IC" = (/obj/effect/decal/cleanable/dirt,/obj/landmark/corpse/miner,/obj/spawner/gun/shotgun,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "ID" = (/obj/structure/table/standard,/obj/spawner/tool,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/lehrer)
 "IJ" = (/obj/item/storage/belt/utility,/obj/structure/table/rack,/obj/spawner/gun_parts,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
@@ -756,6 +760,7 @@
 "TK" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
 "TL" = (/obj/structure/bed/chair/shuttle{dir = 8},/obj/effect/decal/cleanable/greenglow,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
 "TO" = (/obj/effect/decal/cleanable/greenglow,/obj/spawner/closet/maintloot,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/epstein)
+"TP" = (/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "TQ" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/shuttle/engine/heater{dir = 8},/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard/ship/rocinante)
 "TS" = (/obj/machinery/computer{desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages."; dir = 4; name = "Broken Computer"},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/window/brigdoor/eastright,/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/station)
 "TU" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/science,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -809,7 +814,7 @@
 "Xd" = (/obj/item/phone{pixel_x = -3; pixel_y = 3},/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/lehrer)
 "Xg" = (/obj/structure/cable,/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/geary)
 "Xh" = (/obj/effect/decal/cleanable/dirt,/obj/item/roller,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
-"Xi" = (/obj/machinery/computer{dir = 8},/turf/simulated/floor/exoplanet/barren,/area/outpost/junkyard)
+"Xi" = (/obj/machinery/computer{dir = 8},/turf/simulated/floor/tiled,/area/outpost/junkyard/ship/prison)
 "Xj" = (/obj/structure/bed/chair/shuttle{dir = 4},/turf/simulated/floor/tiled/dark,/area/outpost/junkyard/ship/canterbury)
 "Xl" = (/obj/item/storage/toolbox/electrical{pixel_x = -3; pixel_y = 8},/obj/effect/decal/cleanable/cobweb,/obj/structure/table/standard,/obj/item/cell/medium/high,/turf/simulated/floor/tiled/techmaint,/area/outpost/junkyard/ship/rocinante)
 "Xm" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc{name = "Charlie Station Garden APC "; pixel_y = -23; start_charge = 0},/obj/structure/closet/crate/hydroponics,/turf/simulated/floor/tiled,/area/outpost/junkyard/station)
@@ -1006,11 +1011,11 @@ LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSp
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpguSpguguSpguSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpxjXiSpSpSpSpSpvySpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpcBSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
-LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpguguSpguSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpDADAguDAguguDAguDADASpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpDAxjXiChChChChChvyDASpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpcBTPTPTPTPTPTPTPTPcBSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpDAHbTPIwIwIwIwIwTPDASpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
+LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpDADAguDAguguDAguDADASpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpanSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
 LiIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpSpIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuIuLi
