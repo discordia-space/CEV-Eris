@@ -13,17 +13,25 @@ var/cop_code_last
 		cop_code_last = cop_code_new
 		return cop_code_new
 
+/mob/living/carbon/human/
+	var/codespeak_cooldown
+
 /mob/living/carbon/human/proc/codesay(var/message, var/state_location, var/say_localy)
 	var/prefix = get_prefix_key(/decl/prefix/radio_channel_selection)
-	if(state_location)
+	if(world.time < src.codespeak_cooldown)
+		to_chat(src, "You can't do it so fast!")
+	else if(state_location)
 		var/area/location = get_area(src)
 		var/preposition = pick("in", "at")
-		src.say("[prefix]s [message] [preposition] [location.name]¿")
+		src.say("[prefix]s [message] [preposition] [location.name]@")
+		codespeak_cooldown = world.time + 25
 	else
 		if(say_localy)
-			src.say("[message]¿")
+			src.say("[message]@")
+			codespeak_cooldown = world.time + 30
 		else
-			src.say("[prefix]s [message]¿")
+			src.say("[prefix]s [message]@")
+			codespeak_cooldown = world.time + 30
 
 /mob/living/carbon/human/proc/codespeak_help()
 	set category = "Codespeak"

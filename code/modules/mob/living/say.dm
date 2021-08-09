@@ -114,7 +114,7 @@ var/list/channel_to_radio_key = new
 		return pick("exclaims", "shouts", "yells")
 	else if(ending=="?")
 		return "asks"
-	else if(ending=="¿")
+	else if(ending=="@")
 		verb="reports"
 	return verb
 
@@ -400,7 +400,7 @@ var/list/channel_to_radio_key = new
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else
-			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
 
 	..()
 

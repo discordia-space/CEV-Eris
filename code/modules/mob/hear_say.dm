@@ -54,7 +54,7 @@
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else
-			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
 			
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
@@ -77,7 +77,7 @@
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else
-			message = cop_code + " (" + replace_characters(message, list("¿"=")"))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
 
 	if(language)
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.
