@@ -274,6 +274,8 @@ BONES_CAN_BREAK 1
 ## 0 means limbs can't be amputated, 1 means they can
 LIMBS_CAN_BREAK 1
 
+## Uncomment this to prevent players from printing copy/pasted circuits
+# DISABLE_CIRCUIT_PRINTING
 
 ### REVIVAL ###
 
