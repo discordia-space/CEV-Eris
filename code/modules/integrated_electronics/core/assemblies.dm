@@ -88,12 +88,9 @@
 /obj/item/device/electronic_assembly/proc/check_interactivity(mob/user, datum/topic = GLOB.physical_state)
 	if(!istype(user))
 		return
-	if(istype(user, /mob/living/silicon/pai))
-		var/mob/living/silicon/pai/pai_holder = user
-		return pai_holder.check_bot_self
-	else if(istype(user, /mob/living/carbon/brain))
-		var/mob/living/carbon/brain/brain_holder = user
-		return brain_holder.check_bot_self
+	if(istype(user, /mob/living/silicon/pai) || istype(user, /mob/living/carbon/brain) || istype(user, /mob/living/silicon/ai))
+		var/mob/living/L = user
+		return L.check_bot_self
 	if(user.stat != CONSCIOUS)
 		return FALSE
 	return (Adjacent(user) && CanUseTopic(user, topic) && !isobserver(user))

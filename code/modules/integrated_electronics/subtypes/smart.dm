@@ -114,6 +114,9 @@
 		push_data()
 		activate_pin(2)
 
+// mob changes
+/mob/living/var/check_bot_self = FALSE
+
 // - MMI Tank - //
 /obj/item/integrated_circuit/input/mmi_tank
 	name = "man-machine interface tank"
@@ -194,8 +197,6 @@
 		set_pin_data(IC_OUTPUT, 1, weakref(null))
 
 //Brain changes
-/mob/living/carbon/brain/var/check_bot_self = FALSE
-
 /mob/living/carbon/brain/ClickOn(atom/A, params)
 	..()
 	var/obj/item/integrated_circuit/input/mmi_tank/brainholder
@@ -315,8 +316,6 @@
 
 
 //pAI changes
-/mob/living/silicon/pai/var/check_bot_self = FALSE
-
 /mob/living/silicon/pai/ClickOn(atom/A, params)
 	..()
 	var/obj/item/integrated_circuit/input/pAI_connector/paiholder
@@ -357,3 +356,119 @@
 			return
 
 	paiholder.do_work(6)
+
+// - AI connector circuit - //
+/obj/item/integrated_circuit/input/AI_connector
+	name = "AI connector circuit"
+	desc = "This circuit lets you fit in a carded artificial intelligence to give it some form of control over the bot."
+	extended_desc = "This jar can hold 1 man-machine interface and let it take control of some basic functions of the assembly."
+	complexity = 29
+	outputs = list(
+		"carded artificial intelligence" = IC_PINTYPE_REF,
+		"direction" = IC_PINTYPE_DIR,
+		"click target" = IC_PINTYPE_REF
+		)
+	activators = list(
+		"move" = IC_PINTYPE_PULSE_OUT,
+		"left" = IC_PINTYPE_PULSE_OUT,
+		"right" = IC_PINTYPE_PULSE_OUT,
+		"up" = IC_PINTYPE_PULSE_OUT,
+		"down" = IC_PINTYPE_PULSE_OUT,
+		"leftclick" = IC_PINTYPE_PULSE_OUT,
+		"shiftclick" = IC_PINTYPE_PULSE_OUT,
+		"altclick" = IC_PINTYPE_PULSE_OUT,
+		"ctrlclick" = IC_PINTYPE_PULSE_OUT
+		)
+	movement_handlers = list(/datum/movement_handler/move_relay_self)
+	spawn_flags = IC_SPAWN_RESEARCH
+	power_draw_per_use = 150
+	can_be_asked_input = TRUE
+	demands_object_input = TRUE
+
+	var/obj/item/device/aicard/installed_brain
+
+/obj/item/integrated_circuit/input/AI_connector/attackby(obj/item/device/aicard/O, mob/user)
+	if(!istype(O,/obj/item/device/aicard))
+		to_chat(user,SPAN("warning", "You can't put that inside."))
+		return
+	if(installed_brain)
+		to_chat(user,SPAN("warning", "There's already a brain inside."))
+		return
+	user.drop_item(O)
+	O.forceMove(src)
+	installed_brain = O
+	can_be_asked_input = FALSE
+	to_chat(user, SPAN("notice", "You gently place \the man-machine interface inside the tank."))
+	to_chat(O, SPAN("notice", "You are slowly being placed inside the man-machine-interface tank."))
+	set_pin_data(IC_OUTPUT, 1, O)
+
+/obj/item/integrated_circuit/input/AI_connector/attack_self(mob/user)
+	if(installed_brain)
+		RemoveBrain()
+		to_chat(user, SPAN("notice", "You slowly lift [installed_brain] out of the MMI tank."))
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
+		installed_brain = null
+		push_data()
+	else
+		to_chat(user, SPAN("notice", "You don't see any brain swimming in the tank."))
+
+/obj/item/integrated_circuit/input/AI_connector/Destroy()
+	RemoveBrain()
+
+	return ..()
+
+/obj/item/integrated_circuit/input/AI_connector/relaymove(mob/user, direction)
+	set_pin_data(IC_OUTPUT, 2, direction)
+	do_work(1)
+	switch(direction)
+		if(8)	activate_pin(2)
+		if(4)	activate_pin(3)
+		if(1)	activate_pin(4)
+		if(2)	activate_pin(5)
+
+/obj/item/integrated_circuit/input/AI_connector/do_work(ord)
+	push_data()
+	activate_pin(ord)
+
+/obj/item/integrated_circuit/input/AI_connector/proc/RemoveBrain()
+	if(installed_brain)
+		can_be_asked_input = TRUE
+		installed_brain.forceMove(get_turf(src))
+		set_pin_data(IC_OUTPUT, 1, weakref(null))
+
+//AI changes
+/mob/living/silicon/ai/ClickOn(atom/A, params)
+	..()
+	var/obj/item/integrated_circuit/input/AI_connector/brainholder
+	if(istype(loc, /obj/item/device/aicard))
+		var/obj/item/device/aicard/H = loc
+		if(istype(H.loc, /obj/item/integrated_circuit/input/AI_connector))
+			brainholder = H.loc
+	if(!istype(brainholder))
+		return
+	brainholder.set_pin_data(IC_OUTPUT, 3, A)
+	var/list/modifiers = params2list(params)
+
+	if(modifiers["shift"])
+		brainholder.do_work(7)
+		return
+	if(modifiers["alt"])
+		brainholder.do_work(8)
+		return
+	if(modifiers["ctrl"])
+		brainholder.do_work(9)
+		return
+
+	if(istype(A,/obj/item/device/electronic_assembly))
+		var/obj/item/device/electronic_assembly/holdingassembly = A
+
+		if(brainholder in holdingassembly.assembly_components)
+			check_bot_self = TRUE
+
+			if(holdingassembly.opened)
+				holdingassembly.ui_interact(src)
+			holdingassembly.attack_self(src)
+			check_bot_self = FALSE
+			return
+
+	brainholder.do_work(6)
