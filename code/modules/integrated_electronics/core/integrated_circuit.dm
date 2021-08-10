@@ -308,11 +308,17 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	popup.set_content(HTML)
 	popup.open()
 
-/obj/item/integrated_circuit/Topic(href, href_list)
+/obj/item/integrated_circuit/Topic(href, href_list, state = GLOB.physical_state)
 	if(!check_interactivity(usr))
 		return
-	if(..())
-		return TRUE
+	/*
+	I hope state check doesn't required there because of check_interactivity do some stuff with
+	checking state, if it lead to butthurt bugs, I'm sorry.
+	P.S. someone who wrote proc shared_living_nano_distance should be purged
+	and sorry for commented code, if you brave enough please find out where I done mistake(s).
+	*/
+	// if(..())
+	// 	return TRUE
 
 	var/update = TRUE
 	var/update_to_assembly = FALSE

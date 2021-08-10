@@ -86,8 +86,6 @@
 	interact(user)
 
 /obj/item/device/electronic_assembly/proc/check_interactivity(mob/user, datum/topic = GLOB.physical_state)
-	if(isrobot(user))
-		return TRUE
 	if(!istype(user))
 		return
 	if(istype(user, /mob/living/silicon/pai))
