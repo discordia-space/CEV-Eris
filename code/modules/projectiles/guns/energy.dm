@@ -140,6 +140,9 @@
 			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
 			return
 		if (src.item_upgrades.len)
+			if(src.dna_compare_samples) //or else you can override dna lock
+				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				return
 			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
 				return
 		if(saw_off && C.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))

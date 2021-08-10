@@ -153,6 +153,7 @@
 	can_dual = TRUE
 	sharp = FALSE
 	spawn_blacklisted = TRUE
+	saw_off = FALSE
 
 /obj/item/gun/projectile/boltgun/obrez/serbian
 	name = "sawn-off SA BR .30 \"Novakovic\""
