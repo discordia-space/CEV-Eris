@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog_entry/atom
 	associated_template = "catalog_entry_atom.tmpl"
 
-/datum/catalog_entry/atom/New(var/atom/V)
+/datum/catalog_entry/atom/New(atom/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)
@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	title = V.name
 	description = V.desc
 	thing_nature = "Atom"
-	image_path = getAtomCacheFilename(V)
+	image_path = SSassets.transport.get_asset_url(V.name)
 
 
 /datum/catalog_entry/atom/nano_ui_data(mob/user, ui_key = "main")

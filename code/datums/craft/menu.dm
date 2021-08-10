@@ -55,7 +55,7 @@
 	if(CR)
 		data["cur_item"] = list(
 			"name" = CR.name,
-			"icon" = getAtomCacheFilename(CR.result),
+			"icon" = SSassets.transport.get_asset_url(CR.result), //getAtomCacheFilename(CR.result),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
 			"batch" = CR.flags & CRAFT_BATCH

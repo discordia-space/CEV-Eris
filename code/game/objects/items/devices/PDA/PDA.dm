@@ -487,8 +487,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/index = 0
 				for(var/datum/feed_message/FM in FC.messages)
 					++index
-					if(FM.img)
-						send_asset(usr.client, "newscaster_photo_[sanitize(FC.channel_name)]_[index].png")
+					if(FM.img_asset)
+						SSassets.transport.send_assets(usr.client, FM.img_asset)
 					// News stories are HTML-stripped but require newline replacement to be properly displayed in NanoUI
 					var/body = replacetext(FM.body, "\n", "<br>")
 					messages[++messages.len] = list("author" = FM.author, "body" = body, "message_type" = FM.message_type, "time_stamp" = FM.time_stamp, "has_image" = (FM.img != null), "caption" = FM.caption, "index" = index)
@@ -506,7 +506,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 	        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state =GLOB.inventory_state)
+		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = GLOB.inventory_state)
 		// when the ui is first opened this is the data it will use
 
 		ui.set_initial_data(data)

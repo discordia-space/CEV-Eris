@@ -68,11 +68,6 @@ if(Datum.is_processing) {\
 /// This flag overrides SS_KEEP_TIMING
 #define SS_POST_FIRE_TIMING 32
 
-//Calculate its next fire after its fired.
-//	(IE: if a 5ds wait SS takes 2ds to run, its next fire should be 5ds away, not 3ds like it normally would be)
-//	This flag overrides SS_KEEP_TIMING
-#define SS_POST_FIRE_TIMING 64
-
 //SUBSYSTEM STATES
 #define SS_IDLE 0		//aint doing shit.
 #define SS_QUEUED 1		//queued to run
