@@ -21,10 +21,10 @@ var/cop_code_last
 	if(world.time < src.codespeak_cooldown)
 		to_chat(src, "You can't do it so fast!")
 	else if(state_location)
-		var/area/location = get_area(src)
-		location.name = initial(location.name) //No funny area renaming
+		var/area/area = get_area(src)
+		var/location = initial(area.name) //No funny area renaming
 		var/preposition = pick("in", "at")
-		src.say("[prefix]s [message] [preposition] [location.name]@")
+		src.say("[prefix]s [message] [preposition] [location]@")
 		codespeak_cooldown = world.time + 25
 	else
 		if(say_localy)
