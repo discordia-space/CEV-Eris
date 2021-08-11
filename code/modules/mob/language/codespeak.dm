@@ -9,7 +9,7 @@ var/cop_code_last
 	if(world.time < cop_code_expire)
 		return cop_code_last
 	else
-		cop_code_expire = world.time + 3
+		cop_code_expire = world.time + 3 // Just long enough for every hear_say, radio_hear and such to recieve the same code
 		cop_code_last = cop_code_new
 		return cop_code_new
 
@@ -22,6 +22,7 @@ var/cop_code_last
 		to_chat(src, "You can't do it so fast!")
 	else if(state_location)
 		var/area/location = get_area(src)
+		location.name = initial(location.name) //No funny area renaming
 		var/preposition = pick("in", "at")
 		src.say("[prefix]s [message] [preposition] [location.name]@")
 		codespeak_cooldown = world.time + 25
