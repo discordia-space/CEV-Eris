@@ -28,15 +28,15 @@ var/cop_code_last
 	else
 		if(say_localy)
 			src.say("[message]@")
-			codespeak_cooldown = world.time + 30
+			codespeak_cooldown = world.time + 25
 		else
 			src.say("[prefix]s [message]@")
-			codespeak_cooldown = world.time + 30
+			codespeak_cooldown = world.time + 25
 
 /mob/living/carbon/human/proc/codespeak_help()
 	set category = "Codespeak"
 	set name = "MAYDAY"
-	src.codesay("Need backups", TRUE, FALSE)
+	src.codesay("Need help", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_clear()
 	set category = "Codespeak"
@@ -45,33 +45,63 @@ var/cop_code_last
 
 /mob/living/carbon/human/proc/codespeak_romch()
 	set category = "Codespeak"
-	set name = "Found roaches"
+	set name = "Roaches"
 	src.codesay("Roaches", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_bigromch()
 	set category = "Codespeak"
-	set name = "Found fuhrer"
+	set name = "Fuhrer roach"
 	src.codesay("Fuhrer roach", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_serb()
 	set category = "Codespeak"
-	set name = "Found serbs"
+	set name = "Serbs"
 	src.codesay("Serbian mercs", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_commie()
 	set category = "Codespeak"
-	set name = "Found excels"
+	set name = "Excels"
 	src.codesay("Excelsior infiltrators", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_carrion()
 	set category = "Codespeak"
-	set name = "Found carrion"
+	set name = "Carrion"
 	src.codesay("Carrion presence", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_mutant()
+	set category = "Codespeak"
+	set name = "Mutant"
+	src.codesay("Unsanctioned organism", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_dead()
+	set category = "Codespeak"
+	set name = "Dead guy"
+	src.codesay("Crewmember flatlined", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_corpse()
+	set category = "Codespeak"
+	set name = "Wounded guy"
+	src.codesay("Crewmember wounded", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_criminal()
+	set category = "Codespeak"
+	set name = "Suspect"
+	src.codesay("Located the suspect", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_status()
+	set category = "Codespeak"
+	set name = "Status?"
+	src.codesay("What's the status?", FALSE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_shutup()
+	set category = "Codespeak"
+	set name = "Shut up"
+	src.codesay("Unnecessary use of radio", FALSE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_understood()
 	set category = "Codespeak"
 	set name = "Ok"
-	src.codesay("Roger that", FALSE, FALSE)
+	src.codesay("Affirmative", FALSE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_yes()
 	set category = "Codespeak"
@@ -85,15 +115,25 @@ var/cop_code_last
 
 /mob/living/carbon/human/proc/codespeak_understood_local()
 	set category = "Codespeak"
-	set name = "local Ok"
-	src.codesay("Roger that", FALSE, TRUE)
+	set name = "(local) Ok"
+	src.codesay("Affirmative", FALSE, TRUE)
 
 /mob/living/carbon/human/proc/codespeak_yes_local()
 	set category = "Codespeak"
-	set name = "local Yes"
+	set name = "(local) Yes"
 	src.codesay("Positive", FALSE, TRUE)
 
 /mob/living/carbon/human/proc/codespeak_no_local()
 	set category = "Codespeak"
-	set name = "local No"
+	set name = "(local) No"
 	src.codesay("Negative", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_warcrime_local()
+	set category = "Codespeak"
+	set name = "(local) Attack?"
+	src.codesay("We attack?", FALSE, TRUE) //TODO: Replace with something that sounds good
+
+/mob/living/carbon/human/proc/codespeak_run_local()
+	set category = "Codespeak"
+	set name = "(local) Run?"
+	src.codesay("Proposing a tactical retreat", FALSE, TRUE)

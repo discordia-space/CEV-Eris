@@ -4,10 +4,6 @@
 	if(!client)
 		return
 
-	var/cop_code
-	if(verb == "reports")
-		cop_code = get_cop_code()
-
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
@@ -51,6 +47,7 @@
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
 	if(verb == "reports")
+		var/cop_code = get_cop_code()
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else
@@ -70,10 +67,9 @@
 		return
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
-	var/cop_code
 
 	if(verb == "reports")
-		cop_code = get_cop_code()
+		var/cop_code = get_cop_code()
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else

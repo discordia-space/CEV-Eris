@@ -247,7 +247,7 @@
 
 /datum/perk/codespeak
 	name = "Codespeak"
-	desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	desc = "You know Ironhammer PMC's code language, adapted to use aboard of CEV Eris."
 	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
 	var/list/codespeak_procs = list(
 		/mob/living/carbon/human/proc/codespeak_help,
@@ -257,12 +257,20 @@
 		/mob/living/carbon/human/proc/codespeak_serb,
 		/mob/living/carbon/human/proc/codespeak_commie,
 		/mob/living/carbon/human/proc/codespeak_carrion,
+		/mob/living/carbon/human/proc/codespeak_mutant,
+		/mob/living/carbon/human/proc/codespeak_dead,
+		/mob/living/carbon/human/proc/codespeak_corpse,
+		/mob/living/carbon/human/proc/codespeak_criminal,
+		/mob/living/carbon/human/proc/codespeak_status,
+		/mob/living/carbon/human/proc/codespeak_shutup,
 		/mob/living/carbon/human/proc/codespeak_understood,
 		/mob/living/carbon/human/proc/codespeak_yes,
 		/mob/living/carbon/human/proc/codespeak_no,
 		/mob/living/carbon/human/proc/codespeak_understood_local,
 		/mob/living/carbon/human/proc/codespeak_yes_local,
-		/mob/living/carbon/human/proc/codespeak_no_local
+		/mob/living/carbon/human/proc/codespeak_no_local,
+		/mob/living/carbon/human/proc/codespeak_warcrime_local,
+		/mob/living/carbon/human/proc/codespeak_run_local
 		)
 
 /datum/perk/codespeak/assign(mob/living/carbon/human/H)

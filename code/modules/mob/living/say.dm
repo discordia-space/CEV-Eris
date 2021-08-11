@@ -400,9 +400,8 @@ var/list/channel_to_radio_key = new
 				else
 					message = stars(message)
 
-	var/cop_code
 	if(verb == "reports")
-		cop_code = get_cop_code()
+		var/cop_code = get_cop_code()
 		if(!src.stats.getPerk(/datum/perk/codespeak))
 			message = cop_code
 		else
