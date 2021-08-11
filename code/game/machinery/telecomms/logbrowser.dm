@@ -94,7 +94,7 @@
 
 						// -- Censor Codespeak in telecom logs, simpler than making codes readable/unreadable depending on user --
 
-						if(findtext(C.parameters["message"], "@"))
+						if(findtext(C.parameters["message"], "@", length(C.parameters["message"])))
 							C.parameters["message"] = "REDACTED"
 
 						// -- If the orator is a human, or universal translate is active, OR mob has universal speech on --
