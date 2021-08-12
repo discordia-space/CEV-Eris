@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(floating_chat_colors, list())
 
 	for(var/client/C in show_to)
 		if(!isdeaf(C.mob) && C.get_preference_value(/datum/client_preference/floating_messages) == GLOB.PREF_SHOW)
-			if(C.mob.say_understands(null, language))
+			if(C.mob.say_understands(null, language) || verb == "reports") // Cop codes shouldn't be language scrambled
 				C.images += understood
 			else
 				C.images += gibberish

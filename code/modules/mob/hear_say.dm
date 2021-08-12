@@ -27,7 +27,7 @@
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	else if(language)
+	else if(language && !(verb == "reports")) // Not applying language scramble to codespeak
 		var/nverb = null
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
@@ -48,10 +48,13 @@
 
 	if(verb == "reports")
 		var/cop_code = get_cop_code()
-		if(!src.stats.getPerk(/datum/perk/codespeak))
-			message = cop_code
-		else
+		if(isghost(src))
 			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
 			
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
@@ -70,12 +73,15 @@
 
 	if(verb == "reports")
 		var/cop_code = get_cop_code()
-		if(!src.stats.getPerk(/datum/perk/codespeak))
-			message = cop_code
-		else
+		if(isghost(src))
 			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
 
-	if(language)
+	if(language && !(verb == "reports"))
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.
 			message = language.format_message_radio(message, verb)
 		else
