@@ -470,6 +470,10 @@
 	name = "Bar Backroom"
 	icon_state = "erisgreen"
 
+/area/eris/crew_quarters/barquarters
+	name = "Bar Quarters"
+	icon_state = "erisblue"
+
 /area/eris/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -512,6 +516,7 @@
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
 
+// NeoTheology
 
 /area/eris/neotheology
 	icon_state = "erisgreen"
@@ -542,6 +547,23 @@
 /area/eris/neotheology/chapelritualroom
 	name = "Chapel Rituals Room"
 	icon_state = "erisgreen"
+
+/area/eris/neotheology/biogenerator
+	name = "\improper Church Biogenerator Room"
+	icon_state = "erisred"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+
+/area/eris/neotheology/churchbarracks
+	name = "Church Barracks"
+	icon_state = "erisblue"
+
+/area/eris/neotheology/churchcorridor
+	name = "Church Hallway"
+	icon_state = "erisyellow"
+
+/area/eris/neotheology/churchbooth
+	name = "Chapel Vending Booth"
+	icon_state = "erisyellow"
 
 //Engineering
 
