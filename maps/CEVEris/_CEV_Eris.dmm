@@ -80227,6 +80227,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/hallway/side/section3port)
 "dJL" = (
@@ -102315,6 +102316,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"jkF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/hallway/side/section3port)
 "jlf" = (
 /obj/structure/railing,
 /obj/spawner/scrap/sparse,
@@ -204323,7 +204334,7 @@ lQD
 uOi
 dFB
 eeB
-evC
+jkF
 anJ
 aqa
 cuJ
