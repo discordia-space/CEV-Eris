@@ -566,5 +566,5 @@
 		else
 			target.reagents.remove_reagent("water", 30)
 			target.reagents.add_reagent("oddity_tea", 30)
-			to_chat(user, SPAN_NOTICE("You drop \the [src] in the water, it dosolves slowly."))
+			to_chat(user, SPAN_NOTICE("You drop \the [src] in the water, it dissolves slowly."))
 			qdel(src)
