@@ -59,7 +59,9 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-
+/turf/simulated/floor/wood/Initialize()
+	icon_state = pick("wood", "wood1", "wood2")
+	return ..()
 
 
 
