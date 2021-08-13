@@ -6,8 +6,13 @@
 	if(!message)
 		return
 
+	var/last_symbol = copytext(message, length(message))
 	if (stat == 2)
 		return say_dead(message)
+	else if(last_symbol=="@")
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			to_chat(src, "You don't know the codes, pal.")
+			return
 
 	if (stat)
 		return
