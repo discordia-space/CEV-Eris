@@ -533,7 +533,7 @@
 /obj/item/oddity/pendant/attack_self(mob/user)
 	if(produce_ready)
 		new /obj/item/golden_leaf(get_turf(src))
-		user.visible_message(SPAN_NOTICE("[user] opens [src], and a little golden leaf falls from it. Pendant closes shut right after."), SPAN_NOTICE("As you open [src], a little golden leaf falls from it. Pendant closes shut right after and start to hum quietly."))
+		user.visible_message(SPAN_NOTICE("[user] opens [src], and a little golden leaf falls from it. \The [src] closes shut right after."), SPAN_NOTICE("As you open [src], a little golden leaf falls from it. \The [src] closes shut right after and start to hum quietly."))
 		src.desc = "An ornate golden necklace. It's closed and hums quietly."
 		produce_next = world.time + 10 MINUTES
 		produce_ready = FALSE
