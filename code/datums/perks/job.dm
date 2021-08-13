@@ -50,12 +50,12 @@
 	..()
 	if(holder)
 		holder.metabolism_effects.addiction_chance_multiplier = 0.5
-		holder.metabolism_effects.nsa_threshold += 10
+		holder.metabolism_effects.nsa_threshold_base += 10
 
 /datum/perk/selfmedicated/remove()
 	if(holder)
 		holder.metabolism_effects.addiction_chance_multiplier = 1
-		holder.metabolism_effects.nsa_threshold -= 10
+		holder.metabolism_effects.nsa_threshold_base -= 10
 	..()
 
 /datum/perk/vagabond
