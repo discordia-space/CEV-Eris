@@ -562,7 +562,7 @@
 			heart.die()
 
 /datum/reagent/oddity_tea
-	name = "Tea"
+	name = "tea"
 	id = "oddity_tea"
 	description = "Unusually refreshing tea."
 	taste_description = "refreshing tea"
@@ -573,9 +573,10 @@
 	sanity_gain_ingest = 0.5	
 	taste_tag = list(TASTE_LIGHT)
 	glass_icon_state = "teaglass"
-	glass_name = "Odd tea"
+	glass_name = "odd tea"
 	glass_desc = "Tea of unrecognizable type. There is tiny golden bits floating in it."
 	appear_in_default_catalog = FALSE
+	reagent_type = "Drink"
 
 /datum/reagent/oddity_tea/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
