@@ -1,5 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - bugfix: fixed three division by zero runtimes from excel tele, piloting the ship,
-      and spreading plants
