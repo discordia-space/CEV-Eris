@@ -48,11 +48,17 @@
 		var/obj/item/gripper/surgery/SG = tool
 		if(SG.wrapped)
 			tool = SG.wrapped
-	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
-	)
-	organ.take_damage(5, 0)
+			user.visible_message(
+				SPAN_WARNING("[user]'s gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
+				SPAN_WARNING("Your gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+			)
+			organ.take_damage(5, 0)
+	else
+		user.visible_message(
+			SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
+			SPAN_WARNING("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+		)
+		organ.take_damage(5, 0)
 
 /datum/surgery_step/insert_item/robotic
 	required_stat = STAT_MEC
