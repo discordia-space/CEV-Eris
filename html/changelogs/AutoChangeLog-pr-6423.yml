@@ -1,0 +1,4 @@
+author: drexample
+delete-after: true
+changes:
+  - bugfix: Remember kids to never compile while pulling.

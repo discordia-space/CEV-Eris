@@ -1,0 +1,15 @@
+author: Doster-d
+delete-after: true
+changes:
+  - rscadd: Circuit Component subsystem to optimization circuit do_work proc.
+  - rscadd: Circuit subsystem to optimization initialization stuff.
+  - rscadd: New numerous circuits.
+  - rscadd: circuits cloning ability.
+  - tweak: Updated interface for assemblies, now it look like interface of Visual
+      Studio Code.
+  - rscdel: Disabled old circuit subsystem.
+  - soundadd: added some new sound for circuits, like tripple beep sound.
+  - soundadd: added HEV suit sound from HL2. (Circuits only)
+  - soundadd: added AI sounds from System Shock. (Circuits only)
+  - admin: Added secret to disable/enable circuit proc do_work firing.
+  - config: Added config var to disable circuit cloning

@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: fixed flashbang not being deleted after detonation
