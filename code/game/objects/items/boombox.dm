@@ -70,7 +70,7 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		visible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>")
+		visible_message(SPAN_NOTICE("\The [src] begins to play [current_track.display()]."))
 	else
 		media_url = ""
 		media_start_time = 0
@@ -181,7 +181,7 @@
 		ui.set_auto_update(playing)
 
 /obj/item/media/boombox/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 
 /obj/item/media/boombox/proc/StopPlaying()

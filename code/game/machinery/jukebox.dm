@@ -372,3 +372,4 @@
 		my_tape = null
 	else
 		to_chat(usr, SPAN_NOTICE("There is no tape inside [src]."))
+
