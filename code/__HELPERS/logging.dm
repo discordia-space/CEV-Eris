@@ -85,6 +85,9 @@
 	if (config.log_pda)
 		game_log("PDA", text)
 
+/proc/log_href_exploit(atom/user)
+	log_admin("[key_name_admin(user)] has potentially attempted an href exploit.")
+
 /proc/log_to_dd(text)
 	log_world(text)
 	if(config.log_world_output)

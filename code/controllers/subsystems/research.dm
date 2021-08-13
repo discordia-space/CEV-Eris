@@ -67,7 +67,8 @@ SUBSYSTEM_DEF(research)
 
 
 /datum/controller/subsystem/research/proc/generate_integrated_circuit_designs()
-	for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
+	for(var/circ_path in SScircuit.cached_components)
+		var/obj/item/integrated_circuit/IC = SScircuit.cached_components[circ_path]
 		if(!(IC.spawn_flags & IC_SPAWN_RESEARCH))
 			continue
 		var/datum/design/design = new /datum/design/research/circuit(src)
