@@ -538,6 +538,7 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = TRUE
 	affects_dead = TRUE
+	reagent_type = "Medicine"
 
 /datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -559,3 +560,24 @@
 		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
 		if(heart)
 			heart.die()
+
+/datum/reagent/oddity_tea
+	name = "Tea"
+	id = "oddity_tea"
+	description = "Unusually refreshing tea."
+	taste_description = "refreshing tea"
+	reagent_state = LIQUID
+	color = "#cf820f"
+	metabolism = REM * 0.2
+	nerve_system_accumulations = 20
+	sanity_gain_ingest = 0.5	
+	taste_tag = list(TASTE_LIGHT)
+	glass_icon_state = "teaglass"
+	glass_name = "Odd tea"
+	glass_desc = "Tea of unrecognizable type. There is tiny golden bits floating in it."
+	appear_in_default_catalog = FALSE
+
+/datum/reagent/oddity_tea/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.3)
+	M.add_chemical_effect(CE_PULSE, 1.5)

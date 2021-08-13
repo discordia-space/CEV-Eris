@@ -5319,6 +5319,7 @@
 	dir = 4
 	},
 /obj/item/tool/crowbar,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/sleep)
 "amy" = (
@@ -5693,6 +5694,7 @@
 /area/eris/hallway/side/eschangarb)
 "anw" = (
 /obj/structure/table/standard,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "anx" = (
@@ -6017,6 +6019,7 @@
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
 "aoh" = (
@@ -7807,6 +7810,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "ash" = (
@@ -15434,6 +15438,7 @@
 	dir = 4
 	},
 /obj/spawner/junk,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aLY" = (
@@ -20456,6 +20461,7 @@
 	pixel_y = 24
 	},
 /obj/structure/table/rack/shelf,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/evidencestorage)
 "aXB" = (
@@ -57534,6 +57540,7 @@
 	name = "Maneki Neko id lock";
 	req_access = list(41)
 	},
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "cEC" = (
@@ -104765,6 +104772,20 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"ssS" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
+/turf/simulated/floor/tiled/dark/panels,
+/area/eris/maintenance/oldbridge)
 "stu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -287259,7 +287280,7 @@ elF
 eem
 eew
 eeI
-eeX
+ssS
 dyQ
 eff
 eff

@@ -500,3 +500,71 @@
 				oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats, perk)
 	set_light(2, 1, COLOR_BLUE_LIGHT)
+
+/obj/item/oddity/pendant
+	name = "pendant of Kultainen"
+	desc = "An ornate golden necklace."
+	icon_state = "golden_necklace"
+	slot_flags = SLOT_MASK
+	origin_tech = list(TECH_MATERIAL = 3)
+	matter = list(MATERIAL_GOLD = 4)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
+	prob_perk = 0
+	oddity_stats = list(
+		STAT_MEC = 4,
+		STAT_BIO = 4
+	)
+	var/produce_ready = TRUE
+	var/produce_next
+
+/obj/item/oddity/pendant/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/oddity/pendant/Process()
+	if(world.time > produce_next)
+		visible_message(SPAN_NOTICE("[src] stops humming suddenly."))
+		src.desc = "An ornate golden necklace."
+		produce_ready = TRUE
+		STOP_PROCESSING(SSobj, src)
+		. = ..()
+
+/obj/item/oddity/pendant/attack_self(mob/user)
+	if(produce_ready)
+		new /obj/item/golden_leaf(get_turf(src))
+		user.visible_message(SPAN_NOTICE("[user] opens [src], and a little golden leaf falls from it. Pendant closes shut right after."), SPAN_NOTICE("As you open [src], a little golden leaf falls from it. Pendant closes shut right after and start to hum quietly."))
+		src.desc = "An ornate golden necklace. It's closed and hums quietly."
+		produce_next = world.time + 10 MINUTES
+		produce_ready = FALSE
+		START_PROCESSING(SSobj, src)
+	else
+		user.visible_message(SPAN_NOTICE("[user] tries to open [src] without success."), SPAN_NOTICE("You fail to open [src]."))
+
+/hook/roundstart/proc/place_pendant()
+	var/obj/landmark/storyevent/potential_unique_oddity_spawn/L = pick_landmark(/obj/landmark/storyevent/potential_unique_oddity_spawn)
+	new /obj/item/oddity/pendant(L.get_loc())
+	return TRUE
+
+/obj/item/golden_leaf
+	name = "golden leaf"
+	desc = "Little piece of gold resembling a tea leaf."
+	icon = 'icons/obj/oddities.dmi'
+	icon_state = "golden_leaf"
+	matter = list(MATERIAL_GOLD = 0.5)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/golden_leaf/afterattack(obj/target, mob/user, proximity)
+	if(!proximity)
+		return
+
+	if(target.is_refillable())
+		if(!target.reagents.has_reagent("water", 30))
+			to_chat(user, SPAN_NOTICE("You need some water for that."))
+		else
+			target.reagents.remove_reagent("water", 30)
+			target.reagents.add_reagent("oddity_tea", 30)
+			to_chat(user, SPAN_NOTICE("You drop \the [src] in the water, it dosolves slowly."))
+			qdel(src)

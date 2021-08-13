@@ -34,3 +34,7 @@
 	name = "mercenary-spawn"
 	icon_state = "spy-green"
 	navigation = "This marks Serbia, it is our land."
+
+/obj/landmark/storyevent/potential_unique_oddity_spawn
+	name = "special-oddity-spawn"
+	icon_state = "spy-cyan"
