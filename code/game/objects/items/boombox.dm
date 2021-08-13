@@ -25,6 +25,7 @@
 /obj/item/media/boombox/New()
 	AddComponent(/datum/component/atom_sanity, 0, "")
 	START_PROCESSING(SSobj, src)
+	..()
 
 /obj/item/media/boombox/Destroy()
 	STOP_PROCESSING(SSobj, src)
