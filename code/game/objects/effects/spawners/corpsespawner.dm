@@ -115,7 +115,9 @@
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
-
+/obj/landmark/corpse/hobo
+	name = "Hobo"
+	corpseuniform = /obj/item/clothing/under/rank/assistant
 
 ///////////Civilians//////////////////////
 
@@ -171,6 +173,9 @@
 
 /obj/landmark/corpse/miner
 	name = "Guild Miner"
+	corpseuniform = /obj/item/clothing/under/rank/miner
+	corpseshoes = /obj/item/clothing/shoes/color/black
+	corpseradio = /obj/item/device/radio/headset/headset_cargo
 	corpseid = 1
 	corpseidjob = "Guild Miner"
 
@@ -178,6 +183,17 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
 
+/obj/landmark/corpse/security
+	name = "Security Officer"
+	corpseuniform = /obj/item/clothing/under/rank/security
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseradio = /obj/item/device/radio/headset
+	corpsesuit = /obj/item/clothing/suit/armor/vest/ironhammer
+	corpsehelmet = /obj/item/clothing/head/armor/helmet/ironhammer
+
+/obj/landmark/corpse/security/prisonguard
+	name = "Prison Guard"
+	corpsehelmet = null
 
 /////////////////Officers//////////////////////
 

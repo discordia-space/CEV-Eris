@@ -292,6 +292,15 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 // === Trying to remove these areas:
 
+/area/shuttle/junkpod
+	name = "\improper Delta Station Emergency Pod"
+	icon_state = "shuttle"
+	base_turf = /turf/simulated/floor/asteroid
+
+/area/shuttle/junkpod/planet
+
+/area/shuttle/junkpod/station
+
 /area/shuttle/research
 	name = "\improper Research Shuttle"
 

@@ -18,3 +18,6 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Ninja"
 
+/obj/machinery/computer/shuttle_control/multi/junkpod
+	name = "delta station pod control"
+	shuttle_tag = "junkpod_shuttle"

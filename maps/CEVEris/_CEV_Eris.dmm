@@ -102306,6 +102306,10 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck4port)
+"jfH" = (
+/obj/effect/shuttle_landmark/junkpod/podbay,
+/turf/space,
+/area/space)
 "jgX" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
@@ -103808,6 +103812,10 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
+"paB" = (
+/obj/effect/shuttle_landmark/junkpod/medmaint,
+/turf/space,
+/area/space)
 "peB" = (
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/long_range_scanner)
@@ -119282,7 +119290,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+paB
 aaa
 aaa
 aaa
@@ -133427,7 +133435,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+jfH
 aaa
 aaa
 aaa

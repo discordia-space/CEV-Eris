@@ -302,6 +302,41 @@
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_sec3east5"
 
+// Shuttle to escape junkyard
+/datum/shuttle/autodock/multi/junkpod
+	name = "junkpod_shuttle"
+	warmup_time = 30
+	move_time = 50
+	destination_tags = list(
+		"nav_junk_podbay",
+		"nav_junk_medmaint")
+	shuttle_area = /area/shuttle/junkpod
+	default_docking_controller = "junkpod_shuttle"
+	current_location = "nav_junk_start"
+	landmark_transition = "nav_junk_transit"
+
+/obj/effect/shuttle_landmark/junkpod
+
+/obj/effect/shuttle_landmark/junkpod/start
+	name = "Delta Station"
+	landmark_tag = "nav_junk_start"
+	base_turf = /turf/simulated/floor/exoplanet/barren
+	icon_state = "shuttle-red"
+
+/obj/effect/shuttle_landmark/junkpod/transit
+	name = "junkpod transit"
+	landmark_tag = "nav_junk_transit"
+	icon_state = "shuttle-red"
+
+/obj/effect/shuttle_landmark/junkpod/podbay
+	name = "CEV Eris #1"
+	landmark_tag = "nav_junk_podbay"
+	icon_state = "shuttle-red"
+
+/obj/effect/shuttle_landmark/junkpod/medmaint
+	name = "CEV Eris #2"
+	landmark_tag = "nav_junk_medmaint"
+	icon_state = "shuttle-red"
 
 //Cargo shuttle
 

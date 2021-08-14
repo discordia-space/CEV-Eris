@@ -155,3 +155,34 @@
 
 /area/outpost/prisonhulk/medical
 	name = "Prison Hulk Infirmary"
+
+	icon_state = "away"
+
+/area/outpost/junkyard/ship
+	icon_state = "away1"
+
+/area/outpost/junkyard/ship/canterbury
+	name = "HTU Canterbury"
+
+/area/outpost/junkyard/ship/rocinante
+	name = "NSS Rocinante"
+
+/area/outpost/junkyard/ship/geary
+	name = "MHS Geary"
+
+/area/outpost/junkyard/ship/epstein
+	name = "HTU Epstein"
+
+/area/outpost/junkyard/ship/lehrer
+	name = "HTU Lehrer"
+
+/area/outpost/junkyard/ship/prison
+	name = "IHS Ghislane"
+
+/area/outpost/junkyard/station
+	icon_state = "away2"
+	name = "Delta Station"
+
+/area/outpost/junkyard/hermitage
+	icon_state = "away2"
+	name = "Hermitage"
