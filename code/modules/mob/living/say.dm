@@ -400,18 +400,7 @@ var/list/channel_to_radio_key = new
 				else
 					message = stars(message)
 
-	if(verb == "reports")
-		var/cop_code = get_cop_code()
-		if(isghost(src))
-			message = cop_code + " (" + replace_characters(message, list("@"=")"))
-		else
-			if(!src.stats.getPerk(/datum/perk/codespeak))
-				message = cop_code
-			else
-				message = cop_code + " (" + replace_characters(message, list("@"=")"))
-
 	..()
-
 
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)

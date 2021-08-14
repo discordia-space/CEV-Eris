@@ -47,8 +47,16 @@ PROCESSING_SUBSYSTEM_DEF(circuit)
 		var/name = initial(A.name)
 		all_assemblies[name] = path
 		cached_assemblies[A] = new path
+	for(var/path in typesof(/obj/item/implant/integrated_circuit))
+		var/obj/item/implant/integrated_circuit/I = path
+		var/name = initial(I.name)
+		all_assemblies[name] = path
+		cached_assemblies[I] = new path
 
 	circuit_fabricator_recipe_list["Assemblies"] = subtypesof(/obj/item/device/electronic_assembly) - list(/obj/item/device/electronic_assembly/medium, /obj/item/device/electronic_assembly/large, /obj/item/device/electronic_assembly/drone, /obj/item/device/electronic_assembly/wallmount)
+	
+	circuit_fabricator_recipe_list["Assemblies"] -= typesof(/obj/item/device/electronic_assembly/implant)
+	circuit_fabricator_recipe_list["Assemblies"] += typesof(/obj/item/implant/integrated_circuit)
 
 	circuit_fabricator_recipe_list["Tools"] = list(
 		/obj/item/device/integrated_electronics/wirer,
