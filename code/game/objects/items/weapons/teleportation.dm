@@ -45,7 +45,7 @@
 		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
-	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
+	if(!current_location||current_location.z>=7)//If turf was not found or they're on z >7 which does not currently exist.
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning!"))
 		return
 	var/list/L = list()
