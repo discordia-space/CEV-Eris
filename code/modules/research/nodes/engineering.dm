@@ -154,7 +154,7 @@
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
-	y = 0.9
+	y = 1.0
 	icon = "tesla"
 
 	required_technologies = list(/datum/technology/custom_circuits_advanced)
