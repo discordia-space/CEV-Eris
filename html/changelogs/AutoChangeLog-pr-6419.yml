@@ -1,5 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - balance: projectiles have a chance to miss depending on the limb they are going
-      for.

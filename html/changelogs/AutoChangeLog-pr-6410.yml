@@ -1,7 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: Robotic omnitools and organ gripper
-  - rscdel: Construction drone and unused robotic tools
-  - tweak: Maintenance drone laws no longer forbid interaction with other mobs
-  - bugfix: Fixed medical robot being unable to perform organ surgery
