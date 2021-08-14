@@ -134,13 +134,13 @@
 				return 0
 			if(gotSpace)
 				build_type = "airlock"
-				build_cost =  8
+				build_cost =  7
 				build_delay = 50
 				build_turf =  /turf/simulated/floor/airless
 				build_object = /obj/machinery/door/airlock
 			if(gotFloor)
 				build_type = "airlock"
-				build_cost =  7
+				build_cost =  6
 				build_delay = 40
 				build_object = /obj/machinery/door/airlock
 
