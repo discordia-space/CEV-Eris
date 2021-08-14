@@ -1159,6 +1159,10 @@
 	implant.icon_state = icon_state
 	implant.overlays = overlays
 
+/obj/item/device/electronic_assembly/implant/save()
+	var/list/saved_data = ..()
+	saved_data["type"] = initial(implant.name)
+	return saved_data
 
 /obj/item/device/electronic_assembly/implant/nano_host()
-	return implant
+	return implant || src // if implant doesn't exist it's bug, but an user will not see difference until he use it to implant :)
