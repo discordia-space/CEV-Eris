@@ -83,7 +83,7 @@
 	law_header = "Maintenance Protocols"
 
 /datum/ai_laws/drone/New()
-	add_inherent_law("You may not injure a human being or, through your action, allow a human being to come to harm.")
+	add_inherent_law("You may not interact with a human being or, through your action, allow a human being to come to harm.")
 	add_inherent_law("You shall repair, refit and upgrade your assigned vessel to the best of your abilities.")
 	..()
 
