@@ -153,8 +153,8 @@
 	desc = "Integral Ciruits - Instant Cloning"
 	tech_type = RESEARCH_ENGINEERING
 
-	x = 0.4
-	y = 1.0
+	x = 0.5
+	y = 0.9
 	icon = "tesla"
 
 	required_technologies = list(/datum/technology/custom_circuits_advanced)
