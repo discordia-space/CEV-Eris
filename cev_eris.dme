@@ -34,7 +34,6 @@
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\gamemode.dm"
 #include "code\__DEFINES\holomap.dm"
-#include "code\__DEFINES\integrated_circuit.dm"
 #include "code\__DEFINES\integrated_circuits.dm"
 #include "code\__DEFINES\inventory_sizes.dm"
 #include "code\__DEFINES\is_helpers.dm"
