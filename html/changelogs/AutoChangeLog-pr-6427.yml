@@ -1,9 +1,0 @@
-author: Doster-d
-delete-after: true
-changes:
-  - bugfix: Implant circuits are now work fine.
-  - bugfix: Chemical syphon are now have sprites.
-  - bugfix: Used correct material cost multiplication.
-  - rscadd: Cloning design are now avaliable in research.
-  - tweak: Added new tools to research design (they are in printer too).
-  - tweak: Now it's possible to clone implant circuit.

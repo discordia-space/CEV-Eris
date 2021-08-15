@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscdel: 'fix: hand teles no longer malfunction on zlevel 2'

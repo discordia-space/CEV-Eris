@@ -1,5 +1,0 @@
-author: Doster-d
-delete-after: true
-changes:
-  - bugfix: Examiner circuir now don't runtime and finally works.
-  - bugfix: position of cloning node in research window are now in right place.
