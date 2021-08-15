@@ -156,6 +156,7 @@
 /area/outpost/prisonhulk/medical
 	name = "Prison Hulk Infirmary"
 
+/area/outpost/junkyard/
 	icon_state = "away"
 
 /area/outpost/junkyard/ship

@@ -113,6 +113,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light/small,
+/obj/machinery/power/apc{
+	cell_type = null;
+	name = "South APC";
+	pixel_y = -28
+	},
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
 "bn" = (
@@ -1442,7 +1447,7 @@
 /area/outpost/junkyard/ship/rocinante)
 "nu" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1e+006
+	charge = 0
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -1962,6 +1967,7 @@
 "si" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc{
+	cell_type = null;
 	dir = 8;
 	name = "Beta Storage APC";
 	pixel_x = -25;
@@ -2191,7 +2197,7 @@
 /area/outpost/junkyard/ship/epstein)
 "us" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1e+006
+	charge = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
@@ -2213,6 +2219,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/machinery/power/apc{
+	cell_type = null;
 	dir = 4;
 	name = "Charlie Main Corridor APC";
 	pixel_x = 24;
@@ -2564,7 +2571,7 @@
 /area/outpost/junkyard/station)
 "xR" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1e+006
+	charge = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
@@ -3037,6 +3044,7 @@
 "Dw" = (
 /obj/structure/closet/crate,
 /obj/machinery/power/apc{
+	cell_type = null;
 	name = "South APC";
 	pixel_y = -28
 	},
@@ -3409,6 +3417,7 @@
 	name = "fridge"
 	},
 /obj/machinery/power/apc{
+	cell_type = null;
 	dir = 1;
 	name = "Hospital Ship Crew Quarters APC";
 	pixel_y = 23
@@ -3734,6 +3743,15 @@
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
+"Kp" = (
+/obj/machinery/power/apc{
+	cell_type = null;
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/lehrer)
 "Ku" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled,
@@ -4134,7 +4152,7 @@
 /area/outpost/junkyard/ship/canterbury)
 "NK" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1e+006
+	charge = 0
 	},
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/plating,
@@ -4237,6 +4255,7 @@
 "Pd" = (
 /obj/structure/table/standard,
 /obj/machinery/power/apc{
+	cell_type = null;
 	dir = 1;
 	name = "North APC";
 	pixel_y = 28
@@ -4768,6 +4787,13 @@
 /obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/outpost/junkyard/ship/rocinante)
+"UI" = (
+/obj/machinery/power/apc{
+	cell_type = null;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/rocinante)
 "UM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -5047,9 +5073,9 @@
 "Xm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc{
+	cell_type = null;
 	name = "Charlie Station Garden APC ";
-	pixel_y = -23;
-	start_charge = 0
+	pixel_y = -23
 	},
 /obj/structure/closet/crate/hydroponics,
 /turf/simulated/floor/tiled,
@@ -5066,6 +5092,7 @@
 /obj/structure/table/standard,
 /obj/structure/bedsheetbin,
 /obj/machinery/power/apc{
+	cell_type = null;
 	name = "South APC";
 	pixel_y = -28
 	},
@@ -14260,7 +14287,7 @@ Hl
 Hl
 Hl
 Hl
-CS
+Kp
 CS
 xM
 zE
@@ -23536,7 +23563,7 @@ qo
 qo
 qo
 jN
-qo
+UI
 qo
 qo
 DR
