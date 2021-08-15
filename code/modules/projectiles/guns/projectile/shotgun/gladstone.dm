@@ -13,6 +13,7 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
 	damage_multiplier = 0.8
+	saw_off = FALSE
 
 	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
