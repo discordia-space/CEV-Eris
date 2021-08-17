@@ -64,7 +64,7 @@
 
 /obj/effect/mob_spawn/human/hermit
 	name = "modified storage sleeper"
-	desc = "An old sleeper, with an sleeping body inside. The sleeper seems to have been gutted and padded into a bed."
+	desc = "An old sleeper, with a sleeping body inside. The sleeper seems to have been gutted and padded into a bed."
 	mob_name = "a hermit"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
