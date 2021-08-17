@@ -8162,7 +8162,7 @@
 /area/eris/maintenance/section3deck5port)
 "asS" = (
 /obj/structure/table/standard,
-/obj/spawner/knife,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "asT" = (
@@ -8600,8 +8600,11 @@
 /turf/space,
 /area/shuttle/escape_pod1/station)
 "aui" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/spawner/medical_lowcost,
 /obj/structure/table/standard,
-/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "auj" = (
@@ -8889,11 +8892,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "auZ" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/spawner/medical_lowcost,
 /obj/structure/table/standard,
+/obj/spawner/knife,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "ava" = (
@@ -102354,6 +102354,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/crew_quarters/barquarters)
 "jnX" = (
@@ -103102,6 +103107,20 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/atmos)
+"mvj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "mxw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -103831,6 +103850,11 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
@@ -119956,7 +119980,7 @@ dLB
 dLB
 aad
 alg
-asR
+azl
 ceU
 ceU
 ceU
@@ -120158,7 +120182,7 @@ aaa
 aaa
 aaa
 alg
-azl
+asS
 ceU
 cbR
 cbR
@@ -120764,7 +120788,7 @@ aaa
 aaa
 aaa
 alg
-asS
+alg
 ceU
 cbR
 byM
@@ -120965,7 +120989,7 @@ dLB
 dLB
 aaa
 aaa
-alg
+aaa
 alg
 ceU
 cbR
@@ -161366,7 +161390,7 @@ cOq
 cJK
 aaa
 aaa
-abF
+aaa
 ccU
 clY
 pZe
@@ -203603,7 +203627,7 @@ czt
 bZh
 dXM
 eti
-czR
+mvj
 egG
 ewE
 cCy
