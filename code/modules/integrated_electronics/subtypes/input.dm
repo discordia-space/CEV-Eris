@@ -342,6 +342,7 @@
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 80
+	var/stat = CONSCIOUS // for examine proc.
 
 /obj/item/integrated_circuit/input/examiner/do_work()
 	var/atom/H = get_pin_data_as_type(IC_INPUT, 1, /atom)
@@ -355,7 +356,7 @@
 
 		if(istype(H, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = H
-			var/msg = M.examine()
+			var/msg = M.examine(src)
 			if(msg)
 				set_pin_data(IC_OUTPUT, 2, msg)
 

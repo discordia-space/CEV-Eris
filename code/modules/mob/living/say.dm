@@ -400,18 +400,7 @@ var/list/channel_to_radio_key = new
 				else
 					message = stars(message)
 
-	if(verb == "reports")
-		var/cop_code = get_cop_code()
-		if(isghost(src))
-			message = cop_code + " (" + replace_characters(message, list("@"=")"))
-		else
-			if(!src.stats.getPerk(/datum/perk/codespeak))
-				message = cop_code
-			else
-				message = cop_code + " (" + replace_characters(message, list("@"=")"))
-
 	..()
-
 
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)
@@ -427,13 +416,13 @@ var/list/channel_to_radio_key = new
 		return
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if(!verb == "reports")
-		if(language && language.flags&NONVERBAL)
+	if(language && !(verb == "reports"))
+		if(language.flags&NONVERBAL)
 			if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
 				message = stars(message)
 
 		// skip understanding checks for INNATE languages
-		if(!(language && language.flags&INNATE))
+		if(!(language.flags&INNATE))
 			if(!say_understands(speaker, language))
 				if(isanimal(speaker))
 					var/mob/living/simple_animal/S = speaker
