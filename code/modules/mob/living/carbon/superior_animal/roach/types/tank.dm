@@ -6,8 +6,6 @@
 	turns_per_move = 2
 	maxHealth = 60
 	health = 60
-	melee_damage_lower = 4
-	melee_damage_upper = 6
 	move_to_delay = 7
 	mob_size = MOB_MEDIUM
 	density = TRUE

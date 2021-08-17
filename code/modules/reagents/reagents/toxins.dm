@@ -473,7 +473,7 @@
 	overdose = REAGENTS_OVERDOSE/3
 	nerve_system_accumulations = 10
 	strength = 0.01
-	sanityloss = 3
+	sanityloss = 1
 	heating_point = 523
 	heating_products = list("toxin")
 
@@ -483,15 +483,8 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pararein")
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
-	if(prob(30))
-		M.druggy = max(M.druggy, 5 * effect_multiplier)
 	if(prob(10))
-		M.eye_blurry = max(M.eye_blurry, 15)
-
-/datum/reagent/toxin/pararein/on_mob_delete(mob/living/carbon/M)
-	..()
-	M.druggy = 0
-	M.eye_blurry =  0
+		to_chat(M, SPAN_WARNING "you feel like your mind is boiling and the blood in your veins is coming alive!")
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"
