@@ -27,11 +27,12 @@
 
 /obj/machinery/excelsior_autodoc/Destroy()
 	if(occupant)
-		qdel(occupant)
+		occupant.ghostize(0)
+		occupant.gib()
 	return ..()
 
 /obj/machinery/excelsior_autodoc/relaymove(mob/user)
-	if (user.stat)
+	if (usr.incapacitated())
 		return
 	src.go_out()
 	return
@@ -59,7 +60,7 @@
 	set category = "Object"
 	set name = "Enter Autodoc"
 
-	if(usr.stat)
+	if(usr.incapacitated())
 		return
 	if(src.occupant)
 		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
@@ -126,7 +127,7 @@
 
 		ui_interact(user)
 
-/obj/machinery/excelsior_autodoc/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/excelsior_autodoc/affect_grab(mob/user, mob/target)
 	if (src.occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
@@ -140,7 +141,7 @@
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/excelsior_autodoc/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
@@ -167,7 +168,7 @@
 		autodoc_processor.stop()
 		update_icon()
 
-/obj/machinery/excelsior_autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/excelsior_autodoc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FORCE_OPEN, datum/topic_state/state = GLOB.default_state)
 	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/excelsior_autodoc/Topic(href, href_list)
