@@ -37,6 +37,7 @@
 		to_chat(user, saved_message)
 	else
 		. = ..()
+	if(user.stats.getStat(STAT_COG) > STAT_LEVEL_PROF)
 
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
@@ -101,14 +102,15 @@
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
 	if(!can_use || !saved_item) return
 	if(dummy_active)
-		dummy_active = FALSE
-		name = initial(name)
-		desc = initial(desc)
-		icon = initial(icon)
-		icon_state = initial(icon_state)
-		overlays = initial(overlays)
-		alpha = initial(alpha)
-		opacity = initial(opacity)
+		//dummy_active = FALSE
+		//name = initial(name)
+	//	desc = initial(desc)
+		//icon = initial(icon)
+		//icon_state = initial(icon_state)
+		//overlays = initial(overlays)
+		//alpha = initial(alpha)
+		//opacity = initial(opacity)
+		appearance = initial(appearance)
 		set_dir(initial(dir))
 		to_chat(owner_mob, SPAN_NOTICE("You deactivate the [src]."))
 	else
@@ -128,7 +130,7 @@
 //	alpha = new_alpha
 //	opacity = new_opacity
 	appearance = new_appearance
-//	set_dir(new_dir)
+	set_dir(new_dir)
 	dummy_active = TRUE
 
 
