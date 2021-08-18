@@ -1,5 +1,5 @@
 /obj/machinery/excelsior_autodoc
-	name = "Excelsior Autodoc"
+	name = "excelsior autodoc"
 	desc = "Medical care for everybody, free, and may no one be left behind!"
 	icon = 'icons/obj/machines/excelsior/autodoc.dmi'
 	icon_state = "base"
@@ -62,7 +62,7 @@
 
 	if(usr.incapacitated())
 		return
-	if(src.occupant)
+	if(occupant)
 		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
@@ -105,7 +105,7 @@
 		cover_locked = TRUE
 		close_cover()
 		sleep(20)
-		to_chat(L, SPAN_DANGER("Autodoc implanting you with something!"))
+		to_chat(L, SPAN_DANGER("Autodoc is attemping to implant you!"))
 		sleep(40)
 		var/obj/item/implant/excelsior/implant = new(L)
 		implant.install(L, BP_HEAD)
@@ -128,7 +128,7 @@
 		ui_interact(user)
 
 /obj/machinery/excelsior_autodoc/affect_grab(mob/user, mob/target)
-	if (src.occupant)
+	if (occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
@@ -144,7 +144,7 @@
 /obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
 		return
-	if (src.occupant)
+	if (occupant)
 		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
 	if (target.abiotic())
