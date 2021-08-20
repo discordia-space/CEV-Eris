@@ -1,0 +1,6 @@
+author: Deal5
+delete-after: true
+changes:
+  - bugfix: Fixed RCD's ability to build airlocks and low walls inside other walls
+      without spending any ammo
+  - balance: Reduced some of the building costs for the RCD
