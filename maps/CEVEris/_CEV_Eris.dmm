@@ -60164,8 +60164,8 @@
 /area/eris/engineering/breakroom)
 "cPd" = (
 /obj/machinery/door/blast/regular{
-	_wifi_id = "EJECTCORE";
-	id = null;
+	_wifi_id = null;
+	id = "enginevent";
 	name = "Reactor Vent"
 	},
 /turf/simulated/floor/reinforced,
