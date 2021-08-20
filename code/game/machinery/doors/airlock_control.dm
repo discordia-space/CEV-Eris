@@ -156,7 +156,7 @@
 	name = "airlock sensor"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 
 	var/id_tag
 	var/master_tag
@@ -298,7 +298,7 @@
 	name = "access button"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 
 	var/master_tag
 	var/frequency = 1449
@@ -315,7 +315,7 @@
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
-	if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
+	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		attack_hand(user)
 		return
 	..()

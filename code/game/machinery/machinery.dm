@@ -108,14 +108,17 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
+	var/power_channel = STATIC_EQUIP //STATIC_EQUIP, STATIC_ENVIRON or STATIC_LIGHT
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/electronics/circuitboard/circuit
+	var/obj/item/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
+
+	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
+	var/area/current_power_area // What area are we powering currently
 
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -123,6 +126,7 @@ Class Procs:
 	if(d)
 		set_dir(d)
 	InitCircuit()
+	GLOB.machines += src
 	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()
@@ -133,11 +137,12 @@ Class Procs:
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			qdel(A)
+	GLOB.machines -= src
+	set_power_use(NO_POWER_USE)
 	return ..()
 
 /obj/machinery/Process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
-		return PROCESS_KILL
+	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && !stat)
@@ -243,15 +248,15 @@ Class Procs:
 	if(!type)
 		error("max_part_rating() wrong usage")
 		return
-	var/list/obj/item/weapon/stock_parts/parts = list()
-	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
+	var/list/obj/item/stock_parts/parts = list()
+	for(var/list/obj/item/stock_parts/P in component_parts)
 		if(istype(P, type))
 			parts.Add(P)
 	if(!parts.len)
 		error("max_part_rating() havent found any parts")
 		return
 	var/rating = 1
-	for(var/obj/item/weapon/stock_parts/P in parts)
+	for(var/obj/item/stock_parts/P in parts)
 		if(P.rating < rating)
 			return rating
 		else
@@ -321,19 +326,19 @@ Class Procs:
 
 	return FALSE //If got no qualities - continue base attackby proc
 
-/obj/machinery/proc/default_part_replacement(obj/item/weapon/storage/part_replacer/R, mob/user)
+/obj/machinery/proc/default_part_replacement(obj/item/storage/part_replacer/R, mob/user)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
 		return 0
 	if(panel_open)
 		var/P
-		for(var/obj/item/weapon/stock_parts/A in component_parts)
+		for(var/obj/item/stock_parts/A in component_parts)
 			for(var/D in circuit.req_components)
 				if(istype(A, D))
 					P = D
 					break
-			for(var/obj/item/weapon/stock_parts/B in R.contents)
+			for(var/obj/item/stock_parts/B in R.contents)
 				if(istype(B, P) && istype(A, P))
 					if(B.rating > A.rating)
 						R.remove_from_storage(B, src)
@@ -394,3 +399,33 @@ Class Procs:
 
 /datum/proc/apply_visual(mob/M)
 	return
+
+/obj/machinery/proc/update_power_use()
+	set_power_use(use_power)
+
+// The main proc that controls power usage of a machine, change use_power only with this proc
+/obj/machinery/proc/set_power_use(new_use_power)
+	if(current_power_usage && current_power_area) // We are tracking the area that is powering us so we can remove power from the right one if we got moved or something
+		current_power_area.removeStaticPower(current_power_usage, power_channel)
+		current_power_area = null
+
+	current_power_usage = 0
+	use_power = new_use_power
+
+	var/area/A = get_area(src)
+	if(!A || !anchored || stat & NOPOWER) // Unwrenched machines aren't plugged in, unpowered machines don't use power
+		return
+
+	if(use_power == IDLE_POWER_USE && idle_power_usage)
+		current_power_area = A
+		current_power_usage = idle_power_usage
+		current_power_area.addStaticPower(current_power_usage, power_channel)
+	else if(use_power == ACTIVE_POWER_USE && active_power_usage)
+		current_power_area = A
+		current_power_usage = active_power_usage
+		current_power_area.addStaticPower(current_power_usage, power_channel)
+
+
+// Unwrenching = unpluging from a power source
+/obj/machinery/wrenched_change()
+	update_power_use()

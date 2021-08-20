@@ -381,6 +381,7 @@
 		return trans_to_holder(target, amount, multiplier, copy)
 	else if(istype(target, /atom))
 		var/atom/A = target
+		touch(A)
 		if(ismob(target))
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
@@ -572,6 +573,11 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
+/datum/reagents/proc/get_reagents()
+	. = list()
+	for(var/datum/reagent/current in reagent_list)
+		. += "[current.name] ([current.volume])"
+	return english_list(., "EMPTY", "", ", ", ", ")
 
 /proc/get_chem_id(chem_name)
 	for(var/X in GLOB.chemical_reagents_list)

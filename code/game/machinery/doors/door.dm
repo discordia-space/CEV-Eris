@@ -40,6 +40,14 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation
 
+/obj/machinery/door/New()
+	GLOB.all_doors += src
+	..()
+
+/obj/machinery/door/Destroy()
+	GLOB.all_doors -= src
+	..()
+
 /obj/machinery/door/can_prevent_fall()
 	return density
 
@@ -306,7 +314,7 @@
 
 
 /obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
-	var/obj/item/weapon/W = I
+	var/obj/item/W = I
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	var/calc_damage
 	if (thrown)

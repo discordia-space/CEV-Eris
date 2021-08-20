@@ -151,7 +151,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 						GLOB.guild_shared_gears++
 						break
 
-	var/obj/item/weapon/cell/large/high/HC = /obj/item/weapon/cell/large/high
+	var/obj/item/cell/large/high/HC = /obj/item/cell/large/high
 	var/min_charge = initial(HC.maxcharge) * 0.6
 
 	//Check station's power levels
@@ -161,12 +161,12 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		if(!A.apc)
 			GLOB.area_powerloss++
 			continue
-		for(var/obj/item/weapon/cell/C in A.apc.contents)
+		for(var/obj/item/cell/C in A.apc.contents)
 			if(C.charge < min_charge)
 				GLOB.area_powerloss++
 
 	var/smes_count = 0
-	for(var/obj/machinery/power/smes/S in SSmachines.machinery)
+	for(var/obj/machinery/power/smes/S in GLOB.smes_list)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(S.charge < S.capacity*0.7)
@@ -175,7 +175,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	if(smes_count == 0)
 		GLOB.all_smes_powered = FALSE
 
-	for(var/obj/machinery/power/shield_generator/S in SSmachines.machinery)
+	for(var/obj/machinery/power/shield_generator/S in GLOB.machines)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(!S.running) continue

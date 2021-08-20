@@ -260,3 +260,68 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/ranger
+	name = "ranger hat"
+	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
+	icon_state = "ranger"
+	item_state = "ranger"
+	price_tag = 400
+
+/obj/item/clothing/head/inhaler
+	name = "odd looking helmet"
+	desc = "A confusingly complex helmet. It is capable of protecting you so it's more useful than being a simple decoration."
+	icon_state = "inhaler"
+	item_state = "inhaler"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	siemens_coefficient = 1
+	price_tag = 600
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 10,
+		bomb = 0,
+		bio = 20,
+		rad = 25
+	)
+
+/obj/item/clothing/head/skull
+	name = "white skull"
+	desc = "This is actually a white plastic skull, don't expect much protection."
+	icon_state = "skull-white"
+	item_state = "skull-white"
+	flags_inv = HIDEMASK|HIDEEARS|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	price_tag = 300
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/skull/black
+	name = "black skull"
+	desc = "This is actually a black plastic skull, don't expect much protection."
+	icon_state = "skull-black"
+	item_state = "skull-black"
+	price_tag = 300
+
+/obj/item/clothing/head/skull/drip
+	name = "golden skull"
+	desc = "This is actually a skull made of gold! How the hell did this show up here?"
+	icon_state = "skull-drip"
+	item_state = "skull-drip"
+	spawn_blacklisted = TRUE //its 10k, also decent armour
+	price_tag = 10000
+	armor = list(
+		melee = 30,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

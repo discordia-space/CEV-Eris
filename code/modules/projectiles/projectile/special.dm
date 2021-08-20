@@ -132,14 +132,6 @@
 		return 1
 
 
-/obj/item/projectile/beam/mindflayer
-	name = "flayer ray"
-
-/obj/item/projectile/beam/mindflayer/on_hit(atom/target)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		M.confused += rand(5,8)
-
 /obj/item/projectile/chameleon
 	name = "bullet"
 	icon_state = "bullet"

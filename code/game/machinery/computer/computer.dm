@@ -16,8 +16,13 @@
 
 /obj/machinery/computer/Initialize()
 	. = ..()
+	GLOB.computer_list += src
 	power_change()
 	update_icon()
+
+/obj/machinery/computer/Destroy()
+	GLOB.computer_list -= src
+	..()
 
 /obj/machinery/computer/Process()
 	if(stat & (NOPOWER|BROKEN))
@@ -108,7 +113,7 @@
 				C.loc = src.loc
 			if (src.stat & BROKEN)
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
-				new /obj/item/weapon/material/shard(src.loc)
+				new /obj/item/material/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else

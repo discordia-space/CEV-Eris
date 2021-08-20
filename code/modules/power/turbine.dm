@@ -31,7 +31,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "turbinecomp"
-	circuit = /obj/item/weapon/electronics/circuitboard/turbine_control
+	circuit = /obj/item/electronics/circuitboard/turbine_control
 	anchored = TRUE
 	density = TRUE
 	var/obj/machinery/compressor/compressor
@@ -214,11 +214,11 @@
 /obj/machinery/computer/turbine_computer/New()
 	..()
 	spawn(5)
-		for(var/obj/machinery/compressor/C in SSmachines.machinery)
+		for(var/obj/machinery/compressor/C in GLOB.machines)
 			if(id == C.comp_id)
 				compressor = C
 		doors = new /list()
-		for(var/obj/machinery/door/blast/P in SSmachines.machinery)
+		for(var/obj/machinery/door/blast/P in GLOB.all_doors)
 			if(P.id == id)
 				doors += P
 

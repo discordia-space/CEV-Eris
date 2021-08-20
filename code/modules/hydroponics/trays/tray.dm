@@ -142,7 +142,6 @@
 	create_reagents(200)
 	if(mechanical)
 		connect()
-	AddComponent(/datum/component/plumbing/demand/all/special_icon, anchored, FALSE)
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 	update_icon()
@@ -406,7 +405,7 @@
 						user.visible_message(SPAN_DANGER("[user] starts damage the plants root."))
 						dead = 1
 						update_icon()
-					else 
+					else
 						user.visible_message(SPAN_DANGER("[user] fails to kill the plant."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
@@ -414,7 +413,7 @@
 				weedlevel = 0
 				update_icon()
 				return
-			
+
 			return
 
 		if(QUALITY_WIRE_CUTTING)
@@ -480,9 +479,9 @@
 	if (I.is_drainable())
 		return 0
 
-	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+	else if(istype(I, /obj/item/reagent_containers/syringe))
 
-		var/obj/item/weapon/reagent_containers/syringe/S = I
+		var/obj/item/reagent_containers/syringe/S = I
 
 		if (S.mode == 1)
 			if(seed)
@@ -526,19 +525,19 @@
 		else
 			to_chat(user, SPAN_DANGER("\The [src] already has seeds in it!"))
 
-	else if (istype(I, /obj/item/weapon/storage/bag/produce))
+	else if (istype(I, /obj/item/storage/bag/produce))
 
 		attack_hand(user)
 
-		var/obj/item/weapon/storage/bag/produce/S = I
-		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
+		var/obj/item/storage/bag/produce/S = I
+		for (var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)
 
-	else if ( istype(I, /obj/item/weapon/plantspray) )
+	else if ( istype(I, /obj/item/plantspray) )
 
-		var/obj/item/weapon/plantspray/spray = I
+		var/obj/item/plantspray/spray = I
 		user.remove_from_mob(I)
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str

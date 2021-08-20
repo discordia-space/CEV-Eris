@@ -241,11 +241,6 @@
 					tank.can_anchor = TRUE
 					set_canister = tank.set_anchored(FALSE)
 					if(set_canister)
-						var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
-						if(P)
-							P.disable()
-							P.supply_connects = initial(P.supply_connects)
-							P.demand_connects = initial(P.demand_connects)
 						tank.pixel_x = initial(tank.pixel_x)
 						tank = null
 						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
@@ -256,15 +251,9 @@
 						set_canister = tank.set_anchored(TRUE)
 						if(set_canister)
 							tank.can_anchor = FALSE
-							var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
-							if(P)
-								P.disable()
-								P.supply_connects = null
-								P.demand_connects = NORTH | SOUTH | EAST | WEST
-								P.enable()
 							tank.pixel_x = 8
 							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))	
+							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
 				if(!set_canister)
 					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 					tank = null
@@ -276,7 +265,7 @@
 				panel_open = !panel_open
 				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the panel."))
 
-	if(panel_open && (istype(I, /obj/item/weapon/soap) || istype(I, /obj/item/weapon/reagent_containers/glass/rag)))
+	if(panel_open && (istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)))
 		if(pipes_dirtiness)
 			pipes_dirtiness--
 			if(pipes_dirtiness < 0)

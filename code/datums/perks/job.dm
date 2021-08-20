@@ -50,12 +50,12 @@
 	..()
 	if(holder)
 		holder.metabolism_effects.addiction_chance_multiplier = 0.5
-		holder.metabolism_effects.nsa_threshold += 10
+		holder.metabolism_effects.nsa_threshold_base += 10
 
 /datum/perk/selfmedicated/remove()
 	if(holder)
 		holder.metabolism_effects.addiction_chance_multiplier = 1
-		holder.metabolism_effects.nsa_threshold -= 10
+		holder.metabolism_effects.nsa_threshold_base -= 10
 	..()
 
 /datum/perk/vagabond
@@ -83,11 +83,11 @@
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
 	..()
 	if(holder)
-		holder.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
+		holder.sanity.valid_inspirations += /obj/item/spacecash/bundle
 
 /datum/perk/merchant/remove()
 	if(holder)
-		holder.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
+		holder.sanity.valid_inspirations -= /obj/item/spacecash/bundle
 	..()
 
 #define CHOICE_LANG "language" // Random language chosen from a pool
@@ -135,12 +135,12 @@
 		if(CHOICE_STASHPAPER)
 			desc += " You have a special note in your storage."
 			stash.spawn_stash()
-			var/obj/item/weapon/paper/stash_note = stash.spawn_note()
+			var/obj/item/paper/stash_note = stash.spawn_note()
 			holder.equip_to_storage_or_drop(stash_note)
 		if(CHOICE_RAREOBJ)
 			desc += " You managed to smuggle a rare item aboard."
 			var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
-			var/obj/item/weapon/storage/box/B = new
+			var/obj/item/storage/box/B = new
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
 			holder.equip_to_storage_or_drop(B)
 
@@ -244,3 +244,42 @@
 	desc = "You know how to channel spiritual energy during rituals. You gain additional skill points \
 			during group rituals and have an increased regeneration of cruciform energy."
 	icon_state = "channeling"
+
+/datum/perk/codespeak
+	name = "Codespeak"
+	desc = "You know Ironhammer PMC's code language, adapted to use aboard of CEV Eris."
+	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
+	var/list/codespeak_procs = list(
+		/mob/living/carbon/human/proc/codespeak_help,
+		/mob/living/carbon/human/proc/codespeak_clear,
+		/mob/living/carbon/human/proc/codespeak_romch,
+		/mob/living/carbon/human/proc/codespeak_bigromch,
+		/mob/living/carbon/human/proc/codespeak_serb,
+		/mob/living/carbon/human/proc/codespeak_commie,
+		/mob/living/carbon/human/proc/codespeak_carrion,
+		/mob/living/carbon/human/proc/codespeak_mutant,
+		/mob/living/carbon/human/proc/codespeak_dead,
+		/mob/living/carbon/human/proc/codespeak_corpse,
+		/mob/living/carbon/human/proc/codespeak_criminal,
+		/mob/living/carbon/human/proc/codespeak_status,
+		/mob/living/carbon/human/proc/codespeak_shutup,
+		/mob/living/carbon/human/proc/codespeak_understood,
+		/mob/living/carbon/human/proc/codespeak_yes,
+		/mob/living/carbon/human/proc/codespeak_no,
+		/mob/living/carbon/human/proc/codespeak_understood_local,
+		/mob/living/carbon/human/proc/codespeak_yes_local,
+		/mob/living/carbon/human/proc/codespeak_no_local,
+		/mob/living/carbon/human/proc/codespeak_warcrime_local,
+		/mob/living/carbon/human/proc/codespeak_run_local
+		)
+
+/datum/perk/codespeak/assign(mob/living/carbon/human/H)
+	..()
+	if(holder)
+		holder.verbs += codespeak_procs
+
+
+/datum/perk/codespeak/remove()
+	if(holder)
+		holder.verbs -= codespeak_procs
+	..()

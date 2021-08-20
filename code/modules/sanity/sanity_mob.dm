@@ -60,7 +60,7 @@
 	var/resting = 0
 	var/max_resting = INFINITY
 
-	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
+	var/list/valid_inspirations = list(/obj/item/oddity)
 	var/list/desires = list()
 	var/positive_prob = 20
 	var/positive_prob_multiplier = 1
@@ -121,12 +121,17 @@
 
 /datum/sanity/proc/handle_view()
 	. = 0
-	if(sanity_invulnerability)
+	if(sanity_invulnerability)//Sorry, but that needed to be added here :C
+		for(var/mob/living/L in view(owner.client ? owner.client : owner))
+			L.try_activate_ai()
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+			if(isliving(A))
+				var/mob/living/L = A
+				L.try_activate_ai()
 
 		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
@@ -316,7 +321,7 @@
 			else
 				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
-/datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
+/datum/sanity/proc/onEat(obj/item/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
 		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
 		to_chat(owner, "[snack_sanity_message]")
@@ -368,7 +373,7 @@
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
 
-	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
+	for(var/obj/item/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
 		if(get_turf(S) in view(get_turf(owner)))
 			S.reg_break(owner)
 

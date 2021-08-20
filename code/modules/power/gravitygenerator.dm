@@ -102,7 +102,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	pixel_y = -16
 	idle_power_usage = 0
 	active_power_usage = 3000
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	sprite_number = 8
 	use_power = IDLE_POWER_USE
 	interact_offline = 1
@@ -346,7 +346,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5)
 
 // Misc
-/obj/item/weapon/paper/gravity_gen
+/obj/item/paper/gravity_gen
 	name = "paper- 'Generate your own gravity!'"
 	info = {"<h1>Gravity Generator Instructions For Dummies</h1>
 	<p>Surprisingly, gravity isn't that hard to make! All you have to do is inject deadly radioactive minerals into a ball of

@@ -1,4 +1,4 @@
-/obj/item/weapon/grenade/flashbang
+/obj/item/grenade/flashbang
 	name = "FS FBG \"Serra\""
 	desc = "A \"Frozen Star\" flashbang grenade. If in any doubt - use it."
 	icon_state = "flashbang"
@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/banglet = 0
 
-/obj/item/weapon/grenade/flashbang/prime()
+/obj/item/grenade/flashbang/prime()
 	..()
 	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
@@ -32,7 +32,7 @@
 	new/obj/effect/sparks(loc)
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
-	return
+
 /obj/item/proc/flashbang_without_the_bang(turf/T, mob/living/carbon/M) ///flashbang_bang but bang-less.
 //Checking for protections
 	var/eye_safety = 0
@@ -57,7 +57,7 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.update_icons()
 
-/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG") //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
 	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
@@ -127,13 +127,14 @@
 	else
 		if (M.ear_damage >= 5)
 			to_chat(M, SPAN_DANGER("Your ears start to ring!"))
-	M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
-	M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
+	if(stat_reduction)
+		M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
+		M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
 	M.update_icons()
 
-/obj/item/weapon/grenade/flashbang/nt
+/obj/item/grenade/flashbang/nt
 	name = "NT FBG \"Holy Light\""
 	desc = "An old \"NanoTrasen\" flashbang grenade, modified to spread the light of god."
 	icon_state = "flashbang_nt"

@@ -9,11 +9,11 @@
 	density = TRUE
 	lethal = TRUE
 	raised = TRUE
-	circuit = /obj/item/weapon/electronics/circuitboard/excelsior_turret
+	circuit = /obj/item/electronics/circuitboard/excelsior_turret
 	installation = null
 	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/lrifle
 	var/ammo = 0 // number of bullets left.
-	var/ammo_max = 160
+	var/ammo_max = 96
 	var/working_range = 30 // how far this turret operates from excelsior teleporter
 	health = 60
 

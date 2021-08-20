@@ -19,7 +19,7 @@
 
 /datum/reagent/medicine/inaprovaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_STABLE)
-	M.add_chemical_effect(CE_PAINKILLER, 15 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 15)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/medicine/inaprovaline/sleeper
@@ -291,7 +291,7 @@
 
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 10 * effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 10)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -682,19 +682,19 @@
 	metabolism = REM/2
 
 /datum/reagent/medicine/detox/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(M.metabolism_effects.nsa_threshold == initial(M.metabolism_effects.nsa_threshold))
-		M.metabolism_effects.nsa_threshold += rand(20, 60)
+	if(M.metabolism_effects.nsa_threshold_base == initial(M.metabolism_effects.nsa_threshold_base))
+		M.metabolism_effects.nsa_threshold_base += rand(20, 60)
 
 /datum/reagent/medicine/detox/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold)
+		C.metabolism_effects.nsa_threshold_base = initial(C.metabolism_effects.nsa_threshold_base)
 
 /datum/reagent/medicine/detox/overdose(mob/living/carbon/M, alien)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold) - rand(20, 40)
+		C.metabolism_effects.nsa_threshold_base = initial(C.metabolism_effects.nsa_threshold_base) - rand(20, 40)
 
 /datum/reagent/medicine/purger
 	name = "Purger"

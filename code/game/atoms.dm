@@ -768,3 +768,7 @@ its easier to just keep the beam vertical.
 		M.death(FALSE, FALSE)
 	qdel(src)
 	. = TRUE
+
+// Called after we wrench/unwrench this object
+/obj/proc/wrenched_change()
+	return

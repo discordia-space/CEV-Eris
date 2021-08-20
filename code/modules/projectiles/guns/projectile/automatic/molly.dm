@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/molly
+/obj/item/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
 	desc = "An experimental fully automatic pistol, designed as a middle ground between SMGs and Pistols. \
 			Primarily employed in CQC scenarios or as a civilian self defence tool. \
@@ -33,10 +33,10 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 
-	price_tag = 1700
+	price_tag = 1400
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/automatic/molly/on_update_icon()
+/obj/item/gun/projectile/automatic/molly/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -58,6 +58,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/molly/Initialize()
+/obj/item/gun/projectile/automatic/molly/Initialize()
 	. = ..()
 	update_icon()

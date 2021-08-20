@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/atreides
+/obj/item/gun/projectile/automatic/atreides
 	name = "FS SMG .35 Auto \"Atreides\""
 	desc = "The Atreides is a replica of an old and popular SMG. Cheap and mass produced generic self-defence weapon. \
 			The overall design is so generic that it is neither considered good nor bad in comparison to other firearms. \
@@ -20,19 +20,23 @@
 	damage_multiplier = 0.8
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
-	gun_tags = list(GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/atreides/on_update_icon()
+/obj/item/gun/projectile/automatic/atreides/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
+	
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
@@ -46,6 +50,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/atreides/Initialize()
+/obj/item/gun/projectile/automatic/atreides/Initialize()
 	. = ..()
 	update_icon()

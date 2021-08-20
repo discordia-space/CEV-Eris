@@ -19,8 +19,7 @@ var/datum/hivemind/hive_mind_ai
 	//i know, whitelist is bad, but it's required here
 	var/list/restricted_machineries = list( /obj/machinery/light,			/obj/machinery/atmospherics,
 						/obj/machinery/door,			/obj/machinery/meter,
-						/obj/machinery/camera,			/obj/machinery/light_switch,
-						/obj/machinery/duct,			/obj/machinery/firealarm,
+						/obj/machinery/camera,			/obj/machinery/light_switch,	/obj/machinery/firealarm,
 						/obj/machinery/alarm,			/obj/machinery/recharger,
 						/obj/machinery/hologram,		/obj/machinery/holoposter,
 						/obj/machinery/button,			/obj/machinery/status_display,

@@ -122,8 +122,8 @@
 			C.forceMove(target.loc)
 			var/direction = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 			C.Move(get_step(C, direction))
-			if(istype(C, /obj/item/weapon/grenade))
-				var/obj/item/weapon/grenade/G = C
+			if(istype(C, /obj/item/grenade))
+				var/obj/item/grenade/G = C
 				if(!G.active)
 					G.activate(user)
 			return TRUE
@@ -223,7 +223,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
 		return
-	else 
+	else
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 		user.hud_used.updatePlaneMasters(user)
@@ -316,7 +316,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
 		return
-	else 
+	else
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 		user.hud_used.updatePlaneMasters(user)
@@ -342,7 +342,7 @@
 
 /obj/structure/multiz/ladder/up/deepmaint/climb()
 	if(!target)
-		var/obj/structure/burrow/my_burrow = pick(all_burrows)
+		var/obj/structure/burrow/my_burrow = pick(GLOB.all_burrows)
 		var/obj/structure/multiz/ladder/burrow_hole/my_hole = new /obj/structure/multiz/ladder/burrow_hole(my_burrow.loc)
 		my_burrow.deepmaint_entry_point = FALSE
 		target = my_hole

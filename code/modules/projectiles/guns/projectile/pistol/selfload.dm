@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/selfload
+/obj/item/gun/projectile/selfload
 	name = "S HG .35 Auto \"Clarissa\""
 	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto mags."
 
@@ -11,7 +11,7 @@
 	silenced = FALSE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 1200
+	price_tag = 1000
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
@@ -28,7 +28,7 @@
 		)
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/selfload/on_update_icon()
+/obj/item/gun/projectile/selfload/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -47,7 +47,7 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/selfload/makarov
+/obj/item/gun/projectile/selfload/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/makarov.dmi'

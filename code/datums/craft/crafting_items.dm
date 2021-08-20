@@ -79,7 +79,7 @@
 	var/suitable_part
 	var/view_only = 0
 	var/tags_to_spawn = list()
-	var/req_parts = 15
+	var/req_parts = 10
 	var/complete = FALSE
 	var/total_items = 20
 	var/list/items = list()
@@ -120,7 +120,7 @@
 
 /obj/item/craft_frame/proc/generate_guns()
 	for(var/i in 1 to total_items)
-		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, null, TRUE, null, paths, null)
+		var/list/canidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, i*100, i*500, TRUE, null, paths, null)
 		paths += list(SSspawn_data.pick_spawn(canidates))
 	for(var/path in paths)
 		items += new path()
@@ -134,7 +134,9 @@
 	if(!complete)
 		to_chat(user, SPAN_WARNING("[src] is not yet complete."))
 	else
-		view_only = round((total_items - 1) * (1 - user.stats.getMult(req_sat, STAT_LEVEL_GODLIKE))) + 1
+		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
+		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
+			view_only += 3
 		ui_interact(user)
 		SSnano.update_uis(src)
 
@@ -171,7 +173,7 @@
 	var/turf/T = get_turf(src)
 	O.forceMove(T)
 	user.put_in_hands(O)
-	if(istype(O, /obj/item/weapon/gun/projectile))
+	if(istype(O, /obj/item/gun/projectile))
 		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[O.type]
 		var/atom/movable/aditional_obj
 		if(islist(aditional_objects) && aditional_objects.len)

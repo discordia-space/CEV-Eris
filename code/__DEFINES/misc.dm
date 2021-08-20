@@ -201,12 +201,12 @@
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
 
-#define CUPGRADE_NATURES_BLESSING /obj/item/weapon/cruciform_upgrade/natures_blessing
-#define CUPGRADE_FAITHS_SHIELD /obj/item/weapon/cruciform_upgrade/faiths_shield
-#define CUPGRADE_CLEANSING_PSESENCE /obj/item/weapon/cruciform_upgrade/cleansing_presence
-#define CUPGRADE_MARTYR_GIFT /obj/item/weapon/cruciform_upgrade/martyr_gift
-#define CUPGRADE_WRATH_OF_GOD /obj/item/weapon/cruciform_upgrade/wrath_of_god
-#define CUPGRADE_SPEED_OF_THE_CHOSEN /obj/item/weapon/cruciform_upgrade/speed_of_the_chosen
+#define CUPGRADE_NATURES_BLESSING /obj/item/cruciform_upgrade/natures_blessing
+#define CUPGRADE_FAITHS_SHIELD /obj/item/cruciform_upgrade/faiths_shield
+#define CUPGRADE_CLEANSING_PSESENCE /obj/item/cruciform_upgrade/cleansing_presence
+#define CUPGRADE_MARTYR_GIFT /obj/item/cruciform_upgrade/martyr_gift
+#define CUPGRADE_WRATH_OF_GOD /obj/item/cruciform_upgrade/wrath_of_god
+#define CUPGRADE_SPEED_OF_THE_CHOSEN /obj/item/cruciform_upgrade/speed_of_the_chosen
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0
@@ -237,6 +237,8 @@
 #define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
+// the thing below allow using SPANning in datum definition, the above can't.
+#define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 

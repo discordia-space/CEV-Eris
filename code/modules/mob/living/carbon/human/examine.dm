@@ -109,7 +109,7 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "<span class='warning'>[T.He] [T.is] \icon[handcuffed] restrained with cable!</span>\n"
 		else
 			msg += "<span class='warning'>[T.He] [T.is] \icon[handcuffed] handcuffed!</span>\n"
@@ -137,7 +137,7 @@
 	//mask
 	if(wear_mask && !skipmask)
 		var/descriptor = "on [T.his] face"
-		if(istype(wear_mask, /obj/item/weapon/grenade))
+		if(istype(wear_mask, /obj/item/grenade))
 			descriptor = "in [T.his] mouth"
 		if(wear_mask.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.has] \icon[wear_mask] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] [descriptor]!</span>\n"
@@ -179,21 +179,21 @@
 			msg += "<span class='warning'>[T.He] [T.has] a splint on [T.his] [o.name]!</span>\n"
 
 	if(!wear_suit && !w_uniform && !(T == src))
-		if(locate(/obj/item/weapon/implant/carrion_spider) in src)
+		if(locate(/obj/item/implant/carrion_spider) in src)
 			msg += SPAN_DANGER("[T.He] [T.has] a strange growth on [T.his] chest!") + "\n"
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"
 
 	var/distance = get_dist(usr,src)
-	if(isghost(usr) || usr.stat == DEAD) // ghosts can see anything
+	if(isghost(usr) || usr?.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(src.stat || (status_flags & FAKEDEATH))
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
 		if((stat == DEAD || src.losebreath || (status_flags & FAKEDEATH)) && distance <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
-		if(ishuman(usr) && !usr.stat && Adjacent(usr))
-			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+		if(ishuman(usr) && !usr?.stat && Adjacent(usr))
+			usr?.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
 		if(distance<=1 && do_mob(usr,src,15,progress=0))
 			if(status_flags & FAKEDEATH)
 				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse and [T.his] soul has departed...</span>")
@@ -347,7 +347,7 @@
 		var/medical = "None"
 
 		if(wear_id)
-			var/obj/item/weapon/card/id/id_card = wear_id.GetIdCard()
+			var/obj/item/card/id/id_card = wear_id.GetIdCard()
 			if(id_card)
 				perpname = id_card.registered_name
 		else
@@ -374,6 +374,7 @@
 		msg += "\n[T.He] [T.is] [pose]"
 
 	to_chat(user, msg)
+	. = msg
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

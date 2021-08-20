@@ -100,8 +100,8 @@
 	..()
 	update_icon()
 
-/obj/machinery/sparker/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/tool/screwdriver))
+/obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/tool/screwdriver))
 		add_fingerprint(user)
 		disable = !disable
 		if(disable)
@@ -156,12 +156,12 @@
 	active = 1
 	icon_state = "launcher1"
 
-	for(var/obj/machinery/sparker/M in SSmachines.machinery)
+	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == id)
 			spawn( 0 )
 				M.ignite()
 
-	for(var/obj/machinery/igniter/M in SSmachines.machinery)
+	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == id)
 			M.ignite()
 

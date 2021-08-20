@@ -14,6 +14,16 @@
 	if(italics)
 		message = "<i>[message]</i>"
 
+	if(verb == "reports")
+		var/cop_code = get_cop_code()
+		if(isghost(src))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
+
 	var/track = null
 	if(isghost(src))
 		if(italics && get_preference_value(/datum/client_preference/ghost_radio) != GLOB.PREF_ALL_CHATTER)
@@ -27,7 +37,7 @@
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(language)
+	if(language && !(verb == "reports")) // Not applying language scramble to codespeak
 		var/nverb = null
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
@@ -45,7 +55,7 @@
 	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
-
+			
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 
@@ -61,7 +71,17 @@
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 
-	if(language)
+	if(verb == "reports")
+		var/cop_code = get_cop_code()
+		if(isghost(src))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
+
+	if(language && !(verb == "reports"))
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.
 			message = language.format_message_radio(message, verb)
 		else
@@ -119,7 +139,7 @@
 
 			// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
 			// as this would allow the AI to track I and realize the mismatch.
-			if(I && (I.name == speaker_name || !I.wear_id || !istype(I.wear_id, /obj/item/weapon/card/id/syndicate)))
+			if(I && (I.name == speaker_name || !I.wear_id || !istype(I.wear_id, /obj/item/card/id/syndicate)))
 				impersonating = I
 				jobname = impersonating.get_assignment()
 			else
@@ -178,7 +198,7 @@
 		message = "<B>[speaker]</B> [verb]."
 
 	if(src.status_flags & PASSEMOTES)
-		for(var/obj/item/weapon/holder/H in src.contents)
+		for(var/obj/item/holder/H in src.contents)
 			H.show_message(message)
 		for(var/mob/living/M in src.contents)
 			M.show_message(message)

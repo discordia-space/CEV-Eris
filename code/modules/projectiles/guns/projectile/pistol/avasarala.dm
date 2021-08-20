@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/avasarala
+/obj/item/gun/projectile/avasarala
 	name = "NT HG .40 Magnum \"Avasarala\""
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
 
@@ -25,18 +25,25 @@
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 
 	price_tag = 1600
+	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/weapon/gun/projectile/avasarala/on_update_icon()
+/obj/item/gun/projectile/avasarala/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if(gilded)
+		iconstring += "_gold"
+		itemstring += "_gold"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
-	SetIconState(iconstring)
+	icon_state = iconstring
+	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/avasarala/Initialize()
+/obj/item/gun/projectile/avasarala/Initialize()
 	. = ..()
 	update_icon()

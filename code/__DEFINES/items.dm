@@ -79,6 +79,8 @@
 #define GUN_UPGRADE_RIGGED "rigged"
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
+#define GUN_UPGRADE_GILDED "gilded"
+#define GUN_UPGRADE_DNALOCK "biocoded"
 
 //Location Tag defines
 
@@ -89,6 +91,7 @@
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
 #define GUN_GRIP "grip slot"
+#define GUN_COSMETIC "cosmetic slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
@@ -97,6 +100,7 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
+#define GUN_GILDABLE "gildable"
 
 #define GUN_CALIBRE_35 "caliber .35"
 
@@ -110,8 +114,8 @@
 					/obj/spawner/tool/advanced = 5,\
 					/obj/spawner/gun/normal = 3,\
 					/obj/spawner/lathe_disk/advanced = 2,\
-					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
-					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
+					/obj/item/cell/small/moebius/nuclear = 1,\
+					/obj/item/cell/medium/moebius/hyper = 1,\
 					/obj/spawner/rig = 1.5,\
 					/obj/spawner/rig/damaged = 1.5,\
 					/obj/spawner/voidsuit = 4,\
@@ -122,7 +126,7 @@
 					/obj/spawner/exosuit_equipment = 3,\
 					/obj/spawner/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\
-					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)
+					/obj/item/storage/deferred/crate/german_uniform = 4)
 
 GLOBAL_LIST_INIT(tool_aspects_blacklist, list(UPGRADE_COLOR, UPGRADE_ITEMFLAGPLUS, UPGRADE_CELLPLUS, UPGRADE_SHARP, UPGRADE_BULK))
 GLOBAL_LIST_INIT(weapon_aspects_blacklist, list(GUN_UPGRADE_SILENCER, GUN_UPGRADE_FORCESAFETY, GUN_UPGRADE_HONK, GUN_UPGRADE_FULLAUTO,

@@ -28,6 +28,7 @@
 // Lasting side effects from reagents: addictions, withdrawals.
 /datum/metabolism_effects
 	var/list/nerve_system_accumulations = list() // Nerve system accumulations
+	var/nsa_threshold_base = 100
 	var/nsa_threshold = 100
 	var/nsa_current = 0
 
@@ -68,6 +69,7 @@
 	return accumulatedNSA
 
 /datum/metabolism_effects/proc/handle_nsa()
+	nsa_threshold = nsa_threshold_base + (parent.stats.getStat(STAT_COG) / 3)
 	var/nsa_target = get_nsa_target()
 	if(nsa_target != nsa_current)
 		nsa_current = nsa_target > nsa_current \

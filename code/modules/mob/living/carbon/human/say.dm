@@ -50,6 +50,11 @@
 	var/alt_name = ""
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
+	var/last_symbol = copytext(message, length(message))
+	if(last_symbol=="@")
+		if(!src.stats.getPerk(/datum/perk/codespeak))
+			to_chat(src, "You don't know the codes, pal.")
+			return FALSE
 
 	message = sanitize(message)
 	. = ..(message, alt_name = alt_name)
@@ -122,8 +127,8 @@
 /mob/living/carbon/human/GetVoice()
 
 	var/voice_sub
-	if(istype(back, /obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
+	if(istype(back, /obj/item/rig))
+		var/obj/item/rig/rig = back
 		// todo: fix this shit
 		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
 			voice_sub = rig.speech.voice_holder.voice
@@ -175,6 +180,8 @@
 			verb=pick("exclaims", "shouts", "yells")
 		else if(ending == "?")
 			verb="asks"
+		else if(ending=="@")
+			verb="reports"
 
 	return verb
 
