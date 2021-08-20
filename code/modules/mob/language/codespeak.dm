@@ -36,8 +36,13 @@ var/cop_code_last
 
 /mob/living/carbon/human/proc/codespeak_help()
 	set category = "Codespeak"
-	set name = "MAYDAY"
+	set name = "HELP"
 	src.codesay("Need help", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_backup()
+	set category = "Codespeak"
+	set name = "Backups"
+	src.codesay("Need backups", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_clear()
 	set category = "Codespeak"
@@ -53,6 +58,11 @@ var/cop_code_last
 	set category = "Codespeak"
 	set name = "Fuhrer roach"
 	src.codesay("Fuhrer roach", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_murderhobo()
+	set category = "Codespeak"
+	set name = "Assailant"
+	src.codesay("Armed assailant", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_serb()
 	set category = "Codespeak"
@@ -74,15 +84,30 @@ var/cop_code_last
 	set name = "Mutant"
 	src.codesay("Unsanctioned organism", TRUE, FALSE)
 
-/mob/living/carbon/human/proc/codespeak_dead()
+/mob/living/carbon/human/proc/codespeak_dead_crew()
 	set category = "Codespeak"
 	set name = "Dead guy"
 	src.codesay("Crewmember flatlined", TRUE, FALSE)
 
-/mob/living/carbon/human/proc/codespeak_corpse()
+/mob/living/carbon/human/proc/codespeak_wounded_crew()
 	set category = "Codespeak"
 	set name = "Wounded guy"
 	src.codesay("Crewmember wounded", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_dead_oper()
+	set category = "Codespeak"
+	set name = "Dead oper"
+	src.codesay("Operative down", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_wounded_oper()
+	set category = "Codespeak"
+	set name = "Wounded oper"
+	src.codesay("Operative need medical help", TRUE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_ban()
+	set category = "Codespeak"
+	set name = "Burglary"
+	src.codesay("Breaking and entering", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_criminal()
 	set category = "Codespeak"
@@ -114,6 +139,11 @@ var/cop_code_last
 	set name = "No"
 	src.codesay("Negative", FALSE, FALSE)
 
+/mob/living/carbon/human/proc/codespeak_what()
+	set category = "Codespeak"
+	set name = "What?"
+	src.codesay("Clarify?", FALSE, FALSE) 
+
 /mob/living/carbon/human/proc/codespeak_understood_local()
 	set category = "Codespeak"
 	set name = "(local) Ok"
@@ -129,12 +159,42 @@ var/cop_code_last
 	set name = "(local) No"
 	src.codesay("Negative", FALSE, TRUE)
 
-/mob/living/carbon/human/proc/codespeak_warcrime_local()
+/mob/living/carbon/human/proc/codespeak_engage_local()
 	set category = "Codespeak"
 	set name = "(local) Attack?"
 	src.codesay("Engage?", FALSE, TRUE) //TODO: Replace with something that sounds good
+
+/mob/living/carbon/human/proc/codespeak_hold_local()
+	set category = "Codespeak"
+	set name = "(local) Stay"
+	src.codesay("Hold this position", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_go_local()
+	set category = "Codespeak"
+	set name = "(local) Follow"
+	src.codesay("Follow me", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_stop_local()
+	set category = "Codespeak"
+	set name = "(local) Stop"
+	src.codesay("Stop!", FALSE, TRUE)
 
 /mob/living/carbon/human/proc/codespeak_run_local()
 	set category = "Codespeak"
 	set name = "(local) Run?"
 	src.codesay("Proposing a tactical retreat", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_idiot_local()
+	set category = "Codespeak"
+	set name = "(local) Friendly fire"
+	src.codesay("Friendly fire", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_warcrime_yes_local()
+	set category = "Codespeak"
+	set name = "(local) Use lethals"
+	src.codesay("Use lethal ammunition, shoot to kill", FALSE, TRUE)
+
+/mob/living/carbon/human/proc/codespeak_warcrime_no_local()
+	set category = "Codespeak"
+	set name = "(local) Use rubbers"
+	src.codesay("Use non-lethal ammunition", FALSE, TRUE)
