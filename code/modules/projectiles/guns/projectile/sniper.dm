@@ -31,9 +31,6 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 
-/obj/item/gun/projectile/heavysniper/nt
-	name = "NT AMR .60 \"Penetrator\""
-
 /obj/item/gun/projectile/heavysniper/on_update_icon()
 	..()
 
