@@ -183,7 +183,7 @@
 
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
-	build_path = /obj/item/gun/projectile/heavysniper
+	build_path = /obj/item/gun/projectile/heavysniper/nt
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mg_pk
