@@ -9,13 +9,14 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
-	var/mob/living/carbon/occupant
-	var/datum/autodoc/autodoc_processor
 	var/cover_closed = FALSE
 	var/cover_locked = FALSE
 	var/cover_moving = FALSE
+	var/mob/living/carbon/occupant
+	var/datum/autodoc/autodoc_processor
 	var/image/screen_state = null
 	var/image/cover_state = null
+
 
 /obj/machinery/excelsior_autodoc/New()
 	. = ..()
@@ -92,23 +93,27 @@
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/proc/set_occupant(var/mob/living/L)
+	src.add_fingerprint(usr)
+	if(is_neotheology_disciple(L))
+		playsound(src.loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
+		return
 	L.forceMove(src)
 	src.occupant = L
-	src.add_fingerprint(usr)
 	autodoc_processor.set_patient(L)
 	update_use_power(2)
 	L.set_machine(src)
 	cover_state = image(icon, "opened")
 	cover_state.layer = 4.5
 
-	if(!is_excelsior(L))
+	if(!is_excelsior(L) && !emagged) // Let non-NT use emagged autodoc without brainwashing
 		cover_locked = TRUE
 		close_cover()
-		sleep(20)
-		to_chat(L, SPAN_DANGER("Autodoc is attemping to implant you!"))
-		sleep(40)
+		sleep(30)
+		to_chat(L, SPAN_DANGER("Autodoc is implanting you!"))
+		sleep(50)
 		var/obj/item/implant/excelsior/implant = new(L)
-		implant.install(L, BP_HEAD)
+		if (!implant.install(L, BP_HEAD))
+			qdel(implant)
 		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
 		var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
 		if(E)
@@ -163,6 +168,11 @@
 	src.add_fingerprint(user)
 	return
 
+/obj/machinery/excelsior_autodoc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+	if(emagged)
+		return
+	emagged = TRUE
+
 /obj/machinery/excelsior_autodoc/Process()
 	if(stat & (NOPOWER|BROKEN))
 		autodoc_processor.stop()
@@ -179,6 +189,7 @@
 	cover_state.layer = 5
 	cover_closed = FALSE
 	cover_moving = TRUE
+	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/proc/close_cover()
@@ -186,6 +197,7 @@
 	cover_state.layer = 5
 	cover_closed = TRUE
 	cover_moving = TRUE
+	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 50, 1)
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/on_update_icon()
