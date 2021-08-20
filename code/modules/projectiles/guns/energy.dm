@@ -134,6 +134,9 @@
 		update_icon()
 
 /obj/item/gun/energy/attackby(obj/item/C, mob/living/user)
+	if(QUALITY_BOLT_TURNING in C.tool_qualities)
+		..()
+
 	if(QUALITY_SAWING in C.tool_qualities)
 		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
 		if(saw_off == FALSE)
