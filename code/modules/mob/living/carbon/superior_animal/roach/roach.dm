@@ -55,4 +55,4 @@
 
 	if(prob(3))
 		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
-		new /obj/item/weapon/music_tape(get_turf(src))
+		new /obj/item/music_tape(get_turf(src))

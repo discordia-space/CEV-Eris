@@ -33,7 +33,7 @@
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
 
-	var/obj/item/weapon/music_tape/my_tape //Jukebox tape
+	var/obj/item/music_tape/my_tape //Jukebox tape
 
 	var/sanity_value = 2
 
@@ -143,7 +143,7 @@
 				update_media_source()
 			return
 
-	if(istype(W, /obj/item/weapon/music_tape))
+	if(istype(W, /obj/item/music_tape))
 		if(my_tape)
 			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
 		else
