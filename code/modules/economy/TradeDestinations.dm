@@ -41,8 +41,8 @@ var/list/weighted_mundaneevent_locations = list()
 		[pick("mind-machine interfacing","neuroscience","nano-augmentation","genetics")]. [company_name] is expected to announce a co-exploitation deal within the fortnight."
 	return null
 
-/datum/trade_destination/icarus
-	name = "NDV Icarus"
+/datum/trade_destination/atomos
+	name = "IHS Atomos"
 	description = "Corvette assigned to patrol local space."
 	distance = 0.1
 	willing_to_buy = list()
