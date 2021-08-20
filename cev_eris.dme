@@ -643,6 +643,7 @@
 #include "code\game\machinery\alarm.dm"
 #include "code\game\machinery\antigrav.dm"
 #include "code\game\machinery\atmo_control.dm"
+#include "code\game\machinery\autodoc_excelsior.dm"
 #include "code\game\machinery\autolathe_disk_cloner.dm"
 #include "code\game\machinery\Beacon.dm"
 #include "code\game\machinery\biogenerator.dm"
