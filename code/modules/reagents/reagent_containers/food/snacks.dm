@@ -267,7 +267,7 @@
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.w_class >= src.w_class || is_robot_module(W) || (QUALITY_CUTTING in W.tool_qualities))
 				return
 
 			to_chat(user, SPAN_WARNING("You slip \the [W] inside \the [src]."))
