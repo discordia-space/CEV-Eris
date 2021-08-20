@@ -96,13 +96,13 @@ var/cop_code_last
 
 /mob/living/carbon/human/proc/codespeak_dead_oper()
 	set category = "Codespeak"
-	set name = "Dead oper"
+	set name = "Dead operative"
 	src.codesay("Operative down", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_wounded_oper()
 	set category = "Codespeak"
-	set name = "Wounded oper"
-	src.codesay("Operative need medical help", TRUE, FALSE)
+	set name = "Wounded operative"
+	src.codesay("Operative needs medical help", TRUE, FALSE)
 
 /mob/living/carbon/human/proc/codespeak_ban()
 	set category = "Codespeak"
