@@ -10,7 +10,10 @@
 	var/list/datum/track/tracklist = list() //Actual list of media tracks
 
 /obj/item/weapon/music_tape/New()
-	for(var/datum/track/T in all_jukebox_tracks)
+	name = "[name] #[rand(1, 999)]"
+	icon_state = "[rand(1, 15)]"
+	songlist = pick(GLOB.all_playlists)
+	for(var/datum/track/T in GLOB.all_jukebox_tracks)
 		if(T.playlist == songlist)
 			tracklist |= T
 	..()
@@ -27,9 +30,10 @@
 	icon_state = "5"
 
 /obj/item/weapon/music_tape/cursed_songs_that_nobody_likes/New() //This one is special because it's all the songs everyone hated
-	for(var/datum/track/T in all_jukebox_tracks)
+	..()
+	tracklist = list() //Cleans up the song list
+	songlist = "cringe"
+	icon_state = "5"
+	for(var/datum/track/T in GLOB.all_jukebox_tracks)
 		if(T.secret)
 			tracklist |= T
-
-	..()
-

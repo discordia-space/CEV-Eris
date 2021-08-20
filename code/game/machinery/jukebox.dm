@@ -50,11 +50,11 @@
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
-	if(all_jukebox_tracks.len < 1)
+	if(GLOB.all_jukebox_tracks.len < 1)
 		stat |= BROKEN // No tracks configured this round!
 	else
 		// Ootherwise load from the global list!
-		for(var/datum/track/T in all_jukebox_tracks)
+		for(var/datum/track/T in GLOB.all_jukebox_tracks)
 			if(T.secret)
 				secret_tracks |= T
 			else if(!T.playlist)
