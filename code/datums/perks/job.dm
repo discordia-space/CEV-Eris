@@ -272,6 +272,8 @@
 		/mob/living/carbon/human/proc/codespeak_yes,
 		/mob/living/carbon/human/proc/codespeak_no,
 		/mob/living/carbon/human/proc/codespeak_what,
+		/mob/living/carbon/human/proc/codespeak_busted,
+		/mob/living/carbon/human/proc/codespeak_jailbreak,
 		/mob/living/carbon/human/proc/codespeak_understood_local,
 		/mob/living/carbon/human/proc/codespeak_yes_local,
 		/mob/living/carbon/human/proc/codespeak_no_local,

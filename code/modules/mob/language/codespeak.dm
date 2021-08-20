@@ -142,7 +142,17 @@ var/cop_code_last
 /mob/living/carbon/human/proc/codespeak_what()
 	set category = "Codespeak"
 	set name = "What?"
-	src.codesay("Clarify?", FALSE, FALSE) 
+	src.codesay("Clarify?", FALSE, FALSE)
+
+/mob/living/carbon/human/proc/codespeak_busted()
+	set category = "Codespeak"
+	set name = "Suspect in custody"
+	src.codesay("Suspect in custody", FALSE, FALSE) 
+
+/mob/living/carbon/human/proc/codespeak_jailbreak()
+	set category = "Codespeak"
+	set name = "Suspect escaped"
+	src.codesay("Suspect escaped", FALSE, FALSE) 
 
 /mob/living/carbon/human/proc/codespeak_understood_local()
 	set category = "Codespeak"
