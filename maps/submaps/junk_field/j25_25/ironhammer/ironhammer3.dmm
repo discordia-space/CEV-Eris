@@ -161,14 +161,12 @@
 /obj/structure/table/rack,
 /obj/spawner/gun_parts,
 /obj/spawner/gun/normal/low_chance,
-/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "aN" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
-/obj/spawner/gun_parts,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "aO" = (
@@ -338,6 +336,12 @@
 /obj/spawner/ammo/shotgun,
 /obj/spawner/rig_module/low_chance,
 /obj/spawner/rig_module/rare/low_chance,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/template_noop)
+"qx" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/template_noop)
 "Qv" = (
@@ -519,7 +523,7 @@ aB
 ad
 aj
 ae
-aN
+qx
 an
 aY
 ae
