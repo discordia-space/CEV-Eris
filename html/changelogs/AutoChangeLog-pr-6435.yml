@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Add toilets at lower club level
+  - bugfix: Fix a few issues of church map rework

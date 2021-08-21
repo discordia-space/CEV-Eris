@@ -78,6 +78,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/current_page = 1
 
 	var/hudfix_method = TRUE //TRUE to change anchor to user, FALSE to shift by py_shift
+	var/need_in_screen = FALSE // TRUE to check in wait proc if anchor in screen, FALSE to don't check.
 	var/py_shift = 0
 	var/entry_animation = TRUE
 
@@ -266,6 +267,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
 	while (current_user && !finished && !selected_choice)
+		if(need_in_screen && !(anchor in user.contents))
+			return
 		if(require_near && !in_range(anchor, user))
 			return
 		if(custom_check_callback && next_check < world.time)
@@ -284,7 +287,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, in_screen = FALSE, use_hudfix_method = TRUE)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
@@ -300,6 +303,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(istype(custom_check))
 		menu.custom_check_callback = custom_check
 	menu.anchor = anchor
+	menu.hudfix_method = use_hudfix_method
+	menu.need_in_screen = in_screen
 	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
 	menu.set_choices(choices, tooltips)
 	menu.show_to(user)

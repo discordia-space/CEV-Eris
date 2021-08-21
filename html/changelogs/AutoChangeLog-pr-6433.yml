@@ -1,0 +1,5 @@
+author: Doster-d
+delete-after: true
+changes:
+  - bugfix: possible radial error fixed.
+  - bugfix: bluespace rift circuit is now works.
