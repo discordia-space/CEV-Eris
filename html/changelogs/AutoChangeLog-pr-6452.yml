@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscadd: tool tooltips now include the armor penetration value.
