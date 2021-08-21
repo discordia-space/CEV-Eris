@@ -58180,7 +58180,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/bar)
 "cJX" = (
 /obj/machinery/button/remote/blast_door{
