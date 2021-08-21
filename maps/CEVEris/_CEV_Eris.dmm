@@ -33413,12 +33413,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "bBE" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
-	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/obj/spawner/oddities/low_chance,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/bar)
 "bBF" = (
 /obj/structure/disposalpipe/segment,
@@ -42327,8 +42323,9 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
 "bWv" = (
-/obj/structure/railing,
-/turf/simulated/open,
+/obj/structure/table/standard,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
 "bWw" = (
 /obj/machinery/atmospherics/unary/freezer{
@@ -44743,10 +44740,13 @@
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "ccL" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/crew_quarters/bar)
 "ccM" = (
 /obj/landmark/machinery/output,
 /obj/machinery/conveyor/south{
@@ -49523,9 +49523,14 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/medbay)
 "com" = (
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/crew_quarters/bar)
 "coo" = (
 /obj/structure/table/standard,
 /obj/item/electronics/circuitboard/aicore{
@@ -60376,12 +60381,6 @@
 	icon_state = "4,21"
 	},
 /area/shuttle/mining/station)
-"cPH" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
 "cPI" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "6,21"
@@ -60522,11 +60521,6 @@
 /obj/machinery/vending/assist,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/engineering/techstorage)
-"cQe" = (
-/obj/structure/catwalk,
-/obj/spawner/junkfood/rotten,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
 "cQf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -85749,6 +85743,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
+/obj/structure/cyberplant,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "dXb" = (
@@ -101855,9 +101850,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
-"hBA" = (
-/turf/simulated/wall/r_wall,
-/area/eris/crew_quarters/kitchen_storage)
 "hCj" = (
 /obj/structure/railing{
 	dir = 8
@@ -102294,14 +102286,6 @@
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"jdC" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck4port)
 "jgX" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
@@ -104481,11 +104465,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
-"set" = (
-/obj/structure/catwalk,
-/obj/spawner/scrap/dense,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
 "seI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -104540,11 +104519,6 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/atmos)
-"sms" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/eris/maintenance/section3deck4port)
 "smB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -104717,13 +104691,6 @@
 /obj/structure/sign/faction/neotheology_cross,
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/hydroponics/garden)
-"sFr" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
 "sGt" = (
 /obj/effect/shuttle_landmark/merc/sec2east,
 /turf/space,
@@ -105115,11 +105082,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"ujL" = (
-/obj/structure/catwalk,
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck4port)
 "ukB" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -163225,7 +163187,7 @@ cPv
 cPv
 cPv
 cPv
-bUG
+cpP
 cBx
 bWh
 bWh
@@ -163427,7 +163389,7 @@ cPv
 cPv
 cPv
 cPv
-sms
+cpP
 cBx
 bWh
 dRu
@@ -163620,16 +163582,16 @@ bRk
 hQD
 cPv
 cPv
-cPH
+cPv
 bUG
-cPH
-cPH
-cPH
-cPH
-cPH
-cPH
-cPH
-bUG
+cPv
+cPv
+cPv
+cPv
+cPv
+cPv
+cPv
+cpP
 eat
 bWh
 bWh
@@ -163821,18 +163783,18 @@ utY
 bQW
 hQD
 cPv
+cPv
+cPv
+bUG
+cPv
+cPv
+cPv
+cPv
+cPv
+cPv
+cPv
+cpP
 bWv
-ccL
-sFr
-com
-com
-set
-ujL
-sFr
-cQe
-ccL
-jdC
-bWh
 bWh
 dHD
 eat
@@ -164024,20 +163986,20 @@ ccU
 ccU
 anJ
 anJ
-bcZ
+anJ
 anJ
 aqa
 aqa
 csD
 csD
 csD
-dbp
 csD
 csD
-hBA
-fYJ
-fYJ
-fYJ
+csD
+csD
+ccL
+aqa
+com
 fYJ
 aaa
 aaa
@@ -164226,8 +164188,8 @@ auz
 aqa
 cDy
 anJ
-bcZ
 bBE
+anJ
 ewf
 cjp
 csD
@@ -164237,7 +164199,7 @@ wqk
 naW
 wbS
 csD
-cjp
+ctE
 dXa
 anJ
 abF
