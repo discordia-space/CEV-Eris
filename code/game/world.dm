@@ -84,7 +84,9 @@ var/game_id
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+
+	start_log(diary)
+	start_log(href_logfile)
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
@@ -162,7 +164,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			break
 
 	if(!handler || initial(handler.log))
-		diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+		log_href("TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)
 		return

@@ -40,14 +40,15 @@ SUBSYSTEM_DEF(circuit_components)
 			break
 	position = null
 
-/datum/controller/subsystem/circuit_components/suspend()
-	..()
+/datum/controller/subsystem/circuit_components/proc/suspend()
 	queued_components.Cut()
 	log_and_message_admins("Circuit component processing has been disabled.")
+	can_fire = FALSE
+	addtimer(CALLBACK(src, .proc/wake), 1 SECOND) // skip 1 second
 
-/datum/controller/subsystem/circuit_components/wake()
-	..()
+/datum/controller/subsystem/circuit_components/proc/wake()
 	log_and_message_admins("Circuit component processing has been enabled.")
+	can_fire = TRUE
 
 // Store the entries like this so that components can be queued multiple times at once.
 // With immediate set, will generally imitate the order of the call stack if execution happened directly.

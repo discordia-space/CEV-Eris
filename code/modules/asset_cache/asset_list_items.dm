@@ -170,13 +170,13 @@
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
-		/datum/asset/simple/fontawesome
+		/datum/asset/simple/namespaced/fontawesome
 	)
 
-/*
+
 /datum/asset/spritesheet/chat
 	name = "chat"
-
+/*
 /datum/asset/spritesheet/chat/register()
 	InsertAll("emoji", EMOJI_SET)
 	// pre-loading all lanugage icons also helps to avoid meta
@@ -194,7 +194,7 @@
 	assets = list(
 		"playeroptions.css" = 'html/browser/playeroptions.css'
 	)
-
+/*
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png" = 'icons/ui_icons/common/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
@@ -218,7 +218,7 @@
 		"minor_button.png" = 'icons/ui_icons/notes/minor_button.png',
 		"none_button.png" = 'icons/ui_icons/notes/none_button.png',
 	)
-/*
+
 /datum/asset/simple/arcade
 	assets = list(
 		"boss1.gif" = 'icons/ui_icons/arcade/boss1.gif',
@@ -466,12 +466,12 @@
 	assets = list(
 		"ghost.png" = 'icons/ui_icons/orbit/ghost.png'
 	)
-*/
+
 /datum/asset/simple/vv
 	assets = list(
 		"view_variables.css" = 'html/admin/view_variables.css'
 	)
-/*
+
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
@@ -694,8 +694,6 @@
 	..()
 
 /datum/asset/simple/codicon
-	isTrivial = TRUE
-	verify = FALSE
 	assets = list(
 		"codicon.css" = 'html/codicon/codicon.css',
 		"codicon.ttf" = 'html/codicon/codicon.ttf'
