@@ -370,17 +370,24 @@ var/list/mob_hat_cache = list()
 
 	var/mob/living/silicon/ai/bound_ai = null
 
+/mob/living/silicon/robot/drone/aibound/proc/back_to_core()
+	if(bound_ai && src.mind)
+		bound_ai.ckey = src.ckey
+		src.mind.transfer_to(bound_ai) // Transfer mind to AI core
+	else
+		to_chat(src, SPAN_WARNING("No AI core detected."))
+
+/mob/living/silicon/robot/drone/aibound/death()
+	to_chat(src, SPAN_WARNING("Your AI bound drone is destroyed."))
+	back_to_core()
+	return ..()
+
 /mob/living/silicon/robot/drone/aibound/verb/get_back_to_core()
 	set name = "Get Back To Core"
 	set desc = "Release drone control and get back to your main AI core."
 	set category = "Silicon Commands"
 
-	if(bound_ai && src.mind)
-		src.bound_ai.ckey = src.ckey
-		src.bound_ai.bound_drone = src
-		src.mind.transfer_to(bound_ai) // Transfer mind to AI core
-	else
-		to_chat(src, SPAN_WARNING("No AI core detected."))
+	back_to_core()
 
 /mob/living/silicon/robot/drone/aibound/law_resync()
 	return
@@ -396,3 +403,7 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/emag_act(var/remaining_charges, var/mob/user)
 	to_chat(user, SPAN_DANGER("This drone is remotely controlled by the ship AI and cannot be directly subverted, the sequencer has no effect."))
+	to_chat(src, SPAN_DANGER("\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
+
+/mob/living/silicon/robot/drone/aibound/emp_act(severity)
+	back_to_core()

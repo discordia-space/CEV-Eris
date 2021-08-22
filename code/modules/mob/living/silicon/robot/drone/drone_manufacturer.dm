@@ -82,6 +82,7 @@
 		var/mob/living/silicon/robot/drone/aibound/new_drone = new /mob/living/silicon/robot/drone/aibound(get_turf(src))
 		var/mob/living/silicon/ai/M = player.mob
 		new_drone.bound_ai = M // Save AI core in variable to be able to get back to it
+		M.bound_drone = new_drone  // Save new drone in variable of AI
 		new_drone.real_name = M.name + " controlled drone"
 		new_drone.name = new_drone.real_name
 		new_drone.ckey = player.ckey
