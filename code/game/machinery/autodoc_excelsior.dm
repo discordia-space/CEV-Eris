@@ -22,7 +22,15 @@
 	. = ..()
 	autodoc_processor = new/datum/autodoc()
 	autodoc_processor.holder = src
-	autodoc_processor.damage_heal_amount = 20
+	var/component_heal_multiplier = 0
+	var/component_speed_multiplier = 0
+	for(var/obj/item/stock_parts/part in component_parts)
+		if(istype(part, /obj/item/stock_parts/manipulator) || istype(part, /obj/item/stock_parts/micro_laser))
+			component_heal_multiplier += part.rating
+		if(istype(part, /obj/item/stock_parts/scanning_module))
+			component_speed_multiplier += part.rating
+	autodoc_processor.damage_heal_amount = 5*component_heal_multiplier // 30 with excel parts , 10 with stock, 40 with one-star.
+	autodoc_processor.processing_speed =(35 - (5 * component_speed_multiplier)) SECONDS // 30 with default , 20 wtth excel , 15 with one-star
 	update_icon()
 
 
@@ -35,7 +43,7 @@
 /obj/machinery/excelsior_autodoc/relaymove(mob/user)
 	if (user.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	return
 
 /obj/machinery/excelsior_autodoc/attackby(obj/item/I, mob/living/user)
@@ -52,7 +60,7 @@
 
 	if (usr.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
 	return
 
@@ -70,7 +78,7 @@
 		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 /obj/machinery/excelsior_autodoc/proc/go_out()
@@ -92,13 +100,13 @@
 	update_use_power(1)
 	update_icon()
 
-/obj/machinery/excelsior_autodoc/proc/set_occupant(var/mob/living/L)
-	src.add_fingerprint(usr)
+/obj/machinery/excelsior_autodoc/proc/set_occupant(mob/living/L)
+	add_fingerprint(usr)
 	if(is_neotheology_disciple(L))
-		playsound(src.loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
+		playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
 		return
 	L.forceMove(src)
-	src.occupant = L
+	occupant = L
 	autodoc_processor.set_patient(L)
 	update_use_power(2)
 	L.set_machine(src)
@@ -143,7 +151,7 @@
 		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return TRUE
 
 /obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
@@ -165,10 +173,10 @@
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
-/obj/machinery/excelsior_autodoc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+/obj/machinery/excelsior_autodoc/emag_act(remaining_charges, mob/user, emag_source)
 	if(emagged)
 		return
 	emagged = TRUE
@@ -229,7 +237,7 @@
 				cover_moving = FALSE
 				update_icon()
 
-		var/actual_health = max(0,(occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10)
+		var/actual_health = max(0,round((occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10))
 		screen_state = image(icon, "screen_[actual_health]0")
 	else
 		screen_state = image(icon, "screen_idle")
