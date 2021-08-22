@@ -407,3 +407,9 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/emp_act(severity)
 	back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/use_power()
+	..()
+	if(!src.has_power)
+		to_chat(src, SPAN_WARNING("Your AI bound drone runs out of power!"))
+		back_to_core()
