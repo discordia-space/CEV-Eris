@@ -114,4 +114,4 @@
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_yellowteamradio(str) ("<span class='yellowteamradio'>" + str + "</span>")
 
-#define report_progress(str) to_chat(world, span_boldannounce(str))
+#define report_progress(str) (to_chat(world, span_boldannounce(str)))

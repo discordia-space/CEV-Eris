@@ -42,6 +42,10 @@
 	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
 	var/no_internal_mag = FALSE // to bar sniper and double-barrel from installing overshooter.
 
+	//for sawable guns
+	var/saw_off = FALSE
+	var/sawn //what it will becone after sawing
+
 /obj/item/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
 	QDEL_NULL(ammo_magazine)
@@ -280,6 +284,27 @@
 
 /obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	.=..()
+	if(QUALITY_SAWING in A.tool_qualities)
+		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+		if(saw_off == FALSE)
+			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
+			return
+		if (src.item_upgrades.len)
+			if(src.dna_compare_samples) //or else you can override dna lock
+				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				return
+			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
+				return
+		if(loaded.len)
+			for(var/i in 1 to max_shells)
+				afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
+				playsound(user, fire_sound, 50, 1)
+			user.visible_message(SPAN_DANGER("The [src] goes off!"), SPAN_DANGER("The [src] goes off in your face!"))
+			return
+		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			qdel(src)
+			new sawn(usr.loc)
+			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
 

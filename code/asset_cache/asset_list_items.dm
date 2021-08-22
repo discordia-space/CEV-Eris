@@ -692,4 +692,11 @@
 			if((filename in mapnames) && fexists(file_path))
 				assets[filename] = fcopy_rsc(file_path)
 	..()
-	
+
+/datum/asset/simple/codicon
+	isTrivial = TRUE
+	verify = FALSE
+	assets = list(
+		"codicon.css" = 'html/codicon/codicon.css',
+		"codicon.ttf" = 'html/codicon/codicon.ttf'
+	)

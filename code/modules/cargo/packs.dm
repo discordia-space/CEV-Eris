@@ -1654,3 +1654,12 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Cigarettes Cartons Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Supply"
+
+
+/datum/supply_pack/boombox
+	contains = list(/obj/item/media/boombox)
+	name = "Boombox delivery"
+	cost = 1000
+	crate_name = "SN4-Z 2N3Z CRATE"
+	containertype = /obj/structure/closet/crate
+	group = "Miscellaneous"

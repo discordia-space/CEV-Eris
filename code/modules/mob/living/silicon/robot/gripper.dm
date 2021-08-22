@@ -243,6 +243,19 @@
 		/obj/item/computer_hardware
 		)
 
+/obj/item/gripper/surgery
+	name = "surgery gripper"
+	icon_state = "gripper-sci"
+	desc = "Sophisticated tool for handling organs and implants."
+
+	can_hold = list(
+		/obj/item/organ,
+		/obj/item/organ_module,
+		/obj/item/device/mmi,
+		/obj/item/tank/,
+		/obj/item/reagent_containers/blood/
+		)
+
 /obj/item/gripper/chemistry //A gripper designed for chemistry, to allow borgs to work efficiently in the lab
 	name = "chemistry gripper"
 	icon_state = "gripper-sci"
@@ -254,7 +267,8 @@
 		/obj/item/reagent_containers/spray,
 		/obj/item/storage/pill_bottle,
 		/obj/item/hand_labeler,
-		/obj/item/stack/material/plasma
+		/obj/item/stack/material/plasma,
+		/obj/item/reagent_containers/food/snacks/meat
 		)
 
 /obj/item/gripper/service //Used to handle food, drinks, and seeds.

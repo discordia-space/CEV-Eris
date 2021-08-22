@@ -1,13 +1,25 @@
 /datum/design/research/item/wirer
 	name = "Custom wirer tool"
-	build_path = /obj/item/device/electronics/integrated/wirer
+	build_path = /obj/item/device/integrated_electronics/wirer
 	sort_string = "VBVAA"
 	category = CAT_CIRCUITS
 
 /datum/design/research/item/debugger
 	name = "Custom circuit debugger tool"
-	build_path = /obj/item/device/electronics/integrated/debugger
+	build_path = /obj/item/device/integrated_electronics/debugger
 	sort_string = "VBVAB"
+	category = CAT_CIRCUITS
+
+/datum/design/research/item/detailer
+	name = "Custom circuit detailer tool"
+	build_path = /obj/item/device/integrated_electronics/detailer
+	sort_string = "VBVAC"
+	category = CAT_CIRCUITS
+
+/datum/design/research/item/analyzer
+	name = "Custom circuit analyzer tool"
+	build_path = /obj/item/device/integrated_electronics/analyzer
+	sort_string = "VBVAD"
 	category = CAT_CIRCUITS
 
 /datum/design/research/item/custom_circuit_assembly
@@ -44,7 +56,7 @@
 /datum/design/research/item/custom_circuit_assembly/printer
 	name = "Integrated circuit printer"
 	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
-	build_path = /obj/item/device/electronics/integrated/integrated_circuit_printer
+	build_path = /obj/item/device/integrated_circuit_printer
 	sort_string = "VCAAF"
 
 /datum/design/research/item/custom_circuit_assembly/advanced_designs
@@ -52,3 +64,9 @@
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
 	build_path = /obj/item/disk/integrated_circuit/upgrade/advanced
 	sort_string = "VCAAG"
+
+/datum/design/research/item/custom_circuit_assembly/cloning
+	name = "Integrated circuit printer cloning disk - instance printing"
+	desc = "Install this into your integrated circuit printer to enhance it.  This one allow printer to print assemblies in seconds, litterally."
+	build_path = /obj/item/disk/integrated_circuit/upgrade/clone
+	sort_string = "VCAAH"

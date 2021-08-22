@@ -138,13 +138,13 @@ SUBSYSTEM_DEF(air)
 		S.update_air_properties()
 
 		CHECK_TICK
-
-	report_progress({"Total Simulated Turfs: [simulated_turf_count]
+	var/text = {"Total Simulated Turfs: [simulated_turf_count]
 Total Zones: [zones.len]
 Total Edges: [edges.len]
 Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
-"})
+"}
+	report_progress(text) // we have to do this due to this being a #define
 
 	report_progress("Geometry processing completed in [(REALTIMEOFDAY - starttime)/10] seconds!")
 

@@ -19,6 +19,9 @@
 	var/charge_meter = TRUE //if set, the icon state will be chosen based on the current charge
 	var/item_modifystate
 	var/item_charge_meter = FALSE //same as above for item state
+	//for sawable guns
+	var/saw_off = FALSE
+	var/sawn //what it will becone after sawing
 
 	//self-recharging
 	var/self_recharge = FALSE		//if set, the weapon will recharge itself
@@ -131,6 +134,21 @@
 		update_icon()
 
 /obj/item/gun/energy/attackby(obj/item/C, mob/living/user)
+	if(QUALITY_SAWING in C.tool_qualities)
+		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+		if(saw_off == FALSE)
+			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
+			return
+		if (src.item_upgrades.len)
+			if(src.dna_compare_samples) //or else you can override dna lock
+				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				return
+			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
+				return
+		if(saw_off && C.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			qdel(src)
+			new sawn(usr.loc)
+			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
 	if(self_recharge)
 		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
 		return
@@ -147,7 +165,7 @@
 		update_icon()
 
 /obj/item/gun/energy/nano_ui_data(mob/user)
-	var/list/data = ..()
+	var/list/data = list()
 	data["charge_cost"] = charge_cost
 	var/obj/item/cell/C = get_cell()
 	if(C)

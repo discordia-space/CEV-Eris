@@ -99,15 +99,6 @@ var/list/mob_hat_cache = list()
 	GLOB.drones.Remove(src)
 	. = ..()
 
-/mob/living/silicon/robot/drone/construction
-	icon_state = "constructiondrone"
-	law_type = /datum/ai_laws/construction_drone
-	module_type = /obj/item/robot_module/drone/construction
-	hat_x_offset = 1
-	hat_y_offset = -12
-	can_pull_size = ITEM_SIZE_HUGE
-	can_pull_mobs = MOB_PULL_SAME
-
 /mob/living/silicon/robot/drone/New()
 
 	..()
@@ -333,7 +324,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/proc/welcome_drone()
 	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
 	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
-	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
+	to_chat(src, "Remember,  you are <b>lawed against harming the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
 	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
@@ -341,25 +332,6 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/remove_robot_verbs()
 	return
-
-/mob/living/silicon/robot/drone/construction/welcome_drone()
-	to_chat(src, "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>.")
-	to_chat(src, "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible.")
-	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
-	to_chat(src, "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>.")
-
-/mob/living/silicon/robot/drone/construction/init()
-	..()
-	flavor_text = "It's a bulky construction drone stamped with a Sol Central glyph."
-
-/mob/living/silicon/robot/drone/construction/updatename()
-	real_name = "construction drone ([rand(100,999)])"
-	name = real_name
-
-/mob/living/silicon/robot/drone/construction/updateicon()
-	cut_overlays()
-	if(stat == CONSCIOUS)
-		add_overlays("eyes-[module_sprites[icontype]]")
 
 /proc/too_many_active_drones()
 	var/drones = 0

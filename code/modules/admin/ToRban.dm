@@ -4,12 +4,11 @@
 #define TORFILE "data/ToR_ban.bdb"
 #define TOR_UPDATE_INTERVAL 216000	//~6 hours
 
-/proc/ToRban_isbanned(var/ip_address)
+/proc/ToRban_isbanned(ip_address)
 	var/savefile/F = new(TORFILE)
-	if(F)
-		if( ip_address in F.dir )
-			return 1
-	return 0
+	if(F && (ip_address in F.dir))
+		return TRUE
+	return FALSE
 
 /proc/ToRban_autoupdate()
 	var/savefile/F = new(TORFILE)
@@ -21,32 +20,35 @@
 	return
 
 /proc/ToRban_update()
-	spawn(0)
-		log_misc("Downloading updated ToR data...")
-		var/http[] = world.Export("https://check.torproject.org/exit-addresses")
+	set waitfor = FALSE
+	log_misc("Downloading updated ToR data...")
+	var/list/http = world.Export("https://check.torproject.org/exit-addresses")
 
-		var/list/rawlist = file2list(http["CONTENT"])
-		if(rawlist.len)
-			fdel(TORFILE)
-			var/savefile/F = new(TORFILE)
-			for( var/line in rawlist )
-				if(!line)	continue
-				if( copytext(line,1,12) == "ExitAddress" )
-					var/cleaned = copytext(line,13,length(line)-19)
-					if(!cleaned)	continue
-					F[cleaned] << 1
-			F["last_update"] << world.realtime
-			log_misc("ToR data updated!")
-			if(usr)	to_chat(usr, "ToRban updated.")
-			return 1
-		log_misc("ToR data update aborted: no data.")
-		return 0
+	var/list/rawlist = file2list(http["CONTENT"])
+	if(rawlist.len)
+		fdel(TORFILE)
+		var/savefile/F = new(TORFILE)
+		for(var/line in rawlist)
+			if(!line)
+				continue
+			if(copytext(line,1,12) == "ExitAddress")
+				var/cleaned = copytext(line,13,length(line)-19)
+				if(!cleaned)
+					continue
+				F[cleaned] << 1
+		F["last_update"] << world.realtime
+		log_misc("ToR data updated!")
+		if(usr)
+			to_chat(usr, "ToRban updated.")
+		return
+	log_misc("ToR data update aborted: no data.")
 
 ADMIN_VERB_ADD(/client/proc/ToRban, R_SERVER, FALSE)
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server"
-	if(!holder)	return
+	if(!holder)
+		return
 	switch(task)
 		if("update")
 			ToRban_update()

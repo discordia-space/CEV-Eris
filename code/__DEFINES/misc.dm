@@ -44,7 +44,7 @@
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 
 #define PODS_PREPTIME 	600	//10 mins = 600 sec - hol long pods will wait before launch
-#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcomm
+#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcom
 #define PODS_LOCKDOWN	90	//1.5 mins - how long pods stay opened, if evacuation will be cancelled
 
 // Shuttle moving status.
@@ -237,6 +237,8 @@
 #define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
+// the thing below allow using SPANning in datum definition, the above can't.
+#define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 
@@ -337,3 +339,6 @@
 
 //Sounds list
 #define WALLHIT_SOUNDS list('sound/effects/wallhit.ogg', 'sound/effects/wallhit2.ogg', 'sound/effects/wallhit3.ogg')
+
+//Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"

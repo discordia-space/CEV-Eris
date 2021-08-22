@@ -32,7 +32,7 @@
 	new/obj/effect/sparks(loc)
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
-	return
+
 /obj/item/proc/flashbang_without_the_bang(turf/T, mob/living/carbon/M) ///flashbang_bang but bang-less.
 //Checking for protections
 	var/eye_safety = 0

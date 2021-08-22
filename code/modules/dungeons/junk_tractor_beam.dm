@@ -3,7 +3,7 @@
 #define BEAM_STABILIZED  2
 #define BEAM_COOLDOWN    3
 
-#define JTB_EDGE     2
+#define JTB_EDGE     3
 #define JTB_MAXX   100
 #define JTB_MAXY   100
 #define JTB_OFFSET  10
@@ -534,10 +534,10 @@
 	
 	// Make space outside the edge impassable to avoid fast moving object moving too fast through the barrier to be detected and wraped-around
 	edges = list()
-	edges += block(locate(1+JTB_OFFSET-JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE, z), locate(1+JTB_OFFSET-JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Left border
-	edges |= block(locate(maxx+JTB_OFFSET+JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE, z),locate(maxx+JTB_OFFSET+JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Right border
-	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE-1, z), locate(maxx+JTB_OFFSET+JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE-1, z))  // Bottom border
-	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE+1, z),locate(maxx+JTB_OFFSET+JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE+1, z))  // Top border
+	edges += block(locate(1+JTB_OFFSET-JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE, z), locate(1+JTB_OFFSET-JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Left border
+	edges |= block(locate(maxx+JTB_OFFSET+JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE, z),locate(maxx+JTB_OFFSET+JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Right border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, 1+JTB_OFFSET-JTB_EDGE+1, z), locate(maxx+JTB_OFFSET+JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE+1, z))  // Bottom border
+	edges |= block(locate(1+JTB_OFFSET-JTB_EDGE-1, maxy+JTB_OFFSET+JTB_EDGE-1, z),locate(maxx+JTB_OFFSET+JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE-1, z))  // Top border
 	for(var/turf/T in edges)
 		T.density = 1
 
