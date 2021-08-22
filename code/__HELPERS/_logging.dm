@@ -25,6 +25,12 @@
 /proc/game_log(category, text)
 	WRITE_LOG(diary, "[game_id] [category]: [text]")
 
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+/proc/log_test(text)
+	WRITE_LOG(diary, text)
+	SEND_TEXT(world.log, text)
+#endif
+
 /proc/log_admin(text)
 	admin_log.Add(text)
 	lobby_message(message = text, color = "#FFA500")
