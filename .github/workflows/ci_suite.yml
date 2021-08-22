@@ -27,6 +27,8 @@ jobs:
       - name: Run Linters
         run: |
           bash tools/ci/check_filedirs.sh cev_eris.dme
+          tgui/bin/tgui --lint
+          tgui/bin/tgui --test
           bash tools/ci/check_grep.sh
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
@@ -54,6 +56,7 @@ jobs:
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
           tools/build/build dm -DCIBUILDING -DCITESTING -DALL_MAPS
+
   run_all_tests:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Integration Tests
@@ -90,6 +93,7 @@ jobs:
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build -DCIBUILDING
           bash tools/ci/run_server.sh
+
   test_windows:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Windows Build
