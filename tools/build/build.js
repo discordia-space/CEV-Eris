@@ -119,7 +119,7 @@ const DmTarget = Juke.createTarget({
 
 const DefaultTarget = Juke.createTarget({
   name: 'default',
-  dependsOn: [DmTarget], // TguiTarget, TgFontTarget,
+  dependsOn: [TguiTarget, TgFontTarget, DmTarget],
 });
 
 /**
@@ -146,7 +146,7 @@ const TGS_MODE = process.env.CBT_BUILD_MODE === 'TGS';
 
 Juke
   .setup({
-    default: TGS_MODE ? null : DefaultTarget, // TgsTarget
+    default: TGS_MODE ? TgsTarget : DefaultTarget,
   })
   .then((code) => {
     process.exit(code);
