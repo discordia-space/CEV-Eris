@@ -100,35 +100,35 @@
 	update_use_power(1)
 	update_icon()
 
-/obj/machinery/excelsior_autodoc/proc/set_occupant(mob/living/L)
-	add_fingerprint(usr)
-	if(is_neotheology_disciple(L))
+/obj/machinery/excelsior_autodoc/proc/set_occupant(mob/living/user)
+	add_fingerprint(user)
+	if(is_neotheology_disciple(user))
 		playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
 		return
-	L.forceMove(src)
-	occupant = L
-	autodoc_processor.set_patient(L)
+	user.forceMove(src)
+	occupant = user
+	autodoc_processor.set_patient(user)
 	update_use_power(2)
-	L.set_machine(src)
+	user.set_machine(src)
 	cover_state = image(icon, "opened")
 	cover_state.layer = 4.5
 
-	if(!is_excelsior(L) && !emagged) // Let non-NT use emagged autodoc without brainwashing
+	if(!is_excelsior(user) && !emagged) // Let non-NT use emagged autodoc without brainwashing
 		cover_locked = TRUE
 		close_cover()
 		sleep(30)
-		to_chat(L, SPAN_DANGER("Autodoc is implanting you!"))
+		to_chat(user, SPAN_DANGER("Autodoc is implanting you!"))
 		sleep(50)
-		var/obj/item/implant/excelsior/implant = new(L)
-		if (!implant.install(L, BP_HEAD))
+		var/obj/item/implant/excelsior/implant = new(user)
+		if (!implant.install(user, BP_HEAD))
 			qdel(implant)
 		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-		var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
-		if(E)
-			if(!E.active)
-				E.start_excel_timer()
+		var/datum/objective/timed/excelsior/excel_timer = (locate(/datum/objective/timed/excelsior) in F.objectives)
+		if(excel_timer)
+			if(!excel_timer.active)
+				excel_timer.start_excel_timer()
 			else
-				E.on_convert()
+				excel_timer.on_convert()
 		cover_locked = FALSE
 	else
 		update_icon()
