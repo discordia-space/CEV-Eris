@@ -109,7 +109,8 @@ var/list/ai_verbs_default = list(
 	var/multitool_mode = 0
 
 	var/mob/living/silicon/robot/drone/aibound/bound_drone = null
-	var/bound_drone_created = FALSE  // AI can only have a single drone in the whole shift
+	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
+	var/time_destroyed = 0.0
 
 	defaultHUD = "Eris"
 
@@ -613,7 +614,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/aicard))
-
+		pull_to_core()  // Pull back mind to core if it is controlling a drone
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
@@ -756,12 +757,10 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/go_into_drone()
 	// Switch to drone or spawn a new one
 	if(!bound_drone)
-		if (!bound_drone_created)
+		if (world.time - time_destroyed > drone_cooldown_time)
 			try_drone_spawn(src, aibound = TRUE)
-			if (bound_drone)
-				bound_drone_created = TRUE
 		else
-			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core forbids you from having more that one AI bound drone."))
+			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [drone_cooldown_time - (world.time - time_destroyed)] seconds before creating a new AI bound drone."))
 	else if(src?.mind)
 		bound_drone.ckey = src.ckey
 		bound_drone.laws = src.laws // Resync laws in case they have been changed
