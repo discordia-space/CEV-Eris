@@ -24,7 +24,7 @@
 	autodoc_processor.holder = src
 	autodoc_processor.damage_heal_amount = 20
 	update_icon()
-	
+
 
 /obj/machinery/excelsior_autodoc/Destroy()
 	if(occupant)
@@ -33,7 +33,7 @@
 	return ..()
 
 /obj/machinery/excelsior_autodoc/relaymove(mob/user)
-	if (usr.incapacitated())
+	if (user.incapacitated())
 		return
 	src.go_out()
 	return
@@ -229,34 +229,12 @@
 				cover_moving = FALSE
 				update_icon()
 
-		var/actual_health = occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss())
-		if(actual_health < 1)
-			screen_state = image(icon, "screen_00")
-		else if(actual_health < 10)
-			screen_state = image(icon, "screen_10")
-		else if(actual_health < 20)
-			screen_state = image(icon, "screen_20")
-		else if(actual_health < 30)
-			screen_state = image(icon, "screen_30")
-		else if(actual_health < 40)
-			screen_state = image(icon, "screen_40")
-		else if(actual_health < 50)
-			screen_state = image(icon, "screen_50")
-		else if(actual_health < 60)
-			screen_state = image(icon, "screen_60")
-		else if(actual_health < 70)
-			screen_state = image(icon, "screen_70")
-		else if(actual_health < 80)
-			screen_state = image(icon, "screen_80")
-		else if(actual_health < 90)
-			screen_state = image(icon, "screen_90")
-		else if(actual_health <= 100)
-			screen_state = image(icon, "screen_100")
-
+		var/actual_health = (occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10
+		screen_state = image(icon, "screen_[actual_health]0")
 	else
 		screen_state = image(icon, "screen_idle")
 
 	if(stat & (NOPOWER|BROKEN))
 		screen_state = image(icon, "screen_off")
-	
+
 	add_overlays(screen_state)
