@@ -12,6 +12,11 @@
 	id = "lodge2"
 	suffix = "lodge/lodge2.dmm"
 
+/datum/map_template/ruin/exoplanet/lodge/lodge3
+	name = "lodge 3"
+	id = "lodge3"
+	suffix = "lodge/lodge3.dmm"
+
 /turf/simulated/floor/wood/usedup
 	initial_gas = list(GAS_CO2 = MOLES_O2STANDARD, GAS_NITROGEN = MOLES_N2STANDARD)
 
