@@ -229,7 +229,7 @@
 				cover_moving = FALSE
 				update_icon()
 
-		var/actual_health = (occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10
+		var/actual_health = max(0,(occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10)
 		screen_state = image(icon, "screen_[actual_health]0")
 	else
 		screen_state = image(icon, "screen_idle")
