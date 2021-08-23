@@ -37,7 +37,7 @@
 		if(istype(part, /obj/item/stock_parts/scanning_module))
 			component_speed_multiplier += part.rating
 	autodoc_processor.damage_heal_amount = round(AUTODOC_HEAL_PER_UNIT*component_heal_multiplier) // 20 with excel parts  (3.3*6), 7 with stock parts ,  27 with one-star
-	autodoc_processor.processing_speed = (AUTODOC_DEFAULT_PROCESSING_TIME - round(AUTODOC_TIME_PER_UNIT * component_speed_multiplier)) SECONDS // 30 with excel parts (35-4.8)
+	autodoc_processor.processing_speed = (max(1,(AUTODOC_DEFAULT_PROCESSING_TIME - round(AUTODOC_TIME_PER_UNIT * component_speed_multiplier)))) SECONDS // 30 with excel parts (35-4.8)
 	update_icon()
 
 
