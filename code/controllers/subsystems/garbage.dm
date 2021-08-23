@@ -528,7 +528,7 @@ SUBSYSTEM_DEF(garbage)
 				if(SSgarbage.should_save_refs)
 					found_refs[potential_cache] = TRUE
 				#endif
-				log_reftracker("Found [type] \ref[src] in list [container_name].")
+				testing("Found [type] \ref[src] in list [container_name].")
 				continue
 
 			var/assoc_val = null
@@ -540,7 +540,7 @@ SUBSYSTEM_DEF(garbage)
 				if(SSgarbage.should_save_refs)
 					found_refs[potential_cache] = TRUE
 				#endif
-				log_reftracker("Found [type] \ref[src] in list [container_name]\[[element_in_list]\]")
+				testing("Found [type] \ref[src] in list [container_name]\[[element_in_list]\]")
 				continue
 			//We need to run both of these checks, since our object could be hiding in either of them
 			//Check normal sublists
