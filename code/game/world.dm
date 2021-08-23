@@ -120,12 +120,11 @@ var/game_id
 	if(NO_INIT_PARAMETER in params)
 		return
 
-	Master.Initialize(10, FALSE)
+	Master.Initialize(10, FALSE, TRUE)
 
 	call_restart_webhook()
 
 	#ifdef UNIT_TESTS
-	// load_unit_test_changes() // ??
 	HandleTestRun()
 	#endif
 
@@ -135,8 +134,7 @@ var/game_id
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
-	// Master.sleep_offline_after_initializations = FALSE
-	world.sleep_offline = FALSE // iirc mc SHOULD handle this
+	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
 	config.empty_server_restart_time = 0
 	config.vote_autogamemode_timeleft = 0
