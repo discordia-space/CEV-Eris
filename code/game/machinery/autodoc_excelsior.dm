@@ -1,3 +1,10 @@
+/// How much healing is given per rating point of components (micro-laser and manipulator)
+#define AUTODOC_HEAL_PER_UNIT 3.3
+/// How much time is reduced per given rating point of scanning module components
+#define AUTODOC_TIME_PER_UNIT 1.6
+/// Default processing time for any wound
+#define AUTODOC_DEFAULT_PROCESSING_TIME 35
+
 /obj/machinery/excelsior_autodoc
 	name = "excelsior autodoc"
 	desc = "Medical care for everybody, free, and may no one be left behind!"
@@ -29,8 +36,8 @@
 			component_heal_multiplier += part.rating
 		if(istype(part, /obj/item/stock_parts/scanning_module))
 			component_speed_multiplier += part.rating
-	autodoc_processor.damage_heal_amount = 5*component_heal_multiplier // 30 with excel parts , 10 with stock, 40 with one-star.
-	autodoc_processor.processing_speed =(35 - (5 * component_speed_multiplier)) SECONDS // 30 with default , 20 wtth excel , 15 with one-star
+	autodoc_processor.damage_heal_amount = round(AUTODOC_HEAL_PER_UNIT*component_heal_multiplier) // 20 with excel parts  (3.3*6), 7 with stock parts ,  27 with one-star
+	autodoc_processor.processing_speed = (AUTODOC_DEFAULT_PROCESSING_TIME - round(AUTODOC_TIME_PER_UNIT * component_speed_multiplier)) SECONDS // 30 with excel parts (35-4.8)
 	update_icon()
 
 
