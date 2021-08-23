@@ -90,10 +90,9 @@
 // A reasonable number of maximum overlays an object needs
 // If you think you need more, rethink it
 // #define MAX_ATOM_OVERLAYS 100
-/* not yet done
+
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
 #warn "Building with Dream Maker is no longer supported and will result in errors."
 #warn "In order to build, run BUILD.bat in the root directory."
 #warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
 #endif
-*/
