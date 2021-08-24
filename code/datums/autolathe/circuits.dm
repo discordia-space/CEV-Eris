@@ -89,6 +89,10 @@
 	name = "excelsior boombox"
 	build_path = /obj/item/electronics/circuitboard/excelsior_boombox
 
+/datum/design/autolathe/circuit/excelsior_autodoc
+	name = "excelsior autodoc"
+	build_path = /obj/item/electronics/circuitboard/excelsior_autodoc
+
 /datum/design/autolathe/circuit/teleporter_excelsior
 	name = "excelsior long-range teleporter"
 	build_path = /obj/item/electronics/circuitboard/excelsior_teleporter

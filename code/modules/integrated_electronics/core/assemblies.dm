@@ -833,7 +833,7 @@
 			else
 				if(!check_interactivity(user))
 					return
-				var/selected = show_radial_menu(user, src, input_selection, radius = 24, require_near = TRUE, in_screen = TRUE, use_hudfix_method = FALSE)
+				var/selected = show_radial_menu(user, src, input_selection, radius = 24, require_near = TRUE) //, in_screen = TRUE, use_hudfix_method = FALSE)
 				if(selected && inputs_list[selected])
 					choice = inputs_list[selected]
 

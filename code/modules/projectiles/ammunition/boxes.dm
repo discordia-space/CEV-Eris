@@ -269,7 +269,7 @@
 	name = "ammunition box (slug shell)"
 	icon_state = "shot_hv"
 	matter = list(MATERIAL_STEEL = 24)
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 30
