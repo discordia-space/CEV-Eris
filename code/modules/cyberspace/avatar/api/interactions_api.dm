@@ -23,12 +23,12 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/attack_hand(mob/user as mob), attacked_by_hand
 
 /datum/CyberSpaceAvatar/proc/attacked_by_avatar(datum/CyberSpaceAvatar/user, intent)
 
-CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
-/datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)
+// CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
+// /datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)
 
-CYBERAVATAR_CONNECT_PROC_TO(/atom/Bumped(AM as mob|obj), BumpedBy)
-/datum/CyberSpaceAvatar/proc/BumpedBy(atom/movable/AM)
-	if(istype(AM.CyberAvatar) && AM.CyberAvatar.enabled)
-		BumpedByAvatar(AM.CyberAvatar)
+// CYBERAVATAR_CONNECT_PROC_TO(/atom/Bumped(AM as mob|obj), BumpedBy)
+// /datum/CyberSpaceAvatar/proc/BumpedBy(atom/movable/AM)
+// 	if(istype(AM.CyberAvatar) && AM.CyberAvatar.enabled)
+// 		BumpedByAvatar(AM.CyberAvatar)
 
 /datum/CyberSpaceAvatar/proc/BumpedByAvatar(datum/CyberSpaceAvatar/avatar)

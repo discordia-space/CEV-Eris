@@ -1,11 +1,23 @@
+/atom/movable/IceHolder/invisibility = INVISIBILITY_MAXIMUM
+CYBERAVATAR_INITIALIZATION(/atom/movable/IceHolder, CYBERSPACE_MAIN_COLOR)
+CYBERAVATAR_CUSTOM_TYPE(/atom/movable/IceHolder, /datum/CyberSpaceAvatar/ice)
+/datum/CyberSpaceAvatar/ice/Subroutines = TRUE
+
 /datum/CyberSpaceAvatar
 	var/datum/subroutine_manager/Subroutines
-	ice/Subroutines = new
-#define RaiseSubroutines(Routines, FlagOfTrigger)if(Subroutines) TriggerSubroutines(Routines, FlagOfTrigger)
+	ice/Subroutines
+	New()
+		. = ..()
+		if(Subroutines)
+			CollectSubroutines()
+
+	proc/CollectSubroutines()
+		if(!istype(Subroutines))
+			Subroutines = new
 /datum/CyberSpaceAvatar/BumpedByAvatar(datum/CyberSpaceAvatar/avatar)
 	. = ..()
-	RaiseSubroutines(Subroutines.Bumped, SUBROUTINE_BUMPED)
+	RaiseSubroutines(Subroutines.Bumped, SUBROUTINE_BUMPED, avatar)
 
 /datum/CyberSpaceAvatar/AnotherAvatarFound(datum/CyberSpaceAvatar/avatar)
 	. = ..()
-	RaiseSubroutines(Subroutines.Spotted, SUBROUTINE_SPOTTED)
+	RaiseSubroutines(Subroutines.Spotted, SUBROUTINE_SPOTTED, avatar)

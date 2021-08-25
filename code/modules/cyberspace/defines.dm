@@ -21,3 +21,6 @@
 #define SUBROUTINE_FAILED_TO_BREAK	"Failed to Break"
 #define SUBROUTINE_BUMPED			"Bumped"
 #define SUBROUTINE_SPOTTED			"Someone in range!!!"
+#define SUBROUTINE_ANOTHERICE		"You dare challenge me?"
+
+#define RaiseSubroutines(Routines, FlagOfTrigger, WhoTriggered) if(Subroutines) TriggerSubroutines(Routines, FlagOfTrigger, WhoTriggered)

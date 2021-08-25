@@ -25,4 +25,6 @@
 #include "ICE/_ice.dm"
 	#include "ICE/nt.dm"
 	#include "ICE/technomancers.dm"
-	#include "ICE/subroutines/manager.dm"
+	
+	#include "ICE/subroutines/_manager.dm"
+		#include "ICE/subroutines/do_else.dm"

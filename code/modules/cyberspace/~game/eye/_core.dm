@@ -3,7 +3,7 @@
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner)
-/mob/observer/cyberspace_eye
+/mob/observer/cyberspace_eye //slow move of it down
 	alpha = 200
 	icon = 'icons/obj/cyberspace/cyberspace.dmi'
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)

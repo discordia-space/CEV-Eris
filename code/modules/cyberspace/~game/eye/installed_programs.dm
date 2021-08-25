@@ -3,7 +3,7 @@
 	proc
 		RemoveQP(value)
 			if(istype(owner))
-				owner.SetQP(value)
+				owner.CostQP(value)
 
 		TryInstallProgram(datum/computer_file/cyberdeck_program/CP)
 			return CP.TryInstallTo(src)

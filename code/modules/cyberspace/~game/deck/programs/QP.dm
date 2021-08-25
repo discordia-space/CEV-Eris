@@ -13,4 +13,8 @@
 
 		GetFreePlaceForQP()
 			return QuantumPointsLimit - QuantumPoints
+		CostQP(value)
+			. = QuantumPoints > value
+			if(.)
+				QuantumPoints -= value
 

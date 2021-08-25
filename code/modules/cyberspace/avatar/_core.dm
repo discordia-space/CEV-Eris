@@ -1,5 +1,5 @@
 /datum/CyberSpaceAvatar
-	var/atom/Owner
+	var/atom/movable/Owner
 	var/enabled = TRUE
 	var/density = FALSE
 
@@ -8,7 +8,7 @@
 	if(enabled)
 		SetOwner(Owner)
 
-/datum/CyberSpaceAvatar/proc/Proccess() //TODO for sentry AI
+/datum/CyberSpaceAvatar/proc/Proccess(wait, times_fired, controller) //TODO for sentry AI
 
 /datum/CyberSpaceAvatar/New(atom/nOwner)
 	. = ..()
@@ -28,3 +28,11 @@
 		CyberAvatar = new(src)
 	if(istext(_color))
 		CyberAvatar.SetColor(_color)
+
+/datum/CyberSpaceAvatar/proc/GetBody()
+	var/mob/observer/cyberspace_eye/eye = Owner
+	if(istype(eye))
+		var/mob/living/carbon/human/body = eye.owner?.get_user()
+		if(istype(body))
+			return body
+
