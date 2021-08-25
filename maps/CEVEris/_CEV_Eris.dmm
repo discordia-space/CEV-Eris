@@ -33493,13 +33493,6 @@
 "bBO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "maint_hatch_nt_garden";
-	name = "Maintenance Hatch Control";
-	pixel_y = -24;
-	req_access = null
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -53041,6 +53034,12 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "last_shelter";
+	name = "Last shelter lock control";
+	pixel_x = -28;
+	req_access = list(74)
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
