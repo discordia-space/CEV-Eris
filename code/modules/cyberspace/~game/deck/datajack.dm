@@ -42,7 +42,16 @@
 
 			if(istype(cable))
 				if(istype(cable.loc, /obj/item/weapon/computer_hardware/deck))
-					BeginConnection()
+					if(istype(usr, /mob/living/carbon/human))
+						var/mob/living/carbon/human/H = usr
+						to_chat(usr, "You are trying to relax your physical body.")
+						var/cognitionScale = 1 + (H.stats.getStat(STAT_COG) / 100)
+						if(do_after(usr, rand(1, 4) SECONDS / cognitionScale, get_turf(cable.loc)))
+							to_chat(usr, "You trying to clean your mind.")
+							if(do_after(usr, rand(1, 4) SECONDS / cognitionScale, get_turf(cable.loc)))
+								to_chat(usr, "You trying to feel the void.")
+								if(do_after(usr, rand(1, 2) SECONDS / cognitionScale, get_turf(cable.loc)))
+									BeginConnection()
 				else
 					to_chat(usr, SPAN_WARNING("ERROR: Cable not connected to deck."))
 			else
