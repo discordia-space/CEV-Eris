@@ -18,6 +18,7 @@
 	price_tag = 2000
 	spawn_blacklisted = TRUE//antag_item_targets
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/max_stored_matter = 30
 	var/stored_matter = 0
 	var/working = 0
 	var/mode = 1
@@ -49,19 +50,18 @@
 	return ..()
 
 /obj/item/rcd/attackby(obj/item/W, mob/user)
-
-	if(istype(W, /obj/item/rcd_ammo))
-		if((stored_matter + 10) > 30)
-			to_chat(user, SPAN_NOTICE("The RCD can't hold any more matter-units."))
-			return
-		user.drop_from_inventory(W)
-		qdel(W)
-		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units."))
-		update_icon()	//Updates the ammo counter
-		return
-	..()
+	var/obj/item/stack/material/M = W
+	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
+		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter < max_stored_matter)
+			stored_matter += amount
+			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src].</span>. The RCD now holds [stored_matter]/30 matter-units.")
+			update_icon()	//Updates the ammo counter
+		if (M.use(amount) && stored_matter >= max_stored_matter)
+			to_chat(user, "<span class='notice'>The RCD is full.")
+	else
+		..()
 
 /obj/item/rcd/attack_self(mob/user)
 	//Change the mode
@@ -211,17 +211,6 @@
 	ratio = max(round(ratio, 0.10) * 100, 10)
 
 	add_overlays("[icon_state]-[ratio]")
-
-/obj/item/rcd_ammo
-	name = "compressed matter cartridge"
-	desc = "Highly compressed matter for the RCD."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "rcd"
-	item_state = "rcdammo"
-	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 2)
-	price_tag = 300
 
 /obj/item/rcd/borg
 	canRwall = 1
