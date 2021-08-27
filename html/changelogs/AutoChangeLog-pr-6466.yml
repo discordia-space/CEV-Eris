@@ -1,0 +1,7 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: The meatspike now requires a neck-kill grab to spike anything
+  - bugfix: Fixed meatspike victim names not being shown on examine
+  - bugfix: Fixed meatspike sanity damage not being applied
+  - balance: Tripled sanity damage from cutting members of your own species
