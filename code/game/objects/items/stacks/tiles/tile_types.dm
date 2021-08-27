@@ -473,15 +473,19 @@
 /obj/item/stack/tile/derelict/white_red_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict1"
 
 /obj/item/stack/tile/derelict/white_small_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict2"
 
 /obj/item/stack/tile/derelict/red_white_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict3"
 
 /obj/item/stack/tile/derelict/white_big_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict4"
