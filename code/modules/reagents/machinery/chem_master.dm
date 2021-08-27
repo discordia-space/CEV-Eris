@@ -325,7 +325,7 @@
 	var/bottlesprite = "bottle"
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
-	var/max_pill_count = 24 // Half of what normal chem_master can do
+	var/max_pill_count = 24
 	var/max_pill_vol = 60
 	reagent_flags = INJECTABLE | DRAWABLE
 	var/obj/item/reagent_containers/glass/beaker
