@@ -36,6 +36,7 @@
 	tracklist = list() //Cleans up the song list
 	songlist = "cringe"
 	icon_state = "5"
-	for(var/datum/track/T in GLOB.all_jukebox_tracks)
-		if(T.secret)
-			tracklist |= T
+	if(length(GLOB.all_jukebox_tracks))
+		for(var/datum/track/T in GLOB.all_jukebox_tracks)
+			if(T.secret)
+				tracklist |= T
