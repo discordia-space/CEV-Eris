@@ -6,10 +6,8 @@
 			Locked = time
 		IsLocked()
 			. = Locked >= world.time
-			to_world("IsLocked: [.]")
 		TryTrigger(datum/CyberSpaceAvatar/triggerer, wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK)
 			. = !IsLocked()
-			to_world("TryTrigger: [.]")
 		Trigger(datum/CyberSpaceAvatar/triggerer, wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK)
 			Lock()
 /datum/subroutine_manager
