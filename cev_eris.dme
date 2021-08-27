@@ -896,6 +896,7 @@
 #include "code\game\objects\items\devices\organ_module\_module.dm"
 #include "code\game\objects\items\devices\organ_module\active.dm"
 #include "code\game\objects\items\devices\organ_module\debug.dm"
+#include "code\game\objects\items\devices\organ_module\is_item_attached.dm"
 #include "code\game\objects\items\devices\organ_module\simple.dm"
 #include "code\game\objects\items\devices\organ_module\active\armblades.dm"
 #include "code\game\objects\items\devices\organ_module\active\armguns.dm"
