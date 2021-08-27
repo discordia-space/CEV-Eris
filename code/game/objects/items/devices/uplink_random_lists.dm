@@ -48,8 +48,8 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/crossbow, 33)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/energy_sword, 75)
 
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/soap, 5, 100)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/concealed_cane, 50, 10)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/cleanup, 5, 100)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/gentlemen_kit, 50, 10)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/cigarette_kit)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/id)

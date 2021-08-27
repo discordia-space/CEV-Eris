@@ -405,3 +405,39 @@
 		return
 
 	disguise(gun_choices[picked], usr)
+
+//*****************
+//**Chameleon Headset**
+//*****************
+
+/obj/item/device/radio/headset/chameleon
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. There is a dial on the side to change the headset's disguise."
+	icon_state = "headset"
+	item_state = "headset"
+	origin_tech = list(TECH_COVERT = 1)
+	spawn_blacklisted = TRUE
+	ks1type = null // No keys pre-installed
+	var/list/global/clothing_choices
+
+/obj/item/device/radio/headset/chameleon/New()
+	..()
+	if(!clothing_choices)
+		clothing_choices = generate_chameleon_choices(/obj/item/device/radio/headset, list(src.type))
+
+/obj/item/device/radio/headset/chameleon/emp_act(severity)
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	icon_state = "headset"
+	update_icon()
+	update_wear_icon()
+
+/obj/item/device/radio/headset/chameleon/verb/change(picked in clothing_choices)
+	set name = "Change Headset Appearance"
+	set category = "Chameleon Items"
+	set src in usr
+
+	if(!ispath(clothing_choices[picked]))
+		return
+
+	disguise(clothing_choices[picked], usr)

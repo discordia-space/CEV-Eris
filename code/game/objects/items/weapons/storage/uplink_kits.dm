@@ -141,6 +141,7 @@
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)
 	new /obj/item/gun/energy/chameleon(src)
+	new /obj/item/device/radio/headset/chameleon(src)
 
 /obj/item/storage/box/syndie_kit/clerical
 	name = "clerical kit"
@@ -334,3 +335,21 @@
 
 /obj/item/storage/box/syndie_kit/pickle/populate_contents()
 	new /obj/item/reagent_containers/food/snacks/pickle(src)
+
+/obj/item/storage/box/syndie_kit/gentlemen_kit
+	name = "\improper Gentleman's Kit"
+	desc = "Cane with hidden sword and white insulated gloves."
+
+/obj/item/storage/box/syndie_kit/gentlemen_kit/populate_contents()
+	new /obj/item/tool/cane/concealed(src)
+	new /obj/item/clothing/gloves/color/white/insulated(src)
+
+/obj/item/storage/box/syndie_kit/cleanup_kit
+	name = "\improper Crime Scene Cleanup Kit"
+	desc = "Say good-fucking-bye to the evidence."
+
+/obj/item/storage/box/syndie_kit/cleanup_kit/populate_contents()
+	new /obj/item/soap/syndie(src)
+	new /obj/item/bodybag/expanded(src)
+	new /obj/item/grenade/chem_grenade/cleaner(src)
+	new /obj/item/reagent_containers/spray/cleaner(src)
