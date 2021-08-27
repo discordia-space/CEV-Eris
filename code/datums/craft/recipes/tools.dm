@@ -231,9 +231,17 @@
 
 	steps = list(
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
-		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(QUALITY_SAWING, 10, 70),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
+		list(QUALITY_CUTTING, 15, 150),
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
-		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS),	
-		list(QUALITY_ADHESIVE, 15, 100)
+		list(/obj/item/stock_parts/scanning_module , 1),
+		list(QUALITY_SCREW_DRIVING, 10, 70),
+		list(/obj/item/reagent_containers/glass/beaker , 1),
+		list(QUALITY_ADHESIVE, 15, 100),
+		list(/obj/item/cell/small/moebius/pda , 1),
+		list(QUALITY_ADHESIVE, 15, 100),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
+		list(QUALITY_SCREW_DRIVING, 10, 70),
 	)
