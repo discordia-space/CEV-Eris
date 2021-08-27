@@ -74,7 +74,7 @@
 				qdel(src)
 			return
 		else
-			to_chat(user, SPAN_DANGER("The \the [src] has something on it, finish collecting its meat first!"))
+			to_chat(user, SPAN_DANGER(" \The [src] has something on it, finish collecting its meat first!"))
 			return
 
 	return ..()
