@@ -1,0 +1,4 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: it is no longer possible to put implanted items in sliceable food items.
