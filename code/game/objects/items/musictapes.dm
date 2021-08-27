@@ -12,11 +12,13 @@
 /obj/item/music_tape/New()
 	name = "[name] #[rand(1, 999)]"
 	icon_state = "[rand(1, 15)]"
-	songlist = pick(GLOB.all_playlists)
-	for(var/datum/track/T in GLOB.all_jukebox_tracks)
-		if(T.playlist == songlist)
-			tracklist |= T
-	..()
+	if(length(GLOB.all_playlists))
+		songlist = pick(GLOB.all_playlists)
+	if(length(GLOB.all_jukebox_tracks))
+		for(var/datum/track/T in GLOB.all_jukebox_tracks)
+			if(T.playlist == songlist)
+				tracklist |= T
+	. = ..()
 
 /obj/item/music_tape/examine(mob/user)
 	..()
@@ -34,6 +36,7 @@
 	tracklist = list() //Cleans up the song list
 	songlist = "cringe"
 	icon_state = "5"
-	for(var/datum/track/T in GLOB.all_jukebox_tracks)
-		if(T.secret)
-			tracklist |= T
+	if(length(GLOB.all_jukebox_tracks))
+		for(var/datum/track/T in GLOB.all_jukebox_tracks)
+			if(T.secret)
+				tracklist |= T
