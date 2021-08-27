@@ -1,0 +1,4 @@
+author: AlexMorgan3817
+delete-after: true
+changes:
+  - bugfix: Fixes autofailing of CI tests, because of not setuped music for tapes
