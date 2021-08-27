@@ -1,4 +1,4 @@
-/obj/item/weapon/deck_hardware/chip/clone
+/obj/item/deck_hardware/chip/clone
 	name = "clone chip"
 	desc = "A red chip with black and white technomancers' insignia on it's top."
 
@@ -9,13 +9,13 @@
 
 	CanActivated(mob/user)
 		. = ..()
-		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
-			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
+		if(istype(loc, /obj/item/computer_hardware/deck))
+			var/obj/item/computer_hardware/deck/myDeck = loc
 			. = . && myDeck.IsWorking() && myDeck.CheckMemory()
 
 	Activate(mob/user) // TODO: It must install program not copy in grip
-		if(istype(loc, /obj/item/weapon/computer_hardware/deck))
-			var/obj/item/weapon/computer_hardware/deck/myDeck = loc
+		if(istype(loc, /obj/item/computer_hardware/deck))
+			var/obj/item/computer_hardware/deck/myDeck = loc
 			var/datum/computer_file/cyberdeck_program/programToClone = input(user, "Select program to clone.", "Clone Chip") in (myDeck.memory_buffer.GetNames() + "(CANCEL)")
 			
 			programToClone = myDeck.memory_buffer.ProgramByName(programToClone)

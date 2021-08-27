@@ -1,4 +1,4 @@
-/obj/item/weapon/deck_hardware/chip
+/obj/item/deck_hardware/chip
 	name = "chip"
 	desc = "A strange chip."
 
@@ -9,7 +9,7 @@
 	Cooldown = 0
 	var/chip_slot_costing = 1
 
-	TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck)
+	TryInstallTo(obj/item/computer_hardware/deck/_deck)
 		. = ..() && _deck?.GetFreeChipSlots() > chip_slot_costing // No overrides cuz hardware_size = 0
 			
 	Activate(mob/user)

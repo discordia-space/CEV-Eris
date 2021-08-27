@@ -1,4 +1,4 @@
-/obj/item/weapon/deck_hardware/Cyberfeeder
+/obj/item/deck_hardware/Cyberfeeder
 	name = "strange power cell"
 	desc = "A power cell with green led logo of Aster's Guild and data port."
 
@@ -15,11 +15,11 @@
 
 	var/tmp/generation_timer
 
-	Installed(obj/item/weapon/computer_hardware/deck/_deck)
+	Installed(obj/item/computer_hardware/deck/_deck)
 		. = ..()
 		QP_regeneration()
 
-	Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
+	Uninstalled(obj/item/computer_hardware/deck/_deck)
 		. = ..()
 		StopQPGeneration()
 

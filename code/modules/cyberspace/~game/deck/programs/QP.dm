@@ -1,4 +1,4 @@
-/obj/item/weapon/computer_hardware/deck
+/obj/item/computer_hardware/deck
 	var/QuantumPointsLimit = 6
 	var/QuantumPoints = 0
 

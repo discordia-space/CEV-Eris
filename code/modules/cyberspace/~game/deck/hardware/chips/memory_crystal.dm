@@ -1,4 +1,4 @@
-/obj/item/weapon/deck_hardware/chip/memory_crystal
+/obj/item/deck_hardware/chip/memory_crystal
 	name = "memory plank with crystall"
 	desc = "The small plank with big silicon crystall on it and 4 smaller that connected to big by orange lines."
 
@@ -12,7 +12,7 @@
 	NeedToBeInCyberSpace = FALSE
 
 	Activate(mob/user)
-		var/obj/item/weapon/computer_hardware/deck/myDeck = loc
+		var/obj/item/computer_hardware/deck/myDeck = loc
 		. = Memory * 2
 		myDeck.TemporaryExtendGrip(., 20 MINUTES)
 		return ..() && .

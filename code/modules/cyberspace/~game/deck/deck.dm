@@ -1,4 +1,4 @@
-/obj/item/weapon/computer_hardware/deck
+/obj/item/computer_hardware/deck
 	name = "cyberspace deck"
 	desc = "A strange device with port for data jacks."
 	
@@ -60,10 +60,10 @@
 	attackby(obj/item/W, mob/living/user)
 		. = ..()
 		if(!.)
-			var/obj/item/weapon/deck_hardware/H = W
+			var/obj/item/deck_hardware/H = W
 			if(istype(W, /obj/item/mind_cable) && do_after(user, 1 SECONDS, src))
 				. = SetCable(W)
-			else if(istype(W, /obj/item/weapon/deck_hardware) && do_after(user, 1 SECONDS, src))
+			else if(istype(W, /obj/item/deck_hardware) && do_after(user, 1 SECONDS, src))
 				. = H.TryInstallTo(src)
 				if(.)
 					H.relocateTo(src)
@@ -72,16 +72,16 @@
 				playsound(get_turf(src), 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 			SetUpProjectedMind()
 
-/obj/item/weapon/computer_hardware/deck/proc
+/obj/item/computer_hardware/deck/proc
 	IsWorking()
 		return projected_mind.loc != src
 	GetFreeChipSlots()
-		for(var/obj/item/weapon/deck_hardware/chip/C in hardware)
+		for(var/obj/item/deck_hardware/chip/C in hardware)
 			. -= C.chip_slot_costing
 		. += chip_slots // for example: - 2 + 4 = 2
 
 	IsHardwareSuits(hardware_size = 1)
-		for(var/obj/item/weapon/deck_hardware/H in hardware)
+		for(var/obj/item/deck_hardware/H in hardware)
 			. += H.hardware_size
 		. = (hardware_slots - .) >= hardware_size
 

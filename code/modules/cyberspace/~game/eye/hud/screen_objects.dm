@@ -34,7 +34,7 @@
 
 /obj/screen/movable/cyberspace_eye/hardware
 	name = "Hardware"
-	var/obj/item/weapon/deck_hardware/myObject
+	var/obj/item/deck_hardware/myObject
 	var/tmp/image/cachedObjectImage = new
 
 	Click(location, control, params)
@@ -60,7 +60,7 @@
 			cachedObjectImage.overlays = null
 		overlays |= cachedObjectImage
 
-	proc/SetObject(obj/item/weapon/deck_hardware/H)
+	proc/SetObject(obj/item/deck_hardware/H)
 		myObject = H
 		update_icon()
 
@@ -103,7 +103,7 @@
 	. = ..()
 	var/mob/observer/cyberspace_eye/avatar = parentmob
 	if(istype(avatar) && istype(avatar.owner))
-		var/obj/item/weapon/computer_hardware/deck/myDeck = avatar.owner
+		var/obj/item/computer_hardware/deck/myDeck = avatar.owner
 		maptext = "<font style=\"[maptext_style]\">[myDeck.QuantumPoints]</font>"
 
 /obj/screen/movable/cyberspace_eye/counter/size
@@ -116,5 +116,5 @@
 	. = ..()
 	var/mob/observer/cyberspace_eye/avatar = parentmob
 	if(istype(avatar) && istype(avatar.owner))
-		var/obj/item/weapon/computer_hardware/deck/D = avatar.owner
+		var/obj/item/computer_hardware/deck/D = avatar.owner
 		maptext = "<font style=\"[maptext_style]\">[D.GetBusyMemory()]/[D.memory_buffer.Memory]</font>"

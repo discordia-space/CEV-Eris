@@ -12,7 +12,7 @@
 	if(body && istype(triggerer.Owner, /mob/observer/cyberspace_eye))
 		var/mob/observer/cyberspace_eye/R = triggerer.Owner
 		if(istype(R.owner))
-			var/obj/item/weapon/computer_hardware/deck/D = R.owner
+			var/obj/item/computer_hardware/deck/D = R.owner
 			if(AmountOfQP > 0 && !D.CostQP(AmountOfQP))
 				if(NeedJackingOut)
 					R.ReturnToBody() //TODO: Prevent ghostize

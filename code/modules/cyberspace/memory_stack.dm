@@ -44,14 +44,14 @@
 		able_to_install_program(datum/computer_file/P)
 			. = P.size <= GetFreeMemory()
 
-		InstallProgram(datum/computer_file/P, obj/item/weapon/computer_hardware/hard_drive/removeFromHolder = FALSE)
+		InstallProgram(datum/computer_file/P, obj/item/computer_hardware/hard_drive/removeFromHolder = FALSE)
 			. = CheckMemory() && able_to_install_program(P)
 			if(.)
 				Content += P
 				if(istype(removeFromHolder))
 					removeFromHolder.remove_file(P)
 
-		RemoveProgram(datum/computer_file/P, obj/item/weapon/computer_hardware/hard_drive/MoveTo)
+		RemoveProgram(datum/computer_file/P, obj/item/computer_hardware/hard_drive/MoveTo)
 			Content.Remove(P)
 			CheckMemory()
 			if(istype(MoveTo))

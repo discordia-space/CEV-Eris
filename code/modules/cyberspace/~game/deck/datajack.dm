@@ -41,7 +41,7 @@
 			set name = "Establish Cyberspace Connection"
 
 			if(istype(cable))
-				if(istype(cable.loc, /obj/item/weapon/computer_hardware/deck))
+				if(istype(cable.loc, /obj/item/computer_hardware/deck))
 					if(istype(usr, /mob/living/carbon/human))
 						var/mob/living/carbon/human/H = usr
 						to_chat(usr, "You are trying to relax your physical body.")
@@ -62,7 +62,7 @@
 				return cable.connection
 
 		BeginConnection()
-			var/obj/item/weapon/computer_hardware/deck/deck = get_deck()
+			var/obj/item/computer_hardware/deck/deck = get_deck()
 			return deck?.BeginCyberspaceConnection()
 
 		RetractMindCable(mob/user)
@@ -90,7 +90,7 @@
 	var/length = 1
 	var/obj/item/organ/internal/data_jack/owner
 
-	var/obj/item/weapon/computer_hardware/deck/connection
+	var/obj/item/computer_hardware/deck/connection
 	
 	Initialize()
 		. = ..()
@@ -141,7 +141,7 @@
 			if(. && visible)
 				visible_message(SPAN_DANGER("[user] pulls [src] from \his neck."))
 	proc
-		ConnectToDeck(obj/item/weapon/computer_hardware/deck/_deck)
+		ConnectToDeck(obj/item/computer_hardware/deck/_deck)
 			connection = _deck
 			return relocateTo(connection)
 

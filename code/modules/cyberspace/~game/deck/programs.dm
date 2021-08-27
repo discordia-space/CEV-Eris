@@ -1,4 +1,4 @@
-/obj/item/weapon/computer_hardware/deck/proc
+/obj/item/computer_hardware/deck/proc
 	AddMemory(count)
 		. = memory_buffer.ExtendStack(count)
 	TemporaryExtendGrip(count = 16, time = 10 MINUTES)
@@ -20,7 +20,7 @@
 		. = memory_buffer.InstallProgram(P, holder2?.hard_drive)
 		SetUpProjectedMind()
 
-	RemoveProgram(datum/computer_file/cyberdeck_program/P, obj/item/weapon/computer_hardware/hard_drive/MoveTo)
+	RemoveProgram(datum/computer_file/cyberdeck_program/P, obj/item/computer_hardware/hard_drive/MoveTo)
 		if(!MoveTo && istype(holder2))
 			MoveTo = holder2.hard_drive
 		if(!P.undeletable)

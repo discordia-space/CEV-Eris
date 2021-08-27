@@ -107,11 +107,11 @@
 	if(istype(owner))
 		var/hardwareI = 0
 		var/chipI = 0
-		for(var/obj/item/weapon/deck_hardware/H in owner.hardware)
+		for(var/obj/item/deck_hardware/H in owner.hardware)
 			var/number = 0
 			var/screen_position = ""
 			var/slots = 1
-			if(istype(H, /obj/item/weapon/deck_hardware/chip))
+			if(istype(H, /obj/item/deck_hardware/chip))
 				number = chipI
 				slots += number - owner.chip_slots / 2
 

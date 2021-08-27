@@ -9,7 +9,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 	_SeeCyberSpace = TRUE
 
-	var/obj/item/weapon/computer_hardware/deck/owner
+	var/obj/item/computer_hardware/deck/owner
 	proc
 		ReturnToBody()
 			if(istype(owner))

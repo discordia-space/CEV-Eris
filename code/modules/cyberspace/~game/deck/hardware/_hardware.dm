@@ -1,4 +1,4 @@
-/obj/item/weapon/deck_hardware
+/obj/item/deck_hardware
 	name = "unknown hardware"
 	desc = "This is a core type of cyberdeck hardware, you shouldn't see this."
 
@@ -19,24 +19,24 @@
 
 	var/NeedToBeInCyberSpace = TRUE
 
-	var/obj/item/weapon/computer_hardware/deck/myDeck
+	var/obj/item/computer_hardware/deck/myDeck
 
 	var/Memory = 0
 	var/LinkStreight = 0
 
 	proc
-		TryInstallTo(obj/item/weapon/computer_hardware/deck/_deck) // Return TRUE if successful, if TRUE returned this will automaticaly moved in deck. You shouldn't move it forced.
+		TryInstallTo(obj/item/computer_hardware/deck/_deck) // Return TRUE if successful, if TRUE returned this will automaticaly moved in deck. You shouldn't move it forced.
 			. = _deck?.IsHardwareSuits(hardware_size)
-		Installed(obj/item/weapon/computer_hardware/deck/_deck)
+		Installed(obj/item/computer_hardware/deck/_deck)
 			myDeck = _deck
 			myDeck.hardware |= src
 
-		Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
+		Uninstalled(obj/item/computer_hardware/deck/_deck)
 		Activate(mob/user)
 			next_activation = max(world.time + Cooldown, next_activation)
 		// Do not call CanActivated here, Activate should be raw proc of activation, if you want to check something and it is avoidable then override CanActivated
 		CanActivated(mob/user)
-			. = istype(loc, /obj/item/weapon/computer_hardware/deck) && CheckIntegrity() && (next_activation <= world.time)
+			. = istype(loc, /obj/item/computer_hardware/deck) && CheckIntegrity() && (next_activation <= world.time)
 		CheckIntegrity()
 			if(!broken)
 				if(Integrity > 0)
@@ -54,19 +54,19 @@
 			do_sparks(3, 0, get_turf(src))
 			broken = TRUE
 
-		AddEffects(obj/item/weapon/computer_hardware/deck/_deck)
+		AddEffects(obj/item/computer_hardware/deck/_deck)
 			_deck.AddMemory(Memory)
 			_deck.AddLinkStreight(LinkStreight)
-		RemoveEffects(obj/item/weapon/computer_hardware/deck/_deck)
+		RemoveEffects(obj/item/computer_hardware/deck/_deck)
 			_deck.AddMemory(-Memory)
 			_deck.AddLinkStreight(-LinkStreight)
 
-	Installed(obj/item/weapon/computer_hardware/deck/_deck)
+	Installed(obj/item/computer_hardware/deck/_deck)
 		. = ..()
 		if(. && CheckIntegrity())
 			AddEffects(_deck)
 
-	Uninstalled(obj/item/weapon/computer_hardware/deck/_deck)
+	Uninstalled(obj/item/computer_hardware/deck/_deck)
 		. = ..()
 		if(!broken)
 			AddEffects(_deck)
