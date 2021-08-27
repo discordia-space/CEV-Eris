@@ -265,7 +265,7 @@ mob/living/silicon/robot/tracking_initiated()
 
 mob/living/proc/tracking_cancelled()
 
-mob/living/silicon/robot/tracking_initiated()
+mob/living/silicon/robot/tracking_cancelled()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
 		to_chat(src, SPAN_NOTICE("Internal camera is no longer being accessed."))
