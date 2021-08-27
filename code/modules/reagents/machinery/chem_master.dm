@@ -313,7 +313,7 @@
 
 /obj/item/device/makeshift_chem_master
 	name = "ChemMaster 2000"
-	desc = "A centrifuge with manual mechanism."
+	desc = "For all your pharmaceutical needs!"
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "mixer_makeshift"
 	matter = list(MATERIAL_STEEL = 4)
