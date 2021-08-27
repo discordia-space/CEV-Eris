@@ -101843,7 +101843,6 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
-/obj/landmark/join/start/chaplain,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
 "hAw" = (
