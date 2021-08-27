@@ -18,7 +18,7 @@
 		for(var/datum/track/T in GLOB.all_jukebox_tracks)
 			if(T.playlist == songlist)
 				tracklist |= T
-	..()
+	. = ..()
 
 /obj/item/music_tape/examine(mob/user)
 	..()
