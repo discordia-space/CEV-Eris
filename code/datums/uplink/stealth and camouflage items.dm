@@ -26,7 +26,7 @@
 	path = /obj/item/storage/box/syndie_kit/chameleon
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
-/datum/uplink_item/item/stealthy_weapons/cleanup
+/datum/uplink_item/item/stealth_items/cleanup
 	name = "Crime Scene Cleanup Kit"
 	item_cost = 1
 	path = /obj/item/storage/box/syndie_kit/cleanup_kit

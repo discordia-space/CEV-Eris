@@ -1,19 +1,14 @@
 /****************
 * Announcements *
 *****************/
-/mob/living/
-	var/announcements_cooldown
 
 /datum/uplink_item/abstract/announcements
 	category = /datum/uplink_category/services
 
 /datum/uplink_item/abstract/announcements/buy(var/obj/item/device/uplink/U, var/mob/living/user)
 	. = ..()
-	if(world.time < user.announcements_cooldown)
-		to_chat(user, "You can't do it so fast!")
-		return FALSE
-	else if(.)
-		user.announcements_cooldown = world.time + 30 SECONDS
+
+	if(.)
 		log_and_message_admins("has triggered a falsified [src]", user)
 
 /datum/uplink_item/abstract/announcements/announce
