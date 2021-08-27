@@ -262,3 +262,73 @@
 	ammo_type = /obj/item/ammo_casing/antim/scrap
 	max_ammo = 30
 	rarity_value = 20
+
+//// SHOTGUN ////
+
+/obj/item/ammo_magazine/ammobox/shotgun
+	name = "ammunition box (slug shell)"
+	icon_state = "shot_hv"
+	matter = list(MATERIAL_STEEL = 24)
+	w_class = ITEM_SIZE_NORMAL
+	caliber = CAL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/shotgun
+	max_ammo = 30
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+
+/obj/item/ammo_magazine/ammobox/shotgun/scrap
+	name = "ammunition box (old slug shell)"
+	icon_state = "shot_s"
+	ammo_type = /obj/item/ammo_casing/shotgun/scrap
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun/beanbags
+	name = "ammunition box (beanbag shell)"
+	icon_state = "shot_r"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	rarity_value = 10
+
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag/scrap
+	name = "ammunition box (old beanbag shell)"
+	icon_state = "shot_rs"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun/buckshot
+	name = "ammunition box (shotgun shell)"
+	icon_state = "shot_l"
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	rarity_value = 13.33
+
+/obj/item/ammo_magazine/ammobox/shotgun/pellet/scrap
+	name = "ammunition box (old shotgun shell)"
+	icon_state = "shot_ss"
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
+	rarity_value = 6.66
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun/blanks
+	name = "ammunition box (blank shell)"
+	icon_state = "shot_f"
+	ammo_type = /obj/item/ammo_casing/shotgun/blank
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun/flashshells
+	name = "ammunition box (flash shell)"
+	icon_state = "shot_f"
+	ammo_type = /obj/item/ammo_casing/shotgun/flash
+	rarity_value = 40
+
+/obj/item/ammo_magazine/ammobox/shotgun/practiceshells
+	name = "ammunition box (practice shell)"
+	icon_state = "shot_p"
+	ammo_type = /obj/item/ammo_casing/shotgun/practice
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
+	name = "ammunition box (incendiary shell)"
+	icon_state = "shot_p"
+	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
+	rarity_value = 100

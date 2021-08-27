@@ -19,7 +19,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	circuit = /obj/item/weapon/electronics/circuitboard/jukebox
+	circuit = /obj/item/electronics/circuitboard/jukebox
 
 	// Vars for hacking
 	var/datum/wires/jukebox/wires
@@ -33,8 +33,13 @@
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
 
+	var/obj/item/music_tape/my_tape //Jukebox tape
+
+	var/sanity_value = 2
+
 /obj/machinery/media/jukebox/New()
 	. = ..()
+	AddComponent(/datum/component/atom_sanity, 0, "")
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
 
@@ -45,14 +50,14 @@
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
-	if(all_jukebox_tracks.len < 1)
+	if(GLOB.all_jukebox_tracks.len < 1)
 		stat |= BROKEN // No tracks configured this round!
 	else
 		// Ootherwise load from the global list!
-		for(var/datum/track/T in all_jukebox_tracks)
+		for(var/datum/track/T in GLOB.all_jukebox_tracks)
 			if(T.secret)
 				secret_tracks |= T
-			else
+			else if(!T.playlist)
 				tracks |= T
 
 
@@ -137,7 +142,31 @@
 			else
 				update_media_source()
 			return
+
+	if(istype(W, /obj/item/music_tape))
+		if(my_tape)
+			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
+		else
+			my_tape = W
+			user.unEquip(my_tape, src)
+			my_tape.forceMove(src)
+			to_chat(user, SPAN_NOTICE("You insert the tape inside [src]."))
+			update_tape()
 	return ..()
+
+
+/obj/machinery/media/jukebox/proc/update_tape(var/removed)
+	if (!removed)
+		tracks.Add(get_tape_playlist())
+	else
+		tracks.Remove(get_tape_playlist())
+		StopPlaying()
+	updateDialog()
+
+//Added as a separate proc instead of just reading the var for a future feature
+/obj/machinery/media/jukebox/proc/get_tape_playlist()
+	return my_tape.tracklist
+
 
 /obj/machinery/media/jukebox/power_change()
 	if(!powered(power_channel) || !anchored)
@@ -293,12 +322,16 @@
 	playing = 0
 	update_use_power(1)
 	update_icon()
+	var/datum/component/atom_sanity/S = GetComponent(/datum/component/atom_sanity)
+	S.affect = 0
 	start_stop_song()
 
 /obj/machinery/media/jukebox/proc/StartPlaying()
 	if(!current_track)
 		return
 	playing = 1
+	var/datum/component/atom_sanity/S = GetComponent(/datum/component/atom_sanity)
+	S.affect = sanity_value
 	update_use_power(2)
 	update_icon()
 	start_stop_song()
@@ -323,4 +356,20 @@
 	if(playing)
 		start_stop_song()
 	updateDialog()
+
+
+/obj/machinery/media/jukebox/verb/eject()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Eject tape"
+
+	if (usr.stat)
+		return
+
+	if(my_tape)
+		update_tape(TRUE)
+		my_tape.forceMove(get_turf(src))
+		my_tape = null
+	else
+		to_chat(usr, SPAN_NOTICE("There is no tape inside [src]."))
 

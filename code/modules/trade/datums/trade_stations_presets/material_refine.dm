@@ -4,16 +4,16 @@
 	name_pool = list("CRS 'Reoll'" = "Civilian Refinery Ship 'Recoll'. They're sending a message. \"Heey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\"")
 	assortiment = list(
 		"Unrefined Materials"  = list(
-			/obj/item/weapon/ore/iron,
-			/obj/item/weapon/ore/coal,
-			/obj/item/weapon/ore/glass,
-			/obj/item/weapon/ore/plasma = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/silver = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/gold = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/diamond = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/osmium = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/hydrogen = custom_good_amount_range(list(0, 2)),
-			/obj/item/weapon/ore/uranium = custom_good_amount_range(list(0, 2))
+			/obj/item/ore/iron,
+			/obj/item/ore/coal,
+			/obj/item/ore/glass,
+			/obj/item/ore/plasma = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/silver = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/gold = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/diamond = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/osmium = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/hydrogen = custom_good_amount_range(list(0, 2)),
+			/obj/item/ore/uranium = custom_good_amount_range(list(0, 2))
 		),
 
 		"Refined Materials" = list(

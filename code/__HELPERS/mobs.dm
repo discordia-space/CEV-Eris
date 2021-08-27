@@ -166,7 +166,7 @@ Proc for attack log creation, because really why not
 	return (thing in R.module.modules)
 
 /proc/get_exposed_defense_zone(var/atom/movable/target)
-	var/obj/item/weapon/grab/G = locate() in target
+	var/obj/item/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
 		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
 	else
@@ -282,14 +282,14 @@ Proc for attack log creation, because really why not
 
 
 /proc/is_neotheology_disciple(mob/living/L)
-	if(istype(L) && L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+	if(istype(L) && L.get_core_implant(/obj/item/implant/core_implant/cruciform))
 		return TRUE
 	return FALSE
 
 /proc/is_acolyte(mob/living/L)
 	if(!isliving(L))
 		return FALSE
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.get_module(CRUCIFORM_ACOLYTE))
 		return TRUE
 	return FALSE
@@ -297,7 +297,7 @@ Proc for attack log creation, because really why not
 /proc/is_preacher(mob/living/L)
 	if(!isliving(L))
 		return FALSE
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.get_module(CRUCIFORM_PRIEST) && C.get_module(CRUCIFORM_REDLIGHT))
 		return TRUE
 	return FALSE
@@ -305,7 +305,7 @@ Proc for attack log creation, because really why not
 /proc/is_inquisidor(mob/living/L)
 	if(!isliving(L))
 		return FALSE
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.get_module(CRUCIFORM_INQUISITOR))
 		return TRUE
 	return FALSE
@@ -317,7 +317,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /proc/is_excelsior(var/mob/M)
-	var/obj/item/weapon/implant/excelsior/E = locate(/obj/item/weapon/implant/excelsior) in M
+	var/obj/item/implant/excelsior/E = locate(/obj/item/implant/excelsior) in M
 	if (E && E.wearer == M)
 		return TRUE
 
@@ -427,3 +427,22 @@ Proc for attack log creation, because really why not
 	var/obj/item/organ/internal/eyes/eyes = random_organ_by_process(OP_EYES)
 	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
 		return eyes.get_colourmatrix()
+
+//This gets an input while also checking a mob for whether it is incapacitated or not.
+/mob/proc/get_input(message, title, default, choice_type, obj/required_item)
+	if(src.incapacitated() || (required_item && !GLOB.hands_state.can_use_topic(required_item,src)))
+		return null
+	var/choice
+	if(islist(choice_type))
+		choice = input(src, message, title, default) as null|anything in choice_type
+	else
+		switch(choice_type)
+			if(MOB_INPUT_TEXT)
+				choice = input(src, message, title, default) as null|text
+			if(MOB_INPUT_NUM)
+				choice = input(src, message, title, default) as null|num
+			if(MOB_INPUT_MESSAGE)
+				choice = input(src, message, title, default) as null|message
+	if(isnull(choice) || src.incapacitated() || (required_item && !GLOB.hands_state.can_use_topic(required_item,src)))
+		return null
+	return choice

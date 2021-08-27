@@ -4,15 +4,15 @@
 	spawn_probability = 10
 	assortiment = list(
 		"Gunmods" = list(
-			/obj/item/weapon/gun_upgrade/trigger/dangerzone,
-			/obj/item/weapon/gun_upgrade/trigger/cop_block,
-			/obj/item/weapon/gun_upgrade/mechanism/weintraub,
-			/obj/item/weapon/gun_upgrade/scope/watchman
+			/obj/item/gun_upgrade/trigger/dangerzone,
+			/obj/item/gun_upgrade/trigger/cop_block,
+			/obj/item/gun_upgrade/mechanism/weintraub,
+			/obj/item/gun_upgrade/scope/watchman
 		),
 		"Grenades" = list(
-			/obj/item/weapon/grenade/anti_photon,
-			/obj/item/weapon/grenade/empgrenade,
-			/obj/item/weapon/grenade/chem_grenade/incendiary
+			/obj/item/grenade/anti_photon,
+			/obj/item/grenade/empgrenade,
+			/obj/item/grenade/chem_grenade/incendiary
 		),
 		"Experimental Ammunition" = list(
 			/obj/item/ammo_magazine/ammobox/srifle_small/hv = custom_good_amount_range(list(-3, 2)),
@@ -20,6 +20,6 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/hv = custom_good_amount_range(list(-3, 2)),
 			/obj/item/ammo_magazine/ammobox/pistol/hv = custom_good_amount_range(list(-1, 2)),
 			/obj/item/ammo_magazine/ammobox/magnum/hv = custom_good_amount_range(list(-1, 2)),
-			/obj/item/weapon/storage/box/shotgunammo/incendiaryshells
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)

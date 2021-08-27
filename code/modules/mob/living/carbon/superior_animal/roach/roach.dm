@@ -13,7 +13,7 @@
 	turns_per_move = 4
 	turns_since_move = 0
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat
 	meat_amount = 2
 
 	maxHealth = 10
@@ -52,3 +52,7 @@
 	if(.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
 			F.distress_call()
+
+	if(prob(3))
+		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+		new /obj/item/music_tape(get_turf(src))

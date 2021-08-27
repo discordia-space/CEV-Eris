@@ -9,7 +9,7 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/bearmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/bearmeat
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "pokes"
@@ -44,6 +44,9 @@
 /mob/living/simple_animal/hostile/bear/Life()
 	. =..()
 	if(!.)
+		return
+
+	if(stasis)
 		return
 
 	if(loc && istype(loc,/turf/space))
@@ -91,7 +94,6 @@
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
 				return
-
 
 
 /mob/living/simple_animal/hostile/bear/attackby(var/obj/item/O as obj, var/mob/user as mob)

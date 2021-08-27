@@ -570,24 +570,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/map_template/hydrobase/station/growF)
-"bA" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "goatzone";
-	name = "containment zone control";
-	pixel_w = 0;
-	pixel_x = 0;
-	pixel_y = 25
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
 "bB" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -906,16 +888,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/map_template/hydrobase/station/growA)
-"cq" = (
-/obj/structure/closet/secure_closet/personal/hydroponics,
-/obj/item/weapon/tool/hatchet,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cr" = (
-/obj/structure/closet/secure_closet/personal/hydroponics,
-/obj/item/weapon/tool/shovel,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
 "cs" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -923,11 +895,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"ct" = (
-/obj/item/weapon/tool/knife/butch,
-/obj/structure/table/glass,
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/growF)
 "cu" = (
@@ -1023,19 +990,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growF)
-"cG" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4
-	},
-/obj/structure/window/reinforced/plasma{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/obj/spawner/toolbox,
-/obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
 "cH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
 	icon_state = "map_universal";
@@ -1060,14 +1014,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cJ" = (
-/obj/structure/table/glass,
-/obj/item/seeds/random,
-/obj/item/seeds/random,
-/obj/item/seeds/random,
-/obj/item/weapon/gun/energy/floragun,
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/growF)
 "cK" = (
@@ -1507,12 +1453,6 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
-"dM" = (
-/obj/structure/catwalk,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
 "dN" = (
 /obj/structure/catwalk,
 /obj/machinery/light{
@@ -1545,16 +1485,6 @@
 	icon_state = "officechair_white_preview";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"dQ" = (
-/obj/structure/table/glass,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/processing)
 "dR" = (
@@ -1668,13 +1598,6 @@
 /obj/item/seeds/tobaccoseed,
 /turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/growA)
-"eh" = (
-/obj/structure/catwalk,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/tool/knife/butch,
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
 "ei" = (
 /obj/structure/bed/chair/office/light{
 	icon_state = "officechair_white_preview";
@@ -2078,28 +2001,6 @@
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/processing)
-"eW" = (
-/obj/structure/catwalk,
-/obj/structure/closet/crate,
-/obj/item/weapon/reagent_containers/pill/happy,
-/obj/item/weapon/reagent_containers/pill/happy,
-/obj/item/weapon/reagent_containers/pill/happy,
-/obj/item/weapon/reagent_containers/pill/happy,
-/obj/item/weapon/reagent_containers/pill/methylphenidate,
-/obj/item/weapon/reagent_containers/pill/methylphenidate,
-/obj/item/weapon/reagent_containers/pill/methylphenidate,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/item/weapon/reagent_containers/pill/zoom,
-/obj/item/weapon/reagent_containers/pill/zoom,
-/obj/item/weapon/reagent_containers/pill/zoom,
-/obj/item/toy/crossbow{
-	desc = "A minature crossbow that fires some sort of dart from an internal magazine.";
-	name = "mini-crossbow"
-	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
 "eX" = (
 /obj/structure/closet/l3closet/general,
 /obj/structure/window/reinforced/plasma{
@@ -2120,31 +2021,6 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/weapon/shreddedp,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"fa" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
-/obj/structure/window/reinforced/plasma{
-	dir = 8
-	},
-/obj/item/weapon/material/shard/plasma,
-/turf/simulated/floor/alium,
 /area/map_template/hydrobase/station/processing)
 "fb" = (
 /obj/structure/cable/yellow{
@@ -2264,33 +2140,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled,
 /area/map_template/hydrobase/station/processing)
-"fr" = (
-/obj/structure/catwalk,
-/obj/item/weapon/tool/knife/switchblade,
-/obj/spawner/credits/c1000,
-/obj/spawner/credits/c500,
-/obj/structure/closet/crate/secure/weapon{
-	desc = "A heavy-duty crate with a suite of firearms safety instructions plastered on the side. The ID scanner is unlike anything you've seen before.";
-	name = "weapons crate";
-	req_access = list("ACCESS_SYNDICATE")
-	},
-/obj/spawner/ammo/shotgun,
-/obj/item/weapon/tool/knife/tacknife,
-/obj/spawner/credits/c100,
-/obj/spawner/credits/c100,
-/obj/spawner/credits/c500,
-/obj/spawner/gun/cheap,
-/obj/item/stack/material/diamond{
-	amount = 10
-	},
-/obj/item/stack/material/gold{
-	amount = 10
-	},
-/obj/item/stack/material/gold{
-	amount = 10
-	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
 "fs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/yellow{
@@ -2299,26 +2148,6 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"ft" = (
-/obj/machinery/light,
-/obj/structure/window/reinforced/plasma{
-	dir = 8
-	},
-/obj/structure/table/rack,
-/obj/item/weapon/storage/box/emps{
-	initial_amount = 3
-	},
-/obj/item/ammo_casing/shotgun/pellet/prespawned,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/obj/structure/window/reinforced/plasma{
-	dir = 4
-	},
-/obj/item/weapon/grenade/chem_grenade/antiweed,
-/obj/item/weapon/grenade/chem_grenade/incendiary,
-/obj/item/weedkiller/D24,
-/obj/item/weapon/material/shard/plasma,
-/turf/simulated/floor/tiled/dark,
 /area/map_template/hydrobase/station/processing)
 "fu" = (
 /obj/structure/dispenser/oxygen,
@@ -2509,15 +2338,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"fR" = (
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
-	icon_state = "shower";
-	dir = 8
-	},
-/obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/map_template/hydrobase/station/shower)
 "fS" = (
@@ -2968,6 +2788,185 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"hT" = (
+/obj/structure/closet/secure_closet/personal/hydroponics,
+/obj/item/tool/hatchet,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/growF)
+"nA" = (
+/obj/structure/table/glass,
+/obj/item/seeds/random,
+/obj/item/seeds/random,
+/obj/item/seeds/random,
+/obj/item/gun/energy/floragun,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/growF)
+"oM" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 8
+	},
+/obj/item/bikehorn/rubberducky,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/map_template/hydrobase/station/shower)
+"pm" = (
+/obj/item/tool/knife/butch,
+/obj/structure/table/glass,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/growF)
+"qB" = (
+/obj/machinery/light,
+/obj/structure/window/reinforced/plasma{
+	dir = 8
+	},
+/obj/structure/table/rack,
+/obj/item/storage/box/emps{
+	initial_amount = 3
+	},
+/obj/item/ammo_casing/shotgun/pellet/prespawned,
+/obj/item/gun/projectile/shotgun/doublebarrel,
+/obj/structure/window/reinforced/plasma{
+	dir = 4
+	},
+/obj/item/grenade/chem_grenade/antiweed,
+/obj/item/grenade/chem_grenade/incendiary,
+/obj/item/weedkiller/D24,
+/obj/item/material/shard/plasma,
+/turf/simulated/floor/tiled/dark,
+/area/map_template/hydrobase/station/processing)
+"sK" = (
+/obj/structure/closet/secure_closet/personal/hydroponics,
+/obj/item/tool/shovel,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/growF)
+"sU" = (
+/obj/structure/catwalk,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/structure/table/glass,
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/processing)
+"ta" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/structure/window/reinforced/plasma{
+	dir = 8
+	},
+/obj/item/material/shard/plasma,
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/processing)
+"wu" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "goatzone";
+	name = "containment zone control";
+	pixel_x = 0;
+	pixel_y = 25
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/map_template/hydrobase/station/growF)
+"Af" = (
+/obj/structure/catwalk,
+/obj/item/tool/knife/switchblade,
+/obj/spawner/credits/c1000,
+/obj/spawner/credits/c500,
+/obj/structure/closet/crate/secure/weapon{
+	desc = "A heavy-duty crate with a suite of firearms safety instructions plastered on the side. The ID scanner is unlike anything you've seen before.";
+	name = "weapons crate";
+	req_access = list("ACCESS_SYNDICATE")
+	},
+/obj/spawner/ammo/shotgun,
+/obj/item/tool/knife/tacknife,
+/obj/spawner/credits/c100,
+/obj/spawner/credits/c100,
+/obj/spawner/credits/c500,
+/obj/spawner/gun/cheap,
+/obj/item/stack/material/diamond{
+	amount = 10
+	},
+/obj/item/stack/material/gold{
+	amount = 10
+	},
+/obj/item/stack/material/gold{
+	amount = 10
+	},
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/processing)
+"Dd" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/shreddedp,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/processing)
+"DN" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 4
+	},
+/obj/structure/window/reinforced/plasma{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/spawner/toolbox,
+/obj/structure/table/rack,
+/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/growF)
+"Ij" = (
+/obj/structure/catwalk,
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/pill/happy,
+/obj/item/reagent_containers/pill/happy,
+/obj/item/reagent_containers/pill/happy,
+/obj/item/reagent_containers/pill/happy,
+/obj/item/reagent_containers/pill/methylphenidate,
+/obj/item/reagent_containers/pill/methylphenidate,
+/obj/item/reagent_containers/pill/methylphenidate,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/item/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
+/obj/item/toy/crossbow{
+	desc = "A minature crossbow that fires some sort of dart from an internal magazine.";
+	name = "mini-crossbow"
+	},
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/processing)
+"IH" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
+/turf/simulated/floor/tiled,
+/area/map_template/hydrobase/station/processing)
+"Np" = (
+/obj/structure/catwalk,
+/obj/item/material/kitchen/rollingpin,
+/obj/item/tool/knife/butch,
+/obj/structure/table/glass,
+/turf/simulated/floor/alium,
+/area/map_template/hydrobase/station/processing)
 "NL" = (
 /mob/living/simple_animal/hostile/retaliate/goat/hydro,
 /turf/simulated/floor/tiled/dark,
@@ -3854,12 +3853,12 @@ bx
 ba
 bW
 ce
-cq
+hT
 cE
 cZ
 aK
 dK
-eh
+Np
 ex
 eT
 fp
@@ -3895,7 +3894,7 @@ by
 bH
 bW
 cf
-cr
+sK
 cF
 da
 aK
@@ -3936,11 +3935,11 @@ bz
 bD
 bX
 cg
-cq
-cG
+hT
+DN
 db
 aK
-dM
+sU
 ej
 ex
 ez
@@ -3973,19 +3972,19 @@ aI
 aG
 aW
 aw
-bA
+wu
 ba
 bW
 ch
-cq
+hT
 cH
 dc
 aK
 dN
 ek
 ey
-eW
-fr
+Ij
+Af
 fE
 fE
 fE
@@ -4059,8 +4058,8 @@ bC
 bJ
 bD
 cj
-ct
-cJ
+pm
+nA
 cf
 aK
 dP
@@ -4104,13 +4103,13 @@ cf
 cf
 de
 aK
-dQ
+IH
 en
 ek
-eZ
+Dd
 ez
 fE
-fR
+oM
 gb
 gk
 gr
@@ -4148,8 +4147,8 @@ dz
 dR
 eo
 eB
-fa
-ft
+ta
+qB
 fE
 fE
 fE

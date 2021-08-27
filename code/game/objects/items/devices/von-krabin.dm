@@ -18,7 +18,7 @@
 	var/active = FALSE
 	var/area_radius = 7
 
-	var/buff_power = 5
+	var/buff_power = 15
 
 	var/stats_buff = list(STAT_BIO, STAT_COG, STAT_MEC)
 	var/list/mob/living/carbon/human/currently_affected = list()

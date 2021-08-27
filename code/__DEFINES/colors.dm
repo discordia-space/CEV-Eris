@@ -21,6 +21,7 @@
 #define COLOR_PINK             "#ff00ff"
 #define COLOR_ORANGE           "#ff9900"
 #define COLOR_YELLOW           "#ffff00"
+#define COLOR_FLOORTILE_GRAY   "#8D8B8B"
 #define COLOR_GRAY             "#808080"
 #define COLOR_RED_GRAY         "#aa5f61"
 #define COLOR_BROWN            "#b19664"
@@ -86,7 +87,7 @@
 #define	COMMS_COLOR_ENGINEER   "#a66300"
 #define	COMMS_COLOR_SECURITY   "#930000"
 #define	COMMS_COLOR_COMMAND    "#204090"
-#define	COMMS_COLOR_CENTCOMM   "#5c5c7c"
+#define	COMMS_COLOR_CENTCOM   "#5c5c7c"
 #define	COMMS_COLOR_SYNDICATE  "#6d3f40"
 
 #define GLASS_COLOR            "#74b1ee"

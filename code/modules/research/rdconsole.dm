@@ -42,9 +42,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/electronics/circuitboard/rdconsole
+	circuit = /obj/item/electronics/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
+	var/obj/item/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
 	var/obj/machinery/autolathe/rnd/protolathe/linked_lathe = null		//Linked Protolathe
@@ -89,7 +89,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				D.linked_console = src
 
 
-/obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the centcomm server so wild griffins can't fuck up R&D's work
+/obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		C.files.download_from(files)
 
@@ -111,9 +111,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		linked_destroy = null
 	return ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
-	if(istype(D, /obj/item/weapon/computer_hardware/hard_drive/portable))
+	if(istype(D, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)
 			to_chat(user, SPAN_NOTICE("A disk is already loaded into the machine."))
 			return
@@ -209,7 +209,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/datum/computer_file/binary/design/file = locate(href_list["download_disk_design"]) in disk.stored_files
 			if(file && !file.copy_protected)
 				files.AddDesign2Known(file.design)
-				griefProtection() //Update CentComm too
+				griefProtection() //Update CentCom too
 	if(href_list["upload_disk_design"]) // User is attempting to upload (rdconsole->disk) a design to the disk.
 		if(disk)
 			var/datum/design/D = locate(href_list["upload_disk_design"]) in files.known_designs

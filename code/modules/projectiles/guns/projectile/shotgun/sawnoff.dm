@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
+/obj/item/gun/projectile/shotgun/doublebarrel/sawn
 	name = "sawn-off shotgun"
 	desc = "Omar's coming!"
 	icon = 'icons/obj/guns/projectile/sawnshotgun.dmi'
@@ -14,3 +14,4 @@
 	recoil_buildup = 15 //gonna have solid grip on those, point-blank shots adviced
 	one_hand_penalty = 10 //compact shotgun level
 	twohanded = FALSE
+	saw_off = FALSE

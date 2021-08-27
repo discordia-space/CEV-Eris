@@ -2,7 +2,7 @@
 #define MALFUNCTION_TEMPORARY 1
 #define MALFUNCTION_PERMANENT 2
 
-/obj/item/weapon/implant
+/obj/item/implant
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
@@ -22,31 +22,32 @@
 
 	var/list/owner_verbs = list()
 
-/obj/item/weapon/implant/attackby(obj/item/weapon/I, mob/user)
+/obj/item/implant/attackby(obj/item/I, mob/user)
 	..()
-	if(istype(I, /obj/item/weapon/implanter))
-		var/obj/item/weapon/implanter/M = I
+	if(istype(I, /obj/item/implanter))
+		var/obj/item/implanter/M = I
 		if(is_external())
 			return
 		if(!M.implant && user.unEquip(src, M))
 			M.implant = src
 			M.update_icon()
+		return TRUE
 
 
-/obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
-/obj/item/weapon/implant/proc/activate()
+/obj/item/implant/proc/trigger(emote, mob/living/source)
+/obj/item/implant/proc/activate()
 	return TRUE
 
-/obj/item/weapon/implant/proc/deactivate()
+/obj/item/implant/proc/deactivate()
 	return TRUE
 
-/obj/item/weapon/implant/proc/malfunction(var/severity)
+/obj/item/implant/proc/malfunction(var/severity)
 
-/obj/item/weapon/implant/proc/is_external()
+/obj/item/implant/proc/is_external()
 	return external
 
 //return TRUE for implanter icon update.
-/obj/item/weapon/implant/proc/install(mob/living/target, organ, mob/user)
+/obj/item/implant/proc/install(mob/living/target, organ, mob/user)
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -87,12 +88,12 @@
 
 	return TRUE
 
-/obj/item/weapon/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
 	return TRUE
 
-/obj/item/weapon/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
 
-/obj/item/weapon/implant/proc/uninstall()
+/obj/item/implant/proc/uninstall()
 	on_uninstall()
 	forceMove(get_turf(wearer))
 	if(part)
@@ -107,14 +108,14 @@
 	for(var/proc_path in owner_verbs)
 		verbs -= proc_path
 
-/obj/item/weapon/implant/proc/on_uninstall()
+/obj/item/implant/proc/on_uninstall()
 
-/obj/item/weapon/implant/proc/get_data()
+/obj/item/implant/proc/get_data()
 	return "No information available"
 
-/obj/item/weapon/implant/proc/hear(message, mob/source)
+/obj/item/implant/proc/hear(message, mob/source)
 
-/obj/item/weapon/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
+/obj/item/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
 	to_chat(wearer, "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>")
 	if (part)
 		part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
@@ -126,22 +127,22 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
-/obj/item/weapon/implant/proc/restore()
+/obj/item/implant/proc/restore()
 	name = initial(name)
 	desc = initial(desc)
 	icon_state = initial(icon_state)
 	malfunction = initial(malfunction)
 
-/obj/item/weapon/implant/proc/get_mob_overlay(var/gender)
+/obj/item/implant/proc/get_mob_overlay(var/gender)
 	return null
 
-/obj/item/weapon/implant/Destroy()
+/obj/item/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
 	return ..()
 
-/obj/item/weapon/implant/explosive/emp_act(severity)
+/obj/item/implant/explosive/emp_act(severity)
 	malfunction(severity)
 
-/obj/item/weapon/implant/proc/get_scanner_name()
+/obj/item/implant/proc/get_scanner_name()
 	return name
