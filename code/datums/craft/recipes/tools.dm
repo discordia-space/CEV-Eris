@@ -224,3 +224,16 @@
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(/obj/item/stack/rods, 2, 30)
 	)
+
+/datum/craft_recipe/tool/makeshift_chem_master
+	name = "Makeshift chem master"
+	result = /obj/item/device/makeshift_chem_master
+
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(/obj/item/stack/cable_coil, 30, "time" = 10),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
+		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS),	
+		list(QUALITY_ADHESIVE, 15, 100)
+	)
