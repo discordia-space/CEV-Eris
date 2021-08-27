@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Several fixes for Church Rework
