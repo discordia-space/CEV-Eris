@@ -188,7 +188,7 @@
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
