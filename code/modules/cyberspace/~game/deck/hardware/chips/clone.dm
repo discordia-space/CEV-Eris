@@ -3,7 +3,7 @@
 	desc = "A red chip with black and white technomancers' insignia on it's top."
 
 	SoftName = "Clone Chip"
-	ActionDescription = "If able, clone installed program and install clone costing it's CP and memory."
+	ActionDescription = "If able, clone installed program and install clone costing it's QP and memory."
 
 	AdditionalDescription = "The best practice is to back up the backup."
 
