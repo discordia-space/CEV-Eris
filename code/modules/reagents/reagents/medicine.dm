@@ -206,7 +206,7 @@
 	..()
 	M.druggy = max(M.druggy, 2)
 
-/datum/reagent/medicine/tramadol
+/datum/reagent/medicine/x
 	name = "Tramadol"
 	id = "tramadol"
 	description = "A simple, yet effective painkiller."
@@ -237,7 +237,7 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = REAGENTS_OVERDOSE * 0.66
-	metabolism = 0.02
+	metabolism = 0.1
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
