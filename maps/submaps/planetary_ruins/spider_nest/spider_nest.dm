@@ -7,6 +7,11 @@
 	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS|TEMPLATE_FLAG_NO_RUINS
 	ruin_tags = RUIN_HUMAN
 
+/datum/map_template/ruin/exoplanet/spider_nest/spider_nest2
+	name = "spider_nest 2"
+	id = "spider_nest2"
+	suffix = "spider_nest/spider_nest2.dmm"
+
 /area/map_template/spider_nest
 	name = "\improper Spider Nest"
 	icon_state = "blue"
