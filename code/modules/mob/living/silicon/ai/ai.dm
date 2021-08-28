@@ -19,6 +19,7 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/control_integrated_radio,
 	/mob/living/silicon/ai/proc/control_personal_drone,
+	/mob/living/silicon/ai/proc/destroy_personal_drone,
 	/mob/living/silicon/ai/proc/core,
 	/mob/living/silicon/ai/proc/pick_icon,
 	/mob/living/silicon/ai/proc/sensor_mode,
@@ -109,7 +110,7 @@ var/list/ai_verbs_default = list(
 	var/multitool_mode = 0
 
 	var/mob/living/silicon/robot/drone/aibound/bound_drone = null
-	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
+	var/drone_cooldown_time = 5 SECONDS // 30 MINUTES  // Cooldown before creating a new drone
 	var/time_destroyed = 0.0
 
 	defaultHUD = "Eris"
@@ -208,6 +209,9 @@ var/list/ai_verbs_default = list(
 	stats.changeStat(STAT_BIO, 100)
 	stats.changeStat(STAT_MEC, 100)
 	stats.changeStat(STAT_COG, 100)
+
+	// AI bound drone related stuff
+	time_destroyed = world.time - drone_cooldown_time
 
 /mob/living/silicon/ai/proc/on_mob_init()
 	to_chat(src, "<B>You are playing the spaceship's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>")
@@ -749,6 +753,17 @@ var/list/ai_verbs_default = list(
 	else
 		go_into_drone()
 
+// Destroy AI tiny drone
+/mob/living/silicon/ai/proc/destroy_personal_drone()
+	set name = "Destroy Personal Drone"
+	set desc = "Destroy your AI-bound maintenance drone."
+	set category = "Silicon Commands"
+	
+	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
+		to_chat(src, SPAN_WARNING("You lack power!"))
+	else
+		destroy_drone()
+
 /mob/living/silicon/ai/proc/pull_to_core()
 	if (bound_drone?.mind)  // If drone exists and AI is inside it
 		src.ckey = bound_drone.ckey
@@ -757,11 +772,16 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/go_into_drone()
 	// Switch to drone or spawn a new one
 	if(!bound_drone)
+		testing("[world.time] . [time_destroyed] . [drone_cooldown_time]")
 		if (world.time - time_destroyed > drone_cooldown_time)
 			try_drone_spawn(src, aibound = TRUE)
 		else
-			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [drone_cooldown_time - (world.time - time_destroyed)] seconds before creating a new AI bound drone."))
+			var/remaining = (drone_cooldown_time - (world.time - time_destroyed)) / 10
+			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [remaining] seconds before creating a new AI bound drone."))
 	else if(src?.mind)
 		bound_drone.ckey = src.ckey
 		bound_drone.laws = src.laws // Resync laws in case they have been changed
 		src.mind.transfer_to(bound_drone) // Transfer mind to drone
+
+/mob/living/silicon/ai/proc/destroy_drone()
+	bound_drone.death(TRUE)

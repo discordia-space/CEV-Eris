@@ -370,6 +370,10 @@ var/list/mob_hat_cache = list()
 
 	var/mob/living/silicon/ai/bound_ai = null
 
+/mob/living/silicon/robot/drone/aibound/Destroy()
+	bound_ai = null
+	. = ..()
+
 /mob/living/silicon/robot/drone/aibound/proc/back_to_core()
 	if(bound_ai && src.mind)
 		bound_ai.ckey = src.ckey
@@ -377,10 +381,14 @@ var/list/mob_hat_cache = list()
 	else
 		to_chat(src, SPAN_WARNING("No AI core detected."))
 
-/mob/living/silicon/robot/drone/aibound/death()
-	to_chat(src, SPAN_WARNING("Your AI bound drone is destroyed."))
-	back_to_core()
-	return ..()
+/mob/living/silicon/robot/drone/aibound/death(gibbed)
+	if(bound_ai)
+		bound_ai.time_destroyed = world.time
+		bound_ai.bound_drone = null
+		to_chat(src, SPAN_WARNING("Your AI bound drone is destroyed."))
+		back_to_core()
+		bound_ai = null
+	return ..(gibbed)
 
 /mob/living/silicon/robot/drone/aibound/verb/get_back_to_core()
 	set name = "Get Back To Core"
@@ -416,6 +424,6 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/Life()
 	..()
-	if(!isOnStationLevel(src))
+	if(bound_ai && !isOnStationLevel(src))
 		to_chat(src, SPAN_WARNING("You get out of the ship control range!"))
-		back_to_core()
+		death(TRUE)
