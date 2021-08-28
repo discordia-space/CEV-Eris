@@ -206,7 +206,7 @@
 	..()
 	M.druggy = max(M.druggy, 2)
 
-/datum/reagent/medicine/x
+/datum/reagent/medicine/tramadol
 	name = "Tramadol"
 	id = "tramadol"
 	description = "A simple, yet effective painkiller."
