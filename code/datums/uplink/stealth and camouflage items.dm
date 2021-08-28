@@ -28,7 +28,7 @@
 
 /datum/uplink_item/item/stealth_items/cleanup
 	name = "Crime Scene Cleanup Kit"
-	item_cost = 1
+	item_cost = 2
 	path = /obj/item/storage/box/syndie_kit/cleanup_kit
 
 /datum/uplink_item/item/stealth_items/voice
