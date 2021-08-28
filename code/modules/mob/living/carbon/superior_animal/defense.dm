@@ -141,11 +141,10 @@
 		blinded = TRUE
 		silent = 0
 	else
-		updatehealth()
+		updatehealth() // updatehealth calls death if health <= 0
 		handle_stunned()
 		handle_weakened()
 		if(health <= 0)
-			death()
 			blinded = TRUE
 			silent = 0
 			return 1
