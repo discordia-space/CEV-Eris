@@ -1,5 +1,0 @@
-author: Funce
-delete-after: true
-changes:
-  - bugfix: Cameras no longer stay infinitely alarming when they're repaired.
-  - bugfix: Malf borgs properly know when their cameras are being accessed.

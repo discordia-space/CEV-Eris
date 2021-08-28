@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - bugfix: Wire Splicings no longer spawn off of cables.
