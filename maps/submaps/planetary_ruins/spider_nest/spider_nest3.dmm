@@ -62,14 +62,6 @@
 	},
 /turf/simulated/floor/tiled/white/danger,
 /area/map_template/spider_nest)
-"u" = (
-/obj/landmark/corpse/doctor,
-/obj/effect/decal/cleanable/blood,
-/obj/item/material/shard,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/vomit,
-/turf/simulated/floor/tiled/white/violetcorener,
-/area/map_template/spider_nest)
 "v" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_research{
@@ -107,8 +99,12 @@
 /turf/simulated/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "D" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/steel/techfloor,
+/obj/landmark/corpse/doctor,
+/obj/effect/decal/cleanable/blood,
+/obj/item/material/shard,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/vomit,
+/turf/simulated/floor/tiled/white/violetcorener,
 /area/map_template/spider_nest)
 "E" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -220,7 +216,7 @@ X
 (3,1,1) = {"
 b
 t
-u
+Z
 w
 Z
 c

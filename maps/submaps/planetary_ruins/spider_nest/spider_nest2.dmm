@@ -33,7 +33,11 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "n" = (
-/turf/simulated/floor/tiled/steel/techfloor,
+/obj/effect/spider/stickyweb,
+/obj/landmark/corpse/doctor,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/vomit,
+/turf/simulated/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "o" = (
 /obj/spawner/junk,
@@ -138,13 +142,6 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/white/danger,
 /area/map_template/spider_nest)
-"M" = (
-/obj/effect/spider/stickyweb,
-/obj/landmark/corpse/doctor,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/vomit,
-/turf/simulated/floor/tiled/white/danger,
-/area/map_template/spider_nest)
 "N" = (
 /obj/structure/closet/crate/freezer,
 /obj/spawner/junkfood,
@@ -243,7 +240,7 @@ O
 G
 B
 y
-M
+H
 b
 R
 b

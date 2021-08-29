@@ -8,14 +8,14 @@
 	ruin_tags = RUIN_ALIEN
 
 /datum/map_template/ruin/exoplanet/monolith/monolith2
-	name = "monolith 2"
-	id = "planetsite_monolith2"
-	suffix = "monolith/monolith2.dmm"
+	name = "Monolith Ring 2"
+	id = "planetsite_monoliths2"
+	suffix = "monoliths/monoliths2.dmm"
 
 /datum/map_template/ruin/exoplanet/monolith/monolith3
-	name = "monolith 3"
-	id = "planetsite_monolith3"
-	suffix = "monolith/monolith3.dmm"
+	name = "Monolith Ring 3"
+	id = "planetsite_monoliths3"
+	suffix = "monoliths/monoliths3.dmm"
 
 /obj/structure/monolith
 	name = "monolith"
