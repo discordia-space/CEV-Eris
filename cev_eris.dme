@@ -2792,7 +2792,6 @@
 #include "maps\dungeons\deepmaint\deepmaint.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\junk_tractor_beam\junk_tractor_beam.dm"
-#include "maps\encounters\scrapyard\scrapyard.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
 #include "maps\encounters\spaceruins\spaceruins.dm"
 #include "maps\submaps\deepmaint_rooms\template.dm"
