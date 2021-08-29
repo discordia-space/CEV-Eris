@@ -31,6 +31,8 @@
 
 	var/SpatialCutCooldown = 0.5 SECOND
 
+	embed_mult = 0
+
 	afterattack(atom/target, mob/user, proximity_flag, params)
 		. = ..()
 		if(proximity_flag && world.time >= next_spatial_cut)
