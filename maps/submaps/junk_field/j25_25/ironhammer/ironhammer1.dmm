@@ -43,8 +43,6 @@
 /obj/structure/table/rack,
 /obj/item/device/flash,
 /obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "bi" = (
@@ -198,8 +196,6 @@
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "qA" = (
@@ -217,9 +213,6 @@
 /area/template_noop)
 "rd" = (
 /obj/structure/table/rack,
-/obj/item/cell/small/high,
-/obj/item/cell/small/high,
-/obj/item/cell/small/high,
 /obj/item/cell/small/high,
 /obj/item/cell/small/high,
 /obj/item/cell/small/high,
@@ -260,7 +253,7 @@
 /area/template_noop)
 "to" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/shotgun,
+/obj/spawner/gun/shotgun/low_chance,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "tv" = (
@@ -309,6 +302,11 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
+/area/template_noop)
+"xA" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/cheap,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "yJ" = (
 /obj/structure/table/standard,
@@ -447,8 +445,6 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
 /turf/simulated/floor/tiled/dark/cargo,
@@ -478,7 +474,6 @@
 /obj/structure/table/rack,
 /obj/item/storage/belt/tactical/ironhammer,
 /obj/item/storage/belt/tactical/ironhammer,
-/obj/item/storage/belt/tactical/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "RC" = (
@@ -502,7 +497,7 @@
 /area/template_noop)
 "Ul" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "Vq" = (
@@ -544,7 +539,6 @@
 /area/template_noop)
 "Yp" = (
 /obj/structure/table/rack,
-/obj/item/gun/energy/gun/martin,
 /obj/item/gun/energy/gun/martin,
 /obj/item/gun/energy/gun/martin,
 /obj/machinery/light{
@@ -800,7 +794,7 @@ YZ
 by
 Ul
 to
-Ul
+xA
 js
 Mb
 wR

@@ -305,18 +305,6 @@
 		/datum/design/autolathe/gun/grenade_launcher = 3, // "NT GL \"Protector\""
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper
-	disk_name = "NeoTheology Armory - .60 Penetrator AMR"
-	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 90
-	license = 12
-	designs = list(
-		/datum/design/autolathe/gun/heavysniper = 3, // "NT AMR .60 \"Penetrator\""
-		/datum/design/autolathe/ammo/antim,
-		/datum/design/autolathe/ammo/box_antim,
-	)
-
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58
 	disk_name = "NeoTheology Armory - .35 MK58 Handgun Pack"
 	icon_state = "neotheology"

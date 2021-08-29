@@ -267,7 +267,7 @@
 /obj/item/integrated_circuit/output/text_to_speech/direct_message
 	name = "personal message circuit"
 	desc = "Takes any string as an input and will connect to brain/borg brain via antennas in body to sends message to person, if they are near"
-	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech, but person need to have neural lace inside his head"
+	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech, but person need to have cruciform inside his head"
 	complexity = 14
 	inputs = list(
 		"to speech" = IC_PINTYPE_STRING,

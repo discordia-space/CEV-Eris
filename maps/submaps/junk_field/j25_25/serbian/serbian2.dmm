@@ -254,7 +254,7 @@
 /area/template_noop)
 "xN" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal,
+/obj/spawner/gun/cheap,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -331,7 +331,7 @@
 /area/template_noop)
 "Dy" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/shotgun,
+/obj/spawner/gun/normal/low_chance,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -390,7 +390,6 @@
 /area/template_noop)
 "Js" = (
 /obj/structure/closet,
-/obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
 /turf/unsimulated/floor{
@@ -498,7 +497,6 @@
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/storage/backpack/military,
-/obj/item/storage/backpack/military,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -558,12 +556,10 @@
 "Ur" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/tactical,
-/obj/item/storage/belt/tactical,
-/obj/item/storage/belt/tactical,
-/obj/item/storage/pouch/large_generic,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/storage/pouch/medium_generic,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},

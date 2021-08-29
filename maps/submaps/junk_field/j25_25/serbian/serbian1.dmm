@@ -79,7 +79,7 @@
 /area/template_noop)
 "dI" = (
 /obj/structure/table/standard,
-/obj/item/storage/deferred/rations,
+/obj/item/deck/cards,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -267,10 +267,10 @@
 /area/template_noop)
 "nu" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/spawner/gun/cheap,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -280,7 +280,6 @@
 /obj/structure/closet,
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/tool/pickaxe/diamonddrill,
-/obj/item/storage/backpack/military,
 /obj/item/storage/backpack/military,
 /turf/unsimulated/floor{
 	icon_state = "cult";
@@ -365,7 +364,6 @@
 /obj/spawner/ammo,
 /obj/spawner/ammo,
 /obj/spawner/ammo,
-/obj/spawner/ammo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -393,7 +391,7 @@
 /area/template_noop)
 "tv" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/shotgun,
+/obj/spawner/gun/shotgun/low_chance,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -439,9 +437,7 @@
 "wR" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/tactical,
-/obj/item/storage/belt/tactical,
-/obj/item/storage/belt/tactical,
-/obj/item/storage/pouch/large_generic,
+/obj/item/storage/pouch/medium_generic,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -830,7 +826,7 @@
 /area/template_noop)
 "Zt" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal,
+/obj/spawner/gun/cheap,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
