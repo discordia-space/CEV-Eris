@@ -7,6 +7,8 @@
 	)
 	spawn_blacklisted = TRUE
 
+	force = 15
+
 	handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 		. = ..()
 		if(. && istype(W, /obj/item/tool/sword/katana/spatial_cutter))
@@ -18,6 +20,12 @@
 			new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
 			. = ..()
 
+/* I NEED MORE POWER
+/obj/item/storage/belt/sheath/judgement/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return
+	. = ..()
+*/
 /obj/item/tool/sword/katana/spatial_cutter
 	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it."
 	spawn_blacklisted = TRUE
@@ -43,15 +51,37 @@
 		for(var/atom/movable/SpatialCut/C in SpatialCuts)
 			spawn(0)
 				C.Activate(user)
-	yamato
-		desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it. When you look at it you almost hear something like 'I need more power!'"
-		icon_state = "yamato"
-		SpatialCutsColor = "#66aaff"
-		ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
-			. = ..()
-			if(.)
-				var/quote = "<b>Voice from somewhere</b>, says '[pick("Too slow.", "You are finished!", "It's over!")]'"
-				audible_message(quote, "You almost can hear someone's voice.", 3)
+/obj/item/tool/sword/katana/spatial_cutter/yamato
+	name = "yamato"
+	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it. When you look at it you almost hear something like 'I need more power!'."
+	icon_state = "yamato"
+	SpatialCutsColor = "#66aaff"
+	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
+		. = ..()
+		if(.)
+			var/quote = "<b>Voice from somewhere</b>, says '[pick("Too slow.", "You are finished!", "It's over!")]'"
+			audible_message(quote, "You almost can hear someone's voice.", 3)
+
+/obj/item/tool/sword/katana/spatial_cutter/yamato/New()
+	. = ..()
+	GLOB.all_faction_items[src] = GLOB.department_engineering
+
+/obj/item/tool/sword/katana/spatial_cutter/yamato/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	GLOB.technomancer_faction_item_loss++
+	. = ..()
+
+/obj/item/tool/sword/katana/spatial_cutter/yamato/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return
+	. = ..()
+//I NEED MORE POWER
+/obj/item/tool/sword/nt_sword/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/sword/katana/spatial_cutter/yamato) || istype(I, /obj/item/storage/belt/sheath/judgement))
+		qdel(src)
 
 /atom/movable/SpatialCut
 	var/time2activate = 5 SECONDS
