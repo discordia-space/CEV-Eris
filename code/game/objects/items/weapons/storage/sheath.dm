@@ -1,9 +1,9 @@
 /obj/item/storage/belt/sheath
 	name = "sheath"
-	desc = "Made to store sword."
+	desc = "Made to store swords."
 	icon = 'icons/obj/sheath.dmi'
-	icon_state = "sheath_0"
-	item_state = "sheath_0"
+	icon_state = "sheath"
+	item_state = "sheath"
 	slot_flags = SLOT_BELT
 	price_tag = 50
 	matter = list(MATERIAL_BIOMATTER = 5)
@@ -21,6 +21,7 @@
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/sword/nt/halberd
 		)
+
 /obj/item/storage/belt/sheath/attack_hand(mob/living/carbon/human/user)
 	if(contents.len && (src in user))
 		var/obj/item/I = contents[contents.len]
@@ -34,9 +35,11 @@
 		..()
 
 /obj/item/storage/belt/sheath/on_update_icon()
-	var/icon_to_set
+	overlays.Cut()
+	var/icon_to_set = "0" // If there nothing in content then icon_to_set won't change to anything and will stay 0
 	for(var/obj/item/tool/sword/SW in contents)
 		icon_to_set = SW.icon_state
-	icon_state = "sheath_[contents.len ? icon_to_set :"0"]"
-	item_state = "sheath_[contents.len ? icon_to_set :"0"]"
-	..()
+	item_state = "[icon_state]_[icon_to_set]"
+	overlays += icon_to_set
+	. = ..()
+

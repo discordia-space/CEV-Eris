@@ -343,7 +343,7 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
+/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if (!istype(W)) return 0
 	if (usr)
 		usr.prepare_for_slotmove(W)
@@ -432,7 +432,7 @@
 				to_chat(user, SPAN_WARNING("God damnit!"))
 
 	W.add_fingerprint(user)
-	return handle_item_insertion(W)
+	return handle_item_insertion(W,,user)
 
 /obj/item/storage/dropped(mob/user)
 	return
@@ -479,7 +479,7 @@
 			break
 		if(can_be_inserted(I, TRUE))
 			. |= TRUE
-			handle_item_insertion(I, TRUE)
+			handle_item_insertion(I, TRUE, user)
 
 	if(user)
 		if(.)
