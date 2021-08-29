@@ -1,7 +1,7 @@
 /obj/item/storage/belt/sheath/judgement
 	icon_state = "sheath_judgement"
 	name = "katana sheath"
-	desc = "Made to store katanas. You can notice blue fog that coming from it. It has a patterned gold head on it's bottom part."
+	desc = "Made to store katanas. It has a patterned gold head on it's bottom part."
 	can_hold = list(
 		/obj/item/tool/sword/katana
 	)
@@ -9,16 +9,61 @@
 
 	force = 15
 
-	handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
-		. = ..()
-		if(. && istype(W, /obj/item/tool/sword/katana/spatial_cutter))
-			var/obj/item/tool/sword/katana/spatial_cutter/cutter = W
-			cutter.ActivateSpatialCuts(src, user)
+	var/tmp/next_rift = 0
+	var/RiftCooldown = 5 MINUTES
+	var/turf/RiftTarget
 
-	equiped
-		New()
-			new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
-			. = ..()
+	var/list/ChargeNarrative = list(
+		"blue smoke that coming in %self",
+		"blue fog that coming in %self",
+		"barelly vissible blue clouds that comming in %self",
+		"that %self is almost charged",
+		null
+		)
+	examine(mob/user, distance = -1, infix, suffix)
+		. = ..()
+		var/mistake_radius = max(3 - round(user.stats.getStat(STAT_COG)/20), 0)
+		var/charge = num2text(round(max(((next_rift - world.time) / RiftCooldown), 0) * 5) + rand(-mistake_radius, mistake_radius))
+
+		if(ChargeNarrative.Find(charge) && ChargeNarrative[charge])
+			var/narrative = ChargeNarrative[charge]
+			to_chat(user, SPAN_NOTICE(replacetext("You can see [narrative].", "%self", name)))
+
+/obj/item/storage/belt/sheath/judgement/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
+	. = ..()
+	if(. && istype(W, /obj/item/tool/sword/katana/spatial_cutter))
+		var/obj/item/tool/sword/katana/spatial_cutter/cutter = W
+		cutter.ActivateSpatialCuts(src, user)
+/obj/item/storage/belt/sheath/judgement/afterattack(atom/target, mob/user, proximity_flag, params)
+	. = ..()
+	var/turf/T = get_turf(target)
+	if(RiftTarget)
+		if(proximity_flag && world.time >= next_rift)
+			
+			var/spatialCutsCount = 0
+			var/cutcolor = "#ffffff"
+			for(var/atom/movable/SpatialCut/C in T)
+				spatialCutsCount++
+				cutcolor = C.color
+				qdel(C)
+			if(!spatialCutsCount)
+				RiftTarget = null
+			else if(spatialCutsCount == 2)
+				playsound(T, 'sound/effects/portal_open.ogg', 100, extrarange = 3, ignore_walls = FALSE, use_pressure = FALSE)
+				var/obj/effect/portal/P = new/obj/effect/portal/single_use{icon = 'icons/obj/spatial_cut.dmi';}(T)
+				P.color = cutcolor
+				P.set_target(RiftTarget)
+				next_rift = world.time + RiftCooldown
+		else
+			RiftTarget = null
+	else if(!T.density)
+		RiftTarget = get_turf(target)
+		to_chat(user, "\The [src] shines.")
+
+
+/obj/item/storage/belt/sheath/judgement/equiped/New()
+	new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
+	. = ..()
 
 /* I NEED MORE POWER
 /obj/item/storage/belt/sheath/judgement/attackby(obj/item/I, mob/living/user, params)

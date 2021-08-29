@@ -40,6 +40,6 @@
 	for(var/obj/item/tool/sword/SW in contents)
 		icon_to_set = SW.icon_state
 	item_state = "[icon_state]_[icon_to_set]"
-	overlays += icon_to_set
+	add_overlays(icon_to_set)
 	. = ..()
 
