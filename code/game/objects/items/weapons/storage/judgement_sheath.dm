@@ -23,7 +23,7 @@
 	examine(mob/user, distance = -1, infix, suffix)
 		. = ..()
 		var/mistake_radius = max(3 - round(user.stats.getStat(STAT_COG)/20), 0)
-		var/charge = num2text(round(max(((next_rift - world.time) / RiftCooldown), 0) * 5) + rand(-mistake_radius, mistake_radius))
+		var/charge = clamp((round(max(1 + ((next_rift - world.time) / RiftCooldown), 1) * 5 ) + rand(-mistake_radius, mistake_radius)), 1, length(ChargeNarrative))
 
 		if(ChargeNarrative.Find(charge) && ChargeNarrative[charge])
 			var/narrative = ChargeNarrative[charge]
@@ -50,7 +50,7 @@
 				RiftTarget = null
 			else if(spatialCutsCount == 2)
 				playsound(T, 'sound/effects/portal_open.ogg', 100, extrarange = 3, ignore_walls = FALSE, use_pressure = FALSE)
-				var/obj/effect/portal/P = new/obj/effect/portal/single_use{icon = 'icons/obj/spatial_cut.dmi';}(T)
+				var/obj/effect/portal/P = new/obj/effect/portal/single_use{icon = 'icons/obj/spatial_cut.dmi';}(T, 1 MINUTE)
 				P.color = cutcolor
 				P.set_target(RiftTarget)
 				next_rift = world.time + RiftCooldown
