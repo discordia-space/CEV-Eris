@@ -60847,10 +60847,15 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "cQR" = (
-/obj/structure/dispenser/oxygen,
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
+/obj/machinery/door/blast/shutters/glass{
+	id = "ineedmorepower";
+	name = "Spatial Cutter"
+	},
+/obj/structure/table/rack,
+/obj/item/storage/belt/sheath/judgement/equiped,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
 "cQS" = (
@@ -103649,6 +103654,14 @@
 	name = "Technomancer Exultant RC";
 	pixel_x = 30
 	},
+/obj/machinery/button/remote/blast_door/id_card{
+	dir = 8;
+	id = "ineedmorepower";
+	name = "Spatial Cutter id lock";
+	pixel_x = 20;
+	pixel_y = 24;
+	req_access = list(56)
+	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/command/exultant)
 "oxP" = (
@@ -104357,8 +104370,8 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "rJp" = (
-/mob/living/simple_animal/chicken,
 /obj/machinery/light,
+/mob/living/simple_animal/chicken,
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics)
 "rMC" = (
