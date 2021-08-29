@@ -12,6 +12,11 @@
 	id = "spider_nest2"
 	suffix = "spider_nest/spider_nest2.dmm"
 
+/datum/map_template/ruin/exoplanet/spider_nest/spider_nest3
+	name = "spider_nest 3"
+	id = "spider_nest3"
+	suffix = "spider_nest/spider_nest3.dmm"
+
 /area/map_template/spider_nest
 	name = "\improper Spider Nest"
 	icon_state = "blue"
