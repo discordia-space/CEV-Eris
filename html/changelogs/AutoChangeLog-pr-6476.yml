@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - bugfix: roaches no longer die over and over again while dead.
