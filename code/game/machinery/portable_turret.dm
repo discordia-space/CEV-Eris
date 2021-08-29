@@ -305,7 +305,7 @@ var/list/turret_icons
 					else
 						to_chat(user, SPAN_NOTICE("You remove the turret but did not manage to salvage anything."))
 					qdel(src) // qdel
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_BOLT_TURNING in I.tool_qualities)
 			if(enabled)
@@ -347,7 +347,7 @@ var/list/turret_icons
 					to_chat(user, SPAN_NOTICE("You unsecure the exterior bolts on the turret."))
 					update_icon()
 			wrenching = 0
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/modular_computer))
 			if(allowed(user))
@@ -359,7 +359,7 @@ var/list/turret_icons
 				to_chat(user, SPAN_NOTICE("You transfer the card's ID code to the turret's list of targetting exceptions."))
 			else
 				to_chat(user, SPAN_NOTICE("Access denied."))
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_PULSING in I.tool_qualities)
 			if(debugopen)
@@ -389,7 +389,7 @@ var/list/turret_icons
 						hackfail = 0
 					else
 						to_chat(user, SPAN_WARNING("You fail to hack the ID reader, but avoid tripping the security protocol."))
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_HARD,  required_stat = STAT_MEC))
@@ -400,7 +400,7 @@ var/list/turret_icons
 					debugopen = 1
 					to_chat(user, SPAN_NOTICE("You gently unscrew the seconday maintenance hatch, gaining access to the turret's internal circuitry and debug functions."))
 					desc = "A hatch on the bottom of the access panel is opened, exposing the circuitry inside."
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 		else if((QUALITY_WIRE_CUTTING in I.tool_qualities) && (debugopen))
 			if(overridden)
@@ -421,7 +421,7 @@ var/list/turret_icons
 						hackfail = 1
 						sleep(300)
 						hackfail = 0
-			return 1
+			return 1 //No whacking the turret with tools on help intent
 
 	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
