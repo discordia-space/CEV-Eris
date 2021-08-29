@@ -193,7 +193,8 @@
  */
 
  // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
-/obj/item/stack/tile/floor/steel/attackby(obj/item/I, mob/living/user)
+/obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
+	var/obj/item/I = user.get_active_hand()
 	if(istype(I, /obj/item/stack/tile/floor/cyborg))
 		var/obj/item/stack/tile/floor/cyborg/C = I
 		C.stacktype = src.type
@@ -472,15 +473,19 @@
 /obj/item/stack/tile/derelict/white_red_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict1"
 
 /obj/item/stack/tile/derelict/white_small_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict2"
 
 /obj/item/stack/tile/derelict/red_white_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict3"
 
 /obj/item/stack/tile/derelict/white_big_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict4"

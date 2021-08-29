@@ -164,6 +164,8 @@
 		cell = C
 		update_icon()
 
+	..()
+
 /obj/item/gun/energy/ui_data(mob/user)
 	var/list/data = ..()
 	data["charge_cost"] = charge_cost
