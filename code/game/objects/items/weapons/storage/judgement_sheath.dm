@@ -5,7 +5,7 @@
 	can_hold = list(
 		/obj/item/tool/sword/katana
 	)
-	rarity_value = 5
+	spawn_blacklisted = TRUE
 
 	handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 		. = ..()
@@ -14,14 +14,13 @@
 			cutter.ActivateSpatialCuts(src, user)
 
 	equiped
-		rarity_value = 5
 		New()
 			new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
 			. = ..()
 
 /obj/item/tool/sword/katana/spatial_cutter
 	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it."
-	rarity_value = 1
+	spawn_blacklisted = TRUE
 	var/LifeTimeOfSpatialCuts = 5 SECONDS
 
 	var/list/SpatialCuts = list()
@@ -83,7 +82,8 @@
 		icon_state = "activated"
 		alpha = 255
 		for(var/atom/movable/M in get_turf(src))
-			MyCutter.resolve_attackby(M, user)
+			if(!istype(M, /atom/movable/SpatialCut))
+				MyCutter.resolve_attackby(M, user)
 	QDEL_IN(src, 2.6)
 
 /atom/movable/SpatialCut/Destroy()
