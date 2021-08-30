@@ -55,7 +55,7 @@
 					mask = "rift_mask";
 					SpawnAnimationState = "rift_spawn";
 					DespawnAnimationState = "rift_dissolve";
-					DespawnAnimationTime = 6
+					DespawnAnimationTime = 9
 					}(T, 1 MINUTE)
 				P.color = cutcolor
 				P.set_target(RiftTarget)
@@ -101,8 +101,8 @@
 			next_spatial_cut = world.time + SpatialCutCooldown
 	proc/ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath, mob/user)
 		. = length(SpatialCuts)
-		for(var/atom/movable/SpatialCut/C in SpatialCuts)
-			spawn(0)
+		spawn(0)
+			for(var/atom/movable/SpatialCut/C in SpatialCuts)
 				C.Activate(user)
 /obj/item/tool/sword/katana/spatial_cutter/yamato
 	name = "yamato"
@@ -169,7 +169,7 @@
 		alpha = 255
 		playsound(src, 'sound/weapons/rapidslice.ogg', 75)
 		for(var/atom/movable/M in T)
-			if(!istype(M, /atom/movable/SpatialCut))
+			if(!istype(M, /atom/movable/SpatialCut) && !istype(M, /obj/item/storage))
 				MyCutter.resolve_attackby(M, user)
 		bluespace_entropy(0.5, T)
 	QDEL_IN(src, 2.6)
