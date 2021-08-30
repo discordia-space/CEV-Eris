@@ -26,6 +26,7 @@
 		FULL_AUTO_400
 		)
 
+	gun_tags = list(GUN_SILENCABLE)
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)

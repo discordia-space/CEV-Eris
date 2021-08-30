@@ -27,6 +27,8 @@
 	rarity_value = 80
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
+	gun_tags = list(GUN_SILENCABLE)
+
 	init_firemodes = list(
 		FULL_AUTO_600,
 		BURST_5_ROUND,

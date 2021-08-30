@@ -28,6 +28,8 @@
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
 
+	gun_tags = list(GUN_SILENCABLE)
+
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)
 		recentpumpmsg = world.time
