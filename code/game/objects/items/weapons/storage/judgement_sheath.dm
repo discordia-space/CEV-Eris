@@ -164,12 +164,14 @@
 	. = TRUE
 	if(istype(MyCutter))
 		deltimer(qdel_timer)
+		var/turf/T = get_turf(src)
 		icon_state = "activated"
 		alpha = 255
 		playsound(src, 'sound/weapons/rapidslice.ogg', 75)
-		for(var/atom/movable/M in get_turf(src))
+		for(var/atom/movable/M in T)
 			if(!istype(M, /atom/movable/SpatialCut))
 				MyCutter.resolve_attackby(M, user)
+		bluespace_entropy(0.5, T)
 	QDEL_IN(src, 2.6)
 
 /atom/movable/SpatialCut/Destroy()
