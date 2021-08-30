@@ -14,9 +14,9 @@
 	var/turf/RiftTarget
 
 	var/list/ChargeNarrative = list(
-		"blue smoke that absorbing in %self",
-		"blue fog that absorbing in %self",
-		"barelly vissible blue clouds that absorbing in %self",
+		"blue smoke that is absorbing in %self",
+		"blue fog that is absorbing in %self",
+		"faint blue clouds absorbing into %self",
 		"that %self is almost charged",
 		null
 		)
