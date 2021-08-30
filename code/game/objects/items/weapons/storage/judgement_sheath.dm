@@ -14,9 +14,9 @@
 	var/turf/RiftTarget
 
 	var/list/ChargeNarrative = list(
-		"blue smoke that coming in %self",
-		"blue fog that coming in %self",
-		"barelly vissible blue clouds that comming in %self",
+		"blue smoke that absorbing in %self",
+		"blue fog that absorbing in %self",
+		"barelly vissible blue clouds that absorbing in %self",
 		"that %self is almost charged",
 		null
 		)
@@ -78,7 +78,7 @@
 	. = ..()
 */
 /obj/item/tool/sword/katana/spatial_cutter
-	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it."
+	desc = "This is a strange katana that leaves an afterimage of it as you swing it in the air."
 	spawn_blacklisted = TRUE
 	var/LifeTimeOfSpatialCuts = 5 SECONDS
 
@@ -104,7 +104,7 @@
 				C.Activate(user)
 /obj/item/tool/sword/katana/spatial_cutter/yamato
 	name = "yamato"
-	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it. When you look at it you almost hear something like 'I need more power!'."
+	desc = "This is a strange katana that leaves an afterimage of it as you swing it in the air. When you look at it you almost hear a male voice whispering something into your head, but can't understand what exactly."
 	icon_state = "yamato"
 	SpatialCutsColor = "#88ccdd"
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
