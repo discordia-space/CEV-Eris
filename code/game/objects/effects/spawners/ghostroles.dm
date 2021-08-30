@@ -83,10 +83,6 @@
 		STAT_COG = 8
 	)
 
-/*obj/effect/mob_spawn/human/hermit/Initialize(mapload)
-	var/list/hermit_title = list("HTU Canterbury Longshoreman", "NSS Rocinante Marine", "MHS Geary Amputator 3rd Class", "HTU Epstein Bartender", "HTU Lehrer Miner")
-	title = "[pick(hermit_title)]"*/
-
 /decl/hierarchy/outfit/hermit
 	name = "hermit"
 	suit = /obj/item/clothing/suit/storage/ass_jacket
