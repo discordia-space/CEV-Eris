@@ -22,11 +22,11 @@
 		)
 	examine(mob/user, distance = -1, infix, suffix)
 		. = ..()
-		var/mistake_radius = max(3 - round(user.stats.getStat(STAT_COG)/20), 0)
-		var/charge = clamp((round(max(1 + ((next_rift - world.time) / RiftCooldown), 1) * 5 ) + rand(-mistake_radius, mistake_radius)), 1, length(ChargeNarrative))
-		if(ChargeNarrative[charge])
-			var/narrative = ChargeNarrative[charge]
-			to_chat(user, SPAN_NOTICE(replacetext("You can see [narrative].", "%self", name)))
+		if(length(ChargeNarrative))
+			var/mistake_radius = max(3 - round(user.stats.getStat(STAT_COG)/20), 0)
+			var/charge = clamp((6 - CEILING((next_rift - world.time) / RiftCooldown * 5, 1)) + rand(-mistake_radius, mistake_radius), 1, length(ChargeNarrative))
+			if(ChargeNarrative[charge])
+				to_chat(user, SPAN_NOTICE(replacetext("You can see [ChargeNarrative[charge]].", "%self", name)))
 
 /obj/item/storage/belt/sheath/judgement/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	. = ..()
