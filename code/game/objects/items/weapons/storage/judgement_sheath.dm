@@ -95,7 +95,9 @@
 	afterattack(atom/target, mob/user, proximity_flag, params)
 		. = ..()
 		if(proximity_flag && world.time >= next_spatial_cut)
-			SpatialCuts.Add(new SpatialCutsType(get_turf(target), src, SpatialCutsColor, rand(0, 36) * 10, LifeTimeOfSpatialCuts))
+			var/turf/T = get_turf(target)
+			SpatialCuts.Add(new SpatialCutsType(T, src, SpatialCutsColor, rand(0, 36) * 10, LifeTimeOfSpatialCuts))
+			playsound(T, 'sound/weapons/rapidslice.ogg', 100)
 			next_spatial_cut = world.time + SpatialCutCooldown
 	proc/ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath, mob/user)
 		. = length(SpatialCuts)
@@ -164,6 +166,7 @@
 		deltimer(qdel_timer)
 		icon_state = "activated"
 		alpha = 255
+		playsound(src, 'sound/weapons/rapidslice.ogg', 75)
 		for(var/atom/movable/M in get_turf(src))
 			if(!istype(M, /atom/movable/SpatialCut))
 				MyCutter.resolve_attackby(M, user)
