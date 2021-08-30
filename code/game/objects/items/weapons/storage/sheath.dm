@@ -21,6 +21,8 @@
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/sword/nt/halberd
 		)
+	insertion_sound = 'sound/effects/holster/sheathin.ogg'
+	extraction_sound = 'sound/effects/holster/sheathout.ogg'
 
 /obj/item/storage/belt/sheath/attack_hand(mob/living/carbon/human/user)
 	if(contents.len && (src in user))
