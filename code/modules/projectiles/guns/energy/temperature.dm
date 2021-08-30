@@ -27,6 +27,12 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
+/obj/item/gun/energy/temperaute/consume_next_projectile()
+	if(!cell) return null
+	if(!ispath(projectile_type)) return null
+	if(!cell.checked_use(charge_cost)) return null
+	var/obj/item/projectile/temp_proj = new projectile_type(src)
+	temp_proj.temperature = current_temperature
 
 /obj/item/gun/energy/temperature/attack_self(mob/living/user as mob)
 	user.set_machine(src)
