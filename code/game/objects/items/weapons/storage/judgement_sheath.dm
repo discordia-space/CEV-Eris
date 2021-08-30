@@ -104,7 +104,7 @@
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
 		. = ..()
 		if(.)
-			var/quote = "<b>Voice from somewhere</b>, says '[pick("Too slow.", "You are finished!", "It's over!")]'"
+			var/quote = "<b>Voice from somewhere</b> says, '[pick("Too slow.", "You are finished!", "It's over!")]'"
 			audible_message(quote, "You almost can hear someone's voice.", 3)
 
 /obj/item/tool/sword/katana/spatial_cutter/yamato/New()
