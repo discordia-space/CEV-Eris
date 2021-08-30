@@ -122,7 +122,6 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 *********************************/
 /datum/storyteller/Process()
 	if(can_tick())
-
 		//Update these things so we can accurately select events
 		update_crew_count()
 		update_event_weights()
