@@ -15,6 +15,7 @@
 	price_tag = 1500
 	projectile_type = /obj/item/projectile/temp
 	zoom_factor = 2
+	gun_parts = list(/obj/item/stack/material/steel = 4)
 
 
 /obj/item/gun/energy/temperature/Initialize()

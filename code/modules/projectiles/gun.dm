@@ -333,13 +333,9 @@
 			break
 
 		projectile.multiply_projectile_damage(damage_multiplier)
-
 		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
-
 		projectile.multiply_pierce_penetration(pierce_multiplier)
-
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
-
 		projectile.multiply_projectile_agony(proj_agony_multiplier)
 
 		if(istype(projectile, /obj/item/projectile))
