@@ -257,7 +257,6 @@ macro "borghotkeymode"
 	elem 
 		name = "NUMPAD3"
 		command = "body-l-leg"
-
 macro "macro"
 	elem 
 		name = "WEST"
@@ -451,7 +450,6 @@ macro "macro"
 	elem 
 		name = "F12"
 		command = "F12"
-
 macro "hotkeymode"
 	elem 
 		name = "WEST"
@@ -741,7 +739,6 @@ macro "hotkeymode"
 	elem 
 		name = "SOUTHEAST"
 		command = "Move-Downwards"
-
 macro "borgmacro"
 	elem 
 		name = "WEST"
@@ -929,8 +926,6 @@ macro "borgmacro"
 	elem 
 		name = "F12"
 		command = "F12"
-
-
 menu "menu"
 	elem 
 		name = "&File"
@@ -1059,8 +1054,6 @@ menu "menu"
 		command = "hotkeys-help"
 		category = "&Help"
 		saved-params = "is-checked"
-
-
 window "Telecomms IDE"
 	elem "Telecomms IDE"
 		type = MAIN
@@ -1140,7 +1133,6 @@ window "Telecomms IDE"
 		command = "cancel"
 		multi-line = true
 		no-command = true
-
 window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
@@ -1207,8 +1199,6 @@ window "mainwindow"
 		background-color = none
 		is-visible = false
 		saved-params = ""
-
-
 window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
@@ -1247,7 +1237,6 @@ window "mapwindow"
 		is-disabled = true
 		saved-params = ""
 		auto-format = false
-
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
@@ -1276,7 +1265,6 @@ window "outputwindow"
 		anchor2 = 100,100
 		is-default = true
 		saved-params = ""
-
 window "rpane"
 	elem "rpane"
 		type = MAIN
@@ -1400,7 +1388,6 @@ window "rpane"
 		anchor2 = none
 		is-visible = false
 		saved-params = ""
-
 window "browserwindow"
 	elem "browserwindow"
 		type = MAIN
@@ -1422,7 +1409,6 @@ window "browserwindow"
 		saved-params = ""
 		on-show = ".winset\"rpane.infob.is-visible=true?rpane.infob.pos=130,0;rpane.textb.is-visible=true;rpane.browseb.is-visible=true;rpane.browseb.is-checked=true;rpane.rpanewindow.pos=0,30;rpane.rpanewindow.size=0x0;rpane.rpanewindow.left=browserwindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=true?rpane.infob.is-checked=true rpane.infob.pos=65,0 rpane.rpanewindow.left=infowindow:rpane.rpanewindow.left=textwindow rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0\""
-
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
@@ -1444,7 +1430,6 @@ window "infowindow"
 		highlight-color = #00aa00
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
-
 window "text_editor"
 	elem "text_editor"
 		type = MAIN
@@ -1494,4 +1479,3 @@ window "text_editor"
 		border = line
 		saved-params = ""
 		multi-line = true
-
