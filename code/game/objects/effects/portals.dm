@@ -15,6 +15,11 @@
 	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
 	var/entropy_value = 4
 
+	var/SpawnAnimationState
+
+	var/DespawnAnimationState
+	var/DespawnAnimationTime
+
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
 		return FALSE
@@ -39,6 +44,8 @@
 
 /obj/effect/portal/New(loc, _lifetime = 300)
 	..(loc)
+	if(SpawnAnimationState)
+		FLICK(SpawnAnimationState, src)
 	birthtime = world.time
 	lifetime = _lifetime
 	addtimer(CALLBACK(src, .proc/close,), lifetime)
@@ -69,7 +76,14 @@ var/list/portal_cache = list()
 		return get_step(T, dir)
 
 /obj/effect/portal/proc/close()
-	qdel(src)
+	if(DespawnAnimationState)
+		if(mask)
+			remove_overlays(portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"])
+		FLICK(DespawnAnimationState, src)
+	if(DespawnAnimationTime)
+		QDEL_IN(src, DespawnAnimationTime)
+	else
+		qdel(src)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if (world.time < next_teleport)

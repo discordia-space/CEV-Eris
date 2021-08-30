@@ -24,8 +24,7 @@
 		. = ..()
 		var/mistake_radius = max(3 - round(user.stats.getStat(STAT_COG)/20), 0)
 		var/charge = clamp((round(max(1 + ((next_rift - world.time) / RiftCooldown), 1) * 5 ) + rand(-mistake_radius, mistake_radius)), 1, length(ChargeNarrative))
-
-		if(ChargeNarrative.Find(charge) && ChargeNarrative[charge])
+		if(ChargeNarrative[charge])
 			var/narrative = ChargeNarrative[charge]
 			to_chat(user, SPAN_NOTICE(replacetext("You can see [narrative].", "%self", name)))
 
@@ -50,7 +49,14 @@
 				RiftTarget = null
 			else if(spatialCutsCount == 2)
 				playsound(T, 'sound/effects/portal_open.ogg', 100, extrarange = 3, ignore_walls = FALSE, use_pressure = FALSE)
-				var/obj/effect/portal/P = new/obj/effect/portal/single_use{icon = 'icons/obj/spatial_cut.dmi';}(T, 1 MINUTE)
+				var/obj/effect/portal/P = new/obj/effect/portal/single_use{
+					icon = 'icons/obj/spatial_cut.dmi';
+					icon_state = "rift";
+					mask = "rift_mask";
+					SpawnAnimationState = "rift_spawn";
+					DespawnAnimationState = "rift_dissolve";
+					DespawnAnimationTime = 6
+					}(T, 1 MINUTE)
 				P.color = cutcolor
 				P.set_target(RiftTarget)
 				next_rift = world.time + RiftCooldown
@@ -61,7 +67,7 @@
 		to_chat(user, "\The [src] shines.")
 
 
-/obj/item/storage/belt/sheath/judgement/equiped/New()
+/obj/item/storage/belt/sheath/judgement/withKatana/New()
 	new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
 	. = ..()
 
@@ -100,11 +106,11 @@
 	name = "yamato"
 	desc = "This is a strange katana, when you move it in the air you can see something like shadow of it following it. When you look at it you almost hear something like 'I need more power!'."
 	icon_state = "yamato"
-	SpatialCutsColor = "#66aaff"
+	SpatialCutsColor = "#88ccdd"
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
 		. = ..()
 		if(.)
-			var/quote = "<b>Voice from somewhere</b> says, '[pick("Too slow.", "You are finished!", "It's over!")]'"
+			var/quote = "<b>Voice from somewhere</b> says, \"[pick("Too slow.", "You are finished!", "It's over!")]\""
 			audible_message(quote, "You almost can hear someone's voice.", 3)
 
 /obj/item/tool/sword/katana/spatial_cutter/yamato/New()
