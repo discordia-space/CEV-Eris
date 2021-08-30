@@ -123,6 +123,11 @@
 		"mutagen" = 15
 		)
 
+	// copy paste of sojourn code
+	var/global/list/potency_reagents = list(
+		"diethylamine" =    2
+	)
+
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
 	if(mechanical && !usr.incapacitated() && Adjacent(usr))
 		close_lid(usr)
@@ -204,6 +209,13 @@
 				health += beneficial_reagents[R.id][1]       * reagent_total
 				yield_mod += beneficial_reagents[R.id][2]    * reagent_total
 				mutation_mod += beneficial_reagents[R.id][3] * reagent_total
+		    //potency reagents boost the plants genetic potency, tweaking needed (i copy pasted this from sojourn)
+			if(potency_reagents[R.id])
+				//While I myself would love to see this limit removed, 400 potency bluespace tomato's are a little to powerfull
+				if(seed.get_trait(TRAIT_POTENCY) < 100)
+					seed.set_trait(TRAIT_POTENCY, seed.get_trait(TRAIT_POTENCY) + (potency_reagents[R.id] * reagent_total * 0.5))
+				else
+					seed.set_trait(TRAIT_POTENCY, 100)
 
 			// Mutagen is distinct from the previous types and mostly has a chance of proccing a mutation.
 			if(mutagenic_reagents[R.id])
