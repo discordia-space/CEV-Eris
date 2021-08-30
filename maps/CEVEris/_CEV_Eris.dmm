@@ -60855,7 +60855,7 @@
 	name = "Spatial Cutter"
 	},
 /obj/structure/table/rack,
-/obj/item/storage/belt/sheath/judgement/withKatana,
+/obj/item/storage/belt/sheath/judgement/filled,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
 "cQS" = (

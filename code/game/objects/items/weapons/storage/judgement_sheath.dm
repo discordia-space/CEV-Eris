@@ -1,8 +1,9 @@
 /obj/item/storage/belt/sheath/judgement
 	icon_state = "sheath_judgement"
-	name = "katana sheath"
-	desc = "Made to store katanas. It has a patterned gold head on it's bottom part."
+	name = "curved sheath"
+	desc = "Made to store curved swords. It is dark blue. It has a patterned gold head on it's bottom part. On inner side of it's mouth you can notice strange cyan crystal."
 	can_hold = list(
+		/obj/item/tool/sword/saber,
 		/obj/item/tool/sword/katana
 	)
 	spawn_blacklisted = TRUE
@@ -67,18 +68,13 @@
 		to_chat(user, "\The [src] shines.")
 
 
-/obj/item/storage/belt/sheath/judgement/withKatana/New()
-	new/obj/item/tool/sword/katana/spatial_cutter/yamato(src)
+/obj/item/storage/belt/sheath/judgement/filled/New()
+	new/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie(src)
 	. = ..()
 
-/* I NEED MORE POWER
-/obj/item/storage/belt/sheath/judgement/attackby(obj/item/I, mob/living/user, params)
-	if(nt_sword_attack(I, user))
-		return
-	. = ..()
-*/
 /obj/item/tool/sword/katana/spatial_cutter
-	desc = "This is a strange katana that leaves an afterimage of it as you swing it in the air."
+	name = "saber"
+	desc = "This is a strange sword that leaves an afterimage of it as you swing it in the air. It have slightly curved, blade with a single edge."
 	spawn_blacklisted = TRUE
 	var/LifeTimeOfSpatialCuts = 5 SECONDS
 
@@ -104,36 +100,36 @@
 		spawn(0)
 			for(var/atom/movable/SpatialCut/C in SpatialCuts)
 				C.Activate(user)
-/obj/item/tool/sword/katana/spatial_cutter/yamato
-	name = "yamato"
-	desc = "This is a strange katana that leaves an afterimage of it as you swing it in the air. When you look at it you almost hear a male voice whispering something into your head, but can't understand what exactly."
+/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie
+	name = "Sword of Lie"
+	desc = "This is a strange sword that leaves an afterimage of it as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. It have strange cyan crystal in place where guard should be."
 	icon_state = "yamato"
-	SpatialCutsColor = "#88ccdd"
+	SpatialCutsColor = "#88ffff"
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
 		. = ..()
 		if(.)
-			var/quote = "<b>Voice from somewhere</b> says, \"[pick("Too slow.", "You are finished!", "It's over!")]\""
+			var/quote = "<b>Voice from somewhere</b> says, \"[pick("Too slow.", "Out of my way!", "Just like old times.")]\""
 			audible_message(quote, "You almost can hear someone's voice.", 3)
 
-/obj/item/tool/sword/katana/spatial_cutter/yamato/New()
+/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie/New()
 	. = ..()
 	GLOB.all_faction_items[src] = GLOB.department_engineering
 
-/obj/item/tool/sword/katana/spatial_cutter/yamato/Destroy()
+/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.technomancer_faction_item_loss++
 	. = ..()
 
-/obj/item/tool/sword/katana/spatial_cutter/yamato/attackby(obj/item/I, mob/user, params)
+/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie/attackby(obj/item/I, mob/user, params)
 	if(nt_sword_attack(I, user))
 		return
 	. = ..()
 //I NEED MORE POWER
 /obj/item/tool/sword/nt_sword/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/tool/sword/katana/spatial_cutter/yamato) || istype(I, /obj/item/storage/belt/sheath/judgement))
+	if(istype(I, /obj/item/tool/sword/katana/spatial_cutter/sword_of_lie) || istype(I, /obj/item/storage/belt/sheath/judgement))
 		qdel(src)
 
 /atom/movable/SpatialCut
