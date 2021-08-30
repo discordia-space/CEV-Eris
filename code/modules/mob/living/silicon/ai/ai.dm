@@ -110,7 +110,7 @@ var/list/ai_verbs_default = list(
 	var/multitool_mode = 0
 
 	var/mob/living/silicon/robot/drone/aibound/bound_drone = null
-	var/drone_cooldown_time = 5 SECONDS // 30 MINUTES  // Cooldown before creating a new drone
+	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
 	var/time_destroyed = 0.0
 
 	defaultHUD = "Eris"
@@ -772,7 +772,6 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/go_into_drone()
 	// Switch to drone or spawn a new one
 	if(!bound_drone)
-		testing("[world.time] . [time_destroyed] . [drone_cooldown_time]")
 		if (world.time - time_destroyed > drone_cooldown_time)
 			try_drone_spawn(src, aibound = TRUE)
 		else
