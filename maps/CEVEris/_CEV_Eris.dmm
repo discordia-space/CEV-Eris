@@ -60851,7 +60851,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/door/blast/shutters/glass{
-	id = "ineedmorepower";
+	id = "ExultantSpatialCutter";
 	name = "Spatial Cutter"
 	},
 /obj/structure/table/rack,
@@ -103656,7 +103656,7 @@
 	},
 /obj/machinery/button/remote/blast_door/id_card{
 	dir = 8;
-	id = "ineedmorepower";
+	id = "ExultantSpatialCutter";
 	name = "Spatial Cutter id lock";
 	pixel_x = 20;
 	pixel_y = 24;
