@@ -49,7 +49,7 @@
 			if(!spatialCutsCount)
 				RiftTarget = null
 			else if(spatialCutsCount == 2)
-				playsound(T, 'sound/effects/portal_open.ogg', 100, extrarange = 3, ignore_walls = FALSE, use_pressure = FALSE)
+				playsound(T, 'sound/effects/portal_open.ogg', 100, extrarange = 3, ignore_walls = TRUE, use_pressure = FALSE)
 				var/obj/effect/portal/P = new/obj/effect/portal/single_use{
 					icon = 'icons/obj/spatial_cut.dmi';
 					icon_state = "rift";
@@ -100,10 +100,12 @@
 		spawn(0)
 			for(var/atom/movable/SpatialCut/C in SpatialCuts)
 				C.Activate(user)
+		if(.)
+			playsound(get_turf(src), 'sound/effects/portal_open.ogg', 100, use_pressure = FALSE)
 /obj/item/tool/sword/katana/spatial_cutter/sword_of_lie
 	name = "Sword of Lie"
-	desc = "This is a strange sword that leaves an afterimage of it as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. It have strange cyan crystal in place where guard should be."
-	icon_state = "yamato"
+	desc = "This is a strange sword that leaves an afterimages of itself, that following it, as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. Handle is encrusted with a cyan crystal."
+	icon_state = "2ndkey"
 	SpatialCutsColor = "#88ffff"
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
 		. = ..()
@@ -143,8 +145,6 @@
 	anchored = TRUE
 
 	var/qdel_timer
-	plane = BLACKNESS_PLANE
-
 
 /atom/movable/SpatialCut/Initialize(mapload, obj/item/tool/sword/katana/spatial_cutter/C, _color = color, _angle, _time)
 	. = ..()
@@ -168,7 +168,7 @@
 			if(!istype(M, /atom/movable/SpatialCut) && !istype(M, /obj/item/storage))
 				MyCutter.resolve_attackby(M, user)
 		bluespace_entropy(0.5, T)
-	QDEL_IN(src, 2.6)
+	qdel_timer = QDEL_IN(src, 2.6)
 
 /atom/movable/SpatialCut/Destroy()
 	if(!QDELETED(MyCutter))
