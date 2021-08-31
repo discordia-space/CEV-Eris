@@ -14,23 +14,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Rock sliver
 
-/obj/item/weapon/rocksliver
+/obj/item/rocksliver
 	name = "rock sliver"
 	desc = "It looks extremely delicate."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "sliver1"	//0-4
 	w_class = ITEM_SIZE_TINY
 	sharp = TRUE
+	preloaded_reagents = list("ground_rock" = 50)
 	//item_state = "electronic"
 	var/source_rock = "/turf/simulated/mineral/"
 	var/datum/geosample/geological_data
 
-/obj/item/weapon/rocksliver/New()
+/obj/item/rocksliver/Initialize(mapload)
+	. = ..()
 	icon_state = "sliver[rand(1,3)]"
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
-	create_reagents(50)
-	reagents.add_reagent("ground_rock",50)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Geosample datum

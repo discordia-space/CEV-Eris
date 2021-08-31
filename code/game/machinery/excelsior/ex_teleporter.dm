@@ -1,6 +1,8 @@
 var/list/global/excelsior_teleporters = list() //This list is used to make turrets more efficient
 var/global/excelsior_energy
 var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
+var/global/excelsior_conscripts = 0
+var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
@@ -12,14 +14,17 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	active_power_usage = 15000
-	circuit = /obj/item/weapon/circuitboard/excelsior_teleporter
+	circuit = /obj/item/electronics/circuitboard/excelsior_teleporter
 
 	var/max_energy = 100
 	var/energy_gain = 1
 	var/processing_order = FALSE
 	var/nanoui_menu = 0 	// Based on Uplink
-	var/mob/current_user 
+	var/mob/current_user
 	var/time_until_scan
+
+	var/reinforcements_delay = 20 MINUTES
+	var/reinforcements_cost = 2000
 
 	var/list/nanoui_data = list()			// Additional data for NanoUI use
 	var/list/materials_list = list(
@@ -35,26 +40,28 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 		)
 
 	var/list/parts_list = list(
-		/obj/item/weapon/stock_parts/console_screen = 50,
-		/obj/item/weapon/stock_parts/capacitor = 100,
-		/obj/item/weapon/stock_parts/scanning_module = 100,
-		/obj/item/weapon/stock_parts/manipulator = 100,
-		/obj/item/weapon/stock_parts/micro_laser = 100,
-		/obj/item/weapon/stock_parts/matter_bin = 100,
-		/obj/item/weapon/stock_parts/capacitor/excelsior = 350,
-		/obj/item/weapon/stock_parts/scanning_module/excelsior = 350,
-		/obj/item/weapon/stock_parts/manipulator/excelsior = 350,
-		/obj/item/weapon/stock_parts/micro_laser/excelsior = 350,
-		/obj/item/weapon/stock_parts/matter_bin/excelsior = 350,
-		/obj/item/clothing/under/excelsior = 100,
-		/obj/item/weapon/circuitboard/excelsior_teleporter = 500,
-		/obj/item/weapon/circuitboard/excelsiorautolathe = 150,
-		/obj/item/weapon/circuitboard/excelsiorreconstructor = 150,
-		/obj/item/weapon/circuitboard/excelsior_turret = 150,
-		/obj/item/weapon/circuitboard/excelsiorshieldwallgen = 150,
-		/obj/item/weapon/circuitboard/excelsior_boombox = 150,
-		/obj/item/weapon/circuitboard/diesel = 150
+		/obj/item/stock_parts/console_screen = 50,
+		/obj/item/stock_parts/capacitor = 100,
+		/obj/item/stock_parts/scanning_module = 100,
+		/obj/item/stock_parts/manipulator = 100,
+		/obj/item/stock_parts/micro_laser = 100,
+		/obj/item/stock_parts/matter_bin = 100,
+		/obj/item/stock_parts/capacitor/excelsior = 350,
+		/obj/item/stock_parts/scanning_module/excelsior = 350,
+		/obj/item/stock_parts/manipulator/excelsior = 350,
+		/obj/item/stock_parts/micro_laser/excelsior = 350,
+		/obj/item/stock_parts/matter_bin/excelsior = 350,
+		/obj/item/clothing/under/excelsior = 50,
+		/obj/item/electronics/circuitboard/excelsior_teleporter = 500,
+		/obj/item/electronics/circuitboard/excelsiorautolathe = 150,
+		/obj/item/electronics/circuitboard/excelsiorreconstructor = 150,
+		/obj/item/electronics/circuitboard/excelsior_turret = 150,
+		/obj/item/electronics/circuitboard/excelsiorshieldwallgen = 150,
+		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
+		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
+		/obj/item/electronics/circuitboard/diesel = 150
 		)
+	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
 	excelsior_teleporters |= src
@@ -66,19 +73,23 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	.=..()
 
 /obj/machinery/complant_teleporter/RefreshParts()
+	if (!component_parts.len)
+		error("[src] \ref[src] had no parts on refresh")
+		return //this has runtimed before
 	var/man_rating = 0
 	var/man_amount = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
+		entropy_value = initial(entropy_value)/M.rating
 		man_amount++
-
+	
 	// +50% speed for each upgrade tier
 	var/coef = 1 + (((man_rating / man_amount) - 1) / 2)
 
 	energy_gain = initial(energy_gain) * coef
 	active_power_usage = initial(active_power_usage) * coef
 
-	var/obj/item/weapon/cell/C = locate() in component_parts
+	var/obj/item/cell/C = locate() in component_parts
 	if(C)
 		max_energy = C.maxcharge //Big buff for max energy
 		excelsior_max_energy = 0
@@ -89,11 +100,11 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 			energy_gain *= 2
 
 
-/obj/machinery/complant_teleporter/update_icon()
-	overlays.Cut()
+/obj/machinery/complant_teleporter/on_update_icon()
+	cut_overlays()
 
 	if(panel_open)
-		overlays += image("panel")
+		add_overlays(image("panel"))
 
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = "off"
@@ -125,10 +136,10 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
@@ -165,6 +176,8 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	data["menu"] = nanoui_menu
 	data["excel_user"] = is_excelsior(current_user)
 	data["time_until_scan"] = time_until_scan
+	data["conscripts"] = excelsior_conscripts
+	data["reinforcements_ready"] = reinforcements_check()
 	data += nanoui_data
 
 	var/list/order_list_m = list()
@@ -179,7 +192,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 			) // list in a list because Byond merges the first list...
 
 	data["materials_list"] = order_list_m
-	
+
 	var/list/order_list_p = list()
 	for(var/item in parts_list)
 		var/obj/item/I = item
@@ -223,6 +236,9 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	if(href_list["close_menu"])
 		nanoui_menu = 0
 
+	if(href_list["request_reinforcements"])
+		request_reinforcements(usr)
+
 	add_fingerprint(usr)
 	update_nano_data()
 	return 1 // update UIs attached to this object
@@ -254,13 +270,14 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 	processing_order = TRUE
 	excelsior_energy = max(excelsior_energy - order_cost, 0)
-	flick("teleporting", src)
+	FLICK("teleporting", src)
 	spawn(17)
 		complete_order(order_path, amount)
 
 /obj/machinery/complant_teleporter/proc/complete_order(order_path, amount)
 	use_power(active_power_usage * 3)
 	new order_path(loc, amount)
+	bluespace_entropy(entropy_value, get_turf(src))
 	processing_order = FALSE
 
 /obj/machinery/complant_teleporter/attackby(obj/item/I, mob/user)
@@ -270,7 +287,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 		if(M.target_type == I.type)
 			I.Destroy()
 			M.complete(user)
-			flick("teleporting", src)
+			FLICK("teleporting", src)
 	..()
 
 /obj/machinery/complant_teleporter/attack_hand(mob/user)
@@ -304,19 +321,77 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	if (affecting.stat == DEAD)
 		to_chat(user, SPAN_WARNING("[affecting] is dead, and can't be teleported"))
 		return
-
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts) // All targeted objectives can be completed by stuffing the target in the teleporter
 		if(M.completed)
 			continue
 		if(affecting == M.target_mind.current)
 			M.complete(user)
-			flick("teleporting", src)
-			to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
-			visible_message("\the [src] teleporter closes and [affecting] disapears.")
-			affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
-			affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
-			qdel(affecting)
+			teleport_out(affecting, user)
+			excelsior_conscripts += 1
 			return
-	
+	if (is_excelsior(affecting))
+		teleport_out(affecting, user)
+		excelsior_conscripts += 1
+		return
+
 	visible_message("\the [src] blinks, refusing [affecting].")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
+/obj/machinery/complant_teleporter/proc/teleport_out(var/mob/living/affecting, var/mob/living/user)
+	FLICK("teleporting", src)
+	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
+	visible_message("\the [src] teleporter closes and [affecting] disapears.")
+	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
+	affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
+	qdel(affecting)
+/obj/machinery/complant_teleporter/proc/request_reinforcements(var/mob/living/user)
+
+	if(excelsior_energy < reinforcements_cost)
+		to_chat(user, SPAN_WARNING("Not enough energy."))
+		return 0
+	if(world.time < (excelsior_last_draft + reinforcements_delay))
+		to_chat(user, SPAN_WARNING("You can call only one conscript for 20 minutes."))
+		return
+	if(excelsior_conscripts <= 0)
+		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
+		return
+	processing_order = TRUE
+	use_power(active_power_usage * 10)
+	FLICK("teleporting", src)
+	var/mob/observer/ghost/candidate = draft_ghost("Excelsior Conscript", ROLE_BANTYPE_EXCELSIOR, ROLE_EXCELSIOR_REV)
+	if(!candidate)
+		processing_order = FALSE
+		to_chat(user, SPAN_WARNING("Reinforcements were postponed"))
+		return
+
+	processing_order = FALSE
+	excelsior_last_draft = world.time
+	excelsior_energy = excelsior_energy - reinforcements_cost
+	excelsior_conscripts -= 1
+
+	var/mob/living/carbon/human/conscript = new /mob/living/carbon/human(loc)
+	conscript.ckey = candidate.ckey
+	make_antagonist(conscript.mind, ROLE_EXCELSIOR_REV)
+	conscript.stats.setStat(STAT_TGH, 10)
+	conscript.stats.setStat(STAT_VIG, 10)
+	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
+	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
+	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
+	conscript.equip_to_appropriate_slot(new /obj/item/storage/backpack/satchel())
+	var/obj/item/card/id/card = new(conscript)
+	conscript.set_id_info(card)
+	card.assignment = "Excelsior Conscript"
+	card.access = list(access_maint_tunnels)
+	card.update_name()
+	conscript.equip_to_appropriate_slot(card)
+	conscript.update_inv_wear_id()
+
+/obj/machinery/complant_teleporter/proc/reinforcements_check()
+	if(excelsior_conscripts <= 0)
+		return FALSE
+	if(world.time < (excelsior_last_draft + reinforcements_delay))
+		return FALSE
+	if(excelsior_conscripts <= 0)
+		return FALSE
+	if(excelsior_energy < reinforcements_cost)
+		return FALSE
+	return TRUE

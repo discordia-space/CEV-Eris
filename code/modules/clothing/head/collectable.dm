@@ -5,6 +5,8 @@
 	name = "collectable hat"
 	desc = "A rare collectable hat."
 	price_tag = 1000
+	bad_type = /obj/item/clothing/head/collectable
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/collectable/petehat
 	name = "ultra rare hat"
@@ -128,3 +130,17 @@
 	name = "collectable SWAT helmet"
 	desc = "Now you can be in the Deathsquad too!"
 	icon_state = "swat"
+
+/obj/item/clothing/head/collectable/gnome
+	name = "gnome hat"
+	desc = "Why do gnomes come out of our toilet? Maybe they're searching for money?"
+	icon_state = "gnome_hat"
+	spawn_blacklisted = FALSE
+	body_parts_covered = 0
+
+/obj/item/clothing/head/collectable/festive
+	name = "collectable festive paper hat"
+	icon_state = "xmashat"
+	desc = "A crappy paper hat that you are REQUIRED to wear."
+	flags_inv = 0
+	body_parts_covered = 0

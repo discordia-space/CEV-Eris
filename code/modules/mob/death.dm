@@ -18,7 +18,7 @@
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
-		flick(anim, animation)
+		FLICK(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 /mob/proc/check_delete(var/atom/movable/overlay/animation)
@@ -30,8 +30,8 @@
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
 /mob/proc/dust(anim = "dust-m", remains = /obj/effect/decal/cleanable/ash, iconfile = 'icons/mob/mob.dmi')
 	death(1)
-	if (istype(loc, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = loc
+	if (istype(loc, /obj/item/holder))
+		var/obj/item/holder/H = loc
 		H.release_mob()
 
 	transforming = TRUE
@@ -49,7 +49,7 @@
 		animation.icon_state = "blank"
 		animation.icon = iconfile
 		animation.master = src
-		flick(anim, animation)
+		FLICK(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 
@@ -67,13 +67,15 @@
 		for(var/obj/O in embedded)
 			O.forceMove(loc)
 		embedded = list()
-	for(var/obj/item/weapon/implant/carrion_spider/control/C in src)
-		C.return_mind()
 
 	for(var/mob/living/carbon/human/H in oviewers(src))
 		H.sanity.onSeeDeath(src)
+		SEND_SIGNAL(H, COMSIG_MOB_DEATH, src)
 
 	stat = DEAD
+	for(var/obj/item/implant/carrion_spider/control/C in src)
+		C.return_mind()
+
 	update_lying_buckled_and_verb_status()
 	reset_plane_and_layer()
 

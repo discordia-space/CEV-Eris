@@ -4,7 +4,7 @@
 	anchored = TRUE
 	density = TRUE
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob)
 		return attack_hand(user)
 
 	attack_hand(mob/user as mob)
@@ -53,7 +53,7 @@
 
 /obj/effect/list_container/mobl
 	name = "mobl"
-	var/master = null
+	var/master
 
 	var/list/container = list(  )
 
@@ -65,7 +65,7 @@
 
 /obj/effect/shut_controller
 	name = "shut controller"
-	var/moving = null
+	var/moving
 	var/list/parts = list(  )
 
 /obj/structure/showcase
@@ -79,7 +79,7 @@
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/item/weapon/beach_ball
+/obj/item/beach_ball
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "ball"
 	name = "beach ball"
@@ -87,8 +87,8 @@
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEM_SIZE_BULKY
-	force = 0.0
-	throwforce = 0.0
+	force = 0
+	throwforce = 0
 	throw_speed = 1
 	throw_range = 20
 	flags = CONDUCT
@@ -98,7 +98,7 @@
 		src.throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/stop
-	var/victim = null
+	var/victim
 	icon_state = "empty"
 	name = "Geas"
 	desc = "You can't resist."

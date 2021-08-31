@@ -4,7 +4,7 @@
 	name = "diesel generator"
 	icon = 'icons/obj/machines/excelsior/generator.dmi'
 	icon_state = "base"
-	circuit = /obj/item/weapon/circuitboard/diesel
+	circuit = /obj/item/electronics/circuitboard/diesel
 	max_fuel_volume = 300
 	power_gen = 16000 // produces 20% less watts output per power level setting.
 	time_per_fuel_unit = 12
@@ -12,14 +12,14 @@
 	reagent_flags = OPENCONTAINER
 	use_reagents_as_fuel = TRUE
 
-/obj/machinery/power/port_gen/pacman/diesel/update_icon()
-	overlays.Cut()
+/obj/machinery/power/port_gen/pacman/diesel/on_update_icon()
+	cut_overlays()
 	if(active)
-		overlays += "on"
+		add_overlays("on")
 		if(HasFuel())
-			overlays += "rotor_working"
-			overlays += "[max(round(reagents.total_volume / reagents.maximum_volume, 0.25) * 100, 25)]"
+			add_overlays("rotor_working")
+			add_overlays("[max(round(reagents.total_volume / reagents.maximum_volume, 0.25) * 100, 25)]")
 		else
-			overlays += "0"
+			add_overlays("0")
 	else
-		overlays += "off"
+		add_overlays("off")

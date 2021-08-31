@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/shovel
+/obj/item/tool/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt and rock."
 	icon_state = "shovel"
@@ -14,16 +14,19 @@
 	sharp = FALSE
 	edge = TRUE
 	tool_qualities = list(QUALITY_SHOVELING = 30, QUALITY_DIGGING = 30, QUALITY_EXCAVATION = 10, QUALITY_HAMMERING = 10)
+	rarity_value = 9.6
 
-/obj/item/weapon/tool/shovel/improvised
+/obj/item/tool/shovel/improvised
 	name = "junk shovel"
 	desc = "A large but fragile tool for moving dirt and rock, made by hand. Has more than enough space for tool mods to make it better."
 	icon_state = "impro_shovel"
 	tool_qualities = list(QUALITY_SHOVELING = 25, QUALITY_DIGGING = 25, QUALITY_EXCAVATION = 10, QUALITY_HAMMERING = 10)
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
-/obj/item/weapon/tool/shovel/spade
+/obj/item/tool/shovel/spade
 	name = "spade"
 	desc = "A small tool ofter used for simple gardening task such as digging soil and moving dirt."
 	icon_state = "spade"
@@ -34,8 +37,9 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 10,QUALITY_HAMMERING = 10)
 	max_upgrades = 2
+	rarity_value = 19.2
 
-/obj/item/weapon/tool/shovel/power
+/obj/item/tool/shovel/power
 	name = "power shovel 9000"
 	desc = "A powered shovel for all your dumpster diving needs."
 	icon_state = "powershovel"
@@ -48,4 +52,5 @@
 	use_power_cost = 0.8
 	degradation = 0.7
 	max_upgrades = 4
-	suitable_cell = /obj/item/weapon/cell/medium
+	suitable_cell = /obj/item/cell/medium
+	rarity_value = 48

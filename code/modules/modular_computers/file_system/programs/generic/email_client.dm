@@ -122,6 +122,7 @@
 	var/mob/living/L = get(nano_host(), /mob/living)
 	if(L)
 		received_message.notify_mob(L, nano_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
+		log_and_message_admins("[usr] received email from [received_message.source]. \n Message title: [received_message.title]. \n [received_message.stored_data]")
 
 /datum/nano_module/email_client/Destroy()
 	log_out()
@@ -132,7 +133,7 @@
 
 	if(istype(host, /obj/item/modular_computer))
 		var/obj/item/modular_computer/computer = nano_host()
-		var/obj/item/weapon/card/id/id = computer.GetIdCard()
+		var/obj/item/card/id/id = computer.GetIdCard()
 		if(!id && ismob(computer.loc))
 			var/mob/M = computer.loc
 			id = M.GetIdCard()

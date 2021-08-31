@@ -82,8 +82,6 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
-
-
 //wall or small you know them req only 2 list
 /datum/craft_recipe/machinery/wall
 	steps = list(

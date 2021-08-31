@@ -107,13 +107,17 @@
 		return 1
 	if(locate(/obj/structure/low_wall) in get_turf(mover))
 		return 1
+	if(isliving(mover))
+		var/mob/living/L = mover
+		if(L.weakened)
+			return 1
 	return ..()
 
 
 //Drag and drop onto low walls. Copied from tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/low_wall/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
-	if(istype(A.loc, /mob))
+	if(ismob(A.loc))
 		user.unEquip(A, loc)
 		set_pixel_click_offset(A, params)
 		return
@@ -169,8 +173,8 @@
 
 
 //Icon procs.mostly copied from tables
-/obj/structure/low_wall/update_icon()
-	overlays.Cut()
+/obj/structure/low_wall/on_update_icon()
+	cut_overlays()
 
 	var/image/I
 
@@ -178,7 +182,7 @@
 	for(var/i = 1 to 4)
 		I = image(icon, "[icon_state]_[connections[i]]", dir = 1<<(i-1))
 		I.color = wall_color
-		overlays += I
+		add_overlays(I)
 
 
 	for (var/obj/structure/window/W in loc)
@@ -192,7 +196,7 @@
 		I = image(icon, "[icon_state]_over_[wall_connections[i]]", dir = 1<<(i-1))
 		I.color = wall_color
 		I.layer = ABOVE_WINDOW_LAYER
-		overlays += I
+		add_overlays(I)
 
 
 
@@ -241,7 +245,7 @@
 			for(var/obj/structure/low_wall/T in oview(src, 1))
 				T.update_connections()
 
-			for(var/turf/simulated/wall/T in trange(1, src) - src)
+			for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
 				T.update_connections()
 		return
 
@@ -283,7 +287,7 @@
 	var/list/connected_cardinals = list()
 
 	//Now we loop through all the full walls near us. Everything here automatically meets condition 1
-	for(var/turf/simulated/wall/T in trange(1, src) - src)
+	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
 		var/T_dir = get_dir(src, T)
 
 		//If this wall is cardinal to us, it meets condition 2a and passes
@@ -416,18 +420,23 @@
 
 
 	//Hitting the wall with stuff
-	if(!istype(I,/obj/item/weapon/rcd) && !istype(I, /obj/item/weapon/reagent_containers))
+	if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
 		if(!I.force)
 			return attack_hand(user)
+		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = 150 //Integrity of Steel
-		var/dam_prob = min(100,60*1.5) //60 is hardness of steel
-		if(dam_prob < 100 && I.force > (dam_threshhold/10))
+		var/dam_prob = min(100,60*1.4) //60 is hardness of steel
+		if(ishuman(user))
+			var/mob/living/carbon/human/attacker = user
+			dam_prob -= attacker.stats.getStat(STAT_ROB)
+		if(dam_prob < 100 && attackforce > (dam_threshhold/10))
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
-				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I] and it breaks apart!"))
-				dismantle_wall(1)
-			else
 				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
+				playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
+				take_damage(attackforce)
+			else
+				visible_message(SPAN_WARNING("\The [user] attacks \the [src] with \the [I]!"))
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I], but it bounces off!"))
 		user.do_attack_animation(src)

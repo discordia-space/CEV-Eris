@@ -19,6 +19,23 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/artist
+	name = "Complicated Vest"
+	desc = "The tubes don't even do anything."
+	icon_state = "artist"
+	item_state = "artist_armor"
+	blood_overlay_type = "armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	armor = list(
+		melee = 5,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	spawn_frequency = 0
+
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
@@ -62,9 +79,10 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
 	extra_allowed = list(
 		/obj/item/seeds,
-		/obj/item/weapon/reagent_containers/glass/fertilizer,
+		/obj/item/reagent_containers/glass/fertilizer,
 		/obj/item/weedkiller
 	)
 
@@ -80,30 +98,53 @@
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	spawn_blacklisted = TRUE
+
+//Captain
+/obj/item/clothing/suit/storage/captain
+	name = "captain's coat"
+	desc = "A very stylish black coat with fancy shoulder straps. Shows who the boss here."
+	icon_state = "captain"
+	item_state = "captain"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 25,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 5000
 
 //Chaplain
-/obj/item/clothing/suit/neotheology_jacket
+/obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
 	desc = "A long, lightly armoured jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 20,
+		bullet = 15,
+		energy = 15,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
 
-/obj/item/clothing/suit/neotheology_coat
+/obj/item/clothing/suit/storage/neotheology_coat
 	name = "preacher coat"
 	desc = "A snugly fitting, lightly armoured brown coat."
 	icon_state = "church_coat"
 	item_state = "church_coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -119,6 +160,15 @@
 	icon_state = "nt_sportsjacket"
 	item_state = "nt_sportsjacket"
 	body_parts_covered = UPPER_TORSO|ARMS
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 25,
+		bullet = 10,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 //Chaplain
 /obj/item/clothing/suit/nun
@@ -128,6 +178,7 @@
 	item_state = "nun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	spawn_blacklisted = TRUE
 
 //Chef
 /obj/item/clothing/suit/chef
@@ -138,6 +189,7 @@
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	spawn_blacklisted = TRUE
 
 //Chef
 /obj/item/clothing/suit/chef/classic
@@ -147,6 +199,7 @@
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
 
 //Detective
 /obj/item/clothing/suit/storage/detective
@@ -155,11 +208,11 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 30,
-		bullet = 20,
-		energy = 20,
+		bullet = 30,
+		energy = 30,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -181,7 +234,7 @@
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
-	extra_allowed = list(/obj/item/weapon/tool)
+	extra_allowed = list(/obj/item/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
 
@@ -202,6 +255,7 @@
 	item_state = "te_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
 	armor = list(
 		melee = 25,
 		bullet = 20,
@@ -236,14 +290,15 @@
 	icon_state = "surgeon"
 	item_state = "surgeon"
 	blood_overlay_type = "armor"
+	spawn_blacklisted = TRUE
 	extra_allowed = list(
-		/obj/item/weapon/tool/bonesetter,
-		/obj/item/weapon/tool/cautery,
-		/obj/item/weapon/tool/saw/circular,
-		/obj/item/weapon/tool/hemostat,
-		/obj/item/weapon/tool/retractor,
-		/obj/item/weapon/tool/scalpel,
-		/obj/item/weapon/tool/surgicaldrill,
+		/obj/item/tool/bonesetter,
+		/obj/item/tool/cautery,
+		/obj/item/tool/saw/circular,
+		/obj/item/tool/hemostat,
+		/obj/item/tool/retractor,
+		/obj/item/tool/scalpel,
+		/obj/item/tool/surgicaldrill,
 		/obj/item/stack/medical/advanced/bruise_pack
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO

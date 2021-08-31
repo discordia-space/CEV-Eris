@@ -8,7 +8,7 @@
 		body_part = limb.body_part
 		amputation_point = limb.amputation_point
 		joint = limb.joint
-		parent_organ = limb.parent_organ
+		parent_organ_base = limb.parent_organ_base
 		wounds = limb.wounds.Copy()
 	..(holder, null)
 	if(istype(limb))
@@ -26,7 +26,7 @@
 /obj/item/organ/external/stump/is_stump()
 	return TRUE
 
-/obj/item/organ/external/stump/update_icon()
+/obj/item/organ/external/stump/on_update_icon()
 	return
 
 /obj/item/organ/external/stump/removed()

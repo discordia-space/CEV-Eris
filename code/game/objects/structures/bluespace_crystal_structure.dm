@@ -18,23 +18,24 @@
 
 	var/list/explosion_items = list(
 		/obj/item/bluespace_crystal,
-		/obj/item/weapon/hand_tele,
+		/obj/item/hand_tele,
 		/obj/item/device/radio/uplink,
-		/obj/item/weapon/tool/knife/dagger/bluespace,
-		/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
-		/obj/item/weapon/bluespace_harpoon,
+		/obj/item/tool/knife/dagger/bluespace,
+		/obj/item/reagent_containers/glass/beaker/bluespace,
+		/obj/item/bluespace_harpoon,
 		/obj/item/seeds/bluespacetomatoseed
 	)
+	var/entropy_value = 8
 
 /obj/structure/bs_crystal_structure/New()
 	..()
-
 	for(var/turf/simulated/floor/F in range(2, src.loc))
 		if(!F.is_wall && !F.is_hole)
 			destination_candidates.Add(F)
 
 	next_teleportation = pick(timer_min, timer_max)
 	teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+	bluespace_entropy(entropy_value, get_turf(src), TRUE)
 
 /obj/structure/bs_crystal_structure/Destroy()
 	..()
@@ -63,14 +64,14 @@
 				var/volume = calc_damage * 3.5
 				playsound(src, I.hitsound, volume, 1, -1)
 			user.drop_item()
-			do_teleport(I, src, aprecision=teleportation_range)
+			go_to_bluespace(get_turf(src), entropy_value, TRUE, I, src, aprecision=teleportation_range)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.75)
 			user.visible_message(SPAN_NOTICE("[user] hits [src] with [I] and it disappears!"), SPAN_NOTICE("You hit [src] with [I] and it disappears!"))
 
 /obj/structure/bs_crystal_structure/attack_hand(mob/user)
 	..()
 	if(user.a_intent == I_HURT)
-		do_teleport(user, src, aprecision=teleportation_range)
+		go_to_bluespace(get_turf(src), entropy_value, TRUE, user, src, aprecision=teleportation_range)
 
 /obj/structure/bs_crystal_structure/hitby(AM as mob|obj)
 	..()
@@ -82,7 +83,7 @@
 			qdel(src)
 	if(ismob(AM) || isobj(AM))
 		visible_message(SPAN_DANGER("[AM] smashes in [src] and disappears!"))
-		do_teleport(AM, src, aprecision=teleportation_range)
+		go_to_bluespace(get_turf(src), entropy_value, TRUE, AM, src, aprecision=teleportation_range)
 
 /obj/structure/bs_crystal_structure/proc/teleport_random_item()
 	var/turf/simulated/floor/teleport_destination = pick(destination_candidates)
@@ -94,11 +95,10 @@
 		if(!teleport_destination || !target_turf_contents.len)
 			return
 		for(var/obj/item/I in target_turf_contents)
-			do_teleport(I, teleport_destination)
+			go_to_bluespace(get_turf(src), entropy_value, FALSE, I, teleport_destination)
 		for(var/mob/M in target_turf_contents)
-			do_teleport(M, teleport_destination)
+			go_to_bluespace(get_turf(src), entropy_value, FALSE, M, teleport_destination)
+			new /obj/item/bluespace_dust(target_turf)
 
-		new /obj/item/bluespace_dust(target_turf)
-
-		next_teleportation = pick(timer_min, timer_max)
-		teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+			next_teleportation = pick(timer_min, timer_max)
+			teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)

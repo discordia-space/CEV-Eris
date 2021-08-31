@@ -1,7 +1,7 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
 	name = "bio hood"
-	icon_state = "bio_general"
+	icon_state = "bio"
 	item_state_slots = list(
 		slot_l_hand_str = "bio_hood",
 		slot_r_hand_str = "bio_hood",
@@ -21,14 +21,17 @@
 	item_flags = COVER_PREVENT_MANIPULATION
 	siemens_coefficient = 0.9
 	price_tag = 50
-	style = 0
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
 	desc = "A suit that protects against biological contamination."
 	icon_state = "bio"
 	item_state = "bio_suit"
-	w_class = ITEM_SIZE_BULKY//bulky item
+	w_class = ITEM_SIZE_BULKY//bulky item3
+	spawn_blacklisted = FALSE
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -45,63 +48,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9
 	price_tag = 100
-
-
-//Standard biosuit, orange stripe
-/obj/item/clothing/head/bio_hood/general
-	icon_state = "bio_general"
-
-/obj/item/clothing/suit/bio_suit/general
-	icon_state = "bio_general"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-//Virology biosuit, green stripe
-/obj/item/clothing/head/bio_hood/virology
-	icon_state = "bio_virology"
-
-/obj/item/clothing/suit/bio_suit/virology
-	icon_state = "bio_virology"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-//Security biosuit, grey with red stripe across the chest
-/obj/item/clothing/head/bio_hood/security
-	icon_state = "bio_security"
-
-/obj/item/clothing/suit/bio_suit/security
-	icon_state = "bio_security"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-//Janitor's biosuit, grey with purple arms
-/obj/item/clothing/head/bio_hood/janitor
-	icon_state = "bio_janitor"
-
-/obj/item/clothing/suit/bio_suit/janitor
-	icon_state = "bio_janitor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-
-//Scientist's biosuit, white with a pink-ish hue
-/obj/item/clothing/head/bio_hood/scientist
-	icon_state = "bio_scientist"
-
-/obj/item/clothing/suit/bio_suit/scientist
-	icon_state = "bio_scientist"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-//CMO's biosuit, blue stripe
-/obj/item/clothing/suit/bio_suit/cmo
-	icon_state = "bio_cmo"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
-
-/obj/item/clothing/head/bio_hood/cmo
-	icon_state = "bio_cmo"
-
+	style = STYLE_NONE
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit

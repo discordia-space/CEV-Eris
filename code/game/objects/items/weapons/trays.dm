@@ -1,7 +1,7 @@
 /*
  * Trays - Agouri
  */
-/obj/item/weapon/tray
+/obj/item/tray
 	name = "tray"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "tray"
@@ -16,10 +16,10 @@
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 
-/obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
 
 	// Drop all the things. All of them.
-	overlays.Cut()
+	cut_overlays()
 	for(var/obj/item/I in carrying)
 		I.loc = M.loc
 		carrying.Remove(I)
@@ -137,10 +137,10 @@
 				return
 			return
 
-/obj/item/weapon/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
+/obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/weapon/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/material/kitchen/rollingpin))
+/obj/item/tray/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
 			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
@@ -155,7 +155,7 @@
 =																			=
 ===============~~~~~================================~~~~~====================
 */
-/obj/item/weapon/tray/proc/calc_carry()
+/obj/item/tray/proc/calc_carry()
 	// calculate the weight of the items on the tray
 	var/val = 0 // value to return
 
@@ -169,9 +169,9 @@
 
 	return val
 
-/obj/item/weapon/tray/pre_pickup(mob/user)
+/obj/item/tray/pre_pickup(mob/user)
 	if(!isturf(loc))
-		return FALSE
+		return ..()
 
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
@@ -187,11 +187,11 @@
 
 			I.loc = src
 			carrying.Add(I)
-			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer, "pixel_x" = I.pixel_x, "pixel_y" = I.pixel_y)
+			add_overlays(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer, "pixel_x" = I.pixel_x, "pixel_y" = I.pixel_y))
 
 	return ..()
 
-/obj/item/weapon/tray/dropped(mob/user)
+/obj/item/tray/dropped(mob/user)
 
 	spawn(1) //why sleep 1? Because forceMove first drops us on the ground.
 		if(!isturf(loc)) //to handle hand switching
@@ -202,7 +202,7 @@
 			foundtable = 1
 			break
 
-		overlays.Cut()
+		cut_overlays()
 
 		for(var/obj/item/I in carrying)
 			I.loc = loc

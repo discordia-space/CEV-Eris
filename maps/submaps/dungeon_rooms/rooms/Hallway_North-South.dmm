@@ -28,11 +28,11 @@
 /turf/simulated/wall/untinted/onestar,
 /area/crawler)
 "h" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/grass,
 /area/crawler)
 "i" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "j" = (

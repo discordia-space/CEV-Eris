@@ -1,5 +1,6 @@
 /obj/item/device/radio/exosuit
 	name = "exosuit radio"
+	spawn_tags = null
 
 /obj/item/device/radio/exosuit/get_cell()
 	. = ..()

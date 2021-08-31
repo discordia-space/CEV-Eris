@@ -1,7 +1,7 @@
 var/global/list/empty_playable_ai_cores = list()
 
 /hook/roundstart/proc/spawn_empty_ai()
-	for(var/obj/landmark/join/start/AI/S in landmarks_list)
+	for(var/obj/landmark/join/start/AI/S in GLOB.landmarks_list)
 		if(locate(/mob/living) in S.loc)
 			continue
 		empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))

@@ -143,10 +143,45 @@
 	display_name = "revealing jersey"
 	path = /obj/item/clothing/under/jersey
 
+/datum/gear/uniform/generic
+	display_name = "generic outfit, color presets"
+	path = /obj/item/clothing/under/genericb
 
+/datum/gear/uniform/generic/New()
+	..()
+	var/generic = list(
+		"blue" = /obj/item/clothing/under/genericb,
+		"red" = /obj/item/clothing/under/genericr,
+		"white" = /obj/item/clothing/under/genericw
+	)
+	gear_tweaks += new /datum/gear_tweak/path(generic)
 
+/datum/gear/uniform/tuxedo
+	display_name = "black tuxedo"
+	path = /obj/item/clothing/under/tuxedo
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
 	allowed_roles = list("First Officer")*/
+
+/datum/gear/uniform/soviet
+	display_name = "soviet uniform"
+	path = /obj/item/clothing/under/soviet
+
+/datum/gear/uniform/battledress_serb
+	display_name = "battle dress uniform, serbian"
+	path = /obj/item/clothing/under/serbiansuit
+
+/datum/gear/uniform/battledress_serb/New()
+	..()
+	var/battledress_serb = list(
+		"green"	=	/obj/item/clothing/under/serbiansuit,
+		"brown"	=	/obj/item/clothing/under/serbiansuit/brown,
+		"black"	=	/obj/item/clothing/under/serbiansuit/black
+	)
+	gear_tweaks += new /datum/gear_tweak/path(battledress_serb)
+
+/datum/gear/uniform/battledress_german
+	display_name = "battle dress uniform, oberth"
+	path = /obj/item/clothing/under/germansuit

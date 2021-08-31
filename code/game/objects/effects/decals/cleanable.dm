@@ -2,8 +2,11 @@
 	layer = ABOVE_NORMAL_TURF_LAYER
 	var/list/random_icon_states = list()
 	random_rotation = 1
+	bad_type = /obj/effect/decal/cleanable
+	rarity_value = 5.5
+	spawn_tags = SPAWN_TAG_CLEANABLE
 
-/obj/effect/decal/cleanable/clean_blood(var/ignore = 0)
+/obj/effect/decal/cleanable/clean_blood(ignore = 0)
 	if(!ignore)
 		qdel(src)
 		return

@@ -13,12 +13,12 @@
 /datum/action
 	var/name = "Generic Action"
 	var/action_type = AB_ITEM
-	var/procname = null
-	var/atom/movable/target = null
+	var/procname
+	var/atom/movable/target
 	var/check_flags = 0
 	var/processing = 0
 	var/active = 0
-	var/obj/screen/movable/action_button/button = null
+	var/obj/screen/movable/action_button/button
 	var/button_icon = 'icons/mob/actions.dmi'
 	var/button_icon_state = "default"
 	var/background_icon_state = "bg_default"
@@ -133,7 +133,7 @@
 	icon = owner.button_icon
 	icon_state = owner.background_icon_state
 
-	overlays.Cut()
+	cut_overlays()
 	var/image/img
 	if(owner.action_type == AB_ITEM && owner.target)
 		var/obj/item/I = owner.target
@@ -142,7 +142,7 @@
 		img = image(owner.button_icon, src, owner.button_icon_state)
 	img.pixel_x = 0
 	img.pixel_y = 0
-	overlays += img
+	add_overlays(img)
 
 	if(!owner.IsAvailable())
 		color = rgb(128, 0, 0, 128)
@@ -169,17 +169,14 @@
 
 
 /obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
-	if(isalien(user))
-		icon_state = "bg_alien"
-	else
-		icon_state = "bg_default"
+	icon_state = "bg_default"
 	UpdateIcon()
 	return
 
 /obj/screen/movable/action_button/hide_toggle/UpdateIcon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/img = image(icon, src, hidden?"show":"hide")
-	overlays += img
+	add_overlays(img)
 	return
 
 //This is the proc used to update all the action buttons. Properly defined in /mob/living/

@@ -15,7 +15,7 @@
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
 
-/obj/structure/grille/update_icon()
+/obj/structure/grille/on_update_icon()
 	if(destroyed)
 		icon_state = "[initial(icon_state)]-b"
 	else
@@ -92,7 +92,7 @@
 	src.health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
-/obj/structure/grille/attackby(obj/item/weapon/I, mob/user)
+/obj/structure/grille/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
 	if(anchored)
@@ -243,7 +243,7 @@
 	if(health <= 0)
 		destroyed=1
 		new /obj/item/stack/rods(get_turf(src))
-		density=0
+		density = FALSE
 		update_icon()
 
 // Used in mapping to avoid

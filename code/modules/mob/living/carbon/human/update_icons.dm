@@ -146,14 +146,14 @@ Please contact me on #coderbus IRC. ~Carn x
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 //	update_hud()		//TODO: remove the need for this
-	overlays.Cut()
+	cut_overlays()
 
 	if (icon_update)
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
-			overlays += I
+			add_overlays(I)
 		if(species.has_floating_eyes)
-			overlays |= species.get_eyes(src)
+			associate_with_overlays(species.get_eyes(src))
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
@@ -206,7 +206,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			DI = damage_icon_parts[cache_index]
 
-		standing_image.overlays += DI
+		standing_image.overlays.Add(DI)
 
 	overlays_standing[DAMAGE_LAYER] = standing_image
 
@@ -386,7 +386,7 @@ var/global/list/damage_icon_parts = list()
 	for(var/mut in mutations)
 		switch(mut)
 			if(LASER)
-				standing.overlays += "lasereyes_s"
+				standing.overlays.Add("lasereyes_s")
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing
@@ -400,11 +400,11 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_implants(var/update_icons = 1)
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
-	for(var/obj/item/weapon/implant/I in src)
+	for(var/obj/item/implant/I in src)
 		if(I.is_external() && I.wearer == src)
 			var/image/mob_icon = I.get_mob_overlay(gender)
 			if(mob_icon)
-				standing.overlays += mob_icon
+				standing.overlays.Add(mob_icon)
 				have_icon = TRUE
 
 	if(have_icon)
@@ -696,7 +696,7 @@ var/global/list/damage_icon_parts = list()
 		if(shoes.blood_DNA)
 			var/image/bloodsies = image("icon" = species.blood_mask, "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
-			standing.overlays += bloodsies
+			standing.overlays.Add(bloodsies)
 		standing.color = shoes.color
 		overlays_standing[SHOES_LAYER] = standing
 	else
@@ -788,7 +788,7 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/clothing/head/hat = head
 			var/cache_key = "[hat.light_overlay]_[species.get_bodytype()]"
 			if(hat.on && light_overlay_cache[cache_key])
-				standing.overlays |= light_overlay_cache[cache_key]
+				standing.overlays |= (light_overlay_cache[cache_key])
 
 		standing.color = head.color
 		overlays_standing[HEAD_LAYER] = standing
@@ -821,8 +821,8 @@ var/global/list/damage_icon_parts = list()
 
 		var/beltlayer = BELT_LAYER
 		var/otherlayer = BELT_LAYER_ALT
-		if(istype(belt, /obj/item/weapon/storage/belt))
-			var/obj/item/weapon/storage/belt/ubelt = belt
+		if(istype(belt, /obj/item/storage/belt))
+			var/obj/item/storage/belt/ubelt = belt
 			if(ubelt.show_above_suit)
 				beltlayer = BELT_LAYER_ALT
 				otherlayer = BELT_LAYER
@@ -882,7 +882,7 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/clothing/suit/suit = wear_suit
 		if(istype(suit) && suit.accessories.len)
 			for(var/obj/item/clothing/accessory/A in suit.accessories)
-				standing.overlays |= A.get_mob_overlay()
+				standing.overlays |= (A.get_mob_overlay())
 
 		overlays_standing[SUIT_LAYER]	= standing
 
@@ -946,8 +946,8 @@ var/global/list/damage_icon_parts = list()
 				overlay_icon = test.icon
 		else if(test.icon_override)
 			overlay_icon = test.icon_override
-		else if(istype(test, /obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = test
+		else if(istype(test, /obj/item/rig))
+			var/obj/item/rig/rig = test
 			overlay_icon = rig.get_species_icon()
 
 		else if(test.item_icons && (slot_back_str in test.item_icons))
@@ -985,11 +985,11 @@ var/global/list/damage_icon_parts = list()
 		standing.color = back.color
 
 		//Rig module overlays on mob.
-		if(istype(back, /obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back//Maybe add if(rig.installed_modules.len) below this since the code for accessories does that far as I know.
+		if(istype(back, /obj/item/rig))
+			var/obj/item/rig/rig = back//Maybe add if(rig.installed_modules.len) below this since the code for accessories does that far as I know.
 			for(var/obj/item/rig_module/module in rig.installed_modules)
 				if(module.suit_overlay)
-					standing.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay)
+					standing.overlays.Add(image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay))
 
 		//create the image
 		overlays_standing[BACK_LAYER] = standing
@@ -1147,7 +1147,7 @@ var/global/list/damage_icon_parts = list()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.open)
 			var/image/I = image("icon"='icons/mob/surgery.dmi', "icon_state"="[E.name][round(E.open)]", "layer"=-SURGERY_LAYER)
-			total.overlays += I
+			total.overlays.Add(I)
 	overlays_standing[SURGERY_LAYER] = total
 	if(update_icons)   update_icons()
 

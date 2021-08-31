@@ -6,7 +6,7 @@
 	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	var/energy = 0
 
 /obj/machinery/the_singularitygen/Process()

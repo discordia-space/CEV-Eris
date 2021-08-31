@@ -1,9 +1,10 @@
-/obj/item/weapon/pack/spaceball
+/obj/item/pack/spaceball
 	name = "\improper Spaceball booster pack"
 	desc = "Officially licensed to take your money."
 	icon_state = "card_pack_spaceball"
 
-/obj/item/weapon/pack/spaceball/New()
+/obj/item/pack/spaceball/Initialize(mapload, ...)
+	. = ..()
 	var/datum/playingcard/P
 	var/i
 	var/year = 544 + text2num(time2text(world.timeofday, "YYYY"))

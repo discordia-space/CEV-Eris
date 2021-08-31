@@ -35,7 +35,7 @@
 			L.update_icon() //so siding get updated properly
 
 
-/obj/structure/catwalk/update_icon()
+/obj/structure/catwalk/on_update_icon()
 	var/connectdir = 0
 	for(var/direction in cardinal)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
@@ -65,9 +65,9 @@
 
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			qdel(src)
 	return
 

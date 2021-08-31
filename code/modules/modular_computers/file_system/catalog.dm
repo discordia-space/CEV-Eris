@@ -14,8 +14,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 /hook/startup/proc/createCatalogs()
 	// Reagents
-	for(var/V in chemical_reagents_list)
-		var/datum/reagent/D = chemical_reagents_list[V]
+	for(var/V in GLOB.chemical_reagents_list)
+		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
 		if(D.appear_in_default_catalog)
 			create_catalog_entry(D, CATALOG_REAGENTS)
 			create_catalog_entry(D, CATALOG_ALL)
@@ -26,8 +26,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			else
 				create_catalog_entry(D, CATALOG_CHEMISTRY)
 	// second run to add decompose results
-	for(var/V in chemical_reagents_list)
-		var/datum/reagent/D = chemical_reagents_list[V]
+	for(var/V in GLOB.chemical_reagents_list)
+		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
 		if(D.heating_products && D.heating_point)
 			for(var/id in D.heating_products)
 				var/datum/catalog_entry/reagent/E = get_catalog_entry(get_reagent_type_by_id(id))
@@ -232,7 +232,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
 			recipe_data += list(R.ui_data())
-	var/list/used_in = chemical_reactions_list[V.id]
+	var/list/used_in = GLOB.chemical_reactions_list[V.id]
 	if(used_in)
 		for(var/datum/chemical_reaction/R in used_in)
 			if(R.result)
@@ -322,6 +322,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		return TRUE
 	if(findtext(strength, value))
 		return TRUE
+	for(var/i in taste_tag)
+		if(findtext(i, value))
+			return TRUE
 
 /datum/catalog_entry/drink/New(var/datum/reagent/V)
 	if(!istype(V))

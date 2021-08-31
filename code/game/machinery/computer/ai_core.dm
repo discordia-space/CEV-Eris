@@ -6,8 +6,8 @@
 	icon_state = "0"
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/eris
-	var/obj/item/weapon/circuitboard/circuit = null
-	var/obj/item/device/mmi/brain = null
+	var/obj/item/electronics/circuitboard/circuit
+	var/obj/item/device/mmi/brain
 
 
 /obj/structure/AIcore/attackby(obj/item/I, mob/user)
@@ -126,7 +126,7 @@
 
 	switch(state)
 		if(1)
-			if(istype(I, /obj/item/weapon/circuitboard/aicore) && !circuit)
+			if(istype(I, /obj/item/electronics/circuitboard/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, SPAN_NOTICE("You place the circuit board inside the frame."))
 				icon_state = "1"
@@ -148,7 +148,7 @@
 						to_chat(user, SPAN_NOTICE("You add cables to the frame."))
 				return
 		if(3)
-			if(istype(I, /obj/item/stack/material) && I.get_material_name() == "rglass")
+			if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_RGLASS)
 				var/obj/item/stack/RG = I
 				if (RG.get_amount() < 2)
 					to_chat(user, SPAN_WARNING("You need two sheets of glass to put in the glass panel."))
@@ -161,8 +161,8 @@
 						state = 4
 						icon_state = "4"
 
-			if(istype(I, /obj/item/weapon/aiModule))
-				var/obj/item/weapon/aiModule/AIM = I
+			if(istype(I, /obj/item/electronics/ai_module))
+				var/obj/item/electronics/ai_module/AIM = I
 				AIM.transmitInstructions(src, usr)
 				to_chat(usr, "Law module applied.")
 				return
@@ -220,7 +220,7 @@
 
 	qdel(src)
 
-/obj/structure/AIcore/deactivated/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
 
 	if(istype(W, /obj/item/device/aicard))
 		var/obj/item/device/aicard/card = W
@@ -230,7 +230,7 @@
 		else
 			to_chat(user, "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence.")
 		return
-	else if(istype(W, /obj/item/weapon/tool/wrench))
+	else if(istype(W, /obj/item/tool/wrench))
 		if(anchored)
 			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40,src))
@@ -271,3 +271,6 @@ ADMIN_VERB_ADD(/client/proc/empty_ai_core_toggle_latejoin, R_ADMIN, null)
 	else
 		empty_playable_ai_cores += D
 		to_chat(src, "\The [id] is now <font color=\"#008000\">available</font> for latejoining AIs.")
+
+	message_admins("[key_name(usr)] has toggled latejoining empty AI core at the core [D] ([D.loc.loc])")
+	log_admin("The [D] core at ([D.loc.loc]) is toggled for latejoining AIs by [key_name(usr)]")

@@ -1,9 +1,24 @@
+
+//NOTE: Don't use this proc for finding specific mobs or a very certain object; ultilize GLOBs instead of view()
 /mob/living/carbon/superior_animal/proc/getObjectsInView()
 	objectsInView = objectsInView || view(src, viewRange)
 	return objectsInView
 
+//Use this for all mobs per zlevel, get_dist() checked
 /mob/living/carbon/superior_animal/proc/getPotentialTargets()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return //We're contained inside something, a locker perhaps.
 	return hearers(src, viewRange)
+
+
+	/* There was an attempt at optimization, but it was unsanitized, and was more expensive than just checking hearers.
+	var/list/list_to_return = new
+	for(var/atom/thing in SSmobs.mob_living_by_zlevel[((get_turf(src)).z)])
+		if(get_dist(src, thing) <= viewRange)
+			list_to_return += thing
+
+	return list_to_return*/
 
 /mob/living/carbon/superior_animal/proc/findTarget()
 	var/list/filteredTargets = new
@@ -12,7 +27,7 @@
 		if (isValidAttackTarget(O))
 			filteredTargets += O
 
-	for (var/mob/living/exosuit/M in mechas_list)
+	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
@@ -20,6 +35,8 @@
 
 /mob/living/carbon/superior_animal/proc/attemptAttackOnTarget()
 	if (!Adjacent(target_mob))
+		if(ranged)
+			return RangedAttack()
 		return
 
 	return UnarmedAttack(target_mob,1)
@@ -31,7 +48,7 @@
 		loseTarget()
 		return
 
-	if (!(target_mob in getPotentialTargets()))
+	if ((get_dist(src, target_mob) >= viewRange) || src.z != target_mob.z)
 		loseTarget()
 		return
 
@@ -60,7 +77,7 @@
 		for (var/obj/structure/window/obstacle in src.loc) // To destroy directional windows that are on the creature's tile
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return
-		
+
 		for (var/obj/machinery/door/window/obstacle in src.loc) // To destroy windoors that are on the creature's tile
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return

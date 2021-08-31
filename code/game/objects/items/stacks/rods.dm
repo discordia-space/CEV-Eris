@@ -18,6 +18,8 @@
 /obj/item/stack/rods/random
 	rand_min = 2
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_ORE_TAG_JUNK
+	rarity_value = 10
 
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"
@@ -27,6 +29,7 @@
 	uses_charge = 1
 	charge_costs = list(500)
 	stacktype = /obj/item/stack/rods
+	spawn_tags = null
 
 /obj/item/stack/rods/attackby(obj/item/I, mob/living/user)
 	..()

@@ -69,9 +69,9 @@
 /area/crawler)
 "r" = (
 /obj/structure/safe/floor{
-	contents = newlist(/obj/random/credits/c1000)
+	contents = newlist(/obj/spawner/credits/c1000)
 	},
-/obj/item/weapon/tool/crowbar/onestar,
+/obj/item/tool/crowbar/onestar,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "s" = (
@@ -89,9 +89,9 @@
 	},
 /obj/machinery/door/window/northleft,
 /obj/structure/table/rack,
-/obj/random/gun_normal,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
@@ -100,15 +100,15 @@
 	},
 /obj/machinery/door/window/northright,
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/spawner/gun/shotgun,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/structure/table/onestar,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -116,13 +116,13 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "y" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
-/obj/random/gun_energy_cheap,
-/obj/random/gun_cheap,
+/obj/spawner/gun/energy_cheap,
+/obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 

@@ -7,4 +7,4 @@
 	mappath = null
 	annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
 	var/list/directional_flags = list("north",  "south" , "east", "west")
-	var/room_tag = null
+	var/room_tag

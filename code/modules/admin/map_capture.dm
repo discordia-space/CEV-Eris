@@ -2,7 +2,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/capture_map, R_SERVER, FALSE)
 /datum/admins/proc/capture_map(tx as null|num, ty as null|num, tz as null|num, range as null|num)
 	set category = "Server"
 	set name = "Capture Map Part"
-	set desc = "Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range (captures part of a map originating from bottom left corner)"
+	set desc = "Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range (takes a picture of a map originating from bottom left corner)"
 
 	if(!check_rights(R_ADMIN|R_DEBUG|R_SERVER))
 		to_chat(usr, "You are not allowed to use this command")

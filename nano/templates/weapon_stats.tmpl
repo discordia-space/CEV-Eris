@@ -2,6 +2,7 @@
 	<h3>Specifications:</h3>
 	<div class="statusDisplay" style="overflow: auto;">
 		<h4>Weapon details:</h4>
+		
 		{{if data.damage_multiplier != 1}}
 			<div class="itemLabel">
 				Projectile damage multiplier:
@@ -10,6 +11,7 @@
 				 {{:data.damage_multiplier}}x
 			</div>
 		{{/if}}
+		
 		{{if data.pierce_multiplier != 0}}
 			<div class="itemLabel">
 				Projectile walls penetration:
@@ -18,20 +20,23 @@
 				{{:data.pierce_multiplier}} walls
 			</div>
 		{{/if}}
+		
 		{{if data.penetration_multiplier != 1}}
 			<div class="itemLabel">
-				Projectile penetration multiplier: 
+				Projectile AP multiplier: 
 			</div>
 			<div class="itemContent">
 				{{:data.penetration_multiplier}}x
 			</div>
 		{{/if}}
+		
 		<div class="itemLabel">
 			Fire delay: 
 		</div>
 			<div class="itemContent">
 				{{:data.fire_delay}} ms
 			</div>
+		
 		{{if data.burst > 1}}
 			<div class="itemLabel">
 				Rounds per burst: 
@@ -46,6 +51,7 @@
 					{{:data.burst_delay}} ms
 				</div>
 		{{/if}}
+		
 		<div class="itemLabel">
 			Kickback: 
 		</div>
@@ -105,6 +111,34 @@
 		{{/if}}
 	</div>
 </div>
+{{if data.projectile_name}}
+	<div class="item">
+		<h3>Projectile Info:</h3>
+		<div class="statusDisplay" style="overflow: auto;">
+			<div class="itemLabel">
+				Name: 
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_name}}
+				</div>
+			
+			<div class="itemLabel">
+				Overall damage:
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_damage}}
+				</div>
+			
+			<div class="itemLabel">
+				Overall AP:
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_AP}}
+				</div>
+		</div>
+	</div>
+{{/if}}
+		
 {{if data.firemode_count}}
 	<div class="item">
 		<h3>Firemodes: {{:data.firemode_count}}</h3>
@@ -119,26 +153,44 @@
 						{{else}}
 							{{:helper.link(value.name, 'null', {'firemode' : value.index})}}
 						{{/if}}
+						<i> {{:value.desc}}</i>
 						</h4>
 						<br>
-						<div class="itemLabel">
-						Rounds per burst: 
-						</div>
-							<div class="itemContent">
-								{{:value.burst}}
+						{{if value.projectile_name}}
+							<div class="itemLabel">
+							New Projectile Override: <br>
 							</div>
-						<div class="itemLabel">
-						Fire delay: 
-						</div>
-							<div class="itemContent">
-								{{:value.fire_delay}} ms
+								<div class="itemContent">
+									Name:{{:value.projectile_name}}<br>
+									Overall damage: {{:value.projectile_damage}}<br>
+									Overall AP: {{:value.projectile_AP}}<br>
+								</div>
+						{{/if}}
+						{{if value.burst}}
+							<div class="itemLabel">
+							Rounds per burst: 
 							</div>
-						<div class="itemLabel">
-						Movement delay: 
-						</div>
-							<div class="itemContent">
-								{{:value.move_delay}} ms
+								<div class="itemContent">
+									{{:value.burst}}
+								</div>
+							
+						{{/if}}
+						{{if value.fire_delay}}
+							<div class="itemLabel">
+							Fire delay: 
 							</div>
+								<div class="itemContent">
+									{{:value.fire_delay}} ms
+								</div>
+						{{/if}}
+						{{if value.move_delay}}
+							<div class="itemLabel">
+							Movement delay: 
+							</div>
+								<div class="itemContent">
+									{{:value.move_delay}} ms
+								</div>
+						{{/if}}
 					</div>
 				</div>
 			{{/for}}

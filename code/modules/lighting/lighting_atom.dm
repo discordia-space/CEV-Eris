@@ -46,8 +46,7 @@
 			light = new/datum/light_source(src, .)
 
 // Incase any lighting vars are on in the typepath we turn the light on in New().
-/atom/New()
-	. = ..()
+/atom/proc/init_light()
 	if(light_power && light_range)
 		update_light()
 
@@ -62,13 +61,13 @@
 		light = null
 	return ..()
 
-/atom/movable/New()
+/atom/movable/init_light()
 	. = ..()
 
 	if(opacity && isturf(loc))
 		var/turf/T = loc
 		T.reconsider_lights()
-	
+
 	if(istype(loc, /turf/simulated/open))
 		var/turf/simulated/open/open = loc
 		if(open.isOpen())
@@ -87,7 +86,7 @@
 	. = ..()
 	if (!.)
 		return
-	
+
 	opacity = new_opacity
 	var/turf/T = loc
 	if (!isturf(T))
@@ -130,4 +129,5 @@
 
 /obj/item/dropped()
 	. = ..()
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, src)
 	update_light()

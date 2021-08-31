@@ -22,23 +22,23 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit
 	name = "Naked"
 
-	var/uniform = null
-	var/suit = null
-	var/back = null
-	var/belt = null
-	var/gloves = null
-	var/shoes = null
-	var/head = null
-	var/mask = null
-	var/l_ear = null
-	var/r_ear = null
-	var/glasses = null
-	var/id = null
-	var/l_pocket = null
-	var/r_pocket = null
-	var/suit_store = null
-	var/r_hand = null
-	var/l_hand = null
+	var/uniform
+	var/suit
+	var/back
+	var/belt
+	var/gloves
+	var/shoes
+	var/head
+	var/mask
+	var/l_ear
+	var/r_ear
+	var/glasses
+	var/id
+	var/l_pocket
+	var/r_pocket
+	var/suit_store
+	var/r_hand
+	var/l_hand
 	var/list/backpack_contents = list() // In the list(path=count,otherpath=count) format
 
 	var/id_type
@@ -68,7 +68,7 @@ var/list/outfits_decls_by_type_
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H, var/equip_adjustments)
 	if(flags & OUTFIT_HAS_JETPACK)
-		var/obj/item/weapon/tank/jetpack/J = locate(/obj/item/weapon/tank/jetpack) in H
+		var/obj/item/tank/jetpack/J = locate(/obj/item/tank/jetpack) in H
 		if(!J)
 			return
 		J.toggle()
@@ -79,7 +79,7 @@ var/list/outfits_decls_by_type_
 
 	rank = id_pda_assignment || rank
 	assignment = id_pda_assignment || assignment || rank
-	var/obj/item/weapon/card/id/W = equip_id(H, rank, assignment, equip_adjustments)
+	var/obj/item/card/id/W = equip_id(H, rank, assignment, equip_adjustments)
 	if(W)
 		rank = W.rank
 		assignment = W.assignment
@@ -166,9 +166,10 @@ var/list/outfits_decls_by_type_
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
-	var/obj/item/weapon/card/id/W = new id_type(H)
-	var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
-	W.access = job.get_access()
+	var/obj/item/card/id/W = new id_type(H)
+	if(H.mind)  // decorative corpses with ID do not have a mind 
+		var/datum/job/job = SSjob.GetJob(H.mind.assigned_role)
+		W.access = job.get_access()
 	if(id_desc)
 		W.desc = id_desc
 	if(rank)
@@ -179,7 +180,7 @@ var/list/outfits_decls_by_type_
 	if(H.equip_to_slot_or_store_or_drop(W, id_slot)) // keeping this here to ensure that if no PDA, ID will end up in ID slot.
 		return W
 
-/decl/hierarchy/outfit/proc/equip_pda(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/obj/item/weapon/card/id/W)
+/decl/hierarchy/outfit/proc/equip_pda(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/obj/item/card/id/W)
 	if(!pda_slot || !pda_type)
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)

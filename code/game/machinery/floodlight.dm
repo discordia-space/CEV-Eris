@@ -6,7 +6,7 @@
 	icon_state = "flood00"
 	density = TRUE
 	var/on = FALSE
-	var/obj/item/weapon/cell/large/cell
+	var/obj/item/cell/large/cell
 	var/use = 200 // 200W light
 	var/unlocked = FALSE
 	var/open = FALSE
@@ -15,7 +15,7 @@
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
-	cell = new /obj/item/weapon/cell/large(src)
+	cell = new /obj/item/cell/large(src)
 
 /obj/machinery/floodlight/get_cell()
 	return cell
@@ -26,8 +26,8 @@
 		cell = null
 		update_icon()
 
-/obj/machinery/floodlight/update_icon()
-	overlays.Cut()
+/obj/machinery/floodlight/on_update_icon()
+	cut_overlays()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
 /obj/machinery/floodlight/Process()
@@ -120,7 +120,7 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					if(open)
 						open = FALSE
-						overlays = null
+						set_overlays(null)
 						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
 					else
 						if(unlocked)
@@ -142,7 +142,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if (istype(I, /obj/item/weapon/cell/large))
+	if (istype(I, /obj/item/cell/large))
 		if(open)
 			if(cell)
 				to_chat(user, SPAN_WARNING("There is a power cell already installed."))

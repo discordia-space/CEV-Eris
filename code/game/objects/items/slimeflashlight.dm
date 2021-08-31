@@ -6,12 +6,13 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = ITEM_SIZE_TINY
+	spawn_blacklisted = TRUE
 
 /obj/item/device/slimelight/New()
 	..()
 	set_light(6)
 
-/obj/item/device/slimelight/update_icon()
+/obj/item/device/slimelight/on_update_icon()
 	return
 
 /obj/item/device/slimelight/attack_self(mob/user)

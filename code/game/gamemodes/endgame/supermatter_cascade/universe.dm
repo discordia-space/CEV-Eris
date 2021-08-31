@@ -9,7 +9,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
-		to_chat(user, "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There is no escape.</span>")
+		to_chat(user, "<span class='sinister'>The only thing you hear from the console is static. You are alone.</span>")
 	return 0
 
 /datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
@@ -44,10 +44,10 @@ var/global/universe_has_ended = 0
 
 	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+			FLICK("e_flash", M.HUDtech["flash"])
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
+		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
 
 	AreaSet()
 	MiscSet()
@@ -58,19 +58,15 @@ var/global/universe_has_ended = 0
 
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
+AUTOMATED ALERT: Attention [station_name()], this is a high alert broadcast to all ships from the central communication hub of the Hansa Trade Union, a catastrophe has happened on the ship [station_name()], information regarding the incident is classified.
 
-[station_name()], you are the only facility nearby a bluespace rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
-
-You have five minutes before the universe collapses. Good l\[\[###!!!-
+We highly suggest, that all corporate owned, and free ships within listening range depart into Bluespace. Until the incident ends, all employees aboard HTU operated ships will have their pay-rolls will be frozen, and their have benefits cut, independent ships not included.
 
 AUTOMATED ALERT: Link to [command_name()] lost.
-
-The access requirements on the Asteroid Shuttles' consoles have now been revoked.
 "}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 
-		for(var/obj/machinery/computer/shuttle_control/C in SSmachines.machinery)
+		for(var/obj/machinery/computer/shuttle_control/C in GLOB.computer_list)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))
 				C.req_access = list()
 				C.req_one_access = list()
@@ -93,18 +89,18 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			if(isAdminLevel(L.z))
 				L.update_overlay(1,1,1)
 			else
-				L.update_overlay(0.0, 0.4, 1)
+				L.update_overlay(0, 0.4, 1)
 
 		for(var/turf/space/T in turfs)
 			OnTurfChange(T)
 
 /datum/universal_state/supermatter_cascade/proc/MiscSet()
-	for (var/obj/machinery/firealarm/alm in SSmachines.machinery)
+	for (var/obj/machinery/firealarm/alm in GLOB.firealarm_list)
 		if (!(alm.stat & BROKEN))
 			alm.ex_act(2)
 
 /datum/universal_state/supermatter_cascade/proc/APCSet()
-	for (var/obj/machinery/power/apc/APC in SSmachines.machinery)
+	for (var/obj/machinery/power/apc/APC in GLOB.apc_list)
 		if (!(APC.stat & BROKEN) && is_valid_apc(APC))
 			APC.chargemode = 0
 			if(APC.cell)
@@ -113,13 +109,13 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!isliving(A.owner.current))
 			continue
 		if(A.owner.current.stat!=2)
 			A.owner.current.Weaken(10)
-//			flick("e_flash", M.current.flash)
+//			FLICK("e_flash", M.current.flash)
 			if (A.owner.current.HUDtech.Find("flash"))
-				flick("e_flash", A.owner.current.HUDtech["flash"])
+				FLICK("e_flash", A.owner.current.HUDtech["flash"])
 
 		A.remove_antagonist()

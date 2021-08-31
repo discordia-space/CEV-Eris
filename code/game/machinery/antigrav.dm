@@ -4,10 +4,10 @@
 	icon_state = "GraviMobile"
 	density = TRUE
 	anchored = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 10000
-	circuit = /obj/item/weapon/circuitboard/antigrav
+	circuit = /obj/item/electronics/circuitboard/antigrav
 
 	var/power_usage_per_tile = 200
 	var/on = FALSE
@@ -34,7 +34,7 @@
 		start_anim()
 
 	on = TRUE
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	update_icon()
 
 /obj/machinery/antigrav/examine(var/mob/user)
@@ -53,7 +53,7 @@
 		stop_anim()
 
 	on = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	update_icon()
 
 /obj/machinery/antigrav/Process()
@@ -109,8 +109,8 @@
 	ball.loc = src.loc
 	world << ball
 
-	flick("GraviMobile_starting", src)
-	flick("GraviMobile_starting_ball", ball)
+	FLICK("GraviMobile_starting", src)
+	FLICK("GraviMobile_starting_ball", ball)
 
 /obj/machinery/antigrav/proc/stop_anim()
 	if(ball)
@@ -123,10 +123,10 @@
 	ball.loc = src.loc
 	world << ball
 
-	flick("GraviMobile_stoping", src)
-	flick("GraviMobile_stoping_ball", ball)
+	FLICK("GraviMobile_stoping", src)
+	FLICK("GraviMobile_stoping_ball", ball)
 
-/obj/machinery/antigrav/update_icon()
+/obj/machinery/antigrav/on_update_icon()
 	if(!anchored)
 		icon_state = "GraviMobile"
 		return

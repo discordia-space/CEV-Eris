@@ -45,45 +45,54 @@
 /datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
 	if(A != current_location)
 		next_location = A
-		move_time = initial(move_time) * (1 + get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))
+		move_time = initial(move_time) * (1 + 0.01 * get_dist(waypoint_sector(current_location),waypoint_sector(next_location)))
 
 /datum/shuttle/autodock/overmap/proc/get_possible_destinations()
 	var/list/res = list()
-	for (var/obj/effect/overmap/S in range(waypoint_sector(current_location), range))
+	var/area/overmap/map = locate() in world
+	for(var/obj/effect/overmap/sector/S in map) // Infinite range to avoid depending on ship position
+		if(S.known)
+			for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
+				if(LZ.is_valid(src))
+					res["[S.name_stages[1]] - [LZ.name]"] = LZ
+
+	for(var/obj/effect/overmap/ship/eris/S in map)
 		for(var/obj/effect/shuttle_landmark/LZ in S.get_waypoints(src.name))
 			if(LZ.is_valid(src))
-				res["[S.name] - [LZ.name]"] = LZ
+				res["[S.name_stages[1]] - [LZ.name]"] = LZ
 	return res
 
 /datum/shuttle/autodock/overmap/proc/get_location_name()
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return "In transit"
-	return "[waypoint_sector(current_location)] - [current_location]"
+	var/obj/effect/overmap/sector/S = waypoint_sector(current_location)
+	return "[S.name_stages[1]] - [current_location]"
 
 /datum/shuttle/autodock/overmap/proc/get_destination_name()
 	if(!next_location)
 		return "None"
-	return "[waypoint_sector(next_location)] - [next_location]"
+	var/obj/effect/overmap/sector/S = waypoint_sector(next_location)
+	return "[S.name_stages[1]] - [next_location]"
 
 /datum/shuttle/autodock/overmap/proc/try_consume_fuel() //returns 1 if sucessful, returns 0 if error (like insufficient fuel)
 	if(!fuel_consumption)
 		return 1 //shuttles with zero fuel consumption are magic and can always launch
 	else
 		if(fuel_ports.len)
-			var/list/obj/item/weapon/tank/fuel_tanks = list()
+			var/list/obj/item/tank/fuel_tanks = list()
 			for(var/obj/structure/FP in fuel_ports) //loop through fuel ports and assemble list of all fuel tanks
 				if(FP.contents.len)
-					var/obj/item/weapon/tank/FT = FP.contents[1]
+					var/obj/item/tank/FT = FP.contents[1]
 					if(istype(FT))
 						fuel_tanks += FT
 			if(!fuel_tanks.len)
 				return 0 //can't launch if you have no fuel TANKS in the ports
 			var/total_flammable_gas_moles = 0
-			for(var/obj/item/weapon/tank/FT in fuel_tanks)
+			for(var/obj/item/tank/FT in fuel_tanks)
 				total_flammable_gas_moles += FT.air_contents.get_by_flag(XGM_GAS_FUEL)
 			if(total_flammable_gas_moles >= fuel_consumption) //launch is possible, so start consuming that fuel
 				var/fuel_to_consume = fuel_consumption
-				for(var/obj/item/weapon/tank/FT in fuel_tanks) //loop through tanks, consume their fuel one by one
+				for(var/obj/item/tank/FT in fuel_tanks) //loop through tanks, consume their fuel one by one
 					if(FT.air_contents.get_by_flag(XGM_GAS_FUEL) >= fuel_to_consume)
 						FT.air_contents.remove_by_flag(XGM_GAS_FUEL, fuel_to_consume)
 						log_and_message_admins("shuttle has began his voyage from [current_location] to [next_location]")
@@ -110,7 +119,7 @@
 	var/parent_shuttle
 
 /obj/structure/fuel_port/New()
-	src.contents.Add(new/obj/item/weapon/tank/plasma)
+	src.contents.Add(new/obj/item/tank/plasma)
 
 /obj/structure/fuel_port/attack_hand(mob/user as mob)
 	if(!opened)
@@ -120,7 +129,7 @@
 		user.put_in_hands(contents[1])
 	update_icon()
 
-/obj/structure/fuel_port/update_icon()
+/obj/structure/fuel_port/on_update_icon()
 	if(opened)
 		if(contents.len > 0)
 			icon_state = icon_full
@@ -129,7 +138,7 @@
 	else
 		icon_state = icon_closed
 
-/obj/structure/fuel_port/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/fuel_port/attackby(obj/item/W as obj, mob/user as mob)
 	if(QUALITY_PRYING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			if(opened)
@@ -140,7 +149,7 @@
 				to_chat(user, "<spawn class='notice'>You open up \the [src] door.")
 				playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
 				opened = 1
-	else if(istype(W,/obj/item/weapon/tank))
+	else if(istype(W,/obj/item/tank))
 		if(!opened)
 			to_chat(user, "<spawn class='warning'>\The [src] door is still closed!")
 			return

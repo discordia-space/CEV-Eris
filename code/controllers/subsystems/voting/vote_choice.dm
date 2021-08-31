@@ -1,6 +1,6 @@
 /datum/vote_choice
 	var/text = "Vladimir Putin"
-	var/desc = null
+	var/desc
 	var/list/voters = list()	//assoc list of ckeys of voters and the voting power they contributed
 	var/datum/poll/poll //The poll we're assigned to
 

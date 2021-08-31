@@ -1,11 +1,23 @@
-#define ARMOR_AGONY_COEFFICIENT 0.6
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 #define ARMOR_GDR_COEFFICIENT 0.1
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
 //If you need to do something else with armor - just use getarmor() proc and do with those numbers all you want
 //Random absorb system was a cancer, and was removed from all across the codebase. Don't recreate it. Clockrigger 2019
+#define ARMOR_MESSAGE_COOLDOWN 0.5 SECONDS
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = FALSE, var/edge = FALSE)
+/mob/living/var/last_armor_message
+
+/mob/living/proc/armor_message(msg1, msg2)
+	if(world.time < last_armor_message)
+		return FALSE
+	last_armor_message = world.time + ARMOR_MESSAGE_COOLDOWN
+	if(msg2)
+		visible_message(msg1, msg2)
+	else
+		show_message(msg1, 1)
+
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon, var/sharp = FALSE, var/edge = FALSE)
 
 	if(damage == 0)
 		return FALSE
@@ -15,9 +27,13 @@
 	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
 	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
 	var/effective_damage = damage - guaranteed_damage_red
+	var/sanctified_attack = FALSE
+
+	if(damagetype == HALLOSS)
+		effective_damage = round(effective_damage * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 	if(effective_damage <= 0)
-		show_message(SPAN_NOTICE("Your armor absorbs the blow!"))
+		armor_message(SPAN_NOTICE("Your armor absorbs the blow!"))
 		return FALSE
 
 	//Here we can remove edge or sharpness from the blow
@@ -25,37 +41,45 @@
 		sharp = FALSE
 		edge = FALSE
 
-
+	//Check if sanctify aspect true
+	if(ishuman(src) && isitem(used_weapon))
+		var/mob/living/carbon/human/H = src
+		var/obj/item/I = used_weapon
+		if((H.has_organ(BP_SPCORE) || mutations.len) && (SANCTIFIED in I.aspects))
+			sanctified_attack = TRUE
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
 
 	if(armor_effectiveness >= 74)
-		visible_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
+		armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
 						SPAN_NOTICE("Your armor reduced the impact greatly!"))
 
 	else if(armor_effectiveness >= 49)
-		visible_message(SPAN_NOTICE("[src] armor abosrbs most of the damage!"),
+		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 						SPAN_NOTICE("Your armor protects you from impact!"))
 
 	else if(armor_effectiveness >= 24)
-		show_message(SPAN_NOTICE("Your armor reduced impact for a bit."))
+		armor_message(SPAN_NOTICE("Your armor reduced impact for a bit."))
 
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
 		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
-
+		if(sanctified_attack)
+			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
 	else
 		//Pain part of the damage, that simulates impact from armor absorbtion
-		//For balance purposes, it's lowered by ARMOR_AGONY_COEFFICIENT
+		//For balance purposes, it's lowered by ARMOR_HALLOS_COEFFICIENT
 		if(!(damagetype == HALLOSS ))
-			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
-			apply_effect(agony_gamage, AGONY)
+			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
+			adjustHalLoss(agony_gamage)
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(sanctified_attack)
+			apply_damage(actual_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 		return actual_damage
 	return effective_damage
 
@@ -71,7 +95,7 @@
 	shake_animation(damage)
 
 
-/mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/bullet_act(obj/item/projectile/P, var/def_zone)
 	var/hit_dir = get_dir(P, src)
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
@@ -111,7 +135,7 @@
 	return TRUE
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon)
 	flash_pain()
 
 	//For not bloating damage_through_armor here is simple armor calculation for stun time
@@ -132,7 +156,7 @@
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
+/mob/living/proc/electrocute_act(var/shock_damage, obj/source, var/siemens_coeff = 1)
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
@@ -173,7 +197,7 @@
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
-	if(istype(AM,/obj/))
+	if(istype(AM,/obj))
 		var/obj/O = AM
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
@@ -233,14 +257,16 @@
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/proc/embed(var/obj/item/O, var/def_zone=null)
+/mob/living/proc/embed(obj/item/O, var/def_zone)
+	if(O.wielded)
+		return
 	if(ismob(O.loc))
 		var/mob/living/L = O.loc
 		if(!L.unEquip(O, src))
 			return
 	O.forceMove(src)
 	src.embedded += O
-	src.visible_message("<span class='danger'>\The [O] embeds in the [src]!</span>")
+	src.visible_message(SPAN_DANGER("\The [O] embeds in the [src]!"))
 	src.verbs += /mob/proc/yank_out_object
 	O.on_embed(src)
 
@@ -264,7 +290,7 @@
 
 // End BS12 momentum-transfer code.
 
-/mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/attack_generic(mob/user, var/damage, var/attack_message)
 
 	if(!damage || !istype(user))
 		return

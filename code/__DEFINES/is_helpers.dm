@@ -26,9 +26,9 @@
 
 #define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define isalien(A) istype(A, /mob/living/carbon/alien)
-
 #define isslime(A) istype(A, /mob/living/carbon/slime)
+
+#define isroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
 
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 
@@ -38,6 +38,8 @@
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
 #define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
+
+#define iscat(A) istype(A, /mob/living/simple_animal/cat)
 
 #define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
 
@@ -69,8 +71,24 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
-#define isgun(A) istype(A, /obj/item/weapon/gun)
+#define isgun(A) istype(A, /obj/item/gun)
 
-#define istool(A) istype(A, /obj/item/weapon/tool)
+#define istool(A) istype(A, /obj/item/tool)
 
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
+
+#define isstructure(A) (istype(A, /obj/structure))
+
+#define ismachinery(A) (istype(A, /obj/machinery))
+
+#define isWrench(A) istype(A, /obj/item/tool/wrench)
+
+#define isWelder(A) istype(A, /obj/item/tool/weldingtool)
+
+#define isWirecutter(A) istype(A, /obj/item/tool/wirecutters)
+
+#define isScrewdriver(A) istype(A, /obj/item/tool/screwdriver)
+
+#define isMultitool(A) istype(A, /obj/item/tool/multitool)
+
+#define isCrowbar(A) istype(A, /obj/item/tool/crowbar)

@@ -7,6 +7,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 */
 
 /obj/item/device/uplink
+	spawn_blacklisted = TRUE
 	var/welcome = "Welcome, Operative"	// Welcoming menu message
 	var/uses 							// Numbers of crystals
 	var/list/ItemsCategory				// List of categories with lists of items
@@ -16,7 +17,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/nanoui_data = new 			// Additional data for NanoUI use
 
 	var/list/purchase_log = new
-	var/datum/mind/uplink_owner = null
+	var/datum/mind/uplink_owner
 	var/used_TC = 0
 
 	var/list/owner_roles = new
@@ -24,7 +25,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
 	//The total uses is only increased when this is a whole number
-	var/gain_progress = 0.0
+	var/gain_progress = 0
 
 	var/bsdm_time = 0
 
@@ -121,8 +122,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT)\
-	                                     : !!length(owner_roles & ROLES_CONTRACT)
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)\
+	                                     : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -210,7 +211,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				nanoui_data["exploit_exists"] = 1
 				break
-	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
+	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY) : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
 		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)
@@ -250,16 +251,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	hidden_uplink = new(src, mind, crystal_amount)
 	icon_state = "radio"
 
-/obj/item/device/radio/uplink/attack_self(mob/user as mob)
+/obj/item/device/radio/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/weapon/tool/multitool/uplink/New(loc, mind, crystal_amount)
+/obj/item/tool/multitool/uplink/New(loc, mind, crystal_amount)
 	..(loc)
 	hidden_uplink = new(src, mind, crystal_amount)
 
 
-/obj/item/weapon/tool/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/tool/multitool/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
@@ -280,10 +281,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	icon = 'icons/obj/supplybeacon.dmi'
 	desc = "A bulky machine used for teleporting in supplies from a benefactor."
 	icon_state = "beacon"
-	var/obj/item/device/uplink/hidden/uplink
-	var/telecrystals = 100
 	density = TRUE
 	anchored = TRUE
+	var/obj/item/device/uplink/hidden/uplink
+	var/telecrystals = 100
 	var/owner_roles //Can be a list of roles or a single role
 
 /obj/structure/uplink/New()

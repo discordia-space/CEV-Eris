@@ -53,7 +53,7 @@
 	var/attack_sound_chance = 33
 	var/attack_sound_volume = 20
 
-	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
+	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat
 	var/meat_amount = 3
 
 	var/melee_damage_lower = 0
@@ -83,8 +83,22 @@
 	var/fleshcolor = "#666600"
 	var/bloodcolor = "#666600"
 
+	var/ranged = 0 //will it shoot?
+	var/rapid = 0 //will it shoot fast?
+	var/projectiletype
+	var/projectilesound
+	var/casingtype
+	var/ranged_cooldown
+	var/fire_verb //what does it do when it shoots?
+	var/kept_distance //how far away will it be before it stops moving closer
+
+	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
+
 /mob/living/carbon/superior_animal/New()
 	..()
+
+	GLOB.superior_animal_list += src
+
 	if(!icon_living)
 		icon_living = icon_state
 	if(!icon_dead)
@@ -105,9 +119,10 @@
 			create_burrow(get_turf(src))
 
 /mob/living/carbon/superior_animal/Destroy()
+	GLOB.superior_animal_list -= src
 	. = ..()
 
-/mob/living/carbon/superior_animal/u_equip(obj/item/W as obj)
+/mob/living/carbon/superior_animal/u_equip(obj/item/W)
 	return
 
 /mob/living/carbon/superior_animal/proc/visible_emote(message)

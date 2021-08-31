@@ -79,7 +79,7 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "r" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/grass,
 /area/crawler)
 "s" = (

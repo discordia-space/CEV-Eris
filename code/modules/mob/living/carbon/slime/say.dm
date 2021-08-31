@@ -8,8 +8,15 @@
 		return emote(copytext(message,2))
 
 	if(stat)
+		var/last_symbol = copytext(message, length(message))
 		if(stat == DEAD)
 			return say_dead(message)
+		else if(last_symbol=="@")
+			if(src.stats.getPerk(/datum/perk/codespeak))
+				return
+			else
+				to_chat(src, "You don't know the codes, pal.")
+				return
 		return
 
 	return ..(message, null, verb)
@@ -27,14 +34,14 @@
 /mob/living/carbon/slime/say_understands(var/other)
 	return isslime(other) || ..()
 
-/mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, speech_volume)
+/mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language, var/alt_name = "", var/italics = 0, var/mob/speaker, var/sound/speech_sound, var/sound_vol, speech_volume)
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)
 		speech_buffer.Add(lowertext(message))
 	..()
 
-/mob/living/carbon/slime/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
+/mob/living/carbon/slime/hear_radio(var/message, var/verb="says", var/datum/language/language, var/part_a, var/part_b, var/mob/speaker, var/hard_to_hear = 0, var/vname ="")
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)

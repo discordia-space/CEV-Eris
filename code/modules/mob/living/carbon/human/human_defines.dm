@@ -23,7 +23,7 @@
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
 
-	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
+	var/lip_style	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
@@ -33,28 +33,28 @@
 	var/datum/backpack_setup/backpack_setup
 
 	//Equipment slots
-	var/obj/item/wear_suit = null
-	var/obj/item/w_uniform = null
-	var/obj/item/shoes = null
-	var/obj/item/belt = null
-	var/obj/item/gloves = null
-	var/obj/item/glasses = null
-	var/obj/item/head = null
-	var/obj/item/l_ear = null
-	var/obj/item/r_ear = null
-	var/obj/item/wear_id = null
-	var/obj/item/r_store = null
-	var/obj/item/l_store = null
-	var/obj/item/s_store = null
+	var/obj/item/wear_suit
+	var/obj/item/w_uniform
+	var/obj/item/shoes
+	var/obj/item/belt
+	var/obj/item/gloves
+	var/obj/item/glasses
+	var/obj/item/head
+	var/obj/item/l_ear
+	var/obj/item/r_ear
+	var/obj/item/wear_id
+	var/obj/item/r_store
+	var/obj/item/l_store
+	var/obj/item/s_store
 
-	var/icon/stand_icon = null
-	var/icon/lying_icon = null
+	var/icon/stand_icon
+	var/icon/lying_icon
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/speech_problem_flag = 0
 
-	var/miming = null //Toggle for the mime's abilities.
+	var/miming //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
@@ -62,7 +62,7 @@
 
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
-	var/mob/remoteview_target = null
+	var/mob/remoteview_target
 	var/remoteviewer = FALSE //Acts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
 	var/hand_blood_color
 
@@ -90,9 +90,10 @@
 	var/identifying_gender // In case the human identifies as another gender than it's biological
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
-	var/datum/sanity/sanity = null
+	var/datum/sanity/sanity
 
 	var/shock_resist = 0 // Resistance to paincrit
 
 	var/language_blackout = 0
 	var/suppress_communication = 0
+

@@ -22,6 +22,9 @@
 	throw_range = 20
 	force = NONE
 
+	//spawn_values
+	bad_type = /obj/item/toy
+	spawn_tags = SPAWN_TAG_ITEM_TOY
 
 /*
  * Balloons
@@ -32,16 +35,16 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
+	preloaded_reagents = list()
 
 /obj/item/toy/balloon/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
+	create_reagents(10)
+	..()
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
 	return
 
-/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user, proximity)
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
@@ -50,8 +53,8 @@
 		src.update_icon()
 	return
 
-/obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+/obj/item/toy/balloon/attackby(obj/O, mob/user)
+	if(istype(O, /obj/item/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
 				to_chat(user, "The [O] is empty.")
@@ -79,7 +82,7 @@
 				qdel(src)
 	return
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/on_update_icon()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -122,13 +125,14 @@
 		)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
 
 	examine(mob/user)
 		if(..(user, 2) && bullets)
 			to_chat(user, SPAN_NOTICE("It is loaded with [bullets] foam darts!"))
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I as obj, mob/user)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
 			if(bullets <= 4)
 				user.drop_item()
@@ -139,7 +143,7 @@
 				to_chat(usr, SPAN_WARNING("It's already fully loaded."))
 
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+	afterattack(atom/target as mob|obj|turf|area, mob/user, flag)
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
@@ -189,7 +193,7 @@
 				O.show_message(SPAN_WARNING("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
 
 
-	attack(mob/M as mob, mob/user as mob)
+	attack(mob/M as mob, mob/user)
 		src.add_fingerprint(user)
 
 // ******* Check
@@ -220,10 +224,10 @@
 	slot_flags = SLOT_EARS
 
 /obj/effect/foam_dart_dummy
-	name = ""
+	name = "foam dart"
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "null"
+	icon_state = "foamdart"
 	anchored = TRUE
 	density = FALSE
 
@@ -237,11 +241,12 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0.0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
+	var/active = 0
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		src.active = !( src.active )
 		if (src.active)
 			to_chat(user, SPAN_NOTICE("You extend the plastic blade with a quick flick of your wrist."))
@@ -273,6 +278,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /*
  * Snap pops
@@ -317,21 +323,16 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
+	flags // TODO??
+	preloaded_reagents = list("water" = 10)
 	var/empty = 0
-	flags
 
-/obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
-
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
 	return
 
-/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user)
 
-	if (istype(A, /obj/item/weapon/storage/backpack ))
+	if (istype(A, /obj/item/storage/backpack ))
 		return
 
 	else if (locate (/obj/structure/table, src.loc))
@@ -389,7 +390,7 @@
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 
-/obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
+/obj/item/toy/bosunwhistle/attack_self(mob/user)
 	if(cooldown < world.time - 35)
 		to_chat(user, SPAN_NOTICE("You blow on [src], creating an ear-splitting noise!"))
 		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
@@ -401,16 +402,17 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
+	bad_type = /obj/item/toy/prize
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
-/obj/item/toy/prize/attack_self(mob/user as mob)
+/obj/item/toy/prize/attack_self(mob/user)
 	if(cooldown < world.time - 8)
 		to_chat(user, SPAN_NOTICE("You play with [src]."))
 		playsound(user, 'sound/mechs/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/user)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, SPAN_NOTICE("You play with [src]."))
@@ -482,6 +484,8 @@
 	desc = "It seems to be almost glitched through reality."
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
+	spawn_tags = SPAWN_TAG_FIGURE
+	bad_type = /obj/item/toy/figure
 
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -563,6 +567,8 @@
 	icon_state = "ianplushie"
 	anchored = FALSE
 	density = TRUE
+	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
+	bad_type = /obj/structure/plushie
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -584,7 +590,7 @@
 
 /obj/structure/plushie/drone
 	name = "plush drone"
-	desc = "A plushie of a happy drone! It appears to be smiling, and has a small tag which reads \"N.D.V. Icarus Gift Shop\"."
+	desc = "A plushie of a happy drone! It appears to be smiling, and has a small tag which reads \"I.H.S. Atomos Gift Shop\"."
 	icon_state = "droneplushie"
 	phrase = "Beep boop!"
 
@@ -600,14 +606,22 @@
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
 
+/obj/structure/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	phrase = "I just don't think about losing."
+
 //Small plushies.
 /obj/item/toy/plushie
 	name = "generic small plush"
 	desc = "A very generic small plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
+	bad_type = /obj/item/toy/plushie
+	spawn_tags = SPAWN_TAG_PLUSHIE
 
-/obj/item/toy/plushie/attack_self(mob/user as mob)
+/obj/item/toy/plushie/attack_self(mob/user)
 	if(user.a_intent == I_HELP)
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> hugs [src]!"),SPAN_NOTICE("You hug [src]!"))
 	else if (user.a_intent == I_HURT)
@@ -646,8 +660,9 @@
 	item_state = "cultblade"
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
-/obj/item/weapon/inflatable_duck
+/obj/item/inflatable_duck
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
 	icon_state = "inflatable"

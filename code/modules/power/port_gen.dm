@@ -6,7 +6,7 @@
 	icon_state = "portgen0"
 	density = TRUE
 	anchored = FALSE
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/active = 0
 	var/power_gen = 5000
@@ -49,7 +49,7 @@
 	if(!anchored)
 		return
 
-/obj/machinery/power/port_gen/update_icon()
+/obj/machinery/power/port_gen/on_update_icon()
 	if(!active)
 		icon_state = initial(icon_state)
 
@@ -93,7 +93,7 @@
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/material/plasma
-	circuit = /obj/item/weapon/circuitboard/pacman
+	circuit = /obj/item/electronics/circuitboard/pacman
 
 	/*
 		These values were chosen so that the generator can run safely up to 80 kW
@@ -124,7 +124,7 @@
 		connect_to_network()
 	if(use_reagents_as_fuel)
 		create_reagents(max_fuel_volume)
-		fuel_name = chemical_reagents_list[fuel_reagent_id]
+		fuel_name = GLOB.chemical_reagents_list[fuel_reagent_id]
 		desc = "A power generator that runs on [fuel_name]. Rated for [(power_gen * max_safe_output) / 1000] kW max safe output."
 
 /obj/machinery/power/port_gen/pacman/Destroy()
@@ -133,14 +133,14 @@
 
 /obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
-		if(istype(SP, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/stock_parts/SP in component_parts)
+		if(istype(SP, /obj/item/stock_parts/matter_bin))
 			if(!use_reagents_as_fuel)
 				max_fuel_volume = SP.rating * SP.rating * 50
 			else
 				max_fuel_volume = SP.rating * 300
 				create_reagents(max_fuel_volume)
-		else if(istype(SP, /obj/item/weapon/stock_parts/micro_laser) || istype(SP, /obj/item/weapon/stock_parts/capacitor))
+		else if(istype(SP, /obj/item/stock_parts/micro_laser) || istype(SP, /obj/item/stock_parts/capacitor))
 			temp_rating += SP.rating
 
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
@@ -413,7 +413,7 @@
 	onclose(user, "port_gen")
 */
 
-/obj/machinery/power/port_gen/pacman/update_icon()
+/obj/machinery/power/port_gen/pacman/on_update_icon()
 	if(active)
 		icon_state = "portgen1"
 	else
@@ -449,7 +449,7 @@
 	sheet_path = /obj/item/stack/material/uranium
 	sheet_name = "Uranium Sheets"
 	time_per_fuel_unit = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
-	circuit = /obj/item/weapon/circuitboard/pacman/super
+	circuit = /obj/item/electronics/circuitboard/pacman/super
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
@@ -484,7 +484,7 @@
 	time_per_fuel_unit = 576
 	max_temperature = 800
 	temperature_gain = 90
-	circuit = /obj/item/weapon/circuitboard/pacman/mrs
+	circuit = /obj/item/electronics/circuitboard/pacman/mrs
 
 /obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).

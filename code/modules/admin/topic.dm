@@ -7,10 +7,10 @@
 		[red ? "<font color=red>" : null][replacetext(title, " ", "&nbsp")][red ? "</font>" : null]\
 		</a> "
 
-/datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/jobList)
+/datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/joblist)
 	. += "<tr bgcolor='[color]'><th><a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
-	for(var/jobPos in jobList)
-		. += formatJob(mob, jobPos, jobList[jobPos])
+	for(var/jobPos in GLOB.joblist)
+		. += formatJob(mob, jobPos, GLOB.joblist[jobPos])
 	. += "</td></tr>"
 
 
@@ -22,8 +22,39 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
+	if(href_list["openticket"])
+		var/ticketID = text2num(href_list["openticket"])
+		if(!href_list["is_mhelp"])
+			if(!check_rights(R_ADMIN))
+				return
+			SStickets.showDetailUI(usr, ticketID)
+		else
+			if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))
+				return
+			SSmentor_tickets.showDetailUI(usr, ticketID)
+
+	if(href_list["take_question"])
+		var/indexNum = text2num(href_list["take_question"])
+		if(check_rights(R_ADMIN))
+			SStickets.takeTicket(indexNum)
+
+	if(href_list["resolve"])
+		var/indexNum = text2num(href_list["resolve"])
+		if(check_rights(R_ADMIN))
+			SStickets.resolveTicket(indexNum)
+
+	if(href_list["convert_ticket"])
+		var/indexNum = text2num(href_list["convert_ticket"])
+		if(check_rights(R_ADMIN))
+			SStickets.convert_to_other_ticket(indexNum)
+
+	if(href_list["autorespond"])
+		var/indexNum = text2num(href_list["autorespond"])
+		if(check_rights(R_ADMIN))
+			SStickets.autoRespond(indexNum)
+
 	var/static/list/topic_handlers = AdminTopicHandlers()
-	var/datum/world_topic/handler
+	var/datum/admin_topic/handler
 
 	for(var/I in topic_handlers)
 		if(I in href_list)

@@ -9,13 +9,14 @@
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	charge_per_use = 5
+	rarity_value = 25
 
 /obj/item/device/scanner/gas/is_valid_scan_target(atom/O)
 	return istype(O)
 
 /obj/item/device/scanner/gas/scan(atom/A, mob/user)
 	var/air_contents = A.return_air()
-	flick("atmos2", src)
+	FLICK("atmos2", src)
 	if(!air_contents)
 		to_chat(user, SPAN_WARNING("Your [src] flashes a red light as it fails to analyze \the [A]."))
 		return

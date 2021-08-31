@@ -114,7 +114,7 @@ ADMIN_VERB_ADD(/client/proc/reload_mentors, R_SERVER, FALSE)
 	if(!check_rights(R_SERVER)) return
 
 	message_admins("[usr] manually reloaded Mentors")
-	world.load_mods()
+	world.load_mentors()
 
 /*
 //todo:

@@ -1,10 +1,20 @@
+#define STYLE_NEG_HIGH -2
+#define STYLE_NEG_LOW -1
+#define STYLE_NONE 0
+#define STYLE_LOW 1
+#define STYLE_HIGH 2
+
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
+	bad_type = /obj/item/clothing
+	rarity_value = 5
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
-	var/list/species_restricted = null				// Only these species can wear this kit.
+	var/list/species_restricted				// Only these species can wear this kit.
 	var/gunshot_residue								// Used by forensics.
 	var/initial_name = "clothing"					// For coloring
 
@@ -16,7 +26,7 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = 0
+	var/style = STYLE_NONE
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
@@ -44,8 +54,6 @@
 	var/real_style = style
 	if(blood_DNA)
 		real_style -= 1
-	if(gunshot_residue)
-		real_style -= 1
 	return real_style
 
 // Aurora forensics port.
@@ -54,7 +62,7 @@
 	gunshot_residue = null
 
 //Delayed equipping
-/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+/obj/item/clothing/pre_equip(mob/user, slot)
 	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
@@ -81,7 +89,7 @@
 	if(!pre_equip(usr, over_object))
 		..()
 
-/proc/body_part_coverage_to_string(var/body_parts)
+/proc/body_part_coverage_to_string(body_parts)
 	var/list/body_partsL = list()
 	if(body_parts & HEAD)
 		body_partsL.Add("head")
@@ -168,8 +176,9 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	bad_type = /obj/item/clothing/ears
 
-/obj/item/clothing/ears/attack_hand(mob/user as mob)
+/obj/item/clothing/ears/attack_hand(mob/user)
 	if (!user) return
 
 	if (src.loc != user || !ishuman(user))
@@ -209,9 +218,11 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
-	var/obj/item/master_item = null
+	spawn_tags = null
+	var/obj/item/master_item
 
-/obj/item/clothing/ears/offear/New(var/obj/O)
+/obj/item/clothing/ears/offear/New(obj/O)
+	.=..()
 	name = O.name
 	desc = O.desc
 	icon = O.icon
@@ -251,6 +262,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
+	bad_type = /obj/item/clothing/glasses
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -265,19 +277,21 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/inventory/hands/icon.dmi'
 	siemens_coefficient = 0.75
-	var/wired = 0
-	var/clipped = 0
+	bad_type = /obj/item/clothing/gloves
+	spawn_tags = SPAWN_TAG_GLOVES
 	body_parts_covered = ARMS
 	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
+	var/wired = 0
+	var/clipped = 0
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
+/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/scalpel))
 		if (clipped)
 			to_chat(user, SPAN_NOTICE("The [src] have already been clipped!"))
 			update_icon()
@@ -303,6 +317,9 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/clothing/head
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
+	style = STYLE_HIGH
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
@@ -320,7 +337,7 @@ BLIND     // can't see anything
 	else
 		return ..(user)
 
-/obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
+/obj/item/clothing/head/proc/update_flashlight(mob/user = null)
 	if(on && !light_applied)
 		set_light(brightness_on)
 		light_applied = 1
@@ -330,15 +347,15 @@ BLIND     // can't see anything
 	update_icon(user)
 	user.update_action_buttons()
 
-/obj/item/clothing/head/attack_ai(var/mob/user)
+/obj/item/clothing/head/attack_ai(mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/attack_generic(var/mob/user)
+/obj/item/clothing/head/attack_generic(mob/user)
 	if(!istype(user) || !mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
+/obj/item/clothing/head/proc/mob_wear_hat(mob/user)
 	if(!Adjacent(user))
 		return 0
 	var/success
@@ -358,9 +375,9 @@ BLIND     // can't see anything
 		to_chat(user, SPAN_NOTICE("You crawl under \the [src]."))
 	return 1
 
-/obj/item/clothing/head/update_icon(var/mob/user)
+/obj/item/clothing/head/on_update_icon(mob/user)
 
-	overlays.Cut()
+	cut_overlays()
 	var/mob/living/carbon/human/H
 	if(ishuman(user))
 		H = user
@@ -370,7 +387,7 @@ BLIND     // can't see anything
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
 			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
-		overlays |= light_overlay_cache["[light_overlay]_icon"]
+		associate_with_overlays(light_overlay_cache["[light_overlay]_icon"])
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
@@ -388,6 +405,8 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
+	bad_type = /obj/item/clothing/mask
+	spawn_tags = SPAWN_TAG_MASK
 
 	var/voicechange = 0
 	var/list/say_messages
@@ -406,16 +425,18 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.9
 	body_parts_covered = LEGS
 	slot_flags = SLOT_FEET
-
-	var/can_hold_knife
-	var/obj/item/holding
-	var/noslip = 0
-	var/module_inside = 0
+	spawn_tags = SPAWN_TAG_SHOES
+	bad_type = /obj/item/clothing/shoes
 
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
+
+	var/can_hold_knife = 0
+	var/obj/item/holding
+	var/noslip = 0
+	var/module_inside = 0
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -457,7 +478,7 @@ BLIND     // can't see anything
 	else
 		..()
 
-/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
 	var/global/knifes
 	if(istype(I,/obj/item/noslipmodule))
 		if (item_flags != 0)
@@ -472,11 +493,12 @@ BLIND     // can't see anything
 
 	if(!knifes)
 		knifes = list(
-			/obj/item/weapon/tool/knife,
-			/obj/item/weapon/material/shard,
-			/obj/item/weapon/tool/knife/butterfly,
-			/obj/item/weapon/material/kitchen/utensil,
-			/obj/item/weapon/tool/knife/tacknife,
+			/obj/item/tool/knife,
+			/obj/item/material/shard,
+			/obj/item/tool/knife/butterfly,
+			/obj/item/material/kitchen/utensil,
+			/obj/item/tool/knife/tacknife,
+			/obj/item/tool/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
@@ -503,16 +525,13 @@ BLIND     // can't see anything
 	else to_chat(usr, "You haven't got any accessories in your shoes")
 
 
-
-
-
-/obj/item/clothing/shoes/update_icon()
-	overlays.Cut()
+/obj/item/clothing/shoes/on_update_icon()
+	cut_overlays()
 	if(holding)
-		overlays += image(icon, "[icon_state]_knife")
+		add_overlays(image(icon, "[icon_state]_knife"))
 	return ..()
 
-/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
+/obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)
 	return
 
 
@@ -521,37 +540,44 @@ BLIND     // can't see anything
 /obj/item/clothing/suit
 	icon = 'icons/inventory/suit/icon.dmi'
 	name = "suit"
-	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(
-		/obj/item/weapon/clipboard,
-		/obj/item/weapon/storage/pouch/,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/melee,
-		/obj/item/weapon/material,
+		/obj/item/clipboard,
+		/obj/item/storage/pouch/,
+		/obj/item/gun,
+		/obj/item/melee,
+		/obj/item/tool,
+		/obj/item/material,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/tank,
+		/obj/item/handcuffs,
+		/obj/item/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/cell,
-		/obj/item/weapon/storage/fancy,
-		/obj/item/weapon/flamethrower,
+		/obj/item/cell,
+		/obj/item/storage/fancy,
+		/obj/item/flamethrower,
 		/obj/item/device/lighting,
 		/obj/item/device/scanner,
-		/obj/item/weapon/reagent_containers/spray,
+		/obj/item/reagent_containers/spray,
 		/obj/item/device/radio,
-		/obj/item/clothing/mask)
+		/obj/item/clothing/mask,
+		/obj/item/storage/belt/sheath)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-	var/list/extra_allowed = list()
 	equip_delay = 1 SECONDS
+	bad_type = /obj/item/clothing/suit
+	var/fire_resist = T0C+100
+	var/list/extra_allowed = list()
+	style = STYLE_HIGH
+	valid_accessory_slots = list("armor")
+	restricted_accessory_slots = list("armor")
 
-/obj/item/clothing/suit/New()
-	allowed |= extra_allowed
+/obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
+	allowed |= extra_allowed
+
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under
@@ -560,11 +586,13 @@ BLIND     // can't see anything
 		slot_l_hand_str = 'icons/mob/items/lefthand_uniforms.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
 		)
-	name = "under"
+	name = "jumpsuit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	w_class = ITEM_SIZE_NORMAL
+	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
+	bad_type = /obj/item/clothing/under
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
 		/*
@@ -581,7 +609,7 @@ BLIND     // can't see anything
 	restricted_accessory_slots = list("utility", "armband")
 
 
-/obj/item/clothing/under/attack_hand(var/mob/user)
+/obj/item/clothing/under/attack_hand(mob/user)
 	if(accessories && accessories.len)
 		..()
 	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
@@ -604,7 +632,7 @@ BLIND     // can't see anything
 		if(3)
 			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
 
-/obj/item/clothing/under/proc/set_sensors(var/mob/M)
+/obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)
 		to_chat(usr, "The controls are locked.")
 		return 0
@@ -642,12 +670,15 @@ BLIND     // can't see anything
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
 
+/obj/item/clothing/under/rank
+	bad_type = /obj/item/clothing/under/rank
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = 3
 	..()
 
-/obj/item/clothing/under/attackby(var/obj/item/I, var/mob/U)
+/obj/item/clothing/under/attackby(obj/item/I, mob/U)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src) && ishuman(U))
 		set_sensors(U)
 	else

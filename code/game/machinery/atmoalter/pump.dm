@@ -23,13 +23,13 @@
 
 /obj/machinery/portable_atmospherics/powered/pump/New()
 	..()
-	cell = new/obj/item/weapon/cell/medium/high(src)
+	cell = new/obj/item/cell/medium/high(src)
 
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
 
-/obj/machinery/portable_atmospherics/powered/pump/update_icon()
-	src.overlays = 0
+/obj/machinery/portable_atmospherics/powered/pump/on_update_icon()
+	src.set_overlays(0)
 
 	if(on && cell && cell.charge)
 		icon_state = "psiphon:1"
@@ -37,10 +37,10 @@
 		icon_state = "psiphon:0"
 
 	if(holding)
-		overlays += "siphon-open"
+		add_overlays("siphon-open")
 
 	if(connected_port)
-		overlays += "siphon-connector"
+		add_overlays("siphon-connector")
 
 	return
 

@@ -51,8 +51,8 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	icon_state = "syndicatemelee"
-	weapon1 = /obj/item/weapon/melee/energy/sword/red
-	weapon2 = /obj/item/weapon/shield/energy
+	weapon1 = /obj/item/melee/energy/sword/red
+	weapon2 = /obj/item/shield/energy
 	attacktext = "slashed"
 	status_flags = 0
 
@@ -107,7 +107,7 @@
 	projectilesound = 'sound/weapons/Gunshot_light.ogg'
 	projectiletype = /obj/item/projectile/bullet/pistol
 
-	weapon1 = /obj/item/weapon/gun/projectile/automatic/c20r
+	weapon1 = /obj/item/gun/projectile/automatic/c20r
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space
 	icon_state = "syndicaterangedpsace"
@@ -135,10 +135,10 @@
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "viscerator_attack"
 	pass_flags = PASSTABLE
-	health = 15
-	maxHealth = 15
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	health = 50
+	maxHealth = 50
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	attacktext = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "syndicate"
@@ -152,6 +152,8 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+/mob/living/simple_animal/hostile/viscerator/emp_act(severity)
+	health -= 60*severity
 /mob/living/simple_animal/hostile/viscerator/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)

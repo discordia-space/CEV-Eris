@@ -1,5 +1,5 @@
 /obj/item/clothing/head/centhat
-	name = "\improper CentComm. hat"
+	name = "\improper CentCom. hat"
 	icon_state = "centcom"
 	item_state_slots = list(
 		slot_l_hand_str = "centhat",
@@ -15,7 +15,6 @@
 	desc = "Smells nice."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
-	style = 1
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -69,7 +68,7 @@
 	icon_state = "syndicate"
 	desc = "A plastic replica of a bloodthirsty mercenary's space helmet, you'll look just like a real murderous criminal operative in this! This is a toy, it is not made for use in space!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
 	item_flags = COVER_PREVENT_MANIPULATION
 
@@ -141,14 +140,12 @@
 	desc = "Yarr."
 	icon_state = "bandana"
 	flags_inv = BLOCKHEADHAIR
-	style = 1
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	body_parts_covered = 0
-	style = 1
 
 //stylish bs12 hats
 
@@ -172,7 +169,6 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
-	style = 2
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
@@ -183,7 +179,6 @@
 	name = "fez"
 	icon_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
-	style = 1
 
 //end bs12 hats
 
@@ -192,7 +187,7 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	flags_inv = BLOCKHEADHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
@@ -222,7 +217,7 @@
 		)
 	desc = "A helmet made out of chitinous alien hide."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/philosopher_wig
@@ -234,7 +229,7 @@
 		slot_r_hand_str = "pwig",
 		)
 	flags_inv = BLOCKHEADHAIR
-	siemens_coefficient = 2.0 //why is it so conductive?!
+	siemens_coefficient = 2 //why is it so conductive?!
 	body_parts_covered = 0
 
 /obj/item/clothing/head/bandana/orange //themij: Taryn Kifer
@@ -265,3 +260,68 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/ranger
+	name = "ranger hat"
+	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
+	icon_state = "ranger"
+	item_state = "ranger"
+	price_tag = 400
+
+/obj/item/clothing/head/inhaler
+	name = "odd looking helmet"
+	desc = "A confusingly complex helmet. It is capable of protecting you so it's more useful than being a simple decoration."
+	icon_state = "inhaler"
+	item_state = "inhaler"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	siemens_coefficient = 1
+	price_tag = 600
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 10,
+		bomb = 0,
+		bio = 20,
+		rad = 25
+	)
+
+/obj/item/clothing/head/skull
+	name = "white skull"
+	desc = "This is actually a white plastic skull, don't expect much protection."
+	icon_state = "skull-white"
+	item_state = "skull-white"
+	flags_inv = HIDEMASK|HIDEEARS|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	price_tag = 300
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/skull/black
+	name = "black skull"
+	desc = "This is actually a black plastic skull, don't expect much protection."
+	icon_state = "skull-black"
+	item_state = "skull-black"
+	price_tag = 300
+
+/obj/item/clothing/head/skull/drip
+	name = "golden skull"
+	desc = "This is actually a skull made of gold! How the hell did this show up here?"
+	icon_state = "skull-drip"
+	item_state = "skull-drip"
+	spawn_blacklisted = TRUE //its 10k, also decent armour
+	price_tag = 10000
+	armor = list(
+		melee = 30,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

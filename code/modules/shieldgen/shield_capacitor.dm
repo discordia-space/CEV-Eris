@@ -15,7 +15,7 @@
 	var/max_charge = 8e6	//8 MJ
 	var/max_charge_rate = 400000	//400 kW
 	var/locked = 0
-	use_power = 0 //doesn't use APC power
+	use_power = NO_POWER_USE //doesn't use APC power
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
 
@@ -39,8 +39,8 @@
 
 /obj/machinery/shield_capacitor/attackby(obj/item/I, mob/user)
 
-	if(istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -141,7 +141,7 @@
 
 /obj/machinery/shield_capacitor/power_change()
 	if(stat & BROKEN)
-		icon_state = "broke"
+		SetIconState("broke")
 	else
 		..()
 

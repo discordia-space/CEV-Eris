@@ -89,15 +89,15 @@ proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 
 	var/protected = 0
 
-	if(istype(H.back,/obj/item/weapon/rig/hazmat))
-		var/obj/item/weapon/rig/hazmat/rig = H.back
+	if(istype(H.back,/obj/item/rig/hazmat))
+		var/obj/item/rig/hazmat/rig = H.back
 		if(rig.suit_is_deployed() && !rig.offline)
 			protected += 1
 
-	if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
+	if(istype(H.wear_suit,/obj/item/clothing/suit/space/void/hazardsuit))
 		protected += 0.6
 
-	if(istype(H.head,/obj/item/clothing/head/space/anomaly))
+	if(istype(H.head,/obj/item/clothing/head/space/void/hazardhelmet))
 		protected += 0.3
 
 	//latex gloves and science goggles also give a bit of bonus protection

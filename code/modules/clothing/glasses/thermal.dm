@@ -9,7 +9,6 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
 	price_tag = 1000
-
 	tick_cost = 0.5
 
 
@@ -31,11 +30,21 @@
 	. = ..()
 	overlay = global_hud.thermal
 
+/obj/item/clothing/glasses/powered/thermal/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_THERMAL = TRUE
+		)
+	I.gun_loc_tag = GUN_SCOPE
+	I.req_gun_tags = list(GUN_AMR, GUN_SCOPE)
+
 /obj/item/clothing/glasses/powered/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
+	spawn_blacklisted = TRUE
 
 
 /obj/item/clothing/glasses/powered/thermal/onestar
@@ -43,6 +52,7 @@
 	desc = "Chinese thermals in the shape of goggles."
 	icon_state = "onestar_thermal"
 	off_state = "onestar_thermal"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/powered/thermal/plain
 	toggleable = FALSE
@@ -77,9 +87,10 @@
 	icon_state = "thermal_lens"
 	body_parts_covered = 0
 	slot_flags = 0
+	spawn_blacklisted = TRUE
 
 
-/obj/item/clothing/glasses/attackby(var/obj/item/Z, var/mob/user)
+/obj/item/clothing/glasses/attackby(obj/item/Z, mob/user)
 
 	if (istype(Z,/obj/item/clothing/glasses/powered/thermal/lens))
 		overlay = global_hud.thermal
@@ -113,3 +124,4 @@
 		var/obj/item/clothing/glasses/powered/thermal/lens/THL = new()
 		usr.put_in_hands(THL)
 	else to_chat(usr, "You haven't got any lenses in your glasses");
+

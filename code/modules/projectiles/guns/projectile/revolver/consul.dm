@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/revolver/consul
+/obj/item/gun/projectile/revolver/consul
 	name = "FS REV .40 Magnum \"Consul\""
 	desc = "When you badly need this case to be closed. Uses .40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/inspector.dmi'
@@ -13,4 +13,5 @@
 	price_tag = 1700
 	damage_multiplier = 1.35
 	penetration_multiplier = 1.5
-	recoil_buildup = 35
+	recoil_buildup = 6
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE

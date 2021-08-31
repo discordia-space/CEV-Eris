@@ -19,18 +19,6 @@
 	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
 	qdel(src)
 
-/obj/effect/decal/cleanable/greenglow/Initialize(mapload, ...)
-	. = ..()
-	START_PROCESSING(SSobj, src)
-	set_light(1.5 ,1, "#00FF7F")
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 120 SECONDS)
-
-/obj/effect/decal/cleanable/greenglow/Process()
-	. = ..()
-	for(var/mob/living/carbon/l in range(4))
-		if(prob(2))
-			to_chat(l, SPAN_WARNING("Your skin itches."))
-		l.apply_effect(2, IRRADIATE)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
@@ -50,6 +38,8 @@
 	icon = 'icons/obj/reagentfillings.dmi'
 	mouse_opacity = 0
 	random_rotation = FALSE
+	bad_type = /obj/effect/decal/cleanable/reagents
+	spawn_tags = null
 
 /obj/effect/decal/cleanable/reagents/proc/add_reagents(var/datum/reagents/reagents_to_add)
 	if(!reagents)
@@ -110,6 +100,24 @@
 	light_range = 2
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
+	spawn_frequency = 0
+
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload, ...)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	set_light(1.5 ,1, "#00FF7F")
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 120 SECONDS)
+
+/obj/effect/decal/cleanable/greenglow/Process()
+	. = ..()
+	for(var/mob/living/carbon/l in range(4))
+		if(prob(2))
+			to_chat(l, SPAN_WARNING("Your skin itches."))
+		l.apply_effect(2, IRRADIATE)
+
+/obj/effect/decal/cleanable/greenglow/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"
@@ -148,8 +156,8 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
-	var/list/viruses = list()
 	sanity_damage = 1
+	var/list/viruses = list()
 
 	Destroy()
 		. = ..()

@@ -1,36 +1,3 @@
-/datum/language/xenocommon
-	name = LANGUAGE_XENOMORPH
-	colour = "alien"
-	desc = "The common tongue of the xenomorphs."
-	speech_verb = list("hisses")
-	ask_verb = list("hisses")
-	exclaim_verb = list("hisses")
-	key = "4"
-	flags = RESTRICTED
-	syllables = list("sss","sSs","SSS")
-	shorthand = "Xeno"
-
-/datum/language/xenos
-	name = LANGUAGE_HIVEMIND
-	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
-	speech_verb = list("hisses")
-	ask_verb = list("hisses")
-	exclaim_verb = list("hisses")
-	colour = "alien"
-	key = "a"
-	flags = RESTRICTED | HIVEMIND
-	shorthand = "N/A"
-
-/datum/language/xenos/check_special_condition(var/mob/other)
-
-	var/mob/living/carbon/M = other
-	if(!istype(M))
-		return 1
-	if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
-		return 1
-
-	return 0
-
 /datum/language/corticalborer
 	name = LANGUAGE_CORTICAL
 	desc = "Cortical borers possess a strange link between their tiny minds."

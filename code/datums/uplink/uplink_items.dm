@@ -35,7 +35,7 @@ var/datum/uplink/uplink = new()
 /datum/uplink_item/item
 	var/path = null
 
-/datum/uplink_item/proc/buy(var/obj/item/device/uplink/U, var/mob/user)
+/datum/uplink_item/proc/buy(obj/item/device/uplink/U, mob/user)
 	var/extra_args = extra_args(user)
 	if(!extra_args)
 		return
@@ -48,14 +48,14 @@ var/datum/uplink/uplink = new()
 	var/goods = get_goods(U, get_turf(user), user, extra_args)
 	if(!goods)
 		return
-
+	bluespace_entropy(2, get_turf(user), TRUE)
 	purchase_log(U)
 	U.uses -= cost
 	U.used_TC += cost
 	return goods
 
 // Any additional arguments you wish to send to the get_goods
-/datum/uplink_item/proc/extra_args(var/mob/user)
+/datum/uplink_item/proc/extra_args(mob/user)
 	return 1
 
 /datum/uplink_item/proc/can_buy(obj/item/device/uplink/U)
@@ -73,15 +73,15 @@ var/datum/uplink/uplink = new()
 	else
 		return player_is_antag_in_list(U.uplink_owner, antag_roles)
 
-/datum/uplink_item/proc/cost(var/telecrystals)
+/datum/uplink_item/proc/cost(telecrystals)
 	return item_cost
 
 /datum/uplink_item/proc/description()
 	return desc
 
 // get_goods does not necessarily return physical objects, it is simply a way to acquire the uplink item without paying
-/datum/uplink_item/proc/get_goods(var/obj/item/device/uplink/U, var/loc)
-	return 0
+/datum/uplink_item/proc/get_goods(obj/item/device/uplink/U, loc)
+	return FALSE
 
 /datum/uplink_item/proc/log_icon()
 	return
@@ -98,7 +98,7 @@ datum/uplink_item/dd_SortValue()
 *	Physical Uplink Entries		*
 *                           	*
 ********************************/
-/datum/uplink_item/item/buy(var/obj/item/device/uplink/U, var/mob/user)
+/datum/uplink_item/item/buy(obj/item/device/uplink/U, mob/user)
 	var/obj/item/I = ..()
 	if(!I)
 		return
@@ -111,7 +111,7 @@ datum/uplink_item/dd_SortValue()
 		user.put_in_hands(I)
 	return I
 
-/datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/item/get_goods(obj/item/device/uplink/U, loc)
 	var/obj/item/I = new path(loc)
 	return I
 
@@ -141,7 +141,7 @@ var/image/default_abstract_uplink_icon
 /****************
 * Support procs *
 ****************/
-/proc/get_random_uplink_items(var/obj/item/device/uplink/U, var/remaining_TC, var/loc)
+/proc/get_random_uplink_items(obj/item/device/uplink/U, remaining_TC, loc)
 	var/list/bought_items = list()
 	while(remaining_TC)
 		var/datum/uplink_item/I = default_uplink_selection.get_random_item(remaining_TC, U, bought_items)

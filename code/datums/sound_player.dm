@@ -160,7 +160,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	update_listeners()
 
 /datum/sound_token/proc/add_listener(var/atom/listener)
-	if(istype(listener, /mob))
+	if(ismob(listener))
 		var/mob/l_mob = listener
 		if(l_mob.ear_deaf > 0)
 			return
@@ -188,7 +188,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/turf/listener_turf = get_turf(listener)
 
 	var/distance = get_dist(source_turf, listener_turf)
-	if(!listener_turf | (distance > range) || !(listener_turf in can_be_heard_from))
+	if(!listener_turf || (distance > range) || !(listener_turf in can_be_heard_from))
 		if(prefer_mute)
 			listener_status[listener] |= SOUND_MUTE
 		else

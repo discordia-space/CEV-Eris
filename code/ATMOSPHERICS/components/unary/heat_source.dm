@@ -8,9 +8,9 @@
 	icon_state = "heater_0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
-	circuit = /obj/item/weapon/circuitboard/unary_atmos/heater
+	circuit = /obj/item/electronics/circuitboard/unary_atmos/heater
 
 	var/max_temperature = T20C + 680
 	var/internal_volume = 600	//L
@@ -47,7 +47,7 @@
 	update_icon()
 
 
-/obj/machinery/atmospherics/unary/heater/update_icon()
+/obj/machinery/atmospherics/unary/heater/on_update_icon()
 	if(node1)
 		if(use_power && heating)
 			icon_state = "heater_1"
@@ -77,7 +77,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user)
 	ui_interact(user)
 
 /obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
@@ -133,10 +133,10 @@
 	var/cap_rating = 0
 	var/bin_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
 
 	max_power_rating = initial(max_power_rating) * cap_rating / 2

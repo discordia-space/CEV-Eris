@@ -8,20 +8,20 @@
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			qdel(src)
 			return
-		if(3.0)
+		if(3)
 			qdel(src)
 			return
 		else
 	return
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
-	if(istype(tool, /obj/item/weapon/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
+	if(istype(tool, /obj/item/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [tool].")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
@@ -41,7 +41,7 @@
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
-	if(istype(tool, /obj/item/weapon/tool/screwdriver) && isturf(user.loc))
+	if(istype(tool, /obj/item/tool/screwdriver) && isturf(user.loc))
 		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
 		if(direction == "Cancel") return
 		var/obj/structure/sign/S = new(user.loc)
@@ -497,6 +497,10 @@
 	name = "DRONES"
 	icon_state = "drones"
 
+/obj/structure/sign/department/scanner
+	name = "LONG RANGE SCANNER"
+	icon_state = "scanner"
+
 /obj/structure/sign/department/interrogation
 	name = "INTERROGATION"
 	icon_state = "interrogation"
@@ -591,3 +595,8 @@
 	name = "Old sign"
 	desc = "Looks like a planet crashing by some station above it. Its kinda scary."
 	icon_state = "something-old2"
+
+/obj/structure/sign/derelict3
+	name = "Old sign"
+	desc = "A propaganda poster asking crew to look out for suspicious activity. You can't be too cautious nowadays as well."
+	icon_state = "something-old3"

@@ -89,6 +89,30 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
+	elem
+		name = "ALT+A"
+		command = "westfaceperm"
+	elem 
+		name = "CTRL+A"
+		command = "westface"
+	elem 
+		name = "ALT+W"
+		command = "northfaceperm"
+	elem 
+		name = "CTRL+W"
+		command = "northface"
+	elem 
+		name = "ALT+D"
+		command = "eastfaceperm"
+	elem 
+		name = "CTRL+D"
+		command = "eastface"
+	elem 
+		name = "ALT+S"
+		command = "southfaceperm"
+	elem 
+		name = "CTRL+S"
+		command = "southface"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -173,6 +197,9 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem
+		name = "B"
+		command = "resist" 
 	elem 
 		name = "F1"
 		command = "adminhelp"
@@ -519,7 +546,31 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
+		elem
+		name = "ALT+A"
+		command = "westfaceperm"
 	elem 
+		name = "CTRL+A"
+		command = "westface"
+	elem 
+		name = "ALT+W"
+		command = "northfaceperm"
+	elem 
+		name = "CTRL+W"
+		command = "northface"
+	elem 
+		name = "ALT+D"
+		command = "eastfaceperm"
+	elem 
+		name = "CTRL+D"
+		command = "eastface"
+	elem 
+		name = "ALT+S"
+		command = "southfaceperm"
+	elem 
+		name = "CTRL+S"
+		command = "southface"
+	elem
 		name = "INSERT"
 		command = "a-intent right"
 	elem 
@@ -555,7 +606,16 @@ macro "hotkeymode"
 	elem 
 		name = "E"
 		command = "quick-equip"
+	elem
+		name = "SHIFT+E"
+		command = "belt-equip"
 	elem 
+		name = "SHIFT+Q"
+		command = "suit-storage-equip"
+	elem 
+		name = "SHIFT+B"
+		command = "bag-equip"
+	elem  
 		name = "CTRL+E"
 		command = "quick-equip"
 	elem 
@@ -570,6 +630,9 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+G"
 		command = "a-intent right"
+	elem
+		name = "B"
+		command = "resist" 
 	elem 
 		name = "H"
 		command = "holster"
@@ -1145,6 +1208,7 @@ window "mainwindow"
 		is-visible = false
 		saved-params = ""
 
+
 window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
@@ -1261,6 +1325,16 @@ window "rpane"
 		text = "Changelog"
 		command = "Changelog"
 		group = "rpanemode"
+	elem "tickets"
+		type = BUTTON
+		pos = 487,0
+		size = 67x16
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "Tickets"
+		command = "ticketsshortcut"
+		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
 		pos = 288,0
@@ -1318,6 +1392,14 @@ window "rpane"
 		command = ".winset \"rpanewindow.left=infowindow\""
 		group = "rpanemode"
 		button-type = pushbox
+	elem "mediapanel"
+		type = BROWSER
+		pos = 392,25
+		size = 1x1
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "browserwindow"
 	elem "browserwindow"

@@ -4,7 +4,7 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "eris_control"
 	light_color = COLOR_LIGHTING_CYAN_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/helm
+	circuit = /obj/item/electronics/circuitboard/helm
 	var/obj/effect/overmap/ship/linked			//connected overmap object
 	var/autopilot = 0
 	var/manual_control = 0
@@ -19,15 +19,20 @@
 	get_known_sectors()
 	new /obj/effect/overmap_event/movable/comet()
 
+	if (isnull(linked))
+		error("There are no map_sectors on [src]'s z.")
+		return
+	linked.check_link()
+
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
 	for(var/obj/effect/overmap/sector/S in map)
 		if (S.known)
 			var/datum/data/record/R = new()
-			R.fields["name"] = S.name
+			R.fields["name"] = S.name_stages[1]
 			R.fields["x"] = S.x
 			R.fields["y"] = S.y
-			known_sectors[S.name] = R
+			known_sectors[S.name_stages[1]] = R
 
 /obj/machinery/computer/helm/Process()
 	..()
@@ -65,7 +70,7 @@
 		return -1
 	return 0
 
-/obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/helm/attack_hand(mob/user)
 
 	if(..())
 		user.unset_machine()
@@ -74,8 +79,15 @@
 
 	if(!isAI(user))
 		user.set_machine(src)
+
 	if(linked && manual_control)
 		user.reset_view(linked)
+
+	else if(!config.use_overmap && user?.client?.holder)
+		// Let the new developers know why the helm console is unresponsive
+		// (it's disabled by default on local server to make it start a bit faster)
+		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")
+		to_chat(user, "To use overmap, make sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
 
 	ui_interact(user)
 
@@ -102,6 +114,7 @@
 	data["autopilot"] = autopilot
 	data["manual_control"] = manual_control
 	data["canburn"] = linked.can_burn()
+	data["canpulse"] = linked.can_pulse()
 
 	if(linked.get_speed())
 		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
@@ -136,7 +149,7 @@
 
 	if (href_list["add"])
 		var/datum/data/record/R = new()
-		var/sec_name = input("Input naviation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text
+		var/sec_name = sanitize(input("Input naviation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text)
 		if(!CanInteract(usr,state))
 			return
 		if(!sec_name)
@@ -211,12 +224,15 @@
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
 
+	if (href_list["pulse"])
+		linked.pulse()
+
 	updateUsrDialog()
 
 
 /obj/machinery/computer/navigation
 	name = "navigation console"
-	circuit = /obj/item/weapon/circuitboard/nav
+	circuit = /obj/item/electronics/circuitboard/nav
 	var/viewing = 0
 	var/obj/effect/overmap/ship/linked
 	icon_keyboard = "generic_key"

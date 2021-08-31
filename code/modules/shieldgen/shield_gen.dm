@@ -28,7 +28,7 @@
 	var/max_field_strength = 10
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
-	use_power = 0	//doesn't use APC power
+	use_power = NO_POWER_USE	//doesn't use APC power
 
 /obj/machinery/shield_gen/New()
 	spawn(10)
@@ -56,8 +56,8 @@
 	s.start()
 
 /obj/machinery/shield_gen/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -231,18 +231,18 @@
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning fade out."
 
-/obj/machinery/shield_gen/update_icon()
+/obj/machinery/shield_gen/on_update_icon()
 	if(stat & BROKEN)
-		icon_state = "broke"
+		SetIconState("broke")
 	else
 		if (src.active)
-			icon_state = "generator1"
+			SetIconState("generator1")
 		else
-			icon_state = "generator0"
-		overlays.Cut()
+			SetIconState("generator0")
+		cut_overlays()
 		if (owned_capacitor)
 			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
-			overlays += I
+			add_overlays(I)
 
 //TODO MAKE THIS MULTIZ COMPATIBLE
 //grab the border tiles in a circle around this machine

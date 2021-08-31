@@ -6,15 +6,68 @@
 	item_state = "techno_tribalism"
 	origin_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 7, TECH_POWER = 2)
 	price_tag = 20000
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 	var/last_produce = -30 MINUTES
 	var/items_count = 0
 	var/max_count = 5
 	var/cooldown = 30 MINUTES
 
-/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/techno_tribalism/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_engineering
+
+/obj/item/device/techno_tribalism/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	GLOB.technomancer_faction_item_loss++
+	..()
+
+/obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
+	if(nt_sword_attack(W, user))
+		return FALSE
 	if(items_count < max_count)
-		if(istype(W, /obj/item/weapon/tool))
+		if(W in GLOB.all_faction_items)
+			if(GLOB.all_faction_items[W] == GLOB.department_moebius)
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_MEC] += 3
+			else if(GLOB.all_faction_items[W] == GLOB.department_security)
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_TGH] += 3
+				oddity_stats[STAT_ROB] += 3
+			else if(GLOB.all_faction_items[W] == GLOB.department_church)
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_TGH] += 2
+			else if(GLOB.all_faction_items[W] == GLOB.department_guild)
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_MEC] += 3
+				oddity_stats[STAT_ROB] += 1
+				oddity_stats[STAT_VIG] += 2
+			else if(GLOB.all_faction_items[W] == GLOB.department_engineering)
+				oddity_stats[STAT_MEC] += 5
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_VIG] += 1
+			else if(GLOB.all_faction_items[W] == GLOB.department_command)
+				oddity_stats[STAT_ROB] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_BIO] += 1
+				oddity_stats[STAT_MEC] += 1
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_COG] += 1
+			else if(GLOB.all_faction_items[W] == GLOB.department_civilian)
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_COG] += 2
+			else
+				crash_with("[W], incompatible department")
+
+		else if(istool(W))
 			var/useful = FALSE
 			if(W.tool_qualities)
 
@@ -54,37 +107,37 @@
 				return
 
 
-		else if(istype(W, /obj/item/weapon/tool_upgrade))
+		else if(istype(W, /obj/item/tool_upgrade))
 
-			var/obj/item/weapon/tool_upgrade/T = W
+			var/obj/item/tool_upgrade/T = W
 
-			if(istype(T, /obj/item/weapon/tool_upgrade/reinforcement))
+			if(istype(T, /obj/item/tool_upgrade/reinforcement))
 				oddity_stats[STAT_TGH] += 3
 
-			else if(istype(T, /obj/item/weapon/tool_upgrade/productivity))
+			else if(istype(T, /obj/item/tool_upgrade/productivity))
 				oddity_stats[STAT_COG] += 3
 
-			else if(istype(T, /obj/item/weapon/tool_upgrade/refinement))
+			else if(istype(T, /obj/item/tool_upgrade/refinement))
 				oddity_stats[STAT_VIG] += 3
 
-			else if(istype(T, /obj/item/weapon/tool_upgrade/augment))
+			else if(istype(T, /obj/item/tool_upgrade/augment))
 				oddity_stats[STAT_BIO] += 3
 
 
-		else if(istype(W, /obj/item/weapon/cell))
-			if(istype(W, /obj/item/weapon/cell/small/moebius/nuclear))
+		else if(istype(W, /obj/item/cell))
+			if(istype(W, /obj/item/cell/small/moebius/nuclear))
 				oddity_stats[STAT_ROB] += 2
 
-			else if(istype(W, /obj/item/weapon/cell/medium/moebius/nuclear))
+			else if(istype(W, /obj/item/cell/medium/moebius/nuclear))
 				oddity_stats[STAT_ROB] += 3
 
-			else if(istype(W, /obj/item/weapon/cell/large/moebius/nuclear))
+			else if(istype(W, /obj/item/cell/large/moebius/nuclear))
 				oddity_stats[STAT_ROB] += 4
 
 			else
 				oddity_stats[STAT_ROB] += 1
 
-		else if(istype(W, /obj/item/weapon/gun))
+		else if(isgun(W))
 			oddity_stats[STAT_ROB] += 2
 			oddity_stats[STAT_VIG] += 2
 
@@ -93,6 +146,7 @@
 			return
 
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
+		SEND_SIGNAL(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 
@@ -103,11 +157,11 @@
 /obj/item/device/techno_tribalism/attack_self()
 	if(world.time >= (last_produce + cooldown))
 		if(items_count >= max_count)
-			if(istype(src.loc, /mob/living/carbon/human))
+			if(ishuman(src.loc))
 				var/mob/living/carbon/human/user = src.loc
-				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
+				var/obj/item/oddity/techno/T = new /obj/item/oddity/techno(src)
 				T.oddity_stats = src.oddity_stats
-				T.AddComponent(/datum/component/inspiration, T.oddity_stats)
+				T.AddComponent(/datum/component/inspiration, T.oddity_stats, T.perk)
 				items_count = 0
 				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				last_produce = world.time
@@ -115,10 +169,10 @@
 			else
 				to_chat(src.loc, SPAN_WARNING("The [src] is too complicated to use!"))
 		else
-			visible_message("\The [src] beeps, \"The [src] is not full enough to produce.\".")
+			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
-		visible_message("\The [src] beeps, \"The [src] need time to cooldown.\".")
+		visible_message("\icon The [src] beeps, \"The [src] needs time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/examine(user)
 	..()
-	to_chat(user, SPAN_NOTICE("The [src] is feeded by [items_count]/[max_count]."))
+	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))

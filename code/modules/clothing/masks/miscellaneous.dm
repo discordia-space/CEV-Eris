@@ -47,6 +47,60 @@
 	)
 	price_tag = 10
 
+/obj/item/clothing/mask/thief
+	name = "mastermind's mask"
+	desc = "A white mask with some strange drawings. Designed to hide the wearer's face"
+	icon_state = "dallas"
+	flags_inv = HIDEFACE
+	w_class = ITEM_SIZE_SMALL
+	body_parts_covered = FACE
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 150
+
+/obj/item/clothing/mask/thief/wolf
+	name = "technician's mask"
+	icon_state = "wolf"
+
+/obj/item/clothing/mask/thief/hoxton
+	name = "fugitive's mask"
+	icon_state = "hoxton"
+
+/obj/item/clothing/mask/thief/chains
+	name = "enforcer's mask"
+	icon_state = "chains"
+
+//Adminbus versions with extremly high armor, should never spawn in game
+/obj/item/clothing/mask/thief/adminspawn
+	spawn_blacklisted = TRUE
+	body_parts_covered = HEAD|FACE
+	armor = list(
+		melee = 60,
+		bullet = 65,
+		energy = 60,
+		bomb = 75,
+		bio = 100,
+		rad = 30
+	)
+
+/obj/item/clothing/mask/thief/adminspawn/wolf
+	name = "technician's mask"
+	icon_state = "wolf"
+
+/obj/item/clothing/mask/thief/adminspawn/hoxton
+	name = "fugitive's mask"
+	icon_state = "hoxton"
+
+/obj/item/clothing/mask/thief/adminspawn/chains
+	name = "enforcer's mask"
+	icon_state = "chains"
+
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
@@ -116,6 +170,32 @@
 	item_state = "ninja_scarf"
 	siemens_coefficient = 0
 
+/obj/item/clothing/mask/scarf/style
+	name = "black scarf"
+	desc = "A stylish, black scarf."
+	icon_state = "blackscarf"
+	item_state = "blackscarf"
+	style = STYLE_HIGH
+	price_tag = 100
+
+/obj/item/clothing/mask/scarf/style/bluestyle
+	name = "blue scarf"
+	desc = "A stylish, blue scarf."
+	icon_state = "bluescarf"
+	item_state = "bluescarf"
+
+/obj/item/clothing/mask/scarf/style/yellowstyle
+	name = "yellow scarf"
+	desc = "A stylish, yellow scarf."
+	icon_state = "yellowscarf"
+	item_state = "yellowscarf"
+
+/obj/item/clothing/mask/scarf/style/redstyle
+	name = "red scarf"
+	desc = "A stylish, red scarf."
+	icon_state = "redscarf"
+	item_state = "redscarf"
+
 /obj/item/clothing/mask/pig
 	name = "pig mask"
 	desc = "A rubber pig mask."
@@ -151,7 +231,8 @@
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
 
-/obj/item/clothing/mask/ai/New()
+/obj/item/clothing/mask/ai/Initialize(mapload, ...)
+	. = ..()
 	eye = new(src)
 
 /obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
@@ -244,3 +325,12 @@
 	desc = "A fine black bandana with nanotech lining and a skull emblem. Can be worn on the head or face."
 	icon_state = "bandskull"
 	item_state = "bandskull"
+
+/obj/item/clothing/mask/gnome
+	name = "tactical beard"
+	desc = "The fancy looking beard."
+	icon_state = "gnome_beard"
+	item_state = "gnome_beard"
+	flags_inv = HIDEFACE
+	body_parts_covered = 0
+	style = STYLE_HIGH

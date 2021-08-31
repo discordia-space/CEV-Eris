@@ -1,7 +1,8 @@
 //replaces our stun baton code with /tg/station's code
-/obj/item/weapon/melee/baton
+/obj/item/melee/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT
@@ -17,40 +18,43 @@
 	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
-	var/obj/item/weapon/cell/cell
-	var/spawn_cell = TRUE
-	var/suitable_cell = /obj/item/weapon/cell/medium
+	var/obj/item/cell/cell
+	var/obj/item/cell/starting_cell = /obj/item/cell/medium/high
+	var/suitable_cell = /obj/item/cell/medium
+	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
-/obj/item/weapon/melee/baton/Initialize()
+/obj/item/melee/baton/Initialize()
 	. = ..()
-	if(!cell && suitable_cell && spawn_cell)
-		cell = new suitable_cell(src)
+	if(!cell && suitable_cell && starting_cell)
+		cell = new starting_cell(src)
 	update_icon()
 
-/obj/item/weapon/melee/baton/Destroy()
+/obj/item/melee/baton/Destroy()
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/item/weapon/melee/baton/get_cell()
+/obj/item/melee/baton/get_cell()
 	return cell
 
-/obj/item/weapon/melee/baton/handle_atom_del(atom/A)
+/obj/item/melee/baton/proc/set_status(s)
+	status = s
+	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
+	update_icon()
+
+/obj/item/melee/baton/handle_atom_del(atom/A)
 	..()
 	if(A == cell)
 		cell = null
 		update_icon()
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
+/obj/item/melee/baton/proc/deductcharge(var/power_drain)
 	if(cell)
-		if(cell.checked_use(power_drain))
-			return TRUE
-		else
-			status = FALSE
-			update_icon()
-			return FALSE
+		. = cell.checked_use(power_drain) //try to use enough power
+		if(!cell.check_charge(hitcost))	//do we have enough power for another hit?
+			set_status(FALSE)
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/melee/baton/on_update_icon()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)
@@ -59,35 +63,33 @@
 		icon_state = "[initial(icon_state)]"
 
 	if(icon_state == "[initial(icon_state)]_active")
-		set_light(1.5, 1, COLOR_LIGHTING_ORANGE_BRIGHT)
+		set_light(1.5, 1)
 	else
 		set_light(0)
 
-/obj/item/weapon/melee/baton/examine(mob/user)
+/obj/item/melee/baton/examine(mob/user)
 	if(!..(user, 1))
 		return
 
 	if(cell)
 		to_chat(user, SPAN_NOTICE("The baton is [round(cell.percent())]% charged."))
-	if(!cell)
+	else
 		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
 
-/obj/item/weapon/melee/baton/attack_self(mob/user)
+/obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
-		status = !status
+		set_status(!status)
 		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
-		tool_qualities = status ? list(QUALITY_PULSING = 1) : null
 		playsound(loc, "sparks", 75, 1, -1)
-		update_icon()
 	else
-		status = FALSE
+		set_status(FALSE)
 		if(!cell)
 			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
 			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
@@ -95,13 +97,13 @@
 		return
 	return ..()
 
-/obj/item/weapon/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
 	var/agony = agonyforce
 	var/stun = stunforce
-	var/obj/item/organ/external/affecting = null
+	var/obj/item/organ/external/affecting
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affecting = H.get_organ(hit_zone)
@@ -131,42 +133,46 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects
-	if(status)
+	if(status && deductcharge(hitcost))
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-
-		deductcharge(hitcost)
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.forcesay(hit_appends)
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/melee/baton/emp_act(severity)
 	if(cell)
 		cell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
-/obj/item/weapon/melee/baton/robot/attack_self(mob/user)
+/obj/item/melee/baton/robot
+	bad_type = /obj/item/melee/baton/robot
+
+/obj/item/melee/baton/robot/attack_self(mob/user)
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc
 	if (istype(R))
 		cell = R.cell
 	return ..()
 
-/obj/item/weapon/melee/baton/robot/attackby(obj/item/weapon/W, mob/user)
+/obj/item/melee/baton/robot/attackby(obj/item/W, mob/user)
 	return
 
-/obj/item/weapon/melee/baton/MouseDrop(over_object)
+/obj/item/melee/baton/MouseDrop(over_object)
 	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
+		set_status(FALSE)
+		update_icon()
 
-/obj/item/weapon/melee/baton/attackby(obj/item/C, mob/living/user)
+/obj/item/melee/baton/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		cell = C
+		update_icon()
 
 //Makeshift stun baton. Replacement for stun gloves.
-/obj/item/weapon/melee/baton/cattleprod
+/obj/item/melee/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod"
@@ -178,14 +184,15 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
-	spawn_cell = FALSE
+	starting_cell = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
-/obj/item/weapon/melee/baton/excelbaton
+/obj/item/melee/baton/excelbaton
 	name = "Expropriator"
 	desc = "A cheap and effective way to feed the red tide."
 	icon_state = "sovietbaton"
 	item_state = "soviet"
+	light_color = COLOR_LIGHTING_CYAN_BRIGHT
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	stunforce = 0
@@ -195,4 +202,10 @@
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	starting_cell = /obj/item/cell/medium/excelsior
 
+//excelsior baton has 2 inhand sprites
+/obj/item/melee/baton/excelbaton/set_status(s)
+	..()
+	item_state = initial(item_state) + (status ? "_active" : "")
+	update_wear_icon()

@@ -12,32 +12,36 @@
 
 		B.detatch()
 
-		verbs -= /mob/living/carbon/proc/release_control
-		verbs -= /mob/living/carbon/proc/punish_host
-		verbs -= /mob/living/carbon/proc/spawn_larvae
+		verbs |= /mob/living/carbon/human/proc/commune
+		verbs |= /mob/living/carbon/human/proc/psychic_whisper
+		verbs |= /mob/living/carbon/human/proc/tackle
+		verbs |= /mob/living/carbon/proc/spawn_larvae
+		verbs |= /mob/living/carbon/proc/talk_host
 
 	else
 		to_chat(src, "\red <B>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</B>")
 
-//Brain slug proc for tormenting the host.
-/mob/living/carbon/proc/punish_host()
+//Brain slug proc for talking to the host.
+/mob/living/carbon/proc/talk_host()
 	set category = "Abilities"
-	set name = "Torment host"
-	set desc = "Punish your host with agony."
+	set name = "Talk to captive host"
+	set desc = "Talk to your captive host."
 
 	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/text = null
 
 	if(!B)
 		return
 
 	if(B.host_brain.ckey)
-		to_chat(src, "\red <B>You send a punishing spike of psychic agony lancing into your host's brain.</B>")
+		text = input("What would you like to say?", "Speak to captive host", null, null)
+		text = capitalize(sanitize(text))
+		if(!text) 
+			return
+		log_say("Borer said to its host [text]")
 
-		if (species && (species.flags & NO_PAIN))
-			to_chat(B.host_brain, "\red You feel a strange sensation as a foreign influence prods your mind.")
-			to_chat(src, "\red <B>It doesn't seem to be as effective as you hoped.</B>")
-		else
-			to_chat(B.host_brain, "\red <B><FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT></B>")
+		to_chat(src, "You say to your host: [text]")
+		to_chat(B.host_brain, "YOU say to yourself: [text]")
 
 /mob/living/carbon/proc/spawn_larvae()
 	set category = "Abilities"
@@ -54,6 +58,7 @@
 		visible_message("\red <B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
 		B.chemicals -= 100
 		B.has_reproduced = 1
+		B.borer_add_exp(10)
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(src))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)

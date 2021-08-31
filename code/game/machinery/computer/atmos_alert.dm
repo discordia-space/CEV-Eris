@@ -6,8 +6,8 @@ var/global/list/minor_air_alarms = list()
 
 /obj/machinery/computer/atmos_alert
 	name = "atmospheric alert computer"
-	desc = "Used to access the station's atmospheric sensors."
-	circuit = /obj/item/weapon/circuitboard/atmos_alert
+	desc = "Used to access the ship's atmospheric sensors."
+	circuit = /obj/item/electronics/circuitboard/atmos_alert
 	icon_keyboard = "atmos_key"
 	icon_screen = "alert:0"
 	light_color = COLOR_LIGHTING_GREEN_MACHINERY
@@ -25,7 +25,7 @@ var/global/list/minor_air_alarms = list()
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/major_alarms[0]
 	var/minor_alarms[0]
@@ -46,7 +46,7 @@ var/global/list/minor_air_alarms = list()
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/atmos_alert/update_icon()
+/obj/machinery/computer/atmos_alert/on_update_icon()
 	if(!(stat & (NOPOWER|BROKEN)))
 		if(atmosphere_alarm.has_major_alarms(get_z(src)))
 			icon_screen = "alert:2"

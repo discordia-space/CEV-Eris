@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(fabric_list)
 	var/image/fabric_image
 
 /datum/component/fabric/Initialize(value, new_desc)
-	if(!istype(parent, /mob))
+	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	RegisterSignal(parent, COMSIG_MOB_LIFE, .proc/onLife)

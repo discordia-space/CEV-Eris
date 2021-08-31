@@ -4,23 +4,23 @@
 
 /datum/design/research/circuit/exosuit/engineering
 	name = "engineering system control"
-	build_path = /obj/item/weapon/circuitboard/exosystem/engineering
+	build_path = /obj/item/electronics/circuitboard/exosystem/engineering
 
 /datum/design/research/circuit/exosuit/utility
 	name = "utility system control"
-	build_path = /obj/item/weapon/circuitboard/exosystem/utility
+	build_path = /obj/item/electronics/circuitboard/exosystem/utility
 
 /datum/design/research/circuit/exosuit/medical
 	name = "medical system control"
-	build_path = /obj/item/weapon/circuitboard/exosystem/medical
+	build_path = /obj/item/electronics/circuitboard/exosystem/medical
 
 /datum/design/research/circuit/exosuit/ballistics
 	name = "ballistic weapon control"
-	build_path = /obj/item/weapon/circuitboard/exosystem/weapons
+	build_path = /obj/item/electronics/circuitboard/exosystem/weapons
 
 /datum/design/research/circuit/exosuit/advweapons
 	name = "advanced weapon control"
-	build_path = /obj/item/weapon/circuitboard/exosystem/advweapons
+	build_path = /obj/item/electronics/circuitboard/exosystem/advweapons
 
 //COMBAT
 /datum/design/research/item/exosuit/taser
@@ -38,6 +38,10 @@
 /datum/design/research/item/exosuit/weapon/laser
 	name = "mounted laser gun"
 	build_path = /obj/item/mech_equipment/mounted_system/taser/laser
+
+/datum/design/research/item/exosuit/weapon/pk
+	name = "mounted rigged PK"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
 
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp

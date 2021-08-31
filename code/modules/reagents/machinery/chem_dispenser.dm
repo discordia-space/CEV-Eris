@@ -13,10 +13,10 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER
-	circuit = /obj/item/weapon/circuitboard/chemical_dispenser
+	circuit = /obj/item/electronics/circuitboard/chemical_dispenser
 
 	var/ui_title = "Chem Dispenser 5000"
-	var/obj/item/weapon/cell/medium/cell
+	var/obj/item/cell/medium/cell
 	var/amount = 30
 	var/accept_beaker = TRUE //At TRUE, ONLY accepts beakers.
 	var/hackedcheck = FALSE
@@ -30,7 +30,7 @@
 		"sugar","sacid","tungsten"
 	)
 	var/list/hacked_reagents = list()
-	var/obj/item/weapon/reagent_containers/beaker = null
+	var/obj/item/reagent_containers/beaker
 
 /obj/machinery/chemical_dispenser/RefreshParts()
 	cell = locate() in component_parts
@@ -44,6 +44,7 @@
 
 /obj/machinery/chemical_dispenser/power_change()
 	..()
+	update_icon()
 	SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/Process()
@@ -57,10 +58,10 @@
 
 /obj/machinery/chemical_dispenser/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			del(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				del(src)
 				return
@@ -75,7 +76,7 @@
 
 	var/list/chemicals = list()
 	for (var/re in dispensable_reagents)
-		var/datum/reagent/temp = chemical_reagents_list[re]
+		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals
@@ -101,9 +102,10 @@
 
 /obj/machinery/chemical_dispenser/proc/detach()
 	if(beaker)
-		var/obj/item/weapon/reagent_containers/B = beaker
+		var/obj/item/reagent_containers/B = beaker
 		B.loc = loc
 		beaker = null
+		update_icon()
 
 /obj/machinery/chemical_dispenser/AltClick(mob/living/user)
 	if(user.incapacitated())
@@ -112,7 +114,7 @@
 	if(!in_range(src, user))
 		return
 	src.detach()
-	
+
 
 /obj/machinery/chemical_dispenser/Topic(href, href_list)
 	if(..())
@@ -125,13 +127,14 @@
 
 	if(href_list["dispense"])
 		if (dispensable_reagents.Find(href_list["dispense"]) && beaker && beaker.is_refillable())
-			var/obj/item/weapon/reagent_containers/B = src.beaker
+			var/obj/item/reagent_containers/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 
 			var/added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
 			R.add_reagent(href_list["dispense"], added_amount)
 			cell.use(added_amount * chemical_dispenser_ENERGY_COST)
+			investigate_log("dispensed [href_list["dispense"]] into [B], while being operated by [key_name(usr)]", "chemistry")
 
 	if(href_list["ejectBeaker"])
 		src.detach()
@@ -142,8 +145,8 @@
 /obj/machinery/chemical_dispenser/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
 		return ..()
-	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
-		I.forceMove(src)
+	if(istype(I, /obj/item/reagent_containers) && I.is_open_container() && !beaker)
+		user.unEquip(I, src)
 		I.add_fingerprint(user)
 		beaker = I
 		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
@@ -158,16 +161,17 @@
 	if(default_part_replacement(I, user))
 		return
 
-	var/obj/item/weapon/reagent_containers/B = I
+	var/obj/item/reagent_containers/B = I
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
-	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
-		if(accept_beaker && istype(B, /obj/item/weapon/reagent_containers/food))
+	if(istype(B, /obj/item/reagent_containers/glass) || istype(B, /obj/item/reagent_containers/food))
+		if(accept_beaker && istype(B, /obj/item/reagent_containers/food))
 			to_chat(user, SPAN_NOTICE("This machine only accepts beakers"))
 		src.beaker =  B
 		if (user.unEquip(B, src))
 			to_chat(user, "You set [B] on the machine.")
+			update_icon()
 			SSnano.update_uis(src) // update all UIs attached to src
 			return
 
@@ -182,6 +186,10 @@
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
 	layer = OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
+	var/icon_on = "soda_dispenser"
+
+	circuit = /obj/item/electronics/circuitboard/chemical_dispenser/soda
+
 	accept_beaker = FALSE
 	density = FALSE
 	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
@@ -189,7 +197,7 @@
 
 /obj/machinery/chemical_dispenser/soda/attackby(obj/item/I, mob/living/user)
 	..()
-	if(istype(I, /obj/item/weapon/tool/multitool) && length(hacked_reagents))
+	if(istype(I, /obj/item/tool/multitool) && length(hacked_reagents))
 		hackedcheck = !hackedcheck
 		if(!hackedcheck)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
@@ -199,11 +207,25 @@
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
 			dispensable_reagents -= hacked_reagents
 
+obj/machinery/chemical_dispenser/soda/on_update_icon()
+	cut_overlays()
+	if(stat & (BROKEN|NOPOWER))
+		icon_state = icon_on+"_off"
+	else
+		icon_state = icon_on
+	
+	if(beaker)
+		add_overlays(image(icon, icon_on+"_loaded"))
+
+
 /obj/machinery/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
 	layer = OBJ_LAYER
 	ui_title = "Booze Portal 9001"
+
+	circuit = /obj/item/electronics/circuitboard/chemical_dispenser/beer
+
 	accept_beaker = FALSE
 	density = FALSE
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
@@ -213,7 +235,7 @@
 /obj/machinery/chemical_dispenser/beer/attackby(obj/item/I, mob/living/user)
 	..()
 
-	if(istype(I, /obj/item/weapon/tool/multitool) && length(hacked_reagents))
+	if(istype(I, /obj/item/tool/multitool) && length(hacked_reagents))
 		hackedcheck = !hackedcheck
 		if(!hackedcheck)
 			to_chat(user, "You disable the 'cheap bastards' lock, enabling hidden and very expensive boozes.")
@@ -223,9 +245,10 @@
 			to_chat(user, "You re-enable the 'cheap bastards' lock, disabling hidden and very expensive boozes.")
 			dispensable_reagents -= hacked_reagents
 
-/obj/machinery/chemical_dispenser/meds
-	name = "chem dispenser magic"
-	ui_title = "Chem Dispenser 9000"
+/obj/machinery/chemical_dispenser/admin
+	name = "debug chem dispenser"
+	desc = "A mysterious chemical dispenser that can produce all sorts of highly advanced medicines at the press of a button."
+	ui_title = "Cheat Synthesizer 1337"
 	dispensable_reagents = list(
 		"inaprovaline","ryetalyn","paracetamol",
 		"tramadol","oxycodone","sterilizine",
@@ -233,10 +256,13 @@
 		"dexalin","dexalinp","tricordrazine",
 		"anti_toxin","synaptizine","hyronalin",
 		"arithrazine","alkysine","imidazoline",
-		"peridaxon","bicaridine","hyperzine",
+		"peridaxon","bicaridine","meralyne","hyperzine",
 		"rezadone","spaceacillin","ethylredoxrazine",
 		"stoxin","chloralhydrate","cryoxadone",
-		"clonexadone"
+		"clonexadone","ossisine","noexcutite","kyphotorin",
+		"detox","polystem","purger","addictol","aminazine",
+		"vomitol","haloperidol","paroxetine","citalopram",
+		"methylphenidate"
 	)
 
 /obj/machinery/chemical_dispenser/industrial
@@ -244,6 +270,9 @@
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "industrial_dispenser"
 	ui_title = "Industrial Dispenser 4835"
+
+	circuit = /obj/item/electronics/circuitboard/chemical_dispenser/industrial
+
 	dispensable_reagents = list(
 		"acetone","aluminum","ammonia",
 		"copper","ethanol","hydrazine",

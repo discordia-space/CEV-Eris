@@ -54,7 +54,7 @@
 			if(!B.ckey && ckey && B.controlling)
 				B.ckey = ckey
 				B.controlling = 0
-			if(B.host_brain.ckey)
+			if(B.host_brain?.ckey)
 				ckey = B.host_brain.ckey
 				B.host_brain.ckey = null
 				B.host_brain.name = "host brain"
@@ -79,6 +79,32 @@
 		if(species.death_sound)
 			mob_playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
+
+	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C && C.active)
+		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
+		if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_MARTYR_GIFT))
+			var/obj/item/cruciform_upgrade/martyr_gift/martyr = upgrade
+			visible_message(SPAN_DANGER("The [C] emit a massive light!"))
+			var/burn_damage_done
+			for(var/mob/living/L in oviewers(6, src))
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(H in disciples)
+						continue
+					else if (H.random_organ_by_process(BP_SPCORE) || H.mutations.len)
+						burn_damage_done = (martyr.burn_damage / get_dist(src, H)) * 2
+						H.adjustFireLoss(burn_damage_done)
+					else
+						burn_damage_done = martyr.burn_damage / get_dist(src, H)
+						H.adjustFireLoss(burn_damage_done)
+					to_chat(H, SPAN_DANGER("You are get hurt by holy light!"))
+				else
+					burn_damage_done = martyr.burn_damage / get_dist(src, L)
+					L.damage_through_armor(burn_damage_done, BURN)
+
+			qdel(martyr)
+			C.upgrade = null
 
 
 /mob/living/carbon/human/proc/ChangeToHusk()

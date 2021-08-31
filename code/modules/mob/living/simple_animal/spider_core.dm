@@ -23,7 +23,7 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	density = 1 //Should be 0, but then these things would be a nightmare to kill.
+	density = TRUE //Should be 0, but then these things would be a nightmare to kill.
 	faction = "spiders"
 
 /mob/living/simple_animal/spider_core/New()
@@ -74,7 +74,7 @@
 		var/obj/item/organ/external/chest/chest = H.get_organ(BP_CHEST) // get_organ with no arguments defaults to BP_CHEST, but it makes it less readable
 		core.replaced(chest)
 		for(var/item in core.active_spiders)
-			var/obj/item/weapon/implant/carrion_spider/CS = item
+			var/obj/item/implant/carrion_spider/CS = item
 			if(istype(CS))
 				CS.update_owner_mob()
 

@@ -5,19 +5,19 @@
 	icon_screen = "security"
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_one_access = list(access_security)
-	circuit = /obj/item/weapon/circuitboard/secure_data
-	var/obj/item/weapon/card/id/scan = null
-	var/authenticated = null
-	var/rank = null
-	var/screen = null
-	var/datum/data/record/active1 = null
-	var/datum/data/record/active2 = null
-	var/a_id = null
-	var/temp = null
-	var/printing = null
+	circuit = /obj/item/electronics/circuitboard/secure_data
+	var/obj/item/card/id/scan
+	var/authenticated
+	var/rank
+	var/screen
+	var/datum/data/record/active1 
+	var/datum/data/record/active2
+	var/a_id
+	var/temp
+	var/printing
 	var/can_change_id = 0
 	var/list/Perp
-	var/tempname = null
+	var/tempname
 	//Sorting Variables
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
@@ -40,7 +40,7 @@
 	return
 
 /obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/weapon/card/id) && !scan)
+	if(istype(O, /obj/item/card/id) && !scan)
 		usr.drop_item()
 		O.loc = src
 		scan = O
@@ -48,7 +48,7 @@
 	..()
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/secure_data/attack_hand(mob/user)
 	if(..())
 		return
 	ui_interact(user)
@@ -65,7 +65,7 @@
 		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
 		if (authenticated)
 			switch(screen)
-				if(1.0)
+				if(1)
 					dat += {"<p style='text-align:center;'>"}
 					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
 					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
@@ -113,10 +113,10 @@
 						dat += "</table><hr width='75%' />"
 					dat += text("<A href='?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
 					dat += text("<A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
-				if(2.0)
+				if(2)
 					dat += "<B>Records Maintenance</B><HR>"
 					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
-				if(3.0)
+				if(3)
 					dat += "<CENTER><B>Security Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
 						user << browse_rsc(active1.fields["photo_front"], "front.png")
@@ -162,7 +162,7 @@
 							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
 							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
 							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
-				if(4.0)
+				if(4)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else
@@ -256,7 +256,7 @@ What a mess.*/
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+					if (istype(I, /obj/item/card/id) && usr.unEquip(I))
 						I.loc = src
 						scan = I
 
@@ -280,7 +280,7 @@ What a mess.*/
 					var/mob/living/silicon/robot/R = usr
 					src.rank = "[R.modtype] [R.braintype]"
 					src.screen = 1
-				else if (istype(scan, /obj/item/weapon/card/id))
+				else if (istype(scan, /obj/item/card/id))
 					active1 = null
 					active2 = null
 					if(check_access(scan))
@@ -358,7 +358,7 @@ What a mess.*/
 					if ((istype(active2, /datum/data/record) && data_core.security.Find(active2)))
 						record2 = active2
 					sleep(50)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
+					var/obj/item/paper/P = new /obj/item/paper( loc )
 					P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
 					if (record1)
 						P.info += {"
@@ -409,7 +409,7 @@ What a mess.*/
 						spawn(30)
 							playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 							if((istype(active1, /datum/data/record) && data_core.general.Find(active1)))//make sure the record still exists.
-								new /obj/item/weapon/contraband/poster/wanted(src.loc, active1.fields["photo_front"], wanted_name, default_description)
+								new /obj/item/contraband/poster/wanted(src.loc, active1.fields["photo_front"], wanted_name, default_description)
 							printing = 0
 //RECORD DELETE
 			if ("Delete All Records")
@@ -543,7 +543,7 @@ What a mess.*/
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
-							for(var/rank in joblist)
+							for(var/rank in GLOB.joblist)
 								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
@@ -571,7 +571,7 @@ What a mess.*/
 					if ("Change Rank")
 						if (active1)
 							active1.fields["rank"] = href_list["rank"]
-							if(href_list["rank"] in joblist)
+							if(href_list["rank"] in GLOB.joblist)
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if ("Change Criminal Status")
@@ -614,12 +614,12 @@ What a mess.*/
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
-	if(istype(user.get_active_hand(), /obj/item/weapon/photo))
-		var/obj/item/weapon/photo/photo = user.get_active_hand()
+	if(istype(user.get_active_hand(), /obj/item/photo))
+		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img
 	if(issilicon(user))
 		var/mob/living/silicon/tempAI = usr
-		var/obj/item/weapon/photo/selection = tempAI.GetPicture()
+		var/obj/item/photo/selection = tempAI.GetPicture()
 		if (selection)
 			return selection.img
 

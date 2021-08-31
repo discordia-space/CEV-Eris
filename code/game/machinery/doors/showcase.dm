@@ -69,23 +69,24 @@
 
 /obj/machinery/door/blast/shutters/glass/Destroy()
 	playsound(loc, 'sound/effects/Glassbr3.ogg', 75, 1)
-	new /obj/item/weapon/material/shard(src.loc)
+	new /obj/item/material/shard(src.loc)
 	return ..()
 
-/obj/machinery/door/blast/shutters/glass/update_icon()
-	overlays.Cut()
+/obj/machinery/door/blast/shutters/glass/on_update_icon()
+	cut_overlays()
 	if(density)
-		icon_state = "closed"
+		var/postfix = ""
 		if(!have_glass)
-			icon_state += "_empty"
+			postfix = "_empty"
 		else if(stat&BROKEN)
-			icon_state += "-broken"
+			postfix = "-broken"
 		else if(health < maxhealth)
 			var/ratio = health / maxhealth
 			ratio = CEILING(ratio * 4, 1) * 25
-			overlays += "damage[ratio]"
+			add_overlays("damage[ratio]")
+		SetIconState("closed[postfix]")
 	else
-		icon_state = "open"
+		SetIconState("open")
 
 /obj/machinery/door/blast/shutters/glass/open()
 	if(operating)
@@ -93,16 +94,16 @@
 	operating = TRUE
 
 	if(!have_glass)
-		flick("opening-empty", src)
+		flicker("opening-empty")
 
 	else if(stat&BROKEN)
-		flick("opening-broken", src)
+		flicker("opening-broken")
 
 	else
 		var/ratio = health / maxhealth
 		ratio = CEILING(ratio * 4, 1) * 25
-		overlays.Cut()
-		flick("opening[ratio]", src)
+		cut_overlays()
+		flicker("opening[ratio]")
 
 	density = FALSE
 	operating = FALSE
@@ -114,19 +115,17 @@
 		return
 
 	operating = TRUE
-	overlays.Cut()
+	cut_overlays()
 	if(!have_glass)
-		flick("closing-empty", src)
-		icon_state = "closed-empty"
-
+		flicker("closing-empty")
+		SetIconState("closed-empty")
 	else if(stat&BROKEN)
-		flick("closing-broken", src)
-		icon_state = "closed-broken"
-
+		flicker("closing-broken")
+		SetIconState("closed-broken")
 	else
 		var/ratio = health / maxhealth
 		ratio = CEILING(ratio * 4, 1) * 25
-		flick("closing[ratio]", src)
+		flicker("closing[ratio]")
 
 	density = TRUE
 	update_icon()

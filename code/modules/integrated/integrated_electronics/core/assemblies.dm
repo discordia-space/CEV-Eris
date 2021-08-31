@@ -11,7 +11,7 @@
 	var/max_components = IC_COMPONENTS_BASE
 	var/max_complexity = IC_COMPLEXITY_BASE
 	var/opened = 0
-	var/obj/item/weapon/cell/small/battery = null // Internal cell which most circuits need to work.
+	var/obj/item/cell/small/battery // Internal cell which most circuits need to work.
 
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
@@ -40,7 +40,9 @@
 	w_class = ITEM_SIZE_TINY
 	max_components = IC_COMPONENTS_BASE / 2
 	max_complexity = IC_COMPLEXITY_BASE / 2
-	var/obj/item/weapon/implant/integrated_circuit/implant = null
+	var/obj/item/implant/integrated_circuit/implant
+	bad_type = /obj/item/device/electronic_assembly/implant
+	spawn_frequency = 0
 
 /obj/item/device/electronic_assembly/New()
 	..()
@@ -68,7 +70,7 @@
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
-/obj/item/device/electronic_assembly/implant/update_icon()
+/obj/item/device/electronic_assembly/implant/on_update_icon()
 	..()
 	implant.icon_state = icon_state
 
@@ -154,7 +156,7 @@
 /obj/item/device/electronic_assembly/drone/can_move()
 	return TRUE
 
-/obj/item/device/electronic_assembly/update_icon()
+/obj/item/device/electronic_assembly/on_update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else
@@ -244,20 +246,20 @@
 			opened = !opened
 			to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
 			update_icon()
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
+	else if(istype(I, /obj/item/device/electronics/integrated/wirer) || istype(I, /obj/item/device/electronics/integrated/debugger) || istype(I, /obj/item/tool/screwdriver))
 		if(opened)
 			interact(user)
 		else
 			to_chat(user, SPAN_WARNING("\The [src] isn't opened, so you can't fiddle with the internal components.  \
 			Try using a crowbar."))
-	else if(istype(I, /obj/item/weapon/cell/small))
+	else if(istype(I, /obj/item/cell/small))
 		if(!opened)
 			to_chat(user, SPAN_WARNING("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar."))
 			return FALSE
 		if(battery)
 			to_chat(user, SPAN_WARNING("\The [src] already has \a [battery] inside.  Remove it first if you want to replace it."))
 			return FALSE
-		var/obj/item/weapon/cell/small/cell = I
+		var/obj/item/cell/small/cell = I
 		user.drop_item(cell)
 		cell.forceMove(src)
 		battery = cell

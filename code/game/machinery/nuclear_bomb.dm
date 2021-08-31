@@ -15,10 +15,10 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0
 	var/safety = 1
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open, 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	var/lastentered
-	use_power = 0
+	use_power = NO_POWER_USE
 	unacidable = 1
 	var/previous_level = ""
 	var/datum/wires/nuclearbomb/wires = null
@@ -30,7 +30,7 @@ var/bomb_set
 	if(eris_ship_bomb)
 		r_code = "[rand(100000, 999999)]" // each time new Head spawns, s/he gets 2 numbers of code.
 	else                                  // i decided not to touch normal bombs code length.
-		r_code = "[rand(10000, 99999.0)]" //Creates a random code upon object spawn.
+		r_code = "[rand(10000, 99999)]" //Creates a random code upon object spawn.
 	wires = new/datum/wires/nuclearbomb(src)
 
 /obj/machinery/nuclearbomb/Initialize()
@@ -71,21 +71,21 @@ var/bomb_set
 				if (src.auth)
 					if (panel_open == 0)
 						panel_open = 1
-						overlays += image(icon, "npanel_open")
+						add_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You unscrew the control panel of [src]."))
 					else
 						panel_open = 0
-						overlays -= image(icon, "npanel_open")
+						remove_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You screw the control panel of [src] back on."))
 				else
 					if (panel_open == 0)
 						to_chat(user, SPAN_NOTICE("\The [src] emits a buzzing noise, the panel staying locked in."))
 					if (panel_open == 1)
 						panel_open = 0
-						overlays -= image(icon, "npanel_open")
+						remove_overlays(image(icon, "npanel_open"))
 						to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-					flick("nuclearbombc", src)
+					FLICK("nuclearbombc", src)
 				return
 			return
 
@@ -127,11 +127,11 @@ var/bomb_set
 		if(ABORT_CHECK)
 			return
 
-	if (panel_open && (istype(I, /obj/item/weapon/tool)))
+	if (panel_open && (istool(I)))
 		return attack_hand(user)
 
 	if (src.extended)
-		if (istype(I, /obj/item/weapon/disk/nuclear))
+		if (istype(I, /obj/item/disk/nuclear))
 			usr.drop_item()
 			I.loc = src
 			src.auth = I
@@ -157,7 +157,7 @@ var/bomb_set
 			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		extended = 1
 		if(!src.lighthack)
-			flick("nuclearbombc", src)
+			FLICK("nuclearbombc", src)
 			update_icon()
 	return
 
@@ -228,7 +228,7 @@ var/bomb_set
 			auth = null
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/disk/nuclear))
+			if (istype(I, /obj/item/disk/nuclear))
 				usr.drop_item()
 				I.loc = src
 				auth = I
@@ -362,7 +362,7 @@ var/bomb_set
 
 	return
 
-/obj/machinery/nuclearbomb/update_icon()
+/obj/machinery/nuclearbomb/on_update_icon()
 	if(lighthack)
 		icon_state = "nuclearbomb0"
 		return
@@ -382,7 +382,7 @@ if(!N.lighthack)
 		*/
 
 //====The nuclear authentication disc====
-/obj/item/weapon/disk/nuclear
+/obj/item/disk/nuclear
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
 	icon = 'icons/obj/discs.dmi'
@@ -390,5 +390,5 @@ if(!N.lighthack)
 	item_state = "card-id"
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/weapon/disk/nuclear/touch_map_edge()
+/obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

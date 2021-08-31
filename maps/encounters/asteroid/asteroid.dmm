@@ -25,23 +25,14 @@
 "ai" = (
 /turf/simulated/floor/asteroid,
 /area/mine/explored)
-"aj" = (
-/obj/item/weapon/tool/shovel,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
 "ak" = (
 /obj/item/remains/human,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "am" = (
-/obj/random/gun_normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
-"an" = (
-/obj/effect/floor_decal/rust,
-/obj/item/weapon/gun/projectile/colt,
-/turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ao" = (
 /obj/effect/floor_decal/rust,
@@ -71,28 +62,28 @@
 "au" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "av" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/surgery_tool,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/medical,
-/obj/random/medical/low_chance,
+/obj/spawner/medical,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ax" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ay" = (
@@ -104,18 +95,18 @@
 "az" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/material_rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aB" = (
-/obj/random/material_rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aC" = (
@@ -126,36 +117,31 @@
 /obj/effect/floor_decal/asteroid,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
-"aE" = (
-/obj/effect/floor_decal/rust,
-/obj/item/weapon/gun/projectile/shotgun/pump,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
 "aF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aI" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/boxes,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aJ" = (
@@ -163,7 +149,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aK" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "aL" = (
@@ -200,13 +186,13 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/gun_energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aS" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aT" = (
@@ -285,37 +271,21 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/gun_normal/low_chance,
-/obj/random/ammo/low_chance,
-/obj/random/ammo/low_chance,
-/obj/random/ammo/low_chance,
+/obj/spawner/gun/normal/low_chance,
+/obj/spawner/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bD" = (
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bE" = (
-/obj/item/weapon/gun/projectile/colt,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bF" = (
-/obj/structure/closet/oldstyle,
-/obj/item/weapon/hatton,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bG" = (
-/obj/structure/closet/oldstyle,
-/obj/item/weapon/hatton_magazine,
-/obj/item/weapon/hatton_magazine,
-/obj/item/weapon/hatton_magazine,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bH" = (
@@ -324,10 +294,10 @@
 /area/outpost/abandoned)
 "bI" = (
 /obj/structure/closet/oldstyle,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bJ" = (
@@ -355,7 +325,7 @@
 	anchored = 1;
 	dir = 2;
 	icon_state = "0";
-	tag = "icon-0 (NORTH)"
+	
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -378,7 +348,7 @@
 /area/outpost/abandoned)
 "bQ" = (
 /obj/structure/table/steel,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bR" = (
@@ -391,16 +361,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
-"bU" = (
-/obj/structure/table/steel,
-/obj/item/weapon/flame/lighter/zippo,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bV" = (
-/obj/structure/table/steel,
-/obj/item/weapon/storage/fancy/cigarettes,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
 "bX" = (
 /mob/living/simple_animal/hostile/hivebot,
 /turf/simulated/floor/tiled,
@@ -411,7 +371,6 @@
 /area/outpost/abandoned)
 "ca" = (
 /obj/structure/computerframe{
-	tag = "icon-0 (NORTH)";
 	icon_state = "0";
 	dir = 1;
 	anchored = 1
@@ -420,32 +379,20 @@
 /area/outpost/abandoned)
 "cb" = (
 /obj/structure/cable/orange{
-	tag = "icon-0-4 (WEST)";
 	icon_state = "0-4";
 	dir = 8
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cc" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cd" = (
 /turf/simulated/wall/r_wall,
-/area/outpost/abandoned)
-"cf" = (
-/obj/item/remains/human,
-/obj/item/weapon/gun/projectile/shotgun/pump,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cg" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/colt,
-/turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ch" = (
 /obj/structure/table/rack,
@@ -455,11 +402,6 @@
 /area/outpost/abandoned)
 "ci" = (
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cj" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/shotgun/pump,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ck" = (
@@ -481,7 +423,6 @@
 /area/outpost/abandoned)
 "cm" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/asteroid,
@@ -489,13 +430,12 @@
 /area/outpost/abandoned)
 "cn" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "co" = (
@@ -510,14 +450,14 @@
 /area/outpost/abandoned)
 "cq" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cr" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -529,7 +469,6 @@
 	dir = 1
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -542,12 +481,10 @@
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (EAST)";
 	icon_state = "0-1";
 	dir = 4
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -560,12 +497,10 @@
 	dir = 1
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (EAST)";
 	icon_state = "0-1";
 	dir = 4
 	},
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (WEST)";
 	icon_state = "0-1";
 	dir = 8
 	},
@@ -576,7 +511,6 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-2 (EAST)";
 	icon_state = "1-2";
 	dir = 4
 	},
@@ -585,7 +519,6 @@
 "cw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-2 (EAST)";
 	icon_state = "1-2";
 	dir = 4
 	},
@@ -593,12 +526,10 @@
 /area/outpost/abandoned)
 "cx" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	tag = "icon-1-4 (EAST)";
 	icon_state = "1-4";
 	dir = 4
 	},
@@ -610,7 +541,6 @@
 /area/outpost/abandoned)
 "cz" = (
 /obj/structure/cable/orange{
-	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/rust,
@@ -637,7 +567,6 @@
 	},
 /obj/structure/cable/orange,
 /obj/structure/cable/orange{
-	tag = "icon-0-1 (NORTH)";
 	icon_state = "0-1";
 	dir = 1
 	},
@@ -655,26 +584,26 @@
 "cE" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tank,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cH" = (
@@ -697,16 +626,16 @@
 "cJ" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/crate,
-/obj/random/material_rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cK" = (
 /obj/structure/closet/crate,
-/obj/random/material_rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cL" = (
@@ -728,14 +657,69 @@
 "cP" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cQ" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"dl" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"kC" = (
+/obj/structure/closet/oldstyle,
+/obj/item/hatton,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"qn" = (
+/obj/effect/floor_decal/rust,
+/obj/item/gun/projectile/colt,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"tj" = (
+/obj/item/gun/projectile/colt,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"vk" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/colt,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"yR" = (
+/obj/structure/table/steel,
+/obj/item/flame/lighter/zippo,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"Fe" = (
+/obj/structure/closet/oldstyle,
+/obj/item/hatton_magazine,
+/obj/item/hatton_magazine,
+/obj/item/hatton_magazine,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"JT" = (
+/obj/item/tool/shovel,
+/turf/simulated/floor/asteroid,
+/area/outpost/abandoned)
+"OV" = (
+/obj/effect/floor_decal/rust,
+/obj/item/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"Zv" = (
+/obj/item/remains/human,
+/obj/item/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"ZH" = (
+/obj/structure/table/steel,
+/obj/item/storage/fancy/cigarettes,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 
@@ -15806,7 +15790,7 @@ ac
 ac
 ac
 af
-aE
+OV
 aM
 aL
 bl
@@ -30158,7 +30142,7 @@ bD
 bD
 bD
 af
-bF
+kC
 bD
 bP
 bP
@@ -30271,9 +30255,9 @@ ac
 ac
 ad
 af
-aj
+JT
 ak
-an
+qn
 af
 ac
 ac
@@ -30360,11 +30344,11 @@ bD
 bD
 bc
 af
-bG
+Fe
 bD
 bQ
 bR
-bU
+yR
 bD
 bD
 af
@@ -30560,13 +30544,13 @@ bD
 bD
 bD
 bD
-bE
+tj
 af
 bH
 bD
 bR
 bR
-bV
+ZH
 bD
 bD
 af
@@ -31180,9 +31164,9 @@ bD
 bD
 cd
 bD
-cg
-cg
-cg
+vk
+vk
+vk
 bD
 ci
 cd
@@ -31386,7 +31370,7 @@ bD
 bD
 bD
 bD
-cj
+dl
 cd
 ac
 ac
@@ -31988,7 +31972,7 @@ bD
 bD
 cd
 bD
-cg
+vk
 ci
 ci
 bD
@@ -32391,12 +32375,12 @@ bD
 bD
 bD
 cd
-cf
+Zv
 ch
 ch
 ci
 bD
-cj
+dl
 cd
 ac
 ac

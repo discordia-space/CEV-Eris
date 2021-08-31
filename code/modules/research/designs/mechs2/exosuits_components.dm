@@ -74,7 +74,7 @@
 	category = "Exosuit Manipulators"
 
 /datum/design/research/item/mechfab/exosuit/manipulators/cheap
-	build_path = /obj/item/mech_component/sensors/heavy
+	build_path = /obj/item/mech_component/manipulators/cheap
 
 /datum/design/research/item/mechfab/exosuit/manipulators/light
 	build_path = /obj/item/mech_component/manipulators/light

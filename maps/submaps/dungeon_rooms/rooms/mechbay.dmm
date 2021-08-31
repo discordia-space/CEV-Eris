@@ -71,7 +71,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/rack,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
@@ -224,16 +224,16 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "Q" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "R" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/dark/panels,
 /area/crawler)
 "S" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 

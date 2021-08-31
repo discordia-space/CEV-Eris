@@ -21,7 +21,7 @@
 	endWhen = announceWhen + 1
 
 /datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on station. Station structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
+	command_announcement.Announce("Harmful fungi detected on ship. ship structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
 
 /datum/event/wallrot/start()
 	set waitfor = FALSE
@@ -45,7 +45,7 @@
 		// Have a chance to rot lots of other walls.
 		var/rotcount = 0
 		var/actual_severity = rand(30, 60)
-		for(var/turf/simulated/wall/W in trange(14, center))
+		for(var/turf/simulated/wall/W in RANGE_TURFS(14, center))
 			if(prob(25))
 				W.rot()
 				rotcount++

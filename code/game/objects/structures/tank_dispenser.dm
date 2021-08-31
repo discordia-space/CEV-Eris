@@ -7,6 +7,8 @@
 	anchored = TRUE
 	w_class = ITEM_SIZE_HUGE
 	layer = BELOW_OBJ_LAYER
+	spawn_tags = SPAWN_TAG_STRUCTURE_COMMON
+	rarity_value = 50
 	var/oxygentanks = 10
 	var/plasmatanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
@@ -15,9 +17,11 @@
 
 /obj/structure/dispenser/oxygen
 	plasmatanks = 0
+	rarity_value = 10
 
 /obj/structure/dispenser/plasma
 	oxygentanks = 0
+	rarity_value = 25
 
 
 /obj/structure/dispenser/Initialize()
@@ -25,13 +29,13 @@
 	update_icon()
 
 
-/obj/structure/dispenser/update_icon()
-	overlays.Cut()
+/obj/structure/dispenser/on_update_icon()
+	cut_overlays()
 	switch(oxygentanks)
-		if(1 to 3)	overlays += "oxygen-[oxygentanks]"
+		if(1 to 3)	add_overlays("oxygen-[oxygentanks]")
 		if(4 to INFINITY) overlays += "oxygen-4"
 	switch(plasmatanks)
-		if(1 to 4)	overlays += "plasma-[plasmatanks]"
+		if(1 to 4)	add_overlays("plasma-[plasmatanks]")
 		if(5 to INFINITY) overlays += "plasma-5"
 
 /obj/structure/dispenser/attack_ai(mob/user)
@@ -49,7 +53,7 @@
 
 
 /obj/structure/dispenser/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
+	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks < 10)
 			user.drop_item()
 			I.forceMove(src)
@@ -62,7 +66,7 @@
 			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/tank/plasma))
+	if(istype(I, /obj/item/tank/plasma))
 		if(plasmatanks < 10)
 			user.drop_item()
 			I.forceMove(src)
@@ -91,20 +95,20 @@
 
 	usr.set_machine(src)
 
-	var/obj/item/weapon/tank/tank
+	var/obj/item/tank/tank
 	if(href_list["oxygen"] && oxygentanks > 0)
 		if(oxytanks.len)
 			tank = oxytanks[oxytanks.len]	// Last stored tank is always the first one to be dispensed
 			oxytanks.Remove(tank)
 		else
-			tank = new /obj/item/weapon/tank/oxygen(loc)
+			tank = new /obj/item/tank/oxygen(loc)
 		oxygentanks--
 	if(href_list["plasma"] && plasmatanks > 0)
 		if(platanks.len)
 			tank = platanks[platanks.len]
 			platanks.Remove(tank)
 		else
-			tank = new /obj/item/weapon/tank/plasma(loc)
+			tank = new /obj/item/tank/plasma(loc)
 		plasmatanks--
 
 	if(tank)

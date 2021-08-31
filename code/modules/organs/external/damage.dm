@@ -26,7 +26,7 @@
 		fracture()
 
 	if(status & ORGAN_BROKEN && prob(40) && brute)
-		if (!(owner.species && (owner.species.flags & NO_PAIN)))
+		if (owner && !(owner.species && (owner.species.flags & NO_PAIN)))
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -74,9 +74,6 @@
 				//How much burn damage is left to inflict
 				spillover += max(0, burn - can_inflict)
 
-		//If there are still hurties to dispense
-		if (spillover && owner)
-			owner.shock_stage += spillover * config.organ_damage_spillover_multiplier
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
@@ -86,12 +83,12 @@
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
 		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
-			//organs can come off in three cases
+			//organs can come off in four cases
 			//1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
 			//2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.
 			//3. If the organ has already reached or would be put over it's max damage amount (currently redundant),
 			//   and the brute damage dealt exceeds the tearoff threshold, the organ is torn off.
-
+			//4. If the organ is robotic, and it has reached its max damage threshold, it will either drop off, or blow up.
 			//Check edge eligibility
 			var/edge_eligible = 0
 			if(edge)
@@ -110,10 +107,12 @@
 				droplimb(0, DROPLIMB_BLUNT)
 			else if((brute + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF && prob(brute/5))
 				droplimb(0, DROPLIMB_EDGE)
+			else if(brute_dam && BP_IS_ROBOTIC(src) && (status & ORGAN_BROKEN) && prob(brute*2))
+				droplimb(prob(50), pick(DROPLIMB_EDGE, DROPLIMB_BLUNT))
 
 	return update_damstate()
 
-/obj/item/organ/external/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+/obj/item/organ/external/heal_damage(brute, burn, robo_repair = 0)
 	if(BP_IS_ROBOTIC(src) && !robo_repair)
 		return
 
@@ -127,10 +126,6 @@
 			burn = W.heal_damage(burn)
 		else
 			brute = W.heal_damage(brute)
-
-	if(internal)
-		status &= ~ORGAN_BROKEN
-		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
 	src.update_damages()

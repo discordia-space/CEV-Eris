@@ -8,7 +8,7 @@
 	icon_state = "sp_base"
 	anchored = TRUE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/id = 0
@@ -57,7 +57,7 @@
 
 
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/I, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -80,20 +80,20 @@
 		if(!(stat & BROKEN))
 			broken()
 		else
-			new /obj/item/weapon/material/shard(src.loc)
-			new /obj/item/weapon/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
 			qdel(src)
 			return
 	return
 
 
-/obj/machinery/power/solar/update_icon()
+/obj/machinery/power/solar/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
+		add_overlays(image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER))
 	else
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
+		add_overlays(image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER))
 		src.set_dir(angle2dir(adir))
 	return
 
@@ -138,22 +138,22 @@
 
 /obj/machinery/power/solar/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(15))
-				new /obj/item/weapon/material/shard( src.loc )
+				new /obj/item/material/shard( src.loc )
 			qdel(src)
 			return
 
-		if(2.0)
+		if(2)
 			if (prob(25))
-				new /obj/item/weapon/material/shard( src.loc )
+				new /obj/item/material/shard( src.loc )
 				qdel(src)
 				return
 
 			if (prob(50))
 				broken()
 
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return
@@ -228,7 +228,7 @@
 		if(QUALITY_PRYING)
 			if(tracker)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					new /obj/item/weapon/tracker_electronics(src.loc)
+					new /obj/item/electronics/tracker(src.loc)
 					tracker = 0
 					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
 					return
@@ -245,7 +245,7 @@
 			return
 
 	if(anchored && !isturf(loc))
-		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == "glass" || I.get_material_name() == "rglass"))
+		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == MATERIAL_GLASS || I.get_material_name() == MATERIAL_RGLASS))
 			var/obj/item/stack/material/S = I
 			if(S.use(2))
 				glass_type = I.type
@@ -261,7 +261,7 @@
 			return
 
 	if(!tracker)
-		if(istype(I, /obj/item/weapon/tracker_electronics))
+		if(istype(I, /obj/item/electronics/tracker))
 			tracker = 1
 			user.drop_item()
 			qdel(I)
@@ -280,7 +280,7 @@
 	icon_state = "solar"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
 	var/light_range_on = 1.5
 	var/light_power_on = 3
@@ -353,19 +353,19 @@
 	if(!connect_to_network()) return
 	set_panels(cdir)
 
-/obj/machinery/power/solar_control/update_icon()
+/obj/machinery/power/solar_control/on_update_icon()
 	if(stat & BROKEN)
 		icon_state = "broken"
-		overlays.Cut()
+		cut_overlays()
 		return
 	if(stat & NOPOWER)
 		icon_state = "c_unpowered"
-		overlays.Cut()
+		cut_overlays()
 		return
 	icon_state = "solar"
-	overlays.Cut()
+	cut_overlays()
 	if(cdir > -1)
-		overlays += image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
+		add_overlays(image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
 	return
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
@@ -408,8 +408,8 @@
 			if (src.stat & BROKEN)
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/material/shard( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				new /obj/item/material/shard( src.loc )
+				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -420,7 +420,7 @@
 			else
 				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -515,14 +515,14 @@
 
 /obj/machinery/power/solar_control/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return
@@ -543,7 +543,7 @@
 // MISC
 //
 
-/obj/item/weapon/paper/solar
+/obj/item/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or plasma! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
 

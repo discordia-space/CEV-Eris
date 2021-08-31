@@ -5,7 +5,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "alert:0"
 	light_color = COLOR_LIGHTING_CYAN_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/stationalert
+	circuit = /obj/item/electronics/circuitboard/stationalert
 	var/datum/nano_module/alarm_monitor/alarm_monitor
 	var/monitor_type = /datum/nano_module/alarm_monitor
 
@@ -54,7 +54,7 @@
 /obj/machinery/computer/station_alert/nano_container()
 	return alarm_monitor
 
-/obj/machinery/computer/station_alert/update_icon()
+/obj/machinery/computer/station_alert/on_update_icon()
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))
 		if(alarm_monitor)

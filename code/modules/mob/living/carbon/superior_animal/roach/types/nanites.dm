@@ -3,7 +3,7 @@
 	desc = "A deformed mess of a roach that is covered in metallic outcrops and formations. It seems to have a production center on its thorax."
 	icon_state = "naniteroach"
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk
 	meat_amount = 3
 	turns_per_move = 1
 	maxHealth = 35
@@ -20,10 +20,13 @@
 	min_air_pressure = 0
 	min_bodytemperature = 0
 
+	spawn_tags = SPAWN_TAG_ROACH_NANITE
+	rarity_value = 22.5
+
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 
-/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
 	. = ..()
 
 	if(isliving(A))
@@ -31,7 +34,9 @@
 		if(istype(L) && prob(25) && nanite_swarms.len < max_swarms)
 			var/sound/screech = pick('sound/machines/robots/robot_talk_light1.ogg','sound/machines/robots/robot_talk_light2.ogg','sound/machines/robots/robot_talk_heavy4.ogg')
 			playsound(src, screech, 30, 1, -3)
-			nanite_swarms.Add(new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src))
+			var/mob/living/simple_animal/hostile/naniteswarm/M = new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src)
+			nanite_swarms.Add(M)
+			M.friends += src.friends
 			say("10101010011100010101")
 
 /mob/living/carbon/superior_animal/roach/nanite/death()

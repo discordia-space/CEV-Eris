@@ -2,19 +2,16 @@
 // Other harvested materials from plants (that are not food)
 // **********************
 
-/obj/item/weapon/grown // Grown weapons
+/obj/item/grown // Grown weapons
 	name = "grown_weapon"
 	icon = 'icons/obj/weapons.dmi'
+	spawn_tags = null
 	var/plantname
 	var/potency = 1
 
-/obj/item/weapon/grown/New(newloc,planttype)
-
+/obj/item/grown/New(newloc,planttype)
 	..()
-
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
+	create_reagents(50)
 
 	//Handle some post-spawn var stuff.
 	if(planttype)
@@ -32,7 +29,7 @@
 				rtotal += round(potency/reagent_data[2])
 			reagents.add_reagent(rid,max(1,rtotal))
 
-/obj/item/weapon/corncob
+/obj/item/corncob
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
 	icon = 'icons/obj/trash.dmi'
@@ -42,8 +39,9 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	spawn_tags = SPAWN_TAG_JUNK
 
-/obj/item/weapon/corncob/attackby(obj/item/I, mob/user)
+/obj/item/corncob/attackby(obj/item/I, mob/user)
 	..()
 	if(QUALITY_CUTTING in I.tool_qualities)
 		to_chat(user, SPAN_NOTICE("You use [I] to fashion a pipe out of the corn cob!"))
@@ -51,7 +49,7 @@
 		qdel(src)
 		return
 
-/obj/item/weapon/bananapeel
+/obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
 	icon = 'icons/obj/items.dmi'
@@ -61,3 +59,4 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	spawn_tags = SPAWN_TAG_JUNK_CLOWN

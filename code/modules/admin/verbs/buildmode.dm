@@ -123,12 +123,12 @@
 /obj/effect/bmode/buildholder
 	density = FALSE
 	anchored = TRUE
-	var/client/cl = null
-	var/obj/effect/bmode/builddir/builddir = null
-	var/obj/effect/bmode/buildhelp/buildhelp = null
-	var/obj/effect/bmode/buildmode/buildmode = null
-	var/obj/effect/bmode/buildquit/buildquit = null
-	var/atom/movable/throw_atom = null
+	var/client/cl
+	var/obj/effect/bmode/builddir/builddir
+	var/obj/effect/bmode/buildhelp/buildhelp
+	var/obj/effect/bmode/buildmode/buildmode
+	var/obj/effect/bmode/buildquit/buildquit
+	var/atom/movable/throw_atom
 
 /obj/effect/bmode/buildholder/Destroy()
 	qdel(builddir)
@@ -209,7 +209,7 @@
     	return 1
 
 /proc/build_click(var/mob/user, buildmode, params, var/obj/object)
-	var/obj/effect/bmode/buildholder/holder = null
+	var/obj/effect/bmode/buildholder/holder
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
 			holder = H

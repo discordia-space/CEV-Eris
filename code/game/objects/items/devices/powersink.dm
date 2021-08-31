@@ -10,6 +10,7 @@
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 2
+	spawn_blacklisted = TRUE
 
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_STEEL = 8, MATERIAL_GLASS = 3)
 
@@ -25,11 +26,12 @@
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
+/*
 /obj/item/device/powersink/Destroy()
 	if(mode == 2)
 		STOP_PROCESSING_POWER_OBJECT(src)
 	. = ..()
-
+*/
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
@@ -50,8 +52,8 @@
 					return
 			else
 				if (mode == 2)
-					STOP_PROCESSING_POWER_OBJECT(src)
-				anchored = 0
+					STOP_PROCESSING(SSmachines, src)
+				anchored = FALSE
 				mode = 0
 				src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
 				set_light(0)
@@ -72,13 +74,13 @@
 			src.visible_message(SPAN_NOTICE("[user] activates [src]!"))
 			mode = 2
 			icon_state = "powersink1"
-			START_PROCESSING_POWER_OBJECT(src)
+			START_PROCESSING(SSmachines, src)
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message(SPAN_NOTICE("[user] deactivates [src]!"))
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"
-			STOP_PROCESSING_POWER_OBJECT(src)
+			STOP_PROCESSING(SSmachines, src)
 
 /obj/item/device/powersink/pwr_drain()
 	if(!attached)

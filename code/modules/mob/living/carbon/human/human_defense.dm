@@ -13,7 +13,7 @@ meteor_act
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
 
-	var/obj/item/organ/external/organ = get_organ()
+	var/obj/item/organ/external/organ = get_organ(def_zone)
 
 	//Shields
 	var/shield_check = check_shields(P.get_structure_damage(), P, null, def_zone, "the [P.name]")
@@ -32,7 +32,7 @@ meteor_act
 	if(P.can_embed() && (check_absorb < 2))
 		var/armor = getarmor_organ(organ, ARMOR_BULLET)
 		if(prob(20 + max(P.damage_types[BRUTE] - armor, -10)))
-			var/obj/item/weapon/material/shard/shrapnel/SP = new()
+			var/obj/item/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
@@ -164,9 +164,14 @@ meteor_act
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
-			if(istype(C) && C.body_parts_covered & def_zone.body_part)
-				if(C.armor.getRating(type) > protection)
-					protection = C.armor.getRating(type)
+			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
+				if(C.armor.vars[type] > protection)
+					protection = C.armor.vars[type]
+
+	var/obj/item/shield/shield = has_shield()
+
+	if(shield)
+		protection += shield.armor[type]
 
 	return protection
 
@@ -195,6 +200,12 @@ meteor_act
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
+
+/mob/living/carbon/human/proc/has_shield()
+	for(var/obj/item/shield/shield in list(l_hand, r_hand))
+		if(!shield) continue
+		return shield
+	return FALSE
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
@@ -247,18 +258,6 @@ meteor_act
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(25 + (effective_force * 2)))
-		if(!stat)
-			if(headcheck(hit_zone))
-				//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(effective_force))
-					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
-					apply_effect(20, PARALYZE, getarmor(hit_zone, ARMOR_MELEE) )
-			else
-				//Easier to score a stun but lasts less time
-				if(prob(effective_force + 10))
-					visible_message(SPAN_DANGER("[src] has been knocked down!"))
-					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
 		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
@@ -411,7 +410,7 @@ meteor_act
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
+/mob/living/carbon/human/embed(var/obj/O, var/def_zone)
 	if(!def_zone) ..()
 
 	var/obj/item/organ/external/affecting = get_organ(def_zone)
@@ -444,8 +443,8 @@ meteor_act
 	if(damtype != BURN && damtype != BRUTE) return
 
 	// The rig might soak this hit, if we're wearing one.
-	if(back && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
+	if(back && istype(back,/obj/item/rig))
+		var/obj/item/rig/rig = back
 		rig.take_hit(damage)
 
 	// We may also be taking a suit breach.

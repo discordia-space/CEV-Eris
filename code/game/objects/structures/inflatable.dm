@@ -37,7 +37,7 @@
 	icon_state = "wall"
 
 	var/undeploy_path = null
-	var/health = 50.0
+	var/health = 50
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"
@@ -66,13 +66,13 @@
 
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			deflate(1)
 			return
-		if(3.0)
+		if(3)
 			if(prob(50))
 				deflate(1)
 				return
@@ -81,8 +81,8 @@
 	add_fingerprint(user)
 	return
 
-/obj/structure/inflatable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W) || istype(W, /obj/item/weapon/inflatable_dispenser)) return
+/obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
+	if(!istype(W) || istype(W, /obj/item/inflatable_dispenser)) return
 
 	if (can_puncture(W))
 		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
@@ -191,7 +191,7 @@
 
 /obj/structure/inflatable/door/proc/Open()
 	isSwitchingStates = 1
-	flick("door_opening", src)
+	FLICK("door_opening", src)
 	sleep(10)
 	density = FALSE
 	state = 1
@@ -200,14 +200,14 @@
 
 /obj/structure/inflatable/door/proc/Close()
 	isSwitchingStates = 1
-	flick("door_closing", src)
+	FLICK("door_closing", src)
 	sleep(10)
 	density = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
 
-/obj/structure/inflatable/door/update_icon()
+/obj/structure/inflatable/door/on_update_icon()
 	if(state)
 		icon_state = "door_open"
 	else
@@ -247,7 +247,7 @@
 		to_chat(user, SPAN_NOTICE("The inflatable door is too torn to be inflated!"))
 		add_fingerprint(user)
 
-/obj/item/weapon/storage/briefcase/inflatable
+/obj/item/storage/briefcase/inflatable
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
@@ -255,13 +255,15 @@
 	w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	can_hold = list(/obj/item/inflatable)
+	var/init_inflatable_count = 4
 
 	New()
 		..()
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
+		while(init_inflatable_count)
+			new /obj/item/inflatable/door(src)
+			new /obj/item/inflatable/wall(src)
+			init_inflatable_count -= 1
+		init_inflatable_count = initial(init_inflatable_count)
+
+/obj/item/storage/briefcase/inflatable/empty/init_inflatable_count = 0
+

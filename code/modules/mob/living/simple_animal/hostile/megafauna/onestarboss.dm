@@ -21,6 +21,8 @@
 	megafauna_min_cooldown = 30
 	megafauna_max_cooldown = 60
 
+	mob_classification = CLASSIFICATION_SYNTHETIC
+
 	wander = FALSE //No more sleepwalking
 
 	projectiletype = /obj/item/projectile/bullet/srifle/nomuzzle

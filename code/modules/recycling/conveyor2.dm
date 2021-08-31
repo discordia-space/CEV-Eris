@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		user.stop_pulling()
 	return
 
-/obj/machinery/conveyor/update_icon()
+/obj/machinery/conveyor/on_update_icon()
 	..()
 	if(operating && can_conveyor_run())
 		icon_state = "conveyor_started_[clockwise ? "cw" : "ccw"]"
@@ -255,7 +255,6 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	// DEPRECATED: remove once map is updated
 	var/convdir
 
-
 /obj/machinery/conveyor_switch/New(newloc, new_id)
 	..(newloc)
 	GLOB.conveyor_switches += src
@@ -270,18 +269,18 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	GLOB.conveyor_switches -= src
 	return ..()
 
-/obj/machinery/conveyor_switch/update_icon()
-	overlays.Cut()
+/obj/machinery/conveyor_switch/on_update_icon()
+	cut_overlays()
 	if(!position)
 		icon_state = "switch-off"
 	else if(position == DIRECTION_REVERSED)
 		icon_state = "switch-rev"
 		if(!(stat & NOPOWER))
-			overlays += "redlight"
+			add_overlays("redlight")
 	else if(position == DIRECTION_FORWARDS)
 		icon_state = "switch-fwd"
 		if(!(stat & NOPOWER))
-			overlays += "greenlight"
+			add_overlays("greenlight")
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)

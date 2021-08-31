@@ -40,6 +40,15 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/hide = 0				// Is it a hidden machine?
 	var/list/listening_levels = list() // 0 = auto set in Initialize() - this is the z level that the machine is listening to.
 
+/obj/machinery/telecomms/examine(mob/user)
+	..()
+	switch(integrity)
+		if(0 to 20)
+			to_chat(user, SPAN_WARNING("There is little life left in it."))
+		if(21 to 49)
+			to_chat(user, SPAN_WARNING("It is glitching incoherently."))
+		if(50 to 80)
+			to_chat(user, SPAN_WARNING("It is sparking and humming."))
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -183,7 +192,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				if(src != T)
 					links |= T
 
-/obj/machinery/telecomms/update_icon()
+/obj/machinery/telecomms/on_update_icon()
 	if(on)
 		icon_state = initial(icon_state)
 	else
@@ -285,7 +294,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 1
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/receiver
+	circuit = /obj/item/electronics/circuitboard/telecomms/receiver
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 
@@ -336,7 +345,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	icon_state = "hub"
 	idle_power_usage = 1600
 	machinetype = 7
-	circuit = /obj/item/weapon/circuitboard/telecomms/hub
+	circuit = /obj/item/electronics/circuitboard/telecomms/hub
 	long_range_link = 1
 	netspeed = 40
 
@@ -367,7 +376,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 8
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/relay
+	circuit = /obj/item/electronics/circuitboard/telecomms/relay
 	netspeed = 5
 	long_range_link = 1
 	var/broadcasting = 1
@@ -414,7 +423,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
 	idle_power_usage = 1000
 	machinetype = 2
-	circuit = /obj/item/weapon/circuitboard/telecomms/bus
+	circuit = /obj/item/electronics/circuitboard/telecomms/bus
 	netspeed = 40
 	var/change_frequency = 0
 
@@ -463,7 +472,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 3
 	delay = 5
-	circuit = /obj/item/weapon/circuitboard/telecomms/processor
+	circuit = /obj/item/electronics/circuitboard/telecomms/processor
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -496,7 +505,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	desc = "A machine used to store data and network statistics."
 	idle_power_usage = 300
 	machinetype = 4
-	circuit = /obj/item/weapon/circuitboard/telecomms/server
+	circuit = /obj/item/electronics/circuitboard/telecomms/server
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()

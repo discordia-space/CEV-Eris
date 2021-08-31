@@ -11,13 +11,13 @@
 	interact_offline = 1
 
 	var/on = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 200
 
 	var/temperature_archived
 	var/mob/living/carbon/occupant = null
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 
 	var/current_heat_capacity = 50
 
@@ -180,8 +180,8 @@
 			return
 	return put_mob(target)
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers/glass))
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return
@@ -193,31 +193,31 @@
 			)
 	return
 
-/obj/machinery/atmospherics/unary/cryo_cell/update_icon()
-	overlays.Cut()
+/obj/machinery/atmospherics/unary/cryo_cell/on_update_icon()
+	cut_overlays()
 	icon_state = "pod[on]"
 	var/image/I
 
 	I = image(icon, "pod[on]_top")
 	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
-	overlays += I
+	add_overlays(I)
 
 	if(occupant)
 		var/image/pickle = image(occupant.icon, occupant.icon_state)
 		pickle.overlays = occupant.overlays
 		pickle.pixel_z = 18
 		pickle.layer = WALL_OBJ_LAYER
-		overlays += pickle
+		add_overlays(pickle)
 
 	I = image(icon, "lid[on]")
 	I.layer = WALL_OBJ_LAYER
-	overlays += I
+	add_overlays(I)
 
 	I = image(icon, "lid[on]_top")
 	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
-	overlays += I
+	add_overlays(I)
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/process_occupant()
 	if(air_contents.total_moles < 10)

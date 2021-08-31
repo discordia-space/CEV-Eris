@@ -11,7 +11,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 
@@ -60,6 +60,10 @@
 	update_use_power(1)
 	update_icon()
 
+/obj/machinery/bodyscanner/AltClick(mob/user)
+	if(Adjacent(user))
+		eject()
+
 /obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
@@ -106,18 +110,18 @@
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A in src)
 				A.forceMove(loc)
 				A.ex_act(severity)
 			qdel(src)
-		if(2.0)
+		if(2)
 			if (prob(50))
 				for(var/atom/movable/A in src)
 					A.forceMove(loc)
 					A.ex_act(severity)
 				qdel(src)
-		if(3.0)
+		if(3)
 			if (prob(25))
 				for(var/atom/movable/A in src)
 					A.forceMove(loc)
@@ -126,10 +130,10 @@
 
 /obj/machinery/body_scanconsole/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
@@ -141,11 +145,11 @@
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
 	var/known_implants = list(
-		/obj/item/weapon/implant/chem,
-		/obj/item/weapon/implant/death_alarm,
-		/obj/item/weapon/implant/tracking,
-		/obj/item/weapon/implant/core_implant/cruciform,
-		/obj/item/weapon/implant/excelsior
+		/obj/item/implant/chem,
+		/obj/item/implant/death_alarm,
+		/obj/item/implant/tracking,
+		/obj/item/implant/core_implant/cruciform,
+		/obj/item/implant/excelsior
 	)
 	var/delete
 	var/temphtml
@@ -208,8 +212,8 @@
 		if (!ishuman(occupant))
 			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
 			return
-		var/obj/item/weapon/paper/R = new(src.loc)
-		R.name = "Body scan report"
+		var/obj/item/paper/R = new(src.loc)
+		R.name = "[occupant.get_visible_name()] scan report"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
 		R.update_icon()
 
@@ -219,6 +223,7 @@
 		return
 	var/mob/living/carbon/human/H = occupant
 	var/list/occupant_data = list(
+		"name" = H.get_visible_name(),
 		"stationtime" = stationtime2text(),
 		"stat" = H.stat,
 		"health" = round(H.health/H.maxHealth)*100,
@@ -243,7 +248,9 @@
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
-		"species_organs" = H.species.has_organ //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
+		"species_organs" = H.species.has_process, //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
+		"NSA" = max(0, H.metabolism_effects.get_nsa()),
+		"NSA_threshold" = H.metabolism_effects.nsa_threshold
 		)
 	return occupant_data
 
@@ -251,6 +258,7 @@
 /obj/machinery/body_scanconsole/proc/format_occupant_data(var/list/occ)
 	var/dat = "<font color='blue'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
 	dat += "<font color='blue'><b>Occupant Statistics:</b></font><br>"
+	dat += text("ID Name: <i>[]</i><br>", occ["name"])
 	var/aux
 	switch (occ["stat"])
 		if(0)
@@ -263,13 +271,14 @@
 	if (occ["virus_present"])
 		dat += "<font color='red'>Viral pathogen detected in blood stream.</font><br>"
 	dat += text("[]\t-Brute Damage %: []</font><br>", ("<font color='[occ["bruteloss"] < 60  ? "blue" : "red"]'>"), occ["bruteloss"])
-	dat += text("[]\t-Respiratory Damage %: []</font><br>", ("<font color='[occ["oxyloss"] < 60  ? "blue'" : "red"]'>"), occ["oxyloss"])
+	dat += text("[]\t-Respiratory Damage %: []</font><br>", ("<font color='[occ["oxyloss"] < 60  ? "blue" : "red"]'>"), occ["oxyloss"])
 	dat += text("[]\t-Toxin Content %: []</font><br>", ("<font color='[occ["toxloss"] < 60  ? "blue" : "red"]'>"), occ["toxloss"])
 	dat += text("[]\t-Burn Severity %: []</font><br><br>", ("<font color='[occ["fireloss"] < 60  ? "blue" : "red"]'>"), occ["fireloss"])
 
 	dat += text("[]\tRadiation Level %: []</font><br>", ("<font color='[occ["rads"] < 10  ? "blue" : "red"]'>"), occ["rads"])
 	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", ("<font color='[occ["cloneloss"] < 1  ? "blue" : "red"]'>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", ("<font color='[occ["brainloss"] < 1  ? "blue" : "red"]'>"), occ["brainloss"])
+	dat += text("[]\tNeural System Accumulation: []/[]</font><br>", ("<font color='[occ["NSA"] < occ["NSA_threshold"]  ? "blue" : "red"]'>"), occ["NSA"], occ["NSA_threshold"])
 	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 
@@ -293,100 +302,102 @@
 	dat += "</tr>"
 
 	for(var/obj/item/organ/external/e in occ["external_organs"])
-		var/AN = ""
-		var/open = ""
-		var/infected = ""
-		var/imp = ""
-		var/bled = ""
-		var/robot = ""
-		var/splint = ""
-		var/internal_bleeding = ""
-		var/lung_ruptured = ""
+		var/list/other_wounds = list()
+		var/significant = FALSE
 
-		dat += "<tr>"
+		for(var/obj/item/organ/internal/I in e.internal_organs) // I put this before the actual external organ
+			if(I.scanner_hidden) // so that I could set significant based on internal organ results.
+				continue
+	
+			var/list/internal_wounds = list()
+			if(BP_IS_ASSISTED(I))
+				internal_wounds += "Assisted"
+			if(BP_IS_ROBOTIC(I))
+				internal_wounds += "Prosthetic"
+	
+			var/obj/item/organ/internal/bone/B = I
+			if(istype(B))
+				if(B.parent.status & ORGAN_BROKEN)
+					internal_wounds += "[B.broken_description]"
+	
+			switch (I.germ_level)
+				if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
+				if (1 to INFECTION_LEVEL_ONE + 200)
+					internal_wounds += "Mild Infection"
+				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
+					internal_wounds += "Mild Infection+"
+				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
+					internal_wounds += "Mild Infection++"
+				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
+					internal_wounds += "Acute Infection"
+				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
+					internal_wounds += "Acute Infection+"
+				if (INFECTION_LEVEL_TWO + 300 to INFINITY)
+					internal_wounds += "Acute Infection++"
+			if(I.rejecting)
+				internal_wounds += "being rejected"
+			if (I.damage || internal_wounds.len)
+				significant = TRUE
+				dat += "<tr>"
+				dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+				dat += "</tr>"
 
 		for(var/datum/wound/W in e.wounds) if(W.internal)
-			internal_bleeding = "<br>Internal bleeding"
+			other_wounds += "Internal bleeding"
 			break
 		if(e.organ_tag == BP_CHEST && occ["lung_ruptured"])
-			lung_ruptured = "Lung ruptured:"
+			other_wounds += "Lung ruptured"
 		if(e.status & ORGAN_SPLINTED)
-			splint = "Splinted:"
+			other_wounds += "Splinted"
 		if(e.status & ORGAN_BLEEDING)
-			bled = "Bleeding:"
-		if(e.status & ORGAN_BROKEN)
-			AN = "[e.broken_description]:"
+			other_wounds += "Bleeding"
 		if(BP_IS_ASSISTED(e))
-			robot = "Assisted:"
+			other_wounds += "Assisted"
 		if(BP_IS_ROBOTIC(e))
-			robot = "Prosthetic:"
+			other_wounds += "Prosthetic"
 		if(e.open)
-			open = "Open:"
+			other_wounds += "Open"
 
 		switch (e.germ_level)
+			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
 			if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-				infected = "Mild Infection:"
+				other_wounds += "Mild Infection"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infected = "Mild Infection+:"
+				other_wounds += "Mild Infection+"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infected = "Mild Infection++:"
+				other_wounds += "Mild Infection++"
 			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				infected = "Acute Infection:"
+				other_wounds += "Acute Infection"
 			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infected = "Acute Infection+:"
+				other_wounds += "Acute Infection+"
 			if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
-				infected = "Acute Infection++:"
+				other_wounds += "Acute Infection++"
 			if (INFECTION_LEVEL_THREE to INFINITY)
-				infected = "Septic:"
+				other_wounds += "Septic"
 		if(e.rejecting)
-			infected += "(being rejected)"
+			other_wounds += "being rejected"
 		if (e.implants.len)
-			var/unknown_body = 0
+			var/unknown_body = FALSE
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
-					var/obj/item/weapon/implant/device = I
-					imp += "[device.get_scanner_name()] implanted:"
+					var/obj/item/implant/device = I
+					other_wounds += "[device.get_scanner_name()] implanted"
 				else
-					unknown_body++
+					unknown_body = TRUE
 			if(unknown_body)
-				imp += "Unknown body present:"
-
-		if(!AN && !open && !infected & !imp)
-			AN = "None:"
-		if(!e.is_stump())
-			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured]</td>"
-		else
+				other_wounds += "Unknown body present"
+		if (e.is_stump() || e.burn_dam || e.brute_dam || other_wounds.len)
+			significant = TRUE
+			dat += "<tr>"
+		if(!e.is_stump() && significant)
+			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td>"
+		else if (significant)
 			dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
+		else
+			continue
 		dat += "</tr>"
 
-	for(var/obj/item/organ/I in occ["internal_organs"])
 
-		var/mech = ""
-		if(BP_IS_ASSISTED(I))
-			mech = "Assisted:"
-		if(BP_IS_ROBOTIC(I))
-			mech = "Prosthetic:"
-
-		var/infection = "None"
-		switch (I.germ_level)
-			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection:"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+:"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++:"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection:"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection+:"
-			if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-				infection = "Acute Infection++:"
-		if(I.rejecting)
-			infection += "(being rejected)"
-
-		dat += "<tr>"
-		dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[infection]:[mech]</td><td></td>"
-		dat += "</tr>"
 	dat += "</table>"
 
 	var/list/species_organs = occ["species_organs"]
@@ -400,7 +411,7 @@
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
 
-/obj/machinery/bodyscanner/update_icon()
+/obj/machinery/bodyscanner/on_update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
 		set_light(0)
@@ -424,7 +435,7 @@
 			icon_state = "scanner_open"
 			set_light(0)
 
-/obj/machinery/body_scanconsole/update_icon()
+/obj/machinery/body_scanconsole/on_update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
 		set_light(0)

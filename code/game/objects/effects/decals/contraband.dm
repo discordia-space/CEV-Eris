@@ -1,34 +1,38 @@
 
 // CONTRABAND
 
-/obj/item/weapon/contraband
+/obj/item/contraband
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
 	force = 0
 
 
-/obj/item/weapon/contraband/poster
+/obj/item/contraband/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
 	var/serial_number = 0
 	var/ruined = 0
-	var/datum/poster/design = null
+	var/datum/poster/design
+	rarity_value = 10
+	bad_type = /obj/item/contraband/poster
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
+/obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
-		design = pick(poster_designs)
+		design = pick(GLOB.poster_designs)
 	else
 		design = new_design
 	..(loc)
 
-/obj/item/weapon/contraband/poster/placed
+/obj/item/contraband/poster/placed
 	icon_state = "random"
 	anchored = TRUE
+	spawn_tags = null
 	New(turf/loc)
 		if(icon_state != "random")
-			for(var/datum/poster/new_design in poster_designs)
+			for(var/datum/poster/new_design in GLOB.poster_designs)
 				if(new_design.icon_state == icon_state)
 					return ..(loc, new_design)
 		..()
@@ -41,7 +45,7 @@
 						if(EAST)  pixel_x = 32
 						if(WEST)  pixel_x = -32
 
-/obj/item/weapon/contraband/poster/attack_hand(mob/user as mob)
+/obj/item/contraband/poster/attack_hand(mob/user)
 	if(!anchored)
 		return ..()
 
@@ -63,8 +67,8 @@
 		if("No")
 			return
 
-/obj/item/weapon/contraband/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/wirecutters))
+/obj/item/contraband/poster/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
 			to_chat(user, SPAN_NOTICE("You remove the remnants of the poster."))
@@ -74,8 +78,8 @@
 			to_chat(user, SPAN_NOTICE("You carefully remove the poster from the wall."))
 		return
 
-/obj/item/weapon/contraband/poster/proc/roll_and_drop()
-	anchored = 0
+/obj/item/contraband/poster/proc/roll_and_drop()
+	anchored = FALSE
 	pixel_x = 0
 	pixel_y = 0
 	icon = initial(icon)
@@ -84,7 +88,7 @@
 
 
 //Places the poster on a wall
-/obj/item/weapon/contraband/poster/afterattack(var/turf/simulated/wall/W, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/contraband/poster/afterattack(var/turf/simulated/wall/W, var/mob/user, var/adjacent, var/clickparams)
 	if (!adjacent)
 		return
 
@@ -101,7 +105,7 @@
 	else
 		placement_dir = reverse_dir[placement_dir]
 		for(var/t_dir in cardinal)
-			if(!t_dir&placement_dir) continue
+			if(!(t_dir & placement_dir)) continue
 			if(iswall(get_step(W, t_dir)))
 				if(iswall(get_step(W, placement_dir-t_dir)))
 					break
@@ -132,7 +136,7 @@
 		else if(placement_dir&EAST)
 			pixel_x = -32
 		anchored = TRUE
-		flick("poster_being_set", src)
+		FLICK("poster_being_set", src)
 		playsound(W, 'sound/items/poster_being_created.ogg', 100, 1)
 		design.set_design(src)
 
@@ -144,7 +148,7 @@
 	var/icon_state=""
 	var/icon = 'icons/obj/contraband.dmi'
 
-/datum/poster/proc/set_design(var/obj/item/weapon/contraband/poster/P)
+/datum/poster/proc/set_design(var/obj/item/contraband/poster/P)
 	P.name = "poster - [name]"
 	P.desc = desc
 	P.icon_state = icon_state

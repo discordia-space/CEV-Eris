@@ -11,7 +11,7 @@
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
-	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60, LANGUAGE_NEOHONGO = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
 
@@ -20,7 +20,7 @@
 		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 		access_moebius, access_engine, access_mining, access_construction, access_mailsorting,
 		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway,
-		access_external_airlocks
+		access_external_airlocks, access_change_sec
 	)
 
 	stat_modifiers = list(
@@ -29,7 +29,8 @@
 		STAT_VIG = 40,
 	)
 
-	perks = list(/datum/perk/survivor)
+	perks = list(/datum/perk/survivor,
+				 /datum/perk/codespeak)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/digitalwarrant,
@@ -71,7 +72,7 @@
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
 	wage = WAGE_LABOUR_HAZARD
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25, LANGUAGE_NEOHONGO = 65)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg
 
@@ -87,7 +88,8 @@
 		STAT_VIG = 25,
 	)
 
-	perks = list(/datum/perk/survivor)
+	perks = list(/datum/perk/survivor,
+				 /datum/perk/codespeak)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
@@ -123,7 +125,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50, LANGUAGE_NEOHONGO = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
@@ -140,7 +142,8 @@
 		STAT_VIG = 25,
 	)
 
-	perks = list(/datum/perk/survivor)
+	perks = list(/datum/perk/survivor,
+				 /datum/perk/codespeak)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/audio,
@@ -179,7 +182,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5, LANGUAGE_NEOHONGO = 35)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/medspec
 
@@ -193,7 +196,8 @@
 		STAT_VIG = 15,
 	)
 
-	perks = list(/datum/perk/survivor)
+	perks = list(/datum/perk/survivor,
+				 /datum/perk/codespeak)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/suit_sensors,
@@ -232,7 +236,7 @@
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25, LANGUAGE_NEOHONGO = 45)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
 
@@ -247,7 +251,8 @@
 		STAT_VIG = 25,
 	)
 
-	perks = list(/datum/perk/survivor)
+	perks = list(/datum/perk/survivor,
+				 /datum/perk/codespeak)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)

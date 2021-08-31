@@ -12,7 +12,7 @@
 	access_external_airlocks,
 	access_maint_tunnels) //Mercs get maintenance access on eris, because being an antag without it is hell
 	//They got forged assistant IDs or somesuch
-	id_type = /obj/item/weapon/card/id/merc
+	id_type = /obj/item/card/id/merc
 
 
 	appearance_editor = FALSE
@@ -29,7 +29,7 @@
 		STAT_MEC = 20
 	)
 
-
+	perks = list(PERK_SURVIVOR)
 
 /datum/antagonist/mercenary/equip()
 	var/mob/living/L = owner.current
@@ -52,14 +52,18 @@
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
 
+	for(var/perk in perks)
+		L.stats.addPerk(perk)
+
 	create_id("Soldier")
 	..()
 
 
-/obj/item/weapon/card/id/merc
+/obj/item/card/id/merc
 	icon_state = "syndicate"
 
-/obj/item/weapon/card/id/merc/New()
+/obj/item/card/id/merc/Initialize(mapload)
+	. = ..()
 	access = list(access_mercenary,//This access governs their ship and base
 	access_external_airlocks,
 	access_maint_tunnels)

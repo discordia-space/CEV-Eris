@@ -11,10 +11,10 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
@@ -74,12 +74,14 @@
 	target_temperature = 90
 
 /obj/machinery/alarm/Destroy()
+	GLOB.alarm_list -= src
 	unregister_radio(src, frequency)
 	qdel(wires)
 	wires = null
 	return ..()
 
 /obj/machinery/alarm/New(loc, dir, building = 0)
+	GLOB.alarm_list += src
 	if(building)
 		if(dir)
 			src.set_dir(dir)
@@ -121,6 +123,9 @@
 	set_frequency(frequency)
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
+
+/obj/machinery/alarm/fire_act()
+	return
 
 /obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -167,7 +172,7 @@
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
 	if (!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2.0)
+		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2)
 			update_use_power(2)
 			regulating_temperature = 1
 			visible_message("\The [src] clicks as it starts up.",\
@@ -266,7 +271,7 @@
 		return 1
 	return 0
 
-/obj/machinery/alarm/update_icon()
+/obj/machinery/alarm/on_update_icon()
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
@@ -650,6 +655,8 @@
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
+			investigate_log("had it's target temperature changed by [key_name(usr)]", "atmos")
+
 		playsound(loc, 'sound/machines/button.ogg', 100, 1)
 		return 1
 
@@ -688,6 +695,7 @@
 					"scrubbing")
 					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
+					investigate_log("had it's settings changed by [key_name(usr)]", "atmos")
 					return 1
 
 				if("set_threshold")
@@ -700,7 +708,7 @@
 					if (isnull(newval))
 						return 1
 					if (newval<0)
-						selected[threshold] = -1.0
+						selected[threshold] = -1
 					else if (env=="temperature" && newval>5000)
 						selected[threshold] = 5000
 					else if (env=="pressure" && newval>50*ONE_ATMOSPHERE)
@@ -739,6 +747,7 @@
 						if(selected[3] > selected[4])
 							selected[3] = selected[4]
 
+					investigate_log("had it's tresholds changed by [key_name(usr)]", "atmos")
 					apply_mode()
 					return 1
 
@@ -766,6 +775,7 @@
 		if(href_list["atmos_reset"])
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			forceClearAlarm()
+			investigate_log("had it's alarms cleared by [key_name(usr)]", "atmos")
 			return 1
 
 		if(href_list["mode"])
@@ -814,7 +824,7 @@
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
+					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -834,16 +844,8 @@
 
 	switch(buildstage)
 		if(2)
-			if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))// trying to unlock the interface with an ID card
-				if(stat & (NOPOWER|BROKEN))
-					to_chat(user, "It does nothing")
-					return
-				else
-					if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
-						locked = !locked
-						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
-					else
-						to_chat(user, SPAN_WARNING("Access denied."))
+			if (istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))// trying to unlock the interface with an ID card
+				toggle_lock(user)
 			return
 
 		if(1)
@@ -860,7 +862,7 @@
 					return
 
 		if(0)
-			if(istype(I, /obj/item/weapon/airalarm_electronics))
+			if(istype(I, /obj/item/electronics/airalarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -880,11 +882,30 @@
 		to_chat(user, "It is not wired.")
 	if (buildstage < 1)
 		to_chat(user, "The circuit is missing.")
+
+/obj/machinery/alarm/proc/toggle_lock(mob/user)
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(user, "It does nothing")
+		return
+	else
+		if(allowed(user) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+			locked = !locked
+			to_chat(user, SPAN_NOTICE("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
+		else
+			to_chat(user, SPAN_WARNING("Access denied."))
+
+/obj/machinery/alarm/AltClick(mob/user)
+	..()
+	if(issilicon(user) || !Adjacent(user))
+		return
+	toggle_lock(user)
+
+
 /*
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
 */
-/obj/item/weapon/airalarm_electronics
+/obj/item/electronics/airalarm
 	name = "air alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -900,22 +921,22 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
+	var/detecting = 1
+	var/working = 1
+	var/time = 10
+	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-/obj/machinery/firealarm/update_icon()
-	overlays.Cut()
+/obj/machinery/firealarm/on_update_icon()
+	cut_overlays()
 
 	if(wiresexposed)
 		switch(buildstage)
@@ -945,7 +966,7 @@ FIRE ALARM
 			var/decl/security_level/sl = security_state.current_security_level
 
 			set_light(sl.light_max_bright, sl.light_inner_range, sl.light_outer_range, 2, sl.light_color_alarm)
-			src.overlays += image('icons/obj/monitors.dmi', sl.overlay_firealarm)
+			src.add_overlays(image('icons/obj/monitors.dmi', sl.overlay_firealarm))
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
@@ -1018,7 +1039,7 @@ FIRE ALARM
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
+					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -1051,7 +1072,7 @@ FIRE ALARM
 					return
 
 		if(0)
-			if(istype(I, /obj/item/weapon/firealarm_electronics))
+			if(istype(I, /obj/item/electronics/firealarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -1065,15 +1086,15 @@ FIRE ALARM
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(src.timing)
-		if(src.time > 0)
-			src.time = src.time - ((world.timeofday - last_process)/10)
+	if(timing)
+		if(time > 0)
+			time -= (world.timeofday - last_process)/10
 		else
-			src.alarm()
-			src.time = 0
-			src.timing = 0
+			alarm()
+			time = 0
+			timing = 0
 			STOP_PROCESSING(SSmachines, src)
-		src.updateDialog()
+		updateDialog()
 	last_process = world.timeofday
 
 	if(locate(/obj/fire) in loc)
@@ -1177,11 +1198,17 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
+	GLOB.firealarm_list += src
+
+/obj/machinery/firealarm/Destroy()
+	GLOB.firealarm_list -= src
+	..()
+
 /*
 FIRE ALARM CIRCUIT
 Just a object used in constructing fire alarms
 */
-/obj/item/weapon/firealarm_electronics
+/obj/item/electronics/firealarm
 	name = "fire alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -1200,7 +1227,7 @@ Just a object used in constructing fire alarms
 	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 
@@ -1285,4 +1312,3 @@ Just a object used in constructing fire alarms
 		var/tp = text2num(href_list["tp"])
 		time += tp
 		time = min(max(round(time), 0), 120)
-

@@ -59,7 +59,9 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-
+/turf/simulated/floor/wood/Initialize()
+	icon_state = pick("wood", "wood1", "wood2")
+	return ..()
 
 
 
@@ -479,5 +481,5 @@
 
 /turf/simulated/floor/beach/water/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+	add_overlays(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))
 

@@ -1,17 +1,14 @@
-//How far from the edge of overmap zlevel could randomly placed objects spawn
-#define OVERMAP_EDGE 2
-//Dimension of overmap (squares 4 lyfe)
 var/global/list/map_sectors = list()
 
-/area/overmap/
+/area/overmap
 	name = "System Map"
 	icon_state = "start"
 	requires_power = 0
 	base_turf = /turf/unsimulated/map
 
 /turf/unsimulated/map
-	icon = 'icons/turf/space.dmi'
-	icon_state = "map"
+	icon = 'icons/obj/overmap.dmi'
+	icon_state = "grid"
 	dynamic_lighting = 0
 	plane = OVER_OPENSPACE_PLANE
 
@@ -22,30 +19,6 @@ var/global/list/map_sectors = list()
 /turf/unsimulated/map/New()
 	..()
 	name = "[x]-[y]"
-	var/list/numbers = list()
-
-	if(x == 1 || x == GLOB.maps_data.overmap_size)
-		numbers += list("[round(y/10)]","[round(y%10)]")
-		if(y == 1 || y == GLOB.maps_data.overmap_size)
-			numbers += "-"
-	if(y == 1 || y == GLOB.maps_data.overmap_size)
-		numbers += list("[round(x/10)]","[round(x%10)]")
-
-	for(var/i = 1 to numbers.len)
-		var/image/I = image('icons/effects/numbers.dmi',numbers[i])
-		I.pixel_x = 5*i - 2
-		I.pixel_y = world.icon_size/2 - 3
-		if(y == 1)
-			I.pixel_y = 3
-			I.pixel_x = 5*i + 4
-		if(y == GLOB.maps_data.overmap_size)
-			I.pixel_y = world.icon_size - 9
-			I.pixel_x = 5*i + 4
-		if(x == 1)
-			I.pixel_x = 5*i - 2
-		if(x == GLOB.maps_data.overmap_size)
-			I.pixel_x = 5*i + 2
-		overlays += I
 
 //Proc to 'move' stars in spess
 //null direction stops movement
@@ -80,3 +53,27 @@ var/global/list/map_sectors = list()
 						AM.throw_at(get_step(T,reverse_direction(direction)), 5, 1)
 						CHECK_TICK
 				CHECK_TICK
+
+/obj/effect/star
+	name = "generic star"
+	desc = "A generic star."
+	icon = 'icons/obj/overmap.dmi'
+	icon_state = "generic"
+	anchored = TRUE
+
+	var/list/names = list("blue dwarf", "red dwarf", "yellow giant", "black hole", "illusive star", "clockwork star")
+	var/list/descs = list(
+		"A one of its kind blue dwarf. Theoretically the Universe is currently not old enough for any blue dwarfs to have formed yet.",
+		"A M-type main-sequence star similar to the one in the center of the Proxima Centauri system.",
+		"A G-type main-sequence star similar to the one in the center of the Sol system.",
+		"A black hole resulting from the collapse of very massive star.",
+		"An unclassified star whose surface shimmers without any discernable pattern.",
+		"A G-type main-sequence star encircled by two gigantic ring-shaped structures made of massive clockwork gears.")
+	var/list/icons = list("bluedwarf", "reddwarf", "yellowgiant", "blackhole", "illusive", "clockwork")
+
+/obj/effect/star/New()
+	var/i = rand(1, descs.len)
+	name = names[i]
+	desc = descs[i]
+	SetIconState(icons[i])
+	..()

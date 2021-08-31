@@ -1,19 +1,22 @@
+/obj/item/assembly
+	bad_type = /obj/item/assembly
+
 /obj/item/assembly/shock_kit
 	name = "electrohelmet assembly"
 	desc = "This appears to be made from both an electropack and a helmet."
 	icon_state = "shock_kit"
-	var/obj/item/clothing/head/armor/helmet/part1 = null
-	var/obj/item/device/radio/electropack/part2 = null
-	var/status = 0
 	w_class = ITEM_SIZE_HUGE
 	flags = CONDUCT
+	var/obj/item/clothing/head/armor/helmet/part1
+	var/obj/item/device/radio/electropack/part2
+	var/status = 0
 
 /obj/item/assembly/shock_kit/Destroy()
 	qdel(part1)
 	qdel(part2)
 	. = ..()
 
-/obj/item/assembly/shock_kit/attackby(obj/item/weapon/tool/tool, mob/user)
+/obj/item/assembly/shock_kit/attackby(obj/item/tool/tool, mob/user)
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
 	var/tool_type = tool.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)

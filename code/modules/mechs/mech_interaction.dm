@@ -47,7 +47,7 @@
 		setClickCooldown(15)
 		return
 
-	var/obj/item/weapon/cell/cell = get_cell()
+	var/obj/item/cell/cell = get_cell()
 	if(!cell)
 		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
 		setClickCooldown(3)
@@ -165,10 +165,19 @@
 		selected_system = null
 		selected_hardpoint = null
 
+/mob/living/exosuit/get_active_hand()
+	var/obj/item/mech_equipment/ME = selected_system
+	if(istype(ME))
+		return ME.get_effective_obj()
+	return ..()
+
 /mob/living/exosuit/proc/check_enter(var/mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
+	if (user.buckled)
+		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
+		return FALSE
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return FALSE
@@ -195,7 +204,7 @@
 	sync_access()
 	playsound(get_turf(src), 'sound/machines/windowdoor.ogg', 50, 1)
 	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
-	//LAZYOR(user.additional_vision_handlers, src)
+	LAZYDISTINCTADD(user.additional_vision_handlers, src)
 	update_pilots()
 	return 1
 
@@ -221,7 +230,7 @@
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
-//	LAZYREMOVE(user.additional_vision_handlers, src)
+	LAZYREMOVE(user.additional_vision_handlers, src)
 	if(user in pilots)
 		a_intent = I_HURT
 		LAZYREMOVE(pilots, user)
@@ -260,12 +269,12 @@
 	return ..()
 
 /mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/weapon/cell))
+	if(istype(I, /obj/item/cell))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 			return TRUE
 
-		var/obj/item/weapon/cell/cell = get_cell()
+		var/obj/item/cell/cell = get_cell()
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
 			return TRUE
@@ -276,7 +285,7 @@
 
 		return TRUE
 
-	else if(istype(I, /obj/item/weapon/circuitboard/exosystem))
+	else if(istype(I, /obj/item/electronics/circuitboard/exosystem))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
 			return TRUE
@@ -379,7 +388,7 @@
 	// Clickdragging, either onto a mob or into inventory hand
 	if(istype(user) && user.Adjacent(src) && (over_object == user || istype(over_object, /obj/screen/inventory/hand)))
 		// Ejecting exosuit power cell
-		var/obj/item/weapon/cell/cell = get_cell()
+		var/obj/item/cell/cell = get_cell()
 		if(cell)
 			if(!maintenance_protocols)
 				to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))

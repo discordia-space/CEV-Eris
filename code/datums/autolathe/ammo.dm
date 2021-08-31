@@ -40,6 +40,10 @@
 	name = "speed loader (.35 Auto hollow point)"
 	build_path = /obj/item/ammo_magazine/slpistol
 
+/datum/design/autolathe/ammo/sl_pistol/empty
+	name = "empty speed loader (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/slpistol/empty
+
 /datum/design/autolathe/ammo/sl_pistol/practice
 	name = "speed loader (.35 Auto practice)"
 	build_path = /obj/item/ammo_magazine/slpistol/practice
@@ -53,6 +57,10 @@
 /datum/design/autolathe/ammo/magazine_pistol
 	name = "standard magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/pistol
+
+/datum/design/autolathe/ammo/magazine_pistol/empty
+	name = "empty standard magazine (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/pistol/empty
 
 /datum/design/autolathe/ammo/magazine_pistol/practice
 	name = "standard magazine (.35 Auto practice)"
@@ -68,6 +76,10 @@
 	name = "highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol
 
+/datum/design/autolathe/ammo/magazine_hpistol/empty
+	name = "empty highcap magazine (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/hpistol/empty
+
 /datum/design/autolathe/ammo/magazine_hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
 	build_path = /obj/item/ammo_magazine/hpistol/practice
@@ -81,6 +93,10 @@
 /datum/design/autolathe/ammo/smg
 	name = "SMG magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/smg
+
+/datum/design/autolathe/ammo/smg/empty
+	name = "empty SMG magazine (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/smg/empty
 
 /datum/design/autolathe/ammo/smg/practice
 	name = "SMG magazine (.35 Auto practice)"
@@ -110,6 +126,10 @@
 	name = "speed loader (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/slmagnum
 
+/datum/design/autolathe/ammo/sl_magnum/empty
+	name = "empty speed loader (.40 Magnum)"
+	build_path = /obj/item/ammo_magazine/slmagnum/empty
+
 /datum/design/autolathe/ammo/sl_magnum/practice
 	name = "speed loader (.40 Magnum practice)"
 	build_path = /obj/item/ammo_magazine/slmagnum/practice
@@ -124,6 +144,10 @@
 	name = "magazine (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/magnum
 
+/datum/design/autolathe/ammo/mg_magnum/empty
+	name = "empty magazine (.40 Magnum)"
+	build_path = /obj/item/ammo_magazine/magnum/empty
+
 /datum/design/autolathe/ammo/mg_magnum/practice
 	name = "magazine (.40 Magnum practice)"
 	build_path = /obj/item/ammo_magazine/magnum/practice
@@ -137,6 +161,10 @@
 /datum/design/autolathe/ammo/msmg
 	name = "SMG magazine (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/msmg
+
+/datum/design/autolathe/ammo/msmg/emtpy
+	name = "empty SMG magazine (.40 Magnum)"
+	build_path = /obj/item/ammo_magazine/msmg/empty
 
 /datum/design/autolathe/ammo/msmg/practice
 	name = "SMG magazine (.40 Magnum practice)"
@@ -185,7 +213,7 @@
 	build_path = /obj/item/ammo_magazine/ammobox/srifle
 
 /datum/design/autolathe/ammo/srifle_ammobox/rubber
-	name = "ammunition box (.20 Rifle practice)"
+	name = "ammunition box (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle/rubber
 
 /datum/design/autolathe/ammo/srifle_ammobox_small
@@ -280,15 +308,23 @@
 	name = "long magazine (.30 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/lrifle/rubber
 
-// .30 Boxmag + Speedloader
+// .30 Boxmag + Speedloader + pan mag
 
 /datum/design/autolathe/ammo/sl_lrifle
 	name = "ammo strip (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/sllrifle
 
 /datum/design/autolathe/ammo/lrifle_pk
-	name = "PK munitions box (.30 Rifle)"
+	name = "LMG munitions box (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/lrifle/pk
+
+/datum/design/autolathe/ammo/maxim
+	name = "pan magazine (.30 Rifle)"
+	build_path = /obj/item/ammo_magazine/maxim
+
+/datum/design/autolathe/ammo/maxim/rubber
+	name = "pan magazine (.30 Rifle rubber)"
+	build_path = /obj/item/ammo_magazine/maxim/rubber
 
 // .30 ammoboxes
 

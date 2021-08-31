@@ -3,7 +3,7 @@
 	desc = "This machine repurposes implants, robot components and bionics, reworking their circuitry into the Excelsior implant pattern which allows recruitment."
 	icon = 'icons/obj/machines/excelsior/reconstructor.dmi'
 	icon_state = "idle"
-	circuit = /obj/item/weapon/circuitboard/excelsiorreconstructor
+	circuit = /obj/item/electronics/circuitboard/excelsiorreconstructor
 	anchored = TRUE
 	density = TRUE
 
@@ -13,7 +13,7 @@
 
 /obj/machinery/complant_maker/RefreshParts()
 	var/total = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		total += M.rating
 
 	build_time = max(10, 70-total)
@@ -34,7 +34,7 @@
 
 	var/accepted = FALSE
 
-	if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/robot_parts))
+	if(istype(I, /obj/item/implant) || istype(I, /obj/item/robot_parts))
 		user.remove_from_mob(I)
 		qdel(I)
 		accepted = TRUE
@@ -46,15 +46,15 @@
 			qdel(I)
 			accepted = TRUE
 
-	else if(istype(I, /obj/item/weapon/implantcase))
-		var/obj/item/weapon/implantcase/case = I
+	else if(istype(I, /obj/item/implantcase))
+		var/obj/item/implantcase/case = I
 		if(case.implant)
 			QDEL_NULL(case.implant)
 			case.update_icon()
 			accepted = TRUE
 
-	else if(istype(I, /obj/item/weapon/implanter))
-		var/obj/item/weapon/implanter/implanter = I
+	else if(istype(I, /obj/item/implanter))
+		var/obj/item/implanter/implanter = I
 		if(implanter.implant)
 			QDEL_NULL(implanter.implant)
 			implanter.update_icon()
@@ -65,7 +65,7 @@
 		working = TRUE
 		start_time = world.time
 
-		flick(image(icon, "closing"), src)
+		FLICK(image(icon, "closing"), src)
 
 		update_icon()
 
@@ -73,19 +73,19 @@
 /obj/machinery/complant_maker/Process()
 	if(stat & NOPOWER)
 		if(working)
-			flick(image(icon, "opening"), src)
+			FLICK(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 		return
 
 	if(working && world.time >= start_time + build_time)
-		new /obj/item/weapon/implantcase/excelsior(drop_location())
-		flick(image(icon, "opening"), src)
+		new /obj/item/implantcase/excelsior(drop_location())
+		FLICK(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 
 
-/obj/machinery/complant_maker/update_icon()
+/obj/machinery/complant_maker/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "off"
 	else
@@ -94,7 +94,7 @@
 	if(working)
 		icon_state = "working"
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(panel_open)
-		overlays.Add(image(icon, "panel"))
+		add_overlays(image(icon, "panel"))

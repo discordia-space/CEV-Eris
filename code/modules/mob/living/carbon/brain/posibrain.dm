@@ -33,9 +33,11 @@
 		M.show_message(SPAN_NOTICE("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/device/mmi/digital/posibrain/attack_ghost(var/mob/observer/ghost/user)
-	if(!searching || (src.brainmob && src.brainmob.key))
+	if(src.brainmob && src.brainmob.key)
 		return
-
+	if(!searching)
+		to_chat(user, SPAN_WARNING("The positronic brain has to be activated before you can enter it."))
+		return
 	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
 	if(!G.assess_candidate(user, check_respawn_timer = FALSE))
 		return

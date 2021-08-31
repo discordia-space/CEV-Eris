@@ -5,20 +5,24 @@
 //Circuit boards are in /code/game/objects/items/weapons/circuitboards/machinery/
 /obj/machinery/constructable_frame
 	icon = 'icons/obj/stock_parts.dmi'
-	use_power = 0
+	use_power = NO_POWER_USE
 	density = TRUE
 	anchored = TRUE
+	spawn_frequency = 10 //as /obj/structure/computerframe
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MACHINE_FRAME
+	bad_type = /obj/machinery/constructable_frame
 
 /obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
 	icon_state = "box_0"
 	matter = list(MATERIAL_STEEL = 8)
-	var/base_state = "box"			//base icon for creating subtypes of machine frame
-	var/list/components = null
-	var/list/req_components = null
-	var/list/req_component_names = null
-	var/state = STATE_NONE
 	frame_type = FRAME_DEFAULT
+	var/base_state = "box"			//base icon for creating subtypes of machine frame
+	var/list/components
+	var/list/req_components
+	var/list/req_component_names
+	var/state = STATE_NONE
 
 /obj/machinery/constructable_frame/machine_frame/examine(mob/user)
 	. = ..()
@@ -145,8 +149,8 @@
 						icon_state = "[base_state]_1"
 
 		if(STATE_WIRES)
-			if(istype(I, /obj/item/weapon/circuitboard))
-				var/obj/item/weapon/circuitboard/B = I
+			if(istype(I, /obj/item/electronics/circuitboard))
+				var/obj/item/electronics/circuitboard/B = I
 				if(B.board_type == "machine" && frame_type == B.frame_type)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, SPAN_NOTICE("You add the circuit board to the frame."))
@@ -159,9 +163,9 @@
 					req_components = circuit.req_components.Copy()
 
 					var/static/list/special_component_names = list(
-						/obj/item/weapon/cell/large = "L-class power cell",
-						/obj/item/weapon/cell/medium = "M-class power cell",
-						/obj/item/weapon/cell/small = "S-class power cell",
+						/obj/item/cell/large = "L-class power cell",
+						/obj/item/cell/medium = "M-class power cell",
+						/obj/item/cell/small = "S-class power cell",
 						)
 
 					req_component_names = list()
@@ -224,16 +228,17 @@
 	icon_state = "v2box_0"
 	base_state = "v2box"
 	frame_type = FRAME_VERTICAL
+	bad_type = /obj/machinery/constructable_frame/machine_frame/vertical
 
 /obj/machinery/constructable_frame/machine_frame/vertical/New()
 	..()
 	update_icon()
 
-/obj/machinery/constructable_frame/machine_frame/vertical/update_icon()
-	overlays.Cut()
+/obj/machinery/constructable_frame/machine_frame/vertical/on_update_icon()
+	cut_overlays()
 
 	var/image/I = image(icon, "[icon_state]1")
 	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
-	overlays.Add(I)
+	add_overlays(I)
 

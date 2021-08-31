@@ -7,7 +7,7 @@
 	var/active = 0
 	var/operating = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	var/_wifi_id
@@ -24,7 +24,7 @@
 	wifi_sender = null
 	return ..()
 
-/obj/machinery/button/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/button/attack_hand(mob/living/user)
@@ -46,7 +46,7 @@
 	update_icon()
 	operating = 0
 
-/obj/machinery/button/update_icon()
+/obj/machinery/button/on_update_icon()
 	if(active)
 		icon_state = "launcher1"
 	else if(stat & (NOPOWER))
@@ -58,14 +58,14 @@
 /obj/machinery/button/switch
 	icon_state = "light0"
 
-/obj/machinery/button/switch/update_icon()
+/obj/machinery/button/switch/on_update_icon()
 	icon_state = "light[active]"
 
 //alternate button with the same functionality, except has a door control sprite instead
 /obj/machinery/button/alternate
 	icon_state = "doorctrl0"
 
-/obj/machinery/button/alternate/update_icon()
+/obj/machinery/button/alternate/on_update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else
@@ -90,14 +90,14 @@
 /obj/machinery/button/toggle/switch
 	icon_state = "light0"
 
-/obj/machinery/button/toggle/switch/update_icon()
+/obj/machinery/button/toggle/switch/on_update_icon()
 	icon_state = "light[active]"
 
 //alternate button with the same toggle functionality, except has a door control sprite instead
 /obj/machinery/button/toggle/alternate
 	icon_state = "doorctrl0"
 
-/obj/machinery/button/toggle/alternate/update_icon()
+/obj/machinery/button/toggle/alternate/on_update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else
@@ -148,7 +148,7 @@
 				8 = shock
 				16 = door safties  */
 
-/obj/machinery/button/toggle/door/update_icon()
+/obj/machinery/button/toggle/door/on_update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else

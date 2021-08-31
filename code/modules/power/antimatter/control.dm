@@ -5,13 +5,13 @@
 	icon_state = "control"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 100
 	active_power_usage = 1000
 
 	var/list/obj/machinery/am_shielding/linked_shielding
 	var/list/obj/machinery/am_shielding/linked_cores
-	var/obj/item/weapon/am_containment/fueljar
+	var/obj/item/am_containment/fueljar
 	var/update_shield_icons = 0
 	var/stability = 100
 	var/exploding = 0
@@ -103,11 +103,11 @@
 
 /obj/machinery/power/am_control_unit/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			stability -= 60
-		if(2.0)
+		if(2)
 			stability -= 40
-		if(3.0)
+		if(3)
 			stability -= 20
 	check_stability()
 	return
@@ -126,7 +126,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/update_icon()
+/obj/machinery/power/am_control_unit/on_update_icon()
 	if(active) icon_state = "control_on"
 	else icon_state = "control"
 	//No other icons for it atm
@@ -148,11 +148,11 @@
 				user.visible_message("[user.name] unsecures the [src.name].", \
 					"You remove the anchor bolts.", \
 					"You hear a ratchet")
-				src.anchored = 0
+				src.anchored = FALSE
 				disconnect_from_network()
 			return
 
-	if(istype(I, /obj/item/weapon/am_containment))
+	if(istype(I, /obj/item/am_containment))
 		if(fueljar)
 			to_chat(user, "\red There is already a [fueljar] inside!")
 			return
@@ -204,10 +204,10 @@
 /obj/machinery/power/am_control_unit/proc/toggle_power()
 	active = !active
 	if(active)
-		use_power = 2
+		use_power = ACTIVE_POWER_USE
 		visible_message("The [src.name] starts up.")
 	else
-		use_power = 1
+		use_power = IDLE_POWER_USE
 		visible_message("The [src.name] shuts down.")
 	update_icon()
 	return

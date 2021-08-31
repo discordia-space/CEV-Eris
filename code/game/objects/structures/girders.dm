@@ -1,5 +1,5 @@
 /obj/structure/girder
-	name = "wall grider"
+	name = "wall girder"
 	icon_state = "girder"
 	anchored = TRUE
 	density = TRUE
@@ -20,7 +20,7 @@
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
-	name = "low wall grider"
+	name = "low wall girder"
 	matter = list(MATERIAL_STEEL = 3)
 	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
@@ -310,12 +310,12 @@
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500))
-		if(2.0)
+		if(2)
 			take_damage(rand(120,300))
 
-		if(3.0)
+		if(3)
 			take_damage(rand(60,180))
 
 

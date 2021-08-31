@@ -15,7 +15,7 @@
 	var/datum/pipe_network/network
 
 	var/on = FALSE
-	use_power = 0
+	use_power = NO_POWER_USE
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_FILTER_LAYER
 
@@ -24,7 +24,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/portables_connector/update_icon()
+/obj/machinery/atmospherics/portables_connector/on_update_icon()
 	icon_state = "connector"
 
 /obj/machinery/atmospherics/portables_connector/update_underlays()

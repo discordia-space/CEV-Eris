@@ -1,7 +1,8 @@
-/obj/item/weapon/tool/weldingtool
+/obj/item/tool/weldingtool
 	name = "welding tool"
 	icon_state = "welder"
 	item_state = "welder"
+	rarity_value = 6
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	switched_on_force = WEAPON_FORCE_PAINFUL
@@ -23,7 +24,7 @@
 
 	heat = 2250
 
-/obj/item/weapon/tool/weldingtool/turn_on(mob/user)
+/obj/item/tool/weldingtool/turn_on(mob/user)
 	.=..()
 	if(.)
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
@@ -31,19 +32,19 @@
 		START_PROCESSING(SSobj, src)
 	//Todo: Add a better hit sound for a turned_on welder
 
-/obj/item/weapon/tool/weldingtool/turn_off(mob/user)
+/obj/item/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
 	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
 	..()
 	damtype = initial(damtype)
 
 
-/obj/item/weapon/tool/weldingtool/is_hot()
+/obj/item/tool/weldingtool/is_hot()
 	if (damtype == BURN)
 		return heat
 
 
-/obj/item/weapon/tool/weldingtool/improvised
+/obj/item/tool/weldingtool/improvised
 	name = "jury-rigged torch"
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
 	icon_state = "ghettowelder"
@@ -53,14 +54,16 @@
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 4
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it
-/obj/item/weapon/tool/weldingtool/improvised/Created()
+/obj/item/tool/weldingtool/improvised/Created()
 	return
 
 
-/obj/item/weapon/tool/weldingtool/advanced
+/obj/item/tool/weldingtool/advanced
 	name = "advanced welding tool"
 	icon_state = "adv_welder"
 	item_state = "adv_welder"
@@ -71,8 +74,10 @@
 	heat = 3773
 	degradation = 0.7
 	max_upgrades = 4
+	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/weapon/tool/weldingtool/onestar
+/obj/item/tool/weldingtool/onestar
 	name = "One Star welding tool"
 	desc = "An old and legendary One Star welding tool. Very powerful and reliable, but its compact design causes it to suffer from a lack of both fuel storage and efficiency."
 	icon_state = "one_star_welder"
@@ -87,3 +92,22 @@
 	heat = 2750
 	max_upgrades = 2
 	workspeed = 1.7
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
+
+/obj/item/tool/weldingtool/hivemind
+	name = "modified welding tool"
+	icon_state = "hivemind_welder"
+	item_state = "hivemind_welder"
+	desc = "A welding tool with numerous growths on it, the fuel tank is bloated. Doubt you will be able to use it for anything other than welding."
+	glow_color = COLOR_LIME
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BIO = 2)
+	matter = list(MATERIAL_STEEL = 7, MATERIAL_BIOMATTER = 3)
+	switched_on_qualities = list(QUALITY_WELDING = 50)
+	use_fuel_cost = 0.2
+	max_fuel = 60
+	max_upgrades = 4
+	degradation = 0.4
+//	fuel_type = "blood"
+	spawn_blacklisted = TRUE

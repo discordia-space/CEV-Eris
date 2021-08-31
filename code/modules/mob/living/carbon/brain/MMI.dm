@@ -1,14 +1,14 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/device/mmi/digital/New()
-	src.brainmob = new(src)
-	src.brainmob.stat = CONSCIOUS
-	src.brainmob.add_language(LANGUAGE_ROBOT)
-	src.brainmob.container = src
-	src.brainmob.silent = 0
+	brainmob = new(src)
+	brainmob.stat = CONSCIOUS
+	brainmob.add_language(LANGUAGE_ROBOT)
+	brainmob.container = src
+	brainmob.silent = 0
 	..()
 
-/obj/item/device/mmi/digital/transfer_identity(var/mob/living/carbon/H)
+/obj/item/device/mmi/digital/transfer_identity(mob/living/carbon/H)
 	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.stat = 0
@@ -42,12 +42,21 @@
 		else if(!B.brainmob)
 			to_chat(user, "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain.")
 			return
+		var/mob/living/carbon/brain/BM = B.brainmob
+		if(!BM.client)
+			for(var/mob/observer/ghost/G in GLOB.player_list)
+				if(G.can_reenter_corpse && G.mind == BM.mind)
+					if(alert(G, "Somebody is attempting to put your brain in an MMI. Would you like to return to it?","Become brain","OH YES","No") == "OH YES")
+						G.reenter_corpse()
+						break
+			if(!BM.client)
+				to_chat(user, SPAN_WARNING("\The [src] indicates that \the [B] is unresponsive."))
+				return
 
 		for(var/mob/V in viewers(src, null))
 			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
 
-		brainmob = O:brainmob
-		O:brainmob = null
+		brainmob = B.brainmob
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0
@@ -67,7 +76,7 @@
 
 		return
 
-	if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/modular_computer/pda)) && brainmob)
+	if((istype(O,/obj/item/card/id)||istype(O,/obj/item/modular_computer/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
 			to_chat(user, "\blue You [locked ? "lock" : "unlock"] the brain holder.")
@@ -118,7 +127,7 @@
 /obj/item/device/mmi/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.forced_move(direction, user)
 

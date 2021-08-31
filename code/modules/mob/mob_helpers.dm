@@ -1,10 +1,3 @@
-// fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/isxenomorph(A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/H = A
-		return istype(H.species, /datum/species/xenos)
-	return 0
-
 /proc/issmall(A)
 	if(A && isliving(A))
 		var/mob/living/L = A
@@ -36,24 +29,24 @@ proc/isdeaf(A)
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
-proc/hasorgans(A) // Fucking really??
+/proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
-proc/iscuffed(A)
+/proc/iscuffed(A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
-proc/hassensorlevel(A, var/level)
+/proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
-proc/getsensorlevel(A)
+/proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -140,7 +133,7 @@ var/list/global/organ_rel_size = list(
 		if(target.buckled || target.lying)
 			return zone
 		// if your target is being grabbed aggressively by someone you cannot miss either
-		for(var/obj/item/weapon/grab/G in target.grabbed_by)
+		for(var/obj/item/grab/G in target.grabbed_by)
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
 
@@ -196,7 +189,7 @@ var/list/global/organ_rel_size = list(
 	if(re_encode)
 		. = html_encode(.)
 
-proc/slur(phrase)
+/proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
@@ -241,7 +234,7 @@ proc/slur(phrase)
 		p++//for each letter p is increased to find where the next letter will be.
 	return sanitize(jointext(t, null))
 
-proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+/proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
@@ -506,27 +499,27 @@ proc/is_blind(A)
 		return SAFE_PERP
 
 	//Agent cards lower threatlevel.
-	var/obj/item/weapon/card/id/id = GetIdCard()
-	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
+	var/obj/item/card/id/id = GetIdCard()
+	if(id && istype(id, /obj/item/card/id/syndicate))
 		threatcount -= 2
 	// A proper	CentCom id is hard currency.
-	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
+	else if(id && istype(id, /obj/item/card/id/centcom))
 		return SAFE_PERP
 
 	if(check_access && !access_obj.allowed(src))
 		threatcount += 4
 
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
+		if(isgun(l_hand) || istype(l_hand, /obj/item/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
+		if(isgun(r_hand) || istype(r_hand, /obj/item/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
+		if(isgun(belt) || istype(belt, /obj/item/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.name != SPECIES_HUMAN)
 			threatcount += 2
 
 	if(check_records || check_arrest)
@@ -557,7 +550,7 @@ proc/is_blind(A)
 
 #undef SAFE_PERP
 
-/mob/proc/get_multitool(var/obj/item/weapon/tool/multitool/P)
+/mob/proc/get_multitool(var/obj/item/tool/multitool/P)
 	if(istype(P))
 		return P
 
@@ -632,6 +625,8 @@ proc/is_blind(A)
 	var/base_prob_evade = 30
 	if(MOVING_DELIBERATELY(src))
 		prob_evade += base_prob_evade
+	if(!stats)
+		return prob_evade
 	prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - weight_coeff())
 	if(stats.getPerk(PERK_SURE_STEP))
 		prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
@@ -647,4 +642,20 @@ proc/is_blind(A)
 	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
 
 /mob/proc/weight_coeff()
-	return get_max_w_class()/(ITEM_SIZE_TITANIC)
+	. = 0
+	var/max_w_class = get_max_w_class()
+	if(max_w_class > ITEM_SIZE_TINY)
+		return max_w_class/(ITEM_SIZE_TITANIC)
+
+/mob/proc/get_accumulated_vision_handlers()
+	var/result[2]
+	var/asight = 0
+	var/ainvis = 0
+	for(var/atom/vision_handler in additional_vision_handlers)
+		//Grab their flags
+		asight |= vision_handler.additional_sight_flags()
+		ainvis = max(ainvis, vision_handler.additional_see_invisible())
+	result[1] = asight
+	result[2] = ainvis
+
+	return result

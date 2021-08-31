@@ -75,3 +75,27 @@
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/clothing/accessory/badge/marshal
 	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
+
+/datum/uplink_item/item/badassery/donut_case
+	name = "Special Donut Delivery Case"
+	item_cost = 18
+	path = /obj/item/storage/case/donut
+	desc = "A rare donut case, that can only be purchased on the black market. Contains masterfully made donuts, with unique effects for those who eat them."
+
+/datum/uplink_item/item/badassery/contract
+	name = "Ask for new contract"
+	item_cost = 4
+	desc = "You pay extra TC to get a new contract on time."
+
+/datum/uplink_item/item/badassery/contract/get_goods(var/obj/item/device/uplink/U, var/loc)
+	var/list/candidates = (subtypesof(/datum/antag_contract) - typesof(/datum/antag_contract/excel))
+	while(candidates.len)
+		var/contract_type = pick(candidates)
+		var/datum/antag_contract/C = new contract_type
+		if(!C.can_place())
+			candidates -= contract_type
+			qdel(C)
+			continue
+		C.place()
+		break
+	return 1

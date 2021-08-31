@@ -13,7 +13,7 @@
 	return check_access_list(M.GetAccess())
 
 /atom/movable/proc/GetAccess()
-	var/obj/item/weapon/card/id/id = GetIdCard()
+	var/obj/item/card/id/id = GetIdCard()
 	return id ? id.GetAccess() : list()
 
 /proc/get_access_by_id(id)
@@ -166,6 +166,8 @@
 			return "Supply"
 		if(ACCESS_REGION_CHURCH) //Neotheo
 			return "NeoTheology"
+		if(ACCESS_REGION_CLUB) //service
+			return "Club"
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()
@@ -200,7 +202,7 @@
 /mob/GetIdCard()
 	return null
 
-var/obj/item/weapon/card/id/all_access/ghost_all_access
+var/obj/item/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
 	if(!is_admin(src))
 		return
@@ -215,7 +217,7 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 #define HUMAN_ID_CARDS list(get_active_hand(), wear_id, get_inactive_hand())
 /mob/living/carbon/human/GetIdCard()
 	for(var/obj/item/I in HUMAN_ID_CARDS)
-		var/obj/item/weapon/card/id = I.GetIdCard()
+		var/obj/item/card/id = I.GetIdCard()
 		if(id)
 			return id
 
@@ -224,7 +226,7 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 	for(var/obj/item/I in HUMAN_ID_CARDS)
 		. |= I.GetAccess()
 
-	var/obj/item/weapon/implant/core_implant/C = get_core_implant()
+	var/obj/item/implant/core_implant/C = get_core_implant()
 	if(C)
 		. |= C.GetAccess()
 
@@ -237,16 +239,16 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 
 
 proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
-	var/obj/item/weapon/card/id/C = M.GetIdCard()
+	var/obj/item/card/id/C = M.GetIdCard()
 	if(C)
 		return C.registered_name
 	return missing_id_name
 
 proc/get_all_job_icons() //For all existing HUD icons
-	return joblist + list("Prisoner")
+	return GLOB.joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = GetIdCard()
+	var/obj/item/card/id/I = GetIdCard()
 
 	if(I)
 		var/job_icons = get_all_job_icons()

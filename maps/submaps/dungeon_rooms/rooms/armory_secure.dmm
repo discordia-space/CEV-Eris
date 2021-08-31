@@ -11,7 +11,7 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "d" = (
-/obj/machinery/porta_turret/stationary,
+/obj/machinery/porta_turret/One_star,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "e" = (
@@ -23,8 +23,8 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
-/obj/random/mob/roomba,
-/obj/random/contraband,
+/obj/spawner/contraband,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "h" = (
@@ -47,8 +47,8 @@
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "k" = (
-/obj/random/mob/roomba,
-/obj/random/firstaid,
+/obj/spawner/mob/roomba,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "l" = (
@@ -61,30 +61,30 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/crawler)
 "n" = (
-/obj/random/mob/roomba,
-/obj/random/contraband,
+/obj/spawner/mob/roomba,
+ /obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "o" = (
 /obj/structure/table/onestar,
-/obj/random/gun_energy_cheap,
-/obj/random/gun_energy_cheap,
-/obj/random/gun_shotgun,
+/obj/spawner/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
+/obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
-/obj/random/gun_energy_cheap,
-/obj/random/gun_shotgun,
-/obj/random/contraband,
+/obj/spawner/gun/energy_cheap,
+/obj/spawner/gun/shotgun,
+/obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "q" = (
 /obj/structure/table/rack,
-/obj/random/gun_normal,
-/obj/random/gun_normal,
-/obj/random/gun_normal/low_chance,
-/obj/random/gun_shotgun,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "s" = (

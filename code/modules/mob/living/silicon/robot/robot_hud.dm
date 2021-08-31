@@ -7,7 +7,7 @@
 	if(!H.client)
 		return
 
-//	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+//	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())
@@ -25,14 +25,14 @@
 /mob/living/silicon/robot/check_HUDdatum()//correct a datum?
 	var/mob/living/silicon/robot/H = src
 
-	if (H.defaultHUD == "BorgStyle") //если у клиента моба прописан стиль\тип ХУДа
-		if(global.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
+	if (H.defaultHUD == "BorgStyle") //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		if(GLOB.HUDdatums.Find(H.defaultHUD))//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			return TRUE
 	return FALSE
 
 /mob/living/silicon/robot/create_HUDinventory()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.slot_data)
 		var/HUDtype
 		HUDtype = HUDdatum.slot_data[HUDname]["type"]
@@ -50,7 +50,7 @@
 
 /mob/living/silicon/robot/create_HUDneed()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.HUDneed)
 		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 //		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
@@ -60,23 +60,23 @@
 		HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
 
 		HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
-//		if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
+//		if(HUDdatum.HUDneed[HUDname]["icon"])//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ icon
 //			HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
 //		else
 //			HUD.icon = HUDdatum.icon
-//		if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
+//		if(HUDdatum.HUDneed[HUDname]["icon_state"])//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ icon_state
 //			HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
-		H.HUDneed[HUD.name] += HUD//Добавляем в список худов
-		if (HUD.process_flag)//Если худ нужно процессить
-			H.HUDprocess += HUD//Вливаем в соотвествующий список
+		H.HUDneed[HUD.name] += HUD//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		if (HUD.process_flag)//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			H.HUDprocess += HUD//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return
 
 
 
 /mob/living/silicon/robot/create_HUDfrippery()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
-	//Добавляем Элементы ХУДа (украшения)
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
 		F.icon = HUDdatum.icon
@@ -87,20 +87,20 @@
 
 /mob/living/silicon/robot/create_HUDtech()
 	var/mob/living/silicon/robot/H = src
-	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
-	//Добавляем технические элементы(damage,flash,pain... оверлеи)
+	var/datum/hud/cyborg/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(damage,flash,pain... пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 		var/obj/screen/HUD = new HUDtype(_name = techobject, _parentmob = H)// _screen_loc = HUDdatum.HUDoverlays[techobject]["loc"]
-		if(HUDdatum.HUDoverlays[techobject]["icon"])//Анализ на овверайд icon
+		if(HUDdatum.HUDoverlays[techobject]["icon"])//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ icon
 			HUD.icon = HUDdatum.HUDoverlays[techobject]["icon"]
 		else
 			HUD.icon = HUDdatum.icon
-		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//Анализ на овверайд icon_state
+		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ icon_state
 			HUD.icon_state = HUDdatum.HUDoverlays[techobject]["icon_state"]
-		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
-		if (HUD.process_flag)//Если худ нужно процессить
-			H.HUDprocess += HUD//Вливаем в соотвествующий список
+		H.HUDtech[HUD.name] += HUD//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		if (HUD.process_flag)//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			H.HUDprocess += HUD//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return
 
 

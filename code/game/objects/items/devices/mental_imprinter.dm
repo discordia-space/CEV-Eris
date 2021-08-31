@@ -5,6 +5,7 @@
 	origin_tech = list(TECH_BIO = 5, TECH_COVERT = 2)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	matter_reagents = list("uncap nanites" = 10)
+	spawn_blacklisted = TRUE
 	var/stat_increase = 5
 	var/apply_sanity_damage = 30
 	var/spent = FALSE

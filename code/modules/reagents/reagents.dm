@@ -2,12 +2,12 @@
 //Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 /proc/initialize_chemical_reagents()
 	var/paths = typesof(/datum/reagent) - /datum/reagent
-	chemical_reagents_list = list()
+	GLOB.chemical_reagents_list = list()
 	for(var/path in paths)
 		var/datum/reagent/D = new path()
 		if(!D.name)
 			continue
-		chemical_reagents_list[D.id] = D
+		GLOB.chemical_reagents_list[D.id] = D
 
 /datum/reagent
 	var/name = ""
@@ -15,9 +15,9 @@
 	var/description = "A non-descript chemical."
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/datum/reagents/holder = null
+	var/datum/reagents/holder
 	var/reagent_state = SOLID
-	var/list/data = null
+	var/list/data
 	var/volume = 0
 	var/metabolism = REM // This would be 0.2 normally
 	var/ingest_met = 0
@@ -31,13 +31,15 @@
 	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
-	var/glass_icon_state = null
-	var/glass_name = null
-	var/glass_desc = null
-	var/glass_center_of_mass = null
+	var/glass_icon_state
+	var/glass_name
+	var/glass_desc
+	var/glass_center_of_mass
 	var/color = "#000000"
 	var/color_weight = 1
 	var/sanity_gain = 0
+	var/list/taste_tag = list()
+	var/sanity_gain_ingest = 0
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
@@ -56,11 +58,12 @@
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
+	var/price_per_unit = 1 //por cargo rework
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
-/datum/reagent/proc/consumed_amount(mob/living/carbon/M, var/alien, var/location)
+/datum/reagent/proc/consumed_amount(mob/living/carbon/M, alien, location)
 	var/removed = metabolism
 	if(location == CHEM_INGEST)
 		if(ingest_met)
@@ -123,11 +126,11 @@
 	return
 
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
-/datum/reagent/proc/on_mob_life(mob/living/carbon/M, var/alien, var/location)
+/datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien, location)
 	if(!istype(M))
-		return
+		return FALSE
 	if(!affects_dead && M.stat == DEAD)
-		return
+		return FALSE
 
 	var/removed = consumed_amount(M, alien, location)
 
@@ -146,27 +149,33 @@
 	// At this point, the reagent might have removed itself entirely - safety check
 	if(volume && holder)
 		remove_self(removed)
+	return TRUE
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	return
+/datum/reagent/proc/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
+	if(!ishuman(H))
+		return
+	else
+		H.sanity.onReagent(src, effect_multiplier)
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+
+/datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
-	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	return
+	apply_sanity_effect(M, effect_multiplier)
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
+/datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
+
+/datum/reagent/proc/overdose(mob/living/carbon/M, alien) // Overdose effect. Doesn't happen instantly.
 	M.adjustToxLoss(REM)
 	return
 
-/datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
+/datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata
 	return
 
-/datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+/datum/reagent/proc/mix_data(newdata, newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
 	if(!data)
 		data = list()
 	return

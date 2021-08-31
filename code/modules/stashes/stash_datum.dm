@@ -49,11 +49,11 @@ This file contains the underlying code for stash datums
 	//This is made of two lists which are added together. Key is object type, value is quantity
 	//Generally, its intended that one list is used for a base type, and one for subtypes, to reduce duplication
 	var/list/contents_list_base = list()
-	var/list/contents_list_extra = list(/obj/random/pack/rare = 1)
+	var/list/contents_list_extra = list(/obj/spawner/pack/rare = 1)
 
 	//Third list for random content. In this list, the value is a probability in the range 0-100
 	//There's no quantity field, each item makes only a single instance, put several in if you want multiples
-	var/list/contents_list_random = list(/obj/random/pack/rare = 30, /obj/random/pack/rare = 30)
+	var/list/contents_list_random = list(/obj/spawner/pack/rare = 30, /obj/spawner/pack/rare = 30)
 
 	//Fourth list for things that will spawn outside of the stash container on the same tile. Commonly used to place remains/corpses
 	var/list/contents_list_external = list()
@@ -69,7 +69,7 @@ This file contains the underlying code for stash datums
 
 	//What type of paper the note will be written on
 	//TODO Future, add support for digital notes on memory sticks
-	var/note_paper_type = /obj/item/weapon/paper/crumpled
+	var/note_paper_type = /obj/item/paper/crumpled
 
 	//How can we direct the user to this stash?
 	//Every stash should allow coords at least, unless you want to specifiy one particular method
@@ -81,7 +81,7 @@ This file contains the underlying code for stash datums
 
 	//What type of container will be spawned to hold the stash items. Default is a burlap sack
 	//You can also set this blank and the objects will be spawned without a container
-	var/stash_container_type = /obj/item/weapon/storage/deferred/stash/sack
+	var/stash_container_type = /obj/item/storage/deferred/stash/sack
 
 	/*If true, the stash will use deferred spawning, meaning that the items will only be spawned inworld
 	When a player finds and opens the stash. This prevents most post-spawn editing, as the post spawn
@@ -230,10 +230,10 @@ This file contains the underlying code for stash datums
 		results.Add(spawning_loc)
 
 	//Now lets handle deferred spawning first
-	if (deferred && istype(spawning_loc, /obj/item/weapon/storage/deferred))
+	if (deferred && istype(spawning_loc, /obj/item/storage/deferred))
 		//For deferred spawns, we just add our spawning list to its list, and we're done.
 		//The items will be spawned later when a user opens this stash
-		var/obj/item/weapon/storage/deferred/D = spawning_loc
+		var/obj/item/storage/deferred/D = spawning_loc
 		D.initial_contents += contents_list_base.Copy()
 
 
@@ -250,8 +250,8 @@ This file contains the underlying code for stash datums
 
 	//And finally lets make sure our container can fit the things we've stuffed into it
 	//And also that its hidden under the floor
-	if (istype(spawning_loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = spawning_loc
+	if (istype(spawning_loc, /obj/item/storage))
+		var/obj/item/storage/S = spawning_loc
 		S.expand_to_fit()
 		S.level = BELOW_PLATING_LEVEL
 		T.levelupdate()
@@ -282,7 +282,7 @@ This file contains the underlying code for stash datums
 
 //The results list contains all the stuff that was spawned
 //In the case of deferred spawns, it contains only the container and none of its contents
-/datum/stash/proc/post_spawn(var/list/results)
+/datum/stash/proc/post_spawn(list/results)
 	return TRUE
 
 
@@ -308,7 +308,7 @@ This file contains the underlying code for stash datums
 //Creates the note that tells the player how to reach the goodies
 /datum/stash/proc/spawn_note(var/atom/spawner)
 	//The passed spawner is where we will create the note
-	var/obj/item/weapon/paper/note = new note_paper_type(spawner)
+	var/obj/item/paper/note = new note_paper_type(spawner)
 	create_note_content()
 	note.info = lore
 	note.update_icon()

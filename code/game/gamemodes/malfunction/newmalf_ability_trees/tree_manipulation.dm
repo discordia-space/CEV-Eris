@@ -3,7 +3,7 @@
 // Abilities in this tree allow the AI to physically manipulate systems around the station.
 // T1 - Electrical Pulse - Sends out pulse that breaks some lights and sometimes even APCs. This can actually break the AI's APC so be careful!
 // T2 - Hack Camera - Allows the AI to hack a camera. Deactivated areas may be reactivated, and functional cameras can be upgraded.
-// T3 - Emergency Forcefield - Allows the AI to project 1 tile forcefield that blocks movement and air flow. Forcefield´dissipates over time. It is also very susceptible to energetic weaponry.
+// T3 - Emergency Forcefield - Allows the AI to project 1 tile forcefield that blocks movement and air flow. Forcefieldï¿½dissipates over time. It is also very susceptible to energetic weaponry.
 // T4 - Machine Overload - Detonates machine of choice in a minor explosion. Two of these are usually enough to kill or K/O someone.
 
 
@@ -40,14 +40,14 @@
 
 /datum/game_mode/malfunction/verb/electrical_pulse()
 	set name = "Electrical Pulse"
-	set desc = "15 CPU - Sends feedback pulse through station's power grid, overloading some sensitive systems, such as lights."
+	set desc = "15 CPU - Sends feedback pulse through ship's power grid, overloading some sensitive systems, such as lights."
 	set category = "Software"
 	var/price = 15
 	var/mob/living/silicon/ai/user = usr
 	if(!ability_prechecks(user, price) || !ability_pay(user,price))
 		return
 	to_chat(user, "Sending feedback pulse...")
-	for(var/obj/machinery/power/apc/AP in SSmachines.machinery)
+	for(var/obj/machinery/power/apc/AP in GLOB.apc_list)
 		if(prob(5))
 			AP.overload_lighting()
 		if(prob(1) && prob(1)) // Very very small chance to actually destroy the APC.
@@ -111,25 +111,26 @@
 				return
 
 
-/datum/game_mode/malfunction/verb/emergency_forcefield(var/turf/T in turfs)
+/datum/game_mode/malfunction/verb/emergency_forcefield()
 	set name = "Emergency Forcefield"
-	set desc = "275 CPU - Uses station's emergency shielding system to create temporary barrier which lasts for few minutes, but won't resist gunfire."
+	set desc = "275 CPU - Uses ship's emergency shielding system to create temporary barrier which lasts indefinetely, but won't resist EMP pulses."
 	set category = "Software"
 	var/price = 275
 	var/mob/living/silicon/ai/user = usr
-	if(!T || !istype(T))
-		return
 	if(!ability_prechecks(user, price) || !ability_pay(user, price))
+		return
+	var/turf/target_turf = get_turf(user.client.virtual_eye)
+	if(!target_turf)
 		return
 
 	to_chat(user, "Emergency forcefield projection completed.")
-	new/obj/machinery/shield/malfai(T)
+	new/obj/machinery/shield/malfai(target_turf)
 	user.hacking = 1
 	spawn(20)
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in SSmachines.machinery)
+/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in GLOB.machines)
 	set name = "Machine Overload"
 	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
 	set category = "Software"

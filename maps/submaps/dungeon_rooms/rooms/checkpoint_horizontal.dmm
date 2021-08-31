@@ -67,7 +67,7 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "n" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "o" = (
@@ -93,7 +93,7 @@
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "t" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "u" = (

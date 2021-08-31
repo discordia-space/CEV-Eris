@@ -30,7 +30,7 @@
 		sleeper.ui_interact(user)
 
 /obj/item/mech_equipment/sleeper/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		sleeper.attackby(I, user)
 	else return ..()
 
@@ -54,7 +54,8 @@
 	idle_power_usage = 0
 	active_power_usage = 0 //It'd be hard to handle, so for now all power is consumed by mech sleeper object
 	interact_offline = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
+	spawn_blacklisted = TRUE
 
 /obj/machinery/sleeper/mounted/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.mech_state)
 	. = ..()
@@ -67,7 +68,7 @@
 
 //You cannot modify these, it'd probably end with something in nullspace. In any case basic meds are plenty for an ambulance
 /obj/machinery/sleeper/mounted/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!user.unEquip(I, src))
 			return
 

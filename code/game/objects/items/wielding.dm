@@ -3,10 +3,9 @@
 /obj/item
 	var/wielded = FALSE //Whether or not it's wielded.
 	var/wieldsound = 'sound/weapons/thudswoosh.ogg' //Generic sound. Replace it with a special one if you have one.
-	var/unwieldsound = null //If you want it to make a sound when you unwield, put one here.
-	var/wielded_icon = null //The item state used when it's weilded. Guns are snowflakey and have their own shit for this. This is for non guns.
-	var/force_unwielded = 0 //If you have a specific force for it being weilded.
-	var/force_wielded = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
+	var/unwieldsound //If you want it to make a sound when you unwield, put one here.
+	var/wielded_icon //The item state used when it's weilded. Guns are snowflakey and have their own shit for this. This is for non guns.
+	var/force_wielded_multiplier = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
 
 
 /mob/living/proc/do_wield()//The proc we actually care about.
@@ -19,15 +18,16 @@
 	if(!wielded || !user)
 		return
 	wielded = FALSE
-	if(force_unwielded)
-		force = force_unwielded
+	if(force_wielded_multiplier)
+		force = (force / force_wielded_multiplier)	
 	else
 		force = (force / 1.3)
+	
 	var/sf = findtext(name," (Wielded)")
 	if(sf)
 		name = copytext(name,1,sf)
 	else //something went wrong
-		name = "[initial(name)]"
+		name = "[initial(name)]"//Returns name from compile-time instead of name with changes that've happened since
 	update_unwield_icon()
 	update_icon()
 	if(user)
@@ -37,7 +37,7 @@
 	user.visible_message(SPAN_WARNING("[user] lets go of their other hand."))
 	if(unwieldsound)
 		playsound(loc, unwieldsound, 50, 1)
-	var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+	var/obj/item/twohanded/offhand/O = user.get_inactive_hand()
 	if(O && istype(O))
 		user.drop_from_inventory(O)
 	return
@@ -51,20 +51,21 @@
 		to_chat(user, SPAN_WARNING("You need your other hand to be empty!</span>"))
 		return
 	wielded = TRUE
-	if(force_wielded)
-		force = force_wielded
+	if(force_wielded_multiplier)
+		force = force * force_wielded_multiplier
 	else //This will give items wielded 30% more damage. This is balanced by the fact you cannot use your other hand.
 		force = (force * 1.3) //Items that do 0 damage will still do 0 damage though.
-	name = "wielded [name]"
+	var/original_name = name //Else using [initial(name)] for the name of object returns compile-time name without any changes that've happened to the object's name
+	name = "[name] (Wielded)"
 	update_wield_icon()
 	update_icon()//Legacy
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
-	user.visible_message(SPAN_WARNING("[user] grabs \the [initial(name)] with both hands."))
+	user.visible_message(SPAN_WARNING("[user] grabs \the [original_name] with both hands."))
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
-	var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
 	O.name = "[name] - offhand"
 	O.desc = "Your second grip on \the [name]"
 	user.put_in_inactive_hand(O)
@@ -116,24 +117,29 @@
 	return FALSE
 
 
-/obj/item/weapon/twohanded/offhand
+/obj/item/twohanded
+	bad_type = /obj/item/twohanded
+	spawn_tags = null
+
+/obj/item/twohanded/offhand
 	name = "offhand"
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
 	w_class = ITEM_SIZE_COLOSSAL
 	item_flags = ABSTRACT
 
-/obj/item/weapon/twohanded/offhand/unwield()
+/obj/item/twohanded/offhand/unwield()
 	wielded = FALSE
 	if(!QDELETED(src))
 		qdel(src)
 
-/obj/item/weapon/twohanded/offhand/wield()
+/obj/item/twohanded/offhand/wield()
 	if(wielded)//Only delete if we're wielded
 		wielded = FALSE
 		if(!QDELETED(src))
 			qdel(src)
 
-/obj/item/weapon/twohanded/offhand/dropped(mob/living/user)
+/obj/item/twohanded/offhand/dropped(mob/living/user)
 	..()
 	var/obj/item/I = user.get_active_hand()
 	var/obj/item/II = user.get_inactive_hand()

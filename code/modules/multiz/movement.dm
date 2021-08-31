@@ -120,7 +120,7 @@
 	if(allow_spacemove())
 		return TRUE
 
-	for(var/turf/simulated/T in trange(1,src))
+	for(var/turf/simulated/T in RANGE_TURFS(1,src))
 		if(T.density)
 			if(check_shoegrip(FALSE))
 				return TRUE
@@ -132,7 +132,7 @@
 	if(allow_spacemove()) //Checks for active jetpack
 		return TRUE
 
-	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"
+	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //Robots get "magboots"
 		if(T.density)
 			return TRUE
 
@@ -153,7 +153,7 @@
 /* Maybe next time.
 /mob/living/carbon/human/CanAvoidGravity()
 	if (!restrained())
-		var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+		var/obj/item/tank/jetpack/thrust = get_jetpack()
 
 		if (thrust && !lying && thrust.allow_thrust(0.01, src))
 			return TRUE
@@ -161,7 +161,7 @@
 	return ..()
 
 /mob/living/silicon/robot/CanAvoidGravity()
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 
 	if (thrust && thrust.allow_thrust(0.02, src))
 		return TRUE
@@ -248,7 +248,7 @@
 			moveWithMob += M.pulling
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
+			for(var/obj/item/grab/G in list(H.r_hand, H.l_hand))
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
 			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)

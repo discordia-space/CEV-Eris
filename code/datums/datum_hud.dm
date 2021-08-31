@@ -52,6 +52,10 @@
 
 	openspace_overlays.Cut()
 
+	if(!LD)
+		return;
+
+
 	var/local_z = z-(LD.original_level-1)
 	for(var/zi in 1 to local_z)
 		for(var/mytype in subtypesof(/obj/screen/plane_master))
@@ -249,56 +253,3 @@
 		"inv2" = list("type" = /obj/screen/silicon/module,     "loc" = "7,1", "module_num" = 2, "icon_state" = "inv2"),
 		"inv3" = list("type" = /obj/screen/silicon/module,     "loc" = "8,1", "module_num" = 3, "icon_state" = "inv3")
 	)
-
-
-
-
-
-/datum/hud/Xenos
-	name = "Xenos"
-	icon = 'icons/mob/screen1_alien.dmi'
-
-	HUDneed = list(
-		"health"      = list("type" = /obj/screen/health,     "loc" = "16,6"),
-		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "16,5"),
-		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "16,7"),
-		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "16,13"),
-		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "16,10"),
-		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "16,12"),
-		"fire"        = list("type" = /obj/screen/fire,       "loc" = "16,9"),
-		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "16,1"),
-		"pull"        = list("type" = /obj/screen/pull,       "loc" = "15,1"),
-		"drop"        = list("type" = /obj/screen/drop,       "loc" = "16:-16,1"),
-		"resist"      = list("type" = /obj/screen/resist,     "loc" = "15:16,1"),
-		"m_intent"    = list("type" = /obj/screen/mov_intent, "loc" = "15,0"),
-		"equip"       = list("type" = /obj/screen/equip,      "loc" = "8,1"),
-		"intent"      = list("type" = /obj/screen/intent,     "loc" = "13:16,0"),
-		"help"        = list("type" = /obj/screen/fastintent/help,     "loc" = "13,0"),
-		"disarm"      = list("type" = /obj/screen/fastintent/disarm,   "loc" = "13,0"),
-		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "14,0"),
-		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "14,0"),
-		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "16,0"),
-		"internal"    = list("type" = /obj/screen/internal,   "loc" = "16,14"),
-		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1")
-		)
-
-	slot_data = list (
-		"Uniform" =   list("loc" = "2,1",  "name" = "Uniform",         "state" = "center",  "toggle" = 1),
-		"Suit" =   list("loc" = "3,1",  "name" = "Suit",            "state" = "equip",   "toggle" = 1),
-		"Mask" =         list("loc" = "3,2",  "name" = "Mask",            "state" = "mask",    "toggle" = 1),
-		"Gloves" =       list("loc" = "4,1",  "name" = "Gloves",          "state" = "gloves",  "toggle" = 1),
-		"Glasses" =         list("loc" = "2,2",  "name" = "Glasses",         "state" = "glasses", "toggle" = 1),
-		"Left Ear" =        list("loc" = "4,2",  "name" = "Left Ear",        "state" = "ears0",   "toggle" = 1),
-		"Right Ear" =        list("loc" = "4,3",  "name" = "Right Ear",       "state" = "ears1",   "toggle" = 1),
-		"Hat" =         list("loc" = "3,3",  "name" = "Hat",             "state" = "hair",    "toggle" = 1),
-		"Shoes" =        list("loc" = "3,0",  "name" = "Shoes",           "state" = "shoes",   "toggle" = 1),
-		"Suit Storage" = list("loc" = "4,0",  "name" = "Suit Storage",    "state" = "suit-belt"),
-		"Back" =         list("loc" = "7,0",  "name" = "Back",            "state" = "back"),
-		"ID" =           list("loc" = "5,0",  "name" = "ID",              "state" = "id"),
-		"Left Pocket" =     list("loc" = "10,0",  "name" = "Left Pocket",     "state" = "pocket_l"),
-		"Right Pocket" =     list("loc" = "11,0", "name" = "Right Pocket",    "state" = "pocket_r"),
-		"Belt" =         list("loc" = "6,0",  "name" = "Belt",            "state" = "belt"),
-		"Left Hand" =       list("loc" = "9,0",  "name" = "Left Hand",       "state" = "hand", "dir" = NORTH, "type" = /obj/screen/inventory/hand),
-		"Right Hand" =       list("loc" = "8,0",  "name" = "Right Hand",      "state" = "hand", "dir" = SOUTH, "type" = /obj/screen/inventory/hand)
-		)
-

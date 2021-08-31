@@ -12,11 +12,11 @@
 	body_parts_covered = EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
-	var/obj/item/device/encryptionkey/keyslot1 = null
-	var/obj/item/device/encryptionkey/keyslot2 = null
+	var/obj/item/device/encryptionkey/keyslot1
+	var/obj/item/device/encryptionkey/keyslot2
 
 	var/ks1type = /obj/item/device/encryptionkey
-	var/ks2type = null
+	var/ks2type
 
 /obj/item/device/radio/headset/New()
 	..()
@@ -67,8 +67,9 @@
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_COVERT = 3)
-	syndie = 1
+	syndie = TRUE
 	ks1type = /obj/item/device/encryptionkey/syndicate
+	spawn_blacklisted = TRUE
 
 /obj/item/device/radio/headset/binary
 	origin_tech = list(TECH_COVERT = 3)
@@ -116,6 +117,10 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_com
 
+/obj/item/device/radio/headset/heads
+	bad_type = /obj/item/device/radio/headset/heads
+	spawn_blacklisted = TRUE
+
 /obj/item/device/radio/headset/heads/captain
 	name = "captain's headset"
 	desc = "The headset of the boss."
@@ -130,7 +135,7 @@
 	icon_state = "radio"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ai_integrated
-	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
+	var/myAi    // Atlantis: Reference back to the AI which has this radio.
 	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
 
 /obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
@@ -196,7 +201,7 @@
 
 /obj/item/device/radio/headset/headset_service
 	name = "service radio headset"
-	desc = "Headset used by the service staff, tasked with keeping the station full, happy and clean."
+	desc = "Headset used by the service staff, tasked with keeping the ship full, happy and clean."
 	icon_state = "srv_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_service
@@ -215,13 +220,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_church
 
-/obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/headset/attackby(obj/item/W, mob/user)
 //	..()
 	user.set_machine(src)
-	if (!( istype(W, /obj/item/weapon/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
+	if(istype(W, /obj/item/tool/screwdriver))
 		if(keyslot1 || keyslot2)
 
 

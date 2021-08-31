@@ -12,7 +12,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/obj/item/loaded_item = null
 	var/decon_mod = 0
 	var/busy = FALSE
-	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
+	circuit = /obj/item/electronics/circuitboard/destructive_analyzer
 
 	idle_power_usage = 30
 	active_power_usage = 2500
@@ -26,11 +26,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/S in src)
+	for(var/obj/item/stock_parts/S in src)
 		T += S.rating
 	decon_mod = T * 0.1
 
-/obj/machinery/r_n_d/destructive_analyzer/update_icon()
+/obj/machinery/r_n_d/destructive_analyzer/on_update_icon()
 	if(panel_open)
 		icon_state = "d_analyzer_t"
 	else if(loaded_item)
@@ -92,7 +92,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			busy = TRUE
 			loaded_item = I
 			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
-			flick("d_analyzer_la", src)
+			FLICK("d_analyzer_la", src)
 			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECONDS)
 			return TRUE
 	return
@@ -112,7 +112,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 
 	busy = TRUE
-	flick("d_analyzer_process", src)
+	FLICK("d_analyzer_process", src)
 	addtimer(CALLBACK(src, .proc/finish_deconstructing), 2.4 SECONDS)
 	return TRUE
 
@@ -122,7 +122,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 	if(linked_console)
 		linked_console.handle_item_analysis(loaded_item)
-
+	for(var/mob/living/carbon/human/H in viewers(src))
+		SEND_SIGNAL(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 	if(istype(loaded_item,/obj/item/stack))
 		var/obj/item/stack/S = loaded_item
 		if(S.amount <= 1)

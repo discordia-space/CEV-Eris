@@ -10,7 +10,8 @@
 		return
 
 	for(var/obj/item/W in M)
-		M.drop_from_inventory(W)
+		if(W.is_equipped())
+			M.drop_from_inventory(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
@@ -457,13 +458,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_rejuvenate, R_ADMIN, FALSE)
 	if(!istype(M))
 		alert("Cannot revive a ghost")
 		return
-	if(config.allow_admin_rev)
-		M.revive()
 
-		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", 1)
-	else
-		alert("Admin revive disabled")
+	M.revive()
+
+	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
+	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!", 1)
 
 
 ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN, FALSE)
@@ -753,7 +752,7 @@ ADMIN_VERB_ADD(/client/proc/admin_call_shuttle, R_ADMIN, FALSE)
 	return
 
 ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN, FALSE)
-//allows us to cancel the emergency shuttle, sending it back to centcomm
+//allows us to cancel the emergency shuttle, sending it back to centcom
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
 	set name = "Cancel Evacuation"
@@ -845,4 +844,3 @@ ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER, FALSE)
 		config.allow_random_events = 0
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
-

@@ -1,8 +1,10 @@
 #define DEBUG
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
+#define TURF_FLAG_NORUINS 2
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+#define RUIN_MAP_EDGE_PAD 15
 
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
@@ -37,11 +39,12 @@
 #define SPECIALROLE_HUD 7 // AntagHUD image.
 #define  STATUS_HUD_OOC 8 // STATUS_HUD without virus DB check for someone being ill.
 #define        LIFE_HUD 9 // STATUS_HUD that only reports dead or alive
+#define   EXCELSIOR_HUD 10 // Used by excelsior to see who else is excel
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 
 #define PODS_PREPTIME 	600	//10 mins = 600 sec - hol long pods will wait before launch
-#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcomm
+#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcom
 #define PODS_LOCKDOWN	90	//1.5 mins - how long pods stay opened, if evacuation will be cancelled
 
 // Shuttle moving status.
@@ -167,12 +170,12 @@
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
 
-// Default name for announsment system
-#define ANNOUNSER_NAME "CEV Eris System Announcer"
+// Default name for announcement system
+#define ANNOUNCER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
-
+#define LIST_OF_CONSONANT list("a", "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
+#define EN_ALPHABET list("a", "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z")
 //Multi-z
 #define FALL_GIB_DAMAGE 999
 
@@ -184,7 +187,10 @@
 
 //Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base
+#define CRUCIFORM_AGROLYTE /datum/core_module/rituals/cruciform/agrolyte
+#define CRUCIFORM_CUSTODIAN /datum/core_module/rituals/cruciform/custodian
 #define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
+#define CRUCIFORM_ACOLYTE /datum/core_module/rituals/cruciform/priest/acolyte
 #define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
 #define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
 #define CRUCIFORM_UPLINK /datum/core_module/cruciform/uplink
@@ -194,6 +200,13 @@
 #define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
+
+#define CUPGRADE_NATURES_BLESSING /obj/item/cruciform_upgrade/natures_blessing
+#define CUPGRADE_FAITHS_SHIELD /obj/item/cruciform_upgrade/faiths_shield
+#define CUPGRADE_CLEANSING_PSESENCE /obj/item/cruciform_upgrade/cleansing_presence
+#define CUPGRADE_MARTYR_GIFT /obj/item/cruciform_upgrade/martyr_gift
+#define CUPGRADE_WRATH_OF_GOD /obj/item/cruciform_upgrade/wrath_of_god
+#define CUPGRADE_SPEED_OF_THE_CHOSEN /obj/item/cruciform_upgrade/speed_of_the_chosen
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0
@@ -224,14 +237,12 @@
 #define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
+// the thing below allow using SPANning in datum definition, the above can't.
+#define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
-
-// Overlays
-// (placeholders for if/when TG overlays system is ported)
-#define cut_overlays(...)			overlays.Cut()
 
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
@@ -287,9 +298,47 @@
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
+
+
+//Planet habitability class
+#define HABITABILITY_IDEAL  1
+#define HABITABILITY_OKAY  2
+#define HABITABILITY_BAD  3
+
+
+//Map template flags
+#define TEMPLATE_FLAG_ALLOW_DUPLICATES 1 // Lets multiple copies of the template to be spawned
+#define TEMPLATE_FLAG_SPAWN_GUARANTEED 2 // Makes it ignore away site budget and just spawn (only for away sites)
+#define TEMPLATE_FLAG_CLEAR_CONTENTS   4 // if it should destroy objects it spawns on top of
+#define TEMPLATE_FLAG_NO_RUINS         8 // if it should forbid ruins from spawning on top of it
+#define TEMPLATE_FLAG_NO_RADS          16// Removes all radiation from the template after spawning.
+
+
+//Flags for exoplanet ruin picking
+
+#define RUIN_HABITAT 	1		//long term habitat
+#define RUIN_HUMAN 		2		//human-made structure
+#define RUIN_ALIEN 		4		//artificial structure of an unknown origin
+#define RUIN_WRECK 		8		//crashed vessel
+#define RUIN_NATURAL	16		//naturally occuring structure
+#define RUIN_WATER 		32		//ruin depending on planet having water accessible
+
 #define NEWorINITIAL(variable, newvalue) variable = newvalue ? newvalue : initial(variable)
 
 //Matricies
 #define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33)
+
+//different types of atom colorations
+#define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color
+#define TEMPORARY_COLOUR_PRIORITY 	2 //e.g. purple effect of the revenant on a mob, black effect when mob electrocuted
+#define WASHABLE_COLOUR_PRIORITY 	3 //color splashed onto an atom (e.g. paint on turf)
+#define FIXED_COLOUR_PRIORITY 		4 //color inherent to the atom (e.g. blob color)
+#define COLOUR_PRIORITY_AMOUNT      4 //how many priority levels there are.
+
+//Sounds list
+#define WALLHIT_SOUNDS list('sound/effects/wallhit.ogg', 'sound/effects/wallhit2.ogg', 'sound/effects/wallhit3.ogg')
+
+//Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"

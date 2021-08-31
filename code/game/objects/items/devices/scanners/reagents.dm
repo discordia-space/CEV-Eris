@@ -3,6 +3,8 @@
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
+	spawn_tags = SPAWN_TAG_DIVICE_SCIENCE
+	rarity_value = 10
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
@@ -35,4 +37,6 @@
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+	spawn_tags = SPAWN_TAG_DIVICE
+	rarity_value = 50
 

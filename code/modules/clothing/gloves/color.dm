@@ -5,6 +5,7 @@
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "latex"
 	item_state = "lgloves"
+	bad_type = /obj/item/clothing/gloves/color
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"

@@ -6,7 +6,7 @@ var/global/list/plant_seed_sprites = list()
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 	w_class = ITEM_SIZE_SMALL
-
+	bad_type = /obj/item/seeds
 	var/seed_type
 	var/datum/seed/seed
 	var/modified = 0
@@ -26,7 +26,7 @@ var/global/list/plant_seed_sprites = list()
 	if(!seed) return
 
 	// Update icon.
-	overlays.Cut()
+	cut_overlays()
 	var/is_seeds = ((seed.seed_noun in list("seeds","pits","nodes")) ? 1 : 0)
 	var/image/seed_mask
 	var/seed_base_key = "base-[is_seeds ? seed.get_trait(TRAIT_PLANT_COLOUR) : "spores"]"
@@ -47,8 +47,8 @@ var/global/list/plant_seed_sprites = list()
 		seed_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 		plant_seed_sprites[seed_overlay_key] = seed_overlay
 
-	overlays |= seed_mask
-	overlays |= seed_overlay
+	associate_with_overlays(seed_mask)
+	associate_with_overlays(seed_overlay)
 
 	if(is_seeds)
 		src.name = "packet of [seed.seed_name] [seed.seed_noun]"
@@ -74,6 +74,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = null
 
 /obj/item/seeds/random/New()
+	..()
 	seed = plant_controller.create_random_seed()
 	seed_type = seed.name
 	update_seed()

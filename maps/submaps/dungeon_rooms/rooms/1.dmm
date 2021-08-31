@@ -26,7 +26,7 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "h" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 

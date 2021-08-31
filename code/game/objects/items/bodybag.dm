@@ -7,6 +7,8 @@
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MEDICAL
 
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
@@ -27,8 +29,8 @@
 	var/contains_body = 0
 	layer = LOW_OBJ_LAYER+0.01
 
-/obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/pen))
+/obj/structure/closet/body_bag/attackby(W as obj, mob/user)
+	if (istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != W)
 			return
@@ -38,15 +40,15 @@
 		if (t)
 			src.name = "body bag - "
 			src.name += t
-			src.overlays += image(src.icon, "bodybag_label")
+			src.add_overlays(image(src.icon, "bodybag_label"))
 		else
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/weapon/tool/wirecutters))
+	else if(istype(W, /obj/item/tool/wirecutters))
 		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
-		src.overlays.Cut()
+		src.cut_overlays()
 		return
 
 /obj/structure/closet/body_bag/store_mobs(var/stored_units)
@@ -71,7 +73,7 @@
 			qdel(src)
 		return
 
-/obj/structure/closet/body_bag/update_icon()
+/obj/structure/closet/body_bag/on_update_icon()
     if(opened)
         icon_state = "bodybag_open"
     else
@@ -79,7 +81,7 @@
             icon_state = "bodybag_full"
         else
             icon_state = "bodybag_closed"
-				
+
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
@@ -102,11 +104,12 @@
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
 	store_items = 0
+	rarity_value = 20
 	var/used = 0
-	var/obj/item/weapon/tank/tank = null
+	var/obj/item/tank/tank
 
 /obj/structure/closet/body_bag/cryobag/New()
-	tank = new /obj/item/weapon/tank/emergency_oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
+	tank = new /obj/item/tank/emergency_oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
@@ -127,14 +130,14 @@
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.in_stasis = 1
+		H.EnterStasis()
 		src.used = 1
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.in_stasis = 0
+		H.ExitStasis()
 	..()
 
 /obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.

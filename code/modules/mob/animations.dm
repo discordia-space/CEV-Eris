@@ -291,10 +291,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 	I.plane = plane
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	if (istype(target,/mob))
+	if (ismob(target))
 		I.dir = target.dir
 
-	if (istype(old_loc,/obj/item/weapon/storage))
+	if (istype(old_loc,/obj/item/storage))
 		I.pixel_x += old_loc.pixel_x
 		I.pixel_y += old_loc.pixel_y
 
@@ -334,7 +334,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		I.pixel_x = 0
 		I.pixel_y = 0
-		if (istype(target,/mob))
+		if (ismob(target))
 			I.dir = target.dir
 		flick_overlay(I, clients, 4)
 

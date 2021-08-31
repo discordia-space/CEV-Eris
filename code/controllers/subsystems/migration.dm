@@ -6,8 +6,6 @@
 	This subsystem also handles spreading plants through burrows
 
 */
-
-var/list/global/all_burrows = list()
 var/list/global/populated_burrows = list()
 var/list/global/unpopulated_burrows = list()
 var/list/global/distressed_burrows = list()
@@ -138,7 +136,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 //Tells all the burrows to refresh their population lists
 /datum/controller/subsystem/migration/proc/do_scan()
 	set waitfor = FALSE
-	for (var/obj/structure/burrow/B in all_burrows)
+	for (var/obj/structure/burrow/B in GLOB.all_burrows)
 		B.life_scan()
 
 	next_scan = world.time + burrow_scan_interval
@@ -220,7 +218,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			reroll_prob = 80
 
 	//Lets copy the list into a candidates buffer
-	var/list/candidates = all_burrows.Copy(1,0)
+	var/list/candidates = GLOB.all_burrows.Copy(1,0)
 
 	//No picking the source burrow
 	candidates -= source
@@ -245,7 +243,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		//And a high chance to reroll it if its not what we want in terms of being in/out of maintenance
 		if ((candidate.maintenance != reroll_type) && prob(reroll_prob))
 			continue
-		
+
 		// if burrow was closed before it has chance to be ignored
 		if (candidate.isSealed && candidate.isRevealed && prob(reroll_prob/2))
 			continue
@@ -280,7 +278,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		//Burrow is already busy
 		if (candidate.target || candidate.recieving)
 			continue
-		
+
 		// Burrow is closed
 		if(candidate.isSealed)
 			continue
@@ -329,7 +327,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	next_plantspread = world.time + burrow_plantspread_interval//Setup the next spread tick
 
 	//We loop through every burrow and see what it needs
-	for (var/obj/structure/burrow/B in all_burrows)
+	for (var/obj/structure/burrow/B in GLOB.all_burrows)
 
 		//Branch 1: No plants yet
 		if (!B.plant)
@@ -455,7 +453,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 /proc/get_sorted_burrow_network(var/atom/source)
 	var/list/sorted = list() //List of the burrows, in order
 	var/list/distances  = list() //Associative list of burrows and distances
-	for (var/b in all_burrows)
+	for (var/b in GLOB.all_burrows)
 		if (b == source)
 			continue //Don't have ourselves in the return list
 

@@ -29,6 +29,7 @@
 	var/req_eng = -1
 	var/req_med = -1
 	var/req_sci = -1
+	//TO DO: make req_heads, req_sec, req_eng and so on actually do shit, similary how req_crew checks for total amount of players
 
 	var/req_stage = -1
 
@@ -46,7 +47,7 @@
 
 	//Things to configure
 	var/event_type
-	var/weight = 1
+	var/weight = 1 //Our base weight coefficient, which affects how likely we are to be picked from a list of other story events
 
 	//Which event pools this story event can appear in.
 	//Multiple options allowed, can be any combination of
@@ -78,6 +79,10 @@
 	if(processing && is_processing())
 		if (report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
 		return FALSE
+	
+	if(req_crew > GLOB.player_list.len)
+		if (report) to_chat(report, SPAN_NOTICE("Failure: Not enough players for event to spawn."))
+		return FALSE
 
 	//IF this is a wrapper for a random event, we'll check if that event can trigger
 	if (event_type)
@@ -104,7 +109,7 @@
 
 	return FALSE
 
-/datum/storyevent/proc/cancel(var/type, var/completion = 0.0)
+/datum/storyevent/proc/cancel(var/type, var/completion = 0)
 	//This proc refunds the cost of this event
 	if (GLOB.storyteller)
 		GLOB.storyteller.modify_points(get_cost(type)*(1 - completion), type)

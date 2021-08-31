@@ -47,10 +47,10 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	//Configuration:
 	//Things you can set to make a new storyteller
-	var/gain_mult_mundane = 1.0
-	var/gain_mult_moderate = 1.0
-	var/gain_mult_major = 1.0
-	var/gain_mult_roleset = 1.0
+	var/gain_mult_mundane = 1
+	var/gain_mult_moderate = 1
+	var/gain_mult_major = 1
+	var/gain_mult_roleset = 1
 
 	var/list/tag_weight_mults = list()
 	var/list/tag_cost_mults = list()
@@ -178,12 +178,12 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 	ANTAGONIST HANDLING
 *********************************/
 /datum/storyteller/proc/update_objectives()
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!A.faction)
 			for(var/datum/objective/O in A.objectives)
 				O.update_completion()
 
-	for(var/datum/faction/F in current_factions)
+	for(var/datum/faction/F in GLOB.current_factions)
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 

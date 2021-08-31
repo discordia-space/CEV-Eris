@@ -18,7 +18,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	machinetype = 5
 	produces_heat = 0
 	delay = 7
-	circuit = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	circuit = /obj/item/electronics/circuitboard/telecomms/broadcaster
 
 /obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals
@@ -94,7 +94,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				recentmessages = list()
 
 		/* --- Do a snazzy animation! --- */
-		flick("broadcaster_send", src)
+		FLICK("broadcaster_send", src)
 
 /obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.
@@ -112,7 +112,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	name = "telecommunications mainframe"
 	icon_state = "comm_server"
 	desc = "A compact machine used for portable subspace telecommuniations processing."
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	machinetype = 6
 	produces_heat = 0
@@ -280,7 +280,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
 	for (var/mob/R in receive)
-
+		SEND_SIGNAL(radio, COMSIG_MESSAGE_RECEIVED, R)
 	  /* --- Loop through the receivers and categorize them --- */
 		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue

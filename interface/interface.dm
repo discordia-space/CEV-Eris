@@ -35,6 +35,16 @@
 		to_chat(src, SPAN_WARNING("The Discordia Github is not set in the server configuration."))
 	return
 
+/client/verb/ticketsshortcut()
+	set name = "ticketsshortcut"
+	set desc = "Access your tickets."
+	set hidden = 1
+
+	if(check_rights(R_ADMIN))
+		SStickets.showUI(usr)  // Admins access the ticket management interface
+	else
+		SStickets.userDetailUI(usr)  // Users access their tickets
+	return
 
 #define RULES_FILE "config/rules.html"
 /client/verb/rules()
@@ -67,6 +77,9 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tw = up
 \tq = drop
 \te = equip
+\tShift+e = belt-equip
+\tShift+q = suit-storage-equip
+\tShift+b = bag-equip
 \tr = throw
 \tt = say
 \t5 = emote

@@ -10,7 +10,7 @@
 	icon_state = "tracker"
 	anchored = TRUE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by SSsun
@@ -72,7 +72,7 @@
 
 // Tracker Electronic
 
-/obj/item/weapon/tracker_electronics
+/obj/item/electronics/tracker
 
 	name = "tracker electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'

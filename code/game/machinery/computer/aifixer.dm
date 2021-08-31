@@ -4,9 +4,9 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/aifixer
+	circuit = /obj/item/electronics/circuitboard/aifixer
 	req_one_access = list(access_robotics, access_heads)
-	var/mob/living/silicon/ai/occupant = null
+	var/mob/living/silicon/ai/occupant
 	var/active = 0
 
 /obj/machinery/computer/aifixer/New()
@@ -99,7 +99,7 @@
 		return 1
 	if (href_list["fix"])
 		src.active = 1
-		src.overlays += image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.add_overlays(image('icons/obj/computer.dmi', "ai-fixer-on"))
 		while (src.occupant.health < 100)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
@@ -111,13 +111,13 @@
 				src.occupant.lying = 0
 				GLOB.dead_mob_list -= src.occupant
 				GLOB.living_mob_list += src.occupant
-				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
-				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
+				src.remove_overlays(image('icons/obj/computer.dmi', "ai-fixer-404"))
+				src.add_overlays(image('icons/obj/computer.dmi', "ai-fixer-full"))
 				src.occupant.add_ai_verbs()
 			src.updateUsrDialog()
 			sleep(10)
 		src.active = 0
-		src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.remove_overlays(image('icons/obj/computer.dmi', "ai-fixer-on"))
 
 
 		src.add_fingerprint(usr)
@@ -125,15 +125,15 @@
 	return
 
 
-/obj/machinery/computer/aifixer/update_icon()
+/obj/machinery/computer/aifixer/on_update_icon()
 	..()
 	if((stat & BROKEN) || (stat & NOPOWER))
 		return
 
 	if(occupant)
 		if(occupant.stat)
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
+			add_overlays(image('icons/obj/computer.dmi', "ai-fixer-404"))
 		else
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
+			add_overlays(image('icons/obj/computer.dmi', "ai-fixer-full"))
 	else
-		overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
+		add_overlays(image('icons/obj/computer.dmi', "ai-fixer-empty"))

@@ -39,7 +39,7 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_item
 	var/name = ""
-	var/category = null
+	var/category
 	var/log = 1
 	//var/feedback = 1
 	var/permissions = R_HOST

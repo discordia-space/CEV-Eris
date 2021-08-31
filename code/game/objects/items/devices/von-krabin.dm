@@ -12,28 +12,42 @@
 	price_tag = 20000
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_BIO = 9, TECH_MAGNET = 9)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 
 	var/active = FALSE
 	var/area_radius = 7
 
-	var/buff_power = 5
+	var/buff_power = 15
 
 	var/stats_buff = list(STAT_BIO, STAT_COG, STAT_MEC)
 	var/list/mob/living/carbon/human/currently_affected = list()
 
+/obj/item/device/von_krabin/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_moebius
+
 /obj/item/device/von_krabin/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	check_for_faithful(list())
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	GLOB.moebius_faction_item_loss++
+	..()
+
+/obj/item/device/von_krabin/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
 	..()
 
 /obj/item/device/von_krabin/attack_self()
 	if(active)
-		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		check_for_faithful(list())
 	else
-		active = TRUE
 		START_PROCESSING(SSobj, src)
+	active = !active
 	return
 
 /obj/item/device/von_krabin/Process()

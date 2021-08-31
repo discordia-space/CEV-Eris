@@ -5,12 +5,12 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 
-	use_power = 0	//uses powernet power, not APC power
+	use_power = NO_POWER_USE	//uses powernet power, not APC power
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
 	var/active = 0
@@ -57,7 +57,7 @@
 	wifi_receiver = null
 	return ..()
 
-/obj/machinery/power/emitter/update_icon()
+/obj/machinery/power/emitter/on_update_icon()
 	if (active && powernet && avail(active_power_usage))
 		icon_state = "emitter_+a"
 	else
@@ -101,7 +101,7 @@
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
 			src.active = 0
-			src.use_power = 1	*/
+			src.use_power = IDLE_POWER_USE	*/
 	return 1
 
 /obj/machinery/power/emitter/Process()
@@ -195,7 +195,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The lock seems to be broken!"))
 			return

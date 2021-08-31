@@ -47,9 +47,10 @@
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
 	for(var/obj/O in src)
-		O.hide(1)
+		O.hide(TRUE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, TRUE)
 
-/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
+/turf/simulated/wall/New(newloc, materialtype, rmaterialtype)
 	if (!damage_overlays)
 		damage_overlays = new
 
@@ -73,7 +74,7 @@
 	..(newloc)
 
 
-/turf/simulated/wall/Initialize(var/mapload)
+/turf/simulated/wall/Initialize(mapload)
 	..()
 
 	if (mapload)
@@ -113,7 +114,7 @@
 // Extracts angle's tan if ischance = TRUE.
 // In other case it just makes bullets and lazorz go where they're supposed to.
 
-/turf/simulated/wall/proc/projectile_reflection(var/obj/item/projectile/Proj, var/ischance = FALSE)
+/turf/simulated/wall/proc/projectile_reflection(obj/item/projectile/Proj, var/ischance = FALSE)
 	if(Proj.starting)
 		var/ricochet_temp_id = rand(1,1000)
 		if(!ischance)
@@ -239,7 +240,11 @@
 	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
-	var/damage = min(proj_damage, 100)
+	var/damage_taken = 0
+	if(Proj.nocap_structures)
+		damage_taken = proj_damage * 4
+	else
+		damage_taken = min(proj_damage, 100)
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
@@ -249,7 +254,7 @@
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
 		slug.throw_at(get_turf(Proj), 0, 1)
 
-	take_damage(damage)
+	take_damage(damage_taken)
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()
@@ -356,8 +361,8 @@
 		material.place_sheet(src, amount=3)
 
 	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/item/weapon/contraband/poster))
-			var/obj/item/weapon/contraband/poster/P = O
+		if(istype(O,/obj/item/contraband/poster))
+			var/obj/item/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
 			O.loc = src
@@ -372,11 +377,11 @@
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500, 800))
-		if(2.0)
+		if(2)
 			take_damage(rand(200, 500))
-		if(3.0)
+		if(3)
 			take_damage(rand(90, 250))
 		else
 	return
@@ -388,10 +393,10 @@
 		return 0
 	return 1
 
-/turf/simulated/wall/proc/thermitemelt(mob/user as mob)
+/turf/simulated/wall/proc/thermitemelt(mob/user)
 	if(!can_melt())
 		return
-	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
+	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
 	O.name = "Thermite"
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
@@ -427,7 +432,7 @@
 		spawn(2)
 			new /obj/structure/girder(src)
 			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in trange(3, src) - src)
+			for(var/turf/simulated/wall/W in RANGE_TURFS(3, src) - src)
 				W.burn((temperature/4))
 			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
 				D.ignite(temperature/4)

@@ -5,11 +5,11 @@
 	icon_state = "borgcharger0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
-	circuit = /obj/item/weapon/circuitboard/recharge_station
+	circuit = /obj/item/electronics/circuitboard/recharge_station
 	var/mob/occupant = null
-	var/obj/item/weapon/cell/large/cell
+	var/obj/item/cell/large/cell
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
 	var/charging = 0
 	var/efficiency = 0.9
@@ -94,11 +94,6 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
-	else if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
-		if(!isnull(H.internal_organs_by_name[BP_CELL]) && H.nutrition < 450)
-			H.nutrition = min(H.nutrition+10, 450)
-			cell.use(7000/450*10)
 
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
@@ -143,12 +138,12 @@
 	var/man_rating = 0
 	var/cap_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			man_rating += P.rating
-	cell = locate(/obj/item/weapon/cell/large) in component_parts
+	cell = locate(/obj/item/cell/large) in component_parts
 
 	charging_power = 40000 + 40000 * cap_rating
 	restore_power_active = 10000 + 15000 * cap_rating
@@ -164,22 +159,22 @@
 		desc += "<br>It is capable of repairing burn damage."
 
 /obj/machinery/recharge_station/proc/build_overlays()
-	overlays.Cut()
+	cut_overlays()
 	switch(round(chargepercentage()))
 		if(1 to 20)
-			overlays += image('icons/obj/objects.dmi', "statn_c0")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c0"))
 		if(21 to 40)
-			overlays += image('icons/obj/objects.dmi', "statn_c20")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c20"))
 		if(41 to 60)
-			overlays += image('icons/obj/objects.dmi', "statn_c40")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c40"))
 		if(61 to 80)
-			overlays += image('icons/obj/objects.dmi', "statn_c60")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c60"))
 		if(81 to 98)
-			overlays += image('icons/obj/objects.dmi', "statn_c80")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c80"))
 		if(99 to 110)
-			overlays += image('icons/obj/objects.dmi', "statn_c100")
+			add_overlays(image('icons/obj/objects.dmi', "statn_c100"))
 
-/obj/machinery/recharge_station/update_icon()
+/obj/machinery/recharge_station/on_update_icon()
 	..()
 	if(stat & BROKEN)
 		icon_state = "borgcharger0"
@@ -217,10 +212,6 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.cell)
-			return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!isnull(H.internal_organs_by_name[BP_CELL]))
 			return 1
 	return 0
 

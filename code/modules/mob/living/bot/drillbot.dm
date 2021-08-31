@@ -6,6 +6,11 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	icon_state = "mining_drone"
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_BOT_OS
+	bad_type = /mob/living/bot/miningonestar
 	var/obj/item/loot
 	var/attacktext = "drills"
 	var/environment_smash = 1
@@ -17,6 +22,7 @@
 
 /mob/living/bot/miningonestar/Destroy()
 	loot = null
+	. = ..()
 
 /mob/living/bot/miningonestar/death()
 	loot.forceMove(loc)
@@ -26,7 +32,7 @@
 	..()
 	update_icons()
 
-	botcard = new /obj/item/weapon/card/id(src)
+	botcard = new /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
 	access_scanner = new /obj(src)
@@ -53,7 +59,7 @@
 	..()
 	update_icons()
 
-	botcard = new /obj/item/weapon/card/id(src)
+	botcard = new /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
 	access_scanner = new /obj(src)

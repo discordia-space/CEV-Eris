@@ -7,7 +7,7 @@
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-
+	bad_type = /mob/living/simple_animal
 	var/datum/component/spawner/nest
 
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
@@ -35,6 +35,7 @@
 	var/stop_automated_movement_when_pulled = TRUE //When set to 1 this stops the animal from moving when someone is pulling it.
 	var/atom/movement_target = null//Thing we're moving towards
 	var/turns_since_scan = 0
+	var/eat_from_hand = TRUE
 
 	//Interaction
 	var/response_help   = "tries to help"
@@ -99,6 +100,8 @@
 	var/foodtarget = 0
 	//Used to control how often ian scans for nearby food
 
+	sanity_damage = -0.01
+
 	mob_classification = CLASSIFICATION_ORGANIC
 
 /mob/living/simple_animal/proc/beg(var/atom/thing, var/atom/holder)
@@ -116,19 +119,19 @@
 
 	verbs -= /mob/verb/observe
 
-	if (mob_size)
+	if(mob_size)
 		nutrition_step = mob_size * 0.03 * metabolic_factor
 		bite_factor = mob_size * 0.1
 		max_nutrition *= 1 + (nutrition_step*4)//Max nutrition scales faster than costs, so bigger creatures eat less often
-		reagents = new/datum/reagents(stomach_size_mult*mob_size, src)
+		create_reagents(stomach_size_mult*mob_size)
 	else
-		reagents = new/datum/reagents(20, src)
+		create_reagents(20)
 
 /mob/living/simple_animal/Move(NewLoc, direct)
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != DEAD)
-			src.nutrition -= nutrition_step
+			src.adjustNutrition(-nutrition_step)
 
 /mob/living/simple_animal/Released()
 	//These will cause mobs to immediately do things when released.
@@ -161,22 +164,26 @@
 			to_chat(user, SPAN_NOTICE("It looks hungry."))
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
 			to_chat(user, "It looks full and contented.")
-	if (health < maxHealth * 0.5)
-		to_chat(user, SPAN_DANGER("It looks badly wounded!"))
+	if (health < maxHealth * 0.25)
+		to_chat(user, SPAN_DANGER("It's grievously wounded!"))
+	else if (health < maxHealth * 0.50)
+		to_chat(user, SPAN_DANGER("It's badly wounded!"))
+	else if (health < maxHealth * 0.75)
+		to_chat(user, SPAN_WARNING("It's wounded."))
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It looks wounded."))
+		to_chat(user, SPAN_WARNING("It's a bit wounded."))
 
 /mob/living/simple_animal/Life()
-	..()
+	.=..()
 
 	if(!stasis)
 
-		if(stat == DEAD)
-			return 0
+		if(!.)
+			return FALSE
 
-		if(health <= 0)
+		if(health <= 0 && stat != DEAD)
 			death()
-			return
+			return FALSE
 
 		if(health > maxHealth)
 			health = maxHealth
@@ -250,7 +257,7 @@
 					speak_audio()
 
 			if(incapacitated())
-				return 1
+				return TRUE
 
 			//Movement
 			turns_since_move++
@@ -264,7 +271,7 @@
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
 
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
 	if(islist(message))
@@ -282,7 +289,7 @@
 /mob/living/simple_animal/proc/process_food()
 	if (hunger_enabled)
 		if (nutrition)
-			nutrition -= nutrition_step//Bigger animals get hungry faster
+			adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
 			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
 		else
 			if (prob(3))
@@ -353,7 +360,7 @@
 			if (!(status_flags & CANPUSH))
 				return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 
 			M.put_in_active_hand(G)
 
@@ -373,10 +380,10 @@
 	return
 
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/gripper))
+	if(istype(O, /obj/item/gripper))
 		return ..(O, user)
 
-	else if(istype(O, /obj/item/weapon/reagent_containers) || istype(O, /obj/item/stack/medical))
+	else if(istype(O, /obj/item/reagent_containers) || istype(O, /obj/item/stack/medical))
 		..()
 
 	else if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
@@ -419,23 +426,24 @@
 	movement_target = null
 	icon_state = icon_dead
 	density = FALSE
+	stasis = TRUE
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 	switch (severity)
-		if (1.0)
+		if (1)
 			adjustBruteLoss(500)
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 			adjustBruteLoss(60)
 
 
-		if(3.0)
+		if(3)
 			adjustBruteLoss(30)
 
 
@@ -500,7 +508,7 @@
 				foodtarget = 0
 				stop_automated_movement = 0
 				if (can_eat())
-					for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,7))
+					for(var/obj/item/reagent_containers/food/snacks/S in oview(src,7))
 						if(isturf(S.loc) || ishuman(S.loc))
 							movement_target = S
 							foodtarget = 1
@@ -508,12 +516,12 @@
 
 					//Look for food in people's hand
 					if (!movement_target && beg_for_food)
-						var/obj/item/weapon/reagent_containers/food/snacks/F = null
+						var/obj/item/reagent_containers/food/snacks/F = null
 						for(var/mob/living/carbon/human/H in oview(src,scan_range))
-							if(istype(H.l_hand, /obj/item/weapon/reagent_containers/food/snacks))
+							if(istype(H.l_hand, /obj/item/reagent_containers/food/snacks))
 								F = H.l_hand
 
-							if(istype(H.r_hand, /obj/item/weapon/reagent_containers/food/snacks))
+							if(istype(H.r_hand, /obj/item/reagent_containers/food/snacks))
 								F = H.r_hand
 
 							if (F)

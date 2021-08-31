@@ -23,7 +23,7 @@
 	var/maxHealth = 100
 
 
-/turf/simulated/floor/Entered(var/atom/movable/AM, var/atom/old_loc)
+/turf/simulated/floor/Entered(atom/movable/AM, atom/old_loc)
 	..(AM, old_loc)
 	if (flooring)
 		flooring.Entered(AM, old_loc)
@@ -35,7 +35,7 @@
 		//TODO: FIND OUT WHY ANYTHING COULD HAVE NULL FLOORING
 		return TRUE
 
-/turf/simulated/floor/New(var/newloc, var/floortype)
+/turf/simulated/floor/New(newloc, floortype)
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
@@ -49,7 +49,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 //Floors no longer update their icon in New, but instead update it here, after everything else is setup
-/turf/simulated/floor/LateInitialize(var/list/mapload_arg)
+/turf/simulated/floor/LateInitialize(list/mapload_arg)
 	..()
 	//At roundstart, we call update icon with update_neighbors set to false.
 	//So each floor tile will only work once
@@ -93,7 +93,7 @@
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating(var/place_product, var/defer_icon_update)
 
-	overlays.Cut()
+	cut_overlays()
 	if(islist(decals))
 		decals.Cut()
 		decals = null
@@ -120,6 +120,7 @@
 	if (flooring)
 		for(var/obj/O in src)
 			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
+			SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
 
 
 /turf/simulated/floor/proc/is_damaged()

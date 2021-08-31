@@ -38,6 +38,34 @@
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
+/obj/item/projectile/beam/psychic
+	name = "psychic laser"
+	icon_state = "psychic_heavylaser"
+	var/obj/item/gun/energy/psychic/holder
+	var/traitor = FALSE //Check if it's a traitor psychic beam
+	damage_types = list(PSY = 30)
+	armor_penetration = 100
+
+	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
+	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
+	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
+
+/obj/item/projectile/beam/psychic/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
+	holder = launcher
+	if(holder && holder.traitor)
+		traitor = holder.traitor
+	..()
+
+/obj/item/projectile/beam/psychic/heavylaser
+	name = "psychic heavy laser"
+	icon_state = "psychic_heavylaser"
+	damage_types = list(PSY = 40)
+	traitor = TRUE
+
+	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
+	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
+	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
+
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
@@ -129,8 +157,6 @@
 	icon_state = "xray"
 	damage_types = list(BURN = 60)
 	armor_penetration = 50
-	stun = 3
-	weaken = 3
 	stutter = 3
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
@@ -143,7 +169,7 @@
 	nodamage = 1
 	taser_effect = 1
 	agony = 30
-	damage_types = list(HALLOSS = 30)
+	damage_types = list(BURN = 1)
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer

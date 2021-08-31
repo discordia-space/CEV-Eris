@@ -7,7 +7,7 @@
 	var/log = 0
 	var/sound
 	var/newscast = 0
-	var/channel_name = "Station Announcements"
+	var/channel_name = "Ship Announcements"
 	var/announcement_type = "Announcement"
 
 /datum/announcement/New(var/do_log = 0, var/new_sound = null, var/do_newscast = 0)
@@ -50,19 +50,19 @@
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
-	global_announcer.autosay(message, ANNOUNSER_NAME)
+	global_announcer.autosay(message, ANNOUNCER_NAME)
 
 datum/announcement/priority/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNCER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
-	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNSER_NAME)
+	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
@@ -98,7 +98,7 @@ datum/announcement/proc/Log(message as text, message_title as text)
 		log_say("[key_name(usr)] has made \a [announcement_type]: [message_title] - [message] - [announcer]")
 		message_admins("[key_name_admin(usr)] has made \a [announcement_type].", 1)
 
-/proc/GetNameAndAssignmentFromId(var/obj/item/weapon/card/id/I)
+/proc/GetNameAndAssignmentFromId(var/obj/item/card/id/I)
 	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)
 	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
 
@@ -106,10 +106,13 @@ datum/announcement/proc/Log(message as text, message_title as text)
 	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /proc/level_eight_announcement() //new announcment so the crew doesn't have to fuck around trying to figure out if its a blob, hivemind, or a literal fungus
-	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 
 /proc/level_eight_beta_announcement() //announcment which tells the crew that the hivemind has been killed, job well done crew.
 	command_announcement.Announce("Diagnostic Systems report level 8 Bio-mechanical infestation aboard [station_name()] has been contained.")
+
+/proc/level_nine_announcement()
+	command_announcement.Announce("Confirmed outbreak of level 9 Excelsior communist infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 
 /proc/ion_storm_announcement()
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
@@ -117,6 +120,6 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
 	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay("A new [rank] [join_message].", ANNOUNSER_NAME)
+			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME)
 		else
-			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNSER_NAME)
+			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME)

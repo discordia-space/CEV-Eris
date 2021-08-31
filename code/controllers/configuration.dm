@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(storyteller_cache)
 
 /datum/configuration
-	var/server_name = null				// server name (for world name / status)
+	var/server_name				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
@@ -28,15 +28,12 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
 	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
-//	var/enable_authentication = 0		// goon authentication
+	//var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
@@ -45,7 +42,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/Ticklag = 0.33
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
-	var/list/resource_urls = null
+	var/list/resource_urls
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
 	var/list/storyteller_names = list()
@@ -53,7 +50,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 0					// allow ai job
-	var/hostedby = null
+	var/hostedby
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
@@ -110,10 +107,10 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	//Alert level description
 	var/alert_desc_green = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	var/alert_desc_blue_upto = "The ship has received reliable information about possible hostile activity on the ship. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/alert_desc_red_upto = "There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
 	var/forbid_singulo_possession = 0
 
@@ -167,6 +164,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
 
+	var/start_location = "asteroid" // Start location defaults to asteroid.
+
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
@@ -197,7 +196,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
-	var/aliens_allowed = 0
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
 	var/looc_allowed = 1
@@ -206,7 +204,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/starlight = "#ffffff"	// null if turned off
 
-	var/list/ert_species = list("Human")
+	var/list/ert_species = list(SPECIES_HUMAN)
 
 	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
@@ -226,6 +224,12 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_key
 
 	var/static/regex/ic_filter_regex //For the cringe filter.
+
+	var/generate_loot_data = FALSE //for loot rework
+
+	var/profiler_permission = R_DEBUG | R_SERVER
+
+	var/allow_ic_printing = TRUE
 
 /datum/configuration/New()
 	fill_storyevents_list()
@@ -255,8 +259,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			continue
 
 		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
+		var/name
+		var/value
 
 		if (pos)
 			name = lowertext(copytext(t, 1, pos))
@@ -291,7 +295,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.log_access = 1
 
 				if ("sql_enabled")
-					config.sql_enabled = text2num(value)
+					config.sql_enabled = 1
 
 				if ("log_say")
 					config.log_say = 1
@@ -357,15 +361,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if ("allow_vote_mode")
 					config.allow_vote_mode = 1
 
-				if ("allow_admin_jump")
-					config.allow_admin_jump = 1
-
-				if("allow_admin_rev")
-					config.allow_admin_rev = 1
-
-				if ("allow_admin_spawning")
-					config.allow_admin_spawning = 1
-
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
 
@@ -374,6 +369,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)
+
+				if ("disable_ic_printing")
+					config.allow_ic_printing = FALSE
 
 				if ("vote_period")
 					config.vote_period = text2num(value)
@@ -446,7 +444,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-			
+
 				if ("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
@@ -486,9 +484,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("allow_metadata")
 					config.allow_Metadata = 1
-
-				if ("aliens_allowed")
-					config.aliens_allowed = 1
 
 				if ("objectives_disabled")
 					config.objectives_disabled = 1
@@ -690,7 +685,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
-						config.ert_species += "Human"
+						config.ert_species += SPECIES_HUMAN
 
 				if("use_cortical_stacks")
 					config.use_cortical_stacks = 1
@@ -726,8 +721,33 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
+
+
+				if("random_start")
+					var/list/startlist = list(
+						"asteroid",
+						"abandoned fortress",
+						"space ruins")
+					var/pick = rand(1, startlist.len)
+					config.start_location = startlist[pick]
+
+				if("asteroid_start")
+					config.start_location = "asteroid"
+
+				if("fortress_start")
+					config.start_location = "abandoned fortress"
+
+				if("ruins_start")
+					config.start_location = "space ruins"
+
+				if("profiler_permission")
+					config.profiler_permission = text2num(value)
+
+				if("generate_loot_data")
+					config.generate_loot_data = TRUE
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
+
 
 		else if(type == "game_options")
 			if(!value)
@@ -777,8 +797,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			continue
 
 		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
+		var/name
+		var/value
 
 		if (pos)
 			name = lowertext(copytext(t, 1, pos))
@@ -844,4 +864,3 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
 		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
-

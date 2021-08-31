@@ -1,3 +1,5 @@
+GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
+
 /obj/item/device/last_shelter
 	name = "Last Shelter"
 	desc = "Powerful scanner that can teleport a cruciforms of pilgrims lost in this sector of space."
@@ -6,16 +8,38 @@
 	item_state = "last_shelter"
 	price_tag = 20000
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 9, TECH_BIO = 3)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/cooldown = 15 MINUTES
 	var/last_teleport = -15 MINUTES
 	var/scan = FALSE
 
+/obj/item/device/last_shelter/New()
+	..()
+	GLOB.last_shelter = src
+	GLOB.all_faction_items[src] = GLOB.department_church
+
+/obj/item/device/last_shelter/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	GLOB.neotheology_faction_item_loss++
+	..()
+
+/obj/item/device/last_shelter/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/device/last_shelter/attack_self(mob/user)
+	active_effect(user)
+
+/obj/item/device/last_shelter/proc/active_effect(mob/user, alert = FALSE)
 	if(world.time >= (last_teleport + cooldown))
 		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))
 		last_teleport = world.time
 		scan = TRUE
-		var/obj/item/weapon/implant/core_implant/cruciform/cruciform = get_cruciform()
+		var/obj/item/implant/core_implant/cruciform/cruciform = get_cruciform()
 		if(cruciform)
 			scan = FALSE
 			if(istype(src.loc, /mob/living/carbon/human))
@@ -27,6 +51,17 @@
 		else
 			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))
 			scan = FALSE
+
+		if(alert)
+			var/preacher
+			for(var/mob/living/carbon/human/H in disciples)
+				if(H.mind && istype(H.mind.assigned_job, /datum/job/chaplain))
+					preacher = H
+
+			if(!preacher && length(disciples))
+				preacher = pick(disciples)
+			to_chat(preacher, SPAN_WARNING("[src] has been activated."))
+
 
 	else if(scan)
 		to_chat(user, SPAN_WARNING("The [src] is still woking! Wait a minute!"))
@@ -44,7 +79,7 @@
 	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))
 	H.stats.addPerk(perk_random)
 	H.stats.addPerk(pick(/datum/perk/survivor, /datum/perk/selfmedicated, /datum/perk/vagabond, /datum/perk/merchant, /datum/perk/inspiration))
-	var/obj/item/weapon/implant/core_implant/cruciform/cruciform = new /obj/item/weapon/implant/core_implant/cruciform(src)
+	var/obj/item/implant/core_implant/cruciform/cruciform = new /obj/item/implant/core_implant/cruciform(src)
 	cruciform.add_module(new CRUCIFORM_CLONING)
 	cruciform.activated = TRUE
 	MN.name = H.real_name

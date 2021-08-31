@@ -1,4 +1,7 @@
-/obj/item/weapon/contraband/poster/wanted/New(turf/loc, icon/person_icon, wanted_name, description)
+/obj/item/contraband/poster/wanted
+	bad_type = /obj/item/contraband/poster/wanted
+
+/obj/item/contraband/poster/wanted/New(turf/loc, icon/person_icon, wanted_name, description)
 	name = "wanted poster ([wanted_name])"
 	desc = "A wanted poster for [wanted_name]."
 	desc = description
@@ -21,6 +24,6 @@
 	the_icon.Insert('icons/obj/contraband.dmi', "poster_ripped")
 	icon = the_icon
 
-/datum/poster/wanted/set_design(var/obj/item/weapon/contraband/poster/P)
+/datum/poster/wanted/set_design(var/obj/item/contraband/poster/P)
 	..()
 	P.name = "wanted poster ([name])"

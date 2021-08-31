@@ -1,10 +1,10 @@
 /////////////////////////// DNA DATUM
 /datum/dna
-	var/unique_enzymes = null
-	var/struc_enzymes = null
-	var/uni_identity = null
+	var/unique_enzymes
+	var/struc_enzymes
+	var/uni_identity
 	var/b_type = "A+"
-	var/mutantrace = null  //The type of mutant race the player is if applicable (i.e. potato-man)
+	var/mutantrace  //The type of mutant race the player is if applicable (i.e. potato-man)
 	var/real_name //Stores the real name of the person who originally got this dna datum. Used primarely for carrions,
 
 /datum/dna/proc/check_integrity(var/mob/living/carbon/human/character)

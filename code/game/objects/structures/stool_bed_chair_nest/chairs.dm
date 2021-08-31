@@ -12,7 +12,7 @@
 	..()
 	update_layer()
 
-/obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
@@ -38,7 +38,7 @@
 /obj/structure/bed/chair/post_buckle_mob()
 	update_icon()
 
-/obj/structure/bed/chair/update_icon()
+/obj/structure/bed/chair/on_update_icon()
 	..()
 
 /*
@@ -48,7 +48,7 @@
 		I.color = material.icon_colour
 		I.layer = FLY_LAYER
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	associate_with_overlays(stool_cache[cache_key])
 */
 	// Padding overlay.
 	if(padding_material)
@@ -58,7 +58,7 @@
 			I.color = padding_material.icon_colour
 			I.layer = FLY_LAYER
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		associate_with_overlays(stool_cache[padding_cache_key])
 
 	if(buckled_mob && padding_material)
 		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
@@ -67,7 +67,7 @@
 			I.layer = ABOVE_MOB_LAYER
 			I.color = padding_material.icon_colour
 			stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
+		associate_with_overlays(stool_cache[cache_key])
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
@@ -117,41 +117,41 @@
 	icon_state = "comfychair_preview"
 
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","leather")
+	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
 
 /obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","carpet")
+	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
 
 /obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","teal")
+	..(newloc,MATERIAL_STEEL,"teal")
 
 /obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","black")
+	..(newloc,MATERIAL_STEEL,"black")
 
 /obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","green")
+	..(newloc,MATERIAL_STEEL,"green")
 
 /obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","purple")
+	..(newloc,MATERIAL_STEEL,"purple")
 
 /obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","blue")
+	..(newloc,MATERIAL_STEEL,"blue")
 
 /obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","beige")
+	..(newloc,MATERIAL_STEEL,"beige")
 
 /obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
-	..(newloc,"steel","lime")
+	..(newloc,MATERIAL_STEEL,"lime")
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	buckle_movable = 1
 
-/obj/structure/bed/chair/office/update_icon()
+/obj/structure/bed/chair/office/on_update_icon()
 	return
 
-/obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/tool/wirecutters))
+/obj/structure/bed/chair/office/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
@@ -209,7 +209,7 @@
 	..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 // Chair types
 
@@ -222,19 +222,19 @@
 	icon_state = "wooden_chair"
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/wood/update_icon()
+/obj/structure/bed/chair/wood/on_update_icon()
 	return
 
-/obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/tool/wirecutters))
+/obj/structure/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
 /obj/structure/bed/chair/wood/New(var/newloc)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
@@ -245,11 +245,11 @@
 /obj/structure/bed/chair/custom
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/custom/update_icon()
+/obj/structure/bed/chair/custom/on_update_icon()
 	return
 
-/obj/structure/bed/chair/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/tool/wirecutters))
+/obj/structure/bed/chair/custom/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
@@ -257,7 +257,7 @@
 	. = ..()
 	var/image/I = image(icon, "[icon_state]_over")
 	I.layer = FLY_LAYER
-	overlays += I
+	add_overlays(I)
 
 
 //wooden

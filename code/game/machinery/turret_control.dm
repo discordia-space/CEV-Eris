@@ -81,11 +81,11 @@
 
 	return ..()
 
-/obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/turretid/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/modular_computer))
 		if(src.allowed(usr))
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			if(emagged)
@@ -191,7 +191,7 @@
 	updateTurrets()
 	update_icon()
 
-/obj/machinery/turretid/update_icon()
+/obj/machinery/turretid/on_update_icon()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"

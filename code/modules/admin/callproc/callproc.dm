@@ -50,7 +50,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 	if(!check_rights(R_DEBUG)) return
 	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
-	var/returnval = null
+	var/returnval
 
 	var/procname = input("Proc name", "Proc") as null|text
 	if(!procname) return
@@ -65,7 +65,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 
 	var/list/arguments = list()
 	var/done = 0
-	var/current = null
+	var/current
 
 	while(!done)
 		if(hastarget && !target)

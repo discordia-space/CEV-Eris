@@ -32,4 +32,4 @@
 					M.GetDrilled()
 					src.loc = M
 				drilling_turf = null
-				anchored = 0
+				anchored = FALSE

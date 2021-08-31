@@ -30,14 +30,14 @@
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
-	var/obj/item/weapon/last_find
+	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find
 
 	has_resources = 1
 
 /turf/simulated/mineral/Initialize()
-	..()
-	icon_state = "rock[rand(0,4)]"
+	.=..()
+	SetIconState("rock[rand(0,4)]")
 	spawn(0)
 		MineralSpread()
 
@@ -45,15 +45,15 @@
 	return !density
 
 /turf/simulated/mineral/is_plating()
-	return 1
+	return TRUE
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
-		if(2.0)
+		if(2)
 			if (prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
 				GetDrilled()
-		if(1.0)
+		if(1)
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
 
@@ -108,10 +108,12 @@
 	clear_ore_effects()
 	if(!mineral)
 		name = "\improper Rock"
-		icon_state = "rock"
+		SetIconState("rock")
 		return
 	name = "\improper [mineral.display_name] deposit"
-	new /obj/effect/mineral(src, mineral)
+	var/obj/effect/mineral/M = new /obj/effect/mineral(src, mineral)
+	spawn(1)
+		M.color = color
 
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
@@ -167,7 +169,7 @@
 						var/datum/find/F = finds[1]
 						if(F.excavation_required <= excavation_level + F.view_range)
 							archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-							overlays += archaeo_overlay
+							add_overlays(archaeo_overlay)
 
 					//there's got to be a better way to do this
 					var/update_excav_overlay = 0
@@ -185,13 +187,13 @@
 					if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 						var/excav_quadrant = round(excavation_level / 25) + 1
 						excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-						overlays += excav_overlay
+						add_overlays(excav_overlay)
 
 					//drop some rocks
 					next_rock += excavation_amount * 10
 					while(next_rock > 100)
 						next_rock -= 100
-						var/obj/item/weapon/ore/O = new(src)
+						var/obj/item/ore/O = new(src)
 						geologic_data.UpdateNearbyArtifactInfo(src)
 						O.geologic_data = geologic_data
 				return
@@ -266,7 +268,7 @@
 		return
 
 	clear_ore_effects()
-	var/obj/item/weapon/ore/O = new mineral.ore (src)
+	var/obj/item/ore/O = new mineral.ore (src)
 	if(istype(O) && geologic_data)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
@@ -290,12 +292,12 @@
 			to_chat(M, "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>")
 			if(pain)
 				if (M.HUDtech.Find("pain"))
-					flick("pain",M.HUDtech["pain"])
+					FLICK("pain",M.HUDtech["pain"])
 				if(prob(50))
 					M.adjustBruteLoss(5)
 			else
 				if (M.HUDtech.Find("flash"))
-					flick("flash", M.HUDtech["flash"])
+					FLICK("flash", M.HUDtech["flash"])
 				if(prob(50))
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
@@ -311,15 +313,15 @@
 /turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
-	var/obj/item/weapon/X
+	var/obj/item/X
 	if(prob_clean)
-		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/archaeological_find(src, F.find_type)
 	else
-		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		X:geologic_data = geologic_data
 
-	//some find types delete the /obj/item/weapon/archaeological_find and replace it with something else, this handles when that happens
+	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "something"
 	if(!X)
@@ -364,12 +366,12 @@
 			if(5)
 				var/quantity = rand(1,3)
 				for(var/i=0, i<quantity, i++)
-					new /obj/item/weapon/material/shard(src)
+					new /obj/item/material/shard(src)
 
 			if(6)
 				var/quantity = rand(1,3)
 				for(var/i=0, i<quantity, i++)
-					new /obj/item/weapon/material/shard/plasma(src)
+					new /obj/item/material/shard/plasma(src)
 
 			if(7)
 				var/obj/item/stack/material/uranium/R = new(src)
@@ -377,7 +379,7 @@
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10)
+	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 34, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10, "MHydrogen" = 1)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -395,7 +397,7 @@
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 100 //25
-	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20)
+	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 19, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20, "MHydrogen" = 1)
 
 
 /**********************Asteroid**************************/
@@ -417,19 +419,19 @@
 
 /turf/simulated/floor/asteroid/New()
 	..()
-	icon_state = "asteroid[rand(0,2)]"
+	SetIconState("asteroid[rand(0,2)]")
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
 
 /turf/simulated/floor/asteroid/ex_act(severity)
 	switch(severity)
-		if(3.0)
+		if(3)
 			return
-		if(2.0)
+		if(2)
 			if (prob(70))
 				gets_dug()
-		if(1.0)
+		if(1)
 			gets_dug()
 	return
 
@@ -455,21 +457,21 @@
 		return
 
 	for(var/i=0;i<(rand(3)+2);i++)
-		new/obj/item/weapon/ore/glass(src)
+		new/obj/item/ore/glass(src)
 
 	dug = 1
-	icon_state = "asteroid_dug"
+	SetIconState("asteroid_dug")
 	return
 
 /turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
 	for(var/direction in step_overlays)
 
 		if(istype(get_step(src, step_overlays[direction]), /turf/space))
-			overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction])
+			add_overlays(image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction]))
 
 	//todo cache
 	if(overlay_detail) overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
@@ -487,11 +489,11 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.module)
-			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
+			if(istype(R.module_state_1,/obj/item/storage/bag/ore))
 				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))
+			else if(istype(R.module_state_2,/obj/item/storage/bag/ore))
 				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/bag/ore))
+			else if(istype(R.module_state_3,/obj/item/storage/bag/ore))
 				attackby(R.module_state_3,R)
 			else
 				return

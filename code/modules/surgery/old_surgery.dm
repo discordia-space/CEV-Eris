@@ -88,7 +88,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	var/datum/old_surgery_step/selectedStep = null
 	var/list/possibleSteps = list()
-	for(var/datum/old_surgery_step/S in old_surgery_steps)
+	for(var/datum/old_surgery_step/S in GLOB.old_surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool))
 			var/step_is_valid = S.can_use(user, M, zone, tool)
@@ -142,7 +142,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	return 0
 
 proc/sort_surgeries()
-	var/gap = old_surgery_steps.len
+	var/gap = GLOB.old_surgery_steps.len
 	var/swapped = 1
 	while (gap > 1 || swapped)
 		swapped = 0
@@ -150,9 +150,9 @@ proc/sort_surgeries()
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= old_surgery_steps.len; i++)
-			var/datum/old_surgery_step/l = old_surgery_steps[i]		//Fucking hate
-			var/datum/old_surgery_step/r = old_surgery_steps[gap+i]	//how lists work here
+		for(var/i = 1; gap + i <= GLOB.old_surgery_steps.len; i++)
+			var/datum/old_surgery_step/l = GLOB.old_surgery_steps[i]		//Fucking hate
+			var/datum/old_surgery_step/r = GLOB.old_surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)
-				old_surgery_steps.Swap(i, gap + i)
+				GLOB.old_surgery_steps.Swap(i, gap + i)
 				swapped = 1

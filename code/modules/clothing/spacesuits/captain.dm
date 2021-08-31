@@ -19,7 +19,7 @@
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
-	slowdown = 1
+	slowdown = 0.3
 	armor = list(
 		melee = 50,
 		bullet = 40,

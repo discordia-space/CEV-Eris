@@ -12,8 +12,8 @@
 	var/code = 30
 	var/frequency = 1457
 	var/delay = 0
-	var/airlock_wire = null
-	var/datum/wires/connected = null
+	var/airlock_wire
+	var/datum/wires/connected
 	var/datum/radio_frequency/radio_connection
 	var/deadman = 0
 
@@ -33,7 +33,7 @@
 	signal()
 	return 1
 
-/obj/item/device/assembly/signaler/update_icon()
+/obj/item/device/assembly/signaler/on_update_icon()
 	if(holder)
 		holder.update_icon()
 	return

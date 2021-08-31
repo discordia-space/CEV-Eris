@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = FALSE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
 	var/max_power = 500000
@@ -61,14 +61,14 @@
 				circ2 = null
 	update_icon()
 
-/obj/machinery/power/generator/update_icon()
+/obj/machinery/power/generator/on_update_icon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
-	overlays.Cut()
+	cut_overlays()
 	if (stat & (NOPOWER|BROKEN) || !anchored)
 		return 1
 	else
 		if (lastgenlev != 0)
-			overlays += image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]")
+			add_overlays(image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]"))
 			if (circ1 && circ2)
 				var/extreme = (lastgenlev > 9) ? "ex" : ""
 				if (circ1.last_temperature < circ2.last_temperature)
@@ -149,8 +149,8 @@
 		update_icon()
 	add_avail(effective_gen)
 
-/obj/machinery/power/generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/wrench))
+/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		anchored = !anchored
 		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \

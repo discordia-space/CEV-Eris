@@ -20,13 +20,16 @@
 	if(stats.getPerk(PERK_FAST_WALKER))
 		tally -= 0.5
 
-	var/health_deficiency = (maxHealth - health)
-	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.
-	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
-	if(health_deficiency >= 40) tally += (health_deficiency / 25)
+	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C && C.active)
+		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
+		if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_SPEED_OF_THE_CHOSEN))
+			var/obj/item/cruciform_upgrade/speed_of_the_chosen/sotc = upgrade
+			tally -= sotc.speed_increase
 
-	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 20) //halloss shouldn't slow you down if you can't even feel it
+	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER - nutrition)
+	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
+
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
@@ -36,11 +39,16 @@
 		if(shoes)
 			tally += shoes.slowdown
 
-	if(shock_stage >= 10) tally += 3
+	tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
 
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 	tally += stance_damage // missing/damaged legs or augs affect speed
+
+	if(slowdown)
+		tally += 1
+	
+	tally += (r_hand?.slowdown_hold + l_hand?.slowdown_hold)
 
 	return tally
 
@@ -50,7 +58,7 @@
 	if(restrained())	return 0
 
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
 		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
@@ -83,4 +91,3 @@
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
 	return 0
-

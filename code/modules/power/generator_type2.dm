@@ -4,7 +4,7 @@
 	icon_state = "teg"
 	anchored = TRUE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/obj/machinery/atmospherics/unary/generator_input/input1
 	var/obj/machinery/atmospherics/unary/generator_input/input2
@@ -26,12 +26,12 @@
 /obj/machinery/power/generator_type2/proc/updateicon()
 
 	if(stat & (NOPOWER|BROKEN))
-		overlays.Cut()
+		cut_overlays()
 	else
-		overlays.Cut()
+		cut_overlays()
 
 		if(lastgenlev != 0)
-			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+			add_overlays(image('icons/obj/power.dmi', "teg-op[lastgenlev]"))
 
 #define GENRATE 800		// generator output coefficient from Q
 

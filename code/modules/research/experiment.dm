@@ -1,5 +1,5 @@
 // Contains everything related to earning research points
-#define AUTOPSY_WEAPON_PAMT rand(5,10) * 200 // 1000-2000 points for random weapon
+#define AUTOPSY_WEAPON_PAMT rand(1,5) * 20 // 50-100 points for random weapon
 #define ARTIFACT_PAMT rand(5,10) * 1000 // 5000-10000 points for random artifact
 
 GLOBAL_LIST_EMPTY(explosion_watcher_list)
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/list/temp_tech = I.origin_tech
 	var/item_tech_points = 0
 	var/has_new_tech = FALSE
-	var/is_board = istype(I, /obj/item/weapon/circuitboard)
+	var/is_board = istype(I, /obj/item/electronics/circuitboard)
 
 	for(var/T in temp_tech)
 		if(tech_points[T])
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 /obj/item/device/radio/beacon/explosion_watcher/proc/react_explosion(turf/epicenter, power)
 	power = round(power)
 	var/calculated_research_points = -1
-	for(var/obj/machinery/computer/rdconsole/RD in SSmachines.machinery)
+	for(var/obj/machinery/computer/rdconsole/RD in GLOB.computer_list)
 		if(RD.id == 1) // only core gets the science
 			var/saved_power_level = RD.files.experiments.saved_best_explosion
 
@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			if(power > saved_power_level)
 				RD.files.experiments.saved_best_explosion = power
 
-			RD.files.research_points += calculated_research_points
+			RD.files.adjust_research_points(calculated_research_points)
 
 	if(calculated_research_points > 0)
 		autosay("Detected explosion with power level [power], received [calculated_research_points] research points", name ,"Science")
@@ -231,6 +231,9 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	throw_range = 10
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
+	spawn_tags = SPAWN_TAG_DIVICE_SCIENCE
+	spawn_frequency = 5
+	rarity_value = 8
 
 	var/datum/experiment_data/experiments
 	var/list/scanned_autopsy_weapons = list()
@@ -249,15 +252,15 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 /obj/item/device/science_tool/afterattack(obj/O, mob/living/user)
 	var/scanneddata = 0
 
-	if(istype(O,/obj/item/weapon/paper/autopsy_report))
-		var/obj/item/weapon/paper/autopsy_report/report = O
+	if(istype(O,/obj/item/paper/autopsy_report))
+		var/obj/item/paper/autopsy_report/report = O
 		for(var/datum/autopsy_data/W in report.autopsy_data)
 			if(!(W.weapon in scanned_autopsy_weapons))
 				scanneddata += 1
 				scanned_autopsy_weapons += W.weapon
 
-	if(istype(O, /obj/item/weapon/paper/artifact_info))
-		var/obj/item/weapon/paper/artifact_info/report = O
+	if(istype(O, /obj/item/paper/artifact_info))
+		var/obj/item/paper/artifact_info/report = O
 		if(report.artifact_type)
 			for(var/list/artifact in scanned_artifacts)
 				if(artifact["type"] == report.artifact_type && artifact["first_effect"] == report.artifact_first_effect && artifact["second_effect"] == report.artifact_second_effect)
@@ -271,8 +274,8 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			))
 			scanneddata += 1
 
-	if(istype(O, /obj/item/weapon/paper/virus_report))
-		var/obj/item/weapon/paper/virus_report/report = O
+	if(istype(O, /obj/item/paper/virus_report))
+		var/obj/item/paper/virus_report/report = O
 		for(var/symptom in report.symptoms)
 			if(!scanned_symptoms[symptom])
 				scanneddata += 1
@@ -300,17 +303,20 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	datablocks = 0
 
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/research_points
+/obj/item/computer_hardware/hard_drive/portable/research_points
 	disk_name = "research data"
 	icon_state = "onestar"
+	spawn_tags = SPAWN_TAG_RESEARCH_POINTS
+	rarity_value = 12
 	var/min_points = 2000
 	var/max_points = 10000
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/install_default_files()
+/obj/item/computer_hardware/hard_drive/portable/research_points/install_default_files()
 	..()
 	var/datum/computer_file/binary/research_points/F = new(size = rand(min_points / 1000, max_points / 1000))
 	store_file(F)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/rare
+/obj/item/computer_hardware/hard_drive/portable/research_points/rare
 	min_points = 10000
 	max_points = 20000
+	rarity_value = 60

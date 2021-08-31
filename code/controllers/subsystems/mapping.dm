@@ -9,7 +9,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ghostteleportlocs = list()
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
-
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
@@ -67,24 +66,27 @@ SUBSYSTEM_DEF(mapping)
 
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
-	return 1
+	return ..()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
-	world.maxz++
+	world.incrementMaxZ()
 	GLOB.maps_data.overmap_z = world.maxz
 	var/list/turfs = list()
 	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))
-		var/turf/T = square
-		if(T.x == GLOB.maps_data.overmap_size || T.y == GLOB.maps_data.overmap_size)
-			T = T.ChangeTurf(/turf/unsimulated/map/edge)
-		else
-			T = T.ChangeTurf(/turf/unsimulated/map/)
+		// Switch to space turf with green grid overlay
+		var/turf/space/T = square
+		T.SetIconState("grid")
+		T.update_starlight()
 		turfs += T
 		CHECK_TICK
 
 	var/area/overmap/A = new
 	A.contents.Add(turfs)
+
+    // Spawn star at the center of the overmap
+	var/turf/T = locate(round(GLOB.maps_data.overmap_size/2),round(GLOB.maps_data.overmap_size/2),GLOB.maps_data.overmap_z)
+	new /obj/effect/star(T)
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.overmap_z
 	testing("Overmap build complete.")

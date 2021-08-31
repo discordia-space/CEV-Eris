@@ -94,7 +94,7 @@
 /area/crawler)
 "q" = (
 /obj/structure/catwalk,
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "s" = (

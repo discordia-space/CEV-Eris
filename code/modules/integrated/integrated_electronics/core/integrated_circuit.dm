@@ -198,13 +198,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	var/obj/held_item = usr.get_active_hand()
 	if(href_list["wire"])
-		if(istype(held_item, /obj/item/device/integrated_electronics/wirer))
-			var/obj/item/device/integrated_electronics/wirer/wirer = held_item
+		if(istype(held_item, /obj/item/device/electronics/integrated/wirer))
+			var/obj/item/device/electronics/integrated/wirer/wirer = held_item
 			if(pin)
 				wirer.wire(pin, usr)
 
-		else if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-			var/obj/item/device/integrated_electronics/debugger/debugger = held_item
+		else if(istype(held_item, /obj/item/device/electronics/integrated/debugger))
+			var/obj/item/device/electronics/integrated/debugger/debugger = held_item
 			if(pin)
 				debugger.write_data(pin, usr)
 		else
@@ -217,8 +217,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		rename_component(usr)
 
 	if(href_list["scan"])
-		if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-			var/obj/item/device/integrated_electronics/debugger/D = held_item
+		if(istype(held_item, /obj/item/device/electronics/integrated/debugger))
+			var/obj/item/device/electronics/integrated/debugger/D = held_item
 			if(D.accepting_refs)
 				D.afterattack(src, usr, TRUE)
 			else
@@ -231,7 +231,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			autopulse = !autopulse
 
 	if(href_list["remove"])
-		if(istype(held_item, /obj/item/weapon/tool/screwdriver))
+		if(istype(held_item, /obj/item/tool/screwdriver))
 			if(!removable)
 				to_chat(usr, SPAN_WARNING("\The [src] seems to be permanently attached to the case."))
 				return

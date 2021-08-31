@@ -67,7 +67,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/suit_storage_unit/update_icon()
+/obj/machinery/suit_storage_unit/on_update_icon()
 	cut_overlays()
 
 	if(overlay_color)
@@ -99,12 +99,12 @@
 
 /obj/machinery/suit_storage_unit/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				dump_everything()
 				qdel(src)
@@ -240,7 +240,7 @@
 		return  // eject_occupant opens the door, so we need to return
 	isopen = !isopen
 
-	flick(isopen ? "anim_open" : "anim_close", door_overlay)
+	FLICK(isopen ? "anim_open" : "anim_close", door_overlay)
 	playsound(src.loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
 
 
@@ -445,9 +445,9 @@
 
 	if(stat & NOPOWER)
 		return
-	else if(istype(I, /obj/item/clothing/suit/space))
+	else if(istype(I, /obj/item/clothing/suit))
 		load(I, user, LOAD_SLOT_SUIT)
-	else if(istype(I, /obj/item/clothing/head/space))
+	else if(istype(I, /obj/item/clothing/head))
 		load(I, user, LOAD_SLOT_HELMET)
 	else if(istype(I, /obj/item/clothing/mask))
 		load(I, user, LOAD_SLOT_MASK)
@@ -482,14 +482,21 @@
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
 
 
+/obj/machinery/suit_storage_unit/moebius
+	SUIT_TYPE = /obj/item/clothing/suit/space/void/hazardsuit/moebius
+	MASK_TYPE = /obj/item/clothing/mask/breath
+
 /obj/machinery/suit_storage_unit/nt
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/acolyte
+	SUIT_TYPE = /obj/item/clothing/suit/armor/acolyte
+	HELMET_TYPE = /obj/item/clothing/head/armor/acolyte
 
 /obj/machinery/suit_storage_unit/nt/agrolyte
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/agrolyte
+	SUIT_TYPE = /obj/item/clothing/suit/armor/agrolyte
+	HELMET_TYPE  = /obj/item/clothing/head/armor/agrolyte
 
 /obj/machinery/suit_storage_unit/nt/custodian
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/custodian
+	SUIT_TYPE = /obj/item/clothing/suit/armor/custodian
+	HELMET_TYPE = /obj/item/clothing/head/armor/custodian
 
 
 /obj/machinery/suit_storage_unit/mining

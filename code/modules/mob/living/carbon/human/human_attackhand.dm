@@ -55,9 +55,12 @@
 
 	switch(M.a_intent)
 		if(I_HELP)
-			if(can_operate(src, M) && do_surgery(src, M, null))
+			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
 				return 1
 			else if(istype(H) && health < HEALTH_THRESHOLD_CRIT && health > HEALTH_THRESHOLD_DEAD)
+				if(H == src)
+					to_chat(H, SPAN_NOTICE("You can't perform CPR on yourself."))
+					return
 				if(!H.check_has_mouth())
 					to_chat(H, SPAN_DANGER("You don't have a mouth, you cannot perform CPR!"))
 					return
@@ -96,14 +99,14 @@
 		if(I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/weapon/grab/G in src.grabbed_by)
+			for(var/obj/item/grab/G in src.grabbed_by)
 				if(G.assailant == M)
 					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
 				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G)	//the grab will delete itself in New if affecting is anchored
@@ -121,8 +124,8 @@
 			return 1
 
 		if(I_HURT)
-			if(M.targeted_organ == BP_MOUTH && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
-				var/obj/item/weapon/grenade/G = wear_mask
+			if(M.targeted_organ == BP_MOUTH && wear_mask && istype(wear_mask, /obj/item/grenade))
+				var/obj/item/grenade/G = wear_mask
 				if(!G.active)
 					visible_message(SPAN_DANGER("\The [M] pulls the pin from \the [src]'s [G.name]!"))
 					G.activate(M)
@@ -136,10 +139,15 @@
 				return
 
 			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
+			var/obj/item/organ/external/current_hand = organs_by_name[hand ? BP_L_ARM : BP_R_ARM]
+
+			if(current_hand)
+				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
 
 			if(!affecting || affecting.is_stump())
 				to_chat(M, SPAN_DANGER("They are missing that limb!"))
@@ -162,6 +170,8 @@
 			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
 				accurate = 1 // certain circumstances make it impossible for us to evade punches
 				stat_damage = stat_damage + 2
+
+			stat_damage *= limb_efficiency_multiplier
 
 			// Process evasion and blocking
 			var/miss_type = 0
@@ -242,12 +252,11 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
 			//See if they have any guns that might go off
-			for(var/obj/item/weapon/gun/W in holding)
+			for(var/obj/item/gun/W in holding)
 				if(W && prob(holding[W]))
 					var/list/turfs = list()
 					for(var/turf/T in view())
@@ -259,11 +268,6 @@
 
 			var/randn = rand(1, 100)
 			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-			if(!(species.flags & NO_SLIP) && randn <= 20)
-				apply_effect(3, WEAKEN, getarmor(affecting, ARMOR_MELEE))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				visible_message(SPAN_DANGER("[M] has pushed [src]!"))
-				return
 
 			if(randn <= 50)
 				//See about breaking grips or pulls
@@ -308,7 +312,7 @@
 //Used to attack a joint through grabbing
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
-	for(var/obj/item/weapon/grab/G in list(user.l_hand, user.r_hand))
+	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
 		if(G.affecting == src && G.state == GRAB_NECK)
 			has_grab = 1
 			break
@@ -339,15 +343,15 @@
 		success = 1
 		stop_pulling()
 
-	if(istype(l_hand, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/lgrab = l_hand
+	if(istype(l_hand, /obj/item/grab))
+		var/obj/item/grab/lgrab = l_hand
 		if(lgrab.affecting)
 			visible_message(SPAN_DANGER("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = 1
 		spawn(1)
 			qdel(lgrab)
-	if(istype(r_hand, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/rgrab = r_hand
+	if(istype(r_hand, /obj/item/grab))
+		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(SPAN_DANGER("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = 1

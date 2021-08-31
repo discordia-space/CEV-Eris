@@ -12,13 +12,13 @@
 	var/total_positions = 0					// How many players can be this job
 	var/spawn_positions = 0					// How many players can spawn in as this job
 	var/current_positions = 0				// How many players have this job
-	var/supervisors = null					// Supervisors, who this person answers to directly
+	var/supervisors							// Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"			// Selection screen color
 	var/list/alt_titles
 	var/list/datum/job_flavor/random_flavors = list(null)
 
 	var/req_admin_notify					// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
-	var/department = null					// Does this position have a department tag?
+	var/department							// Does this position have a department tag?
 	var/head_position = FALSE				// Is this position Command?
 	var/department_account_access = FALSE	// Can this position access the department acount, even if they're not a head?
 	var/minimum_character_age = 0

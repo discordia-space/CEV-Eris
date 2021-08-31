@@ -11,6 +11,8 @@ Has ability of every roach.
 	icon_living = "kaiser_roach"
 	icon_dead = "kaiser_roach_dead"
 	density = TRUE
+	spawn_blacklisted = TRUE
+	rarity_value = 100
 
 	turns_per_move = 6
 	maxHealth = 2000
@@ -26,18 +28,21 @@ Has ability of every roach.
 	status_flags = 0
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 
+	blattedin_revives_left = 0
+
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser
+	meat_amount = 15
+	sanity_damage = 3
+
+	ranged = 1 // RUN, COWARD!
+	projectiletype = /obj/item/projectile/roach_spit
+	fire_verb = "spits glowing bile"
+
 	var/distress_call_stage = 3
 
 	var/health_marker_1 = 1500
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
-
-	blattedin_revives_left = 0
-
-
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser
-	meat_amount = 15
-	sanity_damage = 3
 
 /mob/living/carbon/superior_animal/roach/kaiser/New()
 	..()
@@ -68,11 +73,12 @@ Has ability of every roach.
 
 	if(isliving(A))
 		var/mob/living/L = A
-		if(istype(L) && prob(10))
+		if(prob(10))
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
-			L.damage_through_armor(damage, TOX)
+			L.apply_effect(200, IRRADIATE) // as much as a radioactive AMR shot or five times the gestrahlte's
+			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some toxic bile all over \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
 
 // SUPPORT ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/gas_attack()
@@ -129,13 +135,12 @@ Has ability of every roach.
 	return FALSE
 
 //RIDING
-/mob/living/carbon/superior_animal/roach/kaiser/try_tame(var/mob/living/carbon/user, var/obj/item/weapon/reagent_containers/food/snacks/grown/thefood)
+/mob/living/carbon/superior_animal/roach/kaiser/try_tame(var/mob/living/carbon/user, var/obj/item/reagent_containers/food/snacks/grown/thefood)
 	if(!istype(thefood))
 		return FALSE
 	if(prob(40))
-		// TODO: Make Kaiser bite user's arm off here.
 		visible_message("[src] hesitates for a moment... and then charges at [user]!")
-		return FALSE //Sometimes roach just be like that
+		return TRUE //Setting this to true because the only current usage is attack, and it says it hesitates.
 	//fruits and veggies are not there own type, they are all the grown type and contain certain reagents. This is why it didnt work before
 	if(isnull(thefood.seed.chems["singulo"]))
 		return FALSE

@@ -5,12 +5,13 @@
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
-	var/flush = null
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	//spawn_blacklisted = TRUE//antag_item_targets??
 	var/mob/living/silicon/ai/carded_ai
+	var/flush
 
-/obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
+/obj/item/device/aicard/attack(mob/living/silicon/decoy/M, mob/user)
 	if (!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else
@@ -76,11 +77,11 @@
 		update_icon()
 	return 1
 
-/obj/item/device/aicard/update_icon()
-	overlays.Cut()
+/obj/item/device/aicard/on_update_icon()
+	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
-			overlays += image('icons/obj/pda.dmi', "aicard-on")
+			add_overlays(image('icons/obj/pda.dmi', "aicard-on"))
 		if(carded_ai.stat)
 			icon_state = "aicard-404"
 		else
@@ -147,6 +148,6 @@
 /obj/item/device/aicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))
 		rig.forced_move(direction, user)

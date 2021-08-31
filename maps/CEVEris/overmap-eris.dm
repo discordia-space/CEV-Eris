@@ -4,6 +4,10 @@
 	vessel_mass = 300
 	default_delay = 20 SECONDS
 	speed_mod = 5 SECONDS
+	base = 1
+
+	name_stages = list("CEV Eris", "unknown vessel", "unknown spatial phenomenon")
+	icon_stages = list("eris", "ship", "poi")
 
 	start_x = 9
 	start_y = 10
@@ -41,6 +45,15 @@
 		"nav_deck4_aquila",
 		"nav_bridge_aquila"
 	)*/
+
+/obj/effect/overmap/ship/eris/Initialize()
+	.=..()
+	if(name == "CEV Eris")
+		ships[eris] = src
+
+/obj/effect/overmap/ship/eris/Process()
+	overmap_event_handler.scan_loc(src, loc, can_scan()) // Eris uses its sensors to scan nearby events
+	.=..()
 
 /obj/machinery/computer/shuttle_control/explore/exploration_shuttle
 	name = "shuttle control console"

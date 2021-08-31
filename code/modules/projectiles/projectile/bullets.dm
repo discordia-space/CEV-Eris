@@ -17,10 +17,10 @@
 		shake_camera(L, 1, 1, 0.5)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
-	if(penetrating > 0 && damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]))
+	if(damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]*penetrating))
 		mob_passthrough_check = 1
 	else
-		var/obj/item/weapon/grab/G = locate() in target_mob
+		var/obj/item/grab/G = locate() in target_mob
 		if(G && G.state >= GRAB_NECK)
 			mob_passthrough_check = rand()
 		else
@@ -30,7 +30,7 @@
 /obj/item/projectile/bullet/can_embed()
 	//prevent embedding if the projectile is passing through the mob
 	if(mob_passthrough_check)
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
@@ -49,15 +49,15 @@
 	var/chance = 0
 	if(istype(A, /turf/simulated/wall))
 		var/turf/simulated/wall/W = A
-		chance = round(damage/W.material.integrity*180)
+		chance = round(penetrating*damage/W.material.integrity*180)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		chance = round(damage/D.maxhealth*180)
+		chance = round(penetrating*damage/D.maxhealth*180)
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = damage
+		chance = damage*penetrating
 
 	if(prob(chance))
 		if(A.opacity)

@@ -1,4 +1,4 @@
-/obj/item/weapon/pinpointer
+/obj/item/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"
@@ -9,13 +9,14 @@
 	throw_speed = 4
 	throw_range = 20
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	var/obj/item/weapon/disk/nuclear/the_disk = null
-	var/obj/item/weapon/disk/nuclear/slot = null
-	var/obj/machinery/nuclearbomb/pointbomb = null
+	//spawn_blacklisted = TRUE//antag_item_targets??
+	var/obj/item/disk/nuclear/the_disk
+	var/obj/item/disk/nuclear/slot
+	var/obj/machinery/nuclearbomb/pointbomb
 	var/active = FALSE
 
 
-/obj/item/weapon/pinpointer/attack_self()
+/obj/item/pinpointer/attack_self()
 	if(!active)
 		active = TRUE
 		if(!slot)
@@ -28,36 +29,36 @@
 		icon_state = "pinoff"
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
-/obj/item/weapon/pinpointer/attackby(obj/item/I, mob/user, params)
-	if (!slot && istype(I, /obj/item/weapon/disk/nuclear))
+/obj/item/pinpointer/attackby(obj/item/I, mob/user, params)
+	if (!slot && istype(I, /obj/item/disk/nuclear))
 		usr.drop_item()
 		I.loc = src
 		src.slot = I
 		update_icon()
 
-/obj/item/weapon/pinpointer/MouseDrop(over_object)
+/obj/item/pinpointer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(slot, usr))
 		slot = null
 		update_icon()
 	else
 		..()
 
-/obj/item/weapon/pinpointer/update_icon()
-	overlays.Cut()
+/obj/item/pinpointer/on_update_icon()
+	cut_overlays()
 
 	if (slot)
 		var/tooloverlay = "disknukeloaded"
-		overlays += (tooloverlay)
+		add_overlays((tooloverlay))
 
 
-/obj/item/weapon/pinpointer/proc/workdisk()
+/obj/item/pinpointer/proc/workdisk()
 	if(!active) return
-	
+
 	if(slot)
 		worknuclear()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
 		return
-	
+
 	if(!the_disk)
 		the_disk = locate()
 		if(!the_disk)
@@ -75,7 +76,7 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/proc/worknuclear()
+/obj/item/pinpointer/proc/worknuclear()
 	if(!active) return
 
 	if(!slot)
@@ -100,7 +101,7 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/examine(mob/user)
+/obj/item/pinpointer/examine(mob/user)
 	..(user)
 	if(slot)
 		to_chat(user, "Nuclear disk is loaded inside [src].")
@@ -108,19 +109,19 @@
 		if(bomb.timing)
 			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
 
-/obj/item/weapon/pinpointer/Destroy()
+/obj/item/pinpointer/Destroy()
 	active = FALSE
 	. = ..()
 
-/obj/item/weapon/pinpointer/advpinpointer
+/obj/item/pinpointer/advpinpointer
 	name = "Advanced Pinpointer"
 	icon = 'icons/obj/device.dmi'
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 	var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates.
-	var/turf/location = null
-	var/obj/target = null
+	var/turf/location
+	var/obj/target
 
-/obj/item/weapon/pinpointer/advpinpointer/attack_self()
+/obj/item/pinpointer/advpinpointer/attack_self()
 	if(!active)
 		active = TRUE
 		if(mode == 0)
@@ -135,7 +136,7 @@
 		icon_state = "pinoff"
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/worklocation()
+/obj/item/pinpointer/advpinpointer/proc/worklocation()
 	if(!active)
 		return
 	if(!location)
@@ -154,7 +155,7 @@
 	spawn(5) .()
 
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/workobj()
+/obj/item/pinpointer/advpinpointer/proc/workobj()
 	if(!active)
 		return
 	if(!target)
@@ -172,7 +173,7 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/advpinpointer/verb/toggle_mode()
+/obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
@@ -239,11 +240,11 @@
 ///////////////////////
 
 
-/obj/item/weapon/pinpointer/nukeop
+/obj/item/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
-	var/obj/machinery/computer/shuttle_control/multi/mercenary/home = null
+	var/obj/machinery/computer/shuttle_control/multi/mercenary/home
 
-/obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
+/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
 	if(!active)
 		active = TRUE
 		if(!mode)
@@ -258,7 +259,7 @@
 		to_chat(user, SPAN_NOTICE("You deactivate the pinpointer."))
 
 
-/obj/item/weapon/pinpointer/nukeop/workdisk()
+/obj/item/pinpointer/nukeop/workdisk()
 	if(!active) return
 	if(mode)		//Check in case the mode changes while operating
 		worklocation()
@@ -291,7 +292,7 @@
 	spawn(5) .()
 
 
-/obj/item/weapon/pinpointer/nukeop/proc/worklocation()
+/obj/item/pinpointer/nukeop/proc/worklocation()
 	if(!active)	return
 	if(!mode)
 		workdisk()

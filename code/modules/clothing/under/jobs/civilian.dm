@@ -1,5 +1,4 @@
 //Alphabetical order of civilian jobs.
-
 /obj/item/clothing/under/rank/assistant
 	desc = "Filled with hatred and envy."
 	name = "assistant's uniform"
@@ -19,7 +18,7 @@
 	item_state = "ba_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
+	desc = "It's a red jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
@@ -50,7 +49,7 @@
 	item_state = "church"
 
 /obj/item/clothing/under/rank/church/sport
-	desc = "smells like lilac."
+	desc = "Smells like lilac."
 	name = "church sports vestment"
 	icon_state = "nt_sports"
 	item_state = "nt_sports"
@@ -60,6 +59,13 @@
 	name = "chef's uniform"
 	icon_state = "chef"
 	item_state = "w_suit"
+
+/obj/item/clothing/under/rank/artist
+	name = "Jester's Garments"
+	desc = "The bright colors are almost distracting."
+	icon_state = "artist"
+	item_state = "artist"
+	spawn_frequency = 0
 
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
@@ -81,7 +87,7 @@
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/janitor
-	desc = "It's the official uniform of the station's janitor."
+	desc = "It's the official uniform of the ship's janitor."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
 	item_state = "janitor"

@@ -53,12 +53,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/glasses/hud/security
 	sort_string = "GAAAB"
 
-/datum/design/research/item/mesons
-	name = "Optical meson scanners"
-	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
-	build_path = /obj/item/clothing/glasses/powered/meson
-	sort_string = "GAAAC"
-
 /datum/design/research/item/medical
 	name_category = "biotech device prototype"
 	category = "Medical"
@@ -95,31 +89,33 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/beaker/noreact
 	name = "cryostasis"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
-	build_path = /obj/item/weapon/reagent_containers/glass/beaker/noreact
+	build_path = /obj/item/reagent_containers/glass/beaker/noreact
 	sort_string = "MADAA"
 
 /datum/design/research/item/beaker/bluespace
 	name = "bluespace"
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
-	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
+	build_path = /obj/item/reagent_containers/glass/beaker/bluespace
 	sort_string = "MADAB"
 
 /datum/design/research/item/medical/nanopaste
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
+	chemicals = list("nanites" = 5)
 
 /datum/design/research/item/scalpel_laser
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
-	build_path = /obj/item/weapon/tool/scalpel/laser
+	build_path = /obj/item/tool/scalpel/laser
+	category = "Medical"
 	sort_string = "MBBAA"
 
 /datum/design/research/item/makeshift_centrifuge
 	name = "Portable centrifuge"
 	desc = "A centrifuge with manual mechanism."
 	build_path = /obj/item/device/makeshift_centrifuge
+	category = "Medical"
 	sort_string = "MBBAA"
-
 
 /datum/design/research/item/light_replacer
 	name = "light replacer"
@@ -162,42 +158,49 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/beacon
 	name = "Bluespace tracking beacon design"
 	build_path = /obj/item/device/radio/beacon
+	category = "Telecoms | Bluespace"
 	sort_string = "VADAA"
 
 /datum/design/research/item/bag_holding
 	name = "'Bag of Holding', an infinite capacity bag prototype"
 	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighing nothing. It's a shame the bag itself is pretty heavy."
-	build_path = /obj/item/weapon/storage/backpack/holding
+	build_path = /obj/item/storage/backpack/holding
+	category = "Telecoms | Bluespace"
 	sort_string = "VAEAA"
 
 /datum/design/research/item/belt_holding
 	name = "'Belt of Holding', an infinite capacity belt prototype"
 	desc = "Using localized pockets of bluespace this belt prototype offers incredible storage capacity with the contents weighing nothing."
-	build_path = /obj/item/weapon/storage/belt/holding
+	build_path = /obj/item/storage/belt/holding
+	category = "Telecoms | Bluespace"
 	sort_string = "VAEAB"
 
 /datum/design/research/item/pouch_holding
 	name = "'Pouch of Holding', an infinite capacity pouch prototype"
 	desc = "Using localized pockets of bluespace this pouch prototype offers incredible storage capacity with the contents weighing nothing."
-	build_path = /obj/item/weapon/storage/pouch/holding
+	build_path = /obj/item/storage/pouch/holding
+	category = "Telecoms | Bluespace"
 	sort_string = "VAEAC"
 
 /datum/design/research/item/trashbag_holding
 	name = "'Trashbag of Holding', an infinite capacity trashbag prototype"
 	desc = "Using localized pockets of bluespace this trashbag prototype offers incredible storage capacity with the contents weighing nothing."
-	build_path = /obj/item/weapon/storage/bag/trash/holding
+	build_path = /obj/item/storage/bag/trash/holding
+	category = "Telecoms | Bluespace"
 	sort_string = "VAEAD"
 
 /datum/design/research/item/oresatchel_holding
 	name = "'Ore satchel of Holding', an infinite capacity ore satchel prototype"
 	desc = "Using localized pockets of bluespace this ore satchel prototype offers incredible storage capacity with the contents weighing nothing."
-	build_path = /obj/item/weapon/storage/bag/ore/holding
+	build_path = /obj/item/storage/bag/ore/holding
+	category = "Telecoms | Bluespace"
 	sort_string = "VAEAE"
 
 /datum/design/research/item/binaryencrypt
 	name = "Binary encryption key"
 	desc = "Allows for deciphering the binary channel on-the-fly."
 	build_path = /obj/item/device/encryptionkey/binary
+	category = "Telecoms | Bluespace"
 	sort_string = "VASAA"
 
 /datum/design/research/item/glowstick
@@ -208,12 +211,18 @@ other types of metals and chemistry for reagents).
 	chemicals = list("radium" = 5, "phosphorus" = 10)
 	materials = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 15)
 
+/datum/design/research/item/science_voidsuit
+	name = "Moebius combat voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/science
+	sort_string = "VASAC"
+
+
 //Why is there a science design to craft a cardboard box full of things? That is not how this works
 /*
 /datum/design/research/item/chameleon
 	name = "Holographic equipment kit"
 	desc = "A kit of dangerous, high-tech equipment with changeable looks."
 	req_tech = list(TECH_COVERT = 2)
-	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
+	build_path = /obj/item/storage/box/syndie_kit/chameleon
 	sort_string = "VASBA"
 */

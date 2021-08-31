@@ -13,17 +13,18 @@
 //Contains boomsticks, ie, shotguns
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
-	contents_list_base = list(/obj/random/gun_shotgun = 2,
-	/obj/random/ammo/shotgun = 2, /obj/random/ammo = 2)
-	contents_list_random = list(/obj/random/ammo/shotgun = 60,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/gun_cheap = 50,
-	/obj/random/gun_cheap = 50,
-	/obj/random/gun_shotgun = 50)
+	directions = DIRECTION_COORDS | DIRECTION_LANDMARK
+	contents_list_base = list(/obj/spawner/gun/shotgun = 2,
+	/obj/spawner/ammo/shotgun = 2, /obj/spawner/ammo = 2)
+	contents_list_random = list(/obj/spawner/ammo/shotgun = 60,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/gun_upgrade = 50,
+	/obj/spawner/gun_upgrade = 50,
+	/obj/spawner/gun/shotgun = 50)
 	lore = "MUTINY TOMORROW 0300 MEET AT %D <br><br>BRING YOUR OWN BOOMSTICK ONLY A FEW SPARES"
 
 //because this one is styled like a telegram, lets capitalise the directions
@@ -37,23 +38,23 @@
 /datum/stash/weapon/mutiny_AI
 	story_type = STORY_MALFUNCTION
 	lore = "AI ACTING UP. GO HERE, %D BRING OTHERS. RADIO SILENCE."
-	contents_list_base = list(/obj/item/weapon/gun/energy/ionrifle = 1,
-	/obj/item/weapon/storage/box/emps = 1,
+	contents_list_base = list(/obj/item/gun/energy/ionrifle = 1,
+	/obj/item/storage/box/emps = 1,
 	/obj/item/clothing/gloves/insulated = 1,
-	/obj/item/weapon/storage/toolbox/emergency = 1,
-	/obj/random/powercell = 4)
+	/obj/item/storage/toolbox/emergency = 1,
+	/obj/spawner/powercell = 4)
 
-	contents_list_random = list(/obj/item/weapon/storage/box/explosive = 40,
-	/obj/item/weapon/tool/fireaxe = 70,
+	contents_list_random = list(/obj/item/storage/box/explosive = 40,
+	/obj/item/tool/fireaxe = 70,
 	/obj/item/clothing/gloves/insulated = 50,
-	/obj/item/weapon/storage/box/emps = 30,
-	/obj/item/weapon/gun/energy/ionrifle = 70,
-	/obj/random/powercell = 70,
-	/obj/item/weapon/storage/toolbox/emergency = 50,
+	/obj/item/storage/box/emps = 30,
+	/obj/item/gun/energy/ionrifle = 70,
+	/obj/spawner/powercell = 70,
+	/obj/item/storage/toolbox/emergency = 50,
 	/obj/item/clothing/suit/armor/laserproof = 30,
 	/obj/item/clothing/suit/armor/laserproof = 30,
-	/obj/item/weapon/storage/belt/utility/full = 70,
-	/obj/item/weapon/storage/belt/utility/full = 70)
+	/obj/item/storage/belt/utility/full = 70,
+	/obj/item/storage/belt/utility/full = 70)
 
 //Variant of the above with slightly deeper story
 /datum/stash/weapon/mutiny_AI/robots
@@ -75,17 +76,17 @@
 //There are sooo many mutiny stories
 /datum/stash/weapon/mutiny
 	story_type = STORY_MUTINY
-	contents_list_base = list(/obj/random/gun_cheap = 3,
-	/obj/random/ammo = 8,
-	/obj/random/cloth/armor = 1)
-	contents_list_random = list(/obj/random/gun_normal = 70,
-	/obj/random/gun_energy_cheap = 50,
-	/obj/random/voidsuit = 70,
-	/obj/random/knife = 70,
-	/obj/random/knife = 50,
-	/obj/random/knife = 60,
-	/obj/random/cloth/armor = 60,
-	/obj/random/cloth/armor = 60)
+	contents_list_base = list(/obj/spawner/gun/cheap = 3,
+	/obj/spawner/ammo = 8,
+	/obj/spawner/cloth/armor = 1)
+	contents_list_random = list(/obj/spawner/gun/normal = 70,
+	/obj/spawner/gun/energy_cheap = 50,
+	/obj/spawner/voidsuit = 70,
+	/obj/spawner/knife = 70,
+	/obj/spawner/knife = 50,
+	/obj/spawner/knife = 60,
+	/obj/spawner/cloth/armor = 60,
+	/obj/spawner/cloth/armor = 60)
 	lore = "Logbook:<br>\
 	 Half-rations unless we want roachmeat? What next, ship's biscuit and weevils? I'll choose the lesser of two weevils, black bloody mutiny.<br>\
  To hell with this half-assed aristocrat and his lording over us because he was born wearing a powdered wig. A millennium late, you poser.<br>\
@@ -103,7 +104,7 @@
 
 /*
 /datum/stash/weapon/mutiny/warden
-	contents_list_extra = list(/obj/random/gun_normal = 3, /obj/random/ammo = 6)
+	contents_list_extra = list(/obj/spawner/gun/normal = 3, /obj/spawner/ammo = 6)
 	directions = DIRECTION_IMAGE
 	lore = "Warden,<br>\
  You and I both know this rubber buckshot bullshit is going to get us all killed when the convicts realize they outnumber us sixty to one.<br>\
@@ -115,7 +116,7 @@
 /datum/stash/weapon/mutiny/starvation
  	//Make sure there's a shotgun with slugs in the stash, as described in the text.
  	//Also the wardens were hoarding food
- 	contents_list_extra = list(/obj/random/gun_shotgun = 1, /obj/item/weapon/storage/box/shotgunammo/slug = 1, /obj/random/rations = 6)
+ 	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/ammo_magazine/ammobox/shotgun = 1, /obj/spawner/rations = 6)
  	lore = "Convicts figured out the starvation rations are neither accidental nor temporary.<br>\
  Plan B is to shoot troublemakers until we balance the calorie equation.<br>\
  Just keep it semi-justifiable, don't leave any slugs in the walls, and stick the lethals back at %D when you're done.<br>\

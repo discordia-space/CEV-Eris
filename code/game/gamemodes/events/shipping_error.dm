@@ -14,6 +14,6 @@
 /datum/event/shipping_error/start()
 	var/datum/supply_order/O = new /datum/supply_order(
 		SSsupply.supply_packs[pick(SSsupply.supply_packs)],
-		random_name(pick(MALE, FEMALE), species = "Human")
+		random_name(pick(MALE, FEMALE), species = SPECIES_HUMAN)
 	)
 	SSsupply.shoppinglist += O

@@ -20,6 +20,7 @@
 
 /obj/item/clothing/shoes/jackboots/ironhammer
 	icon_state = "jackboots_ironhammer"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/jackboots/german
 	name = "Oberth Republic boots"
@@ -35,6 +36,7 @@
 	siemens_coefficient = 0.3
 	item_flags = NOSLIP
 	can_hold_knife = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/reinforced
 	name = "reinforced shoes"
@@ -46,12 +48,14 @@
 
 /obj/item/clothing/shoes/reinforced/ironhammer
 	icon_state = "reinforced_ironhammer"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/reinforced/medical
-	name = "moebius reinfoced shoes"
+	name = "moebius reinforced shoes"
 	desc = "Slightly reinforced shoes for moebius medical personnel."
 	icon_state = "reinforced_moebius"
 	item_state = "reinforced_moebius"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
@@ -61,3 +65,10 @@
 	siemens_coefficient = 0
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	can_hold_knife = TRUE
+
+/obj/item/clothing/shoes/artist_shoes
+	name = "Pointy Shoes"
+	desc = "They're actually quite comfortable."
+	icon_state = "artist"
+	item_state = "artist_shoes"
+	spawn_frequency = 0

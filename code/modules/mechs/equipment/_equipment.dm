@@ -6,6 +6,10 @@
 	icon_state = ""
 	matter = list(MATERIAL_STEEL = 40)
 	force = 10
+	bad_type = /obj/item/mech_equipment
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+	rarity_value = 10
+	spawn_frequency = 10
 
 	var/restricted_hardpoints
 	var/mob/living/exosuit/owner
@@ -23,7 +27,7 @@
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		if(target in owner.contents)
 			return 0
-		var/obj/item/weapon/cell/C = owner.get_cell()
+		var/obj/item/cell/C = owner.get_cell()
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return 0
@@ -37,7 +41,7 @@
 
 /obj/item/mech_equipment/attack_self(var/mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
-		var/obj/item/weapon/cell/C = owner.get_cell()
+		var/obj/item/cell/C = owner.get_cell()
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return 0
@@ -64,6 +68,7 @@
 /obj/item/mech_equipment/mounted_system
 	var/holding_type
 	var/obj/item/holding
+	bad_type = /obj/item/mech_equipment/mounted_system
 
 /obj/item/mech_equipment/mounted_system/attack_self(var/mob/user)
 	. = ..()

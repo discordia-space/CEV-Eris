@@ -18,7 +18,7 @@
 	body.update_air(hatch_closed && use_air)
 
 	if((client || LAZYLEN(pilots)) && get_cell())
-		var/obj/item/weapon/cell/c = get_cell()
+		var/obj/item/cell/c = get_cell()
 		c.drain_power(0, 0, calc_power_draw())
 
 	updatehealth()
@@ -26,6 +26,7 @@
 		death()
 	. = ..() //Handles stuff like environment
 	lying = FALSE // Fuck off, carp.
+	handle_vision()
 
 /mob/living/exosuit/get_cell()
 	return body?.get_cell()
@@ -113,6 +114,11 @@
 	if(head)
 		sight = head.get_sight()
 		see_invisible = head.get_invisible()
-	if(body && (body.pilot_coverage < 100 || body.transparent_cabin))
+	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed)
 		sight &= ~BLIND
 
+/mob/living/exosuit/additional_sight_flags()
+	return sight
+
+/mob/living/exosuit/additional_see_invisible()
+	return see_invisible

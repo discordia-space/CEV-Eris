@@ -59,7 +59,7 @@
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
-	var/icon_scale = 1.0
+	var/icon_scale = 1
 	light_range = 3
 	desc = "Some blob creature thingy"
 	density = FALSE //Normal blobs can be walked over, but it's not a good idea
@@ -183,13 +183,6 @@
 
 		set_expand_time()
 
-/obj/effect/blob/verb/expandverb()
-	set src in view()
-	set name = "Expand"
-
-	expand(pick(non_blob_neighbors))
-
-
 /obj/effect/blob/proc/regen()
 	if (!(QDELETED(core)))
 		health = min(health + health_regen, maxHealth)
@@ -197,7 +190,7 @@
 		core = null
 		//When the core is gone, the blob starts dying
 		//The closer it was to the core, the faster it dies. So death spreads out radially
-		take_damage((1.0 / coredist))
+		take_damage((1 / coredist))
 	update_icon()
 
 /*
@@ -276,7 +269,7 @@
 /obj/effect/blob/fire_act()
 	take_damage(rand(20, 60) / fire_resist)
 
-/obj/effect/blob/update_icon()
+/obj/effect/blob/on_update_icon()
 	var/healthpercent = health / maxHealth
 	if(healthpercent > 0.5)
 		icon_state = "blob"
@@ -491,7 +484,7 @@
 	else
 		return PROJECTILE_CONTINUE
 
-/obj/effect/blob/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(W.force && !(W.flags & NOBLUDGEON))
 		user.do_attack_animation(src, TRUE)
@@ -499,7 +492,7 @@
 		switch(W.damtype)
 			if("fire")
 				damage = (W.force / fire_resist)
-				if(istype(W, /obj/item/weapon/tool/weldingtool))
+				if(istype(W, /obj/item/tool/weldingtool))
 					playsound(loc, 'sound/items/Welder.ogg', 100, 1)
 			if("brute")
 				damage = (W.force / brute_resist)
@@ -527,7 +520,7 @@
 	core = src //It is its own core
 	..()
 
-/obj/effect/blob/core/update_icon()
+/obj/effect/blob/core/on_update_icon()
 	return
 
 //When the core dies, wake up all our sub-blobs so they can slowly die too
@@ -555,7 +548,7 @@
 	density = TRUE
 	icon_scale = 1.2
 
-/obj/effect/blob/shield/update_icon()
+/obj/effect/blob/shield/on_update_icon()
 	var/healthpercent = health / maxHealth
 	if(healthpercent > 0.6)
 		icon_state = "blob_idle"

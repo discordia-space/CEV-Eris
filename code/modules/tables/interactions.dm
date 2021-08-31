@@ -60,7 +60,7 @@
 //Drag and drop onto tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
-	if(istype(A.loc, /mob))
+	if(ismob(A.loc))
 		if (user.unEquip(A, loc))
 			set_pixel_click_offset(A, params)
 		return
@@ -86,7 +86,7 @@
 	return ..()
 
 
-/obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/table/affect_grab(mob/living/user, mob/living/target, state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
@@ -106,7 +106,7 @@
 				playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 			var/list/L = take_damage(rand(1,5))
 			// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
-			for(var/obj/item/weapon/material/shard/S in L)
+			for(var/obj/item/material/shard/S in L)
 				if(prob(50))
 					target.visible_message(
 						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
@@ -129,12 +129,12 @@
 
 
 
-/obj/structure/table/attackby(obj/item/W, mob/living/user, var/params)
+/obj/structure/table/attackby(obj/item/W, mob/living/user, params)
 	if(!istype(W))
 		return
 
 
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
+	if(istype(W, /obj/item/melee/energy/blade))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
 		spark_system.start()

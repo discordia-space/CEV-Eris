@@ -2,8 +2,10 @@
 	name = "host brain"
 	real_name = "host brain"
 	universal_understand = 1
+	stat = 0
 
 /mob/living/captive_brain/say(var/message)
+	message = sanitize(message)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
@@ -12,25 +14,50 @@
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
-	message = sanitize(message)
-	if (!message)
-		return
-	log_say("[key_name(src)] : [message]")
-	if (stat == 2)
-		return say_dead(message)
-	for (var/mob/M in GLOB.player_list)
-		if (isnewplayer(M))
-			continue
-		else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-			to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
-
 	if(istype(src.loc,/mob/living/simple_animal/borer))
+		if (!message)
+			return
+		log_say("[key_name(src)] : [message]")
+		var/last_symbol = copytext(message, length(message))
+		if (stat == 2)
+			return say_dead(message)
+		else if(last_symbol=="@")
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				to_chat(src, "You don't know the codes, pal.")
+				return
+
 		var/mob/living/simple_animal/borer/B = src.loc
+		to_chat(src, "You whisper silently, \"[message]\"")
 		to_chat(B.host, "The captive mind of [src] whispers, \"[message]\"")
 
-	var/obj/item/weapon/implant/carrion_spider/control/controler = src.loc
+		for (var/mob/M in GLOB.player_list)
+			if (isnewplayer(M))
+				continue
+			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
+
+
+	var/obj/item/implant/carrion_spider/control/controler = src.loc
 	if(istype(controler))
+		if (!message)
+			return
+		log_say("[key_name(src)] : [message]")
+		var/last_symbol = copytext(message, length(message))
+		if (stat == 2)
+			return say_dead(message)
+		else if(last_symbol=="@")
+			if(!src.stats.getPerk(/datum/perk/codespeak))
+				to_chat(src, "You don't know the codes, pal.")
+				return
+
+		to_chat(src, "You whisper silently, \"[message]\"")
 		to_chat(controler.wearer, "The captive mind of [src] whispers, \"[message]\"")
+
+		for (var/mob/M in GLOB.player_list)
+			if (isnewplayer(M))
+				continue
+			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
 
 /mob/living/captive_brain/emote(var/message)
@@ -52,9 +79,9 @@
 			to_chat(H, SPAN_DANGER("With an immense exertion of will, you regain control of your body!"))
 			to_chat(B.host, SPAN_DANGER("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
 			B.detatch()
-			verbs -= /mob/living/carbon/proc/release_control
-			verbs -= /mob/living/carbon/proc/punish_host
-			verbs -= /mob/living/carbon/proc/spawn_larvae
+			verbs |= /mob/living/carbon/human/proc/commune
+			verbs |= /mob/living/carbon/human/proc/psychic_whisper
+			verbs |= /mob/living/carbon/proc/spawn_larvae
 
 		return
 

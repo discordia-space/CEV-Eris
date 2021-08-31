@@ -7,21 +7,22 @@
 	throw_speed = 2
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
+	spawn_frequency = 0
 	var/welded = FALSE   //0 - not readied //1 - bomb finished with welder
-	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
-	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a plasma tank
+	var/obj/item/device/assembly_holder/bombassembly   //The first part of the bomb is an assembly holder, holding an igniter+some device
+	var/obj/item/tank/bombtank //the second part of the bomb is a plasma tank
 
 /obj/item/device/onetankbomb/examine(mob/user)
 	..(user)
 	user.examinate(bombtank)
 
-/obj/item/device/onetankbomb/update_icon()
+/obj/item/device/onetankbomb/on_update_icon()
 	if(bombtank)
 		icon_state = bombtank.icon_state
 	if(bombassembly)
-		overlays += bombassembly.icon_state
-		overlays += bombassembly.overlays
-		overlays += "bomb_assembly"
+		add_overlays(bombassembly.icon_state)
+		add_overlays(bombassembly.overlays)
+		add_overlays("bomb_assembly")
 
 /obj/item/device/onetankbomb/attackby(obj/item/I, mob/user)
 
@@ -87,7 +88,7 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/weapon/tank/proc/bomb_assemble(W,user)	//Bomb assembly proc. This turns assembly+tank into a bomb
+/obj/item/tank/proc/bomb_assemble(W,user)	//Bomb assembly proc. This turns assembly+tank into a bomb
 	var/obj/item/device/assembly_holder/S = W
 	var/mob/M = user
 	if(!S.secured)										//Check if the assembly is secured
@@ -111,7 +112,7 @@
 	R.update_icon()
 	return
 
-/obj/item/weapon/tank/proc/ignite()	//This happens when a bomb is told to explode
+/obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
 	var/strength = 1
 
@@ -159,7 +160,7 @@
 		qdel(master)
 	qdel(src)
 
-/obj/item/weapon/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
+/obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles)
 	var/turf/simulated/T = get_turf(src)
 	if(!T)

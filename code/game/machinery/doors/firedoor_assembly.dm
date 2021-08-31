@@ -1,4 +1,4 @@
-obj/structure/firedoor_assembly
+/obj/structure/firedoor_assembly
 	name = "\improper emergency shutter assembly"
 	desc = "It can save lives."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
@@ -8,13 +8,10 @@ obj/structure/firedoor_assembly
 	density = TRUE
 	var/wired = 0
 
-obj/structure/firedoor_assembly/update_icon()
-	if(anchored)
-		icon_state = "door_anchored"
-	else
-		icon_state = "door_construction"
+/obj/structure/firedoor_assembly/on_update_icon()
+	SetIconState("door_[anchored?"anchored":"construction"]")
 
-obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
+/obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
 	if(!anchored)
@@ -67,7 +64,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 				wired = 1
 				to_chat(user, SPAN_NOTICE("You wire \the [src]."))
 
-	else if(istype(I, /obj/item/weapon/airalarm_electronics) && wired)
+	else if(istype(I, /obj/item/electronics/airalarm) && wired)
 		if(anchored)
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_WARNING("[user] has inserted a circuit into \the [src]!"),

@@ -57,7 +57,7 @@
 
 		var/nearspace = FALSE
 		//We'll try not to cause breaches by dropping it somewhere sufficiently far from space
-		for (var/u in trange(5, T))
+		for (var/u in RANGE_TURFS(5, T))
 			//We test each tile within a radius of 4
 			var/turf/U = u
 			if (turf_is_external(U))
@@ -87,11 +87,11 @@
 
 	//Secondly, some rare items, to bring all the boys to the yard
 	for (var/i = 0; i < 10; i++)
-		pod_contents.Add(/obj/random/pack/rare)
+		pod_contents.Add(/obj/spawner/pack/rare)
 
 	//Aaand thirdly a bunch of random stuff just to fill out space
 	for (var/i = 0; i < 20; i++)
-		pod_contents.Add(/obj/random/lowkeyrandom)
+		pod_contents.Add(/obj/spawner/lowkeyrandom)
 
 
 //Some mobs too!
@@ -99,9 +99,9 @@
 	var/list/possible_mobs = list(/mob/living/simple_animal/hostile/hivebot,
 	/mob/living/simple_animal/hostile/scarybat,
 	/mob/living/simple_animal/mouse,
-	/obj/random/slime/rainbow,
-	/obj/random/mob/spiders,
-	/obj/random/mob/roaches,
+	/obj/spawner/mob/slime/rainbow,
+	/obj/spawner/mob/spiders,
+	/obj/spawner/mob/roaches,
 	/mob/living/simple_animal/hostile/samak,
 	/mob/living/simple_animal/hostile/bear,
 	/mob/living/simple_animal/hostile/carp,

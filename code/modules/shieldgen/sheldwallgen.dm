@@ -7,7 +7,7 @@
 		anchored = FALSE
 		density = TRUE
 		req_access = list(access_engine_equip)
-		circuit = /obj/item/weapon/circuitboard/shieldwallgen
+		circuit = /obj/item/electronics/circuitboard/shieldwallgen
 		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior variant
 		var/active = 0
 		var/power = 0
@@ -26,7 +26,7 @@
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
-		use_power = 0	//Draws directly from power net. Does not use APC power.
+		use_power = NO_POWER_USE	//Draws directly from power net. Does not use APC power.
 		var/max_field_dist = 8
 		var/stunmode = FALSE
 		var/stun_chance = 1
@@ -85,16 +85,16 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
-/obj/machinery/shieldwallgen/update_icon()
-	icon_state = "Shield_Gen"
+/obj/machinery/shieldwallgen/on_update_icon()
+	SetIconState("Shield_Gen")
 	if(active)
-		icon_state = "Shield_Gen_active"
+		SetIconState("Shield_Gen_active")
 		if(stunmode)
-			icon_state = "Shield_Gen_emagged"
+			SetIconState("Shield_Gen_emagged")
 
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
-		overlays.Add(image(icon,"Shield_Gen_panel"))
+		add_overlays(image(icon,"Shield_Gen_panel"))
 
 /obj/machinery/shieldwallgen/Process()
 	power()
@@ -224,7 +224,7 @@
 				src.anchored = FALSE
 				return
 
-	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
@@ -330,21 +330,21 @@
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		switch(severity)
-			if(1.0) //big boom
+			if(1) //big boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 120000
 
-			if(2.0) //medium boom
+			if(2) //medium boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 30000
 
-			if(3.0) //lil boom
+			if(3) //lil boom
 				if(prob(50))
 					G = gen_primary
 				else

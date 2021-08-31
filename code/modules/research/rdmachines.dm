@@ -19,6 +19,7 @@
 	have_disk = FALSE
 	have_recycling = FALSE
 	have_design_selector = FALSE
+	low_quality_print = FALSE
 
 	var/obj/machinery/computer/rdconsole/linked_console
 
@@ -36,7 +37,7 @@
 	name = "protolathe"
 	desc = "A machine used for construction of advanced prototypes. Operated from an R\&D console."
 	icon_state = "protolathe"
-	circuit = /obj/item/weapon/circuitboard/protolathe
+	circuit = /obj/item/electronics/circuitboard/protolathe
 
 	build_type = PROTOLATHE
 	storage_capacity = 120
@@ -46,7 +47,7 @@
 	name = "circuit imprinter"
 	desc = "A machine used for printing advanced circuit boards. Operated from an R\&D console."
 	icon_state = "imprinter"
-	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
+	circuit = /obj/item/electronics/circuitboard/circuit_imprinter
 
 	build_type = IMPRINTER
 	storage_capacity = 60
@@ -70,4 +71,4 @@
 
 /obj/machinery/autolathe/rnd/imprinter/loaded/Initialize()
 	. = ..()
-	container = new /obj/item/weapon/reagent_containers/glass/beaker/silicon(src)
+	container = new /obj/item/reagent_containers/glass/beaker/silicon(src)

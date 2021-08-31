@@ -3,7 +3,7 @@
 	sound and visual fx
 */
 /datum/vertical_travel_method/jetpack
-	var/obj/item/weapon/tank/jetpack/thrust
+	var/obj/item/tank/jetpack/thrust
 	var/burst_interval = 3
 	var/next_burst = 0
 	start_verb_visible = "%m starts a controlled %d3t with the %s"
@@ -20,9 +20,9 @@
 		mat.Scale(0.9)
 		M.set_plane(FLOOR_PLANE)
 		M.layer = 1
-		animate(M, alpha = 50, pixel_y = -16, transform = mat,  time = duration*1.2, easing = SINE_EASING)
+		animate(M, alpha = 50, pixel_y = -16, transform = mat,  time = duration*1.2, easing = SINE_EASING, flags = ANIMATION_END_NOW)
 	else
-		animate(M, alpha = 0, pixel_y = 64, time = duration*1.2, easing = SINE_EASING)
+		animate(M, alpha = 0, pixel_y = 64, time = duration*1.2, easing = SINE_EASING, flags = ANIMATION_END_NOW)
 
 
 /datum/vertical_travel_method/jetpack/cache_values()

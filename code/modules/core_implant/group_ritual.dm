@@ -4,14 +4,14 @@
 	phrase = null
 	power = 0
 	category = "Group"
-	var/list/phrases = list()
-	var/effect_type = null
 
 	cooldown = TRUE
 	cooldown_time = 1 SECONDS
 	cooldown_category = "group"
+	var/list/phrases = list()
+	var/effect_type
 
-/datum/ritual/group/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+/datum/ritual/group/pre_check(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if(is_on_cooldown(H))
 		return FALSE
 	return ..()
@@ -19,7 +19,7 @@
 /datum/ritual/group/proc/step_check(mob/living/carbon/human/H)
 	return TRUE
 
-/datum/ritual/group/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+/datum/ritual/group/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if(!effect_type)
 		return FALSE
 
@@ -55,7 +55,7 @@
 /////////////////////////////////
 
 /datum/core_module/group_ritual
-	implant_type = /obj/item/weapon/implant/core_implant
+	implant_type = /obj/item/implant/core_implant
 	var/list/participants = list()
 	var/list/correct_participants = list()
 	var/list/phrases = list()
@@ -128,10 +128,13 @@
 
 	to_chat(starter, starter_succ_message)
 	success(starter, participants.len)
+	SEND_SIGNAL(starter, COMSIG_GROUP_RITUAL)
 
 	for(var/mob/affected in participants)
-		to_chat(affected, fail_message)
+		to_chat(affected, succ_message)
 		success(affected, participants.len)
+		SEND_SIGNAL(affected, COMSIG_GROUP_RITUAL)
+	GLOB.grup_ritual_performed++
 
 /datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
 	return

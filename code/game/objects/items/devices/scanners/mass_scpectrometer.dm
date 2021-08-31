@@ -11,6 +11,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
 	charge_per_use = 7
+	rarity_value = 50
 
 	var/details = 0
 	var/recent_fail = 0
@@ -18,7 +19,7 @@
 /obj/item/device/scanner/mass_spectrometer/is_valid_scan_target(atom/O)
 	if(!O.reagents || !O.reagents.total_volume)
 		return FALSE
-	return (O.is_open_container()) || istype(O, /obj/item/weapon/reagent_containers/syringe)
+	return (O.is_open_container()) || istype(O, /obj/item/reagent_containers/syringe)
 
 /obj/item/device/scanner/mass_spectrometer/scan(atom/A, mob/user)
 	if(A != src)
@@ -40,9 +41,7 @@
 
 /obj/item/device/scanner/mass_spectrometer/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(5)
-	reagents = R
-	R.my_atom = src
+	create_reagents(5)
 
 /obj/item/device/scanner/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
@@ -59,7 +58,7 @@
 			if(R.id != "blood")
 				reagents.clear_reagents()
 				return SPAN_WARNING("The sample was contaminated! Please insert another sample")
-				
+
 			else
 				blood_traces = params2list(R.data["trace_chem"])
 				break
@@ -79,3 +78,4 @@
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+	rarity_value = 100

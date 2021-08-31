@@ -10,7 +10,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "d" = (
-/obj/random/figure,
+/obj/spawner/toy/figure,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "e" = (

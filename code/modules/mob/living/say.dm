@@ -112,8 +112,10 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
 		return pick("exclaims", "shouts", "yells")
-	if(ending=="?")
+	else if(ending=="?")
 		return "asks"
+	else if(ending=="@")
+		verb="reports"
 	return verb
 
 // returns message
@@ -131,8 +133,14 @@ var/list/channel_to_radio_key = new
 			return
 
 	if(stat)
+		var/last_symbol = copytext(message, length(message))
 		if(stat == DEAD)
 			return say_dead(message)
+		else if(last_symbol=="@")
+			if(src.stats.getPerk(/datum/perk/codespeak))
+				return
+			else
+				to_chat(src, "You don't know the codes, pal.")
 		return
 
 	if(GLOB.in_character_filter.len)
@@ -173,7 +181,7 @@ var/list/channel_to_radio_key = new
 		if (message_mode == "headset")
 			message = copytext(message,2)//parse ;
 		else
-			message = copytext_char(message,3)//parse :s 
+			message = copytext_char(message,3)//parse :s
 
 	message = trim_left(message)
 
@@ -195,7 +203,7 @@ var/list/channel_to_radio_key = new
 	verb = say_quote(message, speaking)
 
 	message = trim_left(message)
-
+	var/message_pre_stutter = message
 	if(!(speaking && speaking.flags&NO_STUTTER))
 
 		var/list/handle_s = handle_speech_problems(message, verb)
@@ -276,12 +284,9 @@ var/list/channel_to_radio_key = new
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
-		for(var/X in hearing_objects)
-			if(!isobj(X))
-				continue
-			var/obj/O = X
-			if(O.locs.len && (O.locs[1] in hear))
-				listening_obj |= O
+		for(var/obj in GLOB.hearing_objects)
+			if(get_turf(obj) in hear)
+				listening_obj |= obj
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
@@ -305,12 +310,12 @@ var/list/channel_to_radio_key = new
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
-	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40)
+	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
-			if(O) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message))
+			if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
+				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message), message_pre_stutter)
 
 
 	log_say("[name]/[key] : [message]")
@@ -349,7 +354,7 @@ var/list/channel_to_radio_key = new
 
 	if(sdisabilities&DEAF || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
-		if(!language || !language.flags&INNATE)
+		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
 				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 			else
@@ -378,12 +383,12 @@ var/list/channel_to_radio_key = new
 		return
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if(language)
+	if(language && !(verb == "reports"))
 		if(language.flags&NONVERBAL)
 			if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
 				message = stars(message)
 
-	if(!(language && language.flags&INNATE)) // skip understanding checks for INNATE languages
+	if(!(language && language.flags&INNATE) && !(verb == "reports")) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker, language))
 			if(isanimal(speaker))
 				var/mob/living/simple_animal/S = speaker
@@ -396,7 +401,6 @@ var/list/channel_to_radio_key = new
 					message = stars(message)
 
 	..()
-
 
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)
@@ -412,27 +416,28 @@ var/list/channel_to_radio_key = new
 		return
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if(language && language.flags&NONVERBAL)
-		if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
-			message = stars(message)
+	if(language && !(verb == "reports"))
+		if(language.flags&NONVERBAL)
+			if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
+				message = stars(message)
 
-	// skip understanding checks for INNATE languages
-	if(!(language && language.flags&INNATE))
-		if(!say_understands(speaker, language))
-			if(isanimal(speaker))
-				var/mob/living/simple_animal/S = speaker
-				if(S.speak && S.speak.len)
-					message = pick(S.speak)
+		// skip understanding checks for INNATE languages
+		if(!(language.flags&INNATE))
+			if(!say_understands(speaker, language))
+				if(isanimal(speaker))
+					var/mob/living/simple_animal/S = speaker
+					if(S.speak && S.speak.len)
+						message = pick(S.speak)
+					else
+						return
 				else
-					return
-			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+					if(language)
+						message = language.scramble(message)
+					else
+						message = stars(message)
 
-		if(hard_to_hear)
-			message = stars(message)
+			if(hard_to_hear)
+				message = stars(message)
 
 	..()
 

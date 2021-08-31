@@ -12,7 +12,57 @@ This saves us from having to call add_fingerprint() any time something is put in
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
 	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that."))
+		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
+		if(quick_equip_storage(I))
+			return
+
+/mob/living/carbon/human/verb/belt_equip()
+	set name = "belt-equip"
+	set hidden = 1
+
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		return
+	if(quick_equip_belt(I))
+		return
+/mob/living/carbon/human/verb/suit_storage_equip()
+	set name = "suit-storage-equip"
+	set hidden = 1
+
+	var/obj/item/I = get_active_hand()
+	if(I)
+		if(src.s_store)
+			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+			return
+		else
+			equip_to_from_suit_storage(I)
+	else if ( src.s_store )
+		equip_to_from_suit_storage(src.s_store)
+	else
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+	return
+/mob/living/carbon/human/verb/bag_equip()
+	set name = "bag-equip"
+	set hidden = 1
+
+	var/obj/item/I = get_active_hand()
+	var/potential = src.get_inactive_hand()
+	if(!I && !src.back)
+		to_chat(src, SPAN_NOTICE("You have no storage on your back or item in hand."))
+		return
+	if(istype(src.back,/obj/item/storage))
+		var/obj/item/storage/backpack = src.back
+		if(I)
+			equip_to_from_bag(I, backpack)
+		else
+			equip_to_from_bag(null, backpack)
+	else if(istype(potential, /obj/item/storage))
+		var/obj/item/storage/pack = potential
+		if(I)
+			equip_to_from_bag(I, pack)
+		else
+			equip_to_from_bag(null, pack)
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
@@ -182,6 +232,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return BP_R_ARM
 
 /mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
+	SEND_SIGNAL(src, COMSING_HUMAN_EQUITP, W)
 	switch(slot)
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
@@ -289,7 +340,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user)
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -363,17 +414,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_max_w_class()
 	var/get_max_w_class = 0
-	for(var/obj/item/clothing/C in get_equipped_items(TRUE))
-		if(C)
-			if(C.w_class > ITEM_SIZE_TINY)
-				get_max_w_class = C.w_class
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C.w_class > get_max_w_class)
+			get_max_w_class = C.w_class
 	return get_max_w_class
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
 	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C)
-			style_factor += C.get_style()
+		style_factor += C.get_style()
 	if(restrained())
 		style_factor -= 1
 	if(feet_blood_DNA)
@@ -382,15 +431,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor -= 1
 	if(style_factor > MAX_HUMAN_STYLE)
 		style_factor = MAX_HUMAN_STYLE
-	else if(style_factor < MIN_HUMAN_SYLE)
-		style_factor = MIN_HUMAN_SYLE
+	else if(style_factor < MIN_HUMAN_STYLE)
+		style_factor = MIN_HUMAN_STYLE
 	return style_factor
 
 /mob/living/carbon/human/proc/get_style_factor()
 	var/style_factor = 1
 	var/actual_style = get_total_style()
 	if(actual_style >= 0)
-		style_factor += 0.2 * actual_style/MAX_HUMAN_STYLE
-	else 
-		style_factor -= 0.2 * actual_style/MAX_HUMAN_STYLE
+		style_factor += STYLE_MODIFIER * actual_style/MAX_HUMAN_STYLE
+	else
+		style_factor -= STYLE_MODIFIER * actual_style/MIN_HUMAN_STYLE
 	return style_factor

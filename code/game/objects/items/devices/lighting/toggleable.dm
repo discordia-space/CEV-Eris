@@ -9,8 +9,9 @@
 
 	brightness_on = 5 //luminosity when on
 	turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
+	bad_type = /obj/item/device/lighting/toggleable
 
-/obj/item/device/lighting/toggleable/update_icon()
+/obj/item/device/lighting/toggleable/on_update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		set_light(brightness_on)
@@ -39,3 +40,4 @@
 	item_state = ""
 	brightness_on = 2
 	w_class = ITEM_SIZE_TINY
+	spawn_tags = null

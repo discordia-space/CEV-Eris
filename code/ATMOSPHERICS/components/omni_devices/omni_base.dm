@@ -5,7 +5,7 @@
 	name = "omni device"
 	icon = 'icons/atmos/omni_devices.dmi'
 	icon_state = "base"
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	initialize_directions = 0
 	level = BELOW_PLATING_LEVEL
 
@@ -46,13 +46,13 @@
 
 	build_icons()
 
-/obj/machinery/atmospherics/omni/update_icon()
+/obj/machinery/atmospherics/omni/on_update_icon()
 	if(stat & NOPOWER)
-		overlays = overlays_off
+		set_overlays(overlays_off)
 	else if(error_check())
-		overlays = overlays_error
+		set_overlays(overlays_error)
 	else
-		overlays = use_power ? (overlays_on) : (overlays_off)
+		set_overlays(use_power ? (overlays_on) : (overlays_off))
 
 	underlays = underlays_current
 
@@ -66,7 +66,7 @@
 	last_flow_rate = 0
 
 	if(error_check())
-		use_power = 0
+		use_power = NO_POWER_USE
 
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return 0
@@ -96,6 +96,7 @@
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
+		investigate_log("was unfastened by [key_name(user)]", "atmos")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 

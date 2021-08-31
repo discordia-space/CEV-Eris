@@ -44,18 +44,18 @@ obj/var/contaminated = 0
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
 	if(flags & PLASMAGUARD) return 0
-	else if(istype(src,/obj/item/weapon/storage/backpack)) return 0 //Cannot be washed :(
+	else if(istype(src,/obj/item/storage/backpack)) return 0 //Cannot be washed :(
 	else if(istype(src,/obj/item/clothing)) return 1
 
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
 	if(!contaminated)
 		contaminated = 1
-		overlays += contamination_overlay
+		add_overlays(contamination_overlay)
 
 /obj/item/proc/decontaminate()
 	contaminated = 0
-	overlays -= contamination_overlay
+	remove_overlays(contamination_overlay)
 
 /mob/proc/contaminate()
 
@@ -69,7 +69,7 @@ obj/var/contaminated = 0
 		if(prob(1)) suit_contamination() //Plasma can sometimes get through such an open suit.
 
 //Cannot wash backpacks currently.
-//	if(istype(back,/obj/item/weapon/storage/backpack))
+//	if(istype(back,/obj/item/storage/backpack))
 //		back.contaminate()
 
 /mob/proc/pl_effects()
@@ -117,10 +117,10 @@ obj/var/contaminated = 0
 
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
-	if(!species.has_organ[BP_EYES])
+	if(!species.has_process[OP_EYES])
 		return
 
-	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[BP_EYES]
+	var/obj/item/organ/internal/eyes/E = random_organ_by_process(OP_EYES)
 	if(E)
 		if(prob(20)) to_chat(src, SPAN_DANGER("Your eyes burn!"))
 		E.damage += 2.5

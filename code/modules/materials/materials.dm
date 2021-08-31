@@ -6,7 +6,7 @@
 
 	PATHS THAT USE DATUMS
 		turf/simulated/wall
-		obj/item/weapon/material
+		obj/item/material
 		obj/structure/barricade
 		obj/item/stack/material
 		obj/structure/table
@@ -234,7 +234,7 @@ var/list/name_to_material
 // As above.
 /material/proc/place_shard(target, amount=1)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name, amount)
+		return new /obj/item/material/shard(target, src.name, amount)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()
@@ -312,7 +312,7 @@ var/list/name_to_material
 	if(temperature < ignition_point)
 		return 0
 	var/totalPlasma = 0
-	for(var/turf/simulated/floor/target_tile in trange(2, T))
+	for(var/turf/simulated/floor/target_tile in RANGE_TURFS(2, T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -580,6 +580,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
+	display_name = "metallic hydrogen"
 
 /material/platinum
 	name = MATERIAL_PLATINUM
@@ -662,21 +663,6 @@ var/list/name_to_material
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
 
-/material/resin
-	name = "resin"
-	icon_colour = "#E85DD8"
-	dooropen_noise = 'sound/effects/attackblob.ogg'
-	door_icon_base = "resin"
-	melting_point = T0C+300
-	sheet_singular_name = "blob"
-	sheet_plural_name = "blobs"
-
-/material/resin/can_open_material_door(var/mob/living/user)
-	var/mob/living/carbon/M = user
-	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
-		return 1
-	return 0
-
 /material/biomatter
 	name = MATERIAL_BIOMATTER
 	stack_type = /obj/item/stack/material/biomatter
@@ -684,6 +670,13 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+
+/material/compressed
+	name = MATERIAL_COMPRESSED
+	stack_type = /obj/item/stack/material/compressed
+	icon_colour = "#00E1FF"
+	sheet_singular_name = "cartrigde"
+	sheet_plural_name = "cartridges"
 
 //TODO PLACEHOLDERS:
 /material/leather

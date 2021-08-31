@@ -198,7 +198,7 @@
 /turf/simulated/floor/plating,
 /area/crawler)
 "M" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 

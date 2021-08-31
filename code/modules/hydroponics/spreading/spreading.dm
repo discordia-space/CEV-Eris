@@ -28,6 +28,7 @@
 	layer = 3
 	pass_flags = PASSTABLE
 	mouse_opacity = 1
+	reagent_flags = DRAINABLE
 
 	var/health = 5
 	var/max_health = 60
@@ -54,7 +55,10 @@
 		plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
+	if(seed.type == /datum/seed/mushroom/maintshroom)
+		GLOB.all_maintshrooms -= src
 	. = ..()
+
 
 /obj/effect/plant/single
 	spread_chance = 0
@@ -92,6 +96,7 @@
 		if(seed.type == /datum/seed/mushroom/maintshroom)
 			growth_type = 0 // this is maintshroom
 			density = FALSE
+			GLOB.all_maintshrooms += src
 		else if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
 			growth_type = 1 // WOOOORMS.
 		else if(!(seed.seed_noun in list("seeds","pits")))
@@ -117,7 +122,7 @@
 
 	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
-	spread_distance = ((growth_type>0) ? round(spread_chance*1.0) : round(spread_chance*0.5))
+	spread_distance = ((growth_type>0) ? round(spread_chance) : round(spread_chance*0.5))
 	update_icon()
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
@@ -146,7 +151,7 @@
 			if (!near_external)
 				T.ex_act(prob(80) ? 3 : 2)
 
-/obj/effect/plant/update_icon()
+/obj/effect/plant/on_update_icon()
 	//TODO: should really be caching this.
 	refresh_icon()
 
@@ -164,6 +169,10 @@
 		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
+	if (growth_threshold == 0)
+		error("growth_threshold is somehow 0, probably never got redefined. Qdeling to prevent repeat logs")
+		qdel(src)
+		return
 	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
 	var/at_fringe = dist3D(src,parent)
 	if(spread_distance > 5)

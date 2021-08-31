@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/wintermute
+/obj/item/gun/projectile/automatic/wintermute
 	name = "FS AR .20 \"Wintermute\""
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines."
 	icon = 'icons/obj/guns/projectile/wintermute.dmi'
@@ -17,12 +17,13 @@
 	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
-	recoil_buildup = 7
+	recoil_buildup = 1.5
 	one_hand_penalty = 15 //automatic rifle level
+	damage_multiplier = 1.15
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -30,7 +31,9 @@
 		BURST_3_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+/obj/item/gun/projectile/automatic/wintermute/on_update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -46,6 +49,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/wintermute/Initialize()
+/obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()
 	update_icon()

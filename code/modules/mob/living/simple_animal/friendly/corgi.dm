@@ -9,7 +9,7 @@
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/corgi
 	meat_amount = 3
 	response_help  = "pets"
 	response_disarm = "bops"
@@ -20,7 +20,7 @@
 	stomach_size_mult = 30
 	seek_speed = 6
 	possession_candidate = 1
-	holder_type = /obj/item/weapon/holder/corgi
+	holder_type = /obj/item/holder/corgi
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 
@@ -37,6 +37,7 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
+	spawn_frequency = 0//unique
 
 /mob/living/simple_animal/corgi/Life()
 	..()
@@ -50,15 +51,16 @@
 					set_dir(i)
 					sleep(1)
 
-/mob/living/simple_animal/corgi/beg(var/atom/thing, var/atom/holder)
+/mob/living/simple_animal/corgi/beg(atom/thing, atom/holder)
 	visible_emote("stares at the [thing] that [holder] has with sad puppy eyes.")
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+/obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
+	spawn_blacklisted = TRUE//antag_item_targets
 
-/mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	if(istype(O, /obj/item/weapon/newspaper))
+/mob/living/simple_animal/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
+	if(istype(O, /obj/item/newspaper))
 		if(!stat)
 			visible_message(SPAN_NOTICE("[user] baps [name] on the nose with the rolled up [O.name]."))
 			scan_interval = max_scan_interval//discipline your dog to make it stop stealing food for a while
@@ -74,7 +76,7 @@
 		..()
 
 /mob/living/simple_animal/corgi/regenerate_icons()
-	overlays = list()
+	set_overlays(list())
 
 	if(inventory_head)
 		var/head_icon_state = inventory_head.icon_state
@@ -83,7 +85,7 @@
 
 		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
 		if(head_icon)
-			overlays += head_icon
+			add_overlays(head_icon)
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
@@ -92,7 +94,7 @@
 
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
 		if(back_icon)
-			overlays += back_icon
+			add_overlays(back_icon)
 	return
 
 

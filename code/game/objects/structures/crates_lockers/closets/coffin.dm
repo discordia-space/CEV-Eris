@@ -3,6 +3,11 @@
 	desc = "It's a burial receptacle for the dearly departed."
 	icon_state = "coffin"
 	matter = list(MATERIAL_WOOD = 10)
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_CLOSET_COFFIN
+	bad_type = /obj/structure/closet/coffin
 	var/mob/living/occupant = null
 
 /obj/structure/closet/coffin/close(mob/living/user)

@@ -220,8 +220,8 @@
 
 /mob/living/proc/tracking_status()
 	// Easy checks first.
-	// Don't detect mobs on Centcom. Since the wizard den is on Centcomm, we only need this.
-	var/obj/item/weapon/card/id/id = GetIdCard()
+	// Don't detect mobs on Centcom. Since the wizard den is on Centcom, we only need this.
+	var/obj/item/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE
 	if(!isOnPlayerLevel(src))
@@ -265,7 +265,7 @@ mob/living/silicon/robot/tracking_initiated()
 
 mob/living/proc/tracking_cancelled()
 
-mob/living/silicon/robot/tracking_initiated()
+mob/living/silicon/robot/tracking_cancelled()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
 		to_chat(src, SPAN_NOTICE("Internal camera is no longer being accessed."))

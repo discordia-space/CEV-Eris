@@ -12,9 +12,11 @@
 	var/list/stats
 	/// Callback used for dynamic calculation of the stats to level up, used if stats is null. It must accept NO arguments, and it needs to return a list shaped like stats.
 	var/datum/callback/get_stats
+	//perk
+	var/datum/perk/perk
 
 /// Statistics can be a list (static) or a callback to a proc that returns a list (of the same format)
-/datum/component/inspiration/Initialize(statistics)
+/datum/component/inspiration/Initialize(statistics, datum/perk/new_perk)
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
 	if(islist(statistics))
@@ -23,11 +25,12 @@
 		get_stats = statistics
 	else
 		return COMPONENT_INCOMPATIBLE
+	perk = new_perk
 
 /datum/component/inspiration/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 
-/datum/component/inspiration/proc/on_examine(var/mob/user)
+/datum/component/inspiration/proc/on_examine(mob/user)
 	for(var/stat in stats)
 		var/aspect
 		switch(stats[stat])
@@ -42,6 +45,9 @@
 			else
 				continue
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+	if(perk)
+		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
+		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()

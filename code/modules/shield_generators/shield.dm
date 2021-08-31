@@ -1,8 +1,3 @@
-//Tells all active shield generators in the world to update, at some point in future
-/proc/update_shield_generators()
-	for (var/obj/machinery/power/shield_generator/S in SSmachines.machinery)
-		S.needs_update = TRUE
-
 /turf/proc/getEffectShield()
 	for (var/obj/effect/shield/S in contents)
 		if (!S.isInactive())
@@ -45,16 +40,16 @@
 	mouse_opacity = 0
 	ignoreExAct = TRUE
 
-/obj/effect/shield/update_icon()
+/obj/effect/shield/on_update_icon()
 	if(gen && gen.check_flag(MODEFLAG_PHOTONIC) && !disabled_for && !diffused_for)
 		set_opacity(1)
 	else
 		set_opacity(0)
 
 	if(gen && gen.check_flag(MODEFLAG_OVERCHARGE))
-		icon_state = "shield_overcharged"
+		SetIconState("shield_overcharged")
 	else
-		icon_state = "shield_normal"
+		SetIconState("shield_normal")
 
 /*
 This is a bad way to solve this "problem".
@@ -261,7 +256,7 @@ Like for example singulo act and whatever.
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
-/obj/effect/shield/attackby(var/obj/item/weapon/I as obj, var/mob/user as mob)
+/obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
 

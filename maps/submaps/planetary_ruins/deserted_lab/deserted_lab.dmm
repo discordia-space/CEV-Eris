@@ -1,0 +1,494 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/wall/r_wall,
+/area/template_noop)
+"ac" = (
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"ad" = (
+/obj/spawner/pack/tech_loot,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/mucus,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"ae" = (
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"af" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/template_noop,
+/area/template_noop)
+"ag" = (
+/obj/structure/sign/securearea{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"ah" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"ai" = (
+/obj/machinery/floodlight,
+/turf/template_noop,
+/area/template_noop)
+"aj" = (
+/obj/structure/sign/department/anomaly{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"ak" = (
+/obj/machinery/artifact,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"al" = (
+/obj/spawner/pack/tech_loot,
+/obj/effect/decal/cleanable/mucus,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"am" = (
+/turf/simulated/floor/plating,
+/area/template_noop)
+"ao" = (
+/obj/spawner/junk,
+/turf/template_noop,
+/area/template_noop)
+"ap" = (
+/obj/structure/closet/crate,
+/turf/template_noop,
+/area/template_noop)
+"aq" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"ar" = (
+/obj/structure/closet/crate/trashcart,
+/turf/template_noop,
+/area/template_noop)
+"as" = (
+/obj/structure/closet/crate/freezer/rations,
+/turf/template_noop,
+/area/template_noop)
+"at" = (
+/obj/spawner/pack/tech_loot,
+/mob/living/carbon/superior_animal/giant_spider/nurse,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"au" = (
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"av" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/spawner/contraband,
+/obj/spawner/cloth/armor,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aw" = (
+/obj/effect/decal/cleanable/mucus,
+/mob/living/carbon/superior_animal/giant_spider/hunter,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"ax" = (
+/obj/structure/bed/chair/office/light,
+/obj/structure/closet/wall_mounted/emcloset,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"ay" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/virusdish/random,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"az" = (
+/obj/machinery/door/unpowered/simple/wood,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aA" = (
+/obj/structure/sign/biohazard{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aB" = (
+/obj/item/clothing/head/bio_hood,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aC" = (
+/obj/spawner/closet,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aE" = (
+/obj/structure/bookcase/manuals/xenoarchaeology,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aF" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aG" = (
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aH" = (
+/obj/spawner/junk,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aI" = (
+/obj/machinery/door/airlock/vault{
+	name = "Door"
+	},
+/obj/item/beartrap{
+	deployed = 1;
+	icon_state = "beartrap1"
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aJ" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aK" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aL" = (
+/obj/structure/table/rack,
+/obj/spawner/firstaid,
+/obj/spawner/tool/advanced,
+/obj/spawner/tool/advanced,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aM" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/item/tool_upgrade/productivity/red_paint,
+/obj/spawner/medical,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aN" = (
+/obj/effect/decal/cleanable/mucus,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aO" = (
+/obj/machinery/door/airlock/vault{
+	name = "Door";
+	welded = null
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aP" = (
+/obj/machinery/door/airlock/external{
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aQ" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aR" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -32
+	},
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aS" = (
+/obj/spawner/junk,
+/obj/spawner/junk,
+/turf/template_noop,
+/area/template_noop)
+"aT" = (
+/obj/machinery/door/airlock/vault{
+	name = "Door"
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aU" = (
+/obj/spawner/junk,
+/obj/structure/bed/chair/office/light,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aV" = (
+/obj/item/material/harpoon,
+/obj/landmark/corpse/scientist,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"aW" = (
+/obj/item/beartrap,
+/obj/structure/sign/department/anomaly{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"aX" = (
+/obj/spawner/junk,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aY" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet/purple,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"aZ" = (
+/obj/structure/railing,
+/obj/machinery/replicator,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"ba" = (
+/obj/spawner/junkfood,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"bb" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell,
+/obj/spawner/voidsuit,
+/obj/spawner/toolbox,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"bc" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet/mime,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"bd" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"be" = (
+/obj/effect/decal/cleanable/mucus,
+/turf/simulated/floor/carpet/blucarpet,
+/area/template_noop)
+"bf" = (
+/obj/spawner/junk,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/mucus,
+/mob/living/carbon/superior_animal/giant_spider,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/template_noop)
+"bg" = (
+/obj/spawner/junk,
+/obj/structure/closet/wall_mounted/emcloset{
+	pixel_y = -32
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/white,
+/area/template_noop)
+"sW" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+ao
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aP
+ab
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+ad
+aw
+aI
+ac
+aV
+aL
+ab
+aB
+au
+ab
+ao
+"}
+(4,1,1) = {"
+aa
+ab
+al
+bf
+am
+aq
+aJ
+ac
+aP
+au
+aW
+ab
+aa
+"}
+(5,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ag
+ac
+ab
+ab
+ab
+ab
+ab
+aS
+"}
+(6,1,1) = {"
+aa
+ab
+ah
+aF
+aO
+aN
+aA
+ab
+aZ
+aR
+aC
+ab
+aa
+"}
+(7,1,1) = {"
+aa
+ab
+ak
+aH
+am
+ac
+bg
+ab
+aE
+aU
+aK
+sW
+aa
+"}
+(8,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+aj
+bd
+az
+ba
+aX
+bb
+sW
+aa
+"}
+(9,1,1) = {"
+aa
+ab
+at
+au
+aT
+bd
+av
+ab
+aM
+be
+aG
+sW
+aa
+"}
+(10,1,1) = {"
+aa
+ab
+au
+ae
+am
+ax
+ay
+ab
+aQ
+aY
+bc
+ab
+aa
+"}
+(11,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(12,1,1) = {"
+aa
+ab
+aa
+af
+ab
+ai
+ai
+ab
+ap
+ar
+as
+ab
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

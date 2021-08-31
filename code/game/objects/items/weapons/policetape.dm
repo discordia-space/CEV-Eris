@@ -4,6 +4,7 @@
 	icon = 'icons/policetape.dmi'
 	icon_state = "tape"
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_ITEM
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape
@@ -22,7 +23,7 @@ var/list/tape_roll_applications = list()
 	var/tape_dir = 0
 	var/icon_base = "tape"
 
-/obj/item/tape/update_icon()
+/obj/item/tape/on_update_icon()
 	//Possible directional bitflags: 0 (AIRLOCK), 1 (NORTH), 2 (SOUTH), 4 (EAST), 8 (WEST), 3 (VERTICAL), 12 (HORIZONTAL)
 	switch (tape_dir)
 		if(0)  // AIRLOCK
@@ -104,8 +105,8 @@ var/list/tape_roll_applications = list()
 	req_one_access = list(access_moebius)
 	color = COLOR_GREEN
 
-/obj/item/taperoll/update_icon()
-	overlays.Cut()
+/obj/item/taperoll/on_update_icon()
+	cut_overlays()
 	var/image/overlay = image(icon = src.icon)
 	overlay.appearance_flags = RESET_COLOR
 	if(ismob(loc))
@@ -113,7 +114,7 @@ var/list/tape_roll_applications = list()
 			overlay.icon_state = "start"
 		else
 			overlay.icon_state = "stop"
-		overlays += overlay
+		add_overlays(overlay)
 
 /obj/item/taperoll/dropped(mob/user)
 	update_icon()
@@ -183,7 +184,7 @@ var/list/tape_roll_applications = list()
 
 		var/can_place = 1
 		while (can_place)
-			if(cur.density == 1)
+			if(cur.density)
 				can_place = 0
 			else if (istype(cur, /turf/space))
 				can_place = 0
@@ -262,11 +263,11 @@ var/list/tape_roll_applications = list()
 
 		if(tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
 			user.visible_message("\The [user] uses the adhesive of \the [src] to remove area markings from \the [F].", "You use the adhesive of \the [src] to remove area markings from \the [F].")
-			F.overlays -= hazard_overlay
+			F.remove_overlays(hazard_overlay)
 			tape_roll_applications[F] &= ~direction
 		else
 			user.visible_message("\The [user] applied \the [src] on \the [F] to create area markings.", "You apply \the [src] on \the [F] to create area markings.")
-			F.overlays |= hazard_overlay
+			F.associate_with_overlays(hazard_overlay)
 			tape_roll_applications[F] |= direction
 		return
 
@@ -287,7 +288,7 @@ var/list/tape_roll_applications = list()
 			crumple()
 	return ..(mover)
 
-/obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
 	breaktape(W, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
@@ -334,7 +335,7 @@ var/list/tape_roll_applications = list()
 
 
 
-/obj/item/tape/proc/breaktape(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
 	if(user.a_intent == I_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break \the [src] with that!")
 		return

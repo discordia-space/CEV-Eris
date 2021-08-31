@@ -6,11 +6,12 @@
 	item_state = ""	//no inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER
 	w_class = ITEM_SIZE_SMALL
+	bad_type = /obj/item/clothing/accessory
 	var/slot = "decor"
-	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
-	var/image/inv_overlay = null	//overlay used when attached to clothing.
-	var/image/mob_overlay = null
-	var/overlay_state = null
+	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
+	var/image/inv_overlay	//overlay used when attached to clothing.
+	var/image/mob_overlay
+	var/overlay_state
 
 /obj/item/clothing/accessory/Destroy()
 	if(has_suit)
@@ -46,7 +47,7 @@
 		return
 	has_suit = S
 	loc = has_suit
-	has_suit.overlays += get_inv_overlay()
+	has_suit.add_overlays(get_inv_overlay())
 
 	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
 	src.add_fingerprint(user)
@@ -54,7 +55,7 @@
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
 		return
-	has_suit.overlays -= get_inv_overlay()
+	has_suit.remove_overlays(get_inv_overlay())
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)
@@ -104,8 +105,8 @@
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
-				if(M.species && M.species.has_organ[BP_HEART])
-					var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[BP_HEART]
+				if(M.species && M.species.has_process[OP_HEART])
+					var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
 					if(heart && !BP_IS_ROBOTIC(heart))
 						heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
@@ -117,7 +118,7 @@
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
-								var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[BP_HEART]
+								var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
 								if(!heart)
 									return
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
@@ -125,8 +126,7 @@
 								else
 									sound = "healthy heartbeat"
 
-							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[BP_LUNGS]
-							if(!L || M.losebreath)
+							if(!(M.organ_list_by_process(OP_LUNGS).len) || M.losebreath)
 								sound += " and no respiration"
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
@@ -191,3 +191,45 @@
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by company officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+
+/obj/item/clothing/accessory/armor
+	name = "armor plates"
+	desc = "Plates from an armored vest, now usable to reinforce clothes."
+	slot = "armor"
+	icon_state = "armor"
+	w_class = ITEM_SIZE_NORMAL
+	armor = list(
+		melee = 25,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+	)
+
+/obj/item/clothing/accessory/armor/on_attached()
+	..()
+	has_suit.armor = armor
+	has_suit.style -= 2
+	has_suit.slowdown += 0.05
+
+/obj/item/clothing/accessory/armor/bullet
+	name = "bulletproof armor plates"
+	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
+	icon_state = "armor_bullet"
+	armor = list(
+		melee = 20,
+		bullet = 40,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 10,
+		MATERIAL_PLASTEEL = 3,
+	)

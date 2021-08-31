@@ -61,9 +61,9 @@
 	var/deepmaint_entry_point = FALSE //Will this burrow turn into a deep maint entry point upon getting collapsed?
 
 
-/obj/structure/burrow/New(var/loc, var/turf/anchor)
+/obj/structure/burrow/New(var/loc, turf/anchor)
 	.=..()
-	all_burrows.Add(src)
+	GLOB.all_burrows.Add(src)
 	var/obj/machinery/power/nt_obelisk/obelisk = locate(/obj/machinery/power/nt_obelisk) in range(7, src)
 	if(obelisk && obelisk.active)
 		qdel(src)
@@ -96,7 +96,7 @@
 
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
-	all_burrows.Remove(src)
+	GLOB.all_burrows.Remove(src)
 	target = null
 	recieving = null
 	//Eject any mobs that tunnelled through us
@@ -146,7 +146,7 @@
 	//Creatures only. No humans or robots
 	if (!isanimal(L) && !issuperioranimal(L))
 		return FALSE
-	
+
 	//Kaisers are too fat, they can't fit in
 	if(istype(L, /mob/living/carbon/superior_animal/roach/kaiser))
 		return FALSE
@@ -173,7 +173,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
 	The mobs it is to send should be placed inside it by the caller
 */
-/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 1, var/percentage = 1)
+/obj/structure/burrow/proc/migrate_to(obj/structure/burrow/_target, time = 1, percentage = 1)
 	if (!_target)
 		return
 
@@ -210,7 +210,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 //Summons some or all of the nearby population to this hole, where they will enter it and travel
-/obj/structure/burrow/proc/summon_mobs(var/percentage = 1)
+/obj/structure/burrow/proc/summon_mobs(percentage = 1)
 	var/list/candidates = population.Copy() //Make a copy of the population list so we can modify it
 	var/step = 1 / candidates.len //What percentage of the population is each mob worth?
 	sending_mobs = list()
@@ -242,7 +242,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 //Tells this burrow that it's soon to recieve new arrivals
-/obj/structure/burrow/proc/prepare_reception(var/start_time, var/_duration, var/sender)
+/obj/structure/burrow/proc/prepare_reception(start_time, _duration, sender)
 	migration_initiated = start_time
 	duration = _duration
 	recieving = sender
@@ -399,7 +399,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 //Called when an area becomes uninhabitable
-/obj/structure/burrow/proc/evacuate(var/force_nonmaint = TRUE)
+/obj/structure/burrow/proc/evacuate(force_nonmaint = TRUE)
 	//We're already busy sending or recieving a migration, can't start another or closed
 	if (target || recieving || isSealed)
 		return
@@ -420,7 +420,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		migrate_to(btarget, 10 SECONDS, 1)
 
 
-/obj/structure/burrow/proc/distress(var/immediate = FALSE)
+/obj/structure/burrow/proc/distress(immediate = FALSE)
 	//This burrow requests reinforcements from elsewhere
 	if (reinforcements <= 0)
 		return
@@ -440,7 +440,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 //Called when things enter or leave this burrow
-/obj/structure/burrow/proc/break_open(var/silent = FALSE)
+/obj/structure/burrow/proc/break_open(silent = FALSE)
 	if(isSealed)
 		reveal()
 		isSealed = FALSE
@@ -523,7 +523,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 			if (I.use_tool(user, src, target_time, QUALITY_DIGGING, health * 0.66, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 				//On success, the hole is destroyed!
-				new /obj/random/scrap/sparse_weighted(get_turf(user))
+				new /obj/spawner/scrap/sparse(get_turf(user))
 				user.visible_message("[user] collapses [src] with the [I] and dumps trash which was in the way.", "You collapse [src] with the [I] and dump trash which was in the way.")
 
 				collapse()
@@ -620,6 +620,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/attack_generic(mob/living/L)
 	if (is_valid(L))
 		enter_burrow(L)
+	if (issuperioranimal(L))//So they don't carry burrow's reference and never qdel
+		var/mob/living/carbon/superior_animal/SA = L
+		SA.target_mob = null
 
 
 /obj/structure/burrow/proc/pull_mob(mob/living/L)

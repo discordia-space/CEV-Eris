@@ -27,12 +27,13 @@
 
 // Claim machine ID
 /obj/machinery/cash_register/New()
+	. = ..()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 
-/obj/machinery/cash_register/examine(mob/user as mob)
+/obj/machinery/cash_register/examine(mob/user)
 	..(user)
 	if(cash_open)
 		if(cash_stored)
@@ -49,7 +50,7 @@
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
 			cash_stored = 0
-			overlays -= "register_cash"
+			remove_overlays("register_cash")
 		else
 			open_cash_box()
 	else
@@ -175,28 +176,28 @@
 
 /obj/machinery/cash_register/attackby(obj/O as obj, user as mob)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
-	var/obj/item/weapon/card/id/I = O.GetIdCard()
+	var/obj/item/card/id/I = O.GetIdCard()
 	if(I)
 		scan_card(I, O)
-	else if (istype(O, /obj/item/weapon/spacecash/ewallet))
-		var/obj/item/weapon/spacecash/ewallet/E = O
+	else if (istype(O, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = O
 		scan_wallet(E)
-	else if (istype(O, /obj/item/weapon/spacecash))
-		var/obj/item/weapon/spacecash/SC = O
+	else if (istype(O, /obj/item/spacecash))
+		var/obj/item/spacecash/SC = O
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
 			cash_stored += SC.worth
-			overlays |= "register_cash"
+			associate_with_overlays("register_cash")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.drop_from_inventory(SC)
 			qdel(SC)
 		else
 			scan_cash(SC)
-	else if(istype(O, /obj/item/weapon/card/emag))
+	else if(istype(O, /obj/item/card/emag))
 		return ..()
-	else if(istype(O, /obj/item/weapon/tool/wrench))
-		var/obj/item/weapon/tool/wrench/W = O
+	else if(istype(O, /obj/item/tool/wrench))
+		var/obj/item/tool/wrench/W = O
 		toggle_anchors(W, user)
 	// Not paying: Look up price and add it to transaction_amount
 	else
@@ -218,7 +219,7 @@
 		return 0
 
 
-/obj/machinery/cash_register/proc/scan_card(obj/item/weapon/card/id/I, obj/item/ID_container)
+/obj/machinery/cash_register/proc/scan_card(obj/item/card/id/I, obj/item/ID_container)
 	if (!transaction_amount)
 		return
 
@@ -283,7 +284,7 @@
 					transaction_complete()
 
 
-/obj/machinery/cash_register/proc/scan_wallet(obj/item/weapon/spacecash/ewallet/E)
+/obj/machinery/cash_register/proc/scan_wallet(obj/item/spacecash/ewallet/E)
 	if (!transaction_amount)
 		return
 
@@ -321,7 +322,7 @@
 			transaction_complete()
 
 
-/obj/machinery/cash_register/proc/scan_cash(obj/item/weapon/spacecash/SC)
+/obj/machinery/cash_register/proc/scan_cash(obj/item/spacecash/SC)
 	if (!transaction_amount)
 		return
 
@@ -450,7 +451,7 @@
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
-	flick("register_approve", src)
+	FLICK("register_approve", src)
 	reset_memory()
 	updateDialog()
 
@@ -473,20 +474,20 @@
 
 	if(cash_open)
 		cash_open = 0
-		overlays -= "register_approve"
-		overlays -= "register_open"
-		overlays -= "register_cash"
+		remove_overlays("register_approve")
+		remove_overlays("register_open")
+		remove_overlays("register_cash")
 	else if(!cash_locked)
 		cash_open = 1
-		overlays += "register_approve"
-		overlays += "register_open"
+		add_overlays("register_approve")
+		add_overlays("register_open")
 		if(cash_stored)
-			overlays += "register_cash"
+			add_overlays("register_cash")
 	else
 		to_chat(usr, SPAN_WARNING("The cash box is locked."))
 
 
-/obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/tool/wrench/W, mob/user)
+/obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
 	if(!anchored)

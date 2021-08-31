@@ -144,7 +144,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "A" = (
@@ -180,7 +180,7 @@
 "E" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow,
 /obj/structure/catwalk,
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "F" = (

@@ -9,7 +9,7 @@
 	input_level_max = 0
 	output_level_max = 0
 	icon_state = "gsmes"
-	circuit = /obj/item/weapon/circuitboard/batteryrack
+	circuit = /obj/item/electronics/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
 	var/global/list/br_cache = null
@@ -19,21 +19,21 @@
 	capacitors_amount = 0
 	cells_amount = 0
 	var/max_level = 0 //for both input and output
-	for(var/obj/item/weapon/stock_parts/capacitor/CP in component_parts)
+	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		max_level += CP.rating
 		capacitors_amount++
 	input_level_max = 50000 + max_level * 20000
 	output_level_max = 50000 + max_level * 20000
 
 	var/C = 0
-	for(var/obj/item/weapon/cell/large/PC in component_parts)
+	for(var/obj/item/cell/large/PC in component_parts)
 		C += PC.maxcharge
 		cells_amount++
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
 
 
-/obj/machinery/power/smes/batteryrack/update_icon()
-	overlays.Cut()
+/obj/machinery/power/smes/batteryrack/on_update_icon()
+	cut_overlays()
 	if(stat & BROKEN)	return
 
 	if(!br_cache)
@@ -48,13 +48,13 @@
 		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
 
 	if (output_attempt)
-		overlays += br_cache[1]
+		add_overlays(br_cache[1])
 	if(inputting)
-		overlays += br_cache[2]
+		add_overlays(br_cache[2])
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		overlays += br_cache[3+clevel]
+		add_overlays(br_cache[3+clevel])
 	return
 
 
@@ -62,10 +62,10 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
+/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 	if(open_hatch)
-		if(istype(W, /obj/item/weapon/tool/crowbar))
+		if(istype(W, /obj/item/tool/crowbar))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
@@ -80,7 +80,7 @@
 					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
 			else
 				to_chat(user, SPAN_WARNING("Better let [src] discharge before dismantling it."))
-		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell/large) && (cells_amount < 5)))
+		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell/large) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
 					user.drop_item()
@@ -103,24 +103,24 @@
 /obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
-	circuit = /obj/item/weapon/circuitboard/apc
+	circuit = /obj/item/electronics/circuitboard/apc
 	var/overcharge_percent = 0
 
 
-/obj/machinery/power/smes/batteryrack/makeshift/update_icon()
-	overlays.Cut()
+/obj/machinery/power/smes/batteryrack/makeshift/on_update_icon()
+	cut_overlays()
 	if(stat & BROKEN)	return
 
 	if (output_attempt)
-		overlays += br_cache[1]
+		add_overlays(br_cache[1])
 	if(inputting)
-		overlays += br_cache[2]
+		add_overlays(br_cache[2])
 	if (overcharge_percent > 100)
-		overlays += br_cache[3]
+		add_overlays(br_cache[3])
 	else
 		var/clevel = chargedisplay()
 		if(clevel>0)
-			overlays += br_cache[3+clevel]
+			add_overlays(br_cache[3+clevel])
 	return
 
 //This mess of if-elses and magic numbers handles what happens if the engies don't pay attention and let it eat too much charge

@@ -37,12 +37,12 @@
 					return
 
 			var/list/objects_to_stand_on = list(
-				/obj/item/weapon/stool,
+				/obj/item/stool,
 				/obj/structure/bed,
 				/obj/structure/table,
 				/obj/structure/closet/crate
 			)
-			var/atom/helper = null
+			var/atom/helper
 			var/area/location = get_area(loc)
 			if(!location.has_gravity)
 				helper = src
@@ -85,20 +85,6 @@
 
 /mob/living/RestrainedClickOn(var/atom/A)
 	return
-
-/*
-	Aliens
-*/
-
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
-	return
-
-/mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
-
-	if(!..())
-		return 0
-
-	A.attack_generic(src, rand(5, 6), "bitten")
 
 /*
 	Slimes

@@ -6,7 +6,7 @@
 	icon_state = "fdiffuser_on"
 
 	//By setting these values to zero, shield diffusers will not process. They dont need to process
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 
@@ -23,14 +23,24 @@
 	for (var/turf/T in diffused_turfs)
 		T.diffused--
 
-	//Empty our list
+	//Empty our list ..but firstly check if we need to regen shields
+	if(!enabled)
+		for(var/turf/T in diffused_turfs)
+			var/obj/effect/shield/shield = locate(/obj/effect/shield) in T
+			if(shield)
+				shield.disabled_for = 0
+				shield.regenerate()
+	// ..then do other checks.
 	diffused_turfs = list()
-
-	if (enabled && !alarm && istype(loc, /turf))
+	if(alarm)
+		return
+	if(!istype(loc, /turf))
+		return
+	if (enabled)
 		diffuse(loc)
 		for (var/d in GLOB.cardinal)
 			diffuse(get_step(src, d))
-	update_shield_generators()
+		
 
 /obj/machinery/shield_diffuser/proc/diffuse(var/turf/T)
 	if (!T)
@@ -39,6 +49,10 @@
 	if (!(T in diffused_turfs))
 		diffused_turfs.Add(T)
 		T.diffused++
+
+	var/obj/effect/shield/shield = locate(/obj/effect/shield) in T
+	if(shield) shield.fail(SSmachines.wait)
+	
 
 /obj/machinery/shield_diffuser/Process()
 	if(alarm)
@@ -49,6 +63,9 @@
 			update_icon()
 			return PROCESS_KILL
 		return
+	if(enabled)
+		for(var/turf/T in diffused_turfs)
+			diffuse(T)
 
 /obj/machinery/shield_diffuser/Initialize()
 	update_turfs()
@@ -69,14 +86,14 @@
 	if(default_part_replacement(O, user))
 		return
 
-/obj/machinery/shield_diffuser/update_icon()
+/obj/machinery/shield_diffuser/on_update_icon()
 	if(alarm)
-		icon_state = "fdiffuser_emergency"
+		SetIconState("fdiffuser_emergency")
 		return
 	if((stat & (NOPOWER | BROKEN)) || !enabled)
-		icon_state = "fdiffuser_off"
+		SetIconState("fdiffuser_off")
 	else
-		icon_state = "fdiffuser_on"
+		SetIconState("fdiffuser_on")
 
 /obj/machinery/shield_diffuser/attack_hand()
 	if(alarm)

@@ -1,5 +1,5 @@
 /*
-Nests of blue space crystals are spawned across the ship, mostly in maints. 
+Nests of blue space crystals are spawned across the ship, mostly in maints.
 They can be harvested for one use crystals that can be used for random teleportation.
 Additionally, not harvested nest will periodically teleport items and people to it.
 */
@@ -33,4 +33,6 @@ Additionally, not harvested nest will periodically teleport items and people to 
 /datum/event/bluespace_crystal_infestation/start()
 	var/space_to_spawn = event_area.random_space()
 	log_and_message_admins("Bluespace nest spawned: [jumplink(space_to_spawn)]")
-	new /obj/structure/bs_crystal_structure(space_to_spawn)
+	var/obj/structure/bs_crystal_structure/BSCS = new (space_to_spawn)
+	BSCS.entropy_value += 2//8 + 2 = 10
+	GLOB.bluespace_entropy += rand(BSCS.entropy_value, BSCS.entropy_value * 3)

@@ -3,7 +3,7 @@
 	desc = "An electronic radio system."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "power_mod"
-	var/obj/item/device/pda/hostpda = null
+	var/obj/item/device/pda/hostpda
 
 	var/on = FALSE //Are we currently active??
 	var/menu_message = ""
@@ -36,7 +36,7 @@
 	proc/generate_menu()
 
 /obj/item/radio/integrated/beepsky
-	var/list/botlist = null		// list of bots
+	var/list/botlist		// list of bots
 	var/mob/living/bot/secbot/active 	// the active bot; if null, show bot list
 	var/list/botstatus			// the status signal sent by the bot
 
@@ -210,7 +210,7 @@
 
 /obj/item/radio/integrated/signal
 	var/frequency = 1457
-	var/code = 30.0
+	var/code = 30
 	var/last_transmission
 	var/datum/radio_frequency/radio_connection
 

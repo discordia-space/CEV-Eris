@@ -1,6 +1,11 @@
 //Closets full of loot, they should be placed in derelicts
 
 //// Loot table on all tiers
+/obj/structure/closet/onestar
+	spawn_blacklisted = TRUE
+	bad_type = /obj/structure/closet/onestar
+	spawn_tags = SPAWN_TAG_CLOSET_OS
+
 // Tier 1
 /obj/structure/closet/onestar/tier1
 	name = "\improper OneStar forgotten closet"
@@ -8,20 +13,20 @@
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/junk(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/junk(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
@@ -30,20 +35,20 @@
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/tool/advanced/onestar/low_chance(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/tool/advanced/onestar/low_chance(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
 
 // Tier 3
 /obj/structure/closet/onestar/tier3
@@ -52,22 +57,22 @@
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/junk(src)
-	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/tool/advanced/onestar(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/tool/advanced/onestar/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/junk(src)
+	new /obj/spawner/pack/tech_loot/onestar(src)
+	new /obj/spawner/tool/advanced/onestar(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/tool/advanced/onestar/low_chance(src)
 
 
 ////// Closets
@@ -112,8 +117,8 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/special/populate_contents()
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
 	..()
 
 // Empty
@@ -127,8 +132,8 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/special/populate_contents()
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
 	..()
 
 // Empty
@@ -142,8 +147,8 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/special/populate_contents()
-	new /obj/random/pack/rare/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
 	..()
 
 // Empty
@@ -158,8 +163,8 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/mineral/populate_contents()
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 	..()
 
 // Empty
@@ -173,8 +178,8 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/mineral/populate_contents()
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 	..()
 
 // Empty
@@ -188,8 +193,8 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/mineral/populate_contents()
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 	..()
 
 // Empty
@@ -204,8 +209,8 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty
@@ -219,8 +224,8 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty
@@ -234,8 +239,8 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty

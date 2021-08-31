@@ -21,22 +21,29 @@
 	AI_inactive = FALSE
 	life_cycles_before_sleep = initial(life_cycles_before_sleep)
 
+/mob/living/proc/try_activate_ai()
+	if(AI_inactive)
+		activate_ai()
+
 
 /mob/living/proc/check_surrounding_area(var/dist = 7)
-	var/list/L = hearers(src, dist)
 
+	//Neutral and station AI mobs should always be on
 	if(faction == "neutral")
-		return 1
+		return TRUE
 
 	if(faction == "station")
-		return 1
+		return TRUE
 
-	for (var/mob/living/exosuit/M in mechas_list)
+	if(faction == "CEV Eris")
+		return TRUE
+
+	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
-			return 1
+			return TRUE
 
-	for(var/mob/living/M in L)
-		if (M.faction != faction)
-			return 1
+	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		if((M.stat != DEAD) && (M.faction != faction) && (get_dist(src, M) <= dist))
+			return TRUE
 
-	return 0
+	return FALSE

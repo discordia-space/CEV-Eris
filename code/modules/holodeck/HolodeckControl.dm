@@ -4,10 +4,10 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 
-	circuit = /obj/item/weapon/circuitboard/holodeckcontrol
+	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
 	var/item_power_usage = 500
 
@@ -141,11 +141,11 @@
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
 		item_power_usage = 2500
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
 		item_power_usage = initial(item_power_usage)
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = initial(H.damtype)
 
 	for(var/mob/living/simple_animal/hostile/carp/holodeck/C in holographic_mobs)
@@ -188,7 +188,7 @@
 			damaged = 1
 			loadProgram(holodeck_programs["turnoff"], 0)
 			active = 0
-			use_power = 1
+			use_power = IDLE_POWER_USE
 			for(var/mob/M in range(10,src))
 				M.show_message("The holodeck overloads!")
 
@@ -239,7 +239,7 @@
 			linkedholodeck.update_gravity()
 
 		active = 0
-		use_power = 1
+		use_power = IDLE_POWER_USE
 
 
 /obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP, var/check_delay = 1)
@@ -260,7 +260,7 @@
 
 	last_change = world.time
 	active = 1
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 
 	for(var/item in holographic_objs)
 		derez(item)
@@ -275,6 +275,7 @@
 	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
 	for(var/obj/holo_obj in holographic_objs)
 		holo_obj.alpha *= 0.8 //give holodeck objs a slight transparency
+		holo_obj.plane = 95 //This makes all objects load on the plane that Eris's 4th z-level uses for objects. This is not dynamic.
 
 	if(HP.ambience)
 		linkedholodeck.forced_ambience = HP.ambience
@@ -317,7 +318,7 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = 1
+	use_power = IDLE_POWER_USE
 
 
 	if(A.has_gravity)
@@ -334,7 +335,7 @@
 	linkedholodeck.has_gravity = TRUE
 
 	active = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 
 /obj/machinery/computer/HolodeckControl/Exodus
 	linkedholodeck_area = /area/holodeck/alphadeck

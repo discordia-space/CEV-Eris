@@ -47,6 +47,15 @@
 	var/f_step = 2
 	var/same_turf_hit_chance = 15
 
+/obj/item/projectile/bullet/grenade/frag/weak
+	name = "frag shell"
+	range = 7
+	f_type = /obj/item/projectile/bullet/pellet/fragment/strong
+	f_amount = 100
+	f_damage = 2
+	f_step = 1
+	same_turf_hit_chance = 10
+
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
 

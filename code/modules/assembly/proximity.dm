@@ -87,19 +87,19 @@
 	update_icon()
 
 
-/obj/item/device/assembly/prox_sensor/update_icon()
-	overlays.Cut()
+/obj/item/device/assembly/prox_sensor/on_update_icon()
+	cut_overlays()
 	attached_overlays = list()
 	if(timing)
-		overlays += "prox_timing"
+		add_overlays("prox_timing")
 		attached_overlays += "prox_timing"
 	if(scanning)
-		overlays += "prox_scanning"
+		add_overlays("prox_scanning")
 		attached_overlays += "prox_scanning"
 	if(holder)
 		holder.update_icon()
-	if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
-		var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
+	if(holder && istype(holder.loc,/obj/item/grenade/chem_grenade))
+		var/obj/item/grenade/chem_grenade/grenade = holder.loc
 		grenade.primed(scanning)
 
 

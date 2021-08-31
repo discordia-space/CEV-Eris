@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/captain
-	desc = "Regal blue gloves, with a nice gold trim. Swanky."
+	desc = "Black gloves, with a nice gold trim. Swanky."
 	name = "captain's gloves"
 	icon_state = "captain"
 	item_state = "egloves"
@@ -15,6 +15,7 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	price_tag = 200
+	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -23,7 +24,8 @@
 	permeability_coefficient = 0.05
 	price_tag = 50
 
-/obj/item/clothing/gloves/insulated/cheap/New()
+/obj/item/clothing/gloves/insulated/cheap/Initialize(mapload, ...)
+	. = ..()
 	//average of 0.5, somewhat better than regular gloves' 0.75
 	siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
 
@@ -60,6 +62,7 @@
 	name = "operator's gloves"
 	icon_state = "security_ironhammer"
 	item_state = "security_ironhammer"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/gloves/security/tactical
 	name = "tactical gloves"
@@ -85,6 +88,7 @@
 	desc = "Sterile nitrile gloves."
 	icon_state = "nitrile"
 	item_state = "nitrile"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/gloves/botanic_leather
 	desc = "These leather work gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin."
@@ -113,3 +117,12 @@
 	icon_state = "germangloves"
 	item_state = "germangloves"
 	armor = list(melee = 10, bullet = 0, energy = 25, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/gloves/knuckles
+	name = "knuckle gloves"
+	desc = "Gloves with additional reinforcment on the knuckles."
+	icon_state = "knuckles"
+	item_state = "knuckles"
+	style = STYLE_HIGH
+	armor = list(melee = 20, bullet = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+	price_tag = 500

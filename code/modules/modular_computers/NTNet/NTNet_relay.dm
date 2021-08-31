@@ -3,7 +3,7 @@
 	name = "NTNet Quantum Relay"
 	desc = "A very complex router and transmitter capable of connecting electronic devices together. Looks fragile."
 	icon = 'icons/obj/machines/telecomms.dmi'
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	active_power_usage = 20000 //20kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational.
 	idle_power_usage = 100
 	icon_state = "bus"
@@ -30,7 +30,7 @@
 		return 0
 	return 1
 
-/obj/machinery/ntnet_relay/update_icon()
+/obj/machinery/ntnet_relay/on_update_icon()
 	if(operable())
 		icon_state = "bus"
 	else
@@ -38,9 +38,9 @@
 
 /obj/machinery/ntnet_relay/Process()
 	if(operable())
-		use_power = 2
+		use_power = ACTIVE_POWER_USE
 	else
-		use_power = 1
+		use_power = IDLE_POWER_USE
 
 	if(dos_overload)
 		dos_overload = max(0, dos_overload - dos_dissipate)
@@ -98,7 +98,7 @@
 	gl_uid++
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,15)
-	component_parts += new /obj/item/weapon/circuitboard/ntnet_relay(src)
+	component_parts += new /obj/item/electronics/circuitboard/ntnet_relay(src)
 
 	if(ntnet_global)
 		ntnet_global.relays.Add(src)
@@ -116,7 +116,7 @@
 		D.error = "Connection to quantum relay severed"
 	..()
 
-/obj/machinery/ntnet_relay/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/ntnet_relay/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(default_deconstruction(W, user))
 		return
 	if(default_part_replacement(W, user))

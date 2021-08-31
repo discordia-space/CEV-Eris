@@ -236,7 +236,7 @@
 	C.received_irc_pm = world.time
 	C.irc_admin = input["sender"]
 
-	C << 'sound/effects/adminhelp.ogg'
+	sound_to(C, 'sound/effects/adminhelp.ogg')
 	to_chat(C, message)
 
 

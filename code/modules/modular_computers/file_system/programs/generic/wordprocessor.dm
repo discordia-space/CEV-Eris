@@ -28,7 +28,7 @@
 		F = create_file(filename, loaded_data, /datum/computer_file/data/text)
 		return !isnull(F)
 	var/datum/computer_file/data/backup = F.clone()
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
+	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
 	if(!HDD)
 		return
 	HDD.remove_file(F)
@@ -62,8 +62,8 @@
 		\[small\] - \[/small\] : Decreases the size of the text.
 		\[large\] - \[/large\] : Increases the size of the text.
 		\[field\] : Inserts a blank text field, which can be filled later. Useful for forms.
-		\[date\] : Current station date.
-		\[time\] : Current station time.
+		\[date\] : Current ship date.
+		\[time\] : Current ship time.
 		\[list\] - \[/list\] : Begins and ends a list.
 		\[*\] : A list item.
 		\[hr\] : Horizontal rule.
@@ -170,8 +170,8 @@
 	var/datum/computer_file/program/wordprocessor/PRG
 	PRG = program
 
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/RHDD
+	var/obj/item/computer_hardware/hard_drive/HDD
+	var/obj/item/computer_hardware/hard_drive/portable/RHDD
 	if(PRG.error)
 		data["error"] = PRG.error
 	if(PRG.browsing)

@@ -15,7 +15,7 @@
 	name = "status display"
 	anchored = TRUE
 	density = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/mode = 1	// 0 = Blank
 					// 1 = Shuttle timer
@@ -48,12 +48,14 @@
 
 /obj/machinery/status_display/Destroy()
 	SSradio.remove_object(src,frequency)
+	GLOB.ai_status_display_list -= src
 	return ..()
 
 // register for radio system
 /obj/machinery/status_display/Initialize()
 	. = ..()
 	SSradio.add_object(src, frequency)
+	GLOB.ai_status_display_list += src
 
 // timed process
 /obj/machinery/status_display/Process()
@@ -154,7 +156,7 @@
 	if(!picture || picture_state != state)
 		picture_state = state
 		picture = image('icons/obj/status_display.dmi', icon_state=picture_state)
-	overlays |= picture
+	associate_with_overlays(picture)
 
 /obj/machinery/status_display/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
@@ -181,7 +183,7 @@
 
 /obj/machinery/status_display/proc/remove_display()
 	if(overlays.len)
-		overlays.Cut()
+		cut_overlays()
 	if(maptext)
 		maptext = ""
 

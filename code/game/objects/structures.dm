@@ -1,7 +1,10 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
 	w_class = ITEM_SIZE_GARGANTUAN
-
+	spawn_frequency = 10
+	rarity_value = 10
+	//spawn_tags = SPAWN_TAG_STRUCTURE
+	bad_type = /obj/structure
 	var/climbable
 	var/breakable
 	var/parts
@@ -51,14 +54,14 @@
 
 /obj/structure/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			return
 
 /obj/structure/New()
@@ -114,13 +117,13 @@
 	var/turf/T = get_step(src, src.dir)
 	if(!T || !istype(T))
 		return 0
-	if(T.density == 1)
+	if(T.density)
 		return 0
 	for(var/obj/O in T.contents)
 		if(istype(O,/obj/structure))
 			if(istype(O,/obj/structure/railing))
 				return 1
-			else if(O.density == 1)
+			else if(O.density)
 				return 0
 	return 1
 

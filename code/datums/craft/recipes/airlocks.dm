@@ -10,57 +10,56 @@
 /datum/craft_recipe/airlock/assembly
 	name = "standard airlock assembly"
 	result = /obj/structure/door_assembly
-	name_craft_menu = "Airlock assemblies"
 
 /datum/craft_recipe/airlock/assembly/command
 	name = "command airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_com
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/security
 	name = "security airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_sec
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/engineering
 	name = "engineering airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_eng
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/mining
 	name = "mining airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_min
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/atmospherics
 	name = "atmospherics airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_atmo
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/research
 	name = "research airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_research
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/medical
 	name = "medical airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_med
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/maintenance
 	name = "maintenance airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_mai
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/external
 	name = "external airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_ext
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/assembly/freezer
 	name = "freezer airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_fre
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/hatch/airtight
 	name = "airtight hatch assembly"
@@ -73,7 +72,7 @@
 /datum/craft_recipe/airlock/assembly/high_security
 	name = "high security airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_highsecurity
-	variation_type = CRAFT_VARIATION
+
 
 /datum/craft_recipe/airlock/shutter/emergency_shutter
 	name = "emergency shutter"
@@ -85,4 +84,4 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 	)
-	variation_type = CRAFT_VARIATION
+

@@ -17,7 +17,7 @@
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	extra_allowed = list(/obj/item/weapon/extinguisher)
+	extra_allowed = list(/obj/item/extinguisher)
 	armor = list(
 		melee = 10,
 		bullet = 0,
@@ -33,6 +33,7 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	price_tag = 50
+	style = STYLE_NEG_LOW
 
 
 /*
@@ -53,6 +54,7 @@
 		rad = 100
 	)
 	price_tag = 50
+	style = STYLE_NEG_LOW
 
 
 /obj/item/clothing/suit/radiation
@@ -61,6 +63,7 @@
 	icon_state = "rad"
 	item_state = "rad_suit"
 	w_class = ITEM_SIZE_BULKY
+	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -76,3 +79,4 @@
 	)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	price_tag = 100
+	style = STYLE_NEG_LOW

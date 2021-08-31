@@ -168,6 +168,7 @@
 			if(W)
 				W.afterattack(A, src, 0, params) // 0: not Adjacent
 			else
+				setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // no ranged spam
 				RangedAttack(A, params)
 	return 1
 
@@ -237,7 +238,7 @@
 	swap_hand()
 	return
 
-/mob/proc/ShiftMiddleClickOn(var/atom/A)
+/mob/proc/ShiftMiddleClickOn(atom/A)
 	pointed(A)
 
 // In case of use break glass

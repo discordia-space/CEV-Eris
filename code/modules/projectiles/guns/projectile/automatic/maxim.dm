@@ -1,6 +1,7 @@
-/obj/item/weapon/gun/projectile/automatic/maxim //This is currently deprecated unless someone can code up heavy machine gun mechanics.
-	name = "Excelsior machine gun"
-	desc = ""
+/obj/item/gun/projectile/automatic/maxim
+	bad_type = /obj/item/gun/projectile/automatic/maxim
+	name = "Excelsior HMG .30 \"Maxim\""
+	desc = "A bulky yet versatile gun, the Maxim has been used in ships, turrets, and by hand."
 	icon = 'icons/obj/guns/projectile/maxim.dmi'
 	icon_state = "maxim"
 	item_state = "maxim"
@@ -10,40 +11,43 @@
 	max_shells = 96
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	ammo_type = "/obj/item/ammo_casing/lrifle"
+	ammo_type = /obj/item/ammo_casing/lrifle
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	tac_reloads = FALSE
 	magazine_type = /obj/item/ammo_magazine/maxim
-	matter = list(MATERIAL_PLASTEEL = 42, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
+	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 30)
 	price_tag = 5000
-	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
-	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
-	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
+	unload_sound = 'sound/weapons/guns/interact/lmg_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 3
-	one_hand_penalty = 30 //not like it's used anyway, but LMG level
+	recoil_buildup = 2.2
+	one_hand_penalty = 45 //not like it's used anyway, but HMG level
 	init_firemodes = list(
-		FULL_AUTO_600,
-		list(mode_name="short bursts", burst=5,    burst_delay=1, move_delay=6,  icon="burst"),
-		list(mode_name="long bursts",  burst=8, burst_delay=1, move_delay=8,  icon="burst"),
-		list(mode_name="suppressing fire",  burst=16, burst_delay=1, move_delay=11,  icon="burst")
+		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1, icon="auto", damage_mult_add = -0.1, move_delay=6),
+		list(mode_name="short bursts", mode_desc="dakka", burst=5,    burst_delay=1, move_delay=6,  icon="burst"),
+		list(mode_name="long bursts", mode_desc="Dakka", burst=8, burst_delay=1, move_delay=8,  icon="burst"),
+		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, burst_delay=1, move_delay=110,  icon="burst")
 		)
+	twohanded = TRUE
+	spawn_blacklisted = TRUE
+	slowdown_hold = 5
 
-
-
-/obj/item/weapon/gun/projectile/automatic/maxim/update_icon()
+/obj/item/gun/projectile/automatic/maxim/on_update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full"
-		set_item_state("-full")
-	else
-		icon_state = initial(icon_state)
-		set_item_state()
-	return
 
-/obj/item/weapon/gun/projectile/automatic/maxim/special_check(mob/user)
-	if(!(user.get_active_hand() == src && user.get_inactive_hand() == null))
-		to_chat(user, SPAN_WARNING("You can't fire \the [src] with [user.get_inactive_hand()] in the other hand."))
-		return FALSE
-	return ..()
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (ammo_magazine)
+		iconstring += "[ammo_magazine? "-full[ammo_magazine.ammo_color]": ""]"
+		itemstring += "_full"
+
+	if(wielded)
+		itemstring += "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+
+

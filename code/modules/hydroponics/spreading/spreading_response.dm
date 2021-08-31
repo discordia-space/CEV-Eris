@@ -37,11 +37,11 @@
 	if(istype(user))
 		manual_unbuckle(user)
 
-/obj/effect/plant/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	plant_controller.add_plant(src)
-	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
+	if(istype(W, /obj/item/reagent_containers/syringe))
 		return
 
 	if((W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING)) && user.a_intent != I_HURT)
@@ -137,14 +137,14 @@
 **************/
 /obj/effect/plant/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			die_off()
 			return
-		if(2.0)
+		if(2)
 			if (prob(95))
 				die_off()
 				return
-		if(3.0)
+		if(3)
 			if (prob(75))
 				die_off()
 				return

@@ -2,7 +2,7 @@
 //**Cham Jumpsuit**
 //*****************
 
-/obj/item/proc/disguise(var/newtype, var/mob/user)
+/obj/item/proc/disguise(newtype, mob/user)
 	if(!user || user.incapacitated())
 		return
 	//this is necessary, unfortunately, as initial() does not play well with list vars
@@ -22,7 +22,7 @@
 
 	return copy //for inheritance
 
-/proc/generate_chameleon_choices(var/basetype, var/blacklist=list())
+/proc/generate_chameleon_choices(basetype, blacklist=list())
 	. = list()
 
 	var/i = 1 //in case there is a collision with both name AND icon_state
@@ -39,10 +39,12 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
+	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	icon_state = "black"
 	item_state = "bl_suit"
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_CLOTHING_UNDER_CHAMALEON
 
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	origin_tech = list(TECH_COVERT = 3)
 	var/global/list/clothing_choices
 
@@ -79,6 +81,8 @@
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_CHAMALEON
 	var/global/list/clothing_choices
 
 /obj/item/clothing/head/chameleon/New()
@@ -114,6 +118,7 @@
 	item_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
 	var/global/list/clothing_choices
 
 /obj/item/clothing/suit/chameleon/New()
@@ -148,6 +153,8 @@
 	item_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_SHOES_CHAMALEON
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
@@ -177,21 +184,24 @@
 //**********************
 //**Chameleon Backpack**
 //**********************
-/obj/item/weapon/storage/backpack/chameleon
+/obj/item/storage/backpack/chameleon
 	name = "grey backpack"
 	icon_state = "backpack"
 	item_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_BACKPACK_CHAMALEON
+	rarity_value = 50
 	var/global/list/clothing_choices
 
-/obj/item/weapon/storage/backpack/chameleon/Initialize()
+/obj/item/storage/backpack/chameleon/Initialize()
 	. = ..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/leather/withwallet)
-		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/backpack, blocked)
+		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/leather/withwallet)
+		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
 
-/obj/item/weapon/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+/obj/item/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	icon_state = "backpack"
@@ -199,7 +209,7 @@
 	update_icon()
 	update_wear_icon()
 
-/obj/item/weapon/storage/backpack/chameleon/verb/change(picked in clothing_choices)
+/obj/item/storage/backpack/chameleon/verb/change(picked in clothing_choices)
 	set name = "Change Backpack Appearance"
 	set category = "Chameleon Items"
 	set src in usr
@@ -219,6 +229,8 @@
 	item_state = "bgloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GLOVES_CHAMALEON
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
@@ -253,6 +265,8 @@
 	item_state = "gas_alt"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
 
@@ -288,6 +302,8 @@
 	item_state = "glasses"
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GLASSES_CHAMALEON
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()
@@ -315,12 +331,15 @@
 //*****************
 //**Chameleon Gun**
 //*****************
-/obj/item/weapon/gun/energy/chameleon
+/obj/item/gun/energy/chameleon
 	name = "FS HG .40 Magnum \"Avasarala\""
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon = 'icons/obj/guns/projectile/avasarala.dmi'
 	icon_state = "avasarala"
 	w_class = ITEM_SIZE_NORMAL
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHAMALEON
+	rarity_value = 25
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	matter = list()
 
@@ -332,16 +351,16 @@
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices
 
-/obj/item/weapon/gun/energy/chameleon/New()
+/obj/item/gun/energy/chameleon/New()
 	..()
 
 	if(!gun_choices)
 		gun_choices = list()
-		for(var/gun_type in typesof(/obj/item/weapon/gun/) - src.type)
-			var/obj/item/weapon/gun/G = gun_type
+		for(var/gun_type in typesof(/obj/item/gun/) - src.type)
+			var/obj/item/gun/G = gun_type
 			src.gun_choices[initial(G.name)] = gun_type
 
-/obj/item/weapon/gun/energy/chameleon/consume_next_projectile()
+/obj/item/gun/energy/chameleon/consume_next_projectile()
 	var/obj/item/projectile/P = ..()
 	if(P && ispath(copy_projectile))
 		P.name = initial(copy_projectile.name)
@@ -355,21 +374,21 @@
 		P.impact_type = initial(copy_projectile.impact_type)
 	return P
 
-/obj/item/weapon/gun/energy/chameleon/emp_act(severity)
+/obj/item/gun/energy/chameleon/emp_act(severity)
 	name = "FS HG .40 Magnum \"Avasarala\""
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "avasarala"
 	update_icon()
 	update_wear_icon()
 
-/obj/item/weapon/gun/energy/chameleon/disguise(var/newtype)
-	var/obj/item/weapon/gun/copy = ..()
+/obj/item/gun/energy/chameleon/disguise(newtype)
+	var/obj/item/gun/copy = ..()
 
 	flags_inv = copy.flags_inv
 	fire_sound = copy.fire_sound
 	fire_sound_text = copy.fire_sound_text
 
-	var/obj/item/weapon/gun/energy/E = copy
+	var/obj/item/gun/energy/E = copy
 	if(istype(E))
 		copy_projectile = E.projectile_type
 		//charge_meter = E.charge_meter //does not work very well with icon_state changes, ATM
@@ -377,7 +396,7 @@
 		copy_projectile = null
 		//charge_meter = 0
 
-/obj/item/weapon/gun/energy/chameleon/verb/change(picked in gun_choices)
+/obj/item/gun/energy/chameleon/verb/change(picked in gun_choices)
 	set name = "Change Gun Appearance"
 	set category = "Chameleon Items"
 	set src in usr

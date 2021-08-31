@@ -8,22 +8,22 @@
 	name = "Unknown"
 	icon_state = "player-black"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
-	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
-	var/corpsesuit = null
-	var/corpseshoes = null
-	var/corpsegloves = null
-	var/corpseradio = null
-	var/corpseglasses = null
-	var/corpsemask = null
-	var/corpsehelmet = null
-	var/corpsebelt = null
-	var/corpsepocket1 = null
-	var/corpsepocket2 = null
-	var/corpseback = null
+	var/corpseuniform //Set this to an object path to have the slot filled with said object on the corpse.
+	var/corpsesuit
+	var/corpseshoes
+	var/corpsegloves
+	var/corpseradio
+	var/corpseglasses
+	var/corpsemask
+	var/corpsehelmet
+	var/corpsebelt
+	var/corpsepocket1
+	var/corpsepocket2
+	var/corpseback
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
-	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
-	var/species = "Human"
+	var/corpseidjob // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
+	var/corpseidaccess //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/species = SPECIES_HUMAN
 
 /obj/landmark/corpse/Initialize()
 	..()
@@ -68,7 +68,7 @@
 		var/datum/job/job_access = jobdatum
 		if(corpseidaccess)
 			job_access = SSjob.GetJob(corpseidaccess)
-		var/obj/item/weapon/card/id/W = new(M)
+		var/obj/item/card/id/W = new(M)
 		if(job_access)
 			W.access = job_access.get_access()
 		else
@@ -94,7 +94,7 @@
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/armor/helmet
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
@@ -109,8 +109,8 @@
 	corpsegloves = /obj/item/clothing/gloves/security
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
-	corpseback = /obj/item/weapon/tank/jetpack/oxygen
-	corpsepocket1 = /obj/item/weapon/tank/emergency_oxygen
+	corpseback = /obj/item/tank/jetpack/oxygen
+	corpsepocket1 = /obj/item/tank/emergency_oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
@@ -121,12 +121,21 @@
 
 /obj/landmark/corpse/chef
 	name = "Chef"
+	corpseuniform = /obj/item/clothing/under/rank/chef
+	corpsesuit = /obj/item/clothing/suit/chef
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseid = 1
 	corpseidjob = "Chef"
 
-
 /obj/landmark/corpse/doctor
 	name = "Medical doctor"
+	corpseuniform = /obj/item/clothing/under/rank/medical
+	corpseshoes = /obj/item/clothing/shoes/reinforced
+	corpseradio = /obj/item/device/radio/headset
+	corpsepocket1 = /obj/item/device/lighting/toggleable/flashlight/pen
+	corpsebelt = /obj/item/storage/belt/medical/
 	corpseid = 1
 	corpseidjob = "Medical doctor"
 
@@ -145,14 +154,18 @@
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
-	corpseback = /obj/item/weapon/storage/backpack/clown
+	corpsepocket1 = /obj/item/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
 	corpseid = 1
 	corpseidjob = "Clown"
 	//corpseidaccess = "Clown" //not exist
 
 /obj/landmark/corpse/scientist
 	name = "Scientist"
+	corpseuniform = /obj/item/clothing/under/rank/scientist
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseradio = /obj/item/device/radio/headset
+	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	corpseid = 1
 	corpseidjob = "Scientist"
 
@@ -170,18 +183,18 @@
 
 /obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
-	corpseradio = /obj/item/device/radio/headset/heads/hop
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_officer
+	corpseradio = /obj/item/device/radio/headset
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseshoes = /obj/item/clothing/shoes/black
+	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 /obj/landmark/corpse/commander
 	name = "Commander"
-	//corpseuniform = /obj/item/clothing/under/rank/centcom_captain
+	corpseuniform = /obj/item/clothing/under/rank/first_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseradio = /obj/item/device/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
@@ -189,10 +202,10 @@
 	corpsehelmet = /obj/item/clothing/head/centhat
 	corpsegloves = /obj/item/clothing/gloves/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
+	corpsepocket1 = /obj/item/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
 
 
 /////////////////Enemies//////////////////////

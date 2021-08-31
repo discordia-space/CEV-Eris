@@ -12,18 +12,18 @@
 	melee_damage_upper = 30
 	move_to_delay = 8
 	mob_size = MOB_MEDIUM
-	var/distress_level = 0
-	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
-	var/retreat_calls = 1 //Can call for retreat once too
 	extra_burrow_chance = 100
 	blattedin_revives_left = 0 //He only lives once, cuz he's huge
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer
 	meat_amount = 6
 
 	sanity_damage = 1
+	rarity_value = 90
 
-
+	var/distress_level = 0
+	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
+	var/retreat_calls = 1 //Can call for retreat once too
 
 /mob/living/carbon/superior_animal/roach/fuhrer/bullet_act()
 	.=..()

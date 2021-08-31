@@ -366,7 +366,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			S.frequency = get_rand_frequency()
 
 	//sound volume falloff with pressure
-	var/pressure_factor = 1.0
+	var/pressure_factor = 1
 	
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!

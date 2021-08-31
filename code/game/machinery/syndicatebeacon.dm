@@ -20,11 +20,11 @@
 	var/selfdestructing = 0
 	var/charges = 1
 
-/obj/machinery/syndicate_beacon/attack_hand(var/mob/user as mob)
+/obj/machinery/syndicate_beacon/attack_hand(mob/user)
 	usr.set_machine(src)
 	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
 	if(ishuman(user) || isAI(user))
-		if(is_special_character(user))
+		if(is_special_character(user) > LIMITED_ANTAG)
 			dat += "<font color=#07700><i>Operative record found. Greetings, Agent [user.name].</i></font><br>"
 		else if(charges < 1)
 			dat += "<TT>Connection severed.</TT><BR>"
@@ -128,8 +128,8 @@
 		return
 
 
-/obj/machinery/power/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/tool/screwdriver))
+/obj/machinery/power/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/tool/screwdriver))
 		if(active)
 			user << SPAN_DANGER("You need to deactivate the beacon first!")
 			return

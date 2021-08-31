@@ -92,4 +92,5 @@
 		material = get_material_by_name(MATERIAL_STEEL)
 		custom_appearance = custom_table_appearance["OneStar"] //one star table
 		reinforced = get_material_by_name(MATERIAL_STEEL)
+		name = "one star table"
 		..()

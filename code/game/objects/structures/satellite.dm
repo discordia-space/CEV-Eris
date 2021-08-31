@@ -2,9 +2,12 @@
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "sputnik"
 	desc = "It looks like ancient satellite."
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_SATELITE
 	var/cooldown = FALSE
 
-/obj/structure/satellite/attack_hand(mob/living/user as mob)
+/obj/structure/satellite/attack_hand(mob/living/user)
 	if(cooldown == FALSE)
 		cooldown = TRUE
 		emp_in(src.loc, 4, 6, 0)
@@ -32,8 +35,8 @@
 /obj/structure/satellite/science
 	var/nosignal = FALSE
 
-/obj/structure/satellite/science/attack_hand(mob/living/user as mob)
-	if(istype(user, /mob/living/carbon/human))
+/obj/structure/satellite/science/attack_hand(mob/living/user)
+	if(ishuman(user))
 		if(nosignal == FALSE)
 			nosignal = TRUE
 			var/mob/living/carbon/human/H = user

@@ -8,7 +8,7 @@
 	reference = "control_box"
 	anchored = FALSE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 500
 	active_power_usage = 70000 //70 kW per unit of strength
 	construction_state = 0
@@ -58,7 +58,7 @@
 
 	return
 
-/obj/machinery/particle_accelerator/control_box/update_icon()
+/obj/machinery/particle_accelerator/control_box/on_update_icon()
 	if(active)
 		icon_state = "[reference]p1"
 	else

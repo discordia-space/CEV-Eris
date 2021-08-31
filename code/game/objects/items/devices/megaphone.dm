@@ -7,25 +7,10 @@
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/cell/small
 	var/emagged = FALSE
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
-
-/obj/item/device/megaphone/Initialize()
-	. = ..()
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-/obj/item/device/megaphone/get_cell()
-	return cell
-
-/obj/item/device/megaphone/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-		update_icon()
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
@@ -38,8 +23,7 @@
 	if(user.silent)
 		return
 
-	if(!cell || !cell.checked_use(5))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+	if(!cell_use_check(5, user))
 		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
@@ -59,13 +43,7 @@
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
 		return
 
-/obj/item/device/megaphone/MouseDrop(over_object)
-	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
 
-/obj/item/device/megaphone/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
 
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)

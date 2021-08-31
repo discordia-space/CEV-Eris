@@ -1,17 +1,18 @@
 /obj/item/clothing/suit/storage
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
-	var/obj/item/weapon/storage/internal/pockets
+	bad_type = /obj/item/clothing/suit/storage
+	spawn_tags = SPAWN_TAG_CLOTHING_SUIT_STORAGE
+	var/obj/item/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal(src)
+	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 2	//two slots
 	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/storage/Destroy()
-	qdel(pockets)
-	pockets = null
+	QDEL_NULL(pockets)
 	. = ..()
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
@@ -34,6 +35,7 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
+	bad_type = /obj/item/clothing/suit/storage/toggle
 	var/icon_open
 	var/icon_closed
 	verb/toggle()
@@ -57,7 +59,7 @@
 
 /obj/item/clothing/suit/storage/vest/merc/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal(src)
+	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
@@ -76,10 +78,11 @@
 		bio = 0,
 		rad = 0
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/storage/vest/chestrig/New()
 	..()
-	pockets = new/obj/item/weapon/storage/internal(src)
+	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8

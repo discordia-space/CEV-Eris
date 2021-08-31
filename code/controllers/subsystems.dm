@@ -36,8 +36,8 @@
 	var/static/list/failure_strikes //How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
 
 //Do not override
-/datum/controller/subsystem/New()
-	return
+///datum/controller/subsystem/New()
+
 
 // Used to initialize the subsystem BEFORE the map has loaded
 // Called AFTER Recover if that is called
@@ -71,6 +71,8 @@
 	can_fire = 0
 	flags |= SS_NO_FIRE
 	Master.subsystems -= src
+
+	return ..()
 
 
 //Queue it to run.

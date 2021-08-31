@@ -49,7 +49,7 @@
 	var/stage = 4
 	var/maxm = 1
 	var/badness = 1
-	var/data = null // For semi-procedural effects; this should be generated in generate() if used
+	var/data // For semi-procedural effects; this should be generated in generate() if used
 
 	proc/activate(var/mob/living/carbon/mob,var/multiplier)
 	proc/deactivate(var/mob/living/carbon/mob)
@@ -105,16 +105,7 @@
 	stage = 4
 	badness = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.ear_deaf += 20
-
-/datum/disease2/effect/monkey
-	name = "Monkism Syndrome"
-	stage = 4
-	badness = 3
-	activate(var/mob/living/carbon/mob,var/multiplier)
-		if(ishuman(mob))
-			var/mob/living/carbon/human/h = mob
-			h.monkeyize()
+		mob.adjustEarDamage(0,20)
 
 /datum/disease2/effect/killertoxins
 	name = "Toxification Syndrome"
@@ -167,7 +158,7 @@
 			var/mob/living/carbon/human/H = mob
 			for (var/obj/item/organ/external/E in H.organs)
 				if (E.status & ORGAN_BROKEN && prob(30))
-					E.status ^= ORGAN_BROKEN
+					E.mend_fracture()
 		var/heal_amt = -5*multiplier
 		mob.apply_damages(heal_amt,heal_amt,heal_amt,heal_amt)
 
@@ -224,7 +215,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			var/obj/item/organ/internal/brain/B = H.internal_organs_by_name[BP_BRAIN]
+			var/obj/item/organ/internal/brain/B = H.random_organ_by_process(BP_BRAIN)
 			if (B && B.damage < B.min_broken_damage)
 				B.take_damage(5)
 		else
@@ -280,7 +271,7 @@
 			data = pick("bicaridine", "kelotane", "anti_toxin", "inaprovaline", "space_drugs", "sugar",
 						"tramadol", "dexalin", "cryptobiolin", "impedrezene", "hyperzine", "ethylredoxrazine",
 						"mindbreaker", "glucose")
-		var/datum/reagent/R = chemical_reagents_list[data]
+		var/datum/reagent/R = GLOB.chemical_reagents_list[data]
 		name = "[initial(name)] ([initial(R.name)])"
 
 	activate(var/mob/living/carbon/mob,var/multiplier)
@@ -342,7 +333,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			if(H.species.name == "Human" && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
+			if(H.species.name == SPECIES_HUMAN && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 				to_chat(H, SPAN_DANGER("Your hair starts to fall out in clumps..."))
 				spawn(50)
 					H.h_style = "Balding Hair"

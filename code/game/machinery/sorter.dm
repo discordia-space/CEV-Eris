@@ -48,11 +48,11 @@
 	icon_state = "sorter"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 200
 
-	circuit = /obj/item/weapon/circuitboard/sorter
+	circuit = /obj/item/electronics/circuitboard/sorter
 	// based on levels of manipulators
 	var/speed = 25
 	// based on levels of scanners
@@ -69,6 +69,10 @@
 	//UI vars
 	var/list/custom_rule = list("accept", "sort_type", "value", "amount")
 	var/new_rule_ui = FALSE
+	var/show_config = FALSE
+	var/show_iconfig = FALSE
+	var/show_oconfig = FALSE
+	var/show_rconfig = FALSE
 
 
 /obj/machinery/sorter/Initialize()
@@ -83,7 +87,7 @@
 	return ..()
 
 
-/obj/machinery/sorter/update_icon()
+/obj/machinery/sorter/on_update_icon()
 	..()
 	if(progress)
 		icon_state = "sorter-process"
@@ -173,10 +177,10 @@
 /obj/machinery/sorter/RefreshParts()
 	..()
 	var/manipulator_rating = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		manipulator_rating += M.rating
 	var/num_settings = 0
-	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
+	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
 		num_settings += S.rating
 	number_of_settings = num_settings * initial(number_of_settings)
 	speed = manipulator_rating*10
@@ -220,6 +224,13 @@
 	data["new_rule_sort"] = custom_rule["sort_type"]
 	data["new_rule_value"] = custom_rule["value"]
 	data["new_rule_amount"] = custom_rule["amount"]
+	data["sideI"] = capitalize(dir2text(input_side))
+	data["sideO"] = capitalize(dir2text(accept_output_side))
+	data["sideR"] = capitalize(dir2text(refuse_output_side))
+	data["show_config"] = show_config
+	data["show_iconfig"] = show_iconfig
+	data["show_oconfig"] = show_oconfig
+	data["show_rconfig"] = show_rconfig
 
 	return data
 
@@ -244,7 +255,7 @@
 		sort_settings.Remove(rule_to_remove)
 		qdel(rule_to_remove)
 	else if (href_list["add_new"])
-		new_rule_ui = TRUE
+		new_rule_ui = !new_rule_ui
 
 	else if (href_list["filter"])
 		custom_rule["accept"] = text2num(href_list["filter"])
@@ -281,6 +292,27 @@
 	else if (href_list["cancel"])
 		new_rule_ui = null
 		custom_rule = list("accept", "sort_type", "value", "amount")
+
+	if(href_list["setsideI"])
+		input_side = text2dir(href_list["setsideI"])
+
+	if(href_list["setsideO"])
+		accept_output_side = text2dir(href_list["setsideO"])
+
+	if(href_list["setsideR"])
+		refuse_output_side = text2dir(href_list["setsideR"])
+
+	if(href_list["toggle_config"])
+		show_config = !show_config
+
+	if(href_list["toggle_iconfig"])
+		show_iconfig = !show_iconfig
+
+	if(href_list["toggle_oconfig"])
+		show_oconfig = !show_oconfig
+
+	if(href_list["toggle_rconfig"])
+		show_rconfig = !show_rconfig
 
 
 	SSnano.update_uis(src)

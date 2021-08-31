@@ -98,16 +98,18 @@
 			src.player.song.soft_coeff = new_coeff
 		if ("instrument")
 			var/list/categories = list()
-			for (var/key in instruments)
-				var/datum/instrument/instrument = instruments[key]
+			var/list/instrumentsList = instruments // typecasting it to list from datum
+
+			for (var/key in instrumentsList)
+				var/datum/instrument/instrument = instrumentsList[key]
 				categories |= instrument.category
 
 			var/category = input(usr, "Choose a category") as null|anything in categories 
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			var/list/instruments_available = list()
-			for (var/key in instruments)
-				var/datum/instrument/instrument = instruments[key]
+			for (var/key in instrumentsList)
+				var/datum/instrument/instrument = instrumentsList[key]
 				if (instrument.category == category)
 					instruments_available += key
 
@@ -115,7 +117,7 @@
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			if (new_instrument)
-				src.player.song.instrument_data = instruments[new_instrument]
+				src.player.song.instrument_data = instrumentsList[new_instrument]
 		if ("autorepeat") src.player.song.autorepeat = value
 		if ("decay") src.player.song.linear_decay = value
 		if ("echo") src.player.apply_echo = value
@@ -215,12 +217,14 @@
 
 /obj/structure/synthesized_instrument/Destroy()
 	QDEL_NULL(src.real_instrument)
-	for(var/key in instruments)
-		qdel(instruments[key])
+
+	var/list/instrumentsList = instruments // typecasting it to list from datum
+	for(var/key in instrumentsList)
+		qdel(instrumentsList[key])
 	instruments = null
 	. = ..()
 
-/obj/structure/synthesized_instrument/attackby(var/obj/item/weapon/tool/tool, mob/user)
+/obj/structure/synthesized_instrument/attackby(var/obj/item/tool/tool, mob/user)
 	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 		anchored = !anchored
 		user.visible_message( \
@@ -276,8 +280,10 @@
 
 /obj/item/device/synthesized_instrument/Destroy()
 	QDEL_NULL(src.real_instrument)
-	for(var/key in instruments)
-		qdel(instruments[key])
+
+	var/list/instrumentsList = instruments // typecasting it to list from datum
+	for(var/key in instrumentsList)
+		qdel(instrumentsList[key])
 	instruments = null
 	. = ..()
 

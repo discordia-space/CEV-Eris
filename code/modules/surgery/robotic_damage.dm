@@ -64,7 +64,7 @@
 		SPAN_NOTICE("[user] finishes patching damage to [organ.get_surgery_name()] with \the [tool]."),
 		SPAN_NOTICE("You finish patching damage to [organ.get_surgery_name()] with \the [tool].")
 	)
-	organ.heal_damage(rand(30, 50), 0, 1, 1)
+	organ.heal_damage(rand(30, 50), 0, TRUE)
 
 /datum/surgery_step/robotic/fix_brute/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
@@ -105,7 +105,7 @@
 		SPAN_NOTICE("You finish replacing damaged wiring in [organ.get_surgery_name()].")
 	)
 	if(tool.use(3))
-		organ.heal_damage(0, rand(30, 50), 1, 1)
+		organ.heal_damage(0, rand(30, 50), TRUE)
 
 /datum/surgery_step/robotic/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/stack/cable_coil/tool)
 	user.visible_message(

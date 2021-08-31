@@ -1,52 +1,50 @@
 //Spawns credits, has many subtypes
-/obj/random/credits
+/obj/spawner/credits
 	name = "random cash"
 	icon_state = "cash-green"
-	var/min = 100
-	var/max = 1000
-	has_postspawn = TRUE
+	low_price = 100
+	top_price = 1000
 
-/obj/random/credits/item_to_spawn()
-	return /obj/item/weapon/spacecash/bundle
+/obj/spawner/credits/item_to_spawn()
+	return /obj/item/spacecash/bundle
 
-/obj/random/credits/post_spawn(var/list/spawns)
-	for (var/obj/item/weapon/spacecash/bundle/C in spawns)
-		C.worth = rand(min, max) //Rand conveniently produces integers
+/obj/spawner/credits/post_spawn(list/spawns)
+	for(var/obj/item/spacecash/bundle/C in spawns)
+		C.worth = rand(low_price, top_price) //Rand conveniently produces integers
 		C.update_icon()
 
-/obj/random/credits/low_chance
+/obj/spawner/credits/low_chance
 	name = "low chance random cash"
 	icon_state = "cash-green-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
-
-/obj/random/credits/c50
-	min = 1
-	max = 50
+/obj/spawner/credits/c50
+	low_price = 1
+	top_price = 50
 	icon_state = "cash-black"
 
-/obj/random/credits/c100
-	min = 5
-	max = 100
+/obj/spawner/credits/c100
+	low_price = 5
+	top_price = 100
 	icon_state = "cash-grey"
 
-/obj/random/credits/c500
-	min = 100
-	max = 500
+/obj/spawner/credits/c500
+	low_price = 100
+	top_price = 500
 	icon_state = "cash-blue"
 
-/obj/random/credits/c1000
-	min = 500
-	max = 1000
+/obj/spawner/credits/c1000
+	low_price = 500
+	top_price = 1000
 	icon_state = "cash-green"
 
-/obj/random/credits/c5000
-	min = 1000
-	max = 5000
+/obj/spawner/credits/c5000
+	low_price = 1000
+	top_price = 5000
 	icon_state = "cash-orange"
 
-/obj/random/credits/c10000
-	min = 5000
-	max = 10000
+/obj/spawner/credits/c10000
+	low_price = 5000
+	top_price = 10000
 	icon_state = "cash-red"

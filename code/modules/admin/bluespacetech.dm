@@ -26,30 +26,40 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.real_name = "Bluespace Technician"
 	bst.voice_name = "Bluespace Technician"
 	bst.h_style = "Crewcut"
+	var/list/stat_modifiers = list(
+		STAT_ROB = 99,
+		STAT_TGH = 99,
+		STAT_BIO = 99,
+		STAT_MEC = 99,
+		STAT_VIG = 99,
+		STAT_COG = 99
+	)
+	for(var/stat in stat_modifiers)
+		bst.stats.changeStat(stat, stat_modifiers[stat])
 
 	//Items
 	bst.equip_to_slot_or_del(new /obj/item/clothing/under/assistantformal/bst(bst), slot_w_uniform)
 	bst.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert/bst(bst), slot_l_ear)
-	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/holding/bst(bst), slot_back)
-	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(bst.back), slot_in_backpack)
-	bst.equip_to_slot_or_del(new /obj/item/clothing/shoes/black/bst(bst), slot_shoes)
+	bst.equip_to_slot_or_del(new /obj/item/storage/backpack/holding/bst(bst), slot_back)
+	bst.equip_to_slot_or_del(new /obj/item/storage/box/survival(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/clothing/shoes/color/black/bst(bst), slot_shoes)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/head/beret(bst), slot_head)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/bst(bst), slot_glasses)
-	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full/bst(bst), slot_belt)
+	bst.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full/bst(bst), slot_belt)
 	bst.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white/bst(bst), slot_gloves)
 
-	bst.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(bst.back), slot_in_backpack)
+	bst.equip_to_slot_or_del(new /obj/item/storage/box/ids(bst.back), slot_in_backpack)
 	bst.equip_to_slot_or_del(new /obj/item/device/t_scanner(bst.back), slot_in_backpack)
 	bst.equip_to_slot_or_del(new /obj/item/modular_computer/pda/captain(bst.back), slot_in_backpack)
 
-	var/obj/item/weapon/storage/box/pills = new /obj/item/weapon/storage/box(null, TRUE)
+	var/obj/item/storage/box/pills = new /obj/item/storage/box(null, TRUE)
 	pills.name = "adminordrazine"
 	for(var/i = 1, i < 12, i++)
-		new /obj/item/weapon/reagent_containers/pill/adminordrazine(pills)
+		new /obj/item/reagent_containers/pill/adminordrazine(pills)
 	bst.equip_to_slot_or_del(pills, slot_in_backpack)
 
 	//Sort out ID
-	var/obj/item/weapon/card/id/bst/id = new/obj/item/weapon/card/id/bst(bst)
+	var/obj/item/card/id/bst/id = new/obj/item/card/id/bst(bst)
 	id.registered_name = bst.real_name
 	id.assignment = "Bluespace Technician"
 	id.name = "[id.assignment]"
@@ -62,12 +72,19 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.add_language(LANGUAGE_CYRILLIC)
 	bst.add_language(LANGUAGE_SERBIAN)
 	bst.add_language(LANGUAGE_MONKEY)
+	bst.add_language(LANGUAGE_JIVE)
+	bst.add_language(LANGUAGE_GERMAN)
+	bst.add_language(LANGUAGE_NEOHONGO)
+	bst.add_language(LANGUAGE_LATIN)
+	// Robot languages
+	bst.add_language(LANGUAGE_ROBOT)
+	bst.add_language(LANGUAGE_DRONE)
 	// Antagonist languages
-	bst.add_language(LANGUAGE_XENOMORPH)
 	bst.add_language(LANGUAGE_HIVEMIND)
 	bst.add_language(LANGUAGE_CORTICAL)
 	bst.add_language(LANGUAGE_CULT)
 	bst.add_language(LANGUAGE_OCCULT)
+	bst.add_language(LANGUAGE_BLITZ)
 
 	spawn(10)
 		bst_post_spawn(bst)
@@ -86,9 +103,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	universal_understand = TRUE
 	status_flags = GODMODE
 	var/fall_override = TRUE
-	var/mob/original_body = null
+	var/mob/original_body
 
-/mob/living/carbon/human/bst/can_inject(var/mob/user, var/error_msg, var/target_zone)
+/mob/living/carbon/human/bst/can_inject(mob/user, error_msg, target_zone)
 	to_chat(user, span("alert", "The [src] disarms you before you can inject them."))
 	user.drop_item()
 	return FALSE
@@ -176,8 +193,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /////////////////////////////////I T E M S/////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/storage/backpack/holding/bst
+/obj/item/storage/backpack/holding/bst
 	worn_access = TRUE
+	spawn_frequency = 0
 
 /obj/item/device/radio/headset/ert/bst
 	name = "bluespace technician's headset"
@@ -185,6 +203,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	translate_binary = TRUE
 	translate_hive = TRUE
 	keyslot1 = new /obj/item/device/encryptionkey/binary
+	spawn_frequency = 0
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
 	if(!usr)
@@ -208,6 +227,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	siemens_coefficient = 0
 	cold_protection = FULL_BODY
 	heat_protection = FULL_BODY
+	spawn_frequency = 0
 
 /obj/item/clothing/under/assistantformal/bst/attack_hand()
 	if(!usr)
@@ -223,6 +243,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
+	spawn_frequency = 0
 
 /obj/item/clothing/gloves/color/white/bst/attack_hand()
 	if(!usr)
@@ -239,6 +260,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_MAJOR
+	spawn_frequency = 0
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
 	set name = "Change Vision Mode"
@@ -268,13 +290,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	else
 		..()
 
-/obj/item/clothing/shoes/black/bst
+/obj/item/clothing/shoes/color/black/bst
 	name = "bluespace technician's shoes"
 	desc = "A pair of black shoes with extra grip. The letters 'BST' are stamped on the side."
 	icon_state = "black"
 	item_flags = NOSLIP
+	spawn_frequency = 0
 
-/obj/item/clothing/shoes/black/bst/attack_hand()
+/obj/item/clothing/shoes/color/black/bst/attack_hand()
 	if(!usr)
 		return
 	if(!isbst(usr))
@@ -285,14 +308,16 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 	return TRUE //Because Bluespace
 
-/obj/item/weapon/card/id/bst
+/obj/item/card/id/bst
 	icon_state = "centcom"
-	desc = "An ID straight from Central Command. This one looks highly classified."
+	desc = "An ID straight from Hansa. This one looks as though its very existence is a trade secret."
+	spawn_frequency = 0
 
-/obj/item/weapon/card/id/bst/New()
-		access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+/obj/item/card/id/bst/Initialize(mapload)
+	. = ..()
+	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
 
-/obj/item/weapon/card/id/bst/attack_hand()
+/obj/item/card/id/bst/attack_hand()
 	if(!usr)
 		return
 	if(!isbst(usr))
@@ -301,12 +326,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	else
 		..()
 
-/obj/item/weapon/storage/belt/utility/full/bst
+/obj/item/storage/belt/utility/full/bst
 	storage_slots = 14
+	spawn_frequency = 0
 
-/obj/item/weapon/storage/belt/utility/full/bst/populate_contents()
+/obj/item/storage/belt/utility/full/bst/populate_contents()
 	..()
-	new /obj/item/weapon/tool/multitool(src)
+	new /obj/item/tool/multitool(src)
 	new /obj/item/device/t_scanner(src)
 
 /mob/living/carbon/human/bst/restrained()

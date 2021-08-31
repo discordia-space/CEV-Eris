@@ -11,7 +11,7 @@
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/capacity = 5e6 // maximum charge
 	var/charge = 1e6 // actual charge
@@ -63,6 +63,7 @@
 /obj/machinery/power/smes/New()
 	..()
 	spawn(5)
+		GLOB.smes_list += src
 		if(!powernet)
 			connect_to_network()
 
@@ -89,6 +90,10 @@
 
 	return
 
+/obj/machinery/power/smes/Destroy()
+	GLOB.smes_list -= src
+	..()
+
 /obj/machinery/power/smes/add_avail(var/amount)
 	if(..(amount))
 		powernet.smes_newavail += amount
@@ -103,29 +108,29 @@
 		return 1
 	return 0
 
-/obj/machinery/power/smes/update_icon()
-	overlays.Cut()
+/obj/machinery/power/smes/on_update_icon()
+	cut_overlays()
 	if(stat & BROKEN)	return
 
-	overlays += image('icons/obj/power.dmi', "smes-op[outputting]")
+	add_overlays(image('icons/obj/power.dmi', "smes-op[outputting]"))
 
 	if(inputting == 2)
-		overlays += image('icons/obj/power.dmi', "smes-oc2")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc2"))
 	else if (inputting == 1)
-		overlays += image('icons/obj/power.dmi', "smes-oc1")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc1"))
 	else if (input_attempt)
-		overlays += image('icons/obj/power.dmi', "smes-oc0")
+		add_overlays(image('icons/obj/power.dmi', "smes-oc0"))
 
 	var/clevel = chargedisplay()
 	if(clevel)
-		overlays += image('icons/obj/power.dmi', "smes-og[clevel]")
+		add_overlays(image('icons/obj/power.dmi', "smes-og[clevel]"))
 
 	if(outputting == 2)
-		overlays += image('icons/obj/power.dmi', "smes-op2")
+		add_overlays(image('icons/obj/power.dmi', "smes-op2"))
 	else if (outputting == 1)
-		overlays += image('icons/obj/power.dmi', "smes-op1")
+		add_overlays(image('icons/obj/power.dmi', "smes-op1"))
 	else
-		overlays += image('icons/obj/power.dmi', "smes-op0")
+		add_overlays(image('icons/obj/power.dmi', "smes-op0"))
 
 /obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
@@ -313,7 +318,7 @@
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["nameTag"] = name_tag
-	data["storedCapacity"] = round(100.0*charge/capacity, 0.1)
+	data["storedCapacity"] = round(100*charge/capacity, 0.1)
 	data["charging"] = inputting
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = input_level
@@ -340,7 +345,7 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/power/smes/proc/Percentage()
-	return round(100.0*charge/capacity, 0.1)
+	return round(100*charge/capacity, 0.1)
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	if(..())

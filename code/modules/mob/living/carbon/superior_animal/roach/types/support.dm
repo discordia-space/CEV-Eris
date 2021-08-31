@@ -5,13 +5,14 @@
 	turns_per_move = 6
 	maxHealth = 20
 	health = 20
-	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 	melee_damage_upper = 3
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche
 	meat_amount = 3
+	rarity_value = 11.25
+	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 
 /mob/living/carbon/superior_animal/roach/support/New()
-	..()
+	.=..()
 	gas_sac = new /datum/reagents(100, src)
 
 /mob/living/carbon/superior_animal/roach/support/proc/gas_attack()
@@ -40,6 +41,9 @@
 		return
 
 	gas_sac.add_reagent("blattedin", 1)
+
+	if(!target_mob)
+		return
 
 	if(prob(7))
 		gas_attack()

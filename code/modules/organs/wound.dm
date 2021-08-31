@@ -95,6 +95,11 @@
 		else if(damage_type == BURN)
 			return salved
 
+	proc/damtype_sanitize()
+		if(damage_type == BURN)
+			return BURN
+		return BRUTE
+
 	// Checks whether other other can be merged into src.
 	proc/can_merge(var/datum/wound/other)
 		if (other.type != src.type) return 0

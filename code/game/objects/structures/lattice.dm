@@ -13,7 +13,7 @@
 /obj/structure/lattice/Initialize()
 	. = ..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull))) // || istype(src.loc, /turf/simulated/floor/open)
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull) ||  istype(src.loc, /turf/simulated/floor/exoplanet))) // || istype(src.loc, /turf/simulated/floor/open)
 ///// Z-Level Stuff
 		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)
@@ -38,13 +38,13 @@
 
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			qdel(src)
 			return
-		if(3.0)
+		if(3)
 			return
 		else
 	return
@@ -78,7 +78,7 @@
 	//if(!(istype(src.loc, /turf/space)))
 	//	qdel(src)
 	spawn(1)
-		overlays = list()
+		set_overlays(list())
 
 		var/dir_sum = 0
 

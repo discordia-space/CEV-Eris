@@ -1,11 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-#define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
-
 /proc/dopage(src, target)
 	var/href_list
 	var/href
@@ -102,7 +96,7 @@
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/turf/T in trange(radius, centerturf))
+	for(var/turf/T in RANGE_TURFS(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx*dx + dy*dy <= rsq)
@@ -174,11 +168,9 @@
 			if (!mobs[M])
 				mobs[M] = TRUE
 
-	for(var/o in hearing_objects)
-		var/obj/O = o
-		if(O && O.loc && hearturfs[O.locs[1]])
-			if (!objs[O])
-				objs[O] = TRUE
+	for(var/obj in GLOB.hearing_objects)
+		if(get_turf(obj) in hearturfs)
+			objs |= obj
 
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
@@ -247,7 +239,7 @@
 				return 0
 	return 1
 
-proc/isInSight(atom/A, atom/B)
+/proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
@@ -281,6 +273,11 @@ proc/isInSight(atom/A, atom/B)
 			return M
 	return null
 
+/proc/get_client_by_ckey(key)
+	for(var/mob/M in SSmobs.mob_list)
+		if(M.ckey == lowertext(key))
+			return M.client
+	return null
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
 /proc/get_active_candidates(buffer = 1)
@@ -292,20 +289,6 @@ proc/isInSight(atom/A, atom/B)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
-		i++
-	return candidates
-
-// Same as above but for alien candidates.
-
-/proc/get_alien_candidates()
-	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
-	var/i = 0
-	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/ghost/G in GLOB.player_list)
-			if(ROLE_XENOMORPH in G.client.prefs.be_special_role)
-				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
-					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-						candidates += G.key
 		i++
 	return candidates
 
@@ -334,7 +317,7 @@ proc/isInSight(atom/A, atom/B)
 		for(var/client/C in show_to)
 			C.images -= I
 
-datum/projectile_data
+/datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time
@@ -519,7 +502,7 @@ datum/projectile_data
 
 /proc/get_vents()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in SSmachines.machinery)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && isOnStationLevel(temp_vent))
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent
@@ -551,7 +534,7 @@ datum/projectile_data
 //Picks a single random landmark of a specified type
 /proc/pick_landmark(ltype)
 	var/list/L = list()
-	for(var/S in landmarks_list)
+	for(var/S in GLOB.landmarks_list)
 		if (istype(S, ltype))
 			L.Add(S)
 

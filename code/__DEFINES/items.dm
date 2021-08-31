@@ -19,13 +19,17 @@
 
 #define UPGRADE_MAXUPGRADES "max_upgrades"
 
-#define UPGRADE_SHARP "sharp"
+#define UPGRADE_SANCTIFY "sanctify"
 
 #define UPGRADE_COLOR "color"
 
-#define UPGRADE_ITEMFLAGPLUS "item_flag_add"
+//boolean
+#define UPGRADE_SHARP "sharp"
 
 #define UPGRADE_CELLPLUS "cell_hold_upgrade"
+
+//flags
+#define UPGRADE_ITEMFLAGPLUS "item_flag_add"
 
 
 
@@ -43,6 +47,8 @@
 #define GUN_UPGRADE_CHARGECOST "chargecost_mult"
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
+#define GUN_UPGRADE_ONEHANDPENALTY "onehandpenalty_mult"
+#define GUN_UPGRADE_AGONY_MULT "agony_mult"
 
 //Int additive
 #define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
@@ -56,8 +62,11 @@
 #define GUN_UPGRADE_DAMAGE_HALLOSS "hallucination_damage"
 #define GUN_UPGRADE_DAMAGE_RADIATION "radiation_damage"
 #define GUN_UPGRADE_DAMAGE_PSY "psy_damage"
+#define GUN_UPGRADE_MELEEDAMAGE "melee_damage"
+#define GUN_UPGRADE_MELEEPENETRATION "melee_penetration"
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
+#define GUN_UPGRADE_ZOOM "zoom"
 
 
 
@@ -68,6 +77,10 @@
 #define GUN_UPGRADE_FULLAUTO "full auto"
 #define GUN_UPGRADE_EXPLODE "self destruct"
 #define GUN_UPGRADE_RIGGED "rigged"
+#define GUN_UPGRADE_THERMAL "thermal scope"
+#define GUN_UPGRADE_BAYONET "bayonet"
+#define GUN_UPGRADE_GILDED "gilded"
+#define GUN_UPGRADE_DNALOCK "biocoded"
 
 //Location Tag defines
 
@@ -78,6 +91,7 @@
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
 #define GUN_GRIP "grip slot"
+#define GUN_COSMETIC "cosmetic slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
@@ -86,28 +100,34 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
+#define GUN_GILDABLE "gildable"
 
 #define GUN_CALIBRE_35 "caliber .35"
 
 #define GUN_SOL "Is a FS CAR .25 CS \"Sol\""
+#define GUN_AMR "Is a SA AMR \"Hristov\""
 
 // A rare, random item
 #define RANDOM_RARE_ITEM list(\
-					/obj/random/common_oddities = 8,\
-					/obj/random/material_rare = 3,\
-					/obj/random/tool/advanced = 5,\
-					/obj/random/gun_normal = 3,\
-					/obj/random/lathe_disk/advanced = 2,\
-					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
-					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
-					/obj/random/rig = 1.5,\
-					/obj/random/rig/damaged = 1.5,\
-					/obj/random/voidsuit = 4,\
-					/obj/random/pouch = 2,\
-					/obj/random/tool_upgrade/rare = 4,\
-					/obj/random/rig_module/rare = 4,\
-					/obj/random/credits/c1000 = 3,\
-					/obj/random/exosuit_equipment = 3,\
-					/obj/random/cloth/holster = 4,\
+					/obj/spawner/oddities = 8,\
+					/obj/spawner/material/resources/rare = 3,\
+					/obj/spawner/tool/advanced = 5,\
+					/obj/spawner/gun/normal = 3,\
+					/obj/spawner/lathe_disk/advanced = 2,\
+					/obj/item/cell/small/moebius/nuclear = 1,\
+					/obj/item/cell/medium/moebius/hyper = 1,\
+					/obj/spawner/rig = 1.5,\
+					/obj/spawner/rig/damaged = 1.5,\
+					/obj/spawner/voidsuit = 4,\
+					/obj/spawner/pouch = 2,\
+					/obj/spawner/tool_upgrade/rare = 4,\
+					/obj/spawner/rig_module/rare = 4,\
+					/obj/spawner/credits/c1000 = 3,\
+					/obj/spawner/exosuit_equipment = 3,\
+					/obj/spawner/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\
-					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)
+					/obj/item/storage/deferred/crate/german_uniform = 4)
+
+GLOBAL_LIST_INIT(tool_aspects_blacklist, list(UPGRADE_COLOR, UPGRADE_ITEMFLAGPLUS, UPGRADE_CELLPLUS, UPGRADE_SHARP, UPGRADE_BULK))
+GLOBAL_LIST_INIT(weapon_aspects_blacklist, list(GUN_UPGRADE_SILENCER, GUN_UPGRADE_FORCESAFETY, GUN_UPGRADE_HONK, GUN_UPGRADE_FULLAUTO,
+											GUN_UPGRADE_EXPLODE, GUN_UPGRADE_RIGGED, UPGRADE_SANCTIFY))

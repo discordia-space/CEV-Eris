@@ -8,13 +8,13 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7")
 	sanity_damage = 0.1
 
-/obj/effect/decal/cleanable/blood/gibs/robot/update_icon()
+/obj/effect/decal/cleanable/blood/gibs/robot/on_update_icon()
 	color = "#FFFFFF"
 
 /obj/effect/decal/cleanable/blood/gibs/robot/dry()	//pieces of robots do not dry up like
 	return
 
-/obj/effect/decal/cleanable/blood/gibs/robot/streak(var/list/directions)
+/obj/effect/decal/cleanable/blood/gibs/robot/streak(list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)

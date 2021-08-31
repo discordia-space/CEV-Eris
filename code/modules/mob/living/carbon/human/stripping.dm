@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/handle_strip(var/slot_to_strip,var/mob/living/user)
+/mob/living/carbon/human/proc/handle_strip(slot_to_strip, mob/living/user)
 
 	if(!slot_to_strip || !user.IsAdvancedToolUser())
 		return
@@ -62,7 +62,7 @@
 		if(!target_slot.canremove)
 			to_chat(user, SPAN_WARNING("You cannot remove \the [src]'s [target_slot.name]."))
 			return
-		stripping = 1
+		stripping = TRUE
 
 	if(stripping)
 		if((target_slot == r_hand || target_slot == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
@@ -84,13 +84,15 @@
 	if(stripping)
 		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
 		unEquip(target_slot)
+		if(istype(target_slot,  /obj/item/storage/backpack))
+			SEND_SIGNAL(user, COMSIG_EMPTY_POCKETS, src)
 	else if(user.unEquip(held))
 		equip_to_slot_if_possible(held, text2num(slot_to_strip), TRUE) // Disable warning
 		if(held.loc != src)
 			user.put_in_hands(held)
 
 // Empty out everything in the target's pockets.
-/mob/living/carbon/human/proc/empty_pockets(var/mob/living/user)
+/mob/living/carbon/human/proc/empty_pockets(mob/living/user)
 	if(!r_store && !l_store)
 		to_chat(user, SPAN_WARNING("\The [src] has nothing in their pockets."))
 		return
@@ -102,10 +104,10 @@
 		visible_message(SPAN_DANGER("\The [user] empties \the [src]'s pockets!"))
 	else
 		to_chat(user, SPAN_NOTICE("You empty \the [src]'s pockets."))
+	SEND_SIGNAL(user, COMSIG_EMPTY_POCKETS, src)
 
 // Remove all splints.
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
-
 	var/can_reach_splints = 1
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/suit = wear_suit
@@ -115,7 +117,7 @@
 
 	if(can_reach_splints)
 		var/removed_splint
-		for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
+		for(var/organ in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
 				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
@@ -138,11 +140,11 @@
 		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/space)))
 			return
 		// Find an internal source.
-		if(istype(back, /obj/item/weapon/tank))
+		if(istype(back, /obj/item/tank))
 			internal = back
-		else if(istype(s_store, /obj/item/weapon/tank))
+		else if(istype(s_store, /obj/item/tank))
 			internal = s_store
-		else if(istype(belt, /obj/item/weapon/tank))
+		else if(istype(belt, /obj/item/tank))
 			internal = belt
 		visible_message(SPAN_WARNING("\The [src] is now running on internals!"))
 		internal.add_fingerprint(user)

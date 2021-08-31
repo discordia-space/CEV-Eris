@@ -44,6 +44,9 @@
 		STAT_COG = -10
 	)
 
+/datum/category_item/setup_option/background/origin/predstraza/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_SERBIAN)
 
 /datum/category_item/setup_option/background/origin/sich_prime
 	name = "Sich Prime"
@@ -77,6 +80,10 @@
 		STAT_COG = -10
 	)
 
+/datum/category_item/setup_option/background/origin/new_rome/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_LATIN)
+
 
 /datum/category_item/setup_option/background/origin/shimatengoku
 	name = "Shimatengoku"
@@ -93,6 +100,10 @@
 		STAT_VIG = 10,
 		STAT_COG = 5
 	)
+
+/datum/category_item/setup_option/background/origin/shimatengoku/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_NEOHONGO)
 
 
 /datum/category_item/setup_option/background/origin/hmss_destined
@@ -177,7 +188,7 @@
 	desc = "Designed to serve as large, FTL capable mining platform by the first days of NanoTrasen. \
 			And it was used for that, until stars started coming back from Null Space. \
 			In order to salvage those wonders first, NanoTrasen has sent this platform, reworked to serve as a local forward operating base, and renamed it to Central Command. \
-			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentComm's control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
+			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentCom's control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
 			Now it's an independent station under Ironhammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
 			It's a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Space. \
 			And - in most cases - die a horrible death in the end."
@@ -190,3 +201,53 @@
 		STAT_VIG = 10,
 		STAT_COG = 2
 	)
+
+
+/datum/category_item/setup_option/background/origin/eureka
+    name = "Eureka"
+    desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
+            And thus did the Syndicate and Nanotrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
+            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hansa and Neotheology both in the form of criminals. \
+            All in the name of saving what's left."
+
+    stat_modifiers = list(
+        STAT_ROB = -5,
+        STAT_TGH = 5,
+        STAT_BIO = 10,
+        STAT_MEC = -10,
+        STAT_VIG = 10,
+        STAT_COG = -5
+    )
+
+/datum/category_item/setup_option/background/origin/streltsy
+	name = "Wandering Streltsy"
+	desc = "The Streltsy are known for their actions during the corporate wars on certain worlds such as Eureka and Predstraza. Serbians know them as valuable debt settlers and an escape from the conditions of their worlds, while more civilized worlds view them as despoilers and raiders. \
+			While both of these preconceptions are correct in their own right, a less known fact is that most Streltsy who've survived the corporate war are still suffering the consequences of their participation due to the decimation of their numbers during the war, leading to a miserable quality of life and forcing them to start recruitment from wartorn worlds to desperately replenish their numbers from before the war. \
+			Despite this, the survivors and their newer members are unparalleled in the arts of war, but lacking in the art of general technomancy."
+	stat_modifiers = list(
+		STAT_ROB = 5,
+		STAT_TGH = 10,
+		STAT_BIO = -10,
+		STAT_MEC = -5,
+		STAT_VIG = 10,
+		STAT_COG = -10
+	)
+
+	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
+	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
+
+/datum/category_item/setup_option/background/origin/ihmaids
+	name = "Ironhammer M.A.I.D.S Corps"
+	desc = "The Ironhammer Medical, Acquisition, Industrial Design and Security Corps are normally posted to construction work of particular importance to Ironhammer assets, such as fortifications or barracks for the garrisons on the way to the null sector, along with triage work for when an accident inevitably happens at those garrisons. \
+			At other times, they're assigned to Ironhammer security teams on exploratory missions into the null sector due to their prowess as construction specialists and medics."
+
+	stat_modifiers = list(
+		STAT_ROB = -10,
+		STAT_TGH = -5,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
+		STAT_VIG = -10,
+		STAT_COG = 10
+	)
+	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/chief_engineer)
+	restricted_depts = ENGINEERING | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE

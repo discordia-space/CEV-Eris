@@ -56,7 +56,7 @@
 /area/crawler)
 "l" = (
 /obj/structure/table/onestar,
-/obj/random/gun_energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "m" = (
@@ -72,7 +72,7 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "o" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "p" = (
@@ -114,37 +114,37 @@
 /area/crawler)
 "w" = (
 /obj/structure/table/rack,
-/obj/random/gun_normal,
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "x" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
-/obj/random/gun_shotgun/low_chance,
+/obj/spawner/gun/shotgun,
+/obj/spawner/gun/shotgun/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "y" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
-/obj/random/gun_normal/low_chance,
-/obj/random/gun_energy_cheap/low_chance,
+/obj/spawner/gun/shotgun/low_chance,
+/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "z" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
-/obj/random/gun_normal/low_chance,
+/obj/spawner/gun/shotgun/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "A" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
+/obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "B" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
-/obj/random/gun_energy_cheap/low_chance,
+/obj/spawner/gun/shotgun/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 

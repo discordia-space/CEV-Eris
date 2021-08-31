@@ -1,5 +1,6 @@
-/obj/item/weapon/circuitboard/atmoscontrol
+/obj/item/electronics/circuitboard/atmoscontrol
 	name = "\improper Central Atmospherics Computer Circuitboard"
+	rarity_value = 40
 	build_path = /obj/machinery/computer/atmoscontrol
 
 /obj/machinery/computer/atmoscontrol
@@ -10,7 +11,7 @@
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/atmoscontrol
+	circuit = /obj/item/electronics/circuitboard/atmoscontrol
 	req_access = list(access_ce)
 	var/list/monitored_alarm_ids = null
 	var/datum/nano_module/atmos_control/atmos_control

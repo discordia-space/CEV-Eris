@@ -1,0 +1,132 @@
+<style>
+	.right_aligned
+	{float: right;}
+	.withToolTip .ImTooltip, .withToolTipInTooltip .ImTooltipInTooltip
+	{width: auto;}
+</style>
+<table>
+	<tr><td class="link withToolTip">
+			Trade Station{{if data.station_name}}: {{:data.station_name}}{{/if}}
+			<span class="ImTooltip">
+				<span class="right_aligned">{{:helper.link('X', null, {'PRG_station' : null}, null, 'redButton')}}</span>
+				{{if data.station_desc}}
+					<h3>Current station description:</h3><br>
+						{{:data.station_desc}}
+					<hr><br>
+				{{else}}
+					No selected station provided.
+				{{/if}}
+				<div>
+					{{for data.station_list}}
+						{{:helper.link(value.name, null, {'PRG_station' : value.index})}}
+					{{empty}}
+						No Trade Stations found.
+					{{/for}}
+					<br>
+				</div>
+			</span>
+	<tr>
+		<td class="link withToolTip">
+			Receiving Beacon{{if data.receiving}}: {{:data.receiving}}{{/if}}
+			<span class="ImTooltip">
+				<span class="right_aligned">{{:helper.link('X', null, {'PRG_receiving' : null}, null, 'redButton')}}</span>
+				<ul>
+					{{for data.receiving_list}}
+						<li>{{:helper.link(value.id, null, {'PRG_receiving' : value.index})}}</li>
+					{{empty}}
+						No Receiving Beacons found.
+					{{/for}}
+				</ul>
+			</span>
+		<td class="link withToolTip">
+			Sending Beacon{{if data.sending}}: {{:data.sending}}{{/if}}
+			<span class="ImTooltip">
+				<span class="right_aligned">{{:helper.link('X', null, {'PRG_sending' : null}, null, 'redButton')}}</span>
+				<ul>
+					{{for data.sending_list}}
+						<li>{{:helper.link(value.id, null, {'PRG_sending' : value.index})}}</li>
+					{{empty}}
+						No Sending Beacons found.
+					{{/for}}
+				</ul>
+			</span>
+</table>
+<hr>
+{{:helper.link(data.tradescreen ? "To Offers" : "To Goods", null, {'PRG_trade_screen' : 1})}}
+{{if data.account}}
+	{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('X', null, {'PRG_account_unlink' : 1}, null, 'redButton')}}
+{{else}}
+	{{:helper.link("Account Number", null, {'PRG_account' : 1})}}
+{{/if}}
+<br>
+<hr>
+{{if data.tradescreen}}
+	{{if data.station_name}}
+		<div class='nanoMap' style='padding: 25px 50px;'>
+			{{for data.categories}}
+				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
+			{{empty}}
+				Some retard created trade station without categories, or it is bug, tell it to devs.
+			{{/for}}
+			<br><br>
+			{{if data.current_category}}
+				{{if data.goods}}
+					<table class='item'>
+						<tr class="bottom_bordered">
+							<td>Name
+							<td>Price
+							<td>Available
+							<td>Cart
+							<td>Sell
+						{{for data.goods}}
+							<tr>
+								<td>{{:value.name}}
+								<td>{{:value.price}}
+								<td>{{:value.amount_available}}
+								<td>
+									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
+									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
+									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
+								<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
+						{{/for}}
+					</table>
+				{{else}}
+					Please choose category.
+				{{/if}}
+			{{/if}}
+		</div>
+		Cart:<br>
+		{{:helper.link(data.total, "cart", {"PRG_receive" : 1}, data.total ? null : 'disabled')}}{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
+		Commission for packing: {{:data.commision}}
+	{{else}}
+		<div class='nanoMap' style='padding: 100px 200px;'>
+			Please pick trade station.
+		</div>
+	{{/if}}
+{{else}}
+	<div class='notice' id='SpecialOffer'>
+		{{if data.offers}}
+			<h3>Special offers</h3>
+			<table class='item'>
+				<tr>
+					<th>Station
+					<th>Name
+					<th>Price
+					<th>Amount
+					<th>Send
+				{{for data.offers}}
+					{{if value.name}}
+					<tr>
+						<td>{{:value.station}}
+						<td>{{:value.name}}
+						<td>{{:value.price}}
+						<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
+						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index}, value.available >= value.amount ? null : 'disabled')}}
+					{{/if}}
+				{{/for}}
+			</table>
+		{{else}}
+			No offers found.
+		{{/if}}
+	</div>
+{{/if}}

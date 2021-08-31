@@ -3,12 +3,14 @@
 	name = "combat exosuit"
 	desc = "A sleek, modern combat exosuit."
 
+	rarity_value = 60
+
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_DARK_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
-		/obj/item/weapon/circuitboard/exosystem/weapons,
-		/obj/item/weapon/circuitboard/exosystem/advweapons
+		/obj/item/electronics/circuitboard/exosystem/weapons,
+		/obj/item/electronics/circuitboard/exosystem/advweapons
 	)
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
@@ -28,6 +30,17 @@
 
 	. = ..()
 
+/mob/living/exosuit/premade/combat/slayer
+	name = "S.C.U. 'Slayer'" //Space Combat Unit
+	desc = "A sleek, modern combat exosuit. It has two red stripes on it's chassis."
+
+	exosuit_color = "#5a6934"
+	decal = "stripes"
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser/laser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light
+	)
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -84,6 +97,8 @@
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
 	move_delay = 3
+	power_use = 20
+	matter = list(MATERIAL_STEEL = 15)
 	turn_delay = 3 //almost identical to light, but slightly worse turning and less power efficiency for extra durability
 	max_damage = 100
 	power_use = 25

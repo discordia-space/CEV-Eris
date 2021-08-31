@@ -16,14 +16,14 @@
 
 /datum/design/autolathe/misc/extinguisher
 	name = "extinguisher"
-	build_path = /obj/item/weapon/extinguisher
+	build_path = /obj/item/extinguisher
 
 /datum/design/autolathe/misc/radio_headset
 	name = "radio headset"
 	build_path = /obj/item/device/radio/headset
 
 /datum/design/autolathe/misc/radio_bounced
-	name = "station bounced radio"
+	name = "ship bounced radio"
 	build_path = /obj/item/device/radio/off
 
 /datum/design/autolathe/misc/taperecorder
@@ -32,16 +32,16 @@
 
 /datum/design/autolathe/misc/tube
 	name = "light tube"
-	build_path = /obj/item/weapon/light/tube
+	build_path = /obj/item/light/tube
 
 /datum/design/autolathe/misc/bulb
 	name = "light bulb"
-	build_path = /obj/item/weapon/light/bulb
+	build_path = /obj/item/light/bulb
 
 /datum/design/autolathe/misc/ashtray
 	name = "glass ashtray"
-	build_path = /obj/item/weapon/material/ashtray
+	build_path = /obj/item/material/ashtray
 
 /datum/design/autolathe/misc/cane
 	name = "cane"
-	build_path = /obj/item/weapon/cane
+	build_path = /obj/item/cane

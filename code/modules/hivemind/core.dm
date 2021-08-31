@@ -17,18 +17,17 @@ var/datum/hivemind/hive_mind_ai
 	var/failure_chance = 25				//how often will be created dummy machines. This chance reduces by 1 each 10 EP //Changed from 45 to 25 -Wouju
 	var/list/hives = list() 			//all functional hives stored here
 	//i know, whitelist is bad, but it's required here
-	var/list/restricted_machineries = list( /obj/machinery/light,					/obj/machinery/atmospherics,
-											/obj/machinery/door,					/obj/machinery/meter,
-											/obj/machinery/camera,					/obj/machinery/light_switch,
-											/obj/machinery/disposal,				/obj/machinery/firealarm,
-											/obj/machinery/alarm,					/obj/machinery/recharger,
-											/obj/machinery/hologram,				/obj/machinery/holoposter,
-											/obj/machinery/button,					/obj/machinery/status_display,
-											/obj/machinery/floor_light,				/obj/machinery/flasher,
-											/obj/machinery/filler_object,			/obj/machinery/hivemind_machine,
-											/obj/machinery/cryopod,			/obj/machinery/portable_atmospherics/hydroponics/soil,
-											/obj/machinery/portable_atmospherics/canister) //hivemind no longer can convert soil(its dirt) and canisters (its a metal cylinder with a valve)
-	//internals
+	var/list/restricted_machineries = list( /obj/machinery/light,			/obj/machinery/atmospherics,
+						/obj/machinery/door,			/obj/machinery/meter,
+						/obj/machinery/camera,			/obj/machinery/light_switch,	/obj/machinery/firealarm,
+						/obj/machinery/alarm,			/obj/machinery/recharger,
+						/obj/machinery/hologram,		/obj/machinery/holoposter,
+						/obj/machinery/button,			/obj/machinery/status_display,
+						/obj/machinery/floor_light,		/obj/machinery/flasher,
+						/obj/machinery/filler_object,		/obj/machinery/hivemind_machine,
+						/obj/machinery/cryopod,			/obj/machinery/portable_atmospherics/hydroponics/soil,
+						/obj/machinery/power/supermatter,	/obj/machinery/portable_atmospherics/canister)
+
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
 
@@ -39,8 +38,9 @@ var/datum/hivemind/hive_mind_ai
 				"NanoNurse", "Vivisector", "Ex Costa", "Apostasy", "Gnosis", "Balaam", "Ophite",
 				"Sarif", "VersaLife", "Slylandro", "SHODAN", "Pandora", "Fisto")
 
-	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V", "v0.9",
-					"v1.0", "v2.0", "2418-B", "Open Beta", "Pre-Release", "Commercial Release", "Closed Alpha", "v1.1")
+	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V",
+			"v0.9", "v1.0", "v1.1", "v2.0", "2418-B", "Open Beta",
+			"Pre-Release", "Commercial Release", "Closed Alpha", "Hivebuilt")
 
 	var/list/all_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 	//price list building
@@ -56,6 +56,7 @@ var/datum/hivemind/hive_mind_ai
 	message_admins("Hivemind [name] [surname] is destroyed.")
 	hive_mind_ai = null
 	qdel(src)
+	level_eight_beta_announcement()
 
 /datum/hivemind/proc/get_points()
 	if(evo_points < evo_points_max)

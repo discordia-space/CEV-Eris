@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	density = TRUE
 	req_access = list(access_engine_equip)
 
-	var/obj/item/weapon/tank/plasma/P = null
+	var/obj/item/tank/plasma/P = null
 	var/last_power = 0
 	var/last_power_new = 0
 	var/active = FALSE
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/weapon/tank/plasma))
+	if(istype(I, /obj/item/tank/plasma))
 		if(!anchored)
 			to_chat(user, SPAN_WARNING("[src] needs to be secured to the floor first."))
 			return
@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		update_icons()
 		return
 
-	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
+	else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/modular_computer))
 		if(allowed(user))
 			if(active)
 				locked = !locked
@@ -144,23 +144,23 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(P)
-		overlays += "ptank"
+		add_overlays("ptank")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += "on"
+		add_overlays("on")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
 	if(active)
 		icon_state = "ca_on"
-		flick("ca_active", src)
+		FLICK("ca_active", src)
 	else
 		icon_state = "ca"
-		flick("ca_deactive", src)
+		FLICK("ca_deactive", src)
 	update_icons()
 
 /obj/machinery/power/rad_collector/anchored

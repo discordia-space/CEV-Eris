@@ -1,10 +1,10 @@
-/obj/item/weapon/circuitboard/pile_ripper
+/obj/item/electronics/circuitboard/pile_ripper
 	name = T_BOARD("Pile Ripper")
 	build_path = /obj/machinery/pile_ripper
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 3)
 	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 1
+		/obj/item/stock_parts/manipulator = 1
 	)
 
 /obj/machinery/pile_ripper
@@ -15,7 +15,7 @@
 	layer = MOB_LAYER + 1 // Overhead
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 
 	var/safety_mode = FALSE // Temporality stops the machine if it detects a mob
@@ -50,8 +50,8 @@
 	for(var/obj/ripped_item in ripped_turf)
 		if(count >= rating)
 			break
-		if(istype(ripped_item, /obj/structure/scrap))
-			var/obj/structure/scrap/pile = ripped_item
+		if(istype(ripped_item, /obj/structure/scrap_spawner))
+			var/obj/structure/scrap_spawner/pile = ripped_item
 			while(pile.dig_out_lump(loc, 1))
 				if(prob(20))
 					break
@@ -84,7 +84,7 @@
 	update_icon()
 
 /obj/machinery/pile_ripper/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weapon/card/emag))
+	if(istype(I, /obj/item/card/emag))
 		emag_act(user)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
@@ -105,7 +105,7 @@
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 
-/obj/machinery/pile_ripper/update_icon()
+/obj/machinery/pile_ripper/on_update_icon()
 	..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
@@ -145,21 +145,21 @@
 	// Start shredding meat
 
 	var/slab_name = L.name
-	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	var/slab_type = /obj/item/reagent_containers/food/snacks/meat
 
 	L.adjustBruteLoss(45)
 	if(istype(L, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
-		H.nutrition -= 100
+		H.adjustNutrition(-100)
 		if(H.nutrition <= 0)
 			H.gib()
 		if(H.isMonkey())
-			slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+			slab_type = /obj/item/reagent_containers/food/snacks/meat/monkey
 		else
 			slab_name = H.real_name
-			slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human
+			slab_type = /obj/item/reagent_containers/food/snacks/meat/human
 
-	var/obj/item/weapon/reagent_containers/food/snacks/meat/new_meat = new slab_type(get_turf(get_step(src, 4)))
+	var/obj/item/reagent_containers/food/snacks/meat/new_meat = new slab_type(get_turf(get_step(src, 4)))
 	new_meat.name = "[slab_name] [new_meat.name]"
 
 	new_meat.reagents.add_reagent("nutriment", 10)

@@ -16,6 +16,7 @@
 							/datum/design/research/item/part/basic_micro_laser,
 							/datum/design/research/item/part/basic_matter_bin,
 							/datum/design/research/circuit/arcade_battle,
+							/datum/design/research/circuit/jukebox,
 							/datum/design/research/circuit/arcade_orion_trail,
 							/datum/design/research/circuit/autolathe,
 							/datum/design/research/item/light_replacer,
@@ -121,12 +122,47 @@
 	unlocks_designs = list(
 							/datum/design/research/item/wirer,
 							/datum/design/research/item/debugger,
+							/datum/design/research/item/detailer,
+							/datum/design/research/item/analyzer,
 							/datum/design/research/item/custom_circuit_assembly,
 							/datum/design/research/item/custom_circuit_assembly/medium,
 							/datum/design/research/item/custom_circuit_assembly/drone,
 							/datum/design/research/item/custom_circuit_assembly/large,
-							/datum/design/research/item/custom_circuit_assembly/implant
+							/datum/design/research/item/custom_circuit_assembly/implant,
+							/datum/design/research/item/custom_circuit_assembly/printer
 							)
+
+
+/datum/technology/custom_circuits_advanced
+	name = "Advanced Designs"
+	desc = "Integral Ciruits - Advanced Designs"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.4
+	y = 0.9
+	icon = "tesla"
+
+	required_technologies = list(/datum/technology/custom_circuits)
+	required_tech_levels = list()
+	cost = 2000
+
+	unlocks_designs = list(/datum/design/research/item/custom_circuit_assembly/advanced_designs)
+
+/datum/technology/custom_circuits_cloning
+	name = "Instant Cloning"
+	desc = "Integral Ciruits - Instant Cloning"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.5
+	y = 0.9
+	icon = "tesla"
+
+	required_technologies = list(/datum/technology/custom_circuits_advanced)
+	required_tech_levels = list()
+	cost = 2000
+
+	unlocks_designs = list(/datum/design/research/item/custom_circuit_assembly/cloning)
+
 /* No tesla engine?
 /datum/technology/tesla
 	name = "Tesla"

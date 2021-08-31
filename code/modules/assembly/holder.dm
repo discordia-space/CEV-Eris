@@ -10,8 +10,8 @@
 	throw_range = 10
 
 	var/secured = FALSE
-	var/obj/item/device/assembly/left_assembly = null
-	var/obj/item/device/assembly/right_assembly = null
+	var/obj/item/device/assembly/left_assembly
+	var/obj/item/device/assembly/right_assembly
 
 /obj/item/device/assembly_holder/New()
 	..()
@@ -47,16 +47,16 @@
 	return TRUE
 
 
-/obj/item/device/assembly_holder/update_icon()
-	overlays.Cut()
+/obj/item/device/assembly_holder/on_update_icon()
+	cut_overlays()
 	if(left_assembly)
-		overlays += "[left_assembly.icon_state]_left"
+		add_overlays("[left_assembly.icon_state]_left")
 		for(var/O in left_assembly.attached_overlays)
-			overlays += "[O]_l"
+			add_overlays("[O]_l")
 	if(right_assembly)
-		src.overlays += "[right_assembly.icon_state]_right"
+		src.add_overlays("[right_assembly.icon_state]_right")
 		for(var/O in right_assembly.attached_overlays)
-			overlays += "[O]_r"
+			add_overlays("[O]_r")
 	if(master)
 		master.update_icon()
 
@@ -207,8 +207,8 @@
 
 	if ( !(usr.stat || usr.restrained()) )
 		var/obj/item/device/assembly_holder/holder
-		if(istype(src,/obj/item/weapon/grenade/chem_grenade))
-			var/obj/item/weapon/grenade/chem_grenade/gren = src
+		if(istype(src,/obj/item/grenade/chem_grenade))
+			var/obj/item/grenade/chem_grenade/gren = src
 			holder=gren.detonator
 		var/obj/item/device/assembly/timer/tmr = holder.left_assembly
 		if(!istype(tmr,/obj/item/device/assembly/timer))

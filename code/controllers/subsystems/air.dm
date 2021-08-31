@@ -156,6 +156,9 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 		report_progress("Air settling completed in [(REALTIMEOFDAY - starttime)/10] seconds!")
 
+	setup_atmos_machinery()
+	setup_pipenets()
+
 	..(timeofday)
 
 /datum/controller/subsystem/air/fire(resumed = FALSE, no_mc_tick = FALSE)
@@ -196,7 +199,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		T.post_update_air_properties()
 		T.needs_air_update = 0
 		#ifdef ZASDBG
-		T.overlays -= mark
+		T.remove_overlays(mark)
 		updated++
 		#endif
 
@@ -213,7 +216,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		T.post_update_air_properties()
 		T.needs_air_update = 0
 		#ifdef ZASDBG
-		T.overlays -= mark
+		T.remove_overlays(mark)
 		updated++
 		#endif
 
@@ -359,7 +362,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		return
 	tiles_to_update += T
 	#ifdef ZASDBG
-	T.overlays += mark
+	T.add_overlays(mark)
 	#endif
 	T.needs_air_update = 1
 
@@ -425,3 +428,27 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		active_edges -= E
 	if(processing_edges)
 		processing_edges -= E
+
+/datum/controller/subsystem/air/proc/setup_template_machinery(list/atmos_machines)
+	for(var/A in atmos_machines)
+		var/obj/machinery/atmospherics/AM = A
+		AM.atmos_init()
+		CHECK_TICK
+
+	for(var/A in atmos_machines)
+		var/obj/machinery/atmospherics/AM = A
+		AM.build_network()
+		CHECK_TICK
+
+/datum/controller/subsystem/air/proc/setup_atmos_machinery()
+	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
+		AM.atmos_init()
+		CHECK_TICK
+
+//this can't be done with setup_atmos_machinery() because
+//	all atmos machinery has to initalize before the first
+//	pipenet can be built.
+/datum/controller/subsystem/air/proc/setup_pipenets()
+	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
+		AM.build_network()
+		CHECK_TICK

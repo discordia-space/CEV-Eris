@@ -3,7 +3,7 @@ mob/proc/flash_pain()
 
 /mob/living/flash_pain()
 	if(HUDtech.Find("pain"))
-		flick("pain", HUDtech["pain"])
+		FLICK("pain", HUDtech["pain"])
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""
@@ -60,9 +60,9 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(species.flags & NO_PAIN)
 		return
 
-	if(analgesic >= 100)
+	if(analgesic >= 75)
 		return
-	else if(analgesic >= 50)
+	else if(analgesic >= 40)
 		flash_strength -= 1
 		if(flash_strength < 0)
 			return
@@ -84,14 +84,15 @@ mob/living/carbon/human/proc/handle_pain()
 
 	if(stat >= DEAD)
 		return
-	if(analgesic > 70)
+	if(analgesic >= 50)
 		return
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
 	for(var/obj/item/organ/external/E in organs)
-		if(E.status&ORGAN_DEAD || BP_IS_ROBOTIC(E))
+		if(E.status&ORGAN_DEAD)
 			continue
 		var/dam = E.get_damage()
+		dam *= (get_specific_organ_efficiency(OP_NERVE, E.organ_tag)/100)
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
@@ -102,10 +103,10 @@ mob/living/carbon/human/proc/handle_pain()
 
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)
-		if(I.status&ORGAN_DEAD || BP_IS_ROBOTIC(I))
+		if(I.status&ORGAN_DEAD)
 			continue
 		if(I.damage > 2) if(prob(2))
-			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
+			var/obj/item/organ/external/parent = I.parent
 			src.custom_pain("You feel a sharp pain in your [parent.name]", 1)
 
 	var/toxDamageMessage = null

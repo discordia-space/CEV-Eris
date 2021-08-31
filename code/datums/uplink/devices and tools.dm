@@ -7,8 +7,9 @@
 /datum/uplink_item/item/tools/toolbox
 	name = "Fully Loaded Toolbox"
 	item_cost = 5
-	path = /obj/item/weapon/storage/toolbox/syndicate
+	path = /obj/item/storage/toolbox/syndicate
 	desc = "Danger. Very robust. Filled with advanced tools."
+
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Shield Diffuser"
 	item_cost = 4
@@ -18,29 +19,29 @@
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
 	item_cost = 13
-	path = /obj/item/weapon/storage/secure/briefcase/money
+	path = /obj/item/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable credits for funding your sneaky activities."
 
 /datum/uplink_item/item/tools/pocketchange
 	name = "Spending Money"
 	item_cost = 1
-	path = /obj/item/weapon/spacecash/bundle/c500
+	path = /obj/item/spacecash/bundle/c500
 	desc = "A bundle of 500 untraceable credits to cover a few basic expenses."
-
-/datum/uplink_item/item/tools/clerical
-	name = "Morphic Clerical Kit"
-	item_cost = 3
-	path = /obj/item/weapon/storage/box/syndie_kit/clerical
 
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
 	item_cost = 3
-	path = /obj/item/weapon/plastique
+	path = /obj/item/plastique
 
 /datum/uplink_item/item/tools/heavy_vest
 	name = "Heavy Armor Vest"
 	item_cost = 6
 	path = /obj/item/clothing/suit/storage/vest/merc
+	
+/datum/uplink_item/item/tools/full_heavy_vest
+	name = "Fullbody Heavy Armor Vest"
+	item_cost = 12
+	path = /obj/item/clothing/suit/storage/vest/merc/full
 
 /datum/uplink_item/item/tools/heavy_helmet
 	name = "Heavy Armor Helmet"
@@ -60,12 +61,12 @@
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 6
-	path = /obj/item/weapon/card/emag
+	path = /obj/item/card/emag
 
 /datum/uplink_item/item/tools/hacking_tool
 	name = "Door Hacking Tool"
 	item_cost = 6
-	path = /obj/item/weapon/tool/multitool/hacktool
+	path = /obj/item/tool/multitool/hacktool
 	desc = "Appears and functions as a standard multitool until the mode is toggled by applying a screwdriver appropriately. \
 			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
@@ -73,16 +74,16 @@
 /datum/uplink_item/item/tools/space_suit
 	name = "Mercenary Voidsuit"
 	item_cost = 6
-	path = /obj/item/weapon/storage/box/syndie_kit/space
+	path = /obj/item/storage/box/syndie_kit/space
 
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
-	item_cost = 6
+	item_cost = 8
 	path = /obj/item/clothing/glasses/powered/thermal/syndi
 
 /datum/uplink_item/item/tools/thermal_lens
 	name = "Thermal Imaging Lenses"
-	item_cost = 10
+	item_cost = 12
 	path = /obj/item/clothing/glasses/powered/thermal/lens
 
 /datum/uplink_item/item/tools/powersink
@@ -93,7 +94,7 @@
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"
 	item_cost = 8
-	path = /obj/item/weapon/circuitboard/teleporter
+	path = /obj/item/electronics/circuitboard/teleporter
 
 /datum/uplink_item/item/tools/teleporter/New()
 	..()
@@ -101,8 +102,8 @@
 
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"
-	item_cost = 14
-	path = /obj/item/weapon/aiModule/syndicate
+	item_cost = 7
+	path = /obj/item/electronics/ai_module/syndicate
 
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"
@@ -113,7 +114,7 @@
 	name = "Mind Fryer"
 	desc = "When activated, attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns. \
 			The device owner is immune to this effect."
-	item_cost = 3
+	item_cost = 2
 	path = /obj/item/device/mind_fryer
 	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
@@ -128,20 +129,20 @@
 	desc = "A set of sensor packages designed to collect some information for your client. \
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
-	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
+	path = /obj/item/storage/box/syndie_kit/spy_sensor
 	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
 	if(.)
-		var/obj/item/weapon/storage/box/syndie_kit/spy_sensor/B = .
+		var/obj/item/storage/box/syndie_kit/spy_sensor/B = .
 		for(var/obj/item/device/spy_sensor/S in B)
 			S.owner = U.uplink_owner
 
 /datum/uplink_item/item/tools/bsdm
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 1
-	path = /obj/item/weapon/storage/bsdm
+	path = /obj/item/storage/bsdm
 	antag_roles = ROLES_CONTRACT
 
 /datum/uplink_item/item/tools/bsdm/can_view(obj/item/device/uplink/U)
@@ -150,13 +151,13 @@
 /datum/uplink_item/item/tools/bsdm/buy(obj/item/device/uplink/U)
 	. = ..()
 	if(.)
-		var/obj/item/weapon/storage/bsdm/B = .
+		var/obj/item/storage/bsdm/B = .
 		B.owner = U.uplink_owner
 
 /datum/uplink_item/item/tools/bsdm_free
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 0
-	path = /obj/item/weapon/storage/bsdm
+	path = /obj/item/storage/bsdm
 	antag_roles = ROLES_CONTRACT
 
 /datum/uplink_item/item/tools/bsdm_free/can_view(obj/item/device/uplink/U)
@@ -165,7 +166,7 @@
 /datum/uplink_item/item/tools/bsdm_free/buy(obj/item/device/uplink/U)
 	. = ..()
 	if(.)
-		var/obj/item/weapon/storage/bsdm/B = .
+		var/obj/item/storage/bsdm/B = .
 		B.owner = U.uplink_owner
 		U.bsdm_time = world.time + 10 MINUTES
 
@@ -187,7 +188,7 @@
 /datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.maxHealth += 30
+		BS.adjustMaxHealth(30)
 		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
 		return 1
 	return 0
@@ -203,7 +204,7 @@
 /datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		var/obj/item/weapon/cell/C = BS.get_cell()
+		var/obj/item/cell/C = BS.get_cell()
 		if(C)
 			C.maxcharge *= 1.5
 			to_chat(BS, SPAN_NOTICE("Your cell's maximum charge has been augmented."))
@@ -234,10 +235,10 @@
 /datum/uplink_item/item/tools/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		if(locate(/obj/item/weapon/gun/energy/laser/mounted/blitz) in BS.module.modules)
+		if(locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules)
 			to_chat(BS, SPAN_WARNING("You already have a laser system installed."))
 			return 0
-		BS.module.modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(BS.module)
+		BS.module.modules += new /obj/item/gun/energy/laser/mounted/blitz(BS.module)
 		return 1
 	return 0
 
@@ -250,10 +251,10 @@
 /datum/uplink_item/item/tools/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		if(locate(/obj/item/weapon/gun/energy/shrapnel/mounted) in BS.module.modules)
+		if(locate(/obj/item/gun/energy/shrapnel/mounted) in BS.module.modules)
 			to_chat(BS, SPAN_WARNING("You already have a shrapnel cannon installed."))
 			return 0
-		BS.module.modules += new /obj/item/weapon/gun/energy/shrapnel/mounted(BS.module)
+		BS.module.modules += new /obj/item/gun/energy/shrapnel/mounted(BS.module)
 		return 1
 	return 0
 
@@ -336,8 +337,14 @@
 /datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		if(locate(/obj/item/weapon/bluespace_harpoon/mounted/blitz) in BS.module.modules)
+		if(locate(/obj/item/bluespace_harpoon/mounted/blitz) in BS.module.modules)
 			to_chat(BS, SPAN_WARNING("You already have a bluespace harpoon installed."))
 			return
-		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
+		BS.module.modules += new /obj/item/bluespace_harpoon/mounted/blitz(BS.module)
 		return TRUE
+
+/datum/uplink_item/item/tools/mindreader
+	name = "Mindreader"
+	desc = "Place on your victim's head to extract memories from their brain after a mental breakdown."
+	item_cost = 20
+	path = /obj/item/clothing/head/mindreader

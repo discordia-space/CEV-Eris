@@ -14,11 +14,11 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 28)
 	armor_penetration = 10
 	can_ricochet = TRUE
+	penetrating = 1
 
 /obj/item/projectile/bullet/pistol/hv
 	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
-	penetrating = 1
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/pistol/practice
@@ -39,6 +39,9 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/pistol/scrap
+	damage_types = list(BRUTE = 25)
+
 //Carbines and rifles
 
 // .20 rifle
@@ -46,7 +49,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle
 	damage_types = list(BRUTE = 25)
 	armor_penetration = 25
-	penetrating = 2
+	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -64,7 +67,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle/hv
 	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
-	penetrating = 4
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
@@ -75,6 +77,9 @@ There are important things regarding this file:
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
+
+/obj/item/projectile/bullet/srifle/scrap
+	damage_types = list(BRUTE = 22)
 
 // .25 caseless rifle
 
@@ -97,7 +102,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/clrifle/hv
 	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
-	penetrating = 2
 	step_delay = 0.75
 	can_ricochet = TRUE
 
@@ -110,6 +114,9 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = TRUE
+
+/obj/item/projectile/bullet/clrifle/scrap
+	damage_types = list(BRUTE = 24)
 
 // .30 rifle
 
@@ -131,7 +138,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/lrifle/hv
 	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
-	penetrating = 2
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
@@ -143,11 +149,15 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/lrifle/scrap
+	damage_types = list(BRUTE = 25)
+
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	damage_types = list(BRUTE = 34)
 	armor_penetration = 15
 	can_ricochet = TRUE
+	penetrating = 1
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
@@ -161,7 +171,6 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/magnum/hv
 	damage_types = list(BRUTE = 39)
 	armor_penetration = 20
-	penetrating = 1
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/magnum/rubber
@@ -173,14 +182,61 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/magnum/scrap
+	damage_types = list(BRUTE = 30)
+
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 50
-	stun = 3
-	weaken = 3
-	penetrating = 5
+	penetrating = 1
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+
+/obj/item/projectile/bullet/antim/emp
+	damage_types = list(BRUTE = 30)
+	armor_penetration = 40
+
+/obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	empulse(target, 0, 0)
+
+/obj/item/projectile/bullet/antim/uranium
+	damage_types = list(BRUTE = 65)
+	armor_penetration = 100
+	irradiate = 200
+
+/obj/item/projectile/bullet/antim/breach
+	damage_types = list(BRUTE = 20)
+	armor_penetration = 40
+	agony = 40
+	penetrating = 0
+	step_delay = 0.6
+	hitscan = FALSE
+	nocap_structures = TRUE
+	kill_count = 30
+
+/obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
+	var/tiles_passed = distance
+	return ROUND_PROB(tiles_passed)
+
+/obj/item/projectile/bullet/antim/breach/get_structure_damage()
+	var/distance = get_dist(loc, starting)
+	return  22 * get_tiles_passed(distance)
+
+
+/obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
+		spawn(1 SECONDS)
+		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 4, 1, 5)
+	if(!iscarbon(target))
+		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+		if(!istype(target, /obj/machinery/door))
+			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
+
+/obj/item/projectile/bullet/antim/scrap
+	damage_types = list(BRUTE = 63)
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
@@ -188,8 +244,11 @@ There are important things regarding this file:
 	icon_state = "slug"
 	damage_types = list(BRUTE = 54)
 	armor_penetration = 15
-	knockback = 1
+	knockback = 2
 	step_delay = 1.1
+
+/obj/item/projectile/bullet/shotgun/scrap
+	damage_types = list(BRUTE = 48)
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
@@ -201,6 +260,10 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/shotgun/beanbag/scrap
+	damage_types = list(BRUTE = 9)
+	agony = 55
+
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
 	damage_types = list(BRUTE = 1)
@@ -210,10 +273,7 @@ There are important things regarding this file:
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 10)
-	agony = 5
-	armor_penetration = 0
-	embed = FALSE
+	damage_types = list(BRUTE = 45)
 	knockback = 0
 	var/fire_stacks = 4
 
@@ -233,11 +293,14 @@ There are important things regarding this file:
 	pellets = 8
 	range_step = 1
 	spread_step = 10
-	knockback = 1
+	knockback = 2
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
+
+/obj/item/projectile/bullet/pellet/shotgun/scrap
+	damage_types = list(BRUTE = 9)
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank

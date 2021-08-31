@@ -14,11 +14,11 @@
 /turf/simulated/wall,
 /area/crawler)
 "e" = (
-/obj/random/mob/roaches,
+/obj/spawner/mob/roaches,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "f" = (
-/obj/random/figure,
+/obj/spawner/toy/figure,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "g" = (
@@ -26,11 +26,11 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "h" = (
-/obj/random/gun_energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "i" = (
-/obj/random/medical_lowcost,
+/obj/spawner/medical_lowcost,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 

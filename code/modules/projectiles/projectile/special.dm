@@ -125,20 +125,12 @@
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
-			H.nutrition += 30
+			H.adjustNutrition(30)
 	else if (istype(target, /mob/living/carbon/))
 		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
 	else
 		return 1
 
-
-/obj/item/projectile/beam/mindflayer
-	name = "flayer ray"
-
-/obj/item/projectile/beam/mindflayer/on_hit(atom/target)
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		M.confused += rand(5,8)
 
 /obj/item/projectile/chameleon
 	name = "bullet"
@@ -170,4 +162,10 @@
 	if(!life)
 		qdel(src)
 
+
+/obj/item/projectile/coin
+	name = "coin"
+	desc = "Keep the change, ya filthy animal."
+	damage_types = list(BRUTE = 5)
+	embed = 0
 

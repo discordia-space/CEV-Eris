@@ -11,7 +11,7 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
-	var/corporation = null
+	var/corporation
 	var/heat = 0
 
 
@@ -25,8 +25,8 @@
 	..(user, distance, infix, suffix)
 	if(get_dist(user, src) <= 2)
 		if (corporation)
-			if (corporation in global.global_corporations)
-				var/datum/corporation/C = global_corporations[corporation]
+			if (corporation in global.GLOB.global_corporations)
+				var/datum/corporation/C = GLOB.global_corporations[corporation]
 				to_chat(user, "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
 				[C.name]. [C.about]</font>")
@@ -60,29 +60,29 @@
 		return ..()
 	return STATUS_CLOSE
 
-/mob/living/silicon/CanUseObjTopic(var/obj/O)
+/mob/living/silicon/CanUseObjTopic(obj/O)
 	var/id = src.GetIdCard()
 	return O.check_access(id)
 
 /mob/proc/CanUseObjTopic()
 	return 1
 
-/obj/proc/CouldUseTopic(var/mob/user)
+/obj/proc/CouldUseTopic(mob/user)
 	user.AddTopicPrint(src)
 
-/mob/proc/AddTopicPrint(var/obj/target)
+/mob/proc/AddTopicPrint(obj/target)
 	target.add_hiddenprint(src)
 
-/mob/living/AddTopicPrint(var/obj/target)
+/mob/living/AddTopicPrint(obj/target)
 	if(Adjacent(target))
 		target.add_fingerprint(src)
 	else
 		target.add_hiddenprint(src)
 
-/mob/living/silicon/ai/AddTopicPrint(var/obj/target)
+/mob/living/silicon/ai/AddTopicPrint(obj/target)
 	target.add_hiddenprint(src)
 
-/obj/proc/CouldNotUseTopic(var/mob/user)
+/obj/proc/CouldNotUseTopic(mob/user)
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
@@ -157,7 +157,7 @@
 /mob/proc/unset_machine()
 	src.machine = null
 
-/mob/proc/set_machine(var/obj/O)
+/mob/proc/set_machine(obj/O)
 	if(src.machine)
 		unset_machine()
 	src.machine = O
@@ -169,8 +169,9 @@
 	if(istype(M) && M.client && M.machine == src)
 		src.attack_self(M)
 
-/obj/proc/hide(var/hide)
+/obj/proc/hide(hide)
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
+	SEND_SIGNAL(src, COMSIG_OBJ_HIDE, hide)
 
 /obj/proc/hides_under_flooring()
 	return level == BELOW_PLATING_LEVEL
@@ -186,17 +187,17 @@
 		*/
 	return
 
-/obj/proc/see_emote(mob/M as mob, text, var/emote_type)
+/obj/proc/see_emote(mob/M, text, emote_type)
 	return
 
 /obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
 
 /obj/proc/add_hearing()
-	hearing_objects |= src
+	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
-	hearing_objects.Remove(src)
+	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
 	if(!I || !user.IsAdvancedToolUser())
@@ -248,13 +249,15 @@
 
 
 //Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
-/obj/proc/multiply_projectile_damage(var/newmult)
+/obj/proc/multiply_projectile_damage(newmult)
 	throwforce = initial(throwforce) * newmult
 
 //Same for AP
-/obj/proc/multiply_projectile_penetration(var/newmult)
+/obj/proc/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
 
-/obj/proc/multiply_pierce_penetration(var/newmult)
+/obj/proc/multiply_pierce_penetration(newmult)
 
-/obj/proc/multiply_projectile_step_delay(var/newmult)
+/obj/proc/multiply_projectile_step_delay(newmult)
+
+/obj/proc/multiply_projectile_agony(newmult)

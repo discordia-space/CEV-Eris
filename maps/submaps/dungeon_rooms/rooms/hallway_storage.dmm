@@ -78,7 +78,7 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "s" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "t" = (
@@ -107,7 +107,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "y" = (
-/obj/random/plushie,
+/obj/spawner/toy/plushie,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "z" = (
@@ -130,7 +130,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "E" = (

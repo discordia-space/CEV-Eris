@@ -111,7 +111,7 @@
 	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
 	.=list()
 	var/counter = num
-	var/k = null
+	var/k
 	k = get_step(t,NORTH)
 	while(counter > 0)
 		if(k)

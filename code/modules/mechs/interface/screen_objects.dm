@@ -61,9 +61,9 @@
 
 	var/list/new_overlays = list()
 
-	var/obj/item/weapon/cell/C = owner.get_cell()
-	if(!C || (C.empty()))
-		overlays.Cut()
+	var/obj/item/cell/C = owner.get_cell()
+	if(!C || (C.is_empty()))
+		cut_overlays()
 		return
 
 	maptext = holding.get_hardpoint_maptext()
@@ -72,7 +72,7 @@
 
 	var/value = holding.get_hardpoint_status_value()
 	if(isnull(value))
-		overlays.Cut()
+		cut_overlays()
 		return
 
 	if(ui_damage)
@@ -113,7 +113,7 @@
 				GLOB.hardpoint_bar_cache += bar
 		for(var/i = 1; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
 	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
-	overlays = new_overlays
+	set_overlays(new_overlays)
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
 	if(..() && owner && holding)
@@ -155,7 +155,7 @@
 /obj/screen/movable/exosuit/power/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	if(owner)
-		var/obj/item/weapon/cell/C = owner.get_cell()
+		var/obj/item/cell/C = owner.get_cell()
 		if(C && istype(C)) maptext = "[round(C.charge)]/[round(C.maxcharge)]"
 		else maptext = "CHECK POWER"
 
@@ -228,14 +228,14 @@
 
 /obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
-	overlays.Cut()
-	var/obj/item/weapon/cell/C = owner.get_cell()
-	if(!owner.body || !C || C.empty())
+	cut_overlays()
+	var/obj/item/cell/C = owner.get_cell()
+	if(!owner.body || !C || C.is_empty())
 		return
 
 	if(!owner.body.computer?.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
 		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECH_HUD_ICON, icon_state="dam_error")
-		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
+		associate_with_overlays(GLOB.mech_damage_overlay_cache["critfail"])
 		return
 
 	var/list/part_to_state = list("legs" = owner.legs,"body" = owner.body,"head" = owner.head,"arms" = owner.arms)
@@ -254,7 +254,7 @@
 				if(4) I.color = "#f00"
 				else I.color = "#f5f5f0"
 			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
-		overlays += GLOB.mech_damage_overlay_cache["[part]-[state]"]
+		add_overlays(GLOB.mech_damage_overlay_cache["[part]-[state]"])
 
 //Controls if cameras set the vision flags
 /obj/screen/movable/exosuit/toggle/camera
@@ -270,6 +270,14 @@
 		return
 	owner.head.active_sensors = ..()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+
+/obj/screen/movable/exosuit/toggle/strafe
+	name = "toggle strafing"
+	icon_state = "strafe"
+
+/obj/screen/movable/exosuit/toggle/strafe/toggled()
+	owner.strafing = ..()
+	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
 
 
 #undef BAR_CAP

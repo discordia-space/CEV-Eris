@@ -21,7 +21,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
-	cell = new/obj/item/weapon/cell/medium/high(src)
+	cell = new/obj/item/cell/medium/high(src)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -34,8 +34,8 @@
 
 	..(severity)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/update_icon()
-	src.overlays = 0
+/obj/machinery/portable_atmospherics/powered/scrubber/on_update_icon()
+	src.set_overlays(0)
 
 	if(on && cell && cell.charge)
 		icon_state = "pscrubber:1"
@@ -43,10 +43,10 @@
 		icon_state = "pscrubber:0"
 
 	if(holding)
-		overlays += "scrubber-open"
+		add_overlays("scrubber-open")
 
 	if(connected_port)
-		overlays += "scrubber-connector"
+		add_overlays("scrubber-connector")
 
 	return
 
@@ -149,7 +149,7 @@
 	volume = 50000
 	volume_rate = 5000
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 500		//internal circuitry, friction losses and stuff
 	active_power_usage = 100000	//100 kW ~ 135 HP
 
@@ -168,8 +168,8 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
 		to_chat(usr, SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console."))
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
-	src.overlays = 0
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/on_update_icon()
+	src.set_overlays(0)
 
 	if(on && !(stat & (NOPOWER|BROKEN)))
 		icon_state = "scrubber:1"
@@ -217,13 +217,13 @@
 		return
 
 	//doesn't use power cells
-	if(istype(I, /obj/item/weapon/cell/large))
+	if(istype(I, /obj/item/cell/large))
 		return
-	if (istype(I, /obj/item/weapon/tool/screwdriver))
+	if (istype(I, /obj/item/tool/screwdriver))
 		return
 
 	//doesn't hold tanks
-	if(istype(I, /obj/item/weapon/tank))
+	if(istype(I, /obj/item/tank))
 		return
 
 	return

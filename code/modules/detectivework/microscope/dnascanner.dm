@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = TRUE
 
-	var/obj/item/weapon/forensics/swab/bloodsamp = null
+	var/obj/item/forensics/swab/bloodsamp = null
 	var/closed = 0
 	var/scanning = 0
 	var/scanner_progress = 0
@@ -25,7 +25,7 @@
 		to_chat(user, SPAN_WARNING("Open the cover before inserting the sample."))
 		return
 
-	var/obj/item/weapon/forensics/swab/swab = W
+	var/obj/item/forensics/swab/swab = W
 	if(istype(swab) && swab.is_used())
 		user.unEquip(W)
 		src.bloodsamp = swab
@@ -102,10 +102,10 @@
 	src.visible_message(SPAN_NOTICE("\icon[src] makes an insistent chime."), 2)
 	update_icon()
 	if(bloodsamp)
-		var/obj/item/weapon/paper/P = new(src)
+		var/obj/item/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [bloodsamp.name]"
-		P.stamped = list(/obj/item/weapon/stamp)
-		P.overlays = list("paper_stamped")
+		P.stamped = list(/obj/item/stamp)
+		P.set_overlays(list("paper_stamped"))
 		//dna data itself
 		var/data = "No scan information available."
 		if(bloodsamp.dna != null)
@@ -140,7 +140,7 @@
 	closed = !closed
 	src.update_icon()
 
-/obj/machinery/dnaforensics/update_icon()
+/obj/machinery/dnaforensics/on_update_icon()
 	..()
 	if(!(stat & NOPOWER) && scanning)
 		icon_state = "dnaworking"

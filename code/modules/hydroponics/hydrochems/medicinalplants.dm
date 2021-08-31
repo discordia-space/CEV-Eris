@@ -14,7 +14,7 @@
 
 /datum/reagent/medicine/atropine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
     M.add_chemical_effect(CE_STABLE)
-    M.add_chemical_effect(CE_PAINKILLER, 40 * effect_multiplier)
+    M.add_chemical_effect(CE_PAINKILLER, 20 * effect_multiplier)
     M.add_chemical_effect(CE_PULSE, 1)
     M.adjustOxyLoss(-1 * effect_multiplier)
     M.add_chemical_effect(CE_OXYGENATED, 1)

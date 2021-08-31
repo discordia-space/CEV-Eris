@@ -1,13 +1,13 @@
 /*
-A powerful 64x64 roach can spawn in any burrow in maints. 
+A powerful 64x64 roach can spawn in any burrow in maints.
 While emerging from it, it will bring a rich trash piles with him (gun and science loot),
-that will populate floors around burrow itself. 
-It will also bring a hoard of roaches with it. 
+that will populate floors around burrow itself.
+It will also bring a hoard of roaches with it.
 */
 
 /datum/storyevent/kaiser
 	id = "kaiser"
-	name = "kaiser"	
+	name = "kaiser"
 
 	weight = 1
 
@@ -22,21 +22,21 @@ It will also bring a hoard of roaches with it.
 	endWhen = 0
 	var/failure = FALSE
 	var/list/reward = list(
-		/obj/structure/scrap/vehicle,
-		/obj/structure/scrap/guns,
-		/obj/structure/scrap/science,
+		/obj/structure/scrap_spawner/vehicle,
+		/obj/structure/scrap_spawner/guns,
+		/obj/structure/scrap_spawner/science,
 	)
 	var/list/kaiser_rutinue = list(
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster
 	)
 	var/obj/structure/burrow/enter_burrow
 	var/obj/structure/burrow/exit_burrow
 
 /datum/event/kaiser/can_trigger()
-	if(!all_burrows.len)
+	if(!GLOB.all_burrows.len)
 		log_and_message_admins("Kaiser spawn failed: no burrows detected.")
 		return FALSE
 	return TRUE
@@ -55,7 +55,7 @@ It will also bring a hoard of roaches with it.
 	new /mob/living/carbon/superior_animal/roach/kaiser(enter_burrow)
 	for(var/R in kaiser_rutinue)
 		new R(enter_burrow)
-	
+
 	var/list/floors = list()
 	for(var/turf/simulated/floor/F in dview(2, exit_burrow.loc))
 		if(!F.is_wall && !F.is_hole)
@@ -63,10 +63,10 @@ It will also bring a hoard of roaches with it.
 
 	var/i = floors.len
 	for(i, i>0, i--)
-		var/obj/structure/scrap/scrap = pick(reward)
+		var/obj/structure/scrap_spawner/scrap = pick(reward)
 		var/turf/simulated/floor/floor = pick(floors)
 		new scrap(floor)
 		floors.Remove(floor) // To avoid multiple scrap piles on one tile
-	
+
 	enter_burrow.migrate_to(exit_burrow, 1, 0)
 	log_and_message_admins("Sending Kaiser to [jumplink(exit_burrow)]")

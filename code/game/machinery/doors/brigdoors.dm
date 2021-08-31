@@ -21,7 +21,7 @@
 	req_access = list(access_brig)
 	anchored = TRUE    		// can't pick it up
 	density = FALSE       		// can walk through it.
-	var/id = null     		// id of door it controls.
+	var/id     		// id of door it controls.
 	var/releasetime = 0		// when world.timeofday reaches it - release the prisoner
 	var/timing = 1    		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
@@ -40,15 +40,15 @@
 /obj/machinery/door_timer/LateInitialize()
 	..()
 
-	for(var/obj/machinery/door/window/brigdoor/M in SSmachines.machinery)
+	for(var/obj/machinery/door/window/brigdoor/M in GLOB.all_doors)
 		if (M.id == src.id)
 			targets += M
 
-	for(var/obj/machinery/flasher/F in SSmachines.machinery)
+	for(var/obj/machinery/flasher/F in GLOB.machines)
 		if(F.id == src.id)
 			targets += F
 
-	for(var/obj/machinery/cellshower/S in SSmachines.machinery)
+	for(var/obj/machinery/cellshower/S in GLOB.machines)
 		if(S.id == src.id)
 			targets += S
 
@@ -304,9 +304,9 @@
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
-/obj/machinery/door_timer/update_icon()
+/obj/machinery/door_timer/on_update_icon()
 	if(stat & (NOPOWER))
-		icon_state = "frame"
+		SetIconState("frame")
 		return
 	if(stat & (BROKEN))
 		set_picture("ai_bsod")
@@ -326,8 +326,8 @@
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
 /obj/machinery/door_timer/proc/set_picture(var/state)
 	picture_state = state
-	overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+	cut_overlays()
+	add_overlays(image('icons/obj/status_display.dmi', icon_state=picture_state))
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
@@ -351,7 +351,7 @@
 		var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
 		ID.pixel_x = -(d-1)*5 + px
 		ID.pixel_y = py
-		I.overlays += ID
+		I.overlays.Add(ID)
 	return I
 
 #undef FONT_SIZE

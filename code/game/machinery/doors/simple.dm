@@ -50,20 +50,19 @@
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
 		take_damage(min(damage, 100))
 
-/obj/machinery/door/unpowered/simple/update_icon()
-	if(density)
-		icon_state = "[icon_base]"
-	else
-		icon_state = "[icon_base]open"
-	return
+/obj/machinery/door/unpowered/simple/on_update_icon()
+	. = ""
+	if(!density)
+		. = "open"
+	. = "[icon_base][.]"
+	SetIconState(.)
 
 /obj/machinery/door/unpowered/simple/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("[icon_base]opening", src)
+			flicker("[icon_base]opening")
 		if("closing")
-			flick("[icon_base]closing", src)
-	return
+			flicker("[icon_base]closing")
 
 /obj/machinery/door/unpowered/simple/inoperable(additional_flags = 0)
 	return (stat & (BROKEN|additional_flags))
@@ -95,14 +94,14 @@
 
 /obj/machinery/door/unpowered/simple/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			set_broken()
-		if(2.0)
+		if(2)
 			if(prob(25))
 				set_broken()
 			else
 				take_damage(300)
-		if(3.0)
+		if(3)
 			if(prob(20))
 				take_damage(150)
 
@@ -111,7 +110,7 @@
 	src.add_fingerprint(user)
 
 	//Harm intent overrides other actions
-	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/card))
 		hit(user, I)
 		return
 
@@ -145,8 +144,6 @@
 		else
 			close()
 		return
-
-	return
 
 
 /obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)

@@ -4,7 +4,7 @@
 	name = "Embedded Controller"
 	anchored = TRUE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 
 	var/on = TRUE
@@ -42,7 +42,7 @@ obj/machinery/embedded_controller/radio/Destroy()
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	density = FALSE
 
 	var/id_tag
@@ -57,7 +57,7 @@ obj/machinery/embedded_controller/radio/Destroy()
 	. = ..()
 	set_frequency(frequency)
 
-/obj/machinery/embedded_controller/radio/update_icon()
+/obj/machinery/embedded_controller/radio/on_update_icon()
 	if(on && program)
 		if(program.memory["processing"])
 			icon_state = "airlock_control_process"

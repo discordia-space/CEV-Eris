@@ -23,9 +23,10 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	GLOB.all_crew_records.Remove(src)
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
-	if(H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
-		return
 	if(istype(H))
+		if(H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
+			GLOB.all_crew_records.Remove(src)
+			return
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
 	else
@@ -61,7 +62,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// TODO: enable after baymed
 	//set_species(H ? H.get_species() : SPECIES_HUMAN)
 
-	set_species("Human")
+	set_species(SPECIES_HUMAN)
 	//set_branch(H ? (H.char_branch && H.char_branch.name) : "None")
 	//set_rank(H ? (H.char_rank && H.char_rank.name) : "None")
 

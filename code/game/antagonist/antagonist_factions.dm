@@ -1,12 +1,12 @@
 /datum/faction
-	var/id = null
+	var/id
 	var/name = "faction"	//name displayed in different places
 	var/antag = "antag"		//name for the faction members
 	var/antag_plural = "antags"
 	var/welcome_text = "Hello, antagonist!"
 
-	var/hud_indicator = null
-	var/leader_hud_indicator = null
+	var/hud_indicator
+	var/leader_hud_indicator
 	var/faction_invisible = TRUE
 
 	var/list/faction_icons = list()
@@ -23,7 +23,7 @@
 /datum/faction/New()
 	if(!leader_hud_indicator)
 		leader_hud_indicator = hud_indicator
-	current_factions.Add(src)
+	GLOB.current_factions.Add(src)
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
@@ -111,7 +111,7 @@
 	for(var/datum/antagonist/A in members)
 		remove_member(A)
 
-	current_factions.Remove(src)
+	GLOB.current_factions.Remove(src)
 	return TRUE
 
 

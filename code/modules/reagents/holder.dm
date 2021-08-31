@@ -5,25 +5,31 @@
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/chem_temp = T20C
-	var/atom/my_atom = null
+	var/atom/my_atom
 	var/rotating = FALSE
 
 
-/datum/reagents/New(var/max = 100, atom/A = null)
+/datum/reagents/New(max = 100, atom/A = null)
 	..()
 	maximum_volume = max
 	my_atom = A
 
 	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!chemical_reagents_list)
+	if(!GLOB.chemical_reagents_list)
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 		var/paths = typesof(/datum/reagent) - /datum/reagent
-		chemical_reagents_list = list()
+		GLOB.chemical_reagents_list = list()
 		for(var/path in paths)
 			var/datum/reagent/D = new path()
 			if(!D.name)
 				continue
-			chemical_reagents_list[D.id] = D
+			GLOB.chemical_reagents_list[D.id] = D
+
+/datum/reagents/proc/get_price()
+	var/price = 0
+	for(var/datum/reagent/R in reagent_list)
+		price += R.volume * R.price_per_unit
+	return price
 
 /datum/reagents/proc/get_average_reagents_state()
 	var/solid = 0
@@ -66,7 +72,7 @@
 	return maximum_volume - total_volume
 
 /datum/reagents/proc/get_master_reagent() // Returns reference to the reagent with the biggest volume.
-	var/the_reagent = null
+	var/the_reagent
 	var/the_volume = 0
 
 	for(var/datum/reagent/A in reagent_list)
@@ -77,7 +83,7 @@
 	return the_reagent
 
 /datum/reagents/proc/get_master_reagent_name() // Returns the name of the reagent with the biggest volume.
-	var/the_name = null
+	var/the_name
 	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
@@ -87,7 +93,7 @@
 	return the_name
 
 /datum/reagents/proc/get_master_reagent_id() // Returns the id of the reagent with the biggest volume.
-	var/the_id = null
+	var/the_id
 	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
@@ -164,7 +170,7 @@
 					playsound(my_atom, replace_sound, 80, 1)
 
 		else // Otherwise, collect all possible reactions.
-			eligible_reactions |= chemical_reactions_list[R.id]
+			eligible_reactions |= GLOB.chemical_reactions_list[R.id]
 
 	var/list/active_reactions = list()
 
@@ -222,7 +228,7 @@
 			if(my_atom)
 				my_atom.on_reagent_change()
 			return 1
-	var/datum/reagent/D = chemical_reagents_list[id]
+	var/datum/reagent/D = GLOB.chemical_reagents_list[id]
 	if(D)
 		var/datum/reagent/R = new D.type()
 		reagent_list += R
@@ -242,7 +248,7 @@
 		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
 	return 0
 
-/datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)
+/datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = FALSE)
 	if(!isnum(amount))
 		return 0
 	for(var/datum/reagent/current in reagent_list)
@@ -370,12 +376,12 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = FALSE)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
-
 	else if(istype(target, /atom))
 		var/atom/A = target
+		touch(A)
 		if(ismob(target))
 			return splash_mob(target, amount, multiplier, copy)
 		if(isturf(target))
@@ -399,7 +405,7 @@
 		//If it fails, but we still have some volume, then we'll just destroy some of our reagents
 		remove_any(amount) //If we don't do this, then only the spill amount above is removed, and someone can keep splashing with the same beaker endlessly
 
-/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
+/datum/reagents/proc/trans_id_to(atom/target, id, amount = 1, ignore_isinjectable = FALSE)
 	if (!target || !target.reagents || !target.simulated)
 		return
 
@@ -413,7 +419,7 @@
 	F.add_reagent(id, amount, tmpdata)
 	remove_reagent(id, amount)
 
-	return F.trans_to(target, amount) // Let this proc check the atom's type
+	return F.trans_to(target, amount, ignore_isinjectable = ignore_isinjectable) // Let this proc check the atom's type
 
 // When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
 // This does not handle transferring reagents to things.
@@ -554,6 +560,30 @@
 /datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
 	var/S = specific_heat()
 	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
+
+/// Is this holder full or not
+/datum/reagents/proc/holder_full()
+	if(total_volume >= maximum_volume)
+		return TRUE
+	return FALSE
+
+/// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, "beer" = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null)
+	for(var/r_id in list_reagents)
+		var/amt = list_reagents[r_id]
+		add_reagent(r_id, amt, data)
+
+/datum/reagents/proc/get_reagents()
+	. = list()
+	for(var/datum/reagent/current in reagent_list)
+		. += "[current.name] ([current.volume])"
+	return english_list(., "EMPTY", "", ", ", ", ")
+
+/proc/get_chem_id(chem_name)
+	for(var/X in GLOB.chemical_reagents_list)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
+		if(ckey(chem_name) == ckey(lowertext(R.name)))
+			return X
 
 // NanoUI / TG UI data
 /datum/reagents/ui_data()

@@ -9,7 +9,7 @@
 	var/datum/omni_port/input
 	var/datum/omni_port/output
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -159,11 +159,12 @@
 			if(!configuring)
 				use_power = !use_power
 			else
-				use_power = 0
+				use_power = NO_POWER_USE
+			investigate_log("was [use_power ? "enabled" : "disabled"] by [key_name(usr)]", "atmos")
 		if("configure")
 			configuring = !configuring
 			if(configuring)
-				use_power = 0
+				use_power = NO_POWER_USE
 
 	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
 	if(configuring && !use_power)
@@ -176,6 +177,8 @@
 			if("switch_filter")
 				var/new_filter = input(usr, "Select filter mode:", "Change filter", href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Plasma", "Nitrous Oxide")
 				switch_filter(dir_flag(href_list["dir"]), mode_return_switch(new_filter))
+		if(href_list["command"])
+			investigate_log("had it's settings modified by [key_name(usr)]", "atmos")
 
 	update_icon()
 	SSnano.update_uis(src)

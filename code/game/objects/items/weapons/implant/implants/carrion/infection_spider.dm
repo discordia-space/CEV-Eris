@@ -1,11 +1,11 @@
-/obj/item/weapon/implant/carrion_spider/infection
+/obj/item/implant/carrion_spider/infection
 	name = "infection spider"
 	icon_state = "spiderling_infection"
 	spider_price = 50
 	gene_price = 7
 	var/active = FALSE
 
-/obj/item/weapon/implant/carrion_spider/infection/activate()
+/obj/item/implant/carrion_spider/infection/activate()
 	..()
 	if(!wearer)
 		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
@@ -41,7 +41,7 @@
 			active = FALSE
 			to_chat(owner_mob, SPAN_WARNING("Conversion failed."))
 
-/obj/item/weapon/implant/carrion_spider/infection/Process()
+/obj/item/implant/carrion_spider/infection/Process()
 	..()
 	if(wearer && active)
 		if(prob(15)) //around 22 messages over 5 minutes on avarage
@@ -54,7 +54,7 @@
 				"You feel like something is taking control of you!",
 				"You feel weak, like something is growing inside of your body!"
 			))
-			wearer.apply_effect(15, AGONY, armor_value = 0, check_protection = FALSE) //Flat 15 agony damage
+			wearer.adjustHalLoss(10) //Flat 10 agony damage
 			to_chat(wearer, "\red <font size=3><b>[pain_message]</b></font>")
 		if(prob(1)) //around 0.75 limbs per transformation
 			if(prob(50))

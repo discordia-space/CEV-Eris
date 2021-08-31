@@ -10,11 +10,11 @@
 
 /obj/machinery/door/airlock/Process()
 	..()
-	if (arePowerSystemsOn())
+	if(arePowerSystemsOn())
 		execute_current_command()
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if (!arePowerSystemsOn()) return //no power
+	if(!arePowerSystemsOn()) return //no power
 
 	if(!signal || signal.encryption) return
 
@@ -28,11 +28,11 @@
 	if(operating)
 		return //emagged or busy doing something else
 
-	if (!cur_command)
+	if(!cur_command)
 		return
 
 	do_command(cur_command)
-	if (command_completed(cur_command))
+	if(command_completed(cur_command))
 		cur_command = null
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
@@ -69,7 +69,7 @@
 /obj/machinery/door/airlock/proc/command_completed(var/command)
 	switch(command)
 		if("open")
-			return (!density)
+			return !density
 
 		if("close")
 			return density
@@ -156,7 +156,7 @@
 	name = "airlock sensor"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 
 	var/id_tag
 	var/master_tag
@@ -169,14 +169,14 @@
 	var/alert = 0
 	var/previousPressure
 
-/obj/machinery/airlock_sensor/update_icon()
+/obj/machinery/airlock_sensor/on_update_icon()
 	if(on)
 		if(alert)
-			icon_state = "airlock_sensor_alert"
+			SetIconState("airlock_sensor_alert")
 		else
-			icon_state = "airlock_sensor_standby"
+			SetIconState("airlock_sensor_standby")
 	else
-		icon_state = "airlock_sensor_off"
+		SetIconState("airlock_sensor_off")
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
 	var/datum/signal/signal = new
@@ -185,7 +185,7 @@
 	signal.data["command"] = command
 
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("airlock_sensor_cycle", src)
+	flicker("airlock_sensor_cycle")
 
 /obj/machinery/airlock_sensor/Process()
 	if(on)
@@ -291,21 +291,14 @@
 	return new /datum/gas_mixture
 
 
-
-
-
-
-
-
-
-
 /obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
+	var/base_of_state = "access_button"
 	icon_state = "access_button_standby"
 	name = "access button"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 
 	var/master_tag
 	var/frequency = 1449
@@ -316,15 +309,13 @@
 	var/on = TRUE
 
 
-/obj/machinery/access_button/update_icon()
-	if(on)
-		icon_state = "access_button_standby"
-	else
-		icon_state = "access_button_off"
+/obj/machinery/access_button/on_update_icon()
+	. = ..()
+	SetIconState("[base_of_state]_[on?"standby":"off"]")
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
-	if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
+	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		attack_hand(user)
 		return
 	..()
@@ -342,7 +333,7 @@
 		signal.data["command"] = command
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("access_button_cycle", src)
+	flicker("access_button_cycle")
 
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

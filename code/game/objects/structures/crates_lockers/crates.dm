@@ -36,18 +36,18 @@
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/obj/O in src.contents)
 				qdel(O)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			for(var/obj/O in src.contents)
 				if(prob(50))
 					qdel(O)
 			qdel(src)
 			return
-		if(3.0)
+		if(3)
 			if (prob(50))
 				qdel(src)
 			return
@@ -87,14 +87,14 @@
 	icon_state = "o2crate"
 
 /obj/structure/closet/crate/internals/populate_contents()
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
-	new /obj/item/weapon/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
+	new /obj/item/tank/emergency_oxygen(src)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/clothing/mask/breath(src)
@@ -138,10 +138,10 @@
 	icon_state = "crate"
 
 /obj/structure/closet/crate/rcd/populate_contents()
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd_ammo(src)
-	new /obj/item/weapon/rcd(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd_ammo(src)
+	new /obj/item/rcd(src)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
@@ -168,9 +168,9 @@
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
-	new /obj/item/weapon/circuitboard/solar_control(src)
-	new /obj/item/weapon/tracker_electronics(src)
-	new /obj/item/weapon/paper/solar(src)
+	new /obj/item/electronics/circuitboard/solar_control(src)
+	new /obj/item/electronics/tracker(src)
+	new /obj/item/paper/solar(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -183,10 +183,10 @@
 
 
 /obj/structure/closet/crate/freezer/rations/populate_contents()
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
 
 /obj/structure/closet/crate/bin
 	name = "large bin"
@@ -226,7 +226,7 @@
 
 /obj/structure/closet/crate/secure/hydrosec
 	name = "secure hydroponics crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
+	desc = "A crate with a lock on it, painted in the scheme of the ship's botanists."
 	icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/hydrosec/prelocked
@@ -299,11 +299,6 @@
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
 
-/obj/structure/closet/crate/secure/weapon
-	desc = "A secure weapons crate."
-	name = "Weapons crate"
-	icon_state = "weaponcrate"
-
 /obj/structure/closet/crate/scicrate
 	desc = "A science crate."
 	name = "Science crate"
@@ -313,16 +308,6 @@
 	desc = "A secure science crate."
 	name = "Science crate"
 	icon_state = "securecrate"
-
-/obj/structure/closet/crate/secure/gear
-	desc = "A secure gear crate."
-	name = "Gear crate"
-	icon_state = "secgearcrate"
-
-/obj/structure/closet/crate/secure/hydrosec
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
-	name = "secure hydroponics crate"
-	icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/woodseccrate
 	desc = "A secure wooden crate."

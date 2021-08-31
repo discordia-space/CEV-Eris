@@ -1,6 +1,9 @@
 
 var/global/BSACooldown = 0
 var/global/floorIsLava = 0
+#define NO_ANTAG 0
+#define LIMITED_ANTAG 1
+#define ANTAG 2
 
 
 ////////////////////////////////
@@ -19,6 +22,34 @@ var/global/floorIsLava = 0
 			if(C.get_preference_value(/datum/client_preference/staff/show_attack_logs) == GLOB.PREF_SHOW)
 				var/msg = rendered
 				to_chat(C, msg)
+
+/**
+ * Sends a message to the staff able to see admin tickets
+ * Arguments:
+ * msg - The message being send
+ * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+               send a sound and flash the window. Defaults to FALSE
+ */
+/proc/message_adminTicket(msg, important = FALSE)
+	for(var/client/C in admins)
+		if(R_ADMIN & C.holder.rights)
+			to_chat(C, msg)
+			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
+				sound_to(C, 'sound/effects/adminhelp.ogg')
+
+/**
+ * Sends a message to the staff able to see mentor tickets
+ * Arguments:
+ * msg - The message being send
+ * important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+               send a sound and flash the window. Defaults to FALSE
+ */
+/proc/message_mentorTicket(msg, important = FALSE)
+	for(var/client/C in admins)
+		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))
+			to_chat(C, msg)
+			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
+				sound_to(C, 'sound/effects/adminhelp.ogg')
 
 proc/admin_notice(message, rights)
 	for(var/mob/M in SSmobs.mob_list)
@@ -103,6 +134,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
+		<a href='?src=\ref[src];manup=\ref[M]'>MAN_UP</a> -
+		<a href='?src=\ref[src];paralyze=\ref[M]'>PARA</a> -
 		[admin_jump_link(M, src)] -
 		<a href='?src=\ref[src];viewlogs=\ref[M]'>LOGS</a>\] <br>
 		<b>Mob type</b> = [M.type]<br><br>
@@ -159,7 +192,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 			else if(ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
 					<A href='?src=\ref[src];makeslime=\ref[M]'>Make slime</A>
 				"}
 
@@ -192,11 +224,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
 				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
 				<A href='?src=\ref[src];simplemake=angel;mob=\ref[M]'>ANGEL</A> |
-				\[ Xenos: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
 				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
 				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A>
 				\[ slime: <A href='?src=\ref[src];simplemake=slime;mob=\ref[M]'>Baby</A>,
@@ -699,17 +726,22 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleAI, R_ADMIN, FALSE)
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
+
 	config.allow_ai = !( config.allow_ai )
+
 	if (!( config.allow_ai ))
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
+
+	message_admins("[key_name(usr)] has toggled [config.allow_ai ? "On" : "Off"] AI allowed.")
 	log_admin("[key_name(usr)] toggled AI allowed.")
+
 	world.update_status()
 
 
-ADMIN_VERB_ADD(/datum/admins/proc/toggleaban, R_SERVER, FALSE)
-/datum/admins/proc/toggleaban()
+ADMIN_VERB_ADD(/datum/admins/proc/toggleRespawn, R_SERVER, FALSE)
+/datum/admins/proc/toggleRespawn()
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
@@ -721,17 +753,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleaban, R_SERVER, FALSE)
 	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", 1)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
-
-
-ADMIN_VERB_ADD(/datum/admins/proc/toggle_aliens, R_FUN|R_SERVER, FALSE)
-/datum/admins/proc/toggle_aliens()
-	set category = "Server"
-	set desc="Toggle alien mobs"
-	set name="Toggle Aliens"
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
-
 
 ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 /datum/admins/proc/delay()
@@ -754,33 +775,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 		to_chat(world, "<b>The game will start soon.</b>")
 		log_admin("[key_name(usr)] removed the delay.")
 
-ADMIN_VERB_ADD(/datum/admins/proc/adjump, R_SERVER, FALSE)
-/datum/admins/proc/adjump()
-	set category = "Server"
-	set desc="Toggle admin jumping"
-	set name="Toggle Jump"
-	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
-
-
-ADMIN_VERB_ADD(/datum/admins/proc/adspawn, R_SERVER, FALSE)
-/datum/admins/proc/adspawn()
-	set category = "Server"
-	set desc="Toggle admin spawning"
-	set name="Toggle Spawn"
-	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
-
-
-ADMIN_VERB_ADD(/datum/admins/proc/adrev, R_SERVER, FALSE)
-/datum/admins/proc/adrev()
-	set category = "Server"
-	set desc="Toggle admin revives"
-	set name="Toggle Revive"
-	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
-
-
 ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 /datum/admins/proc/immreboot()
 	set category = "Server"
@@ -797,19 +791,26 @@ ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for special characters
+/proc/is_special_character(mob/M) // returns 1 for special characters
 	if (!istype(M))
-		return FALSE
+		return NO_ANTAG
+
+	if(M.mind && player_is_limited_antag(M.mind))
+		return LIMITED_ANTAG
 
 	if(M.mind && player_is_antag(M.mind))
-		return TRUE
-
+		return ANTAG
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
-			return TRUE
+			return ANTAG
 
+	return NO_ANTAG
+
+/proc/is_limited_antag(mob/M)
+	if(M.mind && player_is_limited_antag(M.mind))
+		return TRUE
 	return FALSE
 
 ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)
@@ -923,9 +924,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_atom, R_DEBUG, FALSE)
 
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
-
-// -Removed due to rare practical use. Moved to debug verbs ~Errorage,
-//ADMIN_VERB_ADD(/datum/admins/proc/show_traitor_panel, R_ADMIN, TRUE)
 //interface which shows a mob's mind
 /datum/admins/proc/show_traitor_panel(var/mob/M in SSmobs.mob_list)
 	set category = "Admin"
@@ -1164,3 +1162,30 @@ ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 			H.paralysis = 0
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
+
+// Returns a list of the number of admins in various categories
+// result[1] is the number of staff that match the rank mask and are active
+// result[2] is the number of staff that do not match the rank mask
+// result[3] is the number of staff that match the rank mask and are inactive
+/proc/staff_countup(rank_mask = R_ADMIN)
+	var/list/result = list(0, 0, 0)
+	for(var/client/X in admins)
+		if(rank_mask && !check_rights_for(X, rank_mask))
+			result[2]++
+			continue
+		if(X.holder.fakekey)
+			result[2]++
+			continue
+		if(X.is_afk())
+			result[3]++
+			continue
+		result[1]++
+	return result
+
+//This proc checks whether subject has at least ONE of the rights specified in rights_required.
+/proc/check_rights_for(client/subject, rights_required)
+	if(subject && subject.holder)
+		if(rights_required && !(rights_required & subject.holder.rights))
+			return 0
+		return 1
+	return 0

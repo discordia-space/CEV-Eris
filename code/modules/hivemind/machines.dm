@@ -10,7 +10,7 @@
 	icon_state = "infected_machine"
 	density = TRUE
 	anchored = TRUE
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	var/illumination_color = 	COLOR_LIGHTING_CYAN_MACHINERY
 	var/wireweeds_required =	TRUE		//machine got damage if there's no any wireweed on it's turf
 	var/health = 				60
@@ -28,7 +28,7 @@
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
 	var/obj/assimilated_machinery
-	var/obj/item/weapon/circuitboard/saved_circuit
+	var/obj/item/electronics/circuitboard/saved_circuit
 
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
@@ -37,12 +37,26 @@
 	set_light(2, 3, illumination_color)
 
 
-/obj/machinery/hivemind_machine/update_icon()
-	overlays.Cut()
+/obj/machinery/hivemind_machine/on_update_icon()
+	cut_overlays()
 	if(stat & EMPED)
 		icon_state = "[icon_state]-disabled"
 	else
 		icon_state = initial(icon_state)
+
+
+/obj/machinery/hivemind_machine/examine(mob/user)
+	..()
+	if (health < max_health * 0.1)
+		to_chat(user, SPAN_DANGER("It's almost nothing but scrap!"))
+	else if (health < max_health * 0.25)
+		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
+	else if (health < max_health * 0.50)
+		to_chat(user, SPAN_DANGER("It's very damaged, you can almost see the components inside!"))
+	else if (health < max_health * 0.75)
+		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
+	else if (health < max_health)
+		to_chat(user, SPAN_WARNING("It's a bit scratched and has dents."))
 
 
 /obj/machinery/hivemind_machine/Process()
@@ -261,7 +275,7 @@
 		var/obj/item/device/flash/flash = I
 		if(!flash.broken)
 			playsound(user, 'sound/weapons/flash.ogg', 100, 1)
-			flick("flash2", flash)
+			FLICK("flash2", flash)
 			flash.times_used++
 			flash.flash_recharge()
 			damage_reaction()
@@ -281,11 +295,11 @@
 /obj/machinery/hivemind_machine/emp_act(severity)
 	switch(severity)
 		if(1)
-			take_damage(30)
-			stun(10)
+			take_damage(60)
+			stun(20)
 		if(2)
-			take_damage(10)
-			stun(5)
+			take_damage(30)
+			stun(8)
 	..()
 
 
@@ -296,15 +310,26 @@
 //CORE-GENERATOR
 //generate evopoints, spread weeds
 /obj/machinery/hivemind_machine/node
-	name = "processing core"
+	name = "Processing Core"
 	desc = "Its cold eye seeks to dominate what it surveys."
 	icon_state = "core"
-	max_health = 420 //will last a bit more
-	resistance = RESISTANCE_TOUGH //use actual weapons you grease monkeys, wielded crowbar will actually be enough to make small dents
+//	desc = "This Pickle, aside from being attached to several wires, is releasing grey ooze from its many wounds."
+//	icon = 'icons/obj/food.dmi'
+//	icon_state = "pickle"
+//	When Hope Is Gone Undo This Lock And Send Me Forth On A Moonlit Walk. inotherwordsimgonnadoitagain
+	max_health = 420
+	resistance = RESISTANCE_TOUGH
 	can_regenerate = FALSE
 	wireweeds_required = FALSE
 	//internals
 	var/list/my_wireweeds = list()
+	var/list/reward_item = list(
+		/obj/item/tool/weldingtool/hivemind,
+		/obj/item/tool/crowbar/pneumatic/hivemind,
+		/obj/item/reagent_containers/glass/beaker/hivemind,
+		/obj/item/oddity/hivemind/old_radio,
+		/obj/item/oddity/hivemind/old_pda
+		)
 
 
 /obj/machinery/hivemind_machine/node/Initialize()
@@ -331,20 +356,32 @@
 
 	//self-defense protocol setting
 	var/list/possible_sdps = subtypesof(/datum/hivemind_sdp)
-	if(hive_mind_ai.evo_level > 6) //emergency jump will show up after a longer time
+	if(hive_mind_ai.evo_level > 6) //level required to be able to teleport away
 		possible_sdps -= /datum/hivemind_sdp/emergency_jump
 	var/picked_sdp = pick(possible_sdps)
 	SDP = new picked_sdp(src)
 	SDP.set_master(src)
 
+/obj/machinery/hivemind_machine/node/proc/gift()
+	if(prob(10))
+		state("leaves behind an item!")
+		var/gift = pick(reward_item)
+		new gift(get_turf(loc))
+
+/obj/machinery/hivemind_machine/node/proc/core()
+	state("leaves behind a weird looking datapad!")
+	var/core = /obj/item/oddity/hivemind/hive_core
+	new core(get_turf(loc))
 
 /obj/machinery/hivemind_machine/node/Destroy()
+	gift()
 	hive_mind_ai.hives.Remove(src)
 	check_for_other()
+	if(hive_mind_ai == null)
+		core()
 	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
 		remove_wireweed(wire)
 	return ..()
-
 
 /obj/machinery/hivemind_machine/node/Process()
 	if(!..())
@@ -366,14 +403,14 @@
 		add_wireweed(wireweed)
 
 
-/obj/machinery/hivemind_machine/node/update_icon()
-	overlays.Cut()
+/obj/machinery/hivemind_machine/node/on_update_icon()
+	cut_overlays()
 	if(stat & EMPED)
 		icon_state = "core-disabled"
-		overlays += "core-smirk_disabled"
+		add_overlays("core-smirk_disabled")
 	else
 		icon_state = initial(icon_state)
-		overlays += "core-smirk"
+		add_overlays("core-smirk")
 
 
 /obj/machinery/hivemind_machine/node/use_ability(atom/target)
@@ -409,13 +446,13 @@
 //TURRET
 //shooting the target with toxic goo
 /obj/machinery/hivemind_machine/turret
-	name = "projector"
+	name = "Projector"
 	desc = "This mass of machinery is topped with some sort of nozzle."
 	max_health = 220
-	resistance = RESISTANCE_IMPROVED  //primary weapon of the hive, should have some kind of armour
+	resistance = RESISTANCE_IMPROVED
 	icon_state = "turret"
 	cooldown_time = 5 SECONDS
-	spawn_weight  =	60
+	spawn_weight  =	55
 	var/proj_type = /obj/item/projectile/goo
 
 
@@ -439,28 +476,24 @@
 //MOB PRODUCER
 //spawns mobs from list
 /obj/machinery/hivemind_machine/mob_spawner
-	name = "assembler"
+	name = "Assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
 	max_health = 260
-	resistance = RESISTANCE_IMPROVED //similary to the turret, primary defence of the hive
+	resistance = RESISTANCE_IMPROVED
 	icon_state = "spawner"
-	cooldown_time = 25 SECONDS  //shorter cooldown
-	spawn_weight  =	50 //more common than earlier
+	cooldown_time = 25 SECONDS
+	spawn_weight  =	60
+	density = FALSE //So mobs can walk over it
 	var/mob_to_spawn
 	var/mob_amount = 4
 
-/obj/random/mob/assembled
+/obj/spawner/mob/assembled
 	name = "random hivemob"
-	
-/obj/random/mob/assembled/item_to_spawn() //list of spawnable mobs
-	return pickweight(list(/mob/living/simple_animal/hostile/hivemind/stinger = 5,
-							/mob/living/simple_animal/hostile/hivemind/bomber = 4,
-							/mob/living/simple_animal/hostile/hivemind/hiborg = 1))
-	
+	tags_to_spawn = list(SPAWN_MOB_HIVEMIND)
+
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = /obj/random/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
-	//TL;DR - Assembler can now spawn multiple types of mobs
+	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob according to their rarity_value
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()
 	if(!..())
@@ -484,17 +517,20 @@
 
 
 /obj/machinery/hivemind_machine/mob_spawner/use_ability()
-	var/mob/living/simple_animal/hostile/hivemind/spawned_mob = new mob_to_spawn(loc)
+	var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
+	var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
+	spawned_mob.loc = loc
 	spawned_creatures.Add(spawned_mob)
 	spawned_mob.master = src
-	flick("[icon_state]-anim", src)
+	FLICK("[icon_state]-anim", src)
+	qdel(CATCH)
 
 
 
 //MACHINE PREACHER
 //creepy radio talk, it's okay if they have no sense sometimes
 /obj/machinery/hivemind_machine/babbler
-	name = "jammer"
+	name = "Jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
 	max_health = 100
 	evo_level_required = 3 //it's better to wait a bit
@@ -518,7 +554,7 @@
 
 //this one is slow, careful with it
 /obj/machinery/hivemind_machine/babbler/use_ability()
-	flick("[icon_state]-anim", src)
+	FLICK("[icon_state]-anim", src)
 	var/msg_cycles = rand(1, 2)
 	var/msg = ""
 	for(var/i = 1 to msg_cycles)
@@ -562,12 +598,12 @@
 //SHRIEKER
 //this machine just stuns enemies
 /obj/machinery/hivemind_machine/screamer
-	name = "tormentor"
+	name = "Tormentor"
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
 	icon_state = "head"
 	max_health = 100
 	evo_level_required = 3
-	cooldown_time = 30 SECONDS
+	cooldown_time = 25 SECONDS
 	spawn_weight  =	35
 
 
@@ -587,7 +623,7 @@
 					continue
 			use_ability(target)
 	if(can_scream)
-		flick("[icon_state]-anim", src)
+		FLICK("[icon_state]-anim", src)
 		playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 85, 1)
 		set_cooldown()
 
@@ -596,13 +632,13 @@
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
-		if(prob(100 - H.stats.getStat(STAT_VIG)))
-			H.Weaken(5) //it was 8 earlier, 5 is better. No one likes being stunned for so long
+		if(prob(90 - H.stats.getStat(STAT_VIG)))
+			H.Weaken(6)
 			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
 			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
-		target.Weaken(5)
+		target.Weaken(6)
 		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
@@ -610,19 +646,18 @@
 //MIND BREAKER
 //Talks with people in attempt to persuade them doing something.
 /obj/machinery/hivemind_machine/supplicant
-	name = "whisperer"
+	name = "Whisperer"
 	desc = "A small pulsating orb with no apparent purpose. It emits an almost inaudible whisper."
 	max_health = 80
 	icon_state = "orb"
 	evo_level_required = 2
-	cooldown_time = 1 MINUTES //there are a lot of players, lets make it a bit more common.
+	cooldown_time = 1 MINUTES
 	global_cooldown = TRUE
 	spawn_weight  =	20
 	var/list/join_quotes = list(
 					"You seek survival. We offer immortality.",
 					"Look at you. A pathetic creature of meat and bone.",
 					"Augmentation is the future of humanity. Surrender your flesh for the future.",
-					"Kill yourself. Better still, kill others, and feed me their bodies.",
 					"Your body enslaves you. Your mind in metal is free of all want.",
 					"Do you fear death? Lay down among the nanites. Your pattern will continue.",
 					"Carve your flesh from your bones. See your weakness. Feel that weakness flowing away.",
@@ -650,7 +685,7 @@
 //PSI-MODULATOR
 //sends hallucinations to target
 /obj/machinery/hivemind_machine/distractor
-	name = "psi-modulator"
+	name = "Psi-Modulator"
 	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
 	max_health = 110
 	icon_state = "psy"
@@ -682,7 +717,7 @@
 			to_chat(H, SPAN_NOTICE("Reality flickers for a second, but you manage to focus!"))
 	else if (istype(target))
 		target.adjust_hallucination(20, 20)
-	flick("[icon_state]-anim", src)
+	FLICK("[icon_state]-anim", src)
 
 
 

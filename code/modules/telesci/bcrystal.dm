@@ -3,6 +3,7 @@
 	desc = "Some blue dust"
 	icon = 'icons/obj/bluespace_crystal_structure.dmi'
 	icon_state = "dust"
+	spawn_tags = null
 
 /obj/item/bluespace_dust/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("Dust disappears as you touch it"))
@@ -16,14 +17,16 @@
 	icon_state = "bluespace_crystal"
 	w_class = 1
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 3)
-	matter = list(MATERIAL_GOLD = 30, MATERIAL_DIAMOND = 35, MATERIAL_PLASMA = 30)
+	matter = list(MATERIAL_DIAMOND = 5, MATERIAL_PLASMA = 5)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
+	var/entropy_value = 2
 
 
 /obj/item/bluespace_crystal/New()
 	..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
+	bluespace_entropy(entropy_value, get_turf(src), TRUE)
 //	create_reagents(10)
 //	reagents.add_reagent("bluespace_dust", blink_range)
 
@@ -41,10 +44,7 @@
 
 /obj/item/bluespace_crystal/proc/blink_mob(mob/living/L)
 	var/turf/T = get_random_turf_in_range(L, blink_range, 1)
-	L.forceMove(T)
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(5, 0, T)
-	sparks.start()
+	go_to_bluespace(get_turf(L), entropy_value, TRUE, L, T)
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	if(!..()) // not caught in mid-air
@@ -59,19 +59,6 @@
 			playsound(T, 'sound/effects/phasein.ogg', 25, 1)
 		qdel(src)
 
-/proc/get_random_turf_in_range(var/atom/origin, var/outer_range, var/inner_range)
-	origin = get_turf(origin)
-	if(!origin)
-		return
-	var/list/turfs = list()
-	for(var/turf/T in orange(origin, outer_range))
-	//	if(!(T.z in GLOB.using_map.sealed_levels)) // Picking a turf outside the map edge isn't recommended
-		if(T.x >= world.maxx-TRANSITIONEDGE || T.x <= TRANSITIONEDGE)	continue
-		if(T.y >= world.maxy-TRANSITIONEDGE || T.y <= TRANSITIONEDGE)	continue
-		if(!inner_range || get_dist(origin, T) >= inner_range)
-			turfs += T
-	if(turfs.len)
-		return pick(turfs)
 
 // Artifical bluespace crystal, doesn't give you much research.
 

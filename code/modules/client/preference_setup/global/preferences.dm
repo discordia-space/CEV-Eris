@@ -171,7 +171,7 @@ var/list/_client_preferences_by_type
 /datum/client_preference/floating_messages
 	description ="Floating chat messages"
 	key = "FLOATING_CHAT"
-	options = list(GLOB.PREF_HIDE, GLOB.PREF_SHOW)
+	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
 /datum/client_preference/browser_style
 	description = "Fake NanoUI Browser Style"
@@ -210,6 +210,16 @@ var/list/_client_preferences_by_type
 /datum/client_preference/gun_cursor
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
+
+/datum/client_preference/play_jukebox
+	description ="Play jukebox music"
+	key = "SOUND_JUKEBOX"
+
+/datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
+	if(new_value == GLOB.PREF_NO)
+		preference_mob.stop_all_music()
+	else
+		preference_mob.update_music()
 
 /********************
 * General Staff Preferences *

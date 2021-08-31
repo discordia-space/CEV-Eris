@@ -6,6 +6,7 @@
 //Secondly, they are usually stored in an object. This means that they aren't centralised. It also means that
 //the data is lost when the object is deleted! This is especially annoying for things like the singulo engine!
 #define INVESTIGATE_DIR "data/investigate/"
+#define INVESTIGATE_CIRCUIT "circuit"
 
 //SYSTEM
 /proc/investigate_subject2file(var/subject)
@@ -28,12 +29,12 @@
 //ADMINVERBS
 ADMIN_VERB_ADD(/client/proc/investigate_show, R_ADMIN, TRUE)
 //various admintools for investigation. Such as a singulo grief-log
-/client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
+/client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci","atmos","chemistry", INVESTIGATE_CIRCUIT) )
 	set name = "Investigate"
 	set category = "Admin"
 	if(!holder)	return
 	switch(subject)
-		if("singulo", "telesci")			//general one-round-only stuff
+		if("singulo", "telesci", "atmos", "chemistry")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
 			if(!F)
 				to_chat(src, "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>")

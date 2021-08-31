@@ -1,10 +1,11 @@
-/datum/core_module/cruciform/implant_type = /obj/item/weapon/implant/core_implant/cruciform
+/datum/core_module/cruciform/implant_type = /obj/item/implant/core_implant/cruciform
 
 
 /datum/core_module/cruciform/red_light/install()
 	implant.icon_state = "cruciform_red"
-	implant.max_power += 30
-	implant.power_regen += 0.3
+	implant.max_power += initial(implant.max_power) * 0.6
+	implant.power_regen += initial(implant.power_regen) * 0.15
+	implant.restore_power(implant.max_power)
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
@@ -12,8 +13,9 @@
 
 /datum/core_module/cruciform/red_light/uninstall()
 	implant.icon_state = "cruciform_green"
-	implant.max_power -= 30
-	implant.power_regen -= 0.3
+	implant.max_power -= initial(implant.max_power) * 0.6
+	implant.power_regen -= initial(implant.power_regen) * 0.15
+	implant.power = implant.max_power
 
 	if(ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
@@ -64,12 +66,20 @@
 
 /datum/core_module/cruciform/cloning/proc/write_wearer(var/mob/living/carbon/human/H)
 	dna = H.dna
-	ckey = H.ckey
-	mind = H.mind
+	if(H.ckey)
+		ckey = H.ckey
+	if(H.mind)
+		mind = H.mind
 	languages = H.languages
 	flavor = H.flavor_text
 	age = H.age
-	stats = H.stats
+	QDEL_NULL(stats)
+	stats = new /datum/stat_holder()
+	H.stats.copyTo(stats)
+
+/datum/core_module/cruciform/cloning/on_implant_uninstall()
+	if(ishuman(implant.wearer))
+		write_wearer(implant.wearer)
 
 /datum/core_module/cruciform/cloning/preinstall()
 	if(ishuman(implant.wearer))
@@ -77,15 +87,7 @@
 
 /datum/core_module/cruciform/cloning/install()
 	if(ishuman(implant.wearer))
-		var/mob/living/carbon/human/H = implant.wearer
-		dna = H.dna
-		ckey = H.ckey
-		mind = H.mind
-		languages = H.languages
-		flavor = H.flavor_text
-		age = H.age
-		stats = H.stats
-
+		write_wearer(implant.wearer)
 
 /datum/core_module/cruciform/obey/install()
 	var/laws = list("You are enslaved. You must obey the laws below.",
@@ -115,12 +117,12 @@
 
 /datum/core_module/activatable/cruciform/priest_convert/activate()
 	..()
-	var/obj/item/weapon/implant/core_implant/cruciform/C = implant
+	var/obj/item/implant/core_implant/cruciform/C = implant
 	C.make_priest()
 
 /datum/core_module/activatable/cruciform/priest_convert/uninstall()
 	..()
-	var/obj/item/weapon/implant/core_implant/cruciform/C = implant
+	var/obj/item/implant/core_implant/cruciform/C = implant
 	C.make_common()
 
 
@@ -147,7 +149,7 @@
 ///////////
 
 /datum/core_module/rituals/cruciform
-	implant_type = /obj/item/weapon/implant/core_implant/cruciform
+	implant_type = /obj/item/implant/core_implant/cruciform
 	var/list/ritual_types = list()
 
 /datum/core_module/rituals/cruciform/set_up()
@@ -163,12 +165,22 @@
 	/datum/ritual/group/cruciform,
 	/datum/ritual/cruciform/machines)
 
+/datum/core_module/rituals/cruciform/agrolyte
+	access = list(access_nt_agrolyte)
+	ritual_types = list(/datum/ritual/cruciform/agrolyte)
+
+/datum/core_module/rituals/cruciform/custodian
+	access = list(access_nt_custodian)
+	ritual_types = list(/datum/ritual/cruciform/custodian)
 
 /datum/core_module/rituals/cruciform/priest
 	access = list(access_nt_preacher, access_nt_custodian, access_nt_agrolyte)
 	ritual_types = list(/datum/ritual/cruciform/priest,
 	/datum/ritual/targeted/cruciform/priest)
 
+/datum/core_module/rituals/cruciform/priest/acolyte
+	ritual_types = list(/datum/ritual/cruciform/priest/acolyte,
+	/datum/ritual/targeted/cruciform/priest/acolyte)
 
 
 /datum/core_module/rituals/cruciform/inquisitor
@@ -178,15 +190,15 @@
 
 /datum/core_module/rituals/cruciform/inquisitor/install()
 	..()
-	implant.max_power += 50
-	implant.power_regen += 0.5
-
+	implant.max_power += initial(implant.max_power)
+	implant.power_regen += initial(implant.power_regen) * 0.25
+	implant.restore_power(implant.max_power)
 
 /datum/core_module/rituals/cruciform/inquisitor/uninstall()
 	..()
-	implant.max_power -= 50
-	implant.power_regen -= 0.5
-
+	implant.max_power -= initial(implant.max_power)
+	implant.power_regen -= initial(implant.power_regen) * 0.25
+	implant.power = implant.max_power
 
 
 /datum/core_module/rituals/cruciform/crusader

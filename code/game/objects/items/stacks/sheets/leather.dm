@@ -1,3 +1,6 @@
+/obj/item/stack/material/animalhide
+	bad_type = /obj/item/stack/material/animalhide
+
 /obj/item/stack/material/animalhide/human
 	name = "human skin"
 	desc = "The by-product of human farming."

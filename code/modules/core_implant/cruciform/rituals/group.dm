@@ -1,12 +1,13 @@
 /datum/ritual/group/cruciform
-	implant_type = /obj/item/weapon/implant/core_implant/cruciform
+	implant_type = /obj/item/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
+	var/high_ritual = TRUE
 
-/datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+/datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/user, obj/item/implant/core_implant/C, targets)
 	if(!..())
 		return FALSE
-	if(!C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
+	if(high_ritual && !C.get_module(CRUCIFORM_PRIEST) && !is_inquisidor(user))
 		return FALSE
 	return TRUE
 
@@ -17,19 +18,34 @@
 		return TRUE
 	return FALSE
 
+/datum/ritual/group/cruciform/stat//parent ritual
+	effect_type = /datum/group_ritual_effect/cruciform/stat
+
+/datum/ritual/group/cruciform/stat/step_check(mob/living/carbon/human/H)
+	if(GLOB.miracle_points < 1)
+		return FALSE
+	return TRUE
+
 /datum/group_ritual_effect/cruciform/stat
 	var/stat_buff
+	var/buff_value = 3
+	var/aditional_value = 2
+
+/datum/group_ritual_effect/cruciform/stat/trigger_success(var/mob/starter, var/list/participants)
+	. = ..()
+	GLOB.miracle_points--
+	if(eotp)
+		eotp.addObservation(25)
 
 /datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
 	if(cnt < 3 || !stat_buff)
-		return
-	var/obj/machinery/power/nt_obelisk/O
-	O = O // "unused variable" yourself
-	O.stat_buff = stat_buff
+		to_chat(M, SPAN_NOTICE("Insufficient participants."))
+		return FALSE
+	M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
 
-/datum/ritual/group/cruciform/mechanical
-	name = "Mechanical"
-	desc = "Boosts Mechanical stat to 3 + 1 for each participant."
+/datum/ritual/group/cruciform/stat/mechanical
+	name = "Pounding Whisper"
+	desc = "Boosts Mechanical stat to 3 + 2 for each participant."
 	phrase = "Omnia haec tractavi in corde meo ut curiose intellegerem sunt iusti atque sapientes et opera eorum in manu Dei et tamen nescit homo utrum amore an odio dignus sit."
 	phrases = list(
 		"Omnia haec tractavi in corde meo ut curiose intellegerem sunt iusti atque sapientes et opera eorum in manu Dei et tamen nescit homo utrum amore an odio dignus sit.",
@@ -49,9 +65,9 @@
 	stat_buff = STAT_MEC
 
 
-/datum/ritual/group/cruciform/cognition
-	name = "Cognition"
-	desc = "Boosts Cognition stat to 3 + 1 for each participant."
+/datum/ritual/group/cruciform/stat/cognition
+	name = "Revelation of Secrets"
+	desc = "Boosts Cognition stat to 3 + 2 for each participant."
 	phrase = "Dedit quoque Deus sapientiam Salomoni et prudentiam multam nimis et latitudinem cordis quasi harenam quae est in litore maris."
 	phrases = list(
 		"Dedit quoque Deus sapientiam Salomoni et prudentiam multam nimis et latitudinem cordis quasi harenam quae est in litore maris.",
@@ -69,9 +85,9 @@
 
 
 
-/datum/ritual/group/cruciform/biology
-	name = "Biology"
-	desc = "Boosts Biology stat to 3 + 1 for each participant."
+/datum/ritual/group/cruciform/stat/biology
+	name = "Lisp of Vitae"
+	desc = "Boosts Biology stat to 3 + 2 for each participant."
 	phrase = "Convocatis autem duodecim apostolis dedit illis virtutem et potestatem super omnia daemonia et ut languores curarent."
 	phrases = list(
 		"Convocatis autem duodecim apostolis dedit illis virtutem et potestatem super omnia daemonia et ut languores curarent.",
@@ -88,9 +104,9 @@
 	stat_buff = STAT_BIO
 
 
-/datum/ritual/group/cruciform/robustness
-	name = "Robustness"
-	desc = "Boosts Robustness stat to 3 + 1 for each participant."
+/datum/ritual/group/cruciform/stat/robustness
+	name = "Canto of Courage"
+	desc = "Boosts Robustness stat to 3 + 2 for each participant."
 	phrase = "Audi Israhel tu transgredieris hodie Iordanem ut possideas nationes maximas et fortiores te civitates ingentes et ad caelum usque muratas."
 	phrases = list(
 		"Audi Israhel tu transgredieris hodie Iordanem ut possideas nationes maximas et fortiores te civitates ingentes et ad caelum usque muratas.",
@@ -106,10 +122,28 @@
 /datum/group_ritual_effect/cruciform/stat/robustness
 	stat_buff = STAT_ROB
 
+/datum/ritual/group/cruciform/stat/vigilance
+	name = "Canto of Courage"
+	desc = "Boosts Vigilance stat to 3 + 2 for each participant."
+	phrase = "Vigilia exemplum imitari debemus."
+	phrases = list(
+		"Vigilia exemplum imitari debemus.",
+		"Pater nos tuetur ac curae.",
+		"Novit Patrem nos dirigit in viam rectam.",
+		"Patris nostri et benedicet tuetur.",
+		"Pater amat et tuetur.",
+		"Patrem tuetur et protegit.",
+		"Amen."
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/stat/vigilance
 
-/datum/ritual/group/cruciform/toughness
-	name = "Toughness"
-	desc = "Boosts Toughness stat to 3 + 1 for each participant."
+/datum/group_ritual_effect/cruciform/stat/vigilance
+	stat_buff = STAT_VIG
+
+
+/datum/ritual/group/cruciform/stat/toughness
+	name = "Reclamation of Endurance"
+	desc = "Boosts Toughness stat to 3 + 2 for each participant."
 	phrase = "In finem psalmus David."
 	phrases = list(
 		"In finem psalmus David.",
@@ -144,10 +178,23 @@
 	)
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
+/atom/movable/var/crusade_effect = FALSE
+
+/atom/movable/proc/crusade_activated()
+	if(crusade_effect)
+		return FALSE
+	crusade_effect = TRUE
+	return TRUE
+
+/datum/group_ritual_effect/cruciform/crusade/trigger_success(mob/starter, list/participants)
+	..()
+	for(var/atom/movable/A in GLOB.all_faction_items)
+		A.crusade_activated()
+
 /datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
 	if(cnt < 6)
 		return
-	var/obj/item/weapon/implant/core_implant/CI = M.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	var/obj/item/implant/core_implant/CI = M.get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(CI)
 		var/datum/ritual/cruciform/crusader/C = /datum/ritual/cruciform/crusader/brotherhood
 		CI.known_rituals |= initial(C.name)
@@ -155,3 +202,33 @@
 		CI.known_rituals |= initial(C.name)
 		C = /datum/ritual/cruciform/crusader/flash
 		CI.known_rituals |= initial(C.name)
+
+/datum/ritual/group/cruciform/sanctify
+	name = "Sanctify"
+	desc = "Sanctify the land you tread."
+	phrase = "Benedicite loco isto."
+	phrases = list(
+		"Benedicite loco isto.",
+		"Benedic hoc petimus Patris.",
+		"Nos obsecro te removere percula huius loci.",
+		"Ne malorum tangere terram",
+		"Frase quinta",
+		"Frase sexta",
+		"Frase septima"
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/sanctify
+	high_ritual = FALSE
+
+/datum/ritual/group/cruciform/sanctify/step_check(mob/living/carbon/human/H)
+	return TRUE
+
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(mob/starter, list/participants)
+	..()
+	var/area/A = get_area(starter)
+	A?.sanctify()
+	for(var/obj/machinery/power/nt_obelisk/O in GLOB.all_obelisk)
+		O.force_active = max(60, O.force_active)
+
+/area/proc/sanctify()
+	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)
+	return

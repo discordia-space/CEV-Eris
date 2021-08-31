@@ -1,6 +1,6 @@
 var/global/list/ashtray_cache = list()
 
-/obj/item/weapon/material/ashtray
+/obj/item/material/ashtray
 	name = "ashtray"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "blank"
@@ -9,7 +9,7 @@ var/global/list/ashtray_cache = list()
 	var/image/base_image
 	var/max_butts = 10
 
-/obj/item/weapon/material/ashtray/New(var/newloc, var/material_name)
+/obj/item/material/ashtray/New(var/newloc, var/material_name)
 	..(newloc, material_name)
 	if(!material)
 		qdel(src)
@@ -20,33 +20,33 @@ var/global/list/ashtray_cache = list()
 	update_icon()
 	return
 
-/obj/item/weapon/material/ashtray/update_icon()
+/obj/item/material/ashtray/on_update_icon()
 	color = null
-	overlays.Cut()
+	cut_overlays()
 	var/cache_key = "base-[material.name]"
 	if(!ashtray_cache[cache_key])
 		var/image/I = image('icons/obj/objects.dmi',"ashtray")
 		I.color = material.icon_colour
 		ashtray_cache[cache_key] = I
-	overlays |= ashtray_cache[cache_key]
+	associate_with_overlays(ashtray_cache[cache_key])
 
 	if (contents.len == max_butts)
 		if(!ashtray_cache["full"])
 			ashtray_cache["full"] = image('icons/obj/objects.dmi',"ashtray_full")
-		overlays |= ashtray_cache["full"]
+		associate_with_overlays(ashtray_cache["full"])
 		desc = "It's stuffed full."
 	else if (contents.len > max_butts/2)
 		if(!ashtray_cache["half"])
 			ashtray_cache["half"] = image('icons/obj/objects.dmi',"ashtray_half")
-		overlays |= ashtray_cache["half"]
+		associate_with_overlays(ashtray_cache["half"])
 		desc = "It's half-filled."
 	else
 		desc = "An ashtray made of [material.display_name]."
 
-/obj/item/weapon/material/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/material/ashtray/attackby(obj/item/W as obj, mob/user as mob)
 	if (health <= 0)
 		return
-	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
+	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/flame/match))
 		if (contents.len >= max_butts)
 			to_chat(user, "\The [src] is full.")
 			return
@@ -77,7 +77,7 @@ var/global/list/ashtray_cache = list()
 			shatter()
 	return
 
-/obj/item/weapon/material/ashtray/throw_impact(atom/hit_atom)
+/obj/item/material/ashtray/throw_impact(atom/hit_atom)
 	if (health > 0)
 		health = max(0,health - 3)
 		if (contents.len)

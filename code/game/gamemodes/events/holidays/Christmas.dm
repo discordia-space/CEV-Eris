@@ -1,9 +1,9 @@
 /proc/Christmas_Game_Start()
 	for(var/obj/structure/flora/tree/pine/xmas in world)
 		if(isNotStationLevel(xmas.z))	continue
-		for(var/turf/simulated/floor/T in trange(1,xmas))
+		for(var/turf/simulated/floor/T in RANGE_TURFS(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
-				new /obj/item/weapon/a_gift(T)
+				new /obj/item/a_gift(T)
 	//for(var/mob/living/simple_animal/corgi/Ian/Ian in SSmobs.mob_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/space/santahat(Ian))
 
@@ -16,20 +16,23 @@
 		evil_tree.icon_gib = evil_tree.icon_state
 		qdel(xmas)
 
-/obj/item/weapon/toy/xmas_cracker
+/obj/item/toy
+	bad_type = /obj/item/toy
+
+/obj/item/toy/xmas_cracker
 	name = "xmas cracker"
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "cracker"
 	desc = "Directions for use: Requires two people, one to pull each end."
 	var/cracked = 0
 
-/obj/item/weapon/toy/xmas_cracker/New()
+/obj/item/toy/xmas_cracker/New()
 	..()
 
-/obj/item/weapon/toy/xmas_cracker/attack(mob/target, mob/user)
+/obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_hand() )
 		target.visible_message(SPAN_NOTICE("[user] and [target] pop \an [src]! *pop*"), SPAN_NOTICE("You pull \an [src] with [target]! *pop*"), SPAN_NOTICE("You hear a *pop*."))
-		var/obj/item/weapon/paper/Joke = new /obj/item/weapon/paper(user.loc)
+		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"
 		Joke.info = pick("What did one snowman say to the other?\n\n<i>'Is it me or can you smell carrots?'</i>",
 			"Why couldn't the snowman get laid?\n\n<i>He was frigid!</i>",
@@ -40,12 +43,12 @@
 			"What do you get from eating tree decorations?\n\n<i>Tinsilitis!</i>",
 			"What do snowmen wear on their heads?\n\n<i>Ice caps!</i>",
 			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>",
-			"Why doesn�t Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
+			"Why doesn't Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
 		new /obj/item/clothing/head/festive(target.loc)
 		user.update_icons()
 		cracked = 1
 		icon_state = "cracker1"
-		var/obj/item/weapon/toy/xmas_cracker/other_half = new /obj/item/weapon/toy/xmas_cracker(target)
+		var/obj/item/toy/xmas_cracker/other_half = new /obj/item/toy/xmas_cracker(target)
 		other_half.cracked = 1
 		other_half.icon_state = "cracker2"
 		target.put_in_active_hand(other_half)

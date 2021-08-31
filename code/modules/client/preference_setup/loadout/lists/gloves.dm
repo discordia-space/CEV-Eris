@@ -1,17 +1,14 @@
 // Gloves
-/datum/gear/gloves/
+/datum/gear/gloves
 	slot = slot_gloves
 	sort_category = "Gloves and Handwear"
-	category = /datum/gear/gloves/
+	display_name = "gloves, latex"
+	path = /obj/item/clothing/gloves/latex
 
 /datum/gear/gloves/work
 	display_name = "gloves, work"
 	path = /obj/item/clothing/gloves/thick
 	cost = 3
-
-/datum/gear/gloves/latex
-	display_name = "gloves, latex"
-	path = /obj/item/clothing/gloves/latex
 
 /datum/gear/gloves/rainbow
 	display_name = "gloves, rainbow"
@@ -42,3 +39,12 @@
 		"Brown"			=	/obj/item/clothing/gloves/color/brown
 	)
 	gear_tweaks += new /datum/gear_tweak/path(gloves)
+
+/datum/gear/gloves/german
+	display_name = "gloves, oberth"
+	path = /obj/item/clothing/gloves/german
+	cost = 3
+
+/datum/gear/gloves/fingerless
+	display_name = "gloves, fingerless"
+	path = /obj/item/clothing/gloves/fingerless

@@ -4,7 +4,7 @@
 	icon_state = "computer"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
 	var/processing = 0
@@ -16,8 +16,13 @@
 
 /obj/machinery/computer/Initialize()
 	. = ..()
+	GLOB.computer_list += src
 	power_change()
 	update_icon()
+
+/obj/machinery/computer/Destroy()
+	GLOB.computer_list -= src
+	..()
 
 /obj/machinery/computer/Process()
 	if(stat & (NOPOWER|BROKEN))
@@ -31,10 +36,10 @@
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(25))
 				qdel(src)
 				return
@@ -42,7 +47,7 @@
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				for(var/x in verbs)
 					verbs -= x
@@ -59,24 +64,24 @@
 		set_broken()
 	..()
 
-/obj/machinery/computer/update_icon()
-	overlays.Cut()
+/obj/machinery/computer/on_update_icon()
+	cut_overlays()
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off")
+			add_overlays(image(icon,"[icon_keyboard]_off"))
 		update_openspace()
 		return
 	else
 		set_light(light_range_on, light_power_on)
 
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken")
+		add_overlays(image(icon,"[icon_state]_broken"))
 	else
-		overlays += image(icon,icon_screen)
+		add_overlays(image(icon,icon_screen))
 
 	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard)
+		add_overlays(image(icon, icon_keyboard))
 	update_openspace()
 
 /obj/machinery/computer/power_change()
@@ -108,7 +113,7 @@
 				C.loc = src.loc
 			if (src.stat & BROKEN)
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
-				new /obj/item/weapon/material/shard(src.loc)
+				new /obj/item/material/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else

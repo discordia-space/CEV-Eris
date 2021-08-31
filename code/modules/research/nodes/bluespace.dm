@@ -138,7 +138,8 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/circuit/teleconsole)
+	unlocks_designs = list(/datum/design/research/circuit/teleconsole,
+	                       /datum/design/research/circuit/lrange_scanner/hull)
 
 /datum/technology/adv_spatial_scan
 	name = "Advanced Spatial Analyzing"
@@ -157,7 +158,9 @@
 							/datum/design/research/item/part/artificialbscrystal,
 							/datum/design/research/circuit/bssilk/hub,
 							/datum/design/research/circuit/bssilk/console,
-							/datum/design/research/item/bs_snare
+							/datum/design/research/item/bs_snare,
+							/datum/design/research/circuit/teleporter/station,
+							/datum/design/research/circuit/teleporter/hub
 							)
 
 /datum/technology/bluespace_tools

@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/tape_roll
+/obj/item/tool/tape_roll
 	name = "duct tape"
 	desc = "The technomancer's eternal friend. Fixes just about anything, for a while at least."
 	icon = 'icons/obj/tools.dmi'
@@ -12,16 +12,19 @@
 	degradation = 0 //its consumable anyway
 	flags = NOBLUDGEON //Its not a weapon
 	max_upgrades = 0 //These are consumable, so no wasting upgrades on them
+	rarity_value = 4
 
-/obj/item/weapon/tool/tape_roll/web
+/obj/item/tool/tape_roll/web
 	name = "web tape"
 	desc = "A strip of fabric covered in an all-natural adhesive. Holds things together with the power of thoughts and prayers."
 	tool_qualities = list(QUALITY_ADHESIVE = 15, QUALITY_SEALING = 15)
 	use_stock_cost = 0.17
 	max_stock = 30
 	alpha = 150
+	rarity_value = 2
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
-/obj/item/weapon/tool/tape_roll/fiber
+/obj/item/tool/tape_roll/fiber
 	name = "fiber tape"
 	desc = "A roll of flexible adhesive polymer mesh, which sets as strong as welded steel."
 	icon_state = "fiber_tape"
@@ -29,8 +32,20 @@
 	matter = list(MATERIAL_PLASTIC = 20)
 	use_stock_cost = 0.10
 	max_stock = 100
+	spawn_frequency = 8
+	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/weapon/tool/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/tool/tape_roll/glue
+	name = "superglue"
+	desc = "A bucket of milky white fluid. Can be used to stick things together, but unlike tape, it cannot be used to seal things."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "glue"
+	tool_qualities = list(QUALITY_ADHESIVE = 40, QUALITY_CAUTERIZING = 5) // Better than duct tape, but can't seal things and is mostly used in crafting - also, it's glue, so it can be used as an extremely shitty way of sealing wounds
+	matter = list(MATERIAL_BIOMATTER = 30)
+	worksound = NO_WORKSOUND
+
+/obj/item/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))
 		if(user.targeted_organ == BP_EYES)
 
@@ -85,7 +100,7 @@
 
 		else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
 			if(use_tool(user, H, 90, QUALITY_ADHESIVE))
-				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				var/obj/item/handcuffs/cable/tape/T = new(user)
 				if(!T.place_handcuffs(H, user))
 					user.unEquip(T)
 					qdel(T)
@@ -93,7 +108,7 @@
 			return ..()
 		return 1
 
-/obj/item/weapon/tool/tape_roll/stick(var/obj/item/target, var/mob/user)
+/obj/item/tool/tape_roll/stick(obj/item/target, mob/user)
 	if (!istype(target) || target.anchored)
 		return
 
@@ -104,49 +119,51 @@
 		return
 	consume_resources(10, user)
 	user.drop_from_inventory(target)
-	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
+	var/obj/item/ducttape/tape = new(get_turf(src))
 	tape.attach(target)
 	user.put_in_hands(tape)
 	return TRUE
 
 
-/obj/item/weapon/ducttape
+/obj/item/ducttape
 	name = "tape"
 	desc = "A piece of sticky tape."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape"
 	w_class = ITEM_SIZE_TINY
-	layer = 4
-	anchored = 1 //it's sticky, no you cant move it
+	layer = BELOW_MOB_LAYER
+	anchored = TRUE //it's sticky, no you cant move it
+	spawn_frequency = 0
+	bad_type = /obj/item/ducttape
 
-	var/obj/item/weapon/stuck = null
+	var/obj/item/stuck
 
-/obj/item/weapon/ducttape/New()
+/obj/item/ducttape/New()
 	..()
 	flags |= NOBLUDGEON
 
-/obj/item/weapon/ducttape/update_plane()
+/obj/item/ducttape/update_plane()
 	..()
 	update_icon()
 
 
-/obj/item/weapon/ducttape/examine(mob/user)
+/obj/item/ducttape/examine(mob/user)
 	return stuck.examine(user)
 
-/obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
+/obj/item/ducttape/proc/attach(obj/item/W)
 	stuck = W
 	W.forceMove(src)
 	update_icon()
 	name = W.name + " (taped)"
 
-/obj/item/weapon/ducttape/update_icon()
+/obj/item/ducttape/on_update_icon()
 	if (!stuck)
 		return
 
-	if (istype(stuck, /obj/item/weapon/paper))
+	if (istype(stuck, /obj/item/paper))
 		icon_state = stuck.icon_state
-		overlays.Cut()
-		overlays = stuck.overlays + "tape_overlay"
+		cut_overlays()
+		set_overlays(stuck.overlays + "tape_overlay")
 	else
 		var/mutable_appearance/MA = new(stuck)
 		MA.layer = layer-0.1
@@ -156,7 +173,7 @@
 		underlays.Cut()
 		underlays += MA
 
-/obj/item/weapon/ducttape/attack_self(mob/user)
+/obj/item/ducttape/attack_self(mob/user)
 	if(!stuck)
 		return
 
@@ -166,10 +183,10 @@
 	stuck.forceMove(get_turf(src))
 	user.put_in_hands(stuck)
 	stuck = null
-	overlays = null
+	set_overlays(null)
 	qdel(src)
 
-/obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
+/obj/item/ducttape/afterattack(A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return

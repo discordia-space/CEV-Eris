@@ -46,17 +46,17 @@
 				if(A)
 					if(isliving(A))
 						qdel(A)
-					else if(istype(A,/mob)) // Observers, AI cameras.
+					else if(ismob(A)) // Observers, AI cameras.
 						continue
 					else
 						qdel(A)
 			T.ChangeTurf(type)
 
-/turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
+/turf/unsimulated/wall/supermatter/attack_generic(mob/user)
 	if(istype(user))
 		return attack_hand(user)
 
-/turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
+/turf/unsimulated/wall/supermatter/attack_robot(mob/user)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
@@ -79,7 +79,7 @@
 
 	Consume(user)
 
-/turf/unsimulated/wall/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/turf/unsimulated/wall/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
 		"<span class=\"warning\">Everything suddenly goes silent.</span>")

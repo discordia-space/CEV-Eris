@@ -15,8 +15,8 @@
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MAJOR
-
 	light_overlay = "helmet_light"
+	spawn_tags = null
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"
@@ -38,20 +38,22 @@
 	breach_threshold = 5
 	resilience = 0.09
 	can_breach = 1
+	spawn_tags = SPAWN_TAG_VOID_SUIT
+	accompanying_object = /obj/item/clothing/shoes/magboots
 
 	//Inbuilt devices.
-	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
+	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.
 	var/obj/item/clothing/head/armor/helmet/helmet = /obj/item/clothing/head/space/void   // Deployable helmet, if any.
-	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
+	var/obj/item/tank/tank              // Deployable tank, if any.
 
 /obj/item/clothing/suit/space/void/Initialize()
+	. = ..()
 	if(boots && ispath(boots))
 		boots = new boots(src)
 	if(helmet && ispath(helmet))
 		helmet = new helmet(src)
 	if(tank && ispath(tank))
 		tank = new tank(src)
-	. = ..()
 
 /obj/item/clothing/suit/space/void/examine(user)
 	..(user)
@@ -75,10 +77,23 @@
 
 	return ..()
 
+/obj/item/clothing/suit/space/void/decontaminate()
+	if(boots) boots.decontaminate()
+	if(helmet) helmet.decontaminate()
+	if(tank) tank.decontaminate()
+
+	return ..()
+
+/obj/item/clothing/suit/space/void/make_young()
+	..()
+	if(boots) boots.make_young()
+	if(helmet) helmet.make_young()
+	if(tank) tank.make_young()
+
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 
-	if (is_held())
+	if(is_held())
 		retract()
 
 	var/mob/living/carbon/human/H = M
@@ -89,20 +104,16 @@
 		return
 
 	if(boots)
-		if (H.equip_to_slot_if_possible(boots, slot_shoes))
+		if(H.equip_to_slot_if_possible(boots, slot_shoes))
 			boots.canremove = 0
 
 	if(helmet)
-		if(H.head)
-			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
-		else if (H.equip_to_slot_if_possible(helmet, slot_head))
-			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = 0
+		toggle_helmet()
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
 			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
-		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
+		else if(H.equip_to_slot_if_possible(tank, slot_s_store))
 			to_chat(M, "The valve on your suit's installed tank safely engages.")
 			tank.canremove = 0
 
@@ -140,7 +151,6 @@
 		tank.forceMove(src)
 
 /obj/item/clothing/suit/space/void/verb/toggle_helmet()
-
 	set name = "Toggle Helmet"
 	set category = "Object"
 	set src in usr
@@ -183,7 +193,7 @@
 	if(!isliving(usr))
 		return
 
-	if (!Adjacent(usr, get_turf(src)))
+	if(!Adjacent(usr, get_turf(src)))
 		to_chat(usr, SPAN_WARNING("You're too far away to eject the tank."))
 		return
 
@@ -214,14 +224,14 @@
 	if(!isliving(user))
 		return
 
-	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/hand_labeler))
 		return ..()
 
 	if(is_worn())
 		to_chat(user, SPAN_WARNING("You cannot modify \the [src] while it is being worn."))
 		return
 
-	if(istype(W,/obj/item/weapon/tool/screwdriver))
+	if(istype(W,/obj/item/tool/screwdriver))
 		if(boots || tank)
 			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank)
 			if(!choice) return
@@ -247,10 +257,10 @@
 			boots = W
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
-	if(istype(W,/obj/item/weapon/tank))
+	if(istype(W,/obj/item/tank))
 		if(tank)
 			to_chat(user, "\The [src] already has an airtank installed.")
-		else if(istype(W,/obj/item/weapon/tank/plasma))
+		else if(istype(W,/obj/item/tank/plasma))
 			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
 		else
 			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")

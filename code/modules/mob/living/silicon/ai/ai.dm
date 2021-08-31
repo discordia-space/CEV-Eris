@@ -74,7 +74,7 @@ var/list/ai_verbs_default = list(
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
 	var/mob/living/exosuit/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
-	var/obj/item/weapon/tool/multitool/aiMulti = null
+	var/obj/item/tool/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
@@ -278,12 +278,12 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply
 	name="Power Supply"
 	active_power_usage=50000 // Station AIs use significant amounts of power. This, when combined with charged SMES should mean AI lasts for 1hr without external power.
-	use_power = 2
-	power_channel = EQUIP
-	var/mob/living/silicon/ai/powered_ai = null
+	use_power = ACTIVE_POWER_USE
+	power_channel = STATIC_EQUIP
+	var/mob/living/silicon/ai/powered_ai
 	invisibility = 100
 
-/obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
+/obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai)
 	powered_ai = ai
 	powered_ai.psupply = src
 	forceMove(powered_ai.loc)
@@ -303,14 +303,14 @@ var/list/ai_verbs_default = list(
 		qdel(src)
 		return
 	if(powered_ai.APU_power)
-		use_power = 0
+		use_power = NO_POWER_USE
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
-		use_power = 0
+		use_power = NO_POWER_USE
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
-		use_power = 2
+		use_power = ACTIVE_POWER_USE
 
 /mob/living/silicon/ai/proc/ai_movement_up()
 	set category = "Silicon Commands"
@@ -606,20 +606,20 @@ var/list/ai_verbs_default = list(
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 
 
-/mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/aicard))
 
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(istype(W, /obj/item/weapon/tool/wrench))
+	else if(istype(W, /obj/item/tool/wrench))
 		if(anchored)
 			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40, src))
 				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
@@ -680,7 +680,7 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1.0)
+	if(severity == 1)
 		qdel(src)
 		return
 	..()
@@ -711,7 +711,7 @@ var/list/ai_verbs_default = list(
 	set category = "IC"
 
 	resting = 0
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
 

@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/screwdriver
+/obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can use this to open panels, screw stuff and such things."
 	icon_state = "screwdriver"
@@ -9,16 +9,19 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 30, QUALITY_BONE_SETTING = 10)
+	rarity_value = 6
 
-/obj/item/weapon/tool/screwdriver/improvised
+/obj/item/tool/screwdriver/improvised
 	name = "screwpusher"
 	desc = "A little metal rod wrapped in tape, barely qualifies as a tool. This can be fixed with enough tool mods, for which it has ample capacity."
 	icon_state = "impro_screwdriver"
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 15)
 	degradation = 2
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 3
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
-/obj/item/weapon/tool/screwdriver/electric
+/obj/item/tool/screwdriver/electric
 	name = "electric screwdriver"
 	desc = "An electrical screwdriver, powered by an S class cell. Can be used as a drilling tool if necessary, though is not well suited to do so."
 	icon_state = "e-screwdriver"
@@ -28,9 +31,10 @@
 	degradation = 0.7
 	max_upgrades = 4
 	use_power_cost = 0.18
-	suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/cell/small
+	rarity_value = 24
 
-/obj/item/weapon/tool/screwdriver/combi_driver
+/obj/item/tool/screwdriver/combi_driver
 	name = "combi driver"
 	desc = "Drive screws, drive bolts, drill bones - you can do everything with it."
 	icon_state = "combi_driver"
@@ -41,10 +45,12 @@
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20)
 	degradation = 0.7
 	use_power_cost = 0.24
-	suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/cell/small
 	max_upgrades = 4
+	rarity_value = 48
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.targeted_organ != BP_EYES && user.targeted_organ != BP_HEAD)
@@ -54,7 +60,7 @@
 	return eyestab(M,user)
 
 
-/obj/item/weapon/tool/screwdriver/combi_driver/onestar
+/obj/item/tool/screwdriver/combi_driver/onestar
 	name = "One Star combi driver"
 	desc = "A One Star combi driver. Does better than the standard combi drivers on the market, but has less slots for tool mods."
 	icon_state = "one_star_combidriver"
@@ -64,5 +70,8 @@
 	degradation = 0.6
 	workspeed = 1.7
 	use_power_cost = 0.3
-	suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/cell/small
 	max_upgrades = 2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL

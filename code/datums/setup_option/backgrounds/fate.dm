@@ -93,7 +93,7 @@
 /datum/category_item/setup_option/background/fate/oborin_syndrome
 	name = "Oborin Syndrome"
 	desc = "A condition manifested at some recent point in human history. \
-			It’s origin and prevalence are unknown, but it is speculated to be a psyionic phenomenom.\
+			It’s origin and prevalence are unknown, but it is speculated to be a psionic phenomenom.\
 			You are affected by this so called Oborin Syndrome and are unable to see the colors of the world. You see what lies beyond them."
 
 	perks = list(PERK_OBORIN_SYNDROME)

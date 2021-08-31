@@ -11,4 +11,5 @@
 		"mech camera"				=	list("type"	=	/obj/screen/movable/exosuit/toggle/camera,		"loc" = "WEST:4,CENTER-3:80"),
 		"mech health"				=	list("type"	=	/obj/screen/movable/exosuit/health,				"loc" = "WEST:4,BOTTOM+3"),
 		"mech power"				=	list("type"	=	/obj/screen/movable/exosuit/power,				"loc" = "WEST+1:4,BOTTOM+3"),
+		"strafe"					=	list("type"	=	/obj/screen/movable/exosuit/toggle/strafe,		"loc" = "WEST:4,CENTER-3:92"),
 	)

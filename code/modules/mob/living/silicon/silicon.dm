@@ -1,6 +1,7 @@
 /mob/living/silicon
 	gender = NEUTER
 	voice_name = "synthesized voice"
+	bad_type = /mob/living/silicon
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
@@ -17,7 +18,7 @@
 	var/speak_exclamation = "declares"
 	var/speak_query = "queries"
 	var/pose //Yes, now AIs can pose too.
-	var/obj/item/device/camera/siliconcam/aiCamera = null //photography
+	var/obj/item/device/camera/siliconcam/aiCamera //photography
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/sensor_mode = 0 //Determines the current HUD.
@@ -26,8 +27,8 @@
 	var/list/datum/alarm/queued_alarms = new()
 
 	var/list/access_rights
-	var/obj/item/weapon/card/id/idcard
-	var/idcard_type = /obj/item/weapon/card/id/synthetic
+	var/obj/item/card/id/idcard
+	var/idcard_type = /obj/item/card/id/synthetic
 
 	var/email_ringtone = TRUE
 
@@ -35,9 +36,9 @@
 	#define MED_HUD 2 //Medical HUD mode
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
-/mob/living/silicon/New()
+/mob/living/silicon/Initialize()
 	GLOB.silicon_mob_list |= src
-	..()
+	. = ..()
 	add_language(LANGUAGE_COMMON)
 	init_id()
 	init_subsystems()
@@ -76,9 +77,9 @@
 		if(2)
 			take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-//	flick("noise", flash)
+//	FLICK("noise", flash)
 	if (HUDtech.Find("flash"))
-		flick("noise", HUDtech["flash"])
+		FLICK("noise", HUDtech["flash"])
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
 	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
 	..()
@@ -86,7 +87,7 @@
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
 	return	//immune
 
-/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
+/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1)
 
 	if (istype(source, /obj/machinery/containment_field))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -247,20 +248,20 @@
 /mob/living/silicon/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			if (stat != 2)
 				adjustBruteLoss(100)
 				adjustFireLoss(100)
 				if(!anchored)
 					gib()
-		if(2.0)
+		if(2)
 			if (stat != 2)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
-		if(3.0)
+		if(3)
 			if (stat != 2)
 				adjustBruteLoss(30)
 

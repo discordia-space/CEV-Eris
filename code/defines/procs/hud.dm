@@ -46,6 +46,17 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 			continue
 		P.Client.images += image('icons/mob/hud.dmi', loc = perp, icon_state = "hudbroken[pick(1,2,3,4,5,6,7)]")
 
+//Excelsior HUDs.
+proc/process_excel_hud(mob/M, mob/Alt)
+	if(!can_process_hud(M))
+		return
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, excel_hud_users)
+	for(var/mob/living/carbon/human/comrade in P.Mob.in_view(P.Turf))
+		if(P.Mob.see_invisible < comrade.invisibility)
+			continue
+
+		P.Client.images += comrade.hud_list[EXCELSIOR_HUD]
+
 datum/arranged_hud_process
 	var/client/Client
 	var/mob/Mob

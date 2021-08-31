@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(tips)
 					var/mob/M = pick(MT.mobs_list)
 					// I suppose this will be obsolete someday
 					if(M == /mob/living/carbon/human)
-						typeText = "Human"
+						typeText = SPECIES_HUMAN
 					else
 						typeText = initial(M.name)
 				else if(istype(T, /tipsAndTricks/roles))

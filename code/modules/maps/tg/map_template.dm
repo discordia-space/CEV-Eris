@@ -1,6 +1,7 @@
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
+	var/id = null
 	var/template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
 	var/width = 0
 	var/height = 0
@@ -8,12 +9,15 @@
 	var/loaded = 0 // Times loaded this round
 	var/annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
 
-	var/cost = null // The map generator has a set 'budget' it spends to place down different submaps. It will pick available submaps randomly until \
-	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc. \
-	Set to -1 to force the submap to always be made.
+	var/cost = null // The map generator has a set 'budget' it spends to place down different submaps. It will pick available submaps randomly until
+					// it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc.
+					// Set to -1 to force the submap to always be made.
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
 	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
+	var/template_flags = TEMPLATE_FLAG_ALLOW_DUPLICATES
+
+	var/static/dmm_suite/maploader = new
 
 /datum/map_template/New(path = null, rename = null)
 	if(path)
@@ -59,14 +63,9 @@
 				atmos_machines += A
 	atoms |= areas
 
-	////admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
-
-	//admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
-	SSmachines.setup_atmos_machinery(atmos_machines)
-
-	//admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
-	SSmachines.setup_powernets_for_cables(cables)
+	SSmachines.setup_template_powernets(cables)
+	SSair.setup_template_machinery(atmos_machines)
 
 	// Ensure all machines in loaded areas get notified of power status
 	for(var/I in areas)

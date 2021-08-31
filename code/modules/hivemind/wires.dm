@@ -31,7 +31,7 @@
 		master_node.add_wireweed(child)
 	spawn(1)
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
-		flick("spread_anim", child)
+		FLICK("spread_anim", child)
 		child.forceMove(target_turf)
 		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
 			neighbor.update_neighbors()
@@ -101,7 +101,7 @@
 
 
 /obj/effect/plant/hivemind/refresh_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/I
 	var/turf/simulated/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
@@ -109,7 +109,7 @@
 	else
 		for(var/i = 1 to 4)
 			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
-			overlays += I
+			add_overlays(I)
 
 	//wallhug
 	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
@@ -130,7 +130,7 @@
 			if (T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
-			overlays += wall_hug_overlay
+			add_overlays(wall_hug_overlay)
 
 
 
@@ -173,12 +173,12 @@
 			if(istype(door, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/A = door
 				if(A.locked)
-					if(prob(60))
+					if(prob(75))
 						A.unlock()
 					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
 			if(door.density)
-				door.take_damage(rand(25, 40))
+				door.take_damage(rand(30, 70))
 				return FALSE
 
 	return TRUE
@@ -250,7 +250,7 @@
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			created_machine.icon = new_icon
-			var/prefix = pick("warped", "altered", "modified", "upgraded", "abnormal")
+			var/prefix = pick("Warped", "Altered", "Modified", "Upgraded", "Abnormal")
 			created_machine.name = "[prefix] [subject.name]"
 			created_machine.pixel_x = subject.pixel_x
 			created_machine.pixel_y = subject.pixel_y
@@ -311,7 +311,7 @@
 
 //in fact, this is some kind of reinforced wires, so we can't take samples from it and inject something too
 //but we still can slice it with something sharp
-/obj/effect/plant/hivemind/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/plant/hivemind/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	var/weapon_type

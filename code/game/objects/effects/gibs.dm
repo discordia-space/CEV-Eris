@@ -27,7 +27,7 @@
 			s.set_up(2, 1, get_turf(location)) // Not sure if it's safe to pass an arbitrary object to set_up, todo
 			s.start()
 
-		var/obj/effect/decal/cleanable/blood/gibs/gib = null
+		var/obj/effect/decal/cleanable/blood/gibs/gib
 		for(var/i = 1, i<= gibtypes.len, i++)
 			if(gibamounts[i])
 				for(var/j = 1, j<= gibamounts[i], j++)

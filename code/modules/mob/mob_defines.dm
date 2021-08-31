@@ -1,6 +1,6 @@
 /mob
 	density = TRUE
-	layer = 4.0
+	layer = 4
 	animate_movement = 2
 	flags = PROXMOVE
 	var/datum/mind/mind
@@ -20,8 +20,8 @@
 	/datum/movement_handler/mob/movement
 	)
 
-	var/lastKnownIP = null
-	var/computer_id = null
+	var/lastKnownIP
+	var/computer_id
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 
@@ -35,19 +35,19 @@
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
-	var/obj/machinery/machine = null
+	var/obj/machinery/machine
 	var/poll_answer = 0
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
 
 	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
-	var/atom/movable/pulling = null
-	var/other_mobs = null
-	var/next_move = null
-	var/transforming = null	//Carbon
-	var/hand = null
-	var/real_name = null
+	var/atom/movable/pulling
+	var/other_mobs
+	var/next_move
+	var/transforming	//Carbon
+	var/hand
+	var/real_name
 
 	var/bhunger = 0			//Carbon
 	var/ajourn = 0
@@ -77,11 +77,11 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/languages = list()         // For speaking/listening.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
 	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
-	var/facing_dir = null   // Used for the ancient art of moonwalking.
+	var/facing_dir   // Used for the ancient art of moonwalking.
 
 	var/name_archive //For admin things like possession
 
-	var/timeofdeath = 0.0
+	var/timeofdeath = 0
 
 	var/bodytemperature = 310.055	//98.7 F
 
@@ -99,15 +99,15 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/decl/move_intent/move_intent = /decl/move_intent/run
 	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
 
-	var/obj/buckled = null//Living
-	var/obj/item/l_hand = null//Living
-	var/obj/item/r_hand = null//Living
-	var/obj/item/weapon/back = null//Human/Monkey
-	var/obj/item/weapon/storage/s_active = null//Carbon
-	var/obj/item/clothing/mask/wear_mask = null//Carbon
+	var/obj/buckled //Living
+	var/obj/item/l_hand //Living
+	var/obj/item/r_hand //Living
+	var/obj/item/back //Human/Monkey
+	var/obj/item/storage/s_active //Carbon
+	var/obj/item/clothing/mask/wear_mask //Carbon
 
 
-	var/datum/hud/hud_used = null
+	var/datum/hud/hud_used
 
 	var/list/grabbed_by = list(  )
 	var/list/requests = list(  )
@@ -123,23 +123,23 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
 
-	var/datum/dna/dna = null//Carbon
+	var/datum/dna/dna //Carbon
 	var/list/active_genes=list()
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
-	var/radiation = 0.0//Carbon
+	var/radiation = 0//Carbon
 
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
 
-	var/blinded = null
-	var/ear_deaf = null		//Carbon
+	var/blinded
+	var/ear_deaf		//Carbon
 
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
-	var/mob/living/carbon/LAssailant = null
+	var/mob/living/carbon/LAssailant
 
 //Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
 	var/spell/list/spell_list = list()
@@ -150,7 +150,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
-	var/area/lastarea = null
+	var/area/lastarea
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 
@@ -162,9 +162,9 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	//If set, indicates that the client "belonging" to this (clientless) mob is currently controlling some other mob
 	//so don't treat them as being SSD even though their client var is null.
-	var/mob/teleop = null
+	var/mob/teleop
 
-	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
+	var/turf/listed_turf  	//the current turf being examined in the stat panel
 	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/mob_size = MOB_MEDIUM
@@ -172,7 +172,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/paralysis = 0
 	var/stunned = 0
 	var/weakened = 0
-	var/drowsyness = 0.0//Carbon
+	var/drowsyness = 0//Carbon
 
 	var/memory = ""
 	var/flavor_text = ""
@@ -186,13 +186,20 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/hud_override = FALSE //Override so a mob no longer calls their own HUD
 	var/defaultHUD = "" //Default mob hud
 
-	var/list/progressbars = null
+	var/list/progressbars
 
 
-	var/speed_factor = 1.0
+	var/speed_factor = 1
 
 	var/datum/stat_holder/stats
 
 	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.
 
 	var/can_be_fed = 1 //Can be feeded by reagent_container or other things
+
+	///The z level this mob is currently registered in
+	var/registered_z
+
+	bad_type = /mob
+
+	var/list/additional_vision_handlers = list() //Basically a list of atoms from which additional vision data is retrieved

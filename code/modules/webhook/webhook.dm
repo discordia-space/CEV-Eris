@@ -36,7 +36,7 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 
 
 /proc/send2adminchat(var/initiator, var/original_msg)
-	if(!config.webhook_url)
+	if (!config.webhook_url || !config.webhook_key)
 		return
 
 	var/list/adm = get_admin_counts()

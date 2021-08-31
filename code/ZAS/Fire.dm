@@ -9,7 +9,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 //#define FIREDBG
 #define MINIMUM_FUEL_VOLUME 0.0005 //Used to prevent leaving patches with astronomically tiny amounts of fuel
 
-/turf/var/obj/fire/fire = null
+/turf/var/obj/fire/fire
 
 //Some legacy definitions so fires can be started.
 atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -346,7 +346,7 @@ datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 			. = 1
 			break
 
-/datum/gas_mixture/proc/check_combustability(obj/effect/decal/cleanable/liquid_fuel/liquid=null)
+/datum/gas_mixture/proc/check_combustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	for(var/g in gas)
 		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)

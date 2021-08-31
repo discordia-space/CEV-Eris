@@ -92,6 +92,7 @@ What is the naming convention for planes or layers?
 #define LATTICE_LAYER 2.2
 #define DISPOSAL_PIPE_LAYER 2.3
 #define GAS_PIPE_HIDDEN_LAYER 2.35
+#define DUCT_LAYER 2.36
 #define WIRE_LAYER 2.4
 #define WIRE_TERMINAL_LAYER 2.45
 #define GAS_SCRUBBER_LAYER 2.46
@@ -182,3 +183,8 @@ What is the naming convention for planes or layers?
 /atom/proc/reset_plane_and_layer()
 	set_plane(original_plane)
 	layer = initial(layer)
+
+
+/image/proc/plating_decal_layerise()
+	plane = SPACE_LAYER
+	layer = TURF_PLATING_DECAL_LAYER

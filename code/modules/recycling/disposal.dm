@@ -119,8 +119,8 @@
 			return
 
 
-	if(istype(I, /obj/item/weapon/storage/bag))
-		var/obj/item/weapon/storage/bag/T = I
+	if(istype(I, /obj/item/storage/bag))
+		var/obj/item/storage/bag/T = I
 		to_chat(user, "\blue You empty the bag.")
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
@@ -144,7 +144,7 @@
 // mouse drop another mob or self
 //
 /obj/machinery/disposal/MouseDrop_T(atom/movable/A, mob/user)
-	if(istype(A, /mob))
+	if(ismob(A))
 		var/mob/target = A
 		if(user.stat || !user.canmove)
 			return
@@ -204,8 +204,8 @@
 		var/obj/item/I = A
 		if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
 			return ..()
-		if(istype(I, /obj/item/weapon/storage/bag/trash))
-			var/obj/item/weapon/storage/bag/trash/T = I
+		if(istype(I, /obj/item/storage/bag/trash))
+			var/obj/item/storage/bag/trash/T = I
 			to_chat(user, SPAN_NOTICE("You empty the bag."))
 			for(var/obj/item/O in T.contents)
 				T.remove_from_storage(O,src)
@@ -358,7 +358,7 @@
 
 // update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		icon_state = "disposal-broken"
 		mode = 0
@@ -367,7 +367,7 @@
 
 	// flush handle
 	if(flush)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
+		add_overlays(image('icons/obj/pipes/disposal.dmi', "dispover-handle"))
 
 	// only handle is shown if no power
 	if(stat & NOPOWER || mode == -1)
@@ -375,13 +375,13 @@
 
 	// 	check for items in disposal - occupied light
 	if(contents.len > 0)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
+		add_overlays(image('icons/obj/pipes/disposal.dmi', "dispover-full"))
 
 	// charging and ready light
 	if(mode == 1)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-charge")
+		add_overlays(image('icons/obj/pipes/disposal.dmi', "dispover-charge"))
 	else if(mode == 2)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-ready")
+		add_overlays(image('icons/obj/pipes/disposal.dmi', "dispover-ready"))
 
 // timed process
 // charge the gas reservoir and perform flush if ready
@@ -431,7 +431,7 @@
 /obj/machinery/disposal/proc/flush()
 
 	flushing = 1
-	flick("[icon_state]-flush", src)
+	FLICK("[icon_state]-flush", src)
 
 	var/wrapcheck = 0
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
@@ -888,14 +888,14 @@
 /obj/structure/disposalpipe/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			broken(0)
 			return
-		if(2.0)
+		if(2)
 			health -= rand(5,15)
 			healthcheck()
 			return
-		if(3.0)
+		if(3)
 			health -= rand(0,15)
 			healthcheck()
 			return
@@ -1473,7 +1473,7 @@
 	// called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(var/obj/structure/disposalholder/H)
 
-	flick("outlet-open", src)
+	FLICK("outlet-open", src)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)
 	sleep(20)	//wait until correct animation frame
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)

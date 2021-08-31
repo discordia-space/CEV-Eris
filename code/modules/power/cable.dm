@@ -35,7 +35,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	level = 1
-	anchored =1
+	anchored = TRUE
 	var/datum/powernet/powernet
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer"
@@ -90,13 +90,13 @@ var/list/possible_cable_coil_colours = list(
 
 	var/turf/T = src.loc			// hide if turf is not intact
 	if(level==1) hide(!T.is_plating())
-	cable_list += src //add it to the global cable list
+	GLOB.cable_list += src //add it to the global cable list
 
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
-	cable_list -= src							//remove it from global cable list
+	GLOB.cable_list -= src							//remove it from global cable list
 	. = ..()										// then go ahead and delete the cable
 
 ///////////////////////////////////
@@ -193,7 +193,7 @@ var/list/possible_cable_coil_colours = list(
 		else
 			coil.cable_join(src, user)
 
-	else if(istype(I, /obj/item/weapon/tool/multitool))
+	else if(istype(I, /obj/item/tool/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, SPAN_WARNING("[power_to_text(powernet.avail)] in power network."))
@@ -253,7 +253,7 @@ var/list/possible_cable_coil_colours = list(
 	return
 
 // shock the user with probability prb
-/obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
+/obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1)
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
@@ -267,14 +267,14 @@ var/list/possible_cable_coil_colours = list(
 //explosion handling
 /obj/structure/cable/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			if (prob(50))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
 				qdel(src)
 
-		if(3.0)
+		if(3)
 			if (prob(25))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
 				qdel(src)
@@ -528,6 +528,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
 	preloaded_reagents = list("copper" = 8, "plasticide" = 2)
+	rarity_value = 30
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -536,6 +538,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	matter = null
 	uses_charge = 1
 	charge_costs = list(1)
+	spawn_frequency = 0
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
@@ -564,9 +567,23 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		if(S.burn_dam)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
-				S.heal_damage(0,15,0,1)
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message(SPAN_DANGER("\The [user] patches some damaged wiring on \the [M]'s [S.name] with \the [src]."))
+				for(var/datum/wound/W in S.wounds)
+					if(W.internal)
+						return
+					if(W.damtype_sanitize() != BURN)
+						continue
+					if(!do_mob(user, M, W.damage/5))
+						to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+						break
+					if(!use(1))
+						to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
+						return
+					W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
+					to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+				S.update_damages()
+				if(S.burn_dam)
+					to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+				return
 			else if(S.open != 2)
 				to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 			return 1
@@ -577,7 +594,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return ..()
 
 
-/obj/item/stack/cable_coil/update_icon()
+/obj/item/stack/cable_coil/on_update_icon()
 	if (!color)
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)
@@ -629,7 +646,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		if(src.amount <= 14)
 			to_chat(usr, "\red You need at least 15 lengths to make restraints!")
 			return
-		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
+		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, SPAN_NOTICE("You wind some cable together to make some restraints."))
 		src.use(15)

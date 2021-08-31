@@ -12,14 +12,14 @@
 		wet = wet_val
 	if(!wet_overlay)
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
-		overlays += wet_overlay
+		add_overlays(wet_overlay)
 
 	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), rand(1 MINUTES, 1.5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
 	wet = 0
 	if(wet_overlay)
-		overlays -= wet_overlay
+		remove_overlays(wet_overlay)
 		wet_overlay = null
 
 
@@ -34,15 +34,27 @@
 
 //expects an atom containing the reagents used to clean the turf
 /turf/proc/clean(atom/source, mob/user)
+	var/amt = 0  // Amount of filth collected (for holy vacuum cleaner)
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				amt++
 				qdel(O)
+		if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/neat))
+			var/mob/living/carbon/human/H = user
+			if(H.sanity)
+				H.sanity.changeLevel(0.5)
 	else
 		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
+	return amt
 
+/turf/proc/clean_ultimate(var/mob/user)
+	clean_blood()
+	for(var/obj/effect/O in src)
+		if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			qdel(O)
 
 //As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
 /turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
@@ -110,8 +122,5 @@
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if( istype(M, /mob/living/carbon/alien ))
-		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
-	else if( istype(M, /mob/living/silicon/robot ))
+	if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)

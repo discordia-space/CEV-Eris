@@ -1,14 +1,11 @@
-//#define TESTING
-#if DM_VERSION < 506
-#warn This compiler is out of date. You may experience issues with projectile animations.
-#endif
-
 // Items that ask to be called every cycle.
-var/global/datum/datacore/data_core = null
+var/global/datum/datacore/data_core
 var/global/datum/DB_search/db_search = new()
 var/global/list/all_areas                = list()
-var/global/list/ship_areas                = list()
+var/global/list/ship_areas               = list()
 
+
+var/global/list/ships 	= list() // List of ships in the game.
 
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
@@ -16,26 +13,27 @@ var/global/list/ship_areas                = list()
 var/global/list/active_diseases          = list()
 var/global/list/med_hud_users            = list() // List of all entities using a medical HUD.
 var/global/list/sec_hud_users            = list() // List of all entities using a security HUD.
+var/global/list/excel_hud_users          = list() // List of all entities using an excelsior HUD.
 var/global/list/hud_icon_reference       = list()
 
 
 var/global/datum/universal_state/universe = new
 
-var/global/list/global_map = null
+var/global/list/global_map
 
 // Noises made when hit while typing.
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
-var/runtime_diary		= null
-var/diary               = null
-var/world_qdel_log		= null
-var/href_logfile        = null
+var/runtime_diary
+var/diary
+var/world_qdel_log
+var/href_logfile
 var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"
 var/const/boss_name     = "Central Command"
-var/const/boss_short    = "Centcomm"
+var/const/boss_short    = "Centcom"
 var/const/company_name  = "CEV Eris"
 var/const/company_short = "Eris"
 var/game_version        = "Discordia"
@@ -45,7 +43,7 @@ var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 var/round_progressing = 1
 var/master_storyteller       = "shitgenerator"
 
-var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
+var/host	//only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
 var/list/bombers       = list()
 var/list/admin_log     = list()
@@ -62,13 +60,13 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
 
-var/datum/configuration/config      = null
+var/datum/configuration/config
 
 var/Debug2 = 0
 
 var/gravity_is_on = 1
 
-var/join_motd = null
+var/join_motd
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 
@@ -82,7 +80,7 @@ var/sqlpass
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
-var/custom_event_msg = null
+var/custom_event_msg
 
 // Database connections. A connection is established on world creation.
 // Ideally, the connection dies when the server restarts (After feedback logging.).

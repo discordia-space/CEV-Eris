@@ -1,13 +1,15 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/inventory/eyes/icon.dmi'
+	spawn_tags = SPAWN_TAG_GLASSES
+	bad_type = /obj/item/clothing/glasses
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "black_goggles"
 	var/active = TRUE
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
-	var/obj/screen/overlay = null
-	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
+	var/obj/screen/overlay
+	var/obj/item/clothing/glasses/hud/hud	// Hud glasses, if any
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)

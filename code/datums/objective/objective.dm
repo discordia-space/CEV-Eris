@@ -160,3 +160,11 @@ var/global/list/all_objectives_types = null
 		return antag.get_targets()
 	else
 		return list()
+
+/datum/objective/proc/time2minutes(unit)
+	var/time = unit/(1 MINUTES)
+	return time
+
+/datum/objective/proc/time2hours(unit)
+	var/time = unit/(60 MINUTES)
+	return time

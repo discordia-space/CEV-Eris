@@ -1,13 +1,14 @@
 /*
  * Premade paper
  */
-/obj/item/weapon/paper/court
+/obj/item/paper/court
 	name = "Judgement"
-	info = {"For crimes against the station, the offender is sentenced to:
+	spawn_blacklisted = TRUE
+	info = {"For crimes against the ship, the offender is sentenced to:
 	\[br\]
 	\[br\]"}
 
-/obj/item/weapon/paper/toxin
+/obj/item/paper/toxin
 	name = "Chemical Information"
 	info = {"Known Onboard Toxins:
 	Grade A Semi-Liquid Plasma:
@@ -42,8 +43,9 @@
 	WARNING: It is a crime to use this without authorization
 	\[br\]"}
 
-/obj/item/weapon/paper/courtroom
+/obj/item/paper/courtroom
 	name = "A Crash Course in Legal SOP on SS13"
+	spawn_blacklisted = TRUE
 	info = {"\[b\]Roles:\[/b\]
 	The Detective is basically the investigator and prosecutor.
 	The Staff Assistant can perform these functions with written authority from the Detective.
@@ -90,11 +92,11 @@
 	TADA you're done. Security then executes the sentence and adds the applicable convictions to the person's record.
 	\[br\]"}
 
-/obj/item/weapon/paper/hydroponics
+/obj/item/paper/hydroponics
 	name = "Greetings from Billy Bob"
 	info = {"\[b\]Hey fellow botanist!\[/b\]
 	
-	I didn't trust the station folk so I left \
+	I didn't trust the ship folk so I left \
 	a couple of weeks ago. But here's some \
 	instructions on how to operate things here. \
 	You can grow plants and each iteration they become \
@@ -122,8 +124,9 @@
 	\[b\]All other plants need both.\[/b\]
 	\[br\]"}
 
-/obj/item/weapon/paper/djstation
+/obj/item/paper/djstation
 	name = "DJ Listening Outpost"
+	spawn_blacklisted = TRUE
 	info = {"\[b\]Welcome new owner!\[/b\]
 	
 	You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio fequencies. Here is a step by step guide to start listening in on those saucy radio channels:
@@ -132,8 +135,9 @@
 	<ul><li>145.7 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Mining Channel</li><li>134.7 - Cargo Channel</li>
 	\[br\]"}
 
-/obj/item/weapon/paper/jobs
+/obj/item/paper/jobs
 	name = "Job Information"
+	spawn_blacklisted = TRUE
 	info = {"Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.
 	The data will be in the following form.
 	Generally lower ranking positions come first in this list.
@@ -235,7 +239,7 @@
 	 3. Perform administrative duties.
 	\[br\]"}
 
-/obj/item/weapon/paper/sop
+/obj/item/paper/sop
 	name = "paper- 'Standard Operating Procedure'"
 	info = {"Alert Levels:
 	Blue- Emergency
@@ -297,7 +301,7 @@
 	Evacuate to a nearby safe area!
 	\[br\]"}
 
-/obj/item/weapon/paper/self_pacification
+/obj/item/paper/self_pacification
 	name = "Self-Pacification and You!"
 	info = {"\[h1\]\[center\]\[b\]Self-Pacification and You!\[/b\]\[/center\]\[/h1\]
 	As pursuant to \[b\]\"Hansa Property Rights For Detainees\"\[/b\], \[b\]Aster's \"Assembly Upon The Definition of Aggression\"\[/b\], and the good initiative of \[b\]IronHammer Command\[/b\]; these steps have been laid to better actuate your personal property rights while within indefinite detainment:

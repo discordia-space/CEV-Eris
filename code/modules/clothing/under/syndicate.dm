@@ -6,3 +6,4 @@
 	siemens_coefficient = 0.8
 	has_sensor = 0
 	price_tag = 50
+	spawn_blacklisted = TRUE

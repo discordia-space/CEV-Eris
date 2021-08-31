@@ -1,3 +1,11 @@
+GLOBAL_LIST_INIT(department_command, list(DEPARTMENT_COMMAND))
+GLOBAL_LIST_INIT(department_security, list(DEPARTMENT_SECURITY))
+GLOBAL_LIST_INIT(department_moebius, list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL))
+GLOBAL_LIST_INIT(department_engineering, list(DEPARTMENT_ENGINEERING))
+GLOBAL_LIST_INIT(department_guild, list(DEPARTMENT_GUILD))
+GLOBAL_LIST_INIT(department_church, list(DEPARTMENT_CHURCH))
+GLOBAL_LIST_INIT(department_civilian, list(DEPARTMENT_CIVILIAN))
+
 var/const/ENGINEERING       =(1<<0)
 var/const/IRONHAMMER        =(1<<1)
 var/const/MEDICAL           =(1<<2)
@@ -41,7 +49,7 @@ var/const/CLUBWORKER		=(1<<2)
 var/const/MERCHANT			=(1<<3)
 var/const/GUILDTECH			=(1<<4)
 var/const/MINER				=(1<<5)
-var/const/ACTOR				=(1<<6)
+var/const/ARTIST			=(1<<6)
 var/const/ASSISTANT			=(1<<7)
 
 
@@ -64,6 +72,9 @@ var/list/medical_positions = list(JOBS_MEDICAL)
 
 
 var/list/science_positions = list(JOBS_SCIENCE)
+
+
+var/list/moebius_positions = list(JOBS_MOEBIUS)
 
 //BS12 EDIT
 var/list/cargo_positions = list(JOBS_CARGO)

@@ -80,9 +80,8 @@
 /datum/department/civilian
 	name = "CEV Eris Civic"
 	id = DEPARTMENT_CIVILIAN
-	account_budget = 0
-	account_initial_balance = 0
-	//No standing balance is kept in the account, this is just for paying gardener, janitor and actor
+	account_budget = 2000
+	//Now for the club
 
 
 /******************
@@ -105,7 +104,8 @@
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
-	funding_type = FUNDING_EXTERNAL
+	account_budget = 4500 //each Neotheo has a wage of 900, this is enough to pay 5 paychecks before needing more cash
+	funding_type = FUNDING_NONE //The church on eris has no external funding. This further reinforces the theory that everyone on the CEV Eris is a reject of their factions
 	funding_source = "Church of NeoTheology"
 
 
@@ -125,3 +125,7 @@
 	account_initial_balance = 7500
 	funding_type = FUNDING_NONE
 
+/datum/department/offship //So we can pay the Club without giving them independant money
+	name = "Offship entities"
+	id = DEPARTMENT_OFFSHIP
+	account_budget = 0

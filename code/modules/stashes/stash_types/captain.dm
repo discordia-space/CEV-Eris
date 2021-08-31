@@ -11,26 +11,26 @@
 	contents_list_extra = list()
 	contents_list_random = list(/obj/item/clothing/head/space/capspace = 70,
 	/obj/item/clothing/suit/space/captain = 70,
-	/obj/item/weapon/tank/jetpack/oxygen = 55,
-	/obj/item/weapon/tool/chainofcommand = 65,
-	/obj/item/weapon/reagent_containers/food/drinks/flask = 50,
-	/obj/item/weapon/gun/energy/captain = 65,
-	/obj/item/weapon/card/id/captains_spare = 10,
+	/obj/item/tank/jetpack/oxygen = 55,
+	/obj/item/tool/chainofcommand = 65,
+	/obj/item/reagent_containers/food/drinks/flask = 50,
+	/obj/item/gun/energy/captain = 65,
+	/obj/item/card/id/captains_spare = 10,
 	/obj/item/clothing/under/captainformal = 65,
 	/obj/item/clothing/head/caphat/formal = 65,
 	/obj/item/device/radio/headset/heads/captain = 40,
-	/obj/item/weapon/bedsheet/captain = 30,
-	/obj/item/weapon/storage/backpack/satchel/captain = 40,
+	/obj/item/bedsheet/captain = 30,
+	/obj/item/storage/backpack/satchel/captain = 40,
 	/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 15,
 	/obj/item/modular_computer/tablet/lease/preset/command = 25,
-	/obj/item/weapon/stamp/captain = 35,
-	/obj/item/weapon/disk/nuclear = 15,
-	/obj/item/weapon/hand_tele = 25,
-	/obj/item/weapon/bluespace_harpoon = 15,
-	/obj/item/weapon/reagent_containers/hypospray = 15,
-	/obj/item/weapon/hatton = 15,
-	/obj/item/weapon/rcd = 15,
-	/obj/item/weapon/melee/telebaton = 15,
+	/obj/item/stamp/captain = 35,
+	/obj/item/disk/nuclear = 15,
+	/obj/item/hand_tele = 25,
+	/obj/item/bluespace_harpoon = 15,
+	/obj/item/reagent_containers/hypospray = 15,
+	/obj/item/hatton = 15,
+	/obj/item/rcd = 15,
+	/obj/item/melee/telebaton = 15,
 	/obj/item/clothing/suit/armor/greatcoat = 15)
 	weight = 0.2
 
@@ -72,7 +72,7 @@ And who better than that haughty thing in a dress uniform. Think I'll stick her 
  I will have them know I am neither aloof, nor foolish, nor hare-brained, nor all the other petty little words they call me!<br>\
  I will let them call me tyrant and monster! <br>\
 <br>\
-First, I will put the accouterments of my station somewhere safe. Then, I shall roam among the swine and take names of the ringleaders.<br>\
+First, I will put the accouterments of my ship somewhere safe. Then, I shall roam among the swine and take names of the ringleaders.<br>\
  Lastly, the airlocks will need to be waxed down, extra slick. Oh. But I admit, I can be prone to slips of the mind.<br>\
 <br>\
 %D, and godspeed my return."

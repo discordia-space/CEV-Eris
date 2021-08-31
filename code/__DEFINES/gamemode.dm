@@ -36,19 +36,17 @@
 #define ROLE_BANTYPE_INQUISITOR ROLE_INQUISITOR
 #define ROLE_BANTYPE_EXCELSIOR ROLE_EXCELSIOR_REV
 #define ROLE_BANTYPE_CARRION ROLE_CARRION
-#define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
 #define ROLE_BANTYPE_CREW_SIDED "crew_sided"
 #define ROLE_BANTYPE_BLITZ ROLE_BLITZ
 
 // antag template macros.
 #define ROLE_BORER "borer"
 #define ROLE_BORER_REPRODUCED "borer_r"
-#define ROLE_XENOMORPH "xeno"
 #define ROLE_LOYALIST "loyalist"
 #define ROLE_MUTINEER "mutineer"
 #define ROLE_COMMANDO "commando"
 #define ROLE_DEATHSQUAD "deathsquad"
-#define ROLE_ACTOR "actor"
+#define ROLE_ARTIST "artist"
 #define ROLE_MERCENARY "mercenary"
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
@@ -66,9 +64,10 @@
 
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
-#define FACTION_XENOMORPHS "xenomorphs"
 #define FACTION_SERBS	"serbians"
+#define FACTION_NEOTHEOLOGY	"neotheologists"
 
+#define ROLES_CONTRACT_VIEWONLY ROLE_MARSHAL
 #define ROLES_CONTRACT list(ROLE_TRAITOR,ROLE_CARRION,ROLE_BLITZ)
 #define ROLES_UPLINK_BASE list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY)
 
@@ -86,7 +85,7 @@
 #define GHOSTCAST		0x1		//can a ghost cast it?
 #define NEEDSCLOTHES	0x2		//does it need the wizard garb to cast? Nonwizard spells should not have this
 #define NEEDSHUMAN		0x4		//does it require the caster to be human?
-#define Z2NOCAST		0x8		//if this is added, the spell can't be cast at centcomm
+#define Z2NOCAST		0x8		//if this is added, the spell can't be cast at centcom
 #define STATALLOWED		0x10	//if set, the user doesn't have to be conscious to cast. Required for ghost spells
 #define IGNOREPREV		0x20	//if set, each new target does not overlap with the previous one
 //The following flags only affect different types of spell, and therefore overlap

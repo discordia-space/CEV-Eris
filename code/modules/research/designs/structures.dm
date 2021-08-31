@@ -2,6 +2,9 @@
 /datum/design/research/structure/bidon
 	build_type = AUTOLATHE | PROTOLATHE	// here should be machine that prints structures
 
+/datum/design/research/structure/bidonadv
+	build_type = AUTOLATHE | PROTOLATHE
+
 /datum/design/research/structure/bidon
 	name = "B.I.D.O.N. canister"
 	desc = "Bulk Industrial Dispenser Omnitech-Nanochem. A canister with acid-resistant linings intended for handling big volumes."

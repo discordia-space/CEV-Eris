@@ -5,7 +5,7 @@
 	name = "omni gas mixer"
 	icon_state = "map_mixer"
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 3700			//3700 W ~ 5 HP
 
@@ -179,11 +179,12 @@
 			if(!configuring)
 				use_power = !use_power
 			else
-				use_power = 0
+				use_power = NO_POWER_USE
+			investigate_log("was [use_power ? "enabled" : "disabled"] by [key_name(usr)]", "atmos")
 		if("configure")
 			configuring = !configuring
 			if(configuring)
-				use_power = 0
+				use_power = NO_POWER_USE
 
 	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
 	if(configuring && !use_power)
@@ -197,6 +198,8 @@
 				change_concentration(dir_flag(href_list["dir"]))
 			if("switch_conlock")
 				con_lock(dir_flag(href_list["dir"]))
+		if((href_list["command"]))
+			investigate_log("had it's settings modified by [key_name(usr)]", "atmos")
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	update_icon()

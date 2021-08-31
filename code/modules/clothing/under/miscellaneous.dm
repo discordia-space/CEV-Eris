@@ -42,7 +42,6 @@
 	desc = "rainbow"
 	icon_state = "rainbow"
 	item_state = "rainbow"
-	style = 2
 
 
 /obj/item/clothing/under/rank/fo_suit
@@ -105,7 +104,6 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	item_state = "kilt"
-	style = 2
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -122,7 +120,6 @@
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_state = "nursesuit"
-	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 
@@ -152,7 +149,6 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
-	style = 2
 
 /obj/item/clothing/under/dress
 	name = "gray summerdress"
@@ -195,7 +191,6 @@ obj/item/clothing/under/neon
 	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
 	icon_state = "neon"
 	item_state = "bl_suit"
-	style = 2
 
 obj/item/clothing/under/neon/yellow
 	name = "yellow neon tracksuit"
@@ -226,3 +221,146 @@ obj/item/clothing/under/cyber
 	desc = "I wanted a jumpsuit. It gave me THIS."
 	icon_state = "cyber"
 	item_state = "cyber"
+
+obj/item/clothing/under/genericb
+	name = "blue generic outfit"
+	desc = "A simple blue shirt with brown pants."
+	icon_state = "genericb"
+	item_state = "genericb"
+
+obj/item/clothing/under/genericw
+	name = "white generic outfit"
+	desc = "A simple white shirt with grey pants."
+	icon_state = "genericw"
+	item_state = "genericw"
+
+obj/item/clothing/under/genericr
+	name = "red generic outfit"
+	desc = "A simple red shirt with black pants."
+	icon_state = "genericr"
+	item_state = "genericr"
+
+/obj/item/clothing/under/gnome
+	name = "gnome outfit"
+	desc = "Against the gnome there is no reception, if there is no other gnomes."
+	icon_state = "gnome"
+	item_state = "gnome"
+	style = STYLE_HIGH
+
+/obj/item/clothing/under/tuxedo
+	name = "tuxedo"
+	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
+	icon_state = "tuxedo"
+	style = STYLE_HIGH
+	price_tag = 300
+
+//stylish vendor clothes
+/obj/item/clothing/under/white
+	name = "ivory white outfit"
+	desc = "White suit, white pants and a white tie. Very stylish."
+	icon_state = "suit_white"
+	item_state = "suit_white"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/red
+	name = "blood red outfit"
+	desc = "Red suit, red pants and a red tie. Very stylish."
+	icon_state = "suit_red"
+	item_state = "suit_red"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/green
+	name = "questionable outfit"//Riddler reference, you probably knew that
+	desc = "Green suit, green pants and a green tie. Quite a riddle to solve."
+	icon_state = "riddler"
+	item_state = "riddler"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/grey
+	name = "ash grey outfit"
+	desc = "Grey suit, grey pants and a grey tie. Very stylish."
+	icon_state = "suit_grey"
+	item_state = "suit_grey"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/black
+	name = "charcoal black outfit"
+	desc = "Black suit, black pants and a black tie. Very stylish."
+	icon_state = "suit_black"
+	item_state = "suit_black"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/dress
+	name = "black and purple dress"
+	desc = "A black and purple dress, quite stylish"
+	icon_state = "black_purple"
+	item_state = "black_purple"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/dress/white
+	name = "white and yellow dress"
+	desc = "A white and yellow dress, quite stylish"
+	icon_state = "white_yellow"
+	item_state = "white_yellow"
+	style = STYLE_HIGH
+	price_tag = 450
+
+
+/obj/item/clothing/under/helltaker
+	name = "charming outfit"//Helltaker reference
+	desc = "A red shirt with a black tie and black pants. Stylish enough to impress the devil."
+	icon_state = "helltaker"
+	item_state = "helltaker"
+	style = STYLE_HIGH
+	price_tag = 450
+
+/obj/item/clothing/under/johnny
+	name = "rockerboy outfit"//Cyberpunk 2077, Johnny Silverhand's outfit
+	desc = "A padded vest with brown leather pants. Never stop fightin'"
+	icon_state = "johnny"
+	item_state = "johnny"
+	style = STYLE_HIGH
+	price_tag = 600
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/under/raider
+	name = "leather outfit"
+	desc = "A rather resistant, generic leather outfit. Smells like waste"
+	icon_state = "raider"
+	item_state = "raider"
+	style = STYLE_HIGH
+	price_tag = 600
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+
+//Adminbus versions with extremly high armor, should never spawn in game
+/obj/item/clothing/under/tuxedo/adminspawn
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 60,
+		bullet = 65,
+		energy = 60,
+		bomb = 75,
+		bio = 100,
+		rad = 30
+	)

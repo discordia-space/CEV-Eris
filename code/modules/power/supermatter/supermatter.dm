@@ -16,7 +16,7 @@
 */
 
 //This is the main parameter for tweaking SM balance, as it basically controls how the power variable relates to the rest of the game.
-#define POWER_FACTOR 1.0
+#define POWER_FACTOR 1
 #define DECAY_FACTOR 700			//Affects how fast the supermatter power decays
 #define CRITICAL_TEMPERATURE 5000	//K
 #define CHARGING_FACTOR 0.05
@@ -38,7 +38,7 @@
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	light_range = 4
 
 	var/gasefficency = 0.25
@@ -267,7 +267,7 @@
 
 	for(var/mob/living/carbon/human/H in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
 		if(!istype(H.glasses, /obj/item/clothing/glasses/powered/meson))
-			if (!(istype(H.wearing_rig, /obj/item/weapon/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/powered/meson)))
+			if (!(istype(H.wearing_rig, /obj/item/rig) && istype(H.wearing_rig.getCurrentGlasses(), /obj/item/clothing/glasses/powered/meson)))
 				var/effect = max(0, min(200, power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)))) )
 				H.adjust_hallucination(effect, 0.25*effect)
 				H.add_side_effect("Headache", 11)
@@ -348,10 +348,10 @@
 		var/distance = get_dist(R, src)
 		if(distance <= 15)
 			//for collectors using standard plasma tanks at 1013 kPa, the actual power generated will be this transfer_energy*20*29 = transfer_energy*580
-			R.receive_pulse(transfer_energy * (min(3/distance, 1))**2)
+			R.receive_pulse(transfer_energy * (min(3/(distance != 0 ? distance : 1), 1))**2)
 
 
-/obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/power/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
 
 	/*
 		Repairing the supermatter with duct tape, for meme value

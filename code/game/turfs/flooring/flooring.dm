@@ -25,6 +25,7 @@ var/list/flooring_types
 
 	var/footstep_sound = "floor"
 	var/hit_sound = null
+	var/footstep_type
 
 	var/has_base_range
 	var/has_damage_range
@@ -131,7 +132,7 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS
+	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
 	footstep_sound = "grass"
@@ -143,7 +144,7 @@ var/list/flooring_types
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_base = "dirt"
-	flags = TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL | TURF_HIDES_THINGS
 	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
 	footstep_sound = "gravel"
 
@@ -233,21 +234,21 @@ var/list/flooring_types
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
 				T.contents += CT
 
-/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
+/decl/flooring/reinforced/plating/under/get_plating_type(turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
 	else if (turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating
 	else return null
 
-/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
+/decl/flooring/reinforced/plating/under/get_plating_type(turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
 	else if (turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating
 	else return null
 
-/decl/flooring/reinforced/plating/under/Entered(mob/living/M as mob)
+/decl/flooring/reinforced/plating/under/Entered(mob/living/M)
 	for(var/obj/structure/catwalk/C in get_turf(M))
 		return
 

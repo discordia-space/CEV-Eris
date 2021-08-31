@@ -174,7 +174,7 @@ var/global/ManifestJSON
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
-	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
+	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1) && H.job != "VagaBond")
 		var/assignment = GetAssignment(H)
 
 		var/id = generate_record_id()
@@ -185,7 +185,8 @@ var/global/ManifestJSON
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
-		G.fields["pay_account"]	= H.mind.initial_account.account_number
+		if(H.mind.initial_account)
+			G.fields["pay_account"]	= H.mind.initial_account.account_number ? H.mind.initial_account.account_number : "N/A"
 		G.fields["email"]		= H.mind.initial_email_login["login"]
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
@@ -290,7 +291,7 @@ var/global/ManifestJSON
 	G.fields["fingerprint"] = "Unknown"
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
-	G.fields["species"] = "Human"
+	G.fields["species"] = SPECIES_HUMAN
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side
 	G.fields["notes"] = "No notes found."

@@ -6,7 +6,7 @@
 	slot_flags = SLOT_BELT
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
-	var/turn_on_sound = null
+	var/turn_on_sound
 
 /obj/item/device/lighting/attack_self(var/mob/living/user)
 	turn_on(user)

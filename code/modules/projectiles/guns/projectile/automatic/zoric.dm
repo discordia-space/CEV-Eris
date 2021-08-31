@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/zoric
+/obj/item/gun/projectile/automatic/zoric
 	name = "SA SMG .40 Magnum \"Zoric\""
 	desc = "A Heavy Submachine Gun made by \"Serbian Arms\", for paramilitary and private security use. \
 			Rifled to take a larger caliber than a typical submachine gun, it boasts a greater impact, but suffers \
@@ -8,16 +8,17 @@
 	icon_state = "zoric"
 	item_state = "zoric"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
+	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
+	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 1	 // 34 lethal
 	penetration_multiplier = 0.5 // 7.5 lethal
-	recoil_buildup = 7
+	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 
@@ -26,14 +27,14 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/weapon/gun/projectile/automatic/zoric/update_icon()
-	overlays.Cut()
+/obj/item/gun/projectile/automatic/zoric/on_update_icon()
+	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)
-		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
+		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide[silenced ? "_s" : ""]"
+		add_overlays("slide[silenced ? "_s" : ""]")
 
-/obj/item/weapon/gun/projectile/automatic/zoric/Initialize()
+/obj/item/gun/projectile/automatic/zoric/Initialize()
 	. = ..()
 	update_icon()

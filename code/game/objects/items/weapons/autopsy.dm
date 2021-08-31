@@ -2,7 +2,7 @@
 //moved these here from code/defines/obj/weapon.dm
 //please preference put stuff where it's easy to find - C
 
-/obj/item/weapon/autopsy_scanner
+/obj/item/autopsy_scanner
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/autopsy_scanner.dmi'
@@ -10,23 +10,24 @@
 	flags = CONDUCT
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+	rarity_value = 50
 	var/list/datum/autopsy_data_scanner/wdata = list()
 	var/list/datum/autopsy_data_scanner/chemtraces = list()
-	var/target_name = null
-	var/timeofdeath = null
+	var/target_name
+	var/timeofdeath
 
-/obj/item/weapon/paper/autopsy_report
+/obj/item/paper/autopsy_report
 	var/list/autopsy_data
 
 /datum/autopsy_data_scanner
-	var/weapon = null // this is the DEFINITE weapon type that was used
+	var/weapon // this is the DEFINITE weapon type that was used
 	var/list/organs_scanned = list() // this maps a number of scanned organs to
 									 // the wounds to those organs with this data's weapon type
 	var/organ_names = ""
 
 /datum/autopsy_data
-	var/weapon = null
-	var/pretend_weapon = null
+	var/weapon
+	var/pretend_weapon
 	var/damage = 0
 	var/hits = 0
 	var/time_inflicted = 0
@@ -40,7 +41,7 @@
 		W.time_inflicted = time_inflicted
 		return W
 
-/obj/item/weapon/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O, mob/living/carbon/user)
+/obj/item/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O, mob/living/carbon/user)
 	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
 
 	for(var/V in O.autopsy_data)
@@ -78,7 +79,7 @@
 		if(O.trace_chemicals[V] > 0 && !chemtraces.Find(V))
 			chemtraces += V
 
-/obj/item/weapon/autopsy_scanner/verb/print_data()
+/obj/item/autopsy_scanner/verb/print_data()
 	set category = "Object"
 	set src in view(usr, 1)
 	set name = "Print Data"
@@ -160,7 +161,7 @@
 
 	sleep(10)
 
-	var/obj/item/weapon/paper/autopsy_report/P = new(usr.loc)
+	var/obj/item/paper/autopsy_report/P = new(usr.loc)
 	P.name = "Autopsy Data ([target_name])"
 	P.info = "<tt>[scan_data]</tt>"
 	P.autopsy_data = list() // Copy autopsy data for science tool
@@ -175,12 +176,11 @@
 	usr.put_in_hands(P)
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4) //To stop people spamclicking and generating tons of paper
 
-
-/obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/autopsy_scanner/attack(mob/living/carbon/human/M, mob/living/carbon/user)
 	if(!istype(M))
 		return
 
-	if(!can_operate(M, user))
+	if(!can_operate(M, user) == CAN_OPERATE_ALL)
 		to_chat(user, SPAN_WARNING("You need to lay the cadaver down on a table first!"))
 		return
 
@@ -202,11 +202,12 @@
 		return
 	for(var/mob/O in viewers(M))
 		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)
-
+	SEND_SIGNAL(user, COMSING_AUTOPSY, M)
+	if(user.mind && user.mind.assigned_job && (user.mind.assigned_job.department in GLOB.department_moebius))
+		GLOB.moebius_autopsies_mobs |= M
 	src.add_data(S, user)
 
 	return 1
 
-
-/obj/item/weapon/autopsy_scanner/attack_self()
+/obj/item/autopsy_scanner/attack_self()
 	print_data()

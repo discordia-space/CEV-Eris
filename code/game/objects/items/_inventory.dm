@@ -52,8 +52,6 @@
 			user.drop_from_inventory(equipped)
 			equipped.forceMove(src)
 
-
-
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	equip_slot = slot
 	if(user.pulling == src)
@@ -66,8 +64,8 @@
 		user.r_hand.update_twohanding()
 	if(wielded)
 		unwield(user)
-
-
+	SEND_SIGNAL(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
+	SEND_SIGNAL(src, COMSIG_CLOTH_EQUIPPED)
 
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc

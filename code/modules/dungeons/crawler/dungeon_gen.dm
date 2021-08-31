@@ -6,7 +6,7 @@
 	alpha = 120
 	anchored = TRUE
 	unacidable = 1
-	simulated = 0
+	simulated = FALSE
 	invisibility = 101
 	var/max_x = 8 //if we ever make more than 4x4 dungeon run map, instead of making new procs for generation, we can just edit those vars - edit 16 x 16
 	var/max_y = 8

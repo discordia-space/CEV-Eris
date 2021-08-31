@@ -5,7 +5,7 @@
 	var/volume = 0
 
 	layer = GAS_PIPE_HIDDEN_LAYER
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/alert_pressure = 80*ONE_ATMOSPHERE
 		//minimum pressure before check_pressure(...) should be called
@@ -97,6 +97,7 @@
 				SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 				SPAN_NOTICE("You have unfastened \the [src]."), \
 				"You hear a ratchet.")
+			investigate_log("was unfastened by [key_name(user)]", "atmos")
 			new /obj/item/pipe(loc, make_from=src)
 			for (var/obj/machinery/meter/meter in T)
 				if (meter.target == src)
@@ -243,13 +244,13 @@
 	if(node2)
 		node2.update_underlays()
 
-/obj/machinery/atmospherics/pipe/simple/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/simple/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
 	alpha = 255
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(!node1 && !node2)
 		var/turf/T = get_turf(src)
@@ -260,9 +261,9 @@
 				qdel(meter)
 		qdel(src)
 	else if(node1 && node2)
-		overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]intact[icon_connect_type]")
+		add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]intact[icon_connect_type]"))
 	else
-		overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]exposed[node1?1:0][node2?1:0][icon_connect_type]")
+		add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]exposed[node1?1:0][node2?1:0][icon_connect_type]"))
 
 /obj/machinery/atmospherics/pipe/simple/update_underlays()
 	return
@@ -494,7 +495,7 @@
 	if(node3)
 		node3.update_underlays()
 
-/obj/machinery/atmospherics/pipe/manifold/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/manifold/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -509,9 +510,9 @@
 				qdel(meter)
 		qdel(src)
 	else
-		overlays.Cut()
-		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "core" + icon_connect_type)
-		overlays += icon_manager.get_atmos_icon("manifold", , , "clamps" + icon_connect_type)
+		cut_overlays()
+		add_overlays(icon_manager.get_atmos_icon("manifold", , pipe_color, "core" + icon_connect_type))
+		add_overlays(icon_manager.get_atmos_icon("manifold", , , "clamps" + icon_connect_type))
 		underlays.Cut()
 
 		var/turf/T = get_turf(src)
@@ -742,7 +743,7 @@
 	if(node4)
 		node4.update_underlays()
 
-/obj/machinery/atmospherics/pipe/manifold4w/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/manifold4w/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -757,9 +758,9 @@
 				qdel(meter)
 		qdel(src)
 	else
-		overlays.Cut()
-		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "4way" + icon_connect_type)
-		overlays += icon_manager.get_atmos_icon("manifold", , , "clamps_4way" + icon_connect_type)
+		cut_overlays()
+		add_overlays(icon_manager.get_atmos_icon("manifold", , pipe_color, "4way" + icon_connect_type))
+		add_overlays(icon_manager.get_atmos_icon("manifold", , , "clamps_4way" + icon_connect_type))
 		underlays.Cut()
 
 		/*
@@ -971,14 +972,14 @@
 	if(node)
 		node.update_underlays()
 
-/obj/machinery/atmospherics/pipe/cap/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/cap/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
 	alpha = 255
 
-	overlays.Cut()
-	overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "cap")
+	cut_overlays()
+	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "cap"))
 
 /obj/machinery/atmospherics/pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
@@ -1236,7 +1237,7 @@
 /obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)
 
-/obj/machinery/atmospherics/pipe/vent/update_icon()
+/obj/machinery/atmospherics/pipe/vent/on_update_icon()
 	if(node1)
 		icon_state = "intact"
 
@@ -1280,14 +1281,14 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
 	icon_state = "map_universal"
 
-/obj/machinery/atmospherics/pipe/simple/visible/universal/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/simple/visible/universal/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
 	alpha = 255
 
-	overlays.Cut()
-	overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "universal")
+	cut_overlays()
+	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "universal"))
 	underlays.Cut()
 
 	if (node1)
@@ -1317,14 +1318,14 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
 	icon_state = "map_universal"
 
-/obj/machinery/atmospherics/pipe/simple/hidden/universal/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/simple/hidden/universal/on_update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
 
 	alpha = 255
 
-	overlays.Cut()
-	overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "universal")
+	cut_overlays()
+	add_overlays(icon_manager.get_atmos_icon("pipe", , pipe_color, "universal"))
 	underlays.Cut()
 
 	if (node1)

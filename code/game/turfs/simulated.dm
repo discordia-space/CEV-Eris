@@ -71,6 +71,12 @@
 
 				bloodDNA = null
 
+			var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+			if(C && C.active)
+				var/obj/item/cruciform_upgrade/upgrade = C.upgrade
+				if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_CLEANSING_PSESENCE))
+					clean_ultimate(H)
+
 		if(src.wet)
 
 			if(M.buckled || (src.wet == 1 && MOVING_DELIBERATELY(M)))
@@ -89,6 +95,12 @@
 					floor_type = "icy"
 					slip_stun = 4
 
+			if(locate(/obj/structure/multiz/ladder) in get_turf(M.loc))  // Avoid slipping on ladder tiles
+				visible_message(SPAN_DANGER("\The [M] supports themself with the ladder to avoid slipping."))
+				return ..()
+			if(locate(/obj/structure/multiz/stairs) in get_turf(M.loc))  // Avoid slipping on stairs tiles
+				visible_message(SPAN_DANGER("\The [M] supports themself with the handrail to avoid slipping."))
+				return ..()
 			if(M.slip("the [floor_type] floor",slip_stun))
 				for(var/i = 0;i<slip_dist;i++)
 					step(M, M.dir)

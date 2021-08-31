@@ -1,3 +1,6 @@
+/obj/item/clothing/under/color
+	bad_type = /obj/item/clothing/under/color
+
 /obj/item/clothing/under/color/black
 	name = "black jumpsuit"
 	initial_name = "black jumpsuit"
@@ -83,7 +86,6 @@
 	desc = "aqua"
 	icon_state = "aqua"
 	item_state = "b_suit"
-	style = 2
 
 
 /obj/item/clothing/under/purple

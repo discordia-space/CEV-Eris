@@ -12,7 +12,7 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 
-	var/id = 1.0
+	var/id = 1
 	layer = BLASTDOOR_LAYER
 	open_layer = BLASTDOOR_LAYER
 	closed_layer = CLOSED_BLASTDOOR_LAYER
@@ -56,11 +56,11 @@
 // Proc: update_icon()
 // Parameters: None
 // Description: Updates icon of this object. Uses icon state variables.
-/obj/machinery/door/blast/update_icon()
+/obj/machinery/door/blast/on_update_icon()
 	if(density)
-		icon_state = icon_state_closed
+		SetIconState(icon_state_closed)
 	else
-		icon_state = icon_state_open
+		SetIconState(icon_state_open)
 	return
 
 // Proc: force_open()
@@ -68,7 +68,7 @@
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
-	flick(icon_state_opening, src)
+	FLICK(icon_state_opening, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
 	src.density = FALSE
 	update_nearby_tiles()
@@ -84,7 +84,7 @@
 /obj/machinery/door/blast/proc/force_close()
 	src.operating = 1
 	src.layer = closed_layer
-	flick(icon_state_closing, src)
+	FLICK(icon_state_closing, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
 	src.density = TRUE
 	update_nearby_tiles()

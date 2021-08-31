@@ -38,14 +38,19 @@
 	new /obj/item/clothing/mask/luchador/rudos(src)
 	new /obj/item/clothing/mask/luchador/tecnicos(src)
 
+/obj/structure/closet/lasertag
+	bad_type = /obj/structure/closet/lasertag
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_CLOSET_LASERTAG
+
 /obj/structure/closet/lasertag/red
 	name = "red laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_door = "red"
 
 /obj/structure/closet/lasertag/red/populate_contents()
-	new /obj/item/weapon/gun/energy/lasertag/red(src)
-	new /obj/item/weapon/gun/energy/lasertag/red(src)
+	new /obj/item/gun/energy/lasertag/red(src)
+	new /obj/item/gun/energy/lasertag/red(src)
 	new /obj/item/clothing/suit/redtag(src)
 	new /obj/item/clothing/suit/redtag(src)
 
@@ -56,7 +61,7 @@
 	icon_door = "blue"
 
 /obj/structure/closet/lasertag/blue/populate_contents()
-	new /obj/item/weapon/gun/energy/lasertag/blue(src)
-	new /obj/item/weapon/gun/energy/lasertag/blue(src)
+	new /obj/item/gun/energy/lasertag/blue(src)
+	new /obj/item/gun/energy/lasertag/blue(src)
 	new /obj/item/clothing/suit/bluetag(src)
 	new /obj/item/clothing/suit/bluetag(src)

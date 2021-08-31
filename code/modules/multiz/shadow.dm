@@ -39,7 +39,7 @@
 	icon = M.icon
 	icon_state = M.icon_state
 	color = M.color
-	overlays = M.overlays
+	set_overlays(M.overlays)
 	transform = M.transform
 	dir = M.dir
 	if(shadow)

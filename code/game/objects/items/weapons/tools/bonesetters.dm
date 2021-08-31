@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/bonesetter
+/obj/item/tool/bonesetter
 	name = "bone setter"
 	icon_state = "bone setter"
 	item_state = "bone_setter"
@@ -7,3 +7,4 @@
 	flags = CONDUCT
 	attack_verb = list("attacked", "hit", "bludgeoned")
 	tool_qualities = list(QUALITY_BONE_SETTING = 30)
+	spawn_tags = SPAWN_TAG_SURGERY_TOOL

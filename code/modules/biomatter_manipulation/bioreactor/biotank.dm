@@ -27,8 +27,6 @@
 	var/pipes_opened = FALSE
 	var/pipes_cleanness = 100
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/bioreactor_biotank
-
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
 	. = ..()
@@ -58,10 +56,10 @@
 			to_chat(user, SPAN_NOTICE("Pipes looks clean."))
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
-	overlays.Cut()
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/on_update_icon()
+	cut_overlays()
 	if(pipes_cleanness <= 90)
-		overlays += "[icon_state]-dirty_[get_dirtiness_level()]"
+		add_overlays("[icon_state]-dirty_[get_dirtiness_level()]")
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Process()
@@ -72,9 +70,9 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/mop))
+	if(istype(I, /obj/item/mop))
 		var/dirtiness_lvl = get_dirtiness_level()
-		to_chat(user, SPAN_NOTICE("You begin cleaning pipes with your [I]... O-of, what a smell!"))
+		to_chat(user, SPAN_NOTICE("You begin cleaning pipes with [I]... O-of, what a smell!"))
 		if(do_after(user, CLEANING_TIME * dirtiness_lvl, src))
 			to_chat(user, SPAN_NOTICE("You cleaned up the pipes."))
 			pipes_cleanness = initial(pipes_cleanness)
@@ -90,8 +88,9 @@
 	..()
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/take_amount(var/amount)
-	biotank.reagents.add_reagent("biomatter", amount)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/take_amount(new_amount)
+	biotank.reagents.add_reagent("biomatter", new_amount)
+	GLOB.biomatter_neothecnology_amt += new_amount
 
 
 //Pipe wearout. Wearout var - is amount of 'dirt' that will be applied to our pipes
@@ -144,11 +143,11 @@
 	return ..()
 
 
-/obj/structure/biomatter_tank/update_icon()
-	overlays.Cut()
+/obj/structure/biomatter_tank/on_update_icon()
+	cut_overlays()
 	if(canister && platform.pipes_opened)
 		var/image/pipe_overlay = image(icon = 'icons/obj/machines/bioreactor.dmi', icon_state = "port-pipe", pixel_y = -9)
-		overlays += pipe_overlay
+		add_overlays(pipe_overlay)
 
 
 /obj/structure/biomatter_tank/attack_hand(mob/user)
@@ -173,7 +172,7 @@
 		playsound(loc, 'sound/machines/Custom_blastdoorclose.ogg', 100, 1)
 
 
-/obj/structure/biomatter_tank/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/biomatter_tank/attackby(obj/item/I, mob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
@@ -184,14 +183,16 @@
 				to_chat(user, SPAN_WARNING("Nothing to connect to!"))
 				return
 			var/turf/user_interaction_loc = user.loc
+			var/set_canister = FALSE
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				if(canister)
-					unset_canister(canister)
+					set_canister = unset_canister(canister)
 				else
-					set_canister(possible_canister)
-				to_chat(user, SPAN_NOTICE("You [canister ? "connect [canister] to" : "disconnect [canister] from"] [src]."))
-				toxin_attack(user, rand(5, 15))
-			else
+					set_canister = set_canister(possible_canister)
+				if(set_canister)
+					to_chat(user, SPAN_NOTICE("You [canister ? "connect [canister] to" : "disconnect [canister] from"] [src]."))
+					toxin_attack(user, rand(5, 15))
+			if(!set_canister)
 				to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 				shake_animation()
 				if(reagents.total_volume)
@@ -199,20 +200,27 @@
 					spill_biomass(user_interaction_loc)
 			update_icon()
 
-
 /obj/structure/biomatter_tank/proc/set_canister(obj/target_tank)
-	target_tank.anchored = TRUE
+	. = target_tank.set_anchored(TRUE)
+	if(!.)
+		return FALSE
+	target_tank.can_anchor = FALSE
 	canister = target_tank
 	platform.MS_bioreactor.metrics_screen.icon_state = "screen_process"
-	flick("screen_activation", platform.MS_bioreactor.metrics_screen)
+	FLICK("screen_activation", platform.MS_bioreactor.metrics_screen)
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
-
+	. = TRUE
 
 /obj/structure/biomatter_tank/proc/unset_canister(obj/target_tank)
-	target_tank.anchored = FALSE
+	target_tank.can_anchor = TRUE
+	. = target_tank.set_anchored(FALSE)
+	if(!.)
+		target_tank.can_anchor = FALSE
+		return FALSE
 	canister = null
 	platform.MS_bioreactor.metrics_screen.icon_state = initial(platform.MS_bioreactor.metrics_screen.icon_state)
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
+	. = TRUE
 
 
 #undef DIRT_LVL_LOW

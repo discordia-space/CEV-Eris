@@ -24,14 +24,14 @@ Thus, the two variables affect pump operation are set in New():
 
 	//var/max_volume_transfer = 10000
 
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
 	var/max_pressure_setting = 15000	//kPa
 
 	var/frequency = 0
-	var/id = null
+	var/id
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/pump/New()
@@ -41,10 +41,10 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/on
 	icon_state = "map_on"
-	use_power = 1
+	use_power = IDLE_POWER_USE
 
 
-/obj/machinery/atmospherics/binary/pump/update_icon()
+/obj/machinery/atmospherics/binary/pump/on_update_icon()
 	if(!powered())
 		icon_state = "off"
 	else
@@ -154,11 +154,13 @@ Thus, the two variables affect pump operation are set in New():
 
 	if(signal.data["power"])
 		if(text2num(signal.data["power"]))
-			use_power = 1
+			use_power = IDLE_POWER_USE
 		else
-			use_power = 0
+			use_power = NO_POWER_USE
+		investigate_log("was [use_power ? "enabled" : "disabled"] by a remote signal", "atmos")
 
 	if("power_toggle" in signal.data)
+		investigate_log("was [use_power ? "disabled" : "enabled"] by a remote signal", "atmos")
 		use_power = !use_power
 
 	if(signal.data["set_output_pressure"])
@@ -167,6 +169,7 @@ Thus, the two variables affect pump operation are set in New():
 			text2num(signal.data["set_output_pressure"]),
 			ONE_ATMOSPHERE*50
 		)
+		investigate_log("had it's pressure changed to [target_pressure] by a remote signal", "atmos")
 
 	if(signal.data["status"])
 		spawn(2)
@@ -193,6 +196,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(..()) return 1
 
 	if(href_list["power"])
+		investigate_log("was [use_power ? "disabled" : "enabled"] by a [key_name(usr)]", "atmos")
 		use_power = !use_power
 
 	switch(href_list["set_press"])
@@ -203,6 +207,8 @@ Thus, the two variables affect pump operation are set in New():
 		if ("set")
 			var/new_pressure = input(usr, "Enter new output pressure (0-[max_pressure_setting]kPa)", "Pressure control", src.target_pressure) as num
 			src.target_pressure = between(0, new_pressure, max_pressure_setting)
+	if(href_list["set_press"])
+		investigate_log("had it's pressure changed to [target_pressure] by [key_name(usr)]", "atmos")
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	usr.set_machine(src)
@@ -234,5 +240,6 @@ Thus, the two variables affect pump operation are set in New():
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
 			"You hear ratchet.")
+		investigate_log("was unfastened by [key_name(user)]", "atmos")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)

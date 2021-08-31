@@ -1,4 +1,4 @@
-/obj/item/weapon/oddity/secdocs
+/obj/item/oddity/secdocs
 	name = "science data"
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/oddities.dmi'
@@ -13,7 +13,7 @@
 
 	var/static/inv_spawn_count = 3
 
-/obj/item/weapon/oddity/secdocs/Initialize()
+/obj/item/oddity/secdocs/Initialize()
 	icon_state = "folder-[pick("omega","psi","theta")]"
 	name = pick("Atractor fields theory",
 				"World lines theory",
@@ -38,7 +38,7 @@
 
 /hook/roundstart/proc/place_docs()
 	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
+	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in GLOB.landmarks_list)
 		L.Add(S)
 
 	L = shuffle(L)
@@ -48,6 +48,6 @@
 		return FALSE
 
 	for(var/i in 1 to 3)
-		new /obj/item/weapon/oddity/secdocs(L[i].get_loc())
+		new /obj/item/oddity/secdocs(L[i].get_loc())
 
 	return TRUE

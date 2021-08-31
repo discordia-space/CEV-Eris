@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell //Basic type of the cells, should't be used by itself
+/obj/item/cell //Basic type of the cells, should't be used by itself
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power_cells.dmi'
@@ -14,6 +14,10 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
+	//Spawn_values
+	bad_type = /obj/item/cell
+	rarity_value = 2
+	spawn_tags = SPAWN_TAG_POWERCELL
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 100
 	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly
@@ -22,49 +26,53 @@
 	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
-	var/autorecharge_rate = 0.03
-	var/recharge_time = 4 //How often nuclear cells will recharge
+	var/autorecharge_rate = BASE_AUTORECHARGE_RATE//0.03
+	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
+	var/spawn_charged = 0 //For non-rechargeable cells
 
-/obj/item/weapon/cell/Initialize()
+/obj/item/cell/Initialize()
 	. = ..()
 	charge = maxcharge
 	update_icon()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/cell/Process()
+/obj/item/cell/Process()
 	charge_tick++
 	if(charge_tick < recharge_time) return FALSE
 	charge_tick = 0
 	give(maxcharge * autorecharge_rate)
 
 	// If installed in a gun, update gun icon to reflect new charge level.
-	if(istype(loc, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/I = loc
+	if(istype(loc, /obj/item/gun/energy))
+		var/obj/item/gun/energy/I = loc
 		I.update_icon()
 
 	return TRUE
 
-//Newly manufactured cells start off empty. You can't create energy
-/obj/item/weapon/cell/Created()
-	charge = 0
+//Newly manufactured cells start off empty, except for non-rechargeable ones.
+/obj/item/cell/Created()
+	if (spawn_charged == 1)
+		charge = maxcharge
+	else
+		charge = 0
 	update_icon()
 
-/obj/item/weapon/cell/drain_power(drain_check, surge, power = 0)
+/obj/item/cell/drain_power(drain_check, surge, power = 0)
 
 	if(drain_check)
 		return TRUE
 
-	if(empty())
+	if(is_empty())
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/update_icon()
+/obj/item/cell/on_update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
@@ -81,29 +89,29 @@
 	if (charge_status == last_charge_status)
 		return
 
-	overlays.Cut()
+	cut_overlays()
 	if (charge_status != null)
-		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
+		add_overlays(image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]"))
 
 	last_charge_status = charge_status
 
-/obj/item/weapon/cell/proc/empty()
+/obj/item/cell/proc/is_empty()
 	if(charge <= 0)
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/cell/proc/percent()		// return % charge of cell
+/obj/item/cell/proc/percent()		// return % charge of cell
 	return 100*charge/maxcharge
 
-/obj/item/weapon/cell/proc/fully_charged()
+/obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/weapon/cell/proc/check_charge(amount)
+/obj/item/cell/proc/check_charge(amount)
 	return (charge >= amount)
 
 // use power from a cell, returns the amount actually used
-/obj/item/weapon/cell/proc/use(amount)
+/obj/item/cell/proc/use(amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -114,14 +122,14 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/weapon/cell/proc/checked_use(amount)
+/obj/item/cell/proc/checked_use(amount)
 	if(!check_charge(amount))
 		return FALSE
 	use(amount)
 	return TRUE
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(amount)
+/obj/item/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -133,17 +141,21 @@
 	return amount_used
 
 
-/obj/item/weapon/cell/examine(mob/user)
+/obj/item/cell/examine(mob/user)
 	if(!..(user,2))
 		return
 
 	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
 	to_chat(user, "The charge meter reads [round(percent() )]%.")
 
-/obj/item/weapon/cell/attackby(obj/item/W, mob/user)
+	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
+		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
+
+
+/obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = W
+	if(istype(W, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = W
 
 		to_chat(user, "You inject the solution into the power cell.")
 
@@ -157,7 +169,7 @@
 		S.reagents.clear_reagents()
 
 
-/obj/item/weapon/cell/proc/explode()
+/obj/item/cell/proc/explode()
 	if(QDELETED(src))
 		rigged = FALSE // Prevent error spam
 		throw EXCEPTION("A rigged cell has attempted to explode in nullspace. Usually this means that handle_atom_del handling is missing somewhere.")
@@ -169,7 +181,7 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (empty())
+	if(is_empty())
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)
@@ -188,13 +200,13 @@
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
-/obj/item/weapon/cell/proc/corrupt()
+/obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = TRUE //broken batterys are dangerous
 
-/obj/item/weapon/cell/emp_act(severity)
+/obj/item/cell/emp_act(severity)
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -206,7 +218,7 @@
 		charge = 0
 	..()
 
-/obj/item/weapon/cell/ex_act(severity)
+/obj/item/cell/ex_act(severity)
 
 	switch(severity)
 		if(1)
@@ -229,7 +241,7 @@
 // Calculation of cell shock damage
 // Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage
 // Also, even the most common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
-/obj/item/weapon/cell/proc/get_electrocute_damage()
+/obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
 		if (40000 to INFINITY) // Here in case some supercharged superscience cells pop up
 			return min(rand(80,180),rand(80,180))
@@ -254,5 +266,5 @@
 		else
 			return FALSE
 
-/obj/item/weapon/cell/get_cell()
+/obj/item/cell/get_cell()
 	return src

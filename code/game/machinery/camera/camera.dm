@@ -3,7 +3,7 @@
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "camera"
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
@@ -15,7 +15,7 @@
 	anchored = TRUE
 	var/invuln = null
 	var/bugged = 0
-	var/obj/item/weapon/camera_assembly/assembly = null
+	var/obj/item/camera_assembly/assembly = null
 	var/taped = 0
 
 	var/toughness = 5 //sorta fragile
@@ -70,6 +70,9 @@
 		assembly = null
 	qdel(wires)
 	wires = null
+	if(alarm_on)
+		alarm_on = 0
+		camera_alarm.clearAlarm(loc, src)
 	return ..()
 
 /obj/machinery/camera/Process()
@@ -185,14 +188,14 @@
 			return
 
 
-	if(istype(I, /obj/item/weapon/tool) && panel_open)
+	if(istool(I) && panel_open)
 		interact(user)
 
 	// OTHER
 	else if (can_use() && isliving(user) && user.a_intent != I_HURT)
 		var/mob/living/U = user
 		var/list/mob/viewers = list()
-		if(istype(I, /obj/item/weapon/ducttape )|| istype(I, /obj/item/weapon/tool/tape_roll))
+		if(istype(I, /obj/item/ducttape )|| istype(I, /obj/item/tool/tape_roll))
 			set_status(0)
 			taped = 1
 			icon_state = "camera_taped"
@@ -223,14 +226,14 @@
 				else
 					to_chat(O, "<b>[U]</b> holds \a [I.name] up to the camera ...")
 
-				if(istype(I, /obj/item/weapon/paper))
-					var/obj/item/weapon/paper/X = I
+				if(istype(I, /obj/item/paper))
+					var/obj/item/paper/X = I
 					O << browse("<HTML><HEAD><TITLE>[X.name]</TITLE></HEAD><BODY><TT>[X.info]</TT></BODY></HTML>", "window=[X.name]")
 				else
 					I.examine(O)
 			last_shown_time = world.time + 2 SECONDS
 
-	else if (istype(I, /obj/item/weapon/camera_bug))
+	else if (istype(I, /obj/item/camera_bug))
 		if (!src.can_use())
 			to_chat(user, SPAN_WARNING("Camera non-functional."))
 			return
@@ -310,7 +313,7 @@
 	if(isXRay()) return SEE_TURFS|SEE_MOBS|SEE_OBJS
 	return 0
 
-/obj/machinery/camera/update_icon()
+/obj/machinery/camera/on_update_icon()
 	if (!status || (stat & BROKEN))
 		icon_state = "[initial(icon_state)]1"
 	else if (stat & EMPED)

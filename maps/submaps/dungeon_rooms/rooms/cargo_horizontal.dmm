@@ -54,7 +54,7 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "l" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "m" = (
@@ -87,11 +87,11 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "s" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "t" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "u" = (

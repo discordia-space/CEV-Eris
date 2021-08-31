@@ -30,11 +30,21 @@ SUBSYSTEM_DEF(shuttle)
 			return
 
 /datum/controller/subsystem/shuttle/proc/register_landmark(shuttle_landmark_tag, obj/effect/shuttle_landmark/shuttle_landmark)
+	if(istype(shuttle_landmark, /obj/effect/shuttle_landmark/automatic))
+		var/obj/effect/overmap/O = map_sectors["[shuttle_landmark.z]"]
+		O.add_landmark(shuttle_landmark)
+		last_landmark_registration_time = world.time
+		return
+
 	if (registered_shuttle_landmarks[shuttle_landmark_tag])
 		CRASH("Attempted to register shuttle landmark with tag [shuttle_landmark_tag], but it is already registered!")
+
 	if (istype(shuttle_landmark))
 		registered_shuttle_landmarks[shuttle_landmark_tag] = shuttle_landmark
 		last_landmark_registration_time = world.time
+
+
+
 
 /datum/controller/subsystem/shuttle/proc/get_landmark(shuttle_landmark_tag)
 	return registered_shuttle_landmarks[shuttle_landmark_tag]

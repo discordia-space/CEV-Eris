@@ -2,7 +2,7 @@
 
 //Start of a breath chain, calls breathe()
 /mob/living/carbon/handle_breathing()
-	if(life_tick%get_breath_modulo()==0 || failed_last_breath || (health < HEALTH_THRESHOLD_CRIT)) 	//First, resolve location and get a breath
+	if(life_tick%get_breath_modulo()==0 || failed_last_breath) 	//First, resolve location and get a breath
 		breathe()
 
 /mob/living/carbon/proc/get_breath_modulo()
@@ -13,10 +13,6 @@
 	if(species && (species.flags & NO_BREATHE)) return
 
 	var/datum/gas_mixture/breath = null
-
-	//First, check if we can breathe at all
-	if(health < HEALTH_THRESHOLD_CRIT && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
-		losebreath++
 
 	if(losebreath>0) //Suffocating so do not take a breath
 		losebreath--
@@ -72,7 +68,7 @@
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
-		if(!smoke || !smoke.reagents)
+		if(!smoke.reagents)
 			return
 		if(smoke.reagents.total_volume)
 			smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)

@@ -3,12 +3,14 @@
 	name = "light exosuit"
 	desc = "A light and agile exosuit."
 
+	rarity_value = 10
+
 	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 	installed_software_boards = list(
-		/obj/item/weapon/circuitboard/exosystem/utility,
-		/obj/item/weapon/circuitboard/exosystem/medical
+		/obj/item/electronics/circuitboard/exosystem/utility,
+		/obj/item/electronics/circuitboard/exosystem/medical
 	)
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/catapult,

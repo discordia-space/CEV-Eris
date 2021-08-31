@@ -1,9 +1,9 @@
 /////////////////////////////////////////////
 //Guest pass ////////////////////////////////
 /////////////////////////////////////////////
-/obj/item/weapon/card/id/guest
+/obj/item/card/id/guest
 	name = "guest pass"
-	desc = "Allows temporary access to station areas."
+	desc = "Allows temporary access to ship areas."
 	icon_state = "guest"
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 
@@ -12,13 +12,13 @@
 	var/reason = "NOT SPECIFIED"
 
 
-/obj/item/weapon/card/id/guest/GetAccess()
+/obj/item/card/id/guest/GetAccess()
 	if (world.time > expiration_time)
 		return access
 	else
 		return temp_access
 
-/obj/item/weapon/card/id/guest/examine(mob/user)
+/obj/item/card/id/guest/examine(mob/user)
 	..(user)
 	if (world.time < expiration_time)
 		to_chat(user, SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)]."))
@@ -28,18 +28,7 @@
 	to_chat(usr, SPAN_NOTICE("It grants access to the following areas:"))
 	for (var/A in temp_access)
 		to_chat(usr, SPAN_NOTICE("[get_access_desc(A)]."))
-
-/obj/item/weapon/card/id/guest/read()
-	if (world.time > expiration_time)
-		to_chat(usr, SPAN_NOTICE("This pass expired at [worldtime2stationtime(expiration_time)]."))
-	else
-		to_chat(usr, SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)]."))
-
-	to_chat(usr, SPAN_NOTICE("It grants access to following areas:"))
-	for (var/A in temp_access)
-		to_chat(usr, SPAN_NOTICE("[get_access_desc(A)]."))
 	to_chat(usr, SPAN_NOTICE("Issuing reason: [reason]."))
-	return
 
 /////////////////////////////////////////////
 //Guest pass terminal////////////////////////
@@ -57,8 +46,8 @@
 	light_power_on = 0.2
 	density = FALSE
 	CheckFaceFlag = 0
-	circuit = /obj/item/weapon/circuitboard/guestpass
-	var/obj/item/weapon/card/id/giver
+	circuit = /obj/item/electronics/circuitboard/guestpass
+	var/obj/item/card/id/giver
 	var/list/accesses = list()
 	var/giv_name = "NOT SPECIFIED"
 	var/reason = "NOT SPECIFIED"
@@ -74,7 +63,7 @@
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
 /obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/weapon/card/id))
+	if(istype(O, /obj/item/card/id))
 		if(!giver && user.unEquip(O))
 			O.loc = src
 			giver = O
@@ -168,7 +157,7 @@
 					accesses.Cut()
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+					if (istype(I, /obj/item/card/id) && usr.unEquip(I))
 						I.loc = src
 						giver = I
 				updateUsrDialog()
@@ -179,7 +168,7 @@
 					dat += "[entry]<br><hr>"
 				//usr << "Printing the log, standby..."
 				//sleep(50)
-				var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+				var/obj/item/paper/P = new/obj/item/paper( loc )
 				P.name = "activity log"
 				P.info = dat
 
@@ -195,7 +184,7 @@
 					entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 					internal_log.Add(entry)
 
-					var/obj/item/weapon/card/id/guest/pass = new(src.loc)
+					var/obj/item/card/id/guest/pass = new(src.loc)
 					pass.temp_access = accesses.Copy()
 					pass.registered_name = giv_name
 					pass.expiration_time = world.time + duration MINUTES

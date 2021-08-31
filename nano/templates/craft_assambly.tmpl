@@ -1,0 +1,16 @@
+<!-- 
+	Interface for ggun/armor assambly
+	See: code/datum/craft/item.dm
+-->
+<h2>Crafting options</h2>
+{{for data.paths}}
+<div class='item'>
+		<div style='float'>
+			{{:helper.link(value.name, '', { "select" : value.key })}}
+		</div>
+	<div class='itemContent'>
+	</div>
+</div>
+{{empty}}
+No items available!
+{{/for}}

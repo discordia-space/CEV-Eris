@@ -12,6 +12,9 @@
 	mob_size = MOB_LARGE
 	can_be_fed = 0
 	defaultHUD = "exosuits"
+	bad_type = /mob/living/exosuit
+
+	mob_classification = CLASSIFICATION_SYNTHETIC
 
 	var/initial_icon
 
@@ -24,7 +27,7 @@
 	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
 
 	// Access updating/container.
-	var/obj/item/weapon/card/id/access_card
+	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
 	var/sync_access = 1
 
@@ -57,6 +60,9 @@
 
 	//Air!
 	var/use_air      = FALSE
+
+	// Strafing - Is the mech currently strafing?
+	var/strafing = FALSE
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
@@ -173,7 +179,8 @@
 		material ? to_chat(user, "Its frame is reinforced with [material].") : null
 
 /mob/living/exosuit/return_air()
-	return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
+	if(src && loc)
+		return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
 
 /mob/living/exosuit/GetIdCard()
 	return access_card

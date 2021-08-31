@@ -16,7 +16,7 @@
 	icon_state = "cellconsole"
 	light_power = 1.5
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
+	circuit = /obj/item/electronics/circuitboard/cryopodcontrol
 	density = FALSE
 	interact_offline = 1
 	var/mode = null
@@ -35,7 +35,7 @@
 	desc = "An interface between crew and the robotic storage systems"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "console"
-	circuit = /obj/item/weapon/circuitboard/robotstoragecontrol
+	circuit = /obj/item/electronics/circuitboard/robotstoragecontrol
 
 	storage_type = "cyborgs"
 	storage_name = "Robotic Storage Control"
@@ -125,12 +125,12 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/weapon/circuitboard/cryopodcontrol
+/obj/item/electronics/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/robotstoragecontrol
+/obj/item/electronics/circuitboard/robotstoragecontrol
 	name = "Circuit board (Robotic Storage Console)"
 	build_path = /obj/machinery/computer/cryopod/robot
 	origin_tech = list(TECH_DATA = 3)
@@ -172,18 +172,18 @@
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
-		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/captains_spare,
+		/obj/item/hand_tele,
+		/obj/item/card/id/captains_spare,
 		/obj/item/device/aicard,
 		/obj/item/device/mmi,
 		/obj/item/device/paicard,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/pinpointer,
+		/obj/item/gun,
+		/obj/item/pinpointer,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
 		/obj/item/clothing/head/space,
-		/obj/item/weapon/storage/internal
+		/obj/item/storage/internal
 	)
 
 /obj/machinery/cryopod/robot
@@ -214,7 +214,7 @@
 
 	find_control_computer()
 
-/obj/machinery/cryopod/update_icon()
+/obj/machinery/cryopod/on_update_icon()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_1"
 	else
@@ -302,7 +302,7 @@
 
 		if(W.contents.len) //Make sure we catch anything not handled by qdel() on the items.
 			for(var/obj/item/O in W.contents)
-				if(istype(O,/obj/item/weapon/storage/internal)) //Stop eating pockets, you fuck!
+				if(istype(O,/obj/item/storage/internal)) //Stop eating pockets, you fuck!
 					continue
 				O.forceMove(src)
 
@@ -423,10 +423,14 @@
 	set name = "Eject Pod"
 	set category = "Object"
 	set src in oview(1)
+	if(!usr) // when called from preferences_spawnpoints.dm there is no usr since it is called indirectly. If there is no occupant and usr something really bad has happened here so just keep them in the pod - Hopek
+		if(!occupant)
+			return
+		usr = occupant
 	if(usr.stat != 0)
 		return
 
-	//Eject any items that aren't meant to be in the pod.
+	//Eject any items that aren't meant to be in the pod. Attempts to put the items back on the occupant otherwise drops them.
 	var/list/items = src.contents
 	if(occupant)
 		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
@@ -438,6 +442,7 @@
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
+		occupant.equip_to_appropriate_slot(W) // Items are now ejected. Tries to put them items on the occupant so they don't leave them behind
 
 	src.go_out()
 	add_fingerprint(usr)
@@ -509,7 +514,7 @@
 		time_entered = world.time
 		if(ishuman(occupant) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
-			H.in_stasis = 1
+			H.EnterStasis()
 		new_occupant.forceMove(src)
 
 		if (notifications)
@@ -527,7 +532,7 @@
 			occupant.reset_view(null)
 			if(ishuman(occupant) && applies_stasis)
 				var/mob/living/carbon/human/H = occupant
-				H.in_stasis = 0
+				H.ExitStasis()
 		occupant = null
 
 	update_icon()

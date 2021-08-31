@@ -40,7 +40,7 @@
 /datum/uplink_item/item/ammo/smg/highvelocity
 	name = "SMG .35 Auto HV magazine"
 	desc = "SMG .35 magazine, loaded with high velocity ammunition. Can fit 35 bullets."
-	item_cost = 3
+	item_cost = 4
 	path = /obj/item/ammo_magazine/smg/hv
 
 /datum/uplink_item/item/ammo/magnum
@@ -60,25 +60,25 @@
 /datum/uplink_item/item/ammo/slpistol
 	name = ".35 Auto SL"
 	desc = "Standard .35 Auto speed loader, loaded with lethal ammunition. Can fit 6 bullets."
-	item_cost = 2
+	item_cost = 1
 	path = /obj/item/ammo_magazine/slpistol
 
 /datum/uplink_item/item/ammo/slpistol/highvelocity
 	name = ".35 Auto HV SL"
 	desc = "Standard .35 Auto speed loader, loaded with high-velocity ammunition. Can fit 6 bullets."
-	item_cost = 3
+	item_cost = 2
 	path = /obj/item/ammo_magazine/slpistol/hv
 
 /datum/uplink_item/item/ammo/slmagnum
 	name = ".40 magnum SL"
 	desc = ".40 magnum speed loader, loaded with lethal ammunition. Can fit 6 bullets."
-	item_cost = 2
+	item_cost = 3
 	path = /obj/item/ammo_magazine/slmagnum
 
 /datum/uplink_item/item/ammo/slmagnum/highvelocity
 	name = ".40 magnum HV SL"
 	desc = ".40 magnum HV speed loader, loaded with high velocity ammunition. Can fit 6 bullets."
-	item_cost = 3
+	item_cost = 4
 	path = /obj/item/ammo_magazine/slmagnum/highvelocity
 
 
@@ -99,13 +99,13 @@
 /datum/uplink_item/item/ammo/ihclrifle
 	name = ".25 caseless magazine"
 	desc = "Standard .25 magazine with lethal ammunition. Used mostly in IHS carabines. Can fit 30 bullets."
-	item_cost = 2
+	item_cost = 3
 	path = /obj/item/ammo_magazine/ihclrifle
 
 /datum/uplink_item/item/ammo/ihclrifle/highvelocity
 	name = ".25 caseless HV magazine"
 	desc = "Standard .25 magazine with high velocity ammunition. Used mostly in IHS carabines. Can fit 30 bullets."
-	item_cost = 3
+	item_cost = 4
 	path = /obj/item/ammo_magazine/ihclrifle/hv
 
 /datum/uplink_item/item/ammo/cspistol
@@ -117,7 +117,7 @@
 /datum/uplink_item/item/ammo/cspistol/highvelocity
 	name = ".25 caseless HV pistol magazine"
 	desc = "Pistol .25 magazine with high-velocity ammunition. Used solely in Mandella. Can fit 10 bullets."
-	item_cost = 3
+	item_cost = 2
 	path = /obj/item/ammo_magazine/cspistol/hv
 
 /datum/uplink_item/item/ammo/lrifle
@@ -132,12 +132,24 @@
 	item_cost = 4
 	path = /obj/item/ammo_magazine/lrifle/highvelocity
 
+/datum/uplink_item/item/ammo/sl_lrifle
+	name = ".30 Rifle ammo strip"
+	desc = "An ammo strip designed for bolt action rifles. Contains 5 rounds."
+	item_cost = 1
+	path = /obj/item/ammo_magazine/sllrifle
+
+/datum/uplink_item/item/ammo/sl_lrifle/highvelocity
+	name = ".30 Rifle HV ammo strip"
+	desc = "An High Velocity ammo strip designed for bolt action rifles. Contains 5 rounds."
+	item_cost = 2
+	path = /obj/item/ammo_magazine/sllrifle/hv
+	
 //// HV ammo packets ////
 
 /datum/uplink_item/item/ammo/pistol_hv
 	name = ".35 Auto HV ammo packet"
 	desc = ".35 ammo packet with high velocity ammunition. Contain 30 bullets."
-	item_cost = 5
+	item_cost = 4
 	path = /obj/item/ammo_magazine/ammobox/pistol/hv
 
 /datum/uplink_item/item/ammo/magnum_hv
@@ -192,29 +204,64 @@
 ////special////
 
 /datum/uplink_item/item/ammo/sniperammo
-	name = ".60 Anti material"
-	desc = "A box full of .60 AMR bullets. Have 5 bullets inside."
+	name = ".60 Anti material \"Penetrator\""
+	desc = "A box full of .60 AMR shells. Have 5 shells inside."
+	item_cost = 2
+	path = /obj/item/storage/box/sniperammo
+
+/datum/uplink_item/item/ammo/sniperammo/emp
+	name = ".60 Anti material \"Blackout\""
+	desc = "A box full of .60 AMR EMP shells. EMP shells release an electromagnetic pulse on impact. Have 5 shells inside."
 	item_cost = 3
-	path = /obj/item/weapon/storage/box/sniperammo
+	path = /obj/item/storage/box/sniperammo/emp
+
+/datum/uplink_item/item/ammo/sniperammo/uranium
+	name = ".60 Anti material \"Meltdown\""
+	desc = "A box full of .60 AMR depleted uranium shells with high armor-piercing power. radiation sickness included. Have 5 shells inside."
+	item_cost = 3
+	path = /obj/item/storage/box/sniperammo/uranium
+
+/datum/uplink_item/item/ammo/sniperammo/breach
+	name = ".60 Anti material \"Breacher\""
+	desc = "A box full of low velocity .60 AMR breaching shells, designed not to pierce, but to destroy structures from a distance. Close-ranged shots have less destructive power. Have 5 shells inside."
+	item_cost = 3
+	path = /obj/item/storage/box/sniperammo/breach
+
+/datum/uplink_item/item/ammo/sniperammo/large
+	name = ".60 Anti material \"Penetrator\" crate"
+	desc = "A box full of .60 AMR shells. Have 30 shells inside."
+	item_cost = 9
+	path = /obj/item/ammo_magazine/ammobox/antim
 
 /datum/uplink_item/item/ammo/darts
 	name = "Darts"
 	item_cost = 2
 	path = /obj/item/ammo_magazine/chemdart
 
+/datum/uplink_item/item/ammo/dallas
+	name = ".25 ammo box magazine"
+	desc = "A box magazine designed for the use of the uncommon Dallas Pulse Rifle. Contains 99 rounds."
+	item_cost = 9
+	path = /obj/item/ammo_magazine/c10x24
+
+/datum/uplink_item/item/ammo/pk
+	name = ".30 ammo box magazine"
+	desc = "A box magazine for Light Machine Guns. Contains 80 rounds"
+	item_cost = 8
+	path = /obj/item/ammo_magazine/lrifle/pk
 //hyper-class cells, better than what you'll find in a vendor or maints.
 
 /datum/uplink_item/item/ammo/cell/small
 	name = "Small Power Cell"
 	item_cost = 3
-	path = /obj/item/weapon/cell/small/hyper
+	path = /obj/item/cell/small/hyper
 
 /datum/uplink_item/item/ammo/cell/medium
 	name = "Medium Power Cell"
 	item_cost = 4
-	path = /obj/item/weapon/cell/medium/hyper
+	path = /obj/item/cell/medium/hyper
 
 /datum/uplink_item/item/ammo/cell/large
 	name = "Large Power Cell"
 	item_cost = 5
-	path = /obj/item/weapon/cell/large/hyper
+	path = /obj/item/cell/large/hyper

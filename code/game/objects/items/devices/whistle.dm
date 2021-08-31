@@ -4,6 +4,7 @@
 	icon_state = "voice0"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = ITEM_SIZE_TINY
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
 	flags = CONDUCT
 
 	var/use_message = "Halt! Security!"

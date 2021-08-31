@@ -5,9 +5,9 @@
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE
-	var/falling_type = /obj/random/scrap/moderate_weighted
+	var/falling_type = /obj/spawner/scrap
 
-/obj/effect/falling_effect/Initialize(mapload, type = /obj/random/scrap/moderate_weighted)
+/obj/effect/falling_effect/Initialize(mapload, type = /obj/spawner/scrap)
 	..()
 	falling_type = type
 	return INITIALIZE_HINT_LATELOAD

@@ -55,6 +55,7 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
+	spawn_frequency = 0
 
 /*
  * Carpets
@@ -116,6 +117,7 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
+	spawn_frequency = 0
 
 	var/list/cyborg_floor = list(
 		"steel techfloor" = /obj/item/stack/tile/floor/steel/techfloor,
@@ -189,6 +191,18 @@
 /*
  * Steel
  */
+
+ // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
+/obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
+	var/obj/item/I = user.get_active_hand()
+	if(istype(I, /obj/item/stack/tile/floor/cyborg))
+		var/obj/item/stack/tile/floor/cyborg/C = I
+		C.stacktype = src.type
+		C.build_type = src.type
+		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
+	else
+		..()
+
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
@@ -459,15 +473,19 @@
 /obj/item/stack/tile/derelict/white_red_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict1"
 
 /obj/item/stack/tile/derelict/white_small_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict2"
 
 /obj/item/stack/tile/derelict/red_white_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict3"
 
 /obj/item/stack/tile/derelict/white_big_edges
 	name = "one star floor tile"
 	singular_name = "one star floor tile"
+	icon_state = "tile_derelict4"

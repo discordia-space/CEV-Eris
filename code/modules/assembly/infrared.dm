@@ -36,11 +36,11 @@
 	return secured
 
 
-/obj/item/device/assembly/infra/update_icon()
-	overlays.Cut()
+/obj/item/device/assembly/infra/on_update_icon()
+	cut_overlays()
 	attached_overlays = list()
 	if(on)
-		overlays += "infrared_on"
+		add_overlays("infrared_on")
 		attached_overlays += "infrared_on"
 
 	if(holder)
@@ -156,11 +156,11 @@
 	name = "i beam"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
-	var/obj/effect/beam/i_beam/next = null
-	var/obj/item/device/assembly/infra/master = null
-	var/limit = null
-	var/visible = 0.0
-	var/left = null
+	var/obj/effect/beam/i_beam/next
+	var/obj/item/device/assembly/infra/master
+	var/limit
+	var/visible = 0
+	var/left
 	anchored = TRUE
 
 

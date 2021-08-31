@@ -21,9 +21,6 @@
 		if(step_count % 3) // don't need to step as often when you hop around
 			return
 
-	//if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
-		//return //no feet no footsteps
-
 	var/footsound = T.get_footstep_sound()
 	if(footsound)
 
@@ -40,3 +37,6 @@
 			range -= 0.333
 
 		mob_playsound(T, footsound, volume, 1, range)
+
+/proc/get_footstep(var/footstep_type, var/mob/caller)
+	return //todo

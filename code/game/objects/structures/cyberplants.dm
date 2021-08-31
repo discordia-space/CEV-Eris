@@ -31,7 +31,7 @@
 	var/sanity_value = 0.2
 
 /obj/structure/cyberplant/Initialize()
-	..()
+	. = ..()
 	change_plant(plant)
 	change_color(plant_color)
 
@@ -41,14 +41,14 @@
 
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
-/obj/structure/cyberplant/update_icon()
+/obj/structure/cyberplant/on_update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if (!plant)
 		return
 
 	plant.ChangeOpacity(hologram_opacity)
-	overlays += plant
+	add_overlays(plant)
 
 /obj/structure/cyberplant/proc/change_plant(var/state)
 	plant = prepare_icon(state)
@@ -71,8 +71,8 @@
 		change_plant()
 		update_icon()
 
-/obj/structure/cyberplant/attackby(obj/item/weapon/I, mob/user )
-	if(istype(I, /obj/item/weapon/card/id))
+/obj/structure/cyberplant/attackby(obj/item/I, mob/user )
+	if(istype(I, /obj/item/card/id))
 		if(!emagged)
 			if(prob(10))
 				to_chat(user, "You hear soft whisper, <i>Welcome back, honey...</i>")
@@ -138,19 +138,19 @@
 			if (QDELETED(src))
 				return
 
-			overlays.Cut()
+			cut_overlays()
 			set_light(0, 0)
 			sleep(3)
 			if (QDELETED(src))
 				return
 
-			overlays += plant
+			add_overlays(plant)
 			set_light(brightness_on, brightness_on/2)
 			sleep(3)
 			if (QDELETED(src))
 				return
 
-			overlays -= plant
+			remove_overlays(plant)
 			set_light(0, 0)
 			sleep(3)
 			if (QDELETED(src))

@@ -1,0 +1,130 @@
+shooting
+killing
+torturing
+destroying
+harming
+hitting [object] hard
+erasing [object] from existence
+hanging
+tying up
+abusing
+harassing
+loving
+cherishing
+constructing
+feeding
+holding [object] captive
+following
+losing
+murdering
+injuring
+treating
+pranking
+spanking
+cleaning
+paying
+finishing
+taking [object] away
+heating
+cooling
+arresting
+assisting
+bothering
+recycling [object] into biomass
+cutting [object] with a knife
+piercing [object] with a rapier
+healing [object] with a medkit
+cooking [object] alive
+vaporizing [object] into dust
+gutting [object] alive
+disintegrating
+choking
+choking [object] to death
+freezing
+freezing [object] to death
+boiling
+boiling [object] to death
+atomizing
+shredding [object] with bullets
+erasing [object] from time
+charming
+dominating
+goring
+stomping
+clawing
+spiking
+impaling
+pinning [object] with a spike
+burning
+slamming
+attacking
+dropping [object] from height
+chopping
+decapitating
+beheading
+crushing
+hammering
+hammering [object] to death
+drilling [object] through
+burying
+burying [object] alive
+sucking [object] dry
+drowning
+gunning [object] down
+eating [object] alive
+throwing [object] away into [pick(an,the)] abyss
+chopping [object] into pieces
+burning [object] through with a laser
+poisoning
+melting [object] into an unrecognisable mass
+treating [object] with respect
+birthing
+kicking
+respecting
+kissing and caring for
+feeding [object] forcibly with cookies
+putting [object] out of misery
+resurrecting
+ascending [object] to heaven
+infecting
+eating away [object]
+enslaving [object]
+converting [object] into a rebel
+turning [object] into a slave
+killing [object] using mercenary gear
+torturing [object] using inquisitor gear
+hunting down [object] using marshall gear
+slaying [object] using assassin gear
+beating [object] to death using Ironhammer gear
+throwing [object] into oblivion
+anathematizing
+firing
+calming
+comforting
+putting [object] to sleep
+watching after
+analyzing
+analyzing [object] using Moebius gear
+raising [object]\s salary
+promoting [object] in position
+awarding [object] the nobel prize of peace
+crowning [object] as emperor
+crowning [object] as king
+crowning [object] as queen
+awarding [object] with a big sum of money
+awarding [object] with popularity and attention
+graduating [object] with a degree
+giving [object] a prize
+giving [object] a surprise
+caring for
+carrying
+hugging [object] into coma
+enthralling
+captivating
+giving [object] a command position
+gifting [object] with a providence
+blessing
+helping
+helping [object] with a task
+encouraging [object] to work
+tucking [object] in

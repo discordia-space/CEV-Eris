@@ -12,23 +12,23 @@
 	var/frames = 0
 	var/maxFrames = 5
 
-/obj/machinery/beehive/update_icon()
-	overlays.Cut()
+/obj/machinery/beehive/on_update_icon()
+	cut_overlays()
 	icon_state = "beehive"
 	if(closed)
-		overlays += "lid"
+		add_overlays("lid")
 	if(frames)
-		overlays += "empty[frames]"
+		add_overlays("empty[frames]")
 	if(honeycombs >= 100)
-		overlays += "full[round(honeycombs / 100)]"
+		add_overlays("full[round(honeycombs / 100)]")
 	if(!smoked)
 		switch(bee_count)
 			if(1 to 40)
-				overlays += "bees1"
+				add_overlays("bees1")
 			if(41 to 80)
-				overlays += "bees2"
+				add_overlays("bees2")
 			if(81 to 100)
-				overlays += "bees3"
+				add_overlays("bees3")
 
 /obj/machinery/beehive/examine(var/mob/user)
 	..()
@@ -36,12 +36,12 @@
 		to_chat(user, "The lid is open.")
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/tool/crowbar))
+	if(istype(I, /obj/item/tool/crowbar))
 		closed = !closed
 		user.visible_message("<span class='notice'>\The [user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
 		update_icon()
 		return
-	else if(istype(I, /obj/item/weapon/tool/wrench))
+	else if(istype(I, /obj/item/tool/wrench))
 		anchored = !anchored
 		user.visible_message("<span class='notice'>\The [user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return
@@ -94,7 +94,7 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/weapon/tool/screwdriver))
+	else if(istype(I, /obj/item/tool/screwdriver))
 		if(bee_count)
 			to_chat(user, SPAN_NOTICE("You can't dismantle \the [src] with these bees inside."))
 			return
@@ -139,19 +139,25 @@
 	for(var/obj/machinery/portable_atmospherics/hydroponics/H in view(7, src))
 		if(H.seed && !H.dead)
 			H.health += 0.05 * coef
+			H.yield_mod += 0.005 * coef
 			++trays
 	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), frames * 100)
 
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "centrifuge"
+	circuit = /obj/item/electronics/circuitboard/honey_extractor
 
 	var/processing = 0
 	var/honey = 0
 
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
+	if(default_deconstruction(I, user))
+		return
 	if(processing)
 		to_chat(user, SPAN_NOTICE("\The [src] is currently spinning, wait until it's finished."))
 		return
@@ -170,11 +176,11 @@
 			honey += processing
 			processing = 0
 			icon_state = "centrifuge"
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
 			to_chat(user, SPAN_NOTICE("There is no honey in \the [src]."))
 			return
-		var/obj/item/weapon/reagent_containers/glass/G = I
+		var/obj/item/reagent_containers/glass/G = I
 		var/transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, honey)
 		G.reagents.add_reagent("honey", transferred)
 		honey -= transferred
@@ -204,12 +210,12 @@
 
 /obj/item/honey_frame/filled/New()
 	..()
-	overlays += "honeycomb"
+	add_overlays("honeycomb")
 
 /obj/item/beehive_assembly
 	name = "beehive assembly"
 	desc = "Contains everything you need to build a beehive."
-	icon = 'icons/obj/apiary_bees_etc.dmi'
+	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "apiary"
 
 /obj/item/beehive_assembly/attack_self(var/mob/user)
@@ -233,7 +239,7 @@
 	recipes = wax_recipes
 
 var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/weapon/flame/candle) \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
 )
 
 /obj/item/bee_pack
@@ -245,18 +251,18 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 
 /obj/item/bee_pack/New()
 	..()
-	overlays += "beepack-full"
+	add_overlays("beepack-full")
 
 /obj/item/bee_pack/proc/empty()
 	full = 0
 	name = "empty bee pack"
 	desc = "A stasis pack for moving bees. It's empty."
-	overlays.Cut()
-	overlays += "beepack-empty"
+	cut_overlays()
+	add_overlays("beepack-empty")
 
 /obj/item/bee_pack/proc/fill()
 	full = initial(full)
 	name = initial(name)
 	desc = initial(desc)
-	overlays.Cut()
-	overlays += "beepack-full"
+	cut_overlays()
+	add_overlays("beepack-full")

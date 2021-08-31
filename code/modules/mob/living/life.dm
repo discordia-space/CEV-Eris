@@ -2,73 +2,104 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	. = FALSE
 	..()
 	if(config.enable_mob_sleep)
-		if(life_cycles_before_scan > 0)
-			life_cycles_before_scan--
-		else
-			if(check_surrounding_area(7))
-				activate_ai()
-				life_cycles_before_scan = 3
-
-		if(life_cycles_before_sleep)
-			life_cycles_before_sleep--
-
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
-			AI_inactive = TRUE
-
-
-	if(!stasis)
-		if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
-			return
-		if(!loc)
-			return
-		var/datum/gas_mixture/environment = loc.return_air()
-
 		if(stat != DEAD)
-			//Breathing, if applicable
-			handle_breathing()
+			if(life_cycles_before_scan > 0)
+				life_cycles_before_scan--
+			else
+				if(check_surrounding_area(7))
+					activate_ai()
+					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+				else
+					life_cycles_before_scan = 240
 
-			//Mutations and radiation
-			handle_mutations_and_radiation()
+			if(life_cycles_before_sleep)
+				life_cycles_before_sleep--
 
-			//Chemicals in the body
-			handle_chemicals_in_body()
+			if(life_cycles_before_sleep < 1 && !AI_inactive)
+				AI_inactive = TRUE
 
-			//Blood
-			handle_blood()
 
-			//Random events (vomiting etc)
-			handle_random_events()
+	if((!stasis && !AI_inactive) || ishuman(src)) //god fucking forbid we do this to humanmobs somehow
+		if(Life_Check())
+			. = TRUE
 
-			. = 1
+	else
+		if((life_cycles_before_scan % 60) == 0)
+			Life_Check_Light()
 
-		//Handle temperature/pressure differences between body and environment
-		if(environment)
-			handle_environment(environment)
 
-		//Check if we're on fire
-		handle_fire()
+	var/turf/T = get_turf(src)
+	if(T)
+		if(registered_z != T.z)
+			update_z(T.z)
 
-		//stuff in the stomach
-		handle_stomach()
 
-		update_pulling()
+/mob/living/proc/Life_Check()
+	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+		return
+	if(!loc)
+		return
+	var/datum/gas_mixture/environment = loc.return_air()
 
-		for(var/obj/item/weapon/grab/G in src)
-			G.Process()
+	if(stat != DEAD)
+		//Breathing, if applicable
+		handle_breathing()
 
-		blinded = 0 // Placing this here just show how out of place it is.
-		// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
-		if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
-			handle_disabilities() // eye, ear, brain damages
-			handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+		//Mutations and radiation
+		handle_mutations_and_radiation()
 
-		handle_actions()
+		//Blood
+		handle_blood()
 
-		update_lying_buckled_and_verb_status()
+		//Random events (vomiting etc)
+		handle_random_events()
 
-		handle_regular_hud_updates()
+		. = TRUE
+
+	//Handle temperature/pressure differences between body and environment
+	if(environment)
+		handle_environment(environment)
+
+	//Chemicals in the body
+	handle_chemicals_in_body()
+
+	//Check if we're on fire
+	handle_fire()
+
+	update_pulling()
+
+	for(var/obj/item/grab/G in src)
+		G.Process()
+
+	blinded = FALSE // Placing this here just show how out of place it is.
+	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
+	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
+		handle_disabilities() // eye, ear, brain damages
+		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
+
+	handle_actions()
+
+	update_lying_buckled_and_verb_status()
+
+	handle_regular_hud_updates()
+
+
+
+/mob/living/proc/Life_Check_Light()
+	if (HasMovementHandler(/datum/movement_handler/mob/transformation/))
+		return
+	if(!loc)
+		return
+	var/datum/gas_mixture/environment = loc.return_air()
+
+	//Handle temperature/pressure differences between body and environment
+	if(environment)
+		handle_environment(environment)
+
+	update_pulling()
 
 /mob/living/proc/handle_breathing()
 	return
@@ -86,9 +117,6 @@
 	return
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
-	return
-
-/mob/living/proc/handle_stomach()
 	return
 
 /mob/living/proc/update_pulling()
@@ -178,6 +206,8 @@
 		reset_view(null)
 
 /mob/living/proc/update_sight()
+	set_sight(0)
+	set_see_in_dark(0)
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
@@ -187,6 +217,9 @@
 			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 			see_in_dark = initial(see_in_dark)
 			see_invisible = initial(see_invisible)
+	var/list/vision = get_accumulated_vision_handlers()
+	set_sight(sight | vision[1])
+	set_see_invisible(max(vision[2], see_invisible))
 
 /mob/living/proc/update_dead_sight()
 	sight |= SEE_TURFS
@@ -203,11 +236,11 @@
 		return
 	usr.client.screen.Cut()
 	if(ishuman(usr) && (usr.client.prefs.UI_style != null))
-		if (!global.HUDdatums.Find(usr.client.prefs.UI_style))
+		if (!GLOB.HUDdatums.Find(usr.client.prefs.UI_style))
 			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
 		else
 			var/mob/living/carbon/human/H = usr
-			var/datum/hud/human/HUDdatum = global.HUDdatums[usr.client.prefs.UI_style]
+			var/datum/hud/human/HUDdatum = GLOB.HUDdatums[usr.client.prefs.UI_style]
 			if (!H.HUDneed.len)
 				if (H.HUDprocess.len)
 					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")

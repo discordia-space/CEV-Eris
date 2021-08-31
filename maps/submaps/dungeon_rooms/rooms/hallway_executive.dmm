@@ -101,7 +101,7 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "t" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "u" = (

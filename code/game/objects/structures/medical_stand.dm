@@ -5,7 +5,7 @@
 	icon_state = "medical_stand_empty"
 
 	//gas stuff
-	var/obj/item/weapon/tank/tank
+	var/obj/item/tank/tank
 	var/mob/living/carbon/human/breather
 	var/obj/screen/internalsHud
 	var/obj/item/clothing/mask/breath/contained
@@ -18,7 +18,7 @@
 	//blood stuff
 	var/mob/living/carbon/attached
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
-	var/obj/item/weapon/reagent_containers/beaker
+	var/obj/item/reagent_containers/beaker
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
@@ -29,33 +29,33 @@
 	contained = new mask_type (src)
 	update_icon()
 
-/obj/structure/medical_stand/update_icon()
-	overlays.Cut()
+/obj/structure/medical_stand/on_update_icon()
+	cut_overlays()
 
 	if (tank)
 		if (breather)
-			overlays += "tube_active"
+			add_overlays("tube_active")
 		else
-			overlays += "tube"
-		if(istype(tank,/obj/item/weapon/tank/anesthetic))
-			overlays += "tank_anest"
-		else if(istype(tank,/obj/item/weapon/tank/nitrogen))
-			overlays += "tank_nitro"
-		else if(istype(tank,/obj/item/weapon/tank/oxygen))
-			overlays += "tank_oxyg"
-		else if(istype(tank,/obj/item/weapon/tank/plasma))
-			overlays += "tank_plasma"
-		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
-		//	overlays += "tank_hydro"
+			add_overlays("tube")
+		if(istype(tank,/obj/item/tank/anesthetic))
+			add_overlays("tank_anest")
+		else if(istype(tank,/obj/item/tank/nitrogen))
+			add_overlays("tank_nitro")
+		else if(istype(tank,/obj/item/tank/oxygen))
+			add_overlays("tank_oxyg")
+		else if(istype(tank,/obj/item/tank/plasma))
+			add_overlays("tank_plasma")
+		//else if(istype(tank,/obj/item/tank/hydrogen))
+		//	add_overlays("tank_hydro")
 		else
-			overlays += "tank_other"
+			add_overlays("tank_other")
 
 	if(beaker)
-		overlays += "beaker"
+		add_overlays("beaker")
 		if(attached)
-			overlays += "line_active"
+			add_overlays("line_active")
 		else
-			overlays += "line"
+			add_overlays("line")
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
@@ -70,7 +70,7 @@
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
 			if (filling.icon)
 				filling.icon += reagents.get_color()
-				overlays += filling
+				add_overlays(filling)
 
 /obj/structure/medical_stand/Destroy()
 	STOP_PROCESSING(SSobj,src)
@@ -295,15 +295,15 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool))
-		if (valve_opened)
+/obj/structure/medical_stand/attackby(obj/item/W, mob/user)
+	if(istool(W))
+		if(valve_opened)
 			to_chat(user, SPAN_WARNING("Close the valve first."))
 			return
-		if (tank)
+		if(tank)
 			if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
-			if (!is_loosen)
+			if(!is_loosen)
 				is_loosen = TRUE
 			else
 				is_loosen = FALSE
@@ -316,7 +316,7 @@
 		else
 			to_chat(user, SPAN_WARNING("There is no tank in \the [src]."))
 
-	else if(istype(W, /obj/item/weapon/tank))
+	else if(istype(W, /obj/item/tank))
 		if(tank)
 			to_chat(user, SPAN_WARNING("\The [src] already has a tank installed!"))
 		else if(!is_loosen)
@@ -329,7 +329,7 @@
 			src.add_fingerprint(user)
 			update_icon()
 
-	else if (istype(W, /obj/item/weapon/reagent_containers))
+	else if (istype(W, /obj/item/reagent_containers))
 		if(!isnull(src.beaker))
 			to_chat(user, "There is already a reagent container loaded!")
 			return
@@ -341,7 +341,7 @@
 	else
 		return ..()
 
-/obj/structure/medical_stand/examine(var/mob/user)
+/obj/structure/medical_stand/examine(mob/user)
 	. = ..()
 
 	if (get_dist(src, user) > 2)
@@ -392,7 +392,7 @@
 			if(internalsHud)
 				internalsHud.icon_state = "internal0"
 			breather.internal = null
-	else if (valve_opened)
+	else if (tank && valve_opened)
 		var/datum/gas_mixture/removed = tank.remove_air(0.01)
 		var/datum/gas_mixture/environment = loc.return_air()
 		environment.merge(removed)
@@ -427,11 +427,11 @@
 				return
 			if(H.species.flags & NO_BLOOD)
 				return
-			if(!H.should_have_organ(BP_HEART))
+			if(!H.should_have_process(OP_HEART))
 				return
 
 			// If the human is losing too much blood, beep.
-			if(H.get_blood_volume() < BLOOD_VOLUME_SAFE * 1.05)
+			if(H.get_blood_volume() < (H.total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER) * 1.05)
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = H.take_blood(beaker,amount)
@@ -446,7 +446,7 @@
 		return PROCESS_KILL
 
 /obj/structure/medical_stand/anesthetic
-	spawn_type = /obj/item/weapon/tank/anesthetic
+	spawn_type = /obj/item/tank/anesthetic
 	mask_type = /obj/item/clothing/mask/breath/medical
 	is_loosen = FALSE
 

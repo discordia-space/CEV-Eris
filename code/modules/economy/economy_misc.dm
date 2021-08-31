@@ -86,13 +86,13 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 
 
 	//Create all the department accounts
-	for(var/d in all_departments)
-		create_department_account(all_departments[d])
+	for(var/d in GLOB.all_departments)
+		create_department_account(GLOB.all_departments[d])
 
 	station_account = department_accounts[DEPARTMENT_COMMAND]
 	vendor_account = department_accounts[DEPARTMENT_GUILD] //Vendors are operated by the guild and purchases pay into their stock
 
-	for(var/obj/machinery/vending/V in SSmachines.machinery)
+	for(var/obj/machinery/vending/V in GLOB.machines)
 		if(!V.custom_vendor)
 			V.earnings_account = V.vendor_department ? department_accounts[V.vendor_department] : vendor_account
 

@@ -1,7 +1,7 @@
 //Todo: add leather and cloth for arbitrary coloured stools.
 var/global/list/stool_cache = list() //haha stool
 
-/obj/item/weapon/stool
+/obj/item/stool
 	name = "stool"
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture.dmi'
@@ -13,10 +13,10 @@ var/global/list/stool_cache = list() //haha stool
 	var/material/material
 	var/material/padding_material
 
-/obj/item/weapon/stool/padded
+/obj/item/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
 
-/obj/item/weapon/stool/New(var/newloc, var/new_material, var/new_padding_material)
+/obj/item/stool/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
 	if(!new_material)
 		new_material = MATERIAL_STEEL
@@ -29,20 +29,20 @@ var/global/list/stool_cache = list() //haha stool
 	force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 
-/obj/item/weapon/stool/padded/New(var/newloc, var/new_material)
-	..(newloc, "steel", "carpet")
+/obj/item/stool/padded/New(var/newloc, var/new_material)
+	..(newloc, MATERIAL_STEEL, MATERIAL_CARPET)
 
-/obj/item/weapon/stool/update_icon()
+/obj/item/stool/on_update_icon()
 	// Prep icon.
 	icon_state = ""
-	overlays.Cut()
+	cut_overlays()
 	// Base icon.
 	var/cache_key = "stool-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
 		I.color = material.icon_colour
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	associate_with_overlays(stool_cache[cache_key])
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "stool-padding-[padding_material.name]"
@@ -50,7 +50,7 @@ var/global/list/stool_cache = list() //haha stool
 			var/image/I =  image(icon, "stool_padding")
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		associate_with_overlays(stool_cache[padding_cache_key])
 	// Strings.
 	if(padding_material)
 		name = "[padding_material.display_name] [initial(name)]" //this is not perfect but it will do for now.
@@ -59,17 +59,17 @@ var/global/list/stool_cache = list() //haha stool
 		name = "[material.display_name] [initial(name)]"
 		desc = "A stool. Apply butt with care. It's made of [material.use_name]."
 
-/obj/item/weapon/stool/proc/add_padding(var/padding_type)
+/obj/item/stool/proc/add_padding(var/padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 
-/obj/item/weapon/stool/proc/remove_padding()
+/obj/item/stool/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 		padding_material = null
 	update_icon()
 
-/obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(5) && isliving(M))
 		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -84,29 +84,29 @@ var/global/list/stool_cache = list() //haha stool
 		return
 	..()
 
-/obj/item/weapon/stool/ex_act(severity)
+/obj/item/stool/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				qdel(src)
 				return
 
-/obj/item/weapon/stool/proc/dismantle()
+/obj/item/stool/proc/dismantle()
 	if(material)
 		material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool))
+/obj/item/stool/attackby(obj/item/W, mob/user)
+	if(istool(W))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			dismantle()
 			qdel(src)
@@ -125,7 +125,7 @@ var/global/list/stool_cache = list() //haha stool
 			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
 		if(istype(W,/obj/item/stack/tile/carpet))
-			padding_type = "carpet"
+			padding_type = MATERIAL_CARPET
 		else if(istype(W,/obj/item/stack/material))
 			var/obj/item/stack/material/M = W
 			if(M.material && (M.material.flags & MATERIAL_PADDING))
@@ -146,11 +146,11 @@ var/global/list/stool_cache = list() //haha stool
 
 //Custom stools
 //You can't pad them with something and they craft separately
-/obj/item/weapon/stool/custom
+/obj/item/stool/custom
 	icon_state = "stool_base"
 
-/obj/item/weapon/stool/custom/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool))
+/obj/item/stool/custom/attackby(obj/item/W as obj, mob/user as mob)
+	if(istool(W))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			dismantle()
 			qdel(src)
@@ -160,10 +160,10 @@ var/global/list/stool_cache = list() //haha stool
 	else
 		..()
 
-/obj/item/weapon/stool/custom/update_icon()
+/obj/item/stool/custom/on_update_icon()
 	return
 
 
-/obj/item/weapon/stool/custom/bar_special
+/obj/item/stool/custom/bar_special
 	name = "bar stool"
 	icon_state = "bar_stool"

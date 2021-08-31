@@ -106,6 +106,22 @@
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
 
+/datum/mind/proc/print_individualobjectives()
+	var/output
+	if(LAZYLEN(individual_objectives))
+		output += "<HR><B>Your individual objectives:</B><UL>"
+		var/obj_count = 1
+		var/la_explanation
+		for(var/datum/individual_objective/objective in individual_objectives)
+			output += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
+			obj_count++
+			if(objective.limited_antag)
+				la_explanation = objective.la_explanation
+		output += "</UL>"
+		if(la_explanation)
+			output += la_explanation
+	return output
+
 /datum/mind/proc/show_memory(mob/recipient)
 	var/output = "<B>[current.real_name]'s Memory</B><HR>"
 	output += memory
@@ -118,7 +134,7 @@
 		else
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
-
+	output += print_individualobjectives()
 	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
@@ -143,6 +159,9 @@
 		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
 	out += "<br>[memory]"
+
+	out += print_individualobjectives()
+
 	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
 	usr << browse(out, "window=edit_memory[src]")
 
@@ -178,7 +197,7 @@
 					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in GLOB.joblist
 		if (!new_role) return
 		var/datum/job/job = SSjob.GetJob(new_role)
 		if(job)

@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(garbage)
 	wait = 2 SECONDS
 	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND|SS_NO_INIT
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	init_order = INIT_ORDER_GARBAGE
 
 	var/list/collection_timeout = list(0, 2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
 
@@ -23,6 +24,11 @@ SUBSYSTEM_DEF(garbage)
 
 	//Queue
 	var/list/queues
+	var/avoid_harddel = TRUE //Avoid hard del
+
+	#ifdef TESTING
+	var/list/reference_find_on_fail = list()
+	#endif
 
 
 /datum/controller/subsystem/garbage/PreInit()
@@ -151,28 +157,35 @@ SUBSYSTEM_DEF(garbage)
 			++gcedlasttick
 			++totalgcs
 			pass_counts[level]++
+			#ifdef TESTING
+			reference_find_on_fail -= refID		//It's deleted we don't care anymore.
+			#endif
 			if (MC_TICK_CHECK)
 				break
 			continue
 
 		// Something's still referring to the qdel'd object.
-		fail_counts[level]++
 		switch (level)
 			if (GC_QUEUE_CHECK)
+				#ifdef TESTING
+				if(reference_find_on_fail[refID])
+					D.find_references()
 				#ifdef GC_FAILURE_HARD_LOOKUP
-				D.find_references()
+				else
+					D.find_references()
+				#endif
+				reference_find_on_fail -= refID
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 				if(!I.failures)
-					var/msg = "GC: -- \ref[D] | [type] was unable to be GC'd --"
-					if(I.coords)
-						msg += "GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --"
-					else
-						msg += "GC: -- \ref[D] | location is nullspace --"
-					log_to_dd(msg)
+					crash_with("GC: -- \ref[D] | [type] was unable to be GC'd --")
 				I.failures++
+				fail_counts[level]++
 			if (GC_QUEUE_HARDDELETE)
+				if(avoid_harddel)
+					continue
+				fail_counts[level]++
 				HardDelete(D)
 				if (MC_TICK_CHECK)
 					break
@@ -251,154 +264,11 @@ SUBSYSTEM_DEF(garbage)
 		for (var/i in 1 to SSgarbage.queues.len)
 			queues[i] |= SSgarbage.queues[i]
 
-
-
-
-
-
-
-
-
-
-//DEBUG procs
-/******************************************/
-/datum/controller/subsystem/garbage/proc/purge()
-	//An emergency proc that attempts to resolve broken GC by hard-deling everything that's queued
-	for (var/d in queues[GC_QUEUE_PREQUEUE])
-		del(d)
-
-	queues[GC_QUEUE_PREQUEUE] = list()
-
-	for (var/d in queues[GC_QUEUE_CHECK])
-		var/datum/e = locate(d)
-		if (e)
-			del(e)
-
-	queues[GC_QUEUE_CHECK] = list()
-
-ADMIN_VERB_ADD(/client/proc/GCDebugItems, R_DEBUG, FALSE)
-/client/proc/GCDebugItems()
-	set category = "Debug"
-	set name = "GCDebugItems"
-	if(!check_rights(R_DEBUG))	return
-
-	var/data = "-----------------------<br>"
-	var/list/totals = list()
-	for (var/a in SSgarbage.items)
-		var/datum/qdel_item/qi = SSgarbage.items[a]
-		totals[a] = qi.qdels
-
-	var/list/sorted = sortAssoc(totals)
-
-	for (var/b in sorted)
-		data += "[b]: [totals[b]]<br>"
-	usr << browse(data,"window=GCItems")
-
-ADMIN_VERB_ADD(/client/proc/GCDebugPreQueue, R_DEBUG, FALSE)
-/client/proc/GCDebugPreQueue()
-	set category = "Debug"
-	set name = "GCDebugPreQueue"
-	if(!check_rights(R_DEBUG))	return
-	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
-
-	var/list/totals = list()
-	var/data = "-----------------------<br>"
-	var/list/a = SSgarbage.queues[GC_QUEUE_PREQUEUE]
-	if (a && a.len)
-		for (var/i = 1; i <= depth; i++)
-			if (i > a.len)
-				break
-			var/datum/c = a[i]
-
-			if (totals[c.type])
-				totals[c.type]++
-			else
-				totals[c.type] = 1
-
-	var/list/sorted = sortAssoc(totals)
-
-	for (var/b in sorted)
-		data += "[b]: [totals[b]]<br>"
-
-	usr << browse(data,"window=GCQueue")
-
-
-ADMIN_VERB_ADD(/client/proc/GCDebugQueue, R_DEBUG, FALSE)
-/client/proc/GCDebugQueue()
-	set category = "Debug"
-	set name = "GCDebugQueue"
-	if(!check_rights(R_DEBUG))	return
-	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
-
-	var/list/totals = list()
-	var/data = "-----------------------<br>"
-	var/list/a = SSgarbage.queues[GC_QUEUE_CHECK]
-	if (a && a.len)
-		for (var/i = 1; i <= depth; i++)
-			if (i > a.len)
-				break
-			var/datum/c = locate(a[i])
-
-			if (!c)
-				continue
-
-			if (totals[c.type])
-				totals[c.type]++
-			else
-				totals[c.type] = 1
-
-	var/list/sorted = sortAssoc(totals)
-
-	for (var/b in sorted)
-		data += "[b]: [totals[b]]<br>"
-
-	usr << browse(data,"window=GCQueue")
-
-
-
-ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
-/client/proc/GCDebugQueueNS()
-	set category = "Debug"
-	set name = "GCDebugQueueNS"
-	if(!check_rights(R_DEBUG))	return
-	var/depth = input(usr, "How many elements to search?", "GC Queue", 1000) as num
-
-	var/list/totals = list()
-	var/data = ""
-	var/list/a = SSgarbage.queues[GC_QUEUE_CHECK]
-	if (a && a.len)
-		for (var/i = 1; i <= depth; i++)
-			if (i > a.len)
-				break
-			var/datum/c = locate(a[i])
-
-			if (!c)
-				continue
-
-			if (totals[c.type])
-				totals[c.type]++
-			else
-				totals[c.type] = 1
-
-	//totals = sortAssoc(totals)
-
-	for (var/b in totals)
-		data += "[b]: [totals[b]]<br>"
-
-	usr << browse(data,"window=GCQueue")
-
-
-
-
-
-
-
-/******************************************/
-
-
-
-
-
+/datum/controller/subsystem/garbage/proc/toggle_harddel(state = TRUE)
+	if(state == avoid_harddel)
+		return
+	avoid_harddel = state
+	return
 
 /datum/qdel_item
 	var/name = ""
@@ -410,35 +280,34 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
 	var/no_respect_force = 0//Number of times it's not respected force=TRUE
 	var/no_hint = 0			//Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0	//Number of times it's slept in its destroy
-	var/datum/coords/coords //Coordinates of item (if its an atom)
 
 /datum/qdel_item/New(mytype)
 	name = "[mytype]"
 
+#ifdef TESTING
+/proc/qdel_and_find_ref_if_fail(datum/D, force = FALSE)
+	SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
+	qdel(D, force)
+#endif
 
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
-/proc/qdel(datum/D, force=FALSE)
-	if(!D)
-		return
+/proc/qdel(datum/D, force=FALSE, ...)
 	if(!istype(D))
-		crash_with("qdel() can only handle /datum (sub)types, was passed: [log_info_line(D)]")
 		del(D)
 		return
+
 	var/datum/qdel_item/I = SSgarbage.items[D.type]
 	if (!I)
 		I = SSgarbage.items[D.type] = new /datum/qdel_item(D.type)
 	I.qdels++
 
-	if(istype(D,/atom))
-		var/atom/A = D
-		I.coords = A.get_coords()
 
 	if(isnull(D.gc_destroyed))
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		var/hint = D.Destroy(force) // Let our friend know they're about to get fucked up.
+		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++
 		else
@@ -457,12 +326,14 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
 					return
 				// Returning LETMELIVE after being told to force destroy
 				// indicates the objects Destroy() does not respect force
+				#ifdef TESTING
 				if(!I.no_respect_force)
 					crash_with("WARNING: [D.type] has been force deleted, but is \
 						returning an immortal QDEL_HINT, indicating it does \
 						not respect the force flag for qdel(). It has been \
 						placed in the queue, further instances of this type \
 						will also be queued.")
+				#endif
 				I.no_respect_force++
 
 				SSgarbage.PreQueue(D)
@@ -475,22 +346,27 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
 				#ifdef TESTING
 				D.find_references()
 				#endif
+			if (QDEL_HINT_IFFAIL_FINDREFERENCE)
+				SSgarbage.PreQueue(D)
+				#ifdef TESTING
+				SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
+				#endif
 			else
+				#ifdef TESTING
 				if(!I.no_hint)
 					crash_with("WARNING: [D.type] is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.")
+				#endif
 				I.no_hint++
 				SSgarbage.PreQueue(D)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
 
-
-
 #ifdef TESTING
+/client/var/running_find_references
 
 /datum/verb/find_refs()
 	set category = "Debug"
 	set name = "Find References"
-	set background = 1
 	set src in world
 
 	find_references(FALSE)
@@ -520,9 +396,17 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
 
 	testing("Beginning search for references to a [type].")
 	last_find_references = world.time
-	DoSearchVar(GLOB)
-	for(var/datum/thing in world)
-		DoSearchVar(thing, "WorldRef: [thing]")
+
+	DoSearchVar(GLOB) //globals
+	for(var/datum/thing in world) //atoms (don't believe its lies)
+		DoSearchVar(thing, "World -> [thing]")
+
+	for (var/datum/thing) //datums
+		DoSearchVar(thing, "World -> [thing]")
+
+	for (var/client/thing) //clients
+		DoSearchVar(thing, "World -> [thing]")
+
 	testing("Completed search for references to a [type].")
 	if(usr && usr.client)
 		usr.client.running_find_references = null
@@ -535,42 +419,66 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueueNS, R_DEBUG, FALSE)
 /datum/verb/qdel_then_find_references()
 	set category = "Debug"
 	set name = "qdel() then Find References"
-	set background = 1
 	set src in world
 
-	qdel(src)
+	qdel(src, TRUE)		//Force.
 	if(!running_find_references)
 		find_references(TRUE)
 
-/datum/proc/DoSearchVar(X, Xname)
-	if(usr && usr.client && !usr.client.running_find_references) return
+/datum/verb/qdel_then_if_fail_find_references()
+	set category = "Debug"
+	set name = "qdel() then Find References if GC failure"
+	set src in world
+
+	qdel_and_find_ref_if_fail(src, TRUE)
+
+//Byond type ids
+#define TYPEID_NULL "0"
+#define TYPEID_NORMAL_LIST "f"
+//helper macros
+#define GET_TYPEID(ref) ( ( (length(ref) <= 10) ? "TYPEID_NULL" : copytext(ref, 4, length(ref)-6) ) )
+#define IS_NORMAL_LIST(L) (GET_TYPEID("\ref[L]") == TYPEID_NORMAL_LIST)
+
+/datum/proc/DoSearchVar(X, Xname, recursive_limit = 64)
+	if(usr && usr.client && !usr.client.running_find_references)
+		return
+	if (!recursive_limit)
+		return
+
 	if(istype(X, /datum))
 		var/datum/D = X
 		if(D.last_find_references == last_find_references)
 			return
+
 		D.last_find_references = last_find_references
-		for(var/V in D.vars)
-			for(var/varname in D.vars)
-				var/variable = D.vars[varname]
-				if(variable == src)
-					testing("Found [src.type] \ref[src] in [D.type]'s [varname] var. [Xname]")
-				else if(islist(variable))
-					if(src in variable)
-						testing("Found [src.type] \ref[src] in [D.type]'s [varname] list var. Global: [Xname]")
-#ifdef GC_FAILURE_HARD_LOOKUP
-					for(var/I in variable)
-						DoSearchVar(I, TRUE)
-				else
-					DoSearchVar(variable, "[Xname]: [varname]")
-#endif
+		var/list/L = D.vars
+
+		for(var/varname in L)
+			if (varname == "vars")
+				continue
+			var/variable = L[varname]
+
+			if(variable == src)
+				testing("Found [src.type] \ref[src] in [D.type]'s [varname] var. [Xname]")
+
+			else if(islist(variable))
+				DoSearchVar(variable, "[Xname] -> list", recursive_limit-1)
+
 	else if(islist(X))
-		if(src in X)
-			testing("Found [src.type] \ref[src] in list [Xname].")
-#ifdef GC_FAILURE_HARD_LOOKUP
+		var/normal = IS_NORMAL_LIST(X)
 		for(var/I in X)
-			DoSearchVar(I, Xname + ": list")
-#else
+			if (I == src)
+				testing("Found [src.type] \ref[src] in list [Xname].")
+
+			else if (I && !isnum(I) && normal && X[I] == src)
+				testing("Found [src.type] \ref[src] in list [Xname]\[[I]\]")
+
+			else if (islist(I))
+				DoSearchVar(I, "[Xname] -> list", recursive_limit-1)
+
+#ifndef FIND_REF_NO_CHECK_TICK
 	CHECK_TICK
 #endif
 
 #endif
+

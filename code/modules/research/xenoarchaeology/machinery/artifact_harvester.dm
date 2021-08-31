@@ -7,9 +7,9 @@
 	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 750
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	var/harvesting = 0
-	var/obj/item/weapon/anobattery/inserted_battery
+	var/obj/item/anobattery/inserted_battery
 	var/obj/machinery/artifact/cur_artifact
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
@@ -22,7 +22,7 @@
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
 /obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/weapon/anobattery))
+	if(istype(I,/obj/item/anobattery))
 		if(!inserted_battery)
 			to_chat(user, "\blue You insert [I] into [src].")
 			user.drop_item()
@@ -81,9 +81,9 @@
 
 		//check if we've finished
 		if(inserted_battery.stored_charge >= inserted_battery.capacity)
-			use_power = 1
+			use_power = IDLE_POWER_USE
 			harvesting = 0
-			cur_artifact.anchored = 0
+			cur_artifact.anchored = FALSE
 			cur_artifact.being_used = 0
 			cur_artifact = null
 			src.visible_message("<b>[name]</b> states, \"Battery is full.\"")
@@ -106,7 +106,7 @@
 
 		//if there's no charge left, finish
 		if(inserted_battery.stored_charge <= 0)
-			use_power = 1
+			use_power = IDLE_POWER_USE
 			inserted_battery.stored_charge = 0
 			harvesting = 0
 			if(inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
@@ -192,7 +192,7 @@
 
 						if(source_effect)
 							harvesting = 1
-							use_power = 2
+							use_power = ACTIVE_POWER_USE
 							cur_artifact.anchored = TRUE
 							cur_artifact.being_used = 1
 							icon_state = "incubator_on"
@@ -218,7 +218,7 @@
 			if(harvesting < 0 && inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
 				inserted_battery.battery_effect.ToggleActivate()
 			harvesting = 0
-			cur_artifact.anchored = 0
+			cur_artifact.anchored = FALSE
 			cur_artifact.being_used = 0
 			cur_artifact = null
 			src.visible_message("<b>[name]</b> states, \"Energy harvesting interrupted.\"")
@@ -236,7 +236,7 @@
 						inserted_battery.battery_effect.ToggleActivate(1)
 					last_process = world.time
 					harvesting = -1
-					use_power = 2
+					use_power = ACTIVE_POWER_USE
 					icon_state = "incubator_on"
 					var/message = "<b>[src]</b> states, \"Warning, battery charge dump commencing.\""
 					src.visible_message(message)

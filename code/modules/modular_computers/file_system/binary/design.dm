@@ -2,7 +2,7 @@
 /datum/computer_file/binary/design
 	filetype = "CD" // Construction Design
 	size = 4
-	var/datum/design/design = null
+	var/datum/design/design
 	var/copy_protected = FALSE
 	var/point_cost = 0 	//Point cost of the design.
 
@@ -37,9 +37,9 @@
 /datum/computer_file/binary/design/proc/set_point_cost(cost)
 	if (isnull(cost))
 		point_cost = 1
-	else 
+	else
 		point_cost = cost
-	
+
 	if(point_cost)
 		set_copy_protection(TRUE)
 
@@ -47,7 +47,7 @@
 	if(!copy_protected)
 		return TRUE
 
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = holder
+	var/obj/item/computer_hardware/hard_drive/portable/disk = holder
 	if(!istype(disk) || disk.license < point_cost)
 		return FALSE
 
@@ -61,7 +61,7 @@
 	if(!copy_protected)
 		return TRUE
 
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = holder
+	var/obj/item/computer_hardware/hard_drive/portable/disk = holder
 	disk.license -= point_cost
 	return TRUE
 

@@ -12,11 +12,11 @@
 		return
 	return ..()
 
-/turf/simulated/floor/fixed/update_icon()
+/turf/simulated/floor/fixed/on_update_icon()
 	return
 
 /turf/simulated/floor/fixed/is_plating()
-	return 0
+	return FALSE
 
 /turf/simulated/floor/fixed/set_flooring()
 	return

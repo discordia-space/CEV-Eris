@@ -2,25 +2,25 @@
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
-	organ_tag = BP_BRAIN
-	parent_organ = BP_HEAD
+	organ_efficiency = list(BP_BRAIN = 100)
+	parent_organ_base = BP_HEAD
+	unique_tag = BP_BRAIN
 	vital = 1
 	icon_state = "brain2"
-	force = 1.0
+	force = 1
 	w_class = ITEM_SIZE_SMALL
-	throwforce = 1.0
+	specific_organ_size = 2
+	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	price_tag = 900
+	blood_req = 8
+	max_blood_storage = 80
+	oxygen_req = 8
+	nutriment_req = 6
 	var/mob/living/carbon/brain/brainmob = null
-
-/obj/item/organ/internal/brain/xeno
-	name = "thinkpan"
-	desc = "It looks kind of like an enormous wad of purple bubblegum."
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "chitin"
 
 /obj/item/organ/internal/brain/New()
 	..()
@@ -63,7 +63,7 @@
 		if(borer)
 			borer.detatch() //Should remove borer if the brain is removed - RR
 
-		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
+		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
 			C.removed()
 			qdel(src)

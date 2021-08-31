@@ -6,20 +6,20 @@
 	w_class = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	flags = CONDUCT
+	throwforce = WEAPON_FORCE_HARMLESS
+	throw_speed = 4
+	throw_range = 20
 
 	var/emagged = 0
 	var/recording = 0
 	var/playing = 0
 	var/playsleepseconds = 0
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/mydrive
+	var/obj/item/computer_hardware/hard_drive/portable/mydrive
 	var/datum/computer_file/data/audio/audio_file
-	var/starting_drive_type = /obj/item/weapon/computer_hardware/hard_drive/portable
-	var/datum/wires/taperecorder/wires = null // Wires datum
+	var/starting_drive_type = /obj/item/computer_hardware/hard_drive/portable
+	var/datum/wires/taperecorder/wires // Wires datum
 	var/open_panel = 0
-	flags = CONDUCT
-	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 4
-	throw_range = 20
 
 /obj/item/device/taperecorder/New()
 	..()
@@ -39,7 +39,7 @@
 		to_chat(usr, "The wire panel is open.")
 
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
-	if(!mydrive && istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
+	if(!mydrive && istype(I, /obj/item/computer_hardware/hard_drive/portable))
 		if(insert_item(I, user))
 			mydrive = I
 			update_icon()
@@ -60,7 +60,7 @@
 	if(mydrive && (src.loc == usr) && istype(over_object, /obj/screen/inventory/hand))
 		eject_usb()
 
-/obj/item/device/taperecorder/update_icon()
+/obj/item/device/taperecorder/on_update_icon()
 	if(!mydrive)
 		icon_state = "taperecorder_empty"
 	else if(recording)
@@ -254,7 +254,7 @@
 		audio_file.used_capacity = 0
 		if(show_message)
 			to_chat(usr, SPAN_NOTICE("File cleared."))
-	
+
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
 

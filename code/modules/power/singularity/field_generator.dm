@@ -18,9 +18,9 @@ field_generator power level display
 	desc = "A large thermal battery that projects a high amount of energy when powered."
 	icon = 'icons/obj/machines/field_generator.dmi'
 	icon_state = "Field_Gen"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	var/const/num_power_levels = 6	// Total number of power level icon has
 	var/Varedit_start = 0
 	var/Varpower = 0
@@ -37,20 +37,20 @@ field_generator power level display
 	var/field_power_draw = 2000	//power needed per field object
 
 
-/obj/machinery/field_generator/update_icon()
-	overlays.Cut()
+/obj/machinery/field_generator/on_update_icon()
+	cut_overlays()
 	if(!active)
 		if(warming_up)
-			overlays += "+a[warming_up]"
+			add_overlays("+a[warming_up]")
 	if(fields.len)
-		overlays += "+on"
+		add_overlays("+on")
 	// Power level indicator
 	// Scale % power to % num_power_levels and truncate value
 	var/level = round(num_power_levels * power / field_generator_max_power)
 	// Clamp between 0 and num_power_levels for out of range power values
 	level = between(0, level, num_power_levels)
 	if(level)
-		overlays += "+p[level]"
+		add_overlays("+p[level]")
 
 	return
 
@@ -126,7 +126,7 @@ field_generator power level display
 					user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
 						"You undo the external reinforcing bolts.", \
 						"You hear ratchet")
-					anchored = 0
+					anchored = FALSE
 					state = 0
 					return
 			return
@@ -327,7 +327,7 @@ field_generator power level display
 	//I want to avoid using global variables.
 	spawn(1)
 		var/temp = 1 //stops spam
-		for(var/obj/singularity/O in SSmachines.machinery)
+		for(var/obj/singularity/O in GLOB.machines)
 			if(O.last_warning && temp)
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0

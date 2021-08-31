@@ -9,7 +9,7 @@
 	Your body is ever changing. You should start out by evolving a chemical vessel to use your powers. A carrion maw can be a good way to earn evolution points. <br>\
 	You can do contracts to grow stronger until the ship becomes your stage and your master plan is ready. A slow and methodical approach is recommended. <br>\
 	You won't find many friends here, but spiders are one of them. If you ever feel alone, you can always give birth to your own children, or search ship in attempt to find your brothers and sisters. <br>\
-	Your enemies are many, and your biology can be easily discerned in the health scanner. You should be wary."
+	Your enemies are many. You should be wary of other carrions too, as your organs are sought-after for their taste and genetic material."
 
 	antaghud_indicator = "hudchangeling"
 

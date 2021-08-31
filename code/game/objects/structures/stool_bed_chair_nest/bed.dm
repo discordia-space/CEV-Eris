@@ -46,10 +46,10 @@
 		LAZYAPLUS(., padding_material.name, 1)
 
 // Reuse the cache/code from stools, todo maybe unify.
-/obj/structure/bed/update_icon()
+/obj/structure/bed/on_update_icon()
 	// Prep icon.
 	icon_state = ""
-	overlays.Cut()
+	cut_overlays()
 	// Base icon.
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
@@ -57,7 +57,7 @@
 		if(applies_material_colour)
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	associate_with_overlays(stool_cache[cache_key])
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]"
@@ -65,7 +65,7 @@
 			var/image/I =  image(icon, "[base_icon]_padding")
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		associate_with_overlays(stool_cache[padding_cache_key])
 
 	// Strings.
 	desc = initial(desc)
@@ -84,14 +84,14 @@
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				qdel(src)
 				return
@@ -109,7 +109,7 @@
 				)
 		return TRUE
 
-/obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_quality(QUALITY_BOLT_TURNING))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		dismantle()
@@ -147,13 +147,13 @@
 		to_chat(user, "You remove the padding from \the [src].")
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		var/mob/living/affecting = G.affecting
 		if(user_buckle_mob(affecting, user))
 			qdel(W)
 
-	else if(!istype(W, /obj/item/weapon/bedsheet))
+	else if(!istype(W, /obj/item/bedsheet))
 		..()
 
 /obj/structure/bed/attack_robot(var/mob/user)
@@ -162,7 +162,7 @@
 
 //If there's blankets on the bed, got to roll them down before you can unbuckle the mob
 /obj/structure/bed/attack_hand(var/mob/user)
-	var/obj/item/weapon/bedsheet/blankets = (locate(/obj/item/weapon/bedsheet) in loc)
+	var/obj/item/bedsheet/blankets = (locate(/obj/item/bedsheet) in loc)
 	if (buckled_mob && blankets && !blankets.rolled && !blankets.folded)
 		if (!blankets.toggle_roll(user))
 			return
@@ -227,11 +227,11 @@
 	name = "roller bed"
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
-	anchored = 0
+	anchored = FALSE
 	buckle_pixel_shift = "x=0;y=6"
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 
-/obj/structure/bed/roller/update_icon()
+/obj/structure/bed/roller/on_update_icon()
 	if(density)
 		icon_state = "up"
 	else

@@ -7,7 +7,7 @@
 		return COMPONENT_INCOMPATIBLE
 	var/atom/A = parent
 	affect = value
-	desc   = new_desc
+	desc = new_desc
 
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMoved)
 

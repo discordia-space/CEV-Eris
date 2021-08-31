@@ -7,7 +7,6 @@
  */
 
 /obj/item/rig_module/stealth_field
-
 	name = "active camouflage module"
 	desc = "A robust hardsuit-integrated stealth module."
 	icon_state = "cloak"
@@ -29,6 +28,7 @@
 
 	suit_overlay_active =   "stealth_active"
 	suit_overlay_inactive = "stealth_inactive"
+	spawn_blacklisted = TRUE
 
 /obj/item/rig_module/stealth_field/activate()
 
@@ -76,6 +76,7 @@
 
 	interface_name = "VOID-shift phase projector"
 	interface_desc = "An advanced teleportation system. It is capable of pinpoint precision or random leaps forward."
+	spawn_blacklisted = TRUE
 
 /obj/item/rig_module/teleporter/proc/phase_in(var/mob/M,var/turf/T)
 
@@ -95,7 +96,7 @@
 	playsound(T, "sparks", 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-/obj/item/rig_module/teleporter/engage(var/atom/target, var/notify_ai)
+/obj/item/rig_module/teleporter/engage(atom/target, notify_ai)
 
 	if(!..()) return 0
 
@@ -128,19 +129,18 @@
 		return 0
 
 	phase_out(H,get_turf(H))
-	H.forceMove(T)
+	go_to_bluespace(get_turf(H), 3, TRUE, H, T)
 	phase_in(H,get_turf(H))
 
-	for(var/obj/item/weapon/grab/G in H.contents)
+	for(var/obj/item/grab/G in H.contents)
 		if(G.affecting)
 			phase_out(G.affecting,get_turf(G.affecting))
-			G.affecting.forceMove(locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
+			go_to_bluespace(get_turf(H), 3, TRUE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
 			phase_in(G.affecting,get_turf(G.affecting))
 
 	return 1
 
 /obj/item/rig_module/fabricator/energy_net
-
 	name = "net projector"
 	desc = "Some kind of complex energy projector with a hardsuit mount."
 	icon_state = "enet"
@@ -150,8 +150,9 @@
 
 	engage_string = "Fabricate Net"
 
-	fabrication_type = /obj/item/weapon/energy_net
+	fabrication_type = /obj/item/energy_net
 	use_power_cost = 70
+	rarity_value = 50
 
 /obj/item/rig_module/fabricator/energy_net/engage(atom/target)
 
@@ -162,7 +163,6 @@
 	return 0
 
 /obj/item/rig_module/self_destruct
-
 	name = "self-destruct module"
 	desc = "Oh my God, Captain. A bomb."
 	icon_state = "deadman"
@@ -174,6 +174,7 @@
 
 	interface_name = "dead man's switch"
 	interface_desc = "An integrated self-destruct module. When the wearer dies, so does the surrounding area. Do not press this button."
+	rarity_value = 20
 	var/list/explosion_values = list(1,2,4,5)
 
 /obj/item/rig_module/self_destruct/small

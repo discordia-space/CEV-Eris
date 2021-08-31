@@ -1,21 +1,22 @@
 /datum/design						//Datum for object designs, used in construction
-	var/name = null					//Name of the created object. If null, it will be 'guessed' from build_path if possible.
-	var/item_name = null			//An item name before it is modified by various name-modifying procs
-	var/name_category = null		//If set, name is modified into "[name_category] ([item_name])"
-	var/desc = null					//Description of the created object. If null, it will use group_desc and name where applicable.
-	var/id = null					//ID of the created object for easy refernece. If null, uses typepath instead.
+	var/name					//Name of the created object. If null, it will be 'guessed' from build_path if possible.
+	var/item_name			//An item name before it is modified by various name-modifying procs
+	var/name_category		//If set, name is modified into "[name_category] ([item_name])"
+	var/desc					//Description of the created object. If null, it will use group_desc and name where applicable.
+	var/id					//ID of the created object for easy refernece. If null, uses typepath instead.
 	var/sort_string = "ZZZZZ"		//Sorting order
 
 	var/list/materials = list()		//List of materials. Format: "id" = amount.
 	var/list/chemicals = list()		//List of reagents. Format: "id" = amount.
 	var/adjust_materials = TRUE		//Whether material efficiency applies to this design
-	var/build_path = null			//The path of the object that gets created.
+	var/build_path			//The path of the object that gets created.
 	var/build_type = NONE			//Flag as to what kind machine the design is built in. See defines.
-	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
+	var/category 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 	var/starts_unlocked = FALSE		//If the design starts unlocked.
+	var/list/factions = list()				//What faction the design is tied to, currently only used so the NT autolathe can print NT designs perfectly.
 
-	var/list/ui_data = null			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
+	var/list/ui_data			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
 	// An MPC file containing this design. You can use it directly, but only if it doesn't interact with the rest of MPC system. If it does, use copies.
 	var/datum/computer_file/binary/design/file
@@ -23,12 +24,16 @@
 
 
 //These procs are used in subtypes for assigning names and descriptions dynamically
-/datum/design/proc/AssembleDesignInfo()
+/datum/design/proc/AssembleDesignInfo(atom/temp_atom)
 	if(build_path)
-		var/atom/temp_atom = Fabricate(null, 1, null)
+		var/delete_atom = FALSE
+		if(!temp_atom)
+			temp_atom = Fabricate(null, 1, null)
+			delete_atom = TRUE
 		AssembleDesignName(temp_atom)
 		AssembleDesignMaterials(temp_atom)
-		qdel(temp_atom)
+		if(delete_atom)
+			qdel(temp_atom)
 
 	AssembleDesignTime()
 	AssembleDesignDesc()
@@ -142,7 +147,7 @@
 		var/list/RS = list()
 
 		for(var/reagent in chemicals)
-			var/datum/reagent/reagent_datum = chemical_reagents_list[reagent]
+			var/datum/reagent/reagent_datum = GLOB.chemical_reagents_list[reagent]
 			RS.Add(list(list("id" = reagent, "name" = reagent_datum.name, "req" = chemicals[reagent])))
 
 		ui_data["chemicals"] = RS
@@ -154,7 +159,7 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, fabricator)
+/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator)
 	if(!build_path)
 		return
 
@@ -167,6 +172,16 @@
 				for(var/i in O.matter)
 					O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
 
+	if(fabricator && fabricator.low_quality_print)
+		for(var/design_faction in factions)
+			if(design_faction in fabricator.high_quality_faction_list)
+				return A
+
+		var/obj/O = A
+		if(istype(O))
+			O.make_old(TRUE)
+
+
 	return A
 
 /datum/design/autolathe
@@ -174,4 +189,4 @@
 
 /datum/design/autolathe/corrupted
 	name = "ERROR"
-	build_path = /obj/item/weapon/material/shard/shrapnel/scrap
+	build_path = /obj/item/material/shard/shrapnel/scrap

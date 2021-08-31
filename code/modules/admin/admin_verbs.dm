@@ -28,9 +28,13 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 			if(text2num(text_right) & holder.rights)
 				verbs += admin_verbs[text_right]
 
+		if(check_rights(config.profiler_permission))
+			control_freak = 0 // enable profiler
+
 /client/proc/remove_admin_verbs()
 	for(var/right in admin_verbs)
 		verbs.Remove(admin_verbs[right])
+	control_freak = initial(control_freak)
 
 ADMIN_VERB_ADD(/client/proc/hide_most_verbs, null, FALSE)
 //hides all our hideable adminverbs
@@ -312,10 +316,14 @@ ADMIN_VERB_ADD(/client/proc/make_sound, R_FUN, FALSE)
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/togglebuildmodeself, R_FUN, FALSE)
+ADMIN_VERB_ADD(/client/proc/togglebuildmodeself, R_ADMIN, FALSE)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
+
+	if(!check_rights(R_ADMIN))
+		return
+
 	if(src.mob)
 		togglebuildmode(src.mob)
 
@@ -484,7 +492,7 @@ ADMIN_VERB_ADD(/client/proc/change_human_appearance_self, R_ADMIN, FALSE)
 ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 /client/proc/change_security_level()
 	set name = "Set security level"
-	set desc = "Sets the station security level"
+	set desc = "Sets the ship security level"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return

@@ -48,8 +48,8 @@
 				continue
 			if(!priority_process) sleep(-1)
 			T.resources = list()
-			T.resources[MATERIAL_GLASS] = rand(3,5)
-			T.resources[MATERIAL_PLASTIC] = rand(3,5)
+			T.resources[MATERIAL_GLASS] = rand(7,12)
+			T.resources[MATERIAL_PLASTIC] = rand(7,12)
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
@@ -89,3 +89,16 @@
 		return "R"
 	else
 		return "D"
+
+/datum/random_map/noise/ore/filthy_rich
+	deep_val = 0.6
+	rare_val = 0.4
+
+/datum/random_map/noise/ore/rich
+	deep_val = 0.7
+	rare_val = 0.5
+
+/datum/random_map/noise/ore/poor
+	deep_val = 0.8
+	rare_val = 0.7
+	chunk_size = 3

@@ -1,8 +1,10 @@
 /obj/item/device/floor_painter
 	name = "floor painter"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "labeler1"
+	icon_state = "floorpainter"
 	item_state = "flight"
+
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	var/decal =        "remove all decals"
 	var/paint_dir =    "precise"
@@ -46,26 +48,11 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		to_chat(user, SPAN_WARNING("\The [src] can only be used on station flooring."))
+		to_chat(user, SPAN_WARNING("\The [src] can only be used on ship flooring."))
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)
 		to_chat(user, SPAN_WARNING("\The [src] cannot paint broken or missing tiles."))
-		return
-
-	var/mob/living/exosuit/ES = A
-	if(istype(ES))
-		to_chat(user, SPAN_WARNING("You can't paint an active exosuit. Dismantle it first."))
-		return
-
-	var/obj/structure/heavy_vehicle_frame/EF = A
-	if(istype(EF))
-		EF.set_colour(paint_colour)
-		return
-
-	var/obj/item/mech_component/MC = A
-	if(istype(MC))
-		MC.set_colour(paint_colour)
 		return
 
 	var/list/decal_data = decals[decal]
@@ -169,3 +156,30 @@
 	if(new_dir && !isnull(paint_dirs[new_dir]))
 		paint_dir = new_dir
 		to_chat(usr, SPAN_NOTICE("You set \the [src] direction to '[paint_dir]'."))
+
+/obj/item/device/floor_painter/mech_painter
+	name = "mech painter"
+	icon_state = "mechpainter"
+	matter = list(MATERIAL_STEEL = 1,MATERIAL_GLASS = 1)
+
+/obj/item/device/floor_painter/mech_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+	if(!proximity)
+		return
+
+	var/mob/living/exosuit/ES = A
+	if(istype(ES))
+		to_chat(user, SPAN_WARNING("You can't paint an active exosuit. Dismantle it first."))
+		return
+
+	var/obj/structure/heavy_vehicle_frame/EF = A
+	if(istype(EF))
+		EF.set_colour(paint_colour)
+		return
+
+	var/obj/item/mech_component/MC = A
+	if(istype(MC))
+		MC.set_colour(paint_colour)
+		return
+
+/obj/item/device/floor_painter/mech_painter/attack_self(var/mob/user)
+	choose_colour()

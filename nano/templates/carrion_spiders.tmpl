@@ -19,6 +19,11 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td>{{:value.name}}</td>
 		<td>{{:value.location}}</td>
 		<td>{{:helper.link('activate', 'circle-arrow-s', {'activate_spider' : value.spider})}}</td>
+		<td>
+		{{if value.implanted}}
+		{{:helper.link('pop out', 'circle-arrow-s', {'pop_out_spider' : value.spider})}}
+		{{/if}}
+		</td>
 		</tr>
 	{{/for}}
 </table>

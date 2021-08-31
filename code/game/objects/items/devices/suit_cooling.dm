@@ -14,10 +14,9 @@
 	throw_range = 4
 
 	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)
-
+	suitable_cell = /obj/item/cell/large
 	var/on = FALSE				//is it turned on?
 	var/cover_open = 0		//is the cover open?
-	var/obj/item/weapon/cell/large/cell
 	var/max_cooling = 12				//in degrees per second - probably don't need to mess with heat capacity here
 	var/charge_consumption = 3		//charge per second at max_cooling
 	var/thermostat = T20C
@@ -28,25 +27,18 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-	cell = new /obj/item/weapon/cell/large(src)	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
-
-/obj/item/device/suit_cooling_unit/get_cell()
-	return cell
-
-/obj/item/device/suit_cooling_unit/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-		update_icon()
-
 /obj/item/device/suit_cooling_unit/Process()
-	if (!on || !cell)
+	if(!on)
 		return
 
-	if (!ismob(loc))
+	if(!cell || cell.is_empty())
+		turn_off()
 		return
 
-	if (!attached_to_suit(loc))		//make sure they have a suit and we are attached to it
+	if(!ismob(loc))
+		return
+
+	if(!attached_to_suit(loc))		//make sure they have a suit and we are attached to it
 		return
 
 	var/mob/living/carbon/human/H = loc
@@ -55,7 +47,7 @@
 	var/env_temp = get_environment_temperature()		//wont save you from a fire
 	var/temp_adj = min(H.bodytemperature - max(thermostat, env_temp), max_cooling)
 
-	if (temp_adj < 0.5)	//only cools, doesn't heat, also we don't need extreme precision
+	if(temp_adj < 0.5)	//only cools, doesn't heat, also we don't need extreme precision
 		return
 
 	var/charge_usage = (temp_adj/max_cooling)*charge_consumption
@@ -66,7 +58,7 @@
 		turn_off()
 
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
-	if (ishuman(loc))
+	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(istype(H.loc, /mob/living/exosuit))
 			var/mob/living/exosuit/M = loc
@@ -80,39 +72,39 @@
 		return 0	//space has no temperature, this just makes sure the cooling unit works in space
 
 	var/datum/gas_mixture/environment = T.return_air()
-	if (!environment)
+	if(!environment)
 		return 0
 
 	return environment.temperature
 
 /obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
-	if (!ishuman(M))
-		return 0
+	if(!ishuman(M))
+		return FALSE
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || H.s_store != src)
+	if(!H.wear_suit || H.s_store != src)
 		return FALSE
 
 	return TRUE
 
-/obj/item/device/suit_cooling_unit/proc/turn_on()
-	if(!cell)
-		return
-	if(cell.empty())
-		return
+/obj/item/device/suit_cooling_unit/proc/turn_on(mob/user)
+	if(!cell || cell.is_empty())
+		if(user)
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		return FALSE
 
 	on = TRUE
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off()
-	if (ismob(loc))
+	if(ismob(loc))
 		var/mob/M = loc
 		M.show_message("\The [src] clicks and whines as it powers down.", 2)	//let them know in case it's run out of power.
 	on = FALSE
 	updateicon()
 
-/obj/item/device/suit_cooling_unit/attack_self(mob/user as mob)
+/obj/item/device/suit_cooling_unit/attack_self(mob/user)
 	if(cover_open && cell)
 		if(ishuman(user))
 			user.put_in_hands(cell)
@@ -129,14 +121,14 @@
 
 	//TODO use a UI like the air tanks
 	if(on)
-		turn_off()
+		turn_off(user)
 	else
-		turn_on()
-		if (on)
+		turn_on(user)
+		if(on)
 			to_chat(user, "You switch on the [src].")
 
-/obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/tool/screwdriver))
+/obj/item/device/suit_cooling_unit/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/tool/screwdriver))
 		if(cover_open)
 			cover_open = FALSE
 			to_chat(user, "You screw the panel into place.")
@@ -145,24 +137,11 @@
 			to_chat(user, "You unscrew the panel.")
 		updateicon()
 		return
-
-	if (istype(W, /obj/item/weapon/cell/large))
-		if(cover_open)
-			if(cell)
-				to_chat(user, "There is a [cell] already installed here.")
-			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				to_chat(user, "You insert the [cell].")
-		updateicon()
-		return
-
 	return ..()
 
 /obj/item/device/suit_cooling_unit/proc/updateicon()
-	if (cover_open)
-		if (cell)
+	if(cover_open)
+		if(cell)
 			icon_state = "suitcooler1"
 		else
 			icon_state = "suitcooler2"
@@ -173,21 +152,17 @@
 	if(!..(user, 1))
 		return
 
-	if (on)
-		if (attached_to_suit(loc))
+	if(on)
+		if(attached_to_suit(loc))
 			to_chat(user, "It's switched on and running.")
 		else
 			to_chat(user, "It's switched on, but not attached to anything.")
 	else
 		to_chat(user, "It is switched off.")
 
-	if (cover_open)
+	if(cover_open)
 		if(cell)
 			to_chat(user, "The panel is open, exposing the [cell].")
 		else
 			to_chat(user, "The panel is open.")
 
-	if (cell)
-		to_chat(user, "The charge meter reads [round(cell.percent())]%.")
-	else
-		to_chat(user, "It doesn't have a power cell installed.")

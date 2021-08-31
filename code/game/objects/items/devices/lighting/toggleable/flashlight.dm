@@ -1,9 +1,9 @@
 /obj/item/device/lighting/toggleable/flashlight
 	action_button_name = "Toggle Flashlight"
-	var/tick_cost = 0.4
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
 	dir = WEST
+	suitable_cell = /obj/item/cell/small
+	rarity_value = 5
+	var/tick_cost = 0.4
 
 	var/obj/effect/effect/light/light_spot
 
@@ -17,40 +17,26 @@
 	var/light_direction
 	var/lightspot_hitObstacle = FALSE
 
-/obj/item/device/lighting/toggleable/flashlight/Initialize()
-	. = ..()
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
-
 /obj/item/device/lighting/toggleable/flashlight/Destroy()
-	qdel(light_spot)
+	QDEL_NULL(light_spot)
 	return ..()
 
-/obj/item/device/lighting/toggleable/flashlight/get_cell()
-	return cell
-
-/obj/item/device/lighting/toggleable/flashlight/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-		update_icon()
-
-/obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(var/turf/old_loc)
-	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))
+/obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(turf/old_loc)
+	if(istype(src.loc,/obj/item/storage) || istype(src.loc,/obj/structure/closet))
 		return
-	if (istype(src.loc,/mob/living))
+	if(istype(src.loc,/mob/living))
 		var/mob/living/L = src.loc
 		set_dir(L.dir)
-	else if (pulledby && old_loc)
+	else if(pulledby && old_loc)
 		var/x_diff = src.x - old_loc.x
 		var/y_diff = src.y - old_loc.y
-		if (x_diff > 0)
+		if(x_diff > 0)
 			set_dir(EAST)
-		else if (x_diff < 0)
+		else if(x_diff < 0)
 			set_dir(WEST)
-		else if (y_diff > 0)
+		else if(y_diff > 0)
 			set_dir(NORTH)
-		else if (y_diff < 0)
+		else if(y_diff < 0)
 			set_dir(SOUTH)
 
 /obj/item/device/lighting/toggleable/flashlight/set_dir(new_dir)
@@ -59,7 +45,7 @@
 	var/hitSomething = FALSE
 	light_direction = new_dir
 
-	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))	//no point in finding spot for light if flashlight is inside container
+	if(istype(src.loc,/obj/item/storage) || istype(src.loc,/obj/structure/closet))	//no point in finding spot for light if flashlight is inside container
 		place_lightspot(NT)
 		return
 
@@ -67,7 +53,7 @@
 		if(NORTH)
 			for(var/i = 1,i <= light_spot_range, i++)
 				var/turf/T = locate(L.x,L.y + i,L.z)
-				if (lightSpotPassable(T))
+				if(lightSpotPassable(T))
 					if(T.is_space())
 						break
 					NT = T
@@ -77,7 +63,7 @@
 		if(SOUTH)
 			for(var/i = 1,i <= light_spot_range, i++)
 				var/turf/T = locate(L.x,L.y - i,L.z)
-				if (lightSpotPassable(T))
+				if(lightSpotPassable(T))
 					if(T.is_space())
 						break
 					NT = T
@@ -87,7 +73,7 @@
 		if(EAST)
 			for(var/i = 1,i <= light_spot_range, i++)
 				var/turf/T = locate(L.x + i,L.y,L.z)
-				if (lightSpotPassable(T))
+				if(lightSpotPassable(T))
 					if(T.is_space())
 						break
 					NT = T
@@ -97,7 +83,7 @@
 		if(WEST)
 			for(var/i = 1,i <= light_spot_range, i++)
 				var/turf/T = locate(L.x - i,L.y,L.z)
-				if (lightSpotPassable(T))
+				if(lightSpotPassable(T))
 					if(T.is_space())
 						break
 					NT = T
@@ -107,31 +93,31 @@
 	lightspot_hitObstacle = hitSomething
 	place_lightspot(NT)
 
-	if (!istype(src.loc,/mob/living))
+	if(!istype(src.loc,/mob/living))
 		dir = new_dir
 
 /obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null)
-	if (light_spot && on && !T.is_space())
+	if(light_spot && on && !T.is_space())
 		light_spot.forceMove(T)
 		light_spot.icon_state = "nothing"
 		light_spot.transform = initial(light_spot.transform)
 		light_spot.set_light(light_spot_radius, light_spot_power)
 
-		if (cell && cell.percent() <= 25)
+		if(cell && cell.percent() <= 25)
 			apply_power_deficiency()	//onhit brightness increased there
-		else if (lightspot_hitObstacle)
+		else if(lightspot_hitObstacle)
 			light_spot.set_light(light_spot_radius + 1, light_spot_power * 1.25)
 
-		if (lightSpotPlaceable(T) && !lightspot_hitObstacle)
+		if(lightSpotPlaceable(T) && !lightspot_hitObstacle)
 			var/distance = get_dist(get_turf(src),T)
 			switch(distance)
-				if (1)
+				if(1)
 					light_spot.icon_state = "lightspot_vclose"
-				if (2)
+				if(2)
 					light_spot.icon_state = "lightspot_close"
-				if (3)
+				if(3)
 					light_spot.icon_state = "lightspot_medium"
-				if (4)
+				if(4)
 					light_spot.icon_state = "lightspot_far"
 		if(angle)
 			light_spot.transform = turn(light_spot.transform, angle)
@@ -145,7 +131,7 @@
 					light_spot.transform = turn(light_spot.transform, -90)
 
 /obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(var/turf/T)
-	if (is_opaque(T))
+	if(is_opaque(T))
 		return FALSE
 	return TRUE
 
@@ -182,7 +168,7 @@
 	var/turf/T = get_turf(A)
 	if(can_see(user,T) && light_spot_range >= get_dist(get_turf(src),T))
 		lightspot_hitObstacle = FALSE
-		if (!lightSpotPassable(T))
+		if(!lightSpotPassable(T))
 			lightspot_hitObstacle = TRUE
 			T = get_step_towards(T,get_turf(src))
 			if(!lightSpotPassable(T))
@@ -192,9 +178,8 @@
 		place_lightspot(T,Get_Angle(get_turf(src),T))
 
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
-	if(!cell || !cell.check_charge(tick_cost))
+	if(!cell_check(tick_cost, user))
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 		return FALSE
 	. = ..()
 	set_light(2,radiance_power)
@@ -203,7 +188,7 @@
 	light_spot.pixel_x = -16
 	light_spot.pixel_y = -16
 	light_spot.layer = ABOVE_OBJ_LAYER
-	if (cell.percent() <= 25)
+	if(cell.percent() <= 25)
 		apply_power_deficiency()
 	calculate_dir()
 	if(. && user)
@@ -217,7 +202,7 @@
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/proc/apply_power_deficiency()
-	if (!cell || !light_spot)
+	if(!cell || !light_spot)
 		return
 	var/hit_brightness_multiplier = 1
 	var/hit_radius_addition = 0
@@ -225,7 +210,7 @@
 		hit_brightness_multiplier = 1.25
 		hit_radius_addition = 1
 
-	switch (cell.percent())
+	switch(cell.percent())
 		if(0 to 10)
 			light_spot.set_light(max(2, round(light_spot_radius/100 * 15) + hit_radius_addition), light_spot_power/100 * 30 * hit_brightness_multiplier)
 			set_light(l_power = radiance_power/100 * 15)
@@ -240,22 +225,12 @@
 	if(on)
 		if(!spot_locked)
 			calculate_dir()
-		if(!cell || !cell.checked_use(tick_cost))
+		if(!cell_use_check(tick_cost))
 			if(ismob(src.loc))
 				to_chat(src.loc, SPAN_WARNING("Your flashlight dies. You are alone now."))
 			turn_off()
-		else if (cell.percent() <= 25)
+		else if(cell.percent() <= 25)
 			apply_power_deficiency()
-
-/obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-	else
-		return ..()
-
-/obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
@@ -273,7 +248,7 @@
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
-				vision = H.internal_organs_by_name[H.species.vision_organ]
+				vision = H.random_organ_by_process(H.species.vision_organ)
 			if(!vision)
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!</span>")
 				return
@@ -304,7 +279,7 @@
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			if(M.HUDtech.Find("flash"))
-				flick("flash", M.HUDtech["flash"])
+				FLICK("flash", M.HUDtech["flash"])
 	else
 		return ..()
 
@@ -330,7 +305,7 @@
 	light_spot_power = 3
 	light_spot_range = 4
 	tick_cost = 0.8
-	suitable_cell = /obj/item/weapon/cell/medium
+	suitable_cell = /obj/item/cell/medium
 
 /obj/item/device/lighting/toggleable/flashlight/seclite
 	name = "Ironhammer flashlight"
@@ -340,7 +315,7 @@
 	light_spot_radius = 3
 	light_spot_power = 2.5
 
-/obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
+/obj/item/device/lighting/toggleable/flashlight/seclite/on_update_icon()
 	. = ..()
 
 	if(on)

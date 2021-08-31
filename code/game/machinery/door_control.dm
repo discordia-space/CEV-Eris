@@ -2,7 +2,7 @@
 	name = "remote object control"
 	desc = "It controls objects, remotely."
 	icon_state = "doorctrl0"
-	power_channel = ENVIRON
+	power_channel = STATIC_ENVIRON
 	var/desiredstate = 0
 	var/exposedwires = 0
 	var/wires = 3
@@ -12,7 +12,7 @@
 	*/
 
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -22,7 +22,7 @@
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
@@ -38,7 +38,7 @@
 
 	if(!allowed(user) && (wires & 1))
 		to_chat(user, SPAN_WARNING("Access Denied"))
-		flick("doorctrl-denied",src)
+		FLICK("doorctrl-denied",src)
 		return
 
 	use_power(5)
@@ -55,7 +55,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/button/remote/update_icon()
+/obj/machinery/button/remote/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
@@ -86,7 +86,7 @@
 	*/
 
 /obj/machinery/button/remote/airlock/trigger()
-	for(var/obj/machinery/door/airlock/D in SSmachines.machinery)
+	for(var/obj/machinery/door/airlock/D in GLOB.all_doors)
 		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
 				if(D.density)
@@ -130,7 +130,7 @@
 	desc = "It controls blast doors, remotely."
 
 /obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
+	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
 		if(M.id == id)
 			if(M.density)
 				spawn(0)
@@ -147,9 +147,9 @@
 	desc = "It controls blast doors, remotely. But need id_card with access to it."
 	icon_state = "doorid0"
 
-/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/id_card = W
+/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/id_card = W
 		if(has_access(req_access, list(), id_card.access))
 			use_power(5)
 			icon_state = "doorid1"
@@ -159,16 +159,16 @@
 				update_icon()
 		else
 			to_chat(user, SPAN_WARNING("Access Denied"))
-			flick("doorid-denied",src)
+			FLICK("doorid-denied",src)
 	else
 		to_chat(user, SPAN_WARNING("You need a id card to operate."))
-		flick("doorid-denied",src)
+		FLICK("doorid-denied",src)
 
 /obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
 	to_chat(user, SPAN_WARNING("You need a id card to operate."))
-	flick("doorid-denied",src)
+	FLICK("doorid-denied",src)
 
-/obj/machinery/button/remote/blast_door/id_card/update_icon()
+/obj/machinery/button/remote/blast_door/id_card/on_update_icon()
 	if(stat & NOPOWER)
 		icon_state = "doorid-p"
 	else
@@ -182,7 +182,7 @@
 	desc = "It controls emitters, remotely."
 
 /obj/machinery/button/remote/emitter/trigger(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in SSmachines.machinery)
+	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
 			spawn(0)
 				E.activate(user)
@@ -200,7 +200,7 @@
 	active = 1
 	update_icon()
 
-	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
+	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
 		if(M.id == id)
 			spawn(0)
 				M.open()
@@ -208,13 +208,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in SSmachines.machinery)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
+	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
 		if(M.id == id)
 			spawn(0)
 				M.close()
@@ -226,7 +226,7 @@
 
 	return
 
-/obj/machinery/button/remote/driver/update_icon()
+/obj/machinery/button/remote/driver/on_update_icon()
 	if(active)
 		icon_state = "launcher1"
 	else if(stat & (NOPOWER))

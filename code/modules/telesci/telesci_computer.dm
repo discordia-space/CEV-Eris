@@ -1,9 +1,11 @@
+#define UNAVAILABLE_Z_LEVELS list(6, 7)
+
 /obj/machinery/computer/telescience
 	name = "\improper Telepad Control Console"
 	desc = "Used to teleport objects to and from the telescience telepad."
 	icon_screen = "teleport"
 	light_color = "#6496fa"
-	//circuit = /obj/item/weapon/stock_parts/circuitboard/telesci_console
+	//circuit = /obj/item/stock_parts/circuitboard/telesci_console
 	var/sending = 1
 	var/obj/machinery/telepad/telepad = null
 	var/temp_msg = "Telescience control console initialized.<BR>Welcome."
@@ -62,8 +64,8 @@
 			user.unEquip(W)
 			W.forceMove(src)
 			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", SPAN_NOTICE("<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>"))
-	else if(istype(W, /obj/item/weapon/tool/multitool))
-		var/obj/item/weapon/tool/multitool/M = W
+	else if(istype(W, /obj/item/tool/multitool))
+		var/obj/item/tool/multitool/M = W
 		if(M.buffer_object && istype(M.buffer_object, /obj/machinery/telepad))
 			telepad = M.buffer_object
 			M.buffer_object = null
@@ -167,7 +169,7 @@
 		var/turf/target = locate(trueX, trueY, z_co)
 		last_target = target
 		var/area/A = get_area(target)
-		flick("pad-beam", telepad)
+		FLICK("pad-beam", telepad)
 
 		if(spawn_time > 15) // 1.5 seconds
 			playsound(telepad.loc, 'sound/weapons/flash.ogg', 25, 1)
@@ -206,8 +208,12 @@
 			if(sending)
 				source = dest
 				dest = target
+			
+			if((sending && (dest.z in UNAVAILABLE_Z_LEVELS)) || ((target.z in UNAVAILABLE_Z_LEVELS) && !sending))
+				temp_msg = "ERROR: Sector is unavailable."
+				return
 
-			flick("pad-beam", telepad)
+			FLICK("pad-beam", telepad)
 			playsound(telepad.loc, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 			for(var/atom/movable/ROI in source)
 				// if is anchored, don't let through
@@ -243,7 +249,7 @@
 							log_msg = dd_limittext(log_msg, length(log_msg) - 2)
 							log_msg += ")"
 					log_msg += ", "
-				do_teleport(ROI, dest)
+				go_to_bluespace(get_turf(src),telepad.entropy_value, FALSE, ROI, dest)
 
 			if (dd_hassuffix(log_msg, ", "))
 				log_msg = dd_limittext(log_msg, length(log_msg) - 2)
@@ -265,14 +271,6 @@
 		telefail()
 		temp_msg = "ERROR!<BR>Elevation is less than 1 or greater than 90."
 		return
-	/*if(z_co in GLOB.using_map.admin_levels)
-		telefail()
-		temp_msg = "ERROR! Sector is invalid! Valid sectors are [english_list(GLOB.using_map.player_levels)]."
-		return*/
-	/*if(!z_co in GLOB.using_map.station_levels)
-		telefail()
-		temp_msg = "ERROR! Bad configuration provided by the user. Unable to charge the teleporter."
-		return*/
 	if(teles_left > 0)
 		doteleport(user)
 	else
@@ -366,3 +364,5 @@
 		return message
 	else
 		return copytext(message, 1, length + 1)
+
+#undef UNAVAILABLE_Z_LEVELS

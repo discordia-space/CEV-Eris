@@ -7,6 +7,9 @@
 	anchored = TRUE
 	flags = CONDUCT
 	layer = TURF_LAYER + 0.45
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TRAP_ARMED_WIRE
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
 /obj/structure/wire_splicing/Initialize(roundstart)
@@ -116,11 +119,11 @@
 		if(used_now)
 			to_chat(user, "The [src.name] is already being manipulated!") //so people with low stats can't spam their way past the failure chance
 			return
-		used_now = TRUE
 		if(messiness >= 10)
 			messiness = 10
 			to_chat(user, SPAN_WARNING("Enough."))
 			return
+		used_now = TRUE
 		// keep goin!
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.get_amount() >= 1)

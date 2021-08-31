@@ -2,6 +2,7 @@
 	STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
+	GLOB.mob_list -= src
 	unset_machine()
 	qdel(hud_used)
 	if(client)
@@ -31,6 +32,7 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
+	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
 
@@ -260,7 +262,7 @@
 
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if(!istype(l_hand, /obj/item/weapon/grab) && !istype(r_hand, /obj/item/weapon/grab))
+	if(!istype(l_hand, /obj/item/grab) && !istype(r_hand, /obj/item/grab))
 		if (!L)
 			return null
 		else
@@ -270,14 +272,14 @@
 			L = new /obj/effect/list_container/mobl(null)
 			L.container += src
 			L.master = src
-		if(istype(l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = l_hand
+		if(istype(l_hand, /obj/item/grab))
+			var/obj/item/grab/G = l_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if (G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if(istype(r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = r_hand
+		if(istype(r_hand, /obj/item/grab))
+			var/obj/item/grab/G = r_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if (G.affecting)
@@ -423,7 +425,7 @@
 	for(var/obj/O in world)				//EWWWWWWWWWWWWWWWWWWWWWWWW ~needs to be optimised
 		if(!O.loc)
 			continue
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+		if(istype(O, /obj/item/disk/nuclear))
 			var/name = "Nuclear Disk"
 			if (names.Find(name))
 				namecounts[name]++
@@ -736,7 +738,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		set_density(initial(density))
 	reset_layer()
 
-	for(var/obj/item/weapon/grab/G in grabbed_by)
+	for(var/obj/item/grab/G in grabbed_by)
 		if(G.force_stand())
 			lying = 0
 
@@ -890,9 +892,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/living/flash_weak_pain()
-//	flick("weak_pain", flash["pain"])
+//	FLICK("weak_pain", flash["pain"])
 	if(HUDtech.Find("pain"))
-		flick("weak_pain", HUDtech["pain"])
+		FLICK("weak_pain", HUDtech["pain"])
 
 
 /mob/proc/get_visible_implants()
@@ -938,7 +940,7 @@ mob/proc/yank_out_object()
 			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
 		return
 
-	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
@@ -990,7 +992,7 @@ mob/proc/yank_out_object()
 	if(!(U.l_hand && U.r_hand))
 		U.put_in_hands(selection)
 
-	for(var/obj/item/weapon/O in pinned)
+	for(var/obj/item/O in pinned)
 		if(O == selection)
 			pinned -= O
 		if(!pinned.len)
@@ -1004,6 +1006,7 @@ mob/proc/yank_out_object()
 	handle_silent()
 	handle_drugged()
 	handle_slurring()
+	handle_slowdown()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -1039,6 +1042,11 @@ mob/proc/yank_out_object()
 	if(paralysis)
 		AdjustParalysis(-1)
 	return paralysis
+
+/mob/living/proc/handle_slowdown()
+	if(slowdown)
+		slowdown = max(slowdown-1, 0)
+	return slowdown
 
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()
@@ -1274,3 +1282,6 @@ mob/proc/yank_out_object()
 /mob/proc/set_stat(var/new_stat)
 	. = stat != new_stat
 	stat = new_stat
+
+/mob/proc/ssd_check()
+	return !client && !teleop

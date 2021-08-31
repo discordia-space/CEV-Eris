@@ -10,7 +10,7 @@
 
 /mob/living/proc/process_resist()
 	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
+	if(istype(src.loc, /obj/item/holder))
 		escape_inventory(src.loc)
 		return
 
@@ -29,7 +29,7 @@
 		spawn() C.mob_breakout(src)
 		return TRUE
 
-/mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
+/mob/living/proc/escape_inventory(obj/item/holder/H)
 	if(H != src.loc) return
 
 	var/mob/M = H.loc //Get our mob holder (if any).
@@ -41,7 +41,7 @@
 
 		// Update whether or not this mob needs to pass emotes to contents.
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+			if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/holder))
 				return
 		M.status_flags &= ~PASSEMOTES
 
@@ -63,7 +63,7 @@
 		requests.Remove(O)
 		qdel(O)
 		resisting++
-	for(var/obj/item/weapon/grab/G in grabbed_by)
+	for(var/obj/item/grab/G in grabbed_by)
 		resisting++
 		switch(G.state)
 			if(GRAB_PASSIVE)
@@ -123,9 +123,9 @@
 		break_handcuffs()
 		return
 
-	var/obj/item/weapon/handcuffs/HC = handcuffed
+	var/obj/item/handcuffs/HC = handcuffed
 
-	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
+	//A default in case you are somehow handcuffed with something that isn't an obj/item/handcuffs type
 	var/breakouttime = 1200 - src.stats.getStat(STAT_ROB) * 10
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(HC))
@@ -135,12 +135,10 @@
 	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
 		breakouttime /= 2
 
-	visible_message(
-		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
-		)
-
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		visible_message(
+		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)"))
 		if(!handcuffed || buckled)
 			return
 		visible_message(
@@ -148,6 +146,21 @@
 			SPAN_NOTICE("You successfully remove \the [handcuffed].")
 			)
 		drop_from_inventory(handcuffed)
+
+	if(istype(buckled, /obj/item/beartrap))
+		breakouttime /= 2
+		visible_message(
+		SPAN_DANGER("\The [src] attempts to remove \the [HC] using the trap!"),
+		SPAN_WARNING("You attempt to remove \the [HC] using the trap. (This will take around [breakouttime / 10] seconds and you need to stand still)")
+		)
+		if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
+			if(!handcuffed)
+				return
+			visible_message(
+			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
+			SPAN_NOTICE("You successfully remove \the [handcuffed].")
+			)
+			drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
 	if(!can_click())
@@ -159,9 +172,9 @@
 		break_legcuffs()
 		return
 
-	var/obj/item/weapon/legcuffs/HC = legcuffed
+	var/obj/item/legcuffs/HC = legcuffed
 
-	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
+	//A default in case you are somehow legcuffed with something that isn't an obj/item/legcuffs type
 	var/breakouttime = 1200
 	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 	if(istype(HC))
@@ -187,6 +200,8 @@
 /mob/living/carbon/proc/can_break_cuffs()
 	if(HULK in mutations)
 		return 1
+	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
+		return 1
 
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
@@ -199,11 +214,13 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break \the [handcuffed]!"),
+			SPAN_DANGER("<big>[src] manages to destroy \the [handcuffed]!</big>"),
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+
 
 		qdel(handcuffed)
 		handcuffed = null
@@ -220,11 +237,12 @@
 			return
 
 		visible_message(
-			SPAN_DANGER("[src] manages to break the legcuffs!"),
+			SPAN_DANGER("<big>[src] manages to destroy the legcuffs!</big>"),
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
-		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		if(HULK in mutations)
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null

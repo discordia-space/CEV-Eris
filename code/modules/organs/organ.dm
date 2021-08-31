@@ -2,11 +2,14 @@
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
 	germ_level = 0
+	matter = list(MATERIAL_BIOMATTER = 20)
+	bad_type = /obj/item/organ
+	spawn_tags = SPAWN_TAG_ORGAN
 
 	// Strings.
 	var/surgery_name					// A special name that replaces item name in surgery messages
 	var/organ_tag = "organ"				// Unique identifier.
-	var/parent_organ = BP_CHEST			// Organ holding this object.
+	var/parent_organ_base = BP_CHEST	// Base organ holding this object.
 	var/dead_icon
 
 	// Status tracking.
@@ -31,7 +34,6 @@
 	var/min_broken_damage = 30			// Damage before becoming broken
 	var/max_damage						// Damage cap
 	var/rejecting						// Is this organ already being rejected?
-	matter = list(MATERIAL_BIOMATTER = 20)
 
 	var/death_time						// limits organ self recovery
 
@@ -55,7 +57,7 @@
 		max_damage = min_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]
@@ -66,8 +68,8 @@
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 
-		if(parent_organ)
-			replaced(holder.get_organ(parent_organ))
+		if(parent_organ_base)
+			replaced(holder.get_organ(parent_organ_base))
 		else
 			replaced_mob(holder)
 
@@ -101,11 +103,11 @@
 	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
-	if(owner && vital)
+	if(owner && vital && owner.stat != DEAD)
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
 		return 0
 	return ..()
 
@@ -115,7 +117,7 @@
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/weapon/storage/freezer))
+	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/storage/freezer))
 		return TRUE
 
 	return FALSE
@@ -185,7 +187,6 @@
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
-		var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 		//spread germs
 		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
@@ -265,10 +266,8 @@
 		src.damage = between(0, src.damage + amount, max_damage)
 
 		//only show this if the organ is not robotic
-		if(owner && parent_organ && amount > 0)
-			var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-			if(parent && !silent)
-				owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+		if(owner && parent && amount > 0 && !silent)
+			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
@@ -278,11 +277,11 @@
 		return
 	switch (severity)
 		if (1)
-			take_damage(9)
+			take_damage(12)
 		if (2)
-			take_damage(3)
+			take_damage(6)
 		if (3)
-			take_damage(1)
+			take_damage(3)
 
 // Gets the limb this organ is located in, if any
 /obj/item/organ/proc/get_limb()
@@ -290,7 +289,7 @@
 		return parent
 
 	if(owner)
-		return owner.get_organ(parent_organ)
+		return owner.get_organ(parent_organ_base)
 
 	else if(istype(loc, /obj/item/organ/external))
 		return loc
@@ -318,7 +317,7 @@
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
-	if(vital && !(owner.status_flags & REBUILDING_ORGANS))
+	if(vital && !(owner.status_flags & REBUILDING_ORGANS) && owner.stat != DEAD)
 		if(user)
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()

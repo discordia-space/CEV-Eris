@@ -58,14 +58,14 @@
 	if(current_size == STAGE_SUPER)//IT'S UNSTOPPABLE
 		return
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(25))
 				investigate_log("has been destroyed by an explosion.", I_SINGULO)
 				qdel(src)
 				return
 			else
 				energy += 50
-		if(2.0 to 3.0)
+		if(2 to 3)
 			energy += round((rand(20,60)/2),1)
 			return
 
@@ -135,9 +135,9 @@
 			dissipate_delay = 10
 			dissipate_track = 0
 			dissipate_strength = 1
-			overlays = 0
+			set_overlays(0)
 			if(chained)
-				overlays = "chain_s1"
+				set_overlays("chain_s1")
 			visible_message(SPAN_NOTICE("The singularity has shrunk to a rather pitiful size."))
 		if (STAGE_TWO) //1 to 3 does not check for the turfs if you put the gens right next to a 1x1 then its going to eat them.
 			name = "gravitational singularity"
@@ -152,9 +152,9 @@
 			dissipate_delay = 5
 			dissipate_track = 0
 			dissipate_strength = 5
-			overlays = 0
+			set_overlays(0)
 			if(chained)
-				overlays = "chain_s3"
+				set_overlays("chain_s3")
 			if(growing)
 				visible_message(SPAN_NOTICE("The singularity noticeably grows in size."))
 			else
@@ -173,9 +173,9 @@
 				dissipate_delay = 4
 				dissipate_track = 0
 				dissipate_strength = 20
-				overlays = 0
+				set_overlays(0)
 				if(chained)
-					overlays = "chain_s5"
+					set_overlays("chain_s5")
 				if(growing)
 					visible_message(SPAN_NOTICE("The singularity expands to a reasonable size."))
 				else
@@ -194,9 +194,9 @@
 				dissipate_delay = 10
 				dissipate_track = 0
 				dissipate_strength = 10
-				overlays = 0
+				set_overlays(0)
 				if(chained)
-					overlays = "chain_s7"
+					set_overlays("chain_s7")
 				if(growing)
 					visible_message(SPAN_WARNING("The singularity expands to a dangerous size."))
 				else
@@ -212,9 +212,9 @@
 			grav_pull = 10
 			consume_range = 4
 			dissipate = 0 //It cant go smaller due to e loss.
-			overlays = 0
+			set_overlays(0)
 			if(chained)
-				overlays = "chain_s9"
+				set_overlays("chain_s9")
 			if(growing)
 				visible_message(SPAN_DANGER("<font size='2'>The singularity has grown out of control!</font>"))
 			else
@@ -232,7 +232,7 @@
 			dissipate = 0 //It cant go smaller due to e loss
 			event_chance = 25 //Events will fire off more often.
 			if(chained)
-				overlays = "chain_s9"
+				set_overlays("chain_s9")
 			visible_message("<span class='sinister'><font size='3'>You witness the creation of a destructive force that cannot possibly be stopped by human hands.</font></span>")
 
 	if (current_size == allowed_size)
@@ -278,7 +278,7 @@
 		else if(dist <= consume_range)
 			consume(X)
 
-	//for (var/turf/T in trange(grav_pull, src)) //TODO: Create a similar trange for orange to prevent snowflake of self check.
+	//for (var/turf/T in RANGE_TURFS(grav_pull, src)) //TODO: Create a similar RANGE_TURFS for orange to prevent snowflake of self check.
 	//	consume(T)
 
 	return
@@ -465,23 +465,23 @@
 
 /obj/singularity/proc/on_capture()
 	chained = 1
-	overlays = 0
+	set_overlays(0)
 	move_self = 0
 	switch (current_size)
 		if(1)
-			overlays += image('icons/obj/singularity.dmi',"chain_s1")
+			add_overlays(image('icons/obj/singularity.dmi',"chain_s1"))
 		if(3)
-			overlays += image('icons/effects/96x96.dmi',"chain_s3")
+			add_overlays(image('icons/effects/96x96.dmi',"chain_s3"))
 		if(5)
-			overlays += image('icons/effects/160x160.dmi',"chain_s5")
+			add_overlays(image('icons/effects/160x160.dmi',"chain_s5"))
 		if(7)
-			overlays += image('icons/effects/224x224.dmi',"chain_s7")
+			add_overlays(image('icons/effects/224x224.dmi',"chain_s7"))
 		if(9)
-			overlays += image('icons/effects/288x288.dmi',"chain_s9")
+			add_overlays(image('icons/effects/288x288.dmi',"chain_s9"))
 
 /obj/singularity/proc/on_release()
 	chained = 0
-	overlays = 0
+	set_overlays(0)
 	move_self = 1
 
 /obj/singularity/singularity_act(S, size)

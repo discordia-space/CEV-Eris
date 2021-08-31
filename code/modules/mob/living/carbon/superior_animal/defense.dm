@@ -1,4 +1,4 @@
-/mob/living/carbon/superior_animal/proc/harvest(var/mob/user)
+/mob/living/carbon/superior_animal/proc/harvest(mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		drop_embedded()
@@ -20,9 +20,8 @@
 
 	check_AI_act()
 
-/mob/living/carbon/superior_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/carbon/superior_animal/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
-
 	updatehealth()
 
 /mob/living/carbon/superior_animal/attackby(obj/item/I, mob/living/user, var/params)
@@ -48,17 +47,19 @@
 		if (I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/weapon/grab/G in src.grabbed_by)
+			for(var/obj/item/grab/G in src.grabbed_by)
 				if(G.assailant == M)
 					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
 				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
+			if (M in friends)
+				grabbed_by_friend = TRUE // disables AI for easier wrangling
 			M.put_in_active_hand(G)
 			G.synch()
 			LAssailant = M
@@ -106,27 +107,25 @@
 	..()
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+			FLICK("flash", HUDtech["flash"])
 
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if (1.0)
+		if (1)
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 			b_loss += 60
 			f_loss += 60
-			ear_damage += 30
-			ear_deaf += 120
+			adjustEarDamage(30,120)
 
-		if (3.0)
+		if (3)
 			b_loss += 30
 			if (prob(50))
 				Paralyse(1)
-			ear_damage += 15
-			ear_deaf += 60
+			adjustEarDamage(15,60)
 
 	adjustBruteLoss(b_loss)
 	adjustFireLoss(f_loss)
@@ -139,21 +138,20 @@
 		return
 
 	if(stat == DEAD)
-		blinded = 1
+		blinded = TRUE
 		silent = 0
 	else
-		updatehealth()
+		updatehealth() // updatehealth calls death if health <= 0
 		handle_stunned()
 		handle_weakened()
 		if(health <= 0)
-			death()
-			blinded = 1
+			blinded = TRUE
 			silent = 0
 			return 1
 
 		if(paralysis && paralysis > 0)
 			handle_paralysed()
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 			if(halloss > 0)
 				adjustHalLoss(-3)
@@ -161,7 +159,7 @@
 		if(sleeping)
 			adjustHalLoss(-3)
 			sleeping = max(sleeping-1, 0)
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 		else if(resting)
 			if(halloss > 0)
@@ -189,7 +187,7 @@
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
@@ -242,7 +240,7 @@
 /mob/living/carbon/superior_animal/get_heat_protection(var/temperature)
 	return heat_protection
 
-/mob/living/carbon/superior_animal/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/carbon/superior_animal/handle_environment(datum/gas_mixture/environment)
 	bad_environment = FALSE
 	if(!environment)
 		return
@@ -353,9 +351,9 @@
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
 
 /mob/living/carbon/superior_animal/update_fire()
-	overlays -= image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
+	remove_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
 	if(on_fire)
-		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
+		add_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
 
 //The most common cause of an airflow stun is a sudden breach. Evac conditions generally
 /mob/living/carbon/superior_animal/airflow_stun()

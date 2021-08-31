@@ -70,12 +70,13 @@ var/const/tk_maxrange = 15
 	w_class = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
+	spawn_tags = null
 
 	var/last_throw = 0
-	var/atom/movable/focus = null
-	var/mob/living/host = null
+	var/atom/movable/focus
+	var/mob/living/host
 
-/obj/item/tk_grab/dropped(mob/user as mob)
+/obj/item/tk_grab/dropped(mob/user)
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
@@ -85,13 +86,13 @@ var/const/tk_maxrange = 15
 	return
 
 //stops TK grabs being equipped anywhere but into hands
-/obj/item/tk_grab/equipped(var/mob/user, var/slot)
+/obj/item/tk_grab/equipped(mob/user, var/slot)
 	..()
 	if( (slot == slot_l_hand) || (slot== slot_r_hand) )	return
 	qdel(src)
 	return
 
-/obj/item/tk_grab/attack_self(mob/user as mob)
+/obj/item/tk_grab/attack_self(mob/user)
 	if(focus)
 		focus.attack_self_tk(user)
 
@@ -136,7 +137,7 @@ var/const/tk_maxrange = 15
 		last_throw = world.time
 	return
 
-/obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone)
 	return
 
 
@@ -156,13 +157,14 @@ var/const/tk_maxrange = 15
 		return
 	new /obj/effect/overlay/pulse(get_turf(focus), 5)
 
-/obj/item/tk_grab/update_icon()
-	overlays.Cut()
+/obj/item/tk_grab/on_update_icon()
+	cut_overlays()
 	if(focus)
 		var/old_layer = focus.layer
 		var/old_plane = focus.plane
 		focus.layer = layer+0.01
 		focus.set_plane(ABOVE_HUD_PLANE)
-		overlays += focus //this is kind of ick, but it's better than using icon()
+		add_overlays(focus)
+		//this is kind of ick, but it's better than using icon()
 		focus.layer = old_layer
 		focus.set_plane(old_plane)

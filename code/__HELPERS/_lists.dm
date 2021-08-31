@@ -13,16 +13,16 @@
 
 #define LAZYINITLIST(L) if (!L) L = list()
 
-#define UNSETEMPTY(L) if (L && !L.len) L = null
-#define LAZYREMOVE(L, I) if(L) { L -= I; if(!L.len) { L = null; } }
+#define LAZYLEN(L) length(L)
+#define UNSETEMPTY(L) if (L && !LAZYLEN(L)) L = null
+#define LAZYREMOVE(L, I) if(L) { L -= I; if(!LAZYLEN(L)) { L = null; } }
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 #define LAZYINSERT(L, I, X) if(!L) { L = list(); } L.Insert(X, I);
 #define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
 #define LAZYISIN(L, I) (L ? (I in L) : FALSE)
-#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
-#define LAZYLEN(L) length(L)
+#define LAZYACCESS(L, I) (islist(L) ? (isnum(I) ? (I > 0 && I <= LAZYLEN(L) ? L[I] : null) : L[I]) : null)
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
@@ -581,7 +581,7 @@
 		else
 			min = mid+1
 
-proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
+/proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
 	// Returns a new list with the text values sorted.
 	// Use binary search to order by sortValue.
 	// This works by going to the half-point of the list, seeing if the node in question is higher or lower cost,
@@ -925,3 +925,51 @@ Checks if a list has the same entries and values as an element of big.
 			return FALSE
 
 	return TRUE
+
+/proc/try_json_decode(t)
+	. = list()
+	if(istext(t))
+		. = json_decode(t)
+	else if(islist(t))
+		. = t
+	else if(t)
+		. += t
+
+/proc/recursiveLen(list/L)
+	. = 0
+	if(istext(L))
+		L = try_json_decode(L)
+	if(length(L))
+		. += length(L)
+		for(var/list/i in L)
+			if(islist(i))
+				. += recursiveLen(i)
+			else if(islist(L[i]))
+				. += recursiveLen(L[i])
+
+/proc/RecursiveCut(list/L)
+	for(var/list/l in L)
+		if(islist(l))
+			RecursiveCut(l)
+		else
+			var/list/b = L[l]
+			if(islist(b))
+				RecursiveCut(b)
+	L.Cut()
+
+/proc/matrix2d_x_sanitize(mathrix, x)
+	if(!islist(mathrix))
+		return
+	else if(!islist(mathrix[x]))
+		return
+	return mathrix
+
+/proc/get_2d_matrix_cell(mathrix, x, y)
+	if(!matrix2d_x_sanitize(mathrix, x))
+		return
+	return mathrix[x][y]
+
+/proc/set_2d_matrix_cell(mathrix, x, y, value)
+	if(!matrix2d_x_sanitize(mathrix, x))
+		return
+	mathrix[x][y] = value

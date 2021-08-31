@@ -12,6 +12,7 @@
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	rarity_value = 15
 
 	var/gps_prefix = "COM"
 	var/datum/gps_data/gps
@@ -32,7 +33,7 @@
 	. = ..()
 	gps = new /datum/gps_data/device(src, new_prefix=gps_prefix)
 	update_name()
-	overlays += image(icon, "working")
+	add_overlays(image(icon, "working"))
 
 /obj/item/device/gps/Destroy()
 	QDEL_NULL(gps)
@@ -46,14 +47,14 @@
 
 /obj/item/device/gps/emp_act(severity)
 	emped = TRUE
-	overlays.Cut()
-	overlays += image(icon, "emp")
+	cut_overlays()
+	add_overlays(image(icon, "emp"))
 	addtimer(CALLBACK(src, .proc/post_emp), 300)
 
 /obj/item/device/gps/proc/post_emp()
 	emped = FALSE
-	overlays.Cut()
-	overlays += image(icon, "working")
+	cut_overlays()
+	add_overlays(image(icon, "working"))
 
 /obj/item/device/gps/proc/can_show_gps(datum/gps_data/G)
 	return G.is_functioning() && G.holder != src && !(G.prefix in hide_prefixes)
@@ -114,6 +115,7 @@
 // Looks like a normal GPS, but displays PDA GPS and such
 /obj/item/device/gps/traitor
 	hide_prefixes = list()
+	spawn_blacklisted = TRUE
 
 // Locator
 // A GPS device that tracks beacons and implants
@@ -137,7 +139,7 @@
 
 //todo: dig site tape
 
-/obj/item/weapon/storage/bag/fossils
+/obj/item/storage/bag/fossils
 	name = "Fossil Satchel"
 	desc = "Transports delicate fossils in suspension so they don't break during transit."
 	icon = 'icons/obj/mining.dmi'
@@ -146,4 +148,4 @@
 	w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 100
 	max_w_class = ITEM_SIZE_NORMAL
-	can_hold = list(/obj/item/weapon/fossil)
+	can_hold = list(/obj/item/fossil)
