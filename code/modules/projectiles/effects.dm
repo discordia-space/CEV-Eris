@@ -161,3 +161,15 @@
 
 /obj/effect/projectile/plasma/impact/heavy
 	icon_state = "impact_plasma_blue"
+
+//----------------------------
+// Cutter
+//----------------------------
+/obj/effect/projectile/laser/plasmacutter/tracer
+	icon_state = "plasmacutter"
+
+/obj/effect/projectile/laser/plasmacutter/impact
+	icon_state = "impact_plasmacutter"
+
+/obj/effect/projectile/laser/plasmacutter/muzzle
+	icon_state = "muzzle_plasmacutter"
