@@ -1,0 +1,350 @@
+## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'spacestation13' with the name of your choice
+SERVERNAME CEV Eris: Endless Horizon
+
+## Alert levels
+ALERT_GREEN All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
+ALERT_BLUE_UPTO The ship has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.
+ALERT_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
+ALERT_RED_UPTO There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised.
+ALERT_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised.
+ALERT_DELTA The ship's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
+
+## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
+#ADMIN_LEGACY_SYSTEM
+
+## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
+#BAN_LEGACY_SYSTEM
+
+## Enables the memo system for admins, used to log on each player
+ADMIN_MEMO_SYSTEM
+
+## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
+JOBS_HAVE_MINIMAL_ACCESS
+
+## Unhash this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
+## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
+## REQUIRES the database set up to work. Keep it hashed if you don't have a database set up.
+## NOTE: If you have just set-up the database keep this DISABLED, as player age is determined from the first time they connect to the server with the database up. If you just set it up, it means
+## you have noone older than 0 days, since noone has been logged yet. Only turn this on once you have had the database up for 30 days.
+#USE_AGE_RESTRICTION_FOR_JOBS
+
+## Unhash this entry to have certain antag roles require your account to be at least a certain number of days old for round start and auto-spawn selection.
+## Non-automatic antagonist recruitment, such as being converted to cultism is not affected. Has the same database requirements and notes as USE_AGE_RESTRICTION_FOR_JOBS.
+#USE_AGE_RESTRICTION_FOR_ANTAGS
+
+## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
+#USE_RECURSIVE_EXPLOSIONS
+
+## log OOC channel
+LOG_OOC
+
+## log client Say 
+LOG_SAY
+
+## log admin actions
+LOG_ADMIN
+
+## log client access (logon/logoff)
+LOG_ACCESS
+
+## log game actions (start of round, results, etc.)
+LOG_GAME
+
+## log player votes
+LOG_VOTE
+
+## log debug messages
+##LOG_DEBUG
+
+## log client Whisper
+LOG_WHISPER
+
+## log emotes
+LOG_EMOTE
+
+## log attack messages
+LOG_ATTACK
+
+## log pda messages
+LOG_PDA
+
+## log all Topic() calls (for use by coders in tracking down Topic issues)
+LOG_HREFS
+
+## log world.log and runtime errors to a file
+LOG_RUNTIME
+
+## log admin warning messages
+##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
+
+## sql switching
+SQL_ENABLED
+
+## disconnect players who did nothing during 10 minutes
+# KICK_INACTIVE
+
+## Use Mentors instead of Moderators.  Mentors are designed with the idea that
+###they help in pushing new people to be better at roleplay.  If you uncomment
+###this it will reduce the rights that your mods have.
+#MENTORS
+
+
+## probablities for game modes chosen in "secret" and "random" modes
+## 
+## default probablity is 1, increase to make that mode more likely to be picked
+## set to 0 to disable that mode
+PROBABILITY EXTENDED 1
+PROBABILITY MALFUNCTION 1
+PROBABILITY NUCLEAR 1
+PROBABILITY WIZARD 1
+PROBABILITY CHANGELING 1
+PROBABILITY CULT 1
+PROBABILITY EXTEND-A-TRAITORMONGOUS 6
+
+## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
+#GENERATE_ASTEROID
+
+## Hash out to disable random events during the round.
+ALLOW_RANDOM_EVENTS
+
+## if amount of traitors scales or not
+TRAITOR_SCALING
+
+## if objectives are disabled
+#OBJECTIVES_DISABLED
+
+## make ERT's be only called by admins
+ERT_ADMIN_ONLY
+
+## If security is prohibited from being most antagonists
+#PROTECT_ROLES_FROM_ANTAGONIST
+
+## Comment this out to stop admins being able to choose their personal ooccolor
+ALLOW_ADMIN_OOCCOLOR
+
+## If metadata is supported
+# ALLOW_METADATA
+
+## allow players to initiate a restart vote
+#ALLOW_VOTE_RESTART
+
+## allow players to initate a mode-change start
+#ALLOW_VOTE_MODE
+
+## min delay (deciseconds) between voting sessions (default 10 minutes)
+VOTE_DELAY 6000
+
+## time period (deciseconds) which voting session will last (default 1 minute)
+VOTE_PERIOD 600
+
+## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
+#VOTE_AUTOGAMEMODE_TIMELEFT 100
+
+## prevents dead players from voting or starting votes
+#NO_DEAD_VOTE
+
+## players' votes default to "No vote" (otherwise,  default to "No change")
+DEFAULT_NO_VOTE
+
+## Allow ghosts to see antagonist through AntagHUD
+ALLOW_ANTAG_HUD
+
+## If ghosts use antagHUD they are no longer allowed to join the round.
+ANTAG_HUD_RESTRICTED
+
+## allow AI job
+ALLOW_AI
+
+
+## disable abandon mob
+# NORESPAWN
+
+## disables calling del(src) on newmobs if they logout before spawnin in
+# DONT_DEL_NEWMOB
+
+## set a hosted by name for unix platforms
+HOSTEDBY yournamehere
+
+## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
+## Set to 1 to jobban them from those positions, set to 0 to allow them.
+GUEST_JOBBAN
+
+## Uncomment this to stop people connecting to your server without a registered ckey. (i.e. guest-* are all blocked from connecting)
+GUEST_BAN
+## Set to jobban everyone who's key is not listed in data/whitelist.txt from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
+## Uncomment to 1 to jobban, leave commented out to allow these positions for everyone (but see GUEST_JOBBAN above and regular jobbans)
+# USEWHITELIST
+
+## set a server location for world reboot. Don't include the byond://, just give the address and port.
+#SERVER server.net:port
+
+## Language being used for the server, deals with external links. Use either "En" for ENGLISH, or "Ru" for RUSSIAN. Do not capitalize the second letter.
+# LANGUAGE
+
+## forum address
+# FORUMURL http://example.com
+
+## Wiki address
+# WIKIURL http://example.com
+
+## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
+# BANAPPEALS http://example.com
+
+##Github address
+GITHUBURL https://github.com/Endless-Horizon/CEV-Eris
+
+## In-game features
+## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
+# FEATURE_OBJECT_SPELL_SYSTEM
+
+##Toggle for having jobs load up from the .txt
+# LOAD_JOBS_FROM_TXT
+
+##Remove the # mark infront of this to forbid admins from posssessing the singularity.
+#FORBID_SINGULO_POSSESSION
+
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
+#POPUP_ADMIN_PM
+
+## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
+ALLOW_HOLIDAYS
+##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
+TICKLAG 0.3
+
+## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
+#TICKCOMP
+
+## Whether the server will talk to other processes through socket_talk
+SOCKET_TALK 0
+
+## Uncomment this to ban use of ToR
+#TOR_BAN
+
+## Comment this out to disable automuting
+#AUTOMUTE_ON
+
+## How long the delay is before the Away Mission gate opens. Default is half an hour.
+GATEWAY_DELAY 18000
+
+## Remove the # to give assistants maint access.
+ASSISTANT_MAINT
+
+## Remove the # to make rounds which end instantly (Rev, Wizard, Malf) to continue until the shuttle is called or the station is nuked.
+## Malf and Rev will let the shuttle be called when the antags/protags are dead.
+#CONTINUOUS_ROUNDS
+
+##Remove the # to let ghosts spin chairs
+GHOST_INTERACTION
+
+## Password used for authorizing ircbot and other external tools.
+#COMMS_PASSWORD
+
+## Uncomment to enable sending data to the IRC bot.
+#USE_IRC_BOT
+
+## Host where the IRC bot is hosted.  Port 45678 needs to be open.
+#IRC_BOT_HOST localhost
+
+## IRC channel to send information to.  Leave blank to disable.
+#MAIN_IRC #main
+
+## IRC channel to send adminhelps to.  Leave blank to disable adminhelps-to-irc.
+#ADMIN_IRC #admin
+
+## Path to the python2 executable on the system.  Leave blank for default.
+## Default is "python" on Windows, "/usr/bin/env python2" on UNIX.
+#PYTHON_PATH
+
+## Uncomment to use the C library nudge instead of the python script.
+## This helps security and stability on Linux, but you need to compile the library first.
+#USE_LIB_NUDGE
+
+## Uncommen to allow ghosts to write in blood during Cult rounds.
+#ALLOW_CULT_GHOSTWRITER
+
+## Sets the minimum number of cultists needed for ghosts to write in blood.
+REQ_CULT_GHOSTWRITER 6
+
+
+## Determines whether bones can be broken through excessive damage to the organ
+## 0 means bones can't break, 1 means they can
+BONES_CAN_BREAK 1
+## Determines whether limbs can be amputated through excessive damage to the organ
+## 0 means limbs can't be amputated, 1 means they can
+LIMBS_CAN_BREAK 1
+
+
+### REVIVAL ###
+
+## whether pod plants work or not
+REVIVAL_POD_PLANTS 1
+
+## whether cloning tubes work or not
+REVIVAL_CLONING 1
+
+## amount of time (in hundredths of seconds) for which a brain retains the "spark of life" after the person's death (set to -1 for infinite)
+REVIVAL_BRAIN_LIFE -1
+
+
+### Miscellaneous ###
+
+## Config options which, of course, don't fit into previous categories.
+
+## Remove the # in front of this config option to have loyalty implants spawn by default on your server.
+#USE_LOYALTY_IMPLANTS
+
+## Remove # if you want your server have the Luna's job system
+JOIN_UNASSIGNED
+
+## Uncomment to use overmap system for zlevel travel
+#USE_OVERMAP
+
+##Clients will be unable to connect unless their version is equal to or higher than this (a number, e.g. 511)
+#MINIMUM_BYOND_VERSION
+
+## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
+#MINIMUM_BYOND_BUILD
+
+## Time in minutes before empty server will restart	
+EMPTY_SERVER_RESTART_TIME 30
+
+## EMOJI ###
+## Comment this out if you want to disable emojis
+EMOJIS
+
+## MOB AI SLEEPING ###
+## Uncomment this out if you want to disable mob AI sleeping 
+#ENABLE_MOB_SLEEP
+
+WEBHOOK_URL http://localhost:44303/webhook/en
+WEBHOOK_KEY testkey
+
+###### IP Reputation Checking
+# Enable/disable IP reputation checking (present/nonpresent)
+#IP_REPUTATION
+
+# Set the e-mail address problems can go to for IPR checks (e-mail address)
+IPR_EMAIL whatever@whatever.com
+
+# Above this value, reputation scores are considered 'bad' (number)
+IPR_BAD_SCORE 1
+
+# If you want the people disconnected. Otherwise it just logs. (present/nonpresent)
+IPR_BLOCK_BAD_IPS
+
+# If players of a certain length of playtime are allowed anyway (REQUIRES DATABASE) (present/nonpresent)
+IPR_ALLOW_EXISTING
+
+# And what that age is (number)
+IPR_MINIMUM_AGE 5
+
+# If provided, will look up additional IP reputation info from ipqualityscore.com
+#IPQUALITYSCORE_APIKEY ABC12345YOURKEYHERE
+
+###### Antiraid Settings
+# Enable/disable 'paranoia logging' (notifying admins of new byond accounts joining, and player first-time joins)
+#PARANOIA_LOGGING
+
+# Enable/disable 'panic bunker' (prevents new players from joining if they've never been seen before in the DB)
+#PANIC_BUNKER
