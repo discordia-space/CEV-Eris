@@ -212,6 +212,17 @@
 
 	add_overlays("[icon_state]-[ratio]")
 
+/obj/item/rcd_ammo
+	name = "compressed matter cartridge"
+	desc = "Highly compressed matter for the RCD."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "rcd"
+	item_state = "rcdammo"
+	w_class = ITEM_SIZE_SMALL
+	origin_tech = list(TECH_MATERIAL = 2)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 2)
+	price_tag = 300
+
 /obj/item/rcd/borg
 	canRwall = 1
 	spawn_tags = null
