@@ -10,6 +10,7 @@ var/list/datum/power/carrion/powerinstances = list()
 	var/genomecost = 500000 // Cost for the carrion to evolve this power.
 	var/organpath //Path to the organ that is getting evolved.
 	var/spiderpath //The path of the spider we spawn.
+	var/renewable = FALSE //Whether the power can be renewed (Primarily used for organs)
 
 /datum/power/carrion/flashbang_spider
 	name = "Flashbang spider"
@@ -106,20 +107,23 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/maw
 	name = "Carrion Maw"
-	desc = "Unlocks and expands your jaw, giving you the ability to spit acid, call upon spiders and tear off limbs."
+	desc = "Unlocks and expands your jaw, giving you the ability to spit acid, call upon spiders and tear off limbs. Renewable"
 	genomecost = 0
+	renewable = TRUE
 	organpath = /obj/item/organ/internal/carrion/maw
 
 /datum/power/carrion/spinneret
 	name = "Carrion Spinneret"
-	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest, filter your blood from all chemicals and make webs."
+	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest, filter your blood from all chemicals and make webs. Renewable"
 	genomecost = 7
+	renewable = TRUE
 	organpath = /obj/item/organ/internal/carrion/spinneret
 
 /datum/power/carrion/chemvessel
 	name = "Chemical Vessel"
-	desc = "Grows a chemical vessel that stores and produces chemicals needed for your abilities."
+	desc = "Grows a chemical vessel that stores and produces chemicals needed for your abilities. Renewable"
 	genomecost = 0
+	renewable = TRUE
 	organpath = /obj/item/organ/internal/carrion/chemvessel
 
 /obj/item/organ/internal/carrion/core/proc/EvolutionMenu()	//Topic proc is stored in code\modules\organs\internal\carrion.dm
@@ -343,7 +347,10 @@ var/list/datum/power/carrion/powerinstances = list()
 		var/ownsthis = 0
 
 		if(P in purchasedpowers)
-			ownsthis = 1
+			if(P.renewable && !(locate(P.organpath) in owner))
+				ownsthis = 0
+			else
+				ownsthis = 1
 
 
 		var/color = "#e6e6e6"
@@ -398,8 +405,12 @@ var/list/datum/power/carrion/powerinstances = list()
 		return
 
 	if(Thepower in purchasedpowers)
-		to_chat(owner, "You have already evolved this ability!")
-		return
+		if(Thepower.renewable && locate(Thepower.organpath) in owner)
+			to_chat(owner, "You already have this organ!")
+			return
+		else if(!Thepower.renewable)
+			to_chat(owner, "You have already evolved this ability!")
+			return
 
 	if(geneticpoints < Thepower.genomecost && !free)
 		to_chat(owner, "You cannot evolve this... yet.  You must acquire more DNA.")
@@ -408,7 +419,8 @@ var/list/datum/power/carrion/powerinstances = list()
 	if(!free)
 		geneticpoints -= Thepower.genomecost
 
-	purchasedpowers += Thepower
+	if(!(Thepower in purchasedpowers))
+		purchasedpowers += Thepower
 
 	if (Thepower.organpath)
 		var/obj/item/organ/internal/organ = new Thepower.organpath
