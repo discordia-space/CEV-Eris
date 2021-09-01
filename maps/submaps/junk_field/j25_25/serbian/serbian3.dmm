@@ -143,10 +143,7 @@
 /area/template_noop)
 "aw" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -5;
-	pixel_y = 1
-	},
+/obj/item/storage/deferred/rations,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -522,29 +519,24 @@
 	},
 /area/template_noop)
 "bz" = (
-/obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 6;
-	pixel_y = 7
-	},
+/obj/spawner/gun_parts/low_chance,
 /turf/unsimulated/floor{
-	icon_state = "lino"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/template_noop)
 "bA" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 5;
-	pixel_y = 17
-	},
-/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/storage/deferred/rations,
 /turf/unsimulated/floor{
-	icon_state = "lino"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/template_noop)
 "bB" = (
-/obj/structure/closet,
-/obj/item/storage/belt/tactical,
+/obj/structure/table/rack,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -560,7 +552,7 @@
 /area/template_noop)
 "bD" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/normal,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -568,7 +560,8 @@
 /area/template_noop)
 "bE" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/normal,
+/obj/spawner/gun_parts,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
@@ -596,7 +589,7 @@
 /area/template_noop)
 "bJ" = (
 /obj/structure/lattice,
-/obj/item/storage/pouch/small_generic,
+/obj/item/storage/pouch/medium_generic,
 /turf/template_noop,
 /area/template_noop)
 "bK" = (
@@ -629,14 +622,6 @@
 "bQ" = (
 /obj/item/material/shard,
 /turf/simulated/floor/plating/under,
-/area/template_noop)
-"My" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/cheap,
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
 /area/template_noop)
 
 (1,1,1) = {"
@@ -766,8 +751,8 @@ ab
 ab
 ab
 by
-by
-by
+bB
+aQ
 aQ
 bF
 ab
@@ -819,9 +804,9 @@ aL
 ab
 bb
 ab
+bz
+bz
 ac
-ac
-ao
 ac
 bG
 ab
@@ -876,8 +861,8 @@ ab
 ac
 bC
 aQ
-by
 bE
+bD
 bi
 ax
 ax
@@ -961,7 +946,7 @@ aP
 ax
 bb
 bH
-aP
+bL
 "}
 (13,1,1) = {"
 aa
@@ -985,7 +970,7 @@ ac
 ac
 ac
 aP
-My
+bD
 ab
 bk
 ax
@@ -1012,7 +997,7 @@ aX
 aP
 aP
 ao
-aQ
+bC
 ab
 aa
 aa
@@ -1023,8 +1008,8 @@ aP
 aP
 ad
 aS
-bz
-bA
+aS
+aJ
 ad
 ad
 ab
@@ -1143,7 +1128,7 @@ ad
 ad
 bo
 ab
-bB
+aX
 ac
 by
 ac
@@ -1170,11 +1155,11 @@ aV
 aW
 aT
 ab
-aX
+bA
 ac
 bD
 ac
-bE
+bD
 ab
 aa
 aa

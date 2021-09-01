@@ -17,8 +17,8 @@ var/list/weighted_mundaneevent_locations = list()
 	return null
 
 //distance is measured in AU and co-relates to travel time
-/datum/trade_destination/centcom
-	name = "CentCom"
+/datum/trade_destination/centcomm
+	name = "CentComm"
 	description = "NanoTrasen's administrative centre for Tau Ceti."
 	distance = 1.2
 	willing_to_buy = list()
@@ -41,8 +41,8 @@ var/list/weighted_mundaneevent_locations = list()
 		[pick("mind-machine interfacing","neuroscience","nano-augmentation","genetics")]. [company_name] is expected to announce a co-exploitation deal within the fortnight."
 	return null
 
-/datum/trade_destination/atomos
-	name = "IHS Atomos"
+/datum/trade_destination/icarus
+	name = "NDV Icarus"
 	description = "Corvette assigned to patrol local space."
 	distance = 0.1
 	willing_to_buy = list()

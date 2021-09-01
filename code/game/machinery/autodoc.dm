@@ -4,7 +4,7 @@
 	icon_state = "powered_off"
 	density = TRUE
 	anchored = TRUE
-//	circuit = /obj/item/electronics/circuitboard/autodoc
+	circuit = /obj/item/electronics/circuitboard/autodoc
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
@@ -51,10 +51,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(user, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -81,9 +81,6 @@
 	src.occupant = L
 	src.add_fingerprint(usr)
 	if(stat & (NOPOWER|BROKEN))
-		update_icon()
-		return
-	else
 		autodoc_processor.set_patient(L)
 		ui_interact(L)
 		update_use_power(2)
@@ -133,6 +130,7 @@
 		return
 	if(occupant)
 		locked = autodoc_processor.active
+		ui_interact(occupant)
 	update_icon()
 
 /obj/machinery/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/topic_state/state = GLOB.default_state)

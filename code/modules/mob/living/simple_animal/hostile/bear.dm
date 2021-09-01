@@ -46,9 +46,6 @@
 	if(!.)
 		return
 
-	if(stasis)
-		return
-
 	if(loc && istype(loc,/turf/space))
 		icon_state = "bear"
 	else
@@ -94,6 +91,7 @@
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
 				return
+
 
 
 /mob/living/simple_animal/hostile/bear/attackby(var/obj/item/O as obj, var/mob/user as mob)

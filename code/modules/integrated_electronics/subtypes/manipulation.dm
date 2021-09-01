@@ -596,7 +596,6 @@
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
 	matter = list(MATERIAL_STEEL = 10000, MATERIAL_SILVER = 2000, MATERIAL_GOLD = 200)
-	var/entropy_value = 1
 
 /obj/item/integrated_circuit/manipulation/bluespace_rift/do_work()
 
@@ -611,16 +610,12 @@
 	if(isnum_safe(step_dir) && (!step_dir || (step_dir in GLOB.cardinal)))
 		rift_location = get_step(rift_location, step_dir) || rift_location
 
-	var/obj/effect/portal/P = new(rift_location)
-	if(tporter && tporter.locked && !tporter.one_time_use)
-		P.set_target(tporter.locked)
-		P.entropy_value += entropy_value
+	if(tporter && tporter.locked && !tporter.one_time_use && tporter.operable())
+		new /obj/effect/portal(rift_location, get_turf(tporter.locked))
 	else
 		var/turf/destination = get_random_turf_in_range(src, 10)
 		if(destination)
-			P.set_target(destination)
-			P.entropy_value += entropy_value
-			P.failchance = 33
+			new /obj/effect/portal(rift_location, destination, 30 SECONDS, 33)
 		else
 			playsound(src, get_sfx("spark"), 50, 1)
 	var/atom/A = get_object()

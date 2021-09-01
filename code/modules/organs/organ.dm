@@ -103,7 +103,7 @@
 	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
-	if(owner && vital && owner.stat != DEAD)
+	if(owner && vital)
 		owner.death()
 
 /obj/item/organ/get_item_cost()
@@ -317,7 +317,7 @@
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
-	if(vital && !(owner.status_flags & REBUILDING_ORGANS) && owner.stat != DEAD)
+	if(vital && !(owner.status_flags & REBUILDING_ORGANS))
 		if(user)
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()

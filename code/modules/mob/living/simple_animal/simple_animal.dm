@@ -181,7 +181,7 @@
 		if(!.)
 			return FALSE
 
-		if(health <= 0 && stat != DEAD)
+		if(health <= 0)
 			death()
 			return FALSE
 

@@ -1,5 +1,4 @@
 /obj/item/melee/energy
-	icon = 'icons/obj/weapons.dmi'
 	sharp = FALSE
 	edge = FALSE
 	armor_penetration = ARMOR_PEN_HALF
@@ -60,6 +59,7 @@
 /obj/item/melee/energy/axe
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "axe0"
 	active_force = WEAPON_FORCE_GODLIKE
 	active_throwforce = 50

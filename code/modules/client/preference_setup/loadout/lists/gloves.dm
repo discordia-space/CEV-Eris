@@ -1,14 +1,17 @@
 // Gloves
-/datum/gear/gloves
+/datum/gear/gloves/
 	slot = slot_gloves
 	sort_category = "Gloves and Handwear"
-	display_name = "gloves, latex"
-	path = /obj/item/clothing/gloves/latex
+	category = /datum/gear/gloves/
 
 /datum/gear/gloves/work
 	display_name = "gloves, work"
 	path = /obj/item/clothing/gloves/thick
 	cost = 3
+
+/datum/gear/gloves/latex
+	display_name = "gloves, latex"
+	path = /obj/item/clothing/gloves/latex
 
 /datum/gear/gloves/rainbow
 	display_name = "gloves, rainbow"

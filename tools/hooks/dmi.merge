@@ -1,2 +1,2 @@
-#!/bin/sh
-exec tools/bootstrap/python -m dmi.merge_driver "$@"
+#!/bin/bash
+exec tools/hooks/python.sh -m merge_driver_dmi "$@"

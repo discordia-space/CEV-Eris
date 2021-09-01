@@ -48,7 +48,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 				if(pod.arming_controller)
 					pod.arming_controller.close_door()
 
-//called when the pods is aarived to centcom
+//called when the pods is aarived to centcomm
 /datum/emergency_shuttle_controller/proc/pods_arrived()
 	if(pods_departed)
 		pods_arrived = TRUE

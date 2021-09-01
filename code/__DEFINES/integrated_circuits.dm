@@ -47,5 +47,3 @@
 
 // Data limits.
 #define IC_MAX_LIST_LENGTH			500
-
-#define IC_MAX_STRING_SIZE		(1 << 16)

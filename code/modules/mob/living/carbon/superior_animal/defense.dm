@@ -141,10 +141,11 @@
 		blinded = TRUE
 		silent = 0
 	else
-		updatehealth() // updatehealth calls death if health <= 0
+		updatehealth()
 		handle_stunned()
 		handle_weakened()
 		if(health <= 0)
+			death()
 			blinded = TRUE
 			silent = 0
 			return 1
@@ -187,7 +188,7 @@
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if (health <= 0 && stat != DEAD)
+	if (health <= 0)
 		death()
 
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)

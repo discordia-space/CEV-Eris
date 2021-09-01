@@ -33,7 +33,7 @@
 	var/list/datum/track/tracks = list()		// Available tracks
 	var/list/datum/track/secret_tracks = list() // Only visible if hacked
 
-	var/obj/item/music_tape/my_tape //Jukebox tape
+	var/obj/item/weapon/music_tape/my_tape //Jukebox tape
 
 	var/sanity_value = 2
 
@@ -50,11 +50,11 @@
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
-	if(GLOB.all_jukebox_tracks.len < 1)
+	if(all_jukebox_tracks.len < 1)
 		stat |= BROKEN // No tracks configured this round!
 	else
 		// Ootherwise load from the global list!
-		for(var/datum/track/T in GLOB.all_jukebox_tracks)
+		for(var/datum/track/T in all_jukebox_tracks)
 			if(T.secret)
 				secret_tracks |= T
 			else if(!T.playlist)
@@ -143,7 +143,7 @@
 				update_media_source()
 			return
 
-	if(istype(W, /obj/item/music_tape))
+	if(istype(W, /obj/item/weapon/music_tape))
 		if(my_tape)
 			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
 		else

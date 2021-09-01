@@ -111,43 +111,37 @@
 				build_turf =  /turf/simulated/floor/airless
 			if(gotFloor)
 				build_delay = 40
-				build_cost =  3
+				build_cost =  5
 				build_type =  "wall"
 				build_turf =  /turf/simulated/wall
 		if(2)
-			if(gotBlocked)
-				return 0
-			if(gotSpace)
-				build_type = "low wall"
-				build_delay = 30
-				build_cost = 3
-				build_turf = /turf/simulated/floor/airless //there is always floor under low wall
-				build_object = /obj/structure/low_wall
-			if(gotFloor)
+			if(!gotBlocked)
 				build_type = "low wall"
 				build_object = /obj/structure/low_wall
-				build_delay = 30
-				build_cost =  2
+				if(gotSpace)
+					build_delay = 30
+					build_cost = 6
+					build_turf = /turf/simulated/floor/airless //there is always floor under low wall
+				if(gotFloor)
+					build_delay = 30
+					build_cost =  5
 
 		if(3)
-			if(gotBlocked)
-				return 0
-			if(gotSpace)
+			if(!gotBlocked)
 				build_type = "airlock"
-				build_cost =  7
-				build_delay = 50
-				build_turf =  /turf/simulated/floor/airless
 				build_object = /obj/machinery/door/airlock
-			if(gotFloor)
-				build_type = "airlock"
-				build_cost =  6
-				build_delay = 40
-				build_object = /obj/machinery/door/airlock
+				if(gotSpace)
+					build_cost =  11
+					build_delay = 50
+					build_turf =  /turf/simulated/floor/airless
+				if(gotFloor)
+					build_cost =  10
+					build_delay = 40
 
 		if(4)
 			build_type =  "deconstruct"
 			if(gotFloor)
-				build_cost =  5
+				build_cost =  10
 				build_delay = 50
 				build_turf = get_base_turf(local_turf.z)
 			else if(istype(T,/obj/structure/low_wall))

@@ -70,9 +70,6 @@
 		assembly = null
 	qdel(wires)
 	wires = null
-	if(alarm_on)
-		alarm_on = 0
-		camera_alarm.clearAlarm(loc, src)
 	return ..()
 
 /obj/machinery/camera/Process()

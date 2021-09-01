@@ -1325,16 +1325,6 @@ window "rpane"
 		text = "Changelog"
 		command = "Changelog"
 		group = "rpanemode"
-	elem "tickets"
-		type = BUTTON
-		pos = 487,0
-		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Tickets"
-		command = "ticketsshortcut"
-		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
 		pos = 288,0

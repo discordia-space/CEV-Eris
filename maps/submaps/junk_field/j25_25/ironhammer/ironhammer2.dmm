@@ -19,7 +19,7 @@
 /area/template_noop)
 "aP" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/template_noop)
 "aU" = (

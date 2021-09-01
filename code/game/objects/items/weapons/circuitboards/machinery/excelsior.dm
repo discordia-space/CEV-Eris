@@ -58,19 +58,6 @@
 	)
 	spawn_blacklisted = TRUE
 
-/obj/item/electronics/circuitboard/excelsior_autodoc
-	name = T_BOARD("excelsior autodoc")
-	build_path = /obj/machinery/excelsior_autodoc
-	board_type = "machine"
-	origin_tech = list(TECH_BIO = 5, TECH_COVERT = 2)
-	req_components = list(
-		/obj/item/stock_parts/manipulator/excelsior = 1,
-		/obj/item/stock_parts/micro_laser/excelsior = 1,
-		/obj/item/stock_parts/scanning_module/excelsior = 1,
-		/obj/item/stock_parts/console_screen = 1
-	)
-	spawn_blacklisted = TRUE
-
 /obj/item/electronics/circuitboard/excelsior_teleporter
 	name = T_BOARD("excelsior teleporter")
 	build_path = /obj/machinery/complant_teleporter

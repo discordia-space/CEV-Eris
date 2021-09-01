@@ -183,6 +183,13 @@
 
 		set_expand_time()
 
+/obj/effect/blob/verb/expandverb()
+	set src in view()
+	set name = "Expand"
+
+	expand(pick(non_blob_neighbors))
+
+
 /obj/effect/blob/proc/regen()
 	if (!(QDELETED(core)))
 		health = min(health + health_regen, maxHealth)

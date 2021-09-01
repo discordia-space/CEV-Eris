@@ -23,18 +23,6 @@
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_heavysniper
-	disk_name = "Serbian Arms - .60 Hristov AMR"
-	icon_state = "serbian"
-	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 90
-	license = 12
-	designs = list(
-		/datum/design/autolathe/gun/heavysniper = 3, // "SA AMR .60 \"Hristov\""
-		/datum/design/autolathe/ammo/antim,
-		/datum/design/autolathe/ammo/box_antim,
-	)
-
 /obj/item/computer_hardware/hard_drive/portable/design/guns/sa_pk
 	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova MG"
 	icon_state = "serbian"

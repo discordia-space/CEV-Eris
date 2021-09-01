@@ -32,9 +32,8 @@
 
 
 // Global list holding all configured jukebox tracks
-GLOBAL_LIST_EMPTY(all_playlists)
-GLOBAL_LIST_EMPTY(all_jukebox_tracks)
-GLOBAL_LIST_EMPTY(all_lobby_tracks)
+var/global/list/all_jukebox_tracks = list()
+var/global/list/all_lobby_tracks = list()
 
 // Read the jukebox configuration file on system startup.
 /hook/startup/proc/load_jukebox_tracks()
@@ -62,11 +61,9 @@ GLOBAL_LIST_EMPTY(all_lobby_tracks)
 		T.lobby = entry["lobby"] ? 1 : 0
 		if(istext(entry["playlist"]))
 			T.playlist = entry["playlist"]
-			if(!(T.playlist in GLOB.all_playlists))
-				GLOB.all_playlists += T.playlist
-		GLOB.all_jukebox_tracks += T
+		all_jukebox_tracks += T
 		if(T.lobby)
-			GLOB.all_lobby_tracks += T
+			all_lobby_tracks += T
 	return 1
 
 

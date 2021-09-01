@@ -18,7 +18,7 @@
 
 	var/ticks_to_update = 5
 
-	var/obj/item/music_tape/my_tape //boombox tape
+	var/obj/item/weapon/music_tape/my_tape //boombox tape
 
 	var/sanity_value = 2
 
@@ -100,7 +100,7 @@
 /obj/item/media/boombox/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/music_tape))
+	if(istype(W, /obj/item/weapon/music_tape))
 		if(my_tape)
 			to_chat(user, SPAN_NOTICE("There's already a tape inside [src]."))
 		else
