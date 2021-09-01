@@ -7,7 +7,7 @@
 	Scrying: Look through the eyes of a target disciple.  Global range, expensive and limited duration
 	Sending: Send a telepathic message to a specific disciple. Global range
 	Initiation: Promotes a disciple to a preacher
-	Knowledge: Checks remaining telecrystals (Inquisitor also has a traitor uplink)
+	Knowledge: Checks remaining telecrystals (Inquisitor also has a contractor uplink)
 	Bounty: Calls up the uplink to order supplies
 */
 /datum/ritual/cruciform/inquisitor

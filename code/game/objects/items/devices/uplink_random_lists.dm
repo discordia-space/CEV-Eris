@@ -69,7 +69,7 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/powersink, 10, 10)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/ai_module, 25, 0)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/teleporter, 10, 0)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/gentlemen_kit, 50, 10)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/gentleman_kit, 50, 10)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/implants/imp_freedom)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/implants/imp_compress)

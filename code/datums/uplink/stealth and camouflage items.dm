@@ -18,13 +18,13 @@
 	name = "Agent ID card"
 	item_cost = 5
 	path = /obj/item/card/id/syndicate
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/chameleon_kit
 	name = "Chameleon Kit"
 	item_cost = 5
 	path = /obj/item/storage/box/syndie_kit/chameleon
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/cleanup
 	name = "Crime Scene Cleanup Kit"

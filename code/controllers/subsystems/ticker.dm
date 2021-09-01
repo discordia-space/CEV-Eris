@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
-	var/list/syndicate_coalition = list() // list of traitor-compatible factions
+	var/list/syndicate_coalition = list() // list of contractor-compatible factions
 	var/list/factions = list()			  // list of all factions
 	var/list/availablefactions = list()	  // list of factions with openings
 

@@ -41,7 +41,7 @@ var/global/list/default_medbay_channels = list(
 	var/on = TRUE // 0 for off
 	var/last_transmission
 	var/frequency = PUB_FREQ //common chat
-	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
+	var/contractor_frequency = 0 //tune to frequency to unlock contractor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/datum/wires/radio/wires
 	var/b_stat = 0

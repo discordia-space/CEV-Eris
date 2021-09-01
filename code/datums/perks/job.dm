@@ -91,7 +91,7 @@
 	..()
 
 #define CHOICE_LANG "language" // Random language chosen from a pool
-#define CHOICE_TCONTRACT "tcontract" // Traitor contract
+#define CHOICE_TCONTRACT "tcontract" // Contractor contract
 #define CHOICE_STASHPAPER "stashpaper" //stash location paper
 #define CHOICE_RAREOBJ "rareobj" // Rare loot object
 
@@ -99,7 +99,7 @@
 /datum/perk/deep_connection
 	name = "Deep connection"
 	desc = "With the help of your numerous trustworthy contacts, you manage to collect some useful information. \
-			Provides you with 1 of 4 boons: Language, Traitor Contract, a stash location or a special item in a box."
+			Provides you with 1 of 4 boons: Language, Contractor Contract, a stash location or a special item in a box."
 	icon_state = "deepconnection" // https://game-icons.net/1x1/quoting/card-pickup.html
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)

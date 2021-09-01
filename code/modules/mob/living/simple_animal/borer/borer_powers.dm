@@ -117,7 +117,7 @@
 	update_abilities()
 	spawn(1) /// Wait for abilities to update THEN move them in due to the afore-mentioned bug.
 		forceMove(host)
-	//Update their traitor status.
+	//Update their contractor status.
 	/*if(host.mind && src.mind)
 		var/list/L = get_player_antags(src.mind, ROLE_BORER)
 		var/datum/antagonist/borer/borer

@@ -313,7 +313,7 @@
 	if(istype(src, /obj/item/projectile/beam/psychic) && istype(target_mob, /mob/living/carbon/human))
 		var/obj/item/projectile/beam/psychic/psy = src
 		var/mob/living/carbon/human/H = target_mob
-		if(psy.traitor && result && (H.sanity.level <= 0))
+		if(psy.contractor && result && (H.sanity.level <= 0))
 			psy.holder.reg_break(H)
 
 	return TRUE
