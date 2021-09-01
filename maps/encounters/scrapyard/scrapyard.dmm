@@ -360,12 +360,6 @@
 /obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
-"dd" = (
-/obj/machinery/door/airlock{
-	name = "Escape Pod Airlock"
-	},
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/shuttle/junkpod/planet)
 "dg" = (
 /obj/structure/sink{
 	dir = 8;
@@ -726,11 +720,6 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
-"gt" = (
-/obj/structure/shuttle/window,
-/obj/effect/shuttle_landmark/junkpod/start,
-/turf/simulated/floor/plating,
-/area/shuttle/junkpod/planet)
 "gu" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/exoplanet/barren,
@@ -1081,15 +1070,6 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
-"jQ" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
-	},
-/obj/item/clothing/suit/space/emergency,
-/obj/item/clothing/head/space/emergency,
-/obj/item/storage/box/survival,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/shuttle/junkpod/planet)
 "jY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -4104,10 +4084,6 @@
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/station)
-"Nl" = (
-/obj/machinery/computer/shuttle_control/multi/junkpod,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/shuttle/junkpod/planet)
 "Nn" = (
 /obj/structure/transit_tube/station,
 /obj/effect/decal/cleanable/dirt,
@@ -4167,10 +4143,6 @@
 /obj/structure/girder,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/station)
-"NY" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/simulated/shuttle/wall,
-/area/shuttle/junkpod/planet)
 "Ob" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/effect/window_lwall_spawn/reinforced,
@@ -4434,9 +4406,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
-"RF" = (
-/turf/simulated/shuttle/wall,
-/area/shuttle/junkpod/planet)
 "RJ" = (
 /obj/structure/closet/l3closet{
 	anchored = 1
@@ -21484,10 +21453,10 @@ Sp
 Sp
 Sp
 Sp
-RF
-RF
-RF
-NY
+Sp
+Bw
+nV
+nV
 nV
 nV
 nV
@@ -21675,10 +21644,10 @@ Sp
 Sp
 Sp
 Sp
-gt
-Nl
-jQ
-dd
+Sp
+Bw
+nV
+nV
 nV
 pd
 nV
@@ -21866,10 +21835,10 @@ Sp
 Sp
 Sp
 Sp
-RF
-RF
-RF
-NY
+Sp
+Bw
+nV
+nV
 nV
 nV
 nV
