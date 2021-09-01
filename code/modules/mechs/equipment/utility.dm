@@ -208,6 +208,9 @@
 	// OCCULUS EDIT -- durability was not being properly applied because material during this proc is null
 	//durability = 2 * (material ? material.integrity : 1)
 
+/obj/item/material/drill_head/Created(var/creator) // PORTs another fix from Occulus
+	src.ApplyDurability()
+
 /obj/item/material/drill_head/steel/New(var/newloc)
 	..(newloc,MATERIAL_STEEL)
 	src.ApplyDurability()	// OCCULUS EDIT -- apply durability to drills properly
