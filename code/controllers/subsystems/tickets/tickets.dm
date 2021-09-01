@@ -17,7 +17,7 @@
 #define ADMIN_PP(user,display) "<a href='?_src_=holder;adminplayeropts=\ref[user]'>[display]</a>"
 #define ADMIN_VV(atom,display) "<a href='?_src_=vars;Vars=\ref[atom]'>[display]</a>"
 #define ADMIN_SM(user,display) "<a href='?_src_=holder;subtlemessage=\ref[user]'>[display]</a>"
-#define ADMIN_TP(user,display) "<a href='?_src_=holder;contractor=\ref[user]'>[display]</a>"
+#define ADMIN_TP(user,display) "<a href='?_src_=holder;traitor=\ref[user]'>[display]</a>"
 
 SUBSYSTEM_DEF(tickets)
 	name = "Admin Tickets"

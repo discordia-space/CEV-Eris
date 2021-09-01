@@ -21,10 +21,10 @@
 	scaling_threshold = 15
 
 
-/datum/storyevent/roleset/contractor
-	id = "contractor"
-	name = "contractor"
-	role_id = ROLE_CONTRACTOR
+/datum/storyevent/roleset/traitor
+	id = "traitor"
+	name = "traitor"
+	role_id = ROLE_TRAITOR
 	weight = 1.2
 	scaling_threshold = 10
 

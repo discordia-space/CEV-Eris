@@ -10,10 +10,10 @@
 	path = /obj/item/storage/toolbox/syndicate
 	desc = "Danger. Very robust. Filled with advanced tools."
 
-/datum/uplink_item/item/tools/gentleman_kit
-	name = "Gentleman's Kit"
+/datum/uplink_item/item/tools/gentlemen_kit
+	name = "Gentlemen's Kit"
 	item_cost = 3
-	path = /obj/item/storage/box/syndie_kit/gentleman_kit
+	path = /obj/item/storage/box/syndie_kit/gentlemen_kit
 
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Shield Diffuser"
@@ -121,7 +121,7 @@
 			The device owner is immune to this effect."
 	item_cost = 2
 	path = /obj/item/device/mind_fryer
-	antag_roles = list(ROLE_CONTRACTOR, ROLE_BLITZ)
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -135,7 +135,7 @@
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/storage/box/syndie_kit/spy_sensor
-	antag_roles = list(ROLE_CONTRACTOR, ROLE_BLITZ)
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -179,7 +179,7 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
-	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 //********** Blitzshell unique uplink items **********//
 

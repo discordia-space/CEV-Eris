@@ -547,7 +547,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 ////////
 /obj/item/clothing/mask/vape
 	name = "\improper Vapour mask"
-	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentleman. A warning label reads \"Warning: Do not fill with flammable materials.\""
+	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""
 	icon_state = "vape_mask"
 	item_state = "vape_mask"
 	w_class = ITEM_SIZE_TINY
@@ -731,7 +731,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/vape/better
 	name = "\improper Vapour mask"
-	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentleman. A warning label reads \"Warning: Do not fill with flammable materials.\" It seems different from the others"
+	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\" It seems different from the others"
 
 /obj/item/clothing/mask/vape/better/New(mapload)
 	. = ..()

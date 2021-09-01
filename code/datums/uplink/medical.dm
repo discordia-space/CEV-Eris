@@ -12,8 +12,8 @@
 /datum/uplink_item/item/medical/surgery
 	name = "Surgery kit"
 	item_cost = 5
-	path = /obj/item/storage/firstaid/surgery/contractor
-	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	path = /obj/item/storage/firstaid/surgery/traitor
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/medical/combat
 	name = "Combat medical kit"

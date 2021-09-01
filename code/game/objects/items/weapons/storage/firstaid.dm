@@ -170,10 +170,10 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
 
-/obj/item/storage/firstaid/surgery/contractor
+/obj/item/storage/firstaid/surgery/traitor
 	spawn_blacklisted = TRUE
 
-/obj/item/storage/firstaid/surgery/contractor/populate_contents()
+/obj/item/storage/firstaid/surgery/traitor/populate_contents()
 	if (empty) return
 	new /obj/item/tool/bonesetter(src)
 	new /obj/item/tool/cautery(src)

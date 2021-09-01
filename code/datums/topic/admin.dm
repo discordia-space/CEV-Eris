@@ -1236,20 +1236,20 @@
 	source.view_log_panel(M)
 
 
-/datum/admin_topic/contractor
-	keyword = "contractor"
+/datum/admin_topic/traitor
+	keyword = "traitor"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/contractor/Run(list/input)
+/datum/admin_topic/traitor/Run(list/input)
 	if(!GLOB.storyteller)
 		alert("The game hasn't started yet!")
 		return
 
-	var/mob/M = locate(input["contractor"])
+	var/mob/M = locate(input["traitor"])
 	if(!ismob(M))
 		to_chat(usr, "This can only be used on instances of type /mob.")
 		return
-	source.show_contractor_panel(M)
+	source.show_traitor_panel(M)
 
 
 /datum/admin_topic/create_object

@@ -341,11 +341,11 @@
 /obj/item/storage/box/syndie_kit/pickle/populate_contents()
 	new /obj/item/reagent_containers/food/snacks/pickle(src)
 
-/obj/item/storage/box/syndie_kit/gentleman_kit
+/obj/item/storage/box/syndie_kit/gentlemen_kit
 	name = "\improper Gentleman's Kit"
 	desc = "Cane with hidden sword and white insulated gloves."
 
-/obj/item/storage/box/syndie_kit/gentleman_kit/populate_contents()
+/obj/item/storage/box/syndie_kit/gentlemen_kit/populate_contents()
 	new /obj/item/tool/cane/concealed(src)
 	new /obj/item/clothing/gloves/color/white/insulated(src)
 

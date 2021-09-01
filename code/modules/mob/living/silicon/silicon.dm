@@ -325,8 +325,8 @@
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF='?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
 	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
 
-/mob/living/silicon/proc/is_malf_or_contractor()
-	return check_special_role(ROLE_CONTRACTOR) || check_special_role(ROLE_MALFUNCTION)
+/mob/living/silicon/proc/is_malf_or_traitor()
+	return check_special_role(ROLE_TRAITOR) || check_special_role(ROLE_MALFUNCTION)
 
 /mob/living/silicon/adjustEarDamage()
 	return

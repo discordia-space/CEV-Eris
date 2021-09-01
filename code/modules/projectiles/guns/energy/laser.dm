@@ -165,7 +165,7 @@
 	projectile_type = /obj/item/projectile/beam/psychic
 	icon_contained = TRUE
 	spawn_blacklisted = TRUE
-	var/contractor = FALSE //Check if it's a contractor psychic weapon
+	var/traitor = FALSE //Check if it's a traitor psychic weapon
 	var/datum/mind/owner
 	var/list/victims = list()
 	var/datum/antag_contract/derail/contract
@@ -173,11 +173,11 @@
 
 /obj/item/gun/energy/psychic/Initialize()
 	..()
-	if(contractor)
+	if(traitor)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/gun/energy/psychic/Destroy()
-	if(contractor)
+	if(traitor)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -239,7 +239,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
-	contractor = TRUE
+	traitor = TRUE
 	pierce_multiplier = 2
 	zoom_factor = 0
 	damage_multiplier = 1

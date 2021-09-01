@@ -40,7 +40,7 @@
 	spawn_blacklisted = TRUE
 
 
-//Voidsuit for contractors
+//Voidsuit for traitors
 /obj/item/clothing/head/space/void/merc
 	name = "blood-red voidsuit helmet"
 	desc = "An advanced helmet designed for work in special operations. This version is additionally reinforced against melee attacks."

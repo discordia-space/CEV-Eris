@@ -113,7 +113,7 @@
 	desc = "A positioning system helpful for rescuing trapped or injured miners. Keeping one on you at all times while mining might just save your life."
 
 // Looks like a normal GPS, but displays PDA GPS and such
-/obj/item/device/gps/contractor
+/obj/item/device/gps/traitor
 	hide_prefixes = list()
 	spawn_blacklisted = TRUE
 
