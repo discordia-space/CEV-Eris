@@ -18,18 +18,32 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
-"aj" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/obj/item/soap,
-/obj/structure/curtain,
-/turf/simulated/floor/tiled,
-/area/outpost/junkyard/ship/geary)
 "an" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard)
+"ar" = (
+/obj/machinery/door/window/westleft{
+	name = "Medical Equipment Storage"
+	},
+/obj/item/storage/belt/medical{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 3
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "at" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/techmaint,
@@ -132,17 +146,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "bo" = (
-/obj/structure/closet{
-	name = "patient's wardrobe"
-	},
-/obj/item/clothing/under/color/white,
-/obj/item/clothing/under/color/white,
-/obj/item/clothing/under/color/white,
-/obj/item/clothing/shoes/color,
-/obj/item/clothing/shoes/color,
-/obj/item/clothing/shoes/color,
-/turf/simulated/floor/tiled,
-/area/outpost/junkyard/ship/geary)
+/mob/living/simple_animal/hostile/alien,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard)
 "bw" = (
 /obj/structure/table/rack,
 /obj/item/clothing/head/welding{
@@ -167,15 +173,9 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
 "bC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/obj/structure/plushie/ian{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/junkyard/ship/geary)
+/obj/effect/shuttle_landmark/scrapyard/nav2,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard)
 "bD" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Engineering Storage"
@@ -212,10 +212,9 @@
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/station)
 "bR" = (
-/obj/machinery/door/airlock{
-	name = "Cabin 2"
-	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/bed,
+/obj/item/bedsheet,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "bS" = (
 /turf/simulated/wall/r_wall,
@@ -287,7 +286,9 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "ct" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/item/storage/toolbox/emergency,
+/obj/item/tool/wrench,
+/obj/structure/table/rack,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "cx" = (
@@ -338,7 +339,10 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
 "cS" = (
-/mob/living/simple_animal/hostile/alien/drone,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass{
+	name = "Cryo Room"
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "cT" = (
@@ -402,23 +406,16 @@
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "dx" = (
-/obj/item/clothing/accessory/medal/bronze_heart{
-	pixel_x = -3;
-	pixel_y = 3
+/obj/machinery/door/airlock{
+	name = "Cabin 2"
 	},
-/obj/item/clothing/accessory/medal/conduct,
-/obj/item/clothing/accessory/medal/silver/valor{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/structure/closet,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "dA" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/door/airlock{
+	name = "Cabin 1"
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "dB" = (
 /obj/structure/bed/chair/shuttle,
@@ -504,23 +501,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
 "ed" = (
-/obj/structure/window/reinforced,
-/obj/machinery/door/window/eastright{
-	name = "First-Aid Supplies"
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/syringe{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/obj/structure/table/standard,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "ef" = (
@@ -542,15 +524,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
 "ez" = (
-/obj/structure/toilet{
-	pixel_y = 16
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/geary)
 "eB" = (
 /obj/structure/bed/chair/shuttle{
@@ -621,7 +598,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/lehrer)
 "eW" = (
-/obj/spawner/gun/energy_cheap,
+/obj/structure/table/rack,
+/obj/item/melee/telebaton,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "fa" = (
@@ -641,10 +619,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "ft" = (
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
 /obj/machinery/door/window/westright,
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "fv" = (
@@ -682,10 +658,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "fL" = (
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
 /obj/machinery/door/window/eastleft,
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "fQ" = (
@@ -832,18 +806,31 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
+"hC" = (
+/obj/effect/shuttle_landmark/scrapyard/nav1,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard)
 "hF" = (
 /mob/living/simple_animal/hostile/alien/queen,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/station)
 "hI" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/geary)
 "hP" = (
-/obj/machinery/sleeper{
-	dir = 1
+/obj/item/storage/box/gloves{
+	pixel_x = 5;
+	pixel_y = 8
 	},
+/obj/item/storage/box/masks{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/structure/table/standard,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "hS" = (
@@ -1018,8 +1005,11 @@
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/canterbury)
 "jw" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled,
+/obj/machinery/door/airlock/medical{
+	name = "Surgery"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "jz" = (
 /obj/machinery/door/firedoor,
@@ -1079,6 +1069,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
+"kh" = (
+/obj/item/folder{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 6;
+	pixel_y = -1
+	},
+/obj/structure/table/standard,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "km" = (
 /obj/structure/dispenser/oxygen,
 /obj/effect/decal/cleanable/dirt,
@@ -1144,8 +1147,8 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/outpost/junkyard/ship/rocinante)
 "kM" = (
-/obj/machinery/space_heater,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/optable,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "kN" = (
 /obj/machinery/door/airlock/engineering{
@@ -1308,13 +1311,20 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
 "mp" = (
-/obj/structure/table/rack,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/techmaint,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/glass,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "mq" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -1323,16 +1333,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
 "mt" = (
-/obj/item/folder{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/syringe{
-	pixel_x = 6;
-	pixel_y = -1
-	},
-/obj/structure/table/standard,
-/obj/machinery/light/small,
+/obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "mw" = (
@@ -1426,12 +1427,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
 "nu" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0
+/obj/machinery/door/airlock/medical{
+	name = "Crew Quarters"
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "nw" = (
@@ -1450,10 +1449,16 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
 "nF" = (
-/obj/machinery/door/airlock/command{
-	name = "Bridge"
+/obj/structure/closet/secure_closet/freezer{
+	locked = 0;
+	name = "fridge"
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/power/apc{
+	cell_type = null;
+	dir = 1;
+	name = "Hospital Ship Crew Quarters APC";
+	pixel_y = 23
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "nG" = (
@@ -1538,9 +1543,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
 "oH" = (
-/obj/structure/closet/crate/bin,
-/obj/item/trash/pistachios,
-/turf/simulated/floor/tiled,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "oQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1609,18 +1613,16 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
 "pm" = (
-/obj/item/paper_bin{
-	pixel_x = -4
+/obj/item/clothing/accessory/medal/bronze_heart{
+	pixel_x = -3;
+	pixel_y = 3
 	},
-/obj/item/folder/blue{
+/obj/item/clothing/accessory/medal/conduct,
+/obj/item/clothing/accessory/medal/silver/valor{
 	pixel_x = 3;
-	pixel_y = 2
+	pixel_y = -3
 	},
-/obj/item/folder,
-/obj/item/pen{
-	pixel_x = 4
-	},
-/obj/structure/table/standard,
+/obj/structure/closet,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "pp" = (
@@ -1757,6 +1759,7 @@
 "qj" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/nuclear,
+/obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "qn" = (
@@ -1801,11 +1804,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
 "qH" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical Storage"
-	},
-/obj/machinery/door/firedoor,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/microwave,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "qN" = (
@@ -1883,8 +1883,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
 "rD" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/bed/chair,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "rJ" = (
 /obj/effect/decal/cleanable/blood,
@@ -2025,33 +2025,17 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
 "tf" = (
-/obj/machinery/door/window/westleft{
-	name = "Medical Equipment Storage"
-	},
-/obj/item/storage/belt/medical{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 3
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled,
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "tg" = (
-/obj/machinery/door/airlock/medical{
-	name = "Break Room"
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/storage/bag/trash{
+	pixel_x = 6
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "tl" = (
 /obj/structure/closet/crate,
@@ -2139,6 +2123,7 @@
 "ua" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/plasma/stranger,
+/obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "ue" = (
@@ -2222,9 +2207,10 @@
 /turf/simulated/wall,
 /area/outpost/junkyard/station)
 "uK" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/simulated/floor/tiled,
+/obj/machinery/door/airlock/engineering{
+	name = "Engineering"
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "uM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2278,13 +2264,26 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "vk" = (
-/obj/structure/bed/roller,
+/obj/item/storage/firstaid{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/machinery/door/window/eastleft{
+	name = "First-Aid Supplies"
+	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "vl" = (
-/obj/machinery/door/airlock{
-	name = "Restroom"
+/obj/machinery/computer/operating{
+	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "vo" = (
@@ -2314,9 +2313,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "vD" = (
-/obj/item/storage/toolbox/emergency,
-/obj/item/tool/wrench,
-/obj/structure/table/rack,
+/obj/structure/closet/crate/bin,
+/obj/item/trash/pistachios,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "vG" = (
@@ -2372,6 +2370,12 @@
 /obj/item/clothing/gloves/color/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/station)
+"we" = (
+/obj/structure/closet/l3closet{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "wm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2397,11 +2401,10 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/junkyard/hermitage)
 "ws" = (
-/obj/machinery/door/airlock/medical{
-	name = "Surgery"
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/table/reinforced,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "wv" = (
 /obj/effect/window_lwall_spawn/reinforced,
@@ -2521,9 +2524,12 @@
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/geary)
 "xH" = (
-/obj/machinery/door/airlock{
-	name = "Cabin 1"
-	},
+/obj/structure/table/rack,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "xI" = (
@@ -2560,8 +2566,8 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/outpost/junkyard/station)
 "xZ" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "yb" = (
 /turf/simulated/mineral,
@@ -2664,18 +2670,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "zt" = (
-/obj/item/folder{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/paper{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/item/pen{
-	pixel_x = 4
-	},
-/obj/structure/table/standard,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "zv" = (
@@ -2713,8 +2709,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "zH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/standard_unit,
+/obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "zJ" = (
@@ -2759,14 +2754,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Ah" = (
-/obj/structure/closet/crate{
-	name = "food crate"
+/obj/machinery/door/airlock/medical{
+	name = "Break Room"
 	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Ai" = (
@@ -2891,8 +2882,7 @@
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "BH" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small,
+/obj/machinery/sleeper,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "BK" = (
@@ -2978,10 +2968,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "CM" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
+/obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "CO" = (
@@ -3012,9 +2999,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "De" = (
-/obj/machinery/vending/medical{
-	req_access = null
+/obj/structure/closet/firecloset{
+	anchored = 1
 	},
+/obj/item/gun/projectile/shotgun/doublebarrel/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Du" = (
@@ -3047,8 +3035,9 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/station)
 "DH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/unary/cryo_cell,
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "DI" = (
@@ -3106,8 +3095,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "Ei" = (
-/obj/machinery/computer/med_data{
-	dir = 4
+/obj/machinery/computer{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
@@ -3119,8 +3108,9 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
 "Er" = (
-/obj/structure/bed/chair,
-/turf/simulated/floor/tiled,
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/airlock,
+/turf/space,
 /area/outpost/junkyard/ship/geary)
 "Es" = (
 /obj/machinery/door/airlock/external{
@@ -3164,13 +3154,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "EB" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/item/storage/bag/trash{
-	pixel_x = 6
+/obj/machinery/computer/med_data{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "ED" = (
 /obj/structure/table/standard,
@@ -3371,9 +3358,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Gj" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
+/mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Gk" = (
@@ -3392,16 +3377,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "GE" = (
-/obj/structure/closet/secure_closet/freezer{
-	locked = 0;
-	name = "fridge"
+/obj/machinery/door/airlock/command{
+	name = "Bridge"
 	},
-/obj/machinery/power/apc{
-	cell_type = null;
-	dir = 1;
-	name = "Hospital Ship Crew Quarters APC";
-	pixel_y = 23
-	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "GM" = (
@@ -3424,11 +3403,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
 "GR" = (
-/obj/machinery/door/airlock/medical{
-	name = "Crew Quarters"
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/comfy{
+	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/plushie/ian{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "GS" = (
 /obj/effect/decal/cleanable/greenglow,
@@ -3571,12 +3553,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
-"Ip" = (
-/obj/structure/table/reinforced,
-/obj/item/tool/wrench,
-/obj/item/tool/crowbar,
-/turf/simulated/floor/tiled,
-/area/outpost/junkyard/ship/geary)
 "Iq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/techmaint,
@@ -3644,7 +3620,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/station)
 "Jc" = (
-/obj/machinery/optable,
+/obj/structure/table/standard,
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Jd" = (
@@ -3704,15 +3681,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
 "JY" = (
-/obj/structure/table/rack,
-/obj/item/melee/telebaton,
+/obj/machinery/sleeper{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "JZ" = (
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
 /obj/machinery/door/window/eastright,
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "Kh" = (
@@ -3733,7 +3709,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "Ku" = (
-/obj/machinery/light/small,
+/obj/structure/closet/crate{
+	name = "food crate"
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Kw" = (
@@ -3897,12 +3880,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "LD" = (
-/obj/item/folder,
-/obj/item/pen{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/structure/table/standard,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "LE" = (
@@ -4149,10 +4127,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/station)
 "Oc" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/turf/simulated/wall/r_wall,
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "Oh" = (
 /obj/effect/window_lwall_spawn/reinforced,
@@ -4173,6 +4149,15 @@
 /obj/structure/dispenser/oxygen,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"Om" = (
+/obj/item/folder,
+/obj/item/pen{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "On" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/watertank/derelict,
@@ -4241,10 +4226,9 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Pk" = (
-/obj/structure/closet/firecloset{
-	anchored = 1
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/item/gun/projectile/shotgun/doublebarrel/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Pl" = (
@@ -4331,6 +4315,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
+"QO" = (
+/mob/living/simple_animal/hostile/alien/sentinel,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard)
 "QP" = (
 /obj/structure/transit_tube,
 /obj/structure/catwalk,
@@ -4352,11 +4340,8 @@
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/rocinante)
 "QV" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
-	},
-/obj/item/tool/wrench,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/bed/roller,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Rd" = (
 /obj/item/stack/rods,
@@ -4389,9 +4374,19 @@
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/station)
 "Ry" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/item/tool/weldingtool,
-/turf/simulated/floor/tiled/techmaint,
+/obj/item/folder{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/paper{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = 4
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "RB" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -4407,16 +4402,14 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "RJ" = (
-/obj/structure/closet/l3closet{
-	anchored = 1
+/obj/machinery/power/terminal{
+	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "RK" = (
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
 /obj/machinery/door/window/westleft,
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "RP" = (
@@ -4440,10 +4433,15 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "RW" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering"
+/obj/structure/toilet{
+	pixel_y = 16
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "RY" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4503,20 +4501,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/station)
 "St" = (
-/obj/item/storage/firstaid{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/machinery/power/smes/buildable{
+	charge = 0
 	},
-/obj/item/storage/firstaid/o2,
-/obj/item/storage/firstaid/toxin{
-	pixel_x = -3;
-	pixel_y = -3
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/machinery/door/window/eastleft{
-	name = "First-Aid Supplies"
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "Su" = (
 /obj/structure/closet/crate{
@@ -4538,9 +4529,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "SB" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/machinery/door/airlock,
-/turf/space,
+/obj/machinery/door/airlock/medical{
+	name = "Recovery Room"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "SC" = (
 /turf/simulated/floor/tiled/techmaint,
@@ -4554,9 +4547,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "SX" = (
@@ -4568,9 +4559,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
 "Td" = (
-/obj/machinery/computer{
-	dir = 8
+/obj/machinery/door/airlock/medical{
+	name = "Medical Storage"
 	},
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Te" = (
@@ -4593,6 +4586,7 @@
 "Tk" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/lasercannon,
+/obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "Tl" = (
@@ -4810,22 +4804,16 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Vi" = (
-/obj/item/storage/box/gloves{
-	pixel_x = 5;
-	pixel_y = 8
-	},
-/obj/item/storage/box/masks{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/structure/table/standard,
-/obj/item/storage/firstaid/surgery,
-/turf/simulated/floor/tiled,
-/area/outpost/junkyard/ship/geary)
-"Vn" = (
 /obj/structure/table/standard,
 /obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
+"Vn" = (
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/obj/item/tool/wrench,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "Vs" = (
 /obj/machinery/door/airlock{
@@ -4847,13 +4835,12 @@
 "VF" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/projectile/type_42,
+/obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "VI" = (
-/obj/machinery/door/airlock/medical{
-	name = "Recovery Room"
-	},
-/obj/machinery/door/firedoor,
+/obj/structure/reagent_dispensers/fueltank,
+/obj/item/tool/weldingtool,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "VM" = (
@@ -4879,19 +4866,15 @@
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "VV" = (
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
+/obj/structure/closet{
+	name = "patient's wardrobe"
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/glass,
-/obj/machinery/light/small{
-	dir = 1
-	},
+/obj/item/clothing/under/color/white,
+/obj/item/clothing/under/color/white,
+/obj/item/clothing/under/color/white,
+/obj/item/clothing/shoes/color,
+/obj/item/clothing/shoes/color,
+/obj/item/clothing/shoes/color,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "VX" = (
@@ -4950,12 +4933,12 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Wr" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 4
+/obj/machinery/shower{
+	pixel_y = 15
 	},
-/obj/item/storage/box/lights/bulbs,
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled/techmaint,
+/obj/item/soap,
+/obj/structure/curtain,
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Wv" = (
 /obj/machinery/conveyor{
@@ -5148,8 +5131,9 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "Yg" = (
-/obj/machinery/microwave,
-/obj/structure/table/standard,
+/obj/machinery/vending/medical{
+	req_access = null
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Yh" = (
@@ -5184,7 +5168,18 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/outpost/junkyard/ship/rocinante)
 "Yz" = (
-/obj/machinery/atmospherics/unary/cryo_cell,
+/obj/item/paper_bin{
+	pixel_x = -4
+	},
+/obj/item/folder/blue{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/folder,
+/obj/item/pen{
+	pixel_x = 4
+	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "YA" = (
@@ -5241,9 +5236,11 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Zf" = (
-/obj/machinery/power/terminal{
-	dir = 4
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
 	},
+/obj/item/storage/box/lights/bulbs,
+/obj/structure/table/rack,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "Zn" = (
@@ -5260,8 +5257,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/station)
 "Zt" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
+/obj/machinery/door/airlock{
+	name = "Restroom"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
@@ -5277,9 +5274,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/blast/shutters{
-	id = "proto"
-	},
+/obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "ZH" = (
@@ -5289,11 +5284,8 @@
 	},
 /area/outpost/junkyard/station)
 "ZI" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Cryo Room"
-	},
-/turf/simulated/floor/tiled,
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/space,
 /area/outpost/junkyard/ship/geary)
 "ZM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5320,7 +5312,23 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "ZV" = (
-/obj/machinery/sleeper,
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/eastright{
+	name = "First-Aid Supplies"
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "ZW" = (
@@ -11903,7 +11911,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+bo
 Sp
 Sp
 Sp
@@ -12640,11 +12648,11 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+ez
+ez
+xE
+ez
+ez
 Sp
 Sp
 Sp
@@ -12830,13 +12838,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+hI
+hI
+xE
+hI
+hI
+Bh
 Sp
 Sp
 Sp
@@ -13021,13 +13029,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+SC
+Bh
+xE
+Bh
+SC
+Bh
 Sp
 Sp
 Sp
@@ -13212,13 +13220,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+SC
+Oc
+xE
+Oc
+SC
+Bh
 Sp
 Sp
 Sp
@@ -13403,13 +13411,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+SC
+Bh
+xE
+Bh
+SC
+Bh
 Sp
 Sp
 Sp
@@ -13594,13 +13602,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+SC
+Bh
+xE
+Bh
+SC
+Bh
 Sp
 Sp
 Sp
@@ -13785,13 +13793,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
-Sp
+Bh
+SC
+Bh
+xE
+Bh
+SC
+Bh
 Sp
 Sp
 Sp
@@ -13976,13 +13984,13 @@ Sp
 Sp
 Sp
 Sp
-Sp
-dA
-dA
+Bh
+SC
+Bh
 xE
-dA
-dA
-Sp
+Bh
+SC
+Bh
 Sp
 Sp
 Sp
@@ -14166,15 +14174,15 @@ Sp
 Sp
 Sp
 Sp
-Sp
+ez
 Bh
 Oc
-Oc
+Bh
 xE
-Oc
+Bh
 Oc
 Bh
-Sp
+ez
 Sp
 Sp
 Sp
@@ -14357,15 +14365,15 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Bh
+hI
+tf
 SC
 Bh
 xE
 Bh
 SC
-Bh
-Sp
+Vn
+hI
 Sp
 Sp
 Sp
@@ -14548,15 +14556,15 @@ Sp
 Sp
 Sp
 Sp
-Sp
 Bh
+tg
 SC
-rD
+Bh
 xE
-rD
-SC
 Bh
-Sp
+SC
+VI
+Bh
 Sp
 Sp
 Sp
@@ -14738,20 +14746,20 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
+ez
 Bh
+SC
 SC
 Bh
 xE
 Bh
+RJ
 SC
 Bh
+ez
 Sp
 Sp
-Sp
-Sp
-Sp
+an
 Sp
 Sp
 Sp
@@ -14929,17 +14937,17 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Bh
+hI
+oH
 SC
+xH
 Bh
-xE
+Er
 Bh
+St
 SC
-Bh
-Sp
-Sp
+Zf
+hI
 Sp
 Sp
 Sp
@@ -15120,17 +15128,17 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
 Bh
-SC
 Bh
-xE
+uK
 Bh
-SC
 Bh
-Sp
-Sp
+EB
+Bh
+Bh
+uK
+Bh
+Bh
 Sp
 Sp
 Sp
@@ -15310,19 +15318,19 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
 Bh
-SC
 Bh
-xE
+Xg
+Xg
+jw
+Xg
+Zy
+Xg
+SB
+Xg
+Xg
 Bh
-SC
 Bh
-Sp
-Sp
-Sp
 Sp
 Sp
 Sp
@@ -15500,21 +15508,21 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-dA
 Bh
-rD
 Bh
-xE
+hP
+Xg
+vl
 Bh
-rD
+Aw
+Gj
+Aw
 Bh
-dA
-Sp
-Sp
-Sp
+VV
+Xg
+Xg
+Bh
+Bh
 Sp
 Sp
 Sp
@@ -15691,21 +15699,21 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Oc
+ZI
+Xg
+Xg
+Xg
 kM
-SC
 Bh
-xE
 Bh
-SC
+cS
+Bh
+Bh
 QV
-Oc
-Sp
-Sp
-Sp
+Zy
+Xg
+QV
+ZI
 Sp
 Sp
 Sp
@@ -15807,7 +15815,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+bo
 Sp
 Sp
 Sp
@@ -15881,23 +15889,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
 Bh
-EB
-SC
 Bh
-xE
 Bh
-SC
+jw
+Bh
+Bh
+Bh
+BH
+Zy
+JY
+Bh
 Ry
+Xg
+Xg
+kh
 Bh
-Sp
-Sp
-Sp
-Sp
+Bh
 Sp
 Sp
 Sp
@@ -16072,23 +16080,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-dA
 Bh
-SC
-SC
+bR
+dx
+Xg
+pm
 Bh
-xE
+zt
+Xg
+Xg
+Zy
 Bh
-Zf
-SC
+QV
+Zy
+Zy
+Xg
+QV
 Bh
-dA
-Sp
-Sp
-an
 Sp
 Sp
 Sp
@@ -16263,23 +16271,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
-Sp
-Oc
+Bh
+Bh
+Bh
+Xg
 xZ
-SC
+Bh
 mp
+CM
+Zy
+LD
 Bh
-SB
 Bh
-nu
-SC
-Wr
-Oc
-Sp
-Sp
-Sp
+Bh
+Xg
+Zy
+Om
+Bh
 Sp
 Sp
 Sp
@@ -16440,10 +16448,7 @@ Iu
 Iu
 Sp
 Sp
-Sp
-Sp
-Sp
-Sp
+bo
 Sp
 Sp
 Sp
@@ -16458,19 +16463,22 @@ Sp
 Sp
 Sp
 Bh
+bR
+dA
+Xg
+qe
+Bh
+zH
+Zy
+Zy
+Xg
 Bh
 RW
+Zt
+Xg
+Xg
+QV
 Bh
-Bh
-Ei
-Bh
-Bh
-RW
-Bh
-Bh
-Sp
-Sp
-Sp
 Sp
 Sp
 Sp
@@ -16645,23 +16653,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Sp
 Bh
 Bh
-Xg
-Xg
+Bh
+nu
+Bh
+Bh
 ws
 Xg
-Zy
-Xg
-VI
 Xg
 Xg
 Bh
+Wr
 Bh
-Sp
-Sp
+SB
+Bh
+Bh
+Bh
 Sp
 Sp
 Sp
@@ -16836,23 +16844,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-Bh
-Bh
-Vi
+Oc
+SC
+Oc
 Xg
-CM
+qH
 Bh
-Aw
+Bh
+Bh
 cS
-Aw
-Bh
-bo
-Xg
-Xg
 Bh
 Bh
-Sp
+Bh
+Bh
+Zy
+Oc
+SC
+Oc
 Sp
 Sp
 Sp
@@ -16912,7 +16920,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+bo
 Sp
 Sp
 Sp
@@ -17027,23 +17035,23 @@ Sp
 Sp
 Sp
 Sp
-Sp
-hI
-Xg
-Xg
-Xg
+Bh
+Bh
+Bh
+Zy
+rD
 Jc
 Bh
-Bh
-ZI
-Bh
-Bh
-vk
-Zy
+De
 Xg
+Pk
+Bh
 vk
-hI
-Sp
+ZV
+xZ
+Bh
+Bh
+Bh
 Sp
 Sp
 Sp
@@ -17218,23 +17226,23 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-Bh
-ws
-Bh
-Bh
-Bh
-ZV
+Sp
+ZI
+ed
+Xg
 Zy
-hP
-Bh
-zt
+Xg
+Ah
 Xg
 Xg
+Xg
+Td
+Xg
+Zy
+Zy
 mt
-Bh
-Bh
+ZI
+Sp
 Sp
 Sp
 Sp
@@ -17409,23 +17417,23 @@ Sp
 Sp
 Sp
 Sp
+Sp
 Bh
-uK
-bR
-Xg
-dx
 Bh
-DH
+nF
 Xg
-Xg
-Zy
+vD
 Bh
-vk
-Zy
-Zy
-Xg
-vk
 Bh
+GE
+Bh
+Bh
+Yg
+Xg
+we
+Bh
+Bh
+Sp
 Sp
 Sp
 Sp
@@ -17600,23 +17608,23 @@ Sp
 Sp
 Sp
 Sp
+Sp
+Sp
 Bh
 Bh
-Bh
-Xg
 Ku
 Bh
-VV
+Bh
 eW
 Zy
 ct
 Bh
 Bh
+ar
 Bh
-Xg
-Zy
-LD
 Bh
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -17791,23 +17799,23 @@ Sp
 Sp
 Sp
 Sp
+Sp
+Sp
+Sp
 Bh
-uK
-xH
-Xg
-qe
+Bh
 Bh
 Yz
-Zy
-Zy
-Xg
+DH
+GR
+DH
+Vi
 Bh
-ez
-vl
-Xg
-Xg
-vk
 Bh
+Bh
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -17982,23 +17990,23 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-Bh
-GR
-Bh
-Bh
-Ip
-Xg
-Xg
-Xg
-Bh
-aj
-Bh
-VI
-Bh
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+ZI
+ZI
+Ei
+Ei
+Ei
+ZI
+ZI
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -18173,23 +18181,23 @@ Sp
 Sp
 Sp
 Sp
-rD
-SC
-rD
-Xg
-Yg
-Bh
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 ZI
-Bh
-Bh
-Bh
-Bh
-Zy
-rD
-SC
-rD
+ZI
+ZI
+ZI
+ZI
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -18364,23 +18372,23 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-Bh
-Zy
-Er
-BH
-Bh
-Pk
-Xg
-Gj
-Bh
-St
-ed
-Ku
-Bh
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -18556,21 +18564,21 @@ Sp
 Sp
 Sp
 Sp
-hI
-zH
-Xg
-Zy
-Xg
-tg
-Xg
-Xg
-Xg
-qH
-Xg
-Zy
-Zy
-jw
-hI
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -18747,21 +18755,21 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-GE
-Xg
-oH
-Bh
-Bh
-nF
-Bh
-Bh
-De
-Xg
-RJ
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -18939,19 +18947,19 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-Ah
-Bh
-Bh
-JY
-Zy
-vD
-Bh
-Bh
-tf
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -19131,17 +19139,17 @@ Sp
 Sp
 Sp
 Sp
-Bh
-Bh
-Bh
-pm
-Zt
-bC
-Zt
-Vn
-Bh
-Bh
-Bh
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -19324,13 +19332,13 @@ Sp
 Sp
 Sp
 Sp
-hI
-hI
-Td
-Td
-Td
-hI
-hI
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -19402,7 +19410,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+hC
 Sp
 Sp
 Sp
@@ -19516,11 +19524,11 @@ Sp
 Sp
 Sp
 Sp
-hI
-hI
-hI
-hI
-hI
+Sp
+Sp
+Sp
+Sp
+Sp
 Sp
 Sp
 Sp
@@ -20462,7 +20470,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+bC
 Sp
 Sp
 Sp
@@ -21844,7 +21852,7 @@ nV
 nV
 FY
 nV
-nV
+pd
 nV
 Bw
 Pl
@@ -27410,7 +27418,7 @@ Sp
 Sp
 Sp
 Sp
-Sp
+QO
 Sp
 Sp
 Sp
