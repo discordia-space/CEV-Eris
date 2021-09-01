@@ -241,6 +241,11 @@
 
 /obj/item/storage/box/syndie_kit/toxin/populate_contents()
 	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
 	new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syndie_kit/cigarette
