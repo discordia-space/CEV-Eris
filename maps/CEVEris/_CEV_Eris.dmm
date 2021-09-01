@@ -101972,10 +101972,6 @@
 /obj/spawner/pack/gun_loot/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"hOY" = (
-/obj/effect/shuttle_landmark/junkpod/podbay,
-/turf/space,
-/area/space)
 "hPg" = (
 /obj/structure/railing{
 	dir = 4
@@ -105897,10 +105893,6 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"xdi" = (
-/obj/effect/shuttle_landmark/junkpod/medmaint,
-/turf/space,
-/area/space)
 "xdz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -119198,7 +119190,7 @@ aaa
 aaa
 aaa
 aaa
-xdi
+aaa
 aaa
 aaa
 aaa
@@ -133538,7 +133530,7 @@ aaa
 aaa
 aaa
 aaa
-hOY
+aaa
 aaa
 aaa
 aaa
