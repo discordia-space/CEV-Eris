@@ -31,8 +31,6 @@
 		list(mode_name="fire grenades", mode_desc="Unlocks the underbarrel grenade launcher", burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
 		)
 
-	gun_tags = list(GUN_SILENCABLE)
-
 	var/obj/item/gun/launcher/grenade/underslung/launcher
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

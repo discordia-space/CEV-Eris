@@ -34,8 +34,6 @@
 	spawn_blacklisted = TRUE
 	slowdown_hold = 5
 
-	gun_tags = list(GUN_SILENCABLE)
-
 /obj/item/gun/projectile/automatic/maxim/on_update_icon()
 	..()
 
