@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Temp gun not applying temperature onto its projectiles
+  - bugfix: Temp gun giving gun parts
+  - code_imp: Gun handlers using sleep
