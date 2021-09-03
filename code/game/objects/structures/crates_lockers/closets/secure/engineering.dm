@@ -74,6 +74,7 @@
 		new /obj/item/storage/backpack/industrial(src)
 	else
 		new /obj/item/storage/backpack/satchel/industrial(src)
+	new /obj/item/taperoll/engineering(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/clothing/under/rank/engineer(src)
 	new /obj/item/clothing/head/hardhat(src)

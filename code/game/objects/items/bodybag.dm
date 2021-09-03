@@ -82,6 +82,23 @@
         else
             icon_state = "bodybag_closed"
 
+/obj/item/bodybag/expanded
+	name = "body bag"
+	desc = "A folded bag designed for the storage and transportation of cadavers. This one is extra large."
+	w_class = ITEM_SIZE_NORMAL
+	spawn_blacklisted = TRUE
+
+/obj/item/bodybag/expanded/attack_self(mob/user)
+	var/obj/structure/closet/body_bag/expanded/R = new /obj/structure/closet/body_bag/expanded(user.loc)
+	R.add_fingerprint(user)
+	qdel(src)
+
+/obj/structure/closet/body_bag/expanded
+	name = "expanded body bag"
+	desc = "A plastic bag designed for the storage and transportation of cadavers. This one is extra large."
+	item_path = /obj/item/bodybag/expanded
+	storage_capacity = (MOB_LARGE)
+
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \

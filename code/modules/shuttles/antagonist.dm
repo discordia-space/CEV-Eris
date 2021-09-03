@@ -17,4 +17,3 @@
 	name = "stealth shuttle control console"
 	req_access = list(access_syndicate)
 	shuttle_tag = "Ninja"
-

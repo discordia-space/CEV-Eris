@@ -13,6 +13,10 @@
 	icon_state = "latex"
 	item_state = "lgloves"
 
+/obj/item/clothing/gloves/color/white/insulated // Stealthy insulated gloves for uplink
+	desc = "A pair of thick fancy gloves."
+	siemens_coefficient = 0
+
 /obj/item/clothing/gloves/color/yellow
 	name = "yellow gloves"
 	initial_name = "yellow gloves"

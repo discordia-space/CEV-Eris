@@ -214,7 +214,9 @@
 	if(istype(W, suitable_cell) || istype(W, /obj/item/computer_hardware))
 		try_install_component(W, user)
 
-
+	if(istype(W, /obj/item/device/spy_bug))
+		user.drop_item()
+		W.loc = get_turf(src)
 
 	var/obj/item/tool/tool = W
 	if(tool)

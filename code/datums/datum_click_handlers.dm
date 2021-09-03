@@ -98,11 +98,14 @@
 	object = resolve_world_target(object)
 	if(object)
 		target = object
-		while(target)
-			owner.mob.face_atom(target)
-			do_fire()
-			sleep(reciever.burst_delay)		
+		shooting_loop()
 	return TRUE
+
+/datum/click_handler/fullauto/proc/shooting_loop()
+	if(target)
+		owner.mob.face_atom(target)
+		do_fire()
+		spawn(reciever.burst_delay) shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)

@@ -13,6 +13,7 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 	<div class="itemContent">
 		{{:helper.link('Request Items', 'gear', {'menu' : 0}, null, 'fixedLeftWider')}}
 		{{:helper.link('Exploitable Information', 'gear', {'menu' : 2}, null, 'fixedLeftWider')}}
+		{{:helper.link('Implants Control', 'gear', {'menu' : 4}, null, 'fixedLeftWider')}}
 		{{if data.has_contracts}}
 			{{:helper.link('Contracts', 'gear', {'menu' : 3}, null, 'fixedLeftWider')}}
 		{{/if}}
@@ -75,6 +76,33 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
              {{:helper.link(value.Name, value.exploit ? 'gear' : 'document', {'menu' : 21, 'id' : value.id}, null, value.exploit ? 'redButton' : null)}}
         </div>
     {{/for}}
+{{else data.menu == 4}}
+    <H2><span class="white">Implant List:</span></H2>
+    <br>
+	<div class="item">
+		<div class="itemContent">
+			{{:helper.link('Detonate all', 'radiation', {'detonate_all' : 1}, null, 'fixedLeft')}}
+		</div>
+	</div>
+	<table style="width:100%">
+		<tr>
+			<td><b>Holder</b></td>
+			<td><b>Location</b></td>
+			<td><b>Configuration</b></td>
+		</tr>
+		{{for data.list_of_implants}}
+			<tr>
+			<td>{{:value.holder}}</td>
+			<td>{{:value.location}}</td>
+			<td>{{:value.death_react}}</td>
+			</tr>
+			<tr>
+			<td>{{:helper.link('extract', 'circle-arrow-s', {'extract_implant' : value.implant})}}</td>
+			<td>{{:helper.link('detonate', 'radiation', {'detonate_implant' : value.implant})}}</td>
+			<td>{{:helper.link('configure', 'gear', {'configure_implant' : value.implant})}}</td>
+			</tr>
+		{{/for}}
+	</table>
 {{else data.menu == 21}}
     <H2><span class="white">Information Record:</span></H2>
     <br>

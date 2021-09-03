@@ -1,0 +1,4 @@
+author: SugarBone
+delete-after: true
+changes:
+  - bugfix: fixed object items having no sound on hit
