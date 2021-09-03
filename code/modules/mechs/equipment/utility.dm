@@ -209,19 +209,19 @@
 	//durability = 2 * (material ? material.integrity : 1)
 
 /obj/item/material/drill_head/Created(var/creator) 
-	src.ApplyDurability()
+	ApplyDurability()
 
 /obj/item/material/drill_head/steel/New(var/newloc)
 	..(newloc,MATERIAL_STEEL)
-	src.ApplyDurability()	
+	ApplyDurability()	
 
 /obj/item/material/drill_head/plasteel/New(var/newloc)
 	..(newloc,MATERIAL_PLASTEEL)
-	src.ApplyDurability()	
+	ApplyDurability()	
 
 /obj/item/material/drill_head/diamond/New(var/newloc)
 	..(newloc,MATERIAL_DIAMOND)
-	src.ApplyDurability()	
+	ApplyDurability()	
 
 
 /obj/item/material/drill_head/verb/ApplyDurability()
