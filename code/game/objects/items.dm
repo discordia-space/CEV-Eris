@@ -19,7 +19,7 @@
 	var/max_health
 	var/burn_point
 	var/burning
-	var/hitsound
+	var/hitsound = 'sound/weapons/genhit1.ogg'
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 
