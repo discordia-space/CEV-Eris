@@ -3890,6 +3890,12 @@
 /obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
+"LA" = (
+/obj/machinery/telecomms/relay/preset/ruskie{
+	id = "Delta Station Relay"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "LB" = (
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -21889,7 +21895,7 @@ Sp
 Sp
 Sp
 bM
-nV
+LA
 nV
 nV
 nV
