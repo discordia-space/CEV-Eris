@@ -34,7 +34,6 @@
 		M.GetDrilled(1)
 	.=..()
 
-
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
