@@ -184,6 +184,9 @@
 	icon_state = "away2"
 	name = "Delta Station"
 
+/area/outpost/junkyard/station/core
+	name = "Delta Station Core"
+
 /area/outpost/junkyard/hermitage
 	icon_state = "away2"
 	name = "Hermitage"

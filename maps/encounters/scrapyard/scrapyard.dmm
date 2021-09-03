@@ -188,6 +188,9 @@
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/station)
+"bM" = (
+/turf/simulated/wall/r_wall,
+/area/outpost/junkyard/station/core)
 "bO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/solar_assembly,
@@ -549,7 +552,7 @@
 "eN" = (
 /obj/machinery/door/airlock/highsecurity,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "eO" = (
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
@@ -605,12 +608,16 @@
 "fa" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "fk" = (
 /obj/structure/table/standard,
 /obj/item/device/scanner/mining,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/lehrer)
+"fm" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "fo" = (
 /obj/machinery/computer{
 	dir = 4
@@ -649,7 +656,7 @@
 "fH" = (
 /obj/effect/gibspawner/human,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "fK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -775,7 +782,7 @@
 "hg" = (
 /obj/machinery/door/airlock/highsecurity,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "hn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/command{
@@ -813,7 +820,7 @@
 "hF" = (
 /mob/living/simple_animal/hostile/alien/queen,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "hI" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -1014,7 +1021,7 @@
 "jz" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/rocinante)
 "jA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1045,6 +1052,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/lehrer)
+"jG" = (
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "jI" = (
 /obj/spawner/exosuit_equipment/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -1178,7 +1195,7 @@
 /area/outpost/junkyard/station)
 "kX" = (
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/rocinante)
 "lk" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -1494,7 +1511,7 @@
 /area/outpost/junkyard/station)
 "nV" = (
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "nZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock,
@@ -1554,7 +1571,7 @@
 "oR" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "oS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
@@ -1594,7 +1611,7 @@
 /area/outpost/junkyard/ship/canterbury)
 "pa" = (
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/lehrer)
 "pc" = (
 /obj/effect/window_lwall_spawn/reinforced{
@@ -1605,7 +1622,7 @@
 "pd" = (
 /mob/living/simple_animal/hostile/alien,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "pj" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1819,6 +1836,14 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"qW" = (
+/obj/structure/closet/crate,
+/obj/spawner/ammo/lowcost,
+/obj/spawner/ammo/lowcost,
+/obj/item/ammo_magazine/pistol/scrap,
+/obj/item/ammo_magazine/pistol/scrap,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/rocinante)
 "qY" = (
 /obj/item/folder/blue{
 	pixel_x = 6;
@@ -2319,8 +2344,10 @@
 /area/outpost/junkyard/ship/geary)
 "vG" = (
 /obj/structure/closet/crate,
+/obj/item/stack/material/plasma/random,
+/obj/item/stack/material/plasma/random,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "vJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/pickaxe,
@@ -3110,7 +3137,7 @@
 "Er" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/airlock,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/geary)
 "Es" = (
 /obj/machinery/door/airlock/external{
@@ -3346,7 +3373,7 @@
 /obj/spawner/powercell/small,
 /obj/spawner/powercell/small,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Ga" = (
 /obj/machinery/pipedispenser/disposal,
 /turf/simulated/floor/tiled,
@@ -3845,7 +3872,7 @@
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Lu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharge_station,
@@ -3956,7 +3983,7 @@
 /obj/structure/table/standard,
 /obj/machinery/door/window/brigdoor/eastright,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Mw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/welding{
@@ -4125,7 +4152,7 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Oc" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/tiled/techmaint,
@@ -4183,7 +4210,7 @@
 "OF" = (
 /obj/machinery/door/window/brigdoor/westleft,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "OH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -4412,6 +4439,19 @@
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
+"RN" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/cell/large;
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "RP" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/plating,
@@ -4515,7 +4555,7 @@
 	},
 /obj/item/stack/cable_coil,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Sz" = (
 /obj/structure/table/standard,
 /obj/item/clothing/suit/space/void/mining,
@@ -4678,7 +4718,7 @@
 	},
 /obj/machinery/door/window/brigdoor/eastright,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "TU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/science,
@@ -4698,7 +4738,7 @@
 "Ub" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/core)
 "Ui" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
@@ -5032,6 +5072,10 @@
 /obj/structure/closet/crate/hydroponics,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
+"Xu" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "XC" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
@@ -5285,7 +5329,7 @@
 /area/outpost/junkyard/station)
 "ZI" = (
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/geary)
 "ZM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19744,15 +19788,15 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
-Bw
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 Sp
 Sp
 ay
@@ -19934,8 +19978,8 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
+bM
+bM
 nV
 nV
 nV
@@ -19943,8 +19987,8 @@ TS
 Ms
 Ms
 Ms
-Bw
-Bw
+bM
+bM
 Sp
 ay
 Tj
@@ -20125,7 +20169,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 pd
 nV
 nV
@@ -20135,7 +20179,7 @@ nV
 nV
 nV
 nV
-Bw
+bM
 ay
 ay
 mk
@@ -20316,17 +20360,17 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 eN
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 ne
 ay
 Tj
@@ -20507,7 +20551,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 nV
 nV
 nV
@@ -20698,7 +20742,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 nV
 nV
 nV
@@ -20889,17 +20933,17 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 eN
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 ne
 ay
 Ju
@@ -21080,7 +21124,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 vG
 oR
 nV
@@ -21090,7 +21134,7 @@ nV
 fH
 nV
 nV
-Bw
+bM
 ay
 ay
 KQ
@@ -21271,7 +21315,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 nV
 nV
 nV
@@ -21281,7 +21325,7 @@ nV
 nV
 hF
 nV
-Bw
+bM
 Pl
 ay
 Tj
@@ -21462,7 +21506,8 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
+jG
 nV
 nV
 nV
@@ -21471,8 +21516,7 @@ nV
 nV
 nV
 nV
-nV
-Bw
+bM
 Pl
 ay
 Tj
@@ -21653,17 +21697,17 @@ Sp
 Sp
 Sp
 Sp
-Bw
-nV
+bM
+RN
 nV
 nV
 pd
-nV
+Xu
 nV
 nV
 fa
 nV
-Bw
+bM
 Pl
 ay
 Tj
@@ -21844,7 +21888,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 nV
 nV
 nV
@@ -21854,7 +21898,7 @@ FY
 nV
 pd
 nV
-Bw
+bM
 Pl
 ay
 Wq
@@ -22035,7 +22079,7 @@ Sp
 Sp
 Sp
 Sp
-Bw
+bM
 oR
 nV
 nV
@@ -22045,7 +22089,7 @@ nV
 nV
 nV
 fH
-Bw
+bM
 Pl
 ay
 Tj
@@ -22226,17 +22270,17 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 eN
-Bw
-Bw
-Bw
-Bw
-Bw
+bM
+bM
+bM
+bM
+bM
 Pl
 ay
 Tj
@@ -22418,15 +22462,15 @@ Sp
 Sp
 Sp
 Sp
-Bw
-vG
+bM
+fm
 nV
 nV
 nV
 fa
 pd
 Su
-Bw
+bM
 Sp
 ay
 ay
@@ -22609,15 +22653,15 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
+bM
+bM
 nV
 Ob
 OF
 Ob
 nV
-Bw
-Bw
+bM
+bM
 Sp
 ay
 ne
@@ -22801,13 +22845,13 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
+bM
+bM
+bM
 nV
-Bw
-Bw
-Bw
+bM
+bM
+bM
 Sp
 Sp
 ay
@@ -22994,9 +23038,9 @@ Sp
 Sp
 Sp
 Sp
-Bw
-Bw
-Bw
+bM
+bM
+bM
 Sp
 Sp
 Sp
@@ -27543,7 +27587,7 @@ Sp
 Sp
 Sp
 aH
-fQ
+qW
 aH
 BP
 aH
