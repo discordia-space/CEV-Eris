@@ -1,0 +1,5 @@
+author: AlexMorgan3817
+delete-after: true
+changes:
+  - code_imp: Compiling not failing if you have to old version of byond, now it will
+      just warn you about this.
