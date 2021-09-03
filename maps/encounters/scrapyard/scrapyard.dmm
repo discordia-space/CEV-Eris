@@ -625,6 +625,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"fs" = (
+/obj/item/stock_parts/manipulator,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/rocinante)
 "ft" = (
 /obj/machinery/door/window/westright,
 /obj/machinery/door/blast/regular,
@@ -920,6 +924,10 @@
 /obj/item/reagent_containers/syringe,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
+"iM" = (
+/obj/item/electronics/circuitboard/telecomms/relay,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "iP" = (
 /obj/machinery/door/airlock/security,
 /obj/machinery/door/firedoor,
@@ -1186,6 +1194,10 @@
 /obj/item/bedsheet/brown,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"kT" = (
+/obj/machinery/constructable_frame/machine_frame,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "kW" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/mechanical,
@@ -1825,6 +1837,12 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
+"qL" = (
+/obj/structure/closet/crate,
+/obj/item/stock_parts/subspace/filter,
+/obj/item/stock_parts/subspace/filter,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/outpost/junkyard/ship/canterbury)
 "qN" = (
 /obj/effect/window_lwall_spawn/reinforced{
 	dir = 8
@@ -2775,9 +2793,9 @@
 "Af" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/gun/projectile/automatic/ak47/sa,
 /obj/landmark/corpse/pirate/ranged,
-/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle/pk,
+/obj/item/gun/projectile/automatic/lmg/pk,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
 "Ah" = (
@@ -3074,6 +3092,19 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/station)
+"DP" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/standard,
+/obj/machinery/door/window/brigdoor/eastright,
+/obj/item/tool/multitool,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/junkyard/station/core)
 "DR" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3890,12 +3921,6 @@
 /obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station)
-"LA" = (
-/obj/machinery/telecomms/relay/preset/ruskie{
-	id = "Delta Station Relay"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/junkyard/station/core)
 "LB" = (
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -4048,6 +4073,14 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
+"MN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/landmark/corpse/pirate/ranged,
+/obj/item/gun/projectile/automatic/ak47/sa,
+/obj/item/ammo_magazine/lrifle,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station)
 "MO" = (
 /obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled,
@@ -4631,8 +4664,8 @@
 /area/outpost/junkyard/station)
 "Tk" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/lasercannon,
 /obj/machinery/door/blast/shutters/glass,
+/obj/item/gun/projectile/type_47,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station)
 "Tl" = (
@@ -4801,6 +4834,7 @@
 	cell_type = null;
 	pixel_x = 28
 	},
+/obj/item/stock_parts/manipulator,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
 "UM" = (
@@ -14835,7 +14869,7 @@ jY
 by
 Tj
 Tj
-Lm
+MN
 Tj
 BX
 Sk
@@ -19991,7 +20025,7 @@ nV
 nV
 TS
 Ms
-Ms
+DP
 Ms
 bM
 bM
@@ -21705,7 +21739,7 @@ Sp
 Sp
 bM
 RN
-nV
+iM
 nV
 pd
 Xu
@@ -21895,7 +21929,7 @@ Sp
 Sp
 Sp
 bM
-LA
+kT
 nV
 nV
 nV
@@ -23592,9 +23626,9 @@ qo
 jN
 UI
 qo
-qo
+fs
 DR
-qo
+fs
 dP
 aH
 Sp
@@ -23784,7 +23818,7 @@ aH
 aH
 aH
 XT
-qo
+fs
 qo
 fX
 aH
@@ -24431,7 +24465,7 @@ Ff
 hx
 DT
 LO
-IY
+qL
 DT
 DT
 DT
