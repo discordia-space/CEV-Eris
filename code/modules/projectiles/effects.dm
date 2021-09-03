@@ -173,3 +173,4 @@
 
 /obj/effect/projectile/laser/plasmacutter/muzzle
 	icon_state = "muzzle_plasmacutter"
+
