@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Fixed issue with shield in research area

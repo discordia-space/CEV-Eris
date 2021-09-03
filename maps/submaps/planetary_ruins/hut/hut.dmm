@@ -60,6 +60,10 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
+"q" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
 "r" = (
 /mob/living/bot/medbot,
 /turf/simulated/floor/tiled/dark,
@@ -67,6 +71,7 @@
 "C" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rainbow,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/carpet,
 /area/template_noop)
 "G" = (
@@ -77,7 +82,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "K" = (
-/turf/simulated/floor/plating,
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/wood,
 /area/template_noop)
 "Z" = (
 /obj/structure/table/marble,
@@ -88,7 +94,7 @@
 (1,1,1) = {"
 b
 b
-b
+K
 K
 b
 b
@@ -107,7 +113,7 @@ b
 b
 o
 G
-G
+q
 I
 d
 b
@@ -115,11 +121,11 @@ b
 (4,1,1) = {"
 b
 a
-G
+q
 r
 k
 Z
-b
+K
 "}
 (5,1,1) = {"
 b

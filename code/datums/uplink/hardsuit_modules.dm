@@ -44,6 +44,11 @@
 	item_cost = 7
 	path = /obj/item/rig_module/mounted/egun
 
+/datum/uplink_item/item/hardsuit_modules/esword
+	name = "Energy Blade Projector"
+	item_cost = 5
+	path = /obj/item/rig_module/energy_blade
+
 /datum/uplink_item/item/hardsuit_modules/power_sink
 	name = "Power Sink"
 	item_cost = 8

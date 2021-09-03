@@ -76239,8 +76239,8 @@
 	},
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/clothing/mask/muzzle,
-/obj/item/cane,
-/obj/item/cane,
+/obj/item/tool/cane,
+/obj/item/tool/cane,
 /obj/item/bodybag/cryobag{
 	pixel_x = 5
 	},
@@ -289267,7 +289267,7 @@ dKW
 dKY
 doR
 abF
-aae
+dZw
 dZw
 dZw
 dZw
@@ -289469,7 +289469,7 @@ dKX
 doR
 doR
 abF
-aae
+dZw
 dZx
 dZx
 dZx
@@ -289671,7 +289671,7 @@ doD
 doD
 abF
 abF
-aae
+dZw
 dZx
 dZx
 dZx
@@ -289873,7 +289873,7 @@ abF
 abF
 abF
 abF
-aae
+dZw
 dZy
 dZx
 dZx
@@ -290075,7 +290075,7 @@ abF
 abF
 abF
 abF
-aae
+dZw
 dZx
 dZx
 dZx
@@ -290277,7 +290277,7 @@ abF
 abF
 abF
 abF
-aae
+dZw
 dZx
 dZx
 dZx
@@ -290479,7 +290479,7 @@ doD
 abF
 abF
 abF
-aae
+dZw
 dZw
 dZw
 dZw

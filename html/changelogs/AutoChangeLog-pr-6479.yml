@@ -1,0 +1,6 @@
+author: SugarBone
+delete-after: true
+changes:
+  - bugfix: the user no longer hits the turret while using appropriate tools on help
+      intent
+  - code_imp: the user will now hit the turret on every intent except HELP

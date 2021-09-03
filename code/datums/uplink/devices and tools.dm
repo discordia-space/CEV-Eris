@@ -10,6 +10,11 @@
 	path = /obj/item/storage/toolbox/syndicate
 	desc = "Danger. Very robust. Filled with advanced tools."
 
+/datum/uplink_item/item/tools/gentleman_kit
+	name = "Gentleman's Kit"
+	item_cost = 3
+	path = /obj/item/storage/box/syndie_kit/gentleman_kit
+
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Shield Diffuser"
 	item_cost = 4

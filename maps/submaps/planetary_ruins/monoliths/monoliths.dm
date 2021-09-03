@@ -7,6 +7,16 @@
 	template_flags = TEMPLATE_FLAG_NO_RUINS
 	ruin_tags = RUIN_ALIEN
 
+/datum/map_template/ruin/exoplanet/monolith/monolith2
+	name = "Monolith Ring 2"
+	id = "planetsite_monoliths2"
+	suffix = "monoliths/monoliths2.dmm"
+
+/datum/map_template/ruin/exoplanet/monolith/monolith3
+	name = "Monolith Ring 3"
+	id = "planetsite_monoliths3"
+	suffix = "monoliths/monoliths3.dmm"
+
 /obj/structure/monolith
 	name = "monolith"
 	desc = "An obviously artifical structure of unknown origin. The symbols '<font face='Shage'>DWNbTX</font>' are engraved on the base."

@@ -22,6 +22,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	var/list/owner_roles = new
 
+	var/list/linked_implants = list()
 
 	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
 	//The total uses is only increased when this is a whole number
@@ -118,7 +119,23 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/title = "Remote Uplink"
 	var/data[0]
+	var/list/implants_in_list = list()
+	for(var/item in linked_implants)
+		var/obj/item/implant/explosive/E = item
+		var/turf/T = get_turf(E)
+		if(!T)
+			src.linked_implants -= E
+			continue
+		implants_in_list += list(
+			list(
+				"location" = "([T.x]:[T.y]:[T.z])",
+				"implant" = "\ref[item]",
+				"holder" = E.loc,
+				"death_react" = E.death_react
+			)
+		)
 
+	data["list_of_implants"] = implants_in_list
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
@@ -162,6 +179,30 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			exploit_id = href_list["id"]
 		if(href_list["category"])
 			category = locate(href_list["category"]) in uplink.categories
+
+	if(href_list["detonate_implant"])
+		var/obj/item/implant/explosive/IM = locate(href_list["detonate_implant"]) in linked_implants
+		if(IM)
+			src.linked_implants -= IM
+			IM.activate()
+
+	else if(href_list["extract_implant"])
+		var/obj/item/implant/explosive/IM = locate(href_list["extract_implant"]) in linked_implants
+		if(IM && IM.implanted)
+			IM.removal_authorized = TRUE
+			IM.uninstall()
+
+	else if(href_list["configure_implant"])
+		var/obj/item/implant/explosive/IM = locate(href_list["configure_implant"]) in linked_implants
+		if(IM && IM.implanted)
+			IM.configure()
+
+	else if(href_list["detonate_all"])
+		for(var/implant in linked_implants)
+			var/obj/item/implant/explosive/IM = implant
+			if(istype(IM))
+				src.linked_implants -= IM
+				IM.activate()
 
 	update_nano_data()
 	return 1

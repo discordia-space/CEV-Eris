@@ -15,6 +15,7 @@
 	price_tag = 1500
 	projectile_type = /obj/item/projectile/temp
 	zoom_factor = 2
+	gun_parts = list(/obj/item/stack/material/steel = 4)
 
 
 /obj/item/gun/energy/temperature/Initialize()
@@ -81,3 +82,11 @@
 				temperature += 10
 		else
 			temperature = current_temperature
+
+/obj/item/gun/energy/temperature/consume_next_projectile()
+	if(!cell) return null
+	if(!ispath(projectile_type)) return null
+	if(!cell.checked_use(charge_cost)) return null
+	var/obj/item/projectile/temp/temp_proj = new projectile_type(src)
+	temp_proj.temperature = current_temperature
+	return temp_proj
