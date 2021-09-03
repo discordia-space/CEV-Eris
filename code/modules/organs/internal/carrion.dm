@@ -38,6 +38,7 @@
 	parent_organ_base = BP_CHEST
 	organ_efficiency = list(OP_CHEMICALS = 100)
 	icon_state = "carrion_chemvessel"
+	unique_tag = OP_CHEMICALS
 
 /obj/item/organ/internal/carrion/core
 	name = "spider core"
@@ -127,7 +128,7 @@
 		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["activate_spider"]) in active_spiders
 		if(activated_spider)
 			activated_spider.activate()
-	
+
 	if(href_list["pop_out_spider"])
 		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["pop_out_spider"]) in active_spiders
 		if(activated_spider)
@@ -266,6 +267,7 @@
 	parent_organ_base = BP_HEAD
 	icon_state = "carrion_maw"
 	organ_efficiency = list(OP_MAW = 100)
+	unique_tag = OP_MAW
 	var/last_call = -5 MINUTES
 	var/tearing = FALSE
 
@@ -312,7 +314,7 @@
 						blacklist += to_blacklist
 						continue
 					if (istype(to_blacklist, /obj/item/organ/internal/brain/))
-						blacklist += to_blacklist// removing bones from a valid_organs list based on			
+						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)
 					visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
@@ -325,7 +327,7 @@
 			else
 				tearing = FALSE
 		else
-			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))	
+			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))
 			return
 
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat))
@@ -453,6 +455,7 @@
 	parent_organ_base = BP_GROIN
 	icon_state = "carrion_spinneret"
 	organ_efficiency = list(OP_SPINNERET = 100)
+	unique_tag = OP_SPINNERET
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/spinneret/proc/make_nest,
 		/obj/item/organ/internal/carrion/spinneret/proc/bloodpurge,
