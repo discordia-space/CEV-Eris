@@ -76239,8 +76239,8 @@
 	},
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/clothing/mask/muzzle,
-/obj/item/cane,
-/obj/item/cane,
+/obj/item/tool/cane,
+/obj/item/tool/cane,
 /obj/item/bodybag/cryobag{
 	pixel_x = 5
 	},
