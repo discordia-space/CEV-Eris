@@ -31,7 +31,7 @@
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
 	var/sealed = FALSE
-	var/weakref/idlock = null
+	var/datum/weakref/idlock = null
 	var/use_ui_window = TRUE
 	var/force_sealed = FALSE // it's like sealed, but from component and can't be unsealed.
 
@@ -297,7 +297,7 @@
 			if(!io)
 				continue
 
-			INPUTS += "<a class='grey' href='?src=\ref[circuit_pins];act=wire;pin=\ref[io]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
+			INPUTS += "<a class='grey' href='?src=[REF(circuit_pins)];act=wire;pin=[REF(io)]'><i class='codicon codicon-symbol-variable fit-in-button'></i>[io.display_pin_type()] [io.name]</a> = <a class='grey' href='?src=\ref[circuit_pins];act=data;pin=\ref[io]'><i class='codicon codicon-symbol-parameter fit-in-button'></i>[io.display_data(io.data)]</a><br>\n"
 
 			if (!io.linked.len)
 				continue

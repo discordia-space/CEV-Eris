@@ -107,7 +107,7 @@
 
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -127,7 +127,7 @@
 						assembly.give_power(fuel[I]*(1 / reagents.total_volume))
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/do_work()
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 
 // For implants.

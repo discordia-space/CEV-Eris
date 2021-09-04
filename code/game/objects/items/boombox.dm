@@ -29,6 +29,7 @@
 
 /obj/item/media/boombox/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/media/boombox/Process()
 	if(ticks_to_update)

@@ -104,7 +104,7 @@
 				var/datum/instrument/instrument = instrumentsList[key]
 				categories |= instrument.category
 
-			var/category = input(usr, "Choose a category") as null|anything in categories 
+			var/category = input(usr, "Choose a category") as null|anything in categories
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			var/list/instruments_available = list()
@@ -197,6 +197,7 @@
 /datum/real_instrument/Destroy()
 	QDEL_NULL(player)
 	owner = null
+	return ..()
 
 /obj/structure/synthesized_instrument
 	var/datum/real_instrument/real_instrument

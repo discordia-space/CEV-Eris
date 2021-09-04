@@ -1236,10 +1236,18 @@ var/list/FLOORITEMS = list(
 	simulated = FALSE
 
 	see_in_dark = 1e6
+	var/ready_to_die = FALSE
 
-/mob/dview/Destroy()
-	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
-	return QDEL_HINT_LETMELIVE // Prevents destruction
+/mob/dview/Destroy(force = FALSE)
+	if(!ready_to_die)
+		stack_trace("ALRIGHT WHICH FUCKER TRIED TO DELETE *MY* DVIEW?")
+
+		if (!force)
+			return QDEL_HINT_LETMELIVE
+
+		log_world("EVACUATE THE SHITCODE IS TRYING TO STEAL MUH JOBS")
+		dview_mob = new
+	return ..()
 
 /atom/proc/get_light_and_color(atom/origin)
 	if(origin)
