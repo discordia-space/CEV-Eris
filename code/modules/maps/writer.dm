@@ -72,15 +72,21 @@ dmm_suite{
 			dmm_text += {""[keys[key_pos]]" = ([templates[key_pos]])\n"}
 			}
 		var/z_level = 0
-		for(var/z_pos=1;TRUE;z_pos=findtext(template_buffer,".",z_pos)+1){
+		var/z_pos=1
+		while(TRUE){
+			z_pos = findtext(template_buffer, ".", z_pos) + 1
 			if(z_pos>=length(template_buffer)){break}
 			if(z_level){dmm_text+={"\n"}}
 			dmm_text += {"\n(1,1,[++z_level]) = {"\n"}
 			var/z_block = copytext(template_buffer,z_pos,findtext(template_buffer,".",z_pos))
-			for(var/y_pos=1;TRUE;y_pos=findtext(z_block,";",y_pos)+1){
+			var/y_pos=1
+			while(TRUE){
+				y_pos=findtext(z_block,";",y_pos)+1
 				if(y_pos>=length(z_block)){break}
 				var/y_block = copytext(z_block,y_pos,findtext(z_block,";",y_pos))
-				for(var/x_pos=1;TRUE;x_pos=findtext(y_block,",",x_pos)+1){
+				var/x_pos = 1
+				while(TRUE){
+					x_pos = findtext(y_block,",",x_pos)+1
 					if(x_pos>=length(y_block)){break}
 					var/x_block = copytext(y_block,x_pos,findtext(y_block,",",x_pos))
 					var/key_number = text2num(x_block)
@@ -88,9 +94,11 @@ dmm_suite{
 					dmm_text += temp_key
 					sleep(-1)
 					}
+				x_pos = 1
 				dmm_text += {"\n"}
 				sleep(-1)
 				}
+			y_pos = 1
 			dmm_text += {"\"}"}
 			sleep(-1)
 			}
