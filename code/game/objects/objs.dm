@@ -35,9 +35,12 @@
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
-/obj/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+/obj/Destroy(force=FALSE)
+	if(!ismachinery(src))
+		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
+	SStgui.close_uis(src)
+	SSnano.close_uis(src)
+	. = ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())

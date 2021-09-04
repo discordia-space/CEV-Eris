@@ -50,7 +50,7 @@
 		game_log("GAME", text)
 
 /proc/log_href(text)
-	game_log("HREF", text)
+	WRITE_LOG(href_logfile, text)
 
 /proc/log_vote(text)
 	if (config.log_vote)

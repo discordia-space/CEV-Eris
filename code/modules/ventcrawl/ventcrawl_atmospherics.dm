@@ -10,7 +10,7 @@
 				M.client.images -= pipe_image
 				M.pipes_shown -= pipe_image
 		pipe_image = null
-	. = ..()
+	return ..()
 
 /obj/machinery/atmospherics/ex_act(severity)
 	for(var/atom/movable/A in src) //ventcrawling is serious business

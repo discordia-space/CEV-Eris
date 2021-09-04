@@ -1247,6 +1247,7 @@ var/list/FLOORITEMS = list(
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
 /mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
+	SHOULD_CALL_PARENT(FALSE)
 	return INITIALIZE_HINT_NORMAL
 
 // call to generate a stack trace and print to runtime logs
@@ -1267,6 +1268,9 @@ var/list/FLOORITEMS = list(
 		return 1
 	else
 		return 0
+
+/proc/pass(...)
+	return
 
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait

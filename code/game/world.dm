@@ -82,14 +82,16 @@ var/game_id
 	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
+	href_logfile = "data/logs/[date_string]-hrefs.htm"
+	diary = "data/logs/[date_string].log"
+	world_qdel_log = "data/logs/[date_string]-qdel.log"	// GC Shutdown log
 
 	start_log(diary)
 	start_log(href_logfile)
+	start_log(world_qdel_log)
+
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
-	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")

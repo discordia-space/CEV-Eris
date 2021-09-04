@@ -167,7 +167,6 @@
 		/datum/asset/simple/namespaced/fontawesome
 	)
 
-
 /datum/asset/spritesheet/chat
 	name = "chat"
 /*
