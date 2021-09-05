@@ -50,6 +50,10 @@
 	)
 	price_tag = 10
 
+/obj/item/clothing/mask/surgical/New()
+	..()
+	AddComponent(/datum/component/clothing_sanity_protection, NORMAL_MASK_SANITY_COEFF_BUFF)
+
 /obj/item/clothing/mask/thief
 	name = "mastermind's mask"
 	desc = "A white mask with some strange drawings. Designed to hide the wearer's face"
