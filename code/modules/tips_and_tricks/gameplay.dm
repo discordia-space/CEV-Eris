@@ -8,6 +8,9 @@
 /tipsAndTricks/gameplay/fightBlob
     tipText = "If you're trying to take on a blob, a flamethrower is your best weapon."
 
+/tipsAndTricks/gameplay/maskProtections
+    tipText = "Balaclavas, robber mask and other masks provide a buff to your sanity protection, better wear them than smoke ciggaretes."
+
 /tipsAndTricks/gameplay/dismantleGun
     tipText = "Did you know you can dismantle guns by using a wrench on them with harm intent ? Dismantling guns gives you gun parts."
 
