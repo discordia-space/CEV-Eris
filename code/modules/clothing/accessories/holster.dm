@@ -47,7 +47,7 @@
 				SPAN_NOTICE("[user] draws \the [holstered], pointing it at the ground."),
 				SPAN_NOTICE("You draw \the [holstered], pointing it at the ground.")
 				)
-		user.put_in_hands(holstered)
+		user.put_in_active_hand(holstered)
 		holstered.add_fingerprint(user)
 		w_class = initial(w_class)
 		clear_holster()
