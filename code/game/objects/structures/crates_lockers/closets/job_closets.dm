@@ -116,10 +116,11 @@
 	new /obj/item/soap/nanotrasen(src)
 	new /obj/item/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 	new /obj/item/gun/energy/nt_svalinn(src)
-	new /obj/item/cell/small(src)
+	new /obj/item/cell/small/neotheology(src)
+	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/tool/knife/dagger/nt(src)
 	new /obj/item/holyvacuum(src)
-
+	new /obj/item/clothing/shoes/jackboots/neotheology(src)
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
 	desc = "A closet for those that work with the machines of god."
@@ -143,7 +144,9 @@
 	new /obj/item/clothing/head/armor/acolyte(src)
 	new /obj/item/clothing/suit/armor/acolyte(src)
 	new /obj/item/gun/energy/nt_svalinn(src)
-	new /obj/item/cell/small(src)
+	new /obj/item/cell/small/neotheology(src)
+	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/storage/belt/sheath(src)
 	new /obj/item/tool/sword/nt/shortsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)
+	new /obj/item/clothing/shoes/reinforced(src)

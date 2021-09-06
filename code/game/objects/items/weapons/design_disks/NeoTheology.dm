@@ -68,19 +68,19 @@
 		/datum/design/bioprinter/nt_clothes/sports_uniform,
 		/datum/design/bioprinter/nt_clothes/church_uniform,
 
-		/datum/design/bioprinter/belt/security/neotheology,
-		/datum/design/bioprinter/belt/utility/neotheology,
+		/datum/design/bioprinter/shoes,
+		/datum/design/bioprinter/jackboots,
+
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/utility,
 
 		/datum/design/bioprinter/satchel,
-		/datum/design/bioprinter/leather_jacket,
+		/datum/design/bioprinter/backpack,
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
 
-		/datum/design/bioprinter/belt/utility,
 		/datum/design/bioprinter/belt/medical,
-		/datum/design/bioprinter/belt/security,
 		/datum/design/bioprinter/belt/medical/emt,
-		/datum/design/bioprinter/belt/misc/champion,
 
 		/datum/design/bioprinter/leather/holster,
 		/datum/design/bioprinter/leather/holster/armpit,
@@ -98,8 +98,7 @@
 		/datum/design/bioprinter/tubular/vial,
 		/datum/design/bioprinter/part,
 
-   		/datum/design/autolathe/device/headset_church,
-		/datum/design/bioprinter/leather/cash_bag
+   		/datum/design/autolathe/device/headset_church
 	)
 
 // Kinda like the regular product NT disk, minus the grenades, soap and the cleaner carbine. Should spawn in public access bioprinters if they get added by any chance.
@@ -119,15 +118,11 @@
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
 		/datum/design/bioprinter/satchel,
-		/datum/design/bioprinter/leather_jacket,
-		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/backpack,
 		/datum/design/bioprinter/belt/utility,
-		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
-		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
-		/datum/design/bioprinter/belt/misc/champion,
 
 		/datum/design/bioprinter/leather/holster,
 		/datum/design/bioprinter/leather/holster/armpit,
@@ -251,7 +246,7 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkirye
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie
 	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
