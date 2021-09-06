@@ -81,6 +81,7 @@
 #define GUN_UPGRADE_BAYONET "bayonet"
 #define GUN_UPGRADE_GILDED "gilded"
 #define GUN_UPGRADE_DNALOCK "biocoded"
+#define GUN_UPGRADE_BROKEN "broken"
 
 //Location Tag defines
 

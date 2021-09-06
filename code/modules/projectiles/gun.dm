@@ -70,6 +70,7 @@
 	/*	SILENCER HANDLING */
 	var/silenced = FALSE
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
+	var/broken = FALSE //does it function?
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
@@ -213,6 +214,10 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
+
+	if(broken)
+		handle_click_empty(user)
+		return FALSE
 
 	if(!twohanded_check(M))
 		return FALSE

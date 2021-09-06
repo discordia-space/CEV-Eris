@@ -406,7 +406,39 @@
 	I.gun_loc_tag = GUN_SCOPE
 	I.removable = FALSE
 
+//broken gun mods, for firearms beyond repair
+
+/obj/item/gun_upgrade/barrel/broken
+	name = "Plugged barrel"
+	desc = "A good way to explode your gun, if you could actually chamber anything."
+	icon_state = "Forged_barrel"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/gun_upgrade/barrel/broken/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(GUN_UPGRADE_BROKEN = TRUE)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_BARREL
+	I.removable = FALSE
+
+/obj/item/gun_upgrade/mechanism/broken
+	name = "Broken fire control group"
+	desc = "A twisted mass of non-functional metal, barely recognizable as gun components."
+	icon_state = "Weintraub"
+	spawn_blacklisted = TRUE
+	price_tag = 0
+
+/obj/item/gun_upgrade/mechanism/broken/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(GUN_UPGRADE_BROKEN = TRUE)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_BARREL
+	I.removable = FALSE
+
 #define TRASH_GUNMODS list(/obj/item/gun_upgrade/trigger/faulty, /obj/item/gun_upgrade/barrel/faulty, \
 		/obj/item/gun_upgrade/muzzle/faulty, /obj/item/gun_upgrade/mechanism/faulty, \
-		/obj/item/gun_upgrade/scope/faulty)
+		/obj/item/gun_upgrade/scope/faulty, /obj/item/gun_upgrade/barrel/broken, /obj/item/gun_upgrade/mechanism/broken)
 
