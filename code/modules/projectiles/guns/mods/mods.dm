@@ -409,7 +409,7 @@
 //broken gun mods, for firearms beyond repair
 
 /obj/item/gun_upgrade/barrel/broken
-	name = "Plugged barrel"
+	name = "plugged barrel"
 	desc = "A good way to explode your gun, if you could actually chamber anything."
 	icon_state = "Forged_barrel"
 	spawn_blacklisted = TRUE
@@ -424,7 +424,7 @@
 	I.removable = FALSE
 
 /obj/item/gun_upgrade/mechanism/broken
-	name = "Broken fire control group"
+	name = "broken bolt"
 	desc = "A twisted mass of non-functional metal, barely recognizable as gun components."
 	icon_state = "Weintraub"
 	spawn_blacklisted = TRUE
