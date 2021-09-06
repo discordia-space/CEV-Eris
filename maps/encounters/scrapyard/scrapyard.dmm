@@ -2,7 +2,7 @@
 "ab" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ac" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 1
@@ -17,11 +17,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "an" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard)
+"aq" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "ar" = (
 /obj/machinery/door/window/westleft{
 	name = "Medical Equipment Storage"
@@ -49,8 +55,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
 "ay" = (
-/turf/simulated/wall,
-/area/outpost/junkyard/station)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "az" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
@@ -58,7 +71,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "aA" = (
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/outpost/junkyard/ship/rocinante)
@@ -75,12 +88,12 @@
 /obj/structure/table,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "aG" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "aH" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/rocinante)
@@ -94,11 +107,16 @@
 /obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
+"aP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/outpost/junkyard/station/delta)
 "aT" = (
 /obj/item/stack/rods,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "aX" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating,
@@ -149,6 +167,12 @@
 /mob/living/simple_animal/hostile/alien,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard)
+"bp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "bw" = (
 /obj/structure/table/rack,
 /obj/item/clothing/head/welding{
@@ -167,7 +191,7 @@
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "bA" = (
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled,
@@ -181,13 +205,18 @@
 	name = "Engineering Storage"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "bL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "bM" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/junkyard/station/core)
@@ -207,13 +236,13 @@
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "bP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "bR" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -233,7 +262,7 @@
 	},
 /obj/structure/plasticflaps,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "bZ" = (
 /obj/structure/transit_tube{
 	dir = 4
@@ -245,14 +274,22 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "cf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"ck" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/canterbury)
 "cn" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/emergency,
@@ -262,7 +299,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "cp" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -281,13 +318,13 @@
 /obj/item/gun/projectile/automatic/zoric,
 /obj/item/ammo_magazine/msmg,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "cs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/seed_extractor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ct" = (
 /obj/item/storage/toolbox/emergency,
 /obj/item/tool/wrench,
@@ -326,13 +363,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/glass/beaker,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "cQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "cR" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/cobweb,
@@ -355,12 +392,12 @@
 /obj/item/gun/energy/plasma/brigador,
 /obj/spawner/powercell/small,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "cW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "cZ" = (
 /obj/item/clothing/suit/armor/flak,
 /obj/structure/closet,
@@ -404,10 +441,20 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
+"dt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "dv" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "dx" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 2"
@@ -438,7 +485,22 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"dH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
+"dI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "dJ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/tool/weldingtool,
@@ -483,7 +545,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "dP" = (
 /obj/structure/closet/crate,
 /obj/item/storage/box/lights/bulbs,
@@ -492,12 +554,12 @@
 "dQ" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "dW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "dY" = (
 /obj/item/storage/wallet/random,
 /obj/spawner/closet/maintloot,
@@ -513,6 +575,9 @@
 /obj/machinery/door/airlock/command,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
+"eh" = (
+/turf/simulated/mineral,
+/area/outpost/junkyard/station/charlie)
 "ei" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -595,11 +660,20 @@
 /obj/item/tank/oxygen,
 /obj/item/tank/oxygen,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "eS" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/lehrer)
+"eU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "eW" = (
 /obj/structure/table/rack,
 /obj/item/melee/telebaton,
@@ -609,6 +683,9 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/station/core)
+"ff" = (
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/beta)
 "fk" = (
 /obj/structure/table/standard,
 /obj/item/device/scanner/mining,
@@ -633,7 +710,7 @@
 /obj/machinery/door/window/westright,
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "fv" = (
 /obj/structure/closet/firecloset{
 	anchored = 1
@@ -649,7 +726,7 @@
 	heat_capacity = 1e+006;
 	icon_state = "platingdmg1"
 	},
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "fF" = (
 /obj/structure/closet/crate,
 /obj/item/tool/shovel,
@@ -667,12 +744,18 @@
 /obj/item/storage/backpack/duffelbag,
 /obj/structure/closet,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "fL" = (
 /obj/machinery/door/window/eastleft,
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"fM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "fQ" = (
 /obj/structure/closet/crate,
 /obj/spawner/ammo/lowcost,
@@ -686,10 +769,31 @@
 /obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
+"ga" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "gb" = (
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"ge" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "gm" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled,
@@ -697,7 +801,7 @@
 "gn" = (
 /obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "gp" = (
 /obj/machinery/door/airlock/command{
 	name = "Bridge"
@@ -709,6 +813,17 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/prison)
+"gB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "gC" = (
 /obj/machinery/door/airlock/external{
 	name = "NTMS-037 Mining Airlock"
@@ -726,7 +841,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "gH" = (
 /obj/structure/transit_tube,
 /turf/simulated/floor/exoplanet/barren,
@@ -739,12 +854,29 @@
 	id = "ancient"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"gO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "gQ" = (
 /obj/structure/lattice,
 /obj/item/stack/rods,
 /turf/simulated/mineral,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"gS" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "gU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/gamblingtable,
@@ -761,7 +893,7 @@
 	layer = 2.9
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "gY" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
@@ -794,8 +926,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "hs" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/dark,
@@ -809,8 +946,13 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "hx" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -850,7 +992,7 @@
 /obj/item/seeds/harebell,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "hU" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
@@ -862,7 +1004,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "hY" = (
 /obj/structure/salvageable/autolathe,
 /turf/simulated/floor/tiled,
@@ -879,12 +1021,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "if" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/wall,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ik" = (
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -897,11 +1044,25 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/simulated/floor/wood,
 /area/outpost/junkyard/ship/epstein)
+"is" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "it" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
+"iA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "iB" = (
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/rocinante)
@@ -913,7 +1074,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "iJ" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled,
@@ -933,7 +1094,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "iS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -941,7 +1102,7 @@
 /obj/item/gun/projectile/automatic/sol,
 /obj/item/ammo_magazine/ihclrifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "iT" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
@@ -949,7 +1110,7 @@
 	name = "Plasma Canister Storage"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "iU" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -957,21 +1118,22 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "iW" = (
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"iZ" = (
+/turf/simulated/wall,
+/area/outpost/junkyard/station/charlie)
 "jb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/secure{
-	name = "plasma tank crate"
-	},
-/obj/item/tank/plasma,
-/obj/item/tank/plasma,
-/obj/item/tank/plasma,
-/obj/item/tank/plasma,
+/obj/structure/closet/crate,
+/obj/spawner/powercell/large,
+/obj/spawner/powercell/large,
+/obj/spawner/powercell/large,
+/obj/spawner/powercell/large,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "jd" = (
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
@@ -982,7 +1144,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "jl" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/gun/energy/retro,
@@ -993,7 +1155,7 @@
 /turf/simulated/floor/tiled/white{
 	dir = 1
 	},
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "jq" = (
 /obj/structure/table/standard,
 /obj/item/tool/wrench,
@@ -1006,12 +1168,12 @@
 	layer = 5
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "js" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "jt" = (
 /obj/structure/sink{
 	dir = 4;
@@ -1037,7 +1199,7 @@
 /obj/item/tool/shovel/spade,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "jD" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light/small{
@@ -1053,7 +1215,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "jF" = (
 /obj/machinery/computer{
 	dir = 1
@@ -1085,15 +1247,45 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/epstein)
+"jP" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
+"jT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
+"jV" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/transit_tube{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "jY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/computer{
-	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
-	name = "Broken Computer"
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "kh" = (
 /obj/item/folder{
 	pixel_x = -5;
@@ -1118,7 +1310,7 @@
 /obj/item/pen,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "kt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -1127,14 +1319,19 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/chemical_dispenser,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "kw" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering{
 	name = "Backup Generator Room"
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "kz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -1143,14 +1340,17 @@
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "kC" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/machinery/door/blast/regular{
-	id = "ancient"
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "kG" = (
 /obj/machinery/door/airlock/research{
 	name = "Research and Development"
@@ -1159,12 +1359,15 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "kH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "kJ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1176,16 +1379,18 @@
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "kN" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering"
+/obj/machinery/door/airlock/command{
+	name = "Beta Station Access"
 	},
-/obj/machinery/door/blast/regular{
-	id = "ancient"
-	},
-/obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "kP" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1198,13 +1403,22 @@
 /obj/machinery/constructable_frame/machine_frame,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/station/core)
+"kV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "kW" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "kX" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
@@ -1217,7 +1431,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "lp" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
@@ -1226,7 +1440,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "lt" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medical Bay"
@@ -1234,7 +1448,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ly" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -1243,13 +1457,13 @@
 	name = "Broken Computer"
 	},
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "lE" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/gloves/color/yellow,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "lH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -1259,7 +1473,7 @@
 /obj/spawner/powercell/small,
 /obj/spawner/powercell/small,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "lI" = (
 /obj/structure/table/rack,
 /obj/item/reagent_containers/glass/bucket,
@@ -1269,6 +1483,21 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"lM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "lO" = (
 /obj/structure/table/standard,
 /obj/spawner/gun/normal,
@@ -1281,7 +1510,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "lQ" = (
 /obj/structure/catwalk,
 /obj/landmark/corpse/engineer/rig,
@@ -1295,23 +1524,34 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"lT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/alien/drone,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "lV" = (
 /obj/machinery/door/airlock/glass_mining{
 	name = "Mining Equipment"
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "lW" = (
 /obj/structure/lattice,
 /turf/simulated/wall,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "lY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toilet,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ma" = (
 /obj/machinery/door/airlock{
 	name = "Bunk B"
@@ -1326,7 +1566,7 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "mn" = (
 /obj/structure/table/standard,
 /obj/spawner/gun_parts,
@@ -1374,7 +1614,7 @@
 "mz" = (
 /obj/machinery/pipedispenser,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "mC" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/canterbury)
@@ -1382,13 +1622,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "mH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/medical/bruise_pack,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "mK" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -1407,7 +1647,7 @@
 /obj/item/stack/rods,
 /obj/structure/lattice,
 /turf/simulated/floor/exoplanet/barren,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "mV" = (
 /obj/structure/table/rack,
 /obj/item/tool/wrench,
@@ -1423,16 +1663,16 @@
 	name = "Electrical Maintanace"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ne" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "ni" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "nl" = (
 /obj/item/storage/toolbox/emergency,
 /obj/item/tool/broken_bottle,
@@ -1467,11 +1707,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "nx" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "nA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -1496,6 +1736,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/outpost/junkyard/ship/rocinante)
+"nJ" = (
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/beta)
 "nQ" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1507,7 +1750,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "nS" = (
 /obj/structure/exosuit_wreckage,
 /turf/simulated/floor/tiled/techmaint,
@@ -1520,7 +1763,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "nV" = (
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/station/core)
@@ -1528,7 +1771,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"oe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/beta)
 "oh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/status_display{
@@ -1537,6 +1785,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"op" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/charlie)
+"ou" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "ox" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -1546,12 +1814,17 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "oz" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"oA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "oC" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin{
@@ -1579,7 +1852,7 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "oR" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled/dark,
@@ -1596,14 +1869,19 @@
 	pixel_y = -2
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "oT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/scientist,
 /obj/item/gun/energy/plasma/cassad,
 /obj/spawner/powercell/medium,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "oW" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/junkyard/hermitage)
@@ -1630,7 +1908,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "pd" = (
 /mob/living/simple_animal/hostile/alien,
 /turf/simulated/floor/tiled/dark,
@@ -1677,7 +1955,7 @@
 /obj/item/clothing/head/radiation,
 /obj/item/clothing/head/radiation,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "pw" = (
 /obj/machinery/door/airlock/glass_atmos{
 	name = "Station Atmospherics"
@@ -1685,7 +1963,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "pC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -1694,7 +1972,7 @@
 "pD" = (
 /obj/structure/closet,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "pG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -1704,7 +1982,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "pH" = (
 /obj/structure/girder,
 /turf/simulated/floor/exoplanet/barren,
@@ -1720,7 +1998,7 @@
 "pQ" = (
 /obj/structure/closet/crate/medical,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "pR" = (
 /obj/item/tool/screwdriver{
 	pixel_y = 15
@@ -1732,7 +2010,7 @@
 "pT" = (
 /obj/item/stack/rods,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "pW" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1754,18 +2032,19 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "qc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "qe" = (
-/obj/item/gun/projectile/boltgun,
-/obj/item/clothing/suit/space/void/excelsior,
 /obj/structure/closet,
+/obj/item/gun/projectile/automatic/ak47,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/clothing/suit/space/void/excelsior,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "qh" = (
@@ -1784,13 +2063,13 @@
 	name = "Dining Area"
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "qj" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/nuclear,
 /obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "qn" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1810,12 +2089,23 @@
 "qs" = (
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"qw" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "qx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/chef,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "qE" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/external{
@@ -1849,7 +2139,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "qU" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/dark,
@@ -1882,7 +2172,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "rb" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -1898,12 +2188,12 @@
 	name = "Station Solar Control"
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ri" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "rj" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/dark,
@@ -1913,7 +2203,7 @@
 /obj/structure/table/standard,
 /obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ry" = (
 /obj/structure/closet/crate/medical,
 /obj/item/storage/firstaid/o2{
@@ -1942,7 +2232,7 @@
 /obj/item/tool/pickaxe,
 /obj/item/tool/pickaxe,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "rL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -1970,12 +2260,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/emitter,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "rY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "se" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled,
@@ -1986,18 +2276,19 @@
 	name = "Engineering External Access"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "si" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc{
 	cell_type = null;
 	dir = 8;
-	name = "Beta Storage APC";
+	name = "Beta APC";
 	pixel_x = -25;
 	start_charge = 0
 	},
+/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "sj" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/lights/mixed,
@@ -2007,7 +2298,7 @@
 "sl" = (
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "su" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility,
@@ -2026,6 +2317,7 @@
 /obj/item/clothing/suit/armor/greatcoat/german_overcoat,
 /obj/item/tank/emergency_oxygen,
 /obj/item/tank/emergency_oxygen,
+/obj/item/ammo_magazine/cspistol,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
 "sD" = (
@@ -2040,8 +2332,15 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
+/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"sL" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "sN" = (
 /obj/structure/inflatable/door,
 /turf/simulated/floor/exoplanet/barren,
@@ -2052,6 +2351,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/syndi_cakes,
 /obj/item/gun/projectile/selfload,
+/obj/item/ammo_magazine/hpistol,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
 "sY" = (
@@ -2060,7 +2360,7 @@
 	layer = 2.9
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ta" = (
 /obj/structure/closet/crate,
 /obj/spawner/gun/normal/low_chance,
@@ -2089,12 +2389,28 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
+"to" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
+"tp" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "tu" = (
 /obj/machinery/mineral/processing_unit{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ty" = (
 /obj/structure/dispenser,
 /turf/simulated/floor/tiled,
@@ -2106,7 +2422,7 @@
 /obj/item/gun/projectile/automatic/sts35,
 /obj/item/ammo_magazine/lrifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "tC" = (
 /obj/structure/lattice,
 /turf/simulated/floor/exoplanet/barren,
@@ -2116,13 +2432,13 @@
 /obj/structure/table/standard,
 /obj/item/handcuffs,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "tG" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "tH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -2168,14 +2484,14 @@
 /obj/item/gun/energy/plasma/stranger,
 /obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "ue" = (
 /obj/machinery/conveyor{
 	dir = 10;
 	id = "beta"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ui" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
@@ -2183,12 +2499,12 @@
 	name = "Station Atmospherics"
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "uj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "up" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2196,7 +2512,7 @@
 /obj/item/gun/projectile/shotgun/bojevic,
 /obj/item/ammo_magazine/m12,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ur" = (
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/cobweb,
@@ -2216,20 +2532,20 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "uu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/inflatable/wall,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "uz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/machinery/power/apc{
 	cell_type = null;
 	dir = 4;
-	name = "Charlie Main Corridor APC";
+	name = "Charlie APC";
 	pixel_x = 24;
 	start_charge = 0
 	},
@@ -2238,17 +2554,18 @@
 /obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
+/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "uA" = (
 /obj/machinery/computer/rdconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "uC" = (
 /obj/machinery/mineral/processing_unit_console,
 /turf/simulated/wall,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "uK" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
@@ -2261,8 +2578,13 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "uN" = (
 /obj/structure/table/standard,
 /obj/item/storage/fancy{
@@ -2282,7 +2604,7 @@
 "uX" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "va" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/decal/cleanable/dirt,
@@ -2337,12 +2659,12 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "vq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "vr" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
@@ -2350,7 +2672,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"vx" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "vy" = (
 /obj/machinery/floodlight,
 /turf/simulated/floor/tiled,
@@ -2371,18 +2698,29 @@
 /obj/item/tool/pickaxe,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"vP" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "vT" = (
 /obj/structure/table/rack,
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "vV" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "vW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm,
@@ -2392,7 +2730,7 @@
 	},
 /mob/living/simple_animal/hostile/alien,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "vX" = (
 /obj/spawner/exosuit/damaged,
 /turf/simulated/floor/tiled/techmaint,
@@ -2414,20 +2752,30 @@
 /obj/item/stack/cable_coil,
 /obj/item/clothing/gloves/color/yellow,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "we" = (
 /obj/structure/closet/l3closet{
 	anchored = 1
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
+"wf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "wm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/backpack,
 /obj/structure/closet,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "wo" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/dark,
@@ -2437,7 +2785,7 @@
 /obj/landmark/corpse/engineer,
 /obj/spawner/gun/shotgun,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "wr" = (
 /obj/landmark/corpse/hobo,
 /obj/item/gun/projectile/boltgun/handmade,
@@ -2468,6 +2816,13 @@
 /obj/spawner/toolbox,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"wC" = (
+/turf/simulated/mineral,
+/area/outpost/junkyard/station/delta)
+"wD" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "wL" = (
 /obj/item/phone{
 	pixel_x = -3;
@@ -2500,18 +2855,35 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
+"wU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/beta)
 "wY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/pirate,
 /obj/item/gun/projectile/selfload,
 /obj/item/ammo_magazine/hpistol,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"wZ" = (
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/delta)
 "xc" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "xg" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/cafe,
@@ -2542,6 +2914,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
+"xp" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/transit_tube{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "xr" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -2583,7 +2967,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "xM" = (
 /obj/structure/closet/crate{
 	name = "spare equipment crate"
@@ -2599,10 +2983,22 @@
 /obj/item/ammo_magazine/ammobox/shotgun,
 /obj/item/ammo_magazine/ammobox/shotgun,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "xR" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/canterbury)
+"xV" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
@@ -2632,7 +3028,7 @@
 	id = "ancient"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "yk" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 2"
@@ -2646,7 +3042,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "yo" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
@@ -2654,32 +3050,38 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "yr" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ys" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
 /obj/item/gun/projectile/automatic/sol,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "yx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "yH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"yJ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/white,
+/area/outpost/junkyard/station/delta)
 "yQ" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "yT" = (
 /obj/item/stool/padded,
 /turf/simulated/floor/tiled/cafe,
@@ -2700,7 +3102,7 @@
 /obj/item/gun/projectile/avasarala,
 /obj/item/ammo_magazine/magnum,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "zp" = (
 /obj/structure/bed/chair/comfy/brown{
 	color = "#c45c57";
@@ -2708,17 +3110,38 @@
 	},
 /turf/simulated/floor/carpet,
 /area/outpost/junkyard/ship/epstein)
+"zq" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/transit_tube{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "zs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "zt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
+"zu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/beta)
 "zv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sink{
@@ -2726,13 +3149,13 @@
 	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "zx" = (
 /obj/effect/window_lwall_spawn/reinforced{
 	dir = 10
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "zC" = (
 /obj/item/clothing/head/armor/faceshield/altyn/black,
 /obj/item/clothing/suit/storage/vest,
@@ -2768,13 +3191,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/random/milsupply,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "zO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "zQ" = (
 /obj/item/tool/broken_bottle,
 /turf/simulated/floor/exoplanet/barren,
@@ -2788,8 +3211,14 @@
 /area/outpost/junkyard/station)
 "zZ" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Af" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2797,7 +3226,7 @@
 /obj/item/ammo_magazine/lrifle/pk,
 /obj/item/gun/projectile/automatic/lmg/pk,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Ah" = (
 /obj/machinery/door/airlock/medical{
 	name = "Break Room"
@@ -2820,7 +3249,7 @@
 /obj/structure/table/standard,
 /obj/item/tank/emergency_oxygen,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Al" = (
 /obj/machinery/smartfridge,
 /turf/simulated/wall/r_wall,
@@ -2829,7 +3258,10 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"Aq" = (
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/charlie)
 "Ar" = (
 /obj/map_data/scrapyard,
 /obj/effect/overmap/sector/scrapyard,
@@ -2905,7 +3337,7 @@
 /area/outpost/junkyard/station)
 "Bw" = (
 /turf/simulated/wall/r_wall,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "By" = (
 /obj/item/ammo_magazine/ammobox/magnum/scrap,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -2916,7 +3348,7 @@
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "BC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/westleft,
@@ -2925,7 +3357,7 @@
 	},
 /obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "BH" = (
 /obj/machinery/sleeper,
 /turf/simulated/floor/tiled,
@@ -2934,7 +3366,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "BL" = (
 /obj/machinery/computer{
 	dir = 1
@@ -2947,7 +3379,7 @@
 /obj/structure/table,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "BP" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -2959,7 +3391,7 @@
 /area/outpost/junkyard/ship/rocinante)
 "BQ" = (
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "BS" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -2970,15 +3402,25 @@
 /obj/item/gun/projectile/kovacs,
 /obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "BV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "BX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
+"BY" = (
+/obj/structure/transit_tube,
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/station)
 "Cb" = (
 /turf/simulated/floor/carpet,
@@ -2986,7 +3428,7 @@
 "Cc" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /turf/simulated/floor/grass,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ce" = (
 /obj/machinery/door/airlock{
 	name = "mech bay"
@@ -2996,6 +3438,10 @@
 "Cl" = (
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"Cs" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "Cu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -3012,6 +3458,20 @@
 /obj/spawner/material/ore,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
+"CE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
+"CJ" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "CM" = (
 /obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
@@ -3021,7 +3481,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/machinery/autolathe/rnd/imprinter,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "CR" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3048,8 +3508,15 @@
 	anchored = 1
 	},
 /obj/item/gun/projectile/shotgun/doublebarrel/flare,
+/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/shotgun/flash,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
+"Do" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "Du" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
@@ -3061,6 +3528,8 @@
 	name = "South APC";
 	pixel_y = -28
 	},
+/obj/item/stack/material/plasma/random,
+/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
 "DD" = (
@@ -3071,14 +3540,14 @@
 /obj/spawner/powercell/medium,
 /obj/spawner/powercell/medium,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "DG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/pirate,
 /obj/item/gun/projectile/mandella,
 /obj/item/ammo_magazine/cspistol,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "DH" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -3091,7 +3560,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/exoplanet/barren,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "DP" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3115,14 +3584,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "DT" = (
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
 "DX" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/mineral,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "DZ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -3136,7 +3605,7 @@
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Eb" = (
 /obj/machinery/door/airlock{
 	name = "Bunk A"
@@ -3183,7 +3652,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Eu" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/status_display{
@@ -3201,7 +3670,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "EA" = (
 /obj/machinery/door/airlock/security,
 /obj/machinery/door/firedoor,
@@ -3210,7 +3679,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "EB" = (
 /obj/machinery/computer/med_data{
 	dir = 4
@@ -3231,7 +3700,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/dinnerware,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "EI" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -3239,7 +3708,7 @@
 /obj/item/reagent_containers/glass/beaker,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "EJ" = (
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/rocinante)
@@ -3264,7 +3733,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/rods,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Fb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -3274,7 +3743,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Fc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/greenglow,
@@ -3296,7 +3765,7 @@
 /obj/landmark/corpse/doctor,
 /obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Fj" = (
 /obj/item/paper_bin{
 	pixel_x = -4
@@ -3314,14 +3783,19 @@
 /obj/item/soap/nanotrasen,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Fq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/scientist,
 /obj/item/gun/energy/plasma/brigador,
 /obj/spawner/powercell/small,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Fs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/optable,
@@ -3329,7 +3803,23 @@
 /obj/item/gun/projectile/automatic/c20r/moebius,
 /obj/item/ammo_magazine/smg,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"Fu" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	id = "ancient"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
+"Fv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "Fy" = (
 /obj/structure/closet/crate{
 	name = "spare equipment crate"
@@ -3349,6 +3839,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
+"FD" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "FE" = (
 /obj/machinery/vending/hydroseeds{
 	use_power = 0
@@ -3365,7 +3860,7 @@
 /obj/machinery/chem_heater,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "FO" = (
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -3380,7 +3875,7 @@
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/suit/armor/vest,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "FS" = (
 /obj/structure/curtain,
 /obj/machinery/shower{
@@ -3392,11 +3887,23 @@
 "FU" = (
 /obj/item/stack/rods,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "FW" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
+"FX" = (
+/obj/structure/transit_tube{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/station)
 "FY" = (
 /obj/landmark/corpse/scientist,
@@ -3408,13 +3915,13 @@
 "Ga" = (
 /obj/machinery/pipedispenser/disposal,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Gi" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Gj" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
@@ -3425,15 +3932,28 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"Go" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/delta)
 "Gs" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/command,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"GA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/beta)
 "GE" = (
 /obj/machinery/door/airlock/command{
 	name = "Bridge"
@@ -3447,13 +3967,18 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "GN" = (
 /obj/structure/table/rack,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "GQ" = (
 /obj/machinery/door/airlock/medical{
 	name = "Medbay Storage"
@@ -3499,13 +4024,13 @@
 "Hj" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Hl" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/lehrer)
 "Ho" = (
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Hp" = (
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/canterbury)
@@ -3513,7 +4038,7 @@
 /obj/landmark/corpse/doctor,
 /obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Hu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair{
@@ -3521,7 +4046,16 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"Hy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/beta)
 "HC" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/electrical{
@@ -3547,6 +4081,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/rocinante)
+"HG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "HH" = (
 /obj/structure/table/standard,
 /obj/item/tank/oxygen,
@@ -3555,7 +4093,7 @@
 /obj/item/clothing/mask/breath,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "HJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -3564,7 +4102,7 @@
 	name = "Broken Computer"
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "HU" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/lights/bulbs,
@@ -3577,26 +4115,26 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/rods,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "HY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/standard,
 /obj/item/flame/lighter,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "HZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Ia" = (
 /obj/structure/closet,
 /obj/item/tank/jetpack/void,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/suit/space/void,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Id" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled/techmaint,
@@ -3607,6 +4145,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
+"Ik" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/charlie)
 "In" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/techmaint,
@@ -3614,7 +4166,7 @@
 "Iq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "It" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled,
@@ -3627,7 +4179,7 @@
 /obj/landmark/corpse/miner,
 /obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "ID" = (
 /obj/structure/table/standard,
 /obj/spawner/tool,
@@ -3643,6 +4195,15 @@
 /obj/machinery/vending/boozeomat,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/rocinante)
+"IM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/charlie)
 "IP" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/item/reagent_containers/food/drinks/bottle/gin,
@@ -3654,7 +4215,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/rods,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "IT" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
@@ -3662,13 +4223,28 @@
 /obj/item/storage/ration_pack,
 /turf/simulated/floor/wood,
 /area/outpost/junkyard/ship/epstein)
+"IV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "IW" = (
 /obj/structure/table/standard,
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/gloves/color/yellow,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"IX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer{
+	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
+	name = "Broken Computer"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "IY" = (
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/dark/techfloor,
@@ -3676,7 +4252,7 @@
 "Ja" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Jc" = (
 /obj/structure/table/standard,
 /obj/machinery/light/small,
@@ -3715,12 +4291,12 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/alien,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Jz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/rad_collector,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "JD" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
@@ -3730,7 +4306,22 @@
 	dir = 4
 	},
 /turf/simulated/floor/exoplanet/barren,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"JM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "JQ" = (
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/lehrer)
@@ -3748,15 +4339,27 @@
 /obj/machinery/door/window/eastright,
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Kh" = (
 /obj/item/stack/rods,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Kl" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
+"Km" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/science,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "Kp" = (
 /obj/machinery/power/apc{
 	cell_type = null;
@@ -3790,11 +4393,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "KD" = (
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "KG" = (
 /obj/item/tool/wrench,
 /obj/effect/decal/cleanable/blood,
@@ -3812,7 +4415,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "KM" = (
 /obj/structure/sink{
 	dir = 8;
@@ -3823,19 +4426,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
+"KP" = (
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "KQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "KR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/miner,
 /obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "KS" = (
 /obj/effect/mob_spawn/human/hermit{
 	dir = 8
@@ -3852,6 +4458,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"KZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "Lb" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/techmaint,
@@ -3869,12 +4485,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Lf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Lh" = (
 /obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled/dark/techfloor,
@@ -3889,7 +4505,7 @@
 /obj/item/gun/projectile/automatic/zoric,
 /obj/item/ammo_magazine/msmg,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ln" = (
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/outpost/junkyard/ship/epstein)
@@ -3897,7 +4513,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ls" = (
 /obj/machinery/door/airlock/highsecurity,
 /obj/effect/decal/cleanable/blood/xtracks,
@@ -3908,7 +4524,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Lv" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -3920,7 +4536,17 @@
 /obj/item/gun/projectile/automatic/wintermute,
 /obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"Lz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "LB" = (
 /obj/structure/closet/crate{
 	name = "food crate"
@@ -3952,7 +4578,7 @@
 /obj/machinery/firealarm,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "LO" = (
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
@@ -3961,7 +4587,7 @@
 	id = "beta"
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "LU" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -4023,13 +4649,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Mx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/reagentgrinder/industrial,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "My" = (
 /obj/machinery/door/airlock{
 	name = "NTMS-037 Lockers"
@@ -4060,7 +4686,7 @@
 	name = "Broken Computer"
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ML" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -4080,24 +4706,48 @@
 /obj/item/gun/projectile/automatic/ak47/sa,
 /obj/item/ammo_magazine/lrifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "MO" = (
 /obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
+"MR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/charlie)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"MT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "MV" = (
 /obj/effect/window_lwall_spawn/reinforced{
 	dir = 6
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "MX" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -4120,20 +4770,25 @@
 /obj/structure/table/standard,
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ni" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Nn" = (
 /obj/structure/transit_tube/station,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Nq" = (
 /obj/effect/mob_spawn/human/prisoner_transport{
 	dir = 1
@@ -4144,7 +4799,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/hydroponics,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Nz" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled/dark,
@@ -4152,7 +4807,7 @@
 "NC" = (
 /obj/structure/grille/broken,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "NH" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder{
@@ -4182,11 +4837,24 @@
 /obj/item/tank/emergency_oxygen,
 /obj/item/tank/emergency_oxygen,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"NO" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "NR" = (
 /obj/structure/girder,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"NW" = (
+/turf/simulated/wall,
+/area/outpost/junkyard/station/delta)
+"NX" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/charlie)
 "Ob" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/effect/window_lwall_spawn/reinforced,
@@ -4205,7 +4873,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Oj" = (
 /obj/structure/closet/crate,
 /obj/item/grenade/chem_grenade/metalfoam,
@@ -4231,7 +4899,17 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"Ou" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "Oz" = (
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
@@ -4239,13 +4917,25 @@
 /obj/item/tool/wrench,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
+"OB" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "OD" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
 /obj/item/stack/cable_coil,
 /obj/item/tool/multitool,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/canterbury)
+"OE" = (
+/turf/simulated/mineral,
+/area/outpost/junkyard/station/beta)
 "OF" = (
 /obj/machinery/door/window/brigdoor/westleft,
 /turf/simulated/floor/tiled/dark,
@@ -4274,7 +4964,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
+"OX" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "Pd" = (
 /obj/structure/table/standard,
 /obj/machinery/power/apc{
@@ -4290,7 +4986,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Pk" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4313,8 +5009,13 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Pw" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
@@ -4327,16 +5028,35 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
+"PN" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "PQ" = (
 /obj/structure/grille,
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/rocinante)
+"PV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/delta)
 "PW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/wrench,
 /obj/item/tool/wirecutters,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Qh" = (
 /obj/machinery/power/smes/buildable,
 /turf/simulated/floor/exoplanet/barren,
@@ -4345,7 +5065,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/autolathe/rnd/protolathe,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Qr" = (
 /obj/structure/grille,
 /obj/item/stack/rods,
@@ -4361,7 +5081,7 @@
 /obj/structure/transit_tube/station,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "QA" = (
 /obj/machinery/door/airlock/external{
 	name = "E.V.A Access"
@@ -4371,7 +5091,7 @@
 "QG" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "QH" = (
 /obj/item/gun/projectile/mk58,
 /turf/simulated/floor/tiled,
@@ -4396,8 +5116,13 @@
 	name = "Charlie Station Access"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "QU" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -4420,6 +5145,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/epstein)
+"Rk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "Rq" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medbay"
@@ -4431,14 +5171,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Rw" = (
 /obj/effect/window_lwall_spawn/reinforced{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"Rx" = (
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "Ry" = (
 /obj/item/folder{
 	pixel_x = 6;
@@ -4466,7 +5209,7 @@
 /obj/item/paper,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "RJ" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -4477,7 +5220,7 @@
 /obj/machinery/door/window/westleft,
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "RN" = (
 /obj/machinery/power/apc{
 	cell_type = /obj/item/cell/large;
@@ -4502,7 +5245,7 @@
 /obj/item/pen,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "RS" = (
 /obj/structure/bed/chair/office/light,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -4526,6 +5269,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood,
 /area/outpost/junkyard/ship/epstein)
+"RZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "Sc" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility,
@@ -4547,7 +5300,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Sl" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4561,7 +5314,10 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"So" = (
+/turf/simulated/wall,
+/area/outpost/junkyard/station/beta)
 "Sp" = (
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard)
@@ -4577,8 +5333,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "St" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0
@@ -4621,14 +5381,18 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "SE" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"SH" = (
+/obj/structure/lattice,
+/turf/simulated/mineral,
+/area/outpost/junkyard/station/beta)
 "SX" = (
 /obj/effect/mob_spawn/human/hermit,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -4651,8 +5415,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Tf" = (
 /obj/machinery/power/solar,
 /turf/simulated/floor/plating,
@@ -4661,20 +5429,20 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Tk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/blast/shutters/glass,
 /obj/item/gun/projectile/type_47,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Tl" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/multitool,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Tm" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/dark,
@@ -4691,13 +5459,13 @@
 	},
 /obj/item/tool/retractor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Tu" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ty" = (
 /obj/machinery/door/airlock/external{
 	id_tag = "ntms_exterior";
@@ -4720,7 +5488,7 @@
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "TL" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -4742,6 +5510,12 @@
 	},
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/rocinante)
+"TR" = (
+/obj/structure/table/standard,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "TS" = (
 /obj/machinery/computer{
 	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
@@ -4764,12 +5538,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "TV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/autolathe/mechfab,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "TX" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled/dark,
@@ -4784,7 +5558,7 @@
 /obj/item/gun/projectile/automatic/wintermute,
 /obj/item/gun/projectile/automatic/wintermute,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ul" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/cobweb,
@@ -4804,7 +5578,7 @@
 /obj/item/folder/red,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Ux" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/techmaint,
@@ -4814,7 +5588,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "UC" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 1"
@@ -4829,6 +5603,12 @@
 /obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/outpost/junkyard/ship/rocinante)
+"UH" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "UI" = (
 /obj/machinery/power/apc{
 	cell_type = null;
@@ -4841,22 +5621,27 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "UN" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharger,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "UO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/optable{
 	name = "Robotics Operating Table"
 	},
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "UV" = (
 /obj/machinery/suit_storage_unit/mining,
 /turf/simulated/floor/tiled,
@@ -4875,23 +5660,21 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Vf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/security,
 /obj/item/gun/projectile/automatic/sol,
 /obj/item/ammo_magazine/ihclrifle,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Vi" = (
 /obj/structure/table/standard,
 /obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Vn" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
-	},
+/obj/machinery/power/port_gen/pacman/super,
 /obj/item/tool/wrench,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
@@ -4905,7 +5688,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"Vu" = (
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/delta)
 "Vz" = (
 /obj/landmark/corpse/pirate/ranged,
 /obj/item/gun/projectile/revolver,
@@ -4917,7 +5703,7 @@
 /obj/item/gun/projectile/type_42,
 /obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "VI" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/tool/weldingtool,
@@ -4929,7 +5715,16 @@
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"VN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/wall,
+/area/outpost/junkyard/station/beta)
+"VO" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/charlie)
 "VT" = (
 /obj/structure/toilet{
 	pixel_y = 16
@@ -4944,7 +5739,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "VV" = (
 /obj/structure/closet{
 	name = "patient's wardrobe"
@@ -4977,11 +5772,11 @@
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "Wb" = (
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Wc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/glass_command{
@@ -4990,7 +5785,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "We" = (
 /obj/machinery/door/airlock/command{
 	name = "NTMS-037 Ship Control"
@@ -5011,7 +5806,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Wr" = (
 /obj/machinery/shower{
 	pixel_y = 15
@@ -5043,13 +5838,29 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/autolathe,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
+"WI" = (
+/obj/structure/lattice,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/beta)
+"WJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "WK" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"WL" = (
+/obj/effect/window_lwall_spawn/reinforced{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/outpost/junkyard/station/charlie)
 "WS" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -5079,7 +5890,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/roller,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Xi" = (
 /obj/machinery/computer{
 	dir = 8
@@ -5104,14 +5915,19 @@
 /area/outpost/junkyard/ship/rocinante)
 "Xm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	cell_type = null;
-	name = "Charlie Station Garden APC ";
-	pixel_y = -23
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/closet/crate/hydroponics,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"Xq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/beta)
 "Xu" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -5120,10 +5936,10 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "XJ" = (
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "XK" = (
 /obj/structure/table/standard,
 /obj/structure/bedsheetbin,
@@ -5137,7 +5953,7 @@
 "XL" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "XO" = (
 /obj/structure/closet/crate/serbcrate_gray,
 /obj/item/gun/projectile/boltgun/serbian,
@@ -5158,8 +5974,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/landmark/corpse/engineer,
 /obj/spawner/gun/energy_cheap,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "XT" = (
 /obj/item/stack/cable_coil,
 /obj/item/tool/multitool{
@@ -5172,8 +5993,11 @@
 "XU" = (
 /obj/structure/closet/crate/radiation,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/material/uranium,
+/obj/item/stack/material/uranium,
+/obj/item/stack/material/uranium,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "XW" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
@@ -5181,7 +6005,19 @@
 "XY" = (
 /obj/structure/grille,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
+"XZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc{
+	cell_type = null;
+	dir = 8;
+	name = "Delta APC";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/station/delta)
 "Yb" = (
 /obj/structure/table/standard,
 /obj/item/tool/wrench,
@@ -5212,6 +6048,8 @@
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
 /obj/item/gun/projectile/shotgun/doublebarrel/flare,
+/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/shotgun/flash,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "Yg" = (
@@ -5242,6 +6080,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
+"Yo" = (
+/obj/structure/transit_tube{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/exoplanet/barren,
+/area/outpost/junkyard/station/charlie)
 "Yq" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -5270,6 +6115,11 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/rocinante)
+"YB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "YC" = (
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/plating,
@@ -5285,6 +6135,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/lehrer)
+"YH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/beta)
 "YI" = (
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt,
@@ -5318,15 +6177,21 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Zf" = (
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 4
 	},
 /obj/item/storage/box/lights/bulbs,
 /obj/structure/table/rack,
+/obj/item/stack/material/uranium/random,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
+"Zj" = (
+/obj/machinery/door/firedoor,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/station/delta)
 "Zn" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/junkyard/ship/prison)
@@ -5335,11 +6200,11 @@
 /obj/item/gun/projectile/automatic/c20r/moebius,
 /obj/item/ammo_magazine/smg,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "Zs" = (
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled/techmaint,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/beta)
 "Zt" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -5360,13 +6225,13 @@
 	},
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/tiled/white,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "ZH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white{
 	dir = 8
 	},
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "ZI" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
@@ -5379,7 +6244,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/simulated/floor/plating,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/delta)
 "ZR" = (
 /obj/structure/table/standard,
 /obj/item/tool/crowbar,
@@ -5394,7 +6259,7 @@
 /obj/structure/closet,
 /obj/item/clothing/suit/space/void,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ZV" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/eastright{
@@ -5422,7 +6287,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/outpost/junkyard/station)
+/area/outpost/junkyard/station/charlie)
 "ZX" = (
 /obj/machinery/computer{
 	dir = 8
@@ -7421,37 +8286,37 @@ Iu
 Iu
 Iu
 Iu
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
+OE
 yb
 yb
 yb
 yb
 yb
 yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-yb
-ay
-ay
-ay
-ay
-ay
-yb
-ay
-ay
-ay
-ay
+So
+So
+So
+So
+So
+OE
+So
+So
+So
+So
 Iu
 Iu
 Iu
@@ -7612,37 +8477,37 @@ Iu
 Iu
 Iu
 Iu
-yb
-yb
+OE
+OE
 mU
-Pl
-tC
-ay
-ay
-ay
+nJ
+WI
+So
+So
+So
 XY
 NC
-ay
-ay
+So
+So
+OE
+OE
+OE
 yb
 yb
 yb
 yb
 yb
-yb
-yb
-yb
-ay
-ay
-zZ
+So
+So
+gS
 HJ
-zZ
-ay
-ay
-ay
+gS
+So
+So
+So
 mz
 Ga
-ay
+So
 Iu
 Iu
 Iu
@@ -7803,37 +8668,37 @@ Iu
 Iu
 Iu
 Iu
-yb
-yb
-AC
+OE
+OE
+ff
 Kh
-AC
-ay
+ff
+So
 yr
 XJ
 XJ
 FU
 Tn
-ay
-yb
-yb
-yb
+So
+OE
+OE
+OE
 yb
 yb
 yb
 yb
 yb
 HV
-zZ
-zZ
-zZ
-zZ
-zZ
-zZ
+gS
+gS
+gS
+gS
+gS
+gS
 hV
-zZ
+gS
 XJ
-ay
+So
 Iu
 Iu
 TE
@@ -7994,37 +8859,37 @@ Iu
 Sp
 Sp
 Iu
-yb
+OE
 DX
-ay
+So
 XC
 XC
-ay
+So
 pQ
-zZ
-zZ
-zZ
+gS
+gS
+gS
 qs
 NC
 gQ
-MJ
-MJ
+SH
+SH
 MJ
 MJ
 MJ
 MJ
 yb
-zZ
+gS
 HV
-zZ
-zZ
-zZ
-zZ
-zZ
-zZ
-zZ
-zZ
-ay
+gS
+gS
+gS
+gS
+gS
+gS
+gS
+gS
+So
 TE
 Iu
 Iu
@@ -8186,20 +9051,20 @@ Sp
 Sp
 Iu
 NR
-ay
-ay
+So
+So
 uu
 uu
-ay
+So
 Gi
 Xh
-zZ
+gS
 Fi
 Fs
-ay
-yb
-yb
-MJ
+So
+OE
+OE
+SH
 yb
 yb
 yb
@@ -8207,15 +9072,15 @@ yb
 yb
 pw
 ui
-ay
-ay
+So
+So
 XJ
 XJ
-zZ
+gS
 XJ
 XJ
-ay
-ay
+So
+So
 Iu
 Iu
 Iu
@@ -8377,35 +9242,35 @@ Sp
 Sp
 he
 Kh
-AC
-ay
-Tj
-Tj
-ay
-ay
+ff
+So
+YB
+YB
+So
+So
 QG
 lt
 QG
-ay
+So
 NR
-AC
-ay
-ay
-ay
+ff
+So
+So
+So
 XY
-yb
-yb
-ay
-AC
-AC
+OE
+OE
+So
+ff
+ff
 qs
-ay
+So
 XJ
-zZ
-Tj
+gS
+YB
 XJ
-zZ
-ay
+gS
+So
 Iu
 Iu
 Iu
@@ -8568,35 +9433,35 @@ Sp
 Sp
 Sp
 Kh
-AC
+ff
 XL
-Tj
-Tj
-Tj
-Tj
-Tj
-Tj
+YB
+YB
+YB
+YB
+YB
+YB
 XC
-zZ
+gS
 DG
 IQ
-AC
-AC
-AC
-AC
+ff
+ff
+ff
+ff
 Kh
 Kh
 gb
 wq
-AC
+ff
 tG
-ay
+So
 WK
 VM
 iT
 gV
 WK
-ay
+So
 Iu
 Iu
 Iu
@@ -8758,36 +9623,36 @@ Sp
 Sp
 Sp
 Iu
-yb
-yb
+OE
+OE
+So
+YB
 ay
-Tj
-Tj
-Tj
+Xm
 wY
-Tj
-mk
-XC
-zZ
-zZ
-ne
-ne
-AC
-AC
+Xm
+lT
+PN
+YH
+YH
+Hy
+zu
+ff
+ff
 Kh
-AC
+ff
 Hq
 aT
-ne
-zZ
+zu
+gS
 dO
-ay
+So
 BQ
 Wb
-BV
+GA
 sY
 BQ
-ay
+So
 Sp
 Iu
 Iu
@@ -8949,36 +9814,36 @@ Sp
 Sp
 Iu
 Iu
-yb
-yb
-ay
+OE
+OE
+So
 YY
 Gs
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+So
+So
+So
+So
+So
+So
+So
 uj
-ay
-ay
+So
+So
 NR
 NC
-ay
+So
 NC
-ay
+So
 XY
-ay
-ay
-ay
+So
+So
+So
 Ja
 Wb
-BK
+Xq
 sY
 Hj
-ay
+So
 Rd
 Sp
 Sp
@@ -9140,19 +10005,19 @@ Sp
 Sp
 Sp
 Iu
-yb
-yb
-ay
-Tj
+OE
+OE
+So
+YB
 UM
-ay
+So
 lE
 BQ
 BQ
 NM
 Ni
-DS
-BV
+oe
+wU
 si
 NC
 Pl
@@ -9163,13 +10028,13 @@ tC
 Pl
 tC
 Pl
-ay
+So
 KL
 QG
-ay
+So
 KL
 QG
-ay
+So
 Sp
 Sp
 Sp
@@ -9331,21 +10196,21 @@ Sp
 Sp
 Sp
 Sp
-MJ
-Pl
-ay
-Tj
-zZ
-ay
+SH
+nJ
+So
+YB
+jY
+So
 Iq
 BQ
 BQ
 pT
 BQ
 BQ
-BV
+GA
 vt
-ay
+So
 Pl
 Pl
 tC
@@ -9524,10 +10389,10 @@ Sp
 Sp
 he
 Rd
-ay
-zZ
-Tj
-ay
+So
+gS
+kC
+So
 Iq
 pT
 BQ
@@ -9536,7 +10401,7 @@ BQ
 KD
 BQ
 Zs
-ay
+So
 tC
 tC
 AC
@@ -9715,19 +10580,19 @@ Sp
 he
 Sp
 Sp
-ay
-zZ
-Tj
-ay
-ay
+So
+gS
+kC
+So
+So
 NR
-ay
-ay
+So
+So
 fz
 lW
-ay
-ay
-ay
+So
+So
+So
 Pl
 Pl
 tC
@@ -9906,10 +10771,10 @@ Sp
 he
 Sp
 Sp
-ay
+So
 XJ
-XJ
-ay
+kH
+So
 Pl
 Pl
 Pl
@@ -10097,10 +10962,10 @@ Sp
 he
 Sp
 Sp
-ay
+So
 XJ
-XJ
-ay
+kH
+So
 Pl
 Pl
 Pl
@@ -10289,9 +11154,9 @@ Sp
 Sp
 Sp
 QG
-zZ
-Tj
-ay
+gS
+kC
+So
 Pl
 Pl
 Pl
@@ -10474,15 +11339,15 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
+So
+So
+So
+So
 QG
-ay
-zZ
-Tj
-ay
+So
+gS
+kC
+So
 Pl
 Pl
 Pl
@@ -10670,10 +11535,10 @@ xN
 rK
 Ia
 eR
-ay
+So
 FW
-zZ
-ay
+jY
+So
 Pl
 Pl
 Pl
@@ -10858,12 +11723,12 @@ Sp
 Sp
 QG
 IC
-Tj
-Tj
-zZ
-ay
-zZ
-zZ
+YB
+YB
+gS
+So
+gS
+jY
 pc
 Pl
 Pl
@@ -11048,13 +11913,13 @@ KL
 Sk
 Sk
 MV
-Tj
-Tj
-mk
-zZ
+YB
+YB
+WJ
+gS
 QG
-Tj
-zZ
+YB
+jY
 QG
 Pl
 Pl
@@ -11239,13 +12104,13 @@ ab
 BQ
 BQ
 ab
-zZ
-Tj
-Tj
-zZ
+gS
+YB
+YB
+gS
 lV
-Tj
-Tj
+YB
+kC
 QG
 Pl
 Pl
@@ -11430,13 +12295,13 @@ KL
 Sk
 Sk
 zx
-zZ
+gS
 lk
 KR
-Tj
+YB
 QG
-Tj
-zZ
+YB
+jY
 QG
 Pl
 Pl
@@ -11625,9 +12490,9 @@ cc
 QG
 uC
 bX
-ay
-zZ
-Tj
+So
+gS
+kC
 Sk
 Pl
 Pl
@@ -11816,18 +12681,18 @@ LT
 LT
 tu
 ue
-ay
-Tj
+So
+YB
 UM
-ay
+So
 Pl
 Pl
 Pl
 Pl
 Pl
-pc
+OX
 sg
-pc
+OX
 Pl
 Pl
 Pl
@@ -12002,23 +12867,23 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
+So
+So
+So
+So
 QG
-ay
-Tj
-zZ
-ay
+So
+YB
+jY
+So
 Pl
 Pl
 Pl
 Pl
 Pl
-QG
-ne
-QG
+jP
+HG
+jP
 Pl
 Pl
 Pl
@@ -12199,17 +13064,17 @@ Sp
 Sp
 Sp
 QG
-Tj
-Tj
-ay
+YB
+kC
+So
 Pl
 Pl
 Pl
 Pl
 Pl
-QG
-ne
-QG
+jP
+HG
+jP
 Pl
 Pl
 Pl
@@ -12389,22 +13254,22 @@ he
 Sp
 Sp
 Sp
-ay
+So
 BT
-Tj
-ay
+kC
+So
 Pl
-ay
-ay
-ay
-KL
-MV
+iZ
+iZ
+iZ
+NO
+WL
 sg
 UB
-QG
-ay
-ay
-ay
+jP
+iZ
+iZ
+iZ
 Pl
 tC
 Pl
@@ -12580,22 +13445,22 @@ he
 Sp
 Sp
 Sp
-ay
-zZ
-zZ
-ay
+So
+gS
+jY
+So
 Pl
-ay
+iZ
 MK
-zZ
-zZ
+wD
+wD
 Tj
 SD
 Tj
-zZ
-zZ
+wD
+wD
 rh
-ay
+iZ
 Pl
 tC
 Pl
@@ -12771,28 +13636,28 @@ he
 Sp
 Sp
 Sp
-ay
-zZ
-zZ
-if
-ay
-ay
+So
+gS
+jY
+VN
+iZ
+iZ
 BX
-zZ
+wD
 Te
 XR
-SD
-SD
-Te
+Rk
+to
+CJ
 Tj
 cW
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Pl
 Pl
 tC
@@ -12962,28 +13827,28 @@ he
 Sp
 Sp
 Sp
-ay
-zZ
-zZ
-ay
+So
+gS
+jY
+So
 HH
 Tj
 Tj
 Tj
 Va
 SD
-SD
+dt
 SD
 Va
 Tj
-zZ
+wD
 Tj
 ox
-ay
+iZ
 Sr
-BV
+IM
 XU
-ay
+iZ
 Pl
 Pl
 tC
@@ -13153,28 +14018,28 @@ he
 Sp
 Sp
 Sp
-ay
-Tj
-Tj
-ay
+So
+YB
+kC
+So
 GN
 Tj
-zZ
+wD
 Tj
-zZ
+wD
 TK
-ne
-zZ
-zZ
+jT
+wD
+wD
 Mw
 Tj
 Tj
 Tl
-ay
+iZ
 az
-BV
+Ik
 sI
-ay
+iZ
 Pl
 Pl
 tC
@@ -13344,28 +14209,28 @@ he
 Sp
 Sp
 Sp
-ay
-Tj
-Tj
-ay
+So
+YB
+kC
+So
 ZT
-zZ
-FW
-zZ
-zZ
+wD
+FD
+wD
+wD
 Tj
+Lz
 Tj
-Tj
-zZ
-zZ
-zZ
-UM
+wD
+wD
+wD
+fM
 vT
-ay
+iZ
 PW
-BV
+op
 IW
-ay
+iZ
 Pl
 Pl
 tC
@@ -13531,35 +14396,35 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
 ZW
-ZW
-ay
-ay
-ay
-ay
-ay
-ay
-yo
-kC
 kN
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+yo
+Fu
+yo
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 kw
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
 Pl
 Pl
 Pl
@@ -13720,39 +14585,39 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
+iZ
+iZ
+iZ
 Lo
 DS
 BV
-ay
-Tj
-Tj
-Tj
-Tj
-Tj
+iZ
 Tj
 zZ
-XC
-Tj
-Tj
-Tj
-XC
-zZ
-Ea
-Tj
-Tj
-Tj
-Tj
-Tj
-ay
+KZ
+KZ
+KZ
+KZ
+eU
+is
+KZ
+MT
+KZ
+is
+eU
+ga
+KZ
+KZ
+KZ
+KZ
+JM
+iZ
 Lf
 BV
 aG
-ay
-ay
-ay
+iZ
+iZ
+iZ
 Pl
 Pl
 Sp
@@ -13911,7 +14776,7 @@ Sp
 Sp
 Sp
 Sp
-ay
+iZ
 BV
 BV
 BV
@@ -13936,14 +14801,14 @@ Tj
 Tj
 Tj
 Tj
-Tj
+lM
 yH
-BV
-BV
-BV
-BV
+MR
+MR
+MR
+MR
 uz
-ay
+iZ
 Pl
 Pl
 Sp
@@ -14101,41 +14966,41 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Tj
 Tj
-ay
-ay
-QG
+iZ
+iZ
+jP
 jE
-QG
-ay
-ay
-yQ
-ay
-ay
-QG
+jP
+iZ
+iZ
+vx
+iZ
+iZ
+jP
 qi
-QG
-ay
-ay
+jP
+iZ
+iZ
 Tj
-Tj
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+Lz
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Pl
 Sp
 Iu
@@ -14291,43 +15156,43 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-kH
+iZ
+iZ
+Do
 MK
 MS
 MK
 MS
-ay
-ay
+iZ
+iZ
 Tu
 Tu
-ay
-zZ
+iZ
+wD
 Tj
 Tj
-zZ
+wD
 Nw
-ay
-ne
-ay
+iZ
+HG
+iZ
 EG
 nx
 nx
 nx
 Et
-ay
+iZ
 Tu
-Tu
-ay
-ay
+qw
+iZ
+iZ
 wm
 iU
 xI
 xI
 wm
-ay
-ay
+iZ
+iZ
 Sp
 Iu
 Iu
@@ -14482,35 +15347,35 @@ Sp
 Sp
 Sp
 Sp
-ay
-kH
-zZ
+iZ
+Do
+wD
 by
 Tj
 HY
-zZ
+wD
 BN
-ay
+iZ
 Tj
 Tj
-pc
-zZ
-zZ
+OX
+wD
+wD
 Tj
-zZ
+wD
 Cc
-ay
-ne
-ay
+iZ
+HG
+iZ
 Rr
 nx
 nx
 bL
 oS
-pc
+OX
 Tj
-zZ
-ay
+kV
+iZ
 zs
 Tj
 Tj
@@ -14518,7 +15383,7 @@ Tj
 Tj
 Tj
 wm
-ay
+iZ
 Iu
 Iu
 Iu
@@ -14674,34 +15539,34 @@ Sp
 Sp
 Sp
 yj
-zZ
+wD
 Tj
 mk
 Tj
 Tj
 Tj
 rY
-pc
+OX
 Tj
 Tj
-QG
+jP
 Cc
-XJ
-zZ
+Rx
+wD
 Tj
 Cc
-ay
-ne
-ay
+iZ
+HG
+iZ
 nx
 nx
 nx
 Ho
 qc
-QG
+jP
 Tj
-zZ
-pc
+kV
+OX
 Tj
 Tj
 Tj
@@ -14709,7 +15574,7 @@ Tj
 Tj
 tB
 EZ
-yb
+eh
 Iu
 Iu
 Iu
@@ -14864,43 +15729,43 @@ Sp
 Sp
 Sp
 Sp
-kC
-jY
+Fu
+IX
 by
 Tj
 Tj
 MN
 Tj
 BX
-Sk
+UH
 iS
 Tj
-QG
+jP
 Cc
-XJ
+Rx
 jA
 Tj
-zZ
-ay
-ne
-ay
+wD
+iZ
+HG
+iZ
 nx
 mD
 Ho
 Ho
 nx
-QG
+jP
 Tj
-zZ
-Sk
+kV
+UH
 Tj
 Lm
 up
 Tj
 Tj
 EZ
-yb
-yb
+eh
+eh
 Iu
 Iu
 Iu
@@ -15055,8 +15920,8 @@ Sp
 Sp
 Sp
 Sp
-kC
-jY
+Fu
+IX
 za
 Tj
 Tj
@@ -15066,12 +15931,12 @@ Tj
 Wc
 Tj
 Tj
-QG
+jP
 On
-zZ
+wD
 cs
 Tj
-zZ
+wD
 yH
 SD
 yH
@@ -15080,9 +15945,9 @@ jr
 Ho
 Ho
 co
-QG
-UM
-UM
+jP
+fM
+ou
 vo
 Tj
 Tj
@@ -15091,7 +15956,7 @@ Tj
 Tj
 Tj
 EZ
-yb
+eh
 Iu
 Iu
 Iu
@@ -15246,35 +16111,35 @@ Sp
 Sp
 Sp
 Sp
-kC
-jY
+Fu
+IX
 RQ
 Tj
 Tj
 Tj
 cr
-zZ
-pc
-zZ
-zZ
-QG
+wD
+OX
+wD
+wD
+jP
 Cc
-XJ
+Rx
 hS
-zZ
+wD
 BX
-ay
-ne
-ay
+iZ
+HG
+iZ
 nx
 bP
 Ho
 nx
 nx
-QG
+jP
 Tj
-Tj
-pc
+Lz
+OX
 Tj
 Tj
 Tj
@@ -15282,7 +16147,7 @@ mk
 EZ
 Tj
 Tj
-ay
+iZ
 Iu
 Iu
 Iu
@@ -15438,42 +16303,42 @@ Sp
 Sp
 Sp
 gL
-zZ
+wD
 Tj
 Tj
 Tj
 Tj
 Tj
 Aj
-Sk
-zZ
-zZ
-QG
+UH
+wD
+wD
+jP
 Cc
-XJ
-XJ
+Rx
+Rx
 Tj
 Cc
-ay
-ne
-ay
+iZ
+HG
+iZ
 nx
 nx
 oQ
 nx
 Et
-QG
+jP
 Tj
-Tj
-Sk
-Tj
-Tj
-Tj
+Lz
+UH
 Tj
 Tj
 Tj
 Tj
-QG
+Tj
+Tj
+Tj
+jP
 Sp
 Iu
 Sp
@@ -15628,35 +16493,35 @@ Sp
 Sp
 Sp
 Sp
-ay
-zZ
-zZ
+iZ
+wD
+wD
 by
 Tj
 by
-zZ
+wD
 rq
-ay
+iZ
 Tj
-zZ
-Sk
-zZ
-XJ
-XJ
+wD
+UH
+wD
+Rx
+Rx
 Tj
 Cc
-ay
-ne
-ay
+iZ
+HG
+iZ
 nx
 Ho
 Ho
 bL
 mD
-Sk
+UH
 Tj
-Tj
-ay
+Lz
+iZ
 Tj
 Tj
 Tj
@@ -15664,7 +16529,7 @@ Tj
 Tj
 Tj
 wm
-ay
+iZ
 Sp
 Sp
 Sp
@@ -15819,43 +16684,43 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-zZ
+iZ
+iZ
+wD
 MK
 MS
 MK
 MS
-ay
-ay
+iZ
+iZ
 Tu
 Tu
-ay
-zZ
-zZ
+iZ
+wD
+wD
 Tj
-zZ
-Xm
-ay
-ne
-ay
+wD
+Nw
+iZ
+HG
+iZ
 kz
 Ho
 Ho
 Ho
 qc
-ay
+iZ
 Tu
 ic
-ay
-ay
-cQ
+iZ
+iZ
+dI
 Tj
-nw
+TR
 pG
 fK
-ay
-ay
+iZ
+iZ
 Sp
 Sp
 Sp
@@ -16011,41 +16876,41 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Tj
-zZ
-ay
-ay
-QG
+wD
+iZ
+iZ
+jP
 jE
-QG
-ay
-ay
-yQ
-ay
-ay
-QG
+jP
+iZ
+iZ
+vx
+iZ
+iZ
+jP
 qi
-QG
-ay
-ay
+jP
+iZ
+iZ
 Tj
-zZ
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+kV
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Sp
 Sp
 Sp
@@ -16203,15 +17068,15 @@ Sp
 Sp
 Sp
 Sp
-ay
+iZ
 js
 uX
 nZ
 uX
 uX
 dQ
-zZ
-zZ
+wD
+wD
 Tj
 Tj
 Tj
@@ -16221,21 +17086,21 @@ Tu
 Tj
 Tj
 Tj
-XC
-XJ
-XJ
-zZ
+VO
+Rx
+Rx
+wD
 Tj
 Tj
 Tj
-zZ
+kV
 mZ
 BV
 BV
 BV
 BV
 vY
-ay
+iZ
 Sp
 Sp
 Sp
@@ -16394,13 +17259,13 @@ Sp
 Sp
 Sp
 Sp
-ay
+iZ
 lY
 zv
 if
 ut
 BC
-ay
+iZ
 Tj
 Tj
 Tj
@@ -16411,22 +17276,22 @@ Tj
 Tu
 Tj
 Tj
-zZ
-XC
+wD
+VO
 vq
-zZ
+wD
 Tj
 Tj
 Tj
-Tj
-Tj
-ay
+RZ
+ge
+iZ
 VY
 VY
 bO
-ay
-ay
-ay
+iZ
+iZ
+iZ
 Sp
 Sp
 Sp
@@ -16585,37 +17450,37 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 OW
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 EA
-kC
+Fu
 iP
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 hn
-ay
-ay
-ay
-ay
-ay
-ay
+iZ
+iZ
+iZ
+iZ
+iZ
+iZ
 Sp
 Sp
 Sp
@@ -16783,26 +17648,26 @@ Sp
 Sp
 Iu
 Iu
-yb
+eh
 Tj
 Tj
-ay
+iZ
 rY
-zZ
-zZ
+wD
+wD
 Ly
-zZ
+wD
 Tj
-zZ
-zZ
-zZ
-zZ
+wD
+wD
+wD
+wD
 ys
-ay
+iZ
 Tj
+Lz
 Tj
-Tj
-ay
+iZ
 Sp
 Sp
 Sp
@@ -16974,13 +17839,13 @@ Sp
 Iu
 Iu
 Iu
-yb
+eh
 Ky
 Tj
-ay
+iZ
 MK
 Tj
-zZ
+wD
 RE
 kn
 mk
@@ -16989,11 +17854,11 @@ Uv
 Tj
 Tj
 FR
-ay
+iZ
 Tj
 ht
 Tj
-ay
+iZ
 Sp
 Sp
 Sp
@@ -17165,26 +18030,26 @@ Sp
 Iu
 Iu
 Iu
-yb
+eh
 nQ
-QG
-ay
+jP
+iZ
 Ng
 Vf
-zZ
+wD
 Hu
 Fb
 Tj
-jY
+IX
 Hu
 Tj
-zZ
+wD
 Ui
-ay
-QG
-nQ
-QG
-ay
+iZ
+jP
+jV
+jP
+iZ
 Sp
 Sp
 Sp
@@ -17356,24 +18221,24 @@ Sp
 Sp
 Iu
 Iu
-yb
-zU
-Pl
-ay
-ay
-zZ
-zZ
-zZ
+eh
+Yo
+Aq
+iZ
+iZ
+wD
+wD
+wD
 Tj
 Tj
-zZ
-zZ
-zZ
-zZ
-ay
-ay
+wD
+wD
+wD
+wD
+iZ
+iZ
 Sp
-zU
+FX
 Sp
 Sp
 Sp
@@ -17548,23 +18413,23 @@ Sp
 Iu
 Iu
 JG
-Bm
-Pl
-Pl
-ay
+NX
+Aq
+Aq
+iZ
 rY
 rY
 BX
 zL
-zZ
+wD
 zL
 vq
 rY
 tE
-ay
+iZ
 Sp
 Sp
-zU
+FX
 Sp
 Sp
 Sp
@@ -17741,21 +18606,21 @@ Sp
 Sp
 DI
 JG
-Pl
-ay
-ay
-ay
-ay
-ay
-QG
-ay
-ay
-ay
-ay
-ay
+Aq
+iZ
+iZ
+iZ
+iZ
+iZ
+jP
+iZ
+iZ
+iZ
+iZ
+iZ
 Sp
 Sp
-zU
+FX
 Sp
 Sp
 Sp
@@ -17946,7 +18811,7 @@ he
 Sp
 Sp
 Sp
-QP
+BY
 Sp
 Sp
 Sp
@@ -18137,7 +19002,7 @@ fw
 he
 he
 he
-zU
+FX
 he
 he
 he
@@ -18328,7 +19193,7 @@ he
 Sp
 Sp
 Sp
-zU
+FX
 Sp
 Sp
 Sp
@@ -18519,7 +19384,7 @@ he
 Sp
 Sp
 Sp
-zU
+FX
 Sp
 Sp
 Sp
@@ -18692,27 +19557,27 @@ he
 Sp
 Sp
 Sp
-ay
-QG
-nQ
-QG
-ay
-yb
-yb
-yb
-ay
-ay
-QG
-ay
-ay
+NW
+Cs
+xp
+Cs
+NW
+wC
+wC
+wC
+NW
+NW
+Cs
+NW
+NW
 Sp
 he
 Sp
-ay
-QG
-nQ
-QG
-ay
+NW
+Cs
+zq
+Cs
+NW
 Sp
 Sp
 Sp
@@ -18883,27 +19748,27 @@ Sp
 Sp
 Sp
 Sp
-ay
+NW
 dE
 Qv
 vJ
-ay
-yb
-yb
-yb
-ay
+NW
+wC
+wC
+wC
+NW
 ni
 dW
 sl
-ay
+NW
 Sp
 he
 Sp
-ay
-yr
+NW
+OB
 Nn
-XJ
-ay
+KP
+NW
 Sp
 Sp
 Sp
@@ -19074,27 +19939,27 @@ Sp
 Sp
 Sp
 Sp
-ay
-Tj
+NW
+CE
 mH
-Tj
-ay
-yb
-yb
-yb
-ay
+CE
+NW
+wC
+wC
+wC
+NW
 ne
-AC
+Vu
 ne
-ay
+NW
 Sp
 he
 Sp
-ay
-zZ
-Tj
-zZ
-ay
+NW
+iA
+wf
+iA
+NW
 Sp
 Sp
 Sp
@@ -19265,27 +20130,27 @@ Sp
 Rd
 Sp
 Sp
-ay
-ay
+NW
+NW
 Ew
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-yH
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+oA
+NW
+NW
+NW
+NW
+NW
+NW
+NW
 QS
-ay
-ay
+NW
+NW
 Sp
 Sp
 Sp
@@ -19457,26 +20322,26 @@ Sp
 Sp
 Sp
 Sp
-ay
+NW
 cf
-UM
-Tj
+bp
+CE
 KQ
-Tj
-Tu
-Tj
-Tj
-Tj
-Tj
-Tu
-zZ
-zZ
+CE
+aq
+CE
+CE
+CE
+CE
+aq
+iA
+iA
 Oi
-Tj
-Tj
-Tj
-Tj
-ay
+CE
+CE
+wf
+CE
+NW
 Sp
 Sp
 Sp
@@ -19648,26 +20513,26 @@ Sp
 Sp
 Sp
 Sp
-ay
-UM
-UM
-Tj
-Tj
+NW
+bp
+bp
+CE
+CE
 cT
-Tu
-Tj
+aq
+CE
 KQ
-Tj
-zZ
-XC
-zZ
-zZ
-Tj
-Tj
-Tj
-Tj
-Tj
-ay
+CE
+iA
+Zj
+iA
+iA
+CE
+CE
+CE
+wf
+CE
+NW
 Sp
 Sp
 Sp
@@ -19839,24 +20704,24 @@ bM
 bM
 Sp
 Sp
-ay
+NW
 Wq
 Wq
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-TU
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+Km
 TU
 Bw
 Bw
@@ -20030,25 +20895,25 @@ Ms
 bM
 bM
 Sp
-ay
-Tj
-Tj
-ay
-uX
-uX
-uX
-uX
-uX
-Tj
+NW
+CE
+CE
+NW
+yJ
+yJ
+yJ
+yJ
+yJ
+CE
 qN
 cQ
 ra
 Fk
 nw
 af
-ay
-Tj
-Tj
+NW
+wf
+CE
 Bw
 Tk
 gn
@@ -20220,26 +21085,26 @@ nV
 nV
 nV
 bM
-ay
-ay
-mk
-Tj
-ay
-uX
+NW
+NW
+IV
+CE
+NW
+yJ
 uA
-uX
+yJ
 Qi
 oz
 nw
 Am
-Tj
+CE
 ra
 EI
 UN
 af
-ay
+NW
 oT
-zZ
+iA
 Bw
 fL
 ZB
@@ -20412,31 +21277,31 @@ bM
 bM
 bM
 ne
-ay
-Tj
+NW
+CE
 KQ
-ay
-uX
+NW
+yJ
 HZ
-uX
+yJ
 CO
-uX
+yJ
 kW
 Am
-Tj
-uX
-zZ
-XJ
+CE
+yJ
+iA
+KP
 iW
-ay
-zZ
-Tj
+NW
+Fv
+CE
 Bw
-uX
-uX
-uX
-uX
-uX
+yJ
+yJ
+yJ
+yJ
+yJ
 Bw
 he
 he
@@ -20604,30 +21469,30 @@ nV
 hg
 ne
 ym
-Tj
-Tj
-ay
-uX
-uX
+CE
+CE
+NW
+yJ
+yJ
 iW
 iW
-uX
+yJ
 cQ
 Rw
-Tj
-Tj
+CE
+CE
 cL
 FM
-zZ
-ay
-Tj
-Tj
+iA
+NW
+wf
+CE
 Bw
-uX
+yJ
 iW
-uX
+yJ
 iW
-js
+aP
 Bw
 he
 Sp
@@ -20796,30 +21661,30 @@ Ls
 lq
 ZM
 Pi
-Tj
+CE
 kG
-Tj
-zZ
-zZ
-Tj
-zZ
-Tj
+CE
+iA
+iA
+CE
+iA
+CE
 zO
-Tj
+CE
 ZH
-Tj
+CE
 Af
 jm
 lP
-Tj
-Tj
+wf
+CE
 qb
-uX
+yJ
 iW
 iW
 VU
 ly
-pc
+sL
 Sp
 Sp
 Sp
@@ -20985,32 +21850,32 @@ bM
 bM
 bM
 ne
-ay
+NW
 Ju
-Tj
+CE
 iC
-Tj
-zZ
+CE
+iA
 Zq
-zZ
-zZ
-zZ
+iA
+iA
+iA
 zO
-Tj
-zZ
-zZ
-zZ
-Tj
+CE
+iA
+iA
+iA
+CE
 lP
-Tj
-Tj
+wf
+CE
 qb
-uX
-uX
-uX
-uX
-js
-Sk
+yJ
+yJ
+yJ
+yJ
+aP
+tp
 Sp
 Sp
 Sp
@@ -21175,32 +22040,32 @@ fH
 nV
 nV
 bM
-ay
-ay
+NW
+NW
 KQ
-Tj
-ay
-uX
+CE
+NW
+yJ
 iW
 iW
 iW
-uX
+yJ
 WG
-ay
-ay
-ay
+NW
+NW
+NW
 nU
-ay
-ay
-ay
-Tj
-Tj
+NW
+NW
+NW
+wf
+CE
 Bw
-uX
+yJ
 iW
 iW
-uX
-js
+yJ
+aP
 Bw
 he
 Sp
@@ -21366,32 +22231,32 @@ nV
 hF
 nV
 bM
-Pl
-ay
-Tj
-mk
-ay
-uX
+wZ
+NW
+CE
+IV
+NW
+yJ
 TV
 dv
 Gk
-uX
+yJ
 gE
-ay
+NW
 aF
-zZ
-zZ
-zZ
+iA
+iA
+iA
 ri
-ay
-Tj
-Tj
+NW
+wf
+CE
 Bw
-uX
+yJ
 iW
-uX
-uX
-uX
+yJ
+yJ
+yJ
 Bw
 he
 he
@@ -21557,26 +22422,26 @@ nV
 nV
 nV
 bM
-Pl
-ay
-Tj
-Tj
-ay
-uX
+wZ
+NW
+CE
+CE
+NW
+yJ
 vV
 iW
 UO
-uX
+yJ
 Le
-ay
+NW
 ri
-Tj
+CE
 Mx
-Tj
+CE
 nw
-ay
+NW
 uM
-Tj
+CE
 Bw
 ft
 SE
@@ -21748,26 +22613,26 @@ nV
 fa
 nV
 bM
-Pl
-ay
-Tj
-Tj
-ay
-uX
-uX
-uX
-uX
-uX
-Tj
-ay
+wZ
+NW
+CE
+CE
+NW
+yJ
+yJ
+yJ
+yJ
+yJ
+CE
+NW
 ri
 ku
 ri
 ku
 ri
-ay
+NW
 GM
-Tj
+CE
 Bw
 VF
 gn
@@ -21939,24 +22804,24 @@ nV
 pd
 nV
 bM
-Pl
-ay
+wZ
+NW
 Wq
 Wq
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
 Pv
 Wq
 Bw
@@ -22130,27 +22995,27 @@ nV
 nV
 fH
 bM
-Pl
-ay
-Tj
-Tj
-Tj
-Tj
-XJ
-Tu
-Tj
-Tj
-zZ
-Tj
-Tu
-Tj
-KQ
-Tj
-Tj
-Tj
-uM
-Tj
-ay
+wZ
+NW
+CE
+CE
+CE
+CE
+KP
+aq
+CE
+CE
+dH
+Ou
+vP
+Ou
+gB
+Ou
+Ou
+Ou
+gO
+CE
+NW
 Sp
 Sp
 Sp
@@ -22321,27 +23186,27 @@ bM
 bM
 bM
 bM
-Pl
-ay
-Tj
-Tj
-Tj
-Tj
+wZ
+NW
+CE
+CE
+CE
+CE
 lR
-Tu
+aq
 KQ
-Tj
-zZ
-zZ
-Tu
-XJ
+CE
+Fv
+iA
+aq
+KP
 Sm
 Pi
 vW
 Pi
 jf
-Tj
-ay
+CE
+NW
 Sp
 Sp
 Sp
@@ -22512,27 +23377,27 @@ pd
 Su
 bM
 Sp
-ay
-ay
+NW
+NW
 yQ
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+NW
+NW
 bD
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+NW
+NW
 yQ
-ay
-ay
+NW
+NW
 Sp
 Sp
 Sp
@@ -22703,27 +23568,27 @@ nV
 bM
 bM
 Sp
-ay
+NW
 ne
 ne
 ne
-AC
+Vu
 pD
-ay
+NW
 rX
 rX
 rX
-BV
+PV
 Fq
-BV
-BV
+XZ
+Go
 jb
 pu
-ay
-BV
-BV
-BV
-ay
+NW
+Go
+Go
+Go
+NW
 Sp
 Sp
 Sp
@@ -22894,27 +23759,27 @@ bM
 bM
 Sp
 Sp
-ay
+NW
 ni
 ne
 dW
-AC
+Vu
 xc
-ay
+NW
 rX
 Jz
 Jz
-BV
-BV
-BV
-BV
+Go
+Go
+Go
+Go
 BK
 BK
-ay
+NW
 Lu
 yx
 Vt
-ay
+NW
 he
 he
 he
@@ -23085,27 +23950,27 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
-QG
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+Cs
+NW
+NW
 Jz
 Jz
-BV
-BV
-BV
-BV
+Go
+Go
+Go
+Go
 DD
 lH
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
 Sp
 Sp
 Sp
@@ -23283,16 +24148,16 @@ Sp
 Sp
 Sp
 Sp
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
+NW
 Sp
 Sp
 Sp
@@ -23704,8 +24569,8 @@ VX
 mC
 qU
 mC
-vr
-vr
+ck
+xV
 Dw
 mC
 mC
