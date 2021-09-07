@@ -118,9 +118,14 @@
 			icon_state = "[initial(icon_state)][ratio]"
 
 		if(item_charge_meter)
-			set_item_state("-[item_modifystate][ratio]")
-	if(!item_charge_meter && item_modifystate)
-		set_item_state("-[item_modifystate]")
+			if(item_modifystate)
+				set_item_state("-[item_modifystate][ratio]")
+			else
+				set_item_state("-[ratio]")
+
+		else if(item_modifystate)
+			set_item_state("-[item_modifystate]")
+	
 	if(!ignore_inhands)
 		update_wear_icon()
 

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/guns/energy/laser.dmi'
 	icon_state = "laser"
 	item_state = "laser"
+	charge_meter = TRUE
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -23,6 +24,7 @@
 	twohanded = TRUE
 
 /obj/item/gun/energy/laser/mounted
+	charge_meter = FALSE
 	self_recharge = TRUE
 	use_external_power = TRUE
 	safety = FALSE
@@ -37,7 +39,6 @@
 	name = "SDF LR \"Strahl\""
 	desc = "A miniaturized laser rifle, remounted for robotic use only."
 	icon_state = "laser_turret"
-	charge_meter = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
@@ -128,6 +129,7 @@
 	icon = 'icons/obj/guns/energy/lascannon.dmi'
 	icon_state = "lasercannon"
 	item_state = "lasercannon"
+	charge_meter = TRUE
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
