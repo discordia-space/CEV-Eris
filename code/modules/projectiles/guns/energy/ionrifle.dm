@@ -4,6 +4,7 @@
 	icon = 'icons/obj/guns/energy/iongun.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
+	charge_meter = TRUE
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
