@@ -30,7 +30,7 @@
 		current_user = null
 	UnregisterSignal(parent, COMSIG_CLOTH_EQUIPPED)
 	var/atom/current_parent = parent
-	current_parent.description_info -=  "This item reduces sanity damage taken from enviromental factors \n"
+	current_parent.description_info -=  "This item reduces sanity damage taken from environmental factors. \n"
 	..()
 
 
