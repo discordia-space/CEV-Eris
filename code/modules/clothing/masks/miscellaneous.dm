@@ -54,6 +54,7 @@
 	flags_inv = HIDEFACE
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -106,6 +107,7 @@
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
 	flags_inv = HIDEFACE
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	body_parts_covered = 0
 
 /obj/item/clothing/mask/snorkel
@@ -205,6 +207,7 @@
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 
 /obj/item/clothing/mask/horsehead
 	name = "horse head mask"
@@ -214,6 +217,7 @@
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/mask/horsehead/New()

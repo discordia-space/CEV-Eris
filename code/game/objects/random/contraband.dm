@@ -4,6 +4,7 @@
 	allow_blacklist = TRUE
 	tags_to_spawn = list(SPAWN_CONTRABAND)
 	include_paths = list(/obj/spawner/pack/rare)
+	restricted_tags = list(SPAWN_MECH)
 
 /obj/spawner/contraband/low_chance
 	name = "low chance random illegal item"

@@ -38,6 +38,7 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	rarity_value = 30
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 	random_reagent_list = list(
 		list("amatoxin" = 10, "potassium_chloride" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
