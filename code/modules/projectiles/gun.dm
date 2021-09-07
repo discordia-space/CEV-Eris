@@ -159,8 +159,12 @@
 		hands = back = onsuit = TRUE
 	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
-			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state + state
-			item_state_slots[slot_r_hand_str] = "righthand" + wield_state + state
+			if(wield_state == "_doble")
+				item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
+				item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+			else
+				item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state + state
+				item_state_slots[slot_r_hand_str] = "righthand" + wield_state + state
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
