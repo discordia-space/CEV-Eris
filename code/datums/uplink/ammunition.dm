@@ -182,7 +182,8 @@
 	name = "Empty M12 shotgun mag"
 	desc = "M12 shotgun magazine without any ammunition. Can fit 8 shells."
 	item_cost = 1
-
+	path = /obj/item/ammo_magazine/m12/empty
+	
 /datum/uplink_item/item/ammo/m12
 	name = "M12 shotgun mag with slugs"
 	desc = "M12 shotgun magazine with slug shells loaded. Can fit 8 shells."
