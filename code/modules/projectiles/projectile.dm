@@ -392,8 +392,8 @@
 
 /obj/item/projectile/Process()
 	var/first_step = TRUE
-
-	spawn while(src && src.loc)
+	LOOP_START
+	spawn if(src && src.loc)
 		if(kill_count-- < 1)
 			on_impact(src.loc) //for any final impact behaviours
 			qdel(src)
@@ -429,7 +429,7 @@
 			tracer_effect(effect_transform)
 
 		if(!hitscan)
-			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
+			spawn(step_delay) goto LOOP_START	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
