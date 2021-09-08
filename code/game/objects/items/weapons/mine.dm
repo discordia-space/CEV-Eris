@@ -143,7 +143,7 @@
 			if (do_after(user, 5))
 				if(prob(prob_explode))
 					user.visible_message(
-						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in your hands!"),
+						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
 						SPAN_DANGER("You attempt to pick up \the [src] only to hear a beep as it explodes in your hands!")
 						)
 					explode()
