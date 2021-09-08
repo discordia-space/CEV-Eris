@@ -80,7 +80,7 @@
 		return
 	if(isliving(AM))
 		var/mob/living/M = AM
-		M.slip("the foam", 6)
+		M.slip("the foam", 3)
 
 /datum/effect/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.

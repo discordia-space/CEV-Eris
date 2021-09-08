@@ -1,7 +1,9 @@
 /obj/item/implant/explosive
 	name = "explosive implant"
 	desc = "A military grade micro bio-explosive. Highly dangerous."
-	var/elevel = "Localized Limb"
+	var/death_react = "Safe Hand"
+	var/explosion_delay = 70
+	var/removal_authorized = FALSE
 	var/phrase = "supercalifragilisticexpialidocious"
 	icon_state = "implant_evil"
 	implant_color = "r"
@@ -14,6 +16,7 @@
 
 /obj/item/implant/explosive/Destroy()
 	remove_hearing()
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/implant/explosive/get_data()
@@ -39,89 +42,99 @@
 		activate()
 		qdel(src)
 
-/obj/item/implant/explosive/activate()
+/obj/item/implant/explosive/proc/do_boom()
+	playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
+	sleep(25)
+	explosion(get_turf(src), 1, 2, 3, 3)
+	qdel(src)
+
+/obj/item/implant/explosive/activate(delay)
 	if (malfunction == MALFUNCTION_PERMANENT)
 		return
 
-	var/need_gib = null
+	STOP_PROCESSING(SSobj, src)
+	sleep(delay)
+
 	if(istype(wearer, /mob/))
 		var/mob/T = wearer
 		message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
 		log_game("Explosive implant triggered in [T] ([T.key]).")
-		need_gib = 1
 
 		if(ishuman(wearer))
-			if (elevel == "Localized Limb")
-				if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
-					wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
-					playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
-					sleep(25)
-					if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
-						part.createwound(BRUISE, 60)	//mangle them instead
-						explosion(get_turf(wearer), -1, -1, 2, 3)
-						qdel(src)
-					else
-						explosion(get_turf(wearer), -1, -1, 2, 3)
-						part.droplimb(0,DROPLIMB_BLUNT)
-						qdel(src)
-			if (elevel == "Destroy Body")
-				explosion(get_turf(T), -1, 0, 1, 6)
-				T.gib()
-			if (elevel == "Full Explosion")
-				explosion(get_turf(T), 0, 1, 3, 6)
-				T.gib()
+			if(part)
+				wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
+				playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
+				sleep(25)
+				if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
+					part.createwound(BRUISE, 60)
+					explosion(get_turf(wearer), 1, 2, 3, 3)
+					qdel(src)
+				else
+					explosion(get_turf(wearer), 1, 2, 3, 3)
+					part.droplimb(0,DROPLIMB_BLUNT)
+					qdel(src)
 
 		else
-			explosion(get_turf(wearer), 0, 1, 3, 6)
-
-	if(need_gib)
-		wearer.gib()
+			do_boom()
+	else
+		do_boom()
 
 	var/turf/t = get_turf(wearer)
 
 	if(t)
 		t.hotspot_expose(3500,125)
 
-/obj/item/implant/explosive/on_install(mob/living/source)
-	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
+/obj/item/implant/explosive/on_uninstall()
+	if(!istype(wearer) || !wearer.mind)
+		return
+	if(removal_authorized)
+		wearer.visible_message(SPAN_DANGER("\The [src] rips through \the [wearer]'s [part.name]!"))
+		part.take_damage(rand(20,40))
+		removal_authorized = FALSE
+	else
+		wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
+		if(prob(66))
+			wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+			wearer.adjustBrainLoss(200)
+			part.droplimb(FALSE, DROPLIMB_BLUNT)
+		else
+			wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+
+/obj/item/implant/explosive/proc/configure()
+	death_react = alert("Should implant be activated on user's death?", "Implant Intent", "Safe Hand", "Dead Hand")
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
-	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
-	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
+	STOP_PROCESSING(SSobj, src)
 
-/obj/item/implant/explosive/proc/small_boom()
-	if (ishuman(wearer) && part)
-		wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
-		playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
-		spawn(25)
-			if (ishuman(wearer) && part)
-				//No tearing off these parts since it's pretty much killing
-				//and you can't replace groins
-				if (part.organ_tag in list(BP_CHEST, BP_GROIN, BP_HEAD))
-					part.createwound(BRUISE, 60)	//mangle them instead
-				else
-					part.droplimb(0,DROPLIMB_BLUNT)
-			explosion(get_turf(wearer), -1, -1, 2, 3)
-			qdel(src)
+	if (death_react == "Dead Hand")
+		explosion_delay = (input("Set detonation delay in seconds:") as num) * 10
+		START_PROCESSING(SSobj, src)
+
+/obj/item/implant/explosive/Process()
+	if (!implanted)
+		STOP_PROCESSING(SSobj, src)
+		return
+
+	if(isnull(wearer))
+		activate()
+
+	else if(wearer.stat == DEAD)
+		activate(explosion_delay)
 
 /obj/item/implant/explosive/malfunction(severity)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
-		if (2)	//Weak EMP will make implant tear limbs off.
+		if (2)
+			if (prob(15))
+				activate()
+		if (1)
 			if (prob(50))
-				small_boom()
-		if (1)	//strong EMP will melt implant either making it go off, or disarming it
-			if (prob(70))
-				if (prob(50))
-					small_boom()
-				else
-					if (prob(50))
-						activate()		//50% chance of bye bye
-					else
-						meltdown()		//50% chance of implant disarming
+				activate()
+			else
+				meltdown()
 	spawn (20)
 		malfunction = MALFUNCTION_NONE
 

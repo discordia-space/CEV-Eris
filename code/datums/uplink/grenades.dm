@@ -25,12 +25,12 @@
 	path = /obj/item/storage/box/emps
 
 /datum/uplink_item/item/grenades/frag
-	name = "5xFrag Grenades"
+	name = "4xFrag Grenades"
 	item_cost = 8
 	path = /obj/item/storage/box/frag
 
 /datum/uplink_item/item/grenades/explosive
-	name = "5xHigh Explosive Grenades"
+	name = "4xHigh Explosive Grenades"
 	item_cost = 10
 	path = /obj/item/storage/box/explosive
 
