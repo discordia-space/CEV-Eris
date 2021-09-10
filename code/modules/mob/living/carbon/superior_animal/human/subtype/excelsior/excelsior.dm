@@ -7,7 +7,6 @@
 	wander = 0
 	maxHealth = 200
 	health = 200
-	gender = PLURAL
 
 	//range/ammo stuff
 	ranged = 1
@@ -66,7 +65,7 @@
 	weapon1 = /obj/item/gun/projectile/automatic/drozd
 	projectilesound = 'sound/weapons/guns/fire/smg_fire.ogg'
 
-/mob/living/carbon/superior_animal/human/excelsior/death(gibbed, deathmessage = "drops \his weapon as \his implant explodes, spraying \him in a shower of gore!")
+/mob/living/carbon/superior_animal/human/excelsior/death(gibbed, deathmessage = "drops its weapon as its implant explodes, spraying it in a shower of gore!")
 	..()
 	new /obj/effect/gibspawner/human(src.loc)
 	playsound(src, 'sound/effects/Explosion2.ogg', 75, 1, -3)
