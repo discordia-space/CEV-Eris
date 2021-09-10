@@ -62,9 +62,13 @@
 	name = "NeoTheology Radio Encryption Key"
 	build_path = /obj/item/device/encryptionkey/headset_church
 
+/datum/design/autolathe/device/landmine
+	name = "landmine"
+	build_path = /obj/item/mine
+
 /datum/design/autolathe/device/excelsiormine
 	name = "excelsior mine"
-	build_path = /obj/item/mine
+	build_path = /obj/item/mine/excelsior
 
 /datum/design/autolathe/device/grenade/nt_cleaner
 	name = "NT \"Cleanse Capsule\""
