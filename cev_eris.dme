@@ -1945,6 +1945,8 @@
 #include "code\modules\mob\living\carbon\superior_animal\giant_spider\life.dm"
 #include "code\modules\mob\living\carbon\superior_animal\giant_spider\types\hunter.dm"
 #include "code\modules\mob\living\carbon\superior_animal\giant_spider\types\nurse.dm"
+#include "code\modules\mob\living\carbon\superior_animal\human\human.dm"
+#include "code\modules\mob\living\carbon\superior_animal\human\subtype\excelsior\excelsior.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\ai.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\attack.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\blattedin.dm"
