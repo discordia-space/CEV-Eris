@@ -429,7 +429,9 @@
 			tracer_effect(effect_transform)
 
 		if(!hitscan)
-			spawn(step_delay) goto LOOP_START	//add delay between movement iterations if it's not a hitscan weapon
+			spawn(step_delay) goto LOOP_START 	//add delay between movement iterations if it's not a hitscan weapon
+		else
+			goto LOOP_START
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
