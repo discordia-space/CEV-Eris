@@ -1,0 +1,8 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: shoes and bags designs to NT bio-fabric disc
+  - rscadd: spare IDs box in preacher locker
+  - rscdel: bay leftover designs from NT bio-fabric disc
+  - tweak: replaced generic cells in NT lockers with NT-manufactured cells
+  - tweak: NT tactical belt now can hold svalinn.
