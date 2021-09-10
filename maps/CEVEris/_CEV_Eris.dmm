@@ -18483,13 +18483,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/barracks)
 "aTO" = (
-/obj/structure/reagent_dispensers/watertank,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/barracks)
@@ -33501,6 +33504,11 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
