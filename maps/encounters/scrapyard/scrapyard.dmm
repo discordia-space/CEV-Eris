@@ -572,7 +572,6 @@
 /area/outpost/junkyard/ship/geary)
 "ef" = (
 /obj/effect/window_lwall_spawn/reinforced,
-/obj/machinery/door/airlock/command,
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
 "eh" = (
@@ -603,6 +602,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/rocinante)
+"eJ" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "eM" = (
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 4
@@ -1186,6 +1193,11 @@
 	name = "Surgery"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "jz" = (
@@ -1547,6 +1559,14 @@
 /obj/structure/lattice,
 /turf/simulated/wall,
 /area/outpost/junkyard/station/beta)
+"lX" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "lY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toilet,
@@ -1700,6 +1720,11 @@
 	name = "Crew Quarters"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "nw" = (
@@ -1727,6 +1752,11 @@
 	dir = 1;
 	name = "Hospital Ship Crew Quarters APC";
 	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	dir = 1;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
@@ -1847,6 +1877,14 @@
 "oH" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
+"oN" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "oQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2070,6 +2108,14 @@
 /obj/machinery/door/blast/shutters/glass,
 /turf/simulated/floor/tiled/white,
 /area/outpost/junkyard/station/delta)
+"qk" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "qn" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2219,6 +2265,14 @@
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
+"rG" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "rJ" = (
 /obj/effect/decal/cleanable/blood,
 /mob/living/simple_animal/hostile/alien/drone,
@@ -2367,6 +2421,15 @@
 /obj/spawner/gun/normal,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
+"te" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "tf" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
@@ -2949,6 +3012,18 @@
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"xA" = (
+/obj/machinery/door/airlock/medical{
+	name = "Recovery Room"
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "xE" = (
 /turf/simulated/floor/exoplanet/barren,
 /area/outpost/junkyard/ship/geary)
@@ -3302,6 +3377,14 @@
 /obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/junkyard/ship/canterbury)
+"AS" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "AU" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 4
@@ -3521,6 +3604,15 @@
 /mob/living/simple_animal/hostile/alien/drone,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/canterbury)
+"Dv" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/cell/large;
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/lehrer)
 "Dw" = (
 /obj/structure/closet/crate,
 /obj/machinery/power/apc{
@@ -3612,6 +3704,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/epstein)
+"Ed" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "Ee" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/dark,
@@ -3634,6 +3734,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/junkyard/ship/canterbury)
+"Eq" = (
+/obj/structure/closet/crate,
+/obj/spawner/powercell/large,
+/obj/spawner/powercell/large,
+/obj/spawner/powercell/large,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/lehrer)
 "Er" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/airlock,
@@ -3950,6 +4057,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station/beta)
+"Gw" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engineering"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "GA" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techmaint,
@@ -4418,7 +4536,7 @@
 /area/outpost/junkyard/station/beta)
 "KM" = (
 /obj/structure/sink{
-	dir = 8;
+	dir = 4;
 	pixel_x = 11
 	},
 /obj/structure/toilet{
@@ -4754,6 +4872,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/rocinante)
+"MY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/junkyard/ship/geary)
 "Nb" = (
 /obj/machinery/optable,
 /obj/item/storage/firstaid/regular,
@@ -5214,6 +5341,11 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	dir = 1;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "RK" = (
@@ -5345,6 +5477,10 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
@@ -5676,6 +5812,7 @@
 "Vn" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/item/tool/wrench,
+/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/junkyard/ship/geary)
 "Vs" = (
@@ -5937,17 +6074,24 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station/beta)
+"XH" = (
+/obj/machinery/door/airlock/medical{
+	name = "Surgery"
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/junkyard/ship/geary)
 "XJ" = (
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/station/beta)
 "XK" = (
 /obj/structure/table/standard,
 /obj/structure/bedsheetbin,
-/obj/machinery/power/apc{
-	cell_type = null;
-	name = "South APC";
-	pixel_y = -28
-	},
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/junkyard/ship/canterbury)
 "XL" = (
@@ -15320,7 +15464,7 @@ SC
 Bh
 xE
 Bh
-SC
+lX
 Vn
 hI
 Sp
@@ -15398,7 +15542,7 @@ Sp
 Sp
 Sp
 Hl
-CS
+Eq
 nS
 TF
 Hl
@@ -15511,7 +15655,7 @@ SC
 Bh
 xE
 Bh
-SC
+qk
 VI
 Bh
 Sp
@@ -15780,7 +15924,7 @@ Sp
 Sp
 Sp
 Hl
-CS
+Dv
 CS
 CS
 Ce
@@ -15894,7 +16038,7 @@ Bh
 Er
 Bh
 St
-SC
+rG
 Zf
 hI
 Sp
@@ -16085,7 +16229,7 @@ Bh
 EB
 Bh
 Bh
-uK
+Gw
 Bh
 Bh
 Sp
@@ -16269,14 +16413,14 @@ Sp
 Sp
 Bh
 Bh
-Xg
-Xg
-jw
-Xg
-Zy
-Xg
-SB
-Xg
+AS
+oN
+XH
+oN
+te
+oN
+xA
+Ed
 Xg
 Bh
 Bh
@@ -16460,7 +16604,7 @@ Sp
 Bh
 Bh
 hP
-Xg
+eJ
 vl
 Bh
 Aw
@@ -16650,8 +16794,8 @@ Sp
 Sp
 ZI
 Xg
-Xg
-Xg
+AS
+Ed
 kM
 Bh
 Bh
@@ -17032,7 +17176,7 @@ Sp
 Bh
 bR
 dx
-Xg
+eJ
 pm
 Bh
 zt
@@ -17223,7 +17367,7 @@ Sp
 Bh
 Bh
 Bh
-Xg
+eJ
 xZ
 Bh
 mp
@@ -17414,7 +17558,7 @@ Sp
 Bh
 bR
 dA
-Xg
+eJ
 qe
 Bh
 zH
@@ -17796,7 +17940,7 @@ Sp
 Oc
 SC
 Oc
-Xg
+eJ
 qH
 Bh
 Bh
@@ -17987,7 +18131,7 @@ Sp
 Bh
 Bh
 Bh
-Zy
+MY
 rD
 Jc
 Bh
@@ -18178,7 +18322,7 @@ Sp
 Sp
 ZI
 ed
-Xg
+eJ
 Zy
 Xg
 Ah
