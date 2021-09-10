@@ -1,7 +1,6 @@
 /mob/living/carbon/superior_animal/human/excelsior
-	name = "Excelsior Slave"
-	desc = "An excelsior rank and file, often converted unwillingly, making them nothing more than cannon fodder as they fight against the implant controlling them. These ones are too far gone, \
-	worn down from years of abuse, death is the only mercy they can have."
+	name = "Excelsior Grunt"
+	desc = "An excelsior rank and file, often converted unwillingly, making them nothing more than cannon fodder as they fight in the name of Haven."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "excel_makarov"
 	stop_automated_movement_when_pulled = 1
@@ -39,6 +38,13 @@
 
 	var/weapon1 = /obj/item/gun/projectile/selfload/makarov
 	faction = "excelsior"
+
+/mob/living/carbon/superior_animal/human/excelsior/excel_boltgun
+	icon_state = "excel_boltgun"
+	rapid = 0
+	projectiletype = /obj/item/projectile/bullet/lrifle/hv
+	weapon1 = /obj/item/gun/projectile/boltgun
+	projectilesound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 
 /mob/living/carbon/superior_animal/human/excelsior/excel_ak
 	icon_state = "excel_ak"
