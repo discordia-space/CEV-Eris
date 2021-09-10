@@ -1,5 +1,5 @@
 /mob/living/carbon/superior_animal/human/excelsior
-	name = "Excelsior Grunt"
+	name = "Excelsior grunt"
 	desc = "An excelsior rank and file, often converted unwillingly, making them nothing more than cannon fodder as they fight in the name of Haven."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "excel_makarov"
