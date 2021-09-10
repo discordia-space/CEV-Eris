@@ -1,3 +1,5 @@
+#define BALACLAVA_SANITY_COEFF_BUFF 1.6
+
 /obj/item/clothing/mask/balaclava
 	name = "balaclava"
 	desc = "Designed to both hide your face and keep it comfy and warm."
@@ -8,6 +10,10 @@
 	body_parts_covered = FACE|HEAD
 	w_class = ITEM_SIZE_SMALL
 	var/open = 0 //0 = full, 1 = head only, 2 = face only
+
+/obj/item/clothing/mask/balaclava/New()
+	..()
+	AddComponent(/datum/component/clothing_sanity_protection, BALACLAVA_SANITY_COEFF_BUFF)
 
 /obj/item/clothing/mask/balaclava/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))

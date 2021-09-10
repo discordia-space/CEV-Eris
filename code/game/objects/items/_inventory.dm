@@ -65,7 +65,7 @@
 	if(wielded)
 		unwield(user)
 	SEND_SIGNAL(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
-	SEND_SIGNAL(src, COMSIG_CLOTH_EQUIPPED)
+	SEND_SIGNAL(src, COMSIG_CLOTH_EQUIPPED, user)
 
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc
