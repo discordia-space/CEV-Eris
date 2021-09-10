@@ -1,0 +1,5 @@
+author: HentaiStorm
+delete-after: true
+changes:
+  - rscdel: Rename phoron reference
+  - bugfix: Allows you to see orange and sleeping gas
