@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Clothing sanity component from  improperly destroying
+  - bugfix: Holsters deleting guns when pulled out into a occupied hand
