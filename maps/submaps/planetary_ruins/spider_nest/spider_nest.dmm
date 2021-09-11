@@ -10,6 +10,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "d" = (

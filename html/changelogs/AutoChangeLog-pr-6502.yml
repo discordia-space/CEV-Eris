@@ -1,0 +1,4 @@
+author: SugarBone
+delete-after: true
+changes:
+  - bugfix: enables falling through an open space after a change in gravity

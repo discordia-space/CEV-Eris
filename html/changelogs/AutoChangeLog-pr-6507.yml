@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed holstered weapons with the auto-firemode breaking upon being unholstered

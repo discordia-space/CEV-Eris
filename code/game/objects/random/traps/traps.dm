@@ -36,11 +36,13 @@
 //Checks if a trap can spawn in this location
 /proc/can_spawn_trap(turf/T, trap)
 	.=TRUE
-	if(ispath(trap, /obj/structure/wire_splicing))
-		if(locate(/obj/structure/cable) in dview(3, T))
-			return TRUE
 	if(locate(trap) in T)
 		return FALSE
+	if(ispath(trap, /obj/structure/wire_splicing))
+		if(locate(/obj/structure/cable) in dview(3, T))
+			return
+		else
+			return FALSE
 
 /obj/spawner/traps/find_smart_point(path)
 	var/list/spawn_points = ..()

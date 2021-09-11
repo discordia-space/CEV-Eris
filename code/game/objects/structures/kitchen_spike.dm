@@ -12,21 +12,24 @@
 	var/meat_type
 	var/victim_name = "corpse"
 
-/obj/structure/kitchenspike/affect_grab(var/mob/user, var/mob/living/target)
+/obj/structure/kitchenspike/affect_grab(mob/user, mob/living/target, state)
 	if(occupied)
-		to_chat(user, SPAN_DANGER("The spike already has something on it, finish collecting its meat first!"))
-	else
-		if(spike(target))
-			visible_message(SPAN_DANGER("[user] has forced [target] onto the spike, killing them instantly!"))
-			for(var/obj/item/thing in target)
-				if(thing.is_equipped())
-					target.drop_from_inventory(thing)
-			qdel(target)
-			return TRUE
-		else
-			to_chat(user, SPAN_DANGER("They are too big for the spike, try something smaller!"))
+		to_chat(user, SPAN_DANGER("\The [src] already has something on it, finish collecting its meat first!"))
+		return FALSE
+	if(state != GRAB_KILL)
+		to_chat(user, SPAN_NOTICE("You need to grab \the [target] by the neck!"))
+		return FALSE
+	if(spike(target))
+		visible_message(SPAN_DANGER("[user] has forced [target] onto \the [src], killing them instantly!"))
+		for(var/obj/item/thing in target)
+			if(thing.is_equipped())
+				target.drop_from_inventory(thing)
+		qdel(target)
+		return TRUE
+	to_chat(user, SPAN_DANGER("They are too big for \the [src], try something smaller!"))
+	return FALSE
 
-/obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
+/obj/structure/kitchenspike/proc/spike(mob/living/victim)
 
 	if(!istype(victim))
 		return
@@ -36,14 +39,14 @@
 		meat_type = H.species.meat_type
 		icon_state = "spike_[H.species.name]"
 	else
-		return 0
+		return FALSE
 
 	victim_name = victim.name
-	occupied = 1
+	occupied = TRUE
 	meat = 5
-	return 1
+	return TRUE
 
-/obj/structure/kitchenspike/attack_hand(mob/living/carbon/user)
+/obj/structure/kitchenspike/attack_hand(mob/living/carbon/human/user)
 	if(..() || !occupied)
 		return
 	meat--
@@ -52,10 +55,10 @@
 		to_chat(user, "You remove some meat from \the [victim_name].")
 	else if(meat == 1)
 		to_chat(user, "You remove the last piece of meat from \the [victim_name]!")
-		icon_state = "spike"
+		icon_state = initial(icon_state)
 		occupied = 0
 	if(meat_type == user.species.meat_type)
-		user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition) // The more hungry the less sanity damage.
+		user.sanity.changeLevel(-(15*((user.nutrition ? user.nutrition : 1)/user.max_nutrition))) // The more hungry the less sanity damage.
 		to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity dismantling as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 
 
@@ -71,7 +74,13 @@
 				qdel(src)
 			return
 		else
-			to_chat(user, SPAN_DANGER("The spike has something on it, finish collecting its meat first!"))
+			to_chat(user, SPAN_DANGER(" \The [src] has something on it, finish collecting its meat first!"))
 			return
 
 	return ..()
+
+/obj/structure/kitchenspike/examine(mob/user, distance, infix, suffix)
+	if(distance < 4)
+		to_chat(user, SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"))
+	..()
+

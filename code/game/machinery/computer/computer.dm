@@ -122,6 +122,11 @@
 				A.icon_state = "4"
 			circuit.deconstruct(src)
 			qdel(src)
+
+	else if(istype(I, /obj/item/device/spy_bug))
+		user.drop_item()
+		I.loc = get_turf(src)
+
 	else
 		..()
 

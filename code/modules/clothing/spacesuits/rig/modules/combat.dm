@@ -155,7 +155,7 @@
 	gun_type = /obj/item/gun/energy/taser/mounted
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
-/obj/item/rig_module/mounted/energy_blade
+/obj/item/rig_module/energy_blade
 	name = "energy blade projector"
 	desc = "A powerful cutting beam projector."
 	icon_state = "eblade"
@@ -164,7 +164,7 @@
 	deactivate_string = "Cancel Blade"
 
 	interface_name = "spider fang blade"
-	interface_desc = "A lethal energy projector that can shape a blade projected from the hand of the wearer or launch radioactive darts."
+	interface_desc = "A lethal energy projector that can shape a blade projected from the hand of the wearer."
 
 	usable = 0
 	selectable = 1
@@ -173,9 +173,8 @@
 	active_power_cost = 10
 	passive_power_cost = 0
 	rarity_value = 100
-	gun_type = /obj/item/gun/energy/crossbow/ninja
 
-/obj/item/rig_module/mounted/energy_blade/Process()
+/obj/item/rig_module/energy_blade/Process()
 
 	if(holder && holder.wearer)
 		if(!(locate(/obj/item/melee/energy/blade) in holder.wearer))
@@ -184,7 +183,7 @@
 
 	return ..()
 
-/obj/item/rig_module/mounted/energy_blade/activate()
+/obj/item/rig_module/energy_blade/activate()
 
 	..()
 
@@ -199,7 +198,7 @@
 	blade.creator = M
 	M.put_in_hands(blade)
 
-/obj/item/rig_module/mounted/energy_blade/deactivate()
+/obj/item/rig_module/energy_blade/deactivate()
 
 	..()
 

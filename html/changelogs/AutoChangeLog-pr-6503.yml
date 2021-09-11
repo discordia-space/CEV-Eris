@@ -1,0 +1,7 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscadd: Added the sanity_damage_reduction component for clothing
+  - rscadd: Made balaclavas and any subtype of gasmasks reduce sanity damage fron
+      environment by 60%
+  - bugfix: Clothing signals not working as expected.
