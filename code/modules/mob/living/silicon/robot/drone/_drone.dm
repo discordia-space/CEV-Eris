@@ -375,9 +375,9 @@ var/list/mob_hat_cache = list()
 	. = ..()
 
 /mob/living/silicon/robot/drone/aibound/proc/back_to_core()
-	if(bound_ai && src.mind)
-		bound_ai.ckey = src.ckey
-		src.mind.transfer_to(bound_ai) // Transfer mind to AI core
+	if(bound_ai && mind)
+		bound_ai.ckey = ckey
+		mind.transfer_to(bound_ai) // Transfer mind to AI core
 	else
 		to_chat(src, SPAN_WARNING("No AI core detected."))
 
@@ -418,7 +418,7 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/use_power()
 	..()
-	if(!src.has_power)
+	if(!has_power)
 		to_chat(src, SPAN_WARNING("Your AI bound drone runs out of power!"))
 		back_to_core()
 

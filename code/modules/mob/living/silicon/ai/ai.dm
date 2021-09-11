@@ -766,7 +766,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/pull_to_core()
 	if (bound_drone?.mind)  // If drone exists and AI is inside it
-		src.ckey = bound_drone.ckey
+		ckey = bound_drone.ckey
 		bound_drone.mind.transfer_to(src) // Pull back mind to AI core
 
 /mob/living/silicon/ai/proc/go_into_drone()
@@ -777,10 +777,13 @@ var/list/ai_verbs_default = list(
 		else
 			var/remaining = (drone_cooldown_time - (world.time - time_destroyed)) / 10
 			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [remaining] seconds before creating a new AI bound drone."))
-	else if(src?.mind)
-		bound_drone.ckey = src.ckey
-		bound_drone.laws = src.laws // Resync laws in case they have been changed
-		src.mind.transfer_to(bound_drone) // Transfer mind to drone
+	else if(mind)
+		bound_drone.ckey = ckey
+		bound_drone.laws = laws // Resync laws in case they have been changed
+		mind.transfer_to(bound_drone) // Transfer mind to drone
 
 /mob/living/silicon/ai/proc/destroy_drone()
-	bound_drone.death(TRUE)
+	if(bound_drone)
+		bound_drone.death(TRUE)
+	else
+		to_chat(src, SPAN_WARNING("You have no active AI-bound maintenance drone."))
