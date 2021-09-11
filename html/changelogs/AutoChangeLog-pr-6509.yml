@@ -1,0 +1,4 @@
+author: HentaiStorm
+delete-after: true
+changes:
+  - bugfix: loot spawn error

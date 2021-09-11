@@ -39,7 +39,7 @@
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	rarity_value = 30
 	random_reagent_list = list(
-		list("mindbreaker" = 10, "space_drugs" = 20)	= 3,
+		list("amatoxin" = 10, "potassium_chloride" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)

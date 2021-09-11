@@ -28,6 +28,10 @@
 		SK.master = E
 		qdel(src)
 
+	else if(istype(W, /obj/item/device/spy_bug))
+		user.drop_item()
+		W.loc = get_turf(src)
+
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
 		..()

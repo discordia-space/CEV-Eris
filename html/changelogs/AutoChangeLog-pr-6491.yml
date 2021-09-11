@@ -1,0 +1,13 @@
+author: githubuser4141
+delete-after: true
+changes:
+  - rscadd: Adds a function plasma cutter for Exosuits, a hitscan 'laser' that does
+      25 brute damage w/ 10 AP. Isn't a true laser and gets blocked by windows.
+  - balance: See above/below, also changed the plasma cutter recipe to require plasteel
+      instead of uranium. Removes the 33% chance for the Mech Clamp's melee to miss
+      completely.
+  - bugfix: Fixes the Exosuit drills having 2 durability and fixes the Exosuit plasma
+      cutter not firing. Credit to Occulus-Eris for the fixes!
+  - imageadd: Ports Baystation plasma cutter beam sprites
+  - code_imp: Adds a plasma cutter for exosuits, buffs it to be slightly competitive
+      with Eris weapons, fixes Exosuit drills breaking instantly on use

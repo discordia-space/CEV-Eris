@@ -113,6 +113,10 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/get_goods(obj/item/device/uplink/U, loc)
 	var/obj/item/I = new path(loc)
+	if(path == /obj/item/storage/box/syndie_kit/imp_explosive)
+		var/obj/item/implanter/explosive/implanter
+		for(implanter in I.contents)
+			U.linked_implants += implanter.implant
 	return I
 
 /datum/uplink_item/item/description()

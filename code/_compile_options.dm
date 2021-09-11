@@ -53,8 +53,9 @@
 #define MIN_COMPILER_BUILD 1513
 #if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
 //Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513.1514 or higher
+#warn Your version of BYOND is too out-of-date to compile this project.
+#warn Go to https://secure.byond.com/download and update.
+#warn You need version 513.1513 or higher
 #endif
 
 //Don't load extools on 514 and 513.1539+

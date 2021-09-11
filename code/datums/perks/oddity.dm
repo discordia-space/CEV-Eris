@@ -232,7 +232,7 @@
 /datum/perk/nt_oddity/holy_light
 	name = "Holy Light"
 	desc = "You have been touched by the divine. You now provide a weak healing aura, healing both brute and burn damage to any NeoThelogists nearby as well as yourself."
-	icon_state = "third_eye"  //https://game-icons.net/1x1/lorc/third-eye.html
+	icon_state = "aura"  //https://game-icons.net/1x1/lorc/aura.html
 	var/healing_power = 0.1
 	var/cooldown = 1 SECONDS // Just to make sure that perk don't go berserk.
 	var/initial_time
