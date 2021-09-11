@@ -69,17 +69,26 @@
 
 
 /obj/item/storage/belt/sheath/judgement/filled/New()
+	new/obj/item/tool/sword/katana/spatial_cutter(src)
+	. = ..()
+
+/obj/item/storage/belt/sheath/judgement/exultor
+	icon_state = "exultor_sheath"
+
+/obj/item/storage/belt/sheath/judgement/exultor/filled/New()
 	new/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie(src)
 	. = ..()
 
 /obj/item/tool/sword/katana/spatial_cutter
-	name = "saber"
-	desc = "This is a strange sword that leaves an afterimage of it as you swing it in the air. It have slightly curved, blade with a single edge."
+	name = "spatial cutter"
+	desc = "This is a strange sword that leaves an afterimages of itself, that following it, as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. Handle is encrusted with a cyan crystal."
+	icon_state = "2ndkey"
+
 	spawn_blacklisted = TRUE
 	var/LifeTimeOfSpatialCuts = 5 SECONDS
 
 	var/list/SpatialCuts = list()
-	var/SpatialCutsColor = "#ffffff"
+	var/SpatialCutsColor = "#8888ff"
 	var/SpatialCutsType = /atom/movable/SpatialCut
 
 	var/tmp/next_spatial_cut = 0
@@ -102,16 +111,21 @@
 				C.Activate(user)
 		if(.)
 			playsound(get_turf(src), 'sound/effects/portal_open.ogg', 100, use_pressure = FALSE)
-/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie
-	name = "Sword of Lie"
-	desc = "This is a strange sword that leaves an afterimages of itself, that following it, as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. Handle is encrusted with a cyan crystal."
-	icon_state = "2ndkey"
-	SpatialCutsColor = "#88ffff"
+
+/obj/item/tool/sword/katana/spatial_cutter/yamato
+	name = "yamato"
+	desc = "This is a strange katana that leaves an afterimage of it as you swing it in the air. When you look at it you almost hear a male voice whispering something into your head, but can't understand what exactly."
+	icon_state = "yamato"
+	SpatialCutsColor = "#88ccdd"
 	ActivateSpatialCuts(obj/item/storage/belt/sheath/judgement/sheath)
 		. = ..()
 		if(.)
 			var/quote = "<b>Voice from somewhere</b> says, \"[pick("Too slow.", "Out of my way!", "Just like old times.")]\""
 			audible_message(quote, "You almost can hear someone's voice.", 3)
+
+/obj/item/tool/sword/katana/spatial_cutter/sword_of_lie
+	name = "Sword of Lie"
+	icon_state = "exultant"
 
 /obj/item/tool/sword/katana/spatial_cutter/sword_of_lie/New()
 	. = ..()
