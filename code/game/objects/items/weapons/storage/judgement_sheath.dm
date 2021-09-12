@@ -81,7 +81,7 @@
 
 /obj/item/tool/sword/katana/spatial_cutter
 	name = "spatial cutter"
-	desc = "This is a strange sword that leaves an afterimages of itself, that following it, as you swing it in the air. It have slightly curved, blade with a single edge. When you look at it you almost hear a male whispers in your head. Handle is encrusted with a cyan crystal."
+	desc = "This is a strange sword that leaves behind an afterimages of itself, that is following it, as you swing it in the air. It has a slightly curved blade with a single edge. When you look at it you almost hear a storm that is approaching. Handle is encrusted with a cyan crystal."
 	icon_state = "2ndkey"
 
 	spawn_blacklisted = TRUE
