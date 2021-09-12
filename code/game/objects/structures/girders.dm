@@ -287,7 +287,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle(mob/living/user)
-	drop_materials(drop_location())
+	drop_materials(drop_location(), user)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

@@ -92,6 +92,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
+	add_fingerprint(user)
 	interact(user)
 
 /obj/item/device/radio/interact(mob/user)

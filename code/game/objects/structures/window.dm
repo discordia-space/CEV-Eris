@@ -119,7 +119,7 @@
 	if (explode)
 		nearby = (RANGE_TURFS(2, src) - get_turf(src))
 	else
-		nearby = (RANGE_TURFS(1, src)) - get_turf(src))
+		nearby = (RANGE_TURFS(1, src) - get_turf(src))
 
 	if(display_message)
 		visible_message("[src] shatters!")
