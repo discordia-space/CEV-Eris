@@ -62,7 +62,7 @@
 	var/initialhealth = health
 
 	if (!ignore_resistance)
-		damage = damage * (1 - silicate / 200) // up to 50% damage resistance 
+		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
 		damage -= resistance // then flat resistance from material
 	if (damage <= 0)
 		return 0
@@ -118,6 +118,8 @@
 	var/list/turf/nearby
 	if (explode)
 		nearby = (RANGE_TURFS(2, src) - get_turf(src))
+	else
+		nearby = (RANGE_TURFS(1, src)) - get_turf(src))
 
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -128,7 +130,7 @@
 			new /obj/item/stack/rods(loc)
 		while(index < rand(4,6))
 			var/obj/item/material/shard/S = new shardtype(loc)
-			if (explode && nearby.len > 0)
+			if (nearby.len > 0)
 				var/turf/target = pick(nearby)
 				spawn()
 					S.throw_at(target,40,3)
@@ -305,10 +307,13 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+						var/obj/glass
 						if(is_fulltile())
-							new glasstype(loc, 6)
+							glass = new glasstype(loc, 6)
 						else
-							new glasstype(loc, 1)
+							glass = new glasstype(loc, 1)
+						glass.add_fingerprint(user)
+
 						qdel(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
