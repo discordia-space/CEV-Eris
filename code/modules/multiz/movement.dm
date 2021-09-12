@@ -222,6 +222,12 @@
 /mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	// Special condition for jetpack mounted folk!
 	if (!restrained())
+		if(stats.getPerk(PERK_PARKOUR))
+			for(var/obj/structure/low_wall/LW in view(src, 1))
+				return FALSE
+			for(var/obj/structure/railing/R in get_turf(src))
+				return FALSE
+
 		if (CanAvoidGravity())
 			return FALSE
 
