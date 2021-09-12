@@ -193,6 +193,7 @@
 		/obj/item/tool/knife/neotritual,
 		/obj/item/gun/energy/crossbow,
 		/obj/item/tool/knife/dagger/nt,
+		/obj/item/gun/energy/nt_svalinn,
 		/obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE
