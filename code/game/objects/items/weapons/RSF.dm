@@ -19,7 +19,7 @@ RSF
 
 /obj/item/rsf/examine(mob/user)
 	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 fabrication-units.")
+		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/stack/material/M = W
@@ -28,9 +28,7 @@ RSF
 		if(M.use(amount) && stored_matter < max_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src].</span>. The RSF now holds [stored_matter]/30 matter-units.")
-		if (M.use(amount) && stored_matter >= max_stored_matter)
-			to_chat(user, "<span class='notice'>The RSF is full.")
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
 	else
 		..()
 /obj/item/rsf/attack_self(mob/user as mob)

@@ -243,10 +243,8 @@
 		if(M.use(amount) && stored_matter < max_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src].</span>. The RXD now holds [stored_matter]/60 matter-units.")
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
 			update_icon()	//Updates the ammo counter
-		if (M.use(amount) && stored_matter >= max_stored_matter)
-			to_chat(user, "<span class='notice'>The RXD is full.")
 	else
 		..()
 	if(istype(W, /obj/item/arrow/RCD))
@@ -278,9 +276,8 @@
 		icon_state = "rxb"
 
 /obj/item/gun/launcher/crossbow/RCD/examine(user)
-	. = ..()
-	if(.)
-		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")
+	if(..(user, 0))
+		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] Compressed Matter.")
 
 
 /obj/item/arrow/ironrod

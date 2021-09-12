@@ -56,10 +56,8 @@
 		if(M.use(amount) && stored_matter < max_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src].</span>. The RCD now holds [stored_matter]/30 matter-units.")
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
 			update_icon()	//Updates the ammo counter
-		if (M.use(amount) && stored_matter >= max_stored_matter)
-			to_chat(user, "<span class='notice'>The RCD is full.")
 	else
 		..()
 
