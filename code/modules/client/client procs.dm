@@ -31,6 +31,10 @@
 
 	//Admin PM
 	if(href_list["priv_msg"])
+		var/client/C = locate(href_list["priv_msg"])
+		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+			var/mob/M = C
+			C = M.client
 		cmd_admin_pm(C,null)
 		return
 
