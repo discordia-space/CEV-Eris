@@ -459,3 +459,27 @@
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 600
+
+/obj/item/clothing/suit/suicidevest
+	name = "bomb vest"
+	desc = "A mess of wire and unstable plasma crystals, fashioned into a bomb. Designed to be strapped to the torso."
+	icon_state = "bombvest"
+	item_state = "bombvest"
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/suicidevest/ignite_act()
+	Detonate()
+
+/obj/item/clothing/suit/suicidevest/verb/Detonate()
+	var/turf/T = get_turf(loc)
+	explosion(T,-1,2,5,15)
+	if(src)
+		qdel(src)
