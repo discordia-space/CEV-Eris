@@ -349,8 +349,6 @@
 	base_icon = "_cup"
 	filling_states = "100"
 
-//obj/item/reagent_containers/food/drinks/britcup //Delete this when Clockrigger is done with map changes.
-
 
 //tea and tea accessories
 /obj/item/reagent_containers/food/drinks/tea

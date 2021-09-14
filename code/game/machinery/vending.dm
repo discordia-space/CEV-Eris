@@ -1332,7 +1332,8 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/tray = 8,
+	products = list(
+	/obj/item/tray = 8,
 	/obj/item/material/kitchen/utensil/fork = 6,
 	/obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6,
 	/obj/item/tool/knife = 3,
