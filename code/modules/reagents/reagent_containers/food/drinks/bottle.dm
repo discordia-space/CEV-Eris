@@ -302,6 +302,7 @@
 	icon_state = "grenadinebottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("grenadine" = 100)
+	icon_state_empty = "grenadinebottle"
 
 /obj/item/reagent_containers/food/drinks/bottle/cola
 	name = "\improper Space Cola"
