@@ -83,7 +83,7 @@
 	icon_state = "technomancers"
 	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON
-	license = 10
+	license = -1
 	designs = list(
 		/datum/design/autolathe/conveyor = 0,
 		/datum/design/autolathe/conveyor_switch = 0,
