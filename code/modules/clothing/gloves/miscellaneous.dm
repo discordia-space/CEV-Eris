@@ -16,6 +16,7 @@
 	permeability_coefficient = 0.05
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -23,6 +24,7 @@
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
 	permeability_coefficient = 0.05
 	price_tag = 50
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/gloves/insulated/cheap/Initialize(mapload, ...)
 	. = ..()
