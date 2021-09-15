@@ -33,6 +33,40 @@
 	pockets.emp_act(severity)
 	..()
 
+/obj/item/clothing/suit/storage/verb/prime_grenades(mob/user)
+	set name = "Prime grenades"
+	set category = "Object"
+	set src in usr
+
+	if(usr.incapacitated(INCAPACITATION_UNCONSCIOUS))
+		to_chat(usr, "You are unconcious and cannot do that!")
+		return
+
+	if(usr.incapacitated(INCAPACITATION_RESTRAINED))
+		to_chat(usr, "You are restrained and cannot do that!")
+		return
+
+	var/primed
+	for(var/obj/item/grenade/G in pockets.contents)
+		G.activate(user)
+		primed++
+
+	if(!primed)
+		to_chat(user, "There is no grenades inside.")
+		return
+
+	if(primed == 1)
+		user.visible_message(
+			SPAN_DANGER("[user] pulls the safety pin from grenade on [src]!"),
+			SPAN_DANGER("You prime the grenade on [src]!"))
+		return
+
+	else
+		user.visible_message(
+			SPAN_DANGER("[user] pulls the safety pins from grenades on [src]!"),
+			SPAN_DANGER("You prime the grenades on [src]!"))
+		return
+
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
 	bad_type = /obj/item/clothing/suit/storage/toggle

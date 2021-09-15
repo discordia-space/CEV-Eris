@@ -177,6 +177,40 @@
 		/obj/item/taperoll
 	)
 
+/obj/item/storage/belt/tactical/verb/prime_grenades(mob/user)
+	set name = "Prime grenades"
+	set category = "Object"
+	set src in usr
+
+	if(usr.incapacitated(INCAPACITATION_UNCONSCIOUS))
+		to_chat(usr, "You are unconcious and cannot do that!")
+		return
+
+	if(usr.incapacitated(INCAPACITATION_RESTRAINED))
+		to_chat(usr, "You are restrained and cannot do that!")
+		return
+
+	var/primed
+	for(var/obj/item/grenade/G in contents)
+		G.activate(user)
+		primed++
+
+	if(!primed)
+		to_chat(user, "There is no grenades inside.")
+		return
+
+	if(primed == 1)
+		user.visible_message(
+			SPAN_DANGER("[user] pulls the safety pin from grenade in [src]!"),
+			SPAN_DANGER("You prime the grenade in [src]!"))
+		return
+
+	else
+		user.visible_message(
+			SPAN_DANGER("[user] pulls the safety pins from grenades in [src]!"),
+			SPAN_DANGER("You prime the grenades in [src]!"))
+		return
+
 /obj/item/storage/belt/tactical/ironhammer
 	name = "ironhammer tactical belt"
 	icon_state = "tactical_ironhammer"
