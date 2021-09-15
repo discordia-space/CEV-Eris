@@ -346,9 +346,9 @@
 	Next step , do an autopsy , find out what really killed the guy , sometimes it isn't the guns , but the shrapnel they leave \n
 	After you do that , try to build a story of what happened , replay the events from this guy's perspective , find out why he was murdered \n
 
-	The killer can always be undeniably convicted , most of them wear gloves , but gloves bear a dark secret , the guns they with them on leave a print on them , the smoke of the shell ejection itself \n
+	The killer can always be undeniably convicted , most of them wear gloves , but gloves bear a dark secret , the guns they use with them on leave a print on them , the smoke of the shell ejection itself \n
 	You can swab it off , different calibers produce different intensities of it , but you will always know which one it is , after all you took the IH Detective course \n
-	I consider it the best trick in the book , a murderer never leaves his fingerprints , but he always wears his one-set of gloves \n
+	I consider it the best trick in the book , a murderer never leaves his fingerprints , but he always wears his gloves \n
 
 	Anyway , enjoy your time onboard , your duty is vital to keeping the shit-bin rolling , keep investigating and make the LT proud \n
 
