@@ -11,7 +11,6 @@
 	var/hitcost = 100
 	var/obj/item/cell/cell
 	var/suitable_cell = /obj/item/cell/medium
-	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/gloves/stungloves/Initialize()
 	. = ..()
