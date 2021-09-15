@@ -422,7 +422,7 @@
 		melee = 40,
 		bullet = 40,
 		energy = 30,
-		bomb = 20,
+		bomb = 10,
 		bio = 50,
 		rad = 0
 	)
