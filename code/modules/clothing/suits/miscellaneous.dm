@@ -480,6 +480,6 @@
 
 /obj/item/clothing/suit/suicidevest/verb/Detonate()
 	var/turf/T = get_turf(loc)
-	explosion(T,-1,2,5,15)
+	explosion(T,-1,2,5,8)
 	if(src)
 		qdel(src)
