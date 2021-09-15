@@ -464,3 +464,17 @@
 	caliber = CAL_CAP
 	color = "#FF0000"
 	projectile_type = /obj/item/projectile/bullet/cap
+
+/obj/item/ammo_casing/flare
+	name = "flare shell"
+	desc = "A chemical flare shell designed to produce a distress signal or illuminate an area."
+	caliber = CAL_FLARE
+	icon_state = "f-shell"
+	spent_icon = "f-shell-spent"
+	projectile_type = /obj/item/projectile/bullet/flare
+	matter = list(MATERIAL_PLASTIC = 1)
+	matter_reagents = list("phosphorus" = 3)
+	rarity_value = 8
+
+/obj/item/ammo_casing/flare
+	amount = 3

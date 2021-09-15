@@ -358,3 +358,6 @@
 	name = "chemical darts magazine"
 	build_path = /obj/item/ammo_magazine/chemdart
 
+/datum/design/autolathe/ammo/flare_shell
+	name = "flare shell"
+	build_path = /obj/item/ammo_casing/flare
