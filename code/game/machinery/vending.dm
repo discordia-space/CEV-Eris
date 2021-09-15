@@ -1351,7 +1351,7 @@
 	/obj/item/reagent_containers/food/drinks/teapot = 3,
 	/obj/item/reagent_containers/food/drinks/mug = 3,
 	/obj/item/reagent_containers/food/drinks/mug/white = 3,
-	/obj/item/reagent_containers/food/drinks/mug/teacup = 10,)
+	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
 
