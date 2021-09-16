@@ -69,6 +69,16 @@
 
 	return FALSE
 
+/obj/machinery/door/holy/attack_hand(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(allowed(user))
+		if(density)
+			open()
+		else
+			close()
+	else
+		do_animate("deny")
+
 /obj/machinery/door/holy/Bumped(atom/AM)
 	if(operating)
 		return
