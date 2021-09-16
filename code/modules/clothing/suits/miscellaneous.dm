@@ -485,11 +485,11 @@
 	set src in usr
 
 	if(user.incapacitated(INCAPACITATION_UNCONSCIOUS))
-		to_chat(usr, "You are unconscious and cannot do that!")
+		to_chat(usr, "You are unconscious and cannot set the bomb off!")
 		return
 
 	if(user.incapacitated(INCAPACITATION_RESTRAINED))
-		to_chat(usr, "You are restrained and cannot set it off!")
+		to_chat(usr, "You are restrained and cannot set the bomb off!")
 		return
 
 	var/turf/T = get_turf(loc)
