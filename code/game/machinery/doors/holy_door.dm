@@ -113,7 +113,7 @@
 	do_animate("deny")
 	return
 
-/obj/machinery/door/emag_act(remaining_charges)
+/obj/machinery/door/holy/emag_act(remaining_charges)
 	if(density)
 		do_animate("spark")
 		sleep(6)
