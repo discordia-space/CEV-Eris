@@ -77,6 +77,7 @@
 		var/obj/screen/border = new(_name = "border", _parentmob = src)
 		border.icon_state = "border"
 		border.icon = icon_file
+		border.mouse_opacity = 0
 
 		if(i == 1)
 			border.dir = length(borders_dir) >= 1 ? borders_dir[1] : borders_dir
@@ -99,6 +100,7 @@
 	for(var/HUDname in HUDdatum.HUDneed)
 		var/HUDprefab = HUDdatum.HUDneed[HUDname]
 		var/obj/screen/SO = new HUDprefab(_parentmob = src)
+		SO.name = HUDname
 		HUDneed[HUDname] = SO
 		if(SO.process_flag)
 			HUDprocess += SO
