@@ -9,14 +9,13 @@
 	var/maptext_style = "font-family: 'Small Fonts'"
 
 	on_update_icon()
+		underlays.Cut()
 		. = ..()
 		if(istext(StateOfBase) || istype(CachedBase))
-			var/image/old_image = CachedBase
-			if(StateOfBase && !(istype(CachedBase) && CachedBase.icon_state == StateOfBase))
+			if(!istype(CachedBase))
 				CachedBase = image(icon,,StateOfBase)
-			if(old_image != CachedBase)
-				underlays -= old_image
-				qdel(old_image)
+			else
+				CachedBase.icon_state = StateOfBase
 			underlays |= CachedBase
 
 /obj/screen/movable/cyberspace_eye/Click(location, control, params)
