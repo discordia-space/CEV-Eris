@@ -253,13 +253,13 @@
 	return ..()
 
 /obj/machinery/door/holy/can_open(forced)
-	if(!density || locked || operating)
+	if(!density || locked || welded || operating)
 		return FALSE
 	
 	return TRUE
 
 /obj/machinery/door/holy/can_close(forced)
-	if(density || locked || welded || operating)
+	if(density || locked || operating)
 		return FALSE
 
 	if(wedged_item)
