@@ -605,7 +605,7 @@ There are 9 wires.
 			force_wedge_item(T)
 			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
+			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"

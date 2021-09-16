@@ -750,6 +750,7 @@
 #include "code\game\machinery\doors\door.dm"
 #include "code\game\machinery\doors\firedoor.dm"
 #include "code\game\machinery\doors\firedoor_assembly.dm"
+#include "code\game\machinery\doors\holy_door.dm"
 #include "code\game\machinery\doors\multi_tile.dm"
 #include "code\game\machinery\doors\showcase.dm"
 #include "code\game\machinery\doors\simple.dm"

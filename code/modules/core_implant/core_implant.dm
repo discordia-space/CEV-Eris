@@ -7,7 +7,7 @@
 	var/implant_type = /obj/item/implant/core_implant
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
-
+	var/security_clearance = 0
 	var/address = null
 	var/power = 0
 	var/max_power = 0

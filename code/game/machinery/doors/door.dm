@@ -210,7 +210,7 @@
 
 /obj/machinery/door/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(allowed(user) && operable())
+	if(allowed(user))
 		if(density)
 			open()
 		else

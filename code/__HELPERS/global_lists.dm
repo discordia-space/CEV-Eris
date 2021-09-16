@@ -36,6 +36,7 @@ GLOBAL_LIST_EMPTY(machines) //List of classless machinery. Removed from SSmachin
 GLOBAL_LIST_EMPTY(firealarm_list) //List of fire alarms
 GLOBAL_LIST_EMPTY(computer_list) //List of all computers
 GLOBAL_LIST_EMPTY(all_doors) //List of all airlocks
+GLOBAL_LIST_EMPTY(nt_doors) //List of all NeoTheology doors
 GLOBAL_LIST_EMPTY(atmos_machinery) //All things atmos
 
 GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob say

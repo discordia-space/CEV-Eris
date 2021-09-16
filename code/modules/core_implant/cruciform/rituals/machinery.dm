@@ -74,6 +74,73 @@
 	forge.produce()
 	return TRUE
 
+//Airlocks
+
+/datum/ritual/cruciform/machines/lock_door
+	name = "Activate door"
+	phrase = "Inlaqueatus"
+	desc = "Commands nearby door to be locked or unlocked."
+
+/datum/ritual/cruciform/machines/lock_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in OBJS
+
+	if(!door)
+		fail("You fail to find a compatible door here.", user, C)
+		return FALSE
+
+	if(door.stat & (BROKEN))
+		fail("[door] is off.", user, C)
+		return FALSE
+
+	door.locked ? door.unlock() : door.lock()
+	return TRUE
+
+/datum/ritual/cruciform/machines/repair_door
+	name = "Repair door"
+	phrase = "Redde quod periit"
+	desc = "Repairs nearby door at the cost of biomatter."
+
+/datum/ritual/cruciform/machines/repair_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in OBJS
+
+	if(!door)
+		fail("You fail to find a compatible door here.", user, C)
+		return FALSE
+
+	if(door.health == door.maxhealth)
+		fail("This door don't need repair.", user, C)
+		return FALSE
+
+	var/turf/target_turf = get_step(user,user.dir)
+	var/turf/user_turf = get_turf(user)
+	var/obj/item/stack/material/biomatter/consumable = locate(/obj/item/stack/material/biomatter) in target_turf.contents
+
+	if(!consumable)// Accept biomatter from user_turf too, in case if door broken with bolts down
+		consumable = locate(/obj/item/stack/material/biomatter) in user_turf.contents
+
+	if(!consumable)
+		fail("Not biomatter found.", user, C)
+		return FALSE
+	
+	if(consumable.amount < 10)
+		fail("Not enough biomatter.", user, C)
+		return FALSE
+	else
+		consumable.use(10)
+		var/obj/effect/overlay/nt_construction/effect = new(target_turf, 50)
+		sleep(50)
+		door.stat -= BROKEN
+		door.health = door.maxhealth
+		door.unlock()
+		door.close()
+		effect.success()
+
+	return TRUE
+
 ////////////////////////BIOMATTER MANIPULATION MULTI MACHINES RITUALS
 
 

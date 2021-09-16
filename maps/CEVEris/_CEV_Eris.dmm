@@ -32156,10 +32156,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/gold{
-	name = "Church Barracks";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/churchbarracks)
 "byG" = (
@@ -33460,10 +33457,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/neotheology/churchcorridor)
 "bBK" = (
@@ -33548,16 +33542,13 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "bBU" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(35)
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/hydroponics)
 "bBV" = (
@@ -39950,11 +39941,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
 "bQd" = (
-/obj/machinery/door/airlock/gold{
-	name = "Rituals Room";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "bQe" = (
@@ -44624,10 +44612,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/gold{
-	name = "Church Barracks";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/churchbarracks)
 "ccz" = (
@@ -45754,10 +45739,7 @@
 /area/eris/medical/surgery)
 "ceX" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Church Barracks";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/churchbarracks)
 "ceY" = (
@@ -51689,18 +51671,12 @@
 /area/eris/quartermaster/storage)
 "cuc" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Chapel";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "cud" = (
-/obj/machinery/door/airlock/gold{
-	name = "Chapel";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "cue" = (
@@ -53069,10 +53045,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/gold{
-	name = "Biogenerator Room";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/biogenerator)
 "cxD" = (
@@ -53573,10 +53546,7 @@
 /area/eris/quartermaster/storage)
 "cyN" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Custodial Closet";
-	req_access = list(26)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/janitor)
 "cyO" = (
@@ -55085,10 +55055,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/gold{
-	name = "Bioreactor Room";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
 "cCi" = (
@@ -64147,10 +64114,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
 "cYS" = (
@@ -97115,10 +97079,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/churchcorridor)
 "exQ" = (
@@ -101373,10 +101334,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(35)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/hydroponics)
 "fvg" = (
@@ -101586,11 +101544,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/gold{
-	name = "Rituals Room";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "gnx" = (
@@ -102166,10 +102121,6 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section2)
 "ize" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102185,6 +102136,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/neotheology/chapelritualroom)
 "iDJ" = (
@@ -102359,10 +102311,7 @@
 /area/eris/maintenance/section3deck5port)
 "jlF" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Custodial Storage";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "jmK" = (
@@ -102634,11 +102583,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "keu" = (
-/obj/machinery/door/airlock/glass{
-	name = "EOTP Room";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
 "kfX" = (
@@ -104424,10 +104370,6 @@
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
 "rNL" = (
-/obj/machinery/door/airlock/gold{
-	name = "Chapel Vending Booth";
-	req_access = list(27)
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -104440,6 +104382,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
 "rOR" = (
@@ -104661,10 +104604,6 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
 "stV" = (
-/obj/machinery/door/airlock/gold{
-	name = "Coffins Storage";
-	req_access = list(27)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
@@ -104673,6 +104612,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/storage)
 "sug" = (
@@ -104692,10 +104632,6 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "szi" = (
-/obj/machinery/door/airlock/gold{
-	name = "Preacher Bedroom";
-	req_access = list(22)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -104703,6 +104639,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy/preacher,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
 "sAd" = (
@@ -105218,11 +105155,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/gold{
-	name = "EOTP Room";
-	req_access = list(26)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/chapelritualroom)
 "uOi" = (
@@ -105471,10 +105405,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Custodial Closet";
-	req_access = list(26)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/janitor)
 "vwL" = (
@@ -105809,10 +105740,7 @@
 /area/eris/maintenance/section3deck5port)
 "wHF" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Rituals Room";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "wKT" = (
@@ -105904,11 +105832,8 @@
 "xdz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/gold{
-	name = "Cahors Storage";
-	req_access = list(27)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/storage)
 "xdY" = (
@@ -106001,10 +105926,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/gold{
-	name = "Preacher Office";
-	req_access = list(22)
-	},
+/obj/machinery/door/holy/preacher,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/office)
 "xHE" = (
@@ -124475,7 +124397,7 @@ aCn
 chs
 cYU
 bmq
-bBU
+fuR
 bQF
 bTc
 bYZ
@@ -161038,7 +160960,7 @@ cBo
 pHi
 xUQ
 gNV
-bQd
+wHF
 ckV
 ckV
 cyN
@@ -202449,7 +202371,7 @@ jSY
 crR
 ctd
 etS
-cuc
+jlF
 cws
 cws
 dZS
@@ -202651,7 +202573,7 @@ cql
 ukB
 xTT
 etS
-cud
+jlF
 cws
 cws
 dZS
