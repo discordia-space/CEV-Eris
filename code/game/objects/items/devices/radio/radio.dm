@@ -759,7 +759,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio
 	name = "Random wave radio"
-	desc = "Radio that can pick up message from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
+	desc = "Radio that can pick up messages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "random_radio"
 	item_state = "random_radio"
@@ -799,7 +799,7 @@ var/global/list/default_medbay_channels = list(
 		stash.select_location()
 		stash.spawn_stash()
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
-		visible_message(SPAN_NOTICE("[src] drop [stash_note]."))
+		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
 		last_produce = world.time
 
 /obj/item/device/radio/random_radio/receive_range(freq, level)
@@ -829,7 +829,7 @@ var/global/list/default_medbay_channels = list(
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 	else
-		to_chat(user, SPAN_NOTICE("The [name] has already been emaged."))
+		to_chat(user, SPAN_NOTICE("The [name] has already been emagged."))
 		return NO_EMAG_ACT
 
 /obj/item/device/radio/random_radio/attackby(obj/item/W, mob/user, params)
@@ -842,29 +842,29 @@ var/global/list/default_medbay_channels = list(
 		if(D.oddity_stats)
 			var/usefull = FALSE
 			if(D in used_oddity)
-				to_chat(user, SPAN_WARNING("You already use [D] to repair [src]"))
+				to_chat(user, SPAN_WARNING("You've already used [D] to repair [src]!"))
 				return
 
 			if(random_hear >= 100)
-				to_chat(user, SPAN_WARNING("The [src] are repaired at it's maxium."))
+				to_chat(user, SPAN_WARNING("The [src] is in perfect condition."))
 				return
 
-			to_chat(user, SPAN_NOTICE("You starting repairing [src] using [D]."))
+			to_chat(user, SPAN_NOTICE("You begin repairing [src] using [D]."))
 
 			if(!do_after(user, 20 SECONDS, src))
-				to_chat(user, SPAN_WARNING("You stoped repairing [src]."))
+				to_chat(user, SPAN_WARNING("You've stopped repairing [src]."))
 				return
 
 			for(var/stat in D.oddity_stats)
 				if(stat == STAT_MEC)
-					var/increece = D.oddity_stats[stat] * 3
-					random_hear += increece
+					var/increase = D.oddity_stats[stat] * 3
+					random_hear += increase
 					if(random_hear > 100)
 						random_hear = 100
 					cooldown -= (D.oddity_stats[stat]) MINUTES
 					if(cooldown < min_cooldown)
 						cooldown = min_cooldown
-					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increece]%."))
+					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increase]%."))
 					usefull = TRUE
 					used_oddity += D
 					return
