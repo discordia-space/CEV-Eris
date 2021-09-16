@@ -20,24 +20,40 @@
 			underlays |= CachedBase
 
 /obj/screen/movable/cyberspace_eye/Click(location, control, params)
+	var/mob/observer/cyberspace_eye/avatar = parentmob
+	if(istype(avatar))
+		Pushed(avatar, params)
+/obj/screen/movable/cyberspace_eye/proc/Pushed(mob/observer/cyberspace_eye/avatar, params)
 
 /obj/screen/movable/cyberspace_eye/exit
 	name = "Jack Out"
 	maptext = "<font style=\"font-family: 'Small Fonts'\">EXIT</font>"
 
-/obj/screen/movable/cyberspace_eye/exit/Click()
+/obj/screen/movable/cyberspace_eye/exit/Pushed(mob/observer/cyberspace_eye/avatar, params)
 	. = ..()
-	if(parentmob)
-		var/mob/observer/cyberspace_eye/avatar = parentmob
-		if(istype(avatar))
-			avatar.ReturnToBody()
+	avatar.ReturnToBody()
+
+/obj/screen/movable/cyberspace_eye/intent
+	name = "Intent"
+//	StateOfBase = "intents"
+
+/obj/screen/movable/cyberspace_eye/intent/on_update_icon()
+	. = ..()
+	var/mob/observer/cyberspace_eye/avatar = parentmob
+	if(istype(avatar))
+		icon_state = avatar.a_intent
+
+/obj/screen/movable/cyberspace_eye/intent/Pushed(mob/observer/cyberspace_eye/avatar, params)
+	. = ..()
+	avatar.a_intent_change("right")
+	update_icon()
 
 /obj/screen/movable/cyberspace_eye/hardware
 	name = "Hardware"
 	var/obj/item/deck_hardware/myObject
 	var/tmp/image/cachedObjectImage = new
 
-	Click(location, control, params)
+	Pushed(mob/observer/cyberspace_eye/avatar, params)
 		. = ..()
 		if(istype(myObject))
 			myObject.Activate(usr)
@@ -64,57 +80,67 @@
 		myObject = H
 		update_icon()
 
-/obj/screen/movable/cyberspace_eye/program
-	name = "Program To Install"
+// /obj/screen/movable/cyberspace_eye/program
+// 	name = "Program To Install"
 
-	var/datum/computer_file/cyberdeck_program/myObject
+// 	var/datum/computer_file/cyberdeck_program/myObject
 
-	Click(location, control, params)
-		. = ..()
-		if(istype(myObject))
-			var/mob/observer/cyberspace_eye/avatar = parentmob
-			if(istype(avatar) && avatar.TryInstallProgram(myObject))
-				avatar.InstallProgram(myObject)
-			
-	on_update_icon()
-		. = ..()
-		if(istype(myObject))
-			overlays |= image(myObject.icon, null, myObject.state)
+// 	Click(location, control, params)
+// 		. = ..()
+// 		if(istype(myObject))
+// 			var/mob/observer/cyberspace_eye/avatar = parentmob
+// 			if(istype(avatar) && avatar.TryInstallProgram(myObject))
+// 				avatar.InstallProgram(myObject)
 
-	proc
-		SetObject(datum/computer_file/cyberdeck_program/H) //TODO, add icons to /datum/computer_file/
-			if(istype(myObject) && myObject != H)
-				overlays -= myObject
+// 	on_update_icon()
+// 		. = ..()
+// 		if(istype(myObject))
+// 			overlays |= image(myObject.icon, null, myObject.state)
 
-			myObject = H
-			update_icon()
+// 	proc
+// 		SetObject(datum/computer_file/cyberdeck_program/H) //TODO, add icons to /datum/computer_file/
+// 			if(istype(myObject) && myObject != H)
+// 				overlays -= myObject
+
+// 			myObject = H
+// 			update_icon()
 
 /obj/screen/movable/cyberspace_eye/counter
 	StateOfBase = "counter"
 	maptext_x = 8
 	maptext_y = 2
 
-/obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter
-	name = "QP Counter"
-	icon_state = "qp"
-	maptext = "0"
-
-/obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter/on_update_icon()
-	. = ..()
-	var/mob/observer/cyberspace_eye/avatar = parentmob
-	if(istype(avatar) && istype(avatar.owner))
-		var/obj/item/computer_hardware/deck/myDeck = avatar.owner
-		maptext = "<font style=\"[maptext_style]\">[myDeck.QuantumPoints]</font>"
-
-/obj/screen/movable/cyberspace_eye/counter/size
-	name = "Memory"
-	icon_state = "mem"
-	var/datum/MemoryStack/stack
-	maptext = "0/0"
-
-/obj/screen/movable/cyberspace_eye/counter/size/on_update_icon()
+/obj/screen/movable/cyberspace_eye/counter/on_update_icon()
 	. = ..()
 	var/mob/observer/cyberspace_eye/avatar = parentmob
 	if(istype(avatar) && istype(avatar.owner))
 		var/obj/item/computer_hardware/deck/D = avatar.owner
-		maptext = "<font style=\"[maptext_style]\">[D.GetBusyMemory()]/[D.memory_buffer.Memory]</font>"
+		maptext = "<font style=\"[maptext_style]\">[GetText(avatar, D)]</font>"
+
+/obj/screen/movable/cyberspace_eye/counter/proc/GetText(mob/observer/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
+
+// /obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter
+// 	name = "QP Counter"
+// 	icon_state = "qp"
+// 	maptext = "0"
+
+// /obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter/on_update_icon()
+// 	. = ..()
+// 	var/mob/observer/cyberspace_eye/avatar = parentmob
+// 	if(istype(avatar) && istype(avatar.owner))
+// 		var/obj/item/computer_hardware/deck/myDeck = avatar.owner
+// 		maptext = "<font style=\"[maptext_style]\">[myDeck.QuantumPoints]</font>"
+
+// /obj/screen/movable/cyberspace_eye/counter/size
+// 	name = "Memory"
+// 	icon_state = "mem"
+// 	var/datum/MemoryStack/stack
+// 	maptext = "0/0"
+
+/obj/screen/movable/cyberspace_eye/z_mover
+	name = "Z Movement"
+	icon_state = "up"
+	var/direction = UP
+	Pushed(mob/observer/cyberspace_eye/avatar, params)
+		. = ..()
+		avatar.zMove(direction)

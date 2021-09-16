@@ -1,6 +1,8 @@
 /mob/observer/cyberspace_eye
 	defaultHUD = "cyberspace_eye"
 
+// SomeWhy used_hud is /datum/hud, not /datum/hud/cybereye
+
 /mob/observer/cyberspace_eye/Initialize()
 	. = ..()
 	create_HUD()
@@ -21,7 +23,7 @@
 	. = ..()
 	if(istype(owner))
 		var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
-		if(HUDdatum.use_borders)
+		if(HUDdatum.use_panels)
 			init_HUDpanel(
 				1,
 				owner.chip_slots,
@@ -40,6 +42,7 @@
 				HUDdatum.HardwarePanel.direction,
 				icon_file = HUDdatum.icon,
 			)
+/*
 			init_HUDpanel(
 				1,
 				owner.memory_buffer.Memory / 16,
@@ -58,6 +61,7 @@
 				HUDdatum.ProgramPanel.direction,
 				icon_file = HUDdatum.icon,
 			)
+*/
 
 /mob/observer/cyberspace_eye/proc/init_HUDpanel(
 		start = 1,
@@ -93,13 +97,8 @@
 	. = ..()
 	var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
 	for(var/HUDname in HUDdatum.HUDneed)
-		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-		var/obj/screen/movable/cyberspace_eye/SO = new HUDtype(_parentmob = src)
-		NEWorNOACTION(SO.name, HUDname)
-		NEWorNOACTION(SO.icon, HUDdatum.icon)
-		NEWorNOACTION(SO.screen_loc, HUDdatum.HUDneed[HUDname]["loc"])
-		NEWorNOACTION(SO.hideflag, HUDdatum.HUDneed[HUDname]["hideflag"])
-
+		var/HUDprefab = HUDdatum.HUDneed[HUDname]
+		var/obj/screen/SO = new HUDprefab(_parentmob = src)
 		HUDneed[HUDname] = SO
 		if(SO.process_flag)
 			HUDprocess += SO

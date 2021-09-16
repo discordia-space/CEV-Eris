@@ -16,10 +16,11 @@
 	var/link_streight = 0 // Default power over tracing by ices or on ices can be increased by programs/hardware
 
 
+/*
 	var/datum/MemoryStack/memory_buffer = new // Grip of programs, icebreakers and etc. Installed programs handling in cyberspace eye
 	var/initial_memory_buffer = 64
 	var/MemoryForInstalledPrograms = 64
-
+*/
 	var/hardware_slots = 4
 	var/chip_slots = 4 // Slots for chips, to extend or buy better deck or get hardware extending them.
 	var/list/hardware = list()
@@ -33,10 +34,12 @@
 		if(ispath(projected_mind))
 			projected_mind = new projected_mind()
 			projected_mind.owner = src
+/*
 		if(istype(memory_buffer))
 			memory_buffer.Memory = initial_memory_buffer
-
+*/
 	proc/CancelCyberspaceConnection()
+		update_power_usage()
 		if(istype(projected_mind))
 			projected_mind.PutInAnotherMob(get_user())
 			projected_mind.relocateTo(src)
@@ -54,7 +57,7 @@
 			return cable.ConnectToDeck(src)
 
 	proc/SetUpProjectedMind()
-		projected_mind.InstalledPrograms.Memory = MemoryForInstalledPrograms
+		//projected_mind.InstalledPrograms.Memory = MemoryForInstalledPrograms
 		projected_mind.reset_HUD()
 
 	attackby(obj/item/W, mob/living/user)
@@ -100,6 +103,7 @@
 		cable = null
 
 	BeginCyberspaceConnection()
+		update_power_usage()
 		var/mob/living/carbon/human/owner = get_user()
 		if(istype(owner) && owner.stat == CONSCIOUS && owner.mind)
 			SetUpProjectedMind()
