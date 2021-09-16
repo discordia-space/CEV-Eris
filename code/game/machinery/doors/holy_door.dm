@@ -313,7 +313,7 @@
 	..()
 
 /obj/machinery/door/holy/proc/lock()
-	if(locked && operating)
+	if(locked || operating)
 		return
 
 	locked = TRUE
@@ -324,7 +324,7 @@
 	return
 
 /obj/machinery/door/holy/proc/unlock()
-	if(!locked && operating)
+	if(!locked || operating)
 		return
 
 	locked = FALSE
