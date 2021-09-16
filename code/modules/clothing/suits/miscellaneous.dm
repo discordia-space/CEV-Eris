@@ -463,6 +463,7 @@
 /obj/item/clothing/suit/suicidevest
 	name = "bomb vest"
 	desc = "A mess of wire and unstable plasma crystals, fashioned into a bomb. Designed to be strapped to the torso."
+	description_info = "Can be detonated in the Object tab."
 	icon_state = "bombvest"
 	item_state = "bombvest"
 	armor = list(
@@ -476,9 +477,21 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/suicidevest/ignite_act()
-	Detonate()
+	detonate()
 
-/obj/item/clothing/suit/suicidevest/verb/Detonate()
+/obj/item/clothing/suit/suicidevest/verb/detonate(mob/user)
+	set name = "Detonate vest"
+	set category = "Object"
+	set src in usr
+
+	if(user.incapacitated(INCAPACITATION_UNCONSCIOUS))
+		to_chat(usr, "You are unconscious and cannot do that!")
+		return
+
+	if(user.incapacitated(INCAPACITATION_RESTRAINED))
+		to_chat(usr, "You are restrained and cannot set it off!")
+		return
+
 	var/turf/T = get_turf(loc)
 	explosion(T,-1,2,5,8)
 	if(src)

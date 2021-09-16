@@ -304,7 +304,7 @@
 	name = "bomb vest"
 	result = /obj/item/clothing/suit/suicidevest
 	steps = list(
-		list(/obj/item/clothing/suit/storage/vest/chestrig, 1),
+		list(/obj/item/clothing/suit, 1),
 		list(/obj/item/stack/cable_coil, 10, "time" = 20),
 		list(CRAFT_MATERIAL, 25, MATERIAL_PLASMA),//as the explosive
 		list(/obj/item/device/assembly/igniter, 2),
