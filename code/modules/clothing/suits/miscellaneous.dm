@@ -415,13 +415,10 @@
 	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
-	action_button_name = "Toggle Suitlamp"
-	brightness_on = 3 //luminosity when on
-	light_overlay = "scavengerarmor_light"
 	armor = list(
 		melee = 40,
-		bullet = 40,
-		energy = 30,
+		bullet = 35,
+		energy = 25,
 		bomb = 10,
 		bio = 50,
 		rad = 0
