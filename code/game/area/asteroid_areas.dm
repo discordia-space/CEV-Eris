@@ -182,7 +182,18 @@
 
 /area/outpost/junkyard/station
 	icon_state = "away2"
+
+/area/outpost/junkyard/station/beta
+	name = "Beta Station"
+
+/area/outpost/junkyard/station/charlie
+	name = "Charlie Station"
+
+/area/outpost/junkyard/station/delta
 	name = "Delta Station"
+
+/area/outpost/junkyard/station/core
+	name = "Delta Station Core"
 
 /area/outpost/junkyard/hermitage
 	icon_state = "away2"

@@ -74,7 +74,7 @@
 	holding_type = /obj/item/gun/energy/plasmacutter/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
 	spawn_blacklisted = TRUE
 
 /obj/item/gun/energy/plasmacutter
@@ -88,8 +88,9 @@
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	twohanded = FALSE
-	self_recharge = FALSE
+	self_recharge = TRUE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
+	projectile_type = /obj/item/projectile/beam/cutter
 
 /obj/item/gun/projectile/get_hardpoint_maptext()
 	return "[get_ammo()]/[ammo_magazine.max_ammo]"
