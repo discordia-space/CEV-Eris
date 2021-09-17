@@ -29470,7 +29470,7 @@
 /turf/simulated/floor/plating,
 /area/eris/medical/virology)
 "bsi" = (
-/obj/item/modular_computer/console/preset/civilian/professional{
+/obj/item/modular_computer/console/preset/trade{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
