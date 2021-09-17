@@ -480,12 +480,12 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/loseMainPower()
 	main_power_lost_until = mainPowerCablesCut() ? -1 : SecondsToTicks(60)
 	if(main_power_lost_until > 0)
-		spawn(main_power_lost_until) regainMainPower()
+		addtimer(CALLBACK(src, .proc/regainMainPower), main_power_lost_until)
 
 	// If backup power is permanently disabled then activate in 10 seconds if possible, otherwise it's already enabled or a timer is already running
 	if(backup_power_lost_until == -1 && !backupPowerCablesCut())
 		backup_power_lost_until = SecondsToTicks(10)
-		spawn(backup_power_lost_until) regainBackupPower()
+		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
@@ -494,7 +494,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/loseBackupPower()
 	backup_power_lost_until = backupPowerCablesCut() ? -1 : SecondsToTicks(60)
 	if(backup_power_lost_until > 0)
-		spawn(backup_power_lost_until) regainBackupPower()
+		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
