@@ -5,7 +5,7 @@
 	autoclose = 1
 	var/next_beep_at = 0
 	var/locked = 0
-	var/minimal_holiness = 1 // Compared with security_clearance on cruciform
+	var/minimal_holiness = CLEARANCE_COMMON // Compared with security_clearance on cruciform
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
 	var/obj/item/wedged_item
@@ -13,7 +13,7 @@
 /obj/machinery/door/holy/preacher
 	name = "NeoTheology clergy door"
 	icon = 'icons/obj/doors/Door_holy_preacher.dmi'
-	minimal_holiness = 2
+	minimal_holiness = CLEARANCE_CLERGY
 
 /obj/item/clothing/accessory/cross // It belongs here
 	name = "Tau Cross necklace"

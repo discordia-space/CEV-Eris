@@ -82,9 +82,9 @@
 	desc = "Commands nearby door to be locked or unlocked."
 
 /datum/ritual/cruciform/machines/lock_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
-	var/list/OBJS = get_front(user)
+	var/list/O = get_front(user)
 
-	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in OBJS
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in O
 
 	if(!door)
 		fail("You fail to find a compatible door here.", user, C)
@@ -103,16 +103,16 @@
 	desc = "Repairs nearby door at the cost of biomatter."
 
 /datum/ritual/cruciform/machines/repair_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
-	var/list/OBJS = get_front(user)
+	var/list/O = get_front(user)
 
-	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in OBJS
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in O
 
 	if(!door)
 		fail("You fail to find a compatible door here.", user, C)
 		return FALSE
 
 	if(door.health == door.maxhealth)
-		fail("This door don't need repair.", user, C)
+		fail("This door doesn't need repair.", user, C)
 		return FALSE
 
 	var/turf/target_turf = get_step(user,user.dir)

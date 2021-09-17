@@ -204,14 +204,14 @@ var/list/disciples = list()
 /obj/item/implant/core_implant/cruciform/proc/make_priest()
 	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_REDLIGHT)
-	security_clearance = 2
+	security_clearance = CLEARANCE_CLERGY
 
 /obj/item/implant/core_implant/cruciform/proc/make_inquisitor()
 	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_INQUISITOR)
 	add_module(new /datum/core_module/cruciform/uplink())
 	remove_modules(CRUCIFORM_REDLIGHT)
-	security_clearance = 2
+	security_clearance = CLEARANCE_CLERGY
 
 /obj/item/implant/core_implant/cruciform/proc/make_acolyte()
 	remove_modules(CRUCIFORM_AGROLYTE)

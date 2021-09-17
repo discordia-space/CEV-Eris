@@ -437,7 +437,7 @@
 		fail("Cruciform not found",user,C)
 		return FALSE
 
-	CI.security_clearance = 1
+	CI.security_clearance = CLEARANCE_COMMON
 	return TRUE
 
 /datum/ritual/cruciform/priest/ordination
@@ -453,7 +453,7 @@
 		fail("Cruciform not found",user,C)
 		return FALSE
 
-	CI.security_clearance = 2
+	CI.security_clearance = CLEARANCE_CLERGY
 	return TRUE
 
 /datum/ritual/cruciform/priest/omission
@@ -473,7 +473,7 @@
 		fail("You don't have the authority for this.", user, C)
 		return FALSE
 
-	CI.security_clearance = 0
+	CI.security_clearance = CLEARANCE_NONE
 	return TRUE
 
 /datum/ritual/targeted/cruciform/priest/excommunication
@@ -501,7 +501,7 @@
 		return FALSE
 
 	CI.remove_specialization()
-	CI.security_clearance = 0
+	CI.security_clearance = CLEARANCE_NONE
 	set_personal_cooldown(user)
 	log_and_message_admins(" excommunicated [CI.wearer]")
 	to_chat(M, SPAN_DANGER("You have been spiritually separated from the Church and the community of the faithful."))
