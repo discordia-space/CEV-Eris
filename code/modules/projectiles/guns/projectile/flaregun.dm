@@ -22,13 +22,11 @@
 
 /obj/item/gun/projectile/flare_gun/on_update_icon()
 	..()
-
-	var/iconstring = initial(icon_state)
-
+	
 	if (bolt_open)
-		iconstring += "_open"
-
-	icon_state = iconstring
+		SetIconState("flaregun_open")
+	else
+		SetIconState("flaregun")
 
 /obj/item/gun/projectile/flare_gun/attack_self(mob/user)
 	if(zoom)
