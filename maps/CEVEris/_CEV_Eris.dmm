@@ -60607,13 +60607,10 @@
 /area/eris/command/teleporter)
 "cQl" = (
 /obj/structure/table/reinforced,
-/obj/item/rcd_ammo,
-/obj/item/rcd_ammo,
-/obj/item/rcd_ammo,
-/obj/item/rcd_ammo,
-/obj/item/rcd_ammo,
-/obj/item/rcd_ammo,
 /obj/item/rcd,
+/obj/item/stack/material/compressed{
+	amount = 30
+	},
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
 "cQm" = (
