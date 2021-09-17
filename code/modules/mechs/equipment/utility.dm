@@ -52,9 +52,9 @@
 			if(user.a_intent == I_HURT)
 				admin_attack_log(user, M, "attempted to clamp [M] with [src] ", "Was subject to a clamping attempt.", ", using \a [src], attempted to clamp")
 				owner.setClickCooldown(owner.arms ? owner.arms.action_delay * 3 : 30) //This is an inefficient use of your powers
-				if(prob(33))
-					owner.visible_message(SPAN_DANGER("[owner] swings its [src] in a wide arc at [target] but misses completely!"))
-					return
+//				if(prob(33))
+//					owner.visible_message(SPAN_DANGER("[owner] swings its [src] in a wide arc at [target] but misses completely!"))
+//					return
 				M.attack_generic(owner, (owner.arms ? owner.arms.melee_damage * 1.5 : 0), "slammed") //Honestly you should not be able to do this without hands, but still
 				M.throw_at(get_edge_target_turf(owner ,owner.dir),5, 2)
 				to_chat(user, "<span class='warning'>You slam [target] with [src.name].</span>")
@@ -102,7 +102,7 @@
 		update_icon()
 		owner.update_icon()
 
-/obj/item/mech_equipment/light/on_update_icon()
+/obj/item/mech_equipment/light/update_icon()
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
@@ -205,13 +205,27 @@
 
 /obj/item/material/drill_head/Initialize()
 	. = ..()
-	durability = 2 * (material ? material.integrity : 1)
+	
+	//durability = 2 * (material ? material.integrity : 1)
+
+/obj/item/material/drill_head/Created(var/creator) 
+	ApplyDurability()
+
+/obj/item/material/drill_head/steel/New(var/newloc)
+	..(newloc,MATERIAL_STEEL)
+	ApplyDurability()	
 
 /obj/item/material/drill_head/plasteel/New(var/newloc)
 	..(newloc,MATERIAL_PLASTEEL)
+	ApplyDurability()	
 
 /obj/item/material/drill_head/diamond/New(var/newloc)
 	..(newloc,MATERIAL_DIAMOND)
+	ApplyDurability()	
+
+
+/obj/item/material/drill_head/verb/ApplyDurability()
+	durability = 2 * (material ? material.integrity : 1)
 
 /obj/item/mech_equipment/drill
 	name = "drill"
@@ -229,7 +243,8 @@
 
 /obj/item/mech_equipment/drill/Initialize()
 	. = ..()
-	drill_head = new /obj/item/material/drill_head(src, MATERIAL_STEEL)//You start with a basic steel head
+	drill_head = new /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
+	drill_head.ApplyDurability()	
 
 /obj/item/mech_equipment/drill/attack_self(var/mob/user)
 	. = ..()
@@ -239,8 +254,7 @@
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
 
 
-/obj/item/mech_equipment/drill/afterattack(atom/target, mob/living/user, inrange, params)
-	if(!inrange) return
+/obj/item/mech_equipment/drill/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
 	. = ..()
 	if(.)
 		if(isobj(target))
@@ -264,6 +278,7 @@
 		var/obj/item/cell/C = owner.get_cell()
 		if(istype(C))
 			C.use(active_power_use * CELLRATE)
+		playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)	
 		owner.visible_message("<span class='danger'>\The [owner] starts to drill \the [target]</span>", "<span class='warning'>You hear a large drill.</span>")
 
 		var/T = target.loc
@@ -313,7 +328,7 @@
 								if(get_dir(owner,ore)&owner.dir)
 									ore.Move(ore_box)
 
-				playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
+				playsound(src, 'sound/weapons/rapidslice.ogg', 50, 1) 
 
 		else
 			to_chat(user, "You must stay still while the drill is engaged!")
@@ -331,7 +346,6 @@
 	max_water = 4000 //Good is gooder
 	icon_state = "mech_exting"
 	overlaylist = list()
-	spawn_frequency = 0
 
 /obj/item/extinguisher/mech/get_hardpoint_maptext()
 	return "[reagents.total_volume]/[max_water]"

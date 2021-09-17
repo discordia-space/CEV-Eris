@@ -1,7 +1,7 @@
 /obj/effect/gibspawner
 	generic
 		gibtypes = list(/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/core)
-		gibamounts = list(2,2,1)
+		gibamounts = list(1,1,1)
 
 		New()
 			gibdirections = list(list(WEST, NORTHWEST, SOUTHWEST, NORTH),list(EAST, NORTHEAST, SOUTHEAST, SOUTH), list())

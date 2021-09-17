@@ -1,15 +1,16 @@
 /obj/item/mine
-	name = "Excelsior Mine"
-	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others, unless they have a Pulse tool nearby"
+	name = "landmine"
+	desc = "An anti-personnel mine. A danger to about everyone except those with a Pulsing tool."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_BULKY
-	matter = list(MATERIAL_STEEL = 30)
+	matter = list(MATERIAL_STEEL = 35)
 	matter_reagents = list("fuel" = 40)
 	layer = BELOW_MOB_LAYER //fixed the wrong layer - Plasmatik
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_MINE_ITEM
-	var/prob_explode = 100
+	var/prob_explode = 90
+	var/pulse_difficulty = FAILCHANCE_NORMAL
 
 	//var/obj/item/device/assembly_holder/detonator = null
 
@@ -25,7 +26,49 @@
 
 	var/armed = FALSE
 	var/deployed = FALSE
+	var/excelsior = FALSE
 	anchored = FALSE
+
+/obj/item/mine/excelsior
+	name = "Excelsior mine"
+	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a merciful brief end to others, unless they have a Pulse tool nearby."
+	icon_state = "mine_excel"
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
+	excelsior = TRUE
+	prob_explode = 100
+	pulse_difficulty = FAILCHANCE_HARD
+
+/obj/item/mine/old
+	name = "old landmine"
+	desc = "A rusted anti-personnel mine. A risky and unpredictable device, albeit with simple wiring."
+	icon_state = "mine_old"
+	prob_explode = 60
+	pulse_difficulty = FAILCHANCE_EASY
+
+/obj/item/mine/old/armed
+	armed = TRUE
+	deployed = TRUE
+	rarity_value = 55
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TRAP_ARMED
+
+/obj/item/mine/improv
+	name = "makeshift mine"
+	desc = "An improvised explosive mounted in a bear trap. Dangerous to step on, but easy to defuse."
+	icon_state = "mine_improv"
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
+	prob_explode = 75
+	pulse_difficulty = FAILCHANCE_ZERO
+	explosion_h_size = 0
+	explosion_l_size = 1
+	explosion_f_size = 5
+
+/obj/item/mine/improv/armed
+	armed = TRUE
+	deployed = TRUE
+	rarity_value = 44
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TRAP_ARMED
 
 /obj/item/mine/ignite_act()
 	explode()
@@ -71,39 +114,61 @@
 	update_icon()
 
 /obj/item/mine/attack_hand(mob/user)
-	for(var/datum/antagonist/A in user.mind.antagonist)
-		if(A.id == ROLE_EXCELSIOR_REV && deployed)
+	if(excelsior)
+		for(var/datum/antagonist/A in user.mind.antagonist)
+			if(A.id == ROLE_EXCELSIOR_REV && deployed)
+				user.visible_message(
+					SPAN_NOTICE("You summon up Excelsior's collective training and carefully deactivate the mine for transport.")
+					)
+				deployed = FALSE
+				anchored = FALSE
+				armed = FALSE
+				update_icon()
+				return
+	if (deployed)
+		if(pulse_difficulty == FAILCHANCE_ZERO)
 			user.visible_message(
-				SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
-				)
+					SPAN_NOTICE("You carefully disarm the [src].")
+					)
 			deployed = FALSE
 			anchored = FALSE
 			armed = FALSE
 			update_icon()
 			return
-	if (deployed)
-		user.visible_message(
-				SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
-				SPAN_DANGER("you extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
-				)
-		if (do_after(user, 5))
+		else
 			user.visible_message(
-				SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in your hands!"),
-				SPAN_DANGER("you attempts to pick up \the [src] only to hear a beep as it explodes in your hands!")
-				)
-			explode()
-			return
+					SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
+					SPAN_DANGER("You extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
+					)
+			if (do_after(user, 5))
+				if(prob(prob_explode))
+					user.visible_message(
+						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
+						SPAN_DANGER("You attempt to pick up \the [src] only to hear a beep as it explodes in your hands!")
+						)
+					explode()
+					return
+				else
+					user.visible_message(
+						SPAN_DANGER("[user] picks up \the [src], which miraculously doesn't explode!"),
+						SPAN_DANGER("You pick up \the [src], which miraculously doesn't explode!")
+					)
+					deployed = FALSE
+					anchored = FALSE
+					armed = FALSE
+					update_icon()
+					return
 	. =..()
 
 /obj/item/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
-		
+
 		if (deployed)
 			user.visible_message(
 			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
 			SPAN_DANGER("You begin to carefully disarm \the [src].")
 			)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, FAILCHANCE_HARD,  required_stat = STAT_COG)) //disarming a mine with a multitool should be for smarties
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, pulse_difficulty,  required_stat = STAT_COG)) //disarming a mine with a multitool should be for smarties
 			user.visible_message(
 				SPAN_DANGER("[user] has disarmed \the [src]."),
 				SPAN_DANGER("You have disarmed \the [src]!")
@@ -131,9 +196,10 @@
 			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
 		if(isliving(AM))
-			for(var/datum/antagonist/A in AM.mind.antagonist)
-				if(A.id == ROLE_EXCELSIOR_REV)
-					return
+			if(excelsior)
+				for(var/datum/antagonist/A in AM.mind.antagonist)
+					if(A.id == ROLE_EXCELSIOR_REV)
+						return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
 				explode()

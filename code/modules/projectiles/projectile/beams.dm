@@ -17,6 +17,23 @@
 
 	heat = 100
 
+/obj/item/projectile/beam/cutter
+	name = "cutting beam"
+	icon_state = "plasmablaster"
+	damage_types = list(BRUTE = 25)
+	armor_penetration = 10
+	pass_flags = PASSTABLE
+
+	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
+	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
+	impact_type = /obj/effect/projectile/laser/plasmacutter/impact
+
+/obj/item/projectile/beam/cutter/on_impact(var/atom/A)
+	if(istype(A, /turf/simulated/mineral))
+		var/turf/simulated/mineral/M = A
+		M.GetDrilled(1)
+	.=..()
+
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"

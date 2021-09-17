@@ -1,6 +1,8 @@
+#define GAS_MASK_SANITY_COEFF_BUFF 1.7
+
 /obj/item/clothing/mask/gas
 	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
+	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air and the smell of roaches."
 	icon_state = "gas_alt"
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
@@ -35,6 +37,10 @@
 	filtered.update_values()
 
 	return filtered
+
+/obj/item/clothing/mask/gas/New()
+	..()
+	AddComponent(/datum/component/clothing_sanity_protection, GAS_MASK_SANITY_COEFF_BUFF)
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
