@@ -177,7 +177,7 @@
 		/obj/item/taperoll
 	)
 
-/obj/item/storage/belt/tactical/verb/prime_grenades(mob/user)
+/obj/item/storage/belt/tactical/verb/prime_belt_grenades(mob/user)
 	set name = "Prime grenades in belt"
 	set category = "Object"
 	set src in usr
