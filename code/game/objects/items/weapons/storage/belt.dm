@@ -178,7 +178,7 @@
 	)
 
 /obj/item/storage/belt/tactical/verb/prime_grenades(mob/user)
-	set name = "Prime grenades"
+	set name = "Prime grenades in belt"
 	set category = "Object"
 	set src in usr
 
