@@ -62,7 +62,7 @@
 	if(!(A in accessories))
 		return
 
-	if(istype(A,/obj/item/clothing/accessory/armor))
+	if(!(A.isRemovable))
 		to_chat(user, SPAN_WARNING("Removing this accessory would ruin it."))
 	else
 		A.on_removed(user)
