@@ -62,9 +62,13 @@
 	if(!(A in accessories))
 		return
 
-	A.on_removed(user)
-	accessories -= A
-	update_wear_icon()
+	if(!(A.isRemovable))
+		to_chat(user, SPAN_WARNING("Removing this accessory would ruin it."))
+	else
+		A.on_removed(user)
+		accessories -= A
+		update_wear_icon()
+	return
 
 /obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"
