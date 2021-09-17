@@ -37,7 +37,7 @@
 		return 0
 	user.do_attack_animation(src)
 	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
-	spawn(1) dismantle()
+	spawn(1) dismantle(user)
 	return 1
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
@@ -106,7 +106,7 @@
 					to_chat(user, SPAN_NOTICE("You start disassembling the girder..."))
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						to_chat(user, SPAN_NOTICE("You dissasembled the girder!"))
-						dismantle()
+						dismantle(user)
 						return
 				if(!anchored)
 					to_chat(user, SPAN_NOTICE("You start securing the girder..."))
@@ -286,8 +286,8 @@
 	icon_state = "reinforced"
 	reinforcing = 0
 
-/obj/structure/girder/proc/dismantle()
-	drop_materials(drop_location())
+/obj/structure/girder/proc/dismantle(mob/living/user)
+	drop_materials(drop_location(), user)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

@@ -237,6 +237,7 @@
 					return FALSE
 				for(var/turf/simulated/wall/W in tile_view)
 					return FALSE
+          
 	return ..()
 
 /mob/living/carbon/human/bst/can_fall()
