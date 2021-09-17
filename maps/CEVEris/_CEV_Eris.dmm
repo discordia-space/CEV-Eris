@@ -3285,6 +3285,7 @@
 /area/eris/command/commander)
 "ahY" = (
 /obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/mug/syndie,
 /turf/simulated/floor/wood,
 /area/eris/command/commander)
 "ahZ" = (
@@ -18539,7 +18540,7 @@
 /area/eris/security/barracks)
 "aTU" = (
 /obj/structure/table/standard,
-/obj/item/deck/cards,
+/obj/item/reagent_containers/food/drinks/mug/ironhammer,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/barracks)
 "aTV" = (
@@ -18646,12 +18647,7 @@
 /area/eris/security/armory)
 "aUf" = (
 /obj/structure/table/standard,
-/obj/item/dice,
-/obj/item/dice,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
-	pixel_x = -6;
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/food/drinks/mug/ironhammer,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/barracks)
 "aUg" = (
@@ -52374,6 +52370,7 @@
 /obj/machinery/keycard_auth{
 	pixel_y = -24
 	},
+/obj/item/reagent_containers/food/drinks/mug/moe,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "cwb" = (
@@ -66852,6 +66849,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/item/reagent_containers/food/drinks/mug/aster,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfa" = (
@@ -68018,6 +68016,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/drinks/mug/aster,
 /turf/simulated/floor/wood,
 /area/eris/command/fo/quarters)
 "dhz" = (
@@ -68732,7 +68731,7 @@
 /obj/item/tool/multitool{
 	pixel_x = 10
 	},
-/obj/item/reagent_containers/food/drinks/britcup{
+/obj/item/reagent_containers/food/drinks/mug/teacup{
 	pixel_x = -5
 	},
 /obj/structure/cable/green{
@@ -69937,6 +69936,7 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
+/obj/item/reagent_containers/food/drinks/mug/moe,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/research)
 "dlL" = (
@@ -75565,7 +75565,7 @@
 /area/eris/medical/medbreak)
 "dyV" = (
 /obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/mug/moe,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dyW" = (
@@ -75874,6 +75874,7 @@
 /area/eris/medical/reception)
 "dzG" = (
 /obj/structure/table/standard,
+/obj/item/reagent_containers/food/drinks/mug/moe,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/command/mbo)
 "dzH" = (
@@ -89210,6 +89211,7 @@
 /area/eris/quartermaster/misc)
 "efy" = (
 /obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/mug/guild,
 /turf/simulated/floor/carpet/oracarpet,
 /area/eris/quartermaster/misc)
 "efz" = (
@@ -97180,6 +97182,7 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/item/reagent_containers/food/drinks/mug/aster,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "exW" = (
@@ -100173,6 +100176,7 @@
 /obj/item/storage/fancy/cigarettes,
 /obj/item/book/manual/wiki/engineering_supermatter,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/reagent_containers/food/drinks/mug/league,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/command/exultant)
 "eEI" = (
@@ -102930,6 +102934,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/drinks/mug/gold,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
 "lCK" = (
@@ -105502,6 +105507,11 @@
 /obj/structure/jtb_pillar,
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/maintenance/junk)
+"vGD" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/mug/new_nt,
+/turf/simulated/floor/tiled/white/golden,
+/area/eris/neotheology/chapelritualroom)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -105635,6 +105645,20 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen_storage)
+"wiu" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/item/reagent_containers/food/drinks/mug/old_nt,
+/turf/simulated/floor/tiled/dark/panels,
+/area/eris/maintenance/oldbridge)
 "wix" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -162244,7 +162268,7 @@ cIS
 cIS
 aaa
 hQD
-cCe
+vGD
 pHi
 rBd
 hQD
@@ -162446,7 +162470,7 @@ aaa
 aaa
 aaa
 hQD
-cCe
+vGD
 pHi
 rBd
 hQD
@@ -170064,7 +170088,7 @@ aRF
 aSE
 aSQ
 bii
-aTU
+aUf
 aSQ
 aSE
 aRP
@@ -253150,7 +253174,7 @@ aaa
 ebN
 exw
 edS
-eeq
+efy
 eua
 dvU
 edX
@@ -288139,7 +288163,7 @@ elG
 een
 eey
 eeJ
-eeX
+wiu
 dyQ
 eff
 eff
