@@ -336,6 +336,21 @@
 	desc = "A mug with a Technomancer League logo on it."
 	icon_state = "mug_league"
 
+/obj/item/reagent_containers/food/drinks/mug/moe
+	name = "Moebius mug"
+	desc = "A white mug with Moebius Laboratories logo on it."
+	icon_state = "mug_moe"
+
+/obj/item/reagent_containers/food/drinks/mug/aster
+	name = "Aster mug"
+	desc = "A fancy gold mug with a Aster Guild logo on it."
+	icon_state = "mug_aster"
+
+/obj/item/reagent_containers/food/drinks/mug/guild
+	name = "Guild mug"
+	desc = "A plain mug with a Aster Guild logo on it."
+	icon_state = "mug_guild"
+
 /obj/item/reagent_containers/food/drinks/mug/white
 	name = "white mug"
 	desc = "A plain white mug."
