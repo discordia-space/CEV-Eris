@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	power_channel = STATIC_ENVIRON
 
 	explosion_resistance = 10
+	maxhealth = 400
 
 	var/aiControlDisabled = 0
 	//If 1, AI control is disabled until the AI hacks back in and disables the lock.
