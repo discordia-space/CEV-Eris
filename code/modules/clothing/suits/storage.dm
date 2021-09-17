@@ -39,7 +39,7 @@
 	set src in usr
 
 	if(usr.incapacitated(INCAPACITATION_UNCONSCIOUS))
-		to_chat(usr, "You are unconscious and cannot do that!")
+		to_chat(user, "You are unconscious and cannot do that!")
 		return
 
 	if(usr.incapacitated(INCAPACITATION_RESTRAINED))
