@@ -187,7 +187,7 @@
 		return
 
 	if(usr.incapacitated(INCAPACITATION_RESTRAINED))
-		to_chat(usr, "You are restrained and cannot do that!")
+		to_chat(user, "You are restrained and cannot do that!")
 		return
 
 	var/primed
