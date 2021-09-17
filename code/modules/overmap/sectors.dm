@@ -20,7 +20,6 @@
 	var/in_space = 1	//can be accessed via lucky EVA
 
 	var/global/eris_start_set = FALSE //Tells us if we need to modify a random location for Eris to start at
-	var/global/eris
 
 	// Stage 0: close, well scanned by sensors
 	// Stage 1: medium, barely scanned by sensors
@@ -44,7 +43,7 @@
 	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 
 	if ((!eris_start_set) && (name == config.start_location))
-		var/obj/effect/overmap/ship/eris/E = ships[eris]
+		var/obj/effect/overmap/ship/eris/E = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 		start_x = E.start_x
 		start_y = E.start_y
 		eris_start_set = TRUE

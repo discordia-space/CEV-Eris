@@ -1,0 +1,7 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - tweak: Suits now take armbands and decors, but can't take armor; under clothes
+      now take armor
+  - balance: Scavenger armor
+  - code_imp: Moved the code for headlamps from /obj/item/clothing/head to /obj/item/clothing

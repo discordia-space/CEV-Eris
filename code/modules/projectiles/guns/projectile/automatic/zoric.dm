@@ -27,6 +27,8 @@
 		SEMI_AUTO_NODELAY,
 		)
 
+	gun_tags = list(GUN_SILENCABLE)
+
 /obj/item/gun/projectile/automatic/zoric/on_update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"

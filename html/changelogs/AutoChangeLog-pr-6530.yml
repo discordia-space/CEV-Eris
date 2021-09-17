@@ -1,0 +1,7 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: colors of drinks
+  - bugfix: invisible grenadine syrup bottle
+  - imageadd: soda bottles, mugs and glasses by CeUvi
+  - imagedel: old soda bottles, mugs and glasses

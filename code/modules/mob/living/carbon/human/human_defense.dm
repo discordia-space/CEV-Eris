@@ -350,6 +350,8 @@ meteor_act
 			return
 
 		O.throwing = 0		//it hit, so stop moving
+		/// Get hit with glass shards , your fibers are on them now, or with a rod idk.
+		O.add_fibers(src)
 
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
