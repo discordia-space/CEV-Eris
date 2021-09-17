@@ -531,7 +531,8 @@ There are 9 wires.
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
 		electrified_until = duration == -1 ? -1 : SecondsToTicks(duration)
-		spawn(electrified_until) electrify(0)
+		if(electrified_until > 0)
+			addtimer(CALLBACK(src, .proc/electrify), electrified_until)
 
 	if(feedback && message)
 		to_chat(usr, message)

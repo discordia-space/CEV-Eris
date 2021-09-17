@@ -444,8 +444,8 @@
 	update_nearby_tiles()
 	operating = 0
 	if(autoclose)
-		spawn(normalspeed ? 150 : 5) close()
-
+		var/wait = normalspeed ? 150 : 5
+		addtimer(CALLBACK(src, .proc/close), wait)
 	return 1
 
 /obj/machinery/door/proc/close(var/forced = 0)
