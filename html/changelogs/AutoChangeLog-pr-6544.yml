@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed movement letting you walk on thin air

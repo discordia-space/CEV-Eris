@@ -322,11 +322,7 @@
 		atmosphere.adjust_gas("nitrogen", MOLES_N2STANDARD)
 	else //let the fuckery commence
 		var/list/newgases = gas_data.gases.Copy()
-		if(prob(90)) //all phoron planet should be rare
-			newgases -= "phoron"
-		if(prob(50)) //alium gas should be slightly less common than mundane shit
-			newgases -= "phoron"
-		newgases -= "phoron"
+		newgases -= "plasma"
 
 		var/total_moles = MOLES_CELLSTANDARD * rand(80,120)/100
 		var/badflag = 0

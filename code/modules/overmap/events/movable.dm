@@ -5,9 +5,8 @@
 /obj/effect/overmap_event/proc/del_event()
 	STOP_PROCESSING(SSobj, src)
 	if(OE)
-		for(var/obj/effect/overmap/ship/victim in world)
-			if(istype(victim, /obj/effect/overmap/ship))
-				OE.leave(victim)
+		for(var/obj/effect/overmap/ship/victim in GLOB.ships)
+			OE.leave(victim)
 
 /obj/effect/overmap_event/proc/handle_wraparound()
 	var/low_edge = 1

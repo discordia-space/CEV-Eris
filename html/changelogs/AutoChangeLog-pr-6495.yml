@@ -1,7 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: chameleon headset
-  - rscdel: assassin's dagger
-  - tweak: a lot of uplink changes
-  - bugfix: typos in uplink

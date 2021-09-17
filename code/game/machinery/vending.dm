@@ -1332,10 +1332,26 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/tray = 8,/obj/item/material/kitchen/utensil/fork = 6, /obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6, /obj/item/tool/knife = 3,/obj/item/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/storage/lunchbox = 3,/obj/item/storage/lunchbox/rainbow = 3,/obj/item/storage/lunchbox/cat = 3,
-					/obj/item/reagent_containers/food/drinks/pitcher = 3,/obj/item/reagent_containers/food/drinks/teapot = 3,/obj/item/reagent_containers/food/drinks/mug = 3,/obj/item/reagent_containers/food/drinks/mug/black = 3,/obj/item/reagent_containers/food/drinks/mug/green = 3,/obj/item/reagent_containers/food/drinks/mug/blue = 3,
-					/obj/item/reagent_containers/food/drinks/mug/red = 3,/obj/item/reagent_containers/food/drinks/mug/heart = 3,/obj/item/reagent_containers/food/drinks/mug/one = 3,/obj/item/reagent_containers/food/drinks/mug/metal = 3,
-					/obj/item/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/reagent_containers/food/drinks/mug/brit = 3,/obj/item/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/reagent_containers/food/drinks/mug/teacup = 10,)
+	products = list(
+	/obj/item/tray = 8,
+	/obj/item/material/kitchen/utensil/fork = 6,
+	/obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6,
+	/obj/item/tool/knife = 3,
+	/obj/item/reagent_containers/food/drinks/drinkingglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/shot = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/mug = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/pint = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/wineglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/double = 4,
+	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/storage/lunchbox = 3,
+	/obj/item/storage/lunchbox/rainbow = 3,
+	/obj/item/storage/lunchbox/cat = 3,
+	/obj/item/reagent_containers/food/drinks/pitcher = 3,
+	/obj/item/reagent_containers/food/drinks/teapot = 3,
+	/obj/item/reagent_containers/food/drinks/mug = 3,
+	/obj/item/reagent_containers/food/drinks/mug/white = 3,
+	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
 

@@ -229,7 +229,8 @@
 
 //Drops the materials in matter list on into target location
 //Use for deconstrction
-/obj/proc/drop_materials(target_loc)
+// Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
+/obj/proc/drop_materials(target_loc, mob/living/dropper)
 	var/list/materials = get_matter()
 
 	for(var/mat_name in materials)
@@ -237,7 +238,7 @@
 		if(!material)
 			continue
 
-		material.place_material(target_loc, materials[mat_name])
+		material.place_material(target_loc, materials[mat_name], dropper)
 
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles

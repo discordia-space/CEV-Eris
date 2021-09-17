@@ -616,6 +616,16 @@
 	update_hud_actions()
 	return new_mode
 
+/// Set firemode , but without a refresh_upgrades at the start
+/obj/item/gun/proc/very_unsafe_set_firemode(index)
+	if(index > firemodes.len)
+		index = 1
+	var/datum/firemode/new_mode = firemodes[sel_mode]
+	new_mode.apply_to(src)
+	new_mode.update()
+	update_hud_actions()
+	return new_mode
+
 /obj/item/gun/attack_self(mob/user)
 	if(zoom)
 		toggle_scope(user)
@@ -810,6 +820,8 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
+	very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
 
 	update_icon()
 	//then update any UIs with the new stats

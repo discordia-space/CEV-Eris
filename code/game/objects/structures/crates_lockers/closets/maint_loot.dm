@@ -27,8 +27,9 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
+	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
+	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
 
 
 /obj/structure/closet/random/tech
