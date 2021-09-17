@@ -33,7 +33,7 @@
 	pockets.emp_act(severity)
 	..()
 
-/obj/item/clothing/suit/storage/verb/prime_grenades(mob/user)
+/obj/item/clothing/suit/storage/verb/prime_suit_grenades(mob/user)
 	set name = "Prime grenades"
 	set category = "Object"
 	set src in usr
