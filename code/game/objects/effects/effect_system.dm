@@ -269,22 +269,22 @@ steam.start() -- spawns the effect
 	var/brightness = 2
 
 /obj/effect/effect/light/New(var/newloc, var/radius, var/brightness, color, selfdestruct_timer)
-    ..()
+	..()
 
-    src.radius = radius
-    src.brightness = brightness
+	src.radius = radius
+	src.brightness = brightness
+	
+	set_light(radius,brightness,color)
 
-    set_light(radius,brightness,color)
-
-    if(selfdestruct_timer)
-        spawn(selfdestruct_timer)
-        qdel(src)
+	if(selfdestruct_timer)
+		spawn(selfdestruct_timer)
+		qdel(src)
 
 /obj/effect/effect/light/set_light(l_range, l_power, l_color)
-    ..()
-    radius = l_range
-    brightness = l_power
-    color = l_color
+	..()
+	radius = l_range
+	brightness = l_power
+	color = l_color
 
 /obj/effect/effect/smoke/illumination
 	name = "illumination"
@@ -293,9 +293,9 @@ steam.start() -- spawns the effect
 	icon_state = "sparks"
 
 /obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10, var/color=COLOR_WHITE)
-    time_to_live=lifetime
-    ..()
-    set_light(brightness, 1, color)
+	time_to_live=lifetime
+	..()
+	set_light(brightness, 1, color)
 
 /////////////////////////////////////////////
 // Bad smoke
