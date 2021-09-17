@@ -138,9 +138,7 @@
 	icon_state = "crate"
 
 /obj/structure/closet/crate/rcd/populate_contents()
-	new /obj/item/rcd_ammo(src)
-	new /obj/item/rcd_ammo(src)
-	new /obj/item/rcd_ammo(src)
+	new /obj/item/stack/material/compressed(src,30)
 	new /obj/item/rcd(src)
 
 /obj/structure/closet/crate/solar

@@ -1,0 +1,8 @@
+author: garrulousTeamotei
+delete-after: true
+changes:
+  - rscdel: Compressed Matter Item
+  - tweak: Allowed RCD, RCD Bow, and RSF to use Compressed Matter Stack
+  - tweak: Changed Roundstart Compressed Matter Item With Compressed Matter Stack
+  - tweak: Changed RCD Crate Compressed Matter Item With Compressed Matter Stack
+  - tweak: Compressed Matter Stack given a price of 30

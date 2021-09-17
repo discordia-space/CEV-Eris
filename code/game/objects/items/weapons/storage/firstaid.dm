@@ -184,7 +184,7 @@
 	new /obj/item/tool/surgicaldrill(src)
 	new /obj/item/device/scanner/health(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/oxycodone(src)
 	new /obj/item/storage/pill_bottle/prosurgeon(src)
 	make_exact_fit()
 
@@ -316,7 +316,6 @@
 /obj/item/storage/pill_bottle/tramadol
 	name = "bottle of Tramadol pills"
 	desc = "Contains pills used to relieve pain."
-	spawn_tags = SPAWN_TAG_MEDICINE_CONTRABAND
 	rarity_value = 15
 	pill_type = /obj/item/reagent_containers/pill/tramadol
 
@@ -340,6 +339,17 @@
 	rarity_value = 20
 
 /obj/item/storage/pill_bottle/prosurgeon/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/oxycodone
+	name = "bottle of Oxycodone pills"
+	desc = "Contains pills used to relieve extreme pain. DO NOT OVERCONSUME."
+	spawn_tags = SPAWN_TAG_MEDICINE_CONTRABAND
+	pill_type = /obj/item/reagent_containers/pill/oxycodone
+	rarity_value = 30
+
+/obj/item/storage/pill_bottle/oxycodone/populate_contents()
 	for(var/i in 1 to initial_amt)
 		new pill_type(src)
 

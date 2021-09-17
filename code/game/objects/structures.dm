@@ -127,11 +127,11 @@
 				return 0
 	return 1
 
-/obj/structure/proc/do_climb(var/mob/living/user)
+/obj/structure/proc/do_climb(mob/living/user)
 	if (!can_climb(user))
 		return
 
-	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34) * user.mod_climb_delay
@@ -144,11 +144,12 @@
 		climbers -= user
 		return
 
-	usr.forceMove(get_turf(src))
+	user.forceMove(get_turf(src))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
+		user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
 	climbers -= user
+	add_fingerprint(user)
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)

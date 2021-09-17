@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed guns receiving a super slow firerate on their enabled firemode  when
+      upgraded

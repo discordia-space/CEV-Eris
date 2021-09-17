@@ -12,6 +12,7 @@
 	var/image/inv_overlay	//overlay used when attached to clothing.
 	var/image/mob_overlay
 	var/overlay_state
+	var/isRemovable = TRUE
 
 /obj/item/clothing/accessory/Destroy()
 	if(has_suit)
@@ -198,6 +199,7 @@
 	slot = "armor"
 	icon_state = "armor"
 	w_class = ITEM_SIZE_NORMAL
+	isRemovable = FALSE
 	armor = list(
 		melee = 25,
 		bullet = 25,

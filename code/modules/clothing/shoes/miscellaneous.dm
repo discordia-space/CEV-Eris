@@ -111,11 +111,6 @@
 	desc = "A sturdy pair of leather shoes."
 	icon_state = "leather"
 
-/obj/item/clothing/shoes/leather
-	name = "leather shoes"
-	desc = "A sturdy pair of leather shoes."
-	icon_state = "leather"
-
 /obj/item/clothing/shoes/redboot
 	name = "red boots"
 	desc = "A pair of stylish red boots."

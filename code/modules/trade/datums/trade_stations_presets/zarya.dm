@@ -10,7 +10,8 @@
 			/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 			/obj/machinery/portable_atmospherics/canister/nitrogen,
 			/obj/machinery/portable_atmospherics/canister/oxygen,
-			/obj/machinery/portable_atmospherics/canister/air
+			/obj/machinery/portable_atmospherics/canister/air,
+			/obj/machinery/portable_atmospherics/canister/carbon_dioxide
 		),
 		"CHAPR*EHNE" = list(
 			/obj/item/clothing/mask/gas,
