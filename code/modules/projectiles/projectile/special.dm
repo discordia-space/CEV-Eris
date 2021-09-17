@@ -213,3 +213,4 @@
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
+	
