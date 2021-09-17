@@ -34,7 +34,7 @@
 	..()
 
 /obj/item/clothing/suit/storage/verb/prime_suit_grenades(mob/user)
-	set name = "Prime grenades"
+	set name = "Prime grenades on suit"
 	set category = "Object"
 	set src in usr
 
