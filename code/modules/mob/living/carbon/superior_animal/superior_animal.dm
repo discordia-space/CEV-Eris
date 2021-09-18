@@ -194,6 +194,8 @@
 	if(istype(get_turf(src), /turf/space))
 		if(bodytemperature > 1)
 			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
+		if(min_air_pressure)
+			adjustBruteLoss(6)
 		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
@@ -321,8 +323,11 @@
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 	if(health <= 0 && !(stat < 2))
 		death()
+		STOP_PROCESSING(SSmobs, src)
 		blinded = TRUE
 		silent = FALSE
+
+
 		return TRUE
 
 /mob/living/carbon/superior_animal/Life()
@@ -334,7 +339,8 @@
 		handle_status_effects()
 		cheap_update_lying_buckled_and_verb_status_()
 		var/datum/gas_mixture/breath = get_breath_from_environment()
-		handle_cheap_breath(breath)
+		if(breath)
+			handle_cheap_breath(breath)
 		var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
 		handle_cheap_environment(environment)
 		updateicon()
