@@ -14,11 +14,11 @@
 					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
 				else
 					life_cycles_before_scan = 240
-		if(life_cycles_before_sleep)
-			life_cycles_before_sleep--
+			if(life_cycles_before_sleep)
+				life_cycles_before_sleep--
 
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
-			AI_inactive = TRUE
+			if(life_cycles_before_sleep < 1 && !AI_inactive)
+				AI_inactive = TRUE
 
 
 
