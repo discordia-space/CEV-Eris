@@ -11,6 +11,8 @@
 		#include "avatar/api/interactions_api.dm"
 		#include "avatar/api/cyberspace_listeners.dm"
 	#include "avatar/implementations.dm"
+	#include "avatar/nano_state.dm"
+	#include "avatar/interactable.dm"
 
 	#include "~game/_game.dm"
 

@@ -15,8 +15,10 @@
 	SetOwner(nOwner)
 
 /datum/CyberSpaceAvatar/proc/SetOwner(atom/nOwner)
-	Owner = nOwner
-	nOwner ? AddToAtoms(Owner) : RemoveFromAtoms(Owner)
+	if(Owner != nOwner)
+		AddToAtoms(nOwner)
+		RemoveFromAtoms(Owner)
+		Owner = nOwner
 	UpdateIcon(TRUE)
 
 /atom/proc/CreateCA(_color = CyberAvatar)

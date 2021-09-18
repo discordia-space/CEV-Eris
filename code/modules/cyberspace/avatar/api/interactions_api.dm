@@ -15,13 +15,20 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/Uncross(atom/movable/O), OnUncross)
 CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), OnMovedTo)
 /datum/CyberSpaceAvatar/proc/OnMovedTo(NewLoc,Dir=0,step_x=0,step_y=0)
 
-CYBERAVATAR_CONNECT_PROC_TO(/atom/attack_hand(mob/user as mob), attacked_by_hand)
-/datum/CyberSpaceAvatar/proc/attacked_by_hand(mob/user as mob)
+/atom/Click(location, control, params)
+	. = ..()
+	if(istype(CyberAvatar))
+		var/mob/user = usr
+		if(istype(user))
+			CyberAvatar.ClickedBy(user)
+
+
+/datum/CyberSpaceAvatar/proc/ClickedBy(mob/user as mob)
 	var/datum/CyberSpaceAvatar/A = user.CyberAvatar
 	if(istype(A))
-		attacked_by_avatar(A, user.a_intent)
+		ClickedByAvatar(user, A)
 
-/datum/CyberSpaceAvatar/proc/attacked_by_avatar(datum/CyberSpaceAvatar/user, intent)
+/datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user, intent)
 
 // CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 // /datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)

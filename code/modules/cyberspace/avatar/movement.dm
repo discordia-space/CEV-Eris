@@ -3,16 +3,17 @@
 
 	var/list/collidedAvatars = GetDenseCyberspaceAvatars(movedTo)
 
-	if(length(collidedAvatars))
-		for(var/datum/CyberSpaceAvatar/CA in collidedAvatars)
-			CA.BumpedByAvatar(mover.CyberAvatar)
-	else
-		. = ..()
-		if(mover.CyberAvatar.ListenToSurrounding)
-			for(var/datum/CyberSpaceAvatar/A in GLOB.CyberListeners)
-				if(get_dist(A.Owner, mover) <= world.view)
-					A.AnotherAvatarFound(mover.CyberAvatar)
-					mover.CyberAvatar.AnotherAvatarFound(A)
+	if(!movedTo.density)
+		if(length(collidedAvatars))
+			for(var/datum/CyberSpaceAvatar/CA in collidedAvatars)
+				CA.BumpedByAvatar(mover.CyberAvatar)
+		else
+			. = ..()
+			if(mover.CyberAvatar.ListenToSurrounding)
+				for(var/datum/CyberSpaceAvatar/A in GLOB.CyberListeners)
+					if(get_dist(A.Owner, mover) <= world.view)
+						A.AnotherAvatarFound(mover.CyberAvatar)
+						mover.CyberAvatar.AnotherAvatarFound(A)
 
 /proc/GetDenseCyberspaceAvatars(turf/T)
 	. = list()
