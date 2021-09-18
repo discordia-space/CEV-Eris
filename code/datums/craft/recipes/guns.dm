@@ -98,6 +98,19 @@
 		list(QUALITY_HAMMERING, 10)
 	)
 
+/datum/craft_recipe/gun/luty
+	name = "Handmade SMG .35 Auto \"Luty\""
+	result = /obj/item/gun/projectile/automatic/luty
+	steps = list(
+		list(/obj/item/part/gun, 3),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_ADHESIVE, 15),
+	)
+
 /datum/craft_recipe/gun/ammo_kit
 	name = "Scrap ammo kit"
 	result = /obj/item/ammo_kit

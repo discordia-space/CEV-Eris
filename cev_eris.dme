@@ -2390,6 +2390,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\dallas.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\drozd.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\lmg.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\luty.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\maxim.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\molly.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\motherfucker.dm"
