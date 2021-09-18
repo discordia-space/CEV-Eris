@@ -162,11 +162,9 @@
 
 // Same as breact but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
 /mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
-	failed_last_breath = 0
-	if(!breath.total_moles)
+	if(!(breath.total_moles))
 		adjustBruteLoss(6)
 		if(breath_required_type)
-			failed_last_breath = 1
 			adjustOxyLoss(6)
 		bad_environment = TRUE
 		return FALSE // in either cases , no breath poison type to handle
@@ -176,7 +174,6 @@
 		var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 		if(inhale_pp < min_breath_required_type)
 			adjustOxyLoss(6)
-			failed_last_breath = 1
 			bad_environment = TRUE
 	if(breath_poison_type)
 		var/poison = breath.gas[breath_poison_type]
@@ -190,12 +187,13 @@
 	if((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature)) // its like this to avoid extra processing further below without using goto
 		bad_environment = TRUE
 		adjustFireLoss(15)
-		updatehealth()
 	if(istype(get_turf(src), /turf/space))
 		if(bodytemperature > 1)
 			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
 		if(min_air_pressure)
 			adjustBruteLoss(6)
+		if(breath_required_type)
+			adjustOxyLoss(6)
 		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
@@ -220,7 +218,7 @@
 	else if(loc_temp > bodytemperature) //Place is hotter than we are
 		thermal_protection = get_heat_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
 		temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
-	bodytemperature += between(BODYTEMP_COOLING_MAX, 3*temp_adj*relative_density, BODYTEMP_HEATING_MAX) // Multiplied by 3 because of reduced frequency
+	bodytemperature += between(BODYTEMP_COOLING_MAX, 3*temp_adj*relative_density, BODYTEMP_HEATING_MAX)*3 // Multiplied by 3 because of reduced frequency
 
 	if (overkill_dust && (getFireLoss() >= maxHealth*2))
 		dust()
@@ -318,10 +316,12 @@
 		paralysis = max(paralysis-3,0)
 	if(stunned)
 		stunned = max(stunned-3,0)
+	if(weakened)
+		weakened = max(weakened-3,0)
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if(health <= 0 && !(stat < 2))
+	if(health <= 0 && stat != DEAD)
 		death()
 		STOP_PROCESSING(SSmobs, src)
 		blinded = TRUE
