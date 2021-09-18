@@ -257,9 +257,6 @@
 		update_icon = FALSE
 		regenerate_icons()
 
-	if(lying != lying_prev)
-		update_icons()
-
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
 	objectsInView = null
