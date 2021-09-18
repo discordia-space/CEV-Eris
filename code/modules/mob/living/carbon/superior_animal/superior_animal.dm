@@ -158,3 +158,48 @@
 /mob/living/carbon/superior_animal/updateicon()
 	. = ..()
 	update_icons()
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
+	if(!breath)
+		return FALSE
+	failed_last_breath = 0
+	if(!breath.total_moles)
+		if(breath_required_type)
+			failed_last_breath = 1
+			adjustOxyLoss(2)
+		return FALSE // in either cases , no breath poison type to handle
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	if(breath_required_type)
+		var/inhaling = breath.gas[breath_required_type]
+		var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
+		if(inhale_pp < min_breath_required_type)
+			adjustOxyLoss(2)
+			failed_last_breath = 1
+	if(breath_poison_type)
+		var/poison = breath.gas[breath_poison_type]
+		var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+		if(toxins_pp > min_breath_poison_type)
+			adjustToxLoss(2)
+
+	return TRUE
+
+/mob/living/carbon/superior_animal/Life()
+	var/datum/gas_mixture/breath = get_breath_from_environment()
+	handle_cheap_breath(breath)
+
+	if(life_cycles_before_sleep)
+		life_cycles_before_sleep--
+		return TRUE
+	if(!(AI_inactive && life_cycles_before_sleep))
+		AI_inactive = TRUE
+
+	if(life_cycles_before_scan)
+		life_cycles_before_scan--
+		return FALSE
+	if(check_surrounding_area(7))
+		activate_ai()
+		life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+		return TRUE
+	life_cycles_before_scan = 240
+	return FALSE
+

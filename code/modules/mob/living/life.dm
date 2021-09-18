@@ -15,13 +15,6 @@
 				else
 					life_cycles_before_scan = 240
 
-			if(life_cycles_before_sleep)
-				life_cycles_before_sleep--
-
-			if(life_cycles_before_sleep < 1 && !AI_inactive)
-				AI_inactive = TRUE
-
-
 	if((!stasis && !AI_inactive) || ishuman(src)) //god fucking forbid we do this to humanmobs somehow
 		if(Life_Check())
 			. = TRUE
