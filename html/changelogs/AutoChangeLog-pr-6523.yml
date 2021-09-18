@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - refactor: Refactor del_event function and global list for ships
