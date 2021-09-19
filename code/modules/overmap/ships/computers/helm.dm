@@ -115,6 +115,7 @@
 	data["manual_control"] = manual_control
 	data["canburn"] = linked.can_burn()
 	data["canpulse"] = linked.can_pulse()
+	data["canscanpoi"] = linked.can_scan_poi()
 
 	if(linked.get_speed())
 		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
@@ -226,6 +227,9 @@
 
 	if (href_list["pulse"])
 		linked.pulse()
+
+	if (href_list["scanpoi"])
+		linked.scan_poi()
 
 	updateUsrDialog()
 
