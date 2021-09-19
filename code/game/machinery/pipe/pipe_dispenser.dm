@@ -206,13 +206,13 @@ Nah
 					C.pipe_type = PIPE_TYPE_TRUNK
 				if(5)
 					C.pipe_type = PIPE_TYPE_BIN
-					C.density = TRUE
+					C.set_density(TRUE)
 				if(6)
 					C.pipe_type = PIPE_TYPE_OUTLET
-					C.density = TRUE
+					C.set_density(TRUE)
 				if(7)
 					C.pipe_type = PIPE_TYPE_INTAKE
-					C.density = TRUE
+					C.set_density(TRUE)
 				if(8)
 					C.pipe_type = PIPE_TYPE_JUNC_SORT
 					C.sort_mode = SORT_TYPE_NORMAL

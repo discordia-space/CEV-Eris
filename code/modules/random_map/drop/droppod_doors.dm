@@ -77,7 +77,7 @@
 	icon_state = "ramptop"
 	var/obj/structure/droppod_door/door_bottom = new(T)
 	door_bottom.deployed = 1
-	door_bottom.density = FALSE
+	door_bottom.set_density(FALSE)
 	door_bottom.set_opacity(FALSE)
 	door_bottom.dir = src.dir
 	door_bottom.icon_state = "rampbottom"

@@ -38,8 +38,8 @@
 	else
 		f5 = new/obj/machinery/filler_object(src.loc)
 		f6 = new/obj/machinery/filler_object(get_step(src,NORTH))
-	f5.density = FALSE
-	f6.density = FALSE
+	f5.set_density(FALSE)
+	f6.set_density(FALSE)
 	f5.set_opacity(opacity)
 	f6.set_opacity(opacity)
 

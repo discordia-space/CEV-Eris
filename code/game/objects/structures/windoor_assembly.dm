@@ -128,7 +128,7 @@ obj/structure/windoor_assembly/Destroy()
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
 						windoor.set_dir(src.dir)
-						windoor.density = FALSE
+						windoor.set_density(FALSE)
 
 						if(src.electronics.one_access)
 							windoor.req_access = null
@@ -146,7 +146,7 @@ obj/structure/windoor_assembly/Destroy()
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
 						windoor.set_dir(src.dir)
-						windoor.density = FALSE
+						windoor.set_density(FALSE)
 
 						if(src.electronics.one_access)
 							windoor.req_access = null

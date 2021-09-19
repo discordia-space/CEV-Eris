@@ -56,11 +56,11 @@
 	if((!(first) && (secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))))
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc) )
 		I.master = src
-		I.density = TRUE
+		I.set_density(TRUE)
 		I.set_dir(dir)
 		step(I, I.dir)
 		if(I)
-			I.density = FALSE
+			I.set_density(FALSE)
 			first = I
 			I.vis_spread(visible)
 			spawn(0)
@@ -195,13 +195,13 @@
 
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
-	I.density = TRUE
+	I.set_density(TRUE)
 	I.set_dir(dir)
 	step(I, I.dir)
 
 	if(I)
 		if(!(next))
-			I.density = FALSE
+			I.set_density(FALSE)
 			I.vis_spread(visible)
 			next = I
 			spawn(0)

@@ -17,16 +17,13 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), 
 
 /atom/Click(location, control, params)
 	. = ..()
-	if(istype(CyberAvatar))
-		var/mob/user = usr
-		if(istype(user))
-			CyberAvatar.ClickedBy(user)
+	if(istype(CyberAvatar) && CyberAvatar.enabled && istype(usr, /mob))
+		CyberAvatar.ClickedBy(usr)
 
 
 /datum/CyberSpaceAvatar/proc/ClickedBy(mob/user as mob)
-	var/datum/CyberSpaceAvatar/A = user.CyberAvatar
-	if(istype(A))
-		ClickedByAvatar(user, A)
+	if(istype(user.CyberAvatar, /datum/CyberSpaceAvatar))
+		ClickedByAvatar(user, user.CyberAvatar)
 
 /datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user, intent)
 

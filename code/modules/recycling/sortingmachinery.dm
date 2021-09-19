@@ -471,7 +471,7 @@
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_INTAKE
 					C.anchored = TRUE
-					C.density = TRUE
+					C.set_density(TRUE)
 					C.update()
 					qdel(src)
 			return

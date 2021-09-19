@@ -70,7 +70,7 @@
 	src.operating = 1
 	FLICK(icon_state_opening, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
-	src.density = FALSE
+	src.set_density(FALSE)
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
@@ -86,7 +86,7 @@
 	src.layer = closed_layer
 	FLICK(icon_state_closing, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
-	src.density = TRUE
+	src.set_density(TRUE)
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(1)

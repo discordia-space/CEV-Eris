@@ -48,7 +48,7 @@
 	if(operating == -1)
 		ae.SetIconState("door_electronics_smoked")
 		operating = 0
-	src.density = FALSE
+	src.set_density(FALSE)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")

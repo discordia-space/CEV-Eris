@@ -14,7 +14,7 @@
 	for(var/obj/structure/target_stake/T in view(3,src))
 		if(T.pinned_target == src)
 			T.pinned_target = null
-			T.density = TRUE
+			T.set_density(TRUE)
 			break
 	. = ..() // delete target
 
@@ -50,7 +50,7 @@
 
 	if(stake)
 		if(stake.pinned_target)
-			stake.density = TRUE
+			stake.set_density(TRUE)
 			density = FALSE
 			layer = OBJ_LAYER
 

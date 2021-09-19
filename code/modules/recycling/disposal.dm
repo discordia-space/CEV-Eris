@@ -110,7 +110,7 @@
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_BIN
 					C.anchored = TRUE
-					C.density = TRUE
+					C.set_density(TRUE)
 					C.update()
 					qdel(src)
 			return
@@ -961,7 +961,7 @@
 	C.sort_mode = src.subtype
 	src.transfer_fingerprints_to(C)
 	C.set_dir(dir)
-	C.density = FALSE
+	C.set_density(FALSE)
 	C.anchored = TRUE
 	C.update()
 
@@ -1527,7 +1527,7 @@
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_OUTLET
 					C.anchored = TRUE
-					C.density = TRUE
+					C.set_density(TRUE)
 					C.update()
 					qdel(src)
 			return

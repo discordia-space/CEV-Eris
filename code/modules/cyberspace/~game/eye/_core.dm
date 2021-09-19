@@ -21,10 +21,9 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 
 /mob/observer/cyberspace_eye/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	if(user == src && get_dist(user, dropping) <= 1)
-		var/turf/T = get_turf(dropping)
-		if(T.density && do_after(src, 2 SECONDS, src))
-			Move(T, get_dir(src, T))
+	var/turf/T = get_turf(dropping)
+	if(user == src && get_dist(user, dropping) <= 1 && T.density && do_after(src, 2 SECONDS, src))
+		Move(T, get_dir(src, T))
 
 /datum/CyberSpaceAvatar/runner/ai
 	icon_state = "ai_observer"

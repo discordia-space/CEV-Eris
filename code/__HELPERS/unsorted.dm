@@ -781,7 +781,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = TRUE
+						corner.set_density(TRUE)
 						corner.anchored = TRUE
 						corner.icon = X.icon
 						corner.icon_state = replacetext(X.icon_state, "_s", "_f")

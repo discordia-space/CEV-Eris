@@ -155,7 +155,7 @@
 	rebuild_anim.icon = 'icons/obj/hivemind_machines.dmi'
 	rebuild_anim.icon_state = "rebuild"
 	rebuild_anim.anchored = TRUE
-	rebuild_anim.density = FALSE
+	rebuild_anim.set_density(FALSE)
 	addtimer(CALLBACK(src, .proc/finish_rebuild, new_machine_path), time_in_seconds SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, rebuild_anim), time_in_seconds SECONDS)
 

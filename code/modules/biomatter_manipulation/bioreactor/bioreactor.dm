@@ -95,7 +95,7 @@
 			if(glass.dir == platform_enter_side)
 				if(chamber_closed)
 					glass.icon_state = ""
-					glass.density = FALSE
+					glass.set_density(FALSE)
 					FLICK("glassdoor_open", glass)
 				else
 					glass.icon_state = "platform_door"

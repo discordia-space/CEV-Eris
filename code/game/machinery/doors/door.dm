@@ -441,7 +441,7 @@
 	do_animate("opening")
 	SetIconState("door0")
 	sleep(3)
-	src.density = FALSE
+	src.set_density(FALSE)
 	update_nearby_tiles()
 	sleep(7)
 	src.layer = open_layer
@@ -467,7 +467,7 @@
 	close_door_at = 0
 	do_animate("closing")
 	sleep(3)
-	src.density = TRUE
+	src.set_density(TRUE)
 	update_nearby_tiles()
 	sleep(7)
 	src.layer = closed_layer
