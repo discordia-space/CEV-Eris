@@ -30,6 +30,7 @@
 
     origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
     matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
+    gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
 
 /obj/item/gun/projectile/automatic/luty/on_update_icon()
     cut_overlays()
