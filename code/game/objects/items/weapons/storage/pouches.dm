@@ -247,7 +247,8 @@
 		/obj/item/gun/energy/plasma/brigador,
 		/obj/item/gun/projectile/shotgun/pump/sawn,
 		/obj/item/gun/projectile/boltgun/obrez,
-		/obj/item/gun/energy/retro/sawn
+		/obj/item/gun/energy/retro/sawn,
+		/obj/item/gun/projectile/automatic/luty
 		)
 
 	sliding_behavior = TRUE
