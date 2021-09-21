@@ -7,7 +7,7 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/part/consolescreen,
-		/datum/design/autolathe/part/cable_coil,
+		/datum/design/autolathe/part/cable_coil = 0,
 		/datum/design/research/item/part/smes_coil,
 		/datum/design/research/item/part/basic_capacitor,
 		/datum/design/research/item/part/basic_sensor,
