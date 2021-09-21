@@ -30,6 +30,8 @@
 		)
     spawn_blacklisted = TRUE //until loot rework
 
+    gun_tags = list(GUN_SILENCABLE)
+
 /obj/item/gun/projectile/automatic/type_17/on_update_icon()
 	..()
 

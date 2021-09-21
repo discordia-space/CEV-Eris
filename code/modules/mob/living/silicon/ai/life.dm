@@ -63,6 +63,8 @@
 				if (aiRestorePowerRoutine==0)
 					aiRestorePowerRoutine = 1
 
+					pull_to_core()  // Pull back mind to core if it is controlling a drone
+
 					//Now to tell the AI why they're blind and dying slowly.
 					to_chat(src, "You've lost power!")
 
