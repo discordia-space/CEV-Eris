@@ -323,14 +323,40 @@
 		STOP_PROCESSING(SSmobs, src)
 		blinded = TRUE
 		silent = FALSE
-
-
 		return TRUE
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_chemicals_in_body()
+	if(reagents)
+		chem_effects.Cut()
+		if(touching)
+			touching.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
+
+	/*
+	if(light_dam)
+		var/light_amount = 0
+		if(isturf(loc))
+			var/turf/T = loc
+			light_amount = round((T.get_lumcount()*10)-5)
+
+		if(light_amount > light_dam) //if there's enough light, start dying
+			take_overall_damage(1,1)
+		else //heal in the dark
+			heal_overall_damage(1,1)
+
+	// nutrition decrease
+	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
+		nutrition = max (0, nutrition - hunger_factor)
+
+	updatehealth()
+	*/
 
 /mob/living/carbon/superior_animal/Life()
 	ticks_processed++
 	handle_fire()
 	handle_regular_hud_updates()
+	handle_cheap_chemicals_in_body()
 	handle_cheap_regular_status_updates()
 	if(!(ticks_processed%3))
 		handle_status_effects()
