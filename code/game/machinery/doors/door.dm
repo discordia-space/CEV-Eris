@@ -27,7 +27,6 @@
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
 	var/obj/item/stack/material/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
-	var/close_door_at = 0 //When to automatically close the door, if possible
 	var/obj/machinery/filler_object/f5
 	var/obj/machinery/filler_object/f6
 	var/welded //Placed here for simplicity, only airlocks can be welded tho
@@ -92,12 +91,7 @@
 	return ..()
 
 /obj/machinery/door/Process()
-	if(close_door_at && world.time >= close_door_at)
-		if(autoclose)
-			close_door_at = next_close_time()
-			close()
-		else
-			close_door_at = 0
+	return PROCESS_KILL
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
@@ -449,14 +443,10 @@
 	update_icon()
 	update_nearby_tiles()
 	operating = 0
-
 	if(autoclose)
-		close_door_at = next_close_time()
-
+		var/wait = normalspeed ? 150 : 5
+		addtimer(CALLBACK(src, .proc/close), wait)
 	return 1
-
-/obj/machinery/door/proc/next_close_time()
-	return world.time + (normalspeed ? 150 : 5)
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	set waitfor = FALSE
@@ -464,7 +454,6 @@
 		return
 	operating = 1
 
-	close_door_at = 0
 	do_animate("closing")
 	sleep(3)
 	src.density = TRUE

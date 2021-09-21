@@ -237,16 +237,16 @@
 		draw(user)
 
 /obj/item/gun/launcher/crossbow/RCD/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/rcd_ammo))
-		if((stored_matter + 20) > max_stored_matter)
-			to_chat(user, "<span class='notice'>The RXD can't hold that many additional matter-units.</span>")
-			return
-		stored_matter += 20
-		qdel(W)
-		playsound(loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
-		update_icon()
-		return
+	var/obj/item/stack/material/M = W
+	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
+		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter < max_stored_matter)
+			stored_matter += amount
+			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			update_icon()	//Updates the ammo counter
+	else
+		..()
 	if(istype(W, /obj/item/arrow/RCD))
 		var/obj/item/arrow/RCD/A = W
 		if((stored_matter + 5) > max_stored_matter)
@@ -276,9 +276,8 @@
 		icon_state = "rxb"
 
 /obj/item/gun/launcher/crossbow/RCD/examine(user)
-	. = ..()
-	if(.)
-		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")
+	if(..(user, 0))
+		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] Compressed Matter.")
 
 
 /obj/item/arrow/ironrod

@@ -26,6 +26,8 @@
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 
+	gun_tags = list(GUN_SILENCABLE)
+
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,

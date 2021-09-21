@@ -76,6 +76,7 @@ AI MODULES
 /obj/item/electronics/ai_module/proc/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	log_law_changes(target, sender)
 
+	target.pull_to_core()  // Pull back mind to core if it is controlling a drone
 	if(laws)
 		laws.sync(target, 0)
 	addAdditionalLaws(target, sender)
