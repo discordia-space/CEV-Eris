@@ -15,6 +15,7 @@
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 	var/starts_unlocked = FALSE		//If the design starts unlocked.
 	var/list/factions = list()				//What faction the design is tied to, currently only used so the NT autolathe can print NT designs perfectly.
+	var/olddesign = FALSE
 
 	var/list/ui_data			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
@@ -159,30 +160,26 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator)
-	if(!build_path)
-		return
+/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result)
+    if(!build_path)
+        return
 
-	var/atom/A = new build_path(newloc)
-	A.Created()
+    var/atom/A = new build_path(newloc)
+    A.Created()
 
-	if(mat_efficiency != 1 && adjust_materials)
-		for(var/obj/O in A.GetAllContents(includeSelf = TRUE))
-			if(length(O.matter))
-				for(var/i in O.matter)
-					O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
+    if(mat_efficiency != 1 && adjust_materials)
+        for(var/obj/O in A.GetAllContents(includeSelf = TRUE))
+            if(length(O.matter))
+                for(var/i in O.matter)
+                    O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
 
-	if(fabricator && fabricator.low_quality_print)
-		for(var/design_faction in factions)
-			if(design_faction in fabricator.high_quality_faction_list)
-				return A
-
-		var/obj/O = A
-		if(istype(O))
-			O.make_old(TRUE)
+    if(oldify_result)
+        var/obj/O = A
+        if(istype(O))
+            O.make_old(TRUE)
 
 
-	return A
+    return A
 
 /datum/design/autolathe
 	build_type = AUTOLATHE
