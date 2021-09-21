@@ -261,7 +261,7 @@ obj/item/clothing/under/genericr
 	icon_state = "suit_white"
 	item_state = "suit_white"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/red
 	name = "blood red outfit"
@@ -269,7 +269,7 @@ obj/item/clothing/under/genericr
 	icon_state = "suit_red"
 	item_state = "suit_red"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/green
 	name = "questionable outfit"//Riddler reference, you probably knew that
@@ -277,7 +277,7 @@ obj/item/clothing/under/genericr
 	icon_state = "riddler"
 	item_state = "riddler"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/grey
 	name = "ash grey outfit"
@@ -285,7 +285,7 @@ obj/item/clothing/under/genericr
 	icon_state = "suit_grey"
 	item_state = "suit_grey"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/black
 	name = "charcoal black outfit"
@@ -293,7 +293,7 @@ obj/item/clothing/under/genericr
 	icon_state = "suit_black"
 	item_state = "suit_black"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/dress
 	name = "black and purple dress"
@@ -301,7 +301,7 @@ obj/item/clothing/under/genericr
 	icon_state = "black_purple"
 	item_state = "black_purple"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/dress/white
 	name = "white and yellow dress"
@@ -309,7 +309,7 @@ obj/item/clothing/under/genericr
 	icon_state = "white_yellow"
 	item_state = "white_yellow"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 
 /obj/item/clothing/under/helltaker
@@ -318,7 +318,7 @@ obj/item/clothing/under/genericr
 	icon_state = "helltaker"
 	item_state = "helltaker"
 	style = STYLE_HIGH
-	price_tag = 450
+	price_tag = 300
 
 /obj/item/clothing/under/johnny
 	name = "rockerboy outfit"//Cyberpunk 2077, Johnny Silverhand's outfit
@@ -326,7 +326,7 @@ obj/item/clothing/under/genericr
 	icon_state = "johnny"
 	item_state = "johnny"
 	style = STYLE_HIGH
-	price_tag = 600
+	price_tag = 400
 	armor = list(
 		melee = 10,
 		bullet = 5,
@@ -342,7 +342,7 @@ obj/item/clothing/under/genericr
 	icon_state = "raider"
 	item_state = "raider"
 	style = STYLE_HIGH
-	price_tag = 600
+	price_tag = 400
 	armor = list(
 		melee = 10,
 		bullet = 5,
