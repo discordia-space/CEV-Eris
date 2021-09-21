@@ -39,9 +39,9 @@
 				busy = 0
 				stop_automated_movement = 0
 
-/mob/living/carbon/superior_animal/giant_spider/nurse/Life()
+/mob/living/carbon/superior_animal/giant_spider/nurse/handle_ai()
 	..()
-	if(!stat && !AI_inactive)
+	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
 			//30% chance to stop wandering and do something
 			if(!busy && prob(30))
