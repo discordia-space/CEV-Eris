@@ -1,4 +1,0 @@
-author: HentaiStorm
-delete-after: true
-changes:
-  - bugfix: fix unavailable trade program in cargo
