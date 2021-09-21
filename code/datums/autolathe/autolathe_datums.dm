@@ -173,7 +173,7 @@
                 for(var/i in O.matter)
                     O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
 
-    if(oldify_result)
+    if(oldify_result && fabricator.low_quality_print)
         var/obj/O = A
         if(istype(O))
             O.make_old(TRUE)
