@@ -3368,10 +3368,10 @@
 	desc = "A thin piece of raw meat."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "rawcutlet"
-	bitesize = 1
+	bitesize = 2
 	center_of_mass = list("x"=17, "y"=20)
-	preloaded_reagents = list("protein" = 1)
-	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
+	preloaded_reagents = list("protein" = 3)
+	taste_tag = list(MEAT_FOOD)
 
 /obj/item/reagent_containers/food/snacks/cutlet
 	name = "cutlet"
@@ -3380,7 +3380,7 @@
 	icon_state = "cutlet"
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=20)
-	preloaded_reagents = list("protein" = 2)
+	preloaded_reagents = list("protein" = 3)
 	taste_tag = list(MEAT_FOOD,SPICY_FOOD)
 
 /obj/item/reagent_containers/food/snacks/rawmeatball
@@ -3388,22 +3388,22 @@
 	desc = "A raw meatball."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "rawmeatball"
-	bitesize = 2
+	bitesize = 3
 	center_of_mass = list("x"=16, "y"=15)
-	preloaded_reagents = list("protein" = 2)
+	preloaded_reagents = list("protein" = 3, "flour" = 5)
 	taste_tag = list(MEAT_FOOD)
 
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"
 	desc = "Unrelated to dogs, maybe."
 	icon_state = "hotdog"
-	bitesize = 2
+	bitesize = 3
 	center_of_mass = list("x"=16, "y"=17)
 	preloaded_reagents = list("protein" = 6)
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 20
-	taste_tag = list(MEAT_FOOD)
+	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
 
 /obj/item/reagent_containers/food/snacks/flatbread
 	name = "flatbread"
