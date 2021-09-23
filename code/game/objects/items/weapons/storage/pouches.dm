@@ -164,7 +164,7 @@
 
 /obj/item/storage/pouch/ammo
 	name = "ammo pouch"
-	desc = "Can hold ammo magazines and bullets, not the boxes though."
+	desc = "Can hold ammo magazines and bullets."
 	icon_state = "ammo"
 	item_state = "ammo"
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
@@ -215,7 +215,7 @@
 
 /obj/item/storage/pouch/vial
 	name = "vial pouch"
-	desc = "Can hold about five vials. Rebranding!"
+	desc = "Can hold about ten vials. Rebranding!"
 	icon_state = "flare"
 	item_state = "flare"
 	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
