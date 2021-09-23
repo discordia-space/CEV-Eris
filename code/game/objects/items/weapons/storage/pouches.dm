@@ -82,7 +82,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -136,22 +136,19 @@
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. But only about two pieces of it."
+	desc = "Can hold engineering equipment. 12 pieces of hardware , cells or cables"
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 2
+	storage_slots = 12
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/cell,
 		/obj/item/electronics/circuitboard,
-		/obj/item/tool,
-		/obj/item/stack/material,
-		/obj/item/material,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
@@ -170,7 +167,7 @@
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = 9
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -205,7 +202,18 @@
 
 /obj/item/storage/pouch/tubular/vial
 	name = "vial pouch"
-	desc = "Can hold about five vials. Rebranding!"
+	desc = "Can hold about twelve vials. Rebranding!"
+
+	storage_slots = 12
+
+	can_hold = list(
+		/obj/item/device/lighting/glowstick,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/pen,
+		/obj/item/storage/pill_bottle
+		)
 
 /obj/item/storage/pouch/tubular/on_update_icon()
 	..()
