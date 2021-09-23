@@ -3,6 +3,7 @@
 	desc = "Summon things."
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	scanner_hidden = TRUE
 	var/activation_emote
 
 /obj/item/implant/uplink/New(var/loc, var/amount)
