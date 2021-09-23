@@ -35,7 +35,7 @@
 		if(!(M.stat < DEAD))
 			continue
 		if(M.faction != faction)
-			if(get_dist(src, M <= dist))
+			if(get_dist(src, M) <= dist)
 				return TRUE
 
 	return FALSE
