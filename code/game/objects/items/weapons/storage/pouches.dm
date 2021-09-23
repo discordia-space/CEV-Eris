@@ -156,7 +156,7 @@
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/device/scanner/plant,
-		/oj/item/stack/rods,
+		/obj/item/stack/rods,
 		/obj/item/extinguisher/mini
 		)
 
