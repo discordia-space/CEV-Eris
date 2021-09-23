@@ -135,4 +135,4 @@
 /obj/structure/closet/secure_closet/chemical/populate_contents()
 	new /obj/item/storage/box/pillbottles(src)
 	new /obj/item/storage/box/pillbottles(src)
-	new /obj/item/storage/pouch/tubular/vial(src)
+	new /obj/item/storage/pouch/vial(src)

@@ -47,7 +47,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 3)
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
-	max_w_class = ITEM_SIZE_SMALL
+	max_w_class = ITEM_SIZE_NORMAL
 	rarity_value = 10
 
 /obj/item/storage/pouch/medium_generic
@@ -56,6 +56,7 @@
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
 	matter = list(MATERIAL_BIOMATTER = 24, MATERIAL_STEEL = 6 )
+	w_class = ITEM_SIZE_BULKY
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
@@ -67,7 +68,7 @@
 	icon_state = "large_generic"
 	item_state = "large_generic"
 	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 9 )
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_HUGE // It's size of a satchel after all
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_NORMAL_STORAGE
@@ -82,7 +83,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = 6
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -104,14 +105,14 @@
 
 /obj/item/storage/pouch/engineering_tools
 	name = "engineering tools pouch"
-	desc = "Can hold small engineering tools. But only about three pieces of them."
+	desc = "Can hold engineering tools. About six pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
-	storage_slots = 3
-	max_w_class = ITEM_SIZE_SMALL
+	storage_slots = 6
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/tool,
@@ -122,8 +123,6 @@
 		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
-		/obj/item/tool/minihoe,
-		/obj/item/tool/hatchet,
 		/obj/item/device/scanner/plant,
 		/obj/item/extinguisher/mini,
 		/obj/item/hand_labeler,
@@ -136,13 +135,13 @@
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. But only about two pieces of it."
+	desc = "Can hold engineering equipment. But only about three pieces of it."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 2
+	storage_slots = 3
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -154,6 +153,7 @@
 		/obj/item/material,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
+		/obj/item/stack/rods,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
@@ -170,11 +170,13 @@
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = null // Uses generic capacity
 	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	max_storage_space = DEFAULT_SMALL_STORAGE + 2 // 6 medium cells/magazines/grenades or 12 small cells
 
 	can_hold = list(
+		/obj/item/cell/small,
+		/obj/item/cell/medium,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing
 		)
@@ -192,6 +194,8 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
+		/obj/item/cell/small,
+		/obj/item/cell/medium,
 		/obj/item/device/lighting/glowstick,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/glass/beaker/vial,
@@ -203,11 +207,36 @@
 		/obj/item/ammo_casing/grenade
 		)
 
-/obj/item/storage/pouch/tubular/vial
+/obj/item/storage/pouch/tubular/on_update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
+
+/obj/item/storage/pouch/vial
 	name = "vial pouch"
 	desc = "Can hold about five vials. Rebranding!"
+	icon_state = "flare"
+	item_state = "flare"
+	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
+	rarity_value = 14
 
-/obj/item/storage/pouch/tubular/on_update_icon()
+	storage_slots = 10
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_SMALL
+
+	can_hold = list(
+		/obj/item/cell/small,
+		/obj/item/device/lighting/glowstick,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/pen,
+		/obj/item/storage/pill_bottle,
+		/obj/item/hatton_magazine,
+		)
+
+/obj/item/storage/pouch/vial/on_update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)

@@ -17,7 +17,7 @@
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/pouch/engineering_supply,
 			/obj/item/storage/pouch/tubular,
-			/obj/item/storage/pouch/tubular/vial,
+			/obj/item/storage/pouch/vial,
 			/obj/item/storage/pouch/ammo,
 			/obj/item/storage/pouch/medical_supply,
 			/obj/item/clothing/accessory/holster,

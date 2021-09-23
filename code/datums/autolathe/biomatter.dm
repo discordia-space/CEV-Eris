@@ -188,7 +188,7 @@
 
 /datum/design/bioprinter/tubular/vial
 	name= "Vial pouch"
-	build_path = /obj/item/storage/pouch/tubular/vial
+	build_path = /obj/item/storage/pouch/vial
 
 /datum/design/bioprinter/part
 	name = "Part pouch"
