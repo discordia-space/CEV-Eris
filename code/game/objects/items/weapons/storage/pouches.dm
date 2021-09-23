@@ -192,20 +192,22 @@
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/pen,
 		/obj/item/storage/pill_bottle,
 		/obj/item/hatton_magazine,
 		/obj/item/ammo_casing/rocket,
-		/obj/item/ammo_casing/grenade
+		/obj/item/ammo_casing/grenade,
+		/obj/item/cell/small,
+		/obj/item/cell/medium
 		)
 
 /obj/item/storage/pouch/tubular/vial
 	name = "vial pouch"
-	desc = "Can hold about twelve vials. Rebranding!"
+	desc = "Can hold about ten vials. Rebranding!"
 
-	storage_slots = 12
+	storage_slots = 10
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
