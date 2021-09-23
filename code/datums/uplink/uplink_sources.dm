@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	desc = "Teleports an uplink unit to your location. Costs 10% of the initial TC amount."
 
 /decl/uplink_source/unit/setup_uplink_source(var/mob/M, var/amount)
-	var/obj/item/device/radio/uplink/U = new(M, M.mind, round(amount * 1.8))
+	var/obj/item/device/radio/uplink/U = new(M, M.mind, round(amount * 1.2))
 	put_on_mob(M, U, "\A [U]")
 
 /decl/uplink_source/proc/find_in_mob(var/mob/M, var/type)
