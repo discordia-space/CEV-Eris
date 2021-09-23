@@ -136,7 +136,7 @@
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. 12 pieces of hardware , cells or cables"
+	desc = "Can hold engineering equipment. 12 pieces of hardware , cells , rods or cables"
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
@@ -156,6 +156,7 @@
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/device/scanner/plant,
+		/oj/item/stack/rods,
 		/obj/item/extinguisher/mini
 		)
 
@@ -212,6 +213,7 @@
 		/obj/item/reagent_containers/glass/beaker/vial,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/pen,
+		/obj/item/cell/small,
 		/obj/item/storage/pill_bottle
 		)
 
