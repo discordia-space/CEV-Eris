@@ -1,7 +1,7 @@
 
 //Called when the mob is hit with an item in combat.
 /mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/hit_zone)
-	if(check_attack_throat(I, user))
+	if(check_attack(I, user))
 		return null
 	if (!hit_zone)
 		hit_zone = "chest"
@@ -49,12 +49,16 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 	return TRUE
 
-// Attacking someone with a weapon while they are neck-grabbed
-/mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
-	if(user.a_intent == I_HURT)
-		for(var/obj/item/grab/G in src.grabbed_by)
+// Attacking someone with a weapon while grabbed
+/mob/living/carbon/proc/check_attack(obj/item/W, mob/user)
+	for(var/obj/item/grab/G in src.grabbed_by)
+		if(user.a_intent == I_HURT)
 			if(G.assailant == user && G.state >= GRAB_NECK)
 				if(attack_throat(W, G, user))
+					return 1
+		else if(user.a_intent == I_HELP)
+			if(G.assailant == user && G.state >= GRAB_PASSIVE)
+				if(shave_head(W, G, user))
 					return 1
 	return 0
 
@@ -102,4 +106,38 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
+	return 1
+
+//Shaving
+/mob/living/carbon/proc/shave_head(obj/item/W, obj/item/grab/G, mob/user)
+
+	if(!W.edge)
+		return 0 //unsuitable weapon
+
+	user.visible_message(SPAN_DANGER("\The [user] begins to shave [src]'s hair with \the [W]!"))
+
+	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
+	if(!do_after(user, 20, progress=0))
+		return 0
+	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
+		return 0
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(user.targeted_organ == BP_HEAD)
+			if(H.h_style != "Bald")
+				to_chat(src, SPAN_WARNING("Your hair is shaved."))
+				H.h_style = "Bald"
+				H.update_hair()
+				user.visible_message(SPAN_DANGER("\The [user] shaved [src]'s head clean with \the [W]!"))
+		else if(user.targeted_organ == BP_MOUTH)
+			if(H.f_style != "Shaved")
+				to_chat(src, SPAN_WARNING("Your beard is shaved."))
+				H.f_style = "Shaved"
+				H.update_hair()
+				user.visible_message(SPAN_DANGER("\The [user] shaved [src]'s beard clean with \the [W]!"))
+
+	
+	G.last_action = world.time
+	FLICK(G.hud.icon_state, G.hud)
+
 	return 1

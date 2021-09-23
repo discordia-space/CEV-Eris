@@ -208,7 +208,7 @@ meteor_act
 	return FALSE
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
-	if(check_attack_throat(I, user))
+	if(check_attack(I, user))
 		return null
 
 	if(user == src) // Attacking yourself can't miss
