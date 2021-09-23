@@ -172,6 +172,7 @@
 
 	storage_slots = null // Uses generic capacity
 	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE + 2 // 6 medium cells/magazines/grenades or 12 small cells
 
 	can_hold = list(
