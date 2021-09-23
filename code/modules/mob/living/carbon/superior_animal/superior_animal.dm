@@ -10,6 +10,8 @@
 
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "tomato"
+	// AI activation for players is handled in sanity , if it has sanity damage it activates AI.
+	sanity_damage = 0.5
 
 	var/icon_living
 	var/icon_dead
@@ -382,8 +384,8 @@
 		return FALSE
 	if(check_surrounding_area(7))
 		activate_ai()
-		life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+		life_cycles_before_scan = initial(life_cycles_before_scan)/6 //So it doesn't fall asleep just to wake up the next tick
 		return TRUE
-	life_cycles_before_scan = 240
+	life_cycles_before_scan = initial(life_cycles_before_scan)
 	return FALSE
 
