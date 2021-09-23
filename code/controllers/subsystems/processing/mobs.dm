@@ -16,7 +16,7 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 
 /datum/controller/subsystem/processing/mobs/proc/MaxZChanged()
 	if(!islist(mob_living_by_zlevel))
-		mob_living_by_zlevel = new /list(world.maxz, 0)
+		mob_living_by_zlevel = list(world.maxz, 0)
 
 	while(mob_living_by_zlevel.len < world.maxz)
 		mob_living_by_zlevel.len++

@@ -39,6 +39,7 @@
 	pass_flags = PASSTABLE
 	faction = "spiders"
 
-/mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
-	get_light_and_color(parent)
+/mob/living/carbon/superior_animal/giant_spider/New(location, atom/parent)
 	..()
+	get_light_and_color(parent)
+
