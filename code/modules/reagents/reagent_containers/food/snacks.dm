@@ -3390,7 +3390,7 @@
 	icon_state = "rawmeatball"
 	bitesize = 3
 	center_of_mass = list("x"=16, "y"=15)
-	preloaded_reagents = list("protein" = 3, "flour" = 5)
+	preloaded_reagents = list("protein" = 2)
 	taste_tag = list(MEAT_FOOD)
 
 /obj/item/reagent_containers/food/snacks/hotdog
