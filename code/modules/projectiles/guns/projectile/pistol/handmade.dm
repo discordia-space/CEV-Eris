@@ -37,10 +37,27 @@
 	return ..()
 
 /obj/item/gun/projectile/handmade_pistol/attackby(obj/item/W, mob/user)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
+		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
+		if(chamber_open && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			if(caliber == CAL_MAGNUM)
+				caliber = CAL_PISTOL
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .35 Caliber."))
+			else if(caliber == CAL_PISTOL)
+				caliber = CAL_CLRIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
+			else if(caliber == CAL_CLRIFLE)
+				caliber = CAL_MAGNUM
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
+		else 
+			to_chat(user, SPAN_WARNING("You cannot rechamber a closed firearm!"))
+			return
+	..()
+
+/obj/item/gun/projectile/handmade_pistol/attack_self(mob/user)
 	if(!chamber_open)
-		if(istype(W, /obj/item/tool/screwdriver) || istype(W, /obj/item/material/kitchen/utensil) || W.sharp)
-			open_chamber()
-			to_chat(user, SPAN_NOTICE("You force open chamber with [W]."))
+		open_chamber()
+		to_chat(user, SPAN_NOTICE("You force open chamber."))
 	..()
 
 /obj/item/gun/projectile/handmade_pistol/handle_post_fire(mob/user, atom/target, pointblank=0, reflex=0)
