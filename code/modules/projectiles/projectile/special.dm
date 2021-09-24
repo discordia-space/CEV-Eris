@@ -27,6 +27,7 @@
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 100
 	check_armour = ARMOR_BULLET
+	penetrating = -5
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
 	set_light(2.5, 0.5, "#dddd00")
