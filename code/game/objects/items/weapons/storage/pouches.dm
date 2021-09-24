@@ -131,7 +131,8 @@
 		/obj/item/clothing/glasses,
 		/obj/item/flame/lighter,
 		/obj/item/cell/small,
-		/obj/item/cell/medium
+		/obj/item/cell/medium,
+		/obj/item/gun/projectile/flare_gun
 		)
 
 /obj/item/storage/pouch/engineering_supply
@@ -159,7 +160,8 @@
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/device/scanner/plant,
-		/obj/item/extinguisher/mini
+		/obj/item/extinguisher/mini,
+		/obj/item/gun/projectile/flare_gun
 		)
 
 /obj/item/storage/pouch/ammo
@@ -231,6 +233,7 @@
 		/obj/item/gun/projectile/giskard,
 		/obj/item/gun/projectile/gyropistol,
 		/obj/item/gun/projectile/handmade_pistol,
+		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
