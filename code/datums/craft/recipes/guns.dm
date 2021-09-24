@@ -108,7 +108,7 @@
 		list(QUALITY_WELDING, 10, 20),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
-		list(QUALITY_ADHESIVE, 15),
+		list(QUALITY_ADHESIVE, 15)
 	)
 
 /datum/craft_recipe/gun/ammo_kit
