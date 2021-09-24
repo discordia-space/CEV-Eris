@@ -247,6 +247,7 @@
 var/list/rank_prefix = list(\
 	"Ironhammer Operative" = "Operative",\
 	"Ironhammer Inspector" = "Inspector",\
+	"Ironhammer Medical Specialist" = "Specialist",\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
