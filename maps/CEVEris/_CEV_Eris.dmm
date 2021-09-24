@@ -17855,8 +17855,8 @@
 /area/eris/maintenance/section1deck4central)
 "aSp" = (
 /obj/structure/table/rack,
-/obj/item/gun/launcher/grenade/lenar,
-/obj/item/gun/launcher/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -18539,10 +18539,18 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/barracks)
 "aTU" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/mug/ironhammer,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/eris/security/barracks)
+/obj/structure/table/rack,
+/obj/item/storage/box/frag_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/security/warden)
 "aTV" = (
 /obj/machinery/light{
 	dir = 4
@@ -18705,9 +18713,6 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aUp" = (
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/security/main)
-"aUq" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
@@ -167054,7 +167059,7 @@ aaB
 aaB
 aaB
 aaB
-aUq
+aaB
 aUL
 aac
 aPb
@@ -167255,7 +167260,7 @@ aaB
 oEo
 aSp
 aSW
-aaB
+aTU
 aaB
 aac
 aac

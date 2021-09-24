@@ -39,7 +39,7 @@
 
 /datum/craft_recipe/gun/makeshiftgl
 	name = "makeshift grenade launcher"
-	result = /obj/item/gun/launcher/grenade/makeshift
+	result = /obj/item/gun/projectile/shotgun/pump/grenade/makeshift
 	steps = list(
 		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),

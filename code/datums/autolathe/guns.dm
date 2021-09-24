@@ -195,12 +195,12 @@
 
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
-	build_path = /obj/item/gun/launcher/grenade
+	build_path = /obj/item/gun/projectile/shotgun/pump/grenade
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/grenade_launcher_lenar
 	name = "FS GL \"Lenar\""
-	build_path = /obj/item/gun/launcher/grenade/lenar
+	build_path = /obj/item/gun/projectile/shotgun/pump/grenade/lenar
 
 /datum/design/autolathe/gun/hmg_maxim
 	name = "Excelsior HMG .30 \"Maxim\""
