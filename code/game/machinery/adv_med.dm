@@ -379,7 +379,7 @@
 		if (e.implants.len)
 			var/unknown_body = FALSE
 			for(var/I in e.implants)
-				if(is_type_in_list(I,known_implants)) //ATTENTION ALL ANTAG GAMERS
+				if(is_type_in_list(I,known_implants))
 					var/obj/item/implant/device = I
 					other_wounds += "[device.get_scanner_name()] implanted"
 				else
