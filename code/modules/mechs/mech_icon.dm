@@ -47,7 +47,7 @@
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
 	if(update_overlays && LAZYLEN(pilot_overlays))
-		remove_overlays(pilot_overlays)
+		overlays.Cut()
 	pilot_overlays = null
 	if(!body || ((body.pilot_coverage < 100 || body.transparent_cabin) && !body.hide_pilot))
 		for(var/i = 1 to LAZYLEN(pilots))
@@ -64,9 +64,10 @@
 				draw_pilot.pixel_z = 0
 				draw_pilot.transform = null
 			LAZYADD(pilot_overlays, draw_pilot)
+			overlays.Add(draw_pilot)
 			update_mech_hud_4(pilot)
-		if(update_overlays && LAZYLEN(pilot_overlays))
-			add_overlays(pilot_overlays)
+
+
 
 /mob/living/exosuit/regenerate_icons()
 	return
