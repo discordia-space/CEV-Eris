@@ -1405,8 +1405,8 @@ var/list/rank_prefix = list(\
 		return FALSE
 	stop_pulling()
 	if (tripped_on)
-		playsound(tripped_on, 'sound/effects/bang.ogg', 50, 1)
-		to_chat(tripped_on, SPAN_WARNING("You tripped over!"))
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		to_chat(src, SPAN_WARNING("You tripped over!"))
 	Stun(stun_duration)
 	Weaken(FLOOR(stun_duration * 0.5, 1))
 	return TRUE
