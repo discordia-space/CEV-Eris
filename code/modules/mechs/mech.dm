@@ -59,7 +59,7 @@
 	var/hatch_locked = FALSE
 
 	//Air!
-	var/use_air = FALSE
+	var/use_air      = FALSE
 
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
@@ -180,12 +180,7 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed)
-			var/turf/current_loc = get_turf(src)
-			return current_loc.return_air()
-		if(body.pilot_coverage >= 100 && hatch_closed)
-			return body.cockpit
-
+		return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
 
 /mob/living/exosuit/GetIdCard()
 	return access_card

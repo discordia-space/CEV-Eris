@@ -6,10 +6,6 @@
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_TITANIUM
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
-	arms = /obj/item/mech_component/manipulators/heavy
-	legs = /obj/item/mech_component/propulsion/heavy
-	head = /obj/item/mech_component/sensors/heavy
-	body = /obj/item/mech_component/chassis/heavy
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/weapons,
 		/obj/item/electronics/circuitboard/exosystem/advweapons
@@ -19,6 +15,18 @@
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
+
+/mob/living/exosuit/premade/heavy/Initialize()
+	if(!arms)
+		arms = new /obj/item/mech_component/manipulators/heavy(src)
+	if(!legs)
+		legs = new /obj/item/mech_component/propulsion/heavy(src)
+	if(!head)
+		head = new /obj/item/mech_component/sensors/heavy(src)
+	if(!body)
+		body = new /obj/item/mech_component/chassis/heavy(src)
+
+	. = ..()
 
 
 /obj/item/mech_component/sensors/heavy
@@ -60,7 +68,7 @@
 	desc = "Exosuit actuators struggle to move these armored legs, and they're even worse at turning."
 	icon_state = "heavy_legs"
 	move_delay = 5
-	turn_delay = 2 // Turning should be easy , moving not.
+	turn_delay = 6 //Heavy components sacrifice mobility for durability, so these legs are slow. Players can still mix and match other parts for better speeds
 	max_damage = 200
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)

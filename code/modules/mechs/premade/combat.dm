@@ -5,12 +5,6 @@
 
 	rarity_value = 60
 
-	arms = /obj/item/mech_component/manipulators/combat
-	legs = /obj/item/mech_component/propulsion/combat
-	head = /obj/item/mech_component/sensors/combat
-	body = /obj/item/mech_component/chassis/combat
-
-
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_DARK_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
@@ -24,6 +18,17 @@
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
 
+/mob/living/exosuit/premade/combat/Initialize()
+	if(!arms)
+		arms = new /obj/item/mech_component/manipulators/combat(src)
+	if(!legs)
+		legs = new /obj/item/mech_component/propulsion/combat(src)
+	if(!head)
+		head = new /obj/item/mech_component/sensors/combat(src)
+	if(!body)
+		body = new /obj/item/mech_component/chassis/combat(src)
+
+	. = ..()
 
 /mob/living/exosuit/premade/combat/slayer
 	name = "S.C.U. 'Slayer'" //Space Combat Unit
@@ -47,7 +52,7 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	max_damage = 50 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
 	power_use = 200
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 4, MATERIAL_GOLD = 10, MATERIAL_URANIUM = 15)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 4, MATERIAL_GOLD = 2, MATERIAL_URANIUM = 2)
 
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
@@ -91,10 +96,10 @@
 	exosuit_desc_string = "sleek hydraulic legs"
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
-	move_delay = 2
+	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-	turn_delay = 1 // Better than light , turns fast and consts a lot
+	turn_delay = 3 //almost identical to light, but slightly worse turning and less power efficiency for extra durability
 	max_damage = 100
 	power_use = 25
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
