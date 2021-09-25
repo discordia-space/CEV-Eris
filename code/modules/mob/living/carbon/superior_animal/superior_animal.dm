@@ -271,7 +271,7 @@
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
 			if (!busy) // if not busy with a special task
-				stop_automated_movement = 0
+				stop_automated_movement = FALSE
 			target_mob = findTarget()
 			if (target_mob)
 				stance = HOSTILE_STANCE_ATTACK
@@ -280,7 +280,7 @@
 			if(destroy_surroundings)
 				destroySurroundings()
 
-			stop_automated_movement = 1
+			stop_automated_movement = TRUE
 			stance = HOSTILE_STANCE_ATTACKING
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			if(!kept_distance)
@@ -296,7 +296,7 @@
 
 	//random movement
 	if(wander && !stop_automated_movement && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove)
+		if(isturf(loc) && !resting && !buckled && canmove)
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby))
@@ -326,6 +326,7 @@
 		blinded = TRUE
 		silent = FALSE
 		return TRUE
+	return FALSE
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_chemicals_in_body()
 	if(reagents)
@@ -359,7 +360,6 @@
 	handle_fire()
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
-	handle_cheap_regular_status_updates()
 	if(!(ticks_processed%3))
 		handle_status_effects()
 		cheap_update_lying_buckled_and_verb_status_()
@@ -370,6 +370,8 @@
 		handle_cheap_environment(environment)
 		updateicon()
 		ticks_processed = 0
+	if(handle_cheap_regular_status_updates()) // They have died after all of this ,do not scan or do not handle AI anymore.
+		return PROCESS_KILL
 
 	if(!AI_inactive)
 		handle_ai()
