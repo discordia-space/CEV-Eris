@@ -9,7 +9,7 @@
 	var/new_fps = round(input("Sets game frames-per-second. Can potentially break the game (default: 20)","FPS", world.fps) as num|null)
 
 	if(new_fps <= 0)
-		to_chat(src, SPAN_WARNING("Error: set_server_fps(): Invalid world.fps value. No changes made."), confidential = TRUE)
+		to_chat(src, SPAN_WARNING("Error: set_server_fps(): Invalid world.fps value. No changes made."))
 		return
 
 
