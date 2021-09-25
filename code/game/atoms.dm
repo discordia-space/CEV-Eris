@@ -298,28 +298,20 @@ its easier to just keep the beam vertical.
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
 			to_chat(user, "<span class='notice'>It contains:</span>")
-			if(reagents.reagent_list.len)
+			if(user.can_see_reagents()) //Show each individual reagent
 				for(var/I in reagents.reagent_list)
 					var/datum/reagent/R = I
 					to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
-
-				// TODO: reagent vision googles? code below:
-				/*
-				if(user.can_see_reagents()) //Show each individual reagent
-					for(var/I in reagents.reagent_list)
-						var/datum/reagent/R = I
-						to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
-				else //Otherwise, just show the total volume
-					if(reagents && reagents.reagent_list.len)
-						to_chat(user, "<span class='notice'>[reagents.total_volume] units of various reagents.</span>")
-				*/
-			else
-				to_chat(user, "<span class='notice'>Nothing.</span>	")
-		else if(reagent_flags & AMOUNT_VISIBLE)
-			if(reagents.total_volume)
-				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
-			else
-				to_chat(user, "<span class='danger'>It's empty.</span>")
+			else //Otherwise, just show the total volume
+				if(reagents && reagents.reagent_list.len)
+					to_chat(user, "<span class='notice'>[reagents.total_volume] units of various reagents.</span>")
+		else
+			to_chat(user, "<span class='notice'>Nothing</span>	")
+	else if(reagent_flags & AMOUNT_VISIBLE)
+		if(reagents.total_volume)
+			to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+		else
+			to_chat(user, "<span class='danger'>It's empty.</span>")
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)

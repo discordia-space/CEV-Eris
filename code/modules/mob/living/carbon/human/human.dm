@@ -1400,6 +1400,17 @@ var/list/rank_prefix = list(\
 		return 0
 	..(slipped_on,stun_duration)
 
+/mob/living/carbon/human/trip(tripped_on, stun_duration)
+	if(buckled)
+		return FALSE
+	stop_pulling()
+	if (tripped_on)
+		playsound(tripped_on, 'sound/effects/bang.ogg', 50, 1)
+		to_chat(tripped_on, SPAN_WARNING("You tripped over!"))
+	Stun(stun_duration)
+	Weaken(FLOOR(stun_duration * 0.5, 1))
+	return TRUE
+
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"
 	set name = "Undislocate Joint"
