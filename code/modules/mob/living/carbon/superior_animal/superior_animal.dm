@@ -322,7 +322,7 @@
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 	if(health <= 0 && stat != DEAD)
 		death()
-		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().
+		STOP_PROCESSING(SSmobs, src)
 		blinded = TRUE
 		silent = FALSE
 		return TRUE
