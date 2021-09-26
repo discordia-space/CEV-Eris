@@ -209,7 +209,7 @@ GITHUBURL https://github.com/Endless-Horizon/CEV-Eris
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
-##Defines the FPSfor the world. 30 is the normal one, 45+ is smoother.
+## Defines the FPS for the world. 30 is the normal one, 45+ is smoother.
 FPS 40
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
