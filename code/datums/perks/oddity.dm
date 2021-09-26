@@ -295,6 +295,9 @@
 
 	var/obj/item/clothing/mask/gas/big_shot/my_mask
 
+	gain_text = "You feel the KROMERS flowing through you. You feel \[very marketable\]."
+	lose_text = "You snap out of a bizarre commerce-themed trance. That was weird."
+
 	var/static/list/list_of_great_deals = list(
 		"Hochi Mama",
 		"Great Deal",
@@ -373,7 +376,7 @@
 		"she looks half her age!",
 		"whoa nelly",
 		"it;s yours my friend",
-		"(as long as you have enough [pick("Kromer", "Credits", "Rubies", "Rupees", "dosh")]",
+		"as long as you have enough [pick("Kromer", "Credits", "Rubies", "Rupees", "dosh")]",
 		"Total Jackass stunts",
 		"Becomed",
 		"$!$!",
@@ -408,7 +411,7 @@
 		"Aster's guild gift cards",
 		"Click here for",
 		"Turn up the JUICE!",
-		"Half-Pr1ce Replicator Sallamy",
+		"Half-Pr1ce Replicator Salamy",
 		"watch free online dub",
 		"Hyperlink Blocked!",
 		"Chicken Nuggets",
@@ -424,12 +427,20 @@
 	..()
 	initial_time = world.time
 	if(holder)
-		holder.stats.addTempStat(STAT_VIG , 15, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_COG, 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_ROB, 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_TGH, 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_BIO, 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_MEC, 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_VIG, 30, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_COG, 30, INFINITY, "Big Shot")
 
 
 /datum/perk/big_shot/remove()
 	if(holder)
+		holder.stats.removeTempStat(STAT_ROB, "Big Shot")
+		holder.stats.removeTempStat(STAT_TGH, "Big Shot")
+		holder.stats.removeTempStat(STAT_BIO, "Big Shot")
+		holder.stats.removeTempStat(STAT_MEC, "Big Shot")
 		holder.stats.removeTempStat(STAT_VIG, "Big Shot")
 		holder.stats.removeTempStat(STAT_COG, "Big Shot")
 	..()
@@ -438,7 +449,7 @@
 	if(!..())
 		return
 	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
-		remove()
+		holder.stats.removePerk(type)
 		return
 	if(world.time < initial_time + cooldown)
 		return
@@ -447,7 +458,7 @@
 	var/datum/money_account/KROMER = holder.mind.initial_account
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 5)))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 3)))
 			KROMER_GOOD = FALSE
 	else
 		KROMER_GOOD = FALSE
@@ -474,18 +485,16 @@
 		unscrewed_words -= word //Remove from unstuttered words so we don't stutter it again.
 		var/index = split_phrase.Find(word) //Find the word in the split phrase so we can replace it.
 		//Repeat the first letter to create a stutter.
-
-		var/rnum = rand(1,3)
-		switch(rnum)
-			if(1)
-				word = "[pick(list_of_great_deals)] [word]"
-			if(2)
-				word = "[word] [pick(list_of_great_deals)]"
-			if(3)
-				if(length(word) > 3)
-					word = "[pick(list_of_great_deals)]"
-				else
-					word = "[pick(list_of_great_deals)] [word]"
+		if(prob(80))
+			if(length(word) > 3)
+				word = "\[[pick(list_of_great_deals)]\]"
+			else
+				word = "\[[pick(list_of_great_deals)]\] [word]"
+		else
+			if(prob(75))
+				word = "[word] \[[pick(list_of_great_deals)]\]"
+			else
+				word = "  [word]  "
 
 		split_phrase[index] = word
 
