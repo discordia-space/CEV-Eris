@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/powered/science
 	name = "Science Goggles"
-	desc = "These goggles scan the reagents within beakers , displaying them to you!"
+	desc = "These goggles scan the reagents within beakers, displaying them to you!"
 	off_state = "purple"
 	icon_state = "purple"
 	item_state = "glasses"
