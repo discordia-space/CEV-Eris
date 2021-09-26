@@ -575,6 +575,19 @@
 	icon_state = "big_shot"
 	item_state = "big_shot"
 
+
+	armor = list(
+		melee = 15,
+		bullet = 15,
+		energy = 15,
+		bomb = 15,
+		bio = 75,
+		rad = 10
+	)
+	price_tag = 1997
+
+	spawn_tags = SPAWN_TAG_ODDITY
+
 /obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == slot_wear_mask)

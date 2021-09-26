@@ -298,16 +298,6 @@
 	gain_text = "You feel the KROMERS flowing through you. You feel \[very marketable\]."
 	lose_text = "You snap out of a bizarre commerce-themed trance. You feel much less financially stable. That was weird."
 
-	armor = list(
-		melee = 15,
-		bullet = 15,
-		energy = 15,
-		bomb = 15,
-		bio = 75,
-		rad = 10
-	)
-	price_tag = 1997
-
 	var/static/list/list_of_great_deals = list(
 		"Hochi Mama",
 		"Great Deal",
@@ -458,6 +448,7 @@
 /datum/perk/big_shot/on_process()
 	if(!..())
 		return
+	var/datum/money_account/KROMER = holder.mind.initial_account
 	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
 		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name(), 1997))
 			holder.adjustCloneLoss(rand(19, 97))
@@ -468,8 +459,7 @@
 		return
 	initial_time = world.time
 	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[[pick(list_of_great_deals)]\]"
-	var/datum/money_account/KROMER = holder.mind.initial_account
-	style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
+	my_mask.style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
 		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 4)))
