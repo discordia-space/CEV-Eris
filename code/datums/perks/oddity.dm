@@ -296,7 +296,17 @@
 	var/obj/item/clothing/mask/gas/big_shot/my_mask
 
 	gain_text = "You feel the KROMERS flowing through you. You feel \[very marketable\]."
-	lose_text = "You snap out of a bizarre commerce-themed trance. That was weird."
+	lose_text = "You snap out of a bizarre commerce-themed trance. You feel much less financially stable. That was weird."
+
+	armor = list(
+		melee = 15,
+		bullet = 15,
+		energy = 15,
+		bomb = 15,
+		bio = 75,
+		rad = 10
+	)
+	price_tag = 1997
 
 	var/static/list/list_of_great_deals = list(
 		"Hochi Mama",
@@ -427,12 +437,12 @@
 	..()
 	initial_time = world.time
 	if(holder)
-		holder.stats.addTempStat(STAT_ROB, 15, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_TGH, 15, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_BIO, 15, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_MEC, 15, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_VIG, 30, INFINITY, "Big Shot")
-		holder.stats.addTempStat(STAT_COG, 30, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_ROB, 20, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_TGH, 20, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_BIO, 20, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_MEC, 20, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_VIG, 35, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_COG, 35, INFINITY, "Big Shot")
 
 
 /datum/perk/big_shot/remove()
@@ -449,6 +459,9 @@
 	if(!..())
 		return
 	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name(), 1997))
+			holder.adjustCloneLoss(rand(19, 97))
+			to_chat(src, SPAN_DANGER("You feel like you didn't have enough KROMERS."))
 		holder.stats.removePerk(type)
 		return
 	if(world.time < initial_time + cooldown)
@@ -456,9 +469,10 @@
 	initial_time = world.time
 	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[[pick(list_of_great_deals)]\]"
 	var/datum/money_account/KROMER = holder.mind.initial_account
+	style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 3)))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 4)))
 			KROMER_GOOD = FALSE
 	else
 		KROMER_GOOD = FALSE
@@ -467,6 +481,10 @@
 		enough_kromer = TRUE
 	else
 		enough_kromer = FALSE
+
+	if(!enough_kromer && prob(25))//When you run out of kromies your start running out of chromies
+		holder.adjustCloneLoss(rand(1, 4))
+
 
 
 /datum/perk/big_shot/proc/screw_up_the_text(phrase)

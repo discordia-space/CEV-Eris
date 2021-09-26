@@ -578,5 +578,6 @@
 /obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == slot_wear_mask)
+		user.stats.addPerk(/datum/perk/big_shot)
 		var/datum/perk/big_shot/perk = user.stats.getPerk(PERK_BIG_SHOT)
 		perk.my_mask = src
