@@ -7,6 +7,8 @@
 
 	return 1
 
+/*
+
 /mob/living/carbon/superior_animal/Life()
 	. = ..()
 
@@ -57,6 +59,7 @@
 	//Speaking
 	if(speak_chance && prob(speak_chance))
 		visible_emote(emote_see)
+*/
 
 /mob/living/carbon/superior_animal/handle_chemicals_in_body()
 	if(reagents)

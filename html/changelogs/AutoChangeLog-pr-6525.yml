@@ -1,6 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - rscadd: Climbing ontop of structures (low walls , tables  and railings) leaves
-      your fingerprints on them
-  - bugfix: Radios now take your fingerprints when you use them

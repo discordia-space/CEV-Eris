@@ -24,5 +24,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/tool,
 		/obj/item/anobattery,
-		/obj/item/device/ano_scanner
+		/obj/item/device/ano_scanner,
+		/obj/item/ammo_casing/flare,
+		/obj/item/gun/projectile/flare_gun
 		)

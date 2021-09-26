@@ -1,5 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define DOOR_REPAIR_AMOUNT 50	//amount of health regained per stack amount used
+#define DOOR_AI_ACTIVATION_RANGE 12 // Range in which this door activates AI when opened
 
 /obj/machinery/door
 	name = "Door"
@@ -35,6 +36,7 @@
 	var/width = 1
 
 	var/damage_smoke = FALSE
+	var/tryingToLock = FALSE // for autoclosing
 
 	// turf animation
 	var/atom/movable/overlay/c_animation
@@ -425,8 +427,8 @@
 /obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
 		return
-	operating = 1
-
+	operating = TRUE
+	activate_mobs_in_range(src, 10)
 	set_opacity(0)
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
 		f5?.set_opacity(0)
@@ -444,9 +446,10 @@
 	update_nearby_tiles()
 	operating = 0
 	if(autoclose)
+		tryingToLock = TRUE
 		var/wait = normalspeed ? 150 : 5
 		addtimer(CALLBACK(src, .proc/close), wait)
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	set waitfor = FALSE
