@@ -3,7 +3,7 @@
 
 /obj/item/implant/freedom
 	name = "freedom implant"
-	desc = "Use this to escape from those evil Red Shirts. Has a cooldown of ten minutes."
+	desc = "Use this if you ever get tied up. Has a cooldown of ten minutes."
 	implant_color = "r"
 	var/activation_emote = "chuckle"
 	var/uses = 1
