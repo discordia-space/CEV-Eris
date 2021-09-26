@@ -284,3 +284,209 @@
 		C = holder.r_hand
 		if(!C.fully_charged())
 			C.give(50)
+
+
+/datum/perk/big_shot
+	name = "BIG SHOT"
+	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[THE FREEDOM\]"
+	icon_state = "market_prof"
+
+	var/enough_kromer = TRUE
+
+	var/obj/item/clothing/mask/gas/big_shot/my_mask
+
+	var/static/list/list_of_great_deals = list(
+		"Hochi Mama",
+		"Great Deal",
+		"HOT \[hyperlink blocked\] IN YOUR SECTOR",
+		"hyperlink blocked",
+		"?!$@!",
+		"help",
+		"BIG SHOT",
+		"pipis",
+		"hey is someone out there I need help please",
+		"AHEUHEUHEU",
+		"wetskrell.nt exonet archive",
+		"CEV Eris schematics",
+		"borg keygen free download",
+		"special deal",
+		"HEAVEN",
+		"Like and Subscribe",
+		"$!$$",
+		"MONEY",
+		"Storing up for the winter!",
+		"On A Friday Night?",
+		"For A LimiTed Time Only!",
+		"TOP 10 HANSA CELEBRITIES!",
+		"Predstraza Gun Schematics!",
+		"Royalty Free Tapes!",
+		"Big",
+		"BIG",
+		"BIG! BIG BIG!",
+		"TELEKRYSTALS CHEAP",
+		"[pick(1, 5, 8, 1997)] KROMER CHEAP!",
+		"Burning acid",
+		"A Ride around the Colony on Our Specil Kestrel",
+		"Breathe",
+		"Free Security Certificate",
+		"Die",
+		"BUY",
+		"The Low Low Price Of",
+		"Frozen Chicken",
+		"Free Pizza Voucher",
+		"It Burns! Ow! Stop! Help Me! It Burns!",
+		"Clown Around Town",
+		"Artist Around Ship",
+		"Communion",
+		"TOO MANY EXCESS VACATION DAYS?? TAKE A GOD DAMN VACATION STRAIGHT TO HELL!",
+		"Easels",
+		"Children eat free",
+		"Five small payments of 599.45!",
+		"Man, Woman, or Child",
+		"At Half Price",
+		"As seen on TV!",
+		"Free subscribers",
+		"5 lifehacks that will change your life",
+		"Encyclopedia of",
+		"Being afraid",
+		"worm",
+		"funky",
+		"thrifty shopper",
+		"I'm young and I'm lonely, see my photos",
+		"hyperlink expunged",
+		"Pass My Savings Onto You!",
+		"Do you consent to the terms and agreements?",
+		"consent to the terms and agreements",
+		"we use cookies",
+		"Request Accepted",
+		"Stranger",
+		"That's not very Big Shot of you",
+		"VALUES",
+		"free ink and toner",
+		"Oxycodone without prescription!",
+		"Replica watches with custom inscriptions!",
+		"is your old Earth coin worth 5000 credits?",
+		"maps of deepmaint download for free",
+		"proceed",
+		"PROCEED",
+		"one weird tip discovered by a mom",
+		"she looks half her age!",
+		"whoa nelly",
+		"it;s yours my friend",
+		"(as long as you have enough [pick("Kromer", "Credits", "Rubies", "Rupees", "dosh")]",
+		"Total Jackass stunts",
+		"Becomed",
+		"$!$!",
+		"Gameshow Host",
+		"honestman",
+		"Rapidly Shrinking",
+		"The Big One",
+		"THERE'S NOTHING TO FEAR EXCEPT",
+		"ENL4RGE Yourself",
+		"DVDs of ANY movie at Half-pr1ce",
+		"3 WAYS TO EVADE BANS",
+		"use this simple trick to evade chat filter",
+		"TELL ME MORE",
+		"Hyperlink Blocked",
+		"Small business owner",
+		"you should kill your \[HYPERLINK BLOCKED\]",
+		"here's why  \[HYPERLINK BLOCKED\] never love you",
+		"THERE'S NOTHING WRONG WITH HAVING A NICE \[Splurge\] EVERY ONCE IN A WHILE",
+		"Healthy Breakfast Options",
+		"which space ranger are you",
+		"take this quirky quiz",
+		"fill out a survey and earn credits",
+		"There's nothing wrong.",
+		"Smells like KROMER.",
+		"Cungadero",
+		"Kestrel",
+		"BIGGER AND BETTER THAN EVER",
+		"Attention Customers! Clean up on Aisle 3!",
+		"Proud",
+		"Kill",
+		"Unforgettable D3als",
+		"Aster's guild gift cards",
+		"Click here for",
+		"Turn up the JUICE!",
+		"Half-Pr1ce Replicator Sallamy",
+		"watch free online dub",
+		"Hyperlink Blocked!",
+		"Chicken Nuggets",
+		"Exotic Butters",
+		"use",
+		"Commemorative Ring"
+	)
+
+	var/cooldown = 5 SECONDS
+	var/initial_time
+
+/datum/perk/big_shot/assign(mob/living/carbon/human/H)
+	..()
+	initial_time = world.time
+	if(holder)
+		holder.stats.addTempStat(STAT_VIG , 15, INFINITY, "Big Shot")
+		holder.stats.addTempStat(STAT_COG, 15, INFINITY, "Big Shot")
+
+
+/datum/perk/big_shot/remove()
+	if(holder)
+		holder.stats.removeTempStat(STAT_VIG, "Big Shot")
+		holder.stats.removeTempStat(STAT_COG, "Big Shot")
+	..()
+
+/datum/perk/big_shot/on_process()
+	if(!..())
+		return
+	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
+		remove()
+		return
+	if(world.time < initial_time + cooldown)
+		return
+	initial_time = world.time
+	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[[pick(list_of_great_deals)]\]"
+	var/datum/money_account/KROMER = holder.mind.initial_account
+	var/KROMER_GOOD = TRUE
+	if(KROMER)
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 5)))
+			KROMER_GOOD = FALSE
+	else
+		KROMER_GOOD = FALSE
+
+	if(KROMER_GOOD)
+		enough_kromer = TRUE
+	else
+		enough_kromer = FALSE
+
+
+/datum/perk/big_shot/proc/screw_up_the_text(phrase)
+	phrase = html_decode(phrase)
+
+	var/list/split_phrase = splittext(phrase," ") //Split it up into words.
+
+	var/list/unscrewed_words = split_phrase.Copy()
+
+	var/i = rand(1, 3)
+
+	for(,i > 0,i--) //Pick a few words to screw up.
+		if (!unscrewed_words.len)
+			break
+		var/word = pick(unscrewed_words)
+		unscrewed_words -= word //Remove from unstuttered words so we don't stutter it again.
+		var/index = split_phrase.Find(word) //Find the word in the split phrase so we can replace it.
+		//Repeat the first letter to create a stutter.
+
+		var/rnum = rand(1,3)
+		switch(rnum)
+			if(1)
+				word = "[pick(list_of_great_deals)] [word]"
+			if(2)
+				word = "[word] [pick(list_of_great_deals)]"
+			if(3)
+				if(length(word) > 3)
+					word = "[pick(list_of_great_deals)]"
+				else
+					word = "[pick(list_of_great_deals)] [word]"
+
+		split_phrase[index] = word
+
+	return sanitize(jointext(split_phrase," "))

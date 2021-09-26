@@ -91,6 +91,12 @@ var/list/channel_to_radio_key = new
 		verb = pick("stammers", "stutters")
 		speech_problem_flag = 1
 
+	if(ishuman(src) && prob(35))
+		var/mob/living/carbon/human/H = src
+		var/datum/perk/big_shot/BS = H.stats.getPerk(PERK_BIG_SHOT)
+		if(BS)
+			message = BS.screw_up_the_text(message)
+
 	returns[1] = message
 	returns[2] = verb
 	returns[3] = speech_problem_flag

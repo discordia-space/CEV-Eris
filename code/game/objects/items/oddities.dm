@@ -568,3 +568,15 @@
 			target.reagents.add_reagent("oddity_tea", 30)
 			to_chat(user, SPAN_NOTICE("You drop \the [src] in the water, it dissolves slowly."))
 			qdel(src)
+
+/obj/item/clothing/mask/gas/big_shot
+	name = "big shot mask"
+	desc = "A cheerful mask of a cartoonish salesman."
+	icon_state = "big_shot"
+	item_state = "big_shot"
+
+/obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
+	user.stats.addPerk(/datum/perk/big_shot)
+	var/datum/perk/big_shot/perk = user.stats.getPerk(PERK_BIG_SHOT)
+	perk.my_mask = src
+	..()
