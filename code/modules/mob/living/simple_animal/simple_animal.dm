@@ -220,7 +220,7 @@
 			adjustBruteLoss(atmospheric_requirements[BODY_TEMP_DAMAGE_INDEX])
 			return FALSE
 		if(bodytemperature > atmospheric_requirements[BODY_TEMP_MAX_INDEX])
-			adjustBruteLoss(heat_damage_per_tick[BODY_TEMP_DAMAGE_INDEX])
+			adjustBruteLoss(atmospheric_requirements[BODY_TEMP_DAMAGE_INDEX])
 			return FALSE
 		return TRUE
 	return FALSE
