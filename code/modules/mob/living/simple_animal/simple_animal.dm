@@ -1,3 +1,19 @@
+#define MIN_OXY_INDEX 1
+#define MAX_OXY_INDEX 2
+#define MIN_PLASMA_INDEX 3
+#define MAX_PLASMA_INDEX 4
+#define MAX_CO2_INDEX 5
+#define MIN_CO2_INDEX 6
+#define MIN_N2_INDEX 7
+#define MAX_N2_INDEX 8
+#define ATMOS_DAMAGE_INDEX 9
+#define BODY_TEMP_MIN_INDEX 10
+#define BODY_TEMP_MAX_INDEX 11
+#define BODY_TEMP_DAMAGE_INDEX 12
+
+
+
+
 /mob/living/simple_animal
 	name = "animal"
 	icon = 'icons/mob/animal.dmi'
@@ -43,22 +59,23 @@
 	var/response_harm   = "tries to hurt"
 	var/harm_intent_damage = 3
 
-	//Temperature effect
-	var/minbodytemp = 250
-	var/maxbodytemp = 350
-	var/heat_damage_per_tick = 3	//amount of damage applied if animal's body temperature is higher than maxbodytemp
-	var/cold_damage_per_tick = 2	//same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
 	var/fire_alert = 0
 
 	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
-	var/min_oxy = 5
-	var/max_oxy = 0					//Leaving something at 0 means it's off - has no maximum
-	var/min_tox = 0
-	var/max_tox = 1
-	var/min_co2 = 0
-	var/max_co2 = 5
-	var/min_n2 = 0
-	var/max_n2 = 0
+	var/list/atmospheric_requirements = list(
+		MIN_OXY_INDEX = 5,
+		MAX_OXY_INDEX = 0,
+		MIN_PLASMA_INDEX = 0,
+		MAX_PLASMA_INDEX = 5,
+		MIN_CO2_INDEX = 0,
+		MAX_CO2_INDEX = 5,
+		MIN_N2_INDEX = 0,
+		MAX_N2_INDEX = 0,
+		BODY_TEMP_MIN_INDEX = 250,
+		BODY_TEMP_MAX_INDEX = 350,
+		ATMOS_DAMAGE_INDEX = 2,
+		BODY_TEMP_DAMAGE_INDEX = 4,
+	)
 	var/unsuitable_atoms_damage = 2	//This damage is taken when atmos doesn't fit all the requirements above
 	var/speed = 2 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
@@ -173,6 +190,41 @@
 	else if (health < maxHealth)
 		to_chat(user, SPAN_WARNING("It's a bit wounded."))
 
+/mob/living/simple_animal/handle_atmospherics()
+	var/atmos_suitable = TRUE
+	var/datum/gas_mixture/Environment = return_air()
+	if(Environment)
+		if(abs(Environment.temperature - bodytemperature) >= 40 )
+			bodytemperature += ((Environment.temperature - bodytemperature) / 5)
+		var/mole_handle = 0
+		if(atmospheric_requirements[MIN_OXY_INDEX] || atmospheric_requirements[MAX_OXY_INDEX])
+			mole_handle = Environment.gas["oxygen"] // save value to avoid opening a list twice
+			if(mole_handle < atmospheric_requirements[MIN_OXY_INDEX] || mole_handle > atmospheric_requirements[MAX_OXY_INDEX])
+				atmos_suitable = FALSE
+		if(atmospheric_requirements[MIN_CO2_INDEX] || atmospheric_requirements[MAX_CO2_INDEX])
+			mole_handle = Environment.gas["carbon_dioxide"] // save value to avoid opening a list twice
+			if(mole_handle < atmospheric_requirements[MIN_CO2_INDEX] || mole_handle > atmospheric_requirements[MAX_CO2_INDEX])
+				atmos_suitable = FALSE
+		if(atmospheric_requirements[MIN_PLASMA_INDEX] || atmospheric_requirements[MAX_PLASMA_INDEX])
+			mole_handle = Environment.gas["plasma"] // save value to avoid opening a list twice
+			if(mole_handle < atmospheric_requirements[MIN_PLASMA_INDEX] || mole_handle > atmospheric_requirements[MAX_PLASMA_INDEX])
+				atmos_suitable = FALSE
+		if(atmospheric_requirements[MIN_N2_INDEX] || atmospheric_requirements[MAX_N2_INDEX])
+			mole_handle = Environment.gas["nitrogen"] // save value to avoid opening a list twice
+			if(mole_handle < atmospheric_requirements[MIN_N2_INDEX] || mole_handle > atmospheric_requirements[MAX_N2_INDEX])
+				atmos_suitable = FALSE
+		if(!atmos_suitable)
+			adjustBruteLoss(unsuitable_atoms_damage)
+			return FALSE
+		if(bodytemperature < atmospheric_requirements[BODY_TEMP_MIN_INDEX]) // Done in 2 steps because it can't fulfill both to save on performance
+			adjustBruteLoss(atmospheric_requirements[BODY_TEMP_DAMAGE_INDEX])
+			return FALSE
+		if(bodytemperature > atmospheric_requirements[BODY_TEMP_MAX_INDEX])
+			adjustBruteLoss(heat_damage_per_tick[BODY_TEMP_DAMAGE_INDEX])
+			return FALSE
+		return TRUE
+	return FALSE
+
 /mob/living/simple_animal/Life()
 	.=..()
 
@@ -196,58 +248,7 @@
 		process_food()
 		handle_foodscanning()
 
-		//Atmos
-		var/atmos_suitable = 1
-
-		var/atom/A = loc
-
-		if(istype(A,/turf))
-			var/turf/T = A
-
-			var/datum/gas_mixture/Environment = T.return_air()
-
-			if(Environment)
-
-				if( abs(Environment.temperature - bodytemperature) > 40 )
-					bodytemperature += ((Environment.temperature - bodytemperature) / 5)
-
-				if(min_oxy)
-					if(Environment.gas["oxygen"] < min_oxy)
-						atmos_suitable = 0
-				if(max_oxy)
-					if(Environment.gas["oxygen"] > max_oxy)
-						atmos_suitable = 0
-				if(min_tox)
-					if(Environment.gas["plasma"] < min_tox)
-						atmos_suitable = 0
-				if(max_tox)
-					if(Environment.gas["plasma"] > max_tox)
-						atmos_suitable = 0
-				if(min_n2)
-					if(Environment.gas["nitrogen"] < min_n2)
-						atmos_suitable = 0
-				if(max_n2)
-					if(Environment.gas["nitrogen"] > max_n2)
-						atmos_suitable = 0
-				if(min_co2)
-					if(Environment.gas["carbon_dioxide"] < min_co2)
-						atmos_suitable = 0
-				if(max_co2)
-					if(Environment.gas["carbon_dioxide"] > max_co2)
-						atmos_suitable = 0
-
-		//Atmos effect
-		if(bodytemperature < minbodytemp)
-			fire_alert = 2
-			adjustBruteLoss(cold_damage_per_tick)
-		else if(bodytemperature > maxbodytemp)
-			fire_alert = 1
-			adjustBruteLoss(heat_damage_per_tick)
-		else
-			fire_alert = 0
-
-		if(!atmos_suitable)
-			adjustBruteLoss(unsuitable_atoms_damage)
+		if(handle_atmospherics())
 
 		if(!AI_inactive)
 			//Speaking
