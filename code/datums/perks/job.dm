@@ -62,7 +62,7 @@
 /datum/perk/selfmedicated/chemist
 	name = "Chemical-junkie"
 	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substites and pumping them into yourself in the name of science! \
-			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half."
+			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
 	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
 /datum/perk/selfmedicated/chemist/assign(mob/living/carbon/human/H)
@@ -245,7 +245,7 @@
 
 /datum/perk/job/club
 	name = "Raising the bar"
-	desc = "You know how to mix drinks and change lives. People near you recover sanity."
+	desc = "You know how to mix drinks and change lives. People near you recover sanity and you always know what is in the glasses."
 	icon_state = "inspiration"
 	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
