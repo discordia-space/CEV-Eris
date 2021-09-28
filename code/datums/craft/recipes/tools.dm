@@ -185,9 +185,13 @@
 	result = /obj/item/tool_upgrade/augment/fuel_tank
 
 	steps = list(
-		list(/obj/item/weldpack, 1, "time" = 30),
-		list(QUALITY_SAWING, 10, "time" = 120),//Disassemble the backpack
-		list(QUALITY_BOLT_TURNING, 10, 40), //And open some valves
+		list(CRAFT_MATERIAL, 8, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 50)
+		list(QUALITY_HAMMERING, 10, 100),
+		list(/obj/item/stack/rods, 2, 30),
+		list(QUALITY_WELDING, 10, 100),
+		list(QUALITY_BOLT_TURNING, 10, 40), 
+		list(QUALITY_ADHESIVE, 20, 30)
 	)
 
 /datum/craft_recipe/tool/makeshift_centrifuge
