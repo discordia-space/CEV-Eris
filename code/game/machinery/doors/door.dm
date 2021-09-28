@@ -36,6 +36,7 @@
 	var/width = 1
 
 	var/damage_smoke = FALSE
+	var/tryingToLock = FALSE // for autoclosing
 
 	// turf animation
 	var/atom/movable/overlay/c_animation
@@ -445,6 +446,7 @@
 	update_nearby_tiles()
 	operating = 0
 	if(autoclose)
+		tryingToLock = TRUE
 		var/wait = normalspeed ? 150 : 5
 		addtimer(CALLBACK(src, .proc/close), wait)
 	return TRUE
