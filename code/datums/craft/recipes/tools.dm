@@ -186,7 +186,7 @@
 
 	steps = list(
 		list(CRAFT_MATERIAL, 8, MATERIAL_PLASTEEL),
-		list(QUALITY_WELDING, 10, 50)
+		list(QUALITY_WELDING, 10, 50),
 		list(QUALITY_HAMMERING, 10, 100),
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 100),
