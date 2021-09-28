@@ -27,6 +27,10 @@
 		return TRUE
 	if(stats.getStat(STAT_COG) >= HUMAN_REQ_COG_FOR_REG || stats.getStat(STAT_BIO) >= HUMAN_REQ_BIO_FOR_REG)
 		return TRUE
+	/*
+	if(stats.check_for_shared_perk(PERK_SHARED_SEE_CONSUMER_REAGENTS))
+		return 2
+	*/
 	return FALSE
 
 /mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)

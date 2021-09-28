@@ -297,21 +297,27 @@ its easier to just keep the beam vertical.
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			to_chat(user, "<span class='notice'>It contains:</span>")
-			if(user.can_see_reagents()) //Show each individual reagent
-				for(var/I in reagents.reagent_list)
-					var/datum/reagent/R = I
-					to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
-			else //Otherwise, just show the total volume
-				if(reagents && reagents.reagent_list.len)
-					to_chat(user, "<span class='notice'>[reagents.total_volume] units of various reagents.</span>")
+			to_chat(user, SPAN_NOTICE("It contains:"))
+			var/return_value = user.can_see_reagents()
+			if(return_value == TRUE) //Show each individual reagent
+				for(var/datum/reagent/R in reagents.reagent_list)
+					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
+			/* Uncomment to check for consumer reagents also in can_see_reagents
+			else if(return_value == 2) // Check for consumer reagents
+				for(var/datum/reagent/R in reagents.reagent_list)
+					if(!(istype(R,/datum/reagent/ethanol) || istype(R,/datum/reagent/drink) || istype(R, /datum/reagent/water)))
+						//to_chat(user, SPAN_NOTICE("[R.volume] units of an unfamiliar substance")) For balance concers , don't let them know
+						continue
+					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
+			*/
+			else if(reagents && reagents.reagent_list.len)
+				to_chat(user, SPAN_NOTICE("[reagents.total_volume] units of various reagents."))
 		else
-			to_chat(user, "<span class='notice'>Nothing</span>	")
-	else if(reagent_flags & AMOUNT_VISIBLE)
-		if(reagents.total_volume)
-			to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
-		else
-			to_chat(user, "<span class='danger'>It's empty.</span>")
+			if(reagent_flags & AMOUNT_VISIBLE)
+				if(reagents.total_volume)
+					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
+				else
+					to_chat(user, SPAN_DANGER("It's empty."))
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
