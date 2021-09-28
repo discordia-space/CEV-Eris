@@ -245,9 +245,8 @@
 
 /datum/perk/job/club
 	name = "Raising the bar"
-	desc = "You know how to mix drinks and change lives. People near you recover sanity and you always know what is in the glasses."
+	desc = "You know how to mix drinks and change lives. People near you recover sanity."
 	icon_state = "inspiration"
-	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
 /datum/perk/job/club/assign(mob/living/carbon/human/H)
 	..()
