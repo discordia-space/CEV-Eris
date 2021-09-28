@@ -521,13 +521,13 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_PLASTIC = 0.5)
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
-	preloaded_reagents = list("copper" = 8, "plasticide" = 2)
+	//preloaded_reagents = list("copper" = 8, "plasticide" = 2)
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 

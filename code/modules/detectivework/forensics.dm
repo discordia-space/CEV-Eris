@@ -26,18 +26,18 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	var/suit_coverage = 0
 	if(M.wear_suit)
 		fibertext = "Material from \a [M.wear_suit]."
-		if(prob(10*item_multiplier) && !(fibertext in suit_fibers))
+		if(prob(25*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += fibertext
 		suit_coverage = M.wear_suit.body_parts_covered
 
 	if(M.w_uniform && (M.w_uniform.body_parts_covered & ~suit_coverage))
 		fibertext = "Fibers from \a [M.w_uniform]."
-		if(prob(15*item_multiplier) && !(fibertext in suit_fibers))
+		if(prob(30*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += fibertext
 
 	if(M.gloves && (M.gloves.body_parts_covered & ~suit_coverage))
 		fibertext = "Material from a pair of [M.gloves.name]."
-		if(prob(20*item_multiplier) && !(fibertext in suit_fibers))
+		if(prob(45*item_multiplier) && !(fibertext in suit_fibers))
 			suit_fibers += "Material from a pair of [M.gloves.name]."
 
 /datum/data/record/forensic

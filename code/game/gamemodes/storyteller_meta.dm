@@ -2,7 +2,7 @@
 
 //Global list of all storyevents. This tracks things like how many times each has been called
 //It should persist so that storyteller changes don't reset how many calls have happened for each event
-var/global/list/storyevents = list()
+var/global/list/storyevents
 
 //A list of lists, which holds all events that have been scheduled but not fired yet
 //Each event is a list in the format..
@@ -16,7 +16,8 @@ var/global/list/scheduled_events = list()
 	var/list/base_types = list(/datum/storyevent,
 	/datum/storyevent/roleset,
 	/datum/storyevent/roleset/faction)
-
+	// Initialized here because we can't control when globals initialize
+	storyevents = list()
 	for(var/type in typesof(/datum/storyevent)-base_types)
 		storyevents.Add(new type)
 

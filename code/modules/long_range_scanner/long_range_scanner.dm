@@ -95,8 +95,7 @@ var/list/ship_scanners = list()
 		S.scanners |= src
 
 	// Link to Eris object on the overmap
-	linked_ship = locate(/obj/effect/overmap/ship/eris)
-
+	linked_ship = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 
 /obj/machinery/power/long_range_scanner/Destroy()
 	toggle_tendrils(FALSE)

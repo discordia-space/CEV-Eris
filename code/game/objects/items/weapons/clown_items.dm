@@ -50,11 +50,12 @@
 
 /obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
-
+/*
 	else if(istype(target,/obj/effect/decal/cleanable))
 		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
 		qdel(target)
 		return
+*/
 	else if(istype(target,/turf))
 		to_chat(user, "You start scrubbing the [target.name]")
 		if(do_after(user, 50, target)) //Soap should be slower and worse than mop

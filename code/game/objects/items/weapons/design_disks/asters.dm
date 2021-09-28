@@ -23,10 +23,11 @@
 		/datum/design/autolathe/tool/shovel,
 		/datum/design/autolathe/tool/spade,
 		/datum/design/autolathe/device/t_scanner,
-		/datum/design/autolathe/tool/rcd_ammo,
 		/datum/design/autolathe/tool/weldertool,
 		/datum/design/autolathe/tool/weldinggoggles,
 		/datum/design/autolathe/tool/weldermask,
+		/datum/design/autolathe/gun/flare_gun,
+		/datum/design/autolathe/ammo/flare_shell,
 		/datum/design/autolathe/device/flamethrower
 	)
 

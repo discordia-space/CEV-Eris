@@ -29,8 +29,13 @@
 	T?.levelupdate()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user)
-	if(W.is_refillable())
+	if(istype(W, /obj/item/device/spy_bug))
+		user.drop_item()
+		W.loc = get_turf(src)
+
+	else if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
+
 	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.add_fingerprint(user)

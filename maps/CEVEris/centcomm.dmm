@@ -5545,6 +5545,7 @@
 	pixel_y = 4
 	},
 /obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/mug/serb,
 /turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"

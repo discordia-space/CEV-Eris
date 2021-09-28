@@ -89,6 +89,25 @@ They generally give more random result and can provide more divercity in spawn.
 	spawn_nothing_percentage = 70
 
 
+/obj/spawner/pack/gun_adjacent_loot // this is gun loot with the guns and all the ammo except for ammo kit's pool removed
+	name = "Random gun adjacent loot" // also everything remaining except for gun parts's weight is cut in half
+	icon_state = "gun-red"
+	desc = "This is a random technical loot."
+
+/obj/spawner/pack/gun_adjacent_loot/item_to_spawn()
+	return pickweight(list(
+					/obj/spawner/gun_parts = 20,
+					/obj/spawner/knife = 3,
+					/obj/spawner/ammo/lowcost = 9,
+					/obj/spawner/gun_upgrade = 5,
+					/obj/spawner/cloth/holster = 4
+				))
+
+/obj/spawner/pack/gun_adjacent_loot/low_chance
+	name = "low chance gun loot"
+	icon_state = "gun-red-low"
+	spawn_nothing_percentage = 70
+
 //Rare loot, where we need to be sure that reward is worth it
 /obj/spawner/pack/rare
 	name = "rare loot"

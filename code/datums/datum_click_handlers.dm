@@ -76,7 +76,8 @@
 *****************************/
 /datum/click_handler/fullauto
 	var/atom/target = null
-	var/obj/item/gun/reciever //The thing we send firing signals to.
+	var/obj/item/gun/reciever // The thing we send firing signals to
+	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of M1 to fire faster.
 	//Todo: Make this work with callbacks
 
 /datum/click_handler/fullauto/Click()
@@ -94,15 +95,21 @@
 /datum/click_handler/fullauto/MouseDown(object, location, control, params)
 	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
 		return FALSE
+	if(time_since_last_init > world.time)
+		return FALSE
 
 	object = resolve_world_target(object)
 	if(object)
 		target = object
-		while(target)
-			owner.mob.face_atom(target)
-			do_fire()
-			sleep(reciever.burst_delay)		
+		shooting_loop()
+		time_since_last_init = world.time + reciever.burst_delay
 	return TRUE
+
+/datum/click_handler/fullauto/proc/shooting_loop()
+	if(target)
+		owner.mob.face_atom(target)
+		do_fire()
+		spawn(reciever.burst_delay) shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)

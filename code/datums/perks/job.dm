@@ -18,6 +18,7 @@
 	name = "Artist"
 	desc = "You have a lot of expertise in making works of art. You gain 150% insight from all sources but can only level \
 			up by creating works of art."
+	icon_state = "paintbrush" // https://game-icons.net/1x1/delapouite/paint-brush.html
 	var/old_max_insight = INFINITY
 	var/old_max_resting = INFINITY
 	var/old_insight_rest_gain_multiplier = 1
@@ -172,7 +173,7 @@
 /datum/perk/inspiration
 	name = "Exotic Inspiration"
 	desc = "Boosts your Cognition and Mechanical stats any time you imbibe any alcohol."
-	icon_state = "inspiration" // https://game-icons.net/1x1/delapouite/booze.html
+	icon_state = "drinking" // https://game-icons.net/1x1/delapouite/drinking.html
 
 /datum/perk/active_inspiration
 	name = "Exotic Inspiration (Active)"
@@ -193,7 +194,7 @@
 /datum/perk/sommelier
 	name = "Sommelier"
 	desc = "You know how to handle even strongest alcohol in the universe."
-	icon_state = "inspiration"
+	icon_state = "celebration" // https://game-icons.net/1x1/delapouite/glass-celebration.html
 
 /datum/perk/neat
 	name = "Neat"

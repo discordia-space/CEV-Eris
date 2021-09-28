@@ -24,6 +24,7 @@
 	recoil_buildup = 2
 	one_hand_penalty = 15 //automatic rifle level
 
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,

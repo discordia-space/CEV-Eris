@@ -44,4 +44,4 @@
 
 /datum/design/autolathe/misc/cane
 	name = "cane"
-	build_path = /obj/item/cane
+	build_path = /obj/item/tool/cane

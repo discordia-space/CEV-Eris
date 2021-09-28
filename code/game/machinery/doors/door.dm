@@ -1,5 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define DOOR_REPAIR_AMOUNT 50	//amount of health regained per stack amount used
+#define DOOR_AI_ACTIVATION_RANGE 12 // Range in which this door activates AI when opened
 
 /obj/machinery/door
 	name = "Door"
@@ -27,7 +28,6 @@
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
 	var/obj/item/stack/material/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
-	var/close_door_at = 0 //When to automatically close the door, if possible
 	var/obj/machinery/filler_object/f5
 	var/obj/machinery/filler_object/f6
 	var/welded //Placed here for simplicity, only airlocks can be welded tho
@@ -36,6 +36,7 @@
 	var/width = 1
 
 	var/damage_smoke = FALSE
+	var/tryingToLock = FALSE // for autoclosing
 
 	// turf animation
 	var/atom/movable/overlay/c_animation
@@ -92,12 +93,7 @@
 	return ..()
 
 /obj/machinery/door/Process()
-	if(close_door_at && world.time >= close_door_at)
-		if(autoclose)
-			close_door_at = next_close_time()
-			close()
-		else
-			close_door_at = 0
+	return PROCESS_KILL
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
@@ -431,8 +427,8 @@
 /obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
 		return
-	operating = 1
-
+	operating = TRUE
+	activate_mobs_in_range(src, 10)
 	set_opacity(0)
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
 		f5?.set_opacity(0)
@@ -449,14 +445,11 @@
 	update_icon()
 	update_nearby_tiles()
 	operating = 0
-
 	if(autoclose)
-		close_door_at = next_close_time()
-
-	return 1
-
-/obj/machinery/door/proc/next_close_time()
-	return world.time + (normalspeed ? 150 : 5)
+		tryingToLock = TRUE
+		var/wait = normalspeed ? 150 : 5
+		addtimer(CALLBACK(src, .proc/close), wait)
+	return TRUE
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	set waitfor = FALSE
@@ -464,7 +457,6 @@
 		return
 	operating = 1
 
-	close_door_at = 0
 	do_animate("closing")
 	sleep(3)
 	src.density = TRUE

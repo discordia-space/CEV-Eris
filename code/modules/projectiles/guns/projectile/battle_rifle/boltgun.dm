@@ -131,6 +131,24 @@
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
 
+/obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
+		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
+		if(loaded.len == 0 && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			if(caliber == CAL_LRIFLE)
+				caliber = CAL_SRIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
+			else if(caliber == CAL_SRIFLE)
+				caliber = CAL_CLRIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
+			else if(caliber == CAL_CLRIFLE)
+				caliber = CAL_LRIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
+		else 
+			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
+			return
+	..()
+
 //// OBREZ ////
 
 /obj/item/gun/projectile/boltgun/obrez

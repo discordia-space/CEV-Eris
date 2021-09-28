@@ -51,13 +51,8 @@ Has ability of every roach.
 	pixel_y = -16
 
 
-/mob/living/carbon/superior_animal/roach/kaiser/Life()
-	. = ..()
-	if(stat != CONSCIOUS)
-		return
-
-	if(stat != AI_inactive)
-		return
+/mob/living/carbon/superior_animal/roach/kaiser/handle_ai()
+	..()
 
 	if(can_call_reinforcements())
 		distress_call()
