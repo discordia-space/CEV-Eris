@@ -17,7 +17,7 @@
 	recoil_buildup = 1.6 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
-	max_shells = 5
+	max_shells = 10
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
