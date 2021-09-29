@@ -61,7 +61,7 @@
 
 /datum/perk/selfmedicated/chemist
 	name = "Chemical-junkie"
-	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substites and pumping them into yourself in the name of science! \
+	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substitutes and pumping them into yourself in the name of science! \
 			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
 	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
