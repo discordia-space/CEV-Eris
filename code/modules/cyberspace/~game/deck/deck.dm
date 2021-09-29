@@ -58,6 +58,8 @@
 
 	proc/SetUpProjectedMind()
 		//projected_mind.InstalledPrograms.Memory = MemoryForInstalledPrograms
+		if(cable?.owner?.UIStyle)
+			projected_mind.defaultHUD = cable.owner.UIStyle
 		projected_mind.reset_HUD()
 
 	attackby(obj/item/W, mob/living/user)

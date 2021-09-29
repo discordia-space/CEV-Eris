@@ -10,6 +10,8 @@
 
 	specific_organ_size = 0
 
+	var/UIStyle = "cyberspace_eye"
+
 	var/obj/item/mind_cable/cable
 
 	owner_verbs = list(

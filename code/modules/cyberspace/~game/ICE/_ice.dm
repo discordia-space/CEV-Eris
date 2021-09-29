@@ -5,7 +5,6 @@ CYBERAVATAR_CUSTOM_TYPE(/atom/movable/IceHolder, /datum/CyberSpaceAvatar/ice)
 
 /datum/CyberSpaceAvatar
 	var/datum/subroutine_manager/Subroutines
-	ice/Subroutines
 	New()
 		. = ..()
 		if(Subroutines)
@@ -14,6 +13,9 @@ CYBERAVATAR_CUSTOM_TYPE(/atom/movable/IceHolder, /datum/CyberSpaceAvatar/ice)
 	proc/CollectSubroutines()
 		if(!istype(Subroutines))
 			Subroutines = new
+
+/datum/CyberSpaceAvatar/ice/Subroutines = TRUE
+
 /datum/CyberSpaceAvatar/BumpedByAvatar(datum/CyberSpaceAvatar/avatar)
 	. = ..()
 	RaiseSubroutines(Subroutines.Bumped, SUBROUTINE_BUMPED, avatar)
