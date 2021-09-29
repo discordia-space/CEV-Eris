@@ -68,15 +68,20 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "roach"
 
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 0,
+		MAX_OXY_INDEX = 0,
+		MIN_PLASMA_INDEX = 0,
+		MAX_PLASMA_INDEX = 0,
+		MIN_CO2_INDEX = 0,
+		MAX_CO2_INDEX = 0,
+		MIN_N2_INDEX = 0,
+		MAX_N2_INDEX = 0,
+		BODY_TEMP_MIN_INDEX = 0,
+		BODY_TEMP_MAX_INDEX = 500,
+		ATMOS_DAMAGE_INDEX = 0,
+		BODY_TEMP_DAMAGE_INDEX = 5,
+	)
 
 	var/mob/living/carbon/superior_animal/roach/nanite/parent
 

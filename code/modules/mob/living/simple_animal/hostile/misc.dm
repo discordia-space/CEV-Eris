@@ -14,7 +14,9 @@
 	melee_damage_lower = 8
 	melee_damage_upper = 15
 	attacktext = "mauled"
-	cold_damage_per_tick = 0
+	atmospheric_requirements = list(
+		BODY_TEMP_MIN_INDEX = 50
+	)
 	speak_chance = 5
 	speak = list("Hruuugh!","Hrunnph")
 	emote_see = list("paws the ground","shakes its mane","stomps")
@@ -37,7 +39,9 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 5
 	attacktext = "gouged"
-	cold_damage_per_tick = 0
+	atmospheric_requirements = list(
+		BODY_TEMP_MIN_INDEX = 50
+	)
 	speak_chance = 5
 	speak = list("Awrr?","Aowrl!","Worrl")
 	emote_see = list("sniffs the air cautiously","looks around")
@@ -61,7 +65,9 @@
 	melee_damage_lower = 6
 	melee_damage_upper = 14
 	attacktext = "gouged"
-	cold_damage_per_tick = 0
+	atmospheric_requirements = list(
+		BODY_TEMP_MIN_INDEX = 50
+	)
 	speak_chance = 5
 	speak = list("Shuhn","Shrunnph?","Shunpf")
 	emote_see = list("scratches the ground","shakes out it's mane","tinkles gently")

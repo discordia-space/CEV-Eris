@@ -1,10 +1,5 @@
 /mob/living/simple_animal/spiderbot
-
-	min_oxy = 0
-	max_tox = 0
-	max_co2 = 0
-	minbodytemp = 0
-	maxbodytemp = 500
+	atmospherics_enabled = FALSE
 	mob_size = MOB_SMALL
 
 	var/obj/item/device/radio/borg/radio = null

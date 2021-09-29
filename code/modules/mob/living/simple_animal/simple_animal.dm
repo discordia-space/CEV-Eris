@@ -62,6 +62,7 @@
 	var/fire_alert = 0
 
 	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
+	var/atmospherics_enabled = TRUE // True if this even cares about atmos , false if not.
 	var/list/atmospheric_requirements = list(
 		MIN_OXY_INDEX = 5,
 		MAX_OXY_INDEX = 0,
@@ -72,11 +73,10 @@
 		MIN_N2_INDEX = 0,
 		MAX_N2_INDEX = 0,
 		BODY_TEMP_MIN_INDEX = 250,
-		BODY_TEMP_MAX_INDEX = 350,
+		BODY_TEMP_MAX_INDEX = 400,
 		ATMOS_DAMAGE_INDEX = 2,
 		BODY_TEMP_DAMAGE_INDEX = 4,
 	)
-	var/unsuitable_atoms_damage = 2	//This damage is taken when atmos doesn't fit all the requirements above
 	var/speed = 2 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
 
 	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
@@ -190,7 +190,7 @@
 	else if (health < maxHealth)
 		to_chat(user, SPAN_WARNING("It's a bit wounded."))
 
-/mob/living/simple_animal/handle_atmospherics()
+/mob/living/simple_animal/proc/handle_atmospherics()
 	var/atmos_suitable = TRUE
 	var/datum/gas_mixture/Environment = return_air()
 	if(Environment)
@@ -214,7 +214,7 @@
 			if(mole_handle < atmospheric_requirements[MIN_N2_INDEX] || mole_handle > atmospheric_requirements[MAX_N2_INDEX])
 				atmos_suitable = FALSE
 		if(!atmos_suitable)
-			adjustBruteLoss(unsuitable_atoms_damage)
+			adjustBruteLoss(atmospheric_requirements[ATMOS_DAMAGE_INDEX])
 			return FALSE
 		if(bodytemperature < atmospheric_requirements[BODY_TEMP_MIN_INDEX]) // Done in 2 steps because it can't fulfill both to save on performance
 			adjustBruteLoss(atmospheric_requirements[BODY_TEMP_DAMAGE_INDEX])
@@ -225,32 +225,42 @@
 		return TRUE
 	return FALSE
 
+/mob/living/simple_animal/proc/handle_fire_atmos()
+	var/datum/gas_mixture/Environment = return_air()
+	if(Environment)
+		if(abs(Environment.temperature - bodytemperature) >= 40 )
+			bodytemperature += ((Environment.temperature - bodytemperature) / 5)
+		if(bodytemperature > atmospheric_requirements[BODY_TEMP_MAX_INDEX])
+			adjustBruteLoss(atmospheric_requirements[BODY_TEMP_DAMAGE_INDEX])
+			return FALSE
+		return TRUE
+	return FALSE
+
+//  SIMPLE animals don't care for stun/weaken/paralzye
+/mob/living/simple_animal/Stun()
+	return FALSE
+
+/mob/living/simple_animal/Weaken()
+	return FALSE
+
+/mob/living/simple_animal/Paralyse()
+	return FALSE
+
 /mob/living/simple_animal/Life()
 	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
-	if(stat != DEAD)
-		if(life_cycles_before_scan > 0)
-			life_cycles_before_scan--
-		else
-			if(check_surrounding_area(7))
-				activate_ai()
-				life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
-			else
-				life_cycles_before_scan = 240
-		if(life_cycles_before_sleep)
-			life_cycles_before_sleep--
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
-			AI_inactive = TRUE
-
 	if(!stasis)
 		/* Uncomment this when anything uses it
 		handle_supernatural()
 		*/
 		if(hunger_enabled)
 			process_food()
-			if(client || !autoseek_food)
-			handle_foodscanning()
+			if(!client && autoseek_food)
+				handle_foodscanning()
 
-		handle_atmospherics()
+		if(atmospherics_enabled)
+			handle_atmospherics()
+		else
+			handle_fire_atmos() // mobs that do not handle atmos in general tend to only want to handle fire damage , which is fine i guess. Set atmos damage requirement super high if you don't want it
 
 		if(!AI_inactive)
 			//Speaking
@@ -274,6 +284,19 @@
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
 
+	if(life_cycles_before_scan)
+		life_cycles_before_scan--
+		return FALSE
+	if(life_cycles_before_sleep)
+		life_cycles_before_sleep--
+		return FALSE
+	if(check_surrounding_area(7))
+		activate_ai()
+		life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+		return TRUE
+	life_cycles_before_scan = 240
+	if(!life_cycles_before_sleep && !AI_inactive))
+		AI_inactive = TRUE
 	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
@@ -290,19 +313,19 @@
 //This allows animals to digest food, and only food
 //Most drugs, poisons etc, are designed to work on carbons and affect many values a simple animal doesnt have
 /mob/living/simple_animal/proc/process_food()
-		adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
-		if (!reagents || !reagents.total_volume)
-			return FALSE
-		for(var/datum/reagent/current in reagents.reagent_list)
-			var/removed = min(current.metabolism*digest_factor, current.volume)
-			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
-				var/datum/reagent/organic/nutriment/N = current
-				adjustNutrition(removed*N.nutriment_factor)
-				var/heal_amount = removed*N.regen_factor
-				if(heal_amount)
-					adjustBruteLoss(-heal_amount)
-					adjustFireLoss(-heal_amount)
-			current.remove_self(removed)//If its not food, it just does nothing. no fancy effects
+	adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
+	if (!reagents || !reagents.total_volume)
+		return FALSE
+	for(var/datum/reagent/current in reagents.reagent_list)
+		var/removed = min(current.metabolism*digest_factor, current.volume)
+		if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
+			var/datum/reagent/organic/nutriment/N = current
+			adjustNutrition(removed*N.nutriment_factor)
+			var/heal_amount = removed*N.regen_factor
+			if(heal_amount)
+				adjustBruteLoss(-heal_amount)
+				adjustFireLoss(-heal_amount)
+		current.remove_self(removed)//If its not food, it just does nothing. no fancy effects
 
 /mob/living/simple_animal/can_eat()
 	if (!hunger_enabled || nutrition > max_nutrition * 0.9)
@@ -491,7 +514,7 @@
 			stop_automated_movement = FALSE
 			if (can_eat())
 				var/list/atoms_nearby = oview(src, scan_range)
-				for(var/obj/item/reagent_containers/food/snacks/S in atoms_nearby ))
+				for(var/obj/item/reagent_containers/food/snacks/S in atoms_nearby )
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						foodtarget = TRUE

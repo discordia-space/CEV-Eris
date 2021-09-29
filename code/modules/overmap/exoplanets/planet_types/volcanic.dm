@@ -31,7 +31,7 @@
 
 /obj/effect/overmap/sector/exoplanet/volcanic/adapt_animal(var/mob/living/simple_animal/A)
 	..()
-	A.heat_damage_per_tick = 0 //animals not hot, no burning in lava
+	A.atmospheric_requirements[BODY_TEMP_MAX_INDEX] = 99999 //animals not hot, no burning in lava
 
 /datum/random_map/noise/exoplanet/volcanic
 	descriptor = "volcanic exoplanet"

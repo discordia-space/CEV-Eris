@@ -14,9 +14,11 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	var/mob/flee_target
-	min_oxy = 16 //Require atleast 16kPA oxygen
-	minbodytemp = 223		//Below -50 Degrees Celcius
-	maxbodytemp = 323	//Above 50 Degrees Celcius
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 16,
+		BODY_TEMP_MIN_INDEX = 223,
+		BODY_TEMP_MAX_INDEX = 323
+	)
 	holder_type = /obj/item/holder/cat
 	mob_size = MOB_SMALL
 	possession_candidate = 1
@@ -277,15 +279,13 @@ var/cat_number = 0
 	desc = "A bluespace denizen that purrs its way into our dimension when the very fabric of reality is teared apart."
 	icon_state = "runtimecat"
 	item_state = "runtimecat"
-	density = 0
+	density = FALSE
 	anchored = TRUE  // So that people cannot pull Dusty
 	mob_size = MOB_HUGE // So that people cannot put Dusty in lockers to move it
 
 	status_flags = GODMODE // Bluespace cat
-	min_oxy = 0
-	minbodytemp = 0
-	maxbodytemp = INFINITY
-	autoseek_food = 0
+	atmospherics_enabled = FALSE
+	autoseek_food = FALSE
 	metabolic_factor = 0.0
 
 	harm_intent_damage = 10

@@ -29,9 +29,11 @@
 	density = FALSE
 	layer = MOB_LAYER
 	mob_size = MOB_MINISCULE
-	min_oxy = 16 //Require atleast 16kPA oxygen
-	minbodytemp = 223		//Below -50 Degrees Celcius
-	maxbodytemp = 323	//Above 50 Degrees Celcius
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 16,
+		BODY_TEMP_MIN_INDEX = 223,
+		BODY_TEMP_MAX_INDEX = 323
+	)
 	universal_speak = FALSE
 	universal_understand = TRUE
 	holder_type = /obj/item/holder/mouse

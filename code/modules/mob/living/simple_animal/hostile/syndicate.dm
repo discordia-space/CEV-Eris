@@ -21,15 +21,6 @@
 	var/corpse = /obj/landmark/corpse/syndicatesoldier
 	var/weapon1
 	var/weapon2
-	min_oxy = 5
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 1
-	min_co2 = 0
-	max_co2 = 5
-	min_n2 = 0
-	max_n2 = 0
-	unsuitable_atoms_damage = 15
 	environment_smash = 1
 	faction = "syndicate"
 	status_flags = CANPUSH
@@ -82,17 +73,9 @@
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/space
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
 	icon_state = "syndicatemeleespace"
 	name = "Syndicate Commando"
+	atmospherics_enabled = FALSE
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
@@ -112,15 +95,7 @@
 /mob/living/simple_animal/hostile/syndicate/ranged/space
 	icon_state = "syndicaterangedpsace"
 	name = "Syndicate Commando"
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
+	atmospherics_enabled = FALSE
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
@@ -142,18 +117,12 @@
 	attacktext = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "syndicate"
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
+	atmospherics_enabled = FALSE
 
 /mob/living/simple_animal/hostile/viscerator/emp_act(severity)
 	health -= 60*severity
+
 /mob/living/simple_animal/hostile/viscerator/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)
+

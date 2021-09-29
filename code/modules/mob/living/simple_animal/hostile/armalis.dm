@@ -17,10 +17,12 @@
 	attack_sound = 'sound/effects/bamf.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-
-	min_oxy = 0
-	max_co2 = 0
-	max_tox = 0
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 0,
+		MAX_PLASMA_INDEX = 0,
+		MAX_CO2_INDEX = 0,
+		MIN_N2_INDEX = 6
+	)
 
 	speed = 2
 

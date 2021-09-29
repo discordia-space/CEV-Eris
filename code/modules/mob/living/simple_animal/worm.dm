@@ -22,12 +22,12 @@
 	stop_automated_movement = 1
 	animate_movement = SYNC_STEPS
 
-	minbodytemp = 0
-	maxbodytemp = 350
-	min_oxy = 0
-	max_co2 = 0
-	max_tox = 0
-
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 0,
+		MAX_PLASMA_INDEX = 0,
+		MAX_CO2_INDEX = 0,
+		BODY_TEMP_MIN_INDEX = 50
+	)
 	a_intent = I_HURT //so they don't get pushed around
 
 	environment_smash = 2

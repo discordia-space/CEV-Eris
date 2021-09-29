@@ -1,3 +1,4 @@
+// Comrade Bear
 /mob/living/simple_animal/hostile/commanded/bear
 	name = "bear"
 	desc = "A large brown bear."
@@ -11,10 +12,11 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 
-	min_oxy = 5
-	max_co2 = 5
-	max_tox = 2 //We tuff bear
-
+	atmospheric_requirements = list(
+		MIN_OXY_INDEX = 5,
+		MAX_PLASMA_INDEX = 10,
+		BODY_TEMP_MIN_INDEX = 100
+	)
 	response_help = "pets"
 	response_harm = "hits"
 	response_disarm = "pushes"
