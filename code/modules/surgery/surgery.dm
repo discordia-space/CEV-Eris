@@ -294,7 +294,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 	return FALSE
 
 /obj/item/organ/external/proc/shrapnel_check()
-	if(locate(/obj/item/material/shard/shrapnel) in src.implants)
+	if(locate(/obj/item/material/shard/shrapnel) in implants)
 		return TRUE
 
 	return FALSE

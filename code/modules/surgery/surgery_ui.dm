@@ -182,7 +182,7 @@
 				if(wait)
 					if(prob(100 - FAILCHANCE_NORMAL + usr.stats.getStat(target_stat)))
 						for(var/obj/item/material/shard/shrapnel/shrapnel in src.implants)
-							src.implants -= shrapnel
+							implants -= shrapnel
 							shrapnel.loc = get_turf(src)
 						to_chat(user, SPAN_WARNING("You have removed shrapnel from [get_surgery_name()]."))
 					else
