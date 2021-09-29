@@ -264,22 +264,24 @@
 
 		if(handle_regular_health_update())
 			return PROCESS_KILL // We died , mortis.
+
 		if(!AI_inactive)
 			handle_ai()
+
+	if(life_cycles_before_sleep)
+		life_cycles_before_sleep--
+		return TRUE
+	if(!(AI_inactive && life_cycles_before_sleep))
+		AI_inactive = TRUE
 
 	if(life_cycles_before_scan)
 		life_cycles_before_scan--
 		return FALSE
-	if(life_cycles_before_sleep)
-		life_cycles_before_sleep--
-		return FALSE
 	if(check_surrounding_area(7))
 		activate_ai()
-		life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+		life_cycles_before_scan = initial(life_cycles_before_scan)/6 //So it doesn't fall asleep just to wake up the next tick
 		return TRUE
-	life_cycles_before_scan = 240
-	if(!life_cycles_before_sleep && !AI_inactive)
-		AI_inactive = TRUE
+	life_cycles_before_scan = initial(life_cycles_before_scan)
 	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
