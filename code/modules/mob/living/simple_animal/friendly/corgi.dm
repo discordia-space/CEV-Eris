@@ -39,10 +39,10 @@
 	response_harm   = "kicks"
 	spawn_frequency = 0//unique
 
-/mob/living/simple_animal/corgi/Life()
+/mob/living/simple_animal/corgi/handle_ai()
 	..()
 
-	if(!stat && !resting && !buckled)
+	if(!resting && !buckled)
 		if(prob(1))
 			var/msg2 = (pick("dances around","chases their tail"))
 			src.visible_message("<span class='name'>[src]</span> [msg2].")
@@ -131,24 +131,25 @@
 		return
 	..()
 
-/mob/living/simple_animal/corgi/Lisa/Life()
-	..()
+/mob/living/simple_animal/corgi/Lisa/handle_ai()
+	if(!..())
+		return FALSE
 
-	if(!stat && !resting && !buckled)
+	if(!resting && !buckled)
 		turns_since_scan++
 		if(turns_since_scan > 15)
 			turns_since_scan = 0
-			var/alone = 1
-			var/ian = 0
+			var/alone = TRUE
+			var/ian = FALSE
 			for(var/mob/M in oviewers(7, src))
 				if(istype(M, /mob/living/simple_animal/corgi/Ian))
 					if(M.client)
-						alone = 0
+						alone = FALSE
 						break
 					else
 						ian = M
 				else
-					alone = 0
+					alone = FALSE
 					break
 			if(alone && ian && puppies < 4)
 				if(near_camera(src) || near_camera(ian))

@@ -182,30 +182,26 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 	return L
 
-/mob/living/simple_animal/hostile/Life()
+/mob/living/simple_animal/hostile/handle_ai()
 
-	. = ..()
-	if(!stasis && !AI_inactive)
-		if(!.)
-			walk(src, 0)
-			return 0
-		if(client)
-			return 0
+	if(!..())
+		return FALSE
+	if(client)
+		return FALSE
 
-		if(!stat)
-			switch(stance)
-				if(HOSTILE_STANCE_IDLE)
-					target_mob = FindTarget()
+	switch(stance)
+		if(HOSTILE_STANCE_IDLE)
+			target_mob = FindTarget()
 
-				if(HOSTILE_STANCE_ATTACK)
-					if(destroy_surroundings)
-						DestroySurroundings()
-					MoveToTarget()
+		if(HOSTILE_STANCE_ATTACK)
+			if(destroy_surroundings)
+				DestroySurroundings()
+				MoveToTarget()
 
-				if(HOSTILE_STANCE_ATTACKING)
-					if(destroy_surroundings)
-						DestroySurroundings()
-					AttackTarget()
+		if(HOSTILE_STANCE_ATTACKING)
+			if(destroy_surroundings)
+				DestroySurroundings()
+				AttackTarget()
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob

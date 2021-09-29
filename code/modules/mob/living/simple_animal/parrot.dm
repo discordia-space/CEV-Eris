@@ -262,17 +262,18 @@
 /*
  * AI - Not really intelligent, but I'm calling it AI anyway.
  */
-/mob/living/simple_animal/parrot/Life()
-	..()
+/mob/living/simple_animal/parrot/handle_ai()
+	if(!..())
+		return FALSE
 
 	//Sprite and AI update for when a parrot gets pulled
-	if(pulledby && stat == CONSCIOUS)
+	if(pulledby)
 		icon_state = "parrot_fly"
 		if(!client)
 			parrot_state = PARROT_WANDER
 		return
 
-	if(client || stat)
+	if(client)
 		return //Lets not force players or dead/incap parrots to move
 
 	if(!isturf(src.loc) || !canmove || buckled)

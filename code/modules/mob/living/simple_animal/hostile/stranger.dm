@@ -98,9 +98,10 @@
 		return FALSE
 	. = ..()
 
-/mob/living/simple_animal/hostile/stranger/Life()
-	. = ..()
-	if(. && prob(prob_tele/2))
+/mob/living/simple_animal/hostile/stranger/handle_ai()
+	if(!..())
+		return FALSE
+	if(prob(prob_tele/2))
 		var/source = src
 		if(target_mob)
 			source = target_mob

@@ -262,27 +262,10 @@
 		else
 			handle_fire_atmos() // mobs that do not handle atmos in general tend to only want to handle fire damage , which is fine i guess. Set atmos damage requirement super high if you don't want it
 
+		if(handle_regular_health_update())
+			return PROCESS_KILL // We died , mortis.
 		if(!AI_inactive)
-			//Speaking
-			if(!client && speak_chance)
-				if(rand(0,200) < speak_chance)
-					visible_emote(emote_see)
-					speak_audio()
-
-			if(incapacitated())
-				return TRUE
-
-			//Movement
-			turns_since_move++
-			if(!client && !stop_automated_movement && wander && !anchored)
-				if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-					if(turns_since_move >= turns_per_move)
-						if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-							var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-							moving_to = pick(cardinal)
-							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
-							turns_since_move = 0
+			handle_ai()
 
 	if(life_cycles_before_scan)
 		life_cycles_before_scan--
@@ -295,7 +278,7 @@
 		life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
 		return TRUE
 	life_cycles_before_scan = 240
-	if(!life_cycles_before_sleep && !AI_inactive))
+	if(!life_cycles_before_sleep && !AI_inactive)
 		AI_inactive = TRUE
 	return TRUE
 
@@ -308,6 +291,35 @@
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
+
+/mob/living/simple_animal/proc/handle_regular_health_update()
+	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	if (health <= 0 && stat != DEAD)
+		death()
+		return TRUE
+	return FALSE
+
+/mob/living/simple_animal/proc/handle_ai()
+	if(!client && speak_chance)
+		if(rand(0,200) < speak_chance)
+			visible_emote(emote_see)
+			speak_audio()
+
+	if(incapacitated())
+		return FALSE
+
+	//Movement
+	turns_since_move++
+	if(!client && !stop_automated_movement && wander && !anchored)
+		if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+			if(turns_since_move >= turns_per_move)
+				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
+					moving_to = pick(cardinal)
+					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					turns_since_move = 0
+	return TRUE
 
 //Simple reagent processing for simple animals
 //This allows animals to digest food, and only food

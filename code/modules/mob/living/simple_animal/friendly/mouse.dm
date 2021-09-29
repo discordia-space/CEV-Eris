@@ -71,22 +71,22 @@
 	..()
 	nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)
 
-/mob/living/simple_animal/mouse/Life()
-	if(..())
+/mob/living/simple_animal/mouse/handle_ai()
+	if(!..())
+		return FALSE
+	if(client)
+		walk_to(src,0)
 
-		if(client)
-			walk_to(src,0)
+		//Player-animals don't do random speech normally, so this is here
+		//Player-controlled mice will still squeak, but less often than NPC mice
+		if (stat == CONSCIOUS && prob(speak_chance*0.05))
+			squeak_soft(0)
 
-			//Player-animals don't do random speech normally, so this is here
-			//Player-controlled mice will still squeak, but less often than NPC mice
-			if (stat == CONSCIOUS && prob(speak_chance*0.05))
-				squeak_soft(0)
-
-			if (squeals < maxSqueals)
-				var/diff = world.time - last_squealgain
-				if (diff > 600)
-					squeals++
-					last_squealgain = world.time
+		if (squeals < maxSqueals)
+			var/diff = world.time - last_squealgain
+			if (diff > 600)
+				squeals++
+				last_squealgain = world.time
 
 	else
 		if ((world.time - timeofdeath) > decompose_time)

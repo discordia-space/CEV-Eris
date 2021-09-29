@@ -37,14 +37,12 @@
 		for(var/obj/machinery/hivemind_machine/NODE in world)
 			NODE.destruct()
 
-/mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/Life()
-
-	. = ..()
-	if(!.)
+/mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/handle_ai()
+	if(!..())
 		walk(src, 0)
-		return 0
+		return FALSE
 	if(client)
-		return 0
+		return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/OpenFire()
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)

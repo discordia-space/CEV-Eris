@@ -186,9 +186,10 @@
 	if (!friend || movement_target != friend)
 		..()
 
-/mob/living/simple_animal/cat/fluff/Life()
-	..()
-	if (stat || !friend)
+/mob/living/simple_animal/cat/fluff/handle_ai()
+	if(!..())
+		return FALSE
+	if (!friend)
 		return
 	if (get_dist(src, friend) <= 1)
 		if (friend.stat >= DEAD || friend.health <= HEALTH_THRESHOLD_SOFTCRIT)

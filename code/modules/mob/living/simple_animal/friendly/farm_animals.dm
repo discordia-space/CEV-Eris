@@ -28,7 +28,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/beg(var/atom/thing, var/atom/holder)
 	visible_emote("butts insistently at [holder]'s legs and reaches towards their [thing].")
 
-/mob/living/simple_animal/hostile/retaliate/goat/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/handle_ai()
 	. = ..()
 	if(.)
 		//chance to go crazy and start wacking stuff
@@ -120,11 +120,11 @@
 	else
 		..()
 
-/mob/living/simple_animal/cow/Life()
-	. = ..()
-	if(stat == CONSCIOUS)
-		if(udder && prob(5))
-			udder.add_reagent("milk", rand(5, 10))
+/mob/living/simple_animal/cow/handle_ai()
+	if(!..())
+		return FALSE
+	if(udder && prob(5))
+		udder.add_reagent("milk", rand(5, 10))
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == I_DISARM && icon_state != icon_dead)
@@ -170,15 +170,13 @@
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
-/mob/living/simple_animal/chick/Life()
-	. =..()
-	if(!.)
-		return
-	if(!stat)
-		amount_grown += rand(1,2)
-		if(amount_grown >= 100)
-			new /mob/living/simple_animal/chicken(src.loc)
-			qdel(src)
+/mob/living/simple_animal/chick/handle_ai()
+	if(!..())
+		return FALSE
+	amount_grown += rand(1,2)
+	if(amount_grown >= 100)
+		new /mob/living/simple_animal/chicken(src.loc)
+		qdel(src)
 
 var/const/MAX_CHICKENS = 50
 var/global/chicken_count = 0
@@ -237,11 +235,10 @@ var/global/chicken_count = 0
 	else
 		..()
 
-/mob/living/simple_animal/chicken/Life()
-	. =..()
-	if(!.)
-		return
-	if(!stat && prob(3) && eggsleft > 0)
+/mob/living/simple_animal/chicken/handle_ai()
+	if(!..())
+		return FALSE
+	if(prob(3) && eggsleft > 0)
 		visible_message("[src] [pick("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")]")
 		eggsleft--
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(src))
@@ -252,6 +249,7 @@ var/global/chicken_count = 0
 
 
 /obj/item/reagent_containers/food/snacks/egg/var/amount_grown = 0
+
 /obj/item/reagent_containers/food/snacks/egg/Process()
 	if(isturf(loc))
 		amount_grown += rand(1,2)

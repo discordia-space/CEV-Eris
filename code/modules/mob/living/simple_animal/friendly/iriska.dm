@@ -46,13 +46,11 @@ var/list/despised = list()
 /mob/living/simple_animal/iriska/wake_up()
 	return
 
-/mob/living/simple_animal/iriska/Life()
-	.=..()
-
-	if(!stasis)
-
-		seek_food()
-		react_to_mob()
+/mob/living/simple_animal/iriska/handle_ai()
+	if(!..())
+		return FALSE
+	seek_food()
+	react_to_mob()
 
 /mob/living/simple_animal/iriska/proc/seek_food()
 	turns_since_scan++

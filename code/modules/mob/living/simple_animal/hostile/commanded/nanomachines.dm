@@ -18,13 +18,12 @@
 	response_harm = "hits"
 	response_disarm = "fans at"
 
-/mob/living/simple_animal/hostile/commanded/nanomachine/Life()
+/mob/living/simple_animal/hostile/commanded/nanomachine/handle_ai()
 	regen_time++
 	if(regen_time == 2 && health < maxHealth) //slow regen
 		regen_time = 0
 		health++
-	. = ..()
-	if(.)
+	if(!..())
 		switch(stance)
 			if(COMMANDED_HEAL)
 				if(!target_mob)

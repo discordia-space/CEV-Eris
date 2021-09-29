@@ -25,7 +25,7 @@
 		command_buffer.Add(lowertext(html_decode(message)))
 	return 0
 
-/mob/living/simple_animal/hostile/commanded/Life()
+/mob/living/simple_animal/hostile/commanded/handle_ai()
 	while(command_buffer.len > 0)
 		var/mob/speaker = command_buffer[1]
 		var/text = command_buffer[2]
@@ -34,8 +34,7 @@
 			var/substring = copytext(text,length(filtered_name)+1) //get rid of the name.
 			listen(speaker,substring)
 		command_buffer.Remove(command_buffer[1],command_buffer[2])
-	. = ..()
-	if(.)
+	if(!..())
 		switch(stance)
 			if(COMMANDED_FOLLOW)
 				follow_target()

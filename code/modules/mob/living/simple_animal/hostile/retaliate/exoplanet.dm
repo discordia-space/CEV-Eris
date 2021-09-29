@@ -19,9 +19,8 @@
 			if(!attack_same && L.faction != faction)
 				prey |= weakref(L)
 
-/mob/living/simple_animal/hostile/retaliate/beast/Life()
-	. = ..()
-	if(!.)
+/mob/living/simple_animal/hostile/retaliate/beast/handle_ai()
+	if(!..())
 		return FALSE
 	hunger++
 	if(hunger < 100) //stop hunting when satiated

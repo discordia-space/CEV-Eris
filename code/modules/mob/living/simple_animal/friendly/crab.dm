@@ -19,17 +19,6 @@
 	var/obj/item/inventory_mask
 	possession_candidate = 1
 
-/mob/living/simple_animal/crab/Life()
-	..()
-	//CRAB movement
-	if(!ckey && !stat)
-		if(isturf(src.loc) && !resting && !buckled)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			turns_since_move++
-			if(turns_since_move >= turns_per_move)
-				step_glide(src,pick(4,8), DELAY2GLIDESIZE(0.5 SECONDS))
-				turns_since_move = 0
-	regenerate_icons()
-
 //COFFEE! SQUEEEEEEEEE!
 /mob/living/simple_animal/crab/Coffee
 	name = "Coffee"
