@@ -11,6 +11,7 @@
 	w_class = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	load_method = SINGLE_CASING
+	handle_casings = HOLD_CASINGS
 	max_shells = 1
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 4)
 	gun_parts = list(/obj/item/stack/material/plastic = 4)
@@ -22,7 +23,7 @@
 
 /obj/item/gun/projectile/flare_gun/on_update_icon()
 	..()
-	
+
 	if (bolt_open)
 		SetIconState("flaregun_open")
 	else
@@ -33,9 +34,6 @@
 		toggle_scope(user)
 		return
 	bolt_act(user)
-
-/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, allow_dump=1)
-	return
 
 /obj/item/gun/projectile/flare_gun/proc/bolt_act(mob/living/user)
 	bolt_open = !bolt_open
@@ -66,3 +64,13 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/gun/projectile/flare_gun/shotgun
+	desc = "Flare gun made of cheap plastic, but with a reinforced barrel. Now, where did all those gun-toting madmen get to?"
+	caliber = CAL_SHOTGUN
+	damage_multiplier = 0.4
+	penetration_multiplier = 0.5
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+	one_hand_penalty = 10 //compact shotgun level
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
