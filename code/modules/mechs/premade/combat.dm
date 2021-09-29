@@ -80,11 +80,11 @@
 	exosuit_desc_string = "flexible, advanced manipulators"
 	desc = "These advanced manipulators are designed for combat, and as a result can take and dish out beatings fairly well."
 	icon_state = "combat_arms"
-	melee_damage = 15
+	melee_damage = 45 // Whack
 	action_delay = 10
 	max_damage = 100
 	power_use = 50
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 4, MATERIAL_DIAMOND = 2)
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
