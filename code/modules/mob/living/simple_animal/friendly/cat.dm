@@ -62,14 +62,14 @@
 	//if our target is neither inside a turf or inside a human(???), stop
 	if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 		movement_target = null
-		stop_automated_movement = 0
+		stop_automated_movement = FALSE
 	//if we have no target or our current one is out of sight/too far away
 	if( !movement_target || !(movement_target.loc in oview(src, 4)) )
 		movement_target = null
-		stop_automated_movement = 0
+		stop_automated_movement = FALSE
 
 	if(movement_target)
-		stop_automated_movement = 1
+		stop_automated_movement = TRUE
 		walk_to(src,movement_target,0,seek_move_delay)
 
 /mob/living/simple_animal/cat/proc/attack_mice()
@@ -340,7 +340,7 @@ var/cat_number = 0
 			M.do_attack_animation(src)
 			visible_message(SPAN_WARNING("\The [src] hisses."))
 			strike_back(M)
-	
+
 	return
 
 /mob/living/simple_animal/cat/runtime/proc/strike_back(var/mob/target_mob)

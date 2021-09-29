@@ -226,29 +226,31 @@
 	return FALSE
 
 /mob/living/simple_animal/Life()
-	.=..()
+	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
+	if(stat != DEAD)
+		if(life_cycles_before_scan > 0)
+			life_cycles_before_scan--
+		else
+			if(check_surrounding_area(7))
+				activate_ai()
+				life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+			else
+				life_cycles_before_scan = 240
+		if(life_cycles_before_sleep)
+			life_cycles_before_sleep--
+		if(life_cycles_before_sleep < 1 && !AI_inactive)
+			AI_inactive = TRUE
 
 	if(!stasis)
-
-		if(!.)
-			return FALSE
-
-		if(health <= 0 && stat != DEAD)
-			death()
-			return FALSE
-
-		if(health > maxHealth)
-			health = maxHealth
-
-		handle_stunned()
-		handle_weakened()
-		handle_paralysed()
+		/* Uncomment this when anything uses it
 		handle_supernatural()
+		*/
+		if(hunger_enabled)
+			process_food()
+			if(client || !autoseek_food)
+			handle_foodscanning()
 
-		process_food()
-		handle_foodscanning()
-
-		if(handle_atmospherics())
+		handle_atmospherics()
 
 		if(!AI_inactive)
 			//Speaking
@@ -288,32 +290,18 @@
 //This allows animals to digest food, and only food
 //Most drugs, poisons etc, are designed to work on carbons and affect many values a simple animal doesnt have
 /mob/living/simple_animal/proc/process_food()
-	if (hunger_enabled)
-		if (nutrition)
-			adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
-			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
-		else
-			if (prob(3))
-				to_chat(src, "You feel hungry...")
-
+		adjustNutrition(-nutrition_step)//Bigger animals get hungry faster
 		if (!reagents || !reagents.total_volume)
-			return
-
+			return FALSE
 		for(var/datum/reagent/current in reagents.reagent_list)
 			var/removed = min(current.metabolism*digest_factor, current.volume)
 			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
 				var/datum/reagent/organic/nutriment/N = current
 				adjustNutrition(removed*N.nutriment_factor)
 				var/heal_amount = removed*N.regen_factor
-				if (bruteloss > 0)
-					var/n = min(heal_amount, bruteloss)
-					adjustBruteLoss(-n)
-					heal_amount -= n
-				if (fireloss && heal_amount)
-					var/n = min(heal_amount, fireloss)
-					adjustFireLoss(-n)
-					heal_amount -= n
-				updatehealth()
+				if(heal_amount)
+					adjustBruteLoss(-heal_amount)
+					adjustFireLoss(-heal_amount)
 			current.remove_self(removed)//If its not food, it just does nothing. no fancy effects
 
 /mob/living/simple_animal/can_eat()
@@ -490,77 +478,65 @@
 
 //Code to handle finding and nomming nearby food items
 /mob/living/simple_animal/proc/handle_foodscanning()
-	if (client || !hunger_enabled || !autoseek_food)
-		return 0
-
-	//Feeding, chasing food, FOOOOODDDD
-	if(!incapacitated())
-
-		turns_since_scan++
-		if(turns_since_scan >= scan_interval)
-			turns_since_scan = 0
-			if(movement_target && (!(isturf(movement_target.loc) || ishuman(movement_target.loc)) || (foodtarget && !can_eat()) ))
-				movement_target = null
-				foodtarget = 0
-				stop_automated_movement = 0
-			if( !movement_target || !(movement_target.loc in oview(src, 7)) )
-				walk_to(src,0)
-				movement_target = null
-				foodtarget = 0
-				stop_automated_movement = 0
-				if (can_eat())
-					for(var/obj/item/reagent_containers/food/snacks/S in oview(src,7))
-						if(isturf(S.loc) || ishuman(S.loc))
-							movement_target = S
-							foodtarget = 1
-							break
-
+	if(turns_since_scan >= scan_interval)
+		turns_since_scan = 0
+		if(movement_target && (!(isturf(movement_target.loc) || ishuman(movement_target.loc)) || (foodtarget && !can_eat()) ))
+			movement_target = null
+			foodtarget = FALSE
+			stop_automated_movement = FALSE
+		if( !movement_target || !(get_dist(src, movement_target) >= scan_range))
+			walk_to(src,0)
+			movement_target = null
+			foodtarget = FALSE
+			stop_automated_movement = FALSE
+			if (can_eat())
+				var/list/atoms_nearby = oview(src, scan_range)
+				for(var/obj/item/reagent_containers/food/snacks/S in atoms_nearby ))
+					if(isturf(S.loc) || ishuman(S.loc))
+						movement_target = S
+						foodtarget = TRUE
+						break
 					//Look for food in people's hand
-					if (!movement_target && beg_for_food)
-						var/obj/item/reagent_containers/food/snacks/F = null
-						for(var/mob/living/carbon/human/H in oview(src,scan_range))
-							if(istype(H.l_hand, /obj/item/reagent_containers/food/snacks))
-								F = H.l_hand
+				if (!movement_target && beg_for_food)
+					var/obj/item/reagent_containers/food/snacks/F = null
+					for(var/mob/living/carbon/human/H in atoms_nearby)
+						if(istype(H.l_hand, /obj/item/reagent_containers/food/snacks))
+							F = H.l_hand
+						if(istype(H.r_hand, /obj/item/reagent_containers/food/snacks))
+							F = H.r_hand
+						if (F)
+							movement_target = F
+							foodtarget = TRUE
+							break
+		if(movement_target)
+			scan_interval = min_scan_interval
+			stop_automated_movement = TRUE
 
-							if(istype(H.r_hand, /obj/item/reagent_containers/food/snacks))
-								F = H.r_hand
-
-							if (F)
-								movement_target = F
-								foodtarget = 1
-								break
-
-			if(movement_target)
-				scan_interval = min_scan_interval
-				stop_automated_movement = 1
-
-				if (istype(movement_target.loc, /turf))
-					walk_to(src,movement_target,0, seek_move_delay)//Stand ontop of food
-				else
-					walk_to(src,movement_target.loc,1, seek_move_delay)//Don't stand ontop of people
-
-
-
-				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
-						set_dir(WEST)
-					else if (movement_target.loc.x > src.x)
-						set_dir(EAST)
-					else if (movement_target.loc.y < src.y)
-						set_dir(SOUTH)
-					else if (movement_target.loc.y > src.y)
-						set_dir(NORTH)
-					else
-						set_dir(SOUTH)
-
-					if(isturf(movement_target.loc) && Adjacent(get_turf(movement_target), src))
-						UnarmedAttack(movement_target)
-						if (get_turf(movement_target) == loc)
-							set_dir(pick(1,2,4,8,1,1))//Face a random direction when eating, but mostly upwards
-					else if(ishuman(movement_target.loc) && Adjacent(src, get_turf(movement_target)) && prob(15))
-						beg(movement_target, movement_target.loc)
+			if (istype(movement_target.loc, /turf))
+				walk_to(src,movement_target,0, seek_move_delay)//Stand ontop of food
 			else
-				scan_interval = max(min_scan_interval, min(scan_interval+1, max_scan_interval))//If nothing is happening, ian's scanning frequency slows down to save processing
+				walk_to(src,movement_target.loc,1, seek_move_delay)//Don't stand ontop of people
+
+
+
+			if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
+				if (movement_target.loc.x < src.x)
+					set_dir(WEST)
+				else if (movement_target.loc.x > src.x)
+					set_dir(EAST)
+				else if (movement_target.loc.y < src.y)
+					set_dir(SOUTH)
+				else if (movement_target.loc.y > src.y)
+					set_dir(NORTH)
+				else
+					set_dir(SOUTH)
+
+				if(isturf(movement_target.loc) && Adjacent(get_turf(movement_target), src))
+					UnarmedAttack(movement_target)
+					if (get_turf(movement_target) == loc)
+						set_dir(pick(1,2,4,8,1,1))//Face a random direction when eating, but mostly upwards
+				else if(ishuman(movement_target.loc) && Adjacent(src, get_turf(movement_target)) && prob(15))
+					beg(movement_target, movement_target.loc)
 
 //For picking up small animals
 /mob/living/simple_animal/MouseDrop(atom/over_object)
