@@ -88,6 +88,7 @@
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
+	var/wield_delay = 0 //how long it takes to wield
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	if(!istool(I) || user.a_intent != I_HURT)

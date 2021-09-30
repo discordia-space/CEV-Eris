@@ -27,6 +27,7 @@
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY
 		)
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/projectile/automatic/drozd/on_update_icon()
 	cut_overlays()

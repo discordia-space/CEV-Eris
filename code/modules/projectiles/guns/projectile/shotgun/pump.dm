@@ -23,6 +23,7 @@
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

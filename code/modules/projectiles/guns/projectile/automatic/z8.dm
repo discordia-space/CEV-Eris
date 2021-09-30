@@ -34,6 +34,7 @@
 	var/obj/item/gun/launcher/grenade/underslung/launcher
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/projectile/automatic/z8/Initialize()
 	. = ..()

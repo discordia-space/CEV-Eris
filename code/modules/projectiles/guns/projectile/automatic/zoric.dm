@@ -28,6 +28,7 @@
 		)
 
 	gun_tags = list(GUN_SILENCABLE)
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/projectile/automatic/zoric/on_update_icon()
 	cut_overlays()

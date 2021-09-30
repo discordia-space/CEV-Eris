@@ -19,6 +19,7 @@
 	var/obj/item/grenade/chambered
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
+	wield_delay = 1.5 SECONDS
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/gun/launcher/grenade/proc/pump(mob/user)

@@ -31,6 +31,7 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
+	wield_delay = 8 //deciseconds
 
 
 /obj/item/gun/projectile/automatic/sts35/on_update_icon()

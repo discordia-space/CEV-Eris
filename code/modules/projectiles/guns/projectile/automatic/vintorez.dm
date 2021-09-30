@@ -25,6 +25,7 @@
 		SEMI_AUTO_NODELAY,
 		FULL_AUTO_400
 		)
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)

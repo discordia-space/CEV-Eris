@@ -26,6 +26,7 @@
 		BURST_3_ROUND
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)

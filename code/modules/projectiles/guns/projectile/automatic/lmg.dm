@@ -34,6 +34,7 @@
 		)
 
 	var/cover_open = 0
+	wield_delay = 1.5 SECONDS
 
 /obj/item/gun/projectile/automatic/lmg/special_check(mob/user)
 	if(cover_open)

@@ -19,6 +19,7 @@
 	one_hand_penalty = 5 //compact shotgun level, so same as sawn off
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = TRUE
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/projectile/shotgun/slidebarrel/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing))

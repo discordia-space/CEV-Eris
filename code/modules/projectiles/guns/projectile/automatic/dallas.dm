@@ -32,6 +32,7 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/projectile/automatic/dallas/on_update_icon()
 	..()

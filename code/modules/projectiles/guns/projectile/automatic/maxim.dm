@@ -33,6 +33,7 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	slowdown_hold = 5
+	wield_delay = 1.5 SECONDS
 
 /obj/item/gun/projectile/automatic/maxim/on_update_icon()
 	..()

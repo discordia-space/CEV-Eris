@@ -22,4 +22,4 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
-	
+	wield_delay = 1 SECOND

@@ -36,6 +36,7 @@
 	spawn_blacklisted = TRUE
 
 	var/folded = FALSE
+	wield_delay = 5 //deciseconds
 
 /obj/item/gun/projectile/automatic/ak47/on_update_icon()
 	..()
@@ -226,7 +227,7 @@
 				caliber = CAL_LRIFLE
 				mag_well = MAG_WELL_RIFLE
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()

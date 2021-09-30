@@ -21,6 +21,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE
@@ -75,7 +76,8 @@
 	twohanded = TRUE
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
-	
+	wield_delay = 6 //deciseconds
+
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/obrez_retro.dmi'
@@ -95,6 +97,7 @@
 	twohanded = FALSE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -121,6 +124,7 @@
 	)
 	twohanded = FALSE
 	spawn_blacklisted = TRUE//antag_item_targets
+	wield_delay = 3 //deciseconds
 
 /obj/item/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -144,6 +148,7 @@
 		WEAPON_NORMAL
 		)
 	twohanded = TRUE
+	wield_delay = 1 SECOND
 
 /obj/item/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -170,6 +175,7 @@
 	var/list/victims = list()
 	var/datum/antag_contract/derail/contract
 	pierce_multiplier = 2
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/energy/psychic/Initialize()
 	..()
@@ -286,3 +292,4 @@
 		WEAPON_NORMAL
 	)
 	spawn_blacklisted = TRUE
+	wield_delay = 6 //deciseconds

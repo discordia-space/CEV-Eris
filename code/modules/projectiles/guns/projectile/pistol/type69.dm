@@ -24,6 +24,7 @@
     price_tag = 2500
 
     spawn_blacklisted = TRUE //until loot rework
+	wield_delay = 6 //deciseconds
 
 /obj/item/gun/projectile/type_69/on_update_icon()
 	..()
