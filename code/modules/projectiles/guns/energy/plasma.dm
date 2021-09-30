@@ -24,7 +24,7 @@
 		list(mode_name="Melt", mode_desc="A much more potent plasma round for breaching tough opponents' hides", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
 		list(mode_name="INCINERATE", mode_desc="An armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
 	)
-	wield_delay = 0.3
+	wield_delay = 3 //deciseconds
 
 
 /obj/item/gun/energy/plasma/mounted
@@ -99,7 +99,7 @@
 	charge_cost = 15
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
 	init_firemodes = list()
-	wield_delay = 0
+	wield_delay = 0 // deciseconds, although zero is still zero
 
 /obj/item/gun/energy/plasma/brigador/on_update_icon()
 	cut_overlays()
