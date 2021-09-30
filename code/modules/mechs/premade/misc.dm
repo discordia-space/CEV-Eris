@@ -22,3 +22,4 @@
 	turn_delay = 7
 	power_use = 150
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	mech_step_sound = 'sound/mechs/tanktread.ogg'

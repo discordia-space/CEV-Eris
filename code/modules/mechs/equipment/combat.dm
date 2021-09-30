@@ -27,6 +27,8 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -46,6 +48,8 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 2
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -66,6 +70,8 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.75
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
@@ -91,6 +97,8 @@
 	self_recharge = TRUE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 	projectile_type = /obj/item/projectile/beam/cutter
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/gun/projectile/get_hardpoint_maptext()
 	return "[get_ammo()]/[ammo_magazine.max_ammo]"
@@ -126,10 +134,13 @@
 		list(mode_name="spit fire",  burst=15, burst_delay=0.8, move_delay=15,  icon="burst")
 		)
 	spawn_tags = null
+	matter = list()
+	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
 	. = ..()
-	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk(src)
+	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
 	..()
@@ -141,7 +152,7 @@
 			var/obj/item/cell/cell = E.get_cell()
 			if(istype(cell))
 				cell.use(500)
-		ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk(src)
+		ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
 		spawn(1)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
 		spawn(2)

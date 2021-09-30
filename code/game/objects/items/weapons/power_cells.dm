@@ -363,3 +363,14 @@
 	bad_type = /obj/item/cell/small/moebius/nuclear/infinite
 	maxcharge = 999
 	matter = list(MATERIAL_PLASMA = 4, MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 4)
+
+//Irremovable cells for exosuit energy weapons
+
+/obj/item/cell/medium/mech
+	name = "Mech Gun Electrical Component"
+	desc = "An electrical component for exosuit energy guns."
+	icon_state = "m_st"
+	maxcharge = 1000
+	bad_type = /obj/item/cell/medium/mech
+	matter = list()
+	spawn_blacklisted = TRUE

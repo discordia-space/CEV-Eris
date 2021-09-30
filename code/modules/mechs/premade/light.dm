@@ -35,7 +35,7 @@
 	exosuit_desc_string = "lightweight, segmented manipulators"
 	desc = "As flexible as they are fragile, these light manipulators can follow a pilot's movements in close to real time."
 	icon_state = "light_arms"
-	melee_damage = 5
+	melee_damage = 10
 	action_delay = 5
 	max_damage = 40
 	power_use = 10

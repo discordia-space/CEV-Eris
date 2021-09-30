@@ -85,7 +85,7 @@
 	exosuit_desc_string = "flexible, advanced manipulators"
 	desc = "These advanced manipulators are designed for combat, and as a result can take and dish out beatings fairly well."
 	icon_state = "combat_arms"
-	melee_damage = 15
+	melee_damage = 25
 	action_delay = 10
 	max_damage = 100
 	power_use = 50

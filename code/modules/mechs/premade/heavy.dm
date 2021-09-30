@@ -52,11 +52,11 @@
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 15, MATERIAL_PLASTEEL = 15)
 
 /obj/item/mech_component/manipulators/heavy
-	name = "combat arms"
+	name = "heavy arms"
 	exosuit_desc_string = "super-heavy reinforced manipulators"
 	icon_state = "heavy_arms"
 	desc = "Designed for durability and dishing out beatings, this heavy set of manipulators can both take and dish out beatings."
-	melee_damage = 25
+	melee_damage = 45
 	action_delay = 15
 	max_damage = 150
 	power_use = 60
