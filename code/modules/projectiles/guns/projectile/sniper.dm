@@ -153,3 +153,6 @@
 		damage_multiplier += extra_damage_mult_scoped
 	else
 		refresh_upgrades()
+
+/obj/item/gun/projectile/heavysniper/wield(user)
+	..(user, skip = TRUE) // this skips the wield timer
