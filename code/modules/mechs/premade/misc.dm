@@ -33,6 +33,7 @@
 	icon_state = "pod_body"
 	max_damage = 100
 	mech_health = 350 //Default is 300, so 50 more HP then the power loader. Worse then the combat chassis as it requires sensors.
+
 	power_use = 5
 	climb_time = 30 // Awkward to get in/out of as it's intended for spacepod use
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 5, MATERIAL_GLASS = 10)
