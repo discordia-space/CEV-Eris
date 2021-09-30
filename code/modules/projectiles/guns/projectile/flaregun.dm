@@ -20,12 +20,15 @@
 	rarity_value = 9
 	no_internal_mag = TRUE
 	var/bolt_open = FALSE
+	var/broken = FALSE
 
 /obj/item/gun/projectile/flare_gun/on_update_icon()
 	..()
 
 	if (bolt_open)
 		SetIconState("flaregun_open")
+	if(broken)
+		SetIconState("flaregun_broken")
 	else
 		SetIconState("flaregun")
 
@@ -37,6 +40,8 @@
 
 /obj/item/gun/projectile/flare_gun/proc/bolt_act(mob/living/user)
 	bolt_open = !bolt_open
+	if(broken)
+		to_chat(user, SPAN_WARNING("You can't open a broken barrel"))
 	if(bolt_open)
 		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
@@ -55,6 +60,9 @@
 	return ..()
 
 /obj/item/gun/projectile/flare_gun/load_ammo(var/obj/item/A, mob/user)
+	if(broken)
+		to_chat(user, SPAN_WARNING("You can't load a broken barrel!"))
+		return
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
@@ -65,12 +73,33 @@
 		return
 	..()
 
+/obj/item/gun/projectile/flare_gun/proc/break_gun(mob/user)
+	broken = TRUE
+	to_chat(user, SPAN_DANGER("The [src]'s barrel shatters!"))
+	SetIconState("flaregun_broken")
+
 /obj/item/gun/projectile/flare_gun/shotgun
+	name = "reinforced flare gun"
 	desc = "Flare gun made of cheap plastic, but with a reinforced barrel. Now, where did all those gun-toting madmen get to?"
+	icon_state = "flaregun_r"
 	caliber = CAL_SHOTGUN
-	damage_multiplier = 0.4
+	damage_multiplier = 0.6
 	penetration_multiplier = 0.5
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	one_hand_penalty = 10 //compact shotgun level
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
+
+/obj/item/gun/projectile/flare_gun/shotgun/on_update_icon()
+	..()
+
+	if (bolt_open)
+		SetIconState("flaregun_r_open")
+	else
+		SetIconState("flaregun_r")
+
+/obj/item/gun/projectile/flare_gun/shotgun/special_check(mob/user)
+	. = ..()
+	if(prob(10))
+		break_gun(user)
+		return
