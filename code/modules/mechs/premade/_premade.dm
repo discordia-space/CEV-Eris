@@ -177,7 +177,7 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit = 50,
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 30,
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 10,
-		/obj/item/robot_parts/robot_component/armour/exosuit/em = 10
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = 10
 	))
 
 	. = ..()
