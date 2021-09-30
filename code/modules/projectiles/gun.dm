@@ -847,7 +847,7 @@
 	else
 		H.using_scope = null
 
-obj/item/gun/wield(user, var/skip = FALSE)
+obj/item/gun/wield(user)
 	if (wield_delay && do_after(user, wield_delay, mobile = TRUE))
 		..()
 	else
