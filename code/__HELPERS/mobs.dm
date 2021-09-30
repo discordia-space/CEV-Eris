@@ -242,7 +242,7 @@ Proc for attack log creation, because really why not
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || !(user.loc = original_loc && mobile))
+		if(!user || user.incapacitated(incapacitation_flags) || !(user.loc == original_loc || mobile))
 			. = FALSE
 			break
 

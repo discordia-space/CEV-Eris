@@ -847,7 +847,7 @@
 		H.using_scope = null
 
 obj/item/gun/wield(user, var/skip = FALSE)
-	if (w_class < ITEM_SIZE_SMALL || skip) // straight to wielding
+	if (w_class <= ITEM_SIZE_SMALL || skip) // straight to wielding
 		..()
 	else
 		if (do_after(user, w_class SECONDS, mobile = TRUE)) // too big, no skip, needs timer
