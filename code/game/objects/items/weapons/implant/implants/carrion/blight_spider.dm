@@ -6,7 +6,7 @@
 /obj/item/implant/carrion_spider/blight/activate()
 	..()
 	if(wearer)
-		wearer.reagents.add_reagent("cryptobiolin", 0.05)
+		wearer.reagents.add_reagent("plasticide", 5)
 		to_chat(wearer, SPAN_WARNING("You feel sick and nauseous"))
 		die()
 	else
