@@ -169,3 +169,4 @@
 	icon_state = "joker_19"
 	item_state = "joker_19"
 	spawn_frequency = 0
+	
