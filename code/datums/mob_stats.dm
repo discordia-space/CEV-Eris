@@ -14,10 +14,24 @@
 	holder = null
 	return ..()
 
+/datum/stat_holder/proc/check_for_shared_perk(ability_bitflag)
+	for(var/datum/perk/target_perk in perks)
+		if(target_perk.check_shared_ability(ability_bitflag))
+			return TRUE
+	return FALSE
+
+/* Uncomment when we have more than 1 bitflag for shared abilities
+/datum/stat_holder/proc/check_for_shared_perks(list/ability_bitflags)
+	for(var/datum/perk/target_perk in perks)
+		if(target_perk.check_shared_abilities(ability_bitflags))
+			return TRUE
+	return FALSE
+*/
 /datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
 	var/datum/stat/S = stat_list[statName]
 	S.addModif(timeDelay, Value, id)
 	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+
 
 /datum/stat_holder/proc/removeTempStat(statName, id)
 	if(!id)
