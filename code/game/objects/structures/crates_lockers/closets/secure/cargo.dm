@@ -79,3 +79,4 @@
 	new/obj/item/clothing/head/collectable/gnome(src)
 	new/obj/item/clothing/mask/gas/joker_19(src)
 	new/obj/item/clothing/under/joker(src)
+	
