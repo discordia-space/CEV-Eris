@@ -94,7 +94,7 @@
 	move_delay = 2
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-	turn_delay = 1 // Better than light , turns fast and consts a lot
+	turn_delay = 1 // Better than light , turns fast and costs a lot
 	max_damage = 100
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.
