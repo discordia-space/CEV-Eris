@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: bolt rifles eject ammo when bolt is worked, spent or not
