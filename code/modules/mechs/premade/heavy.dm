@@ -56,7 +56,7 @@
 	exosuit_desc_string = "super-heavy reinforced manipulators"
 	icon_state = "heavy_arms"
 	desc = "Designed for durability and dishing out beatings, this heavy set of manipulators can both take and dish out beatings."
-	melee_damage = 45
+	melee_damage = 25
 	action_delay = 15
 	max_damage = 150
 	power_use = 60
