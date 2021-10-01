@@ -367,7 +367,7 @@
 //Irremovable cells for exosuit energy weapons
 
 /obj/item/cell/medium/mech
-	name = "Mech Gun Electrical Component"
+	name = "mech gun electrical component"
 	desc = "An electrical component for exosuit energy guns."
 	icon_state = "m_st"
 	maxcharge = 1000
