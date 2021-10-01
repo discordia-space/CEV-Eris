@@ -29,8 +29,6 @@
 	var/list/access_rights
 	var/obj/item/card/id/idcard
 	var/idcard_type = /obj/item/card/id/synthetic
-	var/is_watching = FALSE
-	var/can_multiz_pb = FALSE
 
 	var/email_ringtone = TRUE
 
