@@ -18,7 +18,7 @@
 		return
 	if (emote == src.activation_emote)
 		src.uses--
-		spawn(6000)
+		spawn(10 MINUTES)
 			src.uses++
 		to_chat(source, "You feel a faint click.")
 		if (source.handcuffed && install_organ == INSTALL_HANDS)
