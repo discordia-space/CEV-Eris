@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Medical pouch can hold now 4 items
+  - balance: Vial pouch can no longer hold grenades and rpgs (tubular untouched) but
+      now it can hold 10 vials and small cells and other misc small items
