@@ -34,7 +34,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 	gun_tags = list(GUN_SILENCABLE)
-	wield_delay = 3 //deciseconds
+	wield_delay = 5 //deciseconds
 
 /obj/item/gun/projectile/automatic/wintermute/on_update_icon()
 	..()

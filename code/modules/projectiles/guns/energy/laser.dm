@@ -97,7 +97,7 @@
 	twohanded = FALSE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
-	wield_delay = 3 //deciseconds
+	wield_delay = 0 //deciseconds
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""

@@ -173,6 +173,7 @@
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
+	wield_delay = 0 // deciseconds
 
 /obj/item/gun/projectile/boltgun/obrez/serbian
 	name = "sawn-off SA BR .30 \"Novakovic\""

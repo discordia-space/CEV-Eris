@@ -70,3 +70,4 @@
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
+	wield_delay = 0

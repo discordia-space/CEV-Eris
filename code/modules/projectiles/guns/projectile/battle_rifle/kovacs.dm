@@ -26,7 +26,7 @@
 	one_hand_penalty = 20 //full sized rifle
 	zoom_factor = 0.6
 	fire_delay = 6.5
-	wield_delay = 3 //deciseconds
+	wield_delay = 5 //deciseconds
 
 /obj/item/gun/projectile/kovacs/on_update_icon()
 	..()
