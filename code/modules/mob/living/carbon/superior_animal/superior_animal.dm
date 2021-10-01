@@ -370,7 +370,7 @@
 		handle_cheap_environment(environment)
 		updateicon()
 		ticks_processed = 0
-	if(handle_cheap_regular_status_updates()) // They have died after all of this ,do not scan or do not handle AI anymore.
+	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
 		return PROCESS_KILL
 
 	if(!AI_inactive)
