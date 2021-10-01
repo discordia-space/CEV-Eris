@@ -163,3 +163,9 @@
 	name = "Oberth Republic gas mask"
 	icon_state = "germangasmask"
 
+/obj/item/clothing/mask/gas/joker_19
+	name = "clown wig and mask"
+	desc = "You get what you fucking deserve!"
+	icon_state = "joker_19"
+	item_state = "joker_19"
+	spawn_frequency = 0

@@ -352,6 +352,14 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/joker
+	name = "red suit with yellow waistcoat"
+	desc = "I mean, don't you have to be funny to be a comedian?"
+	icon_state = "joker"
+	item_state = "joker"
+	style = STYLE_HIGH
+	price_tag = 450
+
 
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
