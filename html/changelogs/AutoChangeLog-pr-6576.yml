@@ -1,0 +1,11 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Seeing reagents inside beakers now requires scanning goggles , 35 cognition
+      or 50 biology
+  - balance: Tripping can no longer be prevented by anything slip-preventing
+  - balance: Trip chance is now 50% , and gets lowered by cognition stat
+  - code_imp: Added bitflag handling for perks that share a common ability
+  - balance: Buffed chemist perk and made the chemist perk also give the ability to
+      see reagents
+  - balance: Tripping no longer hardstuns , instead if weakens.
