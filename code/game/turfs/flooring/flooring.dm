@@ -257,7 +257,7 @@ var/list/flooring_types
 		return
 	var/mob/living/carbon/human/our_trippah = M
 	if(MOVING_QUICKLY(M))
-		if(prob(50 - our_trippah.stats.getStat(STAT_COG))) // The art of calculating the vectors required to avoid tripping on the metal beams requires big quantities of brain power
+		if(prob(50 - our_trippah.stats.getStat(STAT_COG) * 2)) // The art of calculating the vectors required to avoid tripping on the metal beams requires big quantities of brain power
 			our_trippah.adjustBruteLoss(5)
 			our_trippah.trip(6)
 			return
