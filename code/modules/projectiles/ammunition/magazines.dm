@@ -551,6 +551,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 5
 	multiple_sprites = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/sllrifle/hv
 	name = "ammo strip (.30 Rifle HV)"
