@@ -111,7 +111,7 @@
 	brightness_on = 4
 	armor = list(
 		melee = 35,
-		bullet = 45,
+		bullet = 40,
 		energy = 20,
 		bomb = 40,
 		bio = 0,
