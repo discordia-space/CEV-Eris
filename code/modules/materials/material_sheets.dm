@@ -363,7 +363,7 @@
 	rarity_value = 10
 
 /obj/item/stack/material/biomatter/full
-	amount = 60
+	amount = 120
 
 /obj/item/stack/material/compressed
 	name = "compressed matter"
