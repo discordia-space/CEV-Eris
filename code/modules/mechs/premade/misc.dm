@@ -38,4 +38,4 @@
 	climb_time = 30 // Awkward to get in/out of as it's intended for spacepod use
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 5, MATERIAL_GLASS = 10)
 	has_hardpoints = list(HARDPOINT_BACK)
-	desc = "A rugged design originally intended for light EVA crafts, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost"
+	desc = "A rugged design originally intended for light EVA crafts, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost."
