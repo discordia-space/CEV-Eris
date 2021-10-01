@@ -259,7 +259,7 @@ var/list/flooring_types
 	if(MOVING_QUICKLY(M))
 		if(prob(50 - our_trippah.stats.getStat(STAT_COG) * 2)) // The art of calculating the vectors required to avoid tripping on the metal beams requires big quantities of brain power
 			our_trippah.adjustBruteLoss(5)
-			our_trippah.trip(6)
+			our_trippah.trip(src, 6)
 			return
 
 //============HULL PLATING=========\\
