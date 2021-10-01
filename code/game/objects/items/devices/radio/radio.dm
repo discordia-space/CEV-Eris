@@ -842,9 +842,6 @@ var/global/list/default_medbay_channels = list(
 		var/obj/item/oddity/D = W
 		if(D.oddity_stats)
 			var/usefull = FALSE
-			if(D in used_oddity)
-				to_chat(user, SPAN_WARNING("You've already used [D] to repair [src]!"))
-				return
 
 			if(random_hear >= 100)
 				to_chat(user, SPAN_WARNING("The [src] is in perfect condition."))
@@ -854,6 +851,10 @@ var/global/list/default_medbay_channels = list(
 
 			if(!do_after(user, 20 SECONDS, src))
 				to_chat(user, SPAN_WARNING("You've stopped repairing [src]."))
+				return
+
+			if(D in used_oddity)
+				to_chat(user, SPAN_WARNING("You've already used [D] to repair [src]!"))
 				return
 
 			for(var/stat in D.oddity_stats)
