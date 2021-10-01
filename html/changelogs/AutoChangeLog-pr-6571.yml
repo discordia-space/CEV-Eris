@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed Roaches and Spiders still running a life-tick after dying.
