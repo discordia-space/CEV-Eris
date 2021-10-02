@@ -17,17 +17,6 @@
 	)
 	related_stats = list(STAT_MEC)
 
-/datum/craft_recipe/kitchen_spike
-	name = "Meat spike"
-	result = /obj/structure/kitchenspike
-	time = WORKTIME_NORMAL
-	steps = list(
-		list(/obj/item/stack/rods, 3),
-		list(QUALITY_WELDING, 20, 50)
-	)
-	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
-	related_stats = list(STAT_MEC)
-
 /datum/craft_recipe/metal_rod
 	name = "metal rod"
 	result = /obj/item/stack/rods
