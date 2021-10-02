@@ -50,7 +50,7 @@
 	suffix = "large_chunk.dmm"
 
 /////
-// Overmap effect
+// Overmap effects
 /////
 /obj/effect/overmap/sector/blacksite
 	name = "unknown spatial phenomenon"
@@ -102,21 +102,40 @@
 	var/turf/T = get_turf(locate(x_corner, y_corner, z))  // Bottom left corner turf
 	load_chunk(T, chunk_template, SOUTH)  // Load chunk
 
+	// Wake up all mobs because roombas are spawning in stasis
+	for(var/mob/living/A in SSmobs.mob_living_by_zlevel[z])
+		spawn(1)
+			if(A)
+				A.stasis = FALSE
+				A.try_activate_ai()
+
 /obj/effect/shuttle_landmark/blacksite/small
 	x_corner = 44
 	y_corner = 78
+
+// Set chunk_template in Initialize and not New because otherwise it causes a map preloading
+// that runtimes because the shuttle_landmark is created before the SSmapping system is launched
+/obj/effect/shuttle_landmark/blacksite/small/Initialize()
+	..()
 	chunk_template = new /datum/map_template/blacksite/small
 
 /obj/effect/shuttle_landmark/blacksite/medium
 	x_corner = 83
 	y_corner = 80
+
+/obj/effect/shuttle_landmark/blacksite/medium/Initialize()
+	..()
 	chunk_template = new /datum/map_template/blacksite/medium
 
 /obj/effect/shuttle_landmark/blacksite/large
 	x_corner = 83
 	y_corner = 80
+
+/obj/effect/shuttle_landmark/blacksite/large/Initialize()
+	..()
 	chunk_template = new /datum/map_template/blacksite/medium
 
+// Navigation points for shuttle travel
 /obj/effect/shuttle_landmark/blacksite/small/nav1
 	name = "Abandoned Small Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_small_1"
@@ -126,15 +145,15 @@
 	landmark_tag = "nav_blacksite_small_2"
 
 /obj/effect/shuttle_landmark/blacksite/medium/nav1
-	name = "Abandoned Small Blacksite Navpoint #1"
+	name = "Abandoned Medium Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_medium_1"
 
 /obj/effect/shuttle_landmark/blacksite/medium/nav2
-	name = "Abandoned Small Blacksite Navpoint #2"
+	name = "Abandoned Medium Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_medium_2"
 
 /obj/effect/shuttle_landmark/blacksite/large/nav1
-	name = "Abandoned Medium Blacksite Navpoint #1"
+	name = "Abandoned Large Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_large_1"
 
 /obj/effect/shuttle_landmark/blacksite/large/nav2

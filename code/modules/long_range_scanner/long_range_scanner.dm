@@ -5,7 +5,7 @@
 #define PASSIVE_SCAN_PERIOD     3 SECONDS
 #define PULSE_PROGRESS_TIME    30  // in decisecond
 #define ACTIVE_SCAN_RANGE      10
-#define ACTIVE_SCAN_DURATION   10 SECONDS
+#define ACTIVE_SCAN_DURATION   30 SECONDS
 
 var/list/ship_scanners = list()
 

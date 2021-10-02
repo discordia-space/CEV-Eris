@@ -266,7 +266,7 @@
 			pulsing = FALSE
 			scan_range = initial(scan_range) // get back to PASSIVE_SCAN_RANGE
 			// Reset icons far from the ship to unknown state otherwise they remain discovered
-			overmap_event_handler.scan_loc(src, loc, can_scan(), ACTIVE_SCAN_RANGE - initial(scan_range) + 1)
+			overmap_event_handler.scan_loc(src, loc, can_scan(), ACTIVE_SCAN_RANGE - initial(scan_range) + 3)
 
 /obj/effect/overmap/ship/proc/can_scan()
 
