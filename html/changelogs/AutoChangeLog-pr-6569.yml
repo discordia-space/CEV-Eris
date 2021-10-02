@@ -1,4 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed AI Eye not properly updating when moving up or down a z-level

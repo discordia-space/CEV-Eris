@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: Replaced broken cutlet cutting code with sliceable code
-  - tweak: Biogenerator can print egg boxes
-  - tweak: Roach eggs contain 9 units of eggyolk and 3 units of blattedin
