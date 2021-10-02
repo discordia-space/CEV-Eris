@@ -11,7 +11,8 @@
 				stop_automated_movement = 0
 
 /mob/living/carbon/superior_animal/roach/handle_ai()
-	..()
+	if(!..())
+		return
 	if(stance == HOSTILE_STANCE_IDLE)
 		switch(busy)
 			if(0)
