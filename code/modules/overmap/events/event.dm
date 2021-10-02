@@ -156,7 +156,7 @@
 					playsound(H.loc, 'sound/effects/fastbeep.ogg', 50, 1)
 
 		// Stage 0 (close range)
-		for(var/turf/T in range(S.scan_range-1, new_loc))
+		for(var/turf/T in circlerange(new_loc, S.scan_range-1))
 			for(var/obj/effect/overmap_event/E in T)
 				E.name = E.name_stages[1]
 				if(!passive_scan)
@@ -180,13 +180,14 @@
 				E.SetIconState(E.icon_stages[2])
 
 		// Stage 2 (too far for sensors)
-		for(var/turf/T in getcircle(new_loc, S.scan_range + stage_2_width))
-			for(var/obj/effect/overmap_event/E in T)
-				E.name = E.name_stages[3]
-				E.SetIconState(E.icon_stages[3])
-			for(var/obj/effect/overmap/E in T)
-				E.name = E.name_stages[3]
-				E.SetIconState(E.icon_stages[3])
+		for(var/i in 1 to stage_2_width)
+			for(var/turf/T in getcircle(new_loc, S.scan_range + i))
+				for(var/obj/effect/overmap_event/E in T)
+					E.name = E.name_stages[3]
+					E.SetIconState(E.icon_stages[3])
+				for(var/obj/effect/overmap/E in T)
+					E.name = E.name_stages[3]
+					E.SetIconState(E.icon_stages[3])
 
 	return
 

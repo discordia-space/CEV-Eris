@@ -1,10 +1,10 @@
 #define EVENT_ENABLED           3
 #define EVENT_DISABLED          4
 #define EVENT_RECONFIGURED      5
-#define PASSIVE_SCAN_RANGE      3
+#define PASSIVE_SCAN_RANGE      6
 #define PASSIVE_SCAN_PERIOD     3 SECONDS
 #define PULSE_PROGRESS_TIME    30  // in decisecond
-#define ACTIVE_SCAN_RANGE       6
+#define ACTIVE_SCAN_RANGE      10
 #define ACTIVE_SCAN_DURATION   10 SECONDS
 
 var/list/ship_scanners = list()

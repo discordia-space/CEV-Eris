@@ -2,6 +2,9 @@
 #include "blacksite_medium.dmm"
 #include "blacksite_large.dmm"
 
+/////
+// Map data
+/////
 /obj/map_data/blacksite
 	name = "Blacksite Level"
 	is_player_level = TRUE
@@ -19,6 +22,36 @@
 /obj/map_data/blacksite/large
 	name = "Large Blacksite Level"
 
+/////
+// Map templates
+/////
+/datum/map_template/blacksite
+	template_flags = 0
+	var/prefix = "maps/encounters/blacksite/blacksite_"
+	var/suffix = null
+
+/datum/map_template/blacksite/New()
+	mappath += (prefix + suffix)
+	..()
+
+/datum/map_template/blacksite/small
+	name = "blacksite_small"
+	id = "blacksite_small"
+	suffix = "small_chunk.dmm"
+
+/datum/map_template/blacksite/medium
+	name = "blacksite_medium"
+	id = "blacksite_medium"
+	suffix = "medium_chunk.dmm"
+
+/datum/map_template/blacksite/large
+	name = "blacksite_large"
+	id = "blacksite_large"
+	suffix = "large_chunk.dmm"
+
+/////
+// Overmap effect
+/////
 /obj/effect/overmap/sector/blacksite
 	name = "unknown spatial phenomenon"
 	desc = "An abandoned blacksite, carved inside an asteroid. Might be a hundred years old."
@@ -54,42 +87,63 @@
 		"nav_blacksite_large_2"
 	)
 
-/obj/effect/shuttle_landmark/blacksite/nav1
-	name = "Abandoned Blacksite Navpoint #1"
+/////
+// Shuttle landmarks
+/////
+/obj/effect/shuttle_landmark/blacksite
+	name = "Abandoned Blacksite Navpoint"
 	icon_state = "shuttle-green"
-	landmark_tag = "nav_blacksite_1"
 	base_turf = /turf/space
+	var/x_corner
+	var/y_corner
+	var/datum/map_template/chunk_template
 
-/obj/effect/shuttle_landmark/blacksite/nav2
-	name = "Abandoned Blacksite Navpoint #2"
-	icon_state = "shuttle-green"
-	landmark_tag = "nav_blacksite_2"
-	base_turf = /turf/space
+/obj/effect/shuttle_landmark/blacksite/trigger_landmark()
+	var/turf/T = get_turf(locate(x_corner, y_corner, z))  // Bottom left corner turf
+	load_chunk(T, chunk_template, SOUTH)  // Load chunk
 
-/obj/effect/shuttle_landmark/blacksite/nav1/small
+/obj/effect/shuttle_landmark/blacksite/small
+	x_corner = 44
+	y_corner = 78
+	chunk_template = new /datum/map_template/blacksite/small
+
+/obj/effect/shuttle_landmark/blacksite/medium
+	x_corner = 83
+	y_corner = 80
+	chunk_template = new /datum/map_template/blacksite/medium
+
+/obj/effect/shuttle_landmark/blacksite/large
+	x_corner = 83
+	y_corner = 80
+	chunk_template = new /datum/map_template/blacksite/medium
+
+/obj/effect/shuttle_landmark/blacksite/small/nav1
 	name = "Abandoned Small Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_small_1"
 
-/obj/effect/shuttle_landmark/blacksite/nav2/small
+/obj/effect/shuttle_landmark/blacksite/small/nav2
 	name = "Abandoned Small Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_small_2"
 
-/obj/effect/shuttle_landmark/blacksite/nav1/medium
+/obj/effect/shuttle_landmark/blacksite/medium/nav1
 	name = "Abandoned Small Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_medium_1"
 
-/obj/effect/shuttle_landmark/blacksite/nav2/medium
+/obj/effect/shuttle_landmark/blacksite/medium/nav2
 	name = "Abandoned Small Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_medium_2"
 
-/obj/effect/shuttle_landmark/blacksite/nav1/large
+/obj/effect/shuttle_landmark/blacksite/large/nav1
 	name = "Abandoned Medium Blacksite Navpoint #1"
 	landmark_tag = "nav_blacksite_large_1"
 
-/obj/effect/shuttle_landmark/blacksite/nav2/large
+/obj/effect/shuttle_landmark/blacksite/large/nav2
 	name = "Abandoned Large Blacksite Navpoint #2"
 	landmark_tag = "nav_blacksite_large_2"
 
+/////
+// Custom paper notes
+/////
 /obj/item/paper/blacksite/medium
 	name = "incident log"
 	spawn_blacklisted = TRUE

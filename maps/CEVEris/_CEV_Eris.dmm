@@ -99303,7 +99303,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/space,
+/turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eCw" = (
 /obj/machinery/door/firedoor,
