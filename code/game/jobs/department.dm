@@ -123,6 +123,9 @@
 		He recieves no funding, infact later he will pay guild fees out of his earnings
 	*/
 	account_initial_balance = 7500
+	/* if you want to change this remember to do so in code\game\gamemodes\score.dm as well,
+	if you manage to get this variable refferenced there you're a better man than me. godspeed
+	*/
 	funding_type = FUNDING_NONE
 
 /datum/department/offship //So we can pay the Club without giving them independant money

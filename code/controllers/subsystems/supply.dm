@@ -64,7 +64,6 @@ SUBSYSTEM_DEF(supply)
 	for(var/A in exports)
 		var/datum/export/E = A
 		var/export_text = E.total_printout()
-		GLOB.supply_profit += E.cost
 		if(!export_text)
 			continue
 
@@ -112,7 +111,6 @@ SUBSYSTEM_DEF(supply)
 
 		var/datum/supply_order/SO = S
 		var/datum/supply_pack/SP = SO.object
-		GLOB.supply_profit -= SP.cost
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 
