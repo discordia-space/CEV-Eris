@@ -139,7 +139,7 @@
 /area/template_noop)
 "av" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aw" = (
 /obj/structure/table/reinforced,
@@ -272,7 +272,7 @@
 	},
 /area/template_noop)
 "aP" = (
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aQ" = (
 /obj/structure/table/rack,
@@ -398,7 +398,7 @@
 /area/template_noop)
 "bi" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bj" = (
 /mob/living/simple_animal/hostile/bear,
@@ -408,7 +408,7 @@
 /area/template_noop)
 "bk" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bl" = (
 /obj/structure/closet,
@@ -421,7 +421,7 @@
 "bm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bn" = (
 /obj/item/paper_bin{
@@ -432,7 +432,7 @@
 	pixel_y = 4
 	},
 /obj/structure/table/glass,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bo" = (
 /obj/structure/bed/chair/comfy/black{
@@ -511,7 +511,7 @@
 /area/template_noop)
 "bx" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "by" = (
 /obj/structure/table/rack,
@@ -592,7 +592,7 @@
 /area/template_noop)
 "bH" = (
 /obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bJ" = (
 /obj/structure/lattice,
@@ -608,7 +608,7 @@
 /area/template_noop)
 "bL" = (
 /obj/item/storage/pouch/ammo,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bN" = (
 /obj/item/material/shard,
@@ -617,7 +617,7 @@
 /area/template_noop)
 "bO" = (
 /obj/structure/girder/low,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bP" = (
 /obj/item/material/shard,
@@ -628,7 +628,7 @@
 /area/template_noop)
 "bQ" = (
 /obj/item/material/shard,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "My" = (
 /obj/structure/table/rack,

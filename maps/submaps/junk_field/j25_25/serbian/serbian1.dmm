@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aw" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aH" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aJ" = (
 /obj/structure/closet,
@@ -42,7 +42,7 @@
 	},
 /area/template_noop)
 "bB" = (
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bG" = (
 /obj/spawner/lowkeyrandom,
@@ -87,7 +87,7 @@
 /area/template_noop)
 "dN" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "dU" = (
 /obj/spawner/junkfood/rotten,
@@ -237,7 +237,7 @@
 	},
 /area/template_noop)
 "kW" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/simulated/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "lA" = (
 /obj/machinery/microwave{
@@ -314,7 +314,7 @@
 /obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "qL" = (
 /obj/item/modular_computer/console,
@@ -528,7 +528,7 @@
 "Bz" = (
 /obj/item/stool,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "BQ" = (
 /obj/structure/table/standard,
@@ -584,7 +584,7 @@
 "EL" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/airless,
 /area/template_noop)
 "Fj" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -594,7 +594,7 @@
 /area/template_noop)
 "FH" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/simulated/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "FS" = (
 /turf/unsimulated/floor{
@@ -624,7 +624,7 @@
 /area/template_noop)
 "IG" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "Jp" = (
 /obj/spawner/junkfood/rotten,
@@ -634,7 +634,7 @@
 /area/template_noop)
 "Km" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "La" = (
 /obj/machinery/light{
@@ -755,7 +755,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/simulated/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "Vt" = (
 /obj/spawner/junk,
@@ -779,7 +779,7 @@
 /obj/machinery/light_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "WH" = (
 /obj/structure/table/standard,
@@ -797,7 +797,7 @@
 /area/template_noop)
 "Xv" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "Yj" = (
 /obj/structure/table/standard,

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ah" = (
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "ao" = (
 /obj/structure/closet,
@@ -14,7 +14,7 @@
 /area/template_noop)
 "ay" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aP" = (
 /obj/structure/table/rack,
@@ -233,7 +233,7 @@
 /area/template_noop)
 "vM" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "wg" = (
 /obj/item/modular_computer/console{
@@ -246,11 +246,11 @@
 /area/template_noop)
 "xf" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "xp" = (
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "xN" = (
 /obj/structure/table/rack,
@@ -291,7 +291,7 @@
 /obj/machinery/light_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "Ax" = (
 /obj/item/modular_computer/console{
@@ -398,11 +398,11 @@
 /area/template_noop)
 "La" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "Lz" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "LE" = (
 /obj/structure/closet,
@@ -428,7 +428,7 @@
 "ME" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/airless,
 /area/template_noop)
 "Ns" = (
 /obj/structure/mirror/antag{
@@ -542,7 +542,7 @@
 	},
 /obj/machinery/door/window/brigdoor/northleft,
 /obj/item/soap/deluxe,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/simulated/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "Th" = (
 /obj/machinery/light{
@@ -566,7 +566,7 @@
 /area/template_noop)
 "Uy" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "UT" = (
 /obj/structure/lattice,
@@ -574,7 +574,7 @@
 /area/template_noop)
 "VG" = (
 /obj/structure/lattice,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "VK" = (
 /obj/machinery/shower{
