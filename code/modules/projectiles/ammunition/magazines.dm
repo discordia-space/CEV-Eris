@@ -386,6 +386,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	multiple_sprites = 1
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
