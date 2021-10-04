@@ -475,6 +475,7 @@
 		rad = 0
 	)
 	spawn_blacklisted = TRUE
+	style=STYLE_LOW
 
 /obj/item/clothing/suit/suicidevest/ignite_act()
 	detonate()
