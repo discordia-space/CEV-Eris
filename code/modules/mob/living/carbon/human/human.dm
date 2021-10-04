@@ -1407,6 +1407,7 @@ var/list/rank_prefix = list(\
 	if (tripped_on)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		to_chat(src, SPAN_WARNING("You tripped over!"))
+	adjustBruteLoss(5)
 	Weaken(stun_duration)
 	return TRUE
 

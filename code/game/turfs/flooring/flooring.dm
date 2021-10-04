@@ -256,11 +256,15 @@ var/list/flooring_types
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
 	var/mob/living/carbon/human/our_trippah = M
+	var/turf/our_plating = get_turf(our_trippah)
+	if(our_plating.get_lumcount() < 0.3 && our_trippah.see_invisible != SEE_INVISIBLE_NOLIGHTING)
+		if(prob(60))
+			our_trippah.trip(src, 6)
+		return TRUE // Lucky if you don't trip
 	if(MOVING_QUICKLY(M))
 		if(prob(50 - our_trippah.stats.getStat(STAT_COG) * 2)) // The art of calculating the vectors required to avoid tripping on the metal beams requires big quantities of brain power
-			our_trippah.adjustBruteLoss(5)
 			our_trippah.trip(src, 6)
-			return
+			return TRUE
 
 //============HULL PLATING=========\\
 
