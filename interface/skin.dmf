@@ -238,7 +238,7 @@ macro "borghotkeymode"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change-move-intent"
+		command = "change-moving-intent"
 
 macro "macro"
 	elem 
@@ -423,7 +423,7 @@ macro "macro"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change-move-intent"
+		command = "change-moving-intent"
 
 macro "hotkeymode"
 	elem 
@@ -686,7 +686,7 @@ macro "hotkeymode"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change-move-intent"
+		command = "change-moving-intent"
 
 macro "borgmacro"
 	elem 
@@ -865,7 +865,7 @@ macro "borgmacro"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change-move-intent"
+		command = "change-moving-intent"
 
 
 menu "menu"

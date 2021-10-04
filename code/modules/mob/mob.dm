@@ -1125,7 +1125,8 @@ mob/proc/yank_out_object()
 	set category = "IC"
 	set src = usr
 
-	HUDneed["move intent"].Click()  // Yep , this is all.
+	if(HUDneed["move intent"])
+		HUDneed["move intent"].Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return
