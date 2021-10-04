@@ -156,8 +156,6 @@ macro "borghotkeymode"
 		name = "W"
 		command = "MoveKey 1 1"
 	elem 
-		name = "ALT+W"
-	elem 
 		name = "CTRL+W"
 		command = "northface"
 	elem 
@@ -240,7 +238,7 @@ macro "borghotkeymode"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change_move_intent"
+		command = "change-move-intent"
 
 macro "macro"
 	elem 
@@ -425,7 +423,7 @@ macro "macro"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change_move_intent"
+		command = "change-move-intent"
 
 macro "hotkeymode"
 	elem 
@@ -450,8 +448,6 @@ macro "hotkeymode"
 		name = "West"
 		command = "MoveKey 8 1"
 	elem 
-		name = "ALT+West"
-	elem 
 		name = "CTRL+West"
 		command = "westface"
 	elem 
@@ -460,8 +456,6 @@ macro "hotkeymode"
 	elem 
 		name = "North"
 		command = "MoveKey 1 1"
-	elem 
-		name = "ALT+North"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
@@ -472,8 +466,6 @@ macro "hotkeymode"
 		name = "East"
 		command = "MoveKey 4 1"
 	elem 
-		name = "ALT+East"
-	elem 
 		name = "CTRL+East"
 		command = "eastface"
 	elem 
@@ -482,8 +474,6 @@ macro "hotkeymode"
 	elem 
 		name = "South"
 		command = "MoveKey 2 1"
-	elem 
-		name = "ALT+South"
 	elem 
 		name = "CTRL+South"
 		command = "southface"
@@ -527,8 +517,6 @@ macro "hotkeymode"
 		name = "A"
 		command = "MoveKey 8 1"
 	elem 
-		name = "ALT+A"
-	elem 
 		name = "CTRL+A"
 		command = "westface"
 	elem 
@@ -543,8 +531,6 @@ macro "hotkeymode"
 	elem 
 		name = "D"
 		command = "MoveKey 4 1"
-	elem 
-		name = "ALT+D"
 	elem 
 		name = "CTRL+D"
 		command = "eastface"
@@ -603,8 +589,6 @@ macro "hotkeymode"
 		name = "S"
 		command = "MoveKey 2 1"
 	elem 
-		name = "ALT+S"
-	elem 
 		name = "CTRL+S"
 		command = "southface"
 	elem 
@@ -616,8 +600,6 @@ macro "hotkeymode"
 	elem 
 		name = "W"
 		command = "MoveKey 1 1"
-	elem 
-		name = "ALT+W"
 	elem 
 		name = "CTRL+W"
 		command = "northface"
@@ -704,7 +686,7 @@ macro "hotkeymode"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change_move_intent"
+		command = "change-move-intent"
 
 macro "borgmacro"
 	elem 
@@ -883,7 +865,7 @@ macro "borgmacro"
 		command = "F12"
 	elem 
 		name = "ALT"
-		command = "change_move_intent"
+		command = "change-move-intent"
 
 
 menu "menu"
@@ -1029,15 +1011,12 @@ window "Telecomms IDE"
 		title = "TCS IDE"
 		statusbar = false
 		on-close = "exittcs"
-		outer-size = 585x621
-		inner-size = 569x582
 	elem "button5"
 		type = BUTTON
 		pos = 209,464
 		size = 70x20
 		anchor1 = 37,80
 		anchor2 = 49,83
-		background-color = none
 		saved-params = "is-checked"
 		text = "Clear Memory"
 		command = "tcsclearmem"
@@ -1047,7 +1026,6 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 28,80
 		anchor2 = 37,83
-		background-color = none
 		saved-params = "is-checked"
 		text = "Revert"
 		command = "tcsrevert"
@@ -1057,7 +1035,6 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 18,80
 		anchor2 = 28,83
-		background-color = none
 		saved-params = "is-checked"
 		text = "Execute"
 		command = "tcsrun"
@@ -1076,7 +1053,6 @@ window "Telecomms IDE"
 		size = 52x20
 		anchor1 = 9,80
 		anchor2 = 18,83
-		background-color = none
 		saved-params = "is-checked"
 		text = "Compile"
 		command = "tcscompile"
@@ -1086,7 +1062,6 @@ window "Telecomms IDE"
 		size = 53x20
 		anchor1 = 0,80
 		anchor2 = 9,83
-		background-color = none
 		saved-params = "is-checked"
 		text = "Apply"
 		command = "tcssave"

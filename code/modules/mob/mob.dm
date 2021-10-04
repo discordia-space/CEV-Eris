@@ -1122,14 +1122,10 @@ mob/proc/yank_out_object()
 
 /mob/verb/change_move_intent()
 	set name = "Change moving intent"
-	set category "IC"
+	set category = "IC"
+	set src = usr
 
-	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
-	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
-	if (newintent.can_enter(usr , TRUE))
-		usr.move_intent = newintent
-		SEND_SIGNAL(usr, COMSIG_HUMAN_WALKINTENT_CHANGE, usr, newintent)
-
+	HUDneed["move intent"].Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return
