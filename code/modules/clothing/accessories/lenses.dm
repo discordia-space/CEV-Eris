@@ -26,18 +26,21 @@
 		flash_protection = initial(protection)
 		see_invisible = initial(see_invisible)
 		vision_flags = initial(vision_flags)
-		origin_tech = initial(origin_tech)
-		overlay = saved_last_overlay
-		saved_last_overlay = FALSE
+		var/obj/item/clothing/glasses/attachable_lenses/lenses = have_lenses
+		overlay = lenses.saved_last_overlay
+		lenses.saved_last_overlay = FALSE
 		to_chat(usr, "You detach \the [have_lenses] from \the [src]");
 		usr.put_in_hands(have_lenses)
 		SEND_SIGNAL(src, COMSIG_GLASS_LENSES_REMOVED, usr, src)
-
+		have_lenses = FALSE
 	else
 		to_chat(usr, "You haven't got any lenses in \the [src]");
 
 
 /obj/item/clothing/glasses/attachable_lenses/proc/handle_insertion(obj/item/clothing/glasses/target, mob/living/carbon/human/inserter)
+	if(target.have_lenses)
+		to_chat(inserter, "You already have lenses in \the [target]")
+		return FALSE
 	if(overlay)
 		saved_last_overlay = target.overlay
 		target.overlay = overlay
@@ -48,8 +51,6 @@
 	if(flash_protection)
 		target.protection = flash_protection
 		target.flash_protection = flash_protection
-	if(origin_tech)
-		target.origin_tech.Add(origin_tech)
 	to_chat(inserter, "You attached \the [src] to \the [target]")
 	target.have_lenses = src
 	inserter.drop_item(src)
@@ -64,26 +65,38 @@
 	origin_tech = list(TECH_COVERT = 3, TECH_COMBAT = 2 , TECH_ENGINEERING = 5)
 	var/charge_exploded = FALSE
 
+/obj/item/clothing/glasses/attachable_lenses/explosive/New()
+	..()
+	overlay = null
+
 /obj/item/clothing/glasses/attachable_lenses/explosive/handle_insertion(obj/item/clothing/glasses/target, mob/living/carbon/human/inserter)
 	..()
 	RegisterSignal(target, COMSIG_CLOTH_EQUIPPED, .proc/handle_boom)
 	RegisterSignal(target, COMSIG_GLASS_LENSES_REMOVED, .proc/handle_removal)
+	if(target.is_worn()) // Sucks to be you.
+		handle_boom(inserter)
 
 /obj/item/clothing/glasses/attachable_lenses/explosive/proc/handle_boom(mob/living/carbon/human/unfortunate_man)
-	visible_message(SPAN_DANGER("You feel a jet of molten slag pierce your skull as \the [loc] explodes"),
-	SPAN_DANGER("[unfortunate_man]'s skull is blown apart as a jet of molten slag pierces through his eye from
-[loc]"), SPAN_DANGER("You hear a small explosion than the violent fizzle of flesh"))
-	playsound()
+	if(charge_exploded)
+		return FALSE
+	var/obj/item/clothing/glasses/our_glasses = loc
+	if(!our_glasses.is_worn()) // We aren't worn
+		return FALSE
+	visible_message(SPAN_DANGER("[unfortunate_man]'s skull gets pierced by a jet of molten slag as he puts \the [loc] on his eyes"),
+					SPAN_DANGER("You hear the sound of a skull cracking and meat sizzling"), 6)
+	playsound(get_turf(loc), 'sound/effects/bangtaper.ogg' ,50, 1)
+	spawn(1 SECONDS)
+		playsound(get_turf(loc), 'sound/effects/flare.ogg', 100, 1)
 	unfortunate_man.adjustBrainLoss(200)
-	for(var/obj/organ/internal/organ in unfortunate_man.head)
+	for(var/obj/item/organ/internal/organ in unfortunate_man.get_organ(BP_HEAD).contents)
 		organ.take_damage(200)
+	charge_exploded = TRUE
 	// F
 	handle_removal()
 
-/obj/item/clothing/glasses/attachable_lenses/explosive/proc/handle_removal()
-	var/obj/item/clothing/glasses/current_loc = loc
-	UnregisterSignal(current_loc, COMSIG_CLOTH_EQUIPPED)
-	UnregisterSignal(current_loc, COMSIG_GLASS_LENSES_REMOVED)
+/obj/item/clothing/glasses/attachable_lenses/explosive/proc/handle_removal(mob/living/carbon/human/remover, obj/item/clothing/glasses/holder)
+	UnregisterSignal(holder, COMSIG_CLOTH_EQUIPPED)
+	UnregisterSignal(holder, COMSIG_GLASS_LENSES_REMOVED)
 
 
 
