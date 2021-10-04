@@ -15,7 +15,7 @@
 
 /mob/observer/cyberspace_eye/default_can_use_topic(src_object)
 	var/atom/target = src_object
-	if(istype(target?.CyberAvatar) && target.CyberAvatar.AbleToInteract(src))
+	if(istype(target) && istype(target.CyberAvatar) && target.CyberAvatar.AbleToInteract(src))
 		return STATUS_INTERACTIVE
 	return STATUS_CLOSE
 

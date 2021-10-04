@@ -41,6 +41,7 @@
 	proc/CancelCyberspaceConnection()
 		update_power_usage()
 		if(istype(projected_mind))
+			projected_mind.Disconnected(src)
 			projected_mind.PutInAnotherMob(get_user())
 			projected_mind.relocateTo(src)
 			projected_mind.destroy_HUD()
@@ -61,6 +62,9 @@
 		if(cable?.owner?.UIStyle)
 			projected_mind.defaultHUD = cable.owner.UIStyle
 		projected_mind.reset_HUD()
+
+	proc/PlaceProjectedMind()
+		return projected_mind.Connected(src)
 
 	attackby(obj/item/W, mob/living/user)
 		. = ..()
@@ -109,7 +113,7 @@
 		var/mob/living/carbon/human/owner = get_user()
 		if(istype(owner) && owner.stat == CONSCIOUS && owner.mind)
 			SetUpProjectedMind()
-			projected_mind.dropInto(src)
+			PlaceProjectedMind()
 			return owner.PutInAnotherMob(projected_mind)
 	
 	AddLinkStreight(count)

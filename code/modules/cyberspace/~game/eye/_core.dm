@@ -15,6 +15,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 		to_chat(src, SPAN_WARNING("You feel like your mind is decaying, you feel the void ... <br><br>\
 		But after, you feel your memory coming back piece by piece as a mind, you see your old deeds, you feel shame ..."))
 		owner.CancelCyberspaceConnection()
+		Disconnected()
 		. = TRUE
 	else
 		to_chat(src, SPAN_WARNING("You can't feel your shell."))
@@ -33,3 +34,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 	icon_state = "ai_presence"
 	ReturnToBody()
 		return
+
+/mob/observer/cyberspace_eye/proc/Connected(obj/item/computer_hardware/deck/D)
+	return dropInto(D)
+/mob/observer/cyberspace_eye/proc/Disconnected(obj/item/computer_hardware/deck/D)
