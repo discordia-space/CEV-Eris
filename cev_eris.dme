@@ -1496,6 +1496,7 @@
 #include "code\modules\clothing\accessories\armband.dm"
 #include "code\modules\clothing\accessories\badges.dm"
 #include "code\modules\clothing\accessories\holster.dm"
+#include "code\modules\clothing\accessories\lenses.dm"
 #include "code\modules\clothing\accessories\lockets.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\hud.dm"
