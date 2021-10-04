@@ -345,6 +345,11 @@
 			if(BP_IS_ROBOTIC(O))
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
+			else if(istype(O, /obj/item/organ/internal/carrion))
+				owner.carrion_hunger += 3
+				geneticpointgain = 4
+				chemgain = 50
+				taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
