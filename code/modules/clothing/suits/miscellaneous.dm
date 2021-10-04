@@ -493,7 +493,6 @@
 		to_chat(usr, "You are restrained and cannot set the bomb off!")
 		return
 
-	var/turf/T = get_turf(loc)
-	explosion(T,-1,2,5,8)
+	explosion(get_turf(loc), -1, 2, 5, 8)
 	if(src)
 		qdel(src)
