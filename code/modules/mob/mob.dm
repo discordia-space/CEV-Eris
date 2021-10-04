@@ -794,7 +794,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/Stun(amount)
 	if(status_flags & CANSTUN)
-		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 		update_lying_buckled_and_verb_status()
 	return
@@ -813,7 +812,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/Weaken(amount)
 	if(status_flags & CANWEAKEN)
-		facing_dir = null
 		weakened = max(max(weakened,amount),0)
 		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
@@ -832,7 +830,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/Paralyse(amount)
 	if(status_flags & CANPARALYSE)
-		facing_dir = null
 		paralysis = max(max(paralysis,amount),0)
 		return TRUE
 	return
@@ -860,7 +857,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/proc/Sleeping(amount)
-	facing_dir = null
 	sleeping = max(max(sleeping,amount),0)
 	return
 
@@ -873,7 +869,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/proc/Resting(amount)
-	facing_dir = null
 	resting = max(max(resting,amount),0)
 	return
 
@@ -1060,19 +1055,6 @@ mob/proc/yank_out_object()
 /mob/proc/updateicon()
 	return
 
-/mob/verb/face_direction()
-
-	set name = "Face Direction"
-	set category = "IC"
-	set src = usr
-
-	set_face_dir()
-
-	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
-	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
-
 /mob/verb/browse_mine_stats()
 	set name		= "Show stats and perks"
 	set desc		= "Browse your character stats and perks."
@@ -1137,42 +1119,17 @@ mob/proc/yank_out_object()
 			return stats.getStat(typeOfStat)
 		return 0
 
-/mob/proc/set_face_dir(var/newdir)
-	if(!isnull(facing_dir) && newdir == facing_dir)
-		facing_dir = null
-	else if(newdir)
-		set_dir(newdir)
-		facing_dir = newdir
-	else if(facing_dir)
-		facing_dir = null
-	else
-		set_dir(dir)
-		facing_dir = dir
 
-/mob/set_dir()
-	if(facing_dir)
-		if(!canface() || lying || buckled || restrained())
-			facing_dir = null
-		else if(dir != facing_dir)
-			return ..(facing_dir)
-	else
-		return ..()
+/mob/verb/change_move_intent()
+	set name = "Change moving intent"
+	set category "IC"
 
-/mob/verb/northfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(NORTH))
+	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
+	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
+	if (newintent.can_enter(usr , TRUE))
+		usr.move_intent = newintent
+		SEND_SIGNAL(usr, COMSIG_HUMAN_WALKINTENT_CHANGE, usr, newintent)
 
-/mob/verb/southfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(SOUTH))
-
-/mob/verb/eastfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(EAST))
-
-/mob/verb/westfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(WEST))
 
 /mob/proc/adjustEarDamage()
 	return
