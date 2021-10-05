@@ -359,7 +359,7 @@
 			if(iscarbon(A))
 				var/mob/living/carbon/C = A
 				for(var/obj/item/shield/S in get_both_hands(C))
-					if(S && S.block_bullet(C,src))
+					if(S && S.block_bullet(C,src,def_zone))
 						return
 			passthrough = !attack_mob(M, distance)
 		else

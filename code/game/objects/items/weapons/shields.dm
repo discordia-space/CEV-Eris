@@ -31,10 +31,10 @@
 
 /obj/item/shield
 	name = "shield"
-	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 0, bio = 0, rad = 0)
 	var/base_block_chance = 50
 	var/slowdown_time = 1
 	var/shield_integrity = 100
+	var/list/protected_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
@@ -49,9 +49,17 @@
 			return 1
 	return 0
 
-/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/Damage_source)
+/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/Damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
-	if(check_shield_arc(user,bad_arc,Damage_source))
+
+	if(is_held_twohanded(user))
+		protected_area = BP_ALL_LIMBS
+	else if(user.l_hand == src)
+		protected_area.Add(BP_L_ARM)
+	else if(user.r_hand == src)
+		protected_area.Add(BP_R_ARM)
+
+	if(def_zone in protected_area && check_shield_arc(user,bad_arc,Damage_source))
 		if(!Damage_source.check_penetrate(src))
 			visible_message(SPAN_DANGER("\The [user] blocks the bullet with their [Damage_source]!"))
 			qdel(Damage_source)
