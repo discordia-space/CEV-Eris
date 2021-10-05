@@ -65,7 +65,7 @@
 	if(sample_type)
 		set_used(sample_type, H)
 		return TRUE
-	return TRUE
+	return FALSE
 
 /obj/item/forensics/swab/afterattack(var/atom/A, var/mob/user, var/proximity)
 
