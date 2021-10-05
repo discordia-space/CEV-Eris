@@ -24,17 +24,17 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
-		fluorescent = 1
+		fluorescent = TRUE
 		basecolor = COLOR_LUMINOL
 		update_icon()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
-	fluorescent = 0
+	fluorescent = FALSE
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
 		STOP_PROCESSING(SSobj, src)
-	..(ignore=1)
+	..(ignore=TRUE)
 
 /obj/effect/decal/cleanable/blood/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -60,6 +60,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/Process()
 	if(world.time > drytime)
+		STOP_PROCESSING(SSobj, src) // Ok no more processing after this
 		dry()
 
 /obj/effect/decal/cleanable/blood/on_update_icon()
@@ -119,7 +120,7 @@ var/global/list/image/splatter_cache=list()
 	if (amount && istype(user))
 		add_fingerprint(user)
 		if (user.gloves)
-			return
+			return FALSE
 		var/taken = rand(1,amount)
 		amount -= taken
 		to_chat(user, SPAN_NOTICE("You get some of \the [src] on your hands."))
