@@ -1158,7 +1158,6 @@ mob/proc/yank_out_object()
 	else
 		return ..()
 
-<<<<<<< HEAD
 /mob/verb/change_move_intent()
 	set name = "Change moving intent"
 	set category = "IC"
@@ -1166,23 +1165,6 @@ mob/proc/yank_out_object()
 
 	if(HUDneed["move intent"])
 		HUDneed["move intent"].Click()  // Yep , this is all.
-=======
-/mob/verb/northfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(NORTH))
-
-/mob/verb/southfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(SOUTH))
-
-/mob/verb/eastfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(EAST))
-
-/mob/verb/westfaceperm()
-	set hidden = 1
-	set_face_dir(client.client_dir(WEST))
->>>>>>> parent of 9bfe7caea (da)
 
 /mob/proc/adjustEarDamage()
 	return
