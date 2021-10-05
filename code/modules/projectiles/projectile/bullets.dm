@@ -34,7 +34,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+	if((!A || !A.density) && !istype(A, /obj/item/shield)) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
@@ -50,6 +50,9 @@
 	if(istype(A, /turf/simulated/wall))
 		var/turf/simulated/wall/W = A
 		chance = round(penetrating*armor_penetration*2/W.material.integrity*180)
+	else if(istype(A, /obj/item/shield))
+		var/obj/item/shield/S = A
+		chance = round(penetrating*armor_penetration*2/S.shield_integrity*180)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		chance = round(penetrating*armor_penetration*2/D.maxhealth*180)
@@ -58,6 +61,7 @@
 		chance = 100
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = armor_penetration*penetrating
+
 
 	if(prob(chance))
 		var/maintainedVelocity = min(chance,90)/100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%

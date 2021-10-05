@@ -356,7 +356,11 @@
 				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
-
+			if(iscarbon(A))
+				var/mob/living/carbon/C = A
+				for(var/obj/item/shield/S in get_both_hands(C))
+					if(S && S.block_bullet(C,src))
+						return
 			passthrough = !attack_mob(M, distance)
 		else
 			passthrough = FALSE //so ghosts don't stop bullets
