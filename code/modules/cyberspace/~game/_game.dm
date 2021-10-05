@@ -22,6 +22,6 @@
 	#include "eye/hud/screen_objects.dm"
 	#include "eye/hud/cyberspace_hider.dm"
 
-#include "ICE/_ice.dm"	
+#include "ICE/_ice.dm"
 	#include "ICE/subroutines/_manager.dm"
 //		#include "ICE/subroutines/do_else.dm"

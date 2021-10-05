@@ -1,6 +1,7 @@
 GLOBAL_LIST_EMPTY(CyberSpaceWaypoints)
-
+CYBERAVATAR_INITIALIZATION(/atom/movable/CyberspaceWaypoint, CYBERSPACE_MAIN_COLOR)
 /atom/movable/CyberspaceWaypoint
+	invisibility = INVISIBILITY_MAXIMUM
 	var/list/WhiteList = list()
 	var/atom/FollowingAtom
 	New()
@@ -24,6 +25,10 @@ GLOBAL_LIST_EMPTY(CyberSpaceWaypoints)
 	dropInto(A)
 	if(!breakTimers)
 		GLOB.moved_event.register(A, src, /atom/movable/CyberspaceWaypoint/proc/Follow)
+
+/atom/movable/CyberspaceWaypoint/EnterPoint
+	icon = 'icons/obj/cyberspace/ices/ihs.dmi'
+	icon_state = "gate"
 
 /atom/movable/CyberspaceWaypoint/EnterPoint/New(loc, mob/observer/cyberspace_eye/Eye)
 	. = ..()

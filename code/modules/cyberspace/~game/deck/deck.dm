@@ -59,8 +59,17 @@
 
 	proc/SetUpProjectedMind()
 		//projected_mind.InstalledPrograms.Memory = MemoryForInstalledPrograms
-		if(cable?.owner?.UIStyle)
-			projected_mind.defaultHUD = cable.owner.UIStyle
+		if(!projected_mind)
+			projected_mind = new()
+			projected_mind.owner = src
+		var/obj/item/organ/internal/data_jack/J = cable?.owner
+		if(istype(J))
+			if(J.UIStyle)
+				projected_mind.defaultHUD = cable.owner.UIStyle
+			var/mob/living/carbon/human/O = J.owner
+			if(istype(O))
+				var/cock = O.stats.getStat(STAT_COG)
+				projected_mind.HP = 100 * (1 + cock / 100)
 		projected_mind.reset_HUD()
 
 	proc/PlaceProjectedMind()

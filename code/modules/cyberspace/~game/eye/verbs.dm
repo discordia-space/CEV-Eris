@@ -22,3 +22,14 @@
 	for(var/atom/movable/CyberspaceWaypoint/i in GLOB.CyberSpaceWaypoints)
 		if(i.AvailableFor(src))
 			.[i.name] = i
+
+/mob/observer/cyberspace_eye/verb/PickAvatarIcon()
+	set category = CYBERSPACE_VERBS_CATEGORY
+	set name = "Pick Avatar Icon"
+
+	var/list/available = icon_states(icon)
+	available.Insert(1, "(CANCEL)")
+
+	var/Selected = input("Select available waypoint") in available
+	if(Selected != "(CANCEL)" && Selected in available)
+		SetIconState(Selected)

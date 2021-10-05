@@ -4,12 +4,16 @@
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner)
 /mob/observer/cyberspace_eye //slow move of it down
+	invisibility = INVISIBILITY_MAXIMUM
 	alpha = 200
-	icon = 'icons/obj/cyberspace/cyberspace.dmi'
+	icon = 'icons/obj/cyberspace/runner.dmi'
+	icon_state = "Default"
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 	_SeeCyberSpace = TRUE
 
 	var/obj/item/computer_hardware/deck/owner
+	var/HP = 100
+
 /mob/observer/cyberspace_eye/proc/ReturnToBody()
 	if(istype(owner))
 		to_chat(src, SPAN_WARNING("You feel like your mind is decaying, you feel the void ... <br><br>\

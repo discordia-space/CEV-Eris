@@ -7,7 +7,7 @@
 /datum/CyberSpaceAvatar/proc/UpdateIcon(forced) //handle underlays, icon and overlays in separated icons 
 	if(enabled && Owner)
 		if(!istype(Owner))
-			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner])")
+			CRASH("Somebody set datum/CyberSpaceAvatar(\ref[src]) to follow not atom([Owner.type]>\ref[Owner][Owner]")
 		var/IsIconForced = (icon_file || icon_state)
 		if(!Icon)
 			Icon = image(,Owner,)
@@ -25,8 +25,9 @@
 		if(forced)
 			for(var/mob/viewer in GLOB.CyberSpaceViewers)
 				viewer.client && ShowToClient(viewer.client)
-	else for(var/mob/viewer in GLOB.CyberSpaceViewers)
-		viewer.client && HideFromClient(viewer.client)
+	else
+		for(var/mob/viewer in GLOB.CyberSpaceViewers)
+			viewer.client && HideFromClient(viewer.client)
 
 /datum/CyberSpaceAvatar/proc/SetColor(value)
 	color = value
