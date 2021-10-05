@@ -180,10 +180,11 @@
 		var/mob/living/L = mob
 		if(L.is_ventcrawling)
 			mob_delay = MOVE_DELAY_VENTCRAWL
-		else if(L.facing_dir)
-			if(L.facing_dir != direction)
-				mob_delay *= 1.5 // 50% delay for going backwards
-
+		else if(L.facing_dir != direction)
+			if(L.facing_dir == turn(direction,180))
+				mob_delay *= 1.5 // 50% for opposite
+			else
+				mob_delay *= 1.1 // 10% for sideways
 
 	var/delay = mob_delay - overflow
 	SetDelay(delay)
