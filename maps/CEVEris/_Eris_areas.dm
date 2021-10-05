@@ -15,7 +15,7 @@
 	flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
-	forced_ambience = list('sound/ambience/maintambience.ogg')
+	forced_ambience = list('sound/ambience/maintambience1.ogg','sound/ambience/maintambience2.ogg','sound/ambience/maintambience3.ogg','sound/ambience/maintambience4.ogg','sound/ambience/maintambience5.ogg','sound/ambience/maintambience6.ogg')
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
 
 /area/eris/maintenance/junk
