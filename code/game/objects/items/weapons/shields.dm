@@ -34,11 +34,10 @@
 	var/base_block_chance = 50
 	var/slowdown_time = 1
 	var/shield_integrity = 100
-	var/list/protected_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
-	if((attacker && get_dist(user, attacker) > 1) || user.incapacitated())
+	if(istype(damage_source,/obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
 
 	//block as long as they are not directly behind us
@@ -49,25 +48,21 @@
 			return 1
 	return 0
 
-/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/Damage_source, def_zone)
+/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
-
-	if(is_held_twohanded(user))
-		protected_area = BP_ALL_LIMBS
-	else if(user.l_hand == src)
-		protected_area.Add(BP_L_ARM)
-	else if(user.r_hand == src)
-		protected_area.Add(BP_R_ARM)
-
-	if(def_zone in protected_area && check_shield_arc(user,bad_arc,Damage_source))
-		if(!Damage_source.check_penetrate(src))
-			visible_message(SPAN_DANGER("\The [user] blocks the bullet with their [Damage_source]!"))
-			qdel(Damage_source)
+	var/list/protected_area = get_protected_area(user)
+	if(protected_area.Find(def_zone) && check_shield_arc(user,bad_arc,damage_source))
+		if(!damage_source.check_penetrate(src))
+			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with their [src]!"))
 			return 1
 	return 0
 
 /obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
+
+/obj/item/shield/proc/get_protected_area(mob/user)
+	var/list/p_area = BP_ALL_LIMBS
+	return p_area
 
 /obj/item/shield/attack(mob/M, mob/user)
 	if(isliving(M))
@@ -108,6 +103,22 @@
 		return 0
 	if(MOVING_DELIBERATELY(user))
 		return base_block_chance
+
+/obj/item/shield/riot/get_protected_area(mob/user)
+	var/list/p_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
+	if(MOVING_QUICKLY(user))
+		if(user.l_hand == src)
+			p_area = list(BP_L_ARM)
+		else if(user.r_hand == src)
+			p_area = list(BP_R_ARM)
+	else if(MOVING_DELIBERATELY(user))
+		if(wielded)
+			p_area = BP_ALL_LIMBS
+		else if(user.l_hand == src)
+			p_area.Add(BP_L_ARM)
+		else if(user.r_hand == src)
+			p_area.Add(BP_R_ARM)
+	return p_area
 
 /obj/item/shield/riot/New()
 	RegisterSignal(src, COMSIG_ITEM_PICKED, .proc/is_picked)
