@@ -70,6 +70,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
 
+		activate_mobs_in_range(epicenter, max_range)
 		for(var/turf/T in RANGE_TURFS(max_range, epicenter))
 			var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 

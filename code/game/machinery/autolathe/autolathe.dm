@@ -927,13 +927,18 @@
 
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
-	consume_materials(design)
-	design.Fabricate(drop_location(), mat_efficiency, src)
+    consume_materials(design)
 
-	working = FALSE
-	current_file = null
-	print_post()
-	next_file()
+    if(disk && disk.GetComponent(/datum/component/oldficator))
+        design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
+    else
+        design.Fabricate(drop_location(), mat_efficiency, src, FALSE)
+
+    working = FALSE
+    current_file = null
+    print_post()
+    next_file()
+
 
 /obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
 	if(oddity)

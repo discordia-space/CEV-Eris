@@ -128,15 +128,12 @@
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30,120)
-			if (prob(70) && !shielded)
-				Paralyse(10)
 
 		if(3)
 			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			if (prob(50) && !shielded)
-				Paralyse(10)
+
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
@@ -247,6 +244,7 @@
 var/list/rank_prefix = list(\
 	"Ironhammer Operative" = "Operative",\
 	"Ironhammer Inspector" = "Inspector",\
+	"Ironhammer Medical Specialist" = "Specialist",\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
@@ -1399,6 +1397,18 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
+
+/mob/living/carbon/human/trip(tripped_on, stun_duration)
+	if(buckled)
+		return FALSE
+	if(lying)
+		return FALSE // No tripping while crawling
+	stop_pulling()
+	if (tripped_on)
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		to_chat(src, SPAN_WARNING("You tripped over!"))
+	Weaken(stun_duration)
+	return TRUE
 
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"

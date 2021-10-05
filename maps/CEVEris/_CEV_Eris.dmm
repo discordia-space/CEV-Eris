@@ -16469,6 +16469,8 @@
 /obj/item/tool/crowbar,
 /obj/item/tool/crowbar,
 /obj/item/tool/crowbar,
+/obj/item/ammo_casing/flare,
+/obj/item/gun/projectile/flare_gun,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aPr" = (
@@ -33620,6 +33622,8 @@
 /obj/item/tool/wrench,
 /obj/item/tool/wrench,
 /obj/item/tool/wrench,
+/obj/item/ammo_casing/flare,
+/obj/item/gun/projectile/flare_gun,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 27
 	},

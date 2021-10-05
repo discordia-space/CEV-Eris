@@ -100,6 +100,8 @@
 		new /obj/item/storage/bag/fossils(src)
 		new /obj/item/hand_labeler(src)
 		new /obj/item/taperoll/research(src)
+		new /obj/item/gun/projectile/flare_gun(src)
+		new /obj/item/ammo_casing/flare(src)
 		return
 
 //---- Isolation room air alarms
