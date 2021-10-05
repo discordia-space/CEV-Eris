@@ -30,6 +30,7 @@
 
 
 	M.buckled = src
+	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_lying_buckled_and_verb_status()
 	M.update_floating()
