@@ -89,7 +89,6 @@
 			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10)),
 			/obj/item/reagent_containers/glass/paint/yellow = good_data("Yellow Paint", list(1, 10)),
 			/obj/item/reagent_containers/glass/paint/purple = good_data("Purple Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/black = good_data("Black Paint", list(1, 10)),
 			/obj/item/reagent_containers/glass/paint/white = good_data("White Paint", list(1, 10)),
 			/obj/item/storage/lunchbox = good_data("Lunchbox", list(1, 10)),
 			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10)),

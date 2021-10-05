@@ -106,7 +106,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	/obj/item/reagent_containers/glass/paint/blue,
 	/obj/item/reagent_containers/glass/paint/yellow,
 	/obj/item/reagent_containers/glass/paint/purple,
-	/obj/item/reagent_containers/glass/paint/black,
 	/obj/item/reagent_containers/glass/paint/white,
 	/obj/item/contraband/poster,
 	/obj/item/wrapping_paper,

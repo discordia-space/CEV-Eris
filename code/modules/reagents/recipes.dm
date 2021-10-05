@@ -927,15 +927,6 @@
 
 /datum/chemical_reaction/potato_juice_paint/send_data()
 	return "#302000"
-
-/datum/chemical_reaction/carbon_paint
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "carbon" = 1)
-	result_amount = 5
-
-/datum/chemical_reaction/carbon_paint/send_data()
-	return "#333333"
-
 /datum/chemical_reaction/aluminum_paint
 	result = "paint"
 	required_reagents = list("plasticide" = 1, "water" = 3, "aluminum" = 1)
