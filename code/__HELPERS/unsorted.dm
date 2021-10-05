@@ -510,6 +510,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return target
 
+// Simplistic proc to get the turf away from the target. A move advanced and accurate one would employ map coordinates
+/proc/get_turf_away_from_target_simple(atom/center, atom/target, distance)
+	if(!center || !target)
+		return FALSE
+	var/opposite_dir = turn(get_dir(center,target), 180)
+	var/looping_distance = distance
+	var/current_turf = center
+	while(looping_distance)
+		current_turf = get_step(current_turf,opposite_dir)
+		looping_distance--
+	return current_turf
+
 // returns turf relative to A in given direction at set range
 // result is bounded to map size
 // note range is non-pythagorean
