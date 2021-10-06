@@ -269,11 +269,21 @@
 		if(def_zone)
 			var/spread = max(base_spreading - (spreading_step * distance), 0)
 			var/aim_hit_chance = max(0, projectile_accuracy)
-			if(prob(aim_hit_chance))
-				result = target_mob.bullet_act(src, def_zone)
-			else
+			
+			if(!prob(aim_hit_chance))
 				def_zone = ran_zone(def_zone,spread)
-				result = target_mob.bullet_act(src, def_zone)
+
+			if(iscarbon(target_mob))
+				var/mob/living/carbon/C = target_mob
+				for(var/obj/item/shield/S in get_both_hands(C))
+					if(S && S.block_bullet(C,src,def_zone))
+						on_hit(S,def_zone)
+						qdel(src)
+						return TRUE
+					break //Prevents shield dual-wielding
+			result = target_mob.bullet_act(src, def_zone)
+			
+			
 			if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
 				result = PROJECTILE_FORCE_MISS
 
@@ -356,12 +366,6 @@
 				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
-			if(iscarbon(A))
-				var/mob/living/carbon/C = A
-				for(var/obj/item/shield/S in get_both_hands(C))
-					if(S && S.block_bullet(C,src,def_zone))
-						qdel(src)
-						return
 			passthrough = !attack_mob(M, distance)
 		else
 			passthrough = FALSE //so ghosts don't stop bullets
