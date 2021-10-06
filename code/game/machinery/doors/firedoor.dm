@@ -40,6 +40,8 @@
 
 	var/list/tile_info[4]
 	var/list/dir_alerts[4] // 4 dirs, bitflags
+	var/list/registered_zones
+	var/list/registered_turfs
 
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
@@ -66,6 +68,34 @@
 	for(var/area/A in areas_added)
 		A.all_doors.Remove(src)
 	. = ..()
+
+
+/obj/machinery/door/firedoor/Initialize(mapload)
+	if(mapload)
+		addtimer(CALLBACK(src, .proc/initialize_special), 30 SECONDS)
+	. = ..()
+
+/obj/machinery/door/firedoor/proc/initialize_special()
+	InformOfZasZoneChange()
+
+/obj/machinery/door/firedoor/InformOfZasZoneChange()
+	set waitfor = FALSE
+	for(var/zone/a_zone in registered_zones)
+		a_zone.atmos_listeners -= src
+	for(var/turf/simulated/stored in registered_turfs)
+		stored.registered_atoms -= src
+		registered_turfs -= stored
+	spawn(0.5 SECONDS)
+		for(var/turf/simulated/a_turf in cardinal_turfs(src))
+			if(!a_turf.zone)
+				continue
+			if(registered_zones.Find(a_turf.zone))
+				continue
+			registered_zones += a_turf.zone
+			registered_turfs += a_turf
+			a_turf.registered_atoms += src
+		for(var/zone/a_zone in registered_zones)
+			a_zone.atmos_listeners += src
 
 /obj/machinery/door/firedoor/get_material()
 	return get_material_by_name(MATERIAL_STEEL)
@@ -245,8 +275,8 @@
 	return ..()
 
 // CHECK PRESSURE
-/obj/machinery/door/firedoor/Process()
-	..()
+/obj/machinery/door/firedoor/InformOfZasTick()
+	set waitfor = FALSE
 
 	if(density)
 		var/changed = 0
