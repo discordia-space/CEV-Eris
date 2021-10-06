@@ -105,7 +105,7 @@
 #define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():
 #define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
 #define COMSIG_ADDVAL "add_values" 										//from /atom/refresh_upgrades(): (/src) Called to add specific things to the /src, called before COMSIG_APPVAL
-#define COMSIG_REMOVE "uninstall"	
+#define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
 
@@ -133,3 +133,5 @@
 #define COMSIG_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
 
 /*******Non-Signal Component Related Defines*******/
+
+#define COMSIG_ZAS_ZONE_CHANGE
