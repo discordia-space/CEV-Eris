@@ -9,6 +9,7 @@
 	var/melee_damage = 10
 	var/action_delay = 15
 	var/obj/item/robot_parts/robot_component/actuator/motivator
+	var/punch_sound = ('sound/mechs/mech_punch.ogg')
 
 /obj/item/mech_component/manipulators/Destroy()
 	QDEL_NULL(motivator)

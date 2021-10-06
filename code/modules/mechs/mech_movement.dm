@@ -90,23 +90,22 @@
 // Space movement
 /datum/movement_handler/mob/space/exosuit/DoMove(var/direction, var/mob/mover)
 
-	if(!mob.check_solid_ground())
-		mob.anchored = FALSE
-		var/allowmove = mob.allow_spacemove(0)
+	if(!mob.check_gravity())
+		var/allowmove = mob.allow_spacemove()
 		if(!allowmove)
 			return MOVEMENT_HANDLED
 		else if(allowmove == -1 && mob.handle_spaceslipping()) //Check to see if we slipped
 			return MOVEMENT_HANDLED
 		else
 			mob.inertia_dir = 0 //If not then we can reset inertia and move
-	else mob.anchored = TRUE
+	else
 
 /datum/movement_handler/mob/space/exosuit/MayMove(var/mob/mover, var/is_external)
 	if((mover != host) && is_external)
 		return MOVEMENT_PROCEED
 
-	if(!mob.check_solid_ground())
-		if(!mob.allow_spacemove(0))
+	if(!mob.check_gravity())
+		if(!mob.allow_spacemove())
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
