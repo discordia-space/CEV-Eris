@@ -25,6 +25,7 @@
 		SEMI_AUTO_NODELAY,
 		FULL_AUTO_400
 		)
+	fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)

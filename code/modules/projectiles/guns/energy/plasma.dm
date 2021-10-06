@@ -11,7 +11,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8)
 	price_tag = 4500
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/pulse.ogg'
 	suitable_cell = /obj/item/cell/medium
 	sel_mode = 2
 	charge_cost = 20 //Gives us 40 shots per high medium-sized cell
@@ -52,7 +52,7 @@
 
 	init_firemodes = list(
 		list(mode_name="INCINERATE", mode_desc="Suffer not the heretic", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, charge_cost=30, icon="kill", projectile_color = "#FFFF00"),
-		list(mode_name="VAPORIZE", mode_desc="Cell-dump them to oblivion", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, charge_cost=70, icon="destroy", projectile_color = "#FF0000", recoil_buildup=3),
+		list(mode_name="VAPORIZE", mode_desc="Cell-dump them to oblivion", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/plasma.ogg', fire_delay=5, charge_cost=70, icon="destroy", projectile_color = "#FF0000", recoil_buildup=3),
 	)
 
 

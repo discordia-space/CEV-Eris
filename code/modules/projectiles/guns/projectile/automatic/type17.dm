@@ -14,7 +14,7 @@
     magazine_type = /obj/item/ammo_magazine/srifle
     matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 10)
     price_tag = 3800
-    fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
+    fire_sound = 'sound/weapons/guns/fire/20.ogg'
     unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
     reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
     cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'

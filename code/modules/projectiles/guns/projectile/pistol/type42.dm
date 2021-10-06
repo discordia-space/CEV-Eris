@@ -18,6 +18,7 @@
 	penetration_multiplier = 1.3
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 
 	spawn_blacklisted = TRUE //until loot rework
 

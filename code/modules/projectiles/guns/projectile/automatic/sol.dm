@@ -26,6 +26,7 @@
 		BURST_3_ROUND
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)

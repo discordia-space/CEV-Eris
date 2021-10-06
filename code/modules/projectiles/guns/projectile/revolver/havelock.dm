@@ -6,7 +6,7 @@
 	drawChargeMeter = FALSE
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/35revolver.ogg'
 	max_shells = 6
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol

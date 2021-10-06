@@ -15,7 +15,7 @@
 	unload_sound = 'sound/weapons/guns/interact/rev_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rev_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/rev_cock.ogg'
-	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/40revolver.ogg'
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 2000 //avasarala of revolver world
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil

@@ -11,6 +11,7 @@
 	can_dual = TRUE
 	silenced = TRUE
 
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
