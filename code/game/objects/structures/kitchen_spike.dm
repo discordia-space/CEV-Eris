@@ -64,7 +64,7 @@
 	to_chat(user, "You start to remove [victim_name] from \the [src].")	
 	if(!do_after(user, 40))
 		return 0
-	occupant.loc = (get_turf(src))
+	occupant.loc = get_turf(src)
 	occupied = FALSE
 	meat = 0
 	meat_type = initial(meat_type)
