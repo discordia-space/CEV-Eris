@@ -41,7 +41,7 @@
 	var/list/tile_info[4]
 	var/list/dir_alerts[4] // 4 dirs, bitflags
 	var/list/registered_zones = list()
-	var/list/registered_turfs = list(NORTH, SOUTH , EAST , WEST)
+	var/list/registered_turfs = list()
 
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
@@ -80,9 +80,10 @@
 
 /obj/machinery/door/firedoor/InformOfZasZoneChange()
 	set waitfor = FALSE
-	registered_zones = list()
+	for(var/zone/a_zone in registered_zones)
+		a_zone.atmos_listeners -= src
 	for(var/turf/simulated/stored in registered_turfs)
-		stored.registered_atoms.Remove(src)
+		stored.registered_atoms -= src
 		registered_turfs -= stored
 	spawn(0.5 SECONDS)
 		for(var/turf/simulated/a_turf in cardinal_turfs(src))
@@ -92,9 +93,9 @@
 				continue
 			registered_zones += a_turf.zone
 			registered_turfs += a_turf
-			a_turf.registered_atoms.Add(src)
+			a_turf.registered_atoms += src
 		for(var/zone/a_zone in registered_zones)
-			a_zone.atmos_listeners.Add(src)
+			a_zone.atmos_listeners += src
 
 /obj/machinery/door/firedoor/get_material()
 	return get_material_by_name(MATERIAL_STEEL)
@@ -293,22 +294,8 @@
 				pdiff_alert = 0
 				changed = 1 // update_icon()
 
-
-		//tile_info = getCardinalAirInfo(src.loc,list("temperature","pressure"))
+		tile_info = getCardinalAirInfo(src.loc,list("temperature","pressure"))
 		var/old_alerts = dir_alerts
-		for(var/atmos_direction in registered_turfs)
-			if(!registered_turfs[atmos_direction])
-				tile_info[atmos_direction] = null
-				continue
-			var/datum/gas_mixture/gasses = registered_turfs[atmos_direction].return_air()
-			tile_info[atmos_direction] = "[gasses.return_pressure()] + [gasses.temperature]"
-			var/celcius = convert_k2c(gasses.temperature)
-			var/alert_type = celcius >= FIREDOOR_MAX_TEMP ? FIREDOOR_ALERT_HOT : (celcius <= FIREDOOR_MIN_TEMP ? FIREDOOR_ALERT_COLD : FALSE)
-			if(alert_type)
-				lockdown = TRUE
-			dir_alerts[atmos_direction] = alert_type
-
-		/*
 		for(var/index = 1; index <= 4; index++)
 			var/list/tileinfo=tile_info[index]
 			if(tileinfo==null)
@@ -326,7 +313,6 @@
 				lockdown = 1
 
 			dir_alerts[index]=alerts
-		*/
 
 		if(dir_alerts != old_alerts)
 			changed = 1
