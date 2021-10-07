@@ -83,10 +83,8 @@
 		tearing = TRUE
 		if(do_after(user, 20))
 			tearing = FALSE
-			var/cut_damage
-			var/organ_damaged
-			organ_damaged = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.2, BP_L_ARM = 0.2, BP_R_LEG = 0.2, BP_L_LEG = 0.2))
-			cut_damage = rand(15, 25)
+			var/organ_damaged = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.2, BP_L_ARM = 0.2, BP_R_LEG = 0.2, BP_L_LEG = 0.2))
+			var/cut_damage = rand(15, 25)
 			occupant.apply_damage(cut_damage, BRUTE, organ_damaged)
 			playsound(src, 'sound/weapons/bladeslice.ogg', 50, 1)
 			if(meat < 1)
