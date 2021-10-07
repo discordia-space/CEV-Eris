@@ -165,7 +165,8 @@
 // Same as breath but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
 /mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
 	if(!(breath.total_moles))
-		adjustBruteLoss(6)
+		if (min_air_pressure)
+			adjustBruteLoss(6)
 		if(breath_required_type)
 			adjustOxyLoss(6)
 		bad_environment = TRUE

@@ -18,6 +18,8 @@
 	do_sparks(3, 0, src.loc)
 
 /mob/living/carbon/superior_animal/roach/bluespace/handle_ai()
+	if (!check_AI_act())
+		return
 	..()
 
 	var/turf/target

@@ -11,8 +11,9 @@
 				stop_automated_movement = 0
 
 /mob/living/carbon/superior_animal/roach/handle_ai()
-	if(!..())
-		return
+	if(!check_AI_act())
+		return FALSE
+	..()
 	if(stance == HOSTILE_STANCE_IDLE)
 		switch(busy)
 			if(0)
@@ -34,7 +35,7 @@
 					var/obj/effect/spider/eggcluster/tastyobstacle = locate(/obj/effect/spider/eggcluster) in get_turf(src)
 					if(tastyobstacle)
 						visible_message(SPAN_WARNING("[src] eats [tastyobstacle]."),"", SPAN_NOTICE("You hear something eating something."))
-						tastyobstacle.Destroy()
+						qdel(tastyobstacle)
 						fed += rand(3, 12) // this would otherwise pop out this many big spiders
 					else if(fed <= 0)
 						return
