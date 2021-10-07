@@ -275,10 +275,11 @@
 	for(var/turf/turf in locs)
 		for(var/atom/movable/AM in turf)
 			if(AM.blocks_airlock())
+				if(tryingToLock)
+					addtimer(CALLBACK(src, .proc/close), 30 SECONDS)
 				if(world.time > next_beep_at)
 					playsound(loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 					next_beep_at = world.time + SecondsToTicks(10)
-				close_door_at = world.time + 6
 				return
 			if(istool(AM))
 				var/obj/item/tool/T = AM
@@ -309,6 +310,8 @@
 			playsound(loc, open_sound_unpowered, 70, 1, -1)
 	else
 		playsound(loc, open_sound_powered, 70, 1, -2)
+
+	tryingToLock = FALSE
 
 	..()
 
