@@ -349,9 +349,13 @@
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
 					organ_rotten = TRUE
-				geneticpointgain = organ_rotten ? 1 : 3
-				chemgain = organ_rotten ? 4 : 10
-				taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
+				if(O.species != all_species[SPECIES_HUMAN])
+					chemgain = 5
+					taste_description = "this non-human organ is very bland." // no removal of hunger here, getting and storing a ton of monkey organs isn't too easy, and 5 chem points isn't terribly much.
+				else
+					geneticpointgain = organ_rotten ? 1 : 3
+					chemgain = organ_rotten ? 4 : 10
+					taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
 			else
 				geneticpointgain = 2
 				chemgain = 5
