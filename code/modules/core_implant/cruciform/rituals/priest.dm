@@ -402,10 +402,10 @@
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
-	var/designation = alert("What designation this disciple should have?", "Rite of Confirmation", "Acolyte", "Agrolyte", "Custodian")
+	var/designation = alert("Which designation should this disciple have?", "Rite of Confirmation", "Acolyte", "Agrolyte", "Custodian")
 	var/extra_phrase
 
 	if(designation == "Acolyte")
@@ -427,14 +427,14 @@
 /datum/ritual/cruciform/priest/adoption
 	name = "Adoption"
 	phrase = "Dervans semitas iustitiae et vias sanctorum custodiens"
-	desc = "Opens church doors for target desciple."
+	desc = "Opens church doors for target disciple."
 	power = 15
 
 /datum/ritual/cruciform/priest/adoption/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
 	CI.security_clearance = CLEARANCE_COMMON
@@ -443,14 +443,14 @@
 /datum/ritual/cruciform/priest/ordination
 	name = "Ordination"
 	phrase = "Gloriam sapientes possidebunt stultorum exaltatio ignominia"
-	desc = "Opens clergy doors for target desciple."
+	desc = "Opens clergy doors for target disciple."
 	power = 15
 
 /datum/ritual/cruciform/priest/ordination/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
 	CI.security_clearance = CLEARANCE_CLERGY
@@ -459,18 +459,18 @@
 /datum/ritual/cruciform/priest/omission
 	name = "Omission"
 	phrase = "Via impiorum tenebrosa nesciunt ubi corruant"
-	desc = "Removes all access from target desciple's cruciform."
+	desc = "Removes all access from target disciple's cruciform."
 	power = 30
 
 /datum/ritual/cruciform/priest/omission/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
 	if(CI.get_module(CRUCIFORM_INQUISITOR))
-		fail("You don't have the authority for this.", user, C)
+		fail("You don\'t have the authority for this.", user, C)
 		return FALSE
 
 	CI.security_clearance = CLEARANCE_NONE
@@ -479,14 +479,14 @@
 /datum/ritual/targeted/cruciform/priest/excommunication
 	name = "Excommunication"
 	phrase = "Excommunicatio \[Target human]!"
-	desc = "Strips target disciple of their rank and access. Shouldn't be used lightly."
+	desc = "Strips target disciple of their rank and access. Shouldn\'t be used lightly."
 	power = 60
 	cooldown = TRUE
 	cooldown_time = 5 MINUTE
 
 /datum/ritual/targeted/cruciform/priest/excommunication/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	if(!targets.len)
-		fail("Target not found.",user,C,targets)
+		fail("Target not found.", user, C, targets)
 		return FALSE
 
 	var/obj/item/implant/core_implant/cruciform/CI = targets[1]

@@ -1,3 +1,5 @@
+#define REPAIR_DOOR_AMOUNT 10
+
 /datum/ritual/cruciform/machines
 	name = "machines"
 	phrase = null
@@ -106,31 +108,32 @@
 	var/list/O = get_front(user)
 
 	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in O
+	var/obj/item/stack/material/biomatter/consumable
 
 	if(!door)
 		fail("You fail to find a compatible door here.", user, C)
 		return FALSE
 
 	if(door.health == door.maxhealth)
-		fail("This door doesn't need repair.", user, C)
+		fail("This door doesn\'t need repair.", user, C)
 		return FALSE
 
-	var/turf/target_turf = get_step(user,user.dir)
+	var/turf/target_turf = get_step(user, user.dir)
 	var/turf/user_turf = get_turf(user)
-	var/obj/item/stack/material/biomatter/consumable = locate(/obj/item/stack/material/biomatter) in target_turf.contents
 
-	if(!consumable)// Accept biomatter from user_turf too, in case if door broken with bolts down
-		consumable = locate(/obj/item/stack/material/biomatter) in user_turf.contents
+	for(var/obj/item/stack/material/biomatter/B in target_turf.contents)
+		if(B.amount >= REPAIR_DOOR_AMOUNT)
+			consumable = B
+			break
 
 	if(!consumable)
-		fail("Not biomatter found.", user, C)
-		return FALSE
-	
-	if(consumable.amount < 10)
-		fail("Not enough biomatter.", user, C)
-		return FALSE
-	else
-		consumable.use(10)
+		for(var/obj/item/stack/material/biomatter/B in user_turf.contents)
+			if(B.amount >= REPAIR_DOOR_AMOUNT)
+				consumable = B
+				break
+
+	if(consumable)
+		consumable.use(REPAIR_DOOR_AMOUNT)
 		var/obj/effect/overlay/nt_construction/effect = new(target_turf, 50)
 		sleep(50)
 		door.stat -= BROKEN
@@ -138,8 +141,10 @@
 		door.unlock()
 		door.close()
 		effect.success()
-
-	return TRUE
+		return TRUE
+	else
+		fail("Not enough biomatter found to repair the door, you need at least [REPAIR_DOOR_AMOUNT].", user, C)
+		return FALSE
 
 ////////////////////////BIOMATTER MANIPULATION MULTI MACHINES RITUALS
 
