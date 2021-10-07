@@ -87,6 +87,10 @@
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
+	if(istype(src.loc, /obj/item/storage))
+		to_chat(usr, SPAN_NOTICE("The stock on the [src] gets caught on the bag."))
+		return
+
 	fold()
 
 
@@ -159,6 +163,10 @@
 	. = ..()
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+		return
+
+	if(istype(src.loc, /obj/item/storage))
+		to_chat(usr, SPAN_NOTICE("The stock on the [src] gets caught on the bag."))
 		return
 
 	fold()

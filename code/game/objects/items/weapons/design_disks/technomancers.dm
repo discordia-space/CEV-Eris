@@ -20,7 +20,8 @@
 		/datum/design/autolathe/part/voice_analyzer,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/camera_assembly,
-		/datum/design/autolathe/part/laserguide
+		/datum/design/autolathe/part/laserguide,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/adv_tools
@@ -48,6 +49,8 @@
 		/datum/design/autolathe/tool/weldertool_adv,
 		/datum/design/autolathe/part/diamondblade,
 		/datum/design/autolathe/tool/rpd,
+		/datum/design/autolathe/container/hcase_engi,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/circuits
@@ -76,6 +79,7 @@
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
 		/datum/design/autolathe/circuit/industrialgrinder = 2,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/conveyors

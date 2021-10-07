@@ -108,3 +108,11 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_CARDBOARD),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
+
+/datum/craft_recipe/gun/ammo_kit	//Added under guns because it's for ammo
+	name = "Scrap ammo case"
+	result = /obj/item/storage/hcases/ammo/scrap
+	steps = list(
+		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20),
+	)

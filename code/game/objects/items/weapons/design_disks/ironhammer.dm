@@ -14,7 +14,8 @@
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/sec/hailer
+		/datum/design/autolathe/sec/hailer,
+		/datum/design/autolathe/container/ammocan_ih
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic

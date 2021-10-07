@@ -27,7 +27,8 @@
 		/datum/design/autolathe/tool/weldertool,
 		/datum/design/autolathe/tool/weldinggoggles,
 		/datum/design/autolathe/tool/weldermask,
-		/datum/design/autolathe/device/flamethrower
+		/datum/design/autolathe/device/flamethrower,
+		/datum/design/autolathe/container/hcase_engi
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/misc
@@ -61,7 +62,9 @@
 		/datum/design/autolathe/misc/tube,
 		/datum/design/autolathe/misc/bulb,
 		/datum/design/autolathe/device/floorpainter,
-		/datum/design/autolathe/device/mechpainter
+		/datum/design/autolathe/device/mechpainter,
+		/datum/design/autolathe/container/hcase_engi,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/devices

@@ -1505,7 +1505,8 @@
 					/obj/item/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/storage/ration_pack = 10,
-					/obj/item/clothing/mask/balaclava = 50
+					/obj/item/clothing/mask/balaclava = 50,
+					/obj/item/storage/hcases/ammo/serb = 10
 					)
 	prices = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
@@ -1519,7 +1520,8 @@
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
 					/obj/item/storage/ration_pack = 800,
-					/obj/item/clothing/mask/balaclava = 100
+					/obj/item/clothing/mask/balaclava = 100,
+					/obj/item/storage/hcases/ammo/serb = 300
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
@@ -1646,7 +1648,7 @@
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
-	
+
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
