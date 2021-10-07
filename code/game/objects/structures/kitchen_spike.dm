@@ -98,7 +98,7 @@
 			meat--
 			if(meat_type == user.species.meat_type)
 				user.sanity.changeLevel(-(15*((user.nutrition ? user.nutrition : 1)/user.max_nutrition))) // The more hungry the less sanity damage.
-				to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity shrivels as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+				to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity shrivel as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 		else
 			tearing = FALSE
 	
