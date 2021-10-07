@@ -1,5 +1,6 @@
 var/cop_code_expire
 var/cop_code_last
+var/cop_code_meaning
 
 /proc/get_cop_code()
 	var/cop_code_1 = pick("10", "20", "0", "13")
@@ -16,7 +17,7 @@ var/cop_code_last
 /mob/living/carbon/human/
 	var/codespeak_cooldown
 
-/mob/living/carbon/human/proc/codesay(var/message, var/state_location, var/say_localy)
+/mob/living/carbon/human/proc/codesay(message, state_location, say_localy)
 	var/prefix = get_prefix_key(/decl/prefix/radio_channel_selection)
 	if(world.time < src.codespeak_cooldown)
 		to_chat(src, "You can't do it so fast!")
@@ -24,14 +25,17 @@ var/cop_code_last
 		var/area/area = get_area(src)
 		var/location = initial(area.name) //No funny area renaming
 		var/preposition = pick("in", "at")
-		src.say("[prefix]s [message] [preposition] [location]@")
+		cop_code_meaning = "[message] [preposition] [location]"
+		say("[prefix]s" + get_cop_code())
 		codespeak_cooldown = world.time + 25
 	else
 		if(say_localy)
-			src.say("[message]@")
+			cop_code_meaning = message
+			say(get_cop_code())
 			codespeak_cooldown = world.time + 25
 		else
-			src.say("[prefix]s [message]@")
+			cop_code_meaning = message
+			say("[prefix]s" + get_cop_code())
 			codespeak_cooldown = world.time + 25
 
 /mob/living/carbon/human/proc/codespeak_help()
@@ -208,3 +212,38 @@ var/cop_code_last
 	set category = "Codespeak"
 	set name = "(local) Use rubbers"
 	src.codesay("Use non-lethal ammunition", FALSE, TRUE)
+
+var/codespeak_phrases = list(
+	"Need help",
+	"Need backups",
+	"No hostiles",
+	"Roaches",
+	"Fuhrer roach",
+	"Armed assailant",
+	"Serbian mercs",
+	"Excelsior infiltrators",
+	"Carrion presence",
+	"Unsanctioned organism",
+	"Crewmember flatlined",
+	"Crewmember wounded",
+	"Operative down",
+	"Operative needs medical help",
+	"Breaking and entering",
+	"Located the suspect",
+	"What's the status?",
+	"Unnecessary use of radio",
+	"Affirmative",
+	"Positive",
+	"Negative",
+	"Clarify?",
+	"Suspect in custody",
+	"Suspect escaped",
+	"Engage?",
+	"Hold this position",
+	"Follow me",
+	"Stop!",
+	"Proposing a tactical retreat",
+	"Friendly fire",
+	"Use lethal ammunition, shoot to kill",
+	"Use non-lethal ammunition"
+	)
