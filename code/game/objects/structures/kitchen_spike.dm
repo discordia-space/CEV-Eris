@@ -7,7 +7,7 @@
 	desc = "A spike for collecting meat from animals."
 	density = TRUE
 	anchored = TRUE
-	var/mob/living/occupant = null
+	var/mob/living/occupant
 	var/meat = 0
 	var/occupied = FALSE
 	var/meat_type
@@ -90,12 +90,12 @@
 			if(meat < 1)
 				to_chat(user, "There is no more meat on \the [victim_name].")
 				return
-			meat--
 			new meat_type(get_turf(src))
 			if(meat > 1)
 				to_chat(user, "You remove some meat from \the [victim_name].")
 			else if(meat == 1)
 				to_chat(user, "You remove the last piece of meat from \the [victim_name]!")
+			meat--
 			if(meat_type == user.species.meat_type)
 				user.sanity.changeLevel(-(15*((user.nutrition ? user.nutrition : 1)/user.max_nutrition))) // The more hungry the less sanity damage.
 				to_chat(user, SPAN_NOTICE("You feel your [user.species.name]ity shrivels as you cut a slab off \the [src]")) // Human-ity , Monkey-ity , Slime-Ity
