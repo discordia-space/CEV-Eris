@@ -65,6 +65,8 @@
 		/obj/item/organ/internal/carrion/core/proc/spider_menu
 	)
 
+	var/list/associated_carrion_organs = list()
+
 /obj/item/organ/internal/carrion/core/Destroy()
 	owner = null //overrides removed() call
 	. = ..()
@@ -264,6 +266,11 @@
 	owner.update_icons()
 	to_chat(owner, SPAN_NOTICE("You have regenerated."))
 
+/obj/item/organ/internal/carrion/core/proc/add_to_associated_organs(obj/item/organ/internal/carrion/I)
+	if(istype(I))
+		associated_carrion_organs += I
+	return
+
 /obj/item/organ/internal/carrion/maw
 	name = "carrion maw"
 	parent_organ_base = BP_HEAD
@@ -346,10 +353,14 @@
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
 			else if(istype(O, /obj/item/organ/internal/carrion))
-				owner.carrion_hunger += 3
-				geneticpointgain = 4
-				chemgain = 50
-				taste_description = "carrion organs taste heavenly, you need more!"
+				var/obj/item/organ/internal/carrion/core/G = owner.random_organ_by_process(BP_SPCORE)
+				if(O in G.associated_carrion_organs)
+					taste_description = "albeit delicious, your own organs carry no new genetic material"
+				else
+					owner.carrion_hunger += 3
+					geneticpointgain = 4
+					chemgain = 50
+					taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
