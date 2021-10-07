@@ -212,38 +212,3 @@ var/cop_code_meaning
 	set category = "Codespeak"
 	set name = "(local) Use rubbers"
 	src.codesay("Use non-lethal ammunition", FALSE, TRUE)
-
-var/codespeak_phrases = list(
-	"Need help",
-	"Need backups",
-	"No hostiles",
-	"Roaches",
-	"Fuhrer roach",
-	"Armed assailant",
-	"Serbian mercs",
-	"Excelsior infiltrators",
-	"Carrion presence",
-	"Unsanctioned organism",
-	"Crewmember flatlined",
-	"Crewmember wounded",
-	"Operative down",
-	"Operative needs medical help",
-	"Breaking and entering",
-	"Located the suspect",
-	"What's the status?",
-	"Unnecessary use of radio",
-	"Affirmative",
-	"Positive",
-	"Negative",
-	"Clarify?",
-	"Suspect in custody",
-	"Suspect escaped",
-	"Engage?",
-	"Hold this position",
-	"Follow me",
-	"Stop!",
-	"Proposing a tactical retreat",
-	"Friendly fire",
-	"Use lethal ammunition, shoot to kill",
-	"Use non-lethal ammunition"
-	)
