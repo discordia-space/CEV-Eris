@@ -9,7 +9,7 @@
 	anchored = TRUE
 	var/mob/living/occupant = null
 	var/meat = 0
-	var/occupied = 0
+	var/occupied = FALSE
 	var/meat_type
 	var/victim_name = "corpse"
 	var/tearing
