@@ -49033,11 +49033,6 @@
 /obj/machinery/camera/network/research{
 	dir = 8
 	},
-/obj/item/storage/toolbox/mechanical,
-/obj/structure/table/reinforced,
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
-/obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/mixing)
 "cnj" = (
@@ -101423,12 +101418,8 @@
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "fPb" = (
-/obj/structure/table/rack,
-/obj/item/device/von_krabin,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Von-Krabin"
-	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "fRY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -101515,13 +101506,16 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "gey" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_research{
-	name = "Von-Krabin Stimulator";
-	req_access = list(5)
+/obj/machinery/camera/network/research{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/lab)
+/obj/item/storage/toolbox/mechanical,
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/clothing/head/welding,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/rnd/mixing)
 "gjm" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -102048,9 +102042,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "igC" = (
-/obj/structure/table/reinforced,
+/obj/structure/table/rack,
+/obj/item/device/von_krabin,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Von-Krabin"
+	},
 /turf/simulated/floor/tiled/white/gray_platform,
-/area/eris/rnd/lab)
+/area/eris/rnd/mixing)
 "ihk" = (
 /obj/machinery/vending/printomat,
 /turf/simulated/floor/tiled/steel,
@@ -102837,11 +102835,6 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
-"lqb" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/eris/rnd/lab)
 "lsO" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104297,15 +104290,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
-"riL" = (
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "Von-Krabin";
-	name = "Von-Krabin Stimulator id lock";
-	pixel_x = -28;
-	req_access = list(5)
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/lab)
 "rjC" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_y = 32
@@ -104684,11 +104668,6 @@
 	},
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
-"swP" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/lab)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -209950,9 +209929,9 @@ clF
 crb
 mUP
 mUP
-bhb
-lqb
-lqb
+fPb
+clF
+clF
 cmG
 ctQ
 cuD
@@ -210152,9 +210131,9 @@ clF
 crb
 mUP
 mUP
-swP
-igC
-fPb
+bvu
+clF
+clF
 cmG
 ctR
 cuE
@@ -210354,9 +210333,9 @@ clF
 crb
 mUP
 mUP
-gey
-riL
-mUP
+bvu
+clF
+clF
 cmG
 xTZ
 crx
@@ -210557,8 +210536,8 @@ cog
 ciE
 ciE
 cid
-bfY
-bfY
+chr
+chr
 cto
 ctT
 cuG
@@ -210962,7 +210941,7 @@ cpg
 cqe
 crd
 crP
-crQ
+gey
 cto
 crt
 cuI
@@ -211164,7 +211143,7 @@ cph
 cqf
 cre
 crQ
-crQ
+igC
 cto
 cto
 cnI
