@@ -59,10 +59,11 @@
 
 /obj/item/shield/proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
 	//shield direction
+
 	var/shield_dir = 0
-	if(user.l_hand == src)
+	if(user.get_equipped_item(slot_l_hand) == src)
 		shield_dir = turn(user.dir,90)
-	else if(user.r_hand == src)
+	else if(user.get_equipped_item(slot_r_hand) == src)
 		shield_dir = turn(user.dir,-90)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
@@ -75,11 +76,17 @@
 		attack_dir = get_dir(get_turf(user), get_turf(damage_source))
 
 	//blocked directions
+	if(user.get_equipped_item(slot_back) == src)
+		if(attack_dir & bad_arc && attack_dir)
+			return TRUE
+		else
+			return FALSE
+	
+
 	if(wielded && !(attack_dir && (attack_dir & bad_arc)))
 		return TRUE
 	else if(!(attack_dir == bad_arc) && !(attack_dir == reverse_direction(shield_dir)) && !(attack_dir == (bad_arc | reverse_direction(shield_dir))))
 		return TRUE
-	visible_message("[attack_dir] attack_dir [shield_dir] shield_dir [bad_arc] bad_arc [attack_dir == bad_arc] attack_dir == bad_arc [attack_dir == reverse_direction(shield_dir)] attack_dir == reverse_direction(shield_dir) [bad_arc | reverse_direction(shield_dir)] bad_arc | reverse_direction(shield_dir)")
 	return FALSE
 
 /obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
@@ -131,18 +138,22 @@
 
 /obj/item/shield/riot/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
+	
+	if(user.get_equipped_item(slot_back) == src)
+		return p_area
+	
 	if(MOVING_QUICKLY(user))
-		if(user.l_hand == src)
+		if(user.get_equipped_item(slot_l_hand) == src)
 			p_area = list(BP_L_ARM)
-		else if(user.r_hand == src)
+		else if(user.get_equipped_item(slot_r_hand) == src)
 			p_area = list(BP_R_ARM)
-	else if(MOVING_DELIBERATELY(user))
-		if(wielded)
-			p_area = BP_ALL_LIMBS
-		else if(user.l_hand == src)
-			p_area.Add(BP_L_ARM)
-		else if(user.r_hand == src)
-			p_area.Add(BP_R_ARM)
+	else if(MOVING_DELIBERATELY(user) && wielded)
+		p_area = BP_ALL_LIMBS
+	
+	if(user.get_equipped_item(slot_l_hand) == src)
+		p_area.Add(BP_L_ARM)
+	else if(user.get_equipped_item(slot_r_hand) == src)
+		p_area.Add(BP_R_ARM)
 	return p_area
 
 /obj/item/shield/riot/New()
