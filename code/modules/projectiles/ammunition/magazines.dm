@@ -598,29 +598,39 @@
 
 /obj/item/ammo_magazine/m12
 	name = "ammo drum (.50 slug)"
-	icon_state = "m12_slug"
+	icon_state = "m12_hv"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)
-	multiple_sprites = 1
 	max_ammo = 8
-	ammo_color = "-slug"
+	ammo_color = "-hv"
+
+/obj/item/ammo_magazine/m12/on_update_icon()
+	cut_overlays()
+	if(stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1] //look at next casing.
+		overlays += "m12_shell_[AC.shell_color]" //look and display the overlay for the ammo
+
+/obj/item/ammo_magazine/m12/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (.50 pellet)"
-	icon_state = "m12_pellets"
+	icon_state = "m12_l"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
-	ammo_color = "-pellets"
+	ammo_color = "-l"
 
 /obj/item/ammo_magazine/m12/beanbag
 	name = "ammo drum (.50 beanbag)"
-	icon_state = "m12_beanbag"
+	icon_state = "m12_r"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	ammo_color = "-beanbag"
+	ammo_color = "-r"
 
 /obj/item/ammo_magazine/m12/empty
 	name = "ammo drum (.50)"
 	icon_state = "m12"
+	ammo_color = ""
 	initial_ammo = 0

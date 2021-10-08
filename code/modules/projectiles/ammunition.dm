@@ -23,6 +23,8 @@
 	var/sprite_scale = 1
 	var/sprite_use_small = TRUE 		//A var for a later global option to use all big sprites or small sprites for bullets, must be used before startup
 
+	var/shell_color = ""
+
 /obj/item/ammo_casing/Initialize()
 	. = ..()
 	if(sprite_update_spawn)
@@ -76,7 +78,7 @@
 				new_casing.transform = rotation_matrix
 
 		new_casing.is_caseless = src.is_caseless
-
+		new_casing.shell_color = src.shell_color
 
 		new_casing.update_icon()
 		src.update_icon()
@@ -270,7 +272,7 @@
 			else
 				gun_to_load.load_ammo(src, user)
 			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
-			visible_message("[user] tactically reloads [W] using only one hand!")	
+			visible_message("[user] tactically reloads [W] using only one hand!")
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
@@ -346,6 +348,7 @@
 				inserted_casing.transform = rotation_matrix
 
 		inserted_casing.is_caseless = C.is_caseless
+		inserted_casing.shell_color = C.shell_color
 
 		C.update_icon()
 		inserted_casing.update_icon()
