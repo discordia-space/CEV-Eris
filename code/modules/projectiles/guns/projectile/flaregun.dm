@@ -61,7 +61,7 @@
 
 /obj/item/gun/projectile/flare_gun/load_ammo(var/obj/item/A, mob/user)
 	if(broken)
-		to_chat(user, SPAN_WARNING("You can't load a broken barrel!"))
+		to_chat(user, SPAN_WARNING("You can\'t load a broken barrel!"))
 		return
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
