@@ -1211,6 +1211,7 @@ var/list/rank_prefix = list(\
 			if(mind)
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+				C.security_clearance = mind.assigned_job.security_clearance
 
 	else
 		var/organ_type
@@ -1241,6 +1242,7 @@ var/list/rank_prefix = list(\
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+				C.security_clearance = mind.assigned_job.security_clearance
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
 		C.replaced(get_organ(C.parent_organ_base))
@@ -1257,6 +1259,7 @@ var/list/rank_prefix = list(\
 		C.activate()
 		C.install_default_modules_by_job(mind.assigned_job)
 		C.access |= mind.assigned_job.cruciform_access
+		C.security_clearance = mind.assigned_job.security_clearance
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
