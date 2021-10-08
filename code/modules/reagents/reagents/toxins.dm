@@ -465,7 +465,7 @@
 /datum/reagent/toxin/pararein
 	name = "Pararein"
 	id = "pararein"
-	description = "Venom used by spiders. Infamous for influencing the central nervous system in many ways."
+	description = "Venom used by spiders. Infamous for it's influence of the nervous system."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#a37d9c"
@@ -507,16 +507,6 @@
 			var/datum/reagent/toxin/pararein/R = current
 			if(istype(R))
 				R.metabolism = initial(R.metabolism) * 3
-
-/datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	..()
-	M.add_chemical_effect(CE_ANTITOX, 0.3)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-				break
 
 /datum/reagent/toxin/aranecolmin/on_mob_delete(mob/living/carbon/M)
 	..()
