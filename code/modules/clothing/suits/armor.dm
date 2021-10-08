@@ -237,7 +237,7 @@
 	price_tag = 400
 	matter = list(
 		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
-		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
+		MATERIAL_PLASTEEL = 3 // costs lots more plasteel than standard vest
 	)
 
 
