@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/attachable_lenses
-	name = "Thermal lenses"
-	desc = "lenses for glasses, you can see red people through walls with them."
+	name = "thermal lenses"
+	desc = "Lenses for glasses, you can see red people through walls with them."
 	icon_state = "thermal_lens"
 	body_parts_covered = FALSE
 	slot_flags = FALSE
@@ -56,9 +56,13 @@
 	inserter.drop_item(src)
 	forceMove(target)
 
+
+/*
+ Good example of how to make a subtype of googles that handles everything.
+
 /obj/item/clothing/glasses/attachable_lenses/explosive
-	name = "Explosive lenses"
-	desc = "lenses for glasses, these ones explode when someone wears goggles containing them. Awful."
+	name = "explosive lenses"
+	desc = "Lenses for glasses, these ones explode when someone wears goggles containing them. Awful."
 	icon_state = "thermal_lens"
 	vision_flags = FALSE
 	flash_protection = FALSE
@@ -97,6 +101,8 @@
 /obj/item/clothing/glasses/attachable_lenses/explosive/proc/handle_removal(mob/living/carbon/human/remover, obj/item/clothing/glasses/holder)
 	UnregisterSignal(holder, COMSIG_CLOTH_EQUIPPED)
 	UnregisterSignal(holder, COMSIG_GLASS_LENSES_REMOVED)
+
+*/
 
 
 
