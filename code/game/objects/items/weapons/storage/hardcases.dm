@@ -18,16 +18,23 @@
 	var/sticker = null
 	var/closed = TRUE
 
-/obj/item/storage/hcases/verb/apply_sticker()
+/obj/item/storage/hcases/proc/can_interact(mob/user)
+	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
+		return 1
+	if(istype(loc, /obj/item/storage))
+		return 2
+	return 0
+
+/obj/item/storage/hcases/verb/apply_sticker(mob/user)
 	set name = "Apply Sticker"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)
 		return
-	sticker(usr)
+	sticker(user)
 
-/obj/item/storage/hcases/proc/sticker(usr)
+/obj/item/storage/hcases/proc/sticker(user)
 	var/list/options = list()
 	options["Orange"] = "[sticker_name]_sticker_o"
 	options["Blue"] = "[sticker_name]_sticker_b"
@@ -50,53 +57,52 @@
 
 /obj/item/storage/hcases/open(mob/user)
 	if(closed)
-		to_chat(usr, SPAN_NOTICE("The lid is closed."))
+		to_chat(user, SPAN_NOTICE("The lid is closed."))
 		return
-//		if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained()) //removed because it doesn't play nicely with bags
-//			return
-//		open_close(usr)
 
 	. = ..()
 
-/obj/item/storage/hcases/verb/quick_open_close()
+/obj/item/storage/hcases/verb/quick_open_close(mob/user)
 	set name = "Close Lid"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
 		return
 
-	open_close(usr)
+	open_close(user)
 
 /obj/item/storage/hcases/AltClick(mob/user)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	var/able = can_interact(user)
+
+	if(able == 1)
 		return
 
-	if(istype(src.loc, /obj/item/storage))
-		to_chat(usr, SPAN_NOTICE("The lid on the [src] gets caught on the bag."))
+	if(able == 2)
+		to_chat(user, SPAN_NOTICE("The lid on the [src] gets caught on the bag."))
 		return
 
-	open_close(usr)
+	open_close(user)
 
-/obj/item/storage/hcases/proc/open_close(usr)
+/obj/item/storage/hcases/proc/open_close(user)
 	close_all()
 	if(closed)
-		to_chat(usr, SPAN_NOTICE("You open the lid on the [src]."))
+		to_chat(user, SPAN_NOTICE("You open the lid on the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		closed = FALSE
 	else
-		to_chat(usr, SPAN_NOTICE("You close the lid on the [src]."))
+		to_chat(user, SPAN_NOTICE("You close the lid on the [src]."))
 		w_class = ITEM_SIZE_NORMAL
 		closed = TRUE
 
-	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 
 obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	if(closed)
-		to_chat(usr, SPAN_NOTICE("You try but the lid is closed."))
+		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed"))
 		return
 	. = ..()
 
