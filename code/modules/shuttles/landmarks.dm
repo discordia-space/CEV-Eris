@@ -74,6 +74,10 @@
 			return TRUE //dense turf
 	return FALSE
 
+// Generic function that is called when a shuttle starts traveling to a shuttle landmark
+/obj/effect/shuttle_landmark/proc/trigger_landmark()
+	return TRUE
+
 //Self-naming/numbering ones.
 /obj/effect/shuttle_landmark/automatic
 	name = "Navpoint"

@@ -11,6 +11,7 @@
 #define CAL_CAP "plastic cap"
 #define CAL_ROCKET "rocket propelled grenade"
 #define CAL_DART "chemical dart"
+#define CAL_FLARE "flare shell"
 #define CAL_GRENADE "grenade"
 
 //Gun loading types

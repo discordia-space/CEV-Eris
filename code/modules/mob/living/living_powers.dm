@@ -28,22 +28,17 @@
 
 /mob/living/proc/check_surrounding_area(var/dist = 7)
 
-	//Neutral and station AI mobs should always be on
 	if(faction == "neutral")
 		return TRUE
-
-	if(faction == "station")
-		return TRUE
-
-	if(faction == "CEV Eris")
-		return TRUE
-
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
 			return TRUE
 
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
-		if((M.stat != DEAD) && (M.faction != faction) && (get_dist(src, M) <= dist))
-			return TRUE
+		if(!(M.stat < DEAD))
+			continue
+		if(M.faction != faction)
+			if(get_dist(src, M) <= dist)
+				return TRUE
 
 	return FALSE
