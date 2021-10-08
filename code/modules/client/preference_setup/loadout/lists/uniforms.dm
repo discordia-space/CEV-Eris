@@ -68,7 +68,7 @@
 /datum/gear/uniform/dress/New()
 	..()
 	var/dress = list(
-		"Gray Dress"			=	/obj/item/clothing/under/dress,
+		"Gray Dress"			=	/obj/item/clothing/under/dress/gray,
 		"Blue Dress"			=	/obj/item/clothing/under/dress/blue,
 		"Red Dress"				=	/obj/item/clothing/under/dress/red
 	)

@@ -26405,7 +26405,7 @@
 "bkL" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "bkM" = (
 /obj/structure/table/standard,
@@ -47261,7 +47261,7 @@
 	name = "Toxins Lab";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/mixing)
 "ciF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -48060,7 +48060,7 @@
 "ckH" = (
 /obj/structure/table/reinforced,
 /obj/item/device/radio,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "ckI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -48129,13 +48129,8 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/research)
 "ckP" = (
-/obj/item/storage/toolbox/mechanical,
-/obj/structure/table/reinforced,
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
-/obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/white/gray_platform,
-/area/eris/rnd/mixing)
+/area/eris/rnd/lab)
 "ckQ" = (
 /obj/structure/cyberplant,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -48151,14 +48146,6 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
-"ckR" = (
-/obj/structure/table/rack,
-/obj/item/device/von_krabin,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Von-Krabin"
-	},
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/eris/rnd/mixing)
 "ckS" = (
 /obj/item/device/radio,
 /obj/item/device/radio,
@@ -48848,7 +48835,11 @@
 /area/eris/engineering/engine_room)
 "cmG" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular/open{
+	id = "MEOPrivacyShutters";
+	name = "MEO Privacy Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/eris/command/meo)
 "cmH" = (
@@ -48900,10 +48891,6 @@
 /area/eris/rnd/mixing)
 "cmO" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_command{
-	name = "Moebius Expedition Overseer";
-	req_access = list(30)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -48911,6 +48898,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/command{
+	name = "Moebius Expedition Overseer";
+	req_access = list(30)
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/command/meo)
 "cmP" = (
@@ -49042,6 +49033,11 @@
 /obj/machinery/camera/network/research{
 	dir = 8
 	},
+/obj/item/storage/toolbox/mechanical,
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/mixing)
 "cnj" = (
@@ -50525,16 +50521,10 @@
 /obj/structure/sign/department/sci,
 /turf/simulated/wall/r_wall,
 /area/eris/rnd/lab)
-"cra" = (
-/obj/structure/lattice,
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/lab)
 "crb" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "crc" = (
 /obj/structure/disposalpipe/up{
@@ -101432,6 +101422,14 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
+"fPb" = (
+/obj/structure/table/rack,
+/obj/item/device/von_krabin,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Von-Krabin"
+	},
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/rnd/lab)
 "fRY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -101516,6 +101514,14 @@
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"gey" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_research{
+	name = "Von-Krabin Stimulator";
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/rnd/lab)
 "gjm" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -102041,6 +102047,10 @@
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
+"igC" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/rnd/lab)
 "ihk" = (
 /obj/machinery/vending/printomat,
 /turf/simulated/floor/tiled/steel,
@@ -102827,6 +102837,11 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"lqb" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/eris/rnd/lab)
 "lsO" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104183,6 +104198,12 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"qOs" = (
+/obj/structure/lattice,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/eris/rnd/lab)
 "qOT" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -104276,6 +104297,15 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"riL" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Von-Krabin";
+	name = "Von-Krabin Stimulator id lock";
+	pixel_x = -28;
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/rnd/lab)
 "rjC" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_y = 32
@@ -104654,6 +104684,11 @@
 	},
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
+"swP" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/tiled/steel,
+/area/eris/rnd/lab)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -106071,6 +106106,15 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
+"xTZ" = (
+/obj/structure/table/standard,
+/obj/machinery/button/remote/blast_door{
+	desc = "It controls the blast door to the main RND entrance.";
+	id = "MEOPrivacyShutters";
+	name = "MEO Privacy Shutters"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/eris/command/meo)
 "xUk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -209095,10 +209139,10 @@ cfP
 cjr
 ckH
 bkL
+ckP
 crN
 crN
-crN
-crN
+ckP
 bkL
 ckH
 bhb
@@ -209701,10 +209745,10 @@ bgk
 cjr
 bjE
 cmB
-cra
+qOs
 mUP
 mUP
-cra
+qOs
 cmB
 fbK
 bhb
@@ -209906,9 +209950,9 @@ clF
 crb
 mUP
 mUP
-crb
-clF
-clF
+bhb
+lqb
+lqb
 cmG
 ctQ
 cuD
@@ -210108,9 +210152,9 @@ clF
 crb
 mUP
 mUP
-crb
-clF
-clF
+swP
+igC
+fPb
 cmG
 ctR
 cuE
@@ -210310,11 +210354,11 @@ clF
 crb
 mUP
 mUP
-crb
-clF
-clF
+gey
+riL
+mUP
 cmG
-cvj
+xTZ
 crx
 cDW
 cvj
@@ -210513,8 +210557,8 @@ cog
 ciE
 ciE
 cid
-chr
-chr
+bfY
+bfY
 cto
 ctT
 cuG
@@ -210918,7 +210962,7 @@ cpg
 cqe
 crd
 crP
-ckP
+crQ
 cto
 crt
 cuI
@@ -211120,7 +211164,7 @@ cph
 cqf
 cre
 crQ
-ckR
+crQ
 cto
 cto
 cnI

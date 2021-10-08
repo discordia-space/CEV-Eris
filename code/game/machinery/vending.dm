@@ -1629,7 +1629,7 @@
 		/obj/item/clothing/under/green = 4,
 		/obj/item/clothing/under/grey = 4,
 		/obj/item/clothing/under/black = 4,
-		/obj/item/clothing/under/dress = 4,
+		/obj/item/clothing/under/dress/purple = 4,
 		/obj/item/clothing/under/dress/white = 4,
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
@@ -1654,7 +1654,7 @@
 		/obj/item/clothing/under/green = 600,
 		/obj/item/clothing/under/grey = 600,
 		/obj/item/clothing/under/black = 600,
-		/obj/item/clothing/under/dress = 600,
+		/obj/item/clothing/under/dress/purple = 600,
 		/obj/item/clothing/under/dress/white = 600,
 		/obj/item/clothing/under/helltaker = 600,
 		/obj/item/clothing/under/johnny = 750,
@@ -1666,7 +1666,7 @@
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
-	
+
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
