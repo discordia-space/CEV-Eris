@@ -4,7 +4,7 @@
 	if(!client)
 		return
 
-	if(message == cop_code_last)
+	if(message == get_cop_code())
 		language = null
 		if(isghost(src))
 			message = "[message] ([cop_code_meaning])"
@@ -66,7 +66,7 @@
 	if(!client)
 		return
 
-	if(findtext(message, cop_code_last))
+	if(findtext(message, get_cop_code()))
 		message = cop_code_last
 		language = null
 		if(isghost(src))
