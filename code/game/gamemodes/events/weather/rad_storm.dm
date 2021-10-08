@@ -20,6 +20,7 @@
 	protected_areas = list(/area/outpost/abandoned_fortress, /area/outpost/abandoned, /area/mine/unexplored, /area/mine/explored, /area/eris/crew_quarters/sleep, /area/asteroid/rogue, /area/shuttle/mining, /area/deepmaint, /area/shuttle/escape, /area/shuttle/escape_pod1, /area/shuttle/escape_pod2, /area/shuttle/escape_pod3, \
 	/area/shuttle/escape_pod5, /area/shuttle/specops/centcom, /area/shuttle/mercenary, /area/shuttle/administration, /area/eris/maintenance, \
 	/area/eris/crew_quarters/sleep/cryo, /area/eris/security/disposal, /area/eris/security/maintpost, /area/eris/rnd/anomalisolone, \
-	/area/eris/rnd/anomalisoltwo, /area/eris/rnd/anomalisolthree, /area/eris/rnd/server)
+	/area/eris/rnd/anomalisoltwo, /area/eris/rnd/anomalisolthree, /area/eris/rnd/server, \
+	/area/outpost/blacksite/small, /area/outpost/blacksite/medium, /area/outpost/blacksite/large)
 
 	immunity_type = "rad"
