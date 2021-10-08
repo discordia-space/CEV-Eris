@@ -383,7 +383,9 @@
 					var/obj/item/implant/device = I
 					other_wounds += "[device.get_scanner_name()] implanted"
 				else
-					unknown_body = TRUE
+					var/obj/item/implant/device = I
+					if(!device.scanner_hidden)
+						unknown_body = TRUE
 			if(unknown_body)
 				other_wounds += "Unknown body present"
 		if (e.is_stump() || e.burn_dam || e.brute_dam || other_wounds.len)

@@ -3,12 +3,6 @@
 	if (silent)
 		return
 
-	var/last_symbol = copytext(message, length(message))
-	if(last_symbol=="@")
-		if(!src.stats.getPerk(/datum/perk/codespeak))
-			to_chat(src, "You don't know the codes, pal.")
-			return FALSE
-
 	message = sanitize(message)
 
 	if(!(container && istype(container, /obj/item/device/mmi)))
@@ -26,8 +20,6 @@
 				verb=pick("exclaims","shouts","yells")
 			else if(ending=="?")
 				verb="asks"
-			else if(ending=="@")
-				verb="reports"
 
 		if(prob(emp_damage*4))
 			if(prob(10))//10% chane to drop the message entirely

@@ -15,7 +15,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Commander")
 	l_ear = /obj/item/device/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/ih_commander
-	suit = /obj/item/clothing/suit/armor/greatcoat/ironhammer
+	suit = /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	l_pocket = /obj/item/device/flash
 	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical

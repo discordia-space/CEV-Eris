@@ -1,0 +1,15 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Mech related runtime
+  - balance: Leg turn rate drastically lowered on all mech legs
+  - balance: Leg move delay lowered on all mech legs
+  - balance: Mech carbine buffed to use less power , fire in 3 shot bursts and be
+      slightly innacurate
+  - balance: Ion carbine modified to use less power
+  - balance: Laser carbine modified to use less power , fires in 2 shot bursts
+  - balance: Made combat exosuit legs more expensive by adding plasma and diamond
+      to their recipe.
+  - code_imp: Redone how premade mechs are handled and their air
+  - balance: Made the mounted PK use 5 bullets per burst instead of 15 , move delay
+      adjusted from 15 to 5.

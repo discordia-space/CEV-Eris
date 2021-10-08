@@ -170,7 +170,7 @@
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 9
+	storage_slots = 6
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 

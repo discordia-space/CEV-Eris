@@ -50,11 +50,6 @@
 	var/alt_name = ""
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
-	var/last_symbol = copytext(message, length(message))
-	if(last_symbol=="@")
-		if(!src.stats.getPerk(/datum/perk/codespeak))
-			to_chat(src, "You don't know the codes, pal.")
-			return FALSE
 
 	message = sanitize(message)
 	. = ..(message, alt_name = alt_name)
@@ -180,8 +175,6 @@
 			verb=pick("exclaims", "shouts", "yells")
 		else if(ending == "?")
 			verb="asks"
-		else if(ending=="@")
-			verb="reports"
 
 	return verb
 

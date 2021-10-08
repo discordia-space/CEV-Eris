@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: PK munitions box are now normal sized
+  - balance: Ammo pouches can now only fit 6 mags instead of 9
+  - bugfix: Some style mistake in AI code
