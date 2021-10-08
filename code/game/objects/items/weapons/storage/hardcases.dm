@@ -44,7 +44,7 @@
 	options["IH Blue"] = "[sticker_name]_sticker_ih"
 
 
-	var/choice = input(usr,"What color do you want?") as null|anything in options
+	var/choice = input(user,"What color do you want?") as null|anything in options
 
 	sticker = options[choice]
 	update_icon()
