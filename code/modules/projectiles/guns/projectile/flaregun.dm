@@ -75,7 +75,7 @@
 
 /obj/item/gun/projectile/flare_gun/proc/break_gun(mob/user)
 	broken = TRUE
-	to_chat(user, SPAN_DANGER("The [src]'s barrel shatters!"))
+	to_chat(user, SPAN_DANGER("The [src]\'s barrel shatters!"))
 	SetIconState("flaregun_broken")
 
 /obj/item/gun/projectile/flare_gun/shotgun
