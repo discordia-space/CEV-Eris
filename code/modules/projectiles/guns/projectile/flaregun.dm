@@ -41,7 +41,7 @@
 /obj/item/gun/projectile/flare_gun/proc/bolt_act(mob/living/user)
 	bolt_open = !bolt_open
 	if(broken)
-		to_chat(user, SPAN_WARNING("You can't open a broken barrel"))
+		to_chat(user, SPAN_WARNING("You can\'t open a broken barrel"))
 	if(bolt_open)
 		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
