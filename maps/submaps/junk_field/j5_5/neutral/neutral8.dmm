@@ -7,18 +7,18 @@
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "c" = (
 /obj/spawner/scrap/beacon/dense,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "d" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
 "e" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "f" = (
 /obj/structure/railing{
@@ -26,14 +26,14 @@
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/structure/railing,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/structure/railing,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "h" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "i" = (
 /obj/structure/catwalk,
@@ -42,7 +42,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "j" = (
 /obj/structure/catwalk,
@@ -52,7 +52,7 @@
 	icon_state = "4-8"
 	},
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "k" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -64,7 +64,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/simulated/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "l" = (
 /obj/structure/catwalk,
@@ -74,7 +74,7 @@
 	icon_state = "2-8"
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "m" = (
 /obj/structure/catwalk,
@@ -86,7 +86,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "n" = (
 /obj/structure/lattice,
@@ -94,7 +94,7 @@
 /area/template_noop)
 "o" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 
 (1,1,1) = {"

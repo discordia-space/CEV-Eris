@@ -1,0 +1,3622 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/machinery/computer/arcade,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"aA" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/item/handcuffs,
+/obj/item/melee/baton,
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"aK" = (
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"aO" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"aS" = (
+/obj/machinery/electrolyzer,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"bt" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/stamp/chameleon,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"bu" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/tool/knife/butch,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"bw" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"bD" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"bE" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/phone,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"bH" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/medium,
+/obj/spawner/powercell/small,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"bJ" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"bN" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"bV" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"bX" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder/portable,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"bY" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"ca" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/normal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ci" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/blacksite/medium)
+"cr" = (
+/obj/machinery/door/airlock/centcom{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"cA" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/onestar,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"cW" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"da" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"dk" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"dp" = (
+/obj/structure/table/onestar,
+/obj/spawner/soda,
+/obj/spawner/soda,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"ds" = (
+/obj/structure/table/bar_special,
+/obj/machinery/chemical_dispenser/soda,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"dA" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/spawner/soda,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"dK" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"dM" = (
+/turf/simulated/floor/reinforced,
+/area/outpost/blacksite/medium)
+"dS" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"dT" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"dZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/blacksite/medium)
+"et" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"eN" = (
+/obj/structure/table/onestar,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"eO" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/outpost/blacksite/medium)
+"eQ" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"eS" = (
+/obj/machinery/slotmachine,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"fg" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/blacksite/medium)
+"fh" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"fn" = (
+/obj/machinery/computer/operating{
+	name = "Xenobiology Operating Computer"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"fr" = (
+/obj/structure/table/rack,
+/obj/spawner/tank,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"fw" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"fx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"fD" = (
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"fU" = (
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"fV" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"gb" = (
+/obj/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"gk" = (
+/obj/structure/table/bar_special,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"gz" = (
+/obj/structure/table/onestar,
+/obj/item/folder/red,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"gB" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"gC" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"gE" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"gV" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"gW" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/spawner/medical_lowcost/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"gX" = (
+/obj/structure/closet/onestar/tier2/normal,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"hi" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/template_noop,
+/area/template_noop)
+"ho" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"hq" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"hy" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"hF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"hN" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sink{
+	pixel_y = -13
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_y = -30
+	},
+/obj/spawner/medical_lowcost/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"hS" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"hX" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"if" = (
+/obj/structure/table/onestar,
+/obj/item/storage/lunchbox/rainbow,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ii" = (
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"ix" = (
+/obj/structure/closet/crate,
+/obj/item/storage/freezer,
+/obj/item/storage/freezer,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"iy" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"iY" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"je" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating/under,
+/area/outpost/blacksite/medium)
+"jg" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"jj" = (
+/obj/item/paper/blacksite/medium/note02{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/paper/blacksite/medium/note05{
+	pixel_x = -5
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"jD" = (
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"jE" = (
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"jF" = (
+/obj/structure/table/rack,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"jG" = (
+/obj/structure/table/onestar,
+/obj/item/deck/cards,
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"jH" = (
+/turf/simulated/wall/untinted/onestar,
+/area/outpost/blacksite/medium)
+"jO" = (
+/obj/structure/morgue,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"jW" = (
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"km" = (
+/obj/structure/table/bar_special,
+/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"kz" = (
+/obj/item/modular_computer/console,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"kC" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/stamp/denied,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"kD" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/spawner/credits/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"kG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/external{
+	frequency = null;
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"kJ" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"lc" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"ld" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"li" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"lB" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"lC" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"lM" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"lW" = (
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/structure/closet/crate,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"mc" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"ml" = (
+/obj/structure/closet/onestar/tier2/normal,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"mr" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"mv" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"mB" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"mJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"mS" = (
+/obj/structure/table/onestar,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"mX" = (
+/obj/machinery/vending/boozeomat,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"nk" = (
+/obj/structure/morgue{
+	dir = 8
+	},
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"nm" = (
+/obj/machinery/centrifuge,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"nz" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/item/paper/blacksite/medium/note03{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/paper/blacksite/medium/note06{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"nF" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 4
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"nN" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"ob" = (
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"oi" = (
+/obj/structure/bed,
+/obj/spawner/toy/plushie,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"oj" = (
+/obj/structure/table/woodentable,
+/obj/spawner/junkfood,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"ok" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/bodybags{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"oF" = (
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"oK" = (
+/obj/structure/table/bar_special,
+/obj/spawner/booze/low_chance,
+/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"oX" = (
+/obj/machinery/light,
+/obj/item/modular_computer/console{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"pf" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"pk" = (
+/obj/structure/bed/chair/custom/bar_special{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"pp" = (
+/obj/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"pr" = (
+/obj/structure/table/woodentable,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"px" = (
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"pH" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"pI" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"pJ" = (
+/obj/structure/table/woodentable,
+/obj/spawner/toy/plushie,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"pK" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"qe" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"qv" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"qw" = (
+/obj/machinery/vending/cigarette,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"qD" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"qP" = (
+/obj/structure/table/onestar,
+/obj/item/newspaper,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"qZ" = (
+/obj/machinery/vending/assist{
+	dir = 4
+	},
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"ro" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"rp" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"rD" = (
+/obj/structure/table/onestar,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"rH" = (
+/obj/structure/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"rN" = (
+/obj/structure/dispenser,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"rQ" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"rX" = (
+/obj/structure/closet/l3closet/scientist,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"sf" = (
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"sl" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"sv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/external{
+	frequency = null;
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"sx" = (
+/obj/structure/bed/padded,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/reinforced,
+/area/outpost/blacksite/medium)
+"sy" = (
+/obj/structure/table/rack,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"sC" = (
+/obj/structure/cyberplant,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"tc" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating/under,
+/area/outpost/blacksite/medium)
+"tg" = (
+/obj/spawner/toy/plushie,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"ti" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"tp" = (
+/obj/structure/railing,
+/turf/template_noop,
+/area/template_noop)
+"tK" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"tM" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"tP" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"us" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"uC" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"uT" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"vd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/door/window/eastleft,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"vC" = (
+/obj/item/modular_computer/console{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"vN" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/helmet/low_chance,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"wt" = (
+/obj/machinery/chem_heater,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"wz" = (
+/obj/structure/table/onestar,
+/obj/item/board,
+/obj/spawner/toy/figure,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"wA" = (
+/obj/machinery/vending/dinnerware,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"wY" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"xe" = (
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"xq" = (
+/obj/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"xU" = (
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"yv" = (
+/obj/machinery/dna_scannernew,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"yD" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"yE" = (
+/obj/structure/closet,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"yN" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/item/device/taperecorder,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"zb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/blacksite/medium)
+"zJ" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"zL" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"zM" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4;
+	icon_state = "propulsion_l"
+	},
+/turf/template_noop,
+/area/template_noop)
+"Ah" = (
+/obj/item/modular_computer/console{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Av" = (
+/obj/machinery/door/window/brigdoor/northright{
+	dir = 4;
+	req_access = null
+	},
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"AV" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/door/window/eastright,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Bd" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Bg" = (
+/obj/item/storage/box/syringes{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/beakers,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"BB" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1;
+	icon_state = "propulsion_l"
+	},
+/turf/template_noop,
+/area/template_noop)
+"BS" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/cheap,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"BX" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Ce" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/blacksite/medium)
+"Co" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/spawner/soda,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"CU" = (
+/obj/structure/urinal{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Da" = (
+/obj/machinery/chem_master/condimaster,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Dl" = (
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Dm" = (
+/obj/structure/table/bar_special,
+/obj/spawner/pizza/low_chance,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"Dp" = (
+/obj/structure/table/standard,
+/obj/item/tool/saw/circular,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"Dz" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/obj/structure/bed/chair/custom/onestar,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"DU" = (
+/obj/structure/table/onestar,
+/obj/spawner/material/resources/rare,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Ea" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/modular_computer/laptop,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Eo" = (
+/obj/structure/morgue{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Er" = (
+/obj/item/paper/blacksite/medium/note01{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/paper/blacksite/medium/note04{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ex" = (
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"EI" = (
+/obj/structure/table/onestar,
+/obj/item/newspaper,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ES" = (
+/obj/structure/table/standard,
+/obj/item/packageWrap,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/structure/cable/green,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"EU" = (
+/obj/structure/table/rack,
+/obj/spawner/medical_lowcost/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"EW" = (
+/obj/structure/table/onestar,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Fe" = (
+/obj/structure/table/rack,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Fm" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Fn" = (
+/turf/simulated/floor/plating/under,
+/area/outpost/blacksite/medium)
+"Fs" = (
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"FF" = (
+/obj/structure/table/rack,
+/obj/item/storage/belt/tactical/ironhammer,
+/obj/spawner/ammo,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"FJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/door/window/westright,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Gc" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Gf" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/shoes/low_chance,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"Gj" = (
+/obj/machinery/chemical_dispenser,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"Gq" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Gt" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Gx" = (
+/obj/machinery/vending,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"GC" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"GL" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"GY" = (
+/obj/structure/table/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Ha" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Hp" = (
+/obj/spawner/soda,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Hu" = (
+/obj/item/stool/custom/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"HA" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"HD" = (
+/obj/machinery/computer/scan_consolenew,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"HF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"HK" = (
+/obj/item/stool/custom/bar_special,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"HM" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"If" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"IA" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"IE" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Jv" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"JA" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -11
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"JD" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"JI" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"JM" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"JW" = (
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Kl" = (
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Ko" = (
+/obj/structure/table/rack,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Kz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"KI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/soap,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Lq" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Ls" = (
+/turf/template_noop,
+/area/template_noop)
+"LI" = (
+/obj/structure/bed,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"LT" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Mz" = (
+/obj/structure/table/standard,
+/obj/item/storage/freezer/medical,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"MC" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"MF" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"MX" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"NN" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"NX" = (
+/obj/spawner/scrap/sparse,
+/obj/structure/sign/derelict3{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Og" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Oh" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/rare/low_chance,
+/obj/spawner/electronics,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"OA" = (
+/obj/structure/window/reinforced,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"OC" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"OH" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"PH" = (
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/outpost/blacksite/medium)
+"PL" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/pack/rare/low_chance,
+/obj/spawner/lathe_disk,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"PQ" = (
+/obj/structure/table/standard,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"PT" = (
+/obj/structure/closet,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Qi" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/large,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Qt" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 4
+	},
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"Qv" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"QC" = (
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"QJ" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"QS" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Ra" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper{
+	pixel_y = -4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Ry" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"RF" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/camera/network/third_section{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/soymilk,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"RH" = (
+/obj/structure/bed/chair/custom/bar_special,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/outpost/blacksite/medium)
+"RX" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Sa" = (
+/obj/item/stool/custom/bar_special,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Sf" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
+"Sh" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/closet/chefcloset,
+/obj/item/tool/knife,
+/obj/item/tool/knife,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Sr" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"SB" = (
+/obj/item/soap,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/blacksite/medium)
+"SP" = (
+/obj/machinery/door/window/brigdoor/northleft{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"SX" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"Tq" = (
+/obj/structure/table/rack,
+/obj/spawner/gun_parts,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Tu" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Tv" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Tz" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/machinery/light,
+/obj/item/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"TC" = (
+/obj/item/clothing/accessory/blue,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"TZ" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ub" = (
+/obj/spawner/junk,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Ul" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Ux" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/outpost/blacksite/medium)
+"Uz" = (
+/obj/machinery/door/window/southleft,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"UK" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"UZ" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Vi" = (
+/obj/machinery/door/window/westright,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/outpost/blacksite/medium)
+"Vl" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"Vz" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"VC" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/obj/spawner/medical/low_chance,
+/turf/simulated/floor/carpet,
+/area/outpost/blacksite/medium)
+"VG" = (
+/obj/machinery/door/window/northleft,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"VT" = (
+/obj/structure/table/onestar,
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"VV" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"VW" = (
+/obj/structure/sign/derelict3{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Wu" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"WF" = (
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"WH" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"WT" = (
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Xa" = (
+/obj/structure/table/bar_special,
+/obj/spawner/pizza/low_chance,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/outpost/blacksite/medium)
+"Xc" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"Xg" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"Xm" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Xr" = (
+/obj/structure/table/onestar,
+/obj/spawner/firstaid,
+/obj/spawner/gun/energy_cheap,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/outpost/blacksite/medium)
+"XQ" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"Yd" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Yp" = (
+/obj/structure/table/rack,
+/obj/spawner/tank,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"Yz" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"YM" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/cafe,
+/area/outpost/blacksite/medium)
+"YU" = (
+/obj/spawner/junk,
+/turf/simulated/floor/dirt,
+/area/outpost/blacksite/medium)
+"YZ" = (
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/outpost/blacksite/medium)
+"Zp" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
+"ZQ" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"ZS" = (
+/obj/structure/sign/faction/one_star,
+/turf/simulated/wall/untinted/onestar,
+/area/outpost/blacksite/medium)
+
+(1,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+eO
+eO
+eO
+tc
+eO
+tc
+eO
+eO
+eO
+tc
+tc
+eO
+tc
+tc
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+tc
+eO
+tp
+rH
+JD
+eO
+tc
+eO
+eO
+Ls
+Ls
+"}
+(2,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+Ls
+eO
+eO
+eO
+GL
+JA
+nN
+JA
+nN
+JA
+rD
+eO
+Xm
+Xm
+eO
+Gx
+Tu
+bt
+ro
+Og
+VT
+jg
+OA
+EI
+VT
+if
+eO
+MF
+xq
+gX
+FF
+eO
+Fn
+eO
+eO
+sv
+eO
+eO
+Fn
+eO
+eO
+hi
+Ls
+"}
+(3,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+eO
+eO
+eO
+CU
+Fs
+Fs
+YM
+QJ
+Fs
+YM
+Tv
+eO
+YZ
+YZ
+eO
+Co
+Hp
+bN
+HM
+Gt
+eQ
+bE
+Dl
+jW
+bD
+OH
+eO
+ca
+HM
+jW
+BS
+eO
+Ux
+je
+YZ
+YZ
+YZ
+fg
+Ux
+eO
+Ha
+bY
+eO
+"}
+(4,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+WT
+eO
+CU
+Fs
+Kz
+Fs
+NX
+Fs
+nN
+Fs
+rQ
+YZ
+YZ
+Zp
+px
+px
+px
+If
+If
+px
+Bd
+If
+If
+Ea
+cW
+eO
+Tq
+jW
+jW
+Fe
+eO
+Xm
+YZ
+YZ
+YZ
+Wu
+YZ
+YZ
+eO
+jW
+ho
+eO
+"}
+(5,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+ii
+eO
+Vi
+qv
+eO
+fw
+jH
+fw
+jH
+fw
+eO
+Wu
+YZ
+eO
+sf
+px
+px
+XQ
+px
+px
+px
+px
+px
+dS
+pI
+eO
+eO
+eO
+cr
+eO
+eO
+BX
+YZ
+YZ
+YZ
+YZ
+YZ
+BX
+eO
+ho
+jW
+eO
+"}
+(6,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+gB
+eO
+SB
+OC
+eO
+Xg
+jH
+kD
+jH
+kD
+eO
+YZ
+YZ
+eO
+kJ
+hq
+Bd
+hq
+hq
+px
+px
+XQ
+px
+px
+bV
+eO
+Gc
+jW
+jW
+pI
+eO
+uT
+WF
+YZ
+YZ
+Yz
+Xm
+dK
+eO
+jW
+EW
+eO
+"}
+(7,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+eO
+QS
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+YZ
+YZ
+eO
+gV
+HM
+kC
+TC
+Gt
+ZQ
+px
+px
+px
+us
+HM
+eO
+jW
+fx
+mv
+oX
+eO
+jH
+jH
+tc
+lB
+jH
+jH
+jH
+eO
+ho
+EW
+eO
+"}
+(8,1,1) = {"
+Ls
+Ls
+Ls
+eO
+eO
+QC
+SX
+oj
+VC
+pJ
+VC
+pr
+VC
+pJ
+VC
+eO
+Xm
+YZ
+eO
+kz
+sl
+cA
+ro
+ld
+yN
+px
+px
+GC
+jg
+dA
+eO
+jW
+NN
+TZ
+Ah
+eO
+qP
+Yd
+YZ
+YZ
+YZ
+WH
+uT
+eO
+jW
+EW
+eO
+"}
+(9,1,1) = {"
+Ls
+Ls
+Ls
+tc
+Qt
+QC
+QC
+QC
+QC
+QC
+QC
+SX
+li
+QC
+QC
+eO
+JI
+YZ
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+Zp
+eO
+eO
+eO
+eO
+QS
+tc
+Av
+tc
+eO
+Dz
+YZ
+YZ
+Wu
+YZ
+WF
+YZ
+QS
+gB
+Ha
+eO
+"}
+(10,1,1) = {"
+Ls
+Ls
+Ls
+tc
+wz
+QC
+li
+QC
+SX
+QC
+QC
+QC
+QC
+QC
+QC
+mB
+YZ
+YZ
+pf
+Xm
+YZ
+Wu
+YZ
+YZ
+Xm
+YZ
+YZ
+YZ
+YZ
+YZ
+hy
+YZ
+SP
+IE
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+eO
+Ko
+eO
+eO
+"}
+(11,1,1) = {"
+Ls
+Ls
+eO
+eO
+ai
+SX
+dp
+qZ
+qw
+Gf
+vN
+Gf
+vN
+iy
+SX
+eO
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Wu
+YZ
+Xm
+YZ
+YZ
+Kl
+YZ
+YZ
+YZ
+YZ
+Wu
+YZ
+YZ
+YZ
+Qv
+Ub
+eO
+eO
+eO
+Ls
+"}
+(12,1,1) = {"
+Ls
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+YZ
+YZ
+eO
+tc
+tc
+eO
+eO
+eO
+eO
+tc
+tc
+tc
+eO
+eO
+eO
+tc
+eO
+eO
+tc
+eO
+eO
+eO
+tc
+tc
+tc
+eO
+eO
+eO
+eO
+Ls
+Ls
+"}
+(13,1,1) = {"
+BB
+Jv
+WT
+jH
+LI
+jW
+jH
+MX
+oi
+jH
+jW
+LI
+jH
+ob
+OC
+eO
+YZ
+YZ
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(14,1,1) = {"
+BB
+Jv
+ii
+jH
+hF
+AV
+jH
+vd
+hF
+jH
+vd
+hF
+jH
+KI
+hN
+eO
+YZ
+YZ
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(15,1,1) = {"
+BB
+Jv
+pI
+jH
+LT
+px
+lC
+px
+px
+iY
+XQ
+px
+Zp
+Fs
+gW
+eO
+YZ
+Xm
+eO
+eO
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(16,1,1) = {"
+Ls
+eO
+gB
+jH
+LT
+iY
+px
+px
+px
+px
+px
+px
+jH
+jH
+jH
+eO
+YZ
+YZ
+eO
+eO
+eO
+eO
+tc
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(17,1,1) = {"
+Ls
+eO
+QS
+ZS
+jH
+tc
+tc
+tc
+jH
+ZS
+px
+px
+jH
+PT
+PT
+eO
+Wu
+YZ
+eO
+ml
+oF
+da
+Ah
+tc
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(18,1,1) = {"
+Ls
+tc
+jW
+pp
+mS
+pI
+jW
+Xc
+Ah
+jH
+VV
+dk
+jH
+pI
+jW
+eO
+JI
+YZ
+eO
+Xr
+tP
+jD
+Er
+Ah
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(19,1,1) = {"
+Ls
+jH
+mJ
+HM
+jW
+jW
+Gc
+jW
+jW
+Zp
+HF
+wY
+cr
+Gc
+jW
+QS
+YZ
+YZ
+zL
+oF
+oF
+Ul
+nz
+Ah
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(20,1,1) = {"
+Ls
+tc
+jW
+pp
+Fm
+jW
+pI
+et
+Ah
+jH
+mc
+Sr
+jH
+jW
+jW
+eO
+JI
+YZ
+eO
+oF
+tP
+jD
+jj
+Ah
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(21,1,1) = {"
+Ls
+eO
+QS
+ZS
+jH
+tc
+tc
+tc
+jH
+ZS
+px
+px
+jH
+EU
+EU
+eO
+YZ
+YZ
+eO
+ml
+oF
+da
+Ah
+tc
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(22,1,1) = {"
+Ls
+eO
+gB
+jH
+LT
+px
+px
+px
+px
+px
+XQ
+px
+jH
+jH
+jH
+eO
+YZ
+YZ
+eO
+eO
+eO
+eO
+tc
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(23,1,1) = {"
+BB
+Jv
+WT
+jH
+LT
+iY
+VW
+px
+px
+dk
+hq
+VV
+fD
+YU
+bw
+eO
+Xm
+YZ
+eO
+eO
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(24,1,1) = {"
+BB
+Jv
+ii
+jH
+tM
+mr
+jH
+FJ
+tM
+jH
+ob
+jH
+fD
+fD
+jG
+eO
+YZ
+YZ
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(25,1,1) = {"
+BB
+Jv
+pI
+jH
+LI
+jW
+jH
+tg
+LI
+jH
+pK
+jH
+Vl
+fD
+ti
+eO
+YZ
+YZ
+tc
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+"}
+(26,1,1) = {"
+Ls
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+cr
+eO
+eO
+eO
+eO
+eO
+jE
+YZ
+eO
+tc
+tc
+eO
+eO
+eO
+eO
+tc
+tc
+tc
+eO
+eO
+eO
+tc
+eO
+eO
+tc
+eO
+eO
+eO
+tc
+tc
+tc
+eO
+eO
+eO
+eO
+Ls
+Ls
+"}
+(27,1,1) = {"
+Ls
+Ls
+eO
+eO
+Dp
+Mz
+px
+wY
+VG
+Uz
+dZ
+dM
+dM
+dM
+Ce
+eO
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Xm
+YZ
+YZ
+YZ
+YZ
+Wu
+YZ
+YZ
+YZ
+YZ
+YZ
+Xm
+YZ
+YZ
+Lq
+YZ
+YZ
+YZ
+YZ
+Xm
+Xm
+eO
+eO
+eO
+Ls
+"}
+(28,1,1) = {"
+Ls
+Ls
+Ls
+tc
+HA
+fU
+px
+px
+aA
+tc
+dM
+dM
+sx
+dM
+zb
+eO
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+lc
+YZ
+YZ
+YZ
+YZ
+Xm
+Ry
+YZ
+Wu
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+Xm
+Ry
+YZ
+YZ
+YZ
+QS
+gB
+eO
+eO
+"}
+(29,1,1) = {"
+Ls
+Ls
+Ls
+tc
+fn
+fU
+XQ
+px
+DU
+tc
+dM
+dM
+dM
+dM
+zb
+eO
+Wu
+YZ
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+zL
+eO
+eO
+eO
+tc
+tc
+fV
+fV
+tc
+tc
+eO
+eO
+tc
+eO
+eO
+eO
+QS
+eO
+eO
+jW
+EW
+eO
+"}
+(30,1,1) = {"
+Ls
+Ls
+Ls
+eO
+eO
+fU
+RX
+px
+px
+tc
+tc
+tc
+tc
+tc
+ci
+eO
+YZ
+YZ
+eO
+jO
+jO
+jO
+eO
+qe
+Sf
+Sf
+Sf
+yD
+eO
+eS
+Hu
+PH
+PH
+RH
+km
+eO
+bX
+Fs
+bu
+eO
+Vz
+Gc
+Yp
+eO
+ho
+EW
+eO
+"}
+(31,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+eO
+QS
+eO
+px
+px
+Ra
+gz
+vC
+vC
+eN
+JM
+eO
+YZ
+Xm
+eO
+HM
+jW
+HM
+eO
+qe
+Sf
+bH
+tK
+aO
+eO
+aK
+PH
+gE
+PH
+xe
+pk
+eO
+ES
+Fs
+gC
+eO
+Vz
+ho
+rN
+eO
+jW
+EW
+eO
+"}
+(32,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+pI
+eO
+yv
+px
+px
+XQ
+MC
+qD
+px
+IA
+eO
+YZ
+YZ
+eO
+px
+px
+ok
+eO
+qe
+Sf
+Qi
+Sf
+yD
+eO
+sC
+PH
+PH
+PH
+PH
+PH
+eO
+Da
+Fs
+Tz
+eO
+Vz
+jW
+xU
+eO
+ho
+Ha
+eO
+"}
+(33,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+ii
+eO
+HD
+pH
+px
+px
+GC
+px
+px
+px
+eO
+YZ
+YZ
+Zp
+px
+XQ
+yE
+eO
+zJ
+Sf
+fr
+Sf
+rp
+eO
+HK
+Sa
+HK
+HK
+Sa
+JW
+eO
+PQ
+bJ
+jF
+eO
+eO
+kG
+tc
+eO
+ho
+Ex
+eO
+"}
+(34,1,1) = {"
+Ls
+Ls
+Ls
+BB
+Jv
+WT
+eO
+aS
+px
+px
+px
+jH
+jH
+jH
+jH
+eO
+JI
+YZ
+eO
+px
+px
+hS
+eO
+PL
+tK
+sy
+Sf
+yD
+eO
+Xa
+hX
+GY
+oK
+GY
+JW
+eO
+uC
+YM
+RF
+eO
+dT
+jW
+jD
+eO
+jW
+jW
+eO
+"}
+(35,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+eO
+eO
+eO
+nm
+UZ
+XQ
+px
+Zp
+jD
+jD
+jD
+zL
+YZ
+YZ
+eO
+jW
+HM
+jW
+eO
+gb
+Sf
+Oh
+Sf
+gb
+eO
+JW
+JW
+Gq
+JW
+lM
+JW
+Zp
+Fs
+Fs
+Sh
+eO
+jD
+jW
+dT
+eO
+Ha
+nF
+eO
+"}
+(36,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+Ls
+eO
+eO
+eO
+Gj
+Bg
+wt
+jH
+UK
+rX
+rX
+eO
+Xm
+Xm
+eO
+Eo
+Eo
+nk
+eO
+gb
+Sf
+Sf
+Sf
+gb
+eO
+mX
+wA
+ds
+gk
+Dm
+fh
+eO
+lW
+Fs
+ix
+eO
+tc
+kG
+eO
+eO
+eO
+zM
+Ls
+"}
+(37,1,1) = {"
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+eO
+tc
+tc
+tc
+eO
+eO
+eO
+eO
+eO
+tc
+tc
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+eO
+tc
+tc
+tc
+tc
+eO
+eO
+eO
+tc
+eO
+eO
+tp
+rH
+JD
+eO
+eO
+Ls
+Ls
+"}
