@@ -30,8 +30,8 @@
 	burst = 3
 	burst_delay = 1 // PEW PEW PEW
 	recoil_buildup = 2 // pew in all directions
-  matter = list()
-  cell_type = /obj/item/cell/medium/mech
+  	matter = list()
+  	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -51,8 +51,8 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 0.75
-  cell_type = /obj/item/cell/medium/mech
-  matter = list()
+  	cell_type = /obj/item/cell/medium/mech
+  	matter = list()
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -75,8 +75,8 @@
 	charge_cost = MECH_WEAPON_POWER_COST
 	burst = 2
 	burst_delay = 1.5
-  matter = list()
-  cell_type = /obj/item/cell/medium/mech
+  	matter = list()
+  	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
