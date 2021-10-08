@@ -257,10 +257,18 @@
 			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
 	if(istype(W, /obj/item/gun/projectile))
 		var/obj/item/gun/projectile/gun_to_load = W
+		if(istype(W, /obj/item/gun/projectile/revolver))
+			to_chat(user, SPAN_WARNING("You can\'t reload [W] that way!"))
+			return
 		if(gun_to_load.can_dual && !gun_to_load.ammo_magazine)
 			if(!do_after(user, 0.5 SECONDS, src))
 				return
-			gun_to_load.load_ammo(src, user)
+			if(loc && istype(loc, /obj/item/storage))
+				var/obj/item/storage/S = loc
+				gun_to_load.load_ammo(src, user)
+				S.refresh_all()
+			else
+				gun_to_load.load_ammo(src, user)
 			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
 			visible_message("[user] tactically reloads [W] using only one hand!")	
 
