@@ -6438,8 +6438,8 @@
 /obj/item/ammo_magazine/pistol/rubber,
 /obj/item/storage/box/ammo/shotgunshells,
 /obj/item/storage/box/ammo/shotgunshells,
-/obj/item/storage/box/ammo/shotgunammo,
-/obj/item/storage/box/ammo/shotgunammo,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},

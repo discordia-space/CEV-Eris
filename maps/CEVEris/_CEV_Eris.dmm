@@ -96145,7 +96145,7 @@
 /area/eris/maintenance/section3deck5starboard)
 "evS" = (
 /obj/structure/closet/gmcloset,
-/obj/item/storage/box/shotgunammo/beanbags,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/machinery/camera/network/third_section{

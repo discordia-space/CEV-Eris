@@ -68,7 +68,6 @@
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
 			/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
 			/obj/item/ammo_magazine/ammobox/shotgun/blanks,
-			/obj/item/ammo_magazine/ammobox/shotgun/flashshells,
 			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)

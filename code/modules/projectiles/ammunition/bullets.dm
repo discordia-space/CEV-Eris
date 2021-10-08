@@ -391,19 +391,6 @@
 /obj/item/ammo_casing/shotgun/practice/prespawned
 	amount = 5
 
-//Does not stun, only blinds, but has area of effect.
-/obj/item/ammo_casing/shotgun/flash
-	name = "flash shell"
-	desc = "A .50 chemical shell used to signal distress or provide illumination."
-	icon_state = "s-shell_f"
-	spent_icon = "s-shell_f-spent"
-	shell_color = "f"
-	projectile_type = /obj/item/projectile/energy/flash/flare
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
-
-/obj/item/ammo_casing/shotgun/flash/prespawned
-	amount = 5
-
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "incendiary shell"
 	desc = "A .50 chemical shell with highly flammable load."

@@ -224,12 +224,6 @@
 	rarity_value = 13.33
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
-/obj/item/storage/box/shotgunammo/flashshells
-	name = "box of illumination shells"
-	spawn_type = /obj/item/ammo_casing/shotgun/flash/prespawned
-	rarity_value = 40
-	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
-
 /obj/item/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
 	spawn_type = /obj/item/ammo_casing/shotgun/practice/prespawned

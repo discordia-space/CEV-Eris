@@ -16,10 +16,6 @@
 	name = "shotgun shells (beanbag)"
 	build_path = /obj/item/ammo_casing/shotgun/beanbag/prespawned
 
-/datum/design/autolathe/ammo/shotgun_flash
-	name = "shotgun shells (flash)"
-	build_path = /obj/item/ammo_casing/shotgun/flash/prespawned
-
 // Shotgun mags
 
 /datum/design/autolathe/ammo/m12beanbag

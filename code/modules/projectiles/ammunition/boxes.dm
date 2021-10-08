@@ -315,12 +315,6 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/blank
 	rarity_value = 50
 
-/obj/item/ammo_magazine/ammobox/shotgun/flashshells
-	name = "ammunition box (flash shell)"
-	icon_state = "shot_f"
-	ammo_type = /obj/item/ammo_casing/shotgun/flash
-	rarity_value = 40
-
 /obj/item/ammo_magazine/ammobox/shotgun/practiceshells
 	name = "ammunition box (practice shell)"
 	icon_state = "shot_p"

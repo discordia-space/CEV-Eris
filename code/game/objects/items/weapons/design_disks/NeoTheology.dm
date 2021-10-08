@@ -325,7 +325,6 @@
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
 		)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade

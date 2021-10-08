@@ -25,7 +25,6 @@
 		//shells
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_flash,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo
@@ -225,7 +224,6 @@
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
 		)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_kammerer
@@ -239,7 +237,6 @@
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
 		)
 
 
@@ -255,7 +252,6 @@
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
 		)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/sa_pug
