@@ -297,7 +297,7 @@
 	item_state = "coffee"
 	volume = 30
 	center_of_mass = "x=15;y=13"
-	filling_states = "50;100"
+	filling_states = "100"
 	base_name = "mug"
 	base_icon = "mug"
 

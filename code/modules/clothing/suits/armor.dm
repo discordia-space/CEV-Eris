@@ -99,7 +99,15 @@
 	slowdown = 0.1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
 
-/obj/item/clothing/suit/armor/greatcoat
+/obj/item/clothing/suit/storage/greatcoat
+	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.6
+	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
+	
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "greatcoat"
@@ -115,16 +123,16 @@
 	)
 	price_tag = 600
 
-/obj/item/clothing/suit/armor/greatcoat/ironhammer
+/obj/item/clothing/suit/storage/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
 
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat
+/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat
 	name = "black serbian overcoat"
 	desc = "A black serbian overcoat with armor-weave and rank epaulettes"
 	icon_state = "overcoat_black"
 	item_state = "overcoat_black"
 
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown
+/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown
 	name = "brown serbian overcoat"
 	desc = "A brown serbian overcoat with armor-weave and rank epaulettes"
 	icon_state = "overcoat_brown"
@@ -211,9 +219,13 @@
 		MATERIAL_PLASTEEL = 3,
 	)
 
-/obj/item/clothing/suit/armor/bulletproof/serbian
+/obj/item/clothing/suit/armor/platecarrier
 	name = "black platecarrier vest"
+	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "platecarrier"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	slowdown = 0.15
 	armor = list(
 		melee = 25,
 		bullet = 50,
@@ -223,27 +235,32 @@
 		rad = 0
 	)
 	price_tag = 400
+	matter = list(
+		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
+		MATERIAL_PLASTEEL = 3 // costs lots more plasteel than standard vest
+	)
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/green
+
+/obj/item/clothing/suit/armor/platecarrier/green
 	name = "green platecarrier vest"
 	icon_state = "platecarrier_green"
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/tan
+/obj/item/clothing/suit/armor/platecarrier/tan
 	name = "tan platecarrier vest"
 	icon_state = "platecarrier_tan"
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/full
+/obj/item/clothing/suit/armor/platecarrier/full
 	name = "full black platecarrier vest"
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = 0.1
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/full/green
+/obj/item/clothing/suit/armor/platecarrier/full/green
 	name = "full green platecarrier vest"
 	icon_state = "platecarrier_green_fullbody"
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/full/tan
+/obj/item/clothing/suit/armor/platecarrier/full/tan
 	name = "full tan platecarrier vest"
 	icon_state = "platecarrier_tan_fullbody"
 
@@ -295,7 +312,7 @@
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
-/obj/item/clothing/suit/armor/greatcoat/german_overcoat
+/obj/item/clothing/suit/storage/greatcoat/german_overcoat
 	name = "Oberth Republic uniform overcoat"
 	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
 	icon_state = "germancoat"

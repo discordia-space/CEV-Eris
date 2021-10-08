@@ -4,9 +4,20 @@
 	desc = "A cockroach egg, can be eaten with proper preparation. It seems to pulse slightly with an inner life."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
+	preloaded_reagents = list("egg" = 9, "blattedin" = 3)
 	w_class = ITEM_SIZE_TINY
 	health = 5
 	var/amount_grown = 0
+
+/obj/item/roach_egg/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if(istype(O,/obj/machinery/microwave))
+		return ..()
+	if(!proximity || !O.is_refillable())
+		return
+	to_chat(user, "You crack \the [src] into \the [O].")
+	reagents.trans_to(O, reagents.total_volume)
+	user.drop_from_inventory(src)
+	qdel(src)
 
 /obj/item/roach_egg/attackby(var/obj/item/I, var/mob/user)
 	if(I.attack_verb.len)

@@ -12,7 +12,7 @@
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/datum/gas_mixture/cockpit
 	var/transparent_cabin = FALSE
-	var/hide_pilot =        FALSE
+	var/hide_pilot = FALSE
 	var/hatch_descriptor = "cockpit"
 	var/list/pilot_positions
 	var/pilot_coverage = 100
@@ -55,10 +55,10 @@
 
 /obj/item/mech_component/chassis/update_components()
 	. = ..()
-	cell =        locate() in src
-	computer =    locate() in src
+	cell = locate() in src
+	computer = locate() in src
 	armor_plate = locate() in src
-	air_supply =  locate() in src
+	air_supply = locate() in src
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
@@ -70,10 +70,10 @@
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
+	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 	cockpit = new(20)
 	if(loc)
 		cockpit.equalize(loc.return_air())
-	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 
 /obj/item/mech_component/chassis/proc/update_air(take_from_supply)
 

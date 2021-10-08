@@ -36,6 +36,9 @@
 #define PERK_SURE_STEP /datum/perk/oddity/sure_step
 #define PERK_MARKET_PROF /datum/perk/oddity/market_prof
 
+//unique oddity perks
+#define PERK_BIG_SHOT /datum/perk/big_shot
+
 //job perks
 #define PERK_ARTIST /datum/perk/job/artist
 #define PERK_SURVIVOR /datum/perk/survivor
