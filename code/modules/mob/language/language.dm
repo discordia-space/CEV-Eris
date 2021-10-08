@@ -200,7 +200,8 @@
 			return pick(exclaim_verb)
 		if("?")
 			return pick(ask_verb)
-
+		if("@")
+			return "reports"
 	return pick(speech_verb)
 
 // Language handling.

@@ -92,6 +92,11 @@
 						var/race = C.parameters["race"]			   // The actual race of the mob
 						var/language = C.parameters["language"] // The language spoken, or null/""
 
+						// -- Censor Codespeak in telecom logs, simpler than making codes readable/unreadable depending on user --
+
+						if(findtext(C.parameters["message"], "@", length(C.parameters["message"])))
+							C.parameters["message"] = "REDACTED"
+
 						// -- If the orator is a human, or universal translate is active, OR mob has universal speech on --
 
 						if(universal_translate || C.parameters["uspeech"] || C.parameters["intelligible"])

@@ -9,8 +9,12 @@
 
 		message = sanitize(message)
 
+		var/last_symbol = copytext(message, length(message))
 		if(stat == DEAD)
 			return say_dead(message)
+		else if(last_symbol=="@")
+			to_chat(src, "You don't know the codes, pal.")
+			return
 
 		if(copytext(message,1,2) == "*")
 			return emote(copytext(message,2))
