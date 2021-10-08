@@ -1,5 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define DOOR_REPAIR_AMOUNT 50	//amount of health regained per stack amount used
+#define DOOR_AI_ACTIVATION_RANGE 12 // Range in which this door activates AI when opened
 
 /obj/machinery/door
 	name = "Door"
@@ -35,6 +36,7 @@
 	var/width = 1
 
 	var/damage_smoke = FALSE
+	var/tryingToLock = FALSE // for autoclosing
 
 	// turf animation
 	var/atom/movable/overlay/c_animation
@@ -154,14 +156,18 @@
 
 
 /obj/machinery/door/proc/bumpopen(mob/user)
-	if(operating)	return
+	if(operating)
+		return FALSE
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
-		return
-	src.add_fingerprint(user)
+		return FALSE
+	add_fingerprint(user)
 	if(density)
-		if(allowed(user))	open()
-		else				do_animate("deny")
-	return
+		if(allowed(user))
+			if(open())
+				tryingToLock = TRUE
+		else
+			do_animate("deny")
+	return TRUE
 
 /obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
 	..()
@@ -424,9 +430,9 @@
 
 /obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
-		return
-	operating = 1
-
+		return FALSE
+	operating = TRUE
+	activate_mobs_in_range(src, 10)
 	set_opacity(0)
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
 		f5?.set_opacity(0)
@@ -442,17 +448,17 @@
 	explosion_resistance = 0
 	update_icon()
 	update_nearby_tiles()
-	operating = 0
+	operating = FALSE
 	if(autoclose)
 		var/wait = normalspeed ? 150 : 5
 		addtimer(CALLBACK(src, .proc/close), wait)
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	set waitfor = FALSE
 	if(!can_close(forced))
 		return
-	operating = 1
+	operating = TRUE
 
 	do_animate("closing")
 	sleep(3)
@@ -470,7 +476,7 @@
 		f5?.set_opacity(1)
 		f6?.set_opacity(1)
 
-	operating = 0
+	operating = FALSE
 
 	//I shall not add a check every x ticks if a door has closed over some fire.
 	var/obj/fire/fire = locate() in loc

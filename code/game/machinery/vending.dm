@@ -1010,7 +1010,6 @@
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
 					/obj/item/ammo_magazine/smg/rubber = 15,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-					/obj/item/ammo_magazine/sllrifle = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
@@ -1037,7 +1036,6 @@
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 300,
 					/obj/item/ammo_magazine/slpistol = 100,
 					/obj/item/ammo_magazine/smg/rubber = 200,
 					/obj/item/ammo_magazine/smg = 400,
@@ -1523,6 +1521,7 @@
 					/obj/item/gun/projectile/kovacs = 2,
 					/obj/item/ammo_magazine/srifle = 6,
 					/obj/item/gun/projectile/boltgun/serbian = 10,
+					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/storage/ration_pack = 10,
 					/obj/item/clothing/mask/balaclava = 50
@@ -1538,6 +1537,7 @@
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
+					/obj/item/ammo_magazine/sllrifle = 100,
 					/obj/item/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100
 					)

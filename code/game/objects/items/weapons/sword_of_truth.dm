@@ -6,6 +6,7 @@
 	item_state = "nt_sword_truth"
 	slot_flags = FALSE
 	origin_tech = list(TECH_COMBAT = 5, TECH_POWER = 4, TECH_MATERIAL = 8)
+	aspects = list(SANCTIFIED)
 	price_tag = 20000
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE

@@ -74,12 +74,6 @@ var/game_id
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-	// Begin loading of extools DLL and components
-	if(world.system_type == MS_WINDOWS) // IT ONLY WORKS ON WINDOWS
-		extools_initialize()
-		maptick_initialize()
-		debugger_initialize()
-	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -393,3 +387,12 @@ proc/establish_db_connection()
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+
+/world/proc/change_fps(new_value = 30)
+	if(new_value <= 0)
+		CRASH("change_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
+	fps = new_value
+
