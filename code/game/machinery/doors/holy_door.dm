@@ -17,7 +17,7 @@
 
 /obj/item/clothing/accessory/cross // It belongs here
 	name = "Tau Cross necklace"
-	desc = "Heavy necklace resembling a Tau Cross - symbol of NeoTheology. Used as key to NeoTheologian doors."
+	desc = "Heavy necklace resembling a Tau Cross - symbol of NeoTheology. Used as a key to NeoTheology doors."
 	icon = 'icons/inventory/accessory/icon.dmi'
 	icon_state = "cross"
 	item_state = ""	// No inhands
