@@ -216,7 +216,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/hcases/engi
 	name = "tool hard case"
-	desc = "A hardcase with engineering markings that can hold a variaty of different tools and materials. Alt+click to open and close."
+	desc = "A hardcase with engineering markings that can hold a variety of different tools and materials. Alt+click to open and close."
 	icon_state = "hcase_engi"
 	matter = list(MATERIAL_STEEL = 20)
 	spawn_blacklisted = FALSE
@@ -252,5 +252,5 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 /obj/item/storage/hcases/engi/scrap
 	icon_state = "scrap_engi"
 	sticker_name = "scrap"
-	desc = "An old lacquer coated hardcase with engineering markings that can hold a variaty of different tools and materials. Alt+click to open and close."
+	desc = "An old lacquer coated hardcase with engineering markings that can hold a variety of different tools and materials. Alt+click to open and close."
 	rarity_value = 30
