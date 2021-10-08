@@ -484,7 +484,7 @@
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
 	if(prob(10))
-		to_chat(M, SPAN_WARNING "you feel like your mind is boiling and the blood in your veins is coming alive!")
+		to_chat(M, SPAN_WARNING ("you feel like your mind is boiling and the blood in your veins is coming alive!"))
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"
