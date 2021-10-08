@@ -70,7 +70,6 @@ turf/c_airblock(turf/other)
 	return result
 
 /turf/simulated/proc/setZasZone(var/new_zone)
-	set waitfor = FALSE
 	zone = new_zone
 	for(var/atom/unsuspecting_atom in registered_atoms)
 		unsuspecting_atom.InformOfZasZoneChange(new_zone)
