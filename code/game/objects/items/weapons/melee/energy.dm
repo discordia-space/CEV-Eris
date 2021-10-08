@@ -1,4 +1,5 @@
 /obj/item/melee/energy
+	icon = 'icons/obj/weapons.dmi'
 	sharp = FALSE
 	edge = FALSE
 	armor_penetration = ARMOR_PEN_HALF
@@ -59,7 +60,6 @@
 /obj/item/melee/energy/axe
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "axe0"
 	active_force = WEAPON_FORCE_GODLIKE
 	active_throwforce = 50
@@ -199,6 +199,9 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/cleanup = TRUE	// Should the blade despawn moments after being discarded by the summoner?
 	var/init_procees = TRUE
+	var/stunmode = FALSE
+	var/stunforce = 0
+	var/agonyforce = 40
 
 /obj/item/melee/energy/blade/Initialize(mapload)
 	. = ..()
@@ -211,11 +214,6 @@
 /obj/item/melee/energy/blade/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
-
-/obj/item/melee/energy/blade/attack_self(mob/user as mob)
-	user.drop_from_inventory(src)
-	if(cleanup)
-		spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/dropped()
 	if(cleanup)
@@ -242,3 +240,52 @@
 	init_procees = FALSE
 
 /obj/item/melee/energy/blade/organ_module/attack_self(mob/user)
+
+/obj/item/melee/energy/blade/attack_self(mob/user as mob)
+	if(stunmode)
+		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+		icon_state = "blade"
+		force = WEAPON_FORCE_ROBUST
+		sharp = FALSE
+		edge = TRUE
+		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		stunmode = FALSE
+	else
+		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... for a stun baton."
+		icon_state = "blade_stun"
+		force = WEAPON_FORCE_PAINFUL
+		sharp = FALSE
+		edge = FALSE
+		attack_verb = list("beaten", "battered", "struck")
+		stunmode = TRUE
+	update_wear_icon()
+
+
+/obj/item/melee/energy/blade/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
+	if(!istype(target))
+		return ..()
+	if(isrobot(target))
+		return ..()
+	if(stunmode)
+		var/agony = agonyforce
+		var/stun = stunforce
+		var/obj/item/organ/external/affecting = null
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			affecting = H.get_organ(user.targeted_organ)
+
+		if(affecting)
+			target.visible_message(SPAN_DANGER("[target] has been punched in the [affecting.name] with [src] by [user]!"))
+		else
+			target.visible_message(SPAN_DANGER("[target] has been punched with [src] by [user]!"))
+		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		target.stun_effect_act(stun, agony, user.targeted_organ, src)
+		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Stunned [key_name(target)] with [src]</font>"
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Was stunned by [key_name(target)] with [src]</font>"
+
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.forcesay(hit_appends)
+	else
+		..()

@@ -1,16 +1,8 @@
-//#define TESTING
-#if DM_VERSION < 506
-#warn This compiler is out of date. You may experience issues with projectile animations.
-#endif
-
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core
 var/global/datum/DB_search/db_search = new()
 var/global/list/all_areas                = list()
 var/global/list/ship_areas               = list()
-
-
-var/global/list/ships 	= list() // List of ships in the game.
 
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
@@ -38,7 +30,7 @@ var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"
 var/const/boss_name     = "Central Command"
-var/const/boss_short    = "Centcomm"
+var/const/boss_short    = "Centcom"
 var/const/company_name  = "CEV Eris"
 var/const/company_short = "Eris"
 var/game_version        = "Discordia"

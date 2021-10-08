@@ -140,7 +140,7 @@
 					return
 			if(thermite)
 				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You ignite the termit with the [I]!"))
+					to_chat(user, SPAN_NOTICE("You ignite the thermite with the [I]!"))
 					thermitemelt(user)
 					return
 			if(damage)
@@ -185,7 +185,7 @@
 				to_chat(user, SPAN_NOTICE("You struggle to pry off the outer sheath..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You pry off the outer sheath."))
-					dismantle_wall()
+					dismantle_wall(user)
 					return
 			return
 

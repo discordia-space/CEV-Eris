@@ -18,6 +18,7 @@
 	name = "Artist"
 	desc = "You have a lot of expertise in making works of art. You gain 150% insight from all sources but can only level \
 			up by creating works of art."
+	icon_state = "paintbrush" // https://game-icons.net/1x1/delapouite/paint-brush.html
 	var/old_max_insight = INFINITY
 	var/old_max_resting = INFINITY
 	var/old_insight_rest_gain_multiplier = 1
@@ -43,7 +44,7 @@
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
-			You total NSA is increased and chance to gain an addiction decreased."
+			Your total NSA is increased and chance to gain an addiction decreased."
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
@@ -57,6 +58,24 @@
 		holder.metabolism_effects.addiction_chance_multiplier = 1
 		holder.metabolism_effects.nsa_threshold_base -= 10
 	..()
+
+/datum/perk/selfmedicated/chemist
+	name = "Chemical-junkie"
+	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substitutes and pumping them into yourself in the name of science! \
+			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
+	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
+
+/datum/perk/selfmedicated/chemist/assign(mob/living/carbon/human/H)
+	..()
+	if(holder)
+		holder.metabolism_effects.nsa_threshold_base *= 1.25
+
+// Added on top , removed first
+/datum/perk/selfmedicated/chemist/remove()
+	if(holder)
+		holder.metabolism_effects.nsa_threshold_base /= 1.25
+	..()
+
 
 /datum/perk/vagabond
 	name = "Vagabond"
@@ -172,7 +191,7 @@
 /datum/perk/inspiration
 	name = "Exotic Inspiration"
 	desc = "Boosts your Cognition and Mechanical stats any time you imbibe any alcohol."
-	icon_state = "inspiration" // https://game-icons.net/1x1/delapouite/booze.html
+	icon_state = "drinking" // https://game-icons.net/1x1/delapouite/drinking.html
 
 /datum/perk/active_inspiration
 	name = "Exotic Inspiration (Active)"
@@ -193,7 +212,7 @@
 /datum/perk/sommelier
 	name = "Sommelier"
 	desc = "You know how to handle even strongest alcohol in the universe."
-	icon_state = "inspiration"
+	icon_state = "celebration" // https://game-icons.net/1x1/delapouite/glass-celebration.html
 
 /datum/perk/neat
 	name = "Neat"
@@ -251,25 +270,39 @@
 	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
 	var/list/codespeak_procs = list(
 		/mob/living/carbon/human/proc/codespeak_help,
+		/mob/living/carbon/human/proc/codespeak_backup,
 		/mob/living/carbon/human/proc/codespeak_clear,
 		/mob/living/carbon/human/proc/codespeak_romch,
 		/mob/living/carbon/human/proc/codespeak_bigromch,
+		/mob/living/carbon/human/proc/codespeak_murderhobo,
 		/mob/living/carbon/human/proc/codespeak_serb,
 		/mob/living/carbon/human/proc/codespeak_commie,
 		/mob/living/carbon/human/proc/codespeak_carrion,
 		/mob/living/carbon/human/proc/codespeak_mutant,
-		/mob/living/carbon/human/proc/codespeak_dead,
-		/mob/living/carbon/human/proc/codespeak_corpse,
+		/mob/living/carbon/human/proc/codespeak_dead_crew,
+		/mob/living/carbon/human/proc/codespeak_wounded_crew,
+		/mob/living/carbon/human/proc/codespeak_dead_oper,
+		/mob/living/carbon/human/proc/codespeak_wounded_oper,
+		/mob/living/carbon/human/proc/codespeak_ban,
 		/mob/living/carbon/human/proc/codespeak_criminal,
 		/mob/living/carbon/human/proc/codespeak_status,
 		/mob/living/carbon/human/proc/codespeak_shutup,
 		/mob/living/carbon/human/proc/codespeak_understood,
 		/mob/living/carbon/human/proc/codespeak_yes,
 		/mob/living/carbon/human/proc/codespeak_no,
+		/mob/living/carbon/human/proc/codespeak_what,
+		/mob/living/carbon/human/proc/codespeak_busted,
+		/mob/living/carbon/human/proc/codespeak_jailbreak,
 		/mob/living/carbon/human/proc/codespeak_understood_local,
 		/mob/living/carbon/human/proc/codespeak_yes_local,
 		/mob/living/carbon/human/proc/codespeak_no_local,
-		/mob/living/carbon/human/proc/codespeak_warcrime_local,
+		/mob/living/carbon/human/proc/codespeak_engage_local,
+		/mob/living/carbon/human/proc/codespeak_hold_local,
+		/mob/living/carbon/human/proc/codespeak_go_local,
+		/mob/living/carbon/human/proc/codespeak_stop_local,
+		/mob/living/carbon/human/proc/codespeak_idiot_local,
+		/mob/living/carbon/human/proc/codespeak_warcrime_yes_local,
+		/mob/living/carbon/human/proc/codespeak_warcrime_no_local,
 		/mob/living/carbon/human/proc/codespeak_run_local
 		)
 

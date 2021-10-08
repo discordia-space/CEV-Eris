@@ -18,6 +18,7 @@
 	price_tag = 2000
 	spawn_blacklisted = TRUE//antag_item_targets
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/max_stored_matter = 30
 	var/stored_matter = 0
 	var/working = 0
 	var/mode = 1
@@ -49,19 +50,16 @@
 	return ..()
 
 /obj/item/rcd/attackby(obj/item/W, mob/user)
-
-	if(istype(W, /obj/item/rcd_ammo))
-		if((stored_matter + 10) > 30)
-			to_chat(user, SPAN_NOTICE("The RCD can't hold any more matter-units."))
-			return
-		user.drop_from_inventory(W)
-		qdel(W)
-		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("The RCD now holds [stored_matter]/30 matter-units."))
-		update_icon()	//Updates the ammo counter
-		return
-	..()
+	var/obj/item/stack/material/M = W
+	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
+		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter < max_stored_matter)
+			stored_matter += amount
+			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			update_icon()	//Updates the ammo counter
+	else
+		..()
 
 /obj/item/rcd/attack_self(mob/user)
 	//Change the mode
@@ -111,37 +109,43 @@
 				build_turf =  /turf/simulated/floor/airless
 			if(gotFloor)
 				build_delay = 40
-				build_cost =  5
+				build_cost =  3
 				build_type =  "wall"
 				build_turf =  /turf/simulated/wall
 		if(2)
-			if(!gotBlocked)
+			if(gotBlocked)
+				return 0
+			if(gotSpace)
+				build_type = "low wall"
+				build_delay = 30
+				build_cost = 3
+				build_turf = /turf/simulated/floor/airless //there is always floor under low wall
+				build_object = /obj/structure/low_wall
+			if(gotFloor)
 				build_type = "low wall"
 				build_object = /obj/structure/low_wall
-				if(gotSpace)
-					build_delay = 30
-					build_cost = 6
-					build_turf = /turf/simulated/floor/airless //there is always floor under low wall
-				if(gotFloor)
-					build_delay = 30
-					build_cost =  5
+				build_delay = 30
+				build_cost =  2
 
 		if(3)
-			if(!gotBlocked)
+			if(gotBlocked)
+				return 0
+			if(gotSpace)
 				build_type = "airlock"
+				build_cost =  7
+				build_delay = 50
+				build_turf =  /turf/simulated/floor/airless
 				build_object = /obj/machinery/door/airlock
-				if(gotSpace)
-					build_cost =  11
-					build_delay = 50
-					build_turf =  /turf/simulated/floor/airless
-				if(gotFloor)
-					build_cost =  10
-					build_delay = 40
+			if(gotFloor)
+				build_type = "airlock"
+				build_cost =  6
+				build_delay = 40
+				build_object = /obj/machinery/door/airlock
 
 		if(4)
 			build_type =  "deconstruct"
 			if(gotFloor)
-				build_cost =  10
+				build_cost =  5
 				build_delay = 50
 				build_turf = get_base_turf(local_turf.z)
 			else if(istype(T,/obj/structure/low_wall))
@@ -205,17 +209,6 @@
 	ratio = max(round(ratio, 0.10) * 100, 10)
 
 	add_overlays("[icon_state]-[ratio]")
-
-/obj/item/rcd_ammo
-	name = "compressed matter cartridge"
-	desc = "Highly compressed matter for the RCD."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "rcd"
-	item_state = "rcdammo"
-	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 2)
-	price_tag = 300
 
 /obj/item/rcd/borg
 	canRwall = 1

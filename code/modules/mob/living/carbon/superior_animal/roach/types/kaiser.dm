@@ -51,13 +51,8 @@ Has ability of every roach.
 	pixel_y = -16
 
 
-/mob/living/carbon/superior_animal/roach/kaiser/Life()
-	. = ..()
-	if(stat != CONSCIOUS)
-		return
-
-	if(stat != AI_inactive)
-		return
+/mob/living/carbon/superior_animal/roach/kaiser/handle_ai()
+	..()
 
 	if(can_call_reinforcements())
 		distress_call()
@@ -76,7 +71,7 @@ Has ability of every roach.
 		if(prob(10))
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
 			L.apply_effect(200, IRRADIATE) // as much as a radioactive AMR shot or five times the gestrahlte's
-			L.damage_through_armor(damage, TOX, ARMOR_BIO)
+			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
 

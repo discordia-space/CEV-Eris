@@ -113,6 +113,12 @@
 	icon_state = "pill8"
 	preloaded_reagents = list("tramadol" = 15)
 
+/obj/item/reagent_containers/pill/oxycodone
+	name = "Oxycodone pill"
+	desc = "The heavy artillery of painkillers."
+	icon_state = "pill8"
+	preloaded_reagents = list("oxycodone" = 10)
+
 
 /obj/item/reagent_containers/pill/methylphenidate
 	name = "Methylphenidate pill"

@@ -444,6 +444,10 @@
 		SSnano.update_uis(src)
 		return
 
+	else if(istype(I, /obj/item/device/spy_bug))
+		user.drop_item()
+		I.loc = get_turf(src)
+
 	for(var/datum/data/vending_product/R in product_records)
 		if(I.type == R.product_path && I.name == R.product_name)
 			if(!locked || always_open || (panel_open && !custom_vendor))
@@ -1006,7 +1010,6 @@
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
 					/obj/item/ammo_magazine/smg/rubber = 15,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-					/obj/item/ammo_magazine/sllrifle = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
@@ -1033,7 +1036,6 @@
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 300,
 					/obj/item/ammo_magazine/slpistol = 100,
 					/obj/item/ammo_magazine/smg/rubber = 200,
 					/obj/item/ammo_magazine/smg = 400,
@@ -1328,10 +1330,26 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/tray = 8,/obj/item/material/kitchen/utensil/fork = 6, /obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6, /obj/item/tool/knife = 3,/obj/item/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/storage/lunchbox = 3,/obj/item/storage/lunchbox/rainbow = 3,/obj/item/storage/lunchbox/cat = 3,
-					/obj/item/reagent_containers/food/drinks/pitcher = 3,/obj/item/reagent_containers/food/drinks/teapot = 3,/obj/item/reagent_containers/food/drinks/mug = 3,/obj/item/reagent_containers/food/drinks/mug/black = 3,/obj/item/reagent_containers/food/drinks/mug/green = 3,/obj/item/reagent_containers/food/drinks/mug/blue = 3,
-					/obj/item/reagent_containers/food/drinks/mug/red = 3,/obj/item/reagent_containers/food/drinks/mug/heart = 3,/obj/item/reagent_containers/food/drinks/mug/one = 3,/obj/item/reagent_containers/food/drinks/mug/metal = 3,
-					/obj/item/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/reagent_containers/food/drinks/mug/brit = 3,/obj/item/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/reagent_containers/food/drinks/mug/teacup = 10,)
+	products = list(
+	/obj/item/tray = 8,
+	/obj/item/material/kitchen/utensil/fork = 6,
+	/obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6,
+	/obj/item/tool/knife = 3,
+	/obj/item/reagent_containers/food/drinks/drinkingglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/shot = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/mug = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/pint = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/wineglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/double = 4,
+	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/storage/lunchbox = 3,
+	/obj/item/storage/lunchbox/rainbow = 3,
+	/obj/item/storage/lunchbox/cat = 3,
+	/obj/item/reagent_containers/food/drinks/pitcher = 3,
+	/obj/item/reagent_containers/food/drinks/teapot = 3,
+	/obj/item/reagent_containers/food/drinks/mug = 3,
+	/obj/item/reagent_containers/food/drinks/mug/white = 3,
+	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
 
@@ -1503,6 +1521,7 @@
 					/obj/item/gun/projectile/kovacs = 2,
 					/obj/item/ammo_magazine/srifle = 6,
 					/obj/item/gun/projectile/boltgun/serbian = 10,
+					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/storage/ration_pack = 10,
 					/obj/item/clothing/mask/balaclava = 50,
@@ -1519,6 +1538,7 @@
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
+					/obj/item/ammo_magazine/sllrifle = 100,
 					/obj/item/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100,
 					/obj/item/storage/hcases/ammo/serb = 300

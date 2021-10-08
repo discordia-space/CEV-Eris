@@ -13,6 +13,7 @@
 		/datum/design/autolathe/misc/taperecorder,
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/device/landmine = 2,
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/sec/hailer,
 		/datum/design/autolathe/container/ammocan_ih

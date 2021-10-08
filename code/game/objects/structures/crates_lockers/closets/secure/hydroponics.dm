@@ -57,3 +57,4 @@
 	new /obj/item/clothing/suit/armor/agrolyte(src)
 	new /obj/item/clothing/head/armor/agrolyte(src)
 	new /obj/item/clothing/gloves/botanic_leather(src)
+	new /obj/item/clothing/shoes/reinforced(src)

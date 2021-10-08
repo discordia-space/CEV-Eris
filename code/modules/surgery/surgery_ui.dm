@@ -36,6 +36,7 @@
 
 	data["conditions"] = get_conditions()
 	data["diagnosed"] = diagnosed
+	data["shrapnel"] = shrapnel_check()
 
 	if(owner)
 		data["owner_oxyloss"] = owner.getOxyLoss()
@@ -155,5 +156,36 @@
 					target_organ = src
 
 				target_organ.try_surgery_step(step_path, usr, target = locate(href_list["target"]))
+
+			return TRUE
+
+		if("remove_shrapnel")
+			if(istype(usr, /mob/living))
+				var/mob/living/user = usr
+				var/target_stat = BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO
+				var/removal_time = 70 * usr.stats.getMult(target_stat, STAT_LEVEL_PROF)
+				var/target = get_surgery_target()
+				var/obj/item/I = user.get_active_hand()
+
+				if(!(QUALITY_CLAMPING in I.tool_qualities))
+					to_chat(user, SPAN_WARNING("You need a tool with [QUALITY_CLAMPING] quality"))
+					return FALSE
+
+				to_chat(user, SPAN_NOTICE("You start removing shrapnel from [get_surgery_name()]."))
+
+				var/wait
+				if(ismob(target))
+					wait = do_mob(user, target, removal_time)
+				else
+					wait = do_after(user, removal_time, target, needhand = FALSE)
+
+				if(wait)
+					if(prob(100 - FAILCHANCE_NORMAL + usr.stats.getStat(target_stat)))
+						for(var/obj/item/material/shard/shrapnel/shrapnel in src.implants)
+							implants -= shrapnel
+							shrapnel.loc = get_turf(src)
+						to_chat(user, SPAN_WARNING("You have removed shrapnel from [get_surgery_name()]."))
+					else
+						to_chat(user, SPAN_WARNING("You failed to remove any shrapnel from [get_surgery_name()]!"))
 
 			return TRUE

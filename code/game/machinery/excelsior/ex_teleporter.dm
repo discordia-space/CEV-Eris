@@ -58,6 +58,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsior_turret = 150,
 		/obj/item/electronics/circuitboard/excelsiorshieldwallgen = 150,
 		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
+		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
 	var/entropy_value = 8

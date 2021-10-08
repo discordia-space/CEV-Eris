@@ -182,9 +182,8 @@
 // Heavy
 
 /datum/design/autolathe/gun/heavysniper
-	name = "NT AMR .60 \"Penetrator\""
+	name = "SA AMR .60 \"Hristov\""
 	build_path = /obj/item/gun/projectile/heavysniper
-	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
@@ -292,3 +291,7 @@
 /datum/design/autolathe/gun/dart_gun
 	name = "Z-H P Artemis Dartgun"
 	build_path = /obj/item/gun/projectile/dartgun
+
+/datum/design/autolathe/gun/flare_gun
+	name = "flare gun"
+	build_path = /obj/item/gun/projectile/flare_gun

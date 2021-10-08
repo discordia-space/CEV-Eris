@@ -35,6 +35,14 @@
 					if(istype(src, /obj/effect/overmap/ship))
 						ME.OE:leave(src)
 
+/obj/effect/overmap/ship/New()
+	GLOB.ships += src
+	. = ..()
+
+/obj/effect/overmap/ship/Destroy()
+	GLOB.ships -= src
+	. = ..()
+
 /obj/effect/overmap/ship/Initialize()
 	. = ..()
 	for(var/datum/ship_engine/E in ship_engines)

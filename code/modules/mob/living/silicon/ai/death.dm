@@ -3,8 +3,10 @@
 	if(stat == DEAD)
 		return
 
-	if(src.eyeobj)
-		src.eyeobj.setLoc(get_turf(src))
+	pull_to_core()  // Pull back mind to core if it is controlling a drone
+
+	if(eyeobj)
+		eyeobj.setLoc(get_turf(src))
 
 	remove_ai_verbs(src)
 

@@ -302,7 +302,6 @@
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_sec3east5"
 
-
 //Cargo shuttle
 
 /datum/shuttle/autodock/ferry/supply/drone
