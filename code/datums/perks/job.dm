@@ -44,7 +44,7 @@
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
-			You total NSA is increased and chance to gain an addiction decreased."
+			Your total NSA is increased and chance to gain an addiction decreased."
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
@@ -58,6 +58,24 @@
 		holder.metabolism_effects.addiction_chance_multiplier = 1
 		holder.metabolism_effects.nsa_threshold_base -= 10
 	..()
+
+/datum/perk/selfmedicated/chemist
+	name = "Chemical-junkie"
+	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substitutes and pumping them into yourself in the name of science! \
+			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
+	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
+
+/datum/perk/selfmedicated/chemist/assign(mob/living/carbon/human/H)
+	..()
+	if(holder)
+		holder.metabolism_effects.nsa_threshold_base *= 1.25
+
+// Added on top , removed first
+/datum/perk/selfmedicated/chemist/remove()
+	if(holder)
+		holder.metabolism_effects.nsa_threshold_base /= 1.25
+	..()
+
 
 /datum/perk/vagabond
 	name = "Vagabond"

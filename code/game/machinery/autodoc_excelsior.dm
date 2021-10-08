@@ -1,3 +1,10 @@
+/// How much healing is given per rating point of components (micro-laser and manipulator)
+#define AUTODOC_HEAL_PER_UNIT 3.3
+/// How much time is reduced per given rating point of scanning module components
+#define AUTODOC_TIME_PER_UNIT 1.6
+/// Default processing time for any wound
+#define AUTODOC_DEFAULT_PROCESSING_TIME 35
+
 /obj/machinery/excelsior_autodoc
 	name = "excelsior autodoc"
 	desc = "Medical care for everybody, free, and may no one be left behind!"
@@ -22,9 +29,17 @@
 	. = ..()
 	autodoc_processor = new/datum/autodoc()
 	autodoc_processor.holder = src
-	autodoc_processor.damage_heal_amount = 20
+	var/component_heal_multiplier = 0
+	var/component_speed_multiplier = 0
+	for(var/obj/item/stock_parts/part in component_parts)
+		if(istype(part, /obj/item/stock_parts/manipulator) || istype(part, /obj/item/stock_parts/micro_laser))
+			component_heal_multiplier += part.rating
+		if(istype(part, /obj/item/stock_parts/scanning_module))
+			component_speed_multiplier += part.rating
+	autodoc_processor.damage_heal_amount = round(AUTODOC_HEAL_PER_UNIT*component_heal_multiplier) // 20 with excel parts  (3.3*6), 7 with stock parts ,  27 with one-star
+	autodoc_processor.processing_speed = (max(1,(AUTODOC_DEFAULT_PROCESSING_TIME - round(AUTODOC_TIME_PER_UNIT * component_speed_multiplier)))) SECONDS // 30 with excel parts (35-4.8)
 	update_icon()
-	
+
 
 /obj/machinery/excelsior_autodoc/Destroy()
 	if(occupant)
@@ -33,9 +48,9 @@
 	return ..()
 
 /obj/machinery/excelsior_autodoc/relaymove(mob/user)
-	if (usr.incapacitated())
+	if (user.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	return
 
 /obj/machinery/excelsior_autodoc/attackby(obj/item/I, mob/living/user)
@@ -52,7 +67,7 @@
 
 	if (usr.incapacitated())
 		return
-	src.go_out()
+	go_out()
 	add_fingerprint(usr)
 	return
 
@@ -70,7 +85,7 @@
 		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return
 
 /obj/machinery/excelsior_autodoc/proc/go_out()
@@ -92,35 +107,35 @@
 	update_use_power(1)
 	update_icon()
 
-/obj/machinery/excelsior_autodoc/proc/set_occupant(var/mob/living/L)
-	src.add_fingerprint(usr)
-	if(is_neotheology_disciple(L))
-		playsound(src.loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
+/obj/machinery/excelsior_autodoc/proc/set_occupant(mob/living/user)
+	add_fingerprint(user)
+	if(is_neotheology_disciple(user))
+		playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
 		return
-	L.forceMove(src)
-	src.occupant = L
-	autodoc_processor.set_patient(L)
+	user.forceMove(src)
+	occupant = user
+	autodoc_processor.set_patient(user)
 	update_use_power(2)
-	L.set_machine(src)
+	user.set_machine(src)
 	cover_state = image(icon, "opened")
 	cover_state.layer = 4.5
 
-	if(!is_excelsior(L) && !emagged) // Let non-NT use emagged autodoc without brainwashing
+	if(!is_excelsior(user) && !emagged) // Let non-NT use emagged autodoc without brainwashing
 		cover_locked = TRUE
 		close_cover()
 		sleep(30)
-		to_chat(L, SPAN_DANGER("Autodoc is implanting you!"))
+		to_chat(user, SPAN_DANGER("Autodoc is implanting you!"))
 		sleep(50)
-		var/obj/item/implant/excelsior/implant = new(L)
-		if (!implant.install(L, BP_HEAD))
+		var/obj/item/implant/excelsior/implant = new(user)
+		if (!implant.install(user, BP_HEAD))
 			qdel(implant)
 		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-		var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
-		if(E)
-			if(!E.active)
-				E.start_excel_timer()
+		var/datum/objective/timed/excelsior/excel_timer = (locate(/datum/objective/timed/excelsior) in F.objectives)
+		if(excel_timer)
+			if(!excel_timer.active)
+				excel_timer.start_excel_timer()
 			else
-				E.on_convert()
+				excel_timer.on_convert()
 		cover_locked = FALSE
 	else
 		update_icon()
@@ -143,7 +158,7 @@
 		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return TRUE
 
 /obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
@@ -165,10 +180,10 @@
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
 	set_occupant(target)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
-/obj/machinery/excelsior_autodoc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+/obj/machinery/excelsior_autodoc/emag_act(remaining_charges, mob/user, emag_source)
 	if(emagged)
 		return
 	emagged = TRUE
@@ -229,34 +244,12 @@
 				cover_moving = FALSE
 				update_icon()
 
-		var/actual_health = occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss())
-		if(actual_health < 1)
-			screen_state = image(icon, "screen_00")
-		else if(actual_health < 10)
-			screen_state = image(icon, "screen_10")
-		else if(actual_health < 20)
-			screen_state = image(icon, "screen_20")
-		else if(actual_health < 30)
-			screen_state = image(icon, "screen_30")
-		else if(actual_health < 40)
-			screen_state = image(icon, "screen_40")
-		else if(actual_health < 50)
-			screen_state = image(icon, "screen_50")
-		else if(actual_health < 60)
-			screen_state = image(icon, "screen_60")
-		else if(actual_health < 70)
-			screen_state = image(icon, "screen_70")
-		else if(actual_health < 80)
-			screen_state = image(icon, "screen_80")
-		else if(actual_health < 90)
-			screen_state = image(icon, "screen_90")
-		else if(actual_health <= 100)
-			screen_state = image(icon, "screen_100")
-
+		var/actual_health = max(0,round((occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10))
+		screen_state = image(icon, "screen_[actual_health]0")
 	else
 		screen_state = image(icon, "screen_idle")
 
 	if(stat & (NOPOWER|BROKEN))
 		screen_state = image(icon, "screen_off")
-	
+
 	add_overlays(screen_state)

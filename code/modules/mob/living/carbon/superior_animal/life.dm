@@ -3,9 +3,9 @@
 		stance = HOSTILE_STANCE_IDLE
 		target_mob = null
 		walk(src, 0)
-		return
+		return FALSE
 
-	return 1
+	return TRUE
 
 /*
 

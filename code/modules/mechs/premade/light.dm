@@ -8,6 +8,10 @@
 	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
+	arms = /obj/item/mech_component/manipulators/light
+	legs = /obj/item/mech_component/propulsion/light
+	head = /obj/item/mech_component/sensors/light
+	body = /obj/item/mech_component/chassis/light
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/utility,
 		/obj/item/electronics/circuitboard/exosystem/medical
@@ -17,18 +21,6 @@
 		HARDPOINT_BACK = /obj/item/mech_equipment/sleeper,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
-
-/mob/living/exosuit/premade/light/Initialize()
-	if(!arms)
-		arms = new /obj/item/mech_component/manipulators/light(src)
-	if(!legs)
-		legs = new /obj/item/mech_component/propulsion/light(src)
-	if(!head)
-		head = new /obj/item/mech_component/sensors/light(src)
-	if(!body)
-		body = new /obj/item/mech_component/chassis/light(src)
-
-	. = ..()
 
 /obj/item/mech_component/manipulators/light
 	name = "light arms"
@@ -46,8 +38,8 @@
 	exosuit_desc_string = "aerodynamic electromechanic legs"
 	desc = "The electrical systems driving these legs are almost totally silent. Unfortunately, slamming a plate of metal against the ground is not."
 	icon_state = "light_legs"
-	move_delay = 3 //still fast, slightly slower than tracks, but has better turning time for maint tunnels
-	turn_delay = 2
+	move_delay = 1.5 // Very fast
+	turn_delay = 2 // Too fast to turn at drifting speed
 	max_damage = 40
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
