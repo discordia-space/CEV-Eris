@@ -2,6 +2,10 @@
 	name = "console screen"
 	build_path = /obj/item/stock_parts/console_screen
 
+/datum/design/autolathe/part/cable_coil
+	name = "cable coil"
+	build_path = /obj/item/stack/cable_coil 
+	
 /datum/design/autolathe/part/igniter
 	name = "igniter"
 	build_path = /obj/item/device/assembly/igniter

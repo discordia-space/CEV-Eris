@@ -104,10 +104,13 @@
 /obj/effect/overmap/sector/Initialize()
 	. = ..()
 	if(known)
-		layer = 2
-		set_plane(-1)
-		for(var/obj/machinery/computer/helm/H in GLOB.computer_list)
-			H.get_known_sectors()
+		update_known()
+
+/obj/effect/overmap/proc/update_known()
+	layer = 2
+	set_plane(-1)
+	for(var/obj/machinery/computer/helm/H in GLOB.computer_list)
+		H.get_known_sectors()
 
 /obj/effect/overmap/proc/add_landmark(obj/effect/shuttle_landmark/landmark)
 	generic_waypoints += landmark

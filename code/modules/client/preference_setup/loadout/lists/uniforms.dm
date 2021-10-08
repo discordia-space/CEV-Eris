@@ -159,6 +159,7 @@
 /datum/gear/uniform/tuxedo
 	display_name = "black tuxedo"
 	path = /obj/item/clothing/under/tuxedo
+	cost = 2
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"

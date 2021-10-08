@@ -4,7 +4,7 @@
 /area/template_noop)
 "b" = (
 /obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/airless,
 /area/template_noop)
 "c" = (
 /turf/simulated/wall,
@@ -17,42 +17,42 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "f" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "h" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "i" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "j" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/simulated/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "k" = (
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
 /turf/template_noop,
 /area/template_noop)
 "m" = (
 /obj/spawner/traps,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 
 (1,1,1) = {"

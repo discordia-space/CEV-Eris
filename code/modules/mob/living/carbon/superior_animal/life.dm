@@ -3,9 +3,11 @@
 		stance = HOSTILE_STANCE_IDLE
 		target_mob = null
 		walk(src, 0)
-		return
+		return FALSE
 
-	return 1
+	return TRUE
+
+/*
 
 /mob/living/carbon/superior_animal/Life()
 	. = ..()
@@ -57,6 +59,7 @@
 	//Speaking
 	if(speak_chance && prob(speak_chance))
 		visible_emote(emote_see)
+*/
 
 /mob/living/carbon/superior_animal/handle_chemicals_in_body()
 	if(reagents)

@@ -1,0 +1,7 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: the uplink implant is hidden from advanced medical scanners
+  - code_imp: implants now have a scannable variable, medical scanners look for it
+      before declaring a found bodypart.
+  - balance: freedom implant uses cooldown instead of charges

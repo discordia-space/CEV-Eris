@@ -26,7 +26,10 @@
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST
+	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
+	burst = 3
+	burst_delay = 1 // PEW PEW PEW
+	recoil_buildup = 2 // pew in all directions
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -45,7 +48,7 @@
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST * 2
+	charge_cost = MECH_WEAPON_POWER_COST * 0.75
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -65,7 +68,9 @@
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST * 1.75
+	charge_cost = MECH_WEAPON_POWER_COST
+	burst = 2
+	burst_delay = 1.5
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
@@ -119,11 +124,11 @@
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
 	name = 	"SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Slightly inaccurate, but packs quite a punch."
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=15, burst_delay=0.8, move_delay=15,  icon="burst")
+		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5,  icon="burst")
 		)
 	spawn_tags = null
 

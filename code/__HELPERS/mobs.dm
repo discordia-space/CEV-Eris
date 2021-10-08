@@ -338,6 +338,9 @@ Proc for attack log creation, because really why not
 	. = ..()
 	. |= CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
+/mob/proc/can_see_reagents()
+	return TRUE
+
 
 // Returns true if M was not already in the dead mob list
 /mob/proc/switch_from_living_to_dead_mob_list()
