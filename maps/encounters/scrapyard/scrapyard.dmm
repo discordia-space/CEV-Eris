@@ -3590,9 +3590,9 @@
 /obj/structure/closet/firecloset{
 	anchored = 1
 	},
-/obj/item/gun/projectile/shotgun/doublebarrel/flare,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
+/obj/item/gun/projectile/flare_gun,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Do" = (
@@ -6191,9 +6191,9 @@
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
-/obj/item/gun/projectile/shotgun/doublebarrel/flare,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
+/obj/item/gun/projectile/flare_gun,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "Yg" = (
