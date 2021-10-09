@@ -52,7 +52,7 @@
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 0.75
 	cell_type = /obj/item/cell/medium/mech
-  	matter = list()
+	matter = list()
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
