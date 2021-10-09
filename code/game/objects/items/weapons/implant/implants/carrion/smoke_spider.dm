@@ -19,7 +19,7 @@
 	var/datum/effect/effect/system/smoke_spread/S = new
 	S.attach(src)
 	S.set_up(10, 0, usr.loc)
-	charges = null
+	charges = 0
 	spawn(0)
 		S.start()
 		sleep(10)
