@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Robots runtiming whenever trying to look up or down a ladder.

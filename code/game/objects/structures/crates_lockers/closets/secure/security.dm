@@ -61,7 +61,7 @@
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
-	new /obj/item/clothing/suit/armor/greatcoat/ironhammer(src)
+	new /obj/item/clothing/suit/storage/greatcoat/ironhammer(src)
 	new /obj/item/clothing/under/rank/ih_commander(src)
 	new /obj/item/device/radio/headset/heads/hos(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)

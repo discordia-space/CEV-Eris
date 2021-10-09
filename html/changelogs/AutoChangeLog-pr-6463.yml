@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscadd: Stock part rating scaling to the excel autodoc
+  - bugfix: Fixed autodoc not always ejecting people on moving.

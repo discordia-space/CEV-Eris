@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - balance: readds meatspike crafting, meatspikes no longer delete people, and assorted
+      updates to meatspikes.

@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: carrion organs now grant more gene points when consumed

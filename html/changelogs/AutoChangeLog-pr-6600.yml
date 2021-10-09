@@ -1,0 +1,4 @@
+author: Bloodpriest
+delete-after: true
+changes:
+  - imageadd: 'visual update and fixes for some NT machines: reader; biocan; clonepod.'
