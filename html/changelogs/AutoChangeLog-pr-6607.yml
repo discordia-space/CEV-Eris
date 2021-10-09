@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - balance: Thermal lenses no longer provide NV
-  - code_imp: Lense code is now a whole lot more modular and easy to add onto

@@ -1,6 +1,0 @@
-author: Shazbot194
-delete-after: true
-changes:
-  - rscadd: Added a var for shells color
-  - tweak: Tweaks the M12 to show the correct next shell.
-  - tweak: Updates M12 sprite
