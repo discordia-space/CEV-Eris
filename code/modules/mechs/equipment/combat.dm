@@ -30,8 +30,8 @@
 	burst = 3
 	burst_delay = 1 // PEW PEW PEW
 	recoil_buildup = 2 // pew in all directions
-  	matter = list()
-  	cell_type = /obj/item/cell/medium/mech
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
