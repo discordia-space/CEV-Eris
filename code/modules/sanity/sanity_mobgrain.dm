@@ -31,16 +31,3 @@
 			state = ""
 
 	grain.icon_state = state
-
-/mob/living/silicon
-	var/obj/screen/film_grain/grain
-
-/mob/living/silicon/New()
-	..()
-	grain = new()
-	grain.icon_state = "[rand(1, 9)] moderate"
-
-/mob/living/silicon/show_HUD()
-	..()
-	if(client)
-		client.screen += grain
