@@ -75,8 +75,8 @@
 	charge_cost = MECH_WEAPON_POWER_COST
 	burst = 2
 	burst_delay = 1.5
-  	matter = list()
-  	cell_type = /obj/item/cell/medium/mech
+	matter = list()
+	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
