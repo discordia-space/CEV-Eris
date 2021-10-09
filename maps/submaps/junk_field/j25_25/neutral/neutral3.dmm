@@ -27,12 +27,6 @@
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"ap" = (
-/obj/machinery/camera/network/engineering{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "aq" = (
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under/airless,
@@ -195,14 +189,6 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"bz" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "bA" = (
 /obj/structure/railing{
 	dir = 8;
@@ -210,28 +196,8 @@
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"bB" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "bC" = (
 /obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bD" = (
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bK" = (
@@ -295,10 +261,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
-"cx" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
 "cz" = (
 /obj/structure/table/reinforced,
 /obj/spawner/pack/tech_loot,
@@ -313,28 +275,10 @@
 /obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
-"cB" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Atmospherics Maintenance";
-	req_access = list(24)
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
 "cE" = (
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/spawner/powercell/low_chance,
 /turf/simulated/floor/plating/under/airless,
@@ -348,35 +292,7 @@
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cG" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cH" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "cI" = (
@@ -389,11 +305,6 @@
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "cJ" = (
@@ -402,42 +313,6 @@
 	tag = "icon-railing0 (WEST)"
 	},
 /obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cL" = (
-/obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cM" = (
-/obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cO" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "cP" = (
@@ -445,21 +320,7 @@
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cQ" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "cT" = (
@@ -473,15 +334,6 @@
 /area/template_noop)
 "cW" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"cX" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "cY" = (
@@ -521,18 +373,6 @@
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"de" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "df" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
@@ -548,15 +388,6 @@
 /turf/simulated/floor/plating/airless,
 /area/template_noop)
 "dj" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"dk" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating/airless,
 /area/template_noop)
@@ -663,7 +494,7 @@ ae
 aA
 cn
 bt
-bD
+dd
 cT
 bt
 dj
@@ -703,7 +534,7 @@ aa
 (6,1,1) = {"
 bn
 bx
-ap
+bx
 aA
 bn
 aA
@@ -743,8 +574,8 @@ aA
 cW
 bh
 aA
-bB
-cG
+cW
+cW
 cW
 bt
 aA
@@ -770,8 +601,8 @@ cT
 cW
 aA
 aA
-cx
-cH
+bt
+cW
 cW
 ag
 aA
@@ -798,7 +629,7 @@ cW
 aA
 cn
 ca
-cH
+cW
 cW
 bt
 dj
@@ -825,7 +656,7 @@ bK
 aA
 cn
 aP
-cH
+cW
 cW
 ca
 dj
@@ -852,7 +683,7 @@ bn
 aA
 aA
 cz
-cH
+cW
 cW
 bt
 aA
@@ -879,7 +710,7 @@ aa
 ar
 aA
 cA
-cH
+cW
 cW
 bt
 df
@@ -933,7 +764,7 @@ bn
 bo
 bx
 bW
-cH
+cW
 cW
 dc
 bx
@@ -987,7 +818,7 @@ cW
 bC
 ar
 ae
-cL
+cT
 cW
 dj
 di
@@ -1014,7 +845,7 @@ ca
 aA
 aA
 aA
-cL
+cT
 cW
 aA
 aA
@@ -1041,7 +872,7 @@ bt
 bi
 cp
 aA
-cL
+cT
 cW
 dd
 dj
@@ -1068,10 +899,10 @@ aA
 ci
 aA
 aA
-cM
-cX
-de
-dk
+cT
+cW
+dd
+dj
 bn
 aa
 aa
@@ -1095,7 +926,7 @@ ck
 ck
 bp
 aA
-cL
+cT
 cW
 aA
 aA
@@ -1122,7 +953,7 @@ ck
 ck
 bq
 aA
-cL
+cT
 cW
 bi
 bW
@@ -1149,7 +980,7 @@ cc
 ck
 br
 aA
-cO
+bx
 cY
 bt
 aA
@@ -1201,9 +1032,9 @@ ae
 bn
 bn
 bn
-bz
-cB
-cQ
+bx
+ci
+cW
 cW
 bt
 aA
