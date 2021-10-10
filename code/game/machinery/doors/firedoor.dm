@@ -8,13 +8,17 @@
 #define FIREDOOR_ALERT_COLD     2
 // Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
+#define FIREDOOR_TURF 1
+#define FIREDOOR_ATMOS 2
+#define FIREDOOR_ALERT 3
+#define FIREDOOR_DONT_UPDATE 69696969
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(access_atmospherics, access_engine_equip, access_medical_equip)
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
@@ -22,26 +26,22 @@
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
-	block_air_zones = 0
+	block_air_zones = FALSE
 
-	var/blocked = 0
-	var/lockdown = 0 // When the door has detected a problem, it locks.
-	var/pdiff_alert = 0
-	var/pdiff = 0
+	var/blocked = FALSE
+	var/lockdown = FALSE // When the door has detected a problem, it locks.
 	var/net_id
 	var/list/areas_added
 	var/list/users_to_open = new
 
-	var/hatch_open = 0
+	var/hatch_open = FALSE
 
 	power_channel = STATIC_ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 
-	var/list/tile_info[4]
-	var/list/dir_alerts[4] // 4 dirs, bitflags
-	var/list/registered_zones = list()
-	var/list/registered_turfs = list()
+	var/list/tile_info = list(NORTH = null, SOUTH = null, EAST = null, WEST = null)
+	var/list/registered_zas_zones = list(NORTH = null, SOUTH = null , EAST = null , WEST = null)
 
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
@@ -72,37 +72,105 @@
 
 /obj/machinery/door/firedoor/Initialize(mapload)
 	if(mapload)
-		addtimer(CALLBACK(src, .proc/initialize_special), 30 SECONDS)
+		addtimer(CALLBACK(src, .proc/link_to_zas), 30 SECONDS)
+	else
+		link_to_zas()
 	. = ..()
 
-/obj/machinery/door/firedoor/proc/initialize_special()
-	InformOfZasZoneChange()
+/obj/machinery/door/firedoor/proc/link_to_zas()
+	SHOULD_NOT_SLEEP(TRUE)
+	for(var/our_cardinal in registered_zas_zones)
+		if(!registered_zas_zones[our_cardinal])
+			continue
+		var/target_zone = registered_zas_zones[our_cardinal]
+		UnregisterSignal(target_zone , COMSIG_ZAS_TICK)
+		UnregisterSignal(target_zone, COMSIG_ZAS_DELETE)
+	for(var/turf/neighbor in cardinal_turfs(src))
+		var/cardinal = get_dir(src, neighbor)
+		if(istype(neighbor, /turf/simulated))
+			var/turf/simulated/redefined_turf = neighbor
+			var/turf_zone = redefined_turf.zone
+			tile_info[cardinal] = list(
+				FIREDOOR_TURF = redefined_turf,
+				FIREDOOR_ATMOS = null,
+				FIREDOOR_ALERT = FALSE
+			)
+			registered_zas_zones[cardinal] = turf_zone
+			continue
+		tile_info[cardinal] =  list(
+			FIREDOOR_TURF = neighbor,
+			FIREDOOR_ATMOS = FIREDOOR_DONT_UPDATE,
+			FIREDOOR_ALERT = FALSE
+		)
+		registered_zas_zones[cardinal] = null
+	handle_unique_zone_register()
 
-/obj/machinery/door/firedoor/InformOfZasZoneChange()
-	for(var/zone/a_zone in registered_zones)
-		a_zone.atmos_listeners -= src
-	for(var/turf/simulated/stored in registered_turfs)
-		stored.registered_atoms -= src
-		registered_turfs -= stored
-	spawn(0.5 SECONDS)
-		for(var/turf/simulated/a_turf in cardinal_turfs(src))
-			if(!a_turf.zone)
-				continue
-			if(registered_zones.Find(a_turf.zone))
-				continue
-			registered_zones += a_turf.zone
-			registered_turfs += a_turf
-			a_turf.registered_atoms += src
-		for(var/zone/a_zone in registered_zones)
-			a_zone.atmos_listeners += src
+/obj/machinery/door/firedoor/proc/handle_unique_zone_register()
+	SHOULD_NOT_SLEEP(TRUE)
+	var/list/registered = list()
+	for(var/cardinal_inside in registered_zas_zones)
+		if(registered.Find(registered_zas_zones[cardinal_inside]))
+			registered_zas_zones[cardinal_inside] = null
+			continue
+		var/zone = registered_zas_zones[cardinal_inside]
+		registered += zone
+		RegisterSignal(zone, COMSIG_ZAS_TICK, .proc/update_firedoor_data)
+		RegisterSignal(zone, COMSIG_ZAS_DELETE, .proc/link_to_zas)
+
 
 /obj/machinery/door/firedoor/get_material()
 	return get_material_by_name(MATERIAL_STEEL)
+/*
+/obj/machinery/door/firedoor/proc/update_firedoor_data()
+	SHOULD_NOT_SLEEP(TRUE)
+	var/gotta_update_icon = FALSE
+	if(!density)
+		return FALSE
+
+	for(var/list/cardinal_target in tile_info)
+		var/list/data = tile_info[cardinal_target]
+		if(data[FIREDOOR_ATMOS] == FIREDOOR_DONT_UPDATE)
+			continue
+		data[FIREDOOR_ATMOS] = data[FIREDOOR_TURF].return_air() // yes it can return nothing in space.
+		var/alerts = 0
+		lockdown = FALSE
+		var/old_alerts = data[FIREDOOR_ALERT]
+		if(data[FIREDOOR_ATMOS])
+			var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
+			if(gasses.temperature >= FIREDOOR_MAX_TEMP)
+				alerts |= FIREDOOR_ALERT_HOT
+			if(gasses.temperature <= FIREDOOR_MIN_TIMP)
+				alerts |= FIREDOOR_ALERT_COLD
+			data[FIREDOOR_ALERT] = alerts
+			if(data[FIREDOOR_ALERT != old_alerts])
+				gotta_update_icon = TRUE
+
+	if(gotta_update_icon)
+		INVOKE_ASYNC(src , proc/update_icon)
+*/
 
 /obj/machinery/door/firedoor/examine(mob/user)
-	. = ..(user, 1)
+	if(!density || !..(user, 1))
+		return FALSE
+
+	to_chat(user, "<b> EMERGENCY SENSOR READINGS </b>")
+	for(var/cardinal in tile_info)
+		var/list/data = tile_info[cardinal]
+		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
+		text_to_say += "[cardinal] :/:"
+		if(!data[FIREDOOR_ALERT])
+			text_to_say += "NO DATA |"
+			to_chat(user, SPAN_NOTICE(text_to_say))
+			continue
+		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_COLD)
+			text_to_say += SPAN_DANGER("VACUMM/LOW TEMPERATURE DETECTED |")
+		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT)
+			text_to_say += SPAN_DANGER("HIGH TEMPERATURE DETECTED |")
+		to_chat(user, text_to_say)
+
+	/*
 	if(!. || !density)
-		return
+		return FALSE
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
 		to_chat(user, SPAN_WARNING("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!"))
@@ -137,6 +205,7 @@
 			for(var/i = 2 to users_to_open.len)
 				users_to_open_string += ", [users_to_open[i]]"
 		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
+	*/
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)
@@ -150,13 +219,13 @@
 				if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
 				M.last_bumped = world.time
 				attack_hand(M)
-	return 0
+	return FALSE
 
 /obj/machinery/door/firedoor/proc/checkAlarmed()
-	var/alarmed = 0
+	var/alarmed = FALSE
 	for(var/area/A in areas_added) //Checks if there are fire alarms in any areas associated with that firedoor
 		if(A.fire || A.air_doors_activated)
-			alarmed = 1
+			alarmed = TRUE
 	return alarmed
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
@@ -274,49 +343,65 @@
 	return ..()
 
 // CHECK PRESSURE
-/obj/machinery/door/firedoor/InformOfZasTick()
+/obj/machinery/door/firedoor/proc/update_firedoor_data()
+	SHOULD_NOT_SLEEP(TRUE)
+	var/gotta_update_icon = FALSE
+	if(!density)
+		return FALSE
 
-	if(density)
-		spawn(0)
-			var/changed = 0
-			lockdown = 0
+	for(var/list/cardinal_target in tile_info)
+		var/list/data = tile_info[cardinal_target]
+		if(data[FIREDOOR_ATMOS] == FIREDOOR_DONT_UPDATE)
+			continue
+		var/turf/target_turf = data[FIREDOOR_TURF]
+		data[FIREDOOR_ATMOS] = target_turf.return_air() // yes it can return nothing in space.
+		var/alerts = 0
+		lockdown = FALSE
+		var/old_alerts = data[FIREDOOR_ALERT]
+		data[FIREDOOR_ALERT] = 0
+		if(data[FIREDOOR_ATMOS])
+			var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
+			if(gasses.temperature >= FIREDOOR_MAX_TEMP)
+				alerts |= FIREDOOR_ALERT_HOT
+			if(gasses.temperature <= FIREDOOR_MIN_TEMP)
+				alerts |= FIREDOOR_ALERT_COLD
+			data[FIREDOOR_ALERT] = alerts
+			if(data[FIREDOOR_ALERT != old_alerts])
+				gotta_update_icon = TRUE
 
-			// Pressure alerts
-			pdiff = getOPressureDifferential(src.loc)
-			if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
+	if(gotta_update_icon)
+		INVOKE_ASYNC(src , /atom.proc/update_icon)
+	/*
+		var/changed = 0
+		lockdown = 0
+
+
+
+		tile_info = getCardinalAirInfo(src.loc,list("temperature","pressure"))
+		var/old_alerts = dir_alerts
+		for(var/index = 1; index <= 4; index++)
+			var/list/tileinfo=tile_info[index]
+			if(tileinfo==null)
+				continue // Bad data.
+			var/celsius = convert_k2c(tileinfo[1])
+
+			var/alerts=0
+
+			// Temperatures
+			if(celsius >= FIREDOOR_MAX_TEMP)
+				alerts |= FIREDOOR_ALERT_HOT
 				lockdown = 1
-				if(!pdiff_alert)
-					pdiff_alert = 1
-					changed = 1 // update_icon()
-			else
-				if(pdiff_alert)
-					pdiff_alert = 0
-					changed = 1 // update_icon()
+			else if(celsius <= FIREDOOR_MIN_TEMP)
+				alerts |= FIREDOOR_ALERT_COLD
+				lockdown = 1
 
-			tile_info = getCardinalAirInfo(src.loc,list("temperature","pressure"))
-			var/old_alerts = dir_alerts
-			for(var/index = 1; index <= 4; index++)
-				var/list/tileinfo=tile_info[index]
-				if(tileinfo==null)
-					continue // Bad data.
-				var/celsius = convert_k2c(tileinfo[1])
+			dir_alerts[index]=alerts
 
-				var/alerts=0
-
-				// Temperatures
-				if(celsius >= FIREDOOR_MAX_TEMP)
-					alerts |= FIREDOOR_ALERT_HOT
-					lockdown = 1
-				else if(celsius <= FIREDOOR_MIN_TEMP)
-					alerts |= FIREDOOR_ALERT_COLD
-					lockdown = 1
-
-				dir_alerts[index]=alerts
-
-			if(dir_alerts != old_alerts)
-				changed = 1
-			if(changed)
-				update_icon()
+		if(dir_alerts != old_alerts)
+			changed = 1
+		if(changed)
+			update_icon()
+		*/
 
 /obj/machinery/door/firedoor/close(var/forced = 0)
 	if (blocked) //welded
@@ -377,9 +462,8 @@
 			add_overlays("hatch")
 		if(blocked)
 			add_overlays("welded")
-		if(pdiff_alert)
-			add_overlays("palert")
 			do_set_light = TRUE
+		/*
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = cardinal[d]
@@ -387,6 +471,7 @@
 					if(dir_alerts[d] & (1<<(i-1)))
 						add_overlays(new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir))
 						do_set_light = TRUE
+		*/
 	else
 		SetIconState("door_open")
 		if(blocked)

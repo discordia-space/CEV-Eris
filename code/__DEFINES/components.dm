@@ -29,6 +29,11 @@
 
 //////////////////////////////////////////////////////////////////
 
+// /zone signals
+
+#define COMSIG_ZAS_TICK "z_tick"
+#define COMSIG_ZAS_DELETE "z_del"
+
 // /datum signals
 #define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
@@ -105,7 +110,7 @@
 #define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():
 #define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
 #define COMSIG_ADDVAL "add_values" 										//from /atom/refresh_upgrades(): (/src) Called to add specific things to the /src, called before COMSIG_APPVAL
-#define COMSIG_REMOVE "uninstall"	
+#define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
 

@@ -41,13 +41,12 @@ Class Procs:
 
 
 /zone/var/name
-/zone/var/invalid = 0
+/zone/var/invalid = FALSE
 /zone/var/list/contents = list()
 /zone/var/list/fire_tiles = list()
 /zone/var/list/fuel_objs = list()
-/zone/var/list/atom/atmos_listeners = list() // List of atoms to notify when we process
 
-/zone/var/needs_update = 0
+/zone/var/needs_update = FALSE
 
 /zone/var/list/edges = list()
 
@@ -72,7 +71,7 @@ Class Procs:
 
 	var/datum/gas_mixture/turf_air = T.return_air()
 	add_tile_air(turf_air)
-	T.setZasZone(src)
+	T.zone = src
 	contents.Add(T)
 	if(T.fire)
 		var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in T
@@ -123,8 +122,8 @@ Class Procs:
 			SSair.mark_for_update(T)
 
 /zone/proc/c_invalidate()
-	atmos_listeners = null
 	invalid = TRUE
+	SEND_SIGNAL(src, COMSIG_ZAS_DELETE, src)
 	SSair.remove_zone(src)
 	#ifdef ZASDBG
 	for(var/turf/simulated/T in contents)
@@ -164,8 +163,7 @@ Class Procs:
 		if(E.sleeping)
 			E.recheck()
 
-	for(var/atom/listener in atmos_listeners)
-		listener.InformOfZasTick()
+	SEND_SIGNAL(src, COMSIG_ZAS_TICK, src)
 
 /zone/proc/dbg_data(mob/M)
 	to_chat(M, name)
