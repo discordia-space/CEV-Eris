@@ -1,17 +1,20 @@
 
-#define FIREDOOR_MAX_PRESSURE_DIFF 25 // kPa
-#define FIREDOOR_MAX_TEMP 50 // °C
-#define FIREDOOR_MIN_TEMP 0
+#define FIREDOOR_MAX_TEMP 323 // °C
+#define FIREDOOR_MIN_TEMP 253
+#define FIREDOOR_MIN_PRESSURE 30
 
 // Bitflags
 #define FIREDOOR_ALERT_HOT      1
 #define FIREDOOR_ALERT_COLD     2
 // Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
+#define F_NORTH "North"
+#define F_SOUTH "South"
+#define F_EAST "East"
+#define F_WEST "West"
 #define FIREDOOR_TURF 1
 #define FIREDOOR_ATMOS 2
 #define FIREDOOR_ALERT 3
-#define FIREDOOR_DONT_UPDATE 69696969
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
@@ -40,9 +43,10 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 
-	var/list/tile_info = list(NORTH = null, SOUTH = null, EAST = null, WEST = null)
-	var/list/registered_zas_zones = list(NORTH = null, SOUTH = null , EAST = null , WEST = null)
-
+	var/last_update = 0
+	var/delay_between_updates = 5 SECONDS
+	var/list/tile_info = list(F_NORTH = null, F_SOUTH = null, F_EAST = null, F_WEST = null)
+	var/list/registered_zas_zones = list(F_NORTH = null , F_SOUTH = null , F_EAST = null , F_WEST = null)
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
 		"hot",
@@ -77,8 +81,14 @@
 		link_to_zas()
 	. = ..()
 
-/obj/machinery/door/firedoor/proc/link_to_zas()
+/obj/machinery/door/firedoor/proc/begin_delayed_link()
+	addtimer(CALLBACK(src, .proc/link_to_zas), 1 SECOND)
+
+/obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
 	SHOULD_NOT_SLEEP(TRUE)
+	if(do_delayed)
+		INVOKE_ASYNC(src, begin_delayed_link)
+		return
 	for(var/our_cardinal in registered_zas_zones)
 		if(!registered_zas_zones[our_cardinal])
 			continue
@@ -89,19 +99,19 @@
 	for(var/turf/neighbor in cardinal_turfs(src))
 		var/cardinal = get_dir(src, neighbor)
 		cardinal = direction_to_text(cardinal)
-		if(istype(neighbor, /turf/simulated))
+		if(!neighbor.density && istype(neighbor, /turf/simulated))
 			var/turf/simulated/redefined_turf = neighbor
 			var/turf_zone = redefined_turf.zone
 			tile_info[cardinal] = list(
 				FIREDOOR_TURF = redefined_turf,
-				FIREDOOR_ATMOS = null,
+				FIREDOOR_ATMOS = FALSE,
 				FIREDOOR_ALERT = FALSE
 			)
 			registered_zas_zones[cardinal] = turf_zone
 		else
 			tile_info[cardinal] =  list(
 				FIREDOOR_TURF = neighbor,
-				FIREDOOR_ATMOS = FIREDOOR_DONT_UPDATE,
+				FIREDOOR_ATMOS = FALSE,
 				FIREDOOR_ALERT = FALSE
 			)
 			registered_zas_zones[cardinal] = null
@@ -159,15 +169,18 @@
 	for(var/cardinal in tile_info)
 		var/list/data = tile_info[cardinal]
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
-		text_to_say += "[cardinal] :/:"
+		text_to_say += SPAN_NOTICE("[cardinal] :/:")
+		if(data[FIREDOOR_ATMOS])
+			var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
+			text_to_say += " PKA : [gasses.return_pressure()] | "
 		if(!data[FIREDOOR_ALERT])
-			text_to_say += "NO DATA |"
-			to_chat(user, SPAN_NOTICE(text_to_say))
+			text_to_say += " ALERT : NO DATA |"
+			to_chat(user, text_to_say)
 			continue
 		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_COLD)
-			text_to_say += SPAN_DANGER("VACUMM/LOW TEMPERATURE DETECTED |")
+			text_to_say += SPAN_DANGER("ALERT : VACUMM / LOW TEMPERATURE DETECTED |")
 		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT)
-			text_to_say += SPAN_DANGER("HIGH TEMPERATURE DETECTED |")
+			text_to_say += SPAN_DANGER("ALERT : TEMPERATURE DETECTED |")
 		to_chat(user, text_to_say)
 
 	/*
@@ -347,32 +360,40 @@
 // CHECK PRESSURE
 /obj/machinery/door/firedoor/proc/update_firedoor_data()
 	SHOULD_NOT_SLEEP(TRUE)
-	var/gotta_update_icon = FALSE
 	if(!density)
 		return FALSE
 
-	for(var/list/cardinal_target in tile_info)
+	if(world.time + delay_between_updates > last_update)
+		last_update = world.time
+	else
+		return FALSE
+
+	lockdown = FALSE
+	for(var/cardinal_target in tile_info)
+		var/alerts = 0
 		var/list/data = tile_info[cardinal_target]
-		if(data[FIREDOOR_ATMOS] == FIREDOOR_DONT_UPDATE)
-			continue
 		var/turf/target_turf = data[FIREDOOR_TURF]
 		data[FIREDOOR_ATMOS] = target_turf.return_air() // yes it can return nothing in space.
-		var/alerts = 0
-		lockdown = FALSE
-		var/old_alerts = data[FIREDOOR_ALERT]
+		if(!data[FIREDOOR_ATMOS])
+			alerts |= FIREDOOR_ALERT_COLD
+			lockdown = TRUE
+			continue
 		data[FIREDOOR_ALERT] = 0
 		if(data[FIREDOOR_ATMOS])
 			var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
 			if(gasses.temperature >= FIREDOOR_MAX_TEMP)
 				alerts |= FIREDOOR_ALERT_HOT
+				lockdown = TRUE
 			if(gasses.temperature <= FIREDOOR_MIN_TEMP)
 				alerts |= FIREDOOR_ALERT_COLD
+				lockdown = TRUE
+			if(gasses.return_pressure() <= FIREDOOR_MIN_PRESSURE)
+				alerts |= FIREDOOR_ALERT_COLD
+				lockdown = TRUE
 			data[FIREDOOR_ALERT] = alerts
-			if(data[FIREDOOR_ALERT != old_alerts])
-				gotta_update_icon = TRUE
-
-	if(gotta_update_icon)
-		INVOKE_ASYNC(src , /atom.proc/update_icon)
+		tile_info[cardinal_target] = data
+	INVOKE_ASYNC(src , /atom.proc/update_icon)
+	return TRUE
 	/*
 		var/changed = 0
 		lockdown = 0
@@ -465,6 +486,12 @@
 		if(blocked)
 			add_overlays("welded")
 			do_set_light = TRUE
+		for(var/cardinals in tile_info)
+			var/target_card = text2dir(cardinals)
+			var/list/turf_data = tile_info[cardinals]
+			if(turf_data[FIREDOOR_ALERT])
+				var/our_alert_color = (turf_data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT) ? 1 : 2
+				add_overlays(new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card))
 		/*
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
