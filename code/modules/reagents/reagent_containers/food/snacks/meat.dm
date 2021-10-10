@@ -9,17 +9,8 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	preloaded_reagents = list("protein" = 9)
 	taste_tag = list(MEAT_FOOD)
-
-/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
-	if(QUALITY_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
-			to_chat(user, SPAN_NOTICE("You cut the meat into thin strips."))
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			qdel(src)
-	else
-		..()
+	slice_path = /obj/item/reagent_containers/food/snacks/rawcutlet
+	slices_num = 3
 
 /obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	name = "synthetic meat"

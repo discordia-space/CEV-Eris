@@ -236,6 +236,7 @@
 					inserted_casing.transform = rotation_matrix
 
 			inserted_casing.is_caseless = C.is_caseless	//How did someone forget this before!?!?!?
+			inserted_casing.shell_color = C.shell_color
 
 			C.update_icon()
 			inserted_casing.update_icon()

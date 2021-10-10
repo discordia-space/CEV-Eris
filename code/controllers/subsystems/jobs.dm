@@ -403,6 +403,7 @@ SUBSYSTEM_DEF(job)
 	if(C)
 		C.install_default_modules_by_job(job)
 		C.access.Add(job.cruciform_access)
+		C.security_clearance = job.security_clearance
 
 	var/obj/item/oddity/secdocs/D
 	if(D.inv_spawn_count > 0 && prob(5) && !(locate(/obj/item/oddity/secdocs) in H.get_contents()))

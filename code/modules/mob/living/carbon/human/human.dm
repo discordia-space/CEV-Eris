@@ -100,7 +100,7 @@
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
 
-/mob/living/carbon/human/ex_act(severity)
+/mob/living/carbon/human/ex_act(severity, epicenter)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
 			FLICK("flash", HUDtech["flash"])
@@ -109,34 +109,30 @@
 	var/b_loss
 	var/f_loss
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
+	var/target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
+	var/throw_distance = 8 - 2*severity
+	throw_at(target_turf, throw_distance, 5)
+	Weaken(severity) // If they don't get knocked out , weaken them for a bit.
+
 	switch (severity)
 		if (1)
 			b_loss += 500
 			if (!prob(bomb_defense))
 				gib()
 				return
-			else
-				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-				throw_at(target, 200, 4)
-			//return
-//				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
-				//user.throw_at(target, 200, 4)
-
 		if (2)
 			if (!shielded)
 				b_loss += 150
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30,120)
-			if (prob(70) && !shielded)
-				Paralyse(10)
 
 		if(3)
 			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			if (prob(50) && !shielded)
-				Paralyse(10)
+
+
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
@@ -247,6 +243,7 @@
 var/list/rank_prefix = list(\
 	"Ironhammer Operative" = "Operative",\
 	"Ironhammer Inspector" = "Inspector",\
+	"Ironhammer Medical Specialist" = "Specialist",\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
@@ -1214,6 +1211,7 @@ var/list/rank_prefix = list(\
 			if(mind)
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+				C.security_clearance = mind.assigned_job.security_clearance
 
 	else
 		var/organ_type
@@ -1244,6 +1242,7 @@ var/list/rank_prefix = list(\
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+				C.security_clearance = mind.assigned_job.security_clearance
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
 		C.replaced(get_organ(C.parent_organ_base))
@@ -1260,6 +1259,7 @@ var/list/rank_prefix = list(\
 		C.activate()
 		C.install_default_modules_by_job(mind.assigned_job)
 		C.access |= mind.assigned_job.cruciform_access
+		C.security_clearance = mind.assigned_job.security_clearance
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
@@ -1399,6 +1399,18 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
+
+/mob/living/carbon/human/trip(tripped_on, stun_duration)
+	if(buckled)
+		return FALSE
+	if(lying)
+		return FALSE // No tripping while crawling
+	stop_pulling()
+	if (tripped_on)
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		to_chat(src, SPAN_WARNING("You tripped over!"))
+	Weaken(stun_duration)
+	return TRUE
 
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"

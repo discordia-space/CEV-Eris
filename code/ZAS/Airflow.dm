@@ -94,7 +94,7 @@ obj/item/check_airflow_movable(n)
 		airflow_dest = null
 		return
 	airflow_speed = min(max(n * (9/airflow_falloff),1),9)
-	
+
 	var/xo = airflow_dest.x - src.x
 	var/yo = airflow_dest.y - src.y
 	var/od = 0
@@ -111,11 +111,11 @@ obj/item/check_airflow_movable(n)
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
 					density = FALSE
-				sleep(1 * (config.Ticklag*2))
+				sleep(1 * SSAIR_TICK_MULTIPLIER)
 		else
 			if(od)
 				density = FALSE
-			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
+			sleep(max(1,10-(airflow_speed+3)) * SSAIR_TICK_MULTIPLIER)
 		if(od)
 			density = TRUE
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
@@ -154,11 +154,11 @@ obj/item/check_airflow_movable(n)
 		airflow_dest = null
 		return
 	airflow_speed = min(max(n * (9/airflow_falloff),1),9)
-	
+
 	var/xo = -(airflow_dest.x - src.x)
 	var/yo = -(airflow_dest.y - src.y)
 	var/od = 0
-	
+
 	airflow_dest = null
 	if(!density)
 		density = TRUE
@@ -169,9 +169,9 @@ obj/item/check_airflow_movable(n)
 		airflow_speed -= vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
-				sleep(1 * (config.Ticklag*2))
+				sleep(1 * SSAIR_TICK_MULTIPLIER)
 		else
-			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
+			sleep(max(1,10-(airflow_speed+3)) * SSAIR_TICK_MULTIPLIER)
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if ((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))

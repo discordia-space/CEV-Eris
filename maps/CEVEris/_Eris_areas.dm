@@ -15,7 +15,7 @@
 	flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
-	forced_ambience = list('sound/ambience/maintambience.ogg')
+	forced_ambience = list('sound/ambience/maintambience1.ogg','sound/ambience/maintambience2.ogg','sound/ambience/maintambience3.ogg','sound/ambience/maintambience4.ogg','sound/ambience/maintambience5.ogg','sound/ambience/maintambience6.ogg')
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
 
 /area/eris/maintenance/junk
@@ -572,6 +572,7 @@
 	icon_state = "engineering"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg','sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg','sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
 
 /area/eris/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -616,6 +617,7 @@
 	icon_state = "engine"
 	sound_env = LARGE_ENCLOSED
 	flags = AREA_FLAG_CRITICAL
+	ambience = list('sound/ambience/technoengineambient.ogg')
 
 /area/eris/engineering/engine_airlock
 	name = "\improper Engine Room Airlock"
@@ -1050,6 +1052,7 @@
 /area/eris/rnd
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
+	ambience = list('sound/ambience/researchambient1.ogg','sound/ambience/researchambient2.ogg','sound/ambience/researchambient3.ogg','sound/ambience/researchambient4.ogg','sound/ambience/researchambient5.ogg','sound/ambience/researchambient6.ogg','sound/ambience/researchambient7.ogg','sound/ambience/researchambient8.ogg','sound/ambience/researchambient9.ogg')
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"

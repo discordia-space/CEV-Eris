@@ -100,6 +100,26 @@
 	. = ..()
 	icon_state = pick(list("technohelmet_visor", "technohelmet_googles"))
 
+/obj/item/clothing/head/armor/helmet/technomancer_old
+	name = "reinforced technomancer helmet"
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight."
+	icon_state = "technohelmet_old"
+	body_parts_covered = HEAD|EARS|EYES|FACE
+	item_flags = THICKMATERIAL
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
+	action_button_name = "Toggle Headlamp"
+	brightness_on = 4
+	armor = list(
+		melee = 35,
+		bullet = 40,
+		energy = 20,
+		bomb = 40,
+		bio = 0,
+		rad = 0
+	)
+	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 500
+
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."

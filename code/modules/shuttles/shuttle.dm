@@ -105,6 +105,8 @@
 
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
+		spawn(0)  // So that the landmark is processed in parallel
+			destination.trigger_landmark()
 		if(attempt_move(interim))
 			var/fwooshed = 0
 			while (world.time < arrive_time)

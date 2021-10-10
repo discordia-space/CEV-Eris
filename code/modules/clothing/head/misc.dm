@@ -265,7 +265,7 @@
 	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
 	icon_state = "ranger"
 	item_state = "ranger"
-	price_tag = 400
+	price_tag = 200
 
 /obj/item/clothing/head/inhaler
 	name = "odd looking helmet"

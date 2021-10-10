@@ -55,7 +55,7 @@
 	// But we change it.
 	preload_rsc = 1
 
-	//fps = 60
+	fps = 45
 
 
 		////////////////

@@ -117,13 +117,14 @@
 #define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():
 #define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
 #define COMSIG_ADDVAL "add_values" 										//from /atom/refresh_upgrades(): (/src) Called to add specific things to the /src, called before COMSIG_APPVAL
-#define COMSIG_REMOVE "uninstall"	
+#define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
 
 // /obj/item/clothing signals
 #define COMSIG_CLOTH_DROPPED "cloths_missing"
 #define COMSIG_CLOTH_EQUIPPED "cloths_recovered"
+#define COMSIG_GLASS_LENSES_REMOVED "lenses_removed" // lenses.dm
 
 // /obj/item/implant signals
 

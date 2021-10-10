@@ -64,11 +64,17 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		if(chambered)
-			to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
-			chambered.forceMove(get_turf(src))
-			loaded -= chambered
-			chambered = null
+		if(contents.len)
+			if(chambered)
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				chambered.forceMove(get_turf(src))
+				loaded -= chambered
+				chambered = null
+			else
+				var/obj/item/ammo_casing/B = loaded[loaded.len]
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				B.forceMove(get_turf(src))
+				loaded -= B
 		else
 			to_chat(user, SPAN_NOTICE("You work the bolt open."))
 	else

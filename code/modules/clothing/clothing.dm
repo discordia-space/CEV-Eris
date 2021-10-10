@@ -572,8 +572,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
-	valid_accessory_slots = list("armband","decor")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = list("armor","armband","decor")
+	restricted_accessory_slots = list("armor","armband")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
