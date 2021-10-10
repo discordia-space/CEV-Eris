@@ -20,8 +20,7 @@
 	S.attach(src)
 	S.set_up(10, 0, usr.loc)
 	charges = 0
-	spawn(0)
-		S.start()
-		sleep(10)
-		S.start()
+	S.start()
+	sleep(10)
+	S.start()
 	die()

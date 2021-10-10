@@ -4,7 +4,7 @@
 	icon_state = "spiderling_breeding"
 	spider_price = 5
 	gibs_color = "#1e9fa3"
-	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK 
+	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK | SLOT_MASK | SLOT_GLOVES | SLOT_HEAD | SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_FEET | SLOT_EYES
 	var/can_use = 1
 	var/saved_name
 	var/saved_description
@@ -18,6 +18,8 @@
 	var/saved_opacity
 	var/saved_message
 	var/saved_appearance
+	var/saved_item_state
+	var/saved_w_class
 	var/dummy_active = FALSE
 	var/scan_mobs = TRUE
 
@@ -31,10 +33,35 @@
 	..()
 
 
-/obj/item/implant/carrion_spider/holographic/examine(mob/user)
+/obj/item/implant/carrion_spider/holographic/examine(mob/user, distance = -1)
 	if(dummy_active && saved_item)
-		to_chat(world, "GHHJGGHJ")
-	. = ..()
+		if(istype(saved_item, /mob))
+			return ..(saved_message)
+		if(!istype(saved_item, /turf))
+			to_chat(world, "GHHJGGHJ")
+			var/message
+			var/size
+			switch(saved_w_class)
+				if(ITEM_SIZE_TINY)
+					size = "tiny"
+				if(ITEM_SIZE_SMALL)
+					size = "small"
+				if(ITEM_SIZE_NORMAL)
+					size = "normal-sized"
+				if(ITEM_SIZE_BULKY)
+					size = "bulky"
+				if(ITEM_SIZE_HUGE)
+					size = "huge"
+				if(ITEM_SIZE_GARGANTUAN)
+					size = "gargantuan"
+				if(ITEM_SIZE_COLOSSAL)
+					size = "colossal"
+				if(ITEM_SIZE_TITANIC)
+					size = "titanic"
+			message += "\nIt is a [size] item."
+
+			return ..(user, distance, "", message)
+
 	if(user.stats.getStat(STAT_COG) > STAT_LEVEL_PROF)
 		return
 
@@ -74,10 +101,14 @@
 	saved_alpha = target.alpha
 	saved_opacity = target.opacity
 	saved_appearance = target.appearance
+//	if(istype(target, /obj))
+//		if(target.size)
+//			saved_w_class = target.size
+	saved_message = target.examine()
 	to_chat(world, "HJJJJJJJKKKKK")
 	if(istype(target, /mob))
 		saved_mob = target // help
-		saved_message = target.examine()
+		//saved_message = target.examine()
 	return
 
 /obj/item/implant/carrion_spider/holographic/proc/reset_data()
@@ -93,6 +124,8 @@
 	saved_opacity = initial(saved_opacity)
 	saved_message = initial(saved_message)
 	saved_appearance = initial(appearance)
+	saved_item_state = initial(item_state)
+	saved_w_class = initial(saved_w_class)
 
 /obj/item/implant/carrion_spider/holographic/proc/scan_eligible(atom/I)
 //	if(scan_mobs && !istype(I, /turf))
@@ -100,10 +133,11 @@
 //	return FALSE
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
-	if(!can_use || !saved_item) return
+	if(!can_use || !saved_item) 
+		return
 	if(dummy_active)
 		dummy_active = FALSE
-		appearance = initial(appearance)
+		//appearance = initial(appearance)
 		name = initial(name)
 		desc = initial(desc)
 		icon = initial(icon)
@@ -111,17 +145,19 @@
 		overlays = initial(overlays)
 		alpha = initial(alpha)
 		opacity = initial(opacity)
+		item_state = initial(item_state)
 		set_dir(initial(dir))
+		update_icon()
 		to_chat(owner_mob, SPAN_NOTICE("You deactivate the [src]."))
 	else
 		if(!saved_item)
 			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
 			return
 		else
-			activate_holo(saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_alpha, saved_opacity, saved_appearance)		
+			activate_holo(saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_alpha, saved_opacity, saved_appearance, saved_item_state)		
 			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 
-/obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_alpha, new_opacity, new_appearance)
+/obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_alpha, new_opacity, new_appearance, new_item_state)
 	name = new_name
 	desc = new_description
 	icon = new_icon
@@ -130,6 +166,7 @@
 	alpha = new_alpha
 	opacity = new_opacity
 	appearance = new_appearance
+	item_state = new_item_state
 	set_dir(new_dir)
 	dummy_active = TRUE
 
@@ -152,4 +189,12 @@
 /obj/item/implant/carrion_spider/holographic/bullet_act()
 	..()
 	disrupt()
+
+/obj/item/implant/carrion_spider/holographic/proc/test()
+	appearance = initial(appearance)
+
+///obj/item/implant/carrion_spider/holographic/New()
+//	var/superspecialappearance = appearance
+//	. = ..()
+
 
