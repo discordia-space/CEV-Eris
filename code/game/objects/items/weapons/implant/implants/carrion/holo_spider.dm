@@ -33,35 +33,11 @@
 	..()
 
 
-/obj/item/implant/carrion_spider/holographic/examine(mob/user, distance = -1)
+/obj/item/implant/carrion_spider/holographic/examine(mob/user)
 	if(dummy_active && saved_item)
-		if(istype(saved_item, /mob))
-			return ..(saved_message)
-		if(!istype(saved_item, /turf))
-			to_chat(world, "GHHJGGHJ")
-			var/message
-			var/size
-			switch(saved_w_class)
-				if(ITEM_SIZE_TINY)
-					size = "tiny"
-				if(ITEM_SIZE_SMALL)
-					size = "small"
-				if(ITEM_SIZE_NORMAL)
-					size = "normal-sized"
-				if(ITEM_SIZE_BULKY)
-					size = "bulky"
-				if(ITEM_SIZE_HUGE)
-					size = "huge"
-				if(ITEM_SIZE_GARGANTUAN)
-					size = "gargantuan"
-				if(ITEM_SIZE_COLOSSAL)
-					size = "colossal"
-				if(ITEM_SIZE_TITANIC)
-					size = "titanic"
-			message += "\nIt is a [size] item."
-
-			return ..(user, distance, "", message)
-
+		to_chat(user, saved_message)
+	else
+		. = ..()
 	if(user.stats.getStat(STAT_COG) > STAT_LEVEL_PROF)
 		return
 
@@ -101,10 +77,11 @@
 	saved_alpha = target.alpha
 	saved_opacity = target.opacity
 	saved_appearance = target.appearance
+	saved_item_state = target.item_state
 //	if(istype(target, /obj))
 //		if(target.size)
 //			saved_w_class = target.size
-	saved_message = target.examine()
+	saved_message = target.examine(user, -1)
 	to_chat(world, "HJJJJJJJKKKKK")
 	if(istype(target, /mob))
 		saved_mob = target // help
