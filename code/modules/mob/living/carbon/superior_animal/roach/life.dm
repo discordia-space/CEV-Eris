@@ -12,7 +12,7 @@
 
 /mob/living/carbon/superior_animal/roach/handle_ai()
 	if(!check_AI_act())
-		return FALSE
+		return
 	..()
 	if(stance == HOSTILE_STANCE_IDLE)
 		switch(busy)

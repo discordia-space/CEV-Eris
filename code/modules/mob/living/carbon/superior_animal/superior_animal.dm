@@ -267,8 +267,7 @@
 	//CONSCIOUS UNCONSCIOUS DEAD
 
 	if (!check_AI_act())
-		return FALSE
-	. = TRUE
+		return
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
 			if (!busy) // if not busy with a special task
