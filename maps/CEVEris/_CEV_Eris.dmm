@@ -858,10 +858,6 @@
 /obj/item/clothing/head/armor/helmet/ironhammer,
 /obj/item/clothing/head/armor/helmet/ironhammer,
 /obj/item/clothing/head/armor/helmet/ironhammer,
-/obj/item/clothing/suit/storage/vest/ironhammer,
-/obj/item/clothing/suit/storage/vest/ironhammer,
-/obj/item/clothing/suit/storage/vest/ironhammer,
-/obj/item/clothing/suit/storage/vest/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acn" = (
@@ -18544,6 +18540,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/barracks)
+"aTU" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/food/drinks/mug/ironhammer,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/security/barracks)
 "aTV" = (
 /obj/machinery/light{
 	dir = 4
@@ -33539,6 +33540,16 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
+"bBU" = (
+/obj/machinery/door/firedoor,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/holy,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/crew_quarters/hydroponics)
 "bBV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -39930,6 +39941,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"bQd" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/neotheology/chapelritualroom)
 "bQe" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -51654,6 +51670,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
+"cuc" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapel)
+"cud" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapel)
 "cue" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
