@@ -8,16 +8,9 @@
 		return
 	var/new_fps = round(input("Sets game frames-per-second. Can potentially break the game (default: 20)","FPS", world.fps) as num|null)
 
-	var/newtick = input("Sets a new tick lag. Please don't mess with this too much! The stable, time-tested ticklag value is 0.33","Lag of Tick", world.tick_lag) as num|null
-	//I've used ticks of 2 before to help with serious singulo lags
-	if(newtick && newtick <= 2 && newtick > 0)
-		log_admin("[key_name(src)] has modified world.tick_lag to [newtick]", 0)
-		message_admins("[key_name(src)] has modified world.tick_lag to [newtick]", 0)
-		world.tick_lag = newtick
-		// No, extools CANNOT change defines, but they can change globals/runtime values.
-		GLOB.internal_tick_usage = world.tick_lag * MAPTICK_MC_MIN_RESERVE * 0.01
-	else
-		to_chat(src, SPAN_WARNING("Error: ticklag(): Invalid world.ticklag value. No changes made."))
+	if(new_fps <= 0)
+		to_chat(src, SPAN_WARNING("Error: set_server_fps(): Invalid world.fps value. No changes made."))
+		return
 
 
 	var/msg = "[key_name(src)] has modified world.fps to [new_fps]"
