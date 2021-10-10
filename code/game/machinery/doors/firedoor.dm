@@ -85,8 +85,10 @@
 		var/target_zone = registered_zas_zones[our_cardinal]
 		UnregisterSignal(target_zone , COMSIG_ZAS_TICK)
 		UnregisterSignal(target_zone, COMSIG_ZAS_DELETE)
+
 	for(var/turf/neighbor in cardinal_turfs(src))
 		var/cardinal = get_dir(src, neighbor)
+		cardinal = direction_to_text(cardinal)
 		if(istype(neighbor, /turf/simulated))
 			var/turf/simulated/redefined_turf = neighbor
 			var/turf_zone = redefined_turf.zone
@@ -96,13 +98,13 @@
 				FIREDOOR_ALERT = FALSE
 			)
 			registered_zas_zones[cardinal] = turf_zone
-			continue
-		tile_info[cardinal] =  list(
-			FIREDOOR_TURF = neighbor,
-			FIREDOOR_ATMOS = FIREDOOR_DONT_UPDATE,
-			FIREDOOR_ALERT = FALSE
-		)
-		registered_zas_zones[cardinal] = null
+		else
+			tile_info[cardinal] =  list(
+				FIREDOOR_TURF = neighbor,
+				FIREDOOR_ATMOS = FIREDOOR_DONT_UPDATE,
+				FIREDOOR_ALERT = FALSE
+			)
+			registered_zas_zones[cardinal] = null
 	handle_unique_zone_register()
 
 /obj/machinery/door/firedoor/proc/handle_unique_zone_register()
