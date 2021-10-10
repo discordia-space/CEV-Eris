@@ -1,6 +1,6 @@
 /obj/screen/film_grain
 	name = "Film Grain"
-	icon = 'code/modules/sanity/static.dmi'
+	icon = 'code/modules/sanity_grain/static.dmi'
 	screen_loc = ui_entire_screen
 	alpha = 110
 	layer = FULLSCREEN_LAYER
@@ -21,7 +21,26 @@
 
 /datum/sanity/updateLevel(new_level)
 	..()
+
+	var/datum/stat_holder/S = owner.stats
+	var/light_grain_perks = list(
+		PERK_SURVIVOR, PERK_VAGABOND,  // Jobs
+		PERK_NIHILIST, PERK_LOWBORN,   // Fates
+		PERK_HOLY_LIGHT,               // Aura
+	)
+
 	var/state = "[rand(1, 9)] "
+	for(var/perk in S.perks ? light_grain_perks : list())
+		if(S.getPerk(perk))
+			switch(new_level)
+				if(-INFINITY to 30)
+					state += "light"
+				if(30 to INFINITY)
+					state = ""
+
+			grain.icon_state = state
+			return
+
 	switch(new_level)
 		if(-INFINITY to 30)
 			state += "moderate"
