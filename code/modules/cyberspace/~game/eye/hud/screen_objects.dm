@@ -114,9 +114,16 @@
 	var/mob/observer/cyberspace_eye/avatar = parentmob
 	if(istype(avatar) && istype(avatar.owner))
 		var/obj/item/computer_hardware/deck/D = avatar.owner
-		maptext = "<font style=\"[maptext_style]\">[GetText(avatar, D)]</font>"
+		var/t = GetText(avatar, D)
+		maptext_x = initial(maptext_x) - length(t)
+		maptext = "<font style=\"[maptext_style]\">[t]</font>"
 
 /obj/screen/movable/cyberspace_eye/counter/proc/GetText(mob/observer/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
+	return ""
+/obj/screen/movable/cyberspace_eye/counter/health/GetText(mob/observer/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
+	..()
+	. = "[A.HP]/[A.maxHP]"
+
 
 // /obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter
 // 	name = "QP Counter"

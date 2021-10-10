@@ -1,8 +1,8 @@
 /datum/CyberSpaceAvatar/runner
-	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
+//	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
-CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
 /mob/observer/cyberspace_eye //slow move of it down
 	invisibility = INVISIBILITY_MAXIMUM
 	alpha = 200
@@ -12,7 +12,8 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 	_SeeCyberSpace = TRUE
 
 	var/obj/item/computer_hardware/deck/owner
-	var/HP = 100
+	var/maxHP = 100
+	var/HP
 
 /mob/observer/cyberspace_eye/proc/ReturnToBody()
 	if(istype(owner))
@@ -23,12 +24,6 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar
 		. = TRUE
 	else
 		to_chat(src, SPAN_WARNING("You can't feel your shell."))
-
-/mob/observer/cyberspace_eye/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
-	. = ..()
-	var/turf/T = get_turf(dropping)
-	if(user == src && get_dist(user, dropping) <= 1 && T.density && do_after(src, 2 SECONDS, src))
-		Move(T, get_dir(src, T))
 
 /datum/CyberSpaceAvatar/runner/ai
 	icon_state = "ai_observer"

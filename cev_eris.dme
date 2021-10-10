@@ -1623,6 +1623,7 @@
 #include "code\modules\cyberspace\~game\deck\hardware\chip.dm"
 #include "code\modules\cyberspace\~game\deck\hardware\chips\fracture_gen.dm"
 #include "code\modules\cyberspace\~game\eye\_core.dm"
+#include "code\modules\cyberspace\~game\eye\interactions.dm"
 #include "code\modules\cyberspace\~game\eye\jack_in_point.dm"
 #include "code\modules\cyberspace\~game\eye\verbs.dm"
 #include "code\modules\cyberspace\~game\eye\hud\_hud.dm"

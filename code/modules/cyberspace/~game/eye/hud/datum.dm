@@ -2,11 +2,12 @@
 	name = "cyberspace_eye"
 	icon = 'icons/obj/cyberspace/hud/common.dmi'
 	HUDneed = list(
-		"Jack Out" = /obj/screen/movable/cyberspace_eye/exit{name = "Jack Out";screen_loc = "EAST,NORTH"},
-		"Intent" = /obj/screen/movable/cyberspace_eye/intent{name = "Intent";screen_loc = "EAST,SOUTH"},
-		"Move Up" = /obj/screen/movable/cyberspace_eye/z_mover{name = "Move Up";icon_state = "up";screen_loc = "WEST,SOUTH+1";direction = UP},
-		"Move Down" = /obj/screen/movable/cyberspace_eye/z_mover{name = "Move Down";icon_state = "down";screen_loc = "WEST,SOUTH"; direction = DOWN},
-//		"QP Counter"=	list("type"	=	/obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter, "loc" = "WEST:4,SOUTH+1:11")
+		"Jack Out" = /obj/screen/movable/cyberspace_eye/exit{name = "Jack Out";screen_loc = "EAST:-4,NORTH:-4"},
+		"Intent" = /obj/screen/movable/cyberspace_eye/intent{name = "Intent";screen_loc = "EAST:-4,SOUTH:4"},
+		"HP Counter" = /obj/screen/movable/cyberspace_eye/counter/health{screen_loc = "EAST:-4,SOUTH+1:4"},
+		"Move Up" = /obj/screen/movable/cyberspace_eye/z_mover{name = "Move Up";icon_state = "up";screen_loc = "WEST:4,SOUTH+1:4";direction = UP},
+		"Move Down" = /obj/screen/movable/cyberspace_eye/z_mover{name = "Move Down";icon_state = "down";screen_loc = "WEST:4,SOUTH:4"; direction = DOWN},
+//		"QP Counter" = list("type"	=	/obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter, "loc" = "WEST:4,SOUTH+1:11")
 	)
 	var/use_panels = TRUE //Unable refactor to list, because data used not only in panel generation
 

@@ -7,12 +7,6 @@
 /datum/CyberSpaceAvatar/interactable/AbleToInteract(mob/observer/cyberspace_eye/user)
 	. = (1 >= get_dist(Owner, user))
 
-/datum/CyberSpaceAvatar/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user)
-	. = ..()
-	var/mob/observer/cyberspace_eye/avatar = user?.Owner
-	if(istype(avatar) && avatar.a_intent == I_HELP)
-		Owner.ui_interact(avatar, state = GLOB.netrunner_state)
-
 /mob/observer/cyberspace_eye/default_can_use_topic(src_object)
 	var/atom/target = src_object
 	if(istype(target) && istype(target.CyberAvatar) && target.CyberAvatar.AbleToInteract(src))
