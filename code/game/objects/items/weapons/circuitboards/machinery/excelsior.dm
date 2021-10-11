@@ -64,9 +64,9 @@
 	board_type = "machine"
 	origin_tech = list(TECH_BIO = 5, TECH_COVERT = 2)
 	req_components = list(
-		/obj/item/stock_parts/manipulator/excelsior = 1,
-		/obj/item/stock_parts/micro_laser/excelsior = 1,
-		/obj/item/stock_parts/scanning_module/excelsior = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/scanning_module = 1,
 		/obj/item/stock_parts/console_screen = 1
 	)
 	spawn_blacklisted = TRUE
