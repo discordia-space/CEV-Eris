@@ -74,33 +74,29 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 		stance = HOSTILE_STANCE_IDLE
 	if(target_mob in ListTargets(10))
 		if(ranged)
-			if(get_dist(src, target_mob) <= 6 && !istype(src, /mob/living/simple_animal/hostile/megafauna))
-				OpenFire(target_mob)
-			else
-				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-				walk_to(src, target_mob, 1, move_to_delay)
-			if(ranged && istype(src, /mob/living/simple_animal/hostile/megafauna))
-				var/mob/living/simple_animal/hostile/megafauna/megafauna = src
-				sleep(rand(megafauna.megafauna_min_cooldown,megafauna.megafauna_max_cooldown))
+			var/mob/living/simple_animal/hostile/megafauna/M = src
+			if(istype(M))
+				sleep(rand(M.megafauna_min_cooldown, M.megafauna_max_cooldown))
+				var/probability = 45
 				if(istype(src, /mob/living/simple_animal/hostile/megafauna/one_star))
-					if(prob(rand(15,25)))
-						stance = HOSTILE_STANCE_ATTACKING
-						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-						walk_to(src, target_mob, 1, move_to_delay)
-					else
-						OpenFire(target_mob)
+					probability = rand(15, 25)
+				if(prob(probability))
+					stance = HOSTILE_STANCE_ATTACKING
+					forceMoveToTarget()
 				else
-					if(prob(45))
-						stance = HOSTILE_STANCE_ATTACKING
-						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-						walk_to(src, target_mob, 1, move_to_delay)
-					else
-						OpenFire(target_mob)
+					OpenFire(target_mob)
+			else
+				if(get_dist(src, target_mob) <= 6)
+					OpenFire(target_mob)
+				else
+					forceMoveToTarget()
 		else
 			stance = HOSTILE_STANCE_ATTACKING
-			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-			walk_to(src, target_mob, 1, move_to_delay)
-	return 0
+			forceMoveToTarget()
+
+/mob/living/simple_animal/hostile/proc/forceMoveToTarget()
+	set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+	walk_to(src, target_mob, 1, move_to_delay)
 
 /mob/living/simple_animal/hostile/proc/DestroyPathToTarget()
 	if(environment_smash)
