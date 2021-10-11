@@ -82,13 +82,18 @@
 	. = ..()
 
 /obj/machinery/door/firedoor/proc/begin_delayed_link()
-	addtimer(CALLBACK(src, .proc/link_to_zas), 1 SECOND)
+	addtimer(CALLBACK(src, .proc/link_to_zas_with_update), 1 SECONDS)
+
+/obj/machinery/door/firedoor/proc/link_to_zas_with_update()
+	SHOULD_NOT_SLEEP(TRUE)
+	link_to_zas()
+	update_firedoor_data()
 
 /obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
 	SHOULD_NOT_SLEEP(TRUE)
 	if(do_delayed)
 		INVOKE_ASYNC(src, .proc/begin_delayed_link)
-		return
+		return FALSE
 	for(var/our_cardinal in registered_zas_zones)
 		if(!registered_zas_zones[our_cardinal])
 			continue
@@ -116,6 +121,7 @@
 			)
 			registered_zas_zones[cardinal] = null
 	handle_unique_zone_register()
+	return TRUE
 
 /obj/machinery/door/firedoor/proc/handle_unique_zone_register()
 	SHOULD_NOT_SLEEP(TRUE)
