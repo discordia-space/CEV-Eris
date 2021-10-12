@@ -1,6 +1,5 @@
 #define SIPHONING	0
 #define SCRUBBING	1
-#define SLEEPOUT_TIME	15 SECONDS // If ZAS TICK does not occur for 15 seconds , sleep us
 
 /obj/machinery/atmospherics/unary/vent_scrubber
 	icon = 'icons/atmos/vent_scrubber.dmi'
@@ -21,9 +20,6 @@
 	var/id_tag
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
-	var/current_linked_zone = null
-	var/currently_processing = FALSE
-	var/last_zas_update = null
 
 	var/scrubbing = SCRUBBING
 	var/list/scrubbing_gas = list("carbon_dioxide","sleeping_agent","plasma")
@@ -51,44 +47,9 @@
 		assign_uid()
 		id_tag = num2text(uid)
 
-/obj/machinery/atmospherics/unary/vent_scrubber/Initialize(mapload)
-	if(mapload)
-		addtimer(CALLBACK(src, .proc/link_to_zas), 20 SECONDS)
-	else
-		link_to_zas()
-	..()
-
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
 	. = ..()
-
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/link_to_zas()
-	SHOULD_NOT_SLEEP(TRUE)
-	if(current_linked_zone)
-		UnregisterSignal(current_linked_zone, COMSIG_ZAS_TICK)
-		UnregisterSignal(current_linked_zone, COMSIG_ZAS_DELETE)
-		current_linked_zone = null
-	var/turf/simulated/where_the_fuck_are_we = get_turf(src)
-	if(!istype(where_the_fuck_are_we))
-		crash_with("[src] scrubber located in [loc] on a non-simulated turf.Delete this or make the turf it is on simulated.")
-		return FALSE
-	current_linked_zone = where_the_fuck_are_we.zone
-	RegisterSignal(current_linked_zone , COMSIG_ZAS_TICK, .proc/begin_processing)
-	RegisterSignal(current_linked_zone, COMSIG_ZAS_DELETE, .proc/relink_zas)
-
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/relink_zas()
-	SHOULD_NOT_SLEEP(TRUE)
-	INVOKE_ASYNC(src , .proc/zas_relink_wrapper)
-
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/zas_relink_wrapper()
-	addtimer(CALLBACK(src, .proc/link_to_zas), 2 SECONDS)
-
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/begin_processing()
-	last_zas_update = world.time
-	if(!currently_processing)
-		START_PROCESSING(SSmachines, src)
-		return TRUE
-	return FALSE
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on_update_icon(safety = 0)
 	if(!node1)
@@ -125,7 +86,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/broadcast_status()
 	if(!radio_connection)
-		return FALSE
+		return 0
 
 	var/datum/signal/signal = new
 	signal.transmission_method = 1 //radio signal
@@ -164,10 +125,6 @@
 		src.broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Process()
-	if(last_zas_update + SLEEPOUT_TIME < world.time)
-		currently_processing = FALSE
-		return PROCESS_KILL
-
 	..()
 
 	if (!node1)
@@ -175,17 +132,17 @@
 		return
 	//broadcast_status()
 	if(!use_power)
-		return FALSE
+		return 0
 
 	if(stat & (NOPOWER|BROKEN))
-		return FALSE
+		return 0
 
 	if(welded)
-		return FALSE
+		return 0
 
 	var/list/environments = get_target_environments(src, expanded_range)
 	if(!length(environments))
-		return FALSE
+		return 0
 
 	var/power_draw = 0
 	var/transfer_happened = FALSE
@@ -211,9 +168,9 @@
 		last_power_draw = power_draw
 		use_power(power_draw)
 		if(network)
-			network.update = TRUE
+			network.update = 1
 
-	return TRUE
+	return 1
 
 /obj/machinery/atmospherics/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
 	update_icon()
@@ -363,4 +320,3 @@
 
 #undef SIPHONING
 #undef SCRUBBING
-#undef SLEEPOUT_TIME
