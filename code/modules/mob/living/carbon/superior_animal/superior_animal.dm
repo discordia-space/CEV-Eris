@@ -195,9 +195,10 @@
 			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
 		if(min_air_pressure)
 			adjustBruteLoss(6)
+			bad_environment = TRUE
 		if(breath_required_type)
 			adjustOxyLoss(6)
-		bad_environment = TRUE
+			bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
 	if (!contaminant_immunity)
