@@ -73,7 +73,7 @@
 	name = "high security airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_highsecurity
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL)
 	)
 
 
