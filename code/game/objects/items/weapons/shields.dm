@@ -2,7 +2,7 @@
 //These are shared by various items that have shield-like behaviour
 
 //bad_arc is the ABSOLUTE arc of directions from which we cannot block. If you want to fix it to e.g. the user's facing you will need to rotate the dirs yourself.
-/proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
+/proc/check_parry_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
 	if(istype(damage_source, /obj/item/projectile))
@@ -24,31 +24,77 @@
 
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
-	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+	if(!check_parry_arc(user, bad_arc, damage_source, attacker))
 		return 0
 
 	return 1
 
 /obj/item/shield
 	name = "shield"
-	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 0, bio = 0, rad = 0)
 	var/base_block_chance = 50
 	var/slowdown_time = 1
+	var/shield_integrity = 100
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(user.incapacitated())
+
+	if(istype(damage_source,/obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
 
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
-	if(check_shield_arc(user, bad_arc, damage_source, attacker))
+	if(check_parry_arc(user, bad_arc, damage_source, attacker))
 		if(prob(get_block_chance(user, damage, damage_source, attacker)))
 			user.visible_message(SPAN_DANGER("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
 
+/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
+	var/bad_arc = reverse_direction(user.dir)
+	var/list/protected_area = get_protected_area(user)
+	if(protected_area.Find(def_zone) && check_shield_arc(user,bad_arc,damage_source))
+		if(!damage_source.check_penetrate(src))
+			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with their [src]!"))
+			return 1
+	return 0
+
+/obj/item/shield/proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
+	//shield direction
+
+	var/shield_dir = 0
+	if(user.get_equipped_item(slot_l_hand) == src)
+		shield_dir = turn(user.dir,90)
+	else if(user.get_equipped_item(slot_r_hand) == src)
+		shield_dir = turn(user.dir,-90)
+	//check attack direction
+	var/attack_dir = 0 //direction from the user to the source of the attack
+	if(istype(damage_source, /obj/item/projectile))
+		var/obj/item/projectile/P = damage_source
+		attack_dir = get_dir(get_turf(user), P.starting)
+	else if(attacker)
+		attack_dir = get_dir(get_turf(user), get_turf(attacker))
+	else if(damage_source)
+		attack_dir = get_dir(get_turf(user), get_turf(damage_source))
+
+	//blocked directions
+	if(user.get_equipped_item(slot_back) == src)
+		if(attack_dir & bad_arc && attack_dir)
+			return TRUE
+		else
+			return FALSE
+	
+
+	if(wielded && !(attack_dir && (attack_dir & bad_arc)))
+		return TRUE
+	else if(!(attack_dir == bad_arc) && !(attack_dir == reverse_direction(shield_dir)) && !(attack_dir == (bad_arc | reverse_direction(shield_dir))))
+		return TRUE
+	return FALSE
+
 /obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
+
+/obj/item/shield/proc/get_protected_area(mob/user)
+	var/list/p_area = BP_ALL_LIMBS
+	return p_area
 
 /obj/item/shield/attack(mob/M, mob/user)
 	if(isliving(M))
@@ -74,6 +120,7 @@
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10)
 	price_tag = 500
 	attack_verb = list("shoved", "bashed")
+	shield_integrity = 125
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	var/picked_by_human = FALSE
 	var/mob/living/carbon/human/picking_human
@@ -88,6 +135,26 @@
 		return 0
 	if(MOVING_DELIBERATELY(user))
 		return base_block_chance
+
+/obj/item/shield/riot/get_protected_area(mob/user)
+	var/list/p_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
+	
+	if(user.get_equipped_item(slot_back) == src)
+		return p_area
+	
+	if(MOVING_QUICKLY(user))
+		if(user.get_equipped_item(slot_l_hand) == src)
+			p_area = list(BP_L_ARM)
+		else if(user.get_equipped_item(slot_r_hand) == src)
+			p_area = list(BP_R_ARM)
+	else if(MOVING_DELIBERATELY(user) && wielded)
+		p_area = BP_ALL_LIMBS
+	
+	if(user.get_equipped_item(slot_l_hand) == src)
+		p_area.Add(BP_L_ARM)
+	else if(user.get_equipped_item(slot_r_hand) == src)
+		p_area.Add(BP_R_ARM)
+	return p_area
 
 /obj/item/shield/riot/New()
 	RegisterSignal(src, COMSIG_ITEM_PICKED, .proc/is_picked)
@@ -148,6 +215,7 @@
 	throw_range = 6
 	matter = list(MATERIAL_STEEL = 6)
 	base_block_chance = 35
+	shield_integrity = 100
 
 
 /obj/item/shield/riot/handmade/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
@@ -169,6 +237,7 @@
 	throw_range = 4
 	matter = list(MATERIAL_STEEL = 4)
 	base_block_chance = 35
+	shield_integrity = 80
 
 
 /obj/item/shield/riot/handmade/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
@@ -196,6 +265,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_COVERT = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
+	shield_integrity = 115
 
 /obj/item/shield/energy/handle_shield(mob/user)
 	if(!active)
