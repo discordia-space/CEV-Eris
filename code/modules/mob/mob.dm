@@ -213,6 +213,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+		client.view = world.view  // Reset view range if it has been altered
 
 	if(hud_used)
 		hud_used.updatePlaneMasters(src)
@@ -1055,7 +1056,7 @@ mob/proc/yank_out_object()
 		if(istype(I,/mob/living/simple_animal/borer))
 			return I
 
-	return 0
+	return FALSE
 
 /mob/proc/updateicon()
 	return

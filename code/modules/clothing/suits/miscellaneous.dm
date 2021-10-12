@@ -416,16 +416,24 @@
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 40,
+		bullet = 35,
+		energy = 25,
 		bomb = 10,
-		bio = 0,
+		bio = 50,
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/storage/scavengerarmor/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 3
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 6
+
 
 /obj/item/clothing/suit/storage/triad
 	name = "triad jacket"//RUINER reference
@@ -441,8 +449,14 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	price_tag = 1050
+	price_tag = 1000
 
+/obj/item/clothing/suit/storage/triad/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 4
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/akira
 	name = "red jacket"//Akira, preety obvious
@@ -451,11 +465,11 @@
 	item_state = "akira"
 	armor = list(
 		melee = 20,
-		bullet = 10,
+		bullet = 20,
 		energy = 10,
 		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
-	price_tag = 600
+	price_tag = 400

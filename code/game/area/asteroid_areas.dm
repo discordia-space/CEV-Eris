@@ -34,6 +34,19 @@
 	name = "Abandoned Fortress"
 	icon_state = "yellow"
 
+/area/outpost/blacksite
+	name = "Abandoned Blacksite"
+	icon_state = "away"
+
+/area/outpost/blacksite/small
+	name = "Small Abandoned Blacksite"
+
+/area/outpost/blacksite/medium
+	name = "Medium Abandoned Blacksite"
+
+/area/outpost/blacksite/large
+	name = "Large Abandoned Blacksite"
+
 // Main mining outpost
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
@@ -182,7 +195,18 @@
 
 /area/outpost/junkyard/station
 	icon_state = "away2"
+
+/area/outpost/junkyard/station/beta
+	name = "Beta Station"
+
+/area/outpost/junkyard/station/charlie
+	name = "Charlie Station"
+
+/area/outpost/junkyard/station/delta
 	name = "Delta Station"
+
+/area/outpost/junkyard/station/core
+	name = "Delta Station Core"
 
 /area/outpost/junkyard/hermitage
 	icon_state = "away2"

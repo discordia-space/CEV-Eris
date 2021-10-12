@@ -27,7 +27,7 @@
 	if(!loc || !ghost_usable)
 		return
 	var/ghost_role = alert(usr, "Become [mob_name]? (Warning, You can no longer be revived!)","Are you sure?","Yes","Cancel")
-	if(ghost_role == "cancel")
+	if(ghost_role == "Cancel")
 		return
 	/*if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
 		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
@@ -107,7 +107,7 @@
 /obj/effect/mob_spawn/human
 	mob_type = /mob/living/carbon/human
 	//Human specific stuff.
-	var/decl/hierarchy/outfit/outfit = /decl/hierarchy/outfit
+	var/decl/hierarchy/outfit/outfit
 	var/mob_species = null //Set to make them a mutant race such as lizard or skeleton. Uses the datum typepath instead of the ID.
 	var/disable_pda = TRUE
 	var/disable_sensors = TRUE
@@ -158,10 +158,10 @@
 
 /obj/effect/mob_spawn/human/Initialize()
 	if(ispath(outfit))
-		outfit = new outfit()
+		outfit = outfit_by_type(outfit)
 	if(!outfit)
-		outfit = new outfit
-	return ..() 
+		outfit = outfit_by_type()
+	return ..()
 
 /obj/effect/mob_spawn/human/equip(mob/living/carbon/human/H)
 	if(mob_species)

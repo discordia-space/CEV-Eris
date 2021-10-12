@@ -9,10 +9,10 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
-	var/last_produce = -30 MINUTES
+	var/last_produce = -20 MINUTES
 	var/items_count = 0
 	var/max_count = 5
-	var/cooldown = 30 MINUTES
+	var/cooldown = 20 MINUTES
 
 /obj/item/device/techno_tribalism/New()
 	..()

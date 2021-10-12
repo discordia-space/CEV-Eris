@@ -34,12 +34,19 @@
 	icon_state = "plating"
 	initial_flooring = /decl/flooring/reinforced/plating
 
+/turf/simulated/floor/plating/airless
+	oxygen = 0
+	nitrogen = 0
+
 /turf/simulated/floor/plating/under
 	name = "underplating"
 	icon_state = "under"
 	icon = 'icons/turf/flooring/plating.dmi'
 	initial_flooring = /decl/flooring/reinforced/plating/under
 
+/turf/simulated/floor/plating/under/airless
+	oxygen = 0
+	nitrogen = 0
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -52,6 +59,10 @@
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_state = "dirt"
 	initial_flooring = /decl/flooring/dirt
+
+/turf/simulated/floor/dirt/airless
+	oxygen = 0
+	nitrogen = 0
 
 /turf/simulated/floor/hull
 	name = "hull"

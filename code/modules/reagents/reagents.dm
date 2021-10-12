@@ -31,6 +31,7 @@
 	var/withdrawal_rate = REM * 2
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
+	var/glass_unique_appearance = FALSE
 	var/glass_icon_state
 	var/glass_name
 	var/glass_desc

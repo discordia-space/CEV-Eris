@@ -12,6 +12,7 @@
 	var/image/inv_overlay	//overlay used when attached to clothing.
 	var/image/mob_overlay
 	var/overlay_state
+	var/isRemovable = TRUE
 
 /obj/item/clothing/accessory/Destroy()
 	if(has_suit)
@@ -198,6 +199,7 @@
 	slot = "armor"
 	icon_state = "armor"
 	w_class = ITEM_SIZE_NORMAL
+	isRemovable = FALSE
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -232,4 +234,47 @@
 	matter = list(
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 3,
+	)
+
+/obj/item/clothing/accessory/armor/platecarrier
+	name = "platecarrier armor plates"
+	desc = "Plates from a platecarrier, now usable to reinforce clothes."
+	icon_state = "armor_platecarrier"
+	armor = list(
+		melee = 20,
+		bullet = 40,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 10,
+		MATERIAL_PLASTEEL = 3,
+	)
+
+/obj/item/clothing/accessory/armor/riot
+	name = "padded armor plates"
+	desc = "Plates from riot armor, now usable to reinforce clothes."
+	icon_state = "armor_riot"
+	armor = list(
+		melee = 50,
+		bullet = 20,
+		energy = 20,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/accessory/armor/laser
+	name = "ablative armor plates"
+	desc = "Sheets from ablative armor, now usable to reinforce clothes. The shape somehow feels off."
+	icon_state = "armor_ablative"
+	armor = list(
+		melee = 20,
+		bullet = 20,
+		energy = 40,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
