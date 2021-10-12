@@ -48,7 +48,7 @@
 			return 1
 	return 0
 
-/obj/item/shield/proc/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
+/obj/item/shield/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
 	var/list/protected_area = get_protected_area(user)
 	if(protected_area.Find(def_zone) && check_shield_arc(user,bad_arc,damage_source))
