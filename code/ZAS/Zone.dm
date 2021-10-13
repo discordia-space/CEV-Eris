@@ -128,7 +128,7 @@ Class Procs:
 	for(var/turf/simulated/T in contents)
 		T.dbg(invalid_zone)
 	#endif
-	SEND_SIGNAL(src, COMSIG_ZAS_DELETE, TRUE)
+	SEND_SIGNAL(src, COMSIG_ZAS_DELETE)
 
 /zone/proc/rebuild()
 	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
