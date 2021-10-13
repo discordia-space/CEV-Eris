@@ -26,6 +26,8 @@
 	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
 	closed_layer = CLOSED_FIREDOOR_LAYER // Just above doors when closed
+	var/last_time_since_link = 0
+	var/minimum_link_cooldown = 2 SECONDS
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
@@ -81,10 +83,6 @@
 		link_to_zas()
 	. = ..()
 
-<<<<<<< HEAD
-/obj/machinery/door/firedoor/proc/link_to_zas()
-	SHOULD_NOT_SLEEP(TRUE)
-=======
 /obj/machinery/door/firedoor/proc/begin_delayed_link()
 	addtimer(CALLBACK(src, .proc/link_to_zas_with_update), 1 SECONDS)
 
@@ -95,10 +93,10 @@
 
 /obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(do_delayed)
+	if(do_delayed && (world.time > last_time_since_link))
+		last_time_since_link = world.time + minimum_link_cooldown
 		INVOKE_ASYNC(src, .proc/begin_delayed_link)
 		return FALSE
->>>>>>> parent of 2666e72c2 (Revert "Update firedoor.dm")
 	for(var/our_cardinal in registered_zas_zones)
 		if(!registered_zas_zones[our_cardinal])
 			continue
