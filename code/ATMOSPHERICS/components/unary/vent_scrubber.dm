@@ -60,6 +60,10 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
+	if(current_linked_zone)
+		UnregisterSignal(current_linked_zone, COMSIG_ZAS_TICK)
+		UnregisterSignal(current_linked_zone, COMSIG_ZAS_DELETE)
+		current_linked_zone = null
 	. = ..()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/link_to_zas()
@@ -84,6 +88,7 @@
 	addtimer(CALLBACK(src, .proc/link_to_zas), 2 SECONDS)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/begin_processing()
+	SHOULD_NOT_SLEEP(TRUE)
 	last_zas_update = world.time
 	if(!currently_processing)
 		START_PROCESSING(SSmachines, src)

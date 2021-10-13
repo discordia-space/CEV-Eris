@@ -73,6 +73,14 @@
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		A.all_doors.Remove(src)
+	for(var/our_cardinal in registered_zas_zones)
+		if(!registered_zas_zones[our_cardinal])
+			continue
+		var/target_zone = registered_zas_zones[our_cardinal]
+		UnregisterSignal(target_zone , COMSIG_ZAS_TICK)
+		UnregisterSignal(target_zone, COMSIG_ZAS_DELETE)
+	registered_zas_zones = null
+	tile_info = null
 	. = ..()
 
 
@@ -93,10 +101,10 @@
 
 /obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
 	SHOULD_NOT_SLEEP(TRUE)
-	if(do_delayed && (world.time > last_time_since_link))
+	/*if(do_delayed && (world.time > last_time_since_link))
 		last_time_since_link = world.time + minimum_link_cooldown
 		INVOKE_ASYNC(src, .proc/begin_delayed_link)
-		return FALSE
+		return FALSE */
 	for(var/our_cardinal in registered_zas_zones)
 		if(!registered_zas_zones[our_cardinal])
 			continue
@@ -189,7 +197,7 @@
 		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_COLD)
 			text_to_say += SPAN_DANGER("ALERT : VACUMM / LOW TEMPERATURE DETECTED |")
 		if(data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT)
-			text_to_say += SPAN_DANGER("ALERT : TEMPERATURE DETECTED |")
+			text_to_say += SPAN_DANGER("ALERT : HIGH TEMPERATURE DETECTED |")
 		to_chat(user, text_to_say)
 
 	/*
@@ -382,7 +390,7 @@
 		var/alerts = 0
 		var/list/data = tile_info[cardinal_target]
 		var/turf/target_turf = data[FIREDOOR_TURF]
-		data[FIREDOOR_ATMOS] = target_turf.return_air() // yes it can return nothing in space.
+		//data[FIREDOOR_ATMOS] = target_turf.return_air()
 		if(!data[FIREDOOR_ATMOS])
 			alerts |= FIREDOOR_ALERT_COLD
 			lockdown = TRUE
@@ -403,6 +411,7 @@
 		tile_info[cardinal_target] = data
 	INVOKE_ASYNC(src , /atom.proc/update_icon)
 	return TRUE
+
 	/*
 		var/changed = 0
 		lockdown = 0
