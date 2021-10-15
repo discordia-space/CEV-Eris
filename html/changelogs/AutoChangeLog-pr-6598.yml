@@ -1,0 +1,4 @@
+author: Fiftyllama
+delete-after: true
+changes:
+  - tweak: tweaked how guild profit scores are calculated
