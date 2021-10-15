@@ -68,7 +68,7 @@
 		armor_penetration *= maintainedVelocity
 		for(var/i in damage_types)
 			damage_types[i] *= maintainedVelocity
-		step_delay = min(step_delay/maintainedVelocity,step_delay/2)
+		step_delay = min(step_delay / maintainedVelocity, step_delay / 2)
 
 		if(A.opacity)
 			//display a message so that people on the other side aren't so confused
