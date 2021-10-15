@@ -93,8 +93,7 @@
 	return base_block_chance
 
 /obj/item/shield/proc/get_protected_area(mob/user)
-	var/list/p_area = BP_ALL_LIMBS
-	return p_area
+	return BP_ALL_LIMBS
 
 /obj/item/shield/attack(mob/M, mob/user)
 	if(isliving(M))
