@@ -20,8 +20,7 @@
 /obj/item/projectile/beam/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		var/loss = 0
-		loss = min(round(armor_penetration*2/S.shield_integrity*1.8),1)
+		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
 			damage_types[i] *= loss
 		return 1
