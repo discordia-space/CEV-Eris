@@ -6,9 +6,9 @@
 */
 /obj/item/robot_parts/robot_component/armour/exosuit
 	name = "exosuit armor plating"
-	armor = list(melee = 70, bullet = 35, energy = 30, bomb = 25, bio = 100, rad = 50)
+	armor = list(melee = 75, bullet = 33, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_STEEL = 7)
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10
 
