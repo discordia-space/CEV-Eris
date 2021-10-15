@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed huds for versions past 514.16
+  - rscadd: Added a verb to toggle walk or run . Not binded , has to be macroed ,
+      verb is change-move-intent.
