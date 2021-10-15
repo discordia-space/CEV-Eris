@@ -55,7 +55,7 @@
 		chance = round(penetrating * armor_penetration * 2 / S.shield_integrity * 180)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		chance = round(penetrating*armor_penetration*2/D.maxhealth*180)
+		chance = round(penetrating * armor_penetration * 2 / D.maxhealth * 180)
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
