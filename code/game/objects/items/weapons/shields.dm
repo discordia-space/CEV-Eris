@@ -136,7 +136,7 @@
 		return base_block_chance
 
 /obj/item/shield/riot/get_protected_area(mob/user)
-	var/list/p_area = list(BP_CHEST,BP_GROIN,BP_HEAD)
+	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)
 	
 	if(user.get_equipped_item(slot_back) == src)
 		return p_area
