@@ -37,20 +37,10 @@
 /area/template_noop)
 "i" = (
 /obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "j" = (
 /obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/traps/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -59,20 +49,10 @@
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "l" = (
 /obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -80,11 +60,6 @@
 /obj/structure/catwalk,
 /obj/structure/sign/atmos_o2{
 	pixel_x = -32
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
