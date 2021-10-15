@@ -217,12 +217,14 @@
 	required_technologies = list(/datum/technology/cheap_exo_components)
 
 	required_tech_levels = list()
-	cost = 1000
+	cost = 2000
 
 	unlocks_designs = list(
 		/datum/design/research/item/exosuit/drill,
 		/datum/design/research/item/exosuit/extinguisher,
 		/datum/design/research/item/exosuit/hydraulic_clamp,
+		/datum/design/research/item/mechfab/exosuit/chassis/pod,
+		/datum/design/research/item/exosuit/weapon/plasma
 	)
 
 /datum/technology/mech_teleporter_modules
@@ -297,7 +299,6 @@
 	cost = 5000
 
 	unlocks_designs = list(
-			/datum/design/research/item/exosuit/weapon/plasma,
 			/datum/design/research/item/exosuit/weapon/laser,
 			/datum/design/research/item/exosuit/weapon/pk
 		)
