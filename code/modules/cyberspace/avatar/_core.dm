@@ -24,8 +24,8 @@
 /atom/proc/CreateCA(_color = CyberAvatar)
 	if(istype(CyberAvatar))
 		qdel(CyberAvatar)
-	if(ispath(CyberAvatar_inittype))
-		CyberAvatar = new CyberAvatar_inittype(src)
+	if(ispath(CyberAvatar_prefab))
+		CyberAvatar = new CyberAvatar_prefab(src)
 	else
 		CyberAvatar = new(src)
 	if(istext(_color))

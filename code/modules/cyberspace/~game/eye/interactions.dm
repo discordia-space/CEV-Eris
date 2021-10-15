@@ -4,20 +4,20 @@
 	if(istype(avatar))
 		switch(avatar.a_intent)
 			if(I_HELP)
-				. = HelpInteraction(user_avatar, user)
+				. = HelpInteraction(avatar, user)
 			if(I_HURT)
-				. = HurtInteraction(user_avatar, user)
+				. = HurtInteraction(avatar, user)
 			if(I_GRAB)
-				. = GrabInteraction(user_avatar, user)
+				. = GrabInteraction(avatar, user)
 			if(I_DISARM)
-				. = DisarmInteraction(user_avatar, user)
+				. = DisarmInteraction(avatar, user)
 
-/datum/CyberSpaceAvatar/proc/HelpInteraction(mob/user_avatar, datum/CyberSpaceAvatar/user)
+/datum/CyberSpaceAvatar/proc/HelpInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
 	var/mob/observer/cyberspace_eye/O = Owner
-	if(istype(O, /mob/observer/cyberspace_eye))
+	if(istype(O))
 		to_chat(user_avatar, "You are trying to fix [O]")
 		if(do_after(user_avatar, 2 SECONDS, O, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE))
-			return O.ChangeHP(0.05)
+			return O.ChangeHP(0, O.Might)
 		else
 			to_chat(user_avatar, SPAN_WARNING("Fixing failed."))
 			return
@@ -31,9 +31,11 @@
 	. = HP - .
 	update_hud()
 
-/datum/CyberSpaceAvatar/proc/HurtInteraction(mob/user_avatar, datum/CyberSpaceAvatar/user)
+/datum/CyberSpaceAvatar/proc/HurtInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
+	to_chat(user_avatar, "You are attacking \the [O]")
+	return O.ChangeHP(0, -O.Might)
 
-/datum/CyberSpaceAvatar/proc/GrabInteraction(mob/user_avatar, datum/CyberSpaceAvatar/user)
-
-/datum/CyberSpaceAvatar/proc/DisarmInteraction(mob/user_avatar, datum/CyberSpaceAvatar/user)
+/datum/CyberSpaceAvatar/proc/GrabInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
+//	do_after(user_avatar, 2 SECONDS, O, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE, can_move = TRUE)
+/datum/CyberSpaceAvatar/proc/DisarmInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
 

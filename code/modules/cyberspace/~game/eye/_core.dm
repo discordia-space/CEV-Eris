@@ -2,7 +2,7 @@
 //	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
-CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
+CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
 /mob/observer/cyberspace_eye //slow move of it down
 	invisibility = INVISIBILITY_MAXIMUM
 	alpha = 200
@@ -14,6 +14,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/ru
 	var/obj/item/computer_hardware/deck/owner
 	var/maxHP = 100
 	var/HP
+	var/Might = 5
 
 /mob/observer/cyberspace_eye/proc/ReturnToBody()
 	if(istype(owner))
@@ -28,7 +29,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/ru
 /datum/CyberSpaceAvatar/runner/ai
 	icon_state = "ai_observer"
 
-CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner/ai)
+CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner/ai)
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
 	ReturnToBody()

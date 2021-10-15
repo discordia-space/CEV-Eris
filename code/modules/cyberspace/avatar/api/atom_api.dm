@@ -1,6 +1,6 @@
 /atom
 	var/datum/CyberSpaceAvatar/CyberAvatar
-	var/CyberAvatar_inittype
+	var/CyberAvatar_prefab
 
 /datum/CyberSpaceAvatar/SetOwner(atom/nOwner)
 	. = ..()

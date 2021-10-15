@@ -1,5 +1,6 @@
 /datum/CyberSpaceAvatar/interactable
 	density = TRUE
+	var/RequireAreaAccessToInteract = TRUE
 
 /datum/CyberSpaceAvatar/proc/AbleToInteract(mob/observer/cyberspace_eye/user)
 	. = FALSE
