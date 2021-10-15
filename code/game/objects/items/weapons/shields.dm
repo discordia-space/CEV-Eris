@@ -62,9 +62,9 @@
 
 	var/shield_dir = 0
 	if(user.get_equipped_item(slot_l_hand) == src)
-		shield_dir = turn(user.dir,90)
+		shield_dir = turn(user.dir, 90)
 	else if(user.get_equipped_item(slot_r_hand) == src)
-		shield_dir = turn(user.dir,-90)
+		shield_dir = turn(user.dir, -90)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
 	if(istype(damage_source, /obj/item/projectile))
