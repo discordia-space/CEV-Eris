@@ -277,7 +277,7 @@
 				var/mob/living/carbon/C = target_mob
 				var/obj/item/shield/S
 				for(S in get_both_hands(C))
-					if(S && S.block_bullet(C,src,def_zone))
+					if(S && S.block_bullet(C, src, def_zone))
 						on_hit(S,def_zone)
 						qdel(src)
 						return TRUE
