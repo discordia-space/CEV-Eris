@@ -740,7 +740,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/item/mech_component/manipulators/cheap,
 		/obj/item/mech_component/propulsion/cheap,
 		/obj/item/robot_parts/robot_component/exosuit_control,
-		/obj/item/robot_parts/robot_component/armour/exosuit
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain
 	)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate

@@ -4,7 +4,7 @@
 		damage_flags &= ~(DAM_SHARP | DAM_EDGE)
 	. = ..()
 */
-/obj/item/robot_parts/robot_component/armour/exosuit
+/obj/item/robot_parts/robot_component/armour/exosuit/plain
 	name = "exosuit armor plating"
 	armor = list(melee = 75, bullet = 33, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)

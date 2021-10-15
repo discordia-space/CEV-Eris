@@ -45,7 +45,7 @@
 
 	if(body && body.armor?.type != installed_armor)
 		QDEL_NULL(body.armor) // Delete old armor, if any
-		body.armor = new installed_armor(src)
+		body.armor_plate = new installed_armor(src)
 
 	..()
 
@@ -169,10 +169,10 @@
 	))
 
 	installed_armor = pickweight(list(
-		/obj/item/robot_parts/robot_component/armour/exosuit = 50,
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 30,
-		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 10,
-		/obj/item/robot_parts/robot_component/armour/exosuit/em = 10
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = 50,
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 5,
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 25,
+		/obj/item/robot_parts/robot_component/armour/exosuit/em = 20
 	))
 
 	..()

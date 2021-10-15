@@ -65,17 +65,17 @@
 	return total
 
 /mob/living/exosuit/emp_act(severity)
-	var/ratio = getarmor(null, ARMOR_ENERGY)
+	var/emp_resist = 1 + getarmor(null, ARMOR_ENERGY)
 
-	if(ratio >= 1)
+	if(emp_resist >= 50)
 		for(var/mob/living/m in pilots)
-			to_chat(m, SPAN_NOTICE("Your Faraday shielding absorbed the pulse!"))
+			to_chat(m, SPAN_NOTICE("The electromagnetic pulse fails to penetrate your Faraday shielding!"))
 		return
-	else if(ratio > 0)
+	else if(emp_resist < 50)
 		for(var/mob/living/m in pilots)
-			to_chat(m, SPAN_NOTICE("Your Faraday shielding mitigated the pulse!"))
+			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your armour, damaging several items!"))
 
-		emp_damage += round((12 - (severity*3))*( 1 - ratio))
+		emp_damage += round((12 - severity) / emp_resist*20)
 		if(severity <= 3)
 			for(var/obj/item/thing in list(arms,legs,head,body))
 				thing.emp_act(severity)
