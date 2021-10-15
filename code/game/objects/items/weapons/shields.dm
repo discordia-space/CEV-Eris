@@ -51,9 +51,9 @@
 /obj/item/shield/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
 	var/list/protected_area = get_protected_area(user)
-	if(protected_area.Find(def_zone) && check_shield_arc(user,bad_arc,damage_source))
+	if(protected_area.Find(def_zone) && check_shield_arc(user, bad_arc, damage_source))
 		if(!damage_source.check_penetrate(src))
-			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with their [src]!"))
+			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with \his [src]!"))
 			return 1
 	return 0
 
