@@ -60,7 +60,7 @@
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = armor_penetration*penetrating
+		chance = armor_penetration * penetrating
 
 
 	if(prob(chance))
