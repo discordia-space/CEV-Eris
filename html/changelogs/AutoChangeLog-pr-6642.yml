@@ -1,0 +1,4 @@
+author: komunre
+delete-after: true
+changes:
+  - bugfix: tape could be applied to any door
