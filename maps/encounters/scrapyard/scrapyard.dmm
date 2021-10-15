@@ -3591,8 +3591,8 @@
 	anchored = 1
 	},
 /obj/item/gun/projectile/flare_gun,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Do" = (
@@ -6192,8 +6192,8 @@
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
 /obj/item/gun/projectile/flare_gun,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "Yg" = (
