@@ -73,7 +73,7 @@
 		return
 	else if(emp_resist < 50)
 		for(var/mob/living/m in pilots)
-			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your armour, damaging several items!"))
+			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your shielding, causing damage!"))
 
 		emp_damage += round((12 - severity) / emp_resist*20)
 		if(severity <= 3)
