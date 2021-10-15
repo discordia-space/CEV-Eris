@@ -64,7 +64,7 @@
 
 
 	if(prob(chance))
-		var/maintainedVelocity = min(chance,90)/100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
+		var/maintainedVelocity = min(chance, 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
 		armor_penetration *= maintainedVelocity
 		for(var/i in damage_types)
 			damage_types[i] *= maintainedVelocity
