@@ -1,9 +1,0 @@
-author: githubuser4141
-delete-after: true
-changes:
-  - rscadd: Ports tank sounds from Aurora, Ports the mech pod chassis from Baystation
-  - tweak: Rebelanced/Buffed exosuit armor, moved the plasma cutter from Adv. Exo-Weapons
-      to Utility modules in Research, rebalanced mech-fab costs (see above)
-  - balance: Rebalanced mech armor, mech melee, mech-fab costs, adds a new chassis
-      type
-  - soundadd: Ports a tank tread sound from Aurora

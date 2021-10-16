@@ -1,8 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - balance: Blast doors no longer open upon being broken
-  - balance: Blast doors now have a very high resistance against ballisitics, by 20.
-  - balance: All doors now reduce damage from bullets by 4
-  - balance: High security doors now cost 10 plasteel , but are far tougher against
-      ballistics.
