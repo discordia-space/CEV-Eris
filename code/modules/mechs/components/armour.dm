@@ -27,20 +27,20 @@
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 	name = "radiation-proof exosuit armor plating"
 	desc = "A fully enclosed radiation hardened shell designed to protect the pilot from radiation."
-	armor = list(melee = 75, bullet = 33, energy = 25, bomb = 25, bio = 100, rad = 100)
+	armor = list(melee = 75, bullet = 35, energy = 40, bomb = 25, bio = 100, rad = 100)
 	origin_tech = list(TECH_MATERIAL = 3)
-	matter = list(MATERIAL_STEEL = 12)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5) //Plasteel for the shielding
 
-/obj/item/robot_parts/robot_component/armour/exosuit/em
-	name = "EM-shielded exosuit armor plating"
-	desc = "A shielded plating that surrounds the electronics and protects them from electromagnetic radiation."
-	armor = list(melee = 65, bullet = 20, energy = 100, bomb = 10, bio = 100, rad = 60)
+/obj/item/robot_parts/robot_component/armour/exosuit/ablative
+	name = "ablative exosuit armor plating"
+	desc = "This plating is built to shrug off laser impacts and block electromagnetic pulses, but is rather vulnerable to brute trauma."
+	armor = list(melee = 50, bullet = 25, energy = 100, bomb = 10, bio = 100, rad = 60)
 	origin_tech = list(TECH_MATERIAL = 3)
-	matter = list(MATERIAL_STEEL = 12)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASMA = 5)
 
 /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	name = "heavy combat exosuit plating"
 	desc = "Plating designed to deflect incoming attacks and explosions."
-	armor = list(melee = 85, bullet = 70, energy = 10, bomb = 70, bio = 100, rad = 0)
+	armor = list(melee = 85, bullet = 80, energy = 45, bomb = 70, bio = 100, rad = 50)
 	origin_tech = list(TECH_MATERIAL = 5)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)

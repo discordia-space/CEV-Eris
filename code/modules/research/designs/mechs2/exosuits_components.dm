@@ -29,7 +29,7 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 
 /datum/design/research/item/mechfab/exosuit/armour/em
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/em
+	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/ablative
 
 /datum/design/research/item/mechfab/exosuit/armour/combat
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
@@ -68,6 +68,8 @@
 /datum/design/research/item/mechfab/exosuit/chassis/heavy
 	build_path = /obj/item/mech_component/chassis/heavy
 
+/datum/design/research/item/mechfab/exosuit/chassis/pod
+	build_path = /obj/item/mech_component/chassis/pod
 
 //Manipulators
 /datum/design/research/item/mechfab/exosuit/manipulators

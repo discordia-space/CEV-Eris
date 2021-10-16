@@ -24,6 +24,7 @@
 /obj/item/mech_component/manipulators/cheap
 	name = "lifter exosuit arms"
 	exosuit_desc_string = "industrial lifter arms"
+	melee_damage = 15
 	max_damage = 70
 	power_use = 30
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."

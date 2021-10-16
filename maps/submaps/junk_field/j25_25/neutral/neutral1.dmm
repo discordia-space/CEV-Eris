@@ -66,14 +66,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
-"aq" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "ar" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
@@ -160,17 +152,6 @@
 /obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"aI" = (
-/obj/machinery/camera/network/second_section,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aJ" = (
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
 "aK" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -196,18 +177,6 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"aO" = (
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "aQ" = (
 /obj/structure/railing{
 	dir = 1;
@@ -219,55 +188,17 @@
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"aR" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "aS" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aT" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/junk/low_chance,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aU" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aW" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -275,11 +206,6 @@
 /obj/structure/railing{
 	dir = 4;
 	tag = "icon-railing0 (EAST)"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -323,11 +249,6 @@
 	dir = 8;
 	tag = "icon-railing0 (WEST)"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "bg" = (
@@ -356,13 +277,6 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo/airless,
 /area/template_noop)
-"bk" = (
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "bl" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under/airless,
@@ -386,12 +300,6 @@
 "bo" = (
 /turf/simulated/floor/tiled/steel/airless,
 /area/template_noop)
-"bp" = (
-/obj/machinery/camera/network/second_section{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "bq" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -409,11 +317,6 @@
 /obj/structure/railing{
 	dir = 8;
 	tag = "icon-railing0 (WEST)"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under/airless,
@@ -439,67 +342,10 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/steel/airless,
 /area/template_noop)
-"bw" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bx" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"by" = (
-/obj/machinery/door/airlock/maintenance_interior{
-	name = "Reserve Storage";
-	req_access = list(12)
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"bz" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bB" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "bC" = (
 /obj/structure/railing{
 	dir = 8;
 	tag = "icon-railing0 (WEST)"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under/airless,
@@ -529,14 +375,6 @@
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bK" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -713,8 +551,8 @@ ad
 bb
 bd
 az
-aJ
-bw
+aj
+ah
 ah
 ad
 ac
@@ -741,7 +579,7 @@ ad
 ag
 ac
 ao
-bx
+ah
 bI
 ad
 ac
@@ -768,7 +606,7 @@ ac
 ac
 ac
 ag
-by
+ap
 ad
 ad
 ab
@@ -795,7 +633,7 @@ ac
 ac
 ac
 ae
-bz
+bm
 ae
 ab
 ac
@@ -822,7 +660,7 @@ bc
 ac
 ac
 ad
-bB
+be
 ad
 ag
 ag
@@ -849,7 +687,7 @@ ag
 ab
 ad
 ad
-bB
+be
 ah
 ab
 ac
@@ -876,7 +714,7 @@ ab
 be
 bm
 bs
-bB
+be
 bJ
 ab
 ac
@@ -904,7 +742,7 @@ bf
 bf
 bt
 bC
-bK
+ah
 ab
 ac
 "}
@@ -979,7 +817,7 @@ az
 ag
 ah
 aN
-aR
+bl
 ad
 ad
 ad
@@ -1058,9 +896,9 @@ au
 ax
 ax
 az
-aI
+aj
 aN
-aR
+bl
 ad
 bg
 bo
@@ -1085,9 +923,9 @@ ar
 ay
 aD
 az
-aq
-aO
-aU
+be
+bJ
+bl
 ad
 bh
 bh
@@ -1114,7 +952,7 @@ ah
 az
 aK
 bJ
-bx
+ah
 ad
 ad
 ad
@@ -1168,7 +1006,7 @@ ab
 ag
 aj
 bJ
-aR
+bl
 az
 bj
 az
@@ -1198,9 +1036,9 @@ aQ
 aX
 az
 ah
-bp
 ah
-bk
+ah
+ah
 ab
 ac
 ac

@@ -111,6 +111,15 @@
 		list(QUALITY_ADHESIVE, 15)
 	)
 
+/datum/craft_recipe/gun/flaregun
+	name = "Flare gun shotgun"
+	result = /obj/item/gun/projectile/flare_gun/shotgun
+	steps = list(
+		list(/obj/item/gun/projectile/flare_gun, 1),
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
+	)
+
 /datum/craft_recipe/gun/ammo_kit
 	name = "Scrap ammo kit"
 	result = /obj/item/ammo_kit

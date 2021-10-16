@@ -186,15 +186,6 @@
 /obj/spawner/scrap/dense,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
-"aM" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "aN" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
@@ -209,11 +200,6 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "aO" = (
@@ -223,56 +209,8 @@
 	},
 /turf/template_noop,
 /area/template_noop)
-"aP" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aQ" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
 "aR" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aS" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aT" = (
-/obj/spawner/junk/low_chance,
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "aU" = (
@@ -287,10 +225,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -304,11 +238,6 @@
 /area/template_noop)
 "aZ" = (
 /obj/spawner/junk/low_chance,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -327,11 +256,6 @@
 /turf/simulated/floor/tiled/steel/gray_platform/airless,
 /area/template_noop)
 "be" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/structure/catwalk,
 /mob/living/simple_animal/hostile/carp,
 /turf/simulated/floor/plating/under/airless,
@@ -822,7 +746,7 @@ aa
 aa
 aX
 an
-aQ
+ag
 aX
 aX
 aX
@@ -847,7 +771,7 @@ aa
 aa
 ab
 aX
-aP
+aR
 aZ
 be
 ak
@@ -874,7 +798,7 @@ aa
 ab
 ao
 an
-aQ
+ag
 ad
 ak
 ak
@@ -928,7 +852,7 @@ ab
 af
 ax
 an
-aS
+aW
 aO
 aa
 bi
@@ -1008,8 +932,8 @@ aG
 af
 af
 af
-aM
-aT
+aR
+aZ
 aa
 aa
 aX

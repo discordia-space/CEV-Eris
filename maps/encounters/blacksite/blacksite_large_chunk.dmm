@@ -439,11 +439,11 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/large)
 "jj" = (
-/obj/item/paper/blacksite/large/note02{
+/obj/item/paper/blacksite/medium/note02{
 	pixel_x = 6;
 	pixel_y = 7
 	},
-/obj/item/paper/blacksite/large/note05{
+/obj/item/paper/blacksite/medium/note05{
 	pixel_x = -5
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -636,11 +636,11 @@
 /area/outpost/blacksite/large)
 "nz" = (
 /obj/structure/bed/chair/comfy/black,
-/obj/item/paper/blacksite/large/note03{
+/obj/item/paper/blacksite/medium/note03{
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/obj/item/paper/blacksite/large/note06{
+/obj/item/paper/blacksite/medium/note06{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -1142,11 +1142,11 @@
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/large)
 "Er" = (
-/obj/item/paper/blacksite/large/note01{
+/obj/item/paper/blacksite/medium/note01{
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/paper/blacksite/large/note04{
+/obj/item/paper/blacksite/medium/note04{
 	pixel_x = 3;
 	pixel_y = -2
 	},
@@ -1172,7 +1172,6 @@
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/structure/cable/green,
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/blacksite/large)
