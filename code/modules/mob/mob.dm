@@ -1181,7 +1181,8 @@ mob/proc/yank_out_object()
 	set src = usr
 
 	if(HUDneed["move intent"])
-		HUDneed["move intent"].Click()  // Yep , this is all.
+		var/obj/screen/mov_intent/clicker = HUDneed["move intent"]
+		clicker.Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return
