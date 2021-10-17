@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fix disposal sending items to nullspace
