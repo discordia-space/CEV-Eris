@@ -7,6 +7,7 @@
 	var/shockedby = list()
 	var/datum/radio_frequency/radio_connection
 	var/cur_command = null	//the command the door is currently attempting to complete
+	var/completing_command = 0
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(!arePowerSystemsOn()) return //no power
@@ -29,8 +30,11 @@
 	do_command(cur_command)
 	if(command_completed(cur_command))
 		cur_command = null
+		completing_command = FALSE
 		return TRUE
-	addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
+	if(!completing_command)
+		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
+		completing_command = TRUE
 	return FALSE
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
