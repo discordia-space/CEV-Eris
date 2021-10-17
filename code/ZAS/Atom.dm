@@ -68,3 +68,17 @@ turf/c_airblock(turf/other)
 		result |= M.c_airblock(other)
 		if(result == BLOCKED) return BLOCKED
 	return result
+
+/turf/simulated/proc/setZasZone(var/new_zone)
+	set waitfor = FALSE
+	zone = new_zone
+	for(var/atom/unsuspecting_atom in registered_atoms)
+		unsuspecting_atom.InformOfZasZoneChange(new_zone)
+
+/turf/simulated/var/list/atom/registered_atoms = list()
+
+/atom/proc/InformOfZasZoneChange(new_zone)
+	return FALSE
+
+/atom/proc/InformOfZasTick()
+	return FALSE
