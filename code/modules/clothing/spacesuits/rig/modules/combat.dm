@@ -155,7 +155,9 @@
 	gun_type = /obj/item/gun/energy/taser/mounted
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
-/obj/item/rig_module/energy_blade
+/obj/item/rig_module/held
+
+/obj/item/rig_module/held/energy_blade
 	name = "energy blade projector"
 	desc = "A powerful cutting beam projector."
 	icon_state = "eblade"
@@ -174,7 +176,7 @@
 	passive_power_cost = 0
 	rarity_value = 100
 
-/obj/item/rig_module/energy_blade/Process()
+/obj/item/rig_module/held/energy_blade/Process()
 
 	if(holder && holder.wearer)
 		if(!(locate(/obj/item/melee/energy/blade) in holder.wearer))
@@ -183,7 +185,7 @@
 
 	return ..()
 
-/obj/item/rig_module/energy_blade/activate()
+/obj/item/rig_module/held/energy_blade/activate()
 
 	..()
 
@@ -198,7 +200,7 @@
 	blade.creator = M
 	M.put_in_hands(blade)
 
-/obj/item/rig_module/energy_blade/deactivate()
+/obj/item/rig_module/held/energy_blade/deactivate()
 
 	..()
 
@@ -210,6 +212,69 @@
 	for(var/obj/item/melee/energy/blade/blade in M.contents)
 		M.drop_from_inventory(blade)
 		qdel(blade)
+
+/obj/item/rig_module/held/shield
+	name = "rig shield module"
+	desc = "A heavy deployable shield installable on a hardsuit."
+	icon_state = "riot"
+
+	activate_string = "Deploy Shield"
+	deactivate_string = "Retract Shield"
+
+	interface_name = "frozen star shield"
+	interface_desc = "A reinforced ballistic shield for use against high-velocity projectiles and energy weapons."
+
+	usable = 0
+	selectable = 1
+	toggleable = 1
+	use_power_cost = 0
+	active_power_cost = 5
+	passive_power_cost = 5
+	rarity_value = 100
+
+/obj/item/rig_module/held/shield/Process()
+
+	var/mob/living/M = holder.wearer
+	if(holder && holder.wearer)
+		if(!(locate(/obj/item/shield/hardsuit) in holder.wearer))
+			deactivate()
+			to_chat(M, "The shield retracts into the hardsuit.")
+			return 0
+
+	return ..()
+
+/obj/item/rig_module/held/shield/activate()
+
+	var/mob/living/M = holder.wearer
+	
+	if(!do_after(M, 1.5 SECONDS, src))
+		to_chat(M, SPAN_DANGER("You have to stand still to deploy the shield!"))
+		return FALSE
+
+	..()
+
+	if(M.l_hand && M.r_hand)
+		to_chat(M, SPAN_DANGER("Your hands are full."))
+		deactivate()
+		return FALSE
+
+	var/obj/item/shield/hardsuit/shield = new(M)
+	shield.creator = M
+	M.put_in_hands(shield)
+	M.visible_message(SPAN_WARNING("\The [M] deploys \his [shield]!"))
+
+/obj/item/rig_module/held/shield/deactivate()
+
+	..()
+
+	var/mob/living/M = holder.wearer
+
+	if(!M)
+		return
+
+	for(var/obj/item/shield/hardsuit/shield in M.contents)
+		M.drop_from_inventory(shield)
+		qdel(shield)
 
 /obj/item/rig_module/fabricator
 	name = "matter fabricator"
