@@ -52,7 +52,7 @@
 	var/list/purchasedpowers = list()
 	var/list/spiderlist = list()
 	var/list/active_spiders = list()
-	var/geneticpoints = 0
+	var/geneticpoints = 10
 
 	var/mob/living/simple_animal/spider_core/associated_spider = null
 
