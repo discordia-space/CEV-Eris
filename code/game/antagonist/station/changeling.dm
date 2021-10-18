@@ -42,4 +42,4 @@
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
 		
-	spawn_uplink(L, 5)
+	spawn_uplink(L, 25)

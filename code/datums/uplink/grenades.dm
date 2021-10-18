@@ -11,7 +11,7 @@
 
 /datum/uplink_item/item/grenades/teargas
 	name = "6xTear gas Grenades"
-	item_cost = 6
+	item_cost = 4
 	path = /obj/item/storage/box/teargas
 
 /datum/uplink_item/item/grenades/smoke
