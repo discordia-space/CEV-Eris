@@ -2,15 +2,6 @@
 "a" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
-"c" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
 "d" = (
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under/airless,
@@ -23,25 +14,11 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating/airless,
 /area/template_noop)
-"g" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
 "h" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "i" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
@@ -57,11 +34,6 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -71,11 +43,6 @@
 /area/template_noop)
 "o" = (
 /obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
@@ -99,8 +66,8 @@ k
 n
 "}
 (3,1,1) = {"
-c
-g
+k
+f
 i
 l
 o

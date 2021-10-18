@@ -178,6 +178,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	resistance = RESISTANCE_AVERAGE
+	bullet_resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
@@ -302,6 +303,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
 	resistance = RESISTANCE_UNBREAKABLE
+	bullet_resistance = RESISTANCE_VAULT
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -374,6 +376,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
+	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 

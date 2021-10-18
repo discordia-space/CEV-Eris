@@ -56,7 +56,7 @@
 			/obj/item/clothing/under/blazer,
 			/obj/item/clothing/under/brown,
 			/obj/item/clothing/under/cyber,
-			/obj/item/clothing/under/dress,
+			/obj/item/clothing/under/dress/gray,
 			/obj/item/clothing/under/dress/blue,
 			/obj/item/clothing/under/dress/red,
 			/obj/item/clothing/under/genericb,

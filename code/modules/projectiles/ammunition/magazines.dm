@@ -388,6 +388,17 @@
 	multiple_sprites = 1
 	w_class = ITEM_SIZE_NORMAL
 
+//Magazine type for the mech PK, you shouldn't see this
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	icon_state = "pk_box"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+//
+
 /obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
 		icon_state = "pk_box-0"

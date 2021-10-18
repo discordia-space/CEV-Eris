@@ -13,11 +13,6 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/template_noop)
 "f" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
@@ -26,11 +21,6 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
@@ -39,11 +29,6 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "h" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
@@ -52,11 +37,6 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "i" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"

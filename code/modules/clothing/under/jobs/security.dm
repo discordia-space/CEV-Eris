@@ -34,6 +34,11 @@
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
+/obj/item/clothing/under/rank/security/turtleneck
+	name = "Ironhammer Operative's turtleneck"
+	desc = "Military style turtleneck, made of a slightly sturdier material than standard jumpsuits, to allow for robust protection"
+	icon_state = "securityrturtle"
+
 /obj/item/clothing/under/rank/security/skirt
 	name = "Ironhammer Operative's jumpskirt"
 	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection."
