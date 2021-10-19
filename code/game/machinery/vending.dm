@@ -1260,9 +1260,6 @@
 					/obj/item/taperoll/police = 8,
 					/obj/item/device/holowarrant = 8,
 					/obj/item/storage/box/evidence = 2,
-					/obj/item/computer_hardware/hard_drive/portable/design/security = 2,
-					/obj/item/computer_hardware/hard_drive/portable/design/armor/ih = 2,
-					/obj/item/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof = 1,
 					/obj/item/storage/ration_pack/ihr = 3)
 	contraband = list(/obj/item/tool/knife/tacknife = 4,/obj/item/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
