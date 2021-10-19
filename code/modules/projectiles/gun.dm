@@ -579,6 +579,7 @@
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
 			hud_actions += action
+			action_button_name = "Toggle Scope"
 			if(ismob(loc))
 				var/mob/user = loc
 				user.client?.screen += action
@@ -587,6 +588,7 @@
 			var/mob/user = loc
 			user.client?.screen -= action
 		hud_actions -= action
+		action_button_name = null
 		qdel(action)
 
 /obj/item/gun/proc/add_firemode(list/firemode)

@@ -45,6 +45,12 @@
 	icon_state = "info"
 
 /obj/item/gun/ui_action_click(mob/living/user, action_name)
+	if(!action_name)
+		action_name = "scope" // For classic action button that pass nothing
+
+	if(!user)
+		user = usr
+
 	switch(action_name)
 		if("fire mode")
 			toggle_firemode(user)
