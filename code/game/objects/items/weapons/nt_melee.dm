@@ -145,7 +145,7 @@
 
 /obj/item/tool/sword/nt/spear
 	name = "NT Pilum"
-	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually breaks after being thrown at a target, but it can be welded into shape again."
+	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
