@@ -79,6 +79,10 @@
 	if(FD)
 		FD.attack_hand(user)
 		return TRUE
+	var/obj/machinery/door/holy/HD = locate(/obj/machinery/door/holy) in src.contents
+	if(HD)
+		HD.attack_hand(user)
+		return TRUE
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return FALSE
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
