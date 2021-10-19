@@ -1,5 +1,4 @@
 // Ironhammer
-
 /obj/item/computer_hardware/hard_drive/portable/design/security
 	disk_name = "Ironhammer Miscellaneous Pack"
 	icon_state = "ironhammer"
