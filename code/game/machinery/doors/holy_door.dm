@@ -7,6 +7,7 @@
 	var/locked = 0
 	var/minimal_holiness = CLEARANCE_COMMON // Compared with security_clearance on cruciform
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
+	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
 	var/obj/item/wedged_item
 	
@@ -310,7 +311,7 @@
 		else
 			playsound(loc, open_sound_unpowered, 70, 1, -1)
 	else
-		playsound(loc, open_sound_powered, 70, 1, -2)
+		playsound(loc, close_sound, 70, 1, -2)
 
 	tryingToLock = FALSE
 
