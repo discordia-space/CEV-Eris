@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/revolver/sky_driver
 	name = "S REV .35 Auto \"Sky Driver\""
-	desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 rounds."
+	desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/sky_driver.dmi'
 	icon_state = "sky_driver"
 	item_state = "sky_driver"
