@@ -80,7 +80,7 @@
 
 
 /datum/surgery_step/robotic/remove_item
-	required_tool_quality = QUALITY_PRYING
+	required_tool_quality = QUALITY_CLAMPING
 
 	duration = 90
 
