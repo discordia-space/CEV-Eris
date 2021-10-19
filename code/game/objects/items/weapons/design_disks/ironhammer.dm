@@ -17,6 +17,7 @@
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/sec/hailer
 	)
+
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"
 	icon_state = "ironhammer"
