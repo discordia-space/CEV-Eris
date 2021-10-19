@@ -75,13 +75,13 @@
 	if(AL)
 		AL.attack_hand(user)
 		return TRUE
-	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
-	if(FD)
-		FD.attack_hand(user)
-		return TRUE
 	var/obj/machinery/door/holy/HD = locate(/obj/machinery/door/holy) in src.contents
 	if(HD)
 		HD.attack_hand(user)
+		return TRUE
+	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+	if(FD)
+		FD.attack_hand(user)
 		return TRUE
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return FALSE
