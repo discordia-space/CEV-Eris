@@ -474,7 +474,7 @@
 
 //////// .35 SPEEDLOADERS //////////
 /obj/item/ammo_magazine/slpistol
-	name = "speed loader (.35 Special)"
+	name = "speed loader (.35 Auto)"
 	icon_state = "slpistol_l"
 	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = CAL_PISTOL
@@ -489,24 +489,24 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/slpistol/practice
-	name = "speed loader (.35 Special practice)"
+	name = "speed loader (.35 Auto practice)"
 	icon_state = "slpistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 
 /obj/item/ammo_magazine/slpistol/hv
-	name = "speed loader (.35 Special high-velocity)"
+	name = "speed loader (.35 Auto high-velocity)"
 	icon_state = "slpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 	rarity_value = 80
 
 /obj/item/ammo_magazine/slpistol/rubber
-	name = "speed loader (.35 Special rubber)"
+	name = "speed loader (.35 Auto rubber)"
 	icon_state = "slpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 5
 
 /obj/item/ammo_magazine/slpistol/scrap
-	name = "speed loader (old .35 Special)"
+	name = "speed loader (old .35 Auto)"
 	icon_state = "slpistol_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
