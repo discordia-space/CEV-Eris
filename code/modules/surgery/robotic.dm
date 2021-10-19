@@ -95,8 +95,8 @@
 
 /datum/surgery_step/robotic/remove_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
-		SPAN_NOTICE("[user] pries something out of [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You pry [target] out of [organ.get_surgery_name()] with \the [tool].")
+		SPAN_NOTICE("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.remove_item(target, user)
 
