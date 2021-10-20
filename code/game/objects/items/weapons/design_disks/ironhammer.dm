@@ -29,3 +29,47 @@
 		/datum/design/autolathe/clothing/generic_vest,
 		/datum/design/autolathe/clothing/generic_vest_full = 2
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof
+	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
+	icon_state = "ironhammer"
+	spawn_blacklisted = TRUE
+	rarity_value = 15
+	license = 4 // 4 pieces, or 2 sets
+	designs = list(
+		/datum/design/autolathe/clothing/bulletproof_helmet_generic,
+		/datum/design/autolathe/clothing/bulletproof_vest_generic,
+		/datum/design/autolathe/clothing/bulletproof_vest_generic_full = 2
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/armor/generic/ablative
+	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
+	icon_state = "ironhammer"
+	spawn_blacklisted = TRUE
+	rarity_value = 16
+	license = 4 // 4 pieces, or 2 sets
+	designs = list(
+		/datum/design/autolathe/clothing/ablative_vest_full,
+		/datum/design/autolathe/clothing/ablative_helmet
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/armor/ih
+	disk_name = "Ironhammer Combat Equipment - Operator Armor"
+	icon_state = "ironhammer"
+	spawn_blacklisted = TRUE
+	license = 6
+	designs = list(
+		/datum/design/autolathe/clothing/ih_helmet_basic,
+		/datum/design/autolathe/clothing/ih_vest_basic,
+		/datum/design/autolathe/clothing/ih_vest_basic_full = 2
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
+	disk_name = "Ironhammer Combat Equipment - Bulletproof Operator Armor"
+	icon_state = "ironhammer"
+	spawn_blacklisted = TRUE
+	license = 4
+	designs = list(
+		/datum/design/autolathe/clothing/ih_helmet_full,
+		/datum/design/autolathe/clothing/ih_vest_full
+	)
