@@ -689,9 +689,9 @@
 /area/eris/security/armory)
 "abT" = (
 /obj/structure/table/rack,
-/obj/item/clothing/gloves/stungloves,
-/obj/item/clothing/gloves/stungloves,
-/obj/item/clothing/gloves/stungloves,
+/obj/item/shield/buckler,
+/obj/item/shield/buckler,
+/obj/item/shield/buckler,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abU" = (
@@ -1323,6 +1323,7 @@
 /obj/structure/table/rack,
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
+/obj/item/rig_module/held/shield,
 /obj/item/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -1487,7 +1488,6 @@
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
-/obj/spawner/rig_module,
 /obj/item/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -1556,10 +1556,9 @@
 /area/eris/security/armory)
 "adR" = (
 /obj/structure/table/rack,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
+/obj/item/clothing/gloves/stungloves,
+/obj/item/clothing/gloves/stungloves,
+/obj/item/clothing/gloves/stungloves,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adS" = (
@@ -1576,6 +1575,10 @@
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/reagent_containers/spray/pepper,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adU" = (
@@ -33517,16 +33520,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
-"bBU" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/hydroponics)
 "bBV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -39919,11 +39912,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"bQd" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
 "bQe" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -51601,16 +51589,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
-"cuc" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapel)
-"cud" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapel)
 "cue" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -128019,7 +127997,7 @@ abC
 abU
 acn
 abd
-adk
+adI
 adS
 aet
 aaL

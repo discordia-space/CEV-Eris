@@ -156,6 +156,7 @@
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/held
+	spawn_blacklisted = TRUE
 
 /obj/item/rig_module/held/energy_blade
 	name = "energy blade projector"
@@ -175,6 +176,7 @@
 	active_power_cost = 10
 	passive_power_cost = 0
 	rarity_value = 100
+	spawn_blacklisted = FALSE
 
 /obj/item/rig_module/held/energy_blade/Process()
 
@@ -216,7 +218,6 @@
 /obj/item/rig_module/held/shield
 	name = "rig shield module"
 	desc = "A heavy deployable shield installable on a hardsuit."
-	icon_state = "riot"
 
 	activate_string = "Deploy Shield"
 	deactivate_string = "Retract Shield"
@@ -229,8 +230,9 @@
 	toggleable = 1
 	use_power_cost = 0
 	active_power_cost = 5
-	passive_power_cost = 5
-	rarity_value = 100
+	passive_power_cost = 0
+	rarity_value = 50
+	spawn_blacklisted = FALSE
 
 /obj/item/rig_module/held/shield/Process()
 
