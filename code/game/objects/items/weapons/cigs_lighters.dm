@@ -566,7 +566,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/voltage = 0
 	var/quality_multiplier = 1
 
-	var/charge_per_use = 0.5
+	var/charge_per_use = 0.2
 	var/obj/item/cell/cell
 	var/suitable_cell = /obj/item/cell/small
 
