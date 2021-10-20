@@ -86,7 +86,7 @@
 /datum/uplink_item/item/badassery/contract
 	name = "Ask for new contract"
 	item_cost = 4
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_TRAITOR,ROLE_CARRION)
 	desc = "You pay extra TC to get a new contract on time."
 
 /datum/uplink_item/item/badassery/contract/get_goods(var/obj/item/device/uplink/U, var/loc)
