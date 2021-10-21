@@ -33,6 +33,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof
 	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
 	icon_state = "ironhammer"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE
 	rarity_value = 15
 	license = 4 // 4 pieces, or 2 sets
@@ -45,6 +46,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/ablative
 	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
 	icon_state = "ironhammer"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE
 	rarity_value = 16
 	license = 4 // 4 pieces, or 2 sets
