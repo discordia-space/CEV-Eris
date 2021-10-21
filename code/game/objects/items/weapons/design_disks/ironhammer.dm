@@ -35,7 +35,7 @@
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE
-	rarity_value = 15
+	rarity_value = 15 // about as rare as a advanced tool disk - remember that this takes from the 'advanced' pool (which is rare) instead of the 'common' pool like the normal armor disk does
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
 		/datum/design/autolathe/clothing/bulletproof_helmet_generic,
@@ -48,7 +48,7 @@
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	spawn_blacklisted = TRUE
-	rarity_value = 16
+	rarity_value = 16 // slightly rarer than bulletproof gear
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
 		/datum/design/autolathe/clothing/ablative_vest_full,
@@ -58,7 +58,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/armor/ih
 	disk_name = "Ironhammer Combat Equipment - Operator Armor"
 	icon_state = "ironhammer"
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = TRUE //should only be obtainable from the sectech
 	license = 6
 	designs = list(
 		/datum/design/autolathe/clothing/ih_helmet_basic,
