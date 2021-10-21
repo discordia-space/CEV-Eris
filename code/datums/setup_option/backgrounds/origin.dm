@@ -170,7 +170,7 @@
 			Smaller colony ships, belonging to third-world countries, damaged ships or just exploration cruisers - they have all found their place here, guided by a black hole and the riches highlighted by it. \
 			Even before the war it was full of conflicts between local governments, pirates and corporations, and it just got worse afterwards. \
 			While it's formally under Hanza control now, the war resulted in a fall of many governments, thus the anarchy spreads, and patchwork states are being born and die every year. \
-			Nations are mixed in a spiral of endless conflict, all of the old Earth languages are present there, and any ideology and religion can be found here. \
+			Nations are mixed in a spiral of endless conflict, all of the old Earth languages are present there, and any ideology and religion can be found here. Although due to the conflicts NeoTheology is seeing considerable growth.\
 			This system is also known for Moebius HQ - a large station orbiting the End Point black hole."
 
 	stat_modifiers = list(
