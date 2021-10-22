@@ -263,8 +263,8 @@
 	name = "hardsuit shield"
 	desc = "A massive ballistic shield that seems impossible to wield without mechanical assist."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "riot"
-	item_state = "metal"
+	icon_state = "hardshield"
+	item_state = "hardshield"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_PAINFUL
