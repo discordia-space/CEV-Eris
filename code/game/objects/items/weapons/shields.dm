@@ -157,7 +157,7 @@
 
 /obj/item/shield/buckler/proc/on_bash(var/obj/item/W, var/mob/user)
 	if(cooldown < world.time - 25)
-		user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+		user.visible_message(SPAN_WARNING("[user] bashes [src] with \his [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
