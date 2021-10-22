@@ -23,6 +23,8 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
 	price_tag = 450
+	max_damage = 60
+	min_broken_damage = 40
 	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
@@ -51,18 +53,22 @@
 
 /obj/item/organ/external/robotic/technomancer/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
+	max_volume = 4
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/technomancer/r_arm
 	name = "Technomancer \"Homebrew\" Right Arm"
+	max_volume = 4
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/technomancer/l_leg
 	name = "Technomancer \"Homebrew\" Left Leg"
+	max_volume = 4
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/technomancer/r_leg
 	name = "Technomancer \"Homebrew\" Right Leg"
+	max_volume = 4
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer/groin
@@ -83,6 +89,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 	model = "moebius"
 	price_tag = 250
+	min_malfunction_damage = 30
 	bad_type = /obj/item/organ/external/robotic/moebius
 
 /obj/item/organ/external/robotic/moebius/l_arm
@@ -146,6 +153,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
+	min_malfunction_damage = 30
 	price_tag = 600
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/organ/external/robotic/excelsior
@@ -171,6 +179,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
+	min_malfunction_damage = 40
 	spawn_blacklisted = TRUE
 	rarity_value = 10
 	spawn_frequency = 10
