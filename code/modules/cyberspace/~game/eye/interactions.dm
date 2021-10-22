@@ -15,13 +15,13 @@
 /datum/CyberSpaceAvatar/proc/HelpInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
 	var/mob/observer/cyberspace_eye/O = Owner
 	if(istype(O))
-		to_chat(user_avatar, "You are trying to fix [O]")
+		to_chat(user_avatar, "You are trying to fix [O].")
 		if(do_after(user_avatar, 2 SECONDS, O, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE))
-			return O.ChangeHP(0, O.Might)
+			return O.ChangeHP(0, user_avatar.Might)
 		else
 			to_chat(user_avatar, SPAN_WARNING("Fixing failed."))
 			return
-	return Owner.ui_interact(user_avatar, state = GLOB.netrunner_state)
+	return Owner.attack_ai(user_avatar)//Owner.ui_interact(user_avatar, state = GLOB.netrunner_state)
 
 /mob/observer/cyberspace_eye/proc/ChangeHP(percents = 0.05, amount = FALSE)
 	if(!amount)
@@ -32,8 +32,10 @@
 	update_hud()
 
 /datum/CyberSpaceAvatar/proc/HurtInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
-	to_chat(user_avatar, "You are attacking \the [O]")
-	return O.ChangeHP(0, -O.Might)
+	var/mob/observer/cyberspace_eye/O = Owner
+	if(istype(O, /mob/observer/cyberspace_eye))
+		to_chat(user_avatar, "You have attacked \the [O].")
+		return O.ChangeHP(0, -user_avatar.Might)
 
 /datum/CyberSpaceAvatar/proc/GrabInteraction(mob/observer/cyberspace_eye/user_avatar, datum/CyberSpaceAvatar/user)
 //	do_after(user_avatar, 2 SECONDS, O, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE, can_move = TRUE)

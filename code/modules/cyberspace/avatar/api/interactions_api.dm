@@ -17,15 +17,16 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), 
 
 /atom/Click(location, control, params)
 	. = ..()
-	if(istype(CyberAvatar) && CyberAvatar.enabled && istype(usr, /mob))
-		CyberAvatar.ClickedBy(usr)
+	var/mob/user = usr
+	if(IsCyberspaced(user) && IsCyberspaced(src))
+		CyberAvatar.ClickedBy(usr, params)
 
 
-/datum/CyberSpaceAvatar/proc/ClickedBy(mob/user as mob)
+/datum/CyberSpaceAvatar/proc/ClickedBy(mob/user as mob, params)
 	if(istype(user.CyberAvatar, /datum/CyberSpaceAvatar))
-		ClickedByAvatar(user, user.CyberAvatar)
+		ClickedByAvatar(user, user.CyberAvatar, params)
 
-/datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user, intent)
+/datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user, params)
 
 // CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 // /datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)

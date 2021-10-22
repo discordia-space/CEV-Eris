@@ -8,6 +8,7 @@
 /*		*///CYBERAVATAR_CUSTOM_PREFAB(/obj/machinery/power/apc, /datum/CyberSpaceAvatar/ice/AreaFirewall)
 /*	*/CYBERAVATAR_INITIALIZATION(/obj/machinery/atmospherics, null)
 CYBERAVATAR_INITIALIZATION(/obj/item/modular_computer, CYBERSPACE_MAIN_COLOR)
+CYBERAVATAR_CUSTOM_PREFAB(/obj/item/modular_computer, /datum/CyberSpaceAvatar/interactable)
 CYBERAVATAR_INITIALIZATION(/mob/living/carbon/superior_animal/roach/bluespace, CYBERSPACE_BLUESPACE)
 CYBERAVATAR_INITIALIZATION(/mob/living/carbon/superior_animal/roach/nanite, CYBERSPACE_MAIN_COLOR)
 CYBERAVATAR_INITIALIZATION(/obj/structure/cyberplant, CYBERSPACE_MAIN_COLOR)

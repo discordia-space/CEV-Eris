@@ -24,3 +24,5 @@
 #define SUBROUTINE_ANOTHERICE		"You dare challenge me?"
 
 #define RaiseSubroutines(Routines, FlagOfTrigger, WhoTriggered) if(Subroutines) TriggerSubroutines(Routines, FlagOfTrigger, WhoTriggered)
+//A must be /atom variable
+#define IsCyberspaced(A) (istype(A) && istype(A.CyberAvatar) && A.CyberAvatar.enabled)
