@@ -45,6 +45,7 @@
 	name = "Tool Upgrade: Aural Dampener"
 	item_cost = 1
 	path = /obj/item/tool_upgrade/augment/dampener
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/silencer
     name = "Silencer"
