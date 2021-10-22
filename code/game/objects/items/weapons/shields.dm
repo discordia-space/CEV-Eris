@@ -106,6 +106,7 @@
 		if(L.slowdown < slowdown_time * 3)
 			L.slowdown += slowdown_time
 	return ..()
+
 /obj/item/shield/buckler
 	name = "tactical shield"
 	desc = "A compact personal shield made of pre-preg aramid fibres designed to stop or deflect bullets without slowing down its wielder."
