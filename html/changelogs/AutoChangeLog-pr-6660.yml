@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: organ removal on robotic limb require "clamping" instead of "prying" tool
+      quality
