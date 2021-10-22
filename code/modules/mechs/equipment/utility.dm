@@ -294,8 +294,11 @@
 			owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
 			var/T = target.loc
 
-			//Better materials = faster drill!
-			var/delay = 20//max(5, 20 - drill_head.material.brute_armor)
+			//Better materials = faster drill! // 
+			var/delay = 30
+			switch (drill_head.material.hardness) // It's either default (steel), plasteel or diamond
+				if(80) delay = 15
+				if(100) delay = 10
 			owner.setClickCooldown(delay) //Don't spamclick!
 			if(do_after(owner, delay, target) && drill_head)
 				if(src == owner.selected_system)
@@ -307,6 +310,7 @@
 						var/turf/simulated/wall/W = target
 						if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
 							to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
+							return
 						target.ex_act(2)
 						drill_head.durability -= 1
 						log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
