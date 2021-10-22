@@ -7,6 +7,7 @@
 /datum/uplink_item/item/medical/sinpockets
 	name = "Box of Sin-Pockets"
 	item_cost = 2
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/sinpockets
 
 /datum/uplink_item/item/medical/surgery
@@ -23,16 +24,19 @@
 /datum/uplink_item/item/medical/nanites
 	name = "Raw nanites vial"
 	item_cost = 2
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/reagent_containers/glass/beaker/vial/nanites
 
 /datum/uplink_item/item/medical/uncapnanites
 	name = "Raw uncapped nanites vial"
 	item_cost = 3
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/reagent_containers/glass/beaker/vial/uncapnanites
 
 /datum/uplink_item/item/medical/randomstim
 	name = "5 Random Stims Kit"
 	item_cost = 5
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/randomstim
 
 /datum/uplink_item/item/medical/gene_vial
@@ -44,4 +48,5 @@
 /datum/uplink_item/item/medical/nanopaste
 	name = "Nanopaste"
 	item_cost = 3
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/stack/nanopaste
