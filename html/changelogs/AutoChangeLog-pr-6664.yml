@@ -1,0 +1,5 @@
+author: Iglpigl
+delete-after: true
+changes:
+  - tweak: Blacklists all expect generic armor disks, the armors in them can still
+      be acquired with other means like junking, guild, etc.
