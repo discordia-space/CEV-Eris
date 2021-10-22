@@ -29799,7 +29799,7 @@
 	id = "cargo_intake"
 	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck5starboard)
+/area/eris/quartermaster/disposaldrop)
 "btc" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
@@ -33517,16 +33517,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
-"bBU" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/crew_quarters/hydroponics)
 "bBV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -39919,11 +39909,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"bQd" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
 "bQe" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -51601,16 +51586,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
-"cuc" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapel)
-"cud" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapel)
 "cue" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -85105,7 +85080,7 @@
 	id = "cargo_intake"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/maintenance/section3deck5starboard)
+/area/eris/quartermaster/disposaldrop)
 "dVY" = (
 /obj/structure/railing{
 	dir = 4
