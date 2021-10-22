@@ -27,7 +27,7 @@
 				if(O.buckled_mob)
 					return
 				if(locate(/mob/living) in O)
-					to_chat(user,"<span class='warning'>You can't load living things into the cargo compartment.</span>")
+					to_chat(user, SPAN_WARNING("You can't load living things into the cargo compartment.</span>")
 					return
 
 				if(istype(target, /obj/structure/scrap_spawner))
@@ -41,7 +41,7 @@
 					return
 
 				if(O.anchored)
-					to_chat(user, "<span class='warning'>[target] is firmly secured.</span>")
+					to_chat(user, SPAN_WARNING("[target] is firmly secured.</span>")
 					return
 
 
@@ -64,7 +64,7 @@
 //					return
 					M.attack_generic(owner, (owner.arms ? owner.arms.melee_damage * 1.5 : 0), "slammed") //Honestly you should not be able to do this without hands, but still
 					M.throw_at(get_edge_target_turf(owner ,owner.dir),5, 2)
-					to_chat(user, "<span class='warning'>You slam [target] with [src.name].</span>")
+					to_chat(user, SPAN_WARNING("You slam [target] with [src.name].</span>")
 					owner.visible_message(SPAN_DANGER("[owner] slams [target] with the hydraulic clamp."))
 				else
 					step_away(M, owner)
@@ -291,7 +291,7 @@
 			if(istype(C))
 				C.use(active_power_use * CELLRATE)
 			playsound(src, 'sound/mechs/mechdrill.ogg', 50, 1)
-			owner.visible_message("<span class='danger'>\The [owner] starts to drill \the [target]</span>", "<span class='warning'>You hear a large drill.</span>")
+			owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]</span>", SPAN_WARNING("You hear a large drill.</span>")
 
 			var/T = target.loc
 
@@ -307,7 +307,7 @@
 					if(istype(target, /turf/simulated/wall))
 						var/turf/simulated/wall/W = target
 						if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
-							to_chat(user, "<span class='warning'>\The [target] is too hard to drill through with this drill head.</span>")
+							to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head.</span>")
 						target.ex_act(2)
 						drill_head.durability -= 1
 						log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
