@@ -1,0 +1,4 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: recoil now decreases progressively, instead of all at once
