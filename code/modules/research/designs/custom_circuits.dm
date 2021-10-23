@@ -31,7 +31,7 @@
 
 /datum/design/research/item/custom_circuit_assembly/AssembleDesignMaterials(atom/temp_atom)
     var/obj/item/device/electronic_assembly/A = temp_atom
-    A.matter[MATERIAL_STEEL] = round((A.max_complexity + A.max_components) / 4)
+    A.matter[MATERIAL_STEEL] = round(((A.max_complexity + A.max_components) / 4) / 5)
     ..()
 
 /datum/design/research/item/custom_circuit_assembly/medium
