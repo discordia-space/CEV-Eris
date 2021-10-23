@@ -4,7 +4,7 @@
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
-	spawn_positions = 1 // |-> above message is partly true, it is used /AssignRole so we still need to set it o 1
+	spawn_positions = 1 // |-> above message is partly true, it is used by /AssignRole so we still need to set it to 1
 	selection_color = "#b5b7cb"
 	supervisors = "your laws"
 	req_admin_notify = 1
