@@ -1,5 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Expand disposal cargo area to encompass the belts
-  - bugfix: Fix biomatter sorter output directions
