@@ -29,6 +29,11 @@
 	sort_string = "VCAAA"
 	category = CAT_CIRCUITS
 
+/datum/design/research/item/custom_circuit_assembly/AssembleDesignMaterials(atom/temp_atom)
+    var/obj/item/device/electronic_assembly/A = temp_atom
+    A.matter[MATERIAL_STEEL] = round((A.max_complexity + A.max_components) / 4)
+    ..()
+
 /datum/design/research/item/custom_circuit_assembly/medium
 	name = "Medium custom assembly"
 	desc = "An customizable assembly suited for more ambitious mechanisms."
