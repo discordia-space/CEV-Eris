@@ -50,26 +50,6 @@
 	name = "sport bra, cyan"
 	icon_state = "top_2c"
 
-/datum/category_item/underwear/top/hornybra
-	name = "perverted bra, white"
-	icon_state = "top_3w"
-
-/datum/category_item/underwear/top/hornybra/black
-	name = "perverted bra, black"
-	icon_state = "top_3b"
-
-/datum/category_item/underwear/top/hornybra/red
-	name = "perverted bra, red"
-	icon_state = "top_3r"
-
-/datum/category_item/underwear/top/hornybra/yellow
-	name = "perverted bra, yellow"
-	icon_state = "top_3y"
-
-/datum/category_item/underwear/top/hornybra/cyan
-	name = "perverted bra, cyan"
-	icon_state = "top_3c"
-
 /datum/category_item/underwear/top/none/is_default(var/gender)
 	return gender != FEMALE
 

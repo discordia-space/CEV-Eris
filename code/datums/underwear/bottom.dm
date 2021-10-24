@@ -51,27 +51,6 @@
 	name = "briefs, cyan"
 	icon_state = "underwear_m_2c"
 
-/datum/category_item/underwear/bottom/briefsnoback
-	name = "briefs, no back, white"
-	icon_state = "underwear_m_3w"
-	underwear_name = "briefs, no back"
-
-/datum/category_item/underwear/bottom/briefsnoback/black
-	name = "briefs, no back, black"
-	icon_state = "underwear_m_3b"
-
-/datum/category_item/underwear/bottom/briefsnoback/red
-	name = "briefs, no back, red"
-	icon_state = "underwear_m_3r"
-
-/datum/category_item/underwear/bottom/briefsnoback/yellow
-	name = "briefs, no back, yellow"
-	icon_state = "underwear_m_3y"
-
-/datum/category_item/underwear/bottom/briefsnoback/cyan
-	name = "briefs, no back, cyan"
-	icon_state = "underwear_m_3c"
-
 /datum/category_item/underwear/bottom/panties
 	name = "panties, white"
 	icon_state = "underwear_f_1w"
@@ -114,27 +93,6 @@
 /datum/category_item/underwear/bottom/sportpanties/cyan
 	name = "sport panties, cyan"
 	icon_state = "underwear_f_2c"
-
-/datum/category_item/underwear/bottom/hornypanties
-	name = "perverted panties, white"
-	icon_state = "underwear_f_3w"
-	underwear_name = "perverted panties"
-
-/datum/category_item/underwear/bottom/hornypanties/black
-	name = "perverted panties, black"
-	icon_state = "underwear_f_3b"
-
-/datum/category_item/underwear/bottom/hornypanties/red
-	name = "perverted panties, red"
-	icon_state = "underwear_f_3r"
-
-/datum/category_item/underwear/bottom/hornypanties/yellow
-	name = "perverted panties, yellow"
-	icon_state = "underwear_f_3y"
-
-/datum/category_item/underwear/bottom/hornypanties/cyan
-	name = "perverted panties, cyan"
-	icon_state = "underwear_f_3c"
 
 /datum/category_item/underwear/bottom/boxers/black/is_default(var/gender)
 	return gender != FEMALE
