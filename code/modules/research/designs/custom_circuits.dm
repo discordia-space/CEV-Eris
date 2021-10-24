@@ -30,9 +30,10 @@
 	category = CAT_CIRCUITS
 
 /datum/design/research/item/custom_circuit_assembly/AssembleDesignMaterials(atom/temp_atom)
-    var/obj/item/device/electronic_assembly/A = temp_atom
-    A.matter[MATERIAL_STEEL] = round((A.max_complexity + A.max_components) / 20)
-    ..()
+	if(istype(temp_atom, /obj))
+		for(var/obj/item/device/electronic_assembly/A in temp_atom.GetAllContents(includeSelf = TRUE))
+			A.matter[MATERIAL_STEEL] = round((A.max_complexity + A.max_components) / 20)
+	..()
 
 /datum/design/research/item/custom_circuit_assembly/medium
 	name = "Medium custom assembly"
