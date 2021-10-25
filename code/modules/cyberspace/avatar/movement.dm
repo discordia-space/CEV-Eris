@@ -13,18 +13,17 @@
 					if(get_dist(A.Owner, mover) <= world.view)
 						A.AnotherAvatarFound(mover.CyberAvatar)
 						mover.CyberAvatar.AnotherAvatarFound(A)
-	else
+
+/mob/observer/cyberspace_eye/AdjacentMouseDropTo(atom/target, mob/user, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(istype(target, /turf) && target.density)
 		var/timeToPass = 2 SECONDS
-	/*TODO
-		if(istype(mover, /mob/observer/cyberspace_eye))
-			var/mob/observer/cyberspace_eye/M = mover
-			if(istype(M.owner))
-				var/mob/living/carbon/human/H = M.owner.get_user(M)
-				if(istype(H))
-					timeToPass *= 80 / max(H.stats.getStat(STAT_COG), 10)
-	*/
-		if(do_after(mover, timeToPass, movedTo, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE))
-			. = ..()
+		if(istype(owner))
+			var/mob/living/carbon/human/H = owner.get_user()
+			if(istype(H))
+				timeToPass *= 80 / max(H.stats.getStat(STAT_COG), 10)
+		if(do_after(src, timeToPass, target, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE) && Adjacent(target))
+			Move(get_turf(target))
 
 /proc/GetDenseCyberspaceAvatars(turf/T)
 	. = list()

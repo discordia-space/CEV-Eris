@@ -1632,6 +1632,7 @@
 #include "code\modules\cyberspace\~game\eye\hud\datum.dm"
 #include "code\modules\cyberspace\~game\eye\hud\screen_objects.dm"
 #include "code\modules\cyberspace\~game\ICE\_ice.dm"
+#include "code\modules\cyberspace\~game\ICE\firewall.dm"
 #include "code\modules\cyberspace\~game\ICE\subroutines\_manager.dm"
 #include "code\modules\detectivework\footprints.dm"
 #include "code\modules\detectivework\forensics.dm"

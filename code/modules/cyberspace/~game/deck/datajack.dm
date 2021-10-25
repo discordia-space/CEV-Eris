@@ -49,15 +49,15 @@
 						to_chat(usr, "You are trying to relax your physical body.")
 						var/cognitionScale = max(10 - H.stats.getStat(STAT_COG)/10, 0)
 						if(do_after(usr, rand(1, 4) * cognitionScale, get_turf(cable.loc)))
-							to_chat(usr, "You trying to clean your mind.")
+							to_chat(usr, "You are trying to clean your mind.")
 							if(do_after(usr, rand(1, 4) * cognitionScale, get_turf(cable.loc)))
-								to_chat(usr, "You trying to feel the void.")
+								to_chat(usr, "You are trying to feel the void.")
 								if(do_after(usr, rand(1, 2) * cognitionScale, get_turf(cable.loc)))
 									BeginConnection()
 				else
 					to_chat(usr, SPAN_WARNING("ERROR: Cable not connected to deck."))
 			else
-				to_chat(usr, SPAN_WARNING("ERROR: Cable not found."))
+				to_chat(usr, SPAN_WARNING("ERROR: Cable is not found."))
 
 		get_deck()
 			if(istype(cable) && istype(cable.connection))

@@ -12,8 +12,11 @@
 		return
 
 	spawn(0)
+		AdjacentMouseDropTo(over, usr, src_location, over_location, src_control, over_control, params)
 		over.MouseDrop_T(src, usr, src_location, over_location, src_control, over_control, params)
 
+/atom/proc/AdjacentMouseDropTo(atom/target, mob/user, src_location, over_location, src_control, over_control, params)
+	return
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
 	return

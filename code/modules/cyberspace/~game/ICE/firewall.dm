@@ -13,8 +13,7 @@ GLOBAL_LIST_EMPTY(APCAccessCodes)
 	GLOB.APCAccessCodes[CyberAccessCode] = src
 
 /obj/machinery/power/apc/proc/CheckAccess(mob/observer/cyberspace_eye/user)
-	var/datum/CyberSpaceAvatar/A = user.CyberAvatar
-	. = A.CheckAccess(src)
+	. = user.CheckAccess(src)
 
 /mob/observer/cyberspace_eye
 	var/list/AccessCodes = list()
@@ -22,8 +21,9 @@ GLOBAL_LIST_EMPTY(APCAccessCodes)
 /mob/observer/cyberspace_eye/proc/CheckAccess(obj/machinery/power/apc/A)
 	. = !length(A.CyberAccessCode) || (A.CyberAccessCode in AccessCodes)
 	var/mob/H = owner.get_user()
-	var/obj/item/card/id/I = H.GetIdCard()
-	. = . || A.check_access(I)
+	if(H)
+		var/obj/item/card/id/I = H.GetIdCard()
+		. = . || A.check_access(I)
 
 /obj/machinery/power/apc/Initialize()
 	. = ..()
