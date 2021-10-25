@@ -1626,6 +1626,7 @@
 #include "code\modules\cyberspace\~game\eye\interactions.dm"
 #include "code\modules\cyberspace\~game\eye\jack_in_point.dm"
 #include "code\modules\cyberspace\~game\eye\verbs.dm"
+#include "code\modules\cyberspace\~game\eye\waypoints.dm"
 #include "code\modules\cyberspace\~game\eye\hud\_hud.dm"
 #include "code\modules\cyberspace\~game\eye\hud\cyberspace_hider.dm"
 #include "code\modules\cyberspace\~game\eye\hud\datum.dm"
