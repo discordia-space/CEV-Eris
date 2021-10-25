@@ -204,7 +204,7 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
-	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 10, MATERIAL_GOLD = 5)
+	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_GOLD = 3)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 1000
