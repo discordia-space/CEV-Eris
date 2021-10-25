@@ -236,8 +236,8 @@
 
 /obj/item/rig_module/held/shield/Process()
 
-	var/mob/living/M = holder.wearer
 	if(holder && holder.wearer)
+		var/mob/living/M = holder.wearer
 		if(!(locate(/obj/item/shield/hardsuit) in holder.wearer))
 			deactivate()
 			to_chat(M, "The shield retracts into the hardsuit.")
