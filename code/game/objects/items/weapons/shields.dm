@@ -31,9 +31,16 @@
 
 /obj/item/shield
 	name = "shield"
-	var/base_block_chance = 35
+	var/base_block_chance = 30
 	var/slowdown_time = 1
 	var/shield_integrity = 100
+	var/shield_difficulty = 60
+
+/obj/item/shield/proc/get_wielder_skill(mob/user, stat_type)
+	if(user && user.stats)
+		return user.stats.getStat(stat_type)
+
+	return STAT_LEVEL_MIN
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
@@ -92,7 +99,7 @@
 	return FALSE
 
 /obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	return base_block_chance
+	return = shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
 
 /obj/item/shield/proc/get_protected_area(mob/user)
 	return BP_ALL_LIMBS
@@ -177,7 +184,8 @@
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 10, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 15)
 	price_tag = 500
-	base_block_chance = 60
+	base_block_chance = 45
+	shield_difficulty = 35
 	attack_verb = list("shoved", "bashed")
 	shield_integrity = 135
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -190,9 +198,9 @@
 
 /obj/item/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	if(MOVING_QUICKLY(user))
-		return 0
+		return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))
 	if(MOVING_DELIBERATELY(user))
-		return base_block_chance
+		return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance //diminishing returns
 
 /obj/item/shield/riot/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)
@@ -276,7 +284,8 @@
 	origin_tech = list()
 	matter = list()
 	price_tag = 0
-	base_block_chance = 70
+	base_block_chance = 60
+	shield_difficulty = 10
 	attack_verb = list("smashed", "bashed")
 	shield_integrity = 160
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -354,13 +363,9 @@
 	throw_speed = 2
 	throw_range = 6
 	matter = list(MATERIAL_STEEL = 6)
-	base_block_chance = 40
+	base_block_chance = 35
+	shield_difficulty = 65
 	shield_integrity = 100
-
-
-/obj/item/shield/buckler/handmade/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	return base_block_chance
-
 
 /obj/item/shield/buckler/handmade/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/extinguisher) || istype(W, /obj/item/storage/toolbox) || istype(W, /obj/item/melee))
@@ -377,7 +382,8 @@
 	throw_speed = 2
 	throw_range = 4
 	matter = list(MATERIAL_STEEL = 4)
-	base_block_chance = 50
+	base_block_chance = 40
+	shield_difficulty = 30
 	shield_integrity = 85
 
 /obj/item/shield/riot/tray/get_protected_area(mob/user)
@@ -390,7 +396,7 @@
 	return list(BP_ALL_LIMBS)
 
 /obj/item/shield/riot/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	return base_block_chance
+	return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
 
 /*
  * Energy Shield
@@ -410,6 +416,8 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_COVERT = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
+	base_block_chance = 35
+	shield_difficulty = 70
 	shield_integrity = 130
 
 /obj/item/shield/buckler/energy/handle_shield(mob/user)
@@ -422,13 +430,6 @@
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
-
-/obj/item/shield/buckler/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	if(istype(damage_source, /obj/item/projectile))
-		var/obj/item/projectile/P = damage_source
-		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
-			return (base_block_chance - round(damage / 3)) //block bullets and beams using the old block chance
-	return base_block_chance
 
 /obj/item/shield/buckler/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))

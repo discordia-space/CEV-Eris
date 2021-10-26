@@ -208,7 +208,8 @@
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 1000
-	base_block_chance = 60
+	base_block_chance = 45
+	shield_difficulty = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	shield_integrity = 130
 	var/obj/item/storage/internal/container
@@ -267,7 +268,8 @@
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 300
-	base_block_chance = 45
+	base_block_chance = 35
+	shield_difficulty = 70
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	shield_integrity = 110
 	var/obj/item/storage/internal/container
