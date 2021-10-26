@@ -57,9 +57,10 @@
 
 /obj/item/shield/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
 	var/bad_arc = reverse_direction(user.dir)
-	var/list/protected_area = get_protected_area(user)
+	var/list/protected_area
 	if(prob(50))
-		protected_area = protected_area | get_partial_protected_area(user)
+		protected_area = get_partial_protected_area(user)
+	else protected_area = get_protected_area(user)
 	if(protected_area.Find(def_zone) && check_shield_arc(user, bad_arc, damage_source))
 		if(!damage_source.check_penetrate(src))
 			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with \his [src]!"))
@@ -99,13 +100,13 @@
 	return FALSE
 
 /obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
-	return = shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
+	return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
 
 /obj/item/shield/proc/get_protected_area(mob/user)
 	return BP_ALL_LIMBS
 
 /obj/item/shield/proc/get_partial_protected_area(mob/user)
-	return list()
+	return get_protected_area(user)
 
 /obj/item/shield/attack(mob/M, mob/user)
 	if(isliving(M))
@@ -154,7 +155,9 @@
 	return p_area
 
 /obj/item/shield/buckler/get_partial_protected_area(mob/user)
-	return list(BP_GROIN,BP_HEAD)
+	var/list/p_area = get_protected_area(user)
+	p_area.Add(BP_GROIN, BP_HEAD)
+	return p_area
 
 /obj/item/shield/buckler/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/melee/baton))
@@ -224,7 +227,8 @@
 
 /obj/item/shield/riot/get_partial_protected_area(mob/user)
 	if(MOVING_DELIBERATELY(user))
-		return list(BP_ALL_LIMBS)
+		return BP_ALL_LIMBS
+	else return get_protected_area(user)
 
 /obj/item/shield/riot/New()
 	RegisterSignal(src, COMSIG_ITEM_PICKED, .proc/is_picked)
@@ -307,7 +311,7 @@
 	return p_area
 
 /obj/item/shield/hardsuit/get_partial_protected_area(mob/user)
-	return list(BP_ALL_LIMBS)
+	return BP_ALL_LIMBS
 
 /obj/item/shield/hardsuit/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/melee/baton))
@@ -393,7 +397,7 @@
 	return p_area
 
 /obj/item/shield/riot/tray/get_partial_protected_area(mob/user)
-	return list(BP_ALL_LIMBS)
+	return BP_ALL_LIMBS
 
 /obj/item/shield/riot/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
