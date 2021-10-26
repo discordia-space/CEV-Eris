@@ -20,15 +20,12 @@
 	rarity_value = 9
 	no_internal_mag = TRUE
 	var/bolt_open = FALSE
-	var/broken = FALSE
 
 /obj/item/gun/projectile/flare_gun/on_update_icon()
 	..()
 
-	if (bolt_open)
+	if(bolt_open)
 		SetIconState("flaregun_open")
-	if(broken)
-		SetIconState("flaregun_broken")
 	else
 		SetIconState("flaregun")
 
@@ -39,48 +36,52 @@
 	bolt_act(user)
 
 /obj/item/gun/projectile/flare_gun/proc/bolt_act(mob/living/user)
+	playsound(loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 	bolt_open = !bolt_open
-	if(broken)
-		to_chat(user, SPAN_WARNING("You can\'t open a broken barrel"))
 	if(bolt_open)
-		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
-		unload_ammo(user, allow_dump=1)
+		if(loaded.len)
+			if(chambered)
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [chambered]!"))
+				chambered.forceMove(get_turf(src))
+				loaded -= chambered
+				chambered = null
+			else
+				var/obj/item/ammo_casing/shell = loaded[loaded.len]
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [shell]!"))
+				shell.forceMove(get_turf(src))
+				loaded -= shell
+		else
+			to_chat(user, SPAN_NOTICE("You snap the barrel open."))
 	else
-		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
-		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
 
 /obj/item/gun/projectile/flare_gun/special_check(mob/user)
 	if(bolt_open)
 		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
-		return 0
+		return FALSE
 	return ..()
 
-/obj/item/gun/projectile/flare_gun/load_ammo(var/obj/item/A, mob/user)
-	if(broken)
-		to_chat(user, SPAN_WARNING("You can\'t load a broken barrel!"))
-		return
+/obj/item/gun/projectile/flare_gun/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
 	..()
 
-/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/flare_gun/proc/break_gun(mob/user)
-	broken = TRUE
-	to_chat(user, SPAN_DANGER("The [src]\'s barrel shatters!"))
-	SetIconState("flaregun_broken")
+/obj/item/gun/projectile/flare_gun/get_ammo() // Let's keep it simple. Count spent casing twice otherwise.
+	if(loaded.len)
+		return 1
+	return 0
 
 /obj/item/gun/projectile/flare_gun/shotgun
 	name = "reinforced flare gun"
-	desc = "Flare gun made of cheap plastic, but with a reinforced barrel. Now, where did all those gun-toting madmen get to?"
+	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
 	icon_state = "flaregun_r"
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 0.6
@@ -93,13 +94,7 @@
 /obj/item/gun/projectile/flare_gun/shotgun/on_update_icon()
 	..()
 
-	if (bolt_open)
+	if(bolt_open)
 		SetIconState("flaregun_r_open")
 	else
 		SetIconState("flaregun_r")
-
-/obj/item/gun/projectile/flare_gun/shotgun/special_check(mob/user)
-	. = ..()
-	if(prob(10))
-		break_gun(user)
-		return
