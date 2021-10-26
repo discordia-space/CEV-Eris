@@ -229,7 +229,7 @@
 	selectable = 1
 	toggleable = 1
 	use_power_cost = 0
-	active_power_cost = 5
+	active_power_cost = 0
 	passive_power_cost = 0
 	rarity_value = 50
 	spawn_blacklisted = FALSE
