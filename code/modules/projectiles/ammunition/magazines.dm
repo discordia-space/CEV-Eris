@@ -2,6 +2,7 @@
 /obj/item/ammo_magazine/pistol
 	name = "standard magazine (.35 Auto)"
 	icon_state = "pistol_l"
+	ammo_color = "-l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
@@ -13,29 +14,34 @@
 
 /obj/item/ammo_magazine/pistol/empty
 	icon_state = "pistol"
+	ammo_color = ""
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/pistol/practice
 	name = "standard magazine (.35 Auto practice)"
 	icon_state = "pistol_p"
+	ammo_color = "-p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 	rarity_value = 5
 
 /obj/item/ammo_magazine/pistol/highvelocity
 	name = "standard magazine (.35 Auto high-velocity)"
 	icon_state = "pistol_hv"
+	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/rubber
 	name = "standard magazine (.35 Auto rubber)"
 	icon_state = "pistol_r"
+	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 5
 
 /obj/item/ammo_magazine/pistol/scrap
 	name = "standard magazine (old .35 Auto)"
 	icon_state = "pistol_s"
+	ammo_color = ""
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
 	spawn_tags = SPAWN_AMMO_COMMON
@@ -44,6 +50,7 @@
 /obj/item/ammo_magazine/hpistol
 	name = "highcap magazine (.35 Auto)"
 	icon_state = "hpistol_l"
+	ammo_color = "-l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_H_PISTOL
@@ -56,23 +63,27 @@
 
 /obj/item/ammo_magazine/hpistol/empty
 	icon_state = "hpistol"
+	ammo_color = ""
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
 	icon_state = "hpistol_p"
+	ammo_color = "-p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 	rarity_value = 10
 
 /obj/item/ammo_magazine/hpistol/highvelocity
 	name = "highcap magazine (.35 Auto high-velocity)"
 	icon_state = "hpistol_hv"
+	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 	rarity_value = 80
 
 /obj/item/ammo_magazine/hpistol/rubber
 	name = "highcap magazine (.35 Auto rubber)"
 	icon_state = "hpistol_r"
+	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 10
 
@@ -117,6 +128,7 @@
 /obj/item/ammo_magazine/smg/scrap
 	name = "smg magazine (old .35 Auto)"
 	icon_state = "smg_s"
+	ammo_color = ""
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
@@ -161,6 +173,7 @@
 /obj/item/ammo_magazine/msmg/scrap
 	name = "smg magazine (old .40 Magnum)"
 	icon_state = "msmg_s"
+	ammo_color = ""
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
@@ -169,6 +182,7 @@
 /obj/item/ammo_magazine/magnum
 	name = "magazine (.40 Magnum)"
 	icon_state = "magnum_l"
+	ammo_color = "-l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	ammo_mag = "mag_cl40m"
@@ -182,29 +196,34 @@
 
 /obj/item/ammo_magazine/magnum/empty
 	icon_state = "magnum"
+	ammo_color = ""
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/magnum/practice
 	name = "magazine (.40 Magnum practice)"
 	icon_state = "magnum_p"
+	ammo_color = "-p"
 	ammo_type = /obj/item/ammo_casing/magnum/practice
 	spawn_tags = null
 
 /obj/item/ammo_magazine/magnum/hv
 	name = "magazine (.40 Magnum high-velocity)"
 	icon_state = "magnum_hv"
+	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/magnum/hv
 	spawn_tags = null
 
 /obj/item/ammo_magazine/magnum/rubber
 	name = "magazine (.40 Magnum rubber)"
 	icon_state = "magnum_r"
+	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
 	rarity_value = 3
 
 /obj/item/ammo_magazine/magnum/scrap
 	name = "magazine (old .40 Magnum)"
 	icon_state = "magnum_s"
+	ammo_color = ""
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
 	rarity_value = 3
 	spawn_tags = SPAWN_AMMO_COMMON
@@ -307,6 +326,7 @@
 /obj/item/ammo_magazine/cspistol
 	name = "pistol magazine (.25 Caseless Rifle)"
 	icon_state = "cspistol_l"
+	ammo_color = "-l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	ammo_type = /obj/item/ammo_casing/clrifle
@@ -317,21 +337,25 @@
 
 /obj/item/ammo_magazine/cspistol/empty
 	icon_state = "cspistol"
+	ammo_color = ""
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/cspistol/practice
 	name = "pistol magazine (.25 Caseless Rifle practice)"
 	icon_state = "cspistol_p"
+	ammo_color = "-p"
 	ammo_type = /obj/item/ammo_casing/clrifle/practice
 
 /obj/item/ammo_magazine/cspistol/hv
 	name = "pistol magazine (.25 Caseless Rifle high-velocity)"
 	icon_state = "cspistol_hv"
+	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/clrifle/hv
 
 /obj/item/ammo_magazine/cspistol/rubber
 	name = "pistol magazine (.25 Caseless Rifle rubber)"
 	icon_state = "cspistol_r"
+	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
 ///////// .30 RIFLE ///////////
@@ -362,6 +386,18 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	multiple_sprites = 1
+	w_class = ITEM_SIZE_NORMAL
+
+//Magazine type for the mech PK, you shouldn't see this
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	icon_state = "pk_box"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+//
 
 /obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
@@ -438,7 +474,7 @@
 
 //////// .35 SPEEDLOADERS //////////
 /obj/item/ammo_magazine/slpistol
-	name = "speed loader (.35 Special)"
+	name = "speed loader (.35 Auto)"
 	icon_state = "slpistol_l"
 	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = CAL_PISTOL
@@ -453,24 +489,24 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/slpistol/practice
-	name = "speed loader (.35 Special practice)"
+	name = "speed loader (.35 Auto practice)"
 	icon_state = "slpistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 
 /obj/item/ammo_magazine/slpistol/hv
-	name = "speed loader (.35 Special high-velocity)"
+	name = "speed loader (.35 Auto high-velocity)"
 	icon_state = "slpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 	rarity_value = 80
 
 /obj/item/ammo_magazine/slpistol/rubber
-	name = "speed loader (.35 Special rubber)"
+	name = "speed loader (.35 Auto rubber)"
 	icon_state = "slpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 5
 
 /obj/item/ammo_magazine/slpistol/scrap
-	name = "speed loader (old .35 Special)"
+	name = "speed loader (old .35 Auto)"
 	icon_state = "slpistol_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
@@ -527,6 +563,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 5
 	multiple_sprites = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/sllrifle/hv
 	name = "ammo strip (.30 Rifle HV)"
@@ -572,29 +609,39 @@
 
 /obj/item/ammo_magazine/m12
 	name = "ammo drum (.50 slug)"
-	icon_state = "m12_slug"
+	icon_state = "m12_hv"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)
-	multiple_sprites = 1
 	max_ammo = 8
-	ammo_color = "-slug"
+	ammo_color = "-hv"
+
+/obj/item/ammo_magazine/m12/on_update_icon()
+	cut_overlays()
+	if(stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1] //look at next casing.
+		overlays += "m12_shell_[AC.shell_color]" //look and display the overlay for the ammo
+
+/obj/item/ammo_magazine/m12/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (.50 pellet)"
-	icon_state = "m12_pellets"
+	icon_state = "m12_l"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
-	ammo_color = "-pellets"
+	ammo_color = "-l"
 
 /obj/item/ammo_magazine/m12/beanbag
 	name = "ammo drum (.50 beanbag)"
-	icon_state = "m12_beanbag"
+	icon_state = "m12_r"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	ammo_color = "-beanbag"
+	ammo_color = "-r"
 
 /obj/item/ammo_magazine/m12/empty
 	name = "ammo drum (.50)"
 	icon_state = "m12"
+	ammo_color = ""
 	initial_ammo = 0

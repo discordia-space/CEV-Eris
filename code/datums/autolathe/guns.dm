@@ -291,3 +291,7 @@
 /datum/design/autolathe/gun/dart_gun
 	name = "Z-H P Artemis Dartgun"
 	build_path = /obj/item/gun/projectile/dartgun
+
+/datum/design/autolathe/gun/flare_gun
+	name = "flare gun"
+	build_path = /obj/item/gun/projectile/flare_gun

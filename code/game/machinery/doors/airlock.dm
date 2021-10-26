@@ -178,6 +178,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	resistance = RESISTANCE_AVERAGE
+	bullet_resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
@@ -302,6 +303,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
 	resistance = RESISTANCE_UNBREAKABLE
+	bullet_resistance = RESISTANCE_VAULT
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -374,6 +376,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
+	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
@@ -603,7 +606,7 @@ There are 9 wires.
 			force_wedge_item(T)
 			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
+			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
@@ -1199,6 +1202,8 @@ There are 9 wires.
 		for(var/turf/turf in locs)
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
+					if(autoclose && tryingToLock)
+						addtimer(CALLBACK(src, .proc/close), 30 SECONDS)
 					if(world.time > next_beep_at)
 						playsound(loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 						next_beep_at = world.time + SecondsToTicks(10)
@@ -1226,6 +1231,7 @@ There are 9 wires.
 				take_damage(DOOR_CRUSH_DAMAGE)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	tryingToLock = FALSE
 	if(arePowerSystemsOn())
 		playsound(src.loc, close_sound, 70, 1, -2)
 	else

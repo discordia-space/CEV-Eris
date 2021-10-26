@@ -10,6 +10,8 @@
 
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "tomato"
+	// AI activation for players is handled in sanity , if it has sanity damage it activates AI.
+	sanity_damage = 0.5
 
 	var/icon_living
 	var/icon_dead
@@ -93,6 +95,7 @@
 	var/kept_distance //how far away will it be before it stops moving closer
 
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
+	var/ticks_processed = 0
 
 /mob/living/carbon/superior_animal/New()
 	..()
@@ -158,3 +161,237 @@
 /mob/living/carbon/superior_animal/updateicon()
 	. = ..()
 	update_icons()
+
+// Same as breath but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
+/mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
+	if(!(breath.total_moles))
+		if(min_air_pressure)
+			adjustBruteLoss(6)
+		if(breath_required_type)
+			adjustOxyLoss(6)
+		bad_environment = TRUE
+		return FALSE // in either cases , no breath poison type to handle
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	if(breath_required_type)
+		var/inhaling = breath.gas[breath_required_type]
+		var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
+		if(inhale_pp < min_breath_required_type)
+			adjustOxyLoss(6)
+			bad_environment = TRUE
+	if(breath_poison_type)
+		var/poison = breath.gas[breath_poison_type]
+		var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+		if(toxins_pp > min_breath_poison_type)
+			adjustToxLoss(6)
+
+	return TRUE
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_environment(datum/gas_mixture/environment as anything)
+	if((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature)) // its like this to avoid extra processing further below without using goto
+		bad_environment = TRUE
+		adjustFireLoss(15)
+	if(istype(get_turf(src), /turf/space))
+		if(bodytemperature > 1)
+			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
+		if(min_air_pressure)
+			adjustBruteLoss(6)
+			bad_environment = TRUE
+		if(breath_required_type)
+			adjustOxyLoss(6)
+			bad_environment = TRUE
+		return FALSE
+	bad_environment = FALSE
+	if (!contaminant_immunity)
+		for(var/g in environment.gas)
+			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+				pl_effects()
+				break
+
+	var/loc_temp = T0C
+	loc_temp = environment.temperature
+	var/pressure = environment.return_pressure()
+	if(pressure < min_air_pressure || pressure > max_air_pressure)
+		adjustBruteLoss(6)
+	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
+	var/temp_adj = 0
+	var/thermal_protection = 0
+	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
+	if(loc_temp < bodytemperature) //Place is colder than we are
+		thermal_protection = get_cold_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
+		temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)//this will be negative
+	else if(loc_temp > bodytemperature) //Place is hotter than we are
+		thermal_protection = get_heat_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
+		temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+	bodytemperature += between(BODYTEMP_COOLING_MAX, 3*temp_adj*relative_density, BODYTEMP_HEATING_MAX)*3 // Multiplied by 3 because of reduced frequency
+
+	if (overkill_dust && (getFireLoss() >= maxHealth*2))
+		dust()
+		return FALSE
+
+
+/mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
+
+	if(!resting && cannot_stand() && can_stand_overridden())
+		lying = 0
+		canmove = TRUE //TODO: Remove this
+	else if(buckled)
+		anchored = TRUE
+		if(istype(buckled))
+			if(buckled.buckle_lying == -1)
+				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+			else
+				lying = buckled.buckle_lying
+			if(buckled.buckle_movable)
+				anchored = FALSE
+		canmove = FALSE //TODO: Remove this
+	else
+		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		canmove = FALSE //TODO: Remove this
+
+	if(lying)
+		set_density(FALSE)
+	else
+		canmove = TRUE
+		set_density(initial(density))
+	reset_layer()
+	if(update_icon)	//forces a full overlay update
+		update_icon = FALSE
+		regenerate_icons()
+
+/mob/living/carbon/superior_animal/proc/handle_ai()
+
+	objectsInView = null
+
+	//CONSCIOUS UNCONSCIOUS DEAD
+
+	if (!check_AI_act())
+		return FALSE
+
+	switch(stance)
+		if(HOSTILE_STANCE_IDLE)
+			if (!busy) // if not busy with a special task
+				stop_automated_movement = FALSE
+			target_mob = findTarget()
+			if (target_mob)
+				stance = HOSTILE_STANCE_ATTACK
+
+		if(HOSTILE_STANCE_ATTACK)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			stop_automated_movement = TRUE
+			stance = HOSTILE_STANCE_ATTACKING
+			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+			if(!kept_distance)
+				walk_to(src, target_mob, 1, move_to_delay)
+			else
+				step_to(src, target_mob, kept_distance)
+
+		if(HOSTILE_STANCE_ATTACKING)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			prepareAttackOnTarget()
+
+	//random movement
+	if(wander && !stop_automated_movement && !anchored)
+		if(isturf(loc) && !resting && !buckled && canmove)
+			turns_since_move++
+			if(turns_since_move >= turns_per_move)
+				if(!(stop_automated_movement_when_pulled && pulledby))
+					var/moving_to = pick(cardinal)
+					set_dir(moving_to)
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					turns_since_move = 0
+
+	//Speaking
+	if(speak_chance && prob(speak_chance))
+		visible_emote(emote_see)
+
+	return TRUE
+
+// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked
+/mob/living/carbon/superior_animal/handle_status_effects()
+	if(paralysis)
+		paralysis = max(paralysis-3,0)
+	if(stunned)
+		stunned = max(stunned-3,0)
+	if(weakened)
+		weakened = max(weakened-3,0)
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
+	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	if(health <= 0 && stat != DEAD)
+		death()
+		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().
+		blinded = TRUE
+		silent = FALSE
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_chemicals_in_body()
+	if(reagents)
+		chem_effects.Cut()
+		if(touching)
+			touching.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
+
+	/*
+	if(light_dam)
+		var/light_amount = 0
+		if(isturf(loc))
+			var/turf/T = loc
+			light_amount = round((T.get_lumcount()*10)-5)
+
+		if(light_amount > light_dam) //if there's enough light, start dying
+			take_overall_damage(1,1)
+		else //heal in the dark
+			heal_overall_damage(1,1)
+
+	// nutrition decrease
+	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
+		nutrition = max (0, nutrition - hunger_factor)
+
+	updatehealth()
+	*/
+
+/mob/living/carbon/superior_animal/Life()
+	ticks_processed++
+	handle_fire()
+	handle_regular_hud_updates()
+	handle_cheap_chemicals_in_body()
+	if(!(ticks_processed%3))
+		handle_status_effects()
+		cheap_update_lying_buckled_and_verb_status_()
+		var/datum/gas_mixture/breath = get_breath_from_environment()
+		if(breath)
+			handle_cheap_breath(breath)
+		var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
+		handle_cheap_environment(environment)
+		updateicon()
+		ticks_processed = 0
+	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
+		return PROCESS_KILL
+
+	if (can_burrow && bad_environment)
+		evacuate()
+
+	if(!AI_inactive)
+		handle_ai()
+	if(life_cycles_before_sleep)
+		life_cycles_before_sleep--
+		return TRUE
+	if(!(AI_inactive && life_cycles_before_sleep))
+		AI_inactive = TRUE
+
+	if(life_cycles_before_scan)
+		life_cycles_before_scan--
+		return FALSE
+	if(check_surrounding_area(7))
+		activate_ai()
+		life_cycles_before_scan = initial(life_cycles_before_scan)/6 //So it doesn't fall asleep just to wake up the next tick
+		return TRUE
+	life_cycles_before_scan = initial(life_cycles_before_scan)
+	return FALSE
+

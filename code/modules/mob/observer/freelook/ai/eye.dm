@@ -22,6 +22,11 @@
 			ai.holo.move_hologram(ai)
 		return 1
 
+/mob/observer/eye/aiEye/zMove()
+	..()
+	spawn(0)
+		visualnet.visibility(src)
+
 // AI MOVEMENT
 
 // The AI's "eye". Described on the top of the page.

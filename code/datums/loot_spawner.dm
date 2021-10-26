@@ -337,6 +337,8 @@ the value of stock parts increases with the rating.
 	for(var/path in paths)
 		if(get_spawn_value(path) == spawn_value)
 			things += path
+	if(!things.len)
+		return
 	return pick(things)
 
 /datum/controller/subsystem/spawn_data/proc/take_tags(list/paths, list/exclude)

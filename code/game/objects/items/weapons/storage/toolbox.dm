@@ -30,8 +30,11 @@
 /obj/item/storage/toolbox/emergency/populate_contents()
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/extinguisher/mini(src)
-	if(prob(50))
+	if(prob(40))
 		new /obj/item/device/lighting/toggleable/flashlight(src)
+	else if(prob(30))
+		new /obj/item/gun/projectile/flare_gun(src)
+		new /obj/item/ammo_casing/flare(src)
 	else
 		new /obj/item/device/lighting/glowstick/flare(src)
 	if (prob(40))

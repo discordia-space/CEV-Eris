@@ -254,7 +254,7 @@
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/head/soft/green2soft = 1,
-	/obj/item/clothing/suit/armor/bulletproof/serbian/green = 1,
+	/obj/item/clothing/suit/armor/platecarrier/green = 1,
 	/obj/item/clothing/head/armor/faceshield/altyn = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
@@ -267,11 +267,11 @@
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/brown = 1,
 	/obj/item/clothing/head/soft/tan2soft = 1,
-	/obj/item/clothing/suit/armor/bulletproof/serbian/tan = 1,
+	/obj/item/clothing/suit/armor/platecarrier/tan = 1,
 	/obj/item/clothing/head/armor/faceshield/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown = 1)
+	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown = 1)
 
 /obj/item/storage/deferred/crate/uniform_black
 	name = "black uniform kit"
@@ -279,12 +279,12 @@
 	icon_state = "serbcrate_deferred_black"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/black = 1,
-	/obj/item/clothing/suit/armor/bulletproof/serbian = 1,
+	/obj/item/clothing/suit/armor/platecarrier = 1,
 	/obj/item/clothing/head/armor/faceshield/altyn/black = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
-	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat = 1)
+	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat = 1)
 
 /obj/item/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"
@@ -321,7 +321,7 @@
 	/obj/item/clothing/head/beret/german = 1,
 	/obj/item/clothing/mask/gas/german = 1,
 	/obj/item/clothing/shoes/jackboots/german = 1,
-	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
+	/obj/item/clothing/suit/storage/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
 
 /obj/item/storage/deferred/crate/clown_crime

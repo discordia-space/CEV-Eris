@@ -18,13 +18,8 @@
 		if (!message)
 			return
 		log_say("[key_name(src)] : [message]")
-		var/last_symbol = copytext(message, length(message))
 		if (stat == 2)
 			return say_dead(message)
-		else if(last_symbol=="@")
-			if(!src.stats.getPerk(/datum/perk/codespeak))
-				to_chat(src, "You don't know the codes, pal.")
-				return
 
 		var/mob/living/simple_animal/borer/B = src.loc
 		to_chat(src, "You whisper silently, \"[message]\"")
@@ -42,13 +37,8 @@
 		if (!message)
 			return
 		log_say("[key_name(src)] : [message]")
-		var/last_symbol = copytext(message, length(message))
 		if (stat == 2)
 			return say_dead(message)
-		else if(last_symbol=="@")
-			if(!src.stats.getPerk(/datum/perk/codespeak))
-				to_chat(src, "You don't know the codes, pal.")
-				return
 
 		to_chat(src, "You whisper silently, \"[message]\"")
 		to_chat(controler.wearer, "The captive mind of [src] whispers, \"[message]\"")
