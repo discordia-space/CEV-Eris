@@ -61,5 +61,5 @@
 
 /datum/uplink_item/item/hardsuit_modules/ric_merc
 	name = "Crimson Hardsuit Control Module"
-	item_cost = 25
+	item_cost = 20
 	path = /obj/item/rig/merc/empty

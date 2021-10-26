@@ -8,19 +8,22 @@
 		update_recoil()
 
 /mob/living/proc/calc_recoil()
-	recoil -= 300
-	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 1 SECONDS, TIMER_STOPPABLE)
 
-	if(recoil <= 0)
+	if(recoil >= 10)
+		recoil *= 0.9
+	else if(recoil < 10 && recoil > 1)
+		recoil -= 1
+	else
 		recoil = 0
-		deltimer(recoil_reduction_timer)
-	
+
+	if(recoil != 0) recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE)
+	else deltimer(recoil_reduction_timer)
 	update_cursor()
 
 //Called after setting recoil
 /mob/living/proc/update_recoil()
 	update_cursor()
-	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 1 SECONDS, TIMER_STOPPABLE)
+	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.3 SECONDS, TIMER_STOPPABLE)
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)

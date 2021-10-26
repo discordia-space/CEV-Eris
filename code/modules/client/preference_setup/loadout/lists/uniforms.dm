@@ -68,7 +68,7 @@
 /datum/gear/uniform/dress/New()
 	..()
 	var/dress = list(
-		"Gray Dress"			=	/obj/item/clothing/under/dress,
+		"Gray Dress"			=	/obj/item/clothing/under/dress/gray,
 		"Blue Dress"			=	/obj/item/clothing/under/dress/blue,
 		"Red Dress"				=	/obj/item/clothing/under/dress/red
 	)
@@ -159,6 +159,7 @@
 /datum/gear/uniform/tuxedo
 	display_name = "black tuxedo"
 	path = /obj/item/clothing/under/tuxedo
+	cost = 2
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"

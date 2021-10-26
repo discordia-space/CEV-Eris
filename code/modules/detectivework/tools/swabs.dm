@@ -16,30 +16,30 @@
 		return ..()
 
 	if(is_used())
-		return
+		return FALSE
 
 	var/mob/living/carbon/human/H = M
 	var/sample_type
 
 	if(H.wear_mask)
 		to_chat(user, SPAN_WARNING("\The [H] is wearing a mask."))
-		return
+		return FALSE
 
 	if(!H.dna || !H.dna.unique_enzymes)
 		to_chat(user, SPAN_WARNING("They don't seem to have DNA!"))
-		return
+		return FALSE
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message(SPAN_DANGER("\The [user] tries to take a swab sample from \the [H], but they move away."))
-		return
+		return FALSE
 
 	if(user.targeted_organ == BP_MOUTH)
 		if(!H.organs_by_name[BP_HEAD])
 			to_chat(user, SPAN_WARNING("They don't have a head."))
-			return
+			return FALSE
 		if(!H.check_has_mouth())
 			to_chat(user, SPAN_WARNING("They don't have a mouth."))
-			return
+			return FALSE
 		user.visible_message("[user] swabs \the [H]'s mouth for a saliva sample.")
 		dna = list(H.dna.unique_enzymes)
 		sample_type = "DNA"
@@ -55,17 +55,17 @@
 				has_hand = 1
 		if(!has_hand)
 			to_chat(user, SPAN_WARNING("They don't have any hands."))
-			return
+			return FALSE
 		user.visible_message("[user] swabs [H]'s palm for a sample.")
 		sample_type = "GSR"
 		gsr = H.gunshot_residue
 	else
-		return
+		return FALSE
 
 	if(sample_type)
 		set_used(sample_type, H)
-		return
-	return 1
+		return TRUE
+	return FALSE
 
 /obj/item/forensics/swab/afterattack(var/atom/A, var/mob/user, var/proximity)
 
@@ -83,6 +83,9 @@
 		choices |= "Blood"
 	if(istype(A, /obj/item/clothing))
 		choices |= "Gunshot Residue"
+	if(istype(A, /obj/item/reagent_containers))
+		choices |= "Check reagents for DNA"
+
 
 	var/choice
 	if(!choices.len)
@@ -97,18 +100,33 @@
 		return
 
 	var/sample_type
-	if(choice == "Blood")
-		if(!A.blood_DNA || !A.blood_DNA.len) return
-		dna = A.blood_DNA.Copy()
-		sample_type = "blood"
+	switch(choice)
+		if("Blood")
+			if(!A.blood_DNA || !A.blood_DNA.len)
+				return FALSE
+			dna = A.blood_DNA.Copy()
+			sample_type = "blood"
 
-	else if(choice == "Gunshot Residue")
-		var/obj/item/clothing/B = A
-		if(!istype(B) || !B.gunshot_residue)
-			to_chat(user, SPAN_WARNING("There is no residue on \the [A]."))
-			return
-		gsr = B.gunshot_residue
-		sample_type = "residue"
+		if("Gunshot Residue")
+			var/obj/item/clothing/B = A
+			if(!istype(B) || !B.gunshot_residue)
+				to_chat(user, SPAN_WARNING("There is no residue on \the [A]."))
+				return FALSE
+			gsr = B.gunshot_residue
+			sample_type = "residue"
+
+		if("Check reagents for DNA")
+			var/obj/item/reagent_containers/container = A
+			var/blood = container.reagents.get_master_reagent_id()
+			if(blood != "blood")
+				to_chat(user, SPAN_NOTICE("There is no blood in \the [src] or its not pure enough to be swabbed!"))
+				return FALSE
+			var/list/blood_data = container.reagents.get_data("blood")
+			if(blood_data["blood_DNA"])
+				dna = list(blood_data["blood_DNA"]) // NEEDS TO BE A LIST FOR REASONS BEYOND MY KNOWLEDGE
+				sample_type = "blood"
+			else
+				to_chat(user, SPAN_NOTICE("This blood has no DNA!"))
 
 	if(sample_type)
 		user.visible_message("\The [user] swabs \the [A] for a sample.", "You swab \the [A] for a sample.")
@@ -118,4 +136,4 @@
 	name = "[initial(name)] ([sample_str] - [source])"
 	desc = "[initial(desc)] The label on the vial reads 'Sample of [sample_str] from [source].'."
 	icon_state = "swab_used"
-	used = 1
+	used = TRUE

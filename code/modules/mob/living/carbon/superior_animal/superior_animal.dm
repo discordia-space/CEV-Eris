@@ -165,7 +165,8 @@
 // Same as breath but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
 /mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
 	if(!(breath.total_moles))
-		adjustBruteLoss(6)
+		if(min_air_pressure)
+			adjustBruteLoss(6)
 		if(breath_required_type)
 			adjustOxyLoss(6)
 		bad_environment = TRUE
@@ -194,9 +195,10 @@
 			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
 		if(min_air_pressure)
 			adjustBruteLoss(6)
+			bad_environment = TRUE
 		if(breath_required_type)
 			adjustOxyLoss(6)
-		bad_environment = TRUE
+			bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
 	if (!contaminant_immunity)
@@ -226,9 +228,6 @@
 		dust()
 		return FALSE
 
-	//If we're unable to breathe, lets get out of here
-	if (can_burrow && !stat && bad_environment)
-		evacuate()
 
 /mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
 
@@ -266,7 +265,7 @@
 	//CONSCIOUS UNCONSCIOUS DEAD
 
 	if (!check_AI_act())
-		return
+		return FALSE
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
@@ -308,6 +307,8 @@
 	//Speaking
 	if(speak_chance && prob(speak_chance))
 		visible_emote(emote_see)
+
+	return TRUE
 
 // Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked
 /mob/living/carbon/superior_animal/handle_status_effects()
@@ -372,6 +373,9 @@
 		ticks_processed = 0
 	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
 		return PROCESS_KILL
+
+	if (can_burrow && bad_environment)
+		evacuate()
 
 	if(!AI_inactive)
 		handle_ai()

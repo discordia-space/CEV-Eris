@@ -210,6 +210,7 @@
 	price_tag = 1000
 	base_block_chance = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
+	shield_integrity = 120
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE

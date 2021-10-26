@@ -258,8 +258,6 @@ var/list/holder_mob_icon_cache = list()
 			//If the scooping up failed something must have gone wrong
 			H.release_mob()
 
-		return success
-
 
 /mob/living/proc/get_holder_location()
 	set category = "Abilities"
