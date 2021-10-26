@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(APCAccessCodes)
 /obj/machinery/power/apc/proc/GenerateUniqueCode()
 	var/tryes = 0
 	do
-		CyberAccessCode = "[z]:[x]:[y]-[rand(1000, 9999)]-[rand(1000, 9999)]"
+		CyberAccessCode = "[z]:[x]:[y]=[rand(1000, 9999)]-[rand(1000, 9999)]"
 		tryes += 1
 	while(tryes < 10 && GLOB.APCAccessCodes.Find(CyberAccessCode) != 0)
 	if(tryes >= 10)
