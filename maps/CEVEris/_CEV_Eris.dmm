@@ -17857,8 +17857,8 @@
 /area/eris/maintenance/section1deck4central)
 "aSp" = (
 /obj/structure/table/rack,
-/obj/item/gun/launcher/grenade/lenar,
-/obj/item/gun/launcher/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -18723,9 +18723,17 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aUq" = (
-/obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/security/main)
+/obj/structure/table/rack,
+/obj/item/storage/box/frag_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/security/warden)
 "aUr" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
@@ -166979,7 +166987,7 @@ aaB
 aaB
 aaB
 aaB
-aUq
+aaB
 aUL
 aac
 aPb
@@ -167180,7 +167188,7 @@ aaB
 oEo
 aSp
 aSW
-aaB
+aUq
 aaB
 aac
 aac
