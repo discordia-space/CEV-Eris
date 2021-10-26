@@ -1,0 +1,4 @@
+author: Doster-d
+delete-after: true
+changes:
+  - tweak: removed cost multiplier from IC assembly in protolathe.
