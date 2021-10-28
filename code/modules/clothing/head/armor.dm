@@ -171,7 +171,9 @@
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
 	action_button_name = "Toggle Night Vision"
-	var/obj/item/clothing/glasses/bullet_proof_ironhammer/hud
+	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
+	var/last_toggle = 0
+	var/toggle_delay = 2 SECONDS
 	price_tag = 600
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/New()
@@ -195,17 +197,23 @@
 	if(user.get_equipped_item(slot_head) != src)
 		return
 	if(hud in src)
-		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
+		if(user.equip_to_slot_if_possible(hud, slot_glasses) && world.time > last_toggle)
+			to_chat(user, "You enable the night-vision hud on [src].")
+			last_toggle = world.time + toggle_delay
+			hud.toggle(user, TRUE)
 			update_icon()
 		else
-			to_chat(user, "You are wearing something which is in the way.")
+			to_chat(user, "You are wearing something which is in the way or trying to toggle the hud too fast.")
 	else
-		if(ismob(hud.loc))
+		if(ismob(hud.loc) && world.time > last_toggle)
+			last_toggle = world.time + toggle_delay
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
-		hud.forceMove(src)
+			hud.toggle(user, TRUE)
+			to_chat(user, "You disable the night-vision hud on [src].")
+			hud.forceMove(src)
+		else
+			to_chat(user, "You can't toggle the hud off so fast!")
 		update_icon()
 	usr.update_action_buttons()
 
