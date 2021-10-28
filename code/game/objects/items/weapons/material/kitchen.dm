@@ -60,6 +60,7 @@
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	icon_state = "fork"
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
 
 /obj/item/material/kitchen/utensil/fork/plastic
 	default_material = MATERIAL_PLASTIC

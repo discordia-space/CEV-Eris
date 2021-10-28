@@ -78,6 +78,7 @@
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
 	force = WEAPON_FORCE_BRUTAL
+	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	armor_penetration = ARMOR_PEN_HALF
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE

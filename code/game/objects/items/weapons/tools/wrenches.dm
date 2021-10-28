@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 3)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	tool_qualities = list(QUALITY_BOLT_TURNING = 30, QUALITY_HAMMERING = 10)
 	rarity_value = 6
 
