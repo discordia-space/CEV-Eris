@@ -150,7 +150,7 @@
 /datum/gear/cigars
 	display_name = "fancy cigar case"
 	path = /obj/item/storage/fancy/cigar/empty
-	cost = 2
+	cost = 1
 
 /datum/gear/cigarettes
 	display_name = "cigarette packet"
