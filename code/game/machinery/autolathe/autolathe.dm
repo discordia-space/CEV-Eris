@@ -73,6 +73,8 @@
 	// If it prints high quality or bulky/deformed/debuffed items, or if it prints good items for one faction only.
 	var/low_quality_print = TRUE
 	var/list/high_quality_faction_list = list()
+	// If it prints items with positive traits
+	var/extra_quality_print = FALSE
 
 	//for nanoforge and/or artist bench
 	var/use_oddities = FALSE
@@ -927,17 +929,20 @@
 
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
-    consume_materials(design)
+	consume_materials(design)
 
-    if(disk && disk.GetComponent(/datum/component/oldficator))
-        design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
-    else
-        design.Fabricate(drop_location(), mat_efficiency, src, FALSE)
+	if(disk && disk.GetComponent(/datum/component/oldficator))
+		design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
+	else
+		if(extra_quality_print)
+			design.Fabricate(drop_location(), mat_efficiency, src, FALSE, TRUE)
+		else
+			design.Fabricate(drop_location(), mat_efficiency, src, FALSE,FALSE)
 
-    working = FALSE
-    current_file = null
-    print_post()
-    next_file()
+	working = FALSE
+	current_file = null
+	print_post()
+	next_file()
 
 
 /obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
