@@ -4,13 +4,15 @@
 		damage_flags &= ~(DAM_SHARP | DAM_EDGE)
 	. = ..()
 */
-/obj/item/robot_parts/robot_component/armour/exosuit/plain
+
+/obj/item/robot_parts/robot_component/armour/exosuit
 	name = "exosuit armor plating"
 	armor = list(melee = 75, bullet = 33, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 7)
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10
+	spawn_blacklisted = TRUE
 
 /obj/item/robot_parts/robot_component/armour/exosuit/Initialize(newloc)
 	. = ..()
@@ -24,12 +26,22 @@
 	set_extension(src, /datum/extension/armor, /datum/extension/armor/exosuit, armor)
 */
 
+/obj/item/robot_parts/robot_component/armour/exosuit/plain
+	name = "exosuit armor plating"
+	armor = list(melee = 75, bullet = 33, energy = 10, bomb = 25, bio = 100, rad = 0)
+	origin_tech = list(TECH_MATERIAL = 1)
+	matter = list(MATERIAL_STEEL = 7)
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+	rarity_value = 10
+	spawn_blacklisted = FALSE
+
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 	name = "radiation-proof exosuit armor plating"
 	desc = "A fully enclosed radiation hardened shell designed to protect the pilot from radiation."
 	armor = list(melee = 75, bullet = 35, energy = 40, bomb = 25, bio = 100, rad = 100)
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5) //Plasteel for the shielding
+	spawn_blacklisted = FALSE
 
 /obj/item/robot_parts/robot_component/armour/exosuit/ablative
 	name = "ablative exosuit armor plating"
@@ -37,6 +49,7 @@
 	armor = list(melee = 50, bullet = 25, energy = 100, bomb = 10, bio = 100, rad = 60)
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASMA = 5)
+	spawn_blacklisted = FALSE
 
 /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	name = "heavy combat exosuit plating"
@@ -44,3 +57,4 @@
 	armor = list(melee = 85, bullet = 80, energy = 45, bomb = 70, bio = 100, rad = 50)
 	origin_tech = list(TECH_MATERIAL = 5)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
+	spawn_blacklisted = FALSE
