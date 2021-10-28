@@ -305,6 +305,11 @@
 	create_reagents(15 * storage_slots)
 	update_icon()
 
+/obj/item/storage/fancy/cigar/empty
+
+/obj/item/storage/fancy/cigar/empty/populate_contents()
+	return FALSE
+
 /obj/item/storage/fancy/cigar/on_update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 

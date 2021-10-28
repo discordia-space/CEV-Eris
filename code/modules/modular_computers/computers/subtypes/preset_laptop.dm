@@ -20,8 +20,8 @@
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src) //Only the advanced laptop gets a tesla link
-	hard_drive = new/obj/item/computer_hardware/hard_drive/advanced(src)
-	network_card = new/obj/item/computer_hardware/network_card/advanced(src)
+	hard_drive = new/obj/item/computer_hardware/hard_drive(src)
+	network_card = new/obj/item/computer_hardware/network_card(src)
 	printer = new/obj/item/computer_hardware/printer(src)
 	card_slot = new/obj/item/computer_hardware/card_slot(src)
 
