@@ -213,6 +213,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+		client.view = world.view  // Reset view range if it has been altered
 
 	if(hud_used)
 		hud_used.updatePlaneMasters(src)
@@ -1173,6 +1174,15 @@ mob/proc/yank_out_object()
 /mob/verb/westfaceperm()
 	set hidden = 1
 	set_face_dir(client.client_dir(WEST))
+
+/mob/verb/change_move_intent()
+	set name = "Change moving intent"
+	set category = "IC"
+	set src = usr
+
+	if(HUDneed["move intent"])
+		var/obj/screen/mov_intent/mov_intent = HUDneed["move intent"]
+		mov_intent.Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return

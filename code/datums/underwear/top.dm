@@ -9,33 +9,49 @@
 	underwear_type = null
 	underwear_gender = MALE
 
+/datum/category_item/underwear/top/bra
+	name = "bra, white"
+	icon_state = "top_1w"
+
+/datum/category_item/underwear/top/bra/black
+	is_default = TRUE
+	name = "bra, black"
+	icon_state = "top_1b"
+
+/datum/category_item/underwear/top/bra/red
+	name = "bra, red"
+	icon_state = "top_1r"
+
+/datum/category_item/underwear/top/bra/yellow
+	name = "bra, yellow"
+	icon_state = "top_1y"
+
+/datum/category_item/underwear/top/bra/cyan
+	name = "bra, cyan"
+	icon_state = "top_1c"
+
+/datum/category_item/underwear/top/sportbra
+	name = "sport bra, white"
+	icon_state = "top_2w"
+
+/datum/category_item/underwear/top/sportbra/black
+	name = "sport bra, black"
+	icon_state = "top_2b"
+
+/datum/category_item/underwear/top/sportbra/red
+	name = "sport bra, red"
+	icon_state = "top_2r"
+
+/datum/category_item/underwear/top/sportbra/yellow
+	name = "sport bra, yellow"
+	icon_state = "top_2y"
+
+/datum/category_item/underwear/top/sportbra/cyan
+	name = "sport bra, cyan"
+	icon_state = "top_2c"
+
 /datum/category_item/underwear/top/none/is_default(var/gender)
 	return gender != FEMALE
 
-/datum/category_item/underwear/top/bra_red
-	name = "Bra, red"
-	icon_state = "f1"
-
-/datum/category_item/underwear/top/bra_white
-	is_default = TRUE
-	name = "Bra, white"
-	icon_state = "f2"
-
-/datum/category_item/underwear/top/bra_white/is_default(var/gender)
+/datum/category_item/underwear/top/bra/black/is_default(var/gender)
 	return gender == FEMALE
-
-/datum/category_item/underwear/top/bra_yellow
-	name = "Bra, yellow"
-	icon_state = "f3"
-
-/datum/category_item/underwear/top/bra_blue
-	name = "Bra, blue"
-	icon_state = "f4"
-
-/datum/category_item/underwear/top/bra_black
-	name = "Bra, black"
-	icon_state = "f5"
-
-/datum/category_item/underwear/top/sports_bra_white
-	name = "Sports bra, white"
-	icon_state = "f8"

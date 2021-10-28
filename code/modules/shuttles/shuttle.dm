@@ -72,7 +72,7 @@
 		playsound(current_location, sound_takeoff, 100, 20, 0.2)
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
-			return FALSE	//someone cancelled the launch
+			return //someone cancelled the launch
 
 		if(!fuel_check()) //fuel error (probably out of fuel) occured, so cancel the launch
 			var/datum/shuttle/autodock/S = src
@@ -105,6 +105,8 @@
 
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
+		spawn(0)  // So that the landmark is processed in parallel
+			destination.trigger_landmark()
 		if(attempt_move(interim))
 			var/fwooshed = 0
 			while (world.time < arrive_time)

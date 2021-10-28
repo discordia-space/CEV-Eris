@@ -2,86 +2,53 @@
 "a" = (
 /turf/simulated/wall/r_wall,
 /area/template_noop)
-"c" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/template_noop)
 "d" = (
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "e" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "f" = (
 /obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/template_noop)
-"g" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/airless,
 /area/template_noop)
 "h" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "i" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "j" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "k" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "n" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "o" = (
 /obj/structure/railing,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "p" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -99,8 +66,8 @@ k
 n
 "}
 (3,1,1) = {"
-c
-g
+k
+f
 i
 l
 o

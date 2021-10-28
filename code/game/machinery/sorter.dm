@@ -328,6 +328,8 @@
 
 /obj/machinery/sorter/biomatter
 	name = "biomatter sorter"
+	accept_output_side = WEST
+	refuse_output_side = EAST
 
 /obj/machinery/sorter/biomatter/Initialize()
 	. = ..()

@@ -260,3 +260,24 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/tile/floor = 1
 	)
 	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/door_silver
+	name = "Common Door"
+	build_path = /obj/machinery/door/holy
+	materials = list(
+		/obj/item/stack/material/steel = 5,
+		/obj/item/stack/material/biomatter = 20,
+		/obj/item/stack/material/silver = 2,
+		/obj/item/stack/material/gold = 1
+	)
+	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/door_gold
+	name = "Clergy Door"
+	build_path = /obj/machinery/door/holy/preacher
+	materials = list(
+		/obj/item/stack/material/steel = 5,
+		/obj/item/stack/material/biomatter = 20,
+		/obj/item/stack/material/gold = 3
+	)
+	build_time = 8 SECONDS

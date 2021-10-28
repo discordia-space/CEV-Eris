@@ -84,7 +84,7 @@
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
 	if(CI.get_module(CRUCIFORM_OBEY))
@@ -266,7 +266,7 @@
 	var/obj/item/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
-		fail("Cruciform not found",user,C)
+		fail("Cruciform not found", user, C)
 		return FALSE
 
 

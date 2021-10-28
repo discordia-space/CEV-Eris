@@ -321,7 +321,7 @@
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
 			return TRUE
-		if(mc.burn_damage == 0)
+		if(mc.burn_damage <= 0)
 			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
 			return TRUE
 		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
@@ -370,7 +370,7 @@
 			var/obj/item/mech_component/mc = get_targeted_part(user)
 			if(!repairing_check(mc, user))
 				return TRUE
-			if(mc.brute_damage == 0)
+			if(mc.brute_damage <= 0)
 				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
 				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
