@@ -203,7 +203,7 @@
 			hud.toggle(user, TRUE)
 			update_icon()
 		else
-			to_chat(user, "You are wearing something which is in the way or trying to toggle the hud too fast.")
+			to_chat(user, "You are wearing something which is in the way or trying to flip the googles too fast!")
 	else
 		if(ismob(hud.loc) && world.time > last_toggle)
 			last_toggle = world.time + toggle_delay
@@ -213,7 +213,7 @@
 			to_chat(user, "You disable the night-vision hud on [src].")
 			hud.forceMove(src)
 		else
-			to_chat(user, "You can't toggle the hud off so fast!")
+			to_chat(user, "You can't pull off the goggles so fast!")
 		update_icon()
 	usr.update_action_buttons()
 
