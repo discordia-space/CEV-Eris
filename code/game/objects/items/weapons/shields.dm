@@ -54,6 +54,7 @@
 	if(protected_area.Find(def_zone) && check_shield_arc(user, bad_arc, damage_source))
 		if(!damage_source.check_penetrate(src))
 			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with \his [src]!"))
+			playsound(user.loc, 'sound/weapons/shield/shieldblock.ogg', 50, 1)
 			return 1
 	return 0
 
@@ -127,7 +128,7 @@
 
 /obj/item/shield/riot/handle_shield(mob/user)
 	. = ..()
-	if(.) playsound(user.loc, 'sound/weapons/shield.ogg', 50, 1)
+	if(.) playsound(user.loc, 'sound/weapons/shield/shieldmelee.ogg', 50, 1)
 
 /obj/item/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	if(MOVING_QUICKLY(user))
