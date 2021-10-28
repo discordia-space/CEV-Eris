@@ -210,7 +210,7 @@
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
 			hud.toggle(user, TRUE)
-			to_chat(user, "You disable the night-vision hud on [src].")
+			to_chat(user, "You flip up [src] night vision goggles, turning them off.")
 			hud.forceMove(src)
 		else
 			to_chat(user, "You can't pull off the goggles so fast!")
