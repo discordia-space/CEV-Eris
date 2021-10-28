@@ -59,8 +59,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
+		GUN_UPGRADE_PEN_MULT = 0.2,
+		GUN_UPGRADE_PIERC_MULT = 3,
 		GUN_UPGRADE_RICO_MULT = 5,
-		GUN_UPGRADE_STEPDELAY_MULT = 0.8
+		GUN_UPGRADE_STEPDELAY_MULT = 0.6,
+		GUN_UPGRADE_RECOIL = 1.4
 		)
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
