@@ -259,6 +259,8 @@
 
 /obj/proc/multiply_pierce_penetration(newmult)
 
+/obj/proc/multiply_ricochet(newmult)
+
 /obj/proc/multiply_projectile_step_delay(newmult)
 
 /obj/proc/multiply_projectile_agony(newmult)
