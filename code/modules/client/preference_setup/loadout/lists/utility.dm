@@ -59,7 +59,7 @@
 /datum/gear/utility/advancedlaptop
 	display_name = "high-tech laptop"
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/golden
-	cost = 5
+	cost = 4
 
 /datum/gear/utility/ducttape
 	display_name = "duct tape"
