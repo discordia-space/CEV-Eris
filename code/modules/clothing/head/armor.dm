@@ -198,7 +198,7 @@
 		return
 	if(hud in src)
 		if(user.equip_to_slot_if_possible(hud, slot_glasses) && world.time > last_toggle)
-			to_chat(user, "You enable the night-vision hud on [src].")
+			to_chat(user, "You flip down [src] night vision goggles with a high-pitched whine.")
 			last_toggle = world.time + toggle_delay
 			hud.toggle(user, TRUE)
 			update_icon()
