@@ -233,6 +233,7 @@ SUBSYSTEM_DEF(tickets)
 		"IC Issue" = "This is an In Character (IC) issue and will not be handled by admins. You could speak to IronHammer security forces, a departmental head or any other relevant authority currently aboard the ship.",
 		"Reject" = "Reject",
 		"Man Up" = "Man Up",
+		"Skill Issue" = "Skill Issue",
 		"Appeal on the Forums" = "Appealing a ban must occur on the forums. Privately messaging, or adminhelping about your ban will not resolve it."
 		)
 
@@ -246,23 +247,21 @@ SUBSYSTEM_DEF(tickets)
 		if(null) //they cancelled
 			T.staffAssigned = initial(T.staffAssigned) //if they cancel we dont need to hold this ticket anymore
 			return
+		//if("Mentorhelp")
+		//	convert_ticket(T)
 		if("Reject")
 			if(!closeTicket(N))
 				to_chat(C, "Unable to close ticket")
 		if("Man Up")
 			C.man_up(returnClient(N))
-			T.lastStaffResponse = "Autoresponse: [message_key]"
-			resolveTicket(N)
-			log_admin("[C] has auto responded to [ticket_owner]\'s adminhelp with:<span class='adminticketalt'> [message_key] </span>")
-
-		//if("Mentorhelp")
-		//	convert_ticket(T)
+		if("Skill Issue")
+			C.skill_issue(returnClient(N))	
 		else
-			sound_to(returnClient(N), "sound/effects/adminhelp.ogg")
 			to_chat_safe(returnClient(N), "<span class='[span_class]'>[C] is autoresponding with: <span/> <span class='adminticketalt'>[response_phrases[message_key]]</span>")//for this we want the full value of whatever key this is to tell the player so we do response_phrases[message_key]
-			log_admin("[C] has auto responded to [ticket_owner]\'s adminhelp with:<span class='adminticketalt'> [message_key] </span>") //we want to use the short named keys for this instead of the full sentence which is why we just do message_key
-			T.lastStaffResponse = "Autoresponse: [message_key]"
-			resolveTicket(N)
+	sound_to(returnClient(N), "sound/effects/adminhelp.ogg")
+	log_admin("[C] has auto responded to [ticket_owner]\'s adminhelp with:<span class='adminticketalt'> [message_key] </span>") //we want to use the short named keys for this instead of the full sentence which is why we just do message_key
+	T.lastStaffResponse = "Autoresponse: [message_key]"
+	resolveTicket(N)
 
 //Set ticket state with key N to closed
 /datum/controller/subsystem/tickets/proc/closeTicket(N)
