@@ -14,7 +14,7 @@
 	fire_delay = 0 // definitely won't go bad
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 1.6 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
+	recoil_buildup = 2 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -129,7 +129,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 1.7 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
+	recoil_buildup = 2.2 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -145,7 +145,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.7
-	recoil_buildup = 1.8
+	recoil_buildup = 2.5
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_arisaka"
 	sharp = FALSE
@@ -161,7 +161,7 @@
 	item_suffix  = "_arisaka_ih"
 	damage_multiplier = 1.3
 	penetration_multiplier = 1.7
-	recoil_buildup = 1.7
+	recoil_buildup = 2.3
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	wielded_item_state = "_doble_arisaka_ih"
 	spawn_blacklisted = TRUE
