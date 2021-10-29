@@ -50,7 +50,7 @@
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/gun_upgrade/barrel/blender
-	name = "OR 'bullet blender' barrel"
+	name = "OR \"Bullet Blender\" barrel"
 	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads 'No refunds for any collateral damage caused.'"
 	icon_state = "Penetrator"
 	rarity_value = 30
