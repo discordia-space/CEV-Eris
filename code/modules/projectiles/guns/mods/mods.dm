@@ -51,7 +51,7 @@
 
 /obj/item/gun_upgrade/barrel/blender
 	name = "OR \"Bullet Blender\" barrel"
-	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads 'No refunds for any collateral damage caused.'"
+	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads \"No refunds for any collateral damage caused\"."
 	icon_state = "Penetrator"
 	rarity_value = 30
 
