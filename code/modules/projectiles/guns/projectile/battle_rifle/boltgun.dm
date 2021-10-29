@@ -144,9 +144,10 @@
 	item_suffix  = "_arisaka"
 	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.5
-	penetration_multiplier = 1.7
-	recoil_buildup = 2.5
+	damage_multiplier = 1.6
+	penetration_multiplier = 1.9
+	recoil_buildup = 2.7
+	max_shells = 6
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 10)
 	wielded_item_state = "_doble_arisaka"
@@ -159,9 +160,9 @@
 	name = "FS BR .20 \"Tosshin\""
 	icon_state = "arisaka_ih"
 	item_suffix  = "_arisaka_ih"
-	damage_multiplier = 1.5
-	penetration_multiplier = 1.4
-	recoil_buildup = 2.2
+	damage_multiplier = 1.6
+	penetration_multiplier = 1.6
+	recoil_buildup = 2
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_arisaka_ih"
 	spawn_blacklisted = TRUE
