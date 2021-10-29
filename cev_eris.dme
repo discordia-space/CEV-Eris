@@ -2619,6 +2619,7 @@
 #include "code\modules\sanity\sanity_lists.dm"
 #include "code\modules\sanity\sanity_mob.dm"
 #include "code\modules\sanity_grain\sanity_grain.dm"
+#include "code\modules\scrap\extra_quality.dm"
 #include "code\modules\scrap\oldificator.dm"
 #include "code\modules\scrap\scrap.dm"
 #include "code\modules\scrap\scrap_beacon.dm"

@@ -406,7 +406,87 @@
 	I.gun_loc_tag = GUN_SCOPE
 	I.removable = FALSE
 
+/obj/item/gun_upgrade/trigger/better
+	name = "Refined trigger"
+	desc = "This trigger seems to be made of durable alloys and cut to the precision of milimeters."
+	spawn_blacklisted = TRUE
+	price_tag = 100
+
+/obj/item/gun_upgrade/trigger/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_FIRE_DELAY = 0.7
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_TRIGGER
+
+/obj/item/gun_upgrade/barrel/better
+	name = "High-temperature forged barrel"
+	desc = "A barrel forged in high temperature, making the metal more resistant."
+	spawn_blacklisted = TRUE
+	price_tag = 150
+
+/obj/item/gun_upgrade/barrel/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_FIRE_DELAY = 0.7
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_BARREL
+
+/obj/item/gun_upgrade/muzzle/better
+	name = "Resonance muzzle"
+	desc = "A high tech muzzle, made to resonate at the same frequency as the sound that comes from the gun."
+	spawn_blacklisted = TRUE
+	price_tag = 150
+
+/obj/item/gun_upgrade/muzzle/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_SILENCER = TRUE,
+		GUN_UPGRADE_STEPDELAY_MULT = 0.9
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_MUZZLE
+
+/obj/item/gun_upgrade/mechanism/better
+	name = "Hydraulic mechanism"
+	desc = "A high tech mechanism that uses hydraulic pumps to keep recoil at a minimum."
+	spawn_blacklisted = TRUE
+	price_tag = 300
+
+/obj/item/gun_upgrade/mechanism/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = 0.8,
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_MECHANISM
+
+/obj/item/gun_upgrade/scope/better
+	name = "High-res scope"
+	desc = "A high resolution scope"
+	spawn_blacklisted = TRUE
+	price_tag = 100
+
+/obj/item/gun_upgrade/scope/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_ZOOM = 2,
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_SCOPE
+
+
 #define TRASH_GUNMODS list(/obj/item/gun_upgrade/trigger/faulty, /obj/item/gun_upgrade/barrel/faulty, \
 		/obj/item/gun_upgrade/muzzle/faulty, /obj/item/gun_upgrade/mechanism/faulty, \
 		/obj/item/gun_upgrade/scope/faulty)
+
+#define GREAT_GUNMODS list(/obj/item/gun_upgrade/trigger/better, /obj/item/gun_upgrade/barrel/better, \
+	/obj/item/gun_upgrade/muzzle/better, /obj/item/gun_upgrade/mechanism/better, /obj/item/gun_upgrade/scope/better)
 
