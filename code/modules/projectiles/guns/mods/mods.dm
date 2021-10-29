@@ -423,7 +423,7 @@
 
 /obj/item/gun_upgrade/barrel/better
 	name = "High-temperature forged barrel"
-	desc = "A barrel forged in high temperature, making the metal more resistant"
+	desc = "A barrel forged in high temperature, making the metal more resistant."
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
