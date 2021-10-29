@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
-	fire_delay = 12 // double the standart
+	fire_delay = 0 // definitely won't go bad
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
 	recoil_buildup = 1.6 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
@@ -31,6 +31,7 @@
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
+	var/bolting = 0
 	var/item_suffix = ""
 
 /obj/item/gun/projectile/boltgun/on_update_icon()
@@ -61,6 +62,26 @@
 	bolt_act(user)
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)
+
+	if(bolting)
+		return FALSE
+	
+	bolting = TRUE
+	var/datum/progressbar/progbar
+	var/delay = 0.3 SECONDS
+	progbar = new(user, delay, src)
+
+	var/endtime = world.time + delay
+	var/starttime = world.time
+	. = 1
+	while (world.time < endtime)
+		sleep(1)
+		progbar.update(world.time - starttime)
+
+	if (progbar)
+		qdel(progbar)
+	bolting = FALSE
+
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
@@ -114,6 +135,34 @@
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
+
+/obj/item/gun/projectile/boltgun/fs
+	name = "FS BR .30 \"Arisaka\""
+	desc = "Weapon for hunting, or endless coastal warfare. \
+			Replica of an ancient bolt action known for its easy maintenance and low price."
+	icon_state = "arisaka"
+	item_suffix  = "_arisaka"
+	force = WEAPON_FORCE_PAINFUL
+	damage_multiplier = 1.4
+	penetration_multiplier = 1.7
+	recoil_buildup = 1.8
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	wielded_item_state = "_doble_arisaka"
+	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
+
+/obj/item/gun/projectile/boltgun/fs/ih
+	name = "FS BR .30 \"Nariakira\""
+	desc = "Weapon for hunting, or endless coastal warfare. \
+			Replica of an ancient bolt action known for its easy maintenance and low price."
+	icon_state = "arisaka_ih"
+	item_suffix  = "_arisaka_ih"
+	damage_multiplier = 1.3
+	penetration_multiplier = 1.7
+	recoil_buildup = 1.7
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	wielded_item_state = "_doble_arisaka_ih"
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"

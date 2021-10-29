@@ -17928,10 +17928,8 @@
 /area/eris/engineering/atmos/storage)
 "aSw" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/gun/projectile/boltgun/fs/ih,
+/obj/item/gun/projectile/boltgun/fs/ih,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -21158,6 +21156,10 @@
 /obj/item/ammo_magazine/lrifle,
 /obj/item/ammo_magazine/lrifle,
 /obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
