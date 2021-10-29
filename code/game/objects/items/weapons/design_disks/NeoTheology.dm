@@ -161,6 +161,7 @@
 		/datum/design/autolathe/nt/sword/nt_sword,
 		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/nt/shield/nt_buckler,
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 

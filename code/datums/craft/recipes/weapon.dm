@@ -121,7 +121,7 @@
 
 /datum/craft_recipe/weapon/handmade_shield
 	name = "handmade shield"
-	result = /obj/item/shield/riot/handmade
+	result = /obj/item/shield/buckler/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 12, MATERIAL_WOOD),
 		list(/obj/item/stack/rods, 4, "time" = 10),
@@ -130,7 +130,7 @@
 
 /datum/craft_recipe/weapon/tray_shield
 	name = "handmade tray shield"
-	result = /obj/item/shield/riot/handmade/tray
+	result = /obj/item/shield/riot/tray
 	steps = list(
 		list(/obj/item/tray, 1),
 		list(/obj/item/storage/belt, 1, "time" = 10)

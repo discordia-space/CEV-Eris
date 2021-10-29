@@ -1008,7 +1008,7 @@
 /obj/item/grenade/price_tag = 50
 
 /obj/item/robot_parts/price_tag = 100
-/obj/item/robot_parts/robot_component/armour/exosuit/price_tag = 300
+/obj/item/robot_parts/robot_component/armour/exosuit/plain/price_tag = 300
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof/price_tag = 500
 /obj/item/robot_parts/robot_component/armour/exosuit/ablative/price_tag = 550
 /obj/item/robot_parts/robot_component/armour/exosuit/combat/price_tag = 1000

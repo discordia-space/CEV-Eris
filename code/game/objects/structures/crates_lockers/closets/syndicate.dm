@@ -18,7 +18,7 @@
 	new /obj/item/cell/large/high(src)
 	new /obj/item/card/id/syndicate(src)
 	new /obj/item/tool/multitool(src)
-	new /obj/item/shield/energy(src)
+	new /obj/item/shield/buckler/energy(src)
 	new /obj/item/clothing/shoes/magboots(src)
 	new /obj/item/storage/pouch/pistol_holster(src) // Perhaps this may encourage actually buying pistols.
 	new /obj/item/storage/pouch/ammo(src)

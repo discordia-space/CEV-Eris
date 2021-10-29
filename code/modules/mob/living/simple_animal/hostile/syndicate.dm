@@ -52,7 +52,7 @@
 	melee_damage_upper = 25
 	icon_state = "syndicatemelee"
 	weapon1 = /obj/item/melee/energy/sword/red
-	weapon2 = /obj/item/shield/energy
+	weapon2 = /obj/item/shield/buckler/energy
 	attacktext = "slashed"
 	status_flags = 0
 
