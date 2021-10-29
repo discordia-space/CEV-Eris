@@ -295,7 +295,6 @@ There are important things regarding this file:
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
-	pellet_to_knockdown_ratio = 7
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
