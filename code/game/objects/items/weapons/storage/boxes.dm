@@ -736,7 +736,7 @@
 
 /obj/item/storage/box/halloween_basket
 	name = "festive basket"
-	desc = "How did the roaches even get those? Well, it's yours now!"
+	desc = "How did the roaches even get those? Well, it\'s yours now!"
 	icon_state = "pumpkin_box_1"
 	var/list/loots = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/plaincake = 5,
