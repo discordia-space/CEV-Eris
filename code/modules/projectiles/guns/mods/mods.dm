@@ -49,6 +49,25 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+/obj/item/gun_upgrade/barrel/blender
+	name = "OR \"Bullet Blender\" barrel"
+	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads \"No refunds for any collateral damage caused\"."
+	icon_state = "Penetrator"
+	rarity_value = 30
+
+/obj/item/gun_upgrade/barrel/blender/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_PEN_MULT = 0.2,
+		GUN_UPGRADE_PIERC_MULT = 3,
+		GUN_UPGRADE_RICO_MULT = 5,
+		GUN_UPGRADE_STEPDELAY_MULT = 0.6,
+		GUN_UPGRADE_RECOIL = 1.4
+		)
+	I.gun_loc_tag = GUN_BARREL
+	I.req_gun_tags = list(GUN_PROJECTILE)
+
 //For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns or Eye of the Protector.
 /obj/item/gun_upgrade/barrel/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
