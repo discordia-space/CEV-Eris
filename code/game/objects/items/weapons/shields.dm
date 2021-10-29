@@ -36,9 +36,25 @@
 	var/shield_integrity = 100
 	var/shield_difficulty = 60
 
+/obj/item/shield/examine(var/mob/user)
+	. = ..()
+	switch(get_block_chance(user))
+		if(0 to 30)
+			to_chat(user, "So heavy... You feel doubtful in your ability to parry with this shield. Maybe if you changed your grip?")
+		if(31 to 45)
+			to_chat(user, "Holding this feels a little clumsy.")
+		if(46 to 55)
+			to_chat(user, "With a comfortable grip, you feel condifent in your ability to parry with this shield.")
+		if(56 to 70)
+			to_chat(user, "The shield feels just right, you feel you can parry anything!")
+		if(71 to INFINITY)
+			to_chat(user, "You feel ready for a gladiator duel! Bring it on, roaches!")
+
+
+
 /obj/item/shield/proc/get_wielder_skill(mob/user, stat_type)
 	if(user && user.stats)
-		return user.stats.getStat(stat_type)
+		return max(1,user.stats.getStat(stat_type))
 
 	return STAT_LEVEL_MIN
 
@@ -50,7 +66,7 @@
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_parry_arc(user, bad_arc, damage_source, attacker))
-		if(prob(get_block_chance(user, damage, damage_source, attacker)))
+		if(prob(get_block_chance(user)))
 			user.visible_message(SPAN_DANGER("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
@@ -99,7 +115,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/proc/get_block_chance(mob/user)
 	return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
 
 /obj/item/shield/proc/get_protected_area(mob/user)
@@ -199,7 +215,7 @@
 	. = ..()
 	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
 
-/obj/item/shield/riot/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/riot/get_block_chance(mob/user)
 	if(MOVING_QUICKLY(user))
 		return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))
 	if(MOVING_DELIBERATELY(user))
@@ -399,7 +415,7 @@
 /obj/item/shield/riot/tray/get_partial_protected_area(mob/user)
 	return BP_ALL_LIMBS
 
-/obj/item/shield/riot/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/riot/tray/get_block_chance(mob/user)
 	return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance
 
 /*
