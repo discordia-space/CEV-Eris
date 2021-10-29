@@ -148,7 +148,9 @@
 	recoil_buildup = 1.8
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_arisaka"
+	sharp = FALSE
 	spawn_blacklisted = FALSE
+	saw_off = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/gun/projectile/boltgun/fs/ih
