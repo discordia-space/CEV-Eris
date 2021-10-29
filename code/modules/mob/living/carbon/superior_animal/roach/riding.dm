@@ -1,5 +1,6 @@
 /mob/living/carbon/superior_animal/roach/Move()
 	. = ..()
+	update_hat()
 	if(buckled_mob)
 		buckled_mob.dir = dir
 		buckled_mob.forceMove(get_turf(src))
