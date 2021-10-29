@@ -4,8 +4,9 @@
 /obj/machinery/craftingstation
 	name = "Crafting Station"
 	desc = "Makeshift fabrication station for home-made munitions and components of firearms and armor."
-	icon = 'icons/obj/neotheology_machinery.dmi'
-	icon_state = "cruciforge"
+	icon = 'icons/obj/machines/crafting_station.dmi'
+	icon_state = "craft"
+
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
@@ -454,16 +455,24 @@
 
 	to_chat(user, SPAN_NOTICE("You add [total_used] of [stack]\s to \the [src]."))
 
+/obj/machinery/craftingstation/power_change()
+	..()
+	if(NOPOWER)
+		working = FALSE
+		icon_state = "[initial(icon_state)]_off"
+	update_icon()
 
 /obj/machinery/craftingstation/proc/flick_anim(var/animation)
 
 	if(animation == WORK)
-		flick("[initial(icon_state)]_start", src)
-		icon_state = "[initial(icon_state)]_work"
+		flick("[initial(icon_state)]_warmup", src)
+		flick("[initial(icon_state)]_cut", src)
+		flick("[initial(icon_state)]_point", src)
+		flick("[initial(icon_state)]_square", src)
 		update_icon()
 
 	if(animation == DONE)
-		flick("[initial(icon_state)]_finish", src)
+		flick("[initial(icon_state)]_done", src)
 		icon_state = "[initial(icon_state)]"
 		update_icon()
 
