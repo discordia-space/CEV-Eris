@@ -714,7 +714,7 @@
 
 /obj/item/tool_upgrade/pai
 	name = "Integrated P-AI"
-	desc = "A P-AI integrated within the arhitecture of the tool, helping the user in utilizing it"
+	desc = "A P-AI integrated within the architecture of the tool, helping the user in utilizing it."
 	spawn_blacklisted = TRUE
 	price_tag = 200
 
