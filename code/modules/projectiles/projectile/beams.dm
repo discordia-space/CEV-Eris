@@ -25,7 +25,7 @@
 			damage_types[i] *= loss
 
 		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
-		playsound(user.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
+		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	return 0
 
