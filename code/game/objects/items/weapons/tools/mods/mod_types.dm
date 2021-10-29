@@ -791,7 +791,7 @@
 		UPGRADE_MAXUPGRADES = 3
 	)
 	I.destroy_on_removal = TRUE
-	I.prefix = "infused"
+	I.prefix = "plasma coated"
 
 
 #define GREAT_TOOLMODS list(/obj/item/tool_upgrade/pai, /obj/item/tool_upgrade/flow_mechanism, /obj/item/tool_upgrade/magni_grip, \
