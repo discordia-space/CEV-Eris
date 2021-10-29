@@ -725,6 +725,7 @@
 	UPGRADE_WORKSPEED = 0.3,
 	UPGRADE_PRECISION = 10
 	)
+	I.destroy_on_removal = TRUE
 	I.prefix = "assisted"
 
 /obj/item/tool_upgrade/flow_mechanism
@@ -741,6 +742,7 @@
 		UPGRADE_FORCE_MULT = 1.3,
 		UPGRADE_MAXUPGRADES = 2
 	)
+	I.destroy_on_removal = TRUE
 	I.prefix = "flowing"
 
 /obj/item/tool_upgrade/magni_grip
@@ -756,6 +758,7 @@
 	UPGRADE_WORKSPEED = 0.2,
 	UPGRADE_PRECISION = 15
 	)
+	I.destroy_on_removal = TRUE
 	I.prefix = "magnetized"
 
 /obj/item/tool_upgrade/resonator
@@ -771,6 +774,7 @@
 		UPGRADE_WORKSPEED = 0.1,
 		UPGRADE_ITEMFLAGPLUS = SILENT
 	)
+	I.destroy_on_removal = TRUE
 	I.prefix = "still"
 
 /obj/item/tool_upgrade/plasma_coating
@@ -783,8 +787,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-		UPGRADE_DEGRADATION_MULT = 0.1
+		UPGRADE_DEGRADATION_MULT = 0.1,
+		UPGRADE_MAXUPGRADES = 3
 	)
+	I.destroy_on_removal = TRUE
 	I.prefix = "infused"
 
 

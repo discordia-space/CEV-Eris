@@ -420,7 +420,6 @@
 	)
 	I.destroy_on_removal = TRUE
 	I.gun_loc_tag = GUN_TRIGGER
-	I.removable = FALSE
 
 /obj/item/gun_upgrade/barrel/better
 	name = "High-temperature forged barrel"
@@ -436,7 +435,6 @@
 	)
 	I.destroy_on_removal = TRUE
 	I.gun_loc_tag = GUN_BARREL
-	I.removable = FALSE
 
 /obj/item/gun_upgrade/muzzle/better
 	name = "Resonance muzzle"
@@ -453,7 +451,6 @@
 	)
 	I.destroy_on_removal = TRUE
 	I.gun_loc_tag = GUN_MUZZLE
-	I.removable = FALSE
 
 /obj/item/gun_upgrade/mechanism/better
 	name = "Hydraulic mechanism"
@@ -469,7 +466,6 @@
 	)
 	I.destroy_on_removal = TRUE
 	I.gun_loc_tag = GUN_MECHANISM
-	I.removable = FALSE
 
 /obj/item/gun_upgrade/scope/better
 	name = "High-res scope"
@@ -485,7 +481,6 @@
 	)
 	I.destroy_on_removal = TRUE
 	I.gun_loc_tag = GUN_SCOPE
-	I.removable = FALSE
 
 
 #define TRASH_GUNMODS list(/obj/item/gun_upgrade/trigger/faulty, /obj/item/gun_upgrade/barrel/faulty, \
