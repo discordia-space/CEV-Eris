@@ -730,7 +730,7 @@
 
 /obj/item/tool_upgrade/flow_mechanism
 	name = "Flowing metal system"
-	desc = "This tool makes use of liquid metal within its arhitecture."
+	desc = "This tool makes use of liquid metal within its architecture."
 	spawn_blacklisted = TRUE
 	price_tag = 300
 
