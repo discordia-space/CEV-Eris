@@ -655,6 +655,7 @@
 #include "code\game\machinery\CableLayer.dm"
 #include "code\game\machinery\cloning.dm"
 #include "code\game\machinery\constructable_frame.dm"
+#include "code\game\machinery\crafting_station.dm"
 #include "code\game\machinery\cryo.dm"
 #include "code\game\machinery\cryopod.dm"
 #include "code\game\machinery\deployable.dm"
