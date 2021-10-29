@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: Added a new Oberth brand gunmod. Accessible through RNG and adminbus
+  - code_imp: Added some bullet/gun variables
