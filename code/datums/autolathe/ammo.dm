@@ -208,7 +208,7 @@
 
 // . 20 ammoboxes, speedloader
 
-/datum/design/autolathe/ammo/sl_lrifle
+/datum/design/autolathe/ammo/sl_srifle
 	name = "ammo strip (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/slsrifle
 

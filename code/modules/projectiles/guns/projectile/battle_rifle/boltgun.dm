@@ -142,7 +142,8 @@
 			Replica of an ancient bolt action known for its easy maintenance and low price."
 	icon_state = "arisaka"
 	item_suffix  = "_arisaka"
-	force = WEAPON_FORCE_PAINFUL
+	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
+	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
 	penetration_multiplier = 1.9
@@ -161,7 +162,7 @@
 	icon_state = "arisaka_ih"
 	item_suffix  = "_arisaka_ih"
 	damage_multiplier = 1.6
-	penetration_multiplier = 1.6
+	penetration_multiplier = 1.7
 	recoil_buildup = 2
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_arisaka_ih"
