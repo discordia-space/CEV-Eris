@@ -87,6 +87,7 @@
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
+	var/pellet_to_knockback_ratio = 0
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
@@ -125,6 +126,12 @@
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
 	pellets -= hits //each hit reduces the number of pellets left
+	if(pellet_to_knockback_ratio)
+		var/knockback_calc = round(hits / pellet_to_knockback_ratio)
+		if(knockback_calc)
+			var/target_turf = get_turf_away_from_target_complex(target_mob, starting, knockback_calc)
+			throw_at(target_turf, knockback_calc, 2, firer)
+
 	if (hits >= total_pellets || pellets <= 0)
 		return 1
 	return 0
