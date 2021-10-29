@@ -763,7 +763,7 @@
 
 /obj/item/tool_upgrade/resonator
 	name = "Resonator sink"
-	desc = "A special module which keeps the tool from resonating"
+	desc = "A special module which prevents the tool from resonating."
 	spawn_blacklisted = TRUE
 	price_tag = 400
 
