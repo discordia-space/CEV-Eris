@@ -268,6 +268,17 @@
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+/obj/item/ammo_magazine/slsrifle
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "lrifle"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 5
+	multiple_sprites = 1
+	w_class = ITEM_SIZE_TINY
+
 ////////// .25 RIFLE ///////////
 
 /obj/item/ammo_magazine/c10x24

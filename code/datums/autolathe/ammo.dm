@@ -206,7 +206,11 @@
 	name = "long magazine (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/srifle/rubber
 
-// . 20 ammoboxes
+// . 20 ammoboxes, speedloader
+
+/datum/design/autolathe/ammo/sl_lrifle
+	name = "ammo strip (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/slsrifle
 
 /datum/design/autolathe/ammo/srifle_ammobox
 	name = "ammunition box (.20 Rifle)"

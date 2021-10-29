@@ -137,16 +137,18 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
 
 /obj/item/gun/projectile/boltgun/fs
-	name = "FS BR .30 \"Arisaka\""
+	name = "FS BR .20 \"Arisaka\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			Replica of an ancient bolt action known for its easy maintenance and low price."
 	icon_state = "arisaka"
 	item_suffix  = "_arisaka"
 	force = WEAPON_FORCE_PAINFUL
-	damage_multiplier = 1.4
+	caliber = CAL_SRIFLE
+	damage_multiplier = 1.5
 	penetration_multiplier = 1.7
 	recoil_buildup = 2.5
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	magazine_type = /obj/item/ammo_magazine/srifle
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 10)
 	wielded_item_state = "_doble_arisaka"
 	sharp = FALSE
 	spawn_blacklisted = FALSE
@@ -154,13 +156,13 @@
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/gun/projectile/boltgun/fs/ih
-	name = "FS BR .30 \"Tosshin\""
+	name = "FS BR .20 \"Tosshin\""
 	icon_state = "arisaka_ih"
 	item_suffix  = "_arisaka_ih"
-	damage_multiplier = 1.3
-	penetration_multiplier = 1.7
-	recoil_buildup = 2.3
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	damage_multiplier = 1.5
+	penetration_multiplier = 1.4
+	recoil_buildup = 2.2
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_arisaka_ih"
 	spawn_blacklisted = TRUE
 
