@@ -714,7 +714,7 @@
 
 /obj/item/tool_upgrade/pai
 	name = "Integrated P-AI"
-	desc = "A P-AI integrated within the arhitecture of the tool , helping the user in utilizing it"
+	desc = "A P-AI integrated within the arhitecture of the tool, helping the user in utilizing it"
 	spawn_blacklisted = TRUE
 	price_tag = 200
 
@@ -722,8 +722,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-	UPGRADE_WORKSPEED = 0.5,
-	UPGRADE_PRECISION = 15
+	UPGRADE_WORKSPEED = 0.3,
+	UPGRADE_PRECISION = 10
 	)
 	I.prefix = "assisted"
 
@@ -768,14 +768,14 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-		UPGRADE_WORKSPEED = 0.2,
+		UPGRADE_WORKSPEED = 0.1,
 		UPGRADE_ITEMFLAGPLUS = SILENT
 	)
 	I.prefix = "still"
 
 /obj/item/tool_upgrade/plasma_coating
 	name = "Plasma coating"
-	desc = "This tool is infused with plasma ,granting it more durability"
+	desc = "This tool is infused with plasma, granting it more durability"
 	spawn_blacklisted = TRUE
 	price_tag = 600
 
