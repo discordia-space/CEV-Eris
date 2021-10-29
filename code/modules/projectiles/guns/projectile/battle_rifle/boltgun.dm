@@ -154,9 +154,7 @@
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/gun/projectile/boltgun/fs/ih
-	name = "FS BR .30 \"Nariakira\""
-	desc = "Weapon for hunting, or endless coastal warfare. \
-			Replica of an ancient bolt action known for its easy maintenance and low price."
+	name = "FS BR .30 \"Tosshin\""
 	icon_state = "arisaka_ih"
 	item_suffix  = "_arisaka_ih"
 	damage_multiplier = 1.3
