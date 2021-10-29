@@ -779,7 +779,7 @@
 
 /obj/item/tool_upgrade/plasma_coating
 	name = "Plasma coating"
-	desc = "This tool is infused with plasma, granting it more durability"
+	desc = "This tool is coated with plasma, granting it more durability."
 	spawn_blacklisted = TRUE
 	price_tag = 600
 
