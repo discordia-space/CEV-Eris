@@ -934,10 +934,7 @@
 	if(disk && disk.GetComponent(/datum/component/oldficator))
 		design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
 	else
-		if(extra_quality_print)
-			design.Fabricate(drop_location(), mat_efficiency, src, FALSE, TRUE)
-		else
-			design.Fabricate(drop_location(), mat_efficiency, src, FALSE,FALSE)
+		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, extra_quality_print)
 
 	working = FALSE
 	current_file = null
