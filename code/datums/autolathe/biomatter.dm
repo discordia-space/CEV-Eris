@@ -334,6 +334,9 @@
 	name = "NT Shield"
 	build_path = /obj/item/shield/riot/nt
 
+/datum/design/autolathe/nt/shield/nt_buckler
+	name = "NT Buckler"
+	build_path = /obj/item/shield/buckler/nt
 
 /datum/design/autolathe/nt/sword/nt_spear
 	name = "NT Spear"

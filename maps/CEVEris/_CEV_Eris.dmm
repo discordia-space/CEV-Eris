@@ -689,9 +689,9 @@
 /area/eris/security/armory)
 "abT" = (
 /obj/structure/table/rack,
-/obj/item/clothing/gloves/stungloves,
-/obj/item/clothing/gloves/stungloves,
-/obj/item/clothing/gloves/stungloves,
+/obj/item/shield/buckler,
+/obj/item/shield/buckler,
+/obj/item/shield/buckler,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abU" = (
@@ -1323,6 +1323,7 @@
 /obj/structure/table/rack,
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
+/obj/item/rig_module/held/shield,
 /obj/item/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -1487,7 +1488,6 @@
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
 /obj/spawner/rig_module,
-/obj/spawner/rig_module,
 /obj/item/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -1556,10 +1556,9 @@
 /area/eris/security/armory)
 "adR" = (
 /obj/structure/table/rack,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
+/obj/item/clothing/gloves/stungloves,
+/obj/item/clothing/gloves/stungloves,
+/obj/item/clothing/gloves/stungloves,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adS" = (
@@ -1576,6 +1575,10 @@
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/reagent_containers/spray/pepper,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adU" = (
@@ -127994,7 +127997,7 @@ abC
 abU
 acn
 abd
-adk
+adI
 adS
 aet
 aaL
