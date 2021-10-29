@@ -424,7 +424,7 @@
 
 /obj/item/gun_upgrade/barrel/better
 	name = "High-temperature forged barrel"
-	desc = "A barrel forged in high temperature , making the metal more resistant"
+	desc = "A barrel forged in high temperature, making the metal more resistant"
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
@@ -440,7 +440,7 @@
 
 /obj/item/gun_upgrade/muzzle/better
 	name = "Resonance muzzle"
-	desc = "A high tech muzzle , made to resonate at the same frequency as the sound that comes from the gun."
+	desc = "A high tech muzzle, made to resonate at the same frequency as the sound that comes from the gun."
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
