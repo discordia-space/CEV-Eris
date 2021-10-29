@@ -747,7 +747,7 @@
 
 /obj/item/tool_upgrade/magni_grip
 	name = "Waved magnetic grip"
-	desc = "A wavy metallic sheet that attaches to most gloves automatically"
+	desc = "A wavy metallic sheet that attaches to most gloves automatically."
 	spawn_blacklisted = TRUE
 	price_tag = 200
 
