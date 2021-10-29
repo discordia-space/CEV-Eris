@@ -449,11 +449,11 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_br
-	disk_name = "Frozen Star - .30 Arisaka Rifle"
+	disk_name = "Frozen Star - .20 Arisaka Rifle"
 	icon_state = "frozenstar"
 	rarity_value = 7
 	license = 5
 	designs = list(
-		/datum/design/autolathe/gun/boltgun_fs = 3, // "FS BR .30 \"Arisaka\""
-		/datum/design/autolathe/ammo/sl_lrifle,
+		/datum/design/autolathe/gun/boltgun_fs = 3, // "FS BR .20 \"Arisaka\""
+		/datum/design/autolathe/ammo/sl_srifle,
 	)

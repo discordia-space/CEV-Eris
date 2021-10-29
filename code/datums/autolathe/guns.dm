@@ -160,11 +160,11 @@
 	build_path = /obj/item/gun/projectile/boltgun/serbian
 
 /datum/design/autolathe/gun/boltgun_fs
-	name = "FS BR .30 \"Arisaka\""
+	name = "FS BR .20 \"Arisaka\""
 	build_path = /obj/item/gun/projectile/boltgun/fs
 
 /datum/design/autolathe/gun/boltgun_fs_ih
-	name = "FS BR .30 \"Tosshin\""
+	name = "FS BR .20 \"Tosshin\""
 	build_path = /obj/item/gun/projectile/boltgun/fs/ih
 
 /datum/design/autolathe/gun/ak47
