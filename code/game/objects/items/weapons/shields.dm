@@ -56,7 +56,7 @@
 	if(user && user.stats)
 		return max(1,user.stats.getStat(stat_type))
 
-	return STAT_LEVEL_MIN
+	return 1 //STAT_LEVEL_MIN doesn't work due to division by zero error
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
