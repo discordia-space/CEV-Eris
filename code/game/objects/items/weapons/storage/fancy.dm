@@ -290,7 +290,7 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_TINY
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 7
@@ -314,6 +314,14 @@
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 		..()
 
+/obj/item/storage/fancy/cigar/randomized/populate_contents()
+	var/spawns = 0
+	for(var/i in 1 to storage_slots)
+		if(prob(30))
+			new item_obj(src)
+			spawns++
+	create_reagents(15 * spawns)
+	update_icon()
 /*
  * Vial Box
  */

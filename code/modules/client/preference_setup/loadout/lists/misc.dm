@@ -149,7 +149,7 @@
 
 /datum/gear/cigars
 	display_name = "fancy cigar case"
-	path = /obj/item/storage/fancy/cigar
+	path = /obj/item/storage/fancy/cigar/randomized
 	cost = 2
 
 /datum/gear/cigarettes

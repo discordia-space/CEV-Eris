@@ -286,15 +286,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 	desc = "A roll of tobacco and nicotine. They are just cancer sticks."
-	preloaded_reagents = list("nicotine" = 10)
+	quality_multiplier = 2
+	preloaded_reagents = list("nicotine" = 6)
 
 /obj/item/clothing/mask/smokable/cigarette/killthroat
 	desc = "A roll of tobacco and nicotine. Gives the best bang for buck for your throat."
-	preloaded_reagents = list("nicotine" = 10, "poisonberryjuice" = 3)
+	quality_multiplier = 2
+	preloaded_reagents = list("nicotine" = 6, "poisonberryjuice" = 3)
 
 /obj/item/clothing/mask/smokable/cigarette/homeless
 	desc = "A roll of tobacco and nicotine. Gives the feeling of fight."
-	preloaded_reagents = list("nicotine" = 6, "adrenaline" = 3)
+	preloaded_reagents = list("nicotine" = 4, "adrenaline" = 3)
 
 
 ////////////
@@ -311,8 +313,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigaroff"
 	smoketime = 700
 	chem_volume = 20
-	preloaded_reagents = list("nicotine" = 14)
-	quality_multiplier = 2
+	preloaded_reagents = list("nicotine" = 10)
+	quality_multiplier = 3
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -334,8 +336,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigar2off"
 	smoketime = 1000
 	chem_volume = 30
-	preloaded_reagents = list("nicotine" = 20)
-	quality_multiplier = 3
+	preloaded_reagents = list("nicotine" = 15)
+	quality_multiplier = 4
 
 /obj/item/trash/cigbutt
 	name = "cigarette butt"
