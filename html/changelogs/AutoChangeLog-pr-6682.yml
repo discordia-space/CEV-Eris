@@ -1,9 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - tweak: flare gun no longer breaks
-  - tweak: flare projectile now 50% faster
-  - tweak: reinforced flare gun's description
-  - bugfix: flare gun and AMR counting spent casing twice when examined
-  - bugfix: flare gun's sprites not working properly
-  - imageadd: flare gun sprites by INFRARED_BARON

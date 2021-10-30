@@ -1,7 +1,0 @@
-author: githubuser4141
-delete-after: true
-changes:
-  - balance: Mechs aren't EMP proof anymore and mechs can use their onboard air now.
-  - bugfix: Fixes mechs not being affected by EMPs, missing their pre-spawned armor
-      and missing a UI button
-  - code_imp: Slightly changed how EMPs damage mechs

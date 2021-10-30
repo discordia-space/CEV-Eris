@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fix Malf AI Roll when using AI drone or joining after roundstart
