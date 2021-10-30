@@ -28,12 +28,11 @@
 /hook/roundend/proc/stop_all_media()
 	log_debug("Stopping all playing media...")
 	// Stop all music.
-	if(SSmobs.mob_list.len)
-		for(var/mob/M in SSmobs.mob_list)
-			if(M && M.client)
-				M.stop_all_music()
-		//  SHITTY HACK TO AVOID RACE CONDITION WITH SERVER REBOOT.
-		sleep(10)  // TODO - Leshana - see if this is needed
+	for(var/mob/M in SSmobs.mob_list)
+		if(M && M.client)
+			M.stop_all_music()
+	//  SHITTY HACK TO AVOID RACE CONDITION WITH SERVER REBOOT.
+	sleep(10)  // TODO - Leshana - see if this is needed
 
 // Update when moving between areas.
 // TODO - While this direct override might technically be faster, probably better code to use observer or hooks ~Leshana
