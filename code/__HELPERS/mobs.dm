@@ -176,7 +176,7 @@ Proc for attack log creation, because really why not
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
-	var/target_loc = target.loc
+	var/old_target_loc = target.loc
 
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
@@ -200,7 +200,7 @@ Proc for attack log creation, because really why not
 			. = 0
 			break
 
-		if(target.loc != target_loc)
+		if(target.loc != old_target_loc)
 			. = 0
 			break
 
@@ -211,12 +211,15 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, can_move = FALSE)
+/proc/check_range(mob/user, mob/target, range)
+	return get_dist(user, target) <= range
+
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, target_allowed_to_move = FALSE, move_range = -1)
 	if(!user)
 		return 0
-	var/atom/target_loc
+	var/atom/old_target_loc
 	if(target)
-		target_loc = target.loc
+		old_target_loc = target.loc
 
 	var/atom/original_loc = user.loc
 
@@ -241,12 +244,19 @@ Proc for attack log creation, because really why not
 		sleep(1)
 		if(progress)
 			progbar.update(world.time - starttime)
-
-		if(!user || user.incapacitated(incapacitation_flags) || (!can_move && user.loc != original_loc))
+		var/can_move = (move_range >= 0)
+		if(
+			!user || user.incapacitated(incapacitation_flags)\
+			||\
+			can_move && !check_range(user, target, move_range)\
+			||\
+			!can_move && user.loc != original_loc\
+		)
 			. = 0
 			break
 
-		if(!can_move && target_loc && (!target || target_loc != target.loc))
+
+		if(target_allowed_to_move && old_target_loc && (!target || old_target_loc != target.loc))
 			. = 0
 			break
 

@@ -26,7 +26,7 @@ CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Move(NewLoc,Dir=0,step_x=0,step_y=0), 
 	if(istype(user.CyberAvatar, /datum/CyberSpaceAvatar))
 		ClickedByAvatar(user, user.CyberAvatar, params)
 
-/datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user_avatar, datum/CyberSpaceAvatar/user, params)
+/datum/CyberSpaceAvatar/proc/ClickedByAvatar(mob/user, datum/CyberSpaceAvatar/user_avatar, params)
 
 // CYBERAVATAR_CONNECT_PROC_TO(/atom/movable/Bump(atom/Obstacle), OnBump)
 // /datum/CyberSpaceAvatar/proc/OnBump(atom/Obstacle)
