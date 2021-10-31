@@ -17934,6 +17934,12 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSx" = (
