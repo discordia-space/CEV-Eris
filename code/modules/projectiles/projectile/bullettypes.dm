@@ -204,7 +204,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 65)
 	armor_penetration = 100
 	irradiate = 200
-
+/*
 /obj/item/projectile/bullet/antim/breach
 	damage_types = list(BRUTE = 20)
 	armor_penetration = 40
@@ -234,7 +234,7 @@ There are important things regarding this file:
 		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 		if(!istype(target, /obj/machinery/door))
 			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
-
+*/
 /obj/item/projectile/bullet/antim/scrap
 	damage_types = list(BRUTE = 63)
 

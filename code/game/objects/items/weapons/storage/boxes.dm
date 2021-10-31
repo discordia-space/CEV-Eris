@@ -283,7 +283,7 @@
 	new spawn_type(src)
 	for(var/obj/item/ammo_casing/temp_casing in src)
 		temp_casing.update_icon()
-
+/*
 /obj/item/storage/box/sniperammo/breach
 	name = "box of .60 \"Breacher\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
@@ -297,7 +297,7 @@
 	new spawn_type(src)
 	for(var/obj/item/ammo_casing/temp_casing in src)
 		temp_casing.update_icon()
-
+*/
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs"
 	desc = "A box containing 7 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."

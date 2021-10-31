@@ -269,14 +269,14 @@
 	item_cost = 3
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/sniperammo/uranium
-
+/*
 /datum/uplink_item/item/ammo/sniperammo/breach
 	name = ".60 Anti material \"Breacher\""
 	desc = "A box full of low velocity .60 AMR breaching shells, designed not to pierce, but to destroy structures from a distance. Close-ranged shots have less destructive power. Have 5 shells inside."
 	item_cost = 3
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/sniperammo/breach
-
+*/
 /datum/uplink_item/item/ammo/sniperammo/large
 	name = ".60 Anti material \"Penetrator\" crate"
 	desc = "A box full of .60 AMR shells. Have 30 shells inside."

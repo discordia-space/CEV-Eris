@@ -265,7 +265,7 @@
 
 /obj/item/ammo_casing/antim/uranium/prespawned
 	amount = 5
-
+/*
 /obj/item/ammo_casing/antim/breach
 	name = "\"Breacher\" shell casing"
 	desc = "A .60 Anti-Material \"Breacher\" shell."
@@ -275,7 +275,7 @@
 
 /obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
-
+*/
 /obj/item/ammo_casing/antim/scrap
 	name = "shell casing"
 	desc = "An old .60 Anti-Material shell."
