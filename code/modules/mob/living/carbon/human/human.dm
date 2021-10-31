@@ -1531,6 +1531,7 @@ var/list/rank_prefix = list(\
 	set desc = "If you want to know what's above."
 	set category = "IC"
 
+	cancel_camera() // Reset their view.
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
 		if(shadow)

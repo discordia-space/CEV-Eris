@@ -202,10 +202,10 @@
 		mob.stop_floating()
 		mob.update_floating()
 	// end_of_dirty_bullshit.dm
-
 	M.forceMove(destination)
 	if (prob(slip_chance))
 		slip()
+	M.update_icon()
 	announce_end()
 
 /datum/vertical_travel_method/proc/get_destination()
