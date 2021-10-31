@@ -99,7 +99,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("The stock on the [src] gets caught on the bag."))
+		to_chat(user, SPAN_NOTICE("You cannot [folded ? "unfold" : "fold"] the stock while \the [src] is in a container."))
 		return
 
 	fold()
@@ -118,7 +118,7 @@
 /obj/item/gun/projectile/automatic/ak47/sa/proc/fold(user)
 
 	if(folded)
-		to_chat(user, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE

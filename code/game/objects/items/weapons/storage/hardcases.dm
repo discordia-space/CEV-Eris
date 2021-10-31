@@ -4,10 +4,8 @@
 	icon = 'icons/obj/cases.dmi'
 	icon_state = "hcase"
 	var/sticker_name = "hcase"
-	//item_state = "case_small" //TODO
 
 	w_class = ITEM_SIZE_NORMAL
-	//storage_slots = null
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_SMALL_STORAGE * 1.5 //a better fancy box
 	matter = list(MATERIAL_STEEL = 20)
@@ -34,7 +32,7 @@
 		return
 	sticker(user)
 
-/obj/item/storage/hcases/proc/sticker(user)
+/obj/item/storage/hcases/proc/sticker(mob/user)
 	var/list/options = list()
 	options["Orange"] = "[sticker_name]_sticker_o"
 	options["Blue"] = "[sticker_name]_sticker_b"
@@ -44,7 +42,10 @@
 	options["IH Blue"] = "[sticker_name]_sticker_ih"
 
 
-	var/choice = input(user,"What color do you want?") as null|anything in options
+	var/choice = input(user,"Which color do you want?") as null|anything in options
+
+	if(!choice)
+		return
 
 	sticker = options[choice]
 	update_icon()
@@ -80,7 +81,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("The lid on the [src] gets caught on the bag."))
+		to_chat(user, SPAN_NOTICE("You cannot open the lid of \the [src] while it\'s in a container."))
 		return
 
 	open_close(user)
@@ -88,24 +89,22 @@
 /obj/item/storage/hcases/proc/open_close(user)
 	close_all()
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You open the lid on the [src]."))
+		to_chat(user, SPAN_NOTICE("You open the lid of the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		closed = FALSE
 	else
-		to_chat(user, SPAN_NOTICE("You close the lid on the [src]."))
+		to_chat(user, SPAN_NOTICE("You close the lid of the [src]."))
 		w_class = ITEM_SIZE_NORMAL
 		closed = TRUE
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
-
 obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed"))
+		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed!"))
 		return
 	. = ..()
-
 
 /obj/item/storage/hcases/scrap	//Scrap isn't worse beyond poor shaming
 	icon_state = "scrap"
@@ -145,12 +144,10 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	icon_state = "ammo_case_excel"
 	desc = "A communist ammo can! Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
 
-
 /obj/item/storage/hcases/ammo/scrap
 	icon_state = "ammo_case_scrap"
 	desc = "A lacquer coated ammo can. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
 	rarity_value = 30
-
 
 //////////////////////////////////////////Parts//////////////////////////////////////////
 
@@ -203,7 +200,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 		/obj/item/clothing/head/surgery,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray,
-		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/glasses/hud/health
 		)
 
 /obj/item/storage/hcases/med/scrap
