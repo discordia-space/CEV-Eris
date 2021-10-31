@@ -61,15 +61,15 @@
 	build_path = /obj/item/storage/freezer/medical
 
 /datum/design/autolathe/container/ammocan_ih
-	name = "Ammo Can"
+	name = "IH Ammo Can"
 	build_path = /obj/item/storage/hcases/ammo/ih
 
 /datum/design/autolathe/container/ammocan_serb
-	name = "Ammo Can"
+	name = "Serbian Ammo Can"
 	build_path = /obj/item/storage/hcases/ammo/serb
 
 /datum/design/autolathe/container/ammocan_excel
-	name = "Ammo Can"
+	name = "Excel Ammo Can"
 	build_path = /obj/item/storage/hcases/ammo/excel
 
 /datum/design/autolathe/container/hcase_parts

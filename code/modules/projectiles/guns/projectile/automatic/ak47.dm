@@ -123,7 +123,7 @@
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
 	else
-		to_chat(user, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
@@ -180,7 +180,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("The stock on the [src] gets caught on the bag."))
+		to_chat(user, SPAN_NOTICE("The stock on \the [src] gets caught on the bag."))
 		return
 
 	fold()
@@ -197,12 +197,12 @@
 /obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold(user)
 
 	if(folded)
-		to_chat(user, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_HUGE
 		folded = FALSE
 	else
-		to_chat(user, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_BULKY
 		folded = TRUE

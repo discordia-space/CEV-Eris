@@ -190,7 +190,7 @@
 		list(QUALITY_HAMMERING, 10, 100),
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 100),
-		list(QUALITY_BOLT_TURNING, 10, 40), 
+		list(QUALITY_BOLT_TURNING, 10, 40),
 		list(QUALITY_ADHESIVE, 20, 30)
 	)
 
@@ -234,7 +234,7 @@
 	result = /obj/item/storage/hcases/engi/scrap
 	steps = list(
 		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
+		list(QUALITY_WELDING, 10, 20)
 	)
 
 /datum/craft_recipe/tool/parts_hardcase
@@ -242,7 +242,7 @@
 	result = /obj/item/storage/hcases/parts/scrap
 	steps = list(
 		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
+		list(QUALITY_WELDING, 10, 20)
 	)
 
 /datum/craft_recipe/tool/medi_hardcase
@@ -250,5 +250,5 @@
 	result = /obj/item/storage/hcases/med/scrap
 	steps = list(
 		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
+		list(QUALITY_WELDING, 10, 20)
 	)
