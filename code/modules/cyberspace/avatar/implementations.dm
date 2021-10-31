@@ -5,7 +5,7 @@
 //CYBERAVATAR_INITIALIZATION(/obj/machinery, CYBERSPACE_MAIN_COLOR)
 /*	*/CYBERAVATAR_CUSTOM_PREFAB(/obj/machinery, /datum/CyberSpaceAvatar/interactable)
 /*	*/CYBERAVATAR_INITIALIZATION(/obj/machinery/power/apc, CYBERSPACE_SECURITY)
-/*		*///CYBERAVATAR_CUSTOM_PREFAB(/obj/machinery/power/apc, /datum/CyberSpaceAvatar/ice/AreaFirewall)
+/*		*/CYBERAVATAR_CUSTOM_PREFAB(/obj/machinery/power/apc, /datum/CyberSpaceAvatar/interactable/firewall)
 /*	*/CYBERAVATAR_INITIALIZATION(/obj/machinery/atmospherics, null)
 
 CYBERAVATAR_INITIALIZATION(/obj/item/modular_computer, CYBERSPACE_MAIN_COLOR)

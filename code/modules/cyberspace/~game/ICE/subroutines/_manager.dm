@@ -1,8 +1,8 @@
 /datum/subroutine
 	var/Locked = 0 //time when it will unlocked
-	var/TimeLockedFor = 1 MINUTE
+	var/TimeLocksFor = 1 MINUTE
 	proc
-		Lock(time = world.time + TimeLockedFor)
+		Lock(time = world.time + TimeLocksFor)
 			Locked = time
 		IsLocked()
 			. = Locked >= world.time
