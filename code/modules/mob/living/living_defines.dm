@@ -76,6 +76,7 @@
 	var/noise_coeff = 1 //noise coefficient
 
 	var/can_multiz_pb = FALSE
+	var/looking_up = FALSE
 	var/is_watching = FALSE
 
 	spawn_frequency = 10

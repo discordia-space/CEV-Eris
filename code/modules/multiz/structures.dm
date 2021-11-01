@@ -228,6 +228,7 @@
 		user.client.perspective = MOB_PERSPECTIVE
 		user.hud_used.updatePlaneMasters(user)
 		user.is_watching = FALSE
+		user.can_multiz_pb = FALSE
 		return
 ////STAIRS////
 

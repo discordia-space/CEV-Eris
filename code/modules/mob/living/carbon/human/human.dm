@@ -1532,6 +1532,10 @@ var/list/rank_prefix = list(\
 	set category = "IC"
 
 	cancel_camera() // Reset their view.
+	if(looking_up)
+		looking_up = FALSE
+		reset_view()
+		return
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
 		if(shadow)
@@ -1540,6 +1544,7 @@ var/list/rank_prefix = list(\
 				return
 			if(above.is_hole)
 				to_chat(src, SPAN_NOTICE("You look up."))
+				looking_up = TRUE
 				if(client)
 					reset_view(shadow)
 				return
