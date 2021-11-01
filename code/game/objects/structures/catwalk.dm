@@ -71,6 +71,10 @@
 			qdel(src)
 	return
 
+// No shooting catwalks >:(
+/obj/structure/catwalk/bullet_act(obj/item/projectile/P, def_zone)
+	return PROJECTILE_CONTINUE
+
 /obj/structure/catwalk/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
