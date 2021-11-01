@@ -477,6 +477,18 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
+	name = "\improper Type-34 Semi-Enclosed Headwear"
+	desc = "Helmet used by certain law enforcement agencies."
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
+		bio = 0,
+		rad = 0
+	)
+
 /obj/item/clothing/head/armor/helmet/crusader
 	name = "crusader helmet"
 	desc = "May God guide you."
