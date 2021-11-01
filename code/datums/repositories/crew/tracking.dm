@@ -1,10 +1,13 @@
+
+#define MAP_SCALAR 1.285 // Value for scaling the locations on maps , depending on the resolution of maps in  the nanoui folder.
+// if you update this , also go to crew_monitor_map_content.tmpl and update the division, same for crew_monitor.tmpl and sec_camera_map_content.tmpl
 /* Tracking */
 /crew_sensor_modifier/tracking/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
 	if(pos)
 		var/area/A = get_area(pos)
 		crew_data["area"] = sanitize(A.name)
-		crew_data["x"] = pos.x
-		crew_data["y"] = pos.y
+		crew_data["x"] = pos.x * MAP_SCALAR
+		crew_data["y"] = pos.y * MAP_SCALAR
 		crew_data["z"] = pos.z
 	return ..()
 

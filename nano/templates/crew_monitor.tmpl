@@ -19,7 +19,7 @@ Used In File(s): code\modules\modular_computers\file_system\programs\medical\sui
 <table class='wideTable'><tbody>
 	{{for data.crewmembers}}
 		<tr class="candystripe">
-			<td>{{:value.name}} ({{:value.assignment}}): 
+			<td>{{:value.name}} ({{:value.assignment}}):
 			{{if value.isCriminal}}
 			<span class='average'> [Criminal]</span>
 			{{/if}}
@@ -51,7 +51,7 @@ Used In File(s): code\modules\modular_computers\file_system\programs\medical\sui
 			{{/if}}
 
 			{{if value.sensor_type >= 3}}
-				<td><span class="white">Location</span> {{:value.area}} ({{:value.x}}, {{:value.y}}, {{:value.z}})</td>
+				<td><span class="white">Location</span> {{:value.area}} ({{:value.x / 1.285}}, {{:value.y / 1.285}}, {{:value.z}})</td>
 			{{else value.sensor_type == 2}}
 				<td><span class="white">Location</span> Not Available</td>
 			{{else}}
