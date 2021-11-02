@@ -15,6 +15,13 @@ CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/
 	var/maxHP = 100
 	var/HP
 	var/Might = 5
+	Login()
+		. = ..()
+		client?.show_popup_menus = FALSE
+	Logout()
+		if(client)
+			client.show_popup_menus = initial(client.show_popup_menus)
+		. = ..()
 
 /mob/observer/cyberspace_eye/proc/ReturnToBody()
 	if(istype(owner))
