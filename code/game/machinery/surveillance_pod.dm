@@ -8,7 +8,6 @@
 
 	var/mob/living/carbon/human/occupant
 	var/mob/observer/eye/pod/big_brother
-	var/datum/nano_module/crew_monitor/crew_monitor
 	var/datum/gas_mixture/fake_liquid
 
 	var/list/compatible_jumpsuits = list(
@@ -23,6 +22,21 @@
 
 //	var/list/compatible_glasses = list()
 
+	var/HUDneed_element_to_keep = list(
+		"nutrition",
+		"neural system accumulation",
+		"body temperature",
+		"health",
+		"sanity",
+		"oxygen",
+		"fire",
+		"pressure",
+		"toxin",
+		"internal"
+		) // Don't even get me started on HUDneed. This thing is required for UI hiding to work how intended
+
+/mob/observer/eye/pod
+	acceleration = FALSE
 
 /obj/machinery/surveillance_pod/New()
 	..()
@@ -94,7 +108,7 @@
 	occupant.eyeobj = big_brother
 	occupant.EyeMove(0)
 
-	rebuild_occupant_UI(big_brother.type)
+	handle_occupant_UI(TRUE)
 
 
 /obj/machinery/surveillance_pod/proc/deactivate()
@@ -105,17 +119,7 @@
 		big_brother.owner.eyeobj = null
 		big_brother.owner.reset_view()
 		big_brother.owner = null
-		rebuild_occupant_UI(occupant.type)
-
-
-/obj/machinery/surveillance_pod/verb/rebuild_occupant_UI(mob/mob_type)
-	if(!occupant)
-		return
-
-	occupant.client.destroy_UI()
-//	occupant.client.screen = list()
-	occupant.hud.Destroy()
-	occupant.client.create_UI(mob_type)
+		handle_occupant_UI(FALSE)
 
 
 /obj/machinery/surveillance_pod/on_update_icon()
@@ -262,34 +266,82 @@
 	..()
 
 
-/mob/observer/eye/pod/proc/moveup()
-	set name = "Move Upwards"
+// UI nuddles //
+/obj/machinery/surveillance_pod/proc/handle_occupant_UI(hide_ui)
+	if(hide_ui)
+		for(var/obj/screen/inventory/IS in occupant.HUDinventory)
+			if(IS.hideflag)
+				IS.invisibility = 101
+				IS.handle_inventory_invisibility(IS, occupant)
 
-	zMove(UP)
+		for(var/obj/screen/S in occupant.HUDfrippery)
+			if(S.hideflag)
+				S.invisibility = 101
+
+		for(var/i = 1 to occupant.HUDneed.len)
+			occupant.client.screen.Remove(occupant.HUDneed[occupant.HUDneed[i]])
+		
+		for(var/i=1,i<=occupant.HUDneed.len,i++)
+			var/p = occupant.HUDneed[i]
+			if(p in HUDneed_element_to_keep)
+				occupant.client.screen += occupant.HUDneed[p]
+
+		occupant.client.create_UI(big_brother.type)
+
+	else
+		for(var/obj/screen/inventory/IS in occupant.HUDinventory)
+			if(IS.hideflag)
+				IS.invisibility = 0
+				IS.handle_inventory_invisibility(IS, occupant)
+
+		for(var/obj/screen/S in occupant.HUDfrippery)
+			if(S.hideflag)
+				S.invisibility = 0
+
+		for(var/i=1, i<=occupant.HUDneed.len, i++)
+			var/p = occupant.HUDneed[i]
+			if(!(p in HUDneed_element_to_keep))
+				occupant.client.screen += occupant.HUDneed[p]
+
+		occupant.client.destroy_UI()
 
 
-/mob/observer/eye/pod/proc/movedown()
-	set name = "Move Downwards"
-
-	zMove(DOWN)
-
-
-/mob/observer/eye/pod/proc/reset_position()
-	set name = "Reset Camera"
-
-	if(!owner)
-		return
-
-//	for(var/datum/chunk/C in visibleChunks)
-//		C.remove(src)
-
-	src.setLoc(owner)
-
-
-/mob/observer/eye/pod/proc/show_crew_sensors()
-	if(!owner)
-		return
-	
-	if(istype(owner.loc, /obj/machinery/surveillance_pod))
-		var/obj/machinery/surveillance_pod/pod
-		pod.crew_monitor.ui_interact(usr)
+/obj/screen/inventory/proc/handle_inventory_invisibility(obj/screen/inventory/inv_elem, mob/parentmob)
+	var/mob/living/carbon/human/H = parentmob
+	switch (inv_elem.slot_id)
+		if(slot_head)
+			if(H.head)       H.head.screen_loc       = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_shoes)
+			if(H.shoes)      H.shoes.screen_loc      = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_l_ear)
+			if(H.l_ear)      H.l_ear.screen_loc      = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_r_ear)
+			if(H.r_ear)      H.r_ear.screen_loc      = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_gloves)
+			if(H.gloves)     H.gloves.screen_loc     = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_glasses)
+			if(H.glasses)    H.glasses.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_w_uniform)
+			if(H.w_uniform)  H.w_uniform.screen_loc  = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_wear_suit)
+			if(H.wear_suit)  H.wear_suit.screen_loc  = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_wear_mask)
+			if(H.wear_mask)  H.wear_mask.screen_loc  = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_back)
+			if(H.back)       H.back.screen_loc       = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_handcuffed)
+			if(H.handcuffed) H.handcuffed.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_l_hand)
+			if(H.l_hand)     H.l_hand.screen_loc     = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_r_hand)
+			if(H.r_hand)     H.r_hand.screen_loc     = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_belt)
+			if(H.belt)       H.belt.screen_loc       = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_wear_id)
+			if(H.wear_id)    H.wear_id.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_l_store)
+			if(H.l_store)    H.l_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_r_store)
+			if(H.r_store)    H.r_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_s_store)
+			if(H.s_store)    H.s_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
