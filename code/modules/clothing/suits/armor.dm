@@ -396,8 +396,8 @@
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
 		melee = 65,
-		bullet = 45, //comparable to RIG
-		energy = 45,
+		bullet = 50, //comparable to RIG
+		energy = 40,
 		bomb = 35,
 		bio = 0,
 		rad = 0

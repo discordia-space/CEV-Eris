@@ -359,15 +359,15 @@
  * Ironhammer riot helmet with HUD
  */
 /obj/item/clothing/head/armor/riot_hud
-	name = "riot helmet"
+	name = "heavy operator helmet"
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
+		melee = 50,
+		bullet = 45,
+		energy = 35,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
