@@ -33,10 +33,12 @@
 		"pressure",
 		"toxin",
 		"internal"
-		) // Don't even get me started on HUDneed. This thing is required for UI hiding to work how intended
+		) // Don't even get me started on HUDneed. This thing is required for UI hiding to work
 
-/mob/observer/eye/pod
+
+/mob/observer/eye/pod // New child object to run create_UI() using it
 	acceleration = FALSE
+
 
 /obj/machinery/surveillance_pod/New()
 	..()
@@ -345,3 +347,10 @@
 			if(H.r_store)    H.r_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_s_store)
 			if(H.s_store)    H.s_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+
+
+/mob/proc/acceleration_toogle()
+	if(!eyeobj)
+		return
+
+	eyeobj.acceleration = !eyeobj.acceleration
