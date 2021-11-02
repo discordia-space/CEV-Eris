@@ -287,7 +287,7 @@
 
 /datum/chemical_reaction/crystal_meth
 	result = "crystal_meth"
-	required_reagents = list("space_drugs" = 1, "acetone" = 3, "cleaner" = 2, "fuel" = 1, "p_acid" = 2)
+	required_reagents = list("space_drugs" = 1, "acetone" = 3, "cleaner" = 2, "fuel" = 1, "pacid" = 2)
 	catalysts = list("sugar" = 5)
 	/// I know that meth is explosive , but for the sake of balance , it should not explode.
 	minimum_temperature = 500

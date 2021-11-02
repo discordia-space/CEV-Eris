@@ -66,6 +66,15 @@
 	color = "#440000"
 	taste_tag = list(TASTE_SLIMEY)
 
+/datum/reagent/organic/nutriment/protein/cprotein
+	name = "Cooked proteins"
+	taste_description = "meat"
+	id = "cooked_protein"
+	description = "A mass of proteins which have undergone complex chemical processes"
+	color = "#805009"
+	taste_tag = list(TASTE_SPICY)
+	sanity_gain_ingest = 1
+
 /datum/reagent/organic/nutriment/cnutriment
 	name = "Cooked nutriments"
 	taste_description = "tasty"

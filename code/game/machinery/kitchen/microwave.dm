@@ -320,6 +320,9 @@
 	var/amount = target.reagents.get_reagent_amount("nutriment")
 	target.reagents.remove_reagent("nutriment", amount)
 	target.reagents.add_reagent("cooked_nutriment", amount)
+	amount = target.reagents.get_reagent_amount("protein")
+	target.reagents.remove_reagents("protein", amount)
+	target.reagents.add_reagent("cooked_protein", amount)
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z // I don't think hes satan , i think hes just very creative.
 	for (var/i=1 to seconds)

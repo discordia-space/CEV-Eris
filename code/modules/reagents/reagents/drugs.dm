@@ -153,7 +153,7 @@
 
 /datum/reagent/drug/crystal_meth/overdose(mob/living/carbon/M, alien)
 	..()
-	M.adjustToxLoss(8)
+	M.adjustToxLoss(3)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
