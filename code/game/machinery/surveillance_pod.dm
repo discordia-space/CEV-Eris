@@ -268,7 +268,6 @@
 	..()
 
 
-// UI nuddles //
 /obj/machinery/surveillance_pod/proc/handle_occupant_UI(hide_ui)
 	if(hide_ui)
 		for(var/obj/screen/inventory/IS in occupant.HUDinventory)
