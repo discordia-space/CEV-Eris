@@ -7,11 +7,13 @@
 	anchored = TRUE
 
 	var/mob/living/carbon/human/occupant
-	var/mob/observer/eye/big_brother
-	var/datum/gas_mixture/environment
+	var/mob/observer/eye/pod/big_brother
+	var/datum/nano_module/crew_monitor/crew_monitor
+	var/datum/gas_mixture/fake_liquid
 
 	var/list/compatible_jumpsuits = list(
-	/obj/item/clothing/under/cyber
+	/obj/item/clothing/under/cyber,
+	/obj/item/clothing/under/netrunner
 	)
 
 	var/list/compatible_helmets = list(
@@ -26,13 +28,13 @@
 	..()
 	big_brother = new(src)
 	big_brother.visualnet = cameranet
-	environment = new/datum/gas_mixture // Pod filled with liqid
-	environment.adjust_gas_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no liquids in the code!
+	fake_liquid = new/datum/gas_mixture // Pod filled with liqid
+	fake_liquid.adjust_gas_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no liquids in the code!
 	update_icon()
 
 
 /obj/machinery/surveillance_pod/return_air()
-	return environment // Safe temperature and pressure, but can't breathe without internals
+	return fake_liquid // Safe temperature and pressure, but can't breathe without internals
 
 
 /obj/machinery/surveillance_pod/check_eye(mob/user)
@@ -62,44 +64,13 @@
 		to_chat(occupant, SPAN_WARNING("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
 		return FALSE
 
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & NOPOWER)
 		return FALSE
 
 	return TRUE
 
 
-/obj/machinery/surveillance_pod/proc/activate()
-	if(!can_activate())
-		return
-
-	for(var/datum/chunk/C in big_brother.visibleChunks)
-		C.remove(big_brother)
-	big_brother.forceMove(src)
-	big_brother.owner = occupant
-	occupant.eyeobj = big_brother
-
-
-/obj/machinery/surveillance_pod/proc/deactivate()
-	if(big_brother.owner)
-		for(var/datum/chunk/C in big_brother.visibleChunks)
-			C.remove(big_brother)
-		big_brother.owner.eyeobj = null
-		big_brother.owner.reset_view()
-		big_brother.owner = null
-
-
-/obj/machinery/surveillance_pod/on_update_icon()
-	if(occupant)
-		icon_state = "[initial(icon_state)]_1"
-	else
-		icon_state = "[initial(icon_state)]_0"
-
-
-/obj/machinery/surveillance_pod/verb/activate_verb()
-	set src in view(0)
-	set category = "Object"
-	set name = "Activate Pod"
-
+/obj/machinery/surveillance_pod/proc/trigger()
 	if(usr.incapacitated())
 		return
 
@@ -109,6 +80,61 @@
 		else
 			activate()
 	return
+
+
+/obj/machinery/surveillance_pod/proc/activate()
+	if(!can_activate())
+		return
+
+	for(var/datum/chunk/C in big_brother.visibleChunks)
+		C.remove(big_brother)
+
+	big_brother.forceMove(src)
+	big_brother.owner = occupant
+	occupant.eyeobj = big_brother
+	occupant.EyeMove(0)
+
+	rebuild_occupant_UI(big_brother.type)
+
+
+/obj/machinery/surveillance_pod/proc/deactivate()
+	if(big_brother.owner)
+		for(var/datum/chunk/C in big_brother.visibleChunks)
+			C.remove(big_brother)
+
+		big_brother.owner.eyeobj = null
+		big_brother.owner.reset_view()
+		big_brother.owner = null
+		rebuild_occupant_UI(occupant.type)
+
+
+/obj/machinery/surveillance_pod/verb/rebuild_occupant_UI(mob/mob_type)
+	if(!occupant)
+		return
+
+	occupant.client.destroy_UI()
+//	occupant.client.screen = list()
+	occupant.hud.Destroy()
+	occupant.client.create_UI(mob_type)
+
+
+/obj/machinery/surveillance_pod/on_update_icon()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_1"
+	else
+		icon_state = "[initial(icon_state)]_0"
+
+
+/obj/machinery/surveillance_pod/attack_hand(mob/user)
+	trigger()
+
+
+/obj/machinery/surveillance_pod/verb/activate_verb()
+	set src in view(0)
+	set category = "Object"
+	set name = "Activate Pod"
+
+	trigger()
 
 
 /obj/machinery/surveillance_pod/verb/eject()
@@ -217,20 +243,12 @@
 	update_icon()
 
 
-/obj/machinery/surveillance_pod/attack_hand(mob/user)
-	if(occupant)
-		if(occupant.eyeobj == big_brother)
-			deactivate()
-		else
-			activate()
-
-
 /obj/machinery/surveillance_pod/Destroy()
 	if(occupant)
 		occupant.ghostize(0)
 		occupant.gib()
 
-	qdel(environment)
+	qdel(fake_liquid)
 	qdel(big_brother)
 	return ..()
 
@@ -238,6 +256,40 @@
 /obj/machinery/surveillance_pod/attackby(obj/item/I, mob/living/user)
 	if(default_deconstruction(I, user))
 		return
+
 	if(default_part_replacement(I, user))
 		return
 	..()
+
+
+/mob/observer/eye/pod/proc/moveup()
+	set name = "Move Upwards"
+
+	zMove(UP)
+
+
+/mob/observer/eye/pod/proc/movedown()
+	set name = "Move Downwards"
+
+	zMove(DOWN)
+
+
+/mob/observer/eye/pod/proc/reset_position()
+	set name = "Reset Camera"
+
+	if(!owner)
+		return
+
+//	for(var/datum/chunk/C in visibleChunks)
+//		C.remove(src)
+
+	src.setLoc(owner)
+
+
+/mob/observer/eye/pod/proc/show_crew_sensors()
+	if(!owner)
+		return
+	
+	if(istype(owner.loc, /obj/machinery/surveillance_pod))
+		var/obj/machinery/surveillance_pod/pod
+		pod.crew_monitor.ui_interact(usr)

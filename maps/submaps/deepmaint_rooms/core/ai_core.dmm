@@ -26,15 +26,15 @@
 "af" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "ag" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
@@ -184,10 +184,10 @@
 /area/deepmaint)
 "aF" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+	anchored = 1;
 	dir = 4;
-	anchored = 1
+	icon_state = "railing0";
+	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -197,9 +197,9 @@
 /area/deepmaint)
 "aH" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
+	dir = 8;
 	icon_state = "railing0";
-	dir = 8
+	tag = "icon-railing0 (WEST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -213,8 +213,8 @@
 /area/deepmaint)
 "aJ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/wall/r_wall,
 /area/deepmaint)
@@ -247,8 +247,8 @@
 "aP" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /obj/machinery/light,
 /turf/simulated/floor/plating/under,
@@ -349,22 +349,22 @@
 /area/deepmaint)
 "bh" = (
 /obj/item/modular_computer/console/preset/command{
-	icon_state = "console";
-	dir = 4
+	dir = 4;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/deepmaint)
 "bi" = (
 /obj/item/modular_computer/console/preset/command{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/deepmaint)
 "bj" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /obj/structure/catwalk,
 /obj/machinery/light{
@@ -380,15 +380,15 @@
 /area/deepmaint)
 "bl" = (
 /obj/item/modular_computer/console/preset/command{
-	icon_state = "console";
-	dir = 4
+	dir = 4;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/deepmaint)
 "bm" = (
 /obj/item/modular_computer/console/preset/command{
-	icon_state = "console";
-	dir = 8
+	dir = 8;
+	icon_state = "console"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/deepmaint)
