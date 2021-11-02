@@ -140,7 +140,7 @@
 /datum/reagent/drug/crystal_meth/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.hallucination(30 * effect_multiplier, 30 * effect_multiplier)
-	M.make_dizzy(2 * effect_mutiplier, 2 * effect_multiplier)
+	M.make_dizzy(2 * effect_multiplier, 2 * effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
@@ -165,18 +165,24 @@
 
 // Jesee where is the meth ?
 /datum/reagent/drug/crystal_meth/withdrawal_act(mob/living/carbon/M)
-	M.sanity.changeLevel(-sanity_gain)
+	if(!ishuman(M))
+		return FALSE
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain)
 	if(prob(5))
-		to_chat(M , pick(
+		to_chat(addicte , pick(
 			SPAN_DANGER("I FUCKING NEED METH!"),
-			SPAN_DANGER("I NEED MORE OF THE BLUE STUFF NOW! NOW! NOW!")
-			SPAN_DANGER("WHERE IS MY METH?")
+			SPAN_DANGER("I NEED MORE OF THE BLUE STUFF NOW! NOW! NOW!"),
+			SPAN_DANGER("WHERE IS MY METH?"),
 			))
-		M.sanity.changeLevel(-2)
+		addicte.sanity.changeLevel(-2)
 
 /datum/reagent/drug/crystal_meth/withdrawal_end(mob/living/carbon/M)
-	M.sanity.changeLevel(sanity_gain * 3)
-	to_chat(M, SPAN_NOTICE("You feel like you got over needing meth. you feel much better."))
+	if(!ishuman(M))
+		return FALSE
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(sanity_gain * 3)
+	to_chat(addicte, SPAN_NOTICE("You feel like you got over needing meth. you feel much better."))
 
 
 /datum/reagent/drug/mindwipe
