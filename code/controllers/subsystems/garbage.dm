@@ -39,12 +39,6 @@ SUBSYSTEM_DEF(garbage)
 		queues[i] = list()
 		pass_counts[i] = 0
 		fail_counts[i] = 0
-	addtimer(CALLBACK(src, .proc/Nuke), 60 SECONDS)
-
-/datum/controller/subsystem/garbage/proc/Nuke()
-	message_admins("[src] nuked! ! ! ! ! !! ! ! !!! ! ! ! ! ! ! !! !  !!!!! !! ! ! !!  ! !!  ! !")
-	for(var/list/l in queues)
-		l.Cut()
 
 /datum/controller/subsystem/garbage/stat_entry(msg)
 	var/list/counts = list()
