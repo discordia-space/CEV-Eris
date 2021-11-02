@@ -50,6 +50,25 @@
 	retract_while_active = FALSE
 	spawn_tags = null
 
+/obj/item/clothing/suit/space/rig/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
+	if(istype(damage_source, /obj/item/projectile/bullet))
+		var/obj/item/projectile/bullet/B = damage_source
+
+		var/chance = max(round(armor.getRating(ARMOR_BULLET) - B.armor_penetration),0)
+		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
+			chance *= 1.5
+		if(B.starting && prob(chance))
+			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]'s [src.name]!"))
+
+			var/new_x = 3*(user.x + pick(0, 0, 1, -1, 1, -1, 2, -2)) - 2*B.starting.x // user - (bullet-user)*2
+			var/new_y = 3*(user.y + pick(0, 0, 1, -1, 1, -1, 2, -2)) - 2*B.starting.y
+
+			var/turf/curloc = get_turf(user)
+
+			B.redirect(new_x, new_y, curloc, user)
+
+			return PROJECTILE_CONTINUE // complete projectile permutation
+
 //TODO: move this to modules
 /obj/item/clothing/head/space/rig/proc/prevent_track()
 	return 0
