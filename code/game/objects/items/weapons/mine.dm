@@ -110,6 +110,7 @@
 			anchored = TRUE
 			armed = TRUE
 			update_icon()
+			log_admin("[user]([user.ckey]) have placed [src] at ([user.x],[user.y],[user.z]).")
 
 	update_icon()
 

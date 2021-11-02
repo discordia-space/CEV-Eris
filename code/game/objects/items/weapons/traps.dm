@@ -228,6 +228,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			user.drop_from_inventory(src)
 			update_icon()
 			anchored = TRUE
+			log_admin("[user]([user.ckey]) have placed [src] at ([user.x],[user.y],[user.z]).")
 
 /***********************************
 	Hurting Mobs
