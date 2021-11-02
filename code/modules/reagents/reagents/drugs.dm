@@ -63,7 +63,7 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 20
 	addiction_chance = 10
-	sanity_gain = 3 // Very hard to make , justified
+	sanity_gain = 1.5
 
 /datum/reagent/drug/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(7 * effect_multiplier))
@@ -122,62 +122,6 @@
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
-
-/datum/reagent/drug/crystal_meth
-	name = "Crystalized ampethamines"
-	id = "crystal_meth"
-	description = "Extremly powerfull neuro-hooking chemicals, dangerously addictive and powerfull"
-	taste_description = "pure happiness"
-	reagent_state = SOLID
-	metabolism = REM * 0.1 // Hard to make anyway!
-	overdose = REAGENTS_OVERDOSE * 0.6 // More than 1 syringe of this stuff and it will get you overdosed
-	nerve_system_accumulations = 20 // Acts as a painkiller to some degree due to its drug power
-	addiction_chance = 90
-	addiction_threshold = 10
-	color = "#10225c"
-	sanity_gain = 5
-
-/datum/reagent/drug/crystal_meth/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	..()
-	M.hallucination(30 * effect_multiplier, 30 * effect_multiplier)
-	M.make_dizzy(2 * effect_mutiplier, 2 * effect_multiplier)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			var/damage_amount = (2 * effect_multiplier) / (L.get_process_eficiency(OP_LIVER) / 100) // The worse your liver is , the more damage it gets
-			L.take_damage(damage_amount, TRUE)
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_PAINKILLER, 50 * effect_multiplier)
-
-/datum/reagent/drug/crystal_meth/overdose(mob/living/carbon/M, alien)
-	..()
-	M.adjustToxLoss(8)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			var/damage_amount = 6 / (L.get_process_eficiency(OP_LIVER) / 100) // The worse your liver is , the more damage it gets
-			L.take_damage(damage_amount, TRUE)
-	M.add_chemical_effect(CE_PAINKILLER, 240) // You won't live long anyway .
-	M.add_chemical_effect(CE_PULSE, 3)
-
-// Jesee where is the meth ?
-/datum/reagent/drug/crystal_meth/withdrawal_act(mob/living/carbon/M)
-	M.sanity.changeLevel(-sanity_gain)
-	if(prob(5))
-		to_chat(M , pick(
-			SPAN_DANGER("I FUCKING NEED METH!"),
-			SPAN_DANGER("I NEED MORE OF THE BLUE STUFF NOW! NOW! NOW!")
-			SPAN_DANGER("WHERE IS MY METH?")
-			))
-		M.sanity.changeLevel(-2)
-
-/datum/reagent/drug/crystal_meth/withdrawal_end(mob/living/carbon/M)
-	M.sanity.changeLevel(sanity_gain * 3)
-	to_chat(M, SPAN_NOTICE("You feel like you got over needing meth. you feel much better."))
-
 
 /datum/reagent/drug/mindwipe
 	name = "Mindwipe"
