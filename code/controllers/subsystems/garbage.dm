@@ -39,12 +39,6 @@ SUBSYSTEM_DEF(garbage)
 		queues[i] = list()
 		pass_counts[i] = 0
 		fail_counts[i] = 0
-	addtimer(CALLBACK(src, .proc/Nuke), 60 SECONDS)
-
-/datum/controller/subsystem/garbage/proc/Nuke()
-	message_admins("[src] nuked! ! ! ! ! !! ! ! !!! ! ! ! ! ! ! !! !  !!!!! !! ! ! !!  ! !!  ! !")
-	for(var/list/l in queues)
-		l.Cut()
 
 /datum/controller/subsystem/garbage/stat_entry(msg)
 	var/list/counts = list()
@@ -141,7 +135,6 @@ SUBSYSTEM_DEF(garbage)
 		count = 0 //so if we runtime on the Cut, we don't try again.
 		var/list/lastqueue = queues[lastlevel]
 		lastqueue.Cut(1, c+1)
-		count = c
 
 	lastlevel = level
 
