@@ -40,7 +40,7 @@
 	acceleration = FALSE
 
 
-/obj/machinery/surveillance_pod/New()
+/obj/machinery/surveillance_pod/Initialize(mapload)
 	..()
 	big_brother = new(src)
 	big_brother.visualnet = cameranet

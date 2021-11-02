@@ -332,10 +332,14 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aba" = (
-/obj/structure/closet/l3closet/security,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet,
+/obj/item/clothing/under/netrunner,
+/obj/item/clothing/under/netrunner,
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored,
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "abb" = (
@@ -1550,6 +1554,10 @@
 /area/eris/security/armory)
 "adQ" = (
 /obj/structure/table/rack,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /turf/simulated/floor/tiled/dark/cargo,
@@ -100714,6 +100722,12 @@
 /obj/effect/shuttle_landmark/merc/southwest,
 /turf/space,
 /area/space)
+"eGL" = (
+/obj/machinery/surveillance_pod{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "eGV" = (
 /mob/living/simple_animal/cow{
 	name = "Beatriz"
@@ -101261,6 +101275,10 @@
 	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
+"fvm" = (
+/obj/structure/cryofeed,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
@@ -105147,6 +105165,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"uHR" = (
+/obj/machinery/surveillance_pod,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "uLw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -105902,6 +105924,12 @@
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"xqY" = (
+/obj/structure/cryofeed{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -126991,7 +127019,7 @@ ade
 adm
 aeo
 aec
-abS
+xqY
 aaR
 aaa
 aaa
@@ -127193,7 +127221,7 @@ adf
 adO
 aep
 aeQ
-abS
+eGL
 aaR
 aaa
 aaa
@@ -127395,7 +127423,7 @@ eoq
 adP
 aeq
 aeU
-abS
+uHR
 aaR
 aaa
 aaa
@@ -127597,7 +127625,7 @@ abS
 abS
 aer
 aeU
-abS
+fvm
 aaR
 aaa
 aaa
