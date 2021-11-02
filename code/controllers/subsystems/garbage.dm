@@ -135,7 +135,6 @@ SUBSYSTEM_DEF(garbage)
 		count = 0 //so if we runtime on the Cut, we don't try again.
 		var/list/lastqueue = queues[lastlevel]
 		lastqueue.Cut(1, c+1)
-		count = c
 
 	lastlevel = level
 
