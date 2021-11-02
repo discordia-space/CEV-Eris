@@ -66,6 +66,15 @@
 	color = "#440000"
 	taste_tag = list(TASTE_SLIMEY)
 
+/datum/reagent/organic/nutriment/cnutriment
+	name = "Cooked nutriments"
+	taste_description = "tasty"
+	id = "cooked_nutriment"
+	description = "The result of complex chemical reactions involved in cooking"
+	color = "#7e5b11"
+	// Gives a lot of sanity , but generally theres little of it
+	sanity_gain_ingest = 1
+
 
 /datum/reagent/organic/nutriment/protein/egg
 	name = "Egg Yolk"

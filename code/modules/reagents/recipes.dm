@@ -285,6 +285,15 @@
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/crystal_meth
+	result = "crystal_meth"
+	required_reagents = list("space_drugs" = 1, "acetone" = 3, "cleaner" = 2, "fuel" = 1, "p_acid" = 2)
+	catalysts = list("sugar" = 5)
+	/// I know that meth is explosive , but for the sake of balance , it should not explode.
+	minimum_temperature = 500
+	maximum_temperature = 600
+	result_amount = 6
+
 /datum/chemical_reaction/nicotine
     result = "nicotine"
     required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
