@@ -60,13 +60,22 @@
 		if(B.starting && prob(chance))
 			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]'s [src.name]!"))
 
-			var/new_x = 3*(user.x + pick(0, 0, 1, -1, 1, -1, 2, -2)) - 2*B.starting.x // user - (bullet-user)*2
-			var/new_y = 3*(user.y + pick(0, 0, 1, -1, 1, -1, 2, -2)) - 2*B.starting.y
+			var/turf/sourceloc = get_turf_away_from_target_complex(B.starting, user, 2)
+
+			var/distance = get_dist(sourceloc, user)
+
+			var/new_x = sourceloc.x + round(pick(0, 0, -0.3, 0.3, -0.5, 0.5, -0.8, 0.8, -1, 1)*distance)
+			var/new_y = sourceloc.y + round(pick(0, 0, -0.3, 0.3, -0.5, 0.5, -0.8, 0.8, -1, 1)*distance)
+
+			var/turf/origin = locate(new_x,new_y,sourceloc.z)
+
+			var/turf/targetloc = get_turf_away_from_target_complex(user, origin, 2)
 
 			var/turf/curloc = get_turf(user)
 
-			B.redirect(new_x, new_y, curloc, user)
+			B.redirect(targetloc.x, targetloc.y, curloc, user)
 
+			visible_message("\The [targetloc.x] in the [targetloc.y]'s")
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
 //TODO: move this to modules

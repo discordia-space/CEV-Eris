@@ -362,6 +362,9 @@
 	name = "heavy operator helmet"
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
+
+	tint = TINT_MODERATE
+
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
 		melee = 50,
