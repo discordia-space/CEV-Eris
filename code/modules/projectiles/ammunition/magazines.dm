@@ -553,7 +553,7 @@
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
-//////// RIFLE SPEEDLOADERS ////////
+//////// .30 RIFLE SPEEDLOADERS ////////
 /obj/item/ammo_magazine/sllrifle
 	name = "ammo strip (.30 Rifle)"
 	icon_state = "lrifle"
@@ -575,6 +575,8 @@
 	max_ammo = 5
 	multiple_sprites = 1
 
+//////// .20 RIFLE SPEEDLOADERS ////////
+
 /obj/item/ammo_magazine/slsrifle
 	name = "ammo strip (.20 Rifle)"
 	icon_state = "stripper_base"
@@ -595,6 +597,36 @@
 /obj/item/ammo_magazine/slsrifle/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/ammo_magazine/slsrifle/hv
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+	max_ammo = 5
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle/practice
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+	max_ammo = 5
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle/scrap
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	max_ammo = 5
+	w_class = ITEM_SIZE_TINY
 
 /// OTHER ///
 
