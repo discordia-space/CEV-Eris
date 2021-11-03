@@ -86,8 +86,8 @@
 	return TRUE
 
 
-/obj/machinery/surveillance_pod/proc/trigger()
-	if(usr.incapacitated())
+/obj/machinery/surveillance_pod/proc/trigger(mob/user)
+	if(user.incapacitated())
 		return
 
 	if(occupant)
@@ -132,15 +132,15 @@
 
 
 /obj/machinery/surveillance_pod/attack_hand(mob/user)
-	trigger()
+	trigger(user)
 
 
-/obj/machinery/surveillance_pod/verb/activate_verb()
+/obj/machinery/surveillance_pod/verb/activate_verb(mob/user)
 	set src in view(0)
 	set category = "Object"
 	set name = "Activate Pod"
 
-	trigger()
+	trigger(user)
 
 
 /obj/machinery/surveillance_pod/verb/eject()
