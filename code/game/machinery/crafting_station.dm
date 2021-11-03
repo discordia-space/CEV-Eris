@@ -61,8 +61,6 @@
 	. = ..()
 
 /obj/machinery/craftingstation/attack_hand(mob/user as mob)
-	to_chat(world, "test")
-
 	var/cog_stat = user.stats.getStat(STAT_COG)
 
 	var/list/options = list()
@@ -81,29 +79,26 @@
 	var/choice = input(user,"What do you want to craft?") as null|anything in options
 	var/produce_type = options[choice]
 
-	use_power(power_cost)
+	flick("[initial(icon_state)]_warmup", src)
 	working = TRUE
-	start_working = world.time
-	flick_anim(WORK)
 	START_PROCESSING(SSmachines, src)
-
-	if(!working)
+	if(do_after(user,work_time,src))
 		STOP_PROCESSING(SSmachines, src)
+		working = FALSE
+		flick("[initial(icon_state)]_done", src)
+		icon_state = "[initial(icon_state)]"
+		update_icon()
+	else
 		return
 
-	if(world.time >= (start_working + work_time))
-		flick_anim(DONE)
-		working = FALSE
-		STOP_PROCESSING(SSmachines, src)
-
 	var/dice_roll = (rand(0,20)*(1+cog_stat/15))
+
 	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 		dice_roll = dice_roll * 2
 	switch(produce_type)//God forgive me
 		if("pistol")
 			for(var/_material in needed_material_ammo)
 				stored_material[_material] -= needed_material_ammo[_material]
-
 			spawn_pistol(dice_roll,user)
 		if("magnum")
 			for(var/_material in needed_material_ammo)
@@ -451,7 +446,7 @@
 	stored_material[material] += total_used
 
 	if(!stack.use(total_used))
-		qdel(stack)	// Protects against weirdness
+		qdel(stack)
 
 	to_chat(user, SPAN_NOTICE("You add [total_used] of [stack]\s to \the [src]."))
 
@@ -462,18 +457,12 @@
 		icon_state = "[initial(icon_state)]_off"
 	update_icon()
 
-/obj/machinery/craftingstation/proc/flick_anim(var/animation)
-
-	if(animation == WORK)
-		flick("[initial(icon_state)]_warmup", src)
-		flick("[initial(icon_state)]_cut", src)
-		flick("[initial(icon_state)]_point", src)
-		flick("[initial(icon_state)]_square", src)
-		update_icon()
-
-	if(animation == DONE)
-		flick("[initial(icon_state)]_done", src)
-		icon_state = "[initial(icon_state)]"
+/obj/machinery/craftingstation/Process()
+	if(working)
+		use_power(power_cost)
+		var/pick_string = list( "_cut" , "_point", "_square")
+		pick_string = pick(pick_string)
+		flick("[initial(icon_state)]_[pick_string]", src)
 		update_icon()
 
 #undef WORK
