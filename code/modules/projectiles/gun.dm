@@ -99,7 +99,6 @@
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
 		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) /( 100 * wield_delay_factor))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
-		message_admins("Calculated wield delay is [calculated_delay] , with [wield_delay] S and [wield_delay_factor] factor")
 	if (calculated_delay > 0 && do_after(user, calculated_delay, mobile = TRUE))
 		..()
 	else if (calculated_delay < 0)
