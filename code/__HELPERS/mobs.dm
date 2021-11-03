@@ -215,12 +215,11 @@ Proc for attack log creation, because really why not
 	if(!user)
 		return 0
 	
-	if(immobile)
-		var/atom/target_loc
-		if(target)
-			target_loc = target.loc
+	var/atom/target_loc
+	if(target)
+		target_loc = target.loc
 
-		var/atom/original_loc = user.loc
+	var/atom/original_loc = user.loc
 
 	var/holding = user.get_active_hand()
 
