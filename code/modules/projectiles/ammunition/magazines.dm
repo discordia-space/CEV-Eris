@@ -268,17 +268,6 @@
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
-/obj/item/ammo_magazine/slsrifle
-	name = "ammo strip (.20 Rifle)"
-	icon_state = "lrifle"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
-	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 5
-	multiple_sprites = 1
-	w_class = ITEM_SIZE_TINY
-
 ////////// .25 RIFLE ///////////
 
 /obj/item/ammo_magazine/c10x24
@@ -564,7 +553,7 @@
 	ammo_type = /obj/item/ammo_casing/magnum/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
-//////// .30 RIFLE SPEEDLOADERS ////////
+//////// RIFLE SPEEDLOADERS ////////
 /obj/item/ammo_magazine/sllrifle
 	name = "ammo strip (.30 Rifle)"
 	icon_state = "lrifle"
@@ -585,6 +574,27 @@
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
 	max_ammo = 5
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/slsrifle
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 5
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle/on_update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "stripper_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slsrifle/Initialize()
+	. = ..()
+	update_icon()
 
 /// OTHER ///
 
