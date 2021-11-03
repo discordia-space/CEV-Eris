@@ -1,6 +1,6 @@
 /atom/movable/IceHolder/invisibility = INVISIBILITY_MAXIMUM
 CYBERAVATAR_INITIALIZATION(/atom/movable/IceHolder, CYBERSPACE_MAIN_COLOR)
-CYBERAVATAR_CUSTOM_PREFAB(/atom/movable/IceHolder, /datum/CyberSpaceAvatar/ice)
+CYBERAVATAR_CUSTOM_TYPE(/atom/movable/IceHolder, /datum/CyberSpaceAvatar/ice)
 /datum/CyberSpaceAvatar/ice/Subroutines = TRUE
 
 /datum/CyberSpaceAvatar

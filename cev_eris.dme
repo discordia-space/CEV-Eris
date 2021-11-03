@@ -1632,6 +1632,7 @@
 #include "code\modules\cyberspace\~game\eye\hud\datum.dm"
 #include "code\modules\cyberspace\~game\eye\hud\screen_objects.dm"
 #include "code\modules\cyberspace\~game\ICE\_ice.dm"
+#include "code\modules\cyberspace\~game\ICE\security_servers.dm"
 #include "code\modules\cyberspace\~game\ICE\firewall\alarm_level.dm"
 #include "code\modules\cyberspace\~game\ICE\firewall\avatar.dm"
 #include "code\modules\cyberspace\~game\ICE\firewall\firewall.dm"

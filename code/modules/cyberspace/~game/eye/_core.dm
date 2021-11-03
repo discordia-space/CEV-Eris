@@ -2,7 +2,7 @@
 //	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
-CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
 /mob/observer/cyberspace_eye //slow move of it down
 	invisibility = INVISIBILITY_MAXIMUM
 	alpha = 200
@@ -36,7 +36,7 @@ CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye, /datum/CyberSpaceAvatar/
 /datum/CyberSpaceAvatar/runner/ai
 	icon_state = "ai_observer"
 
-CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner/ai)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvatar/runner/ai)
 /mob/observer/cyberspace_eye/ai
 	icon_state = "ai_presence"
 	ReturnToBody()
@@ -45,3 +45,5 @@ CYBERAVATAR_CUSTOM_PREFAB(/mob/observer/cyberspace_eye/ai, /datum/CyberSpaceAvat
 /mob/observer/cyberspace_eye/proc/Connected(obj/item/computer_hardware/deck/D)
 	return dropInto(D)
 /mob/observer/cyberspace_eye/proc/Disconnected(obj/item/computer_hardware/deck/D)
+	if(client)
+		client.show_popup_menus = initial(client.show_popup_menus)

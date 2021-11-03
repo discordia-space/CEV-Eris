@@ -45,11 +45,12 @@
 			user = user_avatar
 
 	if(HackingTry(user, user_avatar))
-		return Hacked(user, user_avatar)
+		return Hacked(user, user_avatar, params)
 
 /datum/CyberSpaceAvatar/proc/HackingTry(mob/observer/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
+	return TRUE
 
-/datum/CyberSpaceAvatar/proc/Hacked(mob/observer/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar)
+/datum/CyberSpaceAvatar/proc/Hacked(mob/observer/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 
 /datum/CyberSpaceAvatar/proc/DisarmInteraction(mob/observer/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 
