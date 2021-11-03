@@ -1,0 +1,4 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: fixed a division by 0 when parrying melee attacks
