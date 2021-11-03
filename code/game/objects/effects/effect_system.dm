@@ -490,11 +490,10 @@ steam.start() -- spawns the effect
 	src.light_range = light_range
 
 /datum/effect/effect/system/pottasium_sparkle_explosion/start()
-	var/fire_stacks = amount_rating / 100
 	started = world.time + duration
 	looping_fire(fire_stacks)
 
-/datum/effect/effect/system/pottasium_sparkle_explosion/proc/looping_fire(fire_stack)
+/datum/effect/effect/system/pottasium_sparkle_explosion/proc/looping_fire()
 	var/particles_to_throw = amount_rating / 50 // 10 big particles in the worst case that break into 30
 	var/list/turf/affectable = RANGE_TURFS(light_range, location)
 	var/list/obj/fire/fires = list()
