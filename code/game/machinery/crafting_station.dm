@@ -460,9 +460,10 @@
 /obj/machinery/craftingstation/Process()
 	if(working)
 		use_power(power_cost)
-		var/pick_string = list( "_cut" , "_point", "_square")
+		var/pick_string = list( "_cut" , "_points", "_square")
 		pick_string = pick(pick_string)
-		flick("[initial(icon_state)]_[pick_string]", src)
+		flick("[initial(icon_state)][pick_string]", src)
+		icon_state = "[initial(icon_state)][pick_string]"
 		update_icon()
 
 #undef WORK
