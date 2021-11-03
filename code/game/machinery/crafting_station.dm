@@ -77,6 +77,9 @@
 	options["Armor parts"] = "armorpart"
 
 	var/choice = input(user,"What do you want to craft?") as null|anything in options
+	if(choice == null)
+		return
+
 	var/produce_type = options[choice]
 
 	flick("[initial(icon_state)]_warmup", src)
@@ -89,6 +92,11 @@
 		icon_state = "[initial(icon_state)]"
 		update_icon()
 	else
+		STOP_PROCESSING(SSmachines, src)
+		working = FALSE
+		flick("[initial(icon_state)]_done", src)
+		icon_state = "[initial(icon_state)]"
+		update_icon()
 		return
 
 	var/dice_roll = (rand(0,20)*(1+cog_stat/15))
