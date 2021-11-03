@@ -567,13 +567,7 @@
 
 /obj/item/ammo_magazine/sllrifle/hv
 	name = "ammo strip (.30 Rifle HV)"
-	icon_state = "lrifle"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
-	max_ammo = 5
-	multiple_sprites = 1
 
 //////// .20 RIFLE SPEEDLOADERS ////////
 
@@ -599,34 +593,16 @@
 	update_icon()
 
 /obj/item/ammo_magazine/slsrifle/hv
-	name = "ammo strip (.20 Rifle)"
-	icon_state = "stripper_base"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	name = "ammo strip (.20 Rifle HV)"
 	ammo_type = /obj/item/ammo_casing/srifle/hv
-	max_ammo = 5
-	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle/practice
-	name = "ammo strip (.20 Rifle)"
-	icon_state = "stripper_base"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	name = "ammo strip (.20 Rifle practice)"
 	ammo_type = /obj/item/ammo_casing/srifle/practice
-	max_ammo = 5
-	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle/scrap
-	name = "ammo strip (.20 Rifle)"
-	icon_state = "stripper_base"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	name = "ammo strip (old .20 Rifle)"
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
-	max_ammo = 5
-	w_class = ITEM_SIZE_TINY
 
 /// OTHER ///
 
