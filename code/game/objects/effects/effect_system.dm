@@ -491,7 +491,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/pottasium_sparkle_explosion/start()
 	started = world.time + duration
-	looping_fire(fire_stacks)
+	looping_fire()
 
 /datum/effect/effect/system/pottasium_sparkle_explosion/proc/looping_fire()
 	var/particles_to_throw = amount_rating / 50 // 10 big particles in the worst case that break into 30
