@@ -601,15 +601,8 @@
 	mix_message = null
 
 /datum/chemical_reaction/explosion_potassium/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/datum/effect/effect/system/reagents_explosion/e = new()
-	e.set_up(round (created_volume/45, 1), holder.my_atom, 0, 0) // 600/45 = 13.3 , 13/3 = 4-3 light-range , slightly weaker than a cracker.
-	if(isliving(holder.my_atom))
-		e.amount *= 0.5
-		var/mob/living/L = holder.my_atom
-		if(L.stat != DEAD)
-			if(e.amount >= 6)
-				L.gib()
-			e.amount *= 1.5
+	var/datum/effect/effect/system/pottasium_sparkle_explosion/e = new()
+	e.set_up(created_volume, get_turf(holder.my_atom), created_volume / 50 SECOND, created_volume / 200 , created_volume / 100)
 	e.start()
 	holder.clear_reagents()
 	return

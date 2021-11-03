@@ -273,7 +273,7 @@ steam.start() -- spawns the effect
 
 	src.radius = radius
 	src.brightness = brightness
-	
+
 	set_light(radius,brightness,color)
 
 	if(selfdestruct_timer)
@@ -474,3 +474,66 @@ steam.start() -- spawns the effect
 				round(min(light, BOMBCAP_LIGHT_RADIUS)),
 				round(min(flash, BOMBCAP_FLASH_RADIUS))
 				)
+
+/datum/effect/effect/system/pottasium_sparkle_explosion
+	var/amount_rating = 1
+	var/heavy_range = 2
+	var/light_range = 5
+	var/duration = 3 SECOND
+	var/started = 0
+
+/datum/effect/effect/system/pottasium_sparkle_explosion/set_up(amount, location, duration, heavy_range, light_range)
+	amount_rating = amount
+	src.duration = duration
+	src.location = location
+	src.heavy_range = heavy_range
+	src.light_range = light_range
+
+/datum/effect/effect/system/pottasium_sparkle_explosion/start()
+	var/fire_stacks = amount_rating / 100
+	started = world.time + duration
+	looping_fire(fire_stacks)
+
+/datum/effect/effect/system/pottasium_sparkle_explosion/proc/looping_fire(fire_stack)
+	var/particles_to_throw = amount_rating / 50 // 10 big particles in the worst case that break into 30
+	var/list/turf/affectable = RANGE_TURFS(light_range, location)
+	var/list/obj/fire/fires = list()
+	while(particles_to_throw)
+		particles_to_throw--
+		var/targ_turf = pick(affectable)
+		var/datum/effect/effect/system/pottasium_sparkle_chunk/particle = new(targ_turf)
+		particle.set_up(targ_turf, 3)
+		particle.start()
+		var/stored_fire
+		if(get_dist(targ_turf, location) > heavy_range)
+			stored_fire = new /obj/fire(targ_turf, min(1, amount_rating / 300))
+		else
+			stored_fire = new /obj/fire(targ_turf , min(2, amount_rating / 150))
+		fires.Add(stored_fire)
+	if(world.time < started)
+		addtimer(CALLBACK(src , .proc/looping_fire), 1 SECOND)
+	for(var/obj/fire/extinguish_now in fires)
+		spawn(rand(1,3))
+			qdel(extinguish_now)
+
+/datum/effect/effect/system/pottasium_sparkle_chunk
+	var/chunks = 3
+
+/datum/effect/effect/system/pottasium_sparkle_chunk/set_up(location , chunks)
+	src.chunks = chunks
+	src.location = location
+
+/datum/effect/effect/system/pottasium_sparkle_chunk/start()
+	while(chunks)
+		chunks--
+		var/obj/effect/sparks/sparks = new(location)
+		var/direction = pick(alldirs)
+		spawn(rand(1,3))
+			step(sparks, direction)
+			spawn(rand(1,3))
+				step(sparks, direction)
+				spawn(20)
+					if(sparks)
+						qdel(sparks)
+
+
