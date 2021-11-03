@@ -67,19 +67,7 @@
 		return FALSE
 	
 	bolting = TRUE
-	var/datum/progressbar/progbar
-	var/delay = 0.3 SECONDS
-	progbar = new(user, delay, src)
-
-	var/endtime = world.time + delay
-	var/starttime = world.time
-	. = 1
-	while (world.time < endtime)
-		sleep(1)
-		progbar.update(world.time - starttime)
-
-	if (progbar)
-		qdel(progbar)
+	do_after(user, 0.3 SECONDS, 0, 1, INCAPACITATION_DEFAULT, 0)
 	bolting = FALSE
 
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
