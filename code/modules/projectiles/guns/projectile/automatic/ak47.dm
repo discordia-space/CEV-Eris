@@ -226,7 +226,7 @@
 				caliber = CAL_LRIFLE
 				mag_well = MAG_WELL_RIFLE
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()

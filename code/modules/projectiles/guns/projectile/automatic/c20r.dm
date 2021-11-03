@@ -27,6 +27,8 @@
 	zoom_factor = 0.4
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
+	wield_delay = 0.5 SECOND
+	wield_delay_factor = 0.1 // 20 vig
 
 	gun_tags = list(GUN_SILENCABLE)
 

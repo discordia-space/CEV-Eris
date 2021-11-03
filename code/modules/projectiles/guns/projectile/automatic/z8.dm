@@ -33,6 +33,9 @@
 
 	var/obj/item/gun/launcher/grenade/underslung/launcher
 
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.3 // 30 vig , almost a heavy assault rifle
+
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/gun/projectile/automatic/z8/Initialize()

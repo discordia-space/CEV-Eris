@@ -10,3 +10,5 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/energy/plasma
+	wield_delay = 0.2 SECOND
+	wield_delay_factor = 0.2 // 20 vig

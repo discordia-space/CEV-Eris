@@ -19,6 +19,9 @@
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS
 
+	wield_delay = 0.4 SECOND
+	wield_delay_factor = 0.2 // 20 vig
+
 	spawn_blacklisted = TRUE //until loot rework
 
 

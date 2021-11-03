@@ -22,6 +22,8 @@
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
 	recoil_buildup = 2
+	wield_delay = 0.4 SECOND
+	wield_delay_factor = 0.4 // 40 vig
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

@@ -211,9 +211,9 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, mobile = FALSE)
 	if(!user)
-		return 0
+		return FALSE
 	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
@@ -242,9 +242,14 @@ Proc for attack log creation, because really why not
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
-			. = 0
-			break
+		if(mobile)
+			if(!user || user.incapacitated(incapacitation_flags))
+				. = FALSE
+				break
+		else
+			if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
+				. = FALSE
+				break
 
 		if(target_loc && (!target || target_loc != target.loc))
 			. = 0

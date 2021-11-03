@@ -25,6 +25,8 @@
 		SEMI_AUTO_NODELAY,
 		FULL_AUTO_400
 		)
+	wield_delay = 1.5 SECOND
+	wield_delay_factor = 0.4 // 30 vig to insta wield , heavy class rifle
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)

@@ -19,6 +19,8 @@
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15
+	wield_delay = 0.2 SECOND
+	wield_delay_factor = 0.1 // 10 vig
 
 /obj/item/gun/projectile/handmade_pistol/New()
 	..()
@@ -49,7 +51,7 @@
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_MAGNUM
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a closed firearm!"))
 			return
 	..()
