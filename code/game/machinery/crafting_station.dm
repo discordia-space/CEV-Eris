@@ -82,6 +82,20 @@
 
 	var/produce_type = options[choice]
 
+	switch(produce_type)
+		if("pistol"||"magnum"||"srifle"||"clrifle"||"lrifle"||"shot"||"bean"||"slug"||"antim")
+			if(stored_material < needed_material_ammo)
+				to_chat(user, SPAN_NOTICE("You do not have enough materials to work with"))
+				return
+		if("gunpart")
+			if(stored_material < needed_material_gunpart)
+				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part"))
+				return
+		if("armorpart")
+			if(stored_material < needed_material_armorpart)
+				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft armor part"))
+				return
+
 	flick("[initial(icon_state)]_warmup", src)
 	working = TRUE
 	START_PROCESSING(SSmachines, src)
