@@ -135,38 +135,27 @@
 	trigger(user)
 
 
-/obj/machinery/surveillance_pod/verb/activate_verb(mob/user)
-	set src in view(0)
-	set category = "Object"
-	set name = "Activate Pod"
-
-	trigger(user)
-
-
 /obj/machinery/surveillance_pod/verb/eject()
 	set src in view(1)
 	set category = "Object"
 	set name = "Eject Occupant"
 
-	if (usr.incapacitated())
-		return
-
-	eject_occupant()
+	try_eject_occupant(usr)
 	add_fingerprint(usr)
 	return
 
 
 /obj/machinery/surveillance_pod/relaymove(mob/user)
-	if(user.incapacitated())
-		return
-
-	eject_occupant()
+	try_eject_occupant(user)
 
 
 /obj/machinery/surveillance_pod/verb/move_inside()
 	set src in view(1)
 	set category = "Object"
 	set name = "Enter Pod"
+
+	if(usr.incapacitated())
+		return
 
 	try_set_occupant(usr)
 	add_fingerprint(usr)
@@ -237,9 +226,16 @@
 	update_icon()
 
 
-/obj/machinery/surveillance_pod/proc/eject_occupant()
+/obj/machinery/surveillance_pod/proc/try_eject_occupant(mob/user)
 	if(!occupant)
 		return
+
+	if(user.incapacitated())
+		return
+	
+	if(user != occupant)
+		if(isghost(user))
+			return
 
 	deactivate()
 	occupant.forceMove(loc)
@@ -251,7 +247,7 @@
 
 /obj/machinery/surveillance_pod/Destroy()
 	if(occupant)
-		occupant.ghostize(0)
+		occupant.ghostize(FALSE)
 		occupant.gib()
 
 	qdel(fake_liquid)
