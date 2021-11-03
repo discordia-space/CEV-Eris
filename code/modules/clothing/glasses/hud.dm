@@ -29,7 +29,7 @@
 /obj/item/clothing/glasses/sunglasses/medhud
 	name = "Ironhammer medical HUD"
 	desc = "Flash-resistant goggles with inbuilt medical information."
-	icon_state = "swatgoggles"
+	icon_state = "healthhud"
 	prescription = TRUE
 
 	New()
