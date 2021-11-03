@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - admin: admins no longer messaged about firedoors being opened
