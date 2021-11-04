@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed Low Yield Emp Grenades having the same effects as a normal one.
