@@ -39,6 +39,28 @@ Thus, the two variables affect pump operation are set in New():
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
+/obj/machinery/atmospherics/binary/pump/AltClick(mob/user)
+	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
+		return FALSE
+	if(get_dist(user , src) > 1)
+		return FALSE
+	target_pressure = max_pressure_setting
+	visible_message("[user] sets the [src]'s pressure setting to the maximum",
+		"You hear a LED panel being tapped and slid upon", 6)
+	investigate_log("had it's pressure changed to [target_pressure] by [key_name(user)]", "atmos")
+	update_icon()
+
+/obj/machinery/atmospherics/binary/pump/CtrlClick(mob/user)
+	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
+		return FALSE
+	if(get_dist(user , src) > 1)
+		return FALSE
+	use_power = !use_power
+	visible_message("[user] turns [use_power ? "on" : "off"] \the [src]'s valve",
+	"You hear a valve being turned", 6)
+	investigate_log("had it's power status changed to [use_power] by [key_name(user)]", "atmos")
+	update_icon()
+
 /obj/machinery/atmospherics/binary/pump/on
 	icon_state = "map_on"
 	use_power = IDLE_POWER_USE
