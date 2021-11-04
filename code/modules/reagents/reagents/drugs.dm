@@ -131,7 +131,7 @@
 	reagent_state = SOLID
 	metabolism = REM * 0.1 // Hard to make anyway!
 	overdose = REAGENTS_OVERDOSE * 0.6 // More than 1 syringe of this stuff and it will get you overdosed
-	nerve_system_accumulations = 20 // Acts as a painkiller to some degree due to its drug power
+	nerve_system_accumulations = 50 // Acts as a painkiller to some degree due to its drug power
 	addiction_chance = 90
 	addiction_threshold = 10
 	color = "#10225c"
