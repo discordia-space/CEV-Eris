@@ -17,3 +17,14 @@
 		return FALSE
 
 	return owner.pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
+
+
+/obj/item/organ/internal/heart/huge
+	name = "huge heart"
+	icon_state = "heart_huge"
+	organ_efficiency = list(OP_HEART = 150)
+	specific_organ_size = 2.3
+	max_blood_storage = 100
+	nutriment_req = 15
+	dead_icon = "heart_huge"
+

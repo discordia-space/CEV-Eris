@@ -16,3 +16,9 @@
 	desc = "Expand and contract"
 	nature = MODIFICATION_SILICON
 	matter = list(MATERIAL_STEEL = 1)
+
+/obj/item/organ/internal/muscle/super_muscle
+	name = "super muscle"
+	icon_state = "human_muscle_super"
+	organ_efficiency = list(OP_MUSCLE = 150)
+	specific_organ_size = 0.6

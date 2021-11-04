@@ -8,3 +8,10 @@
 	max_blood_storage = 100
 	oxygen_req = 2
 	nutriment_req = 1
+
+/obj/item/organ/internal/blood_vessel/extensive
+	name = "extensive blood vessels"
+	icon_state = "blood_vessel_extensive"
+	organ_efficiency = list(OP_BLOOD_VESSEL = 150)
+	specific_organ_size = 0.6
+

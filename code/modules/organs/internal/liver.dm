@@ -12,3 +12,9 @@
 //We got it covered in Process with more detailed thing
 /obj/item/organ/internal/liver/handle_regeneration()
 	return
+
+/obj/item/organ/internal/liver/big
+	name = "big liver"
+	icon_state = "liver_big"
+	organ_efficiency = list(OP_LIVER = 150)
+	specific_organ_size = 1.2
