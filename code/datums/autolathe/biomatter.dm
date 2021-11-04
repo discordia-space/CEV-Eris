@@ -410,4 +410,14 @@
 	name = "Extended Lungs"
 	materials = list(MATERIAL_BIOMATTER = 30)
 	build_path = /obj/item/organ/internal/lungs/long
+
+/datum/design/bioprinter/heart
+	name = "Huge Heart"
+	materials = list(MATERIAL_BIOMATTER = 45)
+	build_path = /obj/item/organ/internal/heart/huge
+
+/datum/design/bioprinter/liver
+	name = "Big liver"
+	materials = list(MATERIAL_BIOMATTER = 30)
+	build_path = /obj/item/organ/internal/liver/big
 //[/MED]
