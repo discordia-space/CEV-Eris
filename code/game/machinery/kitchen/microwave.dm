@@ -315,7 +315,7 @@
 		return
 
 /obj/machinery/microwave/proc/convert_nutriment(atom/target)
-	if(blacklisted_from_buffs.Find(target.type))
+	if(target.type in blacklisted_from_buffs)
 		return FALSE // No buffs for you , lazy cook.
 	var/amount = target.reagents.get_reagent_amount("nutriment")
 	target.reagents.remove_reagent("nutriment", amount)
