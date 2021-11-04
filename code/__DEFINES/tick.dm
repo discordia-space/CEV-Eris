@@ -41,16 +41,3 @@
 //collapsed to percent_of_tick_used * tick_lag
 #define TICK_DELTA_TO_MS(percent_of_tick_used) ((percent_of_tick_used) * world.tick_lag)
 #define TICK_USAGE_TO_MS(starting_tickusage) (TICK_DELTA_TO_MS(TICK_USAGE_REAL - starting_tickusage))
-
-
-/// Percentage of tick to leave for master controller to run
-#define MAPTICK_MC_MIN_RESERVE 70
-// Tick limit while running normally
-#define TICK_LIMIT_RUNNING 85
-#define TICK_BYOND_RESERVE 2
-/// Tick limit used to resume things in stoplag
-#define TICK_LIMIT_TO_RUN 70
-/// Tick limit for MC while running
-#define TICK_LIMIT_MC 70
-/// Tick limit while initializing
-#define TICK_LIMIT_MC_INIT_DEFAULT (100 - TICK_BYOND_RESERVE)
