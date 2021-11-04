@@ -529,7 +529,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 // this value is added ontop of the center coordinates , giving us our "away" turf.
 /proc/get_turf_away_from_target_complex(atom/center, atom/target, distance)
 	var/list/distance_reports = list(center.x - target.x, center.y - target.y)
-	var/distance_total = distance_reports[1] + distance_reports[2]
+	var/distance_total = abs(distance_reports[1]) + abs(distance_reports[2])
 	distance_reports[1] = round(distance_reports[1] / distance_total * distance)
 	distance_reports[2] = round(distance_reports[2] / distance_total * distance)
 	distance_reports[1] = center.x + distance_reports[1]

@@ -135,3 +135,21 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		if (prob(same_turf_hit_chance))
 			for(var/mob/living/M in epicenter)
 				P.attack_mob(M, 0, 100)
+
+
+// This is made to mimic the explosion that would happen when something gets pierced by a bullet ( a tank by a anti-armor shell , a armoured car by an .60 AMR,  etc, creates flying shrapnel on the other side!)
+proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
+	// Long story short , this gets the turfs between 3 dots ,hopefully works all the time
+	// it works by getting the turfs bettween boundry_one and boundry_two , then getting each turf towards them with get_step from epicenter
+	var/turf/turf_t = get_turf_away_from_target_complex(get_turf(epicenter), origin, 3)
+	var/list/hittable_turfs  = RANGE_TURFS(1, turf_t)
+	var/proj_amount = projectile_amount
+	while(proj_amount)
+		proj_amount--
+		var/obj/item/projectile/pew_thingie = new projectile_type(epicenter)
+		pew_thingie.firer = epicenter
+		pew_thingie.launch(pick(hittable_turfs))
+
+
+
+

@@ -226,14 +226,20 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/H = target
+/*
+	if(ismob(target))
 		spawn(1 SECONDS)
-		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 4, 1, 5)
-	if(!iscarbon(target))
+			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 20, 4, 1, 5)
+	else
 		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 		if(!istype(target, /obj/machinery/door))
-			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
+			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 20, 5, 1, 0)
+		*/
+	fragment_explosion_angled(target, starting ,/obj/item/projectile/bullet/pellet/fragment/strong, 5)
+	playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+
+
+
 
 /obj/item/projectile/bullet/antim/scrap
 	damage_types = list(BRUTE = 63)
