@@ -6,7 +6,7 @@
 	desc = "Makeshift fabrication station for home-made munitions and components of firearms and armor."
 	icon = 'icons/obj/machines/crafting_station.dmi'
 	icon_state = "craft"
-
+	circuit = /obj/item/electronics/circuitboard/crafting_station
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
@@ -18,10 +18,10 @@
 	var/work_time = 20 SECONDS
 	var/storage_capacity = 60
 	var/list/stored_material = list()
-	var/list/accepted_material = list ( MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD)
+	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD)
 	var/list/needed_material_gunpart = list(MATERIAL_PLASTEEL = 5)
 	var/list/needed_material_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20,MATERIAL_CARDBOARD = 20)
-	var/list/needed_material_ammo = list(MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 10)
+	var/list/needed_material_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flicker_overlay/image_load
@@ -83,18 +83,70 @@
 	var/produce_type = options[choice]
 
 	switch(produce_type)
-		if("pistol"||"magnum"||"srifle"||"clrifle"||"lrifle"||"shot"||"bean"||"slug"||"antim")
-			if(stored_material < needed_material_ammo)
-				to_chat(user, SPAN_NOTICE("You do not have enough materials to work with"))
-				return
+		if("pistol")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("magnum")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("srifle")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("clrifle")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("lrifle")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("shot")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("bean")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("slug")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
+		if("antim")
+			for(var/material in needed_material_ammo)
+				var/amount = needed_material_ammo[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
 		if("gunpart")
-			if(stored_material < needed_material_gunpart)
+			if(stored_material[MATERIAL_PLASTEEL] < needed_material_gunpart[MATERIAL_PLASTEEL])
 				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part"))
 				return
 		if("armorpart")
-			if(stored_material < needed_material_armorpart)
-				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft armor part"))
-				return
+			for(var/material in needed_material_armorpart)
+				var/amount = needed_material_armorpart[material]
+				if(amount>stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					return
 
 	flick("[initial(icon_state)]_warmup", src)
 	working = TRUE
@@ -280,6 +332,9 @@
 			mags = 1
 		if(24 to 30)
 			boxxes = 1
+		if(30 to 36)
+			boxxes = 1
+			piles = 1
 		if(36 to 42)
 			boxxes = 1
 			mags = 1

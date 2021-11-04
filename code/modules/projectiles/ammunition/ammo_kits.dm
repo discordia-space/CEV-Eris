@@ -169,6 +169,9 @@
 			mags = 1
 		if(24 to 30)
 			boxxes = 1
+		if(30 to 36)
+			boxxes = 1
+			piles = 1
 		if(36 to 42)
 			boxxes = 1
 			mags = 1

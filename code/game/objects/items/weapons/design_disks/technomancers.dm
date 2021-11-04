@@ -77,6 +77,7 @@
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
 		/datum/design/autolathe/circuit/industrialgrinder = 2,
+		/datum/design/autolathe/circuit/craftingstation,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/conveyors
