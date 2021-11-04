@@ -423,16 +423,16 @@
 
 /datum/design/bioprinter/nerves
 	name = "Hypersensitive Nerves"
-	material = list(MATERIAL_BIOMATTER = 15, MATERIAL_GOLD = 1)
+	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_GOLD = 1)
 	build_path = /obj/item/organ/internal/nerve/sensitive_nerve
 
 /datum/design/bioprinter/muscle
 	name = "Super Muscle"
-	material = list(MATERIAL_BIOMATTER = 30)
+	materials = list(MATERIAL_BIOMATTER = 30)
 	build_path = /obj/item/organ/internal/muscle/super_muscle
 
 /datum/design/bioprinter/blood_vessel
 	name = "Extensive Blood Vessels"
-	material = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASTIC = 2)
+	materials = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASTIC = 2)
 	build_path = /obj/item/organ/internal/blood_vessel/extensive
 //[/MED]
