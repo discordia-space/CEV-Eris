@@ -173,7 +173,7 @@
 		to_chat(addicte , pick(
 			SPAN_DANGER("I FUCKING NEED METH!"),
 			SPAN_DANGER("I NEED MORE OF THE BLUE STUFF NOW! NOW! NOW!"),
-			SPAN_DANGER("WHERE IS MY METH?"),
+			SPAN_DANGER("WHERE IS MY METHE?"),
 			))
 		addicte.sanity.changeLevel(-2)
 
