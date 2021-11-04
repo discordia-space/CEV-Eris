@@ -315,9 +315,6 @@
 			return //needs power to open unless it was forced
 		else
 			use_power(360)
-	else if (usr)
-		log_admin("[usr]([usr.ckey]) has forced open an emergency shutter.")
-		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
 
 	if(checkAlarmed())
 		spawn(150)

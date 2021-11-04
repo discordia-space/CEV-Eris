@@ -160,26 +160,31 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result)
-    if(!build_path)
-        return
+/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result, high_quality_print)
+	if(!build_path)
+		return
 
-    var/atom/A = new build_path(newloc)
-    A.Created()
+	var/atom/A = new build_path(newloc)
+	A.Created()
 
-    if(mat_efficiency != 1 && adjust_materials)
-        for(var/obj/O in A.GetAllContents(includeSelf = TRUE))
-            if(length(O.matter))
-                for(var/i in O.matter)
-                    O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
+	if(mat_efficiency != 1 && adjust_materials)
+		for(var/obj/O in A.GetAllContents(includeSelf = TRUE))
+			if(length(O.matter))
+				for(var/i in O.matter)
+					O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
 
-    if(oldify_result && fabricator.low_quality_print)
-        var/obj/O = A
-        if(istype(O))
-            O.make_old(TRUE)
+	if(oldify_result && fabricator.low_quality_print)
+		var/obj/O = A
+		if(istype(O))
+			O.make_old(TRUE)
+
+	if(high_quality_print && fabricator.extra_quality_print)
+		var/obj/O = A
+		if(istype(O))
+			O.give_positive_attachment()
 
 
-    return A
+	return A
 
 /datum/design/autolathe
 	build_type = AUTOLATHE

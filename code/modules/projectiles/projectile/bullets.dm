@@ -34,7 +34,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+	if((!A || !A.density) && !istype(A, /obj/item/shield)) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
@@ -49,20 +49,31 @@
 	var/chance = 0
 	if(istype(A, /turf/simulated/wall))
 		var/turf/simulated/wall/W = A
-		chance = round(penetrating*damage/W.material.integrity*180)
+		chance = round(penetrating * armor_penetration * 2 / W.material.integrity * 180)
+	else if(istype(A, /obj/item/shield))
+		var/obj/item/shield/S = A
+		chance = round(armor_penetration * 2 / S.shield_integrity * 180)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		chance = round(penetrating*damage/D.maxhealth*180)
+		chance = round(penetrating * armor_penetration * 2 / D.maxhealth * 180)
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = damage*penetrating
+		chance = armor_penetration * penetrating
+
 
 	if(prob(chance))
+		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
+		armor_penetration *= maintainedVelocity
+		for(var/i in damage_types)
+			damage_types[i] *= maintainedVelocity
+		step_delay = min(step_delay / maintainedVelocity, step_delay / 2)
+
 		if(A.opacity)
 			//display a message so that people on the other side aren't so confused
 			A.visible_message(SPAN_WARNING("\The [src] pierces through \the [A]!"))
+
 		return 1
 
 	return 0
@@ -76,6 +87,7 @@
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
+	var/pellet_to_knockback_ratio = 0
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
@@ -114,6 +126,12 @@
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
 	pellets -= hits //each hit reduces the number of pellets left
+	if(pellet_to_knockback_ratio)
+		var/knockback_calc = round(hits / pellet_to_knockback_ratio)
+		if(knockback_calc)
+			var/target_turf = get_turf_away_from_target_complex(target_mob, starting, knockback_calc)
+			throw_at(target_turf, knockback_calc, 2, firer)
+
 	if (hits >= total_pellets || pellets <= 0)
 		return 1
 	return 0

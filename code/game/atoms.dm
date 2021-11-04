@@ -221,6 +221,9 @@
 	P.on_hit(src, def_zone)
 	. = FALSE
 
+/atom/proc/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
+	return 0
+
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
 		if(istype(src.loc, container))

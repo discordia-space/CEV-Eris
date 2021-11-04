@@ -320,39 +320,6 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			return TRUE
 	return FALSE
 
-
-
-/datum/antag_contract/item/file/research
-	name = "Steal research"
-	unique = TRUE
-	reward = 6
-	var/list/targets = list()
-	var/static/counter = 0
-
-/datum/antag_contract/item/file/research/New()
-	..()
-	var/list/candidates = SSresearch.all_designs.Copy()
-	for(var/datum/antag_contract/item/file/research/C in GLOB.various_antag_contracts)
-		candidates -= C.targets
-	while(candidates.len && targets.len < 8)
-		var/datum/design/D = pick(candidates)
-		targets += D
-		candidates -= D
-	desc = "Send a disk with one of the following designs via BSDM:<br>[english_list(targets, and_text = " or ")]."
-
-/datum/antag_contract/item/file/research/can_place()
-	return ..() && targets.len && counter < 3
-
-/datum/antag_contract/item/file/research/place()
-	..()
-	++counter
-
-/datum/antag_contract/item/file/research/check_files(list/files)
-	for(var/datum/computer_file/binary/design/D in files)
-		if(!D.copy_protected && (D.design in targets))
-			return TRUE
-	return FALSE
-
 // Excelsior contracts
 
 /datum/antag_contract/excel

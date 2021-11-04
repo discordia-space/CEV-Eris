@@ -98,6 +98,11 @@
 		return
 	..()
 
+/obj/item/gun/projectile/heavysniper/get_ammo() // Let's keep it simple. Count spent casing twice otherwise.
+	if(loaded.len)
+		return 1
+	return 0
+
 /obj/item/weaponparts
 	name = "weaponpart"
 	desc = "how did you get it?"

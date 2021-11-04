@@ -7,7 +7,8 @@
 /mob/living/exosuit/Move()
 	. = ..()
 	if(. && !istype(loc, /turf/space))
-		playsound(src.loc, mech_step_sound, 40, 1)
+		if(legs && legs.mech_step_sound)
+			playsound(src.loc,legs.mech_step_sound,40,1)
 
 /mob/living/exosuit/update_plane()
 	. = ..()

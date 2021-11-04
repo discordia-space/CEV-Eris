@@ -150,6 +150,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				if(life <= 0)
 					walk(src,0)
 					qdel(src)
+					return
 		return
 
 
