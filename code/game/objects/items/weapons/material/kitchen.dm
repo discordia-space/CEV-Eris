@@ -39,16 +39,17 @@
 			return ..()
 
 	if (reagents.total_volume > 0)
-		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return
 			M.visible_message(SPAN_NOTICE("\The [user] eats some [loaded] from \the [src]."))
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		else
 			user.visible_message(SPAN_WARNING("\The [user] begins to feed \the [M]!"))
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
 			M.visible_message(SPAN_NOTICE("\The [user] feeds some [loaded] to \the [M] with \the [src]."))
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
 		cut_overlays()
 		return
