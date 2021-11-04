@@ -18,6 +18,8 @@ jobs:
         with:
           path: ~/SpacemanDMM
           key: ${{ runner.os }}-spacemandmm-${{ secrets.CACHE_PURGE_KEY }}
+      - name: Clean TGUI Prebuilt
+        run: tgui/bin/tgui --clean
       - name: Restore Yarn cache
         uses: actions/cache@v2
         with:
@@ -38,7 +40,6 @@ jobs:
           bash tools/ci/check_filedirs.sh cev_eris.dme
           bash tools/ci/check_changelogs.sh
           bash tools/ci/check_grep.sh
-          tgui/bin/tgui --clean
           tools/build/build --ci lint
           tools/bootstrap/python -m dmi.test
           tools/bootstrap/python -m mapmerge2.dmm_test
@@ -55,6 +56,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Clean TGUI Prebuilt
+        run: tgui/bin/tgui --clean
       - name: Restore BYOND cache
         uses: actions/cache@v2
         with:
@@ -64,7 +67,6 @@ jobs:
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
-          tgui/bin/tgui --clean
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
 
   run_all_tests:
@@ -86,6 +88,8 @@ jobs:
         with:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-${{ secrets.CACHE_PURGE_KEY }}
+      - name: Clean TGUI Prebuilt #must happen before yarn cache, we do not want to delete the cache
+        run: tgui/bin/tgui --clean
       - name: Restore Yarn cache
         uses: actions/cache@v2
         with:
@@ -110,7 +114,6 @@ jobs:
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
-          tgui/bin/tgui --clean
           tools/build/build --ci -DCIBUILDING
           bash tools/ci/run_server.sh
 
@@ -120,6 +123,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Clean TGUI Prebuilt
+        run: pwsh tgui/bin/tgui_.ps1 --clean
       - name: Restore Yarn cache
         uses: actions/cache@v2
         with:
@@ -130,9 +135,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Compile
-        run: |
-          pwsh tgui/bin/tgui_.ps1 --clean
-          pwsh tools/ci/build.ps1
+        run: pwsh tools/ci/build.ps1
         env:
           DM_EXE: "C:\\byond\\bin\\dm.exe"
       - name: Create artifact
