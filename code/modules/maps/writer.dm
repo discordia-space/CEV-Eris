@@ -88,11 +88,9 @@ dmm_suite{
 					dmm_text += temp_key
 					sleep(-1)
 					}
-				x_pos = 1
 				dmm_text += {"\n"}
 				sleep(-1)
 				}
-			y_pos = 1
 			dmm_text += {"\"}"}
 			sleep(-1)
 			}
