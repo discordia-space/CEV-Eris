@@ -1,0 +1,7 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - soundadd: new sounds for all gun calibers
+  - soundadd: new sounds for grab-fu
+  - soundadd: new sounds for all plasma weapons
+  - soundadd: new shield sound
