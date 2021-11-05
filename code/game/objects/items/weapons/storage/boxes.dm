@@ -408,6 +408,58 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
+/obj/item/storage/box/baton_rounds
+	name = "box of baton rounds"
+	desc = "A box containing 6 rubber rounds, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade
+
+/obj/item/storage/box/baton_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/blast_rounds
+	name = "box of explosive grenade shells"
+	desc = "A box containing 6 explosive grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/blast
+
+/obj/item/storage/box/blast_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/frag_rounds
+	name = "box of frag grenade shells"
+	desc = "A box containing 6 frag grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/frag
+
+/obj/item/storage/box/frag_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/emp_rounds
+	name = "box of EMP grenade shells"
+	desc = "A box containing 6 EMP grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/emp
+
+/obj/item/storage/box/emp_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
 /obj/item/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."

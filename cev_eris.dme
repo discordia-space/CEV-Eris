@@ -2373,7 +2373,6 @@
 #include "code\modules\projectiles\guns\energy\toxgun.dm"
 #include "code\modules\projectiles\guns\energy\xray.dm"
 #include "code\modules\projectiles\guns\launcher\crossbow.dm"
-#include "code\modules\projectiles\guns\launcher\grenade_launcher.dm"
 #include "code\modules\projectiles\guns\launcher\pneumatic.dm"
 #include "code\modules\projectiles\guns\launcher\projectile_grenade_launcher.dm"
 #include "code\modules\projectiles\guns\launcher\syringe_gun.dm"

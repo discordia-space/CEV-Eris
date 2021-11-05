@@ -39,6 +39,6 @@
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator,
-			/obj/item/gun/launcher/grenade
+			/obj/item/gun/projectile/shotgun/pump/grenade
 		),
 	)
