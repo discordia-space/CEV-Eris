@@ -12,6 +12,7 @@
 	var/obj/machinery/compressor_feeder/linked_feeder = null
 	var/making = FALSE
 
+/* Just a note for the future , if anyone wants to actually code a NanoUI / HTMLui , this could also be used to convert materials to other materials , after all , it is kinda doing fusion */
 
 /obj/machinery/power/nano_compressor/Initialize()
 	linked_feeder = new(loc)
@@ -68,6 +69,15 @@
 			anchored = !anchored
 			visible_message("[user] [anchored ? "anchors" : "deanchors"] [src]", "You hear bolts being turned", 6)
 
+/obj/machinery/power/nano_compressor/proc/stop_sequence(var/flick)
+	if(flick)
+		flick("initial(icon_state)]_open_empty", src)
+	to_chat(user, SPAN_NOTICE("There isn't enough power to compress!"))
+	making = FALSE
+	use_power = FALSE
+	STOP_PROCESSING(SSmachines,src)
+	linked_feeder.using = FALSE
+
 /obj/machinery/power/nano_compressor/attack_hand(mob/user)
 	if(making)
 		return FALSE
@@ -81,37 +91,24 @@
 	flick("[initial(icon_state)]_start", src)
 	spawn(27) // Seconds that the animation above finishes
 		if(stat & NOPOWER)
-			flick("initial(icon_state)]_open_empty", src)
-			to_chat(user, SPAN_NOTICE("There isn't enough power to compress!"))
-			making = FALSE
-			use_power = FALSE
-			STOP_PROCESSING(SSmachines,src)
-			linked_feeder.using = FALSE
+			stop_sequence(TRUE)
 			return FALSE
 		flick("[initial(icon_state)]_compressing", src)
 		spawn(20)
 			if(stat & NOPOWER)
-				flick("initial(icon_state)]_open_empty", src)
-				to_chat(user, SPAN_NOTICE("There isn't enough power to compress!"))
-				making = FALSE
-				use_power = FALSE
-				STOP_PROCESSING(SSmachines,src)
-				linked_feeder.using = FALSE
+				stop_sequence(TRUE)
 				return FALSE
 			flick("[initial(icon_state)]_open", src)
 			spawn(27)
 				new /obj/item/core_stabilizer(get_turf(src))
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
-				making = FALSE
-				use_power = FALSE
-				STOP_PROCESSING(SSmachines,src)
-				linked_feeder.empty_matter()
-				linked_feeder.using = FALSE
+				stop_sequence(FALSE)
 
 /obj/item/core_stabilizer
 	name = "Stabilization core"
 	desc = "A shiny plasma-hydrogen-diamond sphere made by an alien machine , created under immense stress ,it posseses exotic phenomens"
 	icon = 'icons/obj/machines/compressor.dmi'
 	icon_state = "stabilization core"
-	price_tag = 10000
+	price_tag = 20000
+	origin_tech = list(TECH_ARCANE = 4, TECH_BLUESPACE = 8, TECH_ENGINEERING = 12)
 
