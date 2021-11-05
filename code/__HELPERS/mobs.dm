@@ -203,7 +203,7 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-	currently_timing = TRUE
+	user.currently_timing = TRUE
 	. = 1
 	while (world.time < endtime)
 		sleep(1)
