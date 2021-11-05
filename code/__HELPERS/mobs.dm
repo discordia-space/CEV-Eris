@@ -214,12 +214,14 @@ Proc for attack log creation, because really why not
 /mob
 	var/currently_timing = FALSE
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
 	if(!user)
 		return 0
+
 	if(user.currently_timing)
 		to_chat(user, SPAN_NOTICE("You cannot do more than 1 action at a time!"))
 		return FALSE
+
 	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
@@ -249,13 +251,14 @@ Proc for attack log creation, because really why not
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
-			. = 0
-			break
+		if(immobile)
+			if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
+				. = 0
+				break
 
-		if(target_loc && (!target || target_loc != target.loc))
-			. = 0
-			break
+			if(target_loc && (!target || target_loc != target.loc))
+				. = 0
+				break
 
 		if(needhand)
 			if(user.get_active_hand() != holding)

@@ -106,6 +106,7 @@
 
 //// . 20 ////
 
+
 /obj/item/ammo_magazine/ammobox/srifle
 	name = "ammunition box (.20 Rifle)"
 	icon_state = "box_srifle_l"

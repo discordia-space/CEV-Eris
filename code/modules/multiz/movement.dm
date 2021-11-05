@@ -89,6 +89,12 @@
 	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))
 	return FALSE
 
+/mob/proc/zMoveUp()
+	return zMove(UP)
+
+/mob/proc/zMoveDown()
+	return zMove(DOWN)
+
 /mob/living/zMove(direction)
 	if (is_ventcrawling)
 		var/obj/machinery/atmospherics/pipe/zpipe/P = loc
