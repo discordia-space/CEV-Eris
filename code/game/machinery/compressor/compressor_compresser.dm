@@ -12,6 +12,7 @@
 	var/obj/machinery/compressor_feeder/linked_feeder = null
 	var/making = FALSE
 	var/power_drained = 0
+	var/power_load_personal = 0
 
 /* Just a note for the future , if anyone wants to actually code a NanoUI / HTMLui , this could also be used to convert materials to other materials , after all , it is kinda doing fusion */
 
@@ -58,7 +59,8 @@
 /obj/machinery/power/nano_compressor/Process()
 	if(!powernet)
 		return PROCESS_KILL
-	power_drained = draw_power(powernet.avail - power_drained) // draw all available power
+	power_drained = draw_power(powernet.avail - powernet.load + power_load_personal)// draw all available power
+	power_load_personal = power_drained
 	if(power_drained >= active_power_usage)
 		stat |= NOPOWER
 	else
@@ -93,6 +95,7 @@
 	making = TRUE
 	use_power = TRUE
 	power_drained = powernet.load // we set it here to the load so we can suck all the available one when we process
+	power_load_personal = 0
 	linked_feeder.using = TRUE
 	START_PROCESSING(SSmachines,src)
 	flick("[initial(icon_state)]_start", src)

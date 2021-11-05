@@ -104026,6 +104026,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/item/paper/nano_compressor,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/engine_room)
 "peB" = (

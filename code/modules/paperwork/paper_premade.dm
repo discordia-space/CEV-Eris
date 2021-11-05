@@ -356,3 +356,29 @@
 	<font face=\"Times New Roman\"><i>James N</i></font>.
 	\[br\]"}
 
+/obj/item/paper/nano_compressor
+	name = "Space rookie's guide to fusion in regards to stabilization cores"
+	info = {"\[b\]Hello fellow drunk engineer!\[/b\]
+
+	The nano compressor works in mysterious ways \n
+	The most important detail to keep in mind is that \n
+	The quality of the stabilized cores depends \n
+	On how much power there is inside the grid at the time they are made \n
+	To make a core , the feeder needs 30 sheets of diamond and plasma \n
+	And 4 of mettalic hydrogen , a very rare and highly sought after material \n
+	The toughest of its kind in this universe, really. \n
+
+	PS : If the SM gets antsy , you can throw the stabilizer core at it \n
+	It'll calm it a bit , depending on how well made it is\n
+	Also , to feed all the power from the engine SMES \n
+	Turn on the engineer bypass in RCON Remote control \n
+	You need atleast 36 MW of output to make a core \n
+	The transmission coils you get are enough \
+	Just keep in mind that you need to wire terminals \n
+	After you assemble the SMES , to do that you just \
+	Open their panel , and start attaching cables \
+
+	Good luck , and don't forget to drink your vodka when doing this \
+	Sergei. \
+	\[br\]"}
+
