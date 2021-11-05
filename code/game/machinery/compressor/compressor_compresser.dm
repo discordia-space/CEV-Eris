@@ -56,7 +56,7 @@
 
 /obj/machinery/power/nano_compressor/Process()
 	if(!powernet)
-		stat & ~NOPOWER
+		stat &= ~NOPOWER
 		return PROCESS_KILL
 	var/power_drain = draw_power(active_power_usage)// draw the power
 	if(power_drain > active_power_usage - 1)
@@ -109,11 +109,10 @@
 			spawn(25)
 				var/obj/item/core_stabilizer/created_core = new /obj/item/core_stabilizer(get_turf(src))
 				created_core.quality_multiplier = max(0.1,powernet.avail / active_power_usage) // Go big. reach for the stars , or lose power the last moment and eat dirt..
-				if(quality_multiplier > 1)
+				if(created_core.quality_multiplier > 1)
 					created_core.icon_state = "stabilization core super"
 				else
 					created_core.icon_state = "stabilization core bad"
-
 				created_core.price_tag = price_tag * created_core.quality_multiplier
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
 				linked_feeder.empty_matter()
