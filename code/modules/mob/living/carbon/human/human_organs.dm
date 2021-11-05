@@ -123,12 +123,8 @@
 		return
 
 	for (var/obj/item/organ/external/E in organs)
-		if(!E || !(E.functions & BODYPART_GRASP))
+		if(!E || !(E.functions & BODYPART_GRASP) || if(E.status & ORGAN_SPLINTED))
 			continue
-
-		if(E.status & ORGAN_SPLINTED)
-			if(prob(70))
-				continue
 
 		if(E.is_broken() || E.is_dislocated() || E.limb_efficiency <= 50)
 			switch(E.body_part)
