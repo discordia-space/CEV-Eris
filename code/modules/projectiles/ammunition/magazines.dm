@@ -600,6 +600,10 @@
 	name = "ammo strip (.20 Rifle practice)"
 	ammo_type = /obj/item/ammo_casing/srifle/practice
 
+/obj/item/ammo_magazine/slsrifle/rubber
+	name = "ammo strip (.20 Rifle rubber)"
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
 /obj/item/ammo_magazine/slsrifle/scrap
 	name = "ammo strip (old .20 Rifle)"
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
