@@ -254,6 +254,8 @@
 
 /obj/machinery/hivemind_machine/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
+	if(istype(Proj, /obj/item/projectile/ion))
+		Proj.on_hit(loc)
 	. = ..()
 
 
