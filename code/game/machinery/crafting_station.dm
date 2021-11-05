@@ -145,7 +145,7 @@
 			for(var/material in needed_material_armorpart)
 				var/amount = needed_material_armorpart[material]
 				if(amount>stored_material[material])
-					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 
 	flick("[initial(icon_state)]_warmup", src)
