@@ -31,7 +31,7 @@
 		list(mode_name="fire grenades", mode_desc="Unlocks the underbarrel grenade launcher", burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
 		)
 
-	var/obj/item/gun/launcher/grenade/underslung/launcher
+	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
 
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.3 // 30 vig , almost a heavy assault rifle
@@ -43,8 +43,8 @@
 	launcher = new(src)
 
 /obj/item/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/grenade)))
-		launcher.load(I, user)
+	if((istype(I, /obj/item/ammo_casing/grenade)))
+		launcher.load_underslung(I, user)
 	else
 		..()
 
@@ -52,7 +52,7 @@
 	var/datum/firemode/cur_mode = firemodes[sel_mode]
 
 	if(user.get_inactive_hand() == src && cur_mode.settings["use_launcher"])
-		launcher.unload(user)
+		launcher.unload_underslung(user)
 	else
 		..()
 

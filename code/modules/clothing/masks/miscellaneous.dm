@@ -247,6 +247,7 @@
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/mask/ai/Initialize(mapload, ...)
 	. = ..()

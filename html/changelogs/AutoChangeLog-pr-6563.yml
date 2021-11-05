@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: faction language guaranteed to be known by faction member
+  - tweak: people spawned via Last Shelter speak Latin

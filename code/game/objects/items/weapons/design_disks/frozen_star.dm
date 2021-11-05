@@ -18,6 +18,8 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg/rubber,
+		//rifle speedloaders
+		/datum/design/autolathe/ammo/sl_srifle/rubber,
 		//rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
@@ -46,6 +48,8 @@
 		/datum/design/autolathe/ammo/smg,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg,
+		//rifle speedloaders
+		/datum/design/autolathe/ammo/sl_srifle,
 		//rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
