@@ -26,7 +26,7 @@
 		FULL_AUTO_400
 		)
 	wield_delay = 1.5 SECOND
-	wield_delay_factor = 0.4 // 30 vig to insta wield , heavy class rifle
+	wield_delay_factor = 0.4 // 40 vig to insta wield , heavy class rifle
 	fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
