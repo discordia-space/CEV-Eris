@@ -11,8 +11,6 @@
 	var/retracted = TRUE
 	var/obj/machinery/compressor_feeder/linked_feeder = null
 	var/making = FALSE
-	var/power_drained = 0
-	var/power_load_personal = 0
 
 /* Just a note for the future , if anyone wants to actually code a NanoUI / HTMLui , this could also be used to convert materials to other materials , after all , it is kinda doing fusion */
 
@@ -59,9 +57,8 @@
 /obj/machinery/power/nano_compressor/Process()
 	if(!powernet)
 		return PROCESS_KILL
-	power_drained = draw_power(powernet.avail - powernet.load + power_load_personal)// draw all available power
-	power_load_personal = power_drained
-	if(power_drained >= active_power_usage)
+	var/power_drain = draw_power(active_power_usage)// draw the power
+	if(power_drain > active_power_usage - 1)
 		stat |= NOPOWER
 	else
 		stat &= ~NOPOWER
@@ -75,10 +72,11 @@
 			anchored = !anchored
 			visible_message("[user] [anchored ? "anchors" : "deanchors"] [src]", "You hear bolts being turned", 6)
 
-/obj/machinery/power/nano_compressor/proc/stop_sequence(var/flick)
+/obj/machinery/power/nano_compressor/proc/stop_sequence(flick, msg)
 	if(flick)
 		flick("initial(icon_state)]_open_empty", src)
-	visible_message(SPAN_NOTICE("There isn't enough power to compress!"), "You hear a loud negative ping", 6)
+	if(msg)
+		visible_message(SPAN_NOTICE("There isn't enough power to compress!"), "You hear a loud negative ping", 6)
 	making = FALSE
 	use_power = FALSE
 	STOP_PROCESSING(SSmachines,src)
@@ -94,28 +92,26 @@
 		to_chat(user, SPAN_NOTICE("\The [src] needs a direct connection to a power grid to function"))
 	making = TRUE
 	use_power = TRUE
-	power_drained = powernet.load // we set it here to the load so we can suck all the available one when we process
-	power_load_personal = 0
 	linked_feeder.using = TRUE
 	START_PROCESSING(SSmachines,src)
 	flick("[initial(icon_state)]_start", src)
-	spawn(27) // Seconds that the animation above finishes
+	spawn(25) // 0.2 seconds before animation finishes
 		if(stat & NOPOWER)
-			stop_sequence(TRUE)
+			stop_sequence(TRUE, TRUE)
 			return
 		flick("[initial(icon_state)]_compressing", src)
-		spawn(20)
+		spawn(18)
 			if(stat & NOPOWER)
-				stop_sequence(TRUE)
+				stop_sequence(TRUE, TRUE)
 				return
 			flick("[initial(icon_state)]_open", src)
-			spawn(27)
+			spawn(25)
 				var/obj/item/core_stabilizer/created_core = new /obj/item/core_stabilizer(get_turf(src))
-				created_core.quality_multiplier = powernet.avail / active_power_usage // Go big. reach for the stars , or lose power the last moment and eat dirt..
+				created_core.quality_multiplier = max(0.1,powernet.avail / active_power_usage) // Go big. reach for the stars , or lose power the last moment and eat dirt..
 				created_core.price_tag = price_tag * created_core.quality_multiplier
-
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
-				stop_sequence(FALSE)
+				linked_feeder.empty_matter()
+				stop_sequence(FALSE, FALSE)
 
 /obj/item/core_stabilizer
 	name = "Stabilization core"

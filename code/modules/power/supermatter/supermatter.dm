@@ -386,6 +386,11 @@
 
 
 /obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
+	if(istype(AM, /obj/item/core_stabilizer))
+		var/obj/item/core_stabilizer/stabilizer = AM
+		damage -= clamp(stabilizer.quality_multiplier * STABILIZER_EFFECT, damage, explosion_point)
+		visible_message("the [stabilizer] smashes into the [src] causing it to stabilize to a large degree!")
+		return
 	if(istype(AM, /obj/effect))
 		return
 	if(isliving(AM))
