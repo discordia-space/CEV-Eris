@@ -15,7 +15,7 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
 	price_tag = 5000 //99 rounds of pure pain and destruction served in auto-fire, so it basically an upgraded LMG
-	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'

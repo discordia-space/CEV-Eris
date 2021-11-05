@@ -22,7 +22,6 @@
         )
     spawn_tags = SPAWN_TAG_GUN_OS
     price_tag = 2500
-
     spawn_blacklisted = TRUE //until loot rework
 
 /obj/item/gun/projectile/type_69/on_update_icon()
