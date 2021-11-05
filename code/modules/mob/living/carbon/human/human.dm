@@ -978,14 +978,6 @@ var/list/rank_prefix = list(\
 
 	for(var/obj/item/organ/external/organ in organs)
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent damage , but not pain
-			for(var/obj/item/O in organ.implants)
-				var/mob/living/carbon/human/H = organ.owner
-				if(prob(10) && is_sharp(O) && !MOVING_DELIBERATELY(H))
-					if(!organ.can_feel_pain())
-						to_chat(src, SPAN_WARNING("You feel [O] moving inside your [organ.name]."))
-						continue
-					to_chat(src, SPAN_WARNING("You feel a weak wave of pain as \the [O] inside your [organ.name] jostles"))
-					H.adjustHalLoss(2)
 			continue
 
 		for(var/obj/item/O in organ.implants)
