@@ -109,6 +109,13 @@
 			spawn(25)
 				var/obj/item/core_stabilizer/created_core = new /obj/item/core_stabilizer(get_turf(src))
 				created_core.quality_multiplier = max(0.1,powernet.avail / active_power_usage) // Go big. reach for the stars , or lose power the last moment and eat dirt..
+				if(quality_multiplier > 1)
+					created_core.icon_state = "stabilization core good"
+				else if(quality_multiplier > 2)
+					created_core.icon_state = "stabilization core super"
+				else if(quality_multiplier < 1)
+					created_core.icon_state = "stabilization core bad"
+
 				created_core.price_tag = price_tag * created_core.quality_multiplier
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
 				linked_feeder.empty_matter()
