@@ -1,5 +1,5 @@
 /obj/item/electronics/circuitboard/crafting_station
-	name = T_BOARD("craftign station")
+	name = T_BOARD("crafting station")
 	build_path = /obj/machinery/craftingstation
 	board_type = "machine"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
