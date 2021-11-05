@@ -159,6 +159,10 @@
 	name = "SA BR .30 \"Novakovic\""
 	build_path = /obj/item/gun/projectile/boltgun/serbian
 
+/datum/design/autolathe/gun/boltgun_fs
+	name = "FS BR .20 \"Tosshin\""
+	build_path = /obj/item/gun/projectile/boltgun/fs
+
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/gun/projectile/automatic/ak47

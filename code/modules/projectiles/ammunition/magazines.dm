@@ -567,13 +567,46 @@
 
 /obj/item/ammo_magazine/sllrifle/hv
 	name = "ammo strip (.30 Rifle HV)"
-	icon_state = "lrifle"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
+
+//////// .20 RIFLE SPEEDLOADERS ////////
+
+/obj/item/ammo_magazine/slsrifle
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 5
-	multiple_sprites = 1
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle/on_update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "stripper_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slsrifle/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/ammo_magazine/slsrifle/hv
+	name = "ammo strip (.20 Rifle HV)"
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/slsrifle/practice
+	name = "ammo strip (.20 Rifle practice)"
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/slsrifle/rubber
+	name = "ammo strip (.20 Rifle rubber)"
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/slsrifle/scrap
+	name = "ammo strip (old .20 Rifle)"
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
 
 /// OTHER ///
 
