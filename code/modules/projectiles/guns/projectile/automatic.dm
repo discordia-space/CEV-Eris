@@ -18,8 +18,6 @@
 	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
 	bad_type = /obj/item/gun/projectile/automatic
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.3 // 30 vig for insta wield
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,

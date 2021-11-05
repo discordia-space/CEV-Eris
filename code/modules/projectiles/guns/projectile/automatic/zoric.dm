@@ -29,8 +29,6 @@
 		)
 
 	gun_tags = list(GUN_SILENCABLE)
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.3 // Heavy smg , 30 vig to insta wield
 
 /obj/item/gun/projectile/automatic/zoric/on_update_icon()
 	cut_overlays()

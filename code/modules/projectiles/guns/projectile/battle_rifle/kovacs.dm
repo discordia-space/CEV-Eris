@@ -23,11 +23,9 @@
 	damage_multiplier = 1.2 //30
 	penetration_multiplier = 1.4 //35
 	recoil_buildup = 2
-	one_hand_penalty = 20 //full sized rifle
+	one_hand_penalty = 20 //full sized rifle 
 	zoom_factor = 0.6
 	fire_delay = 6.5
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // semi-auto but good
 
 /obj/item/gun/projectile/kovacs/on_update_icon()
 	..()

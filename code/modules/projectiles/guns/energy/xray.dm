@@ -11,5 +11,4 @@
 	charge_cost = 100
 	fire_delay = 1
 	twohanded = TRUE
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.2 // 20 vig , a better nightfall with extra armor pen
+	

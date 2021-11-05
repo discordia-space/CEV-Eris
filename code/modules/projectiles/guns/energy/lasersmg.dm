@@ -29,9 +29,6 @@
 		FULL_AUTO_300
 		)
 
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.1 // 10 vig
-
 
 /obj/item/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params)
 	projectile_color = pick(list("#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000"))

@@ -25,9 +25,6 @@
 		list(mode_name="INCINERATE", mode_desc="An armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
 	)
 
-	wield_delay = 0.7 SECOND
-	wield_delay_factor = 0.3 // 30 vig
-
 
 /obj/item/gun/energy/plasma/mounted
 	self_recharge = TRUE

@@ -89,21 +89,6 @@
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
-	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
-	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
-
-/obj/item/gun/wield(mob/user)
-	if(!wield_delay)
-		..()
-		return
-	var/calculated_delay = wield_delay
-	if(ishuman(user))
-		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * wield_delay_factor))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
-	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
-		..()
-	else if (calculated_delay <= 0)
-		..()
-
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	if(!istool(I) || user.a_intent != I_HURT)

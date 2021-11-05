@@ -21,8 +21,6 @@
 		)
 
 	var/lightfail = 0
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.3 // 30 vig
 
 //override for failcheck behaviour
 /obj/item/gun/energy/nuclear/Process()

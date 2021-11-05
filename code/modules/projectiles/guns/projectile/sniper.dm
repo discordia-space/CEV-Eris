@@ -30,7 +30,6 @@
 	no_internal_mag = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
-	wield_delay = 0
 
 /obj/item/gun/projectile/heavysniper/on_update_icon()
 	..()

@@ -34,9 +34,6 @@
 	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
 	var/overcharge_max = 5
 
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // 20 vig
-
 /obj/item/gun/energy/switch_firemodes()
 	. = ..()
 	if(.)
