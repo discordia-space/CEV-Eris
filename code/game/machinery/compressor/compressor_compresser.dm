@@ -59,7 +59,7 @@
 	if(!powernet)
 		return PROCESS_KILL
 	power_drained = draw_power(powernet.avail - power_drained) // draw all available power
-	if(power_drained < active_power_usage)
+	if(power_drained >= active_power_usage)
 		stat |= NOPOWER
 	else
 		stat &= ~NOPOWER
