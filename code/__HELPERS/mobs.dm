@@ -210,10 +210,15 @@ Proc for attack log creation, because really why not
 
 	if (progbar)
 		qdel(progbar)
+/mob
+	var/currently_timing = FALSE
 
 /proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user)
 		return 0
+	if(user.currently_timing)
+		to_chat(user, SPAN_NOTICE("You cannot do more than 1 action at a time!"))
+		return FALSE
 	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
@@ -236,6 +241,7 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
+	currently_timing = TRUE
 	. = 1
 	while (world.time < endtime)
 		sleep(1)
@@ -254,6 +260,7 @@ Proc for attack log creation, because really why not
 			if(user.get_active_hand() != holding)
 				. = 0
 				break
+	currently_timing = FALSE
 
 	if (progbar)
 		qdel(progbar)
