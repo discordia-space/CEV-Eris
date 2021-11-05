@@ -17,7 +17,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 3500
-	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/30.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
@@ -36,6 +36,13 @@
 	spawn_blacklisted = TRUE
 
 	var/folded = FALSE
+
+/obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
+	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
+		return 1
+	if(istype(loc, /obj/item/storage))
+		return 2
+	return 0
 
 /obj/item/gun/projectile/automatic/ak47/on_update_icon()
 	..()
@@ -83,38 +90,45 @@
 
 	price_tag = 3500
 
-/obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick(mob/user)
 	. = ..()
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	var/able = can_interact(user)
+
+	if(able == 1)
+		return
+
+	if(able == 2)
+		to_chat(user, SPAN_NOTICE("You cannot [folded ? "unfold" : "fold"] the stock while \the [src] is in a container."))
 		return
 
 	fold()
 
 
-/obj/item/gun/projectile/automatic/ak47/sa/verb/quick_fold()
+/obj/item/gun/projectile/automatic/ak47/sa/verb/quick_fold(mob/user)
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)
 		return
-	fold()
 
-/obj/item/gun/projectile/automatic/ak47/sa/proc/fold()
+	fold(user)
+
+/obj/item/gun/projectile/automatic/ak47/sa/proc/fold(user)
 
 	if(folded)
-		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
 	else
-		to_chat(usr, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
 
-	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////FS//////////////////////////////////////////
@@ -157,37 +171,43 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	var/able = can_interact(user)
+
+	if(able == 1)
+		return
+
+	if(able == 2)
+		to_chat(user, SPAN_NOTICE("The stock on \the [src] gets caught on the bag."))
 		return
 
 	fold()
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
+/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold(mob/user)	//Easier to redo the proc than redo everything else
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)
 		return
-	fold()
+	fold(user)
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold(user)
 
 	if(folded)
-		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_HUGE
 		folded = FALSE
 	else
-		to_chat(usr, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_BULKY
 		folded = TRUE
 
-	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////Makeshift//////////////////////////////////////////

@@ -27,6 +27,7 @@
 		)
 	wield_delay = 1.5 SECOND
 	wield_delay_factor = 0.4 // 30 vig to insta wield , heavy class rifle
+	fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
 
 /obj/item/gun/projectile/automatic/vintorez/on_update_icon()
 	var/iconstring = initial(icon_state)

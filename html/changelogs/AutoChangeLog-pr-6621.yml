@@ -1,0 +1,5 @@
+author: shazbot194
+delete-after: true
+changes:
+  - rscadd: Added Hardcases
+  - bugfix: fixed AK folding stocks being foldable in bags.

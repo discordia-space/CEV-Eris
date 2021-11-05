@@ -11,6 +11,7 @@
 	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
+	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	rarity_value = 5
 
 /obj/item/tool/hammer/homewrecker

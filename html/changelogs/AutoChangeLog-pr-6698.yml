@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: EMP projectile not creating EMP when hit a turret, hivemind structure
+      or simple_mob

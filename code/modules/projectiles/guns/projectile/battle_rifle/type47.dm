@@ -24,9 +24,9 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
-	spawn_blacklisted = TRUE //until loot rework
 	wield_delay = 0.9 SECOND
 	wield_delay_factor = 0.1 // One-star SMG , but very powerfull
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 
 /obj/item/gun/projectile/type_47/on_update_icon()
 	..()

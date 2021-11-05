@@ -19,7 +19,7 @@
 	penetration_multiplier = 1.35
 	recoil_buildup = 5
 
-	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/40pistol.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'

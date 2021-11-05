@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/giskard.dmi'
 	icon_state = "giskard"
 	item_state = "pistol"
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/35pistol.ogg'
 	gun_tags = list(GUN_SILENCABLE)
 	w_class = ITEM_SIZE_SMALL
 	can_dual = TRUE

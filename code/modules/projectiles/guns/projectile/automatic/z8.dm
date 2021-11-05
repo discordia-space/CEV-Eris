@@ -11,7 +11,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
 	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
 	ammo_type = /obj/item/ammo_casing/srifle
-	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
