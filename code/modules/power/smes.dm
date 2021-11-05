@@ -53,12 +53,12 @@
 /obj/machinery/power/smes/AltClick(mob/user)
 	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
 		return FALSE
-	if(get_dist(user , src) > 1)
+	if(get_dist(user, src) > 1)
 		return FALSE
 	input_level = input_level > 0 ? 0 : input_level_max
 	input_attempt = input_level > 0
-	visible_message("[user] switches the [src]'s input to [input_level ? "maximum" : "none"]",
-	"You hear a switch being flicked", 6)
+	visible_message("[user] switches the [src]'s input to [input_level ? "maximum" : "none"].",
+	"You hear a switch being flicked.", 6)
 
 /obj/machinery/power/smes/CtrlClick(mob/user)
 	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
@@ -67,8 +67,8 @@
 		return FALSE
 	output_level = output_level > 0 ? 0 : output_level_max
 	output_attempt = output_level > 0
-	visible_message("[user] switches the [src]'s output to [output_level ? "maximum" : "none"]",
-	"You hear a switch being flicked", 6)
+	visible_message("[user] switches the [src]'s output to [output_level ? "maximum" : "none"].",
+	"You hear a switch being flicked.", 6)
 
 
 
