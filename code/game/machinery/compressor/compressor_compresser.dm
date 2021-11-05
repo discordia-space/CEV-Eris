@@ -56,6 +56,7 @@
 
 /obj/machinery/power/nano_compressor/Process()
 	if(!powernet)
+		stat & ~NOPOWER
 		return PROCESS_KILL
 	var/power_drain = draw_power(active_power_usage)// draw the power
 	if(power_drain > active_power_usage - 1)
