@@ -299,6 +299,9 @@
 				to_chat(user, SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I]."))
 			return
 
+		var/test = TRUE
+		// This is a test
+		var/boop = 42
 		if(ABORT_CHECK)
 			return
 
