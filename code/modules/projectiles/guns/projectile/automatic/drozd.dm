@@ -25,7 +25,7 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.1 // 20 vig
+	wield_delay_factor = 0.1 // 10 vig
 
 	init_firemodes = list(
 		FULL_AUTO_300,
