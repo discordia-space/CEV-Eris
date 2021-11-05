@@ -139,7 +139,7 @@
 					return
 		if("gunpart")
 			if(stored_material[MATERIAL_PLASTEEL] < needed_material_gunpart[MATERIAL_PLASTEEL])
-				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part"))
+				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part."))
 				return
 		if("armorpart")
 			for(var/material in needed_material_armorpart)
