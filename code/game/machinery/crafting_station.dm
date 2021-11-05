@@ -123,7 +123,7 @@
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
 				if(amount>stored_material[material])
-					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("slug")
 			for(var/material in needed_material_ammo)
