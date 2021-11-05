@@ -59,7 +59,7 @@
 	if(!powernet)
 		return PROCESS_KILL
 	power_drained = draw_power(powernet.avail - power_drained) // draw all available power
-	if(power_drawed < active_power_usage)
+	if(power_drained < active_power_usage)
 		stat |= NOPOWER
 	else
 		stat &= ~NOPOWER
@@ -109,7 +109,7 @@
 			spawn(27)
 				var/obj/item/core_stabilizer/created_core = new /obj/item/core_stabilizer(get_turf(src))
 				created_core.quality_multiplier = powernet.avail / active_power_usage // Go big. reach for the stars , or lose power the last moment and eat dirt..
-				created_core.price_tag = price_tag * quality_multiplier
+				created_core.price_tag = price_tag * created_core.quality_multiplier
 
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
 				stop_sequence(FALSE)
