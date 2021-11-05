@@ -18,6 +18,8 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg/rubber,
+		//rifle speedloaders
+		/datum/design/autolathe/ammo/sl_srifle/rubber,
 		//rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
@@ -46,6 +48,8 @@
 		/datum/design/autolathe/ammo/smg,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg,
+		//rifle speedloaders
+		/datum/design/autolathe/ammo/sl_srifle,
 		//rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
@@ -446,14 +450,4 @@
 	designs = list(
 		/datum/design/autolathe/gun/lmg_tk = 3, // "FS LMG .30 \"Takeshi\""
 		/datum/design/autolathe/ammo/lrifle_pk,
-	)
-
-/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_br
-	disk_name = "Frozen Star - .20 Arisaka Rifle"
-	icon_state = "frozenstar"
-	rarity_value = 7
-	license = 5
-	designs = list(
-		/datum/design/autolathe/gun/boltgun_fs = 3, // "FS BR .20 \"Arisaka\""
-		/datum/design/autolathe/ammo/sl_srifle,
 	)

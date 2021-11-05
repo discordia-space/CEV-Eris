@@ -125,36 +125,25 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
 
 /obj/item/gun/projectile/boltgun/fs
-	name = "FS BR .20 \"Arisaka\""
+	name = "FS BR .20 \"Tosshin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			Replica of an ancient bolt action known for its easy maintenance and low price."
-	icon_state = "arisaka"
-	item_suffix  = "_arisaka"
+	icon_state = "arisaka_ih"
+	item_suffix  = "_arisaka_ih"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
-	penetration_multiplier = 1.9
-	recoil_buildup = 3.2
+	penetration_multiplier = 1.7
+	recoil_buildup = 2.7
 	max_shells = 6
 	magazine_type = /obj/item/ammo_magazine/srifle
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 10)
-	wielded_item_state = "_doble_arisaka"
-	sharp = FALSE
-	spawn_blacklisted = FALSE
-	saw_off = FALSE
-	gun_parts = list(/obj/item/stack/material/steel = 16)
-
-/obj/item/gun/projectile/boltgun/fs/ih
-	name = "FS BR .20 \"Tosshin\""
-	icon_state = "arisaka_ih"
-	item_suffix  = "_arisaka_ih"
-	damage_multiplier = 1.6
-	penetration_multiplier = 1.7
-	recoil_buildup = 2.7 //trades penetration for recoil
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_arisaka_ih"
+	sharp = FALSE
 	spawn_blacklisted = TRUE
+	saw_off = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
