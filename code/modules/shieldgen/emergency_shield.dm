@@ -299,9 +299,8 @@
 				to_chat(user, SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I]."))
 			return
 
-		var/boop = 42
-
 		if(ABORT_CHECK)
+			anchored = TRUE
 			return
 
 	if(istype(I, /obj/item/stack/cable_coil) && malfunction && is_open)
