@@ -4,6 +4,7 @@
 #define PLASMA_RELEASE_MODIFIER 1500		//Higher == less plasma released by reaction
 #define OXYGEN_RELEASE_MODIFIER 15000		//Higher == less oxygen released at high temperature/power
 #define REACTION_POWER_MODIFIER 1.1			//Higher == more overall power
+#define STABILIZER_EFFECT 200 // how much does a stabilizer affect , this is multiplied by its quality
 
 /*
 	How to tweak the SM
@@ -358,6 +359,11 @@
 		If you can get this close to a damaged crystal its probably too late for it anyway,
 		this is unlikely to do anything but prolong the inevitable
 	*/
+	if(istype(W, /obj/item/core_stabilizer))
+		var/obj/item/core_stabilizer/stabilizer = W
+		damage -= clamp(stabilizer.quality_multiplier * STABILIZER_EFFECT, damage, explosion_point)
+		to_chat(user, "You smash the [stabilizer] into \the [src] , causing it to stabilize to a large degree!")
+		return
 	if (W.has_quality(QUALITY_SEALING) && damage > 0)
 		user.visible_message("[user] starts sealing up cracks in [src] with the [W]", "You start sealing up cracks in [src] with the [W]")
 		if (W.use_tool(user, src, 140, QUALITY_SEALING, FAILCHANCE_VERY_HARD, STAT_MEC))

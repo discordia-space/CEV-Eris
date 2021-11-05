@@ -11,6 +11,7 @@
 	var/retracted = TRUE
 	var/obj/machinery/compressor_feeder/linked_feeder = null
 	var/making = FALSE
+	var/power_drained = 0
 
 /* Just a note for the future , if anyone wants to actually code a NanoUI / HTMLui , this could also be used to convert materials to other materials , after all , it is kinda doing fusion */
 
@@ -40,6 +41,7 @@
 /obj/machinery/power/nano_compressor/verb/extend_retract()
 	set src in view(1)
 	set name = "Retract/Extend feeder"
+	set category = "Object"
 
 	if(isghost(usr) || usr.incapacitated(INCAPACITATION_ALL))
 		return FALSE
@@ -54,7 +56,9 @@
 	extend_or_retract()
 
 /obj/machinery/power/nano_compressor/Process()
-	var/power_drawed = draw_power(active_power_usage)
+	if(!powernet)
+		return PROCESS_KILL
+	power_drained = draw_power(powernet.avail - power_drained) // draw all available power
 	if(power_drawed < active_power_usage)
 		stat |= NOPOWER
 	else
@@ -72,7 +76,7 @@
 /obj/machinery/power/nano_compressor/proc/stop_sequence(var/flick)
 	if(flick)
 		flick("initial(icon_state)]_open_empty", src)
-	to_chat(user, SPAN_NOTICE("There isn't enough power to compress!"))
+	visible_message(SPAN_NOTICE("There isn't enough power to compress!"), "You hear a loud negative ping", 6)
 	making = FALSE
 	use_power = FALSE
 	STOP_PROCESSING(SSmachines,src)
@@ -84,23 +88,29 @@
 	if(!linked_feeder.can_make_stabilizer())
 		to_chat(user , SPAN_NOTICE("There isn't enough matter in the feeder to produce a stabilizer core!"))
 		return FALSE
+	if(!powernet)
+		to_chat(user, SPAN_NOTICE("\The [src] needs a direct connection to a power grid to function"))
 	making = TRUE
 	use_power = TRUE
+	power_drained = powernet.load // we set it here to the load so we can suck all the available one when we process
 	linked_feeder.using = TRUE
 	START_PROCESSING(SSmachines,src)
 	flick("[initial(icon_state)]_start", src)
 	spawn(27) // Seconds that the animation above finishes
 		if(stat & NOPOWER)
 			stop_sequence(TRUE)
-			return FALSE
+			return
 		flick("[initial(icon_state)]_compressing", src)
 		spawn(20)
 			if(stat & NOPOWER)
 				stop_sequence(TRUE)
-				return FALSE
+				return
 			flick("[initial(icon_state)]_open", src)
 			spawn(27)
-				new /obj/item/core_stabilizer(get_turf(src))
+				var/obj/item/core_stabilizer/created_core = new /obj/item/core_stabilizer(get_turf(src))
+				created_core.quality_multiplier = powernet.avail / active_power_usage // Go big. reach for the stars , or lose power the last moment and eat dirt..
+				created_core.price_tag = price_tag * quality_multiplier
+
 				visible_message("\The stabilizer core rapidly expands as \the [src] pushes it out")
 				stop_sequence(FALSE)
 
@@ -109,6 +119,7 @@
 	desc = "A shiny plasma-hydrogen-diamond sphere made by an alien machine , created under immense stress ,it posseses exotic phenomens"
 	icon = 'icons/obj/machines/compressor.dmi'
 	icon_state = "stabilization core"
-	price_tag = 20000
+	price_tag = 10000 // price gets multiplied the more power there is
 	origin_tech = list(TECH_ARCANE = 4, TECH_BLUESPACE = 8, TECH_ENGINEERING = 12)
+	var/quality_multiplier = 1 // This gets bigger the more extra energy we had into the grid
 
