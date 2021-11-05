@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Spoons not checking wheter a person can be fed and wheter the timer to
-      do so has been run

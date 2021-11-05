@@ -1,7 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - rscadd: Ingested reagents metabolization now scales off your stomach , liver and
-      heart efficiency combined.
-  - rscadd: Bloodstream reagents metabolizatio now scales off your liver_eff  and
-      heart efficiency
