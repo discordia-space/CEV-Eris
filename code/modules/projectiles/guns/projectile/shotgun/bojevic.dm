@@ -30,6 +30,9 @@
 		SEMI_AUTO_NODELAY
 		)
 
+	wield_delay = 0.8 SECOND
+	wield_delay_factor = 0.2 // 40 vig , after all its designed for CQC
+
 /obj/item/gun/projectile/shotgun/bojevic/on_update_icon()
 	..()
 
