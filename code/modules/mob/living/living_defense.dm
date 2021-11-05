@@ -65,6 +65,12 @@
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
 		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(ishuman(src) && def_zone)
+			var/mob/living/carbon/human/H = src
+			var/obj/item/organ/external/o = H.get_organ(def_zone)
+			if (o && o.status & ORGAN_SPLINTED)
+				visible_message("The splints break off [src] as they get hit")
+				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
 			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
@@ -78,6 +84,12 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(ishuman(src) && def_zone)
+			var/mob/living/carbon/human/H = src
+			var/obj/item/organ/external/o = H.get_organ(def_zone)
+			if (o && o.status & ORGAN_SPLINTED)
+				visible_message("The splints break off [src] as they get hit")
+				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
 			apply_damage(actual_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 		return actual_damage
