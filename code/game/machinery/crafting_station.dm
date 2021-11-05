@@ -2,7 +2,7 @@
 #define DONE "done"
 
 /obj/machinery/craftingstation
-	name = "Crafting Station"
+	name = "crafting ctation"
 	desc = "Makeshift fabrication station for home-made munitions and components of firearms and armor."
 	icon = 'icons/obj/machines/crafting_station.dmi'
 	icon_state = "craft"
