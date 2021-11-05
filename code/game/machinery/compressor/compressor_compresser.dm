@@ -66,4 +66,5 @@
 	desc = "A shiny plasma-hydrogen-diamond sphere made by an alien machine , created under immense stress ,it posseses exotic phenomens"
 	icon = 'icons/obj/machines/compressor.dmi'
 	icon_state = "stabilization core"
+	price_tag = 10000
 

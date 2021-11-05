@@ -35,6 +35,8 @@
 	visible_message(SPAN_NOTICE("[user] empties \the [src] of all its stored materials"))
 	for(var/matter in stored_matter)
 		var/actual_count = stored_matter[matter]
+		if(!actual_count)
+			continue
 		var/mat_to_spawn = get_material_by_name(matter)
 		var/obj/item/stack/material/materials = new mat_to_spawn(get_turf(src))
 		materials.amount = actual_count
@@ -46,16 +48,16 @@
 		to_chat(user, SPAN_NOTICE("\The [src] only accepts pure sheets of diamond , plasma or mettalic hydrogen"))
 		return FALSE
 	var/obj/item/stack/material/stack_being_fed = I
-	var/use_amount = 0
+	var/use_amount = stack_being_fed.amount
+	message_admins("[use_amount]")
 	var/material_name = get_material_name_by_stack_type(stack_being_fed)
-	if(!material_name in stored_matter)
-		to_chat(user, SPAN_NOTICE("\The [src] only accepts sheets of diamond , plasma or mettalic hydrogen"))
+	if(!stored_matter.Find(material_name))
+		to_chat(user, SPAN_NOTICE("\The [src] only accepts sheets of diamond , plasma or metalic hydrogen"))
 		return FALSE
-
 	image_load_material.color = stack_being_fed.material.icon_colour
 	image_load_material.alpha = max(255 * stack_being_fed.material.opacity, 200) // The icons are too transparent otherwise
 	FLICK("[initial(icon_state)]_load", image_load_material)
-	use_amount = clamp(stack_being_fed.amount, 0, stored_limits[material_name] - stored_matter[material_name])
+	use_amount = clamp(use_amount, 0 , stored_limits[material_name] - stored_matter[material_name])
 	message_admins("[use_amount]")
 	stack_being_fed.use(use_amount)
 	stored_matter[material_name] += use_amount
