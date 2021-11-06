@@ -273,7 +273,7 @@
 	if(!ES && !istop)
 		return
 	if(ishuman(AM))
-		to_chat(AM , SPAN_NOTICE("You start walking up the [src]"))
+		to_chat(AM , SPAN_NOTICE("You start walking [istop ? "up" : "down"] the [src]"))
 		var/mob/our_guy = AM
 		if(do_after(our_guy , 1 SECOND, src))
 			our_guy.forceMove(get_turf(target))
