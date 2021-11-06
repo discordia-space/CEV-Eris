@@ -2,6 +2,7 @@
 //Contents: Ladders, Stairs.//
 //////////////////////////////
 
+#define STAIR_WAIT 5 SECOND // Seconds it takes after someone's forced stair delay to expire. used to preven combat around stairs
 /obj/structure/multiz
 	name = "ladder"
 	density = FALSE
@@ -235,6 +236,7 @@
 	name = "stairs"
 	desc = "Stairs leading to another deck. Not too useful if the gravity goes out."
 	icon_state = "ramptop"
+	var/list/mob/climber_history = list()
 	layer = 2.4
 
 /obj/structure/multiz/stairs/enter
@@ -275,10 +277,24 @@
 	if(ishuman(AM))
 		to_chat(AM , SPAN_NOTICE("You start walking [istop ? "up" : "down"] the [src]"))
 		var/mob/our_guy = AM
-		if(do_after(our_guy , 1 SECOND, src))
+		if(our_guy in climber_history)
+			var/time_g = climber_history[our_guy]
+			if(time_g > world.time)
+				if(!do_after(our_guy , 1 SECOND, src))
+					return
+				our_guy.forceMove(get_turf(target))
+				try_resolve_mob_pulling(AM, ES)
+				climber_history[our_guy] = world.time + STAIR_WAIT
+			else
+				our_guy.forceMove(get_turf(target))
+				try_resolve_mob_pulling(AM, ES)
+				climber_history[our_guy] = world.time + STAIR_WAIT
+		else
 			our_guy.forceMove(get_turf(target))
 			try_resolve_mob_pulling(AM, ES)
-		return
+			climber_history.Add(our_guy)
+			climber_history[our_guy] = world.time + STAIR_WAIT
+
 
 	AM.forceMove(get_turf(target))
 	try_resolve_mob_pulling(AM, ES)
