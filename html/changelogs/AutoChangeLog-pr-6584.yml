@@ -1,6 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: grenade launcher ammunition to uplink
-  - rscadd: basic grenade launcher ammunition in the armory
-  - tweak: grenade launchers use specialized ammo instead of hand grenades

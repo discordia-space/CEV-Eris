@@ -1,4 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - bugfix: fixed not being able to attack borgs with certain tools on harm intent

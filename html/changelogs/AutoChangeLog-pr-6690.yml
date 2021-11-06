@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: boltgun no longer has firedelay, limited by bolt timer instead
-  - rscadd: new FS .20 boltgun variants - Banzai!
-  - balance: makeshift and obrez boltguns buffed, obrez now have stupid high recoil

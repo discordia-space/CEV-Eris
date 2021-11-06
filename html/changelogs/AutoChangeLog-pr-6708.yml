@@ -1,7 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: armored version of type-34 helmet
-  - rscadd: surveillance pods, stationary version of camera MIU
-  - tweak: armory have 6 oxygen tanks instead of 2
-  - tweak: camera MIU blacklisted from spawn

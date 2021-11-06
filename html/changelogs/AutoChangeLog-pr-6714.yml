@@ -1,5 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: Added new IH medical HUD
-  - balance: Medspec now spawns with an ERT medical belt
