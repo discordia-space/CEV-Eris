@@ -3,6 +3,7 @@
 //////////////////////////////
 
 #define STAIR_WAIT 5 SECOND // Seconds it takes after someone's forced stair delay to expire. used to preven combat around stairs
+
 /obj/structure/multiz
 	name = "ladder"
 	density = FALSE
