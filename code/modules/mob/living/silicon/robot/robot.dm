@@ -651,6 +651,7 @@
 
 		if(ABORT_CHECK)
 			return
+
 	if(istype(I, /obj/item/stack/cable_coil) && (wiresexposed || isdrone(src)))
 		if (!getFireLoss())
 			to_chat(user, "Nothing to fix here!")
