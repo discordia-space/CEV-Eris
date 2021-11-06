@@ -15,3 +15,5 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
 	saw_off = FALSE
+	wield_delay = 1.2 SECOND
+	wield_delay_factor = 0.5 // 0 vig

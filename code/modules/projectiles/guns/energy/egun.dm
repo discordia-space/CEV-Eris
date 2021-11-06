@@ -22,6 +22,9 @@
 		WEAPON_CHARGE,
 		)
 
+	wield_delay = 0.4 SECOND
+	wield_delay_factor = 0.2 // 20 vig
+
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
 	self_recharge = TRUE

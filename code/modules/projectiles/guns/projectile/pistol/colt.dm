@@ -16,6 +16,8 @@
 	recoil_buildup = 4
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	wield_delay = 0.3 SECOND
+	wield_delay_factor = 0.2 // 20 vig
 
 
 /obj/item/gun/projectile/colt/on_update_icon()

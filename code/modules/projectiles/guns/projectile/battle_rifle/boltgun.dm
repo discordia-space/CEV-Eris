@@ -33,6 +33,8 @@
 	var/bolt_open = 0
 	var/bolting = 0
 	var/item_suffix = ""
+	wield_delay = 0.3 SECOND
+	wield_delay_factor = 0.2 // 20 vig
 
 /obj/item/gun/projectile/boltgun/on_update_icon()
 	..()
@@ -180,7 +182,7 @@
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_LRIFLE
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()
