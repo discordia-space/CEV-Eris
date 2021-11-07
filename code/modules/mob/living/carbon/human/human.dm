@@ -977,7 +977,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/obj/item/organ/external/organ in organs)
-		if(organ.status & ORGAN_SPLINTED) //Splints prevent damage , but not pain
+		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement
 			continue
 
 		for(var/obj/item/O in organ.implants)
