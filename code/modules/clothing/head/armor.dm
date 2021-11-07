@@ -535,3 +535,18 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
+/obj/item/clothing/head/armor/helmet/onestar
+	name = "OneStar officer cap"
+	desc = "A fancy red and blue cap sporting the Onestar insignia."
+	icon_state = "OS_Hat"
+	spawn_tags = SPAWN_TAG_CLOTHING_OS
+	siemens_coefficient = 1
+	price_tag = 2000
+	armor = list(
+		melee = 15,
+		bullet = 40,
+		energy = 40,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)

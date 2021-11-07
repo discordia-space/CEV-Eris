@@ -107,7 +107,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
-	
+
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "greatcoat"
@@ -476,6 +476,24 @@
 	siemens_coefficient = 0
 	price_tag = 600
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
+//onestar
+/obj/item/clothing/suit/storage/onestar/jacket
+	name = "OneStar officer jacket"
+	desc = "A rare stylish red jacket worn by onestar officals. it seems to be extremly durable and is strangely warm to the touch"
+	icon_state = "OS_Jacket"
+	price_tag = 3000
+	armor = list(
+		melee = 15,
+		bullet = 40,
+		energy = 30,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	siemens_coefficient = 0.7
+	spawn_tags = SPAWN_TAG_CLOTHING_OS
 
 /*
  * Reactive Armor
