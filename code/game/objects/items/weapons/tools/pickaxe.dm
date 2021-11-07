@@ -16,6 +16,7 @@
 	toggleable = TRUE
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
+	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	sharp = TRUE
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
@@ -78,6 +79,7 @@
 	use_power_cost = 0.4
 	suitable_cell = /obj/item/cell/medium
 	rarity_value = 48
+	hitsound = 'sound/weapons/melee/blunthit.ogg'
 
 /obj/item/tool/pickaxe/jackhammer/onestar
 	name = "One Star jackhammer"
@@ -111,6 +113,7 @@
 	use_fuel_cost = 0.07
 	max_fuel = 100
 	rarity_value = 48
+	hitsound = 'sound/weapons/melee/blunthit.ogg'
 
 /obj/item/tool/pickaxe/drill/onestar
 	name = "One Star mining drill"
@@ -147,6 +150,7 @@
 	max_fuel = 120
 	rarity_value = 96
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
+	hitsound = 'sound/weapons/melee/blunthit.ogg'
 
 /obj/item/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0

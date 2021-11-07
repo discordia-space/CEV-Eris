@@ -19,7 +19,7 @@
 		category_data("Shotguns", list(SPAWN_FS_SHOTGUN)),
 		category_data("Energy", list(SPAWN_FS_ENERGY)),
 		"Grenades" = list(
-			/obj/item/gun/launcher/grenade/lenar,
+			/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
 			/obj/item/grenade/chem_grenade/teargas,
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/flashbang,

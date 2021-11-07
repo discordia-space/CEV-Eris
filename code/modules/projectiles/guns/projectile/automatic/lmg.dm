@@ -20,12 +20,15 @@
 	unload_sound = 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
-	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 1.9
+	fire_sound = 'sound/weapons/guns/fire/cal/30.ogg'
+	recoil_buildup = 1.3 // Very rare LMG , should be decent
+	damage_multiplier = 1.3
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
+	wield_delay = 2 SECOND
+	wield_delay_factor = 0.6 // 60 vig for instant wield
 
 	init_firemodes = list(
 		FULL_AUTO_600,

@@ -408,6 +408,58 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
+/obj/item/storage/box/baton_rounds
+	name = "box of baton rounds"
+	desc = "A box containing 6 rubber rounds, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade
+
+/obj/item/storage/box/baton_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/blast_rounds
+	name = "box of explosive grenade shells"
+	desc = "A box containing 6 explosive grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/blast
+
+/obj/item/storage/box/blast_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/frag_rounds
+	name = "box of frag grenade shells"
+	desc = "A box containing 6 frag grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/frag
+
+/obj/item/storage/box/frag_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/emp_rounds
+	name = "box of EMP grenade shells"
+	desc = "A box containing 6 EMP grenade shells, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 6
+	spawn_type = /obj/item/ammo_casing/grenade/emp
+
+/obj/item/storage/box/emp_rounds/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
 /obj/item/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."
@@ -731,57 +783,3 @@
 	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
 	for(var/path in things2spawn)
 		new path(src)
-
-
-
-/obj/item/storage/box/halloween_basket
-	name = "festive basket"
-	desc = "How did the roaches even get those? Well, it\'s yours now!"
-	icon_state = "pumpkin_box_1"
-	var/list/loots = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/plaincake = 5,
-		/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake = 5,
-		/obj/item/reagent_containers/food/snacks/candy = 20,
-		/obj/item/reagent_containers/food/snacks/candy_corn = 20,
-		/obj/item/reagent_containers/food/snacks/chocolatebar = 10,
-		/obj/item/reagent_containers/food/snacks/donut = 10,
-		/obj/item/reagent_containers/food/snacks/donut/chaos = 3,
-		/obj/item/reagent_containers/food/snacks/cookie = 10,
-		/obj/item/reagent_containers/food/snacks/chocolateegg = 10,
-		/obj/item/reagent_containers/food/snacks/candy/mre = 5,
-		/obj/item/reagent_containers/food/snacks/candiedapple = 10,
-		/obj/item/reagent_containers/food/snacks/appletart = 10
-	)
-
-/obj/item/storage/box/halloween_basket/proc/get_loot()
-	var/items_to_spawn = rand(3, 5)
-	var/list/goodies = list()
-	while(items_to_spawn > 0)
-		items_to_spawn--
-		goodies += pickweight(loots)
-	return goodies
-
-/obj/item/storage/box/halloween_basket/New()
-	. = ..()
-	icon_state = "pumpkin_box_[rand(1,6)]"
-	add_overlays("candy[rand(1,3)]")
-	item_state = "pumpkin_box"
-	var/list/things2spawn = list()
-	things2spawn += get_loot()
-	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
-
-	if(prob(5)) //Special drops!
-
-		if(prob(50))
-			things2spawn += /obj/item/reagent_containers/syringe/drugs_recreational
-		else if(prob(40))
-			things2spawn += /obj/item/reagent_containers/syringe/stim/grape_drops
-		else if(prob(30))
-			things2spawn += /obj/item/reagent_containers/syringe/stim/violence_ultra
-		else if(prob(20)) //Due to else-ifs this actually has a far smaller chance of dropping
-			things2spawn += /obj/item/gun/projectile/automatic/dallas
-		else
-			things2spawn += /obj/item/stack/material/sandstone //You got a rock.
-	for(var/path in things2spawn)
-		new path(src)
-

@@ -11,13 +11,15 @@
 	slot_flags = SLOT_BELT
 	ammo_type = /obj/item/ammo_casing/pistol
 	burst_delay = 2
-	fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/35pistol.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
 	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
 	bad_type = /obj/item/gun/projectile/automatic
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.3 // 30 vig for insta wield
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,

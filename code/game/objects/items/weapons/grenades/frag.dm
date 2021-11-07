@@ -3,7 +3,6 @@
 	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag"
 	item_state = "frggrenade"
-	loadable = TRUE
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/strong
 	var/num_fragments = 150  //total number of fragments produced by the grenade

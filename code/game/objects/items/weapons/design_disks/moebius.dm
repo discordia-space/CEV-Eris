@@ -25,6 +25,7 @@
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
 		/datum/design/autolathe/container/syringe/large,
+		/datum/design/autolathe/container/hcase_med
 
 	)
 

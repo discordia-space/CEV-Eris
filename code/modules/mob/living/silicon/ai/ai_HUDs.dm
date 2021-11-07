@@ -63,3 +63,39 @@
 	actionPanel.setAlignment(HUD_CENTER_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
 	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
 	postBuildUI()
+
+
+// Simplified version of AI HUD accessible to humans. Used in surveillance_pod.dm
+/datum/interface/AI_Simple
+	mobtype = /mob/observer/eye/pod
+	styleName = "ErisStyle"
+
+/datum/interface/AI_Simple/buildUI()
+	// #####	CREATING LAYOUTS    #####
+	var/HUD_element/layout/vertical/navigationPanel = newUIElement("navigationPanel", /HUD_element/layout/vertical)
+	
+	// #####	CREATING LIST THAT WILL CONTAIN ELEMENTS FOR EASY ACCESS    #####
+	var/list/HUD_element/navigation = list()
+
+	// #####	CREATING UI ELEMENTS AND ASSIGNING THEM APPROPRIATE LISTS    #####
+//	navigation += newUIElement("Track With Camera", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "track"))
+//	navigation += newUIElement("Crew Sensors", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "crew_sensors"))
+	navigation += newUIElement("Toogle Acceleration", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "camera_light"))
+	navigation += newUIElement("Reset Camera", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "core"))
+	navigation += newUIElement("Move Downwards", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "down"))
+	navigation += newUIElement("Move Upwards", /HUD_element/button/thin/ai, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi',icon_state = "up"))
+
+	// #####	ADDING CLICK PROCS TO BUTTONS    #####
+//	getElementByID("Track With Camera").setClickProc(/mob/living/silicon/ai/proc/ai_camera_track, _observer.mob)
+//	getElementByID("Crew Sensors").setClickProc(/mob/proc/show_crew_sensors, _observer.mob)
+	getElementByID("Toogle Acceleration").setClickProc(/mob/proc/acceleration_toogle, _observer.mob)
+	getElementByID("Reset Camera").setClickProc(/mob/proc/reset_view, _observer.mob)
+	getElementByID("Move Downwards").setClickProc(/mob/proc/zMoveDown, _observer.mob)
+	getElementByID("Move Upwards").setClickProc(/mob/proc/zMoveUp, _observer.mob)
+
+	// #####	ALIGNING ELEMENTS USING LAYOUTS    #####
+	navigationPanel.alignElements(HUD_NO_ALIGNMENT, HUD_VERTICAL_NORTH_INSIDE_ALIGNMENT, navigation, 0)
+
+	// #####	ALIGNING LAYOUTS TO SCREEN    #####
+	navigationPanel.setAlignment(HUD_HORIZONTAL_EAST_INSIDE_ALIGNMENT, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)
+	postBuildUI()
