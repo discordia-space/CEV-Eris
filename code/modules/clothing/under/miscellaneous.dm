@@ -364,13 +364,3 @@ obj/item/clothing/under/genericr
 		bio = 100,
 		rad = 30
 	)
-
-//Onestar
-/obj/item/clothing/under/white
-	name = "Onestar uniform"
-	desc = "A Comfortable red skilk uniform. it is emblazened with the onestar insignia on the collar. strangely it seems to fit you perfectly"
-	icon_state = "OS_Uniform"
-	item_state = "OS_Uniform"
-	style = STYLE_HIGH
-	price_tag = 500
-
