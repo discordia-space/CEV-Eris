@@ -375,7 +375,9 @@ obj/item/clothing/under/genericr
 /obj/item/clothing/under/onestar
 	name = "One Star uniform"
 	desc = "A Comfortable red silk uniform. It is emblazened with the One Star insignia on the collar. Strangely, it seems to fit you perfectly"
-	icon_state = "OS_Uniform"
-	item_state = "OS_Uniform"
+	icon_state = "onestar_uniform"
+	item_state = "onestar_uniform"
 	style = STYLE_HIGH
+	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	price_tag = 500
+

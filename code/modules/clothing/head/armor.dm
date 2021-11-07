@@ -538,7 +538,7 @@
 /obj/item/clothing/head/armor/helmet/onestar
 	name = "One Star officer cap"
 	desc = "A fancy red and blue cap sporting the One Star insignia."
-	icon_state = "OS_Hat"
+	icon_state = "onestar_hat"
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	siemens_coefficient = 1
 	price_tag = 2000
