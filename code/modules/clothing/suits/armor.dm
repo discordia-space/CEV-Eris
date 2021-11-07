@@ -476,10 +476,11 @@
 	siemens_coefficient = 0
 	price_tag = 600
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
+
 //onestar
 /obj/item/clothing/suit/storage/onestar/jacket
-	name = "OneStar officer jacket"
-	desc = "A rare stylish red jacket worn by onestar officals. it seems to be extremly durable and is strangely warm to the touch"
+	name = "One Star officer jacket"
+	desc = "A rare stylish red jacket worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
 	icon_state = "OS_Jacket"
 	price_tag = 3000
 	armor = list(

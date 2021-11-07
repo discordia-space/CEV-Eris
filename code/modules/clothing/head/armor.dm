@@ -536,8 +536,8 @@
 	icon_state = "tanker_helmet_gray"
 
 /obj/item/clothing/head/armor/helmet/onestar
-	name = "OneStar officer cap"
-	desc = "A fancy red and blue cap sporting the Onestar insignia."
+	name = "One Star officer cap"
+	desc = "A fancy red and blue cap sporting the One Star insignia."
 	icon_state = "OS_Hat"
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	siemens_coefficient = 1
@@ -550,3 +550,4 @@
 		bio = 5,
 		rad = 5
 	)
+
