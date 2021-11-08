@@ -145,11 +145,11 @@
 
 	if(target)
 		last_target = target
-		set_dir(get_dir(src, target))
 		for(var/i; i < burst_lenght; i++)
 			if(!ammo)
 				break
 			sleep(2)
+			set_dir(get_dir(src, target))
 			shootAt(target)
 
 		return 1
