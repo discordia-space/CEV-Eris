@@ -15,5 +15,5 @@
 	one_hand_penalty = 10 //compact shotgun level
 	twohanded = FALSE
 	saw_off = FALSE
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0

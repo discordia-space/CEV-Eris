@@ -27,8 +27,8 @@
 	spawn_blacklisted = TRUE
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.4 // 40 vig to insta wield
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0 // 40 vig to insta wield
 
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)

@@ -27,8 +27,8 @@
 	price_tag = 1600
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.4 // 40 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0 // 40 vig
 
 /obj/item/gun/projectile/avasarala/on_update_icon()
 	..()

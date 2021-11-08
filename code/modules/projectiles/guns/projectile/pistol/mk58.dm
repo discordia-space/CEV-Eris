@@ -16,9 +16,8 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 1.3
 	recoil_buildup = 3
-	wield_delay = 0.2 SECOND
-	wield_delay_factor = 0.2 // 20 vig
-
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0
 /obj/item/gun/projectile/mk58/on_update_icon()
 	..()
 

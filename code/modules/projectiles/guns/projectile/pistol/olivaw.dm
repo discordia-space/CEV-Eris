@@ -22,8 +22,8 @@
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	wield_delay = 0.2 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0
 
 /obj/item/gun/projectile/olivaw/on_update_icon()
 	..()

@@ -24,8 +24,8 @@
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 
-	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.1 // 10 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0
 
 	init_firemodes = list(
 		FULL_AUTO_300,

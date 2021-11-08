@@ -33,8 +33,8 @@
 	var/bolt_open = 0
 	var/bolting = 0
 	var/item_suffix = ""
-	wield_delay = 0.3 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0 // 20 vig
 
 /obj/item/gun/projectile/boltgun/on_update_icon()
 	..()
@@ -67,7 +67,7 @@
 
 	if(bolting)
 		return FALSE
-	
+
 	bolting = TRUE
 	do_after(user, 0.3 SECONDS, 0, 1, INCAPACITATION_DEFAULT, 0)
 	bolting = FALSE

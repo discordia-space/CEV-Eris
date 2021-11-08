@@ -23,8 +23,8 @@
     spawn_tags = SPAWN_TAG_GUN_OS
     price_tag = 2500
 
-    wield_delay = 0.3 SECOND
-    wield_delay_factor = 0.4 // 40 vig
+    wield_delay = 0 SECOND
+    wield_delay_factor = 0
 
     spawn_blacklisted = TRUE //until loot rework
 

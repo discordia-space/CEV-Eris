@@ -20,8 +20,8 @@
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0
 
 	spawn_blacklisted = TRUE //until loot rework
 

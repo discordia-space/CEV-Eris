@@ -33,7 +33,7 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	slowdown_hold = 5
-	wield_delay = 2 SECOND
+	wield_delay = 1.5 SECOND
 	wield_delay_factor = 0.4 // 40 vig , excels are not as trained
 
 /obj/item/gun/projectile/automatic/maxim/on_update_icon()
