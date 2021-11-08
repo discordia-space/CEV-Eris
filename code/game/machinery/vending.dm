@@ -1143,6 +1143,52 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
 
+/obj/machinery/vending/medical/commercial
+	name = "MiniPharma Trade"
+	desc = "Medical drug dispenser."
+	icon_state = "med"
+	icon_deny = "med-deny"
+	req_access = list(access_medical_equip)
+	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+	products = list(
+		/obj/item/stack/medical/bruise_pack = 12,
+		/obj/item/stack/medical/ointment = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 24,
+		/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = 12,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 6,
+		/obj/item/storage/pill_bottle/bicaridine = 3,
+		/obj/item/storage/pill_bottle/tramadol = 3,
+		/obj/item/storage/pill_bottle/kelotane = 2,
+		/obj/item/device/scanner/health = 3,
+		/obj/item/stack/medical/splint = 3,
+		/obj/item/bodybag/cryobag = 2
+		)
+	contraband = list(
+		/obj/item/stack/medical/advanced/bruise_pack = 4,
+		/obj/item/stack/medical/advanced/ointment = 2,
+		/obj/item/storage/pill_bottle/meralyne = 1,
+		/obj/item/storage/pill_bottle/oxycodone = 1
+		)
+	prices = list(
+		/obj/item/stack/medical/bruise_pack = 100,
+		/obj/item/stack/medical/ointment = 100,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 150,
+		/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = 100,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 100,
+		/obj/item/storage/pill_bottle/bicaridine = 750,
+		/obj/item/storage/pill_bottle/tramadol = 500,
+		/obj/item/storage/pill_bottle/kelotane = 400,
+		/obj/item/device/scanner/health = 50,
+		/obj/item/stack/medical/splint = 200,
+		/obj/item/bodybag/cryobag = 1000,
+		/obj/item/stack/medical/advanced/bruise_pack = 300,
+		/obj/item/stack/medical/advanced/ointment = 300,
+		/obj/item/storage/pill_bottle/meralyne = 3000,
+		/obj/item/storage/pill_bottle/oxycodone = 3000
+		)
+	idle_power_usage = 211
+	vendor_department = DEPARTMENT_MEDICAL
+	auto_price = FALSE
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch

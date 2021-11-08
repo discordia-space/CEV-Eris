@@ -4552,15 +4552,16 @@
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "akI" = (
-/obj/machinery/chem_master,
+/obj/structure/table/rack/shelf,
+/obj/item/autopsy_scanner,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akJ" = (
-/obj/machinery/chemical_dispenser,
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akK" = (
-/obj/machinery/reagentgrinder/industrial,
+/obj/machinery/vending/medical/commercial,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akL" = (
@@ -4644,7 +4645,7 @@
 /turf/simulated/floor/tiled/dark/bluecorner,
 /area/eris/security/exerooms)
 "akW" = (
-/obj/machinery/smartfridge/chemistry,
+/obj/structure/bed/roller,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akX" = (
@@ -4770,11 +4771,6 @@
 /area/eris/security/exerooms)
 "alp" = (
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/white/bluecorner,
-/area/eris/security/exerooms)
-"alq" = (
-/obj/structure/table/rack/shelf,
-/obj/item/autopsy_scanner,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alr" = (
@@ -5193,16 +5189,13 @@
 "amo" = (
 /obj/structure/table/rack/shelf,
 /obj/item/storage/box/beakers{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = 3;
+	pixel_y = 3
 	},
+/obj/item/storage/box/syringes,
 /obj/item/storage/box/syringes{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = 4;
-	pixel_y = 4
+	pixel_x = -3;
+	pixel_y = -3
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white/bluecorner,
@@ -5237,8 +5230,8 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amr" = (
-/obj/structure/table/glass,
-/obj/machinery/chem_heater,
+/obj/structure/table/rack/shelf,
+/obj/item/storage/hcases/med,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "ams" = (
@@ -101110,7 +101103,6 @@
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/straight_jacket,
 /obj/item/clothing/glasses/sunglasses/blindfold,
-/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "eWR" = (
@@ -102833,17 +102825,14 @@
 "lxE" = (
 /obj/structure/table/rack/shelf,
 /obj/item/storage/box/gloves{
-	pixel_x = -2;
-	pixel_y = -2
+	pixel_x = -3;
+	pixel_y = -3
 	},
 /obj/item/storage/box/masks{
-	pixel_x = 1;
-	pixel_y = 1
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/item/storage/box/bodybags{
-	pixel_x = 4;
-	pixel_y = 4
-	},
+/obj/item/storage/box/bodybags,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "lBX" = (
@@ -104830,11 +104819,7 @@
 /area/eris/security/warden)
 "tcj" = (
 /obj/structure/table/rack/shelf,
-/obj/item/reagent_containers/dropper{
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "tcP" = (
@@ -125499,7 +125484,7 @@ aht
 aki
 akO
 aeH
-akI
+akJ
 aln
 amo
 aht
@@ -126509,7 +126494,7 @@ aht
 akn
 akO
 aeH
-alq
+akI
 alW
 amA
 aht
