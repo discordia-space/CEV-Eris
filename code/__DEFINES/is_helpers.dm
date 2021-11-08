@@ -1,4 +1,6 @@
 
+#define isatom(A) (isloc(A))
+
 #define isweakref(D) (istype(D, /datum/weakref))
 
 #define islist(A) istype(A, /list)

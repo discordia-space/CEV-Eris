@@ -14,17 +14,20 @@
 
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
-/obj/item/modular_computer/proc/can_interact(var/mob/user)
-	if(usr.incapacitated())
+/obj/item/modular_computer/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return
+
+	if(user.incapacitated())
 		to_chat(user, "<span class='warning'>You can't do that.</span>")
 		return FALSE
 
-	if(!Adjacent(usr))
+	if(!Adjacent(user))
 		to_chat(user, "<span class='warning'>You can't reach it.</span>")
 		return FALSE
 
 	return TRUE
-
 
 // Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
 /obj/item/modular_computer/verb/emergency_shutdown()

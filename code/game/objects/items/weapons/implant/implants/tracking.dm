@@ -2,11 +2,18 @@
 	name = "tracking implant"
 	desc = "Track people with this."
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=2, TECH_DATA=2, TECH_BIO=2)
-	var/datum/gps_data/gps
+	///reference for later use
+	var/datum/component/gps/gps
 
 /obj/item/implant/tracking/Initialize()
 	. = ..()
-	gps = new /datum/gps_data/implant(src)
+	gps = AddComponent(/datum/component/gps, "IMP")
+	gps.tracking = FALSE // OFF by default
+	START_PROCESSING(SSobj, src)
+
+/obj/item/implant/tracking/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/implant/tracking/get_data()
 	var/data = {"<b>Implant Specifications:</b><BR>
@@ -23,13 +30,15 @@
 		<b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
 		circuitry. As a result neurotoxins can cause massive damage.<HR>
 		Implant Specifics:<BR>
-		<b>Tracking ID:</b> [gps.serial_number]<BR>"}
+		<b>Tracking ID:</b> [gps.gpstag]-[gps.serial_number]<BR>"}
 
 	return data
 
-/obj/item/implant/tracking/Destroy()
-	QDEL_NULL(gps)
-	return ..()
+/obj/item/implant/tracking/Process()
+	if(wearer.stat == DEAD && wearer.timeofdeath + 10 MINUTES < world.time)
+		gps.tracking = TRUE // they ded
+		return
+	gps.tracking = FALSE // they got defib or revived by something. Implant should still work
 
 /obj/item/implant/tracking/emp_act(severity)
 	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
@@ -47,35 +56,10 @@
 			delay = rand(5 MINUTES, 15 MINUTES)
 		if(3)
 			delay = rand(2 MINUTES, 5 MINUTES)
+	gps.emped = TRUE
 
-	spawn(delay)
-		malfunction = MALFUNCTION_NONE
-
-/datum/gps_data/implant
-	prefix = "IMP"
-
-/datum/gps_data/implant/is_functioning()
-	var/obj/item/implant/I = holder
-	if(!I.wearer)
-		return FALSE
-
-	// The implant broadcasts for 10 minutes after death
-	if(I.wearer.stat == DEAD && I.wearer.timeofdeath + 10 MINUTES > world.time)
-		return FALSE
-
-	return ..()
-
-/datum/gps_data/implant/get_coords()
-	var/obj/item/implant/I = holder
-
-	// EMPed - pick a fake location
-	if(I.malfunction)
-		var/area/A = SSmapping.teleportlocs[pick(SSmapping.teleportlocs)]
-		var/turf/T = get_turf(pick(A.contents))
-		if(istype(T))
-			return new /datum/coords(T)
-
-	return ..()
+	addtimer(VARSET_CALLBACK(src, malfunction, MALFUNCTION_NONE), delay)
+	addtimer(VARSET_CALLBACK(gps, emped, FALSE), delay)
 
 /obj/item/implantcase/tracking
 	name = "glass case - 'tracking'"

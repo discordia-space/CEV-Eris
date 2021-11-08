@@ -53,6 +53,7 @@
 /datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	tag = null
+	signal_enabled = FALSE
 	weak_reference = null //ensure prompt GCing of weakref.
 
 	var/list/timers = active_timers
@@ -70,8 +71,6 @@
 	#endif
 
 	//BEGIN: ECS SHIT
-	signal_enabled = FALSE
-
 	var/list/dc = datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]

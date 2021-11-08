@@ -247,6 +247,11 @@
 		ui.add_template("_oddity", "autolathe_oddity.tmpl")
 		ui.add_template("_nanoforge", "nanoforge_actions.tmpl")
 
+		// add the design icon **spritesheet**
+		var/datum/asset/spritesheet/S = get_asset_datum(/datum/asset/spritesheet/design_icons)
+		S.send(user.client)
+		ui.add_stylesheet(S.css_filename())
+
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

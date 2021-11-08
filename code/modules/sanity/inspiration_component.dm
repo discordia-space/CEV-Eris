@@ -28,9 +28,10 @@
 	perk = new_perk
 
 /datum/component/inspiration/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+	. = ..()
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
 
-/datum/component/inspiration/proc/on_examine(mob/user)
+/datum/component/inspiration/proc/on_examine(atom/A, mob/user, list/examine_list)
 	for(var/stat in stats)
 		var/aspect
 		switch(stats[stat])
@@ -44,10 +45,10 @@
 				aspect = "a <span class='blue'>weak</span>"
 			else
 				continue
-		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		examine_list += SPAN_NOTICE("This item has [aspect] aspect of [stat]")
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+		examine_list += SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>")
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()

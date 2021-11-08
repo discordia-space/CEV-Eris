@@ -24,7 +24,7 @@
 
 	if(isobserver(user))
 		// If they turn on ghost AI control, admins can always interact.
-		if(is_admin(user)) //isAdminGhostAI(user))
+		if(user.can_admin_interact()) //isAdminGhostAI(user))
 			. = max(., UI_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
@@ -73,8 +73,8 @@
 
 /mob/living/shared_ui_interaction(src_object)
 	. = ..()
-	if(. == UI_INTERACTIVE) // !(mobility_flags & MOBILITY_UI) && 
-		return UI_UPDATE
+	// if(!(mobility_flags & MOBILITY_UI) && . == UI_INTERACTIVE)
+	// 	return UI_UPDATE
 
 /mob/living/silicon/ai/shared_ui_interaction(src_object)
 	// Disable UIs if the AI is unpowered.

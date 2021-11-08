@@ -24,8 +24,6 @@
 #define QDEL_HINT_IFFAIL_FINDREFERENCE 6
 #endif
 
-//defines for the gc_destroyed var
-
 #define GC_QUEUE_CHECK 1
 #define GC_QUEUE_HARDDELETE 2
 #define GC_QUEUE_COUNT 2 //increase this when adding more steps.
@@ -36,6 +34,10 @@
 // Defines for the [gc_destroyed][/datum/var/gc_destroyed] var.
 #define GC_QUEUED_FOR_QUEUING -1
 #define GC_CURRENTLY_BEING_QDELETED -2
+
+// Defines for the time left for an item to get its reference cleaned
+#define GC_FILTER_QUEUE 5 MINUTES
+#define GC_DEL_QUEUE 10 SECONDS
 
 #define QDELING(X) (X.gc_destroyed)
 #define QDELETED(X) (!X || QDELING(X))

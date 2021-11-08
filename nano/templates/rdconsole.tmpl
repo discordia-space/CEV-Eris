@@ -31,7 +31,7 @@
 			<div class='item'>
 				{{:helper.link("Circuit Construction Menu", 'video', {'go_screen' : 'circuit_imprinter'}, data.has_circuit_imprinter ? null : 'disabled', data.has_circuit_imprinter ? 'sciMenuButton' : null)}}
 			</div>
-			
+
 			<div class="statusDisplayRecords">
 				<div class="item">
 					<div class="itemContent" style="width: 100%;">
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class='item'>
 				{{:helper.link("Settings", 'wrench', {'toggle_settings' : 1},null,'sciMenuButton')}}
 			</div>
@@ -91,11 +91,11 @@
 			{{else}}
 				No disk detected
 			{{/if}}
-			
+
 			<div class='item'>
 				{{:helper.link("Device Linkage Menu", 'link', {'toggle_link_menu' : 1},null,'sciMenuButton')}}
 			</div>
-			
+
 			{{if data.show_link_menu}}
 				<div class='item'>
 					{{:helper.link("Re-sync with Nearby Devices", 'link', {'find_device' : 1})}}
@@ -136,7 +136,7 @@
 	<div class='item'>
 		{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}
 	</div>
-	
+
 	<table class="fixed" style="width: 100%">
 		<tr>
 			<td valign="top">
@@ -166,7 +166,7 @@
 									{{for data.possible_designs}}
 										<tr style="width: 100%;">
 											<td style="width: 32px">
-												<img class="statusDisplayItem" src={{:value.data.icon}} height=24 width=24></img>
+												<span class="{{:value.data.icon}}"></span>
 											</td>
 											<td style="width: 100%">
 												{{:helper.link(value.data.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
@@ -183,17 +183,17 @@
 												{{for value.data.materials  :material:material_i}}
 													{{material.amount = value.data.adjust_materials ? Math.round((material.req * data.materials_data.mat_efficiency) * 100) / 100 : material.req;}}
 													{{if value.missing_materials.indexOf(material.id) == -1}}
-														{{:material.amount}} {{:material.name}} 
+														{{:material.amount}} {{:material.name}}
 													{{else}}
-														<span style="color:red">{{:material.amount}} {{:material.name}}</span> 
+														<span style="color:red">{{:material.amount}} {{:material.name}}</span>
 													{{/if}}
 												{{/for}}
 
 												{{for value.data.chemicals  :chemical:chemical_i}}
 													{{if value.missing_chemicals.indexOf(chemical.id) == -1}}
-														{{:chemical.req}} {{:chemical.name}} 
+														{{:chemical.req}} {{:chemical.name}}
 													{{else}}
-														<span style="color:red">{{:chemical.req}} {{:chemical.name}}</span> 
+														<span style="color:red">{{:chemical.req}} {{:chemical.name}}</span>
 													{{/if}}
 												{{/for}}
 
@@ -218,11 +218,11 @@
 					<div class="item">
 						<div class="itemContent" style="width: 100%;">
 							<table class="fixed" style="width: 100%">
-				
+
 							{{for data.materials_data.reagents}}
 							<tr><td><span class="average">{{:value.name}}</span></td><td>{{:Math.round(value.amount * 100) / 100}}</td></tr>
 							{{/for}}
-							
+
 							{{for data.materials_data.materials}}
 							<tr>
 								<td><span class="average">{{:value.name.toTitleCase()}}</span></td>
@@ -236,7 +236,7 @@
 								</td>
 							</tr>
 							{{/for}}
-				
+
 							{{if (!data.materials_data.materials || !data.materials_data.materials.length) && (!data.materials_data.reagents || !data.materials_data.reagents.length)}}
 								Empty
 							{{/if}}
@@ -295,7 +295,7 @@
 				{{for data.lines}}
 					<div style="position: absolute;border-{{:value.istop?'top':'bottom'}}: 1px solid white;border-{{:value.isright?'right':'left'}}: 1px solid white;width: {{:value.width}}%;height: {{:value.height}}%;left: {{:value.line_x}}%;bottom: {{:value.line_y}}%"></div>
 				{{/for}}
-				
+
 				{{for data.techs}}
 					<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
 						{{:helper.link("<div class='withToolTip sciTechTreeIcon icon-"+value.icon+"'><span class='ImTooltip'><img align='center' class='icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}

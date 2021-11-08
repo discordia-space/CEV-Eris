@@ -68,7 +68,7 @@
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
-		return 0
+		return FALSE
 
 	if (glide_size_override)
 		set_glide_size(glide_size_override)

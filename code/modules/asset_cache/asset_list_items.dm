@@ -187,11 +187,11 @@
 	assets = list(
 		"playeroptions.css" = 'html/browser/playeroptions.css'
 	)
-/*
-/datum/asset/simple/namespaced/common
-	assets = list("padlock.png" = 'icons/ui_icons/common/padlock.png')
-	parents = list("common.css" = 'html/browser/common.css')
 
+/datum/asset/simple/namespaced/common
+	// assets = list("padlock.png" = 'icons/ui_icons/common/padlock.png')
+	parents = list("common.css" = 'html/browser/common.css')
+/*
 /datum/asset/simple/permissions
 	assets = list(
 		"search.js" = 'html/admin/search.js',
@@ -388,9 +388,15 @@
 				if (machine)
 					item = machine
 
-			icon_file = initial(item.icon)
-			icon_state = initial(item.icon_state)
+			// Check for GAGS support where necessary
+			var/greyscale_config = initial(item.greyscale_config)
+			var/greyscale_colors = initial(item.greyscale_colors)
+			if (greyscale_config && greyscale_colors)
+				icon_file = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+			else
+				icon_file = initial(item.icon)
 
+			icon_state = initial(item.icon_state)
 			if(!(icon_state in icon_states(icon_file)))
 				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
@@ -594,10 +600,11 @@
 	return pre_asset
 */
 
-
 /// nanoui and old stuff
 
 /datum/asset/simple/directories
+	_abstract = /datum/asset/simple/directories
+	keep_local_name = TRUE
 	var/list/dirs = list()
 
 /datum/asset/simple/directories/register()
@@ -605,60 +612,93 @@
 	for (var/path in dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					assets[filename] = fcopy_rsc(path + filename)
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(fexists(path + filename))
+				assets[filename] = file(path + filename)
 	..()
 
-/datum/asset/simple/design_icons/register()
-	for(var/D in SSresearch.all_designs)
-		var/datum/design/design = D
+/datum/asset/spritesheet/design_icons
+	name = "design"
 
-		var/filename = sanitize_filename("[design.build_path].png")
-		var/icon/I = getFlatTypeIcon(design.build_path)
-		assets[filename] = I
+/datum/asset/spritesheet/design_icons/register()
+	for(var/path in SSresearch.all_designs)
+		var/datum/design/D = path
 
-		design.ui_data["icon"] = filename
-	..()
+		var/atom/item = initial(D.build_path)
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
 
+		if(!(icon_state in icon_states(icon_file)))
+			warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+			continue
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+		var/filename = sanitize_filename("[D.build_path]")
 
-/datum/asset/simple/craft/register()
+		Insert(filename, I)
+		D.ui_data["icon"] = icon_class_name(filename)
+	return ..()
+
+/datum/asset/spritesheet/craft
+	name = "crafting"
+
+/datum/asset/spritesheet/craft/register()
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
-				var/filename = sanitize_filename("[CR.result].png")
-				var/icon/I = getFlatTypeIcon(CR.result)
-				assets[filename] = I
+				var/atom/item = initial(CR.result)
+				var/icon_file = initial(item.icon)
+				var/icon_state = initial(item.icon_state)
+
+				if(icon_state in icon_states(icon_file))
+					var/icon/I = icon(icon_file, icon_state, SOUTH)
+					Insert(sanitize_filename("[CR.result]"), I)
+
+				warning("craft_recipe [CR] with icon '[icon_file]' missing state '[icon_state]'")
 
 			for(var/datum/craft_step/CS in CR.steps)
-				if(CS.reqed_type)
-					var/filename = sanitize_filename("[CS.reqed_type].png")
-					var/icon/I = getFlatTypeIcon(CS.reqed_type)
-					assets[filename] = I
+				if(!CS.reqed_type)
+					continue
+
+				var/obj/item = CS.reqed_type // for some unholy reason this works.
+				var/icon_file = initial(item.icon)
+				var/icon_state = initial(item.icon_state)
+
+				if(!(icon_state in icon_states(icon_file)))
+					warning("craft_step [CS.reqed_type] with icon '[icon_file]' missing state '[icon_state]'")
+					continue
+
+				var/icon/I = icon(icon_file, icon_state, SOUTH)
+
+				Insert(sanitize_filename("[CS.reqed_type]"), I)
 	..()
 
-/datum/asset/simple/materials/register()
-	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitize_filename("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
+/datum/asset/spritesheet/materials
+	name = "materials"
+
+/datum/asset/spritesheet/materials/register()
+	InsertAll("", 'icons/obj/stack/material.dmi')
+	Insert("sheet-chitin", 'icons/mob/alien.dmi', "chitin") // special case
 	..()
 
-/datum/asset/simple/tool_upgrades/register()
-	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = sanitize_filename("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
+/datum/asset/spritesheet/tool_upgrades
+	name = "tool_upgrades"
+
+/datum/asset/spritesheet/tool_upgrades/register()
+	InsertAll("", 'icons/obj/tool_upgrades.dmi')
 	..()
 
-/datum/asset/simple/perks/register()
+/datum/asset/spritesheet/perks
+	name = "perks"
+
+/datum/asset/spritesheet/perks/register()
 	for(var/type in subtypesof(/datum/perk))
 		var/datum/perk/P = new type
-		var/filename = sanitize_filename("[type].png")
+		var/filename = sanitize_filename("[type]")
 		var/icon/I = icon(P.icon, P.icon_state)
-		assets[filename] = I
+		// assets[filename] = I
+		Insert(filename, I)
 	..()
-
 
 /datum/asset/simple/directories/nanoui
 	dirs = list(
@@ -672,6 +712,9 @@
 
 /datum/asset/simple/directories/images_news
 	dirs = list("news_articles/images/")
+
+/datum/asset/simple/images_map
+	keep_local_name = TRUE
 
 /datum/asset/simple/images_map/register()
 	var/list/mapnames = list()

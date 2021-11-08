@@ -103,8 +103,8 @@
  * * [/turf/open/space/proc/Initialize]
  */
 /atom/proc/Initialize(mapload, ...)
-	// SHOULD_NOT_SLEEP(TRUE) // TODO: code standard.
-	// SHOULD_CALL_PARENT(TRUE)
+	// SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 	if(initialized)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
@@ -155,7 +155,8 @@
 		QDEL_NULL(reagents)
 	update_openspace()
 
-	light.destroy() // we tell our LS to update, then we nuke it.
+	if(light)
+		light.destroy() // we tell our LS to update, then we nuke it.
 	QDEL_NULL(light)
 
 	return ..()
@@ -213,9 +214,21 @@
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
+/**
+ * React to an EMP of the given severity
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EMP_ACT] signal
+ *
+ * If the signal does not return protection, and there are attached wires then we call
+ * [emp_pulse][/datum/wires/proc/emp_pulse] on the wires
+ *
+ * We then return the protection value
+ */
 /atom/proc/emp_act(severity)
-	return
-
+	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
+	// if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
+	// 	wires.emp_pulse()
+	return protection // Pass the protection value collected here upwards
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	P.on_hit(src, def_zone)
@@ -333,62 +346,71 @@ its easier to just keep the beam vertical.
 					//I've found that 3 ticks provided a nice balance for my use.
 	for(var/obj/effect/overlay/beam/O in orange(10, src)) if(O.BeamSource==src) qdel(O)
 
+/**
+ * Get the name of this object for examine
+ *
+ * You can override what is returned from this proc by registering to listen for the
+ * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
+ */
+/atom/proc/get_examine_name(mob/user)
+	. = "\a [src]"
+	// var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	// if(article)
+	// 	. = "[article] [src]"
+	// 	override[EXAMINE_POSITION_ARTICLE] = article
+	// if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+	// 	. = override.Join("")
+
+///Generate the full examine string of this atom (including icon for goonchat)
+/atom/proc/get_examine_string(mob/user, thats = FALSE)
+	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 //All atoms
 /atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/full_name = "\a [src][infix]."
+	. = list("[get_examine_string(user, TRUE)][infix].")
+
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
-		if(gender == PLURAL)
-			full_name = "some "
-		else
-			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			. += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
-			full_name += "oil-stained [name][infix]."
+			. += "oil-stained [name][infix]."
 
-	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
-	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+	. += "[suffix]" // the thing above makes a full name
 
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+
+	if(!isobserver(user))
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>") // go ask examinate
 
 	if(desc)
-		to_chat(user, desc)
+		. += desc
+
+	. += show_stat_verbs()
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			to_chat(user, SPAN_NOTICE("It contains:"))
-			var/return_value = user.can_see_reagents()
-			if(return_value == TRUE) //Show each individual reagent
-				for(var/datum/reagent/R in reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			/* Uncomment to check for consumer reagents also in can_see_reagents
-			else if(return_value == 2) // Check for consumer reagents
-				for(var/datum/reagent/R in reagents.reagent_list)
-					if(!(istype(R,/datum/reagent/ethanol) || istype(R,/datum/reagent/drink) || istype(R, /datum/reagent/water)))
-						//to_chat(user, SPAN_NOTICE("[R.volume] units of an unfamiliar substance")) For balance concers , don't let them know
-						continue
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			*/
-			else if(reagents && reagents.reagent_list.len)
-				to_chat(user, SPAN_NOTICE("[reagents.total_volume] units of various reagents."))
-		else
-			if(reagent_flags & AMOUNT_VISIBLE)
-				if(reagents.total_volume)
-					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
-				else
-					to_chat(user, SPAN_DANGER("It's empty."))
+			. += "It contains:"
+			if(length(reagents.reagent_list))
+				if(user.can_see_reagents()) //Show each individual reagent
+					for(var/datum/reagent/R in reagents.reagent_list)
+						. += "[round(R.volume, 0.01)] units of [R.name]"
+				else //Otherwise, just show the total volume
+					var/total_volume = 0
+					for(var/datum/reagent/R in reagents.reagent_list)
+						total_volume += R.volume
+					. += "[total_volume] units of various reagents"
+			else
+				. += "Nothing."
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			if(reagents.total_volume)
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
+			else
+				. += span_danger("It's empty.")
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
-
-	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

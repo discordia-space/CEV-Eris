@@ -90,14 +90,14 @@ var/list/possible_cable_coil_colours = list(
 
 	var/turf/T = src.loc			// hide if turf is not intact
 	if(level==1) hide(!T.is_plating())
-	GLOB.cable_list += src //add it to the global cable list
+	GLOB.cable_list |= src //add it to the global cable list
 
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
 	GLOB.cable_list -= src							//remove it from global cable list
-	. = ..()										// then go ahead and delete the cable
+	return ..()										// then go ahead and delete the cable
 
 ///////////////////////////////////
 // General procedures

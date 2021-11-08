@@ -9,7 +9,8 @@
 	var/list/materials = list()		//List of materials. Format: "id" = amount.
 	var/list/chemicals = list()		//List of reagents. Format: "id" = amount.
 	var/adjust_materials = TRUE		//Whether material efficiency applies to this design
-	var/build_path			//The path of the object that gets created.
+	/// The typepath of the object produced by this design
+	var/build_path = null
 	var/build_type = NONE			//Flag as to what kind machine the design is built in. See defines.
 	var/category 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.

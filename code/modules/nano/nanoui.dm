@@ -59,17 +59,17 @@ nanoui is used to open and update nano browser uis
 	var/list/datum/nanoui/children = list()
 	var/datum/topic_state/state = null
 
- /**
+/**
   * Create a new nanoui instance.
   *
-  * @param nuser /mob The mob who has opened/owns this ui
-  * @param nsrc_object /obj|/mob The obj or mob which this ui belongs to
-  * @param nui_key string A string key to use for this ui. Allows for multiple unique uis on one src_oject
-  * @param ntemplate string The filename of the template file from /nano/templates (e.g. "my_template.tmpl")
-  * @param ntitle string The title of this ui
-  * @param nwidth int the width of the ui window
-  * @param nheight int the height of the ui window
-  * @param nref /atom A custom ref to use if "on_close_logic" is set to 1
+  * * nuser /mob The mob who has opened/owns this ui
+  * * nsrc_object /obj|/mob The obj or mob which this ui belongs to
+  * * nui_key string A string key to use for this ui. Allows for multiple unique uis on one src_oject
+  * * ntemplate string The filename of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * * ntitle string The title of this ui
+  * * nwidth int the width of the ui window
+  * * nheight int the height of the ui window
+  * * nref /atom A custom ref to use if "on_close_logic" is set to 1
   *
   * @return /nanoui new nanoui object
   */
@@ -77,7 +77,7 @@ nanoui is used to open and update nano browser uis
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
-	window_id = "[ui_key]\ref[src_object]"
+	window_id = "[ui_key]-[REF(src_object)]"
 
 	src.master_ui = master_ui
 	if(master_ui)
@@ -109,7 +109,7 @@ nanoui is used to open and update nano browser uis
 	state = null
 	. = ..()
 
- /**
+/**
   * Use this proc to add assets which are common to (and required by) all nano uis
   *
   * @return nothing
@@ -130,8 +130,8 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the current status (also known as visibility) of this ui.
   *
-  * @param state int The status to set, see the defines at the top of this file
-  * @param push_update int (bool) Push an update to the ui to update it's status (an update is always sent if the status has changed to red (0))
+  * * state int The status to set, see the defines at the top of this file
+  * * push_update int (bool) Push an update to the ui to update it's status (an update is always sent if the status has changed to red (0))
   *
   * @return nothing
   */
@@ -146,14 +146,14 @@ nanoui is used to open and update nano browser uis
 			if (push_update || status == 0)
 				push_data(null, 1) // Update the UI, force the update in case the status is 0, data is null so that previous data is used
 
- /**
+/**
   * Update the status (visibility) of this ui based on the user's status
   *
-  * @param push_update int (bool) Push an update to the ui to update it's status. This is set to 0/false if an update is going to be pushed anyway (to avoid unnessary updates)
+  * * push_update int (bool) Push an update to the ui to update it's status. This is set to 0/false if an update is going to be pushed anyway (to avoid unnessary updates)
   *
   * @return 1 if closed, null otherwise.
   */
-/datum/nanoui/proc/update_status(var/push_update = 0)
+/datum/nanoui/proc/update_status(push_update = 0)
 	var/atom/host = src_object && src_object.nano_host(TRUE)
 	if(!host)
 		close()
@@ -167,27 +167,27 @@ nanoui is used to open and update nano browser uis
 		return 1
 	set_status(new_status, push_update)
 
- /**
+/**
   * Set the ui to auto update (every master_controller tick)
   *
-  * @param state int (bool) Set auto update to 1 or 0 (true/false)
+  * * state int (bool) Set auto update to 1 or 0 (true/false)
   *
   * @return nothing
   */
 /datum/nanoui/proc/set_auto_update(nstate = 1)
 	is_auto_updating = nstate
 
- /**
+/**
   * Set the initial data for the ui. This is vital as the data structure set here cannot be changed when pushing new updates.
   *
-  * @param data /list The list of data for this ui
+  * * data /list The list of data for this ui
   *
   * @return nothing
   */
 /datum/nanoui/proc/set_initial_data(list/data)
 	initial_data = data
 
- /**
+/**
   * Get config data to sent to the ui.
   *
   * @return /list config data
@@ -210,10 +210,10 @@ nanoui is used to open and update nano browser uis
 		)
 	return config_data
 
- /**
+/**
   * Get data to sent to the ui.
   *
-  * @param data /list The list of general data for this ui (can be null to use previous data sent)
+  * * data /list The list of general data for this ui (can be null to use previous data sent)
   *
   * @return /list data to send to the ui
   */
@@ -240,7 +240,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the browser window options for this ui
   *
-  * @param nwindow_options string The new window options
+  * * nwindow_options string The new window options
   *
   * @return nothing
   */
@@ -251,7 +251,7 @@ nanoui is used to open and update nano browser uis
   * Add a CSS stylesheet to this UI
   * These must be added before the UI has been opened, adding after that will have no effect
   *
-  * @param file string The name of the CSS file from /nano/css (e.g. "my_style.css")
+  * * file string The name of the CSS file from /nano/css (e.g. "my_style.css")
   *
   * @return nothing
   */
@@ -262,7 +262,7 @@ nanoui is used to open and update nano browser uis
   * Add a JavsScript script to this UI
   * These must be added before the UI has been opened, adding after that will have no effect
   *
-  * @param file string The name of the JavaScript file from /nano/js (e.g. "my_script.js")
+  * * file string The name of the JavaScript file from /nano/js (e.g. "my_script.js")
   *
   * @return nothing
   */
@@ -274,8 +274,8 @@ nanoui is used to open and update nano browser uis
   * Templates are combined with the data sent to the UI to create the rendered view
   * These must be added before the UI has been opened, adding after that will have no effect
   *
-  * @param key string The key which is used to reference this template in the frontend
-  * @param filename string The name of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * * key string The key which is used to reference this template in the frontend
+  * * filename string The name of the template file from /nano/templates (e.g. "my_template.tmpl")
   *
   * @return nothing
   */
@@ -289,7 +289,7 @@ nanoui is used to open and update nano browser uis
   *     -> a template in /nano/templates with the filename "layout_<layout_key>.tmpl
   *     -> a CSS stylesheet in /nano/css with the filename "layout_<layout_key>.css
   *
-  * @param nlayout string The layout key to use
+  * * nlayout string The layout key to use
   *
   * @return nothing
   */
@@ -299,7 +299,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the ui to update the layout (re-render it) on each update, turning this on will break the map ui (if it's being used)
   *
-  * @param state int (bool) Set update to 1 or 0 (true/false) (default 0)
+  * * state int (bool) Set update to 1 or 0 (true/false) (default 0)
   *
   * @return nothing
   */
@@ -309,7 +309,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the ui to update the main content (re-render it) on each update
   *
-  * @param state int (bool) Set update to 1 or 0 (true/false) (default 1)
+  * * state int (bool) Set update to 1 or 0 (true/false) (default 1)
   *
   * @return nothing
   */
@@ -319,7 +319,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the state key for use in the frontend Javascript
   *
-  * @param nstate_key string The key of the state to use
+  * * nstate_key string The key of the state to use
   *
   * @return nothing
   */
@@ -329,7 +329,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Toggle showing the map ui
   *
-  * @param nstate_key boolean 1 to show map, 0 to hide (default is 0)
+  * * nstate_key boolean 1 to show map, 0 to hide (default is 0)
   *
   * @return nothing
   */
@@ -339,7 +339,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Toggle showing the map ui
   *
-  * @param nstate_key boolean 1 to show map, 0 to hide (default is 0)
+  * * nstate_key boolean 1 to show map, 0 to hide (default is 0)
   *
   * @return nothing
   */
@@ -349,7 +349,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Set whether or not to use the "old" on close logic (mainly unset_machine())
   *
-  * @param state int (bool) Set on_close_logic to 1 or 0 (true/false)
+  * * state int (bool) Set on_close_logic to 1 or 0 (true/false)
   *
   * @return nothing
   */
@@ -387,14 +387,14 @@ nanoui is used to open and update nano browser uis
 	var/initial_data_json = replacetext(replacetext(json_encode(send_data), "&#34;", "&amp;#34;"), "'", "&#39;")
 	initial_data_json = strip_improper(initial_data_json);
 
-	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
+	var/url_parameters_json = json_encode(list("src" = "[REF(src)]"))
 
 	return {"
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 		<script type='text/javascript'>
 			function receiveUpdateData(jsonString)
 			{
@@ -432,8 +432,8 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/open()
-	if(!user || !user.client)
-		return
+	if(!user.client)
+		return FALSE
 
 	if(!src_object)
 		close()
@@ -445,9 +445,15 @@ nanoui is used to open and update nano browser uis
 		return // Will be closed by update_status().
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
+
 	winset(user, window_id, "on-close=\"nanoclose \ref[src]\"")
 
-	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
+	var/datum/asset/asset = get_asset_datum(/datum/asset/simple/directories/nanoui)
+	var/flush_queue = asset.send(user.client)
+
+	if (flush_queue)
+		user.client.browse_queue_flush() // reset timing, send all nanoui related shit
+
 	SSnano.ui_opened(src)
 
  /**
@@ -551,7 +557,7 @@ nanoui is used to open and update nano browser uis
  /**
   * Process this UI, updating the entire UI or just the status (aka visibility)
   *
-  * @param update string For this UI to update
+  * * update string For this UI to update
   *
   * @return nothing
   */

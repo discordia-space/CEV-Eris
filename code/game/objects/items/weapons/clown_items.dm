@@ -132,8 +132,8 @@
 	spawn_tags = SPAWN_TAG_ITEM_CLOWN
 	var/spam_flag = 0
 
-/obj/item/bikehorn/New()
-	..()
+/obj/item/bikehorn/Initialize()
+	. = ..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_HONK = TRUE,

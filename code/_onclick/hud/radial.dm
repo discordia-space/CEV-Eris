@@ -9,6 +9,17 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	plane = ABOVE_HUD_PLANE
 	var/datum/radial_menu/parent
 
+/obj/screen/radial/proc/set_parent(new_value)
+	if(parent)
+		UnregisterSignal(parent, COMSIG_PARENT_QDELETING)
+	parent = new_value
+	if(parent)
+		RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/handle_parent_del)
+
+/obj/screen/radial/proc/handle_parent_del()
+	SIGNAL_HANDLER
+	set_parent(null)
+
 /obj/screen/radial/slice
 	icon_state = "radial_slice"
 	var/choice
@@ -124,7 +135,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		for(var/i in 1 to elements_to_add) //Create all elements
 			var/obj/screen/radial/slice/new_element = new /obj/screen/radial/slice
 			new_element.tooltips = use_tooltips
-			new_element.parent = src
+			new_element.set_parent(src)
 			elements += new_element
 
 	var/page = 1

@@ -47,7 +47,7 @@
 			--pass_steps
 			continue
 		CS.make_desc(C)
-		. += CS.desc
+		. += (CS.desc + "&nbsp;") // nbsp for cool spaces
 	return jointext(., "<br>")
 
 

@@ -236,7 +236,7 @@
 	if(isarea(A) && areastring == null)
 		area = A
 	else
-		area = get_area_name(areastring)
+		area = get_area_by_name(areastring)
 	name = "[strip_improper(area.name)] APC"
 	area.apc = src
 	update_icon()

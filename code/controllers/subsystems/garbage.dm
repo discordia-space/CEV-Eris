@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(garbage)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	init_order = INIT_ORDER_GARBAGE
 
-	var/list/collection_timeout = list(2 MINUTES, 10 SECONDS) // deciseconds to wait before moving something up in the queue to the next level
+	var/list/collection_timeout = list(GC_FILTER_QUEUE, GC_DEL_QUEUE) // deciseconds to wait before moving something up in the queue to the next level
 
 	//Stat tracking
 	var/delslasttick = 0 // number of del()'s we've done this tick
@@ -57,13 +57,7 @@ SUBSYSTEM_DEF(garbage)
 
 
 /datum/controller/subsystem/garbage/PreInit()
-	queues = new(GC_QUEUE_COUNT)
-	pass_counts = new(GC_QUEUE_COUNT)
-	fail_counts = new(GC_QUEUE_COUNT)
-	for(var/i in 1 to GC_QUEUE_COUNT)
-		queues[i] = list()
-		pass_counts[i] = 0
-		fail_counts[i] = 0
+	InitQueues()
 
 /datum/controller/subsystem/garbage/stat_entry(msg)
 	var/list/counts = list()
@@ -84,7 +78,6 @@ SUBSYSTEM_DEF(garbage)
 	msg += " P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
 	..(msg)
-	// return ..()
 
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
@@ -132,6 +125,15 @@ SUBSYSTEM_DEF(garbage)
 
 
 
+/datum/controller/subsystem/garbage/proc/InitQueues()
+	if (isnull(queues)) // Only init the queues if they don't already exist, prevents overriding of recovered lists
+		queues = new(GC_QUEUE_COUNT)
+		pass_counts = new(GC_QUEUE_COUNT)
+		fail_counts = new(GC_QUEUE_COUNT)
+		for(var/i in 1 to GC_QUEUE_COUNT)
+			queues[i] = list()
+			pass_counts[i] = 0
+			fail_counts[i] = 0
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
 	if (level == GC_QUEUE_CHECK)
@@ -274,7 +276,7 @@ SUBSYSTEM_DEF(garbage)
 
 	if (time > 0.1 SECONDS)
 		postpone(time)
-	var/threshold = 0.5 //CONFIG_GET(number/hard_deletes_overrun_threshold)
+	var/threshold = 0.5 // CONFIG_GET(number/hard_deletes_overrun_threshold)
 	if (threshold && (time > threshold SECONDS))
 		if (!(I.qdel_flags & QDEL_ITEM_ADMINS_WARNED))
 			log_game("Error: [type]([refID]) took longer than [threshold] seconds to delete (took [round(time/10, 0.1)] seconds to delete)")
@@ -286,6 +288,7 @@ SUBSYSTEM_DEF(garbage)
 			I.qdel_flags |= QDEL_ITEM_SUSPENDED_FOR_LAG
 
 /datum/controller/subsystem/garbage/Recover()
+	InitQueues() //We first need to create the queues before recovering data
 	if (istype(SSgarbage.queues))
 		for (var/i in 1 to SSgarbage.queues.len)
 			queues[i] |= SSgarbage.queues[i]
@@ -393,14 +396,14 @@ SUBSYSTEM_DEF(garbage)
 
 /datum/proc/find_references(skip_alert)
 	running_find_references = type
-	if(usr && usr.client)
+	if(usr?.client)
 		if(usr.client.running_find_references)
 			testing("CANCELLED search for references to a [usr.client.running_find_references].")
 			usr.client.running_find_references = null
 			running_find_references = null
 			//restart the garbage collector
-			SSgarbage.can_fire = 1
-			SSgarbage.next_fire = world.time + world.tick_lag
+			SSgarbage.can_fire = TRUE
+			SSgarbage.update_nextfire(reset_time = TRUE)
 			return
 
 		if(!skip_alert && tgui_alert(usr,"Running this will lock everything up for about 5 minutes.  Would you like to begin the search?", "Find References", list("Yes", "No")) != "Yes")
@@ -415,23 +418,23 @@ SUBSYSTEM_DEF(garbage)
 
 	testing("Beginning search for references to a [type].")
 
-	last_find_references = world.time
+	var/starting_time = world.time
 
 	//Time to search the whole game for our ref
 	DoSearchVar(GLOB, "GLOB") //globals
 	testing("Finished searching globals")
 
 	for(var/datum/thing in world) //atoms (don't beleive its lies)
-		DoSearchVar(thing, "World -> [thing.type]", search_time = last_find_references)
+		DoSearchVar(thing, "World -> [thing.type]", search_time = starting_time)
 	testing("Finished searching atoms")
 
 	for(var/datum/thing) //datums
-		DoSearchVar(thing, "Datums -> [thing.type]", search_time = last_find_references)
+		DoSearchVar(thing, "Datums -> [thing.type]", search_time = starting_time)
 	testing("Finished searching datums")
 
 	//Warning, attempting to search clients like this will cause crashes if done on live. Watch yourself
 	for(var/client/thing) //clients
-		DoSearchVar(thing, "Clients -> [thing.type]", search_time = last_find_references)
+		DoSearchVar(thing, "Clients -> [thing.type]", search_time = starting_time)
 	testing("Finished searching clients")
 
 	testing("Completed search for references to a [type].")
@@ -459,13 +462,6 @@ SUBSYSTEM_DEF(garbage)
 	set src in world
 
 	qdel_and_find_ref_if_fail(src, TRUE)
-
-/proc/qdel_and_find_ref_if_fail(datum/thing_to_del, force = FALSE)
-	thing_to_del.qdel_and_find_ref_if_fail(force)
-
-/datum/proc/qdel_and_find_ref_if_fail(force = FALSE)
-	SSgarbage.reference_find_on_fail["\ref[src]"] = TRUE
-	qdel(src, force)
 
 //Byond type ids
 #define TYPEID_NULL "0"
@@ -554,8 +550,11 @@ SUBSYSTEM_DEF(garbage)
 			if(islist(assoc_val))
 				DoSearchVar(potential_container[element_in_list], "[container_name]\[[element_in_list]\] -> [assoc_val] (list)", recursive_limit - 1, search_time)
 
-#ifndef FIND_REF_NO_CHECK_TICK
-	CHECK_TICK
-#endif
+/proc/qdel_and_find_ref_if_fail(datum/thing_to_del, force = FALSE)
+	thing_to_del.qdel_and_find_ref_if_fail(force)
+
+/datum/proc/qdel_and_find_ref_if_fail(force = FALSE)
+	SSgarbage.reference_find_on_fail["\ref[src]"] = TRUE
+	qdel(src, force)
 
 #endif

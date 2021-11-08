@@ -670,6 +670,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if (!ui)
 		ui = new(user, src, ui_key, "rdconsole.tmpl", "R&D Console", 1000, 700)
 
+		// add the design icon **spritesheet**
+		var/datum/asset/spritesheet/S = get_asset_datum(/datum/asset/spritesheet/design_icons)
+		S.send(user.client)
+		ui.add_stylesheet(S.css_filename())
+
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

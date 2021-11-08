@@ -1,29 +1,6 @@
-/// Used to trigger signals and call procs registered for that signal
-/// The datum hosting the signal is automaticaly added as the first argument
-/// Returns a bitfield gathered from all registered procs
-/// Arguments given here are packaged in a list and given to _SendSignal
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
-
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
-
-/// Signifies that this proc is used to handle signals.
-/// Every proc you pass to RegisterSignal must have this.
-#define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
-
 //shorthand
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
-#define COMPONENT_INCOMPATIBLE 1
-#define COMPONENT_NOTRANSFER 2
-#define COMPONENT_TRANSFER 3
-
-// How multiple components of the exact same type are handled in the same datum
-
-#define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
-#define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
-#define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
 
 // All signals. Format:
 // When the signal is called: (signal arguments)
@@ -46,6 +23,9 @@
 #define COMSIG_PARENT_QDELETING "parent_qdeleting"
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 
+///from base of obj/item/attack_self(): (/mob)
+#define COMSIG_ITEM_ATTACK_SELF "item_attack_self"
+
 #define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
 #define COMSIG_RITUAL_REVELATION "revelation_ritual"
 #define COMSIG_GROUP_RITUAL "grup_ritual"
@@ -54,9 +34,17 @@
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
 
 // /atom signals
-#define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
+///from base of atom/examine(): (/mob, list/examine_text)
+#define COMSIG_PARENT_EXAMINE "atom_examine"
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
+///from base of atom/emp_act(): (severity)
+#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
+
+/////////////////
+
+///from base of atom/AltClick(): (/mob)
+#define COMSIG_CLICK_ALT "alt_click"
 
 // /area signals
 #define COMSIG_AREA_SANCTIFY "sanctify_area"

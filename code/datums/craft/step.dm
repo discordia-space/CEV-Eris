@@ -6,8 +6,6 @@
 	var/reqed_material
 	var/req_amount = 0
 
-
-
 	var/time = 15
 
 	var/desc = ""
@@ -65,10 +63,21 @@
 
 /datum/craft_step/proc/make_desc(obj/item/craft/C)
 	var/amt = req_amount
+
 	if(C && reqed_type && req_amount > 1)
 		if(!(C in craft_items))
 			craft_items[C] = req_amount
 		amt = craft_items[C]
+
+	// stupid workaround to stop asset datum (/datum/asset/spritesheet/craft) from initializing
+	// we need to BUILD the recipies first BEFORE initializing on assets.
+	if (!SSassets.initialized)
+		return
+
+	// GENERIC MATERIAL
+	var/datum/asset/spritesheet/SM = get_asset_datum(/datum/asset/spritesheet/materials)
+	// CRAFT MATERIAL (types)
+	var/datum/asset/spritesheet/SC = get_asset_datum(/datum/asset/spritesheet/craft)
 
 	switch(amt)
 		if(0)
@@ -77,17 +86,18 @@
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
 			if(reqed_material)
-				desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+				// this has to check steel because its metal not steel
+				desc = "Attach [amt] [tool_name]<div style='height:16px; width:16px;vertical-align:middle;'>[SM.icon_tag("sheet-" + (reqed_material == "steel" ? "metal" : reqed_material))]</div>"
 			else
-				desc = "Attach [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[reqed_type].png")] height=24 width=24>"
+				desc = "Attach [tool_name]<div style='height:16px; width:16px;vertical-align:middle;'>[SC.icon_tag(sanitize_filename("[reqed_type]"))]</div>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
-			desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+			desc = "Attach [amt] [tool_name]<div style='height:16px; width:16px; vertical-align:middle;'>[reqed_type ? SC.icon_tag(sanitize_filename("[reqed_type]")) : SM.icon_tag("sheet-" + (reqed_material == "steel" ? "metal" : reqed_material))]</div>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 
-/datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
+/datum/craft_step/proc/announce_action(msg, mob/living/user, obj/item/tool, atom/target)
 	msg = replacetext(msg,"%USER%","[user]")
 	msg = replacetext(msg,"%ITEM%","\improper [tool]")
 	msg = replacetext(msg,"%TARGET%","\improper [target]")
