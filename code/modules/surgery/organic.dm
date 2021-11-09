@@ -419,7 +419,7 @@
 /datum/surgery_step/remove_shrapnel/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips as he extracts the shrapnel, tearing [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, as shrapnel tears through the flesh in [organ.get_surgery_name()]!")
+		SPAN_WARNING("Your hand slips and the shrapnel tears through the flesh in [organ.get_surgery_name()]!")
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants //will succeed regardless
 	organ.remove_item(shrapnel, user, FALSE)
