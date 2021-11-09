@@ -16,7 +16,8 @@
 	var/working = FALSE
 	var/start_working
 	var/work_time = 20 SECONDS
-	var/storage_capacity = 60
+	var/mat_efficiency = 15
+	var/storage_capacity = 40
 	var/list/stored_material = list()
 	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD)
 	var/list/needed_material_gunpart = list(MATERIAL_PLASTEEL = 5)
@@ -55,6 +56,12 @@
 
 
 /obj/machinery/craftingstation/attackby(obj/item/I, mob/user)
+	if(default_part_replacement(I, user))
+		return
+
+	if(default_deconstruction(I, user))
+		return
+
 	if(istype(I, /obj/item/stack))
 		eat(user, I)
 		return
@@ -165,7 +172,7 @@
 		update_icon()
 		return
 
-	var/dice_roll = (rand(0,20)*(1+cog_stat/15))
+	var/dice_roll = (rand(0,20)*(1+cog_stat/mat_efficiency))
 
 	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 		dice_roll = dice_roll * 2
@@ -539,6 +546,30 @@
 		flick("[initial(icon_state)][pick_string]", src)
 		icon_state = "[initial(icon_state)][pick_string]"
 		update_icon()
+
+/obj/machinery/craftingstation/RefreshParts()
+	..()
+	var/mb_rating = 0
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
+		mb_rating += MB.rating
+
+	storage_capacity = round(initial(storage_capacity) + 10*(mb_rating - 1))
+
+	var/man_rating = 0
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		man_rating += M.rating
+
+	var/las_rating = 0
+	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
+		las_rating += M.rating
+
+	work_time = initial(work_time) - 2*(man_rating - 1) SECONDS
+	mat_efficiency = initial(mat_efficiency)-(1.5^las_rating)
+
+/obj/machinery/autolathe/on_deconstruction()
+	for(var/mat in stored_material)
+		eject(mat, stored_material[mat])
+..()
 
 #undef WORK
 #undef DONE
