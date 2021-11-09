@@ -21,7 +21,6 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
-	wield_delay = 0 SECOND
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE

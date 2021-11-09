@@ -11,5 +11,5 @@
 	charge_cost = 100
 	fire_delay = 1
 	twohanded = TRUE
-	wield_delay = 0 SECOND
+
 

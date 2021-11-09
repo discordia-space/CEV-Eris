@@ -21,7 +21,6 @@
 		)
 
 	var/lightfail = 0
-	wield_delay = 0 SECOND
 
 //override for failcheck behaviour
 /obj/item/gun/energy/nuclear/Process()
