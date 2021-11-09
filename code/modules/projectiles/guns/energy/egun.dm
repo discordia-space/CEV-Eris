@@ -22,8 +22,7 @@
 		WEAPON_CHARGE,
 		)
 
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
 
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"

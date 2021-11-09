@@ -27,8 +27,7 @@
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 	twohanded = TRUE
 	var/consume_cell = TRUE
-	wield_delay = 0.7 SECOND
-	wield_delay_factor = 0.3 // 30 vig
+	wield_delay = 0 SECOND
 
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
 	if(!cell) return null

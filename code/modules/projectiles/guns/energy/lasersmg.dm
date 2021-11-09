@@ -29,8 +29,7 @@
 		FULL_AUTO_300
 		)
 
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.1 // 10 vig
+	wield_delay = 0 SECOND
 
 
 /obj/item/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params)

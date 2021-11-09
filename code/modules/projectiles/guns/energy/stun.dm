@@ -9,8 +9,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam/stun
-	wield_delay = 0.3 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+	wield_delay = 0 SECOND
 
 /obj/item/gun/energy/taser/mounted
 	name = "mounted taser gun"

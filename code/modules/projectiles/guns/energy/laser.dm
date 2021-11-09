@@ -21,8 +21,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.3 // 30 vig , very powerfull assault laser
+	wield_delay = 0 SECOND
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE
