@@ -1048,7 +1048,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if(burn_dam > 0)
 			condition = list(
-				"name" = "Severe burning",
+				"name" = "Severe burns",
 				"fix_name" = "Salve",
 				"step" = /datum/surgery_step/fix_burn
 			)
