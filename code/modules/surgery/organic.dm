@@ -414,7 +414,7 @@
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants
 	organ.remove_item(shrapnel, user, FALSE)
-	organ.take_damage(tool.force/0.3), 0, sharp=TRUE, edge=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
+	organ.take_damage(tool.force / 0.3, 0, sharp=TRUE, edge=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
 
 /datum/surgery_step/remove_shrapnel/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
