@@ -22,5 +22,4 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
-	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.4 //40 vig, funny laser AMR should atleast have some warning
+	wield_delay = 0 SECOND
