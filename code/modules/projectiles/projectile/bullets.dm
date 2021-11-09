@@ -62,7 +62,8 @@
 	else if(istype(A, /obj/structure/low_wall))
 		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
-		chance = round(penetrating * armor_penetration * 2 / D.maxhealth * 180)
+		var/obj/structure/table/T = A
+		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = armor_penetration * penetrating
 
