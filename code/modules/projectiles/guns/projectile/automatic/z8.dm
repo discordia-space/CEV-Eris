@@ -33,8 +33,6 @@
 
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
 
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

@@ -13,8 +13,6 @@
 	penetration_multiplier = 1.4
 	recoil_buildup = 30
 	spawn_frequency = 0
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)

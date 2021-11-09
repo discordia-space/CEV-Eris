@@ -28,7 +28,6 @@
 		SEMI_AUTO_NODELAY
 		)
 
-	wield_delay = 0 // Super weak SMG
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

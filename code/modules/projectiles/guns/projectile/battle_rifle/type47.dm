@@ -24,8 +24,7 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0 // One-star SMG , but very powerfull
+
 	spawn_blacklisted = TRUE
 	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 

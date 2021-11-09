@@ -33,8 +33,6 @@
 	var/bolt_open = 0
 	var/bolting = 0
 	var/item_suffix = ""
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0 // 20 vig
 
 /obj/item/gun/projectile/boltgun/on_update_icon()
 	..()

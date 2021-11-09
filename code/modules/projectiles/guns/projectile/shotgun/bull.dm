@@ -33,8 +33,6 @@
 
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0
 
 /obj/item/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)

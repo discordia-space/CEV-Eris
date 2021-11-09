@@ -27,8 +27,6 @@
 		FULL_AUTO_800
 		)
 
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/gun/projectile/selfload/on_update_icon()

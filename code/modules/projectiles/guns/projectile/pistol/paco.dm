@@ -22,9 +22,6 @@
 	penetration_multiplier = 0.9
 	recoil_buildup = 3
 	gun_tags = list(GUN_SILENCABLE)
-	wield_delay = 0 SECOND
-	wield_delay_factor = 0
-
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/gun/projectile/paco/on_update_icon()
