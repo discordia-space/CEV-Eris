@@ -681,23 +681,25 @@
 	Insert("sheet-chitin", 'icons/mob/alien.dmi', "chitin") // special case
 	..()
 
-/datum/asset/spritesheet/tool_upgrades
-	name = "tool_upgrades"
+/datum/asset/simple/tool_upgrades
+	keep_local_name = TRUE
 
-/datum/asset/spritesheet/tool_upgrades/register()
-	InsertAll("", 'icons/obj/tool_upgrades.dmi')
+/datum/asset/simple/tool_upgrades/register()
+	for(var/type in subtypesof(/obj/item/tool_upgrade))
+		var/filename = sanitize_filename("[type].png")
+		var/icon/I = getFlatTypeIcon(type)
+		assets[filename] = I
 	..()
 
-/datum/asset/spritesheet/perks
-	name = "perks"
+/datum/asset/simple/perks
+	keep_local_name = TRUE
 
-/datum/asset/spritesheet/perks/register()
+/datum/asset/simple/perks/register()
 	for(var/type in subtypesof(/datum/perk))
 		var/datum/perk/P = new type
-		var/filename = sanitize_filename("[type]")
+		var/filename = sanitize_filename("[type].png")
 		var/icon/I = icon(P.icon, P.icon_state)
-		// assets[filename] = I
-		Insert(filename, I)
+		assets[filename] = I
 	..()
 
 /datum/asset/simple/directories/nanoui
