@@ -334,6 +334,7 @@
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
 	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.faction = "roach"
 
 /datum/reagent/drug/kaiserbeer/overdose(mob/living/carbon/M)
 	..()
@@ -345,6 +346,9 @@
 /datum/reagent/drug/kaiserbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
 	var/mob/living/carbon/human/addicte = M
 	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
 	if(prob(5))
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
