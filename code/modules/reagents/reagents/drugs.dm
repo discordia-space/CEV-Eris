@@ -343,7 +343,7 @@
 		M.vomit()
 	M.adjustToxLoss(6)
 
-/datum/reagent/drug/kaiserbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
+/datum/reagent/drug/kaiserbeer/withdrawal_act(mob/living/carbon/M, effect_multiplier) ////// lose sanity on withdrawal, notify user about this
 	var/mob/living/carbon/human/addicte = M
 	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
