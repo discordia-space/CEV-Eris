@@ -287,6 +287,7 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 15
 	sanity_gain_ingest = 2
+	taste_tag = list(TASTE_SOUR,TASTE_BUBBLY)
 
 /datum/reagent/drug/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
@@ -303,11 +304,9 @@
 	M.adjustToxLoss(2)
 
 /datum/reagent/drug/roachbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
-	if(!ishuman(M))
-		return FALSE
 	var/mob/living/carbon/human/addicte = M
-	addicte.sanity.changeLevel(-sanity_gain)
-	if(prob(3))
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	if(prob(5))
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
 			SPAN_DANGER("When was the last time you drank that roach beer? You want more. And now."),
@@ -325,6 +324,7 @@
 	addiction_chance = 30
 	addiction_threshold = 30
 	sanity_gain_ingest = 4
+	taste_tag = list(TASTE_SOUR,TASTE_BUBBLY)
 
 /datum/reagent/drug/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
@@ -343,11 +343,9 @@
 	M.adjustToxLoss(6)
 
 /datum/reagent/drug/kaiserbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
-	if(!ishuman(M))
-		return FALSE
 	var/mob/living/carbon/human/addicte = M
-	addicte.sanity.changeLevel(-sanity_gain)
-	if(prob(3))
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	if(prob(5))
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
 			SPAN_DANGER("You crave roach blood."),
