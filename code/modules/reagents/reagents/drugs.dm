@@ -311,8 +311,7 @@
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
 			SPAN_DANGER("When was the last time you drank that roach beer? You want more. And now."),
-			SPAN_DANGER("You feel a terrible hangover.")
-		))
+			SPAN_DANGER("You feel a terrible hangover.")))
 
 /datum/reagent/drug/kaiserbeer
 	name = "Monarchenblut"
@@ -351,6 +350,5 @@
 	if(prob(3))
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
-			SPAN_DANGER("When was the last time you drank that roach beer? You want more. And now."),
-			SPAN_DANGER("You feel a terrible hangover.")
-		))
+			SPAN_DANGER("You crave roach blood."),
+			SPAN_DANGER("You feel a terrible hangover.")))
