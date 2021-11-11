@@ -534,7 +534,7 @@
 
 /obj/machinery/craftingstation/power_change()
 	..()
-	if(NOPOWER)
+	if(stat & NOPOWER)
 		working = FALSE
 		icon_state = "[initial(icon_state)]_off"
 	update_icon()
