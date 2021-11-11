@@ -625,9 +625,9 @@ ADMIN_VERB_ADD(/client/proc/create_portals, R_ADMIN, FALSE)
 	if(!z_2)
 		return
 
-	// Spawning junk tractor beam portals because they never disappear
-	var/obj/effect/portal/jtb/portal_1 = new /obj/effect/portal/jtb(locate(x_1, y_1, z_1))  // First location
-	var/obj/effect/portal/jtb/portal_2 = new /obj/effect/portal/jtb(locate(x_2, y_2, z_2))  // Second location
+	// Spawning perfect portals
+	var/obj/effect/portal/perfect/portal_1 = new /obj/effect/portal/perfect(locate(x_1, y_1, z_1))  // First location
+	var/obj/effect/portal/perfect/portal_2 = new /obj/effect/portal/perfect(locate(x_2, y_2, z_2))  // Second location
 	portal_1.set_target(get_turf(portal_2))  // Link the two portals
 	portal_2.set_target(get_turf(portal_1))
 
