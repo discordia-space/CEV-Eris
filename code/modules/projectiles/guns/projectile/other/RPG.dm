@@ -26,7 +26,7 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	wield_delay = 1 SECOND
-	wield_delay_factor = 0.6 // 60 vig , heavy stuff
+	wield_delay_factor = 0.9 // 90 vig , heavy stuff
 
 /obj/item/gun/projectile/rpg/on_update_icon()
 	. = ..()
