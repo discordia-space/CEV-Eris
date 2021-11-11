@@ -222,7 +222,7 @@ var/list/_client_preferences_by_type
 		preference_mob.update_music()
 
 /datum/client_preference/stay_in_hotkey_mode
-	description ="Keep hotkeys on mob change"
+	description = "Keep hotkeys on mob change"
 	key = "KEEP_HOTKEY_MODE"
 	default_value = GLOB.PREF_NO
 
