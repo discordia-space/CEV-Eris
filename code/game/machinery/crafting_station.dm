@@ -70,18 +70,19 @@
 /obj/machinery/craftingstation/attack_hand(mob/user as mob)
 	var/cog_stat = user.stats.getStat(STAT_COG)
 
-	var/list/options = list()
-	options[".20 Rifle ammunition"] = "srifle"
-	options[".25 Caseless Rifle ammunition"] = "clrifle"
-	options[".30 Rifle ammunition"] = "lrifle"
-	options[".35 Auto ammunition"] = "pistol"
-	options[".40 Magnum ammunition"] = "magnum"
-	options[".50 Shotgun Buckshot ammunition"] = "shot"
-	options[".50 Shotgun Beanbag ammunition"] = "bean"
-	options[".50 Shotgun Slug ammunition"] = "slug"
-	options[".60 Anti-Material ammunition"] = "antim"
-	options["Gun parts"] = "gunpart"
-	options["Armor parts"] = "armorpart"
+var/list/options = list(
+	".20 Rifle ammunition" = "srifle",
+	".25 Caseless Rifle ammunition" = "clrifle",
+	".30 Rifle ammunition" = "lrifle",
+	".35 Auto ammunition" = "pistol",
+	".40 Magnum ammunition" = "magnum",
+	".50 Shotgun Buckshot ammunition" = "shot",
+	".50 Shotgun Beanbag ammunition" = "bean",
+	".50 Shotgun Slug ammunition" = "slug",
+	".60 Anti-Material ammunition" = "antim",
+	"Gun parts" = "gunpart",
+	"Armor parts"= "armorpart",
+)
 
 	var/choice = input(user,"What do you want to craft?") as null|anything in options
 	if(choice == null)
@@ -93,55 +94,55 @@
 		if("pistol")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("magnum")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("srifle")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("clrifle")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("lrifle")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("shot")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("bean")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("slug")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with"))
 					return
 		if("antim")
 			for(var/material in needed_material_ammo)
 				var/amount = needed_material_ammo[material]
-				if(amount>stored_material[material])
+				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
 		if("gunpart")
@@ -172,7 +173,7 @@
 		update_icon()
 		return
 
-	var/dice_roll = (rand(0,20)*(1+cog_stat/mat_efficiency))
+	var/dice_roll = (rand(0,20) * (1 + cog_stat / mat_efficiency))
 
 	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 		dice_roll = dice_roll * 2
@@ -349,7 +350,7 @@
 		else
 			boxxes = 2 + round(dice/10-5,1)
 
-	if(rifle==1) //srifle
+	if(rifle == 1) //srifle
 		if(piles)
 			for(var/j = 1 to piles)
 				new /obj/item/ammo_casing/srifle/scrap/prespawned(get_turf(src))
@@ -360,7 +361,7 @@
 			for(var/j = 1 to mags)
 				new /obj/item/ammo_magazine/srifle/scrap(get_turf(src))
 
-	if(rifle==2) //clrifle
+	if(rifle == 2) //clrifle
 		if(piles)
 			for(var/j = 1 to piles)
 				new /obj/item/ammo_casing/clrifle/scrap/prespawned(get_turf(src))
@@ -371,7 +372,7 @@
 			for(var/j = 1 to mags)
 				new /obj/item/ammo_magazine/ihclrifle/scrap(get_turf(src))
 
-	if(rifle==3) //lrifle
+	if(rifle == 3) //lrifle
 		if(piles)
 			for(var/j = 1 to piles)
 				new /obj/item/ammo_casing/lrifle/scrap/prespawned(get_turf(src))
@@ -563,8 +564,8 @@
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		las_rating += M.rating
 
-	work_time = initial(work_time) - 2*(man_rating - 1) SECONDS
-	mat_efficiency = initial(mat_efficiency)-(1.5^las_rating)
+	work_time = initial(work_time) - 2 * (man_rating - 1) SECONDS
+	mat_efficiency = initial(mat_efficiency) - (1.5 ^ las_rating)
 
 /obj/machinery/autolathe/on_deconstruction()
 	for(var/mat in stored_material)
