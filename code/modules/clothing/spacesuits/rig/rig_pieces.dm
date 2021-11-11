@@ -59,24 +59,12 @@
 			chance *= 1.5
 		if(B.starting && prob(chance))
 			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]'s [src.name]!"))
-
 			var/multiplier = round(10 / get_dist(B.starting,user))
-
-			var/turf/sourceloc = get_turf_away_from_target_complex(B.starting, user, multiplier)
+			var/turf/sourceloc = get_turf_away_from_target_complex(user, B.starting, multiplier)
 			var/distance = get_dist(sourceloc, user)
-
-			var/new_x = sourceloc.x + round(pick(0,1,-1)*rand()*distance)
-			var/new_y = sourceloc.y + round(pick(0,1,-1)*rand()*distance)
-			//var/new_x =  sourceloc.x + ( rand(0, distance) * prob(50) ? -1 : 1 )
-			//var/new_y =  sourceloc.y + ( rand(0, distance) * prob(50) ? -1 : 1 )
-
-			var/turf/origin = locate(new_x,new_y,sourceloc.z)
-
-			var/turf/targetloc = get_turf_away_from_target_complex(user, origin, multiplier)
-
-			var/turf/curloc = get_turf(user)
-
-			B.redirect(targetloc.x, targetloc.y, curloc, user)
+			var/new_x =  sourceloc.x + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			var/new_y =  sourceloc.y + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			B.redirect(new_x, new_y, get_turf(user), user)
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
 //TODO: move this to modules

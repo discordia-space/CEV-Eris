@@ -530,11 +530,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/get_turf_away_from_target_complex(atom/center, atom/target, distance)
 	var/list/distance_reports = list(center.x - target.x, center.y - target.y)
 	var/distance_total = abs(distance_reports[1]) + abs(distance_reports[2])
-	if(distance_total)
+	if(distance_reports[1])
 		distance_reports[1] = round(distance_reports[1] / distance_total * distance)
+	if(distance_reports[2])
 		distance_reports[2] = round(distance_reports[2] / distance_total * distance)
-		distance_reports[1] = center.x + distance_reports[1]
-		distance_reports[2] = center.y + distance_reports[2]
+	distance_reports[1] = center.x + distance_reports[1]
+	distance_reports[2] = center.y + distance_reports[2]
 	return locate(distance_reports[1], distance_reports[2], center.z)
 
 // returns turf relative to A in given direction at set range
