@@ -570,7 +570,7 @@
 /obj/machinery/autolathe/on_deconstruction()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
-..()
+	..()
 
 #undef WORK
 #undef DONE
