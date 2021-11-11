@@ -569,6 +569,38 @@
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "starkellin_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "starkellin_w")
 
+/datum/reagent/toxin/kaiseraurum
+	name = "Kaiseraurum"
+	id = "kaiseraurum"
+	description = "Harvested from Kaiser roaches."
+	taste_description = "Kommandant's authority"
+	reagent_state = LIQUID
+	color = "#030f08"
+	addiction_chance = 50
+	addiction_threshold = 8
+	overdose = 6
+	nerve_system_accumulations = 50
+	heating_point = 573
+	heating_products = list("fuhrerole", "radium", "nutriment", "tungsten")
+	reagent_type = "Toxin/Stimulator"
+
+/datum/reagent/toxin/kaiseraurum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.faction = "roach"
+
+/datum/reagent/toxin/kaiseraurum/withdrawal_act(mob/living/carbon/M)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+
+/datum/reagent/toxin/kaiseraurum/overdose(mob/living/carbon/M, alien)
+	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
+	M.adjustBrainLoss(0.5)
+	M.adjustToxLoss(1)
+
 /datum/reagent/toxin/gewaltine
 	name = "Gewaltine"
 	id = "gewaltine"

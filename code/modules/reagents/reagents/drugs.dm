@@ -322,7 +322,7 @@
 	reagent_state = LIQUID
 	color = "#047c38"
 	metabolism = REM * 0.8
-	nerve_system_accumulations = 80
+	nerve_system_accumulations = 70
 	addiction_chance = 30
 	addiction_threshold = 30
 	sanity_gain_ingest = 4
