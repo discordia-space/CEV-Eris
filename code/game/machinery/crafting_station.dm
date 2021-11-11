@@ -69,19 +69,20 @@
 
 /obj/machinery/craftingstation/attack_hand(mob/user as mob)
 	var/cog_stat = user.stats.getStat(STAT_COG)
-
-var/list/options = list()
-	options[".20 Rifle ammunition"] = "srifle"
-	options[".25 Caseless Rifle ammunition"] = "clrifle"
-	options[".30 Rifle ammunition"] = "lrifle"
-	options[".35 Auto ammunition"] = "pistol"
-	options[".40 Magnum ammunition"] = "magnum"
-	options[".50 Shotgun Buckshot ammunition"] = "shot"
-	options[".50 Shotgun Beanbag ammunition"] = "bean"
-	options[".50 Shotgun Slug ammunition"] = "slug"
-	options[".60 Anti-Material ammunition"] = "antim"
-	options["Gun parts"] = "gunpart"
-	options["Armor parts"] = "armorpart"
+	
+var/list/options = list(
+	".20 Rifle ammunition" = "srifle",
+	".25 Caseless Rifle ammunition" = "clrifle",
+	".30 Rifle ammunition" = "lrifle",
+	".35 Auto ammunition" = "pistol",
+	".40 Magnum ammunition" = "magnum",
+	".50 Shotgun Buckshot ammunition" = "shot",
+	".50 Shotgun Beanbag ammunition" = "bean",
+	".50 Shotgun Slug ammunition" = "slug",
+	".60 Anti-Material ammunition" = "antim",
+	"Gun parts" = "gunpart",
+	"Armor parts"= "armorpart",
+	)
 
 	var/choice = input(user,"What do you want to craft?") as null|anything in options
 	if(choice == null)
