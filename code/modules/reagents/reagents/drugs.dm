@@ -273,3 +273,47 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
+
+/datum/reagent/drug/roachbeer
+	name = "Kakerlakenbier"
+	id = "roachbeer"
+	description = "A greenish substance made out of roach guts, beer and fuel mixed with water. Doesn't look nor smell like beer..."
+	taste_description = "heady roach guts"
+	reagent_state = LIQUID
+	color = "#123a15"
+	metabolism = REM
+	nerve_system_accumulations = 40
+	addiction_chance = 60
+	overdose = 30
+	addiction_threshold = 15
+	sanity_gain_ingest = 2
+	glass_unique_appearance = TRUE
+	glass_icon_state = "spritename"
+	glass_name = "name"
+	glass_desc = "bla bla bla."
+	glass_center_of_mass = list("x"=16, "y"=16)
+
+/datum/reagent/drug/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
+	var/perk_check = effect_multiplier
+	if(M.stats.getPerk(PERK_LOWBORN))														////// increases sanity_gain to 4 if true
+		perk_check = effect_multiplier * 2
+	apply_sanity_effect(M, perk_check)
+
+/datum/reagent/drug/roachbeer/overdose(mob/living/carbon/M)
+	..()
+	M.add_side_effect("Headache", 11)
+	if(prob(5))
+		M.vomit()
+	M.adjustToxLoss(2)
+
+/datum/reagent/drug/roachbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
+	if(!ishuman(M))
+		return FALSE
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain)
+	if(prob(3))
+		to_chat(addicte , pick(
+			SPAN_DANGER("You feel wilted."),
+			SPAN_DANGER("When was the last time you drank that roach beer? You want more. And now."),
+			SPAN_DANGER("You feel a terrible hangover.")
+		))
