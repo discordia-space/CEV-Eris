@@ -56,7 +56,7 @@
 	if(user && user.stats)
 		return max(1,user.stats.getStat(stat_type))
 
-	return STAT_LEVEL_MIN
+	return 1 //STAT_LEVEL_MIN doesn't work due to division by zero error
 
 /obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
@@ -80,6 +80,7 @@
 	if(protected_area.Find(def_zone) && check_shield_arc(user, bad_arc, damage_source))
 		if(!damage_source.check_penetrate(src))
 			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with \his [src]!"))
+			playsound(user.loc, 'sound/weapons/shield/shieldblock.ogg', 50, 1)
 			return 1
 	return 0
 
@@ -213,7 +214,7 @@
 
 /obj/item/shield/riot/handle_shield(mob/user)
 	. = ..()
-	if(.) playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+	if(.) playsound(user.loc, 'sound/weapons/shield/shieldmelee.ogg', 50, 1)
 
 /obj/item/shield/riot/get_block_chance(mob/user)
 	if(MOVING_QUICKLY(user))

@@ -16,16 +16,18 @@
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2000
-	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/20rifle.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.2 //30
 	penetration_multiplier = 1.4 //35
 	recoil_buildup = 2
-	one_hand_penalty = 20 //full sized rifle 
+	one_hand_penalty = 20 //full sized rifle
 	zoom_factor = 0.6
 	fire_delay = 6.5
+	wield_delay = 0.4 SECOND
+	wield_delay_factor = 0.2 // semi-auto but good
 
 /obj/item/gun/projectile/kovacs/on_update_icon()
 	..()

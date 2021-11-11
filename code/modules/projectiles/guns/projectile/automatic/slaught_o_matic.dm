@@ -36,6 +36,7 @@
 		FULL_AUTO_300,
 		FULL_AUTO_800
 		)
+	wield_delay = 0
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()

@@ -17,11 +17,13 @@
 	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/35pistol.ogg'
 	damage_multiplier = 1.5
 	penetration_multiplier = 0.9
 	recoil_buildup = 3
 	gun_tags = list(GUN_SILENCABLE)
+	wield_delay = 0.2 SECOND
+	wield_delay_factor = 0.3 // 30 vig
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

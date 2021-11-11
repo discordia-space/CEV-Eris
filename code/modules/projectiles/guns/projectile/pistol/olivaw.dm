@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/olivawcivil.dmi'
 	icon_state = "olivawcivil"
 	item_state = "pistol"
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/35pistol.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	can_dual = TRUE
 	caliber = CAL_PISTOL
@@ -22,6 +22,8 @@
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	wield_delay = 0.2 SECOND
+	wield_delay_factor = 0.2 // 20 vig
 
 /obj/item/gun/projectile/olivaw/on_update_icon()
 	..()

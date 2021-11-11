@@ -9,6 +9,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharp = TRUE
 	edge = TRUE
 	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)

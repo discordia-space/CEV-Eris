@@ -11,6 +11,7 @@
 	can_dual = TRUE
 	silenced = TRUE
 
+	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
@@ -21,6 +22,8 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.7
 	recoil_buildup = 2
+	wield_delay = 0.3 SECOND
+	wield_delay_factor = 0.3 // 30 vig
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

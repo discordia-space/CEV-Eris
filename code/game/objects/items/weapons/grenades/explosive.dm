@@ -2,7 +2,6 @@
     name = "NT OBG \"Cracker\""
     desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
     icon_state = "explosive"
-    loadable = TRUE
 
     var/devastation_range = -1
     var/heavy_range = 1

@@ -15,7 +15,7 @@
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
-	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/cal/shotgun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
@@ -29,6 +29,9 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY
 		)
+
+	wield_delay = 0.8 SECOND
+	wield_delay_factor = 0.2 // 40 vig , after all its designed for CQC
 
 /obj/item/gun/projectile/shotgun/bojevic/on_update_icon()
 	..()
