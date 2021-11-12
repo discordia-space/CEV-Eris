@@ -1,0 +1,5 @@
+author: Kegdo
+delete-after: true
+changes:
+  - bugfix: fixed-remixed most of the new sounds, making them sound as it was intended
+      (ballistics excluded)

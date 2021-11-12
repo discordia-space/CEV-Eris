@@ -21,7 +21,7 @@
 	unload_sound = 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
-	fire_sound = 'sound/weapons/guns/fire/cal/30.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	recoil_buildup = 2.2
 	one_hand_penalty = 45 //not like it's used anyway, but HMG level
 	init_firemodes = list(

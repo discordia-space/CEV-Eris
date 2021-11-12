@@ -20,9 +20,10 @@
 	twohanded = TRUE
 
 	init_firemodes = list(
-		list(mode_name="Burn", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/burn.ogg', fire_delay=8, charge_cost=20, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="Melt", mode_desc="A much more potent plasma round for breaching tough opponents' hides", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/melt.ogg', fire_delay=12, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
-		list(mode_name="INCINERATE", mode_desc="An armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="Burn", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/burn.ogg', burst=1, fire_delay=8, charge_cost=20, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="Melt", mode_desc="A much more potent plasma round for breaching tough opponents' hides", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/melt.ogg', burst=1, fire_delay=12, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="Sear", mode_desc="A three-round burst of plasma, for dealing with unruly crowds", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/burn.ogg', burst=3, fire_delay=12, charge_cost=20, icon="burst", projectile_color = "#0000FF"),
+		list(mode_name="INCINERATE", mode_desc="An armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
 	)
 
 	wield_delay = 0.7 SECOND
@@ -76,6 +77,7 @@
 	init_firemodes = list(
 		list(mode_name="Burn", mode_desc="A general purpose plasma round, for dealing with native fauna", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/burn.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),
 		list(mode_name="Melt", mode_desc="A much more charged plasma round, for stripping away armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/melt.ogg', fire_delay=12, charge_cost=20, icon="kill", projectile_color = "#00AAFF"),
+		list(mode_name="Burst", mode_desc="A three-round burst of plasma, for dealing with unruly crowds", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', burst=3, fire_delay=12, charge_cost=20, icon="burst", projectile_color = "#00FFFF")
 	)
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY

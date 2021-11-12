@@ -40,7 +40,7 @@
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
-
+	var/current_vertical_travel_method // Link currently used VTM if we moving between Z-levels
 	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
 	var/atom/movable/pulling
 	var/other_mobs

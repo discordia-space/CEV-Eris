@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: made maint fauna meat more descriptive.
+  - balance: rebalanced spiders and buffed the melee damage of most roaches slightly
+  - rscadd: nurse spiders can inject people with spider eggs sometimes

@@ -70,7 +70,7 @@
 	var/gilded = FALSE
 	/*	SILENCER HANDLING */
 	var/silenced = FALSE
-	var/fire_sound_silenced = 'sound/weapons/guns/fire/cal/silenced.ogg' //Firing sound used when silenced
+	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
@@ -98,7 +98,7 @@
 		return
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
-		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * wield_delay_factor))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
+		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
 	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
 		..()
 	else if (calculated_delay <= 0)

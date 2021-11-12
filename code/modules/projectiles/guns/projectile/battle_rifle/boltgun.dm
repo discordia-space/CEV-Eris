@@ -11,15 +11,16 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
-	fire_delay = 0 // definitely won't go bad
+	fire_delay = 8
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 2.5 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
+	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
+	init_offset = 2 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
 	magazine_type = /obj/item/ammo_magazine/lrifle
-	fire_sound = 'sound/weapons/guns/fire/cal/30rifle.ogg'
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 900
@@ -31,7 +32,6 @@
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
-	var/bolting = 0
 	var/item_suffix = ""
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
@@ -64,13 +64,6 @@
 	bolt_act(user)
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)
-
-	if(bolting)
-		return FALSE
-	
-	bolting = TRUE
-	do_after(user, 0.3 SECONDS, 0, 1, INCAPACITATION_DEFAULT, 0)
-	bolting = FALSE
 
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
@@ -119,7 +112,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 2.8 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
+	recoil_buildup = 7.6 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -137,7 +130,8 @@
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
 	penetration_multiplier = 1.7
-	recoil_buildup = 2.7
+	recoil_buildup = 8
+	init_offset = 0 //no bayonet
 	max_shells = 6
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
@@ -156,12 +150,11 @@
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	fire_delay = 0
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.3
-	recoil_buildup = 3.5 // joonk gun
+	recoil_buildup = 9 // joonk gun
 	max_shells = 5
-	fire_sound = 'sound/weapons/guns/fire/cal/30rifle.ogg'
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	price_tag = 800
 	one_hand_penalty = 30 //don't you dare to one hand this
