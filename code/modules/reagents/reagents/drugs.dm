@@ -277,7 +277,7 @@
 /datum/reagent/drug/roachbeer
 	name = "Kakerlakenbier"
 	id = "roachbeer"
-	description = "A green-ish substance made out of roach guts, beer and fuel mixed with water. Doesn't look nor smell like beer..."
+	description = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn't look nor smell like beer..."
 	taste_description = "heady roach guts"
 	reagent_state = LIQUID
 	color = "#123a15"
@@ -291,7 +291,7 @@
 
 /datum/reagent/drug/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
-	if(M.stats.getPerk(PERK_LOWBORN))														////// increases sanity_gain to 4 if true
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to 4 if true
 		perk_check = effect_multiplier * 2
 	apply_sanity_effect(M, perk_check)
 	M.slurring = max(M.slurring, 30)
@@ -309,7 +309,6 @@
 	if(prob(5))
 		to_chat(addicte , pick(
 			SPAN_DANGER("You feel wilted."),
-			SPAN_DANGER("When was the last time you drank that roach beer? You want more. And now."),
 			SPAN_DANGER("You feel a terrible hangover.")))
 
 /datum/reagent/drug/kaiserbeer
@@ -328,7 +327,7 @@
 
 /datum/reagent/drug/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
-	if(M.stats.getPerk(PERK_LOWBORN))														////// increases sanity_gain to !!8!! if true
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!8!! if true
 		perk_check = effect_multiplier * 2
 	apply_sanity_effect(M, perk_check)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
