@@ -58,7 +58,7 @@
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			chance *= 1.5
 		if(B.starting && prob(chance))
-			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]'s [src.name]!"))
+			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]\'s [src.name]!"))
 			var/multiplier = round(10 / get_dist(B.starting, user))
 			var/turf/sourceloc = get_turf_away_from_target_complex(user, B.starting, multiplier)
 			var/distance = get_dist(sourceloc, user)
