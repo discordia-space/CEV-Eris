@@ -219,7 +219,7 @@ Proc for attack log creation, because really why not
 		return 0
 
 	if(user.currently_timing)
-		to_chat(user, SPAN_NOTICE("You cannot do more than 1 action at a time!"))
+		to_chat(user, SPAN_NOTICE("You cannot do more than one action at a time!"))
 		return FALSE
 
 	var/atom/target_loc
