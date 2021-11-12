@@ -98,7 +98,7 @@
 		return
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
-		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * wield_delay_factor))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
+		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
 	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
 		..()
 	else if (calculated_delay <= 0)
