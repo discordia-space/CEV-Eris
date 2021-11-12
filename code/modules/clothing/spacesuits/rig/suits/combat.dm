@@ -9,7 +9,7 @@
 	suit_type = "combat hardsuit"
 	armor = list(
 		melee = 45,
-		bullet = 50,
+		bullet = 45,
 		energy = 45,
 		bomb = 50,
 		bio = 100,
@@ -66,7 +66,7 @@
 	icon_state = "hazard_rig"
 	armor = list(
 		melee = 35,
-		bullet = 40,
+		bullet = 35,
 		energy = 35,
 		bomb = 90,
 		bio = 100,

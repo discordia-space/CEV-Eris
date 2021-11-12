@@ -10,7 +10,7 @@
 	suit_type = "crimson hardsuit"
 	armor = list(
 		melee = 50,
-		bullet = 50,
+		bullet = 45,
 		energy = 30,
 		bomb = 75,
 		bio = 100,

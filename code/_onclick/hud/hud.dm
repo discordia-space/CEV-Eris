@@ -16,6 +16,7 @@ var/list/global_huds
 /datum/global_hud
 	var/obj/screen/druggy
 	var/obj/screen/blurry
+	var/list/lightMask
 	var/list/vimpaired
 	var/list/darkMask
 	var/obj/screen/nvg
@@ -48,6 +49,18 @@ var/list/global_huds
 	holomap.icon = null
 
 	//that nasty looking dither you  get when you're short-sighted
+
+	lightMask = newlist(
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH to EAST,SOUTH+1"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH+2 to WEST+1,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST-1,SOUTH+2 to EAST,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"},
+
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH:-32 to EAST,SOUTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH to EAST,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH:-32"},
+	)
+
 	vimpaired = newlist(
 		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH to WEST+4,NORTH"},
 		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+4,SOUTH to EAST-5,SOUTH+4"},
