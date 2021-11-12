@@ -89,7 +89,7 @@ var/list/global_huds
 		/obj/screen{icon_state = "black"; screen_loc = "EAST:32,SOUTH:-32"},
 	)
 
-	for(var/obj/screen/O in (vimpaired + darkMask))
+	for(var/obj/screen/O in (lightMask + vimpaired + darkMask))
 		O.layer = FULLSCREEN_LAYER
 		O.plane = FULLSCREEN_PLANE
 		O.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
