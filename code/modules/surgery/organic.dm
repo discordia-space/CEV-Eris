@@ -448,7 +448,7 @@
 		SPAN_NOTICE("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.stopBleeding()
-	organ.take_damage(0, tool.force/0.3)
+	organ.take_damage(0, tool.force / 0.3)
 
 /datum/surgery_step/close_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
