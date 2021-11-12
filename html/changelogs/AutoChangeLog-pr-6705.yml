@@ -1,0 +1,8 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: RIGs provide less bullet protection, have a chance to completely negate
+      damage instead
+  - bugfix: a file was in the wrong place
+  - balance: Heavy armor is more viable, riot suits were remade into heavy operator
+      armor
