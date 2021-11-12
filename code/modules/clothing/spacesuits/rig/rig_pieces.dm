@@ -54,7 +54,7 @@
 	if(istype(damage_source, /obj/item/projectile/bullet))
 		var/obj/item/projectile/bullet/B = damage_source
 
-		var/chance = max(round(armor.getRating(ARMOR_BULLET) - B.armor_penetration),0)
+		var/chance = max(round(armor.getRating(ARMOR_BULLET) - B.armor_penetration), 0)
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			chance *= 1.5
 		if(B.starting && prob(chance))
