@@ -18,7 +18,7 @@
 	penetration_multiplier = 1.5
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS
-	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 
 	wield_delay = 0.4 SECOND
 	wield_delay_factor = 0.2 // 20 vig
