@@ -154,7 +154,7 @@
 	penetration_multiplier = 1.3
 	recoil_buildup = 9 // joonk gun
 	max_shells = 5
-	fire_sound = 'sound/weapons/guns/fire/cal/sniper_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	price_tag = 800
 	one_hand_penalty = 30 //don't you dare to one hand this
