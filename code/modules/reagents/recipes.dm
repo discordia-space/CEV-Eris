@@ -2107,3 +2107,13 @@
 	result = "rejuvenating_agent"
 	required_reagents = list("cleaner" = 2, "pacid" = 1, "sulfur" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/roachbeer
+	result = "roachbeer"
+	required_reagents = list("water" = 2, "diplopterum" = 1, "fuel" = 1, "beer" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/kaiserbeer
+	result = "kaiserbeer"
+	required_reagents = list("fuhrerole" = 1, "kaiseraurum" = 1, "roachbeer" = 2)
+	result_amount = 2
