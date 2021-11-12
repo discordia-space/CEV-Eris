@@ -355,7 +355,7 @@
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			reflectchance /= 1.5
 		if(P.starting && prob(reflectchance))
-			visible_message(SPAN_DANGER("\The [user]\'s [src.name] reflects [attack_text]!"))
+			visible_message(SPAN_DANGER("\The [user]\'s [name] reflects [attack_text]!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
