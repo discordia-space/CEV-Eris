@@ -349,3 +349,8 @@
 		return
 
 	eyeobj.acceleration = !eyeobj.acceleration
+
+/mob/observer/eye/pod/zMove()
+	..()
+	spawn(0)
+		visualnet.visibility(src)
