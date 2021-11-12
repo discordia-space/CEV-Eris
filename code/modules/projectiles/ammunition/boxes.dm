@@ -140,7 +140,7 @@
 	ammo_type = /obj/item/ammo_casing/srifle/hv
 
 /obj/item/ammo_magazine/ammobox/srifle_small/rubber
-	name = "ammunition packet (.20 Rifle high-velocity)"
+	name = "ammunition packet (.20 Rifle rubber)"
 	icon_state = "srifle_r"
 	ammo_type = /obj/item/ammo_casing/srifle/rubber
 
