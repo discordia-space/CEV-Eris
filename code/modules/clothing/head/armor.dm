@@ -363,13 +363,13 @@
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 
-	tint = TINT_MODERATE
+	tint = TINT_LOW
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
 		melee = 50,
-		bullet = 45,
-		energy = 35,
+		bullet = 50,
+		energy = 40,
 		bomb = 35,
 		bio = 0,
 		rad = 0
@@ -379,7 +379,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 300
+	price_tag = 500
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
