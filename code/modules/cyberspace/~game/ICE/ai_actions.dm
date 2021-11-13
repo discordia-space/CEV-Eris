@@ -41,9 +41,14 @@
 
 /mob/observer/cyber_entity/IceHolder/CheckAccess(obj/machinery/power/apc/A)
 	. = !Hacked && (MyFirewall == A)
+
 /mob/observer/cyber_entity/IceHolder/proc/isValidAttackTarget(var/atom/O)
 	if(istype(O, /mob/observer/cyber_entity) && O != src)
 		var/mob/observer/cyber_entity/L = O
+		if(istype(L, /mob/observer/cyber_entity/IceHolder))
+			var/mob/observer/cyber_entity/IceHolder/I = O
+			if(I.stance == ICE_STANCE_DEAD)
+				return
 		if(Hacked || !MyFirewall?.CheckCyberAccess(L)) // If runner hacked ICE then it disconected from firewall and attack EVERYTHING
 			return 1
 /*

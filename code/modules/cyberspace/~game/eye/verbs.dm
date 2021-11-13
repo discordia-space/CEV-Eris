@@ -49,3 +49,21 @@
 				AccessCodes.Add(Selected)
 		else
 			AccessCodes.Remove(Selected)
+
+/mob/observer/cyber_entity/cyberspace_eye/verb/PickColorAvatar()
+	set category = CYBERSPACE_VERBS_CATEGORY
+	set name = "PICK: Avatar Color"
+
+
+	var/list/Selected = ReadRGB(input("Select color of avatar") as color)
+	var/selLen = length(Selected)
+	if(selLen >= 3)
+		. = 0
+		for(var/i in 1 to selLen)
+			. += Selected[i]
+		if(. < 300)
+			var/m = max(Selected)
+			var/mi = Selected.Find(m)
+			Selected[mi] = clamp(Selected[mi], 155, 255)
+
+		CyberAvatar.SetColor(rgb(Selected[1], Selected[2], Selected[3]))

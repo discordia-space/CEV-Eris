@@ -1633,6 +1633,7 @@
 #include "code\modules\cyberspace\~game\eye\hud\screen_objects.dm"
 #include "code\modules\cyberspace\~game\ICE\_ice.dm"
 #include "code\modules\cyberspace\~game\ICE\ai_actions.dm"
+#include "code\modules\cyberspace\~game\ICE\hacking.dm"
 #include "code\modules\cyberspace\~game\ICE\IceHolder.dm"
 #include "code\modules\cyberspace\~game\ICE\prefabs.dm"
 #include "code\modules\cyberspace\~game\ICE\security_servers.dm"

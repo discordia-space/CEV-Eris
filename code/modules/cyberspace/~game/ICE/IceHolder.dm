@@ -45,7 +45,7 @@
 /mob/observer/cyber_entity/IceHolder/Life()
 	. = ..()
 	if(stance != ICE_STANCE_DEAD && check_AI_act())
-		if(CyberAvatar.Subroutines.IsAllSubroutinesLocked(CyberAvatar.Subroutines.Attack))
+		if(CyberAvatar.Subroutines.IsAllSubroutinesLocked(CyberAvatar.Subroutines.Attack) && !Hacked)
 			loseTarget()
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			walk_to(src, MyFirewall, distance_to_apc, move_to_delay)
