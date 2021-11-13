@@ -693,7 +693,7 @@
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
 
 /datum/reagent/toxin/kaiseraurum/overdose(mob/living/carbon/M, alien)
-	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
+	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3, 4))
 	M.adjustBrainLoss(0.5)
 	M.adjustToxLoss(1)
 
