@@ -29,7 +29,6 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  8
 
-#define HOSTILE_STANCE_DEAD     -1
 #define HOSTILE_STANCE_IDLE      1
 #define HOSTILE_STANCE_ALERT     2
 #define HOSTILE_STANCE_ATTACK    3

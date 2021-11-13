@@ -14,7 +14,7 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyber_entity/cyberspace_eye, /datum/CyberS
 		client?.show_popup_menus = FALSE
 	Logout()
 		if(client)
-			client.show_popup_menus = 1
+			client.show_popup_menus = TRUE
 		. = ..()
 	Death()
 		ReturnToBody()
@@ -45,4 +45,4 @@ CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyber_entity/cyberspace_eye/ai, /datum/Cyb
 	return dropInto(D)
 /mob/observer/cyber_entity/cyberspace_eye/proc/Disconnected(obj/item/computer_hardware/deck/D)
 	if(client)
-		client.show_popup_menus = 1
+		client.show_popup_menus = TRUE
