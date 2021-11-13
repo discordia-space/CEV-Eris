@@ -315,7 +315,7 @@
 	name = "Monarchenblut"
 	id = "kaiserbeer"
 	description = "An improvised stimulant made out of Kaiser and Fuhrer roach blood."
-	taste_description = "Emperor's blood"
+	taste_description = "Emperor\'s blood"
 	reagent_state = LIQUID
 	color = "#047c38"
 	metabolism = REM * 0.8
