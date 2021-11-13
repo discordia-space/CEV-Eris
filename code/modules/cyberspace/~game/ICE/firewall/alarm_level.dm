@@ -52,20 +52,27 @@
 /obj/machinery/power/apc/proc/DeployIces(list/arguments = 1) // amount; [amount, forced_type]
 	var/area/A = get_area(src)
 	var/list/amount = arguments
+	. = 0
 	if(isnum(amount))
-		var/mob/observer/cyber_entity/IceHolder/t = pick(ICEAssortiment)
-		CreateICE(t, pick_area_turf(A))
+		for(var/i in 1 to . + amount)
+			CreateICE(pick(ICEAssortiment), pick_area_turf(A))
+		for(var/obj/machinery/cyber_security_server/S in get_area(src))
+			CreateICE(pick(ICEAssortiment), get_turf(S))
 	else if(islist(amount))
 		var/forcedIceType
-		. = amount
 		if(length(amount) >= 2)
 			forcedIceType = amount[2]
-		amount = amount[1]
-		for(var/i in 1 to amount)
+		. += amount[1]
+		for(var/i in 1 to .)
 			var/mob/observer/cyber_entity/IceHolder/t = forcedIceType
 			if(!forcedIceType)
 				t = pick(ICEAssortiment)
 			CreateICE(t, pick_area_turf(A))
+		for(var/obj/machinery/cyber_security_server/S in get_area(src))
+			var/mob/observer/cyber_entity/IceHolder/t = forcedIceType
+			if(!forcedIceType)
+				t = pick(ICEAssortiment)
+			CreateICE(t, get_turf(S))
 
 /obj/machinery/power/apc/proc/CreateICE(mob/observer/cyber_entity/IceHolder/prefab, turf/where)
 	var/mob/observer/cyber_entity/IceHolder/I = new prefab(where)
