@@ -21,7 +21,7 @@
 			for(var/j in 1 to (length(code) - part_of_code_to_reveal))
 				string_to_show += "*"
 			to_chat(user, string_to_show)
-			A.RaiseAlarmLevel(A.DefaultLevelDelta * rand(3, 10))
+			A.RaiseAlarmLevel(A.DefaultLevelDelta * rand(3, 5))
 		else
 			return FALSE
 

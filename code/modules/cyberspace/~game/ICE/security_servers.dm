@@ -55,6 +55,7 @@ CYBERAVATAR_INITIALIZATION(/obj/machinery/cyber_security_server, CYBERSPACE_SECU
 /datum/CyberSpaceAvatar/interactable/cybersecurity_server
 	icon_file = 'icons/obj/cyberspace/servers.dmi'
 	icon_state = "os_avatar"
+	density = TRUE
 
 /datum/CyberSpaceAvatar/interactable/cybersecurity_server/HackingTry(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = ..() && do_after(user, 10 SECONDS, Owner,\

@@ -1,12 +1,14 @@
 /datum/CyberSpaceAvatar/runner
+	density = TRUE
 //	icon_file = 'icons/obj/cyberspace/cyberspace.dmi'
 
 CYBERAVATAR_INITIALIZATION(/mob/observer/cyber_entity/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
 CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyber_entity/cyberspace_eye, /datum/CyberSpaceAvatar/runner)
-/mob/observer/cyber_entity/cyberspace_eye //slow move of it down
+/mob/observer/cyber_entity/cyberspace_eye
 	icon = 'icons/obj/cyberspace/runner.dmi'
 	icon_state = "Default"
 	_SeeCyberSpace = TRUE
+	movement_delay = 4
 
 	var/obj/item/computer_hardware/deck/owner
 	Login()

@@ -21,7 +21,7 @@
 			GLOB.density_set_event.unregister(Owner, src, .proc/SyncDensity)
 	. = ..()
 
-/datum/CyberSpaceAvatar/interactable/proc/SyncDensity(atom/Target, _old_density, _density)
+/datum/CyberSpaceAvatar/proc/SyncDensity(atom/Target, _old_density, _density)
 	if(istype(Target))
 		density = Target.density
 	else

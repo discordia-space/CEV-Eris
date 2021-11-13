@@ -3,12 +3,15 @@
 
 	invisibility = INVISIBILITY_MAXIMUM
 	alpha = 200
-	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 
 	var/maxHP = 100
 	var/HP
 	var/Might = 5
 	var/attack_range = 1
+
+	var/movement_delay = 6
+
+	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 
 	var/tmp/datum/CyberSpaceAvatar/HackingInProgress
 
