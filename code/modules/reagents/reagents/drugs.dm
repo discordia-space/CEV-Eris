@@ -287,7 +287,7 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 15
 	sanity_gain_ingest = 2
-	taste_tag = list(TASTE_SOUR,TASTE_BUBBLY)
+	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
 
 /datum/reagent/drug/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
