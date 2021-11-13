@@ -37,13 +37,16 @@
 			set name = "Eject Mind Cable"
 
 			EjectMindCable(usr)
-		
+
 		verb_BeginConnection()
 			set category = CYBERNETIC_VERBS_CATEGORY
 			set name = "Establish Cyberspace Connection"
 
 			if(istype(cable))
 				if(istype(cable.loc, /obj/item/computer_hardware/deck))
+					var/obj/item/computer_hardware/deck/D = cable.loc
+					if(!D.AbleToConnect())
+						to_chat(usr, SPAN_WARNING("ERROR: Bluespace projection is still restoring."))
 					if(istype(usr, /mob/living/carbon/human))
 						var/mob/living/carbon/human/H = usr
 						to_chat(usr, "You are trying to relax your physical body.")
@@ -93,15 +96,15 @@
 	var/obj/item/organ/internal/data_jack/owner
 
 	var/obj/item/computer_hardware/deck/connection
-	
+
 	Initialize()
 		. = ..()
 		GLOB.moved_event.register(src, src, .proc/RetractIfNeed)
 
-	proc //this maden to split procs to categories, for example this is setters', getters' region 
+	proc //this maden to split procs to categories, for example this is setters', getters' region
 		SetOwner(obj/item/organ/internal/data_jack/_owner)
 			if(owner != _owner)
-				if(isloc(owner)) 
+				if(isloc(owner))
 					UnRegisterMovementEventsFor(owner)
 				RegisterMovementEventsFor(_owner)
 				owner = _owner
@@ -118,7 +121,7 @@
 			var/distance = get_dist(src, target)
 			if(loc != owner && distance > length && distance <= 127)
 				return TRUE
-	
+
 		RetractIfNeed()
 			if(QDELETED(owner))
 				owner = null
@@ -152,4 +155,4 @@
 			connection.DisconnectCable()
 			dropInto(connection)
 			connection = null
-			
+

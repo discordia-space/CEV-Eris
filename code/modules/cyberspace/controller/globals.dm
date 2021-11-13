@@ -1,12 +1,6 @@
 GLOBAL_LIST_EMPTY(CyberSpaceAtoms)
 GLOBAL_LIST_EMPTY(CyberSpaceViewers)
 
-/proc/RegisterCyberInitialization(atom/Atom, _color)
-	return Atom.CreateCA(_color)
-
-/proc/InitAtom(atom/target, _color)
-	target.CreateCA(_color)
-
 /proc/AddToViewers(mob/Target)
 	GLOB.CyberSpaceViewers |= Target
 

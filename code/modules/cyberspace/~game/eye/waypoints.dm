@@ -13,7 +13,7 @@ CYBERAVATAR_INITIALIZATION(/atom/movable/CyberspaceWaypoint, CYBERSPACE_MAIN_COL
 		. = ..()
 		GLOB.CyberSpaceWaypoints.Remove(src)
 
-/atom/movable/CyberspaceWaypoint/proc/AvailableFor(mob/observer/cyberspace_eye/user)
+/atom/movable/CyberspaceWaypoint/proc/AvailableFor(mob/observer/cyber_entity/cyberspace_eye/user)
 	return (user in WhiteList) || !length(WhiteList)
 
 /atom/movable/CyberspaceWaypoint/proc/FollowAtom(atom/A)

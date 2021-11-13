@@ -35,4 +35,3 @@ This is the ice bot system.
 			var/list/PROBLEMEMES = GetDenseCyberspaceAvatars(problem)
 			for(var/datum/CyberSpaceAvatar/A in PROBLEMEMES)
 				RaiseSubroutines(Subroutines.EnemyIceAttack, SUBROUTINE_ANOTHERICE, A)
-

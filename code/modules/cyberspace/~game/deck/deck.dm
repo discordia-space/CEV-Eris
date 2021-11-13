@@ -1,7 +1,7 @@
 /obj/item/computer_hardware/deck
 	name = "cyberspace deck"
 	desc = "A strange device with port for data jacks."
-	
+
 	icon = 'icons/obj/cyberspace/deck.dmi'
 	icon_state = "common"
 	hardware_size = 1
@@ -10,13 +10,13 @@
 	price_tag = 100
 
 	var/connection = FALSE
+	var/cyber_entity_cooldown = 1 MINUTE
+
 	var/power_usage_idle = 100
 	var/power_usage_using = 2 KILOWATTS
 
-	var/link_streight = 0 // Default power over tracing by ices or on ices can be increased by programs/hardware
-
-
 /*
+	var/link_streight = 0 // Default power over tracing by ices or on ices can be increased by programs/hardware
 	var/datum/MemoryStack/memory_buffer = new // Grip of programs, icebreakers and etc. Installed programs handling in cyberspace eye
 	var/initial_memory_buffer = 64
 	var/MemoryForInstalledPrograms = 64
@@ -25,26 +25,34 @@
 	var/chip_slots = 4 // Slots for chips, to extend or buy better deck or get hardware extending them.
 	var/list/hardware = list()
 
-	var/mob/observer/cyberspace_eye/projected_mind = /mob/observer/cyberspace_eye/runner
+	var/mob/observer/cyber_entity/cyberspace_eye/projected_mind
+	var/projected_mind_type = /mob/observer/cyber_entity/cyberspace_eye/runner
 
 	var/obj/item/mind_cable/cable
 
+	var/beeping_sound = 'sound/machines/synth_no.ogg'
+	var/recharged_sound = 'sound/machines/synth_yes.ogg'
+
+	examine(mob/user)
+		. = ..()
+		if(AbleToConnect())
+			to_chat(user, SPAN_NOTICE("You can notice that small green LED slowly blinking on [src]'s frame."))
+
 	Initialize()
 		. = ..()
-		if(ispath(projected_mind))
-			projected_mind = new projected_mind()
-			projected_mind.owner = src
+		if(ispath(projected_mind_type))
+			CreateProjection()
 /*
 		if(istype(memory_buffer))
 			memory_buffer.Memory = initial_memory_buffer
 */
 	proc/CancelCyberspaceConnection()
-		update_power_usage()
 		if(istype(projected_mind))
 			projected_mind.Disconnected(src)
 			projected_mind.PutInAnotherMob(get_user())
 			projected_mind.relocateTo(src)
 			projected_mind.destroy_HUD()
+		update_power_usage()
 
 	disabled()
 		. = ..()
@@ -56,6 +64,27 @@
 		if(istype(_cable))
 			cable = _cable
 			return cable.ConnectToDeck(src)
+
+	proc/AbleToConnect()
+		. = TRUE
+		if(!istype(projected_mind))
+			if(!isnum(projected_mind))
+				projected_mind = addtimer(CALLBACK(src, .proc/CreateProjection), cyber_entity_cooldown)
+				START_PROCESSING(SSobj, src)
+			return FALSE
+	Process()
+		. = ..()
+		if(AbleToConnect())
+			playsound(loc, recharged_sound, 50)
+			STOP_PROCESSING(SSobj, src)
+		else
+			playsound(loc, beeping_sound, 10, 1)
+	proc/CreateProjection()
+		if(projected_mind_type)
+			projected_mind = new projected_mind_type()
+		else
+			projected_mind = new()
+		projected_mind.owner = src
 
 	proc/SetUpProjectedMind()
 		//projected_mind.InstalledPrograms.Memory = MemoryForInstalledPrograms
@@ -121,11 +150,7 @@
 	BeginCyberspaceConnection()
 		update_power_usage()
 		var/mob/living/carbon/human/owner = get_user()
-		if(istype(owner) && owner.stat == CONSCIOUS && owner.mind)
+		if(istype(owner) && owner.stat == CONSCIOUS && owner.mind && AbleToConnect())
 			SetUpProjectedMind()
 			PlaceProjectedMind()
 			return owner.PutInAnotherMob(projected_mind)
-	
-	AddLinkStreight(count)
-		link_streight += count
-

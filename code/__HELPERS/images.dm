@@ -1,7 +1,7 @@
 /image
 	var/list/SynchronizedAtoms = list()
 
-/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withState = TRUE, withFlicks = TRUE)
+/image/proc/SyncWithAtom(atom/D, withIcon = TRUE, withState = TRUE, withFlicks = TRUE, withOverlays = TRUE)
 	if(istype(D))
 		SynchronizedAtoms[D] = args.Copy(2)
 //		var/list/types_of_sync = SynchronizedAtoms[D]
@@ -14,19 +14,17 @@
 		if(withFlicks)
 			GLOB.flicker_event.register(D, src, .proc/flick_synchronization)
 //			types_of_sync[3] = .proc/flick_synchronization
+		if(withOverlays)
+			overlays_synchronisation(D, D.overlays)
+			GLOB.overlays_change.register(D, src, .proc/overlays_synchronisation)
 	else
 		CRASH("[D](\ref[D]) is not atom, aborting /image/proc/SyncWithAtom. Additional info: {[json_encode(args)]}")
 
-/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakState = TRUE, breakFlicks = TRUE)
+/image/proc/BreakSync(atom/D, breakIcon = TRUE, breakState = TRUE, breakFlicks = TRUE, breakOverlays = TRUE)
 	if(istype(D) && SynchronizedAtoms.Find(D))
 		var/list/data_of_sync = SynchronizedAtoms[D]
 		var/list/types_to_break = args.Copy(2)
 		if(length(data_of_sync) >= length(types_to_break))
-			
-			// for(var/whatNeedToBreak in types_to_break)
-			// 	if(whatNeedToBreak)
-			// 		data_of_sync.Remove(whatNeedToBreak)
-			// 		GLOG.	.unregister(D, src, whatNeedToBreak)
 			if(breakIcon && data_of_sync[1])
 				data_of_sync[1] = null
 				GLOB.set_icon_event.unregister(D, src, .proc/icon_synchronization)
@@ -36,8 +34,9 @@
 			if(breakFlicks && data_of_sync[3])
 				data_of_sync[3] = null
 				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
-
-	
+			if(breakOverlays && data_of_sync[4])
+				data_of_sync[3] = null
+				GLOB.flicker_event.unregister(D, src, .proc/flick_synchronization)
 			var/is_still_synced = FALSE
 			for(var/syncronization_type in data_of_sync)
 				is_still_synced = is_still_synced || syncronization_type
@@ -55,6 +54,11 @@
 	if(isByEvent)
 		GLOB.set_icon_state_event.register(D, src, .proc/icon_state_synchronization)
 	icon_state = _icon_state
+
+/image/proc/overlays_synchronisation(atom/D, list/_overlays, isByEvent = TRUE)
+	if(isByEvent)
+		GLOB.set_icon_state_event.register(D, src, .proc/overlays_synchronisation)
+	overlays = _overlays
 
 /image/proc/flick_synchronization(atom/D, iconOrState, isByEvent = TRUE)
 	if(QDELETED(D))

@@ -1,4 +1,4 @@
-/mob/observer/cyberspace_eye
+/mob/observer/cyber_entity/cyberspace_eye
 	var/datum/MemoryStack/InstalledPrograms = new
 	proc
 		RemoveQP(value)

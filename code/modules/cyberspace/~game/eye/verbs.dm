@@ -1,10 +1,10 @@
-/mob/observer/cyberspace_eye/runner/verb/CancelConnection()
+/mob/observer/cyber_entity/cyberspace_eye/runner/verb/CancelConnection()
 	set category = CYBERSPACE_VERBS_CATEGORY
 	set name = "MOVE: Return to body" // snap back to reality
 
 	ReturnToBody()
 
-/mob/observer/cyberspace_eye/runner/verb/TeleportToWaypoint()
+/mob/observer/cyber_entity/cyberspace_eye/runner/verb/TeleportToWaypoint()
 	set category = CYBERSPACE_VERBS_CATEGORY
 	set name = "MOVE: Waypoint"
 
@@ -17,13 +17,13 @@
 		if(istype(destination))
 			dropInto(destination)
 
-/mob/observer/cyberspace_eye/runner/proc/GetUserReadableAvailableWaypoints()
+/mob/observer/cyber_entity/cyberspace_eye/runner/proc/GetUserReadableAvailableWaypoints()
 	. = list()
 	for(var/atom/movable/CyberspaceWaypoint/i in GLOB.CyberSpaceWaypoints)
 		if(i.AvailableFor(src))
 			.[i.name] = i
 
-/mob/observer/cyberspace_eye/verb/PickAvatarIcon()
+/mob/observer/cyber_entity/cyberspace_eye/verb/PickAvatarIcon()
 	set category = CYBERSPACE_VERBS_CATEGORY
 	set name = "PICK: Avatar Icon"
 
@@ -34,7 +34,7 @@
 	if(Selected != "(CANCEL)" && (Selected in available))
 		SetIconState(Selected)
 
-/mob/observer/cyberspace_eye/verb/InteractWithEncriptionKeys()
+/mob/observer/cyber_entity/cyberspace_eye/verb/InteractWithEncriptionKeys()
 	set category = CYBERSPACE_VERBS_CATEGORY
 	set name = "INTERACT: Encription Keys"
 

@@ -9,8 +9,8 @@
 /datum/subroutine/PayQPorGetDamageElseJackOut/Trigger(datum/CyberSpaceAvatar/triggerer, wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK)
 	. = ..()
 	var/mob/living/carbon/human/body = triggerer.GetBody()
-	if(body && istype(triggerer.Owner, /mob/observer/cyberspace_eye))
-		var/mob/observer/cyberspace_eye/R = triggerer.Owner
+	if(body && istype(triggerer.Owner, /mob/observer/cyber_entity/cyberspace_eye))
+		var/mob/observer/cyber_entity/cyberspace_eye/R = triggerer.Owner
 		if(istype(R.owner))
 			var/obj/item/computer_hardware/deck/D = R.owner
 			if(AmountOfQP > 0 && !D.CostQP(AmountOfQP))

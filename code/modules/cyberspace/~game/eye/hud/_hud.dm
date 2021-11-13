@@ -1,17 +1,17 @@
-/mob/observer/cyberspace_eye
+/mob/observer/cyber_entity/cyberspace_eye
 	defaultHUD = "cyberspace_eye"
 
 // SomeWhy used_hud is /datum/hud, not /datum/hud/cybereye
 
-/mob/observer/cyberspace_eye/Initialize()
+/mob/observer/cyber_entity/cyberspace_eye/Initialize()
 	. = ..()
 	create_HUD()
 
-/mob/observer/cyberspace_eye/Login()
+/mob/observer/cyber_entity/cyberspace_eye/Login()
 	. = ..()
 	show_HUD()
 
-/mob/observer/cyberspace_eye/update_hud()
+/mob/observer/cyber_entity/cyberspace_eye/update_hud()
 	. = ..()
 	for(var/i in HUDneed)
 		var/obj/screen/movable/cyberspace_eye/E = HUDneed[i]
@@ -19,27 +19,21 @@
 			E.update_icon()
 	show_HUD()
 
-/mob/observer/cyberspace_eye/create_HUDfrippery()
+/mob/observer/cyber_entity/cyberspace_eye/create_HUDfrippery()
 	. = ..()
 	if(istype(owner))
 		var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
 		if(HUDdatum.use_panels)
 			init_HUDpanel(
+				HUDdatum.ChipPanel,
 				1,
 				owner.chip_slots,
-				HUDdatum.ChipPanel.template,
-				HUDdatum.ChipPanel.states,
-				HUDdatum.ChipPanel.dirs_of_edges,
-				HUDdatum.ChipPanel.direction,
 				icon_file = HUDdatum.icon,
 			)
 			init_HUDpanel(
+				HUDdatum.HardwarePanel,
 				1,
 				owner.hardware_slots,
-				HUDdatum.HardwarePanel.template,
-				HUDdatum.HardwarePanel.states,
-				HUDdatum.HardwarePanel.dirs_of_edges,
-				HUDdatum.HardwarePanel.direction,
 				icon_file = HUDdatum.icon,
 			)
 /*
@@ -63,15 +57,18 @@
 			)
 */
 
-/mob/observer/cyberspace_eye/proc/init_HUDpanel(
+/mob/proc/init_HUDpanel(
+		datum/HUD_panel/Panel,
 		start = 1,
 		limiter = 4,
-		screen_loc_template, // "WEST+%X:11,CENTER+%Y:4"
-		list/borders_states, // bottom, upper
-		list/borders_dir, // bottom, upper, center
-		list/location_dirs, //X, Y, negative and positive numba to invert or double
 		icon_file
 	)
+	var/screen_loc_template = Panel.template
+	var/list/borders_states = Panel.states
+	var/list/borders_dir = Panel.dirs_of_edges
+	var/list/location_dirs = Panel.direction
+	if(!icon_file)
+		icon_file = Panel.icon
 	limiter += 2
 	for(var/i in start to limiter)
 		var/obj/screen/border = new(_name = "border", _parentmob = src)
@@ -94,7 +91,7 @@
 		border.screen_loc = position
 		HUDfrippery += border
 
-/mob/observer/cyberspace_eye/create_HUDneed()
+/mob/observer/cyber_entity/cyberspace_eye/create_HUDneed()
 	. = ..()
 	var/datum/hud/cybereye/HUDdatum = GLOB.HUDdatums[defaultHUD]
 	for(var/HUDname in HUDdatum.HUDneed)

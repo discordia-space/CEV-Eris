@@ -14,7 +14,7 @@
 						A.AnotherAvatarFound(mover.CyberAvatar)
 						mover.CyberAvatar.AnotherAvatarFound(A)
 
-/mob/observer/cyberspace_eye/AdjacentMouseDropTo(atom/target, mob/user, src_location, over_location, src_control, over_control, params)
+/mob/observer/cyber_entity/cyberspace_eye/AdjacentMouseDropTo(atom/target, mob/user, src_location, over_location, src_control, over_control, params)
 	. = ..()
 	if(istype(target, /turf) && target.density)
 		var/timeToPass = 2 SECONDS

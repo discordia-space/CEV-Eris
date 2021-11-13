@@ -11,18 +11,25 @@
 	)
 	var/use_panels = TRUE //Unable refactor to list, because data used not only in panel generation
 
-	var/datum/HUD_border/ChipPanel = new("WEST,CENTER+%Y", list("border_right", "border_left"), EAST, list(1, 1))
-	var/datum/HUD_border/HardwarePanel = new("EAST,CENTER+%Y", list("border_left", "border_right"), WEST, list(1, 1))
-//	var/datum/HUD_border/GripPanel = new("CENTER+%X,SOUTH", list("border_left", "border_right"), NORTH, list(1, 1))
-//	var/datum/HUD_border/ProgramPanel = new("CENTER+%X,NORTH", list("border_right", "border_left"), SOUTH, list(1, 1))
+	var/datum/HUD_panel/ChipPanel = new/datum/HUD_panel{icon = 'icons/obj/cyberspace/hud/common.dmi';\
+		template = "WEST,CENTER+%Y";\
+		states = list("border_right", "border_left");\
+		dirs_of_edges = EAST;\
+		direction = list(1, 1);\
+		}()
+	var/datum/HUD_panel/HardwarePanel = new/datum/HUD_panel{icon = 'icons/obj/cyberspace/hud/common.dmi';\
+		template = "EAST,CENTER+%Y";\
+		states = list("border_left", "border_right");\
+		dirs_of_edges = WEST;\
+		direction = list(1, 1);\
+		}()
+//	var/datum/HUD_panel/GripPanel = new("CENTER+%X,SOUTH", list("border_left", "border_right"), NORTH, list(1, 1))
+//	var/datum/HUD_panel/ProgramPanel = new("CENTER+%X,NORTH", list("border_right", "border_left"), SOUTH, list(1, 1))
 
-/datum/HUD_border
-	var/template
+/datum/HUD_panel
+	var/icon
+	var/template = "0,0"
 	var/list/states //First and last endge
 	var/list/dirs_of_edges //Direction OR List
 	var/list/direction // X, Y
-	New(_template, _states, _dir, _locDirections)
-		template = _template
-		states = _states
-		dirs_of_edges = _dir
-		direction = _locDirections
+

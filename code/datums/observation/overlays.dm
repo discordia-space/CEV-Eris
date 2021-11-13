@@ -1,7 +1,12 @@
+GLOBAL_DATUM_INIT(overlays_change, /decl/observ/overlays_change, new)
 GLOBAL_DATUM_INIT(add_overlays_event, /decl/observ/add_overlays, new)
 GLOBAL_DATUM_INIT(remove_overlays_event, /decl/observ/remove_overlays, new)
 GLOBAL_DATUM_INIT(set_overlays_event, /decl/observ/set_overlays, new)
 GLOBAL_DATUM_INIT(cut_overlays_event, /decl/observ/cut_overlays, new)
+
+/decl/observ/overlays_change //The only truly need
+	name = "Added Overlays"
+	expected_type = /atom
 
 /decl/observ/add_overlays
 	name = "Added Overlays"
@@ -19,13 +24,17 @@ GLOBAL_DATUM_INIT(cut_overlays_event, /decl/observ/cut_overlays, new)
 /atom/add_overlays()
 	. = ..()
 	GLOB.add_overlays_event.raise_event(src, args)
+	GLOB.overlays_change.raise_event(src, overlays)
 /atom/remove_overlays()
 	. = ..()
 	GLOB.remove_overlays_event.raise_event(src, args)
+	GLOB.overlays_change.raise_event(src, overlays)
 /atom/set_overlays(list/value)
 	. = ..()
 	GLOB.set_overlays_event.raise_event(src, args)
+	GLOB.overlays_change.raise_event(src, overlays)
 /atom/cut_overlays()
 	. = ..()
 	GLOB.cut_overlays_event.raise_event(src, args)
+	GLOB.overlays_change.raise_event(src, overlays)
 

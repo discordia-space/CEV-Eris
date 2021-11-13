@@ -32,7 +32,7 @@
 		CyberAvatar.SetColor(_color)
 
 /datum/CyberSpaceAvatar/proc/GetBody()
-	var/mob/observer/cyberspace_eye/eye = Owner
+	var/mob/observer/cyber_entity/cyberspace_eye/eye = Owner
 	if(istype(eye))
 		var/mob/living/carbon/human/body = eye.owner?.get_user()
 		if(istype(body))

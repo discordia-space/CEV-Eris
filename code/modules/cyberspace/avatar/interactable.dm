@@ -2,13 +2,13 @@
 	density = TRUE
 	var/RequireAreaAccessToInteract = TRUE
 
-/datum/CyberSpaceAvatar/proc/AbleToInteract(mob/observer/cyberspace_eye/user)
+/datum/CyberSpaceAvatar/proc/AbleToInteract(mob/observer/cyber_entity/cyberspace_eye/user)
 	. = FALSE
 
-/datum/CyberSpaceAvatar/interactable/AbleToInteract(mob/observer/cyberspace_eye/user)
+/datum/CyberSpaceAvatar/interactable/AbleToInteract(mob/observer/cyber_entity/cyberspace_eye/user)
 	. = (1 >= get_dist(Owner, user))
 
-/mob/observer/cyberspace_eye/default_can_use_topic(src_object)
+/mob/observer/cyber_entity/cyberspace_eye/default_can_use_topic(src_object)
 	var/atom/target = src_object
 	if(istype(target) && istype(target.CyberAvatar) && target.CyberAvatar.AbleToInteract(src))
 		return STATUS_INTERACTIVE

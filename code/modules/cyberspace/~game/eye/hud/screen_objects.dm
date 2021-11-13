@@ -19,16 +19,16 @@
 			underlays |= CachedBase
 
 /obj/screen/movable/cyberspace_eye/Click(location, control, params)
-	var/mob/observer/cyberspace_eye/avatar = parentmob
+	var/mob/observer/cyber_entity/cyberspace_eye/avatar = parentmob
 	if(istype(avatar))
 		Pushed(avatar, params)
-/obj/screen/movable/cyberspace_eye/proc/Pushed(mob/observer/cyberspace_eye/avatar, params)
+/obj/screen/movable/cyberspace_eye/proc/Pushed(mob/observer/cyber_entity/cyberspace_eye/avatar, params)
 
 /obj/screen/movable/cyberspace_eye/exit
 	name = "Jack Out"
 	maptext = "<font style=\"font-family: 'Small Fonts'\">EXIT</font>"
 
-/obj/screen/movable/cyberspace_eye/exit/Pushed(mob/observer/cyberspace_eye/avatar, params)
+/obj/screen/movable/cyberspace_eye/exit/Pushed(mob/observer/cyber_entity/cyberspace_eye/avatar, params)
 	. = ..()
 	avatar.ReturnToBody()
 
@@ -38,11 +38,11 @@
 
 /obj/screen/movable/cyberspace_eye/intent/on_update_icon()
 	. = ..()
-	var/mob/observer/cyberspace_eye/avatar = parentmob
+	var/mob/observer/cyber_entity/cyberspace_eye/avatar = parentmob
 	if(istype(avatar))
 		icon_state = avatar.a_intent
 
-/obj/screen/movable/cyberspace_eye/intent/Pushed(mob/observer/cyberspace_eye/avatar, params)
+/obj/screen/movable/cyberspace_eye/intent/Pushed(mob/observer/cyber_entity/cyberspace_eye/avatar, params)
 	. = ..()
 	avatar.a_intent_change("right")
 	update_icon()
@@ -52,7 +52,7 @@
 	var/obj/item/deck_hardware/myObject
 	var/tmp/image/cachedObjectImage = new
 
-	Pushed(mob/observer/cyberspace_eye/avatar, params)
+	Pushed(mob/observer/cyber_entity/cyberspace_eye/avatar, params)
 		. = ..()
 		if(istype(myObject))
 			myObject.Activate(usr)
@@ -87,7 +87,7 @@
 // 	Click(location, control, params)
 // 		. = ..()
 // 		if(istype(myObject))
-// 			var/mob/observer/cyberspace_eye/avatar = parentmob
+// 			var/mob/observer/cyber_entity/cyberspace_eye/avatar = parentmob
 // 			if(istype(avatar) && avatar.TryInstallProgram(myObject))
 // 				avatar.InstallProgram(myObject)
 
@@ -111,16 +111,16 @@
 
 /obj/screen/movable/cyberspace_eye/counter/on_update_icon()
 	. = ..()
-	var/mob/observer/cyberspace_eye/avatar = parentmob
+	var/mob/observer/cyber_entity/cyberspace_eye/avatar = parentmob
 	if(istype(avatar) && istype(avatar.owner))
 		var/obj/item/computer_hardware/deck/D = avatar.owner
 		var/t = GetText(avatar, D)
 		maptext_x = initial(maptext_x) - length(t)
 		maptext = "<font style=\"[maptext_style]\">[t]</font>"
 
-/obj/screen/movable/cyberspace_eye/counter/proc/GetText(mob/observer/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
+/obj/screen/movable/cyberspace_eye/counter/proc/GetText(mob/observer/cyber_entity/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
 	return ""
-/obj/screen/movable/cyberspace_eye/counter/health/GetText(mob/observer/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
+/obj/screen/movable/cyberspace_eye/counter/health/GetText(mob/observer/cyber_entity/cyberspace_eye/A, obj/item/computer_hardware/deck/D)
 	..()
 	. = "[A.HP]/[A.maxHP]"
 
@@ -132,7 +132,7 @@
 
 // /obj/screen/movable/cyberspace_eye/counter/QuantumPointsCounter/on_update_icon()
 // 	. = ..()
-// 	var/mob/observer/cyberspace_eye/avatar = parentmob
+// 	var/mob/observer/cyber_entity/cyberspace_eye/avatar = parentmob
 // 	if(istype(avatar) && istype(avatar.owner))
 // 		var/obj/item/computer_hardware/deck/myDeck = avatar.owner
 // 		maptext = "<font style=\"[maptext_style]\">[myDeck.QuantumPoints]</font>"
@@ -147,6 +147,6 @@
 	name = "Z Movement"
 	icon_state = "up"
 	var/direction = UP
-	Pushed(mob/observer/cyberspace_eye/avatar, params)
+	Pushed(mob/observer/cyber_entity/cyberspace_eye/avatar, params)
 		. = ..()
 		avatar.zMove(direction)

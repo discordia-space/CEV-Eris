@@ -363,11 +363,11 @@
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
-	if(src.health < src.maxhealth / 4)
+	if(health < maxhealth / 4)
 		to_chat(user, "\The [src] looks like it's about to break!")
-	else if(src.health < src.maxhealth / 2)
+	else if(health < maxhealth / 2)
 		to_chat(user, "\The [src] looks seriously damaged!")
-	else if(src.health < src.maxhealth * 3/4)
+	else if(health < maxhealth * 3/4)
 		to_chat(user, "\The [src] shows signs of damage!")
 
 
@@ -440,18 +440,18 @@
 
 	do_animate("opening")
 	SetIconState("door0")
-	sleep(3)
-	src.set_density(FALSE)
-	update_nearby_tiles()
-	sleep(7)
-	src.layer = open_layer
-	explosion_resistance = 0
-	update_icon()
-	update_nearby_tiles()
-	operating = 0
+	spawn(3)
+		set_density(FALSE)
+		update_nearby_tiles()
+		spawn(7)
+			layer = open_layer
+			explosion_resistance = 0
+			update_icon()
+			update_nearby_tiles()
+			operating = 0
 
-	if(autoclose)
-		close_door_at = next_close_time()
+			if(autoclose)
+				close_door_at = next_close_time()
 
 	return 1
 
@@ -466,27 +466,27 @@
 
 	close_door_at = 0
 	do_animate("closing")
-	sleep(3)
-	src.set_density(TRUE)
-	update_nearby_tiles()
-	sleep(7)
-	src.layer = closed_layer
-	explosion_resistance = initial(explosion_resistance)
-	update_icon()
-	update_nearby_tiles()
+	spawn(3)
+		set_density(TRUE)
+		update_nearby_tiles()
+		spawn(7)
+			layer = closed_layer
+			explosion_resistance = initial(explosion_resistance)
+			update_icon()
+			update_nearby_tiles()
 
-	if(visible && !glass)
-		set_opacity(1)	//caaaaarn!
-	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
-		f5?.set_opacity(1)
-		f6?.set_opacity(1)
+			if(visible && !glass)
+				set_opacity(1)	//caaaaarn!
+			if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
+				f5?.set_opacity(1)
+				f6?.set_opacity(1)
 
-	operating = 0
+			operating = 0
 
-	//I shall not add a check every x ticks if a door has closed over some fire.
-	var/obj/fire/fire = locate() in loc
-	if(fire)
-		qdel(fire)
+			//I shall not add a check every x ticks if a door has closed over some fire.
+			var/obj/fire/fire = locate() in loc
+			if(fire)
+				qdel(fire)
 	return
 
 /obj/machinery/door/proc/requiresID()

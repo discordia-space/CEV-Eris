@@ -6,14 +6,17 @@
 
 /mob/proc/CanSeeCyberSpace()
 	return client && _SeeCyberSpace
-
+/atom/proc/CyberRange(radius = 7) // Returns atoms with cyberavatars in range
+	. = list()
+	for(var/atom/A in range(radius, src))
+		if(istype(A.CyberAvatar))
+			. += A
 /mob/proc/UpdateCyberVisuals()
 	if(CanSeeCyberSpace())
 		client.AddCyberspaceBackground()
-		for(var/atom/A in range(client.view + 1, src))
+		for(var/atom/A in CyberRange(client.view + 1))
 		//for(var/atom/A in GLOB.CyberSpaceAtoms)
-			if(istype(A.CyberAvatar))
-				A.CyberAvatar.ShowToClient(client)
+			A.CyberAvatar.ShowToClient(client)
 		GLOB.moved_event.register(src, src, /mob/proc/UpdateCyberVisuals)
 		AddToViewers(src)
 	else

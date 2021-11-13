@@ -12,13 +12,15 @@ GLOBAL_LIST_EMPTY(APCAccessCodes)
 		CRASH("Somehow [type]>\ref[src] have got repeatable CyberAccessCode ([CyberAccessCode]) for [tryes] times.")
 	GLOB.APCAccessCodes[CyberAccessCode] = src
 
-/obj/machinery/power/apc/proc/CheckAccess(mob/observer/cyberspace_eye/user)
+/obj/machinery/power/apc/proc/CheckCyberAccess(mob/observer/cyber_entity/cyberspace_eye/user)
 	. = user.CheckAccess(src)
 
-/mob/observer/cyberspace_eye
+/mob/observer/cyber_entity/cyberspace_eye
 	var/list/AccessCodes = list()
 
-/mob/observer/cyberspace_eye/proc/CheckAccess(obj/machinery/power/apc/A)
+/mob/observer/cyber_entity/proc/CheckAccess(obj/machinery/power/apc/A)
+
+/mob/observer/cyber_entity/cyberspace_eye/CheckAccess(obj/machinery/power/apc/A)
 	. = !length(A.CyberAccessCode) || (A.CyberAccessCode in AccessCodes)
 	var/mob/H = owner.get_user()
 	if(H)
@@ -29,10 +31,10 @@ GLOBAL_LIST_EMPTY(APCAccessCodes)
 	. = ..()
 	GenerateUniqueCode()
 
-/datum/CyberSpaceAvatar/interactable/AbleToInteract(mob/observer/cyberspace_eye/user)
+/datum/CyberSpaceAvatar/interactable/AbleToInteract(mob/observer/cyber_entity/cyberspace_eye/user)
 	. = ..()
 	if(RequireAreaAccessToInteract)
 		var/area/A = get_area(Owner)
 		var/obj/machinery/power/apc/Apc = A.get_apc()
 		if(istype(Apc))
-			. = . && Apc.CheckAccess(user)
+			. = . && Apc.CheckCyberAccess(user)

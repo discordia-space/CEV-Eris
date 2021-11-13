@@ -56,10 +56,10 @@
 
 		AddEffects(obj/item/computer_hardware/deck/_deck)
 //			_deck.AddMemory(Memory)
-			_deck.AddLinkStreight(LinkStreight)
+//			_deck.AddLinkStreight(LinkStreight)
 		RemoveEffects(obj/item/computer_hardware/deck/_deck)
 //			_deck.AddMemory(-Memory)
-			_deck.AddLinkStreight(-LinkStreight)
+//			_deck.AddLinkStreight(-LinkStreight)
 
 	Installed(obj/item/computer_hardware/deck/_deck)
 		. = ..()

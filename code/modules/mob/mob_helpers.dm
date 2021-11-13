@@ -321,7 +321,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isslime(src) || istype(src, /mob/observer/cyberspace_eye))
+	if(ishuman(src) || isbrain(src) || isslime(src) || istype(src, /mob/observer/cyber_entity/cyberspace_eye))
 		switch(input)
 			if(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = input

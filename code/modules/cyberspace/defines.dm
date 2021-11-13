@@ -21,9 +21,16 @@
 #define SUBROUTINE_FAILED_TO_BREAK	"Failed to Break"
 #define SUBROUTINE_BUMPED			"Bumped"
 #define SUBROUTINE_SPOTTED			"Someone in range!!!"
+#define SUBROUTINE_ATTACK			"Die!"
 
-#define RaiseSubroutines(Routines, FlagOfTrigger, WhoTriggered) if(Subroutines) TriggerSubroutines(Routines, FlagOfTrigger, WhoTriggered)
 //A must be /atom variable
 #define IsCyberspaced(A) (istype(A) && istype(A.CyberAvatar) && A.CyberAvatar.enabled)
 #define CYBERAVATAR_INITIALIZATION(typeOfAtom, DefaultColor) ##typeOfAtom/CyberAvatar = DefaultColor
 #define CYBERAVATAR_CUSTOM_TYPE(typeOfAtom, avatarPrefab) ##typeOfAtom/CyberAvatar_prefab = ##avatarPrefab
+
+#define STATE_ICON_COLOR(state, _color) new/image{icon_state=state;color=_color}()
+#define ICE_STANCE_OVERWATCH "Overwatch"
+#define ICE_STANCE_ATTACK "Attack!"
+#define ICE_STANCE_ATTACKING "Diediedie"
+#define ICE_STANCE_DEAD "Dead"
+

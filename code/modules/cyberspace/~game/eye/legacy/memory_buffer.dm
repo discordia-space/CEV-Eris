@@ -1,4 +1,4 @@
-/mob/observer/cyberspace_eye
+/mob/observer/cyber_entity/cyberspace_eye
 	var/grip_size = 5
 	proc
 		GetGrip()
