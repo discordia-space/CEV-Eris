@@ -1,5 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - imageadd: new(good) credits sprite (by Près de l'oiseau#2625)
-  - imagedel: old(bad) credits sprite

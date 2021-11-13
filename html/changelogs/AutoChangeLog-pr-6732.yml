@@ -1,4 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - bugfix: Fixed not being able to harm borgs with certain tools
