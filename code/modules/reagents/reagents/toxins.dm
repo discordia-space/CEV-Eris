@@ -669,7 +669,7 @@
 	name = "Kaiseraurum"
 	id = "kaiseraurum"
 	description = "Harvested from Kaiser roaches."
-	taste_description = "Kommandant's authority"
+	taste_description = "Kommandant\'s authority"
 	reagent_state = LIQUID
 	color = "#030f08"
 	addiction_chance = 50
