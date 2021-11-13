@@ -277,7 +277,7 @@
 /datum/reagent/drug/roachbeer
 	name = "Kakerlakenbier"
 	id = "roachbeer"
-	description = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn't look nor smell like beer..."
+	description = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn\'t look nor smell like beer..."
 	taste_description = "heady roach guts"
 	reagent_state = LIQUID
 	color = "#123a15"
