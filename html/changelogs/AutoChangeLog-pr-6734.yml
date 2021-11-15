@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: Shrapnel removal damage no longer scales with bio
-  - balance: Shrapnel removal surgery now guaranteed to remove the shrapnel even when
-      failed, but will deal increased damage
