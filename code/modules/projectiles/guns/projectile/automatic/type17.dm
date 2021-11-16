@@ -31,8 +31,6 @@
     spawn_blacklisted = TRUE //until loot rework
 
     gun_tags = list(GUN_SILENCABLE)
-    wield_delay = 1.2 SECOND
-    wield_delay_factor = 0.2 // Special one-star ergonomic design
 
 /obj/item/gun/projectile/automatic/type_17/on_update_icon()
 	..()
