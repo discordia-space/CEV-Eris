@@ -27,6 +27,7 @@
     recoil_buildup = 1
     one_hand_penalty = 5 //SMG level.
     spawn_blacklisted = TRUE
+    wield_delay = 0 // No delay for this , its litteraly a junk gun
 
     origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
     matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
@@ -59,7 +60,7 @@
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_MAGNUM
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()

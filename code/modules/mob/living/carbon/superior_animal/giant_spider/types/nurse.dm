@@ -13,23 +13,28 @@
 	health = 40
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	poison_per_bite = 2
+	poison_per_bite = 3
 	var/atom/cocoon_target
-	poison_type = "pararein"
+	poison_type = "aranecolmin"
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider/nurse
+	move_to_delay = 5
 	meat_amount = 3
 	rarity_value = 75
 	var/fed = 0
+	var/egg_inject_chance = 4
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
-	var/target = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(prob(poison_per_bite))
+	..()
+	if(ishuman(target_mob))
+		var/mob/living/carbon/human/H = target_mob
+		if(prob(egg_inject_chance))
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
-				var/eggs = new /obj/effect/spider/eggcluster(O, src)
-				O.implants += eggs
+				src.visible_message(SPAN_DANGER("[src] injects something into the [O] of [H]!"))
+				var/obj/effect/spider/eggcluster/minor/S = new()
+				S.loc = O
+				O.implants += S
+
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)

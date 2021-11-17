@@ -15,7 +15,8 @@
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/device/landmine = 2,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/sec/hailer
+		/datum/design/autolathe/sec/hailer,
+		/datum/design/autolathe/container/ammocan_ih
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic

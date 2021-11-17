@@ -475,6 +475,8 @@ var/list/turret_icons
 	var/damage = Proj.get_structure_damage()
 
 	if(!damage)
+		if(istype(Proj, /obj/item/projectile/ion))
+			Proj.on_hit(loc)
 		return
 
 	if(enabled)

@@ -154,3 +154,93 @@
 			SPAN_WARNING("Your hand slips, making a deep gash on [organ.get_surgery_name()] with \the [tool]!")
 		)
 	organ.take_damage(60, 0, sharp=TRUE, edge=TRUE)
+
+/datum/surgery_step/fix_brute
+		allowed_tools = list(
+			/obj/item/stack/medical/advanced/bruise_pack = 100,
+			/obj/item/stack/medical/advanced/bruise_pack/nt = 100,
+		)
+		difficulty = FAILCHANCE_HARD
+		duration = 100
+
+/datum/surgery_step/fix_brute/require_tool_message(mob/living/user)
+	to_chat(user, SPAN_WARNING("You need an advanced trauma kit to complete this step."))
+
+/datum/surgery_step/fix_brute/proc/get_tool_name(obj/item/stack/tool)
+	var/tool_name = "\the regenerative membrane"
+	return tool_name
+
+/datum/surgery_step/fix_brute/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(organ.brute_dam <= 0)
+		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
+		return SURGERY_FAILURE
+	return TRUE
+
+/datum/surgery_step/fix_brute/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
+		SPAN_NOTICE("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
+	)
+
+/datum/surgery_step/fix_brute/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+	)
+	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack) || istype(tool, /obj/item/stack/medical/advanced/bruise_pack/nt))
+		var/obj/item/stack/S = tool
+		S.use(1)
+	organ.heal_damage(25, 0, TRUE)
+
+/datum/surgery_step/fix_brute/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
+	)
+	organ.take_damage(rand(5, 10), 0)
+
+/datum/surgery_step/fix_burn
+		allowed_tools = list(
+			/obj/item/stack/medical/advanced/ointment = 100,
+			/obj/item/stack/medical/advanced/ointment/nt = 100,
+		)
+		difficulty = FAILCHANCE_HARD
+		duration = 100
+
+/datum/surgery_step/fix_burn/require_tool_message(mob/living/user)
+	to_chat(user, SPAN_WARNING("You need an advanced burn kit to complete this step."))
+
+/datum/surgery_step/fix_burn/proc/get_tool_name(obj/item/stack/tool)
+	var/tool_name = "\the regenerative membrane"
+	return tool_name
+
+/datum/surgery_step/fix_burn/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(organ.burn_dam <= 0)
+		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
+		return SURGERY_FAILURE
+
+	return TRUE
+
+
+/datum/surgery_step/fix_burn/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
+		SPAN_NOTICE("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
+	)
+
+/datum/surgery_step/fix_burn/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+	)
+	if(istype(tool, /obj/item/stack/medical/advanced/ointment) || istype(tool, /obj/item/stack/medical/advanced/ointment/nt))
+		var/obj/item/stack/S = tool
+		S.use(1)
+	organ.heal_damage(0, 25, TRUE)
+
+/datum/surgery_step/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
+	)
+	organ.take_damage(0, rand(5, 10))

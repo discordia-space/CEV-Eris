@@ -229,6 +229,7 @@
 	icon_state = "centrifuge_makeshift"
 	matter = list(MATERIAL_STEEL = 4)
 	rarity_value = 50
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	var/obj/item/reagent_containers/mainBeaker
 	var/list/obj/item/reagent_containers/separationBeakers = list()
 	var/beakerSlots = 2

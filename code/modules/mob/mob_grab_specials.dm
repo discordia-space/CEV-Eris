@@ -121,7 +121,6 @@
 		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	if(target.grab_joint(attacker, target_zone))
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		return
 
 /obj/item/grab/proc/pin_down(mob/target, mob/attacker)
@@ -138,6 +137,7 @@
 		apply_pinning(target, attacker)
 
 /obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
+	playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
 	force_down = 1
 	target.Weaken(3)
 	target.lying = 1

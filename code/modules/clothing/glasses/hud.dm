@@ -26,6 +26,17 @@
 /obj/item/clothing/glasses/hud/health/process_hud(mob/M)
 	process_med_hud(M, 1)
 
+/obj/item/clothing/glasses/sunglasses/medhud
+	name = "Ironhammer medical HUD"
+	desc = "Flash-resistant goggles with inbuilt medical information."
+	icon_state = "healthhud"
+	prescription = TRUE
+
+	New()
+		..()
+		src.hud = new/obj/item/clothing/glasses/hud/health(src)
+		return
+
 /obj/item/clothing/glasses/hud/security
 	name = "Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."

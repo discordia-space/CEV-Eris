@@ -50,6 +50,28 @@
 	var/obj/machinery/power/terminal/terminal = null
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
 
+/obj/machinery/power/smes/AltClick(mob/user)
+	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
+		return FALSE
+	if(get_dist(user, src) > 1)
+		return FALSE
+	input_level = input_level > 0 ? 0 : input_level_max
+	input_attempt = input_level > 0
+	visible_message("[user] switches the [src]'s input to [input_level ? "maximum" : "none"].",
+	"You hear a switch being flicked.", 6)
+
+/obj/machinery/power/smes/CtrlClick(mob/user)
+	if(user.incapacitated(INCAPACITATION_ALL) || isghost(user) || !user.IsAdvancedToolUser())
+		return FALSE
+	if(get_dist(user , src) > 1)
+		return FALSE
+	output_level = output_level > 0 ? 0 : output_level_max
+	output_attempt = output_level > 0
+	visible_message("[user] switches the [src]'s output to [output_level ? "maximum" : "none"].",
+	"You hear a switch being flicked.", 6)
+
+
+
 /obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
 
 	if(drain_check)

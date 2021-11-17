@@ -341,6 +341,7 @@
 	rarity_value = 25
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	reagent_flags = REFILLABLE | DRAINABLE
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(5,10,30,60)
 

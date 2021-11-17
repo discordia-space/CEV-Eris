@@ -359,15 +359,18 @@
  * Ironhammer riot helmet with HUD
  */
 /obj/item/clothing/head/armor/riot_hud
-	name = "riot helmet"
+	name = "heavy operator helmet"
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
+
+	tint = TINT_LOW
+
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
+		melee = 50,
+		bullet = 50,
+		energy = 40,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -376,7 +379,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 300
+	price_tag = 500
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -473,6 +476,18 @@
 		bullet = 20,
 		energy = 10,
 		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
+	name = "\improper Type-34 Semi-Enclosed Headwear"
+	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)

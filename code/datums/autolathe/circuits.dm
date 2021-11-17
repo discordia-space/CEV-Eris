@@ -72,6 +72,11 @@
 	name = "industrial grinder"
 	build_path = /obj/item/electronics/circuitboard/industrial_grinder
 
+/datum/design/autolathe/circuit/craftingstation
+	name = "crafting station"
+	build_path = /obj/item/electronics/circuitboard/crafting_station
+
+
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
 	name = "excelsior shield wall generator"

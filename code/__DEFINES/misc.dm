@@ -169,6 +169,7 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
+#define TOGGLE_BOTTOM_FLAG 4 //0100
 
 // Default name for announcement system
 #define ANNOUNCER_NAME "CEV Eris System Announcer"

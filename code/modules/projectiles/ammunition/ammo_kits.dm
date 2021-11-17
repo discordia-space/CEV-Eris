@@ -169,7 +169,7 @@
 			mags = 1
 		if(24 to 30)
 			boxxes = 1
-		if(36 to 42)
+		if(30 to 42)
 			boxxes = 1
 			mags = 1
 		if(42 to 48)

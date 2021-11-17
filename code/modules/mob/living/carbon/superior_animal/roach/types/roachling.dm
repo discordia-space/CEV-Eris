@@ -8,8 +8,8 @@
 	health = 10
 	move_to_delay = 3.5
 
-	melee_damage_lower = 2
-	melee_damage_upper = 5
+	melee_damage_lower = 1
+	melee_damage_upper = 3
 	spawn_blacklisted = TRUE
 
 	meat_amount = 1

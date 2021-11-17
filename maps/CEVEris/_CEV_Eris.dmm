@@ -332,10 +332,14 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aba" = (
-/obj/structure/closet/l3closet/security,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet,
+/obj/item/clothing/under/netrunner,
+/obj/item/clothing/under/netrunner,
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored,
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "abb" = (
@@ -639,14 +643,14 @@
 /area/eris/security/range)
 "abP" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
 /obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
@@ -1550,6 +1554,10 @@
 /area/eris/security/armory)
 "adQ" = (
 /obj/structure/table/rack,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /turf/simulated/floor/tiled/dark/cargo,
@@ -17860,8 +17868,8 @@
 /area/eris/maintenance/section1deck4central)
 "aSp" = (
 /obj/structure/table/rack,
-/obj/item/gun/launcher/grenade/lenar,
-/obj/item/gun/launcher/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -17931,14 +17939,18 @@
 /area/eris/engineering/atmos/storage)
 "aSw" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/gun/projectile/boltgun/fs,
+/obj/item/gun/projectile/boltgun/fs,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSx" = (
@@ -18726,9 +18738,17 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aUq" = (
-/obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/security/main)
+/obj/structure/table/rack,
+/obj/item/storage/box/frag_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/baton_rounds,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/security/warden)
 "aUr" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
@@ -21161,6 +21181,10 @@
 /obj/item/ammo_magazine/lrifle,
 /obj/item/ammo_magazine/lrifle,
 /obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
@@ -100714,6 +100738,12 @@
 /obj/effect/shuttle_landmark/merc/southwest,
 /turf/space,
 /area/space)
+"eGL" = (
+/obj/machinery/surveillance_pod{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "eGV" = (
 /mob/living/simple_animal/cow{
 	name = "Beatriz"
@@ -101261,6 +101291,10 @@
 	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
+"fvm" = (
+/obj/structure/cryofeed,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
@@ -105147,6 +105181,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"uHR" = (
+/obj/machinery/surveillance_pod,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "uLw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -105902,6 +105940,12 @@
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"xqY" = (
+/obj/structure/cryofeed{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -126991,7 +127035,7 @@ ade
 adm
 aeo
 aec
-abS
+xqY
 aaR
 aaa
 aaa
@@ -127193,7 +127237,7 @@ adf
 adO
 aep
 aeQ
-abS
+eGL
 aaR
 aaa
 aaa
@@ -127395,7 +127439,7 @@ eoq
 adP
 aeq
 aeU
-abS
+uHR
 aaR
 aaa
 aaa
@@ -127597,7 +127641,7 @@ abS
 abS
 aer
 aeU
-abS
+fvm
 aaR
 aaa
 aaa
@@ -166982,7 +167026,7 @@ aaB
 aaB
 aaB
 aaB
-aUq
+aaB
 aUL
 aac
 aPb
@@ -167183,7 +167227,7 @@ aaB
 oEo
 aSp
 aSW
-aaB
+aUq
 aaB
 aac
 aac
