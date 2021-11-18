@@ -187,9 +187,9 @@
 		dust()
 
 /mob/living/carbon/superior_animal/proc/reagr_new_targets(reagr_radius = 1)
+	var/target = findTarget()
 	for(var/mob/living/carbon/superior_animal/SA in view(reagr_radius))
-		if(SA.stance == HOSTILE_STANCE_ATTACK)
-			SA.target_mob = SA.findTarget()
+		SA.target_mob = target
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
