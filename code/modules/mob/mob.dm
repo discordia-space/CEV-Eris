@@ -732,8 +732,8 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 	if(lying)
 		set_density(0)
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+		//if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
+		//if(r_hand) unEquip(r_hand)
 	else
 		canmove = TRUE
 		set_density(initial(density))
@@ -1012,6 +1012,8 @@ mob/proc/yank_out_object()
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
+		if(l_hand) unEquip(l_hand)
+		if(r_hand) unEquip(r_hand)
 	return stunned
 
 /mob/living/proc/handle_weakened()

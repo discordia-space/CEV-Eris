@@ -125,10 +125,14 @@
 			return 1
 		throw_mode_off()
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_hand()	
 
 	if(W == A) // Handle attack_self
 		W.attack_self(src)
+		return 1
+	
+	if(W && !W.can_use_lying && src.lying)
+		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
 		return 1
 
 	//Atoms on your person

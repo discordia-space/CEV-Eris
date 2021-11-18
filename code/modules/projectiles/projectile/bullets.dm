@@ -65,7 +65,7 @@
 		var/obj/structure/table/T = A
 		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)
 	else if(istype(A, /obj/structure/barricade))
-		var/obj/structure/barricade/B = B
+		var/obj/structure/barricade/B = A
 		chance = round(penetrating * armor_penetration * 2 / B.material.integrity * 180)
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = armor_penetration * penetrating
