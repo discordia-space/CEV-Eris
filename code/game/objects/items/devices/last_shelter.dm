@@ -79,6 +79,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))
 	H.stats.addPerk(perk_random)
 	H.stats.addPerk(pick(/datum/perk/survivor, /datum/perk/selfmedicated, /datum/perk/vagabond, /datum/perk/merchant, /datum/perk/inspiration))
+	H.add_language(LANGUAGE_LATIN)
 	var/obj/item/implant/core_implant/cruciform/cruciform = new /obj/item/implant/core_implant/cruciform(src)
 	cruciform.add_module(new CRUCIFORM_CLONING)
 	cruciform.activated = TRUE

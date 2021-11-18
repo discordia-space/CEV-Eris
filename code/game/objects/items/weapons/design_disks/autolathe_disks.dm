@@ -15,7 +15,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/guns/sa_boltgun
 	disk_name = "Serbian Arms - .30  Novakovic Rifle"
 	icon_state = "serbian"
-	rarity_value = 5.5
+	rarity_value = 7
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/boltgun_serbian = 3, // "SA BR .30 \"Novakovic\""

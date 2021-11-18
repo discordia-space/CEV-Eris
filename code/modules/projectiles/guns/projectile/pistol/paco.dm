@@ -22,6 +22,8 @@
 	penetration_multiplier = 0.9
 	recoil_buildup = 3
 	gun_tags = list(GUN_SILENCABLE)
+	wield_delay = 0.2 SECOND
+	wield_delay_factor = 0.1 // 10 vig
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

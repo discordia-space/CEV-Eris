@@ -32,7 +32,7 @@
 	icon_state = "engineering_rig"
 	armor = list(
 		melee = 50,
-		bullet = 50,
+		bullet = 40,
 		energy = 10,
 		bomb = 25,
 		bio = 100,

@@ -55,9 +55,6 @@ SUBSYSTEM_DEF(vote)
 
 	vote_start_time = world.time
 
-	for(var/client/C in voters)
-		C << browse(interface(C),"window=vote")
-
 	var/text = "[poll.name] vote started by [poll.initiator]."
 	log_vote(text)
 	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
@@ -180,7 +177,7 @@ SUBSYSTEM_DEF(vote)
 	if(href_list["close"])
 		if(usr && usr.client)
 			voters.Remove(usr.client)
-			usr.client << browse(null,"window=vote")
+			usr.client << browse(null,"window=Vote")
 			return
 
 	usr.vote()

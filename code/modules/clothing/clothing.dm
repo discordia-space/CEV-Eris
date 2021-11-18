@@ -499,7 +499,7 @@ BLIND     // can't see anything
 			/obj/item/tool/knife/butterfly,
 			/obj/item/material/kitchen/utensil,
 			/obj/item/tool/knife/tacknife,
-			/obj/item/tool/shiv,
+			/obj/item/tool/knife/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
@@ -572,8 +572,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
-	valid_accessory_slots = list("armband","decor")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = list("armor","armband","decor")
+	restricted_accessory_slots = list("armor","armband")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()

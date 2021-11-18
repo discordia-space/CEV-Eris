@@ -52,7 +52,8 @@ Has ability of every roach.
 
 
 /mob/living/carbon/superior_animal/roach/kaiser/handle_ai()
-	..()
+	if(!..())
+		return FALSE
 
 	if(can_call_reinforcements())
 		distress_call()

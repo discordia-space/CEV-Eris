@@ -222,6 +222,8 @@
 			ricochetchance = min(ricochetchance * ricochetchance, 100)
 		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
 		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
+		
+		ricochetchance *= Proj.ricochet_ability
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
 			// projectile loses up to 50% of its damage when it ricochets, depending on situation

@@ -17,3 +17,5 @@
 
 	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.4 // 40 vig

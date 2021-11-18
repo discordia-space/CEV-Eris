@@ -308,9 +308,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	stop_following()
 	usr.forceMove(pick(L))
 
-/mob/observer/ghost/verb/follow(input in getmobs())
+/mob/observer/ghost/verb/Follow(atom/A as mob|obj in view(usr.client)) ////// Follow verb in context menu
+	if(following)
+		stop_following()
+	var/target = A
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_mob(input in getmobs()) ////// Follow verb in Ghost tab
 	set category = "Ghost"
-	set name = "Follow" // "Haunt"
+	set name = "Follow mob" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
 	var/target = getmobs()[input]

@@ -6,6 +6,10 @@
 	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
+	arms = /obj/item/mech_component/manipulators/cheap
+	legs = /obj/item/mech_component/propulsion/cheap
+	head = /obj/item/mech_component/sensors/cheap
+	body = /obj/item/mech_component/chassis/cheap
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/utility,
 		/obj/item/electronics/circuitboard/exosystem/engineering
@@ -16,22 +20,11 @@
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
 
-/mob/living/exosuit/premade/powerloader/Initialize()
-	if(!arms)
-		arms = new /obj/item/mech_component/manipulators/cheap(src)
-	if(!legs)
-		legs = new /obj/item/mech_component/propulsion/cheap(src)
-	if(!head)
-		head = new /obj/item/mech_component/sensors/cheap(src)
-	if(!body)
-		body = new /obj/item/mech_component/chassis/cheap(src)
-
-	. = ..()
-
 
 /obj/item/mech_component/manipulators/cheap
 	name = "lifter exosuit arms"
 	exosuit_desc_string = "industrial lifter arms"
+	melee_damage = 15
 	max_damage = 70
 	power_use = 30
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
@@ -41,8 +34,8 @@
 	exosuit_desc_string = "reinforced lifter legs"
 	desc = "Wide and stable, but not particularly fast."
 	max_damage = 70
-	move_delay = 4
-	turn_delay = 4
+	move_delay = 3 // Slow and chunky
+	turn_delay = 3
 	power_use = 10
 
 /obj/item/mech_component/sensors/cheap
@@ -96,6 +89,7 @@
 
 	rarity_value = 20
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
+	body = /obj/item/mech_component/chassis/heavy
 	exosuit_color = "#819a73"
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
@@ -103,8 +97,3 @@
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
 
-/mob/living/exosuit/premade/powerloader/firefighter/Initialize()
-	if(!body)
-		body = new /obj/item/mech_component/chassis/heavy(src) // Sealed chassis to protect the pilot from fire
-
-	. = ..()

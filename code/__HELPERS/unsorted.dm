@@ -510,6 +510,34 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return target
 
+// Simple proc to recursively get a turf away from a target. More accurate than get edge turf but could be more accurate if using map coordinates or vectors.
+/proc/get_turf_away_from_target_simple(atom/center, atom/target, distance)
+	if(!center || !target)
+		return FALSE
+	var/opposite_dir = turn(get_dir(center,target), 180)
+	var/looping_distance = distance
+	var/atom/current_turf = center
+	while(looping_distance)
+		current_turf = get_step(current_turf,opposite_dir)
+		opposite_dir = turn(get_dir(current_turf, target) , 180) // Get the new opposite relative to our new location
+		looping_distance--
+	return current_turf
+
+// More complex proc that uses basic trigonometry to get a turf away from target . Accurate
+// it gets the difference between the center and target x and y axis. If they are - or + is handled without hardcode
+// The ratios are divided by their total (x + y ) and then multiplied by distance x / (x+y) * distance
+// this value is added ontop of the center coordinates , giving us our "away" turf.
+/proc/get_turf_away_from_target_complex(atom/center, atom/target, distance)
+	var/list/distance_reports = list(center.x - target.x, center.y - target.y)
+	var/distance_total = abs(distance_reports[1]) + abs(distance_reports[2])
+	if(distance_reports[1])
+		distance_reports[1] = round(distance_reports[1] / distance_total * distance)
+	if(distance_reports[2])
+		distance_reports[2] = round(distance_reports[2] / distance_total * distance)
+	distance_reports[1] = center.x + distance_reports[1]
+	distance_reports[2] = center.y + distance_reports[2]
+	return locate(distance_reports[1], distance_reports[2], center.z)
+
 // returns turf relative to A in given direction at set range
 // result is bounded to map size
 // note range is non-pythagorean

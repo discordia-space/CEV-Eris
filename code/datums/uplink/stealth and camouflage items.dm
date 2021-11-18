@@ -29,6 +29,7 @@
 /datum/uplink_item/item/stealth_items/cleanup
 	name = "Crime Scene Cleanup Kit"
 	item_cost = 2
+	antag_roles = list(ROLE_TRAITOR, ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/cleanup_kit
 
 /datum/uplink_item/item/stealth_items/voice
@@ -39,12 +40,15 @@
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
 	item_cost = 8
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/device/chameleon
 
 /datum/uplink_item/item/stealth_items/tool_dampener
 	name = "Tool Upgrade: Aural Dampener"
 	item_cost = 1
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/tool_upgrade/augment/dampener
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/silencer
     name = "Silencer"

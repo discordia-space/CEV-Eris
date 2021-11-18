@@ -37,7 +37,7 @@
 	if(init_on_new)
 		init_src()
 
-/datum/trade_station/proc/init_src()
+/datum/trade_station/proc/init_src(var/turf/station_loc = null, var/force_discovered = FALSE)
 	if(name)
 		crash_with("Some retard gived trade station a name before init_src, overriding name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
@@ -53,9 +53,15 @@
 
 	update_tick()
 
+	if(force_discovered)  // Force trading station to be already discovered when spawned
+		start_discovered = TRUE
+
 	var/x = 1
 	var/y = 1
-	if(recursiveLen(forced_overmap_zone) == 6)
+	if(station_loc)  // Spawn trading station at custom location
+		x = station_loc.x
+		y = station_loc.y
+	else if(recursiveLen(forced_overmap_zone) == 6)
 		x = rand(forced_overmap_zone[1][1], forced_overmap_zone[1][2])
 		y = rand(forced_overmap_zone[2][1], forced_overmap_zone[2][2])
 	else

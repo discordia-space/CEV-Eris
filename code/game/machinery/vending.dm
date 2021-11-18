@@ -1524,7 +1524,8 @@
 					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/storage/ration_pack = 10,
-					/obj/item/clothing/mask/balaclava = 50
+					/obj/item/clothing/mask/balaclava = 50,
+					/obj/item/storage/hcases/ammo/serb = 10
 					)
 	prices = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
@@ -1539,7 +1540,8 @@
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
 					/obj/item/ammo_magazine/sllrifle = 100,
 					/obj/item/storage/ration_pack = 800,
-					/obj/item/clothing/mask/balaclava = 100
+					/obj/item/clothing/mask/balaclava = 100,
+					/obj/item/storage/hcases/ammo/serb = 300
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
@@ -1629,7 +1631,7 @@
 		/obj/item/clothing/under/green = 4,
 		/obj/item/clothing/under/grey = 4,
 		/obj/item/clothing/under/black = 4,
-		/obj/item/clothing/under/dress = 4,
+		/obj/item/clothing/under/dress/purple = 4,
 		/obj/item/clothing/under/dress/white = 4,
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
@@ -1643,30 +1645,30 @@
 		/obj/item/clothing/mask/scarf/style/yellowstyle = 250,
 		/obj/item/clothing/mask/scarf/style/redstyle = 250,
 		/obj/item/clothing/gloves/knuckles = 650,
-		/obj/item/clothing/head/ranger = 550,
+		/obj/item/clothing/head/ranger = 200,
 		/obj/item/clothing/head/inhaler = 750,
 		/obj/item/clothing/head/skull = 450,
 		/obj/item/clothing/head/skull/black = 450,
 		/obj/item/clothing/shoes/redboot = 450,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
-		/obj/item/clothing/under/white = 600,
-		/obj/item/clothing/under/red = 600,
-		/obj/item/clothing/under/green = 600,
-		/obj/item/clothing/under/grey = 600,
-		/obj/item/clothing/under/black = 600,
-		/obj/item/clothing/under/dress = 600,
-		/obj/item/clothing/under/dress/white = 600,
-		/obj/item/clothing/under/helltaker = 600,
-		/obj/item/clothing/under/johnny = 750,
-		/obj/item/clothing/under/raider = 750,
+		/obj/item/clothing/under/white = 450,
+		/obj/item/clothing/under/red = 450,
+		/obj/item/clothing/under/green = 450,
+		/obj/item/clothing/under/grey = 450,
+		/obj/item/clothing/under/black = 450,
+		/obj/item/clothing/under/dress/purple = 450,
+		/obj/item/clothing/under/dress/white = 450,
+		/obj/item/clothing/under/helltaker = 450,
+		/obj/item/clothing/under/johnny = 600,
+		/obj/item/clothing/under/raider = 600,
 		/obj/item/clothing/suit/storage/triad = 1200,
-		/obj/item/clothing/suit/storage/akira = 750,
+		/obj/item/clothing/suit/storage/akira = 600,
 		/obj/item/clothing/head/skull/drip = 100000
 					)
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
-	
+
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

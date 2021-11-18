@@ -65,6 +65,8 @@
 	holder.remove_reagent(id, amount)
 
 /datum/reagent/proc/consumed_amount(mob/living/carbon/M, alien, location)
+	if(ishuman(M))
+		return consumed_amount_human(M, alien,location) // Since humans should scale off livers , hearts and stomachs
 	var/removed = metabolism
 	if(location == CHEM_INGEST)
 		if(ingest_met)
@@ -81,6 +83,30 @@
 				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 			else
 				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+	removed = round(removed, 0.01)
+	removed = min(removed, volume)
+
+	return removed
+
+/datum/reagent/proc/consumed_amount_human(mob/living/carbon/human/consumer, alien, location)
+	var/removed
+	if(location == CHEM_INGEST)
+		var/calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) + consumer.get_organ_efficiency(OP_STOMACH)) / 3) / 100
+		if(ingest_met)
+			removed = ingest_met * calculated_buff
+		else
+			removed = (metabolism / 2) * calculated_buff
+	if(touch_met && (location == CHEM_TOUCH))
+		removed = touch_met // This doesn't get a buff , there is no organ that can count for this , really.
+	// on half of overdose, chemicals will start be metabolized faster,
+	// also blood circulation affects chemical strength (meaining if target has low blood volume or has something that lowers blood circulation chemicals will be consumed less and effect will diminished)
+	if(location == CHEM_BLOOD)
+		var/calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) * 2) / 3) / 100
+		if(!constant_metabolism)
+			if(overdose)
+				removed = CLAMP(metabolism * volume/(overdose/2) * consumer.get_blood_circulation()/100 * calculated_buff, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+			else
+				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * consumer.get_blood_circulation()/100 * calculated_buff, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = round(removed, 0.01)
 	removed = min(removed, volume)
 

@@ -138,9 +138,10 @@
 
 
 #define TINT_NONE 0
-#define TINT_MODERATE 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
+#define TINT_LOW 1
+#define TINT_MODERATE 2
+#define TINT_HEAVY 4
+#define TINT_BLIND 8
 
 #define FLASH_PROTECTION_REDUCED -1
 #define FLASH_PROTECTION_NONE 0

@@ -247,7 +247,7 @@
 	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
-
+		SSticker.minds += character.mind
 			// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C

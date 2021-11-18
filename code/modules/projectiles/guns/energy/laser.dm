@@ -21,6 +21,8 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.3 // 30 vig , very powerfull assault laser
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE
@@ -75,7 +77,7 @@
 	twohanded = TRUE
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
-	
+
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/obrez_retro.dmi'

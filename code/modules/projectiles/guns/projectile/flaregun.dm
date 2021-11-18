@@ -2,7 +2,7 @@
 	name = "flare gun"
 	desc = "Flare gun made of cheap plastic. Now, where did all those gun-toting madmen get to?"
 	icon = 'icons/obj/guns/projectile/flaregun.dmi'
-	icon_state = "flaregun"
+	icon_state = "empty"
 	item_state = "pistol"
 	caliber = CAL_FLARE
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
@@ -11,6 +11,7 @@
 	w_class = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	load_method = SINGLE_CASING
+	handle_casings = HOLD_CASINGS
 	max_shells = 1
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 4)
 	gun_parts = list(/obj/item/stack/material/plastic = 4)
@@ -22,11 +23,17 @@
 
 /obj/item/gun/projectile/flare_gun/on_update_icon()
 	..()
-	
-	if (bolt_open)
-		SetIconState("flaregun_open")
+
+	if(bolt_open)
+		if(loaded.len)
+			SetIconState("full_open")
+		else
+			SetIconState("empty_open")
 	else
-		SetIconState("flaregun")
+		if(loaded.len)
+			SetIconState("full")
+		else
+			SetIconState("empty")
 
 /obj/item/gun/projectile/flare_gun/attack_self(mob/user)
 	if(zoom)
@@ -34,35 +41,72 @@
 		return
 	bolt_act(user)
 
-/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, allow_dump=1)
-	return
-
 /obj/item/gun/projectile/flare_gun/proc/bolt_act(mob/living/user)
+	playsound(loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You snap the barrel open."))
-		unload_ammo(user, allow_dump=1)
+		if(loaded.len)
+			if(chambered)
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [chambered]!"))
+				chambered.forceMove(get_turf(src))
+				loaded -= chambered
+				chambered = null
+			else
+				var/obj/item/ammo_casing/shell = loaded[loaded.len]
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [shell]!"))
+				shell.forceMove(get_turf(src))
+				loaded -= shell
+		else
+			to_chat(user, SPAN_NOTICE("You snap the barrel open."))
 	else
-		playsound(src.loc, 'sound/weapons/guns/interact/rev_cock.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
-		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
 
 /obj/item/gun/projectile/flare_gun/special_check(mob/user)
 	if(bolt_open)
 		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
-		return 0
+		return FALSE
 	return ..()
 
-/obj/item/gun/projectile/flare_gun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/flare_gun/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
 	..()
 
-/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/flare_gun/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/gun/projectile/flare_gun/get_ammo() // Let's keep it simple. Count spent casing twice otherwise.
+	if(loaded.len)
+		return 1
+	return 0
+
+/obj/item/gun/projectile/flare_gun/shotgun
+	name = "reinforced flare gun"
+	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
+	icon_state = "empty_r"
+	caliber = CAL_SHOTGUN
+	damage_multiplier = 0.6
+	penetration_multiplier = 0.5
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+	one_hand_penalty = 10 //compact shotgun level
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
+
+/obj/item/gun/projectile/flare_gun/shotgun/on_update_icon()
+	..()
+
+	if(bolt_open)
+		if(loaded.len)
+			SetIconState("full_open_r")
+		else
+			SetIconState("empty_open_r")
+	else
+		if(loaded.len)
+			SetIconState("full_r")
+		else
+			SetIconState("empty_r")

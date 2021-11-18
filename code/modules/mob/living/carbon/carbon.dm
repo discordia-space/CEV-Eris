@@ -371,14 +371,13 @@
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
 	if(buckled)
-		return 0
+		return FALSE
 	stop_pulling()
 	if (slipped_on)
 		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Stun(stun_duration)
-	Weaken(FLOOR(stun_duration * 0.5, 1))
-	return 1
+	Weaken(stun_duration)
+	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect == CE_ALCOHOL)

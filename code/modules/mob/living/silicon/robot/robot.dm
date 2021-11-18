@@ -536,114 +536,118 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			if (src == user)
-				to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
-				return
+			if (user.a_intent == I_HELP)		
+				if (src == user)
+					to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
+					return
 
-			if (!getBruteLoss())
-				to_chat(user, SPAN_NOTICE("Nothing to fix here!"))
-				return
+				if (!getBruteLoss())
+					to_chat(user, SPAN_NOTICE("Nothing to fix here!"))
+					return
 
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				adjustBruteLoss(-30)
-				updatehealth()
-				add_fingerprint(user)
-				for(var/mob/O in viewers(user, null))
-					O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+					adjustBruteLoss(-30)
+					updatehealth()
+					add_fingerprint(user)
+					for(var/mob/O in viewers(user, null))
+						O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
+					return
 				return
-			return
 
 		if(QUALITY_PRYING)
-			if(opened)
-				if(cell)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You close the cover."))
-						opened = 0
-						updateicon()
-						return
-				else if(wiresexposed && wires.IsAllCut())
+			if (user.a_intent == I_HELP)	
+				if(opened)
+					if(cell)
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You close the cover."))
+							opened = 0
+							updateicon()
+							return
+					else if(wiresexposed && wires.IsAllCut())
 					//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
-					if(!mmi)
-						to_chat(user, SPAN_NOTICE("\The [src] has no brain to remove."))
-						return
+						if(!mmi)
+							to_chat(user, SPAN_NOTICE("\The [src] has no brain to remove."))
+							return
 
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi]."))
-						to_chat(user, SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!"))
-						new /obj/item/robot_parts/robot_suit/with_limbs (loc)
-						new/obj/item/robot_parts/chest(loc)
-						qdel(src)
-						return
-				else
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi]."))
+							to_chat(user, SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!"))
+							new /obj/item/robot_parts/robot_suit/with_limbs (loc)
+							new/obj/item/robot_parts/chest(loc)
+							qdel(src)
+							return
+					else
 					// Okay we're not removing the cell or an MMI, but maybe something else?
-					var/list/removable_components = list()
-					for(var/V in components)
-						if(V == "power cell") continue
-						var/datum/robot_component/C = components[V]
-						if(C.installed == 1 || C.installed == -1)
-							removable_components += V
+						var/list/removable_components = list()
+						for(var/V in components)
+							if(V == "power cell") continue
+							var/datum/robot_component/C = components[V]
+							if(C.installed == 1 || C.installed == -1)
+								removable_components += V
 
-					var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
-					if(!remove)
-						return
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						var/datum/robot_component/C = components[remove]
-						var/obj/item/robot_parts/robot_component/RC = C.wrapped
-						to_chat(user, SPAN_NOTICE("You remove \the [RC]."))
-						if(istype(RC))
-							RC.brute = C.brute_damage
-							RC.burn = C.electronics_damage
+						var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+						if(!remove)
+							return
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							var/datum/robot_component/C = components[remove]
+							var/obj/item/robot_parts/robot_component/RC = C.wrapped
+							to_chat(user, SPAN_NOTICE("You remove \the [RC]."))
+							if(istype(RC))
+								RC.brute = C.brute_damage
+								RC.burn = C.electronics_damage
 
-						RC.forceMove(get_turf(src))
+							RC.forceMove(get_turf(src))
 
-						if(C.installed == 1)
-							C.uninstall()
-						C.installed = 0
-						return
+							if(C.installed == 1)
+								C.uninstall()
+							C.installed = 0
+							return
 
-			else
-				if(locked)
-					to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
 				else
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						to_chat(user, SPAN_NOTICE("You open the cover."))
-						opened = 1
-						updateicon()
-						return
-			return
+					if(locked)
+						to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
+					else
+						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You open the cover."))
+							opened = 1
+							updateicon()
+							return
+				return
 
 		if(QUALITY_WIRE_CUTTING)
-			if (wiresexposed)
-				wires.Interact(user)
-			return
+			if (user.a_intent == I_HELP)		
+				if (wiresexposed)
+					wires.Interact(user)
+				return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (opened && !cell)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					wiresexposed = !wiresexposed
-					to_chat(user, SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]"))
-					updateicon()
-			else
-				switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
-					if("Tools")
-						var/list/robotools = list()
-						for(var/obj/item/tool/robotool in module.modules)
-							robotools.Add(robotool)
-						if(robotools.len)
-							var/obj/item/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
-							if(chosen_tool == "Cancel")
-								return
-							chosen_tool.attackby(I,user)
-						else
-							to_chat(user, SPAN_WARNING("[src] has no modifiable tools."))
-					if("Radio")
-						if(!radio)
-							to_chat(user, SPAN_WARNING("Unable to locate a radio."))
-						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-							radio.attackby(I,user)//Push it to the radio to let it handle everything
-							updateicon()
-			return
+			if (user.a_intent == I_HELP)	
+				if (opened && !cell)
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+						wiresexposed = !wiresexposed
+						to_chat(user, SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]"))
+						updateicon()
+				else
+					switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
+						if("Tools")
+							var/list/robotools = list()
+							for(var/obj/item/tool/robotool in module.modules)
+								robotools.Add(robotool)
+							if(robotools.len)
+								var/obj/item/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
+								if(chosen_tool == "Cancel")
+									return
+								chosen_tool.attackby(I,user)
+							else
+								to_chat(user, SPAN_WARNING("[src] has no modifiable tools."))
+						if("Radio")
+							if(!radio)
+								to_chat(user, SPAN_WARNING("Unable to locate a radio."))
+							if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+								radio.attackby(I,user)//Push it to the radio to let it handle everything
+								updateicon()
+				return
 
 		if(ABORT_CHECK)
 			return

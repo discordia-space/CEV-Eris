@@ -386,6 +386,18 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	multiple_sprites = 1
+	w_class = ITEM_SIZE_NORMAL
+
+//Magazine type for the mech PK, you shouldn't see this
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	icon_state = "pk_box"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+//
 
 /obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
 	if (!stored_ammo.len)
@@ -462,7 +474,7 @@
 
 //////// .35 SPEEDLOADERS //////////
 /obj/item/ammo_magazine/slpistol
-	name = "speed loader (.35 Special)"
+	name = "speed loader (.35 Auto)"
 	icon_state = "slpistol_l"
 	icon = 'icons/obj/ammo_speed.dmi'
 	caliber = CAL_PISTOL
@@ -477,24 +489,24 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/slpistol/practice
-	name = "speed loader (.35 Special practice)"
+	name = "speed loader (.35 Auto practice)"
 	icon_state = "slpistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 
 /obj/item/ammo_magazine/slpistol/hv
-	name = "speed loader (.35 Special high-velocity)"
+	name = "speed loader (.35 Auto high-velocity)"
 	icon_state = "slpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
 	rarity_value = 80
 
 /obj/item/ammo_magazine/slpistol/rubber
-	name = "speed loader (.35 Special rubber)"
+	name = "speed loader (.35 Auto rubber)"
 	icon_state = "slpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 	rarity_value = 5
 
 /obj/item/ammo_magazine/slpistol/scrap
-	name = "speed loader (old .35 Special)"
+	name = "speed loader (old .35 Auto)"
 	icon_state = "slpistol_s"
 	ammo_type = /obj/item/ammo_casing/pistol/scrap
 	rarity_value = 5
@@ -555,13 +567,46 @@
 
 /obj/item/ammo_magazine/sllrifle/hv
 	name = "ammo strip (.30 Rifle HV)"
-	icon_state = "lrifle"
-	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
+
+//////// .20 RIFLE SPEEDLOADERS ////////
+
+/obj/item/ammo_magazine/slsrifle
+	name = "ammo strip (.20 Rifle)"
+	icon_state = "stripper_base"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 5
-	multiple_sprites = 1
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle/on_update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "stripper_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slsrifle/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/ammo_magazine/slsrifle/hv
+	name = "ammo strip (.20 Rifle HV)"
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/slsrifle/practice
+	name = "ammo strip (.20 Rifle practice)"
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/slsrifle/rubber
+	name = "ammo strip (.20 Rifle rubber)"
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/slsrifle/scrap
+	name = "ammo strip (old .20 Rifle)"
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
 
 /// OTHER ///
 
@@ -597,29 +642,39 @@
 
 /obj/item/ammo_magazine/m12
 	name = "ammo drum (.50 slug)"
-	icon_state = "m12_slug"
+	icon_state = "m12_hv"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)
-	multiple_sprites = 1
 	max_ammo = 8
-	ammo_color = "-slug"
+	ammo_color = "-hv"
+
+/obj/item/ammo_magazine/m12/on_update_icon()
+	cut_overlays()
+	if(stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1] //look at next casing.
+		overlays += "m12_shell_[AC.shell_color]" //look and display the overlay for the ammo
+
+/obj/item/ammo_magazine/m12/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (.50 pellet)"
-	icon_state = "m12_pellets"
+	icon_state = "m12_l"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
-	ammo_color = "-pellets"
+	ammo_color = "-l"
 
 /obj/item/ammo_magazine/m12/beanbag
 	name = "ammo drum (.50 beanbag)"
-	icon_state = "m12_beanbag"
+	icon_state = "m12_r"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-	ammo_color = "-beanbag"
+	ammo_color = "-r"
 
 /obj/item/ammo_magazine/m12/empty
 	name = "ammo drum (.50)"
 	icon_state = "m12"
+	ammo_color = ""
 	initial_ammo = 0
