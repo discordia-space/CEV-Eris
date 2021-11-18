@@ -1,0 +1,5 @@
+author: CeUvi
+delete-after: true
+changes:
+  - imageadd: new badges
+  - imagedel: bayleftover badges
