@@ -219,21 +219,21 @@
 		user.do_attack_animation(src)
 		shatter(TRUE,TRUE)
 
-	else if (usr.a_intent == I_HURT)
+	else if (user.a_intent == I_HURT)
 
-		if (ishuman(usr))
-			var/mob/living/carbon/human/H = usr
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
 				return
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
-		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
+		user.visible_message(SPAN_DANGER("\The [user] bangs against \the [src]!"),
 							SPAN_DANGER("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
-		usr.visible_message("[usr.name] knocks on the [src.name].",
+		user.visible_message("[user.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
 	return
@@ -292,12 +292,12 @@
 		usable_qualities.Add(QUALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
-	if (usr.a_intent != I_HURT)
+	if (user.a_intent != I_HURT)
 		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC, is_stackable = TRUE))
 					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
 					health = maxhealth
 			if(QUALITY_BOLT_TURNING)
@@ -305,7 +305,7 @@
 					if(!glasstype)
 						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the [src] properly."))
 						return
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, is_stackable = TRUE))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
 						var/obj/glass
 						if(is_fulltile())
@@ -320,7 +320,7 @@
 
 			if(QUALITY_PRYING)
 				if(reinf && state <= 1)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, is_stackable = TRUE))
 						state = 1 - state
 						to_chat(user, (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame.")))
 				return 1 //No whacking the window with tools unless harm intent
@@ -328,18 +328,18 @@
 
 			if(QUALITY_SCREW_DRIVING)
 				if(reinf && state >= 1)
-					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, is_stackable = TRUE))
 						state = 3 - state
 						update_nearby_icons()
 						to_chat(user, (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame.")))
 						return
 				if(reinf && state == 0)
-					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, is_stackable = TRUE))
 						set_anchored(!anchored)
 						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor.")))
 						return
 				if(!reinf)
-					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, is_stackable = TRUE))
 						set_anchored(!anchored)
 						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window.")))
 						return

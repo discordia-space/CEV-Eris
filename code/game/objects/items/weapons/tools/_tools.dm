@@ -296,7 +296,7 @@
 			return TRUE
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
+/obj/item/proc/use_tool_extended(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS, is_stackable = FALSE)
 
 	var/obj/item/tool/T
 	if(istool(src))
@@ -382,7 +382,7 @@
 	if(time_to_finish)
 		target.used_now = TRUE
 
-		if(!do_after(user, time_to_finish, target))
+		if(!do_after(user, time_to_finish, target, stackable = is_stackable))
 			//If the doafter fails
 			to_chat(user, SPAN_WARNING("You need to stand still to finish the task properly!"))
 			target.used_now = FALSE

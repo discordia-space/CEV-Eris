@@ -189,7 +189,7 @@
 					else
 						user.visible_message(SPAN_WARNING("[user] begins hunting for an injection port on [target]'s suit!"),SPAN_WARNING("You begin hunting for an injection port on [target]'s suit!"))
 
-					if(do_mob(user, target, injtime))
+					if(do_mob(user, target, injtime, stackable = TRUE))
 						user.visible_message(SPAN_WARNING("[user] injects [target] with [src]!"),SPAN_WARNING("You inject [target] with [src]!"))
 					else
 						return

@@ -171,12 +171,16 @@ Proc for attack log creation, because really why not
 		return pick(BP_ALL_LIMBS - list(BP_CHEST, BP_GROIN))
 	else
 		return pick(BP_CHEST, BP_GROIN)
-		
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1)
+
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, stackable = FALSE)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
 	var/target_loc = target.loc
+
+	if(user.currently_timing && !stackable)
+		to_chat(user, SPAN_NOTICE("You cannot do more than one action at a time!"))
+		return FALSE
 
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
@@ -185,6 +189,7 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time+time
 	var/starttime = world.time
+	user.currently_timing = TRUE
 	. = 1
 	while (world.time < endtime)
 		sleep(1)
@@ -207,18 +212,19 @@ Proc for attack log creation, because really why not
 		if(user.get_active_hand() != holding)
 			. = 0
 			break
+	user.currently_timing = FALSE
 
 	if (progbar)
 		qdel(progbar)
-		
+
 /mob
 	var/currently_timing = FALSE
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
+/proc/do_after(mob/user, delay, atom/target, needhand = TRUE, progress = TRUE, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = TRUE, stackable = FALSE)
 	if(!user)
-		return 0
+		return FALSE
 
-	if(user.currently_timing)
+	if(user.currently_timing && !stackable)
 		to_chat(user, SPAN_NOTICE("You cannot do more than one action at a time!"))
 		return FALSE
 
