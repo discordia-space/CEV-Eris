@@ -328,7 +328,7 @@
 /datum/reagent/drug/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
 	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!6!! if true
-		perk_check = effect_multiplier * 12
+		perk_check = effect_multiplier * 2
 	apply_sanity_effect(M, perk_check)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")

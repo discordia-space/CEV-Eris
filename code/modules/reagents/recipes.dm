@@ -2111,7 +2111,7 @@
 /datum/chemical_reaction/roachbeer
 	result = "roachbeer"
 	required_reagents = list("water" = 2, "diplopterum" = 1, "fuel" = 1, "beer" = 1)
-	result_amount = 2
+	result_amount = 1
 
 /datum/chemical_reaction/kaiserbeer
 	result = "kaiserbeer"
