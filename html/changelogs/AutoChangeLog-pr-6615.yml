@@ -1,0 +1,9 @@
+author: githubuser4141
+delete-after: true
+changes:
+  - balance: Adjusts drill delays, makes the onestar/hive/roach bosses unable to be
+      dragged
+  - bugfix: Fixes mechs drilling/clamping stuff from afar and getting stuck randomly.
+  - soundadd: Adds a new sound for mech punches, uses a different sound for mech clamps/drills
+  - code_imp: Ports Occulus-Eris's mech gear range check and hopefully fixes mechs
+      getting stuck on nothing.
