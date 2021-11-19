@@ -1,0 +1,5 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - balance: increased VIG requirement and decreased delay on RPG and LMGs
+  - rscdel: removed delay on every weapon that isn't a LMG, GL or RPG
