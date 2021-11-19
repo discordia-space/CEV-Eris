@@ -1,12 +1,13 @@
 /obj/machinery/mining/deep_drill
-	name = "mining drill head"
-	desc = "An enormous drill."
+	name = "deep mining drill head"
+	desc = "An enormous drill to dig out deep ores."
 	icon_state = "mining_drill"
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/braces_needed = 2
-	var/list/supports = list()
+    var/max_health = 200
+	var/health = 200
+
 	var/active = FALSE
 	var/list/resource_field = list()
 
@@ -54,6 +55,13 @@
 	if(!anchored || !use_cell_power())
 		system_error("system configuration or charge error")
 		return
+
+    if(check_surroundings())
+        system_error("obstacle detected near the drill")
+		return
+
+    if(health == 0)
+		system_error("critical damage")
 
 	if(need_update_field)
 		get_resource_field()
@@ -149,16 +157,29 @@
 			to_chat(user, "You install \the [I].")
 		return
 
+    // Wrench / Unwrench the drill
     if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(active)
 			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
 			return
+        else if (check_surroundings())
+            to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+            return
 
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return
 
+    // Repair the drill if it is damaged
+    var/damage = max_health - health
+	if(damage && (QUALITY_WELDING in I.tool_qualities))
+		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+			take_damage(-damage)
+		return
 	..()
 
 /obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
@@ -177,7 +198,11 @@
 		update_icon()
 		return
 	else if(!panel_open)
-		if(use_cell_power())
+        if(health == 0)
+            to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
+        else if(!anchored)
+            to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
+		else if(use_cell_power())
 			active = !active
 			if(active)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
@@ -249,6 +274,34 @@
 	if(cell.checked_use(charge_use))
 		return TRUE
 	return FALSE
+
+/obj/machinery/mining/deep_drill/proc/check_surroundings()
+    // Check if there is no dense obstacles around the drill to avoid blocking access to it
+	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
+		if(F.contains_dense_objects(TRUE))
+            return TRUE
+    return FALSE
+
+/obj/machinery/mining/deep_drill/proc/take_damage(value)
+	health = min(max(health - value, 0), max_health)
+	if(health == 0)
+		system_error("critical damage")
+    if(prob(30)) // Some chance that the drill completely blows up
+        var/turf/O = get_turf(src)
+        if(!O) return
+        explosion(O, -1, 1, 4, 10)
+        qdel(src)
+
+/obj/machinery/mining/deep_drill/examine(mob/user)
+	. = ..()
+	if(health <= 0)
+		to_chat(user, "\The [src] is wrecked.")
+	else if(health < max_health * 0.25)
+		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
+	else if(health < max_health * 0.5)
+		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
+	else if(health < max_health * 0.75)
+		to_chat(user, "\The [src] shows signs of damage!")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
