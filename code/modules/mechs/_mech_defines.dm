@@ -23,7 +23,7 @@
 // EMP damage points before various effects occur.
 #define EMP_HUD_DISRUPT 					5								// 2 ion rifle shots //1 ion rifle shot == 4.5ish emp_damage w/ combat armor.
 #define EMP_MOVE_DISRUPT 					10								// 3 shots.
-#define EMP_STRAFE_DISABLE					12								// 3 shots.
+#define EMP_STRAFE_DISABLE					10								// 3 shots.
 #define EMP_ATTACK_DISRUPT 					20								// 5 shots.
 
 //About components
