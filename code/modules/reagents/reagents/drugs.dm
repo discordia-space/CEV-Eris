@@ -286,19 +286,19 @@
 	addiction_chance = 60
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 15
-	sanity_gain_ingest = 2
+	sanity_gain_ingest = 1.5
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
 
 /datum/reagent/drug/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
-	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to 4 if true
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to 3 if true
 		perk_check = effect_multiplier * 2
 	apply_sanity_effect(M, perk_check)
-	M.slurring = max(M.slurring, 30)
 
 /datum/reagent/drug/roachbeer/overdose(mob/living/carbon/M)
 	..()
 	M.add_side_effect("Headache", 11)
+	M.slurring = max(M.slurring, 30)
 	if(prob(5))
 		M.vomit()
 	M.adjustToxLoss(2)
@@ -322,13 +322,13 @@
 	nerve_system_accumulations = 70
 	addiction_chance = 30
 	addiction_threshold = 30
-	sanity_gain_ingest = 4
+	sanity_gain_ingest = 3
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
 
 /datum/reagent/drug/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	var/perk_check = effect_multiplier
-	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!8!! if true
-		perk_check = effect_multiplier * 2
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!6!! if true
+		perk_check = effect_multiplier * 12
 	apply_sanity_effect(M, perk_check)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
@@ -344,7 +344,7 @@
 
 /datum/reagent/drug/kaiserbeer/withdrawal_act(mob/living/carbon/M, effect_multiplier) ////// lose sanity on withdrawal, notify user about this
 	var/mob/living/carbon/human/addicte = M
-	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 2)
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
