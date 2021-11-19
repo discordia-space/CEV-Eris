@@ -4,12 +4,12 @@
 	desc = "A powerful machine piloted from a cockpit, but worn like a suit of armour."
 	density = TRUE
 	opacity = TRUE
-	anchored = TRUE
+//	anchored = TRUE
 	default_pixel_x = -8
 	default_pixel_y = 0
 	status_flags = PASSEMOTES
 	a_intent = I_HURT
-	mob_size = MOB_LARGE
+	mob_size = MOB_GIGANTIC
 	can_be_fed = 0
 	defaultHUD = "exosuits"
 	bad_type = /mob/living/exosuit
