@@ -1,5 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - bugfix: femsprite for caparmor
-  - bugfix: follow verb in ghost tab
