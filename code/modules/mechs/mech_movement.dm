@@ -67,6 +67,9 @@
 	var/mob/living/exosuit/exosuit = host
 	var/moving_dir = direction
 
+	if(exosuit.emp_damage >= EMP_STRAFE_DISABLE && exosuit.strafing == TRUE) //Stops a heavily EMP'd exosuit from strafing
+		exosuit.strafing = FALSE
+
 	var/failed = FALSE
 	if(exosuit.emp_damage >= EMP_MOVE_DISRUPT && prob(30))
 		failed = TRUE

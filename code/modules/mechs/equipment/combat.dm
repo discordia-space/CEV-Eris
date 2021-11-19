@@ -15,7 +15,7 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 
 /obj/item/gun/energy/taser/carbine/mounted
 	bad_type = /obj/item/gun/energy/taser/carbine/mounted
@@ -38,7 +38,7 @@
 	desc = "An exosuit-mounted ion rifle. Handle with care."
 	icon_state = "mech_ionrifle"
 	holding_type = /obj/item/gun/energy/ionrifle/mounted/mech
-	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 
 /obj/item/gun/energy/ionrifle/mounted
@@ -59,7 +59,7 @@
 	desc = "An exosuit-mounted laser rifle. Handle with care."
 	icon_state = "mech_lasercarbine"
 	holding_type = /obj/item/gun/energy/laser/mounted/mech
-	matter = list(MATERIAL_PLASTEEL = 26, MATERIAL_SILVER = 5)
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
 /obj/item/gun/energy/laser/mounted
@@ -74,6 +74,7 @@
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST
 	burst = 2
+	init_firemodes = list()
 	burst_delay = 1.5
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
@@ -118,13 +119,13 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk
 	name = "SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Horribly inaccurate, but packs quite a punch."
 	icon_state = "mech_pk"
 	holding_type = /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 60)
+	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
 	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted
@@ -136,7 +137,7 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5,  icon="burst")
+		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5, one_hand_penalty=15, icon="burst")
 		)
 	spawn_tags = null
 	matter = list()
