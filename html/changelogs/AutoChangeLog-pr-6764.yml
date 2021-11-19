@@ -1,0 +1,8 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: 'Added a new toxin: kaiseraurum. Can be obtained by grinding kaiser meat.'
+  - rscadd: 'Added a new drug: Kakerlakenbier. Works as a ghetto serotrotium, can
+      be made out of water, fuel, diplopreptum and beer.'
+  - rscadd: 'Added a new drug: Monarchenblut. Works as a ghetto serotrotium, can be
+      made out of kakerlakenbier, fuhrerole and kaiseraurum.'
