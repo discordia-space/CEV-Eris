@@ -3,7 +3,7 @@
 	desc = "Love and concrete."
 
 	faction = "onestar"
-	mob_size = MOB_HUGE
+	mob_size = MOB_GIGANTIC
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "onestar_boss_unpowered"
 	icon_living = "onestar_boss_unpowered"

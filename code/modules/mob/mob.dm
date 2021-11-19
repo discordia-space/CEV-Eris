@@ -558,6 +558,10 @@
 	var/mob/M = AM
 	if(ismob(AM))
 
+		if(M.mob_size >=  MOB_GIGANTIC)
+			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			return
+
 		if(!can_pull_mobs || !can_pull_size)
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
