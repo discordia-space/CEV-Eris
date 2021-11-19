@@ -1430,7 +1430,7 @@
 /obj/item/reagent_containers/food/snacks/wok
 	name = "Wok"
 	icon_state = "wok"
-	desc = "An extra spicy japanese snack."
+	desc = "An extra spicy snack originating from Shimatengoku."
 	filling_color = "#FF5D05"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=10)
