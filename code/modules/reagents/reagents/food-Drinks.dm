@@ -2342,6 +2342,7 @@
 	nerve_system_accumulations = 40
 	addiction_chance = 60
 	strength = 40
+	strength_mod = 2
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 15
 	sanity_gain_ingest = 1.5
@@ -2378,6 +2379,7 @@
 	color = "#047c38"
 	metabolism = REM * 0.8
 	strength = 10
+	strength_mod = 2
 	nerve_system_accumulations = 70
 	addiction_chance = 30
 	addiction_threshold = 30
