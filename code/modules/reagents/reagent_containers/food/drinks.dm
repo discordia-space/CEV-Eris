@@ -152,9 +152,9 @@
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
-	icon_state = "cup"
+	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	base_icon = "cup"
+	base_icon = "coffee"
 	filling_states = "100"
 	preloaded_reagents = list("coffee" = 30)
 
@@ -171,7 +171,7 @@
 	name = "Dutch Hot Coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
-	item_state = "coffee"
+	item_state = "hot_coco"
 	center_of_mass = list("x"=15, "y"=13)
 	preloaded_reagents = list("hot_coco" = 30)
 
@@ -180,11 +180,19 @@
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
+	reagent_flags = NONE //starts closed
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("dry_ramen" = 30)
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
+
+/obj/item/reagent_containers/food/drinks/dry_ramen/on_update_icon()
+	if(reagent_flags == OPENCONTAINER)	
+		if(reagents && reagents.total_volume)
+			icon_state = "ramen_open"
+		else
+			icon_state = "ramenempty"
 
 /obj/item/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
@@ -294,7 +302,7 @@
 	name = "mug"
 	desc = "A plain mug."
 	icon_state = "mug"
-	item_state = "coffee"
+	item_state = "cup_old"
 	volume = 30
 	center_of_mass = "x=15;y=13"
 	filling_states = "100"
@@ -369,12 +377,12 @@
 /obj/item/reagent_containers/food/drinks/tea
 	name = "cup of tea master item"
 	desc = "A tall plastic cup full of the concept and ideal of tea."
-	icon_state = "cup"
-	item_state = "coffee"
+	icon_state = "tea"
+	item_state = "tea"
 	center_of_mass = "x=16;y=14"
 	filling_states = "100"
-	base_name = "cup"
-	base_icon = "cup"
+	base_name = "tea"
+	base_icon = "tea"
 
 /obj/item/reagent_containers/food/drinks/tea/black
 	name = "cup of black tea"
