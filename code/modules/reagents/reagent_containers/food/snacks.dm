@@ -17,6 +17,7 @@
 	var/slice_path
 	var/slices_num
 	var/dried_type
+	var/open = TRUE		//For chips, candies, etc. Other stuff is open by default
 	var/dry = FALSE
 	var/dryness = 0 //Used by drying rack. Represents progress towards Dry state
 	var/nutriment_amt = 0
@@ -392,30 +393,23 @@
 	preloaded_reagents = list("doctorsdelight" = 8, "tricordrazine" = 8)
 	bitesize = 3
 	cooked = TRUE
-	taste_tag = list(VEGETARIAN_FOOD,VEGAN_FOOD)
+	taste_tag = list(VEGETARIAN_FOOD, VEGAN_FOOD)
 
-/obj/item/reagent_containers/food/snacks/candy
-	name = "candy"
-	desc = "Nougat, love it or hate it."
-	icon_state = "candy"
-	trash = /obj/item/trash/candy
+/obj/item/reagent_containers/food/snacks/shokoloud
+	name = "Shokoloud chocolate bar"
+	desc = "Dark chocolate, love it or hate it."
+	icon_state = "shokoloud"
+	trash = /obj/item/trash/shokoloud
+	open = FALSE
 	filling_color = "#7D5F46"
-	bitesize = 2
+	bitesize = 3
 	center_of_mass = list("x"=15, "y"=15)
 	nutriment_amt = 1
-	nutriment_desc = list("candy" = 1)
-	preloaded_reagents = list("sugar" = 3)
+	nutriment_desc = list("sour chocolate" = 1)
+	preloaded_reagents = list("coco" = 3)
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD_RATIONS
-	taste_tag = list(SWEET_FOOD)
-
-/obj/item/reagent_containers/food/snacks/candy/donor
-	name = "Donor Candy"
-	desc = "A little treat for blood donors."
-	bitesize = 5
-	trash = /obj/item/trash/candy
-	nutriment_desc = list("candy" = 10)
-	preloaded_reagents = list("nutriment" = 10, "sugar" = 6)
+	taste_tag = list(COCO_FOOD)
 
 /obj/item/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
@@ -438,6 +432,7 @@
 	center_of_mass = list("x"=15, "y"=15)
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "chips" = 2)
+	open = FALSE
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
@@ -1388,6 +1383,7 @@
 	trash = /obj/item/trash/sosjerky
 	filling_color = "#631212"
 	bitesize = 2
+	open = FALSE
 	center_of_mass = list("x"=15, "y"=9)
 	preloaded_reagents = list("protein" = 4, "ammonia" = 2)
 	junk_food = TRUE
@@ -1426,22 +1422,24 @@
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("cheese" = 5, "chips" = 2)
 	nutriment_amt = 4
+	open = FALSE
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	taste_tag = list(CHEESE_FOOD)
 
-/obj/item/reagent_containers/food/snacks/syndicake
-	name = "Syndi-Cakes"
-	icon_state = "syndi_cakes"
-	desc = "An extremely moist snack cake that tastes just as good after being nuked."
+/obj/item/reagent_containers/food/snacks/wok
+	name = "Wok"
+	icon_state = "wok"
+	desc = "An extra spicy japanese snack."
 	filling_color = "#FF5D05"
-	bitesize = 3
+	bitesize = 2
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("sweetness" = 3, "cake" = 1)
-	nutriment_amt = 4
-	trash = /obj/item/trash/syndi_cakes
-	preloaded_reagents = list("doctorsdelight" = 5)
-	taste_tag = list(SWEET_FOOD)
+	nutriment_desc = list("noodles" = 3, "hellish spice" = 1)
+	nutriment_amt = 5
+	trash = /obj/item/trash/wok
+	open = FALSE
+	preloaded_reagents = list("capsaicin" = 2)
+	taste_tag = list(BLAND_FOOD,SALTY_FOOD)
 
 /obj/item/reagent_containers/food/snacks/loadedbakedpotato
 	name = "Loaded Baked Potato"
@@ -2382,13 +2380,13 @@
 	cooked = TRUE
 	reagent_flags = NONE
 	var/warm = FALSE
-	var/open = FALSE
+	open = FALSE
 	var/list/heated_reagents = list("tricordrazine" = 10)
 	taste_tag = list(BLAND_FOOD)
 
 /obj/item/reagent_containers/food/snacks/mre/attack_self(mob/user)
 	if(!open)
-		open()
+		openmre()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
 	if(warm)
@@ -2406,7 +2404,7 @@
 /obj/item/reagent_containers/food/snacks/mre/attack(mob/M as mob, mob/user as mob, def_zone)
 	. = ..()
 	if(!open)
-		open()
+		openmre()
 		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
 
 /obj/item/reagent_containers/food/snacks/mre/proc/heat()
@@ -2416,11 +2414,12 @@
 	name = "warm " + name
 	icon_state = "[initial(icon_state)]_hot"
 
-/obj/item/reagent_containers/food/snacks/mre/proc/open(mob/user)
-	icon_state = "[initial(icon_state)]_open"
+/obj/item/reagent_containers/food/snacks/mre/proc/openmre(mob/user)
+	icon_state = initial(icon_state) += "_open"
 	desc = "A plethora of steaming beans mixed with meat, ready for consumption."
 	open = TRUE
 	reagent_flags |= REFILLABLE
+	update_icon()
 
 /obj/item/reagent_containers/food/snacks/mre/can
 	name = "ration can"
@@ -2463,25 +2462,26 @@
 	icon_state = "mre_candy"
 	trash = /obj/item/trash/mre_candy
 	preloaded_reagents = list("sugar" = 3, "serotrotium" = 2)
-	var/open = FALSE
+	open = FALSE
 	taste_tag = list(COCO_FOOD, SWEET_FOOD)
 
-/obj/item/reagent_containers/food/snacks/candy/mre/attack_self(mob/user)
+/obj/item/reagent_containers/food/snacks/proc/open(mob/user)
+	open = TRUE
+	icon_state = initial(icon_state) += "_open"
+	update_icon()
+
+/obj/item/reagent_containers/food/snacks/attack_self(mob/user)
 	if(!open)
 		open()
 		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
 		return
 
-/obj/item/reagent_containers/food/snacks/candy/mre/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	. = ..()
 	if(!open)
 		open()
 		to_chat(user, SPAN_WARNING("You viciously rip \the [src] open with your teeth, swallowing some plastic in the process, you animal."))
-
-/obj/item/reagent_containers/food/snacks/candy/mre/proc/open(mob/user)
-	icon_state = "mre_candy_open"
-	open = TRUE
-
+		return
 
 /////////////////////////////////////////////////Sliceable////////////////////////////////////////
 // All the food items that can be sliced into smaller bits like Meatbread and Cheesewheels
