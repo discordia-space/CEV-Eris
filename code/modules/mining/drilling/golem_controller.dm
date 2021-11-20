@@ -1,0 +1,46 @@
+#define RANDOM_WALK 10
+
+/datum/golem_controller
+
+    var/list/obj/structure/golem_burrow/burrows  // List of golem burrows tied to the controller
+    var/list/mob/living/carbon/superior_animal/roach/golems  // List of golems tied to the controller
+    var/processing = TRUE
+
+/datum/golem_controller/New(var/loc, var/richness, var/seismic)
+    if(seismic)
+        for(var/i in 1 to seismic)
+            spawn_golem_burrow()
+
+/datum/golem_controller/Destroy()
+    processing = FALSE  // Stop processing
+    for(var/obj/structure/golem_burrow/GB in burrows)  // Unlink burrows and controller
+        GB.controller = null
+    qdel(src)
+
+/datum/golem_controller/Process()
+	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
+	// This is a quick and dirty fix for runtime error spam caused by this
+	if(!processing)
+		return
+
+    if(prob(20))
+        spawn_golem()
+
+/datum/golem_controller/proc/spawn_golem_burrow()
+    // Random walk starting from drill location without crossing any dense turf
+    // That way we are sure there will always be a path to the drill
+    var/turf/T = loc
+    var/turf/next_T = loc
+    for(var/i in 1 to RANDOM_WALK)
+        next_T = get_step(T, pick(GLOB.cardinal))
+        if(next_T != loc && !next_T.contains_dense_objects(TRUE))
+            T = next_T
+
+    burrows += new /obj/structure/golem_burrow(T)  // Spawn burrow at final location
+
+/datum/golem_controller/proc/spawn_golem()
+
+    var/obj/structure/golem_burrow/GB = pick(burrows)  // Pick a burrow in the pool
+	golems += new /mob/living/carbon/superior_animal/roach(GB.loc)  // Spawn golem at that burrow
+
+#undef RANDOM_WALK
