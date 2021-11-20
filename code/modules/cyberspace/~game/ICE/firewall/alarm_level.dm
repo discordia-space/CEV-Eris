@@ -3,16 +3,12 @@
 	var/DefaultLevelDelta = 0.2
 	var/list/AlarmLevelsToProcs = list(
 		"1" = .proc/DeployIces,
-		"2" = list(.proc/DeployIces, 2),
-		"3" = list(.proc/DeployIces, 3),
+		"2" = list(.proc/DeployIces, 1),
+		"3" = list(.proc/DeployIces, 2),
 		"4" = list(\
 			.proc/DeployIces, list(1, /mob/observer/cyber_entity/IceHolder/black_ice),\
 			.proc/AnnounceAlarm, null\
-		),
-		"5" = list(\
-			.proc/DeployIces,list(2, /mob/observer/cyber_entity/IceHolder/black_ice),\
-			.proc/ScanAreaRevealXYZOfRunners, null\
-		),
+		)
 	)
 	var/obj/item/device/radio/Announcer = new
 

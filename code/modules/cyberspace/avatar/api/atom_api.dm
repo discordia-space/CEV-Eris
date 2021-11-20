@@ -26,9 +26,9 @@
 	. = ..()
 
 /atom/Initialize()
-	. = ..()
 	if(CyberAvatar && !istype(CyberAvatar))
 		CreateCA(CyberAvatar)
+	. = ..()
 
 /atom/proc/DestroyCA()
 	qdel(CyberAvatar)

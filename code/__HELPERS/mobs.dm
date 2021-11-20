@@ -256,7 +256,7 @@ Proc for attack log creation, because really why not
 			break
 
 
-		if(target_allowed_to_move && old_target_loc && (!target || old_target_loc != target.loc))
+		if(!target_allowed_to_move && old_target_loc && (!target || old_target_loc != target.loc))
 			. = 0
 			break
 

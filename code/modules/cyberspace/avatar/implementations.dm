@@ -1,5 +1,5 @@
 //CYBERAVATAR_INITIALIZATION(/obj/item, CYBERSPACE_SHADOW_COLOR)
-//CYBERAVATAR_INITIALIZATION(/obj/machinery, CYBERSPACE_MAIN_COLOR)
+CYBERAVATAR_INITIALIZATION(/obj/machinery, CYBERSPACE_MAIN_COLOR)
 /*	*/CYBERAVATAR_CUSTOM_TYPE(/obj/machinery, /datum/CyberSpaceAvatar/interactable)
 /*	*/CYBERAVATAR_INITIALIZATION(/obj/machinery/power/apc, CYBERSPACE_SECURITY)
 /*		*/CYBERAVATAR_CUSTOM_TYPE(/obj/machinery/power/apc, /datum/CyberSpaceAvatar/interactable/firewall)

@@ -13,7 +13,8 @@
 
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal/cyberspace)
 
-	var/tmp/datum/CyberSpaceAvatar/HackingInProgress
+	var/hacking_limit = 3
+	var/tmp/list/HackingInProgress = list()
 
 	var/Hacked = FALSE
 
@@ -28,13 +29,14 @@
 		CollectSubroutines()
 
 /mob/observer/cyber_entity/proc/CollectSubroutines()
-	var/list/L = list()
-	for(var/i in init_subroutines)
-		L += new i()
-	CyberAvatar.Subroutines.AddSubroutines(
-		L,
-		CyberAvatar.Subroutines.Attack
-	)
+	if(istype(CyberAvatar.Subroutines))
+		var/list/L = list()
+		for(var/i in init_subroutines)
+			L += new i()
+		CyberAvatar.Subroutines.AddSubroutines(
+			L,
+			CyberAvatar.Subroutines.Attack
+		)
 
 /mob/observer/cyber_entity/proc/ChangeHP(percents = 0.05, amount = FALSE) //Returns successful delta
 	if(!amount)

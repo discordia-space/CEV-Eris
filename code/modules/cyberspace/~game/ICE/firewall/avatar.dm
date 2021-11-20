@@ -7,21 +7,21 @@
 			return
 
 	var/obj/machinery/power/apc/A = Owner
-	var/stages_of_hacking = 4
-	var/timingOfStage = 40/stages_of_hacking SECONDS
-	for(var/i in 1 to 4)
+	var/stages_of_hacking = length(A.AlarmLevelsToProcs) + 1
+	var/timingOfStage = 10 SECONDS
+	for(var/i in 1 to stages_of_hacking)
 		var/code = A.CyberAccessCode
 		var/code_len = length(code)
 		if(do_after(user, timingOfStage, Owner,\
 			needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE,\
 			target_allowed_to_move = TRUE, move_range = 4)\
 		)
-			var/part_of_code_to_reveal = round(code_len*(i/stages_of_hacking))
+			var/part_of_code_to_reveal = round(code_len * (i / stages_of_hacking))
 			var/string_to_show = copytext(code, 1, part_of_code_to_reveal + 1)
 			for(var/j in 1 to (length(code) - part_of_code_to_reveal))
 				string_to_show += "*"
 			to_chat(user, string_to_show)
-			A.RaiseAlarmLevel(A.DefaultLevelDelta * rand(3, 5))
+			A.RaiseAlarmLevel(A.DefaultLevelDelta * 5)
 		else
 			return FALSE
 

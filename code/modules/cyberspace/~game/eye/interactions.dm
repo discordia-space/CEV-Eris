@@ -36,11 +36,11 @@
 		else if(!user)
 			user = user_avatar
 
-	if(!user.HackingInProgress)
-		user.HackingInProgress = src
+	if(length(user.HackingInProgress) <= user.hacking_limit && !(src in user.HackingInProgress))
+		user.HackingInProgress |= src
 		if(HackingTry(user, user_avatar))
 			. = Hacked(user, user_avatar, params)
-		user.HackingInProgress = null
+		user.HackingInProgress -= src
 
 /datum/CyberSpaceAvatar/proc/HackingTry(mob/observer/cyber_entity/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = TRUE
