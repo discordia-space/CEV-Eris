@@ -11,10 +11,11 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
-	fire_delay = 12 // double the standart
+	fire_delay = 8
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 1.6 // reduced from the AK's/Takeshi's buildup of 1.7/1.8 because >lol boltgun
+	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
+	init_offset = 2 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10
@@ -61,6 +62,7 @@
 	bolt_act(user)
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)
+
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
@@ -108,12 +110,34 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 1.7 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
+	recoil_buildup = 7.6 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
+
+/obj/item/gun/projectile/boltgun/fs
+	name = "FS BR .20 \"Tosshin\""
+	desc = "Weapon for hunting, or endless coastal warfare. \
+			Replica of an ancient bolt action known for its easy maintenance and low price."
+	icon_state = "arisaka_ih"
+	item_suffix  = "_arisaka_ih"
+	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
+	armor_penetration = ARMOR_PEN_GRAZING
+	caliber = CAL_SRIFLE
+	damage_multiplier = 1.6
+	penetration_multiplier = 1.7
+	recoil_buildup = 8
+	init_offset = 0 //no bayonet
+	max_shells = 6
+	magazine_type = /obj/item/ammo_magazine/srifle
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
+	wielded_item_state = "_doble_arisaka_ih"
+	sharp = FALSE
+	spawn_blacklisted = TRUE
+	saw_off = FALSE
+	gun_parts = list(/obj/item/stack/material/steel = 16)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
@@ -124,10 +148,9 @@
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	fire_delay = 17 // abit more than the serbian one
-	damage_multiplier = 1
-	penetration_multiplier = 1
-	recoil_buildup = 1.9 // joonk gun
+	damage_multiplier = 1.2
+	penetration_multiplier = 1.3
+	recoil_buildup = 9 // joonk gun
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
@@ -150,7 +173,7 @@
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_LRIFLE
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()
@@ -165,15 +188,16 @@
 	icon_state = "obrez"
 	item_state = "obrez"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	force = WEAPON_FORCE_WEAK // no bayonet
+	armor_penetration = 0
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	damage_multiplier = 0.7
-	penetration_multiplier = 0.8
-	recoil_buildup = 1.8
+	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
+	proj_step_multiplier = 1.2
+	recoil_buildup = 15
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
-	one_hand_penalty = 15 //not a full rifle, but not easy either
+	one_hand_penalty = 10 // not a full rifle, but not easy either
 	can_dual = TRUE
 	sharp = FALSE
 	spawn_blacklisted = TRUE
@@ -184,6 +208,6 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_wood"
 	item_suffix  = "_wood"
-	recoil_buildup = 1.9
+	recoil_buildup = 18
 	wielded_item_state = "_doble_wood"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

@@ -17,6 +17,7 @@
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
@@ -302,6 +303,22 @@
 	update_icon()
 	update_wear_icon()
 
+//A makeshift knife, for doing all manner of cutting and stabbing tasks in a half-assed manner
+/obj/item/tool/knife/shiv
+	name = "shiv"
+	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle. Could become a decent tool or weapon with right tool mods."
+	icon_state = "impro_shiv"
+	worksound = WORKSOUND_HARD_SLASH
+	matter = list(MATERIAL_GLASS = 1)
+	sharp = TRUE
+	edge = TRUE
+	force = WEAPON_FORCE_NORMAL
+	w_class = ITEM_SIZE_TINY
+	slot_flags = SLOT_EARS
+	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
+	degradation = 4 //Gets worse with use
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/tool/spear
 	name = "spear"
@@ -322,6 +339,7 @@
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it
+	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	slot_flags = SLOT_BACK
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	allow_spin = FALSE

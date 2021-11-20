@@ -178,6 +178,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	resistance = RESISTANCE_AVERAGE
+	bullet_resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
@@ -302,6 +303,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
 	resistance = RESISTANCE_UNBREAKABLE
+	bullet_resistance = RESISTANCE_VAULT
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -374,6 +376,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
+	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
@@ -1170,14 +1173,13 @@ There are 9 wires.
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
 
-	damage_through_armor(0.2 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	damage_through_armor(0.4 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
 
-	SetStunned(5)
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
 	T.add_blood(src)

@@ -39,7 +39,8 @@
 		if(shoes)
 			tally += shoes.slowdown
 
-	tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
+	//tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
+	tally += clamp((get_dynamic_pain() - get_painkiller()) / 40, 0, 3) // Scales from 0 to 3,
 
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
@@ -47,7 +48,7 @@
 
 	if(slowdown)
 		tally += 1
-	
+
 	tally += (r_hand?.slowdown_hold + l_hand?.slowdown_hold)
 
 	return tally

@@ -94,6 +94,7 @@
 	desc = "A .20 Rifle bullet casing."
 	icon_state = "srifle_c_l"
 	spent_icon = "srifle_c_l-spent"
+	shell_color = "l"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle
 	maxamount = 10
@@ -106,6 +107,7 @@
 	desc = "A .20 Rifle practice bullet casing."
 	icon_state = "srifle_c_p"
 	spent_icon = "srifle_c_p-spent"
+	shell_color = "p"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/practice
 
@@ -113,6 +115,7 @@
 	desc = "A .20 Rifle high-velocity bullet casing."
 	icon_state = "srifle_c_hv"
 	spent_icon = "srifle_c_hv-spent"
+	shell_color = "hv"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/hv
 
@@ -120,6 +123,7 @@
 	desc = "A .20 Rifle rubber bullet casing."
 	icon_state = "srifle_c_r"
 	spent_icon = "srifle_c_r-spent"
+	shell_color = "r"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/rubber
 
@@ -127,6 +131,7 @@
 	desc = "An old .20 Rifle bullet casing."
 	icon_state = "srifle_c_s"
 	spent_icon = "srifle_c_s-spent"
+	shell_color = "p"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/scrap
 
@@ -479,12 +484,10 @@
 	name = "flare shell"
 	desc = "A chemical flare shell designed to produce a distress signal or illuminate an area."
 	caliber = CAL_FLARE
+	amount = 3
 	icon_state = "f-shell"
 	spent_icon = "f-shell-spent"
 	projectile_type = /obj/item/projectile/bullet/flare
 	matter = list(MATERIAL_PLASTIC = 1)
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
-
-/obj/item/ammo_casing/flare
-	amount = 3

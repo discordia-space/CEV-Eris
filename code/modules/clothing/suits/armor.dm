@@ -345,15 +345,15 @@
 	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
-		bomb = 25,
+		melee = 45, //massive slowdown justifies
+		bullet = 45,
+		energy = 40,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
 	equip_delay = 2 SECONDS
-	price_tag = 250
+	price_tag = 500
 	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/suit/armor/heavy/red
@@ -381,18 +381,28 @@
 	flags_inv = NONE
 	armor = list(
 		melee = 75,
-		bullet = 25,
+		bullet = 30,
 		energy = 25,
-		bomb = 25,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 500
 
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer
+/obj/item/clothing/suit/armor/heavy/ironhammer
+	name = "heavy operator armor"
+	desc = "A heavily armoured suit with extra padding to better protect against blunt trauma. Looks like it might impair movement."
 	icon_state = "riot_ironhammer"
 	item_state = "swat_suit"
 	flags_inv = HIDEJUMPSUIT
+	armor = list(
+		melee = 65,
+		bullet = 50, //comparable to RIG
+		energy = 40,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 800
 
 /*
  * Storage Types
@@ -427,6 +437,11 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_PLASTIC = 3, //for webbing
 	)
+/obj/item/clothing/suit/storage/vest/ironhammer
+	name = "webbed operator armor"
+	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
+	icon_state = "webvest_ironhammer"
+	spawn_blacklisted = TRUE
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc

@@ -58,16 +58,16 @@
 	.=..()
 	M.face_atom(surface)
 	M.offset_to(surface, 8)
-	sleep(1)
+	spawn(1)
 	travelsound = new /datum/repeating_sound(15,duration,0.25, M, soundfile, 80, 1)
 	if (direction == DOWN)
 		var/matrix/mat = matrix()
 		mat.Scale(0.9)
 		M.set_plane(FLOOR_PLANE)
 		M.layer = 1
-		animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = duration*1.2, easing = LINEAR_EASING)
+		animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = duration*1.2, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
 	else
-		animate(M, alpha = 0, pixel_y = 64, time = duration*1.2, easing = LINEAR_EASING)
+		animate(M, alpha = 0, pixel_y = 64, time = duration*1.2, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
 
 
 //Subset of climbing using magboots. Slightly faster and much safer

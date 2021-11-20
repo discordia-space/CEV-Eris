@@ -176,7 +176,7 @@
 	damage_types = list(BRUTE = 24)
 	kill_count = 16
 	armor_penetration = 0
-	step_delay = 3
+	step_delay = 2
 	eyeblur = 2 // bright light slightly blurs your vision
 	luminosity_range = 5
 	luminosity_power = 1

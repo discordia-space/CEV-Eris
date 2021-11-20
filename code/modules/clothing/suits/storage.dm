@@ -64,6 +64,13 @@
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
+/obj/item/clothing/suit/storage/vest/ironhammer/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 4
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 8
+
 //Makeshift chest rig.
 /obj/item/clothing/suit/storage/vest/chestrig
 	name = "makeshift chest rig"

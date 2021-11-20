@@ -150,7 +150,7 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
-/obj/item/clothing/under/dress
+/obj/item/clothing/under/dress/gray
 	name = "gray summerdress"
 	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
 	icon_state = "summerdress"
@@ -221,6 +221,12 @@ obj/item/clothing/under/cyber
 	desc = "I wanted a jumpsuit. It gave me THIS."
 	icon_state = "cyber"
 	item_state = "cyber"
+
+obj/item/clothing/under/netrunner
+	name = "cybersuit"
+	desc = "Jumpsuit favored by surveillance officers and VR gamers alike. Ugly as sin. Luckily, in cyberspace no one can see your realspace clothing."
+	icon_state = "jensen"
+	item_state = "jensen"
 
 obj/item/clothing/under/genericb
 	name = "blue generic outfit"
@@ -295,7 +301,7 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 300
 
-/obj/item/clothing/under/dress
+/obj/item/clothing/under/dress/purple
 	name = "black and purple dress"
 	desc = "A black and purple dress, quite stylish"
 	icon_state = "black_purple"

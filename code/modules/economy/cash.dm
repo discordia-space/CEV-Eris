@@ -58,7 +58,7 @@
 	cut_overlays()
 	var/sum = src.worth
 	var/num = 0
-	var/list/denominations = list(1000,500,200,100,50,20,10,1)
+	var/list/denominations = list(1000,500,200,100,50,20,10,5,1)
 	for(var/i in denominations)
 		while(sum >= i && num < 50)
 			sum -= i
@@ -66,14 +66,12 @@
 			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
-			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
 			src.add_overlays(banknote)
 	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
-		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
 		src.add_overlays(banknote)
 	src.desc = "They are worth [worth] credits."
@@ -95,7 +93,7 @@
 	if(!worth)
 		usr.drop_from_inventory(src)
 		qdel(src)
-	if(amount in list(1000,500,200,100,50,20,1))
+	if(amount in list(1000,500,200,100,50,20,5,1))
 		var/cashtype = text2path("/obj/item/spacecash/bundle/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
 		usr.put_in_hands(cash)
@@ -129,6 +127,12 @@
 	icon_state = "spacecash1"
 	desc = "It's worth 1 credit."
 	worth = 1
+
+/obj/item/spacecash/bundle/c5
+	name = "5 credits"
+	icon_state = "spacecash5"
+	desc = "It's worth 5 credits."
+	worth = 5
 
 /obj/item/spacecash/bundle/c10
 	name = "10 credits"

@@ -36,7 +36,7 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
-	
+
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"

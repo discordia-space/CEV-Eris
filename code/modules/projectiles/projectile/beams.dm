@@ -17,6 +17,18 @@
 
 	heat = 100
 
+/obj/item/projectile/beam/check_penetrate(var/atom/A)
+	if(istype(A, /obj/item/shield))
+		var/obj/item/shield/S = A
+		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		for(var/i in damage_types)
+			damage_types[i] *= loss
+
+		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
+		return 1
+	return 0
+
 /obj/item/projectile/beam/cutter
 	name = "cutting beam"
 	icon_state = "plasmablaster"

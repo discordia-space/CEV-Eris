@@ -226,14 +226,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/H = target
-		spawn(1 SECONDS)
-		fragment_explosion(H, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 4, 1, 5)
-	if(!iscarbon(target))
-		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
-		if(!istype(target, /obj/machinery/door))
-			fragment_explosion(target, 7, /obj/item/projectile/bullet/pellet/fragment/strong, 50, 5, 1, 0)
+	fragment_explosion_angled(target, starting ,/obj/item/projectile/bullet/pellet/fragment/strong, 5)
+	playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+
+
+
 
 /obj/item/projectile/bullet/antim/scrap
 	damage_types = list(BRUTE = 63)
@@ -244,7 +241,7 @@ There are important things regarding this file:
 	icon_state = "slug"
 	damage_types = list(BRUTE = 54)
 	armor_penetration = 15
-	knockback = 2
+	knockback = 1
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/scrap
@@ -275,6 +272,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/incendiary
 	damage_types = list(BRUTE = 45)
 	knockback = 0
+
 	var/fire_stacks = 4
 
 /obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked = FALSE)
@@ -293,7 +291,7 @@ There are important things regarding this file:
 	pellets = 8
 	range_step = 1
 	spread_step = 10
-	knockback = 2
+	pellet_to_knockback_ratio = 2
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()

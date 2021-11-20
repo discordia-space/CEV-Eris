@@ -234,3 +234,14 @@ Basically a portal without time limit and failchance
 
 /obj/effect/portal/jtb/close() // Will be called by the callback of /obj/effect/portal but will do nothing
 	return
+
+/*
+Perfect portal with zero fail chance and no entropy
+*/
+/obj/effect/portal/perfect
+	desc = "A perfectly stabilized portal. It is safe to cross."
+	failchance = 0
+	entropy_value = 0
+
+/obj/effect/portal/perfect/close() // Will be called by the callback of /obj/effect/portal but will do nothing
+	return

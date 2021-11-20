@@ -17,6 +17,7 @@
 	charge_cost = 200
 	price_tag = 2500
 
+
 /obj/item/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
 	projectile_type = /obj/item/projectile/energy/dart

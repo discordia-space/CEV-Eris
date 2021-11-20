@@ -15,7 +15,9 @@
 	var/ammo = 0 // number of bullets left.
 	var/ammo_max = 96
 	var/working_range = 30 // how far this turret operates from excelsior teleporter
+	var/burst_lenght = 8
 	health = 60
+	shot_delay = 0
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
 	for (var/a in excelsior_teleporters)
@@ -135,9 +137,45 @@
 	if(!(stat & BROKEN))
 		add_overlays(image("turret_gun"))
 
-/obj/machinery/porta_turret/excelsior/launch_projectile()
+
+
+/obj/machinery/porta_turret/excelsior/target(mob/living/target)
+	if(disabled)
+		return
+
+	if(target)
+		last_target = target
+		for(var/i; i < burst_lenght; i++)
+			if(!ammo)
+				break
+			sleep(2)
+			set_dir(get_dir(src, target))
+			shootAt(target)
+
+		return 1
+	return
+
+
+/obj/machinery/porta_turret/excelsior/shootAt(mob/living/target)
+	var/turf/T = get_turf(src)
+	var/turf/U = get_turf(target)
+	if(!istype(T) || !istype(U))
+		return
+
+	launch_projectile(target)
+
+
+/obj/machinery/porta_turret/excelsior/launch_projectile(mob/living/target)
 	ammo--
-	..()
+	update_icon()
+	var/obj/item/projectile/A
+	A = new eprojectile(loc)
+	playsound(loc, eshot_sound, 75, 1)
+	use_power(reqpower)
+	var/def_zone = get_exposed_defense_zone(target)
+	var/angle_offset = pick(5, 10, 20, 0, -5, -10, -20)
+	A.launch(target, def_zone, 0, 0, angle_offset)
+
 
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET

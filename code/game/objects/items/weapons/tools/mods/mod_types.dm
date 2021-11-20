@@ -711,3 +711,88 @@
 	. = ..()
 	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
 	. += comp_sanity.affect * 100
+
+/obj/item/tool_upgrade/pai
+	name = "Integrated P-AI"
+	desc = "A P-AI integrated within the architecture of the tool, helping the user in utilizing it."
+	spawn_blacklisted = TRUE
+	price_tag = 200
+
+/obj/item/tool_upgrade/pai/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.3,
+	UPGRADE_PRECISION = 10
+	)
+	I.destroy_on_removal = TRUE
+	I.prefix = "assisted"
+
+/obj/item/tool_upgrade/flow_mechanism
+	name = "Flowing metal system"
+	desc = "This tool makes use of liquid metal within its architecture."
+	spawn_blacklisted = TRUE
+	price_tag = 300
+
+/obj/item/tool_upgrade/flow_mechanism/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+		UPGRADE_DEGRADATION_MULT = 0.2,
+		UPGRADE_FORCE_MULT = 1.3,
+		UPGRADE_MAXUPGRADES = 2
+	)
+	I.destroy_on_removal = TRUE
+	I.prefix = "flowing"
+
+/obj/item/tool_upgrade/magni_grip
+	name = "Waved magnetic grip"
+	desc = "A wavy metallic sheet that attaches to most gloves automatically."
+	spawn_blacklisted = TRUE
+	price_tag = 200
+
+/obj/item/tool_upgrade/magni_grip/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.2,
+	UPGRADE_PRECISION = 15
+	)
+	I.destroy_on_removal = TRUE
+	I.prefix = "magnetized"
+
+/obj/item/tool_upgrade/resonator
+	name = "Resonator sink"
+	desc = "A special module which prevents the tool from resonating."
+	spawn_blacklisted = TRUE
+	price_tag = 400
+
+/obj/item/tool_upgrade/resonator/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+		UPGRADE_WORKSPEED = 0.1,
+		UPGRADE_ITEMFLAGPLUS = SILENT
+	)
+	I.destroy_on_removal = TRUE
+	I.prefix = "still"
+
+/obj/item/tool_upgrade/plasma_coating
+	name = "Plasma coating"
+	desc = "This tool is coated with plasma, granting it more durability."
+	spawn_blacklisted = TRUE
+	price_tag = 600
+
+/obj/item/tool_upgrade/augment/hydraulic/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+		UPGRADE_DEGRADATION_MULT = 0.1,
+		UPGRADE_MAXUPGRADES = 3
+	)
+	I.destroy_on_removal = TRUE
+	I.prefix = "plasma coated"
+
+
+#define GREAT_TOOLMODS list(/obj/item/tool_upgrade/pai, /obj/item/tool_upgrade/flow_mechanism, /obj/item/tool_upgrade/magni_grip, \
+	/obj/item/tool_upgrade/resonator, /obj/item/tool_upgrade/plasma_coating)

@@ -376,8 +376,9 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/aibound/proc/back_to_core()
 	if(bound_ai && mind)
-		bound_ai.ckey = ckey
+		mind.active = 0 // We want to transfer the key manually
 		mind.transfer_to(bound_ai) // Transfer mind to AI core
+		bound_ai.key = key // Manually transfer the key to log them in
 	else
 		to_chat(src, SPAN_WARNING("No AI core detected."))
 
