@@ -1,7 +1,0 @@
-author: Anonmare
-delete-after: true
-changes:
-  - balance: The Moebius \"Tesla\" overdrive chip will now only reduce energy weapon
-      damage by 33% instead of 80%, charge reduction has been changed from a 85% reduction
-      to only a 50% reduction. In addition, recoil is 200% greater than normal and
-      fire delay has been increased from a 75% reduction to a 66% reduction.

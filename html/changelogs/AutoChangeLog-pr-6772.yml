@@ -1,9 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscadd: most of the junk foods now need to be opened first.
-  - rscadd: new junk food, wok. Basically noodles but junk food.
-  - tweak: candy was replaced with Shokoloud chocolate bar.
-  - rscdel: syndicakes deleted.
-  - imageadd: new junk food sprites; sprites done by Près de l'oiseau
-  - imagedel: most of the bay leftover junk food sprites are sent to bay-brazil.

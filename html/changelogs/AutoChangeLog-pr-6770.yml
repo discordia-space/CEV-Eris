@@ -1,7 +1,0 @@
-author: githubuser4141
-delete-after: true
-changes:
-  - balance: fixes mechs running at full speed when EMP'd, changes costs of a few
-      mech guns, reduces the the internal mag for exosuit energy guns
-  - bugfix: fixes mech's move disruption being functionally useless, makes the immolator
-      fire in bursts
