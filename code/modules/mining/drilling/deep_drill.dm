@@ -1,3 +1,8 @@
+#define RADIUS 7
+#define SEISMIC_MIN 1
+#define SEISMIC_MAX 6
+#define SEISMIC_MULT list(1.0, 1.1, 1.2, 1.35, 1.5, 2.0)
+
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
 	desc = "An enormous drill to dig out deep ores."
@@ -5,11 +10,12 @@
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-    var/max_health = 200
+	var/max_health = 200
 	var/health = 200
 
 	var/active = FALSE
 	var/list/resource_field = list()
+	var/seismic_multiplier = 1.0
 
 	var/ore_types = list(
 		MATERIAL_IRON = /obj/item/ore/iron,
@@ -35,12 +41,6 @@
 	var/need_update_field = FALSE
 	var/need_player_check = FALSE
 
-/obj/machinery/mining/deep_drill/Destroy()
-
-	for(var/obj/machinery/mining/brace/b in supports)
-		b.disconnect()
-	return ..()
-
 /obj/machinery/mining/deep_drill/Initialize()
 	. = ..()
 	var/obj/item/cell/large/high/C = new(src)
@@ -56,11 +56,11 @@
 		system_error("system configuration or charge error")
 		return
 
-    if(check_surroundings())
-        system_error("obstacle detected near the drill")
+	if(check_surroundings())
+		system_error("obstacle detected near the drill")
 		return
 
-    if(health == 0)
+	if(health == 0)
 		system_error("critical damage")
 
 	if(need_update_field)
@@ -118,11 +118,11 @@
 			var/create_ore = 0
 			if(harvesting.resources[metal] >= total_harvest)
 				harvesting.resources[metal] -= total_harvest
-				create_ore = total_harvest
+				create_ore = total_harvest * seismic_multiplier
 				total_harvest = 0
 			else
 				total_harvest -= harvesting.resources[metal]
-				create_ore = harvesting.resources[metal]
+				create_ore = harvesting.resources[metal] * seismic_multiplier
 				harvesting.resources[metal] = 0
 
 			for(var/i = 1, i <= create_ore, i++)
@@ -143,6 +143,33 @@
 		if(default_part_replacement(I, user))
 			return
 
+	// Wrench / Unwrench the drill
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(active)
+			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			return
+		else if (check_surroundings())
+			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			return
+
+		anchored = !anchored
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		return
+
+	// Repair the drill if it is damaged
+	var/damage = max_health - health
+	if(damage && (QUALITY_WELDING in I.tool_qualities))
+		if(active)
+			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			return
+		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+			take_damage(-damage)
+		return
+
 	if(!panel_open || active)
 		return ..()
 
@@ -157,29 +184,6 @@
 			to_chat(user, "You install \the [I].")
 		return
 
-    // Wrench / Unwrench the drill
-    if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(active)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
-			return
-        else if (check_surroundings())
-            to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
-            return
-
-		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-		return
-
-    // Repair the drill if it is damaged
-    var/damage = max_health - health
-	if(damage && (QUALITY_WELDING in I.tool_qualities))
-		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			take_damage(-damage)
-		return
 	..()
 
 /obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
@@ -198,13 +202,16 @@
 		update_icon()
 		return
 	else if(!panel_open)
-        if(health == 0)
-            to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
-        else if(!anchored)
-            to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
+		if(health == 0)
+			to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
+		else if(!anchored)
+			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
+		else if(!active && check_surroundings())
+			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 		else if(use_cell_power())
 			active = !active
 			if(active)
+				new /datum/golem_controller(location=get_turf(loc), richness=3, seismic=3)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
 				need_update_field = 1
 			else
@@ -231,7 +238,7 @@
 	harvest_speed = 0
 	capacity = 0
 	charge_use = 37
-	radius = 0
+	radius = RADIUS
 
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/stock_parts/micro_laser))
@@ -242,7 +249,7 @@
 			charge_use -= 8 * (P.rating - harvest_speed)
 			charge_use = max(charge_use, 0)
 		if(istype(P, /obj/item/stock_parts/scanning_module))
-			radius = 1 + P.rating
+			radius = RADIUS + P.rating
 	cell = locate(/obj/item/cell/large) in component_parts
 
 /obj/machinery/mining/deep_drill/proc/system_error(var/error)
@@ -257,9 +264,11 @@
 	resource_field = list()
 	need_update_field = FALSE
 
-	var/turf/T = get_turf(src)
+	var/turf/simulated/T = get_turf(src)
 	if(!istype(T))
 		return
+
+	seismic_multiplier = SEISMIC_MULT[T.seismic_activity]
 
 	for(var/turf/simulated/mine_trufs in range(T, radius))
 		if(mine_trufs.has_resources)
@@ -276,21 +285,45 @@
 	return FALSE
 
 /obj/machinery/mining/deep_drill/proc/check_surroundings()
-    // Check if there is no dense obstacles around the drill to avoid blocking access to it
+	// Check if there is no dense obstacles around the drill to avoid blocking access to it
 	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
-		if(F.contains_dense_objects(TRUE))
-            return TRUE
-    return FALSE
+		if(F != loc && F.contains_dense_objects(TRUE))
+			return TRUE
+	return FALSE
+
+/obj/machinery/mining/deep_drill/attack_generic(mob/user, var/damage)
+	user.do_attack_animation(src)
+	visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
+	take_damage(damage)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
+
+/obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user)
+	if (usr.a_intent == I_HURT && user.Adjacent(src))
+		if(!(I.flags & NOBLUDGEON))
+			user.do_attack_animation(src)
+			var/damage = I.force * I.structure_damage_factor
+			var/volume =  min(damage * 3.5, 15)
+			if (I.hitsound)
+				playsound(src, I.hitsound, volume, 1, -1)
+			visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+			take_damage(damage)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
+	return TRUE
+
+/obj/machinery/mining/deep_drill/bullet_act(var/obj/item/projectile/Proj)
+	..()
+	var/damage = Proj.get_structure_damage()
+	take_damage(damage)
 
 /obj/machinery/mining/deep_drill/proc/take_damage(value)
 	health = min(max(health - value, 0), max_health)
 	if(health == 0)
 		system_error("critical damage")
-    if(prob(30)) // Some chance that the drill completely blows up
-        var/turf/O = get_turf(src)
-        if(!O) return
-        explosion(O, -1, 1, 4, 10)
-        qdel(src)
+	if(prob(30)) // Some chance that the drill completely blows up
+		var/turf/O = get_turf(src)
+		if(!O) return
+		explosion(O, -1, 1, 4, 10)
+		qdel(src)
 
 /obj/machinery/mining/deep_drill/examine(mob/user)
 	. = ..()
