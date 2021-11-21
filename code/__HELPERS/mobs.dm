@@ -214,7 +214,7 @@ Proc for attack log creation, because really why not
 /proc/check_range(mob/user, mob/target, range)
 	return get_dist(user, target) <= range
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, target_allowed_to_move = FALSE, move_range = -1)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = TRUE, target_allowed_to_move = FALSE, move_range = -1)
 	if(!user)
 		return 0
 	var/atom/old_target_loc
