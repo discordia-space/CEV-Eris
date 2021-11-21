@@ -31,9 +31,6 @@
 		BURST_3_ROUND
 		)
 
-	wield_delay = 1.4 SECOND
-	wield_delay_factor = 0.4 // 40 vig to insta wield , heavy class assault rifle
-
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 	gun_tags = list(GUN_SILENCABLE)

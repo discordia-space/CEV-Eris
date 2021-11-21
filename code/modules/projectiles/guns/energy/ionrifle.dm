@@ -17,8 +17,6 @@
 	projectile_type = /obj/item/projectile/ion
 	one_hand_penalty = 5
 	twohanded = TRUE
-	wield_delay = 0.7 SECOND
-	wield_delay_factor = 0.3 // 30 vig
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess

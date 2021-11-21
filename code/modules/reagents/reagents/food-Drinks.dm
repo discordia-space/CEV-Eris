@@ -2329,3 +2329,88 @@
 	..()
 	if(!M.stats.getTempStat(STAT_TGH, "atomvodka") && M.stats.getPerk(/datum/perk/sommelier))
 		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 10 MINUTES, "atomvodka")
+
+
+/datum/reagent/ethanol/roachbeer
+	name = "Kakerlakenbier"
+	id = "roachbeer"
+	description = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn\'t look nor smell like beer..."
+	taste_description = "heady roach guts"
+	reagent_state = LIQUID
+	color = "#123a15"
+	metabolism = REM
+	nerve_system_accumulations = 40
+	addiction_chance = 60
+	strength = 40
+	strength_mod = 2
+	overdose = REAGENTS_OVERDOSE
+	addiction_threshold = 15
+	sanity_gain_ingest = 1.5
+	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
+
+/datum/reagent/ethanol/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
+	var/perk_check = effect_multiplier
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to 3 if true
+		perk_check = effect_multiplier * 2
+	apply_sanity_effect(M, perk_check)
+
+/datum/reagent/ethanol/roachbeer/overdose(mob/living/carbon/M)
+	..()
+	M.add_side_effect("Headache", 11)
+	M.slurring = max(M.slurring, 30)
+	if(prob(5))
+		M.vomit()
+	M.adjustToxLoss(2)
+
+/datum/reagent/ethanol/roachbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	if(prob(5))
+		to_chat(addicte , pick(
+			SPAN_DANGER("You feel wilted."),
+			SPAN_DANGER("You feel a terrible hangover.")))
+
+/datum/reagent/ethanol/kaiserbeer
+	name = "Monarchenblut"
+	id = "kaiserbeer"
+	description = "An improvised stimulant made out of Kaiser and Fuhrer roach blood."
+	taste_description = "Emperor\'s blood"
+	reagent_state = LIQUID
+	color = "#047c38"
+	metabolism = REM * 0.8
+	strength = 10
+	strength_mod = 2
+	nerve_system_accumulations = 70
+	addiction_chance = 30
+	addiction_threshold = 30
+	sanity_gain_ingest = 3
+	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY, TASTE_STRONG)
+
+/datum/reagent/ethanol/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
+	var/perk_check = effect_multiplier
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!6!! if true
+		perk_check = effect_multiplier * 2
+	apply_sanity_effect(M, perk_check)
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.faction = "roach"
+
+/datum/reagent/ethanol/kaiserbeer/overdose(mob/living/carbon/M)
+	..()
+	M.add_side_effect("Headache", 11)
+	if(prob(5))
+		M.vomit()
+	M.adjustToxLoss(6)
+
+/datum/reagent/ethanol/kaiserbeer/withdrawal_act(mob/living/carbon/M, effect_multiplier) ////// lose sanity on withdrawal, notify user about this
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 2)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	if(prob(5))
+		to_chat(addicte , pick(
+			SPAN_DANGER("You feel wilted."),
+			SPAN_DANGER("You crave roach blood."),
+			SPAN_DANGER("You feel a terrible hangover.")))
