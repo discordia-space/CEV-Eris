@@ -13,7 +13,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
-	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club)
+	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club, access_artist)
 	initial_balance = 3000
 	perks = list(PERK_CLUB)
 	wage = WAGE_NONE // Makes his own money
@@ -79,3 +79,45 @@
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
 
+/datum/job/artist
+	title = "Club Artist"
+	flag = ARTIST
+	department = DEPARTMENT_CIVILIAN
+	department_flag = SERVICE
+	faction = "CEV Eris"
+	total_positions = 2
+	spawn_positions = 1
+	supervisors = "the Club Manager and Society"
+	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_JIVE = 100)
+	access = list(access_maint_tunnels,access_bar, access_kitchen, access_artist)
+
+	outfit_type = /decl/hierarchy/outfit/job/service/artist
+	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
+	stat_modifiers = list(
+		STAT_TGH = 30,
+	)
+
+	perks = list(PERK_ARTIST)
+
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
+	description = "You are a creative soul aboard this vessel. You have been conscripted by the Aster's Guild to create masterful works of art to be sold at mind-boggling prices... and something about the CEV Eris and it's doomed journey sparks the fire of creation within you.<br>\
+	You do not gain desires like other members of the crew. Instead, you stop gaining insight once you max out at 100 points.<br>\
+	You can gain desires by spending this insight at your Artist's Bench to build a work of art, this art you create vary wildly in type, quality, and (most importantly, in the eyes of the Merchant) value. Sell your artwork to the unwashed masses, or give you work to the merchant to sell for a profit."
+
+	duties = "Create works of art using your insight.<br>\
+	Sell your work, or give it to the merchant to sell for you.<br>\
+	Be in the midst of action or combat to level your insight faster."
+
+	loyalties = "You are loyal to your soul, first and foremost. You are fascinated by this cursed ship, and want to mold this interest into your works of art.<br>\
+	Your second loyalty is to the manager of the local club. In the end he gave your misbegotten bleeding heart place to live and food to eat."
+
+/obj/landmark/join/start/artist
+	name = "Club Artist"
+	icon_state = "player-grey"
+	join_tag = /datum/job/artist

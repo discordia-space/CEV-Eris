@@ -474,6 +474,10 @@
 	name = "Bar Quarters"
 	icon_state = "erisblue"
 
+/area/eris/crewquarters/artistoffice
+	name = "\improper Club Artist Office"
+	icon_state = "erisyellow"
+
 /area/eris/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -1023,10 +1027,6 @@
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
 
-/area/eris/quartermaster/artistoffice
-	name = "\improper Guild Artist Office"
-	icon_state = "erisyellow"
-
 /area/eris/quartermaster/storage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
@@ -1046,6 +1046,10 @@
 
 /area/eris/quartermaster/misc
 	name = "\improper Cargo Barracks"
+	icon_state = "erisyellow"
+
+/area/eris/quartermaster/warehouse
+	name = "\improper Cargo Warehouse"
 	icon_state = "erisyellow"
 
 //Research and Development

@@ -30,3 +30,15 @@
 	head = /obj/item/clothing/head/chefhat
 	id_type = /obj/item/card/id/ltgrey
 	pda_type = /obj/item/modular_computer/pda
+
+/decl/hierarchy/outfit/job/service/artist
+	name = OUTFIT_JOB_NAME("Club Artist")
+	uniform = /obj/item/clothing/under/rank/artist
+	//suit = /obj/item/clothing/suit/artist
+	shoes = /obj/item/clothing/shoes/artist_shoes
+	head = /obj/item/clothing/head/beret/artist
+	glasses = /obj/item/clothing/glasses/artist
+	mask = /obj/item/clothing/mask/gas/artist_hat
+	l_pocket = /obj/item/bikehorn
+	backpack_contents = list(/obj/item/bananapeel = 1, /obj/item/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/stamp/clown = 1, /obj/item/handcuffs/fake = 1)
+
