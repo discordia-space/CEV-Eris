@@ -16,8 +16,10 @@
 
 /obj/structure/golem_burrow/Destroy()
 	testing("Destroying burrow")
+	visible_message(SPAN_DANGER("\The [src] crumbles!"))
 	if(controller)
 		controller.burrows -= src
+		controller = null
 	. = ..()
 
 /obj/structure/golem_burrow/attack_generic(mob/user, var/damage)
@@ -47,6 +49,8 @@
 /obj/structure/golem_burrow/proc/take_damage(value)
 	health = min(max(health - value, 0), max_health)
 	if(health == 0)
-		visible_message(SPAN_DANGER("\The [src] crumbles!"))
 		testing("Burrow no health")
 		qdel(src)
+
+/obj/structure/golem_burrow/proc/stop()
+	qdel(src)  // Delete burrow

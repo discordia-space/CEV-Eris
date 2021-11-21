@@ -1,7 +1,4 @@
 #define RADIUS 7
-#define SEISMIC_MIN 1
-#define SEISMIC_MAX 6
-#define SEISMIC_MULT list(1.0, 1.1, 1.2, 1.35, 1.5, 2.0)
 
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
@@ -15,7 +12,7 @@
 
 	var/active = FALSE
 	var/list/resource_field = list()
-	var/seismic_multiplier = 1.0
+	var/datum/golem_controller/GC
 
 	var/ore_types = list(
 		MATERIAL_IRON = /obj/item/ore/iron,
@@ -118,11 +115,11 @@
 			var/create_ore = 0
 			if(harvesting.resources[metal] >= total_harvest)
 				harvesting.resources[metal] -= total_harvest
-				create_ore = total_harvest * seismic_multiplier
+				create_ore = total_harvest * GC.GW.mineral_multiplier
 				total_harvest = 0
 			else
 				total_harvest -= harvesting.resources[metal]
-				create_ore = harvesting.resources[metal] * seismic_multiplier
+				create_ore = harvesting.resources[metal] * GC.GW.mineral_multiplier
 				harvesting.resources[metal] = 0
 
 			for(var/i = 1, i <= create_ore, i++)
@@ -142,6 +139,18 @@
 
 		if(default_part_replacement(I, user))
 			return
+
+	// Attack the drill
+	if (usr.a_intent == I_HURT && user.Adjacent(src))
+		if(!(I.flags & NOBLUDGEON))
+			user.do_attack_animation(src)
+			var/damage = I.force * I.structure_damage_factor
+			var/volume =  min(damage * 3.5, 15)
+			if (I.hitsound)
+				playsound(src, I.hitsound, volume, 1, -1)
+			visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+			take_damage(damage)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
 	// Wrench / Unwrench the drill
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
@@ -211,10 +220,12 @@
 		else if(use_cell_power())
 			active = !active
 			if(active)
-				new /datum/golem_controller(location=get_turf(loc), richness=3, seismic=3)
+				GC = new /datum/golem_controller(location=get_turf(loc), seismic=3)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
 				need_update_field = 1
 			else
+				GC.stop()
+				GC = null
 				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
 		else
 			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
@@ -258,6 +269,9 @@
 		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
 	need_player_check = TRUE
 	active = FALSE
+	if(GC)
+		GC.stop()
+		GC = null
 	update_icon()
 
 /obj/machinery/mining/deep_drill/proc/get_resource_field()
@@ -267,8 +281,6 @@
 	var/turf/simulated/T = get_turf(src)
 	if(!istype(T))
 		return
-
-	seismic_multiplier = SEISMIC_MULT[T.seismic_activity]
 
 	for(var/turf/simulated/mine_trufs in range(T, radius))
 		if(mine_trufs.has_resources)
@@ -296,19 +308,6 @@
 	visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
 	take_damage(damage)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
-
-/obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user)
-	if (usr.a_intent == I_HURT && user.Adjacent(src))
-		if(!(I.flags & NOBLUDGEON))
-			user.do_attack_animation(src)
-			var/damage = I.force * I.structure_damage_factor
-			var/volume =  min(damage * 3.5, 15)
-			if (I.hitsound)
-				playsound(src, I.hitsound, volume, 1, -1)
-			visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
-			take_damage(damage)
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
-	return TRUE
 
 /obj/machinery/mining/deep_drill/bullet_act(var/obj/item/projectile/Proj)
 	..()
