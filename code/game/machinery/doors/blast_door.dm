@@ -16,6 +16,9 @@
 	layer = BLASTDOOR_LAYER
 	open_layer = BLASTDOOR_LAYER
 	closed_layer = CLOSED_BLASTDOOR_LAYER
+	open_on_break = FALSE
+	bullet_resistance = RESISTANCE_ARMOURED
+	resistance = RESISTANCE_ARMOURED
 
 	icon_state = null
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.

@@ -10,7 +10,7 @@
 	supervisors = "the Captain"
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
-	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 	wage = WAGE_COMMAND
 	ideal_character_age = 50
 
@@ -66,7 +66,7 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 	spawn_positions = 5
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#d5c88f"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 	wage = WAGE_PROFESSIONAL
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer

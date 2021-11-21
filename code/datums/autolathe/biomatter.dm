@@ -81,19 +81,34 @@
 	name = "NT Church Garment"
 	build_path = /obj/item/clothing/under/rank/church
 
-/datum/design/bioprinter/belt/utility/neotheology
+/datum/design/bioprinter/jackboots
+	name = "Custodian's jackboots"
+	build_path = /obj/item/clothing/shoes/jackboots/neotheology
+	materials = list(MATERIAL_BIOMATTER = 20)
+
+/datum/design/bioprinter/belt/utility
 	name = "Neotheologian utility belt"
 	build_path = /obj/item/storage/belt/utility/neotheology
 
-/datum/design/bioprinter/belt/security/neotheology
+/datum/design/bioprinter/belt/security
 	name = "Neotheologian tactical belt"
 	build_path = /obj/item/storage/belt/tactical/neotheology
 
+/datum/design/bioprinter/backpack
+	name = "Cruciformed backpack"
+	build_path = /obj/item/storage/backpack/neotheology
+	materials = list(MATERIAL_BIOMATTER = 20)
+
+/datum/design/bioprinter/satchel
+	name = "Cruciformed satchel"
+	build_path = /obj/item/storage/backpack/satchel/neotheology
+
 // This separates regular clothes designs from NT clothes designs //
 
-/datum/design/bioprinter/leather_jacket
-	name = "Leather jacket"
-	build_path = /obj/item/clothing/suit/storage/leather_jacket
+/datum/design/bioprinter/shoes
+	name = "Reinforced shoes"
+	build_path = /obj/item/clothing/shoes/reinforced
+	materials = list(MATERIAL_BIOMATTER = 10)
 
 /datum/design/bioprinter/leather/holster
 	name = "shoulder holster"
@@ -114,31 +129,13 @@
 /datum/design/bioprinter/belt
 	materials = list(MATERIAL_BIOMATTER = 30)
 
-/datum/design/bioprinter/belt/utility
-	name = "Utility belt"
-	build_path = /obj/item/storage/belt/utility
-
 /datum/design/bioprinter/belt/medical
 	name = "Medical belt"
 	build_path = /obj/item/storage/belt/medical
 
-/datum/design/bioprinter/belt/security
-	name = "Tactical belt"
-	build_path = /obj/item/storage/belt/tactical
-
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"
 	build_path = /obj/item/storage/belt/medical/emt
-
-/datum/design/bioprinter/belt/misc/champion
-	name = "Champion belt"
-	build_path = /obj/item/storage/belt/champion
-	materials = list(MATERIAL_BIOMATTER = 50)
-
-/datum/design/bioprinter/backpack
-	name = "grey duffelbag"
-	build_path = /obj/item/storage/backpack
-	materials = list(MATERIAL_BIOMATTER = 40)
 
 /datum/design/bioprinter/backpack/duffelbag
 	name = "grey duffelbag"
@@ -156,10 +153,6 @@
 
 /datum/design/bioprinter/leather
 	materials = list(MATERIAL_BIOMATTER = 40)
-
-/datum/design/bioprinter/satchel
-	name = "Leather Satchel"
-	build_path = /obj/item/storage/backpack/satchel
 
 /datum/design/bioprinter/small_generic
 	name= "Small generic pouch"
@@ -207,10 +200,6 @@
 /datum/design/bioprinter/storage/sheath
 	name = "sheath"
 	build_path = /obj/item/storage/belt/sheath
-
-/datum/design/bioprinter/leather/cash_bag
-	name = "Cash Bag"
-	build_path = /obj/item/storage/bag/money
 
 /datum/design/bioprinter/holyvacuum
 	name = "\"Tersus\" Vacuum Cleaner"
@@ -345,6 +334,9 @@
 	name = "NT Shield"
 	build_path = /obj/item/shield/riot/nt
 
+/datum/design/autolathe/nt/shield/nt_buckler
+	name = "NT Buckler"
+	build_path = /obj/item/shield/buckler/nt
 
 /datum/design/autolathe/nt/sword/nt_spear
 	name = "NT Spear"

@@ -32,6 +32,15 @@
 	MATERIAL_LEATHER = 0.1,
 	MATERIAL_TITANIUM = 0.6)
 
+	mat_efficiency = 0.6 // 40% more efficient than normal autolathes
+	storage_capacity = 240
+	speed = 4
+	extra_quality_print = TRUE
+
+/// Way too alien to be upgraded , according to lore.
+/obj/machinery/autolathe/nanoforge/RefreshParts()
+	return
+
 /obj/machinery/autolathe/nanoforge/proc/compress_matter(mob/user)
 	if(!inspiration || !inspiration.perk)
 		to_chat(user, SPAN_WARNING("Catalyst not found."))

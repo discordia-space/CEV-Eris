@@ -19,6 +19,7 @@
 	var/position_flag = 0
 	var/external = FALSE
 	var/cruciform_resist = FALSE
+	var/scanner_hidden = FALSE	//Does this implant show up on the body scanner
 
 	var/list/owner_verbs = list()
 

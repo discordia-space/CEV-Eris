@@ -78,6 +78,7 @@
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
 	force = WEAPON_FORCE_BRUTAL
+	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	armor_penetration = ARMOR_PEN_HALF
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
@@ -145,7 +146,7 @@
 
 /obj/item/tool/sword/nt/spear
 	name = "NT Pilum"
-	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually breaks after being thrown at a target, but it can be welded into shape again."
+	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
@@ -186,12 +187,12 @@
 /obj/item/tool/sword/nt/spear/examine(mob/user)
 	..()
 	if (tipbroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a welder."))
+		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer."))
 
 /obj/item/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	..()
-	if (I.has_quality(QUALITY_WELDING))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, STAT_MEC))
+	if (I.has_quality(QUALITY_HAMMERING))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_HAMMERING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair the damaged spear-tip."))
 			tipbroken = FALSE
 			force = initial(force)
@@ -204,12 +205,14 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
-	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_GOLD = 3)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 1000
-	base_block_chance = 40
+	base_block_chance = 45
+	shield_difficulty = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
+	shield_integrity = 130
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -241,6 +244,66 @@
 	return ..()
 
 /obj/item/shield/riot/nt/attack_hand(mob/user as mob)
+	if (loc == user)
+		container.open(user)
+	else
+		container.close_all()
+		..()
+
+	add_fingerprint(user)
+	return
+
+/obj/item/shield/riot/nt/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/melee/baton) || istype(W, /obj/item/tool/sword/nt))
+		on_bash(W, user)
+	else
+		..()
+
+/obj/item/shield/buckler/nt
+	name = "NT Parma"
+	desc = "A round shield with a golden trim. Has several leather straps on the back to hold melee weapons."
+	icon = 'icons/obj/nt_melee.dmi'
+	icon_state = "nt_buckler"
+	item_state = "nt_buckler"
+	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
+	aspects = list(SANCTIFIED)
+	spawn_blacklisted = TRUE
+	price_tag = 300
+	base_block_chance = 35
+	shield_difficulty = 70
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	shield_integrity = 110
+	var/obj/item/storage/internal/container
+	var/storage_slots = 3
+	var/max_w_class = ITEM_SIZE_HUGE
+	var/list/can_hold = list(
+		/obj/item/tool/sword/nt/shortsword,
+		/obj/item/tool/sword/nt/spear,
+		/obj/item/tool/knife/dagger/nt,
+		/obj/item/tool/knife/neotritual,
+		/obj/item/book/ritual/cruciform,
+		)
+
+/obj/item/shield/buckler/nt/New()
+	container = new /obj/item/storage/internal(src)
+	container.storage_slots = storage_slots
+	container.can_hold = can_hold
+	container.max_w_class = max_w_class
+	container.master_item = src
+	..()
+
+/obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user as mob)
+	return container.handle_attack_hand(user)
+
+/obj/item/shield/buckler/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+	return container.handle_mousedrop(user, over_object)
+
+/obj/item/shield/buckler/nt/MouseDrop(obj/over_object)
+	if(container.handle_mousedrop(usr, over_object))
+		return TRUE
+	return ..()
+
+/obj/item/shield/buckler/nt/attack_hand(mob/user as mob)
 	if (loc == user)
 		container.open(user)
 	else

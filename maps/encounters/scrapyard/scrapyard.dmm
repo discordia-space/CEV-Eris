@@ -2368,7 +2368,7 @@
 /obj/item/clothing/mask/breath,
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/gun/projectile/mandella,
-/obj/item/clothing/suit/armor/greatcoat/german_overcoat,
+/obj/item/clothing/suit/storage/greatcoat/german_overcoat,
 /obj/item/tank/emergency_oxygen,
 /obj/item/tank/emergency_oxygen,
 /obj/item/ammo_magazine/cspistol,
@@ -2403,7 +2403,6 @@
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/trash/syndi_cakes,
 /obj/item/gun/projectile/selfload,
 /obj/item/ammo_magazine/hpistol,
 /turf/simulated/floor/tiled,
@@ -2747,7 +2746,6 @@
 /area/outpost/junkyard/ship/prison)
 "vD" = (
 /obj/structure/closet/crate/bin,
-/obj/item/trash/pistachios,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "vG" = (
@@ -3590,9 +3588,9 @@
 /obj/structure/closet/firecloset{
 	anchored = 1
 	},
-/obj/item/gun/projectile/shotgun/doublebarrel/flare,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/gun/projectile/flare_gun,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/geary)
 "Do" = (
@@ -6104,7 +6102,7 @@
 /obj/item/ammo_magazine/sllrifle,
 /obj/item/ammo_magazine/ammobox/lrifle_small,
 /obj/item/clothing/head/armor/steelpot,
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat,
+/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
 "XQ" = (
@@ -6191,9 +6189,9 @@
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
 /obj/item/device/lighting/glowstick/random,
-/obj/item/gun/projectile/shotgun/doublebarrel/flare,
-/obj/item/ammo_casing/shotgun/flash,
-/obj/item/ammo_casing/shotgun/flash,
+/obj/item/gun/projectile/flare_gun,
+/obj/item/ammo_casing/flare,
+/obj/item/ammo_casing/flare,
 /turf/simulated/floor/tiled,
 /area/outpost/junkyard/ship/prison)
 "Yg" = (

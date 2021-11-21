@@ -11,3 +11,5 @@
 	recoil_buildup = 6
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+
+

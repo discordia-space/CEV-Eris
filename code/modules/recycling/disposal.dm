@@ -1349,6 +1349,13 @@
 	update()
 	return
 
+/obj/structure/disposalpipe/trunk/Destroy()
+	// Unlink trunk and disposal so that objets are not sent to nullspace
+	var/obj/machinery/disposal/D = linked
+	D.trunk = null
+	linked = null
+	return ..()
+
 /obj/structure/disposalpipe/trunk/proc/getlinked()
 	linked = null
 	var/obj/machinery/disposal/D = locate() in src.loc

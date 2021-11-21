@@ -576,6 +576,18 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
 
+ADMIN_VERB_ADD(/client/proc/skill_issue, R_ADMIN, FALSE)
+/client/proc/skill_issue(mob/T as mob in SSmobs.mob_list)
+	set category = "Fun"
+	set name = "Skill Issue"
+	set desc = "Tells mob that it is a skill issue and to git gud."
+
+	to_chat(T, SPAN_NOTICE("<b><font size=3>Diagnosis: skill issue.</font></b>"))
+	to_chat(T, SPAN_NOTICE("Git gud."))
+
+	log_admin("[key_name(usr)] told [key_name(T)] that it is a skill issue and to git gud.")
+	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] that it is a skill issue and to git gud.", 1)
+
 ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
 /client/proc/toggleUIDebugMode()
 	set category = "Debug"
@@ -586,3 +598,38 @@ ADMIN_VERB_ADD(/client/proc/toggleUIDebugMode, R_DEBUG, FALSE)
 		UI.toggleDebugMode()
 	else
 		log_debug("This mob has no UI.")
+
+ADMIN_VERB_ADD(/client/proc/create_portals, R_ADMIN, FALSE)
+/client/proc/create_portals()
+	set category = "Fun"
+	set name = "Create Portals"
+	set desc = "Create bi-directional portals between two locations."
+
+	var/x_1 = input(src, "X Coordinate", "First Portal Location") as null|num
+	if(!x_1)
+		return
+	var/y_1 = input(src, "Y Coordinate", "First Portal Location") as null|num
+	if(!y_1)
+		return
+	var/z_1 = input(src, "Z Coordinate", "First Portal Location") as null|num
+	if(!z_1)
+		return
+
+	var/x_2 = input(src, "X Coordinate", "Second Portal Location") as null|num
+	if(!x_2)
+		return
+	var/y_2 = input(src, "Y Coordinate", "Second Portal Location") as null|num
+	if(!y_2)
+		return
+	var/z_2 = input(src, "Z Coordinate", "Second Portal Location") as null|num
+	if(!z_2)
+		return
+
+	// Spawning perfect portals
+	var/obj/effect/portal/perfect/portal_1 = new /obj/effect/portal/perfect(locate(x_1, y_1, z_1))  // First location
+	var/obj/effect/portal/perfect/portal_2 = new /obj/effect/portal/perfect(locate(x_2, y_2, z_2))  // Second location
+	portal_1.set_target(get_turf(portal_2))  // Link the two portals
+	portal_2.set_target(get_turf(portal_1))
+
+	log_admin("[key_name(usr)] created portals from ([x_1],[y_1],[z_1]) to ([x_2],[y_2],[z_2]).")
+	message_admins("\blue [key_name_admin(usr)] created portals from ([x_1],[y_1],[z_1]) to ([x_2],[y_2],[z_2]).", 1)

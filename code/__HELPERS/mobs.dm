@@ -255,6 +255,9 @@ Proc for attack log creation, because really why not
 			. = 0
 			break
 
+		if(immobile && user.loc != original_loc)
+			. = 0
+			break
 
 		if(!target_allowed_to_move && old_target_loc && (!target || old_target_loc != target.loc))
 			. = 0
@@ -346,6 +349,9 @@ Proc for attack log creation, because really why not
 /mob/living/carbon/human/get_classification()
 	. = ..()
 	. |= CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
+
+/mob/proc/can_see_reagents()
+	return TRUE
 
 
 // Returns true if M was not already in the dead mob list

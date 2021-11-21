@@ -353,7 +353,6 @@
 	singular_name = "biomatter sheet"
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
-	max_amount = 60
 	price_tag = 10
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 
@@ -364,7 +363,7 @@
 	rarity_value = 10
 
 /obj/item/stack/material/biomatter/full
-	amount = 60
+	amount = 120
 
 /obj/item/stack/material/compressed
 	name = "compressed matter"
@@ -374,3 +373,4 @@
 	icon_state = "rcd"
 	item_state = "rcdammo"
 	default_type = MATERIAL_COMPRESSED
+	price_tag = 30

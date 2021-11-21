@@ -364,3 +364,67 @@ var/list/mob_hat_cache = list()
 
 	verbs -= /mob/living/silicon/robot/drone/verb/choose_armguard
 	to_chat(src, "Your armguard has been set.")
+
+// AI-bound maintenance drone
+/mob/living/silicon/robot/drone/aibound
+
+	var/mob/living/silicon/ai/bound_ai = null
+
+/mob/living/silicon/robot/drone/aibound/Destroy()
+	bound_ai = null
+	. = ..()
+
+/mob/living/silicon/robot/drone/aibound/proc/back_to_core()
+	if(bound_ai && mind)
+		mind.active = 0 // We want to transfer the key manually
+		mind.transfer_to(bound_ai) // Transfer mind to AI core
+		bound_ai.key = key // Manually transfer the key to log them in
+	else
+		to_chat(src, SPAN_WARNING("No AI core detected."))
+
+/mob/living/silicon/robot/drone/aibound/death(gibbed)
+	if(bound_ai)
+		bound_ai.time_destroyed = world.time
+		bound_ai.bound_drone = null
+		to_chat(src, SPAN_WARNING("Your AI bound drone is destroyed."))
+		back_to_core()
+		bound_ai = null
+	return ..(gibbed)
+
+/mob/living/silicon/robot/drone/aibound/verb/get_back_to_core()
+	set name = "Get Back To Core"
+	set desc = "Release drone control and get back to your main AI core."
+	set category = "Silicon Commands"
+
+	back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/law_resync()
+	return
+
+/mob/living/silicon/robot/drone/aibound/shut_down()
+	return
+
+/mob/living/silicon/robot/drone/aibound/full_law_reset()
+	return
+
+/mob/living/silicon/robot/drone/aibound/SetName(pickedName as text)
+	to_chat(src, SPAN_WARNING("AI bound drones cannot be renamed."))
+
+/mob/living/silicon/robot/drone/aibound/emag_act(var/remaining_charges, var/mob/user)
+	to_chat(user, SPAN_DANGER("This drone is remotely controlled by the ship AI and cannot be directly subverted, the sequencer has no effect."))
+	to_chat(src, SPAN_DANGER("\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
+
+/mob/living/silicon/robot/drone/aibound/emp_act(severity)
+	back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/use_power()
+	..()
+	if(!has_power)
+		to_chat(src, SPAN_WARNING("Your AI bound drone runs out of power!"))
+		back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/Life()
+	..()
+	if(bound_ai && !isOnStationLevel(src))
+		to_chat(src, SPAN_WARNING("You get out of the ship control range!"))
+		death(TRUE)

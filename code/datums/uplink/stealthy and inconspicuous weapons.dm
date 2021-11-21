@@ -7,11 +7,13 @@
 /datum/uplink_item/item/stealthy_weapons/cigarette_kit
 	name = "Cigarette Kit"
 	item_cost = 2
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/cigarette
 
 /datum/uplink_item/item/stealthy_weapons/random_toxin
 	name = "Random Toxin - Beaker"
 	item_cost = 4
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/toxin
 
 /datum/uplink_item/item/stealthy_weapons/boot_knife
@@ -23,6 +25,14 @@
 	name = "\"Glass Widow\" radiation infuser"
 	item_cost = 2
 	path = /obj/item/gun_upgrade/mechanism/glass_widow
+
+/*
+/datum/uplink_item/item/stealthy_weapons/eye_banger
+	name = "\"Sparkly clean\" explosive lenses"
+	item_cost = 5
+	path = /obj/item/clothing/glasses/attachable_lenses/explosive
+*/
+
 /*
 /datum/uplink_item/item/stealthy_weapons/assassin_dagger
 	name = "Assassin's Dagger"

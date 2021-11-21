@@ -11,3 +11,4 @@
 	charge_cost = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_URANIUM = 8, MATERIAL_SILVER = 2)
 	price_tag = 1500
+

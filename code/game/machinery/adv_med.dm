@@ -382,6 +382,12 @@
 				if(is_type_in_list(I,known_implants))
 					var/obj/item/implant/device = I
 					other_wounds += "[device.get_scanner_name()] implanted"
+				else if(istype(I, /obj/item/material/shard/shrapnel))
+					other_wounds += "Embedded shrapnel"
+				else if(istype(I, /obj/item/implant))
+					var/obj/item/implant/device = I
+					if(!device.scanner_hidden)
+						unknown_body = TRUE
 				else
 					unknown_body = TRUE
 			if(unknown_body)

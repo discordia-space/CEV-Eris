@@ -14,10 +14,11 @@
 	mag_well = MAG_WELL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/cspistol
-	damage_multiplier = 1.3
-	penetration_multiplier = 1.3
+	damage_multiplier = 1.8
+	penetration_multiplier = 1.5
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS
+	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 
 	spawn_blacklisted = TRUE //until loot rework
 

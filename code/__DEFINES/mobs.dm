@@ -115,6 +115,7 @@
 #define ONLY_GHOSTS_IN_VIEW 0
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
+#define MOB_GIGANTIC	120
 #define MOB_HUGE 		80
 #define MOB_LARGE  		40
 #define MOB_MEDIUM 		20
@@ -138,9 +139,10 @@
 
 
 #define TINT_NONE 0
-#define TINT_MODERATE 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
+#define TINT_LOW 1
+#define TINT_MODERATE 2
+#define TINT_HEAVY 4
+#define TINT_BLIND 8
 
 #define FLASH_PROTECTION_REDUCED -1
 #define FLASH_PROTECTION_NONE 0

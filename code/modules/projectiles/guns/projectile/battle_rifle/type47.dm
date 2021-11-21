@@ -17,14 +17,15 @@
 	recoil_buildup = 2
 	penetration_multiplier = 1.5
 	damage_multiplier = 1.5
-	one_hand_penalty = 10 
+	one_hand_penalty = 10
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
-	spawn_blacklisted = TRUE //until loot rework
+
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/type_47/on_update_icon()
 	..()
@@ -35,7 +36,7 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
-	
+
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"

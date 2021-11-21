@@ -416,7 +416,7 @@
 	id = "banana"
 	description = "The raw essence of a banana."
 	taste_description = "banana"
-	color = "#C3AF00"
+	color = "#c3b000"
 	taste_tag = list(TASTE_SWEET)
 
 	glass_icon_state = "banana"
@@ -482,7 +482,7 @@
 	description = "The sweet-sour juice of limes."
 	taste_description = "unbearable sourness"
 	taste_mult = 1.1
-	color = "#365E30"
+	color = "#35742b"
 	taste_tag = list(TASTE_BITTER,TASTE_SOUR)
 
 	glass_icon_state = "glass_green"
@@ -555,7 +555,7 @@
 	id = "watermelonjuice"
 	description = "Delicious juice made from watermelon."
 	taste_description = "sweet watermelon"
-	color = "#B83333"
+	color = "#b83333"
 	taste_tag = list(TASTE_SWEET)
 
 	glass_icon_state = "glass_red"
@@ -585,7 +585,7 @@
 	id = "cream"
 	description = "Dairy product composed of the higher-fat layer skimmed from the top of milk before homogenization."
 	taste_description = "creamy milk"
-	color = "#DFD7AF"
+	color = "#dfd7af"
 	taste_tag = list(TASTE_LIGHT)
 
 	glass_icon_state = "glass_white"
@@ -629,7 +629,7 @@
 	id = "icetea"
 	description = "A form of cold tea. Though usually served in a glass with ice"
 	taste_description = "sweet tea"
-	color = "#B43A003"
+	color = "#B43A00"
 	adj_temp = -5
 	taste_tag = list(TASTE_SWEET)
 
@@ -847,7 +847,7 @@
 	description = "Sweet, cold beverage that is usually made from milk"
 	taste_description = "creamy vanilla"
 	id = "milkshake"
-	color = "#AEE5E4"
+	color = "#aee5e4"
 	adj_temp = -9
 	taste_tag = list(TASTE_LIGHT)
 
@@ -917,7 +917,7 @@
 	description = "A refreshing beverage."
 	taste_description = "cola"
 	reagent_state = LIQUID
-	color = "#100800"
+	color = "#220500"
 	adj_drowsy = -3
 	adj_temp = -5
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
@@ -946,11 +946,12 @@
 	id = "dr_gibb"
 	description = "A delicious blend of 42 different flavours"
 	taste_description = "cherry soda"
-	color = "#102000"
+	color = "#200000"
 	adj_drowsy = -6
 	adj_temp = -5
 	taste_tag = list(TASTE_SOUR,TASTE_BITTER,TASTE_SWEET,TASTE_STRONG, TASTE_LIGHT, TASTE_BUBBLY, TASTE_SPICY, TASTE_SALTY)
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the name might imply."
@@ -991,6 +992,7 @@
 	nutrition = 1
 	taste_tag = list(TASTE_SWEET)
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "doctorsdelightglass"
 	glass_name = "The Doctor's Delight"
 	glass_desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
@@ -1310,7 +1312,7 @@
 	id = "vodka"
 	description = "Clear distilled alcoholic beverage that originates from Poland and Russia."
 	taste_description = "grain alcohol"
-	color = "#0064C8" // rgb: 0, 100, 200
+	color = "#358adf" // rgb: 0, 100, 200
 	strength = 5
 
 	glass_icon_state = "ginvodkaglass"
@@ -1380,6 +1382,7 @@
 	color = "#365000"
 	strength = 30
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "acidspitglass"
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from the company archives. Made from live aliens."
@@ -1391,7 +1394,7 @@
 	id = "alliescocktail"
 	description = "A drink made from your allies, not as sweet as when made from your enemies."
 	taste_description = "bitter yet free"
-	color = "#664300"
+	color = "#00664d"
 	strength = 25
 
 	glass_icon_state = "alliescocktail"
@@ -1405,7 +1408,7 @@
 	id = "aloe"
 	description = "So very, very, very good."
 	taste_description = "sweet 'n creamy"
-	color = "#664300"
+	color = "#192c00"
 	strength = 15
 
 	glass_icon_state = "aloe"
@@ -1420,7 +1423,7 @@
 	description = "Official drink of the Gun Club!"
 	taste_description = "dark and metallic"
 	reagent_state = LIQUID
-	color = "#664300"
+	color = "#124da7"
 	strength = 25
 
 	glass_icon_state = "amasecglass"
@@ -1434,7 +1437,7 @@
 	id = "andalusia"
 	description = "A nice, strangely named drink."
 	taste_description = "lemons"
-	color = "#664300"
+	color = "#665700"
 	strength = 15
 
 	glass_icon_state = "andalusia"
@@ -1448,7 +1451,7 @@
 	id = "antifreeze"
 	description = "Ultimate refreshment."
 	taste_description = "Jack Frost's piss"
-	color = "#664300"
+	color = "#00fff2"
 	strength = 12
 	adj_temp = 20
 	targ_temp = 330
@@ -1465,10 +1468,11 @@
 	description = "Nuclear proliferation never tasted so good."
 	taste_description = "da bomb"
 	reagent_state = LIQUID
-	color = "#666300"
+	color = "#6b0000"
 	strength = 5
 	druggy = 50
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "atomicbombglass"
 	glass_name = "Atomic Bomb"
 	glass_desc = "We cannot take legal responsibility for your actions after imbibing."
@@ -1481,9 +1485,10 @@
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
 	taste_description = "angry and irish"
 	taste_mult = 1.3
-	color = "#664300"
+	color = "#662000"
 	strength = 10
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "b52glass"
 	glass_name = "B-52"
 	glass_desc = "Kahlua, Irish cream, and congac. You will get bombed."
@@ -1497,6 +1502,7 @@
 	color = "#FF7F3B"
 	strength = 15
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "bahama_mama"
 	glass_name = "Bahama Mama"
 	glass_desc = "Tropical cocktail"
@@ -1512,6 +1518,7 @@
 	color = "#FFFF91"
 	strength = 6
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "bananahonkglass"
 	glass_name = "Banana Honk"
 	glass_desc = "A drink from Banana Heaven."
@@ -1542,6 +1549,7 @@
 	color = "#664300"
 	strength = 12
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "beepskysmashglass"
 	glass_name = "Beepsky Smash"
 	glass_desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
@@ -1574,6 +1582,7 @@
 	color = "#360000"
 	strength = 15
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "blackrussianglass"
 	glass_name = "Black Russian"
 	glass_desc = "For the lactose-intolerant. Still as classy as a White Russian."
@@ -1585,7 +1594,7 @@
 	id = "bloodymary"
 	description = "A strange yet pleasurable mixture made of vodka, tomato and lime juice. Tastes like liquid murder"
 	taste_description = "tomatoes with a hint of lime"
-	color = "#664300"
+	color = "#660000"
 	strength = 15
 
 	glass_icon_state = "bloodymaryglass"
@@ -1668,9 +1677,10 @@
 	description = "AHHHH!!!!"
 	taste_description = "sweet tasting iron"
 	taste_mult = 1.5
-	color = "#820000"
+	color = "#a70000"
 	strength = 10
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "demonsblood"
 	glass_name = "Demons' Blood"
 	glass_desc = "Just looking at this thing makes the hair at the back of your neck stand up."
@@ -1756,9 +1766,10 @@
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 	taste_mult = 5
 	reagent_state = LIQUID
-	color = "#664300"
+	color = "#00ffea"
 	strength = 1
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "gargleblasterglass"
 	glass_name = "Pan-Galactic Gargle Blaster"
 	glass_desc = "Does... does this mean that Arthur and Ford are on the ship? Oh joy."
@@ -1770,7 +1781,7 @@
 	id = "gintonic"
 	description = "An all time classic, mild cocktail."
 	taste_description = "mild and tart"
-	color = "#664300"
+	color = "#004166"
 	strength = 20
 
 	glass_icon_state = "gintonicglass"
@@ -1800,10 +1811,11 @@
 	description = "You just don't get it maaaan."
 	taste_description = "giving peace a chance"
 	reagent_state = LIQUID
-	color = "#664300"
+	color = "#6eaa0c"
 	strength = 15
 	druggy = 50
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "hippiesdelightglass"
 	glass_name = "Hippie's Delight"
 	glass_desc = "A drink enjoyed by people during the 1960's."
@@ -1815,7 +1827,7 @@
 	id = "hooch"
 	description = "Either someone's failure at cocktail making or attempt in alchohol production. In any case, do you really want to drink that?"
 	taste_description = "pure resignation"
-	color = "#664300"
+	color = "#664e00"
 	strength = 1
 	toxicity = 2
 
@@ -1848,6 +1860,7 @@
 	color = "#2E6671"
 	strength = 15
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "irishcarbomb"
 	glass_name = "Irish Car Bomb"
 	glass_desc = "An irish car bomb."
@@ -1890,6 +1903,7 @@
 	color = "#664300"
 	strength = 12
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "longislandicedteaglass"
 	glass_name = "Long Island iced tea"
 	glass_desc = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
@@ -1991,6 +2005,7 @@
 	color = "#2E2E61"
 	strength = 10
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "neurotoxinglass"
 	glass_name = "Neurotoxin"
 	glass_desc = "A drink that is guaranteed to knock you silly."
@@ -2064,7 +2079,7 @@
 	id = "sbiten"
 	description = "A spicy Vodka! Might be a little hot for the little guys!"
 	taste_description = "hot and spice"
-	color = "#664300"
+	color = "#004166"
 	strength = 5
 	adj_temp = 50
 	targ_temp = 360
@@ -2096,9 +2111,10 @@
 	taste_description = "a pencil eraser"
 	taste_mult = 1.2
 	nutriment_factor = 1
-	color = "#664300"
+	color = "#004666"
 	strength = 12
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "silencerglass"
 	glass_name = "Silencer"
 	glass_desc = "A drink from mime Heaven."
@@ -2110,9 +2126,10 @@
 	id = "singulo"
 	description = "A blue-space beverage!"
 	taste_description = "concentrated matter"
-	color = "#2E6671"
+	color = "#3b0c0c"
 	strength = 10
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "singulo"
 	glass_name = "Singulo"
 	glass_desc = "A blue-space beverage."
@@ -2152,7 +2169,7 @@
 	id = "syndicatebomb"
 	description = "Tastes like terrorism!"
 	taste_description = "purified antagonism"
-	color = "#2E6671"
+	color = "#716c2e"
 	strength = 10
 
 	glass_icon_state = "syndicatebomb"
@@ -2183,6 +2200,7 @@
 	strength = 10
 	druggy = 50
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "threemileislandglass"
 	glass_name = "Three Mile Island iced tea"
 	glass_desc = "A glass of this is sure to prevent a meltdown."
@@ -2195,11 +2213,12 @@
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
 	taste_description = "spicy toxins"
 	reagent_state = LIQUID
-	color = "#664300"
+	color = "#665c00"
 	strength = 10
 	adj_temp = 15
 	targ_temp = 330
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "toxinsspecialglass"
 	glass_name = "Toxins Special"
 	glass_desc = "Whoah, this thing is on FIRE"
@@ -2210,7 +2229,7 @@
 	id = "vodkamartini"
 	description = "Vodka with Gin. Not quite how 007 enjoyed it, but still delicious."
 	taste_description = "shaken, not stirred"
-	color = "#664300"
+	color = "#004666"
 	strength = 12
 
 	glass_icon_state = "martiniglass"
@@ -2241,6 +2260,7 @@
 	color = "#A68340"
 	strength = 15
 
+	glass_unique_appearance = TRUE
 	glass_icon_state = "whiterussianglass"
 	glass_name = "White Russian"
 	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
@@ -2266,7 +2286,7 @@
 	name = "Whiskey Soda"
 	id = "whiskeysoda"
 	description = "For the more refined griffon."
-	color = "#664300"
+	color = "#533600"
 	strength = 15
 
 	glass_icon_state = "whiskeysodaglass2"
@@ -2309,3 +2329,88 @@
 	..()
 	if(!M.stats.getTempStat(STAT_TGH, "atomvodka") && M.stats.getPerk(/datum/perk/sommelier))
 		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 10 MINUTES, "atomvodka")
+
+
+/datum/reagent/ethanol/roachbeer
+	name = "Kakerlakenbier"
+	id = "roachbeer"
+	description = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn\'t look nor smell like beer..."
+	taste_description = "heady roach guts"
+	reagent_state = LIQUID
+	color = "#123a15"
+	metabolism = REM
+	nerve_system_accumulations = 40
+	addiction_chance = 60
+	strength = 40
+	strength_mod = 2
+	overdose = REAGENTS_OVERDOSE
+	addiction_threshold = 15
+	sanity_gain_ingest = 1.5
+	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
+
+/datum/reagent/ethanol/roachbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
+	var/perk_check = effect_multiplier
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to 3 if true
+		perk_check = effect_multiplier * 2
+	apply_sanity_effect(M, perk_check)
+
+/datum/reagent/ethanol/roachbeer/overdose(mob/living/carbon/M)
+	..()
+	M.add_side_effect("Headache", 11)
+	M.slurring = max(M.slurring, 30)
+	if(prob(5))
+		M.vomit()
+	M.adjustToxLoss(2)
+
+/datum/reagent/ethanol/roachbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
+	if(prob(5))
+		to_chat(addicte , pick(
+			SPAN_DANGER("You feel wilted."),
+			SPAN_DANGER("You feel a terrible hangover.")))
+
+/datum/reagent/ethanol/kaiserbeer
+	name = "Monarchenblut"
+	id = "kaiserbeer"
+	description = "An improvised stimulant made out of Kaiser and Fuhrer roach blood."
+	taste_description = "Emperor\'s blood"
+	reagent_state = LIQUID
+	color = "#047c38"
+	metabolism = REM * 0.8
+	strength = 10
+	strength_mod = 2
+	nerve_system_accumulations = 70
+	addiction_chance = 30
+	addiction_threshold = 30
+	sanity_gain_ingest = 3
+	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY, TASTE_STRONG)
+
+/datum/reagent/ethanol/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
+	var/perk_check = effect_multiplier
+	if(M.stats.getPerk(PERK_VAGABOND))														////// increases sanity_gain to !!6!! if true
+		perk_check = effect_multiplier * 2
+	apply_sanity_effect(M, perk_check)
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut")
+	M.faction = "roach"
+
+/datum/reagent/ethanol/kaiserbeer/overdose(mob/living/carbon/M)
+	..()
+	M.add_side_effect("Headache", 11)
+	if(prob(5))
+		M.vomit()
+	M.adjustToxLoss(6)
+
+/datum/reagent/ethanol/kaiserbeer/withdrawal_act(mob/living/carbon/M, effect_multiplier) ////// lose sanity on withdrawal, notify user about this
+	var/mob/living/carbon/human/addicte = M
+	addicte.sanity.changeLevel(-sanity_gain_ingest * 2)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
+	if(prob(5))
+		to_chat(addicte , pick(
+			SPAN_DANGER("You feel wilted."),
+			SPAN_DANGER("You crave roach blood."),
+			SPAN_DANGER("You feel a terrible hangover.")))

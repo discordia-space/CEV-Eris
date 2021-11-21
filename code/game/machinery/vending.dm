@@ -978,14 +978,12 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-	products = list(/obj/item/reagent_containers/food/snacks/candy = 6,/obj/item/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/reagent_containers/food/snacks/chips =6,
+	products = list(/obj/item/reagent_containers/food/snacks/shokoloud = 6,/obj/item/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/reagent_containers/food/snacks/chips =6,
 					/obj/item/reagent_containers/food/snacks/sosjerky = 6,/obj/item/reagent_containers/food/snacks/no_raisin = 6,/obj/item/reagent_containers/food/snacks/spacetwinkie = 6,
 					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/reagent_containers/food/snacks/tastybread = 6)
-	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
-	prices = list(/obj/item/reagent_containers/food/snacks/candy = 40,/obj/item/reagent_containers/food/drinks/dry_ramen = 45,/obj/item/reagent_containers/food/snacks/chips = 40,
+	prices = list(/obj/item/reagent_containers/food/snacks/shokoloud = 40,/obj/item/reagent_containers/food/drinks/dry_ramen = 45,/obj/item/reagent_containers/food/snacks/chips = 40,
 					/obj/item/reagent_containers/food/snacks/sosjerky = 45,/obj/item/reagent_containers/food/snacks/no_raisin = 40,/obj/item/reagent_containers/food/snacks/spacetwinkie = 40,
-					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 40, /obj/item/reagent_containers/food/snacks/tastybread = 50,
-					/obj/item/reagent_containers/food/snacks/syndicake = 60)
+					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 40, /obj/item/reagent_containers/food/snacks/tastybread = 50)
 	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/weapon_machine
@@ -1010,7 +1008,6 @@
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
 					/obj/item/ammo_magazine/smg/rubber = 15,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-					/obj/item/ammo_magazine/sllrifle = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
@@ -1037,7 +1034,6 @@
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 300,
 					/obj/item/ammo_magazine/slpistol = 100,
 					/obj/item/ammo_magazine/smg/rubber = 200,
 					/obj/item/ammo_magazine/smg = 400,
@@ -1332,10 +1328,26 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/tray = 8,/obj/item/material/kitchen/utensil/fork = 6, /obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6, /obj/item/tool/knife = 3,/obj/item/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/storage/lunchbox = 3,/obj/item/storage/lunchbox/rainbow = 3,/obj/item/storage/lunchbox/cat = 3,
-					/obj/item/reagent_containers/food/drinks/pitcher = 3,/obj/item/reagent_containers/food/drinks/teapot = 3,/obj/item/reagent_containers/food/drinks/mug = 3,/obj/item/reagent_containers/food/drinks/mug/black = 3,/obj/item/reagent_containers/food/drinks/mug/green = 3,/obj/item/reagent_containers/food/drinks/mug/blue = 3,
-					/obj/item/reagent_containers/food/drinks/mug/red = 3,/obj/item/reagent_containers/food/drinks/mug/heart = 3,/obj/item/reagent_containers/food/drinks/mug/one = 3,/obj/item/reagent_containers/food/drinks/mug/metal = 3,
-					/obj/item/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/reagent_containers/food/drinks/mug/brit = 3,/obj/item/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/reagent_containers/food/drinks/mug/teacup = 10,)
+	products = list(
+	/obj/item/tray = 8,
+	/obj/item/material/kitchen/utensil/fork = 6,
+	/obj/item/tool/knife = 6, /obj/item/material/kitchen/utensil/spoon = 6,
+	/obj/item/tool/knife = 3,
+	/obj/item/reagent_containers/food/drinks/drinkingglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/shot = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/mug = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/pint = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/wineglass = 10,
+	/obj/item/reagent_containers/food/drinks/drinkingglass/double = 4,
+	/obj/item/clothing/suit/chef/classic = 2,
+	/obj/item/storage/lunchbox = 3,
+	/obj/item/storage/lunchbox/rainbow = 3,
+	/obj/item/storage/lunchbox/cat = 3,
+	/obj/item/reagent_containers/food/drinks/pitcher = 3,
+	/obj/item/reagent_containers/food/drinks/teapot = 3,
+	/obj/item/reagent_containers/food/drinks/mug = 3,
+	/obj/item/reagent_containers/food/drinks/mug/white = 3,
+	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
 
@@ -1507,9 +1519,11 @@
 					/obj/item/gun/projectile/kovacs = 2,
 					/obj/item/ammo_magazine/srifle = 6,
 					/obj/item/gun/projectile/boltgun/serbian = 10,
+					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/storage/ration_pack = 10,
-					/obj/item/clothing/mask/balaclava = 50
+					/obj/item/clothing/mask/balaclava = 50,
+					/obj/item/storage/hcases/ammo/serb = 10
 					)
 	prices = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
@@ -1522,8 +1536,10 @@
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/gun/projectile/boltgun/serbian = 1000,
+					/obj/item/ammo_magazine/sllrifle = 100,
 					/obj/item/storage/ration_pack = 800,
-					/obj/item/clothing/mask/balaclava = 100
+					/obj/item/clothing/mask/balaclava = 100,
+					/obj/item/storage/hcases/ammo/serb = 300
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
@@ -1613,7 +1629,7 @@
 		/obj/item/clothing/under/green = 4,
 		/obj/item/clothing/under/grey = 4,
 		/obj/item/clothing/under/black = 4,
-		/obj/item/clothing/under/dress = 4,
+		/obj/item/clothing/under/dress/purple = 4,
 		/obj/item/clothing/under/dress/white = 4,
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
@@ -1627,30 +1643,30 @@
 		/obj/item/clothing/mask/scarf/style/yellowstyle = 250,
 		/obj/item/clothing/mask/scarf/style/redstyle = 250,
 		/obj/item/clothing/gloves/knuckles = 650,
-		/obj/item/clothing/head/ranger = 550,
+		/obj/item/clothing/head/ranger = 200,
 		/obj/item/clothing/head/inhaler = 750,
 		/obj/item/clothing/head/skull = 450,
 		/obj/item/clothing/head/skull/black = 450,
 		/obj/item/clothing/shoes/redboot = 450,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
-		/obj/item/clothing/under/white = 600,
-		/obj/item/clothing/under/red = 600,
-		/obj/item/clothing/under/green = 600,
-		/obj/item/clothing/under/grey = 600,
-		/obj/item/clothing/under/black = 600,
-		/obj/item/clothing/under/dress = 600,
-		/obj/item/clothing/under/dress/white = 600,
-		/obj/item/clothing/under/helltaker = 600,
-		/obj/item/clothing/under/johnny = 750,
-		/obj/item/clothing/under/raider = 750,
+		/obj/item/clothing/under/white = 450,
+		/obj/item/clothing/under/red = 450,
+		/obj/item/clothing/under/green = 450,
+		/obj/item/clothing/under/grey = 450,
+		/obj/item/clothing/under/black = 450,
+		/obj/item/clothing/under/dress/purple = 450,
+		/obj/item/clothing/under/dress/white = 450,
+		/obj/item/clothing/under/helltaker = 450,
+		/obj/item/clothing/under/johnny = 600,
+		/obj/item/clothing/under/raider = 600,
 		/obj/item/clothing/suit/storage/triad = 1200,
-		/obj/item/clothing/suit/storage/akira = 750,
+		/obj/item/clothing/suit/storage/akira = 600,
 		/obj/item/clothing/head/skull/drip = 100000
 					)
 
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
-	
+
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

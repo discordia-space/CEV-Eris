@@ -213,6 +213,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+		client.view = world.view  // Reset view range if it has been altered
 
 	if(hud_used)
 		hud_used.updatePlaneMasters(src)
@@ -558,16 +559,20 @@
 	var/mob/M = AM
 	if(ismob(AM))
 
+		if(M.mob_size >=  MOB_GIGANTIC)
+			to_chat(src, SPAN_WARNING("It won't budge!"))
+			return
+
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -1055,7 +1060,7 @@ mob/proc/yank_out_object()
 		if(istype(I,/mob/living/simple_animal/borer))
 			return I
 
-	return 0
+	return FALSE
 
 /mob/proc/updateicon()
 	return
@@ -1173,6 +1178,15 @@ mob/proc/yank_out_object()
 /mob/verb/westfaceperm()
 	set hidden = 1
 	set_face_dir(client.client_dir(WEST))
+
+/mob/verb/change_move_intent()
+	set name = "Change moving intent"
+	set category = "IC"
+	set src = usr
+
+	if(HUDneed["move intent"])
+		var/obj/screen/mov_intent/mov_intent = HUDneed["move intent"]
+		mov_intent.Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return

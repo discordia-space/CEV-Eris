@@ -70,6 +70,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
 
+		activate_mobs_in_range(epicenter, max_range)
 		for(var/turf/T in RANGE_TURFS(max_range, epicenter))
 			var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
@@ -82,7 +83,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(T)
 				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 					var/atom/movable/AM = atom_movable
-					if(AM && AM.simulated)	AM.ex_act(dist)
+					if(AM && AM.simulated)	AM.ex_act(dist, epicenter)
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
@@ -134,3 +135,19 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		if (prob(same_turf_hit_chance))
 			for(var/mob/living/M in epicenter)
 				P.attack_mob(M, 0, 100)
+
+
+// This is made to mimic the explosion that would happen when something gets pierced by a bullet ( a tank by a anti-armor shell , a armoured car by an .60 AMR,  etc, creates flying shrapnel on the other side!)
+proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
+	var/turf/turf_t = get_turf_away_from_target_complex(get_turf(epicenter), origin, 3)
+	var/list/hittable_turfs  = RANGE_TURFS(1, turf_t)
+	var/proj_amount = projectile_amount
+	while(proj_amount)
+		proj_amount--
+		var/obj/item/projectile/pew_thingie = new projectile_type(epicenter)
+		pew_thingie.firer = epicenter
+		pew_thingie.launch(pick(hittable_turfs))
+
+
+
+

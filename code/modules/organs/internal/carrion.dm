@@ -65,6 +65,8 @@
 		/obj/item/organ/internal/carrion/core/proc/spider_menu
 	)
 
+	var/list/associated_carrion_organs = list()
+
 /obj/item/organ/internal/carrion/core/Destroy()
 	owner = null //overrides removed() call
 	. = ..()
@@ -104,10 +106,13 @@
 	for(var/item in active_spiders)
 		var/obj/item/implant/carrion_spider/S = item
 		var/turf/T = get_turf(S)
+		var/spider_location = "Unknown location"
+		if(T)
+			spider_location = "[S.loc]([T.x]:[T.y]:[T.z])"
 		spiders_in_list += list(
 			list(
 				"name" = initial(S.name),
-				"location" = "[S.loc]([T.x]:[T.y]:[T.z])",
+				"location" = "[spider_location]",
 				"spider" = "\ref[item]",
 				"implanted" = S.wearer
 			)
@@ -261,6 +266,11 @@
 	owner.update_icons()
 	to_chat(owner, SPAN_NOTICE("You have regenerated."))
 
+/obj/item/organ/internal/carrion/core/proc/add_to_associated_organs(obj/item/organ/internal/carrion/I)
+	if(istype(I))
+		associated_carrion_organs += I
+	return
+
 /obj/item/organ/internal/carrion/maw
 	name = "carrion maw"
 	parent_organ_base = BP_HEAD
@@ -342,13 +352,26 @@
 			if(BP_IS_ROBOTIC(O))
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
+			else if(istype(O, /obj/item/organ/internal/carrion))
+				var/obj/item/organ/internal/carrion/core/G = owner.random_organ_by_process(BP_SPCORE)
+				if(O in G.associated_carrion_organs)
+					taste_description = "albeit delicious, your own organs carry no new genetic material"
+				else
+					owner.carrion_hunger += 3
+					geneticpointgain = 4
+					chemgain = 50
+					taste_description = "carrion organs taste heavenly, you need more!"
 			else if(istype(O, /obj/item/organ/internal))
 				var/organ_rotten = FALSE
 				if (O.status & ORGAN_DEAD)
 					organ_rotten = TRUE
-				geneticpointgain = organ_rotten ? 1 : 3
-				chemgain = organ_rotten ? 4 : 10
-				taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
+				if(O.species != all_species[SPECIES_HUMAN])
+					chemgain = 5
+					taste_description = "this non-human organ is very bland." // no removal of hunger here, getting and storing a ton of monkey organs isn't too easy, and 5 chem points isn't terribly much.
+				else
+					geneticpointgain = organ_rotten ? 1 : 3
+					chemgain = organ_rotten ? 4 : 10
+					taste_description = "internal organs are delicious[organ_rotten ? ", but rotten ones less so." : "."]"
 			else
 				geneticpointgain = 2
 				chemgain = 5

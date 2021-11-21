@@ -30,6 +30,7 @@
 	no_internal_mag = TRUE
 	var/bolt_open = 0
 	var/item_suffix = ""
+	wield_delay = 0
 
 /obj/item/gun/projectile/heavysniper/on_update_icon()
 	..()
@@ -62,11 +63,17 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
-		if(chambered)
-			to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
-			chambered.loc = get_turf(src)
-			loaded -= chambered
-			chambered = null
+		if(contents.len)
+			if(chambered)
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				chambered.forceMove(get_turf(src))
+				loaded -= chambered
+				chambered = null
+			else
+				var/obj/item/ammo_casing/B = loaded[loaded.len]
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				B.forceMove(get_turf(src))
+				loaded -= B
 		else
 			to_chat(user, SPAN_NOTICE("You work the bolt open."))
 	else
@@ -91,6 +98,11 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/gun/projectile/heavysniper/get_ammo() // Let's keep it simple. Count spent casing twice otherwise.
+	if(loaded.len)
+		return 1
+	return 0
 
 /obj/item/weaponparts
 	name = "weaponpart"

@@ -15,7 +15,7 @@
 //A shard of glass wrapped in tape makes a crude sort of knife
 /datum/craft_recipe/tool/shiv
 	name = "Shiv"
-	result = /obj/item/tool/shiv
+	result = /obj/item/tool/knife/shiv
 	steps = list(
 		list(/obj/item/material/shard, 1, "time" = 30),
 		list(QUALITY_ADHESIVE, 15, 70)
@@ -101,7 +101,7 @@
 		list(/obj/item/electronics/circuitboard, 1),
 		list(/obj/item/organ/external/robotic, 1),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
-		list(/obj/item/tool/shiv, 1),
+		list(/obj/item/tool/knife/shiv, 1),
 		list(/obj/item/tool/screwdriver/improvised, 1),
 		list(/obj/item/tool/wirecutters/improvised, 1),
 		list(/obj/item/tool/crowbar/improvised, 1),
@@ -185,9 +185,13 @@
 	result = /obj/item/tool_upgrade/augment/fuel_tank
 
 	steps = list(
-		list(/obj/item/weldpack, 1, "time" = 30),
-		list(QUALITY_SAWING, 10, "time" = 120),//Disassemble the backpack
-		list(QUALITY_BOLT_TURNING, 10, 40), //And open some valves
+		list(CRAFT_MATERIAL, 8, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 50),
+		list(QUALITY_HAMMERING, 10, 100),
+		list(/obj/item/stack/rods, 2, 30),
+		list(QUALITY_WELDING, 10, 100),
+		list(QUALITY_BOLT_TURNING, 10, 40),
+		list(QUALITY_ADHESIVE, 20, 30)
 	)
 
 /datum/craft_recipe/tool/makeshift_centrifuge
@@ -223,4 +227,28 @@
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(/obj/item/stack/rods, 2, 30)
+	)
+
+/datum/craft_recipe/tool/engi_hardcase
+	name = "Scrap Engi Hardcase"
+	result = /obj/item/storage/hcases/engi/scrap
+	steps = list(
+		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
+	)
+
+/datum/craft_recipe/tool/parts_hardcase
+	name = "Scrap Parts Hardcase"
+	result = /obj/item/storage/hcases/parts/scrap
+	steps = list(
+		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
+	)
+
+/datum/craft_recipe/tool/medi_hardcase
+	name = "Scrap Medi Hardcase"
+	result = /obj/item/storage/hcases/med/scrap
+	steps = list(
+		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
 	)

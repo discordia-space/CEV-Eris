@@ -1,3 +1,5 @@
+
+
 /datum/unit_test/loadout_has_cost_and_name/Run()
 	for(var/geartype in subtypesof(/datum/gear))
 		var/datum/gear/G = geartype

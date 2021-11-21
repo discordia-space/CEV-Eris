@@ -56,8 +56,14 @@
 
 	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
 	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
+	if(src.current_vertical_travel_method)
+		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
+		return
+
 	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
-	if (VTM.attempt(direction))
+	if(VTM.can_perform(direction))
+		src.current_vertical_travel_method = VTM
+		VTM.attempt(direction)
 		return
 
 
@@ -83,11 +89,19 @@
 
 	for (var/a in possible_methods)
 		VTM = new a(src)
-		if (VTM.attempt(direction))
+		if(VTM.can_perform(direction))
+			src.current_vertical_travel_method = VTM
+			VTM.attempt(direction)
 			return TRUE
 
 	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))
 	return FALSE
+
+/mob/proc/zMoveUp()
+	return zMove(UP)
+
+/mob/proc/zMoveDown()
+	return zMove(DOWN)
 
 /mob/living/zMove(direction)
 	if (is_ventcrawling)
@@ -220,11 +234,24 @@
 
 
 /mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
+	if (CanAvoidGravity())
+		return FALSE
 	// Special condition for jetpack mounted folk!
 	if (!restrained())
-		if (CanAvoidGravity())
-			return FALSE
-
+		var/tile_view = view(src, 1)
+		var/obj/item/clothing/shoes/magboots/MB = shoes
+		if(stats.getPerk(PERK_PARKOUR))
+			for(var/obj/structure/low_wall/LW in tile_view)
+				return FALSE
+			for(var/obj/structure/railing/R in get_turf(src))
+				return FALSE
+		if(istype(MB))
+			if(MB.magpulse)
+				for(var/obj/structure/low_wall/LW in tile_view)
+					return FALSE
+				for(var/turf/simulated/wall/W in tile_view)
+					return FALSE
+          
 	return ..()
 
 /mob/living/carbon/human/bst/can_fall()

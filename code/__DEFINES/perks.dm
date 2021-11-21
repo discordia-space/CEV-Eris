@@ -36,9 +36,16 @@
 #define PERK_SURE_STEP /datum/perk/oddity/sure_step
 #define PERK_MARKET_PROF /datum/perk/oddity/market_prof
 
+// NT perks
+#define PERK_HOLY_LIGHT /datum/perk/nt_oddity/holy_light
+
+//unique oddity perks
+#define PERK_BIG_SHOT /datum/perk/big_shot
+
 //job perks
 #define PERK_ARTIST /datum/perk/job/artist
 #define PERK_SURVIVOR /datum/perk/survivor
+#define PERK_VAGABOND /datum/perk/vagabond
 #define PERK_CODESPEAK /datum/perk/codespeak
 #define PERK_TECHNOMANCER /datum/perk/inspiration
 #define PERK_CLUB /datum/perk/job/club

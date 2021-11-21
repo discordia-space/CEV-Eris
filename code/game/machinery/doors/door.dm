@@ -1,5 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define DOOR_REPAIR_AMOUNT 50	//amount of health regained per stack amount used
+#define DOOR_AI_ACTIVATION_RANGE 12 // Range in which this door activates AI when opened
 
 /obj/machinery/door
 	name = "Door"
@@ -24,10 +25,11 @@
 	var/health
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/resistance = RESISTANCE_TOUGH //minimum amount of force needed to damage the door with a melee weapon
+	var/bullet_resistance = RESISTANCE_FRAGILE
+	var/open_on_break = TRUE
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
 	var/obj/item/stack/material/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
-	var/close_door_at = 0 //When to automatically close the door, if possible
 	var/obj/machinery/filler_object/f5
 	var/obj/machinery/filler_object/f6
 	var/welded //Placed here for simplicity, only airlocks can be welded tho
@@ -36,6 +38,7 @@
 	var/width = 1
 
 	var/damage_smoke = FALSE
+	var/tryingToLock = FALSE // for autoclosing
 
 	// turf animation
 	var/atom/movable/overlay/c_animation
@@ -92,12 +95,7 @@
 	return ..()
 
 /obj/machinery/door/Process()
-	if(close_door_at && world.time >= close_door_at)
-		if(autoclose)
-			close_door_at = next_close_time()
-			close()
-		else
-			close_door_at = 0
+	return PROCESS_KILL
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
@@ -110,7 +108,7 @@
 	return 1
 
 /obj/machinery/door/Bumped(atom/AM)
-	if(p_open || operating) return
+	if(operating) return
 	if(ismob(AM))
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= 10) return	//Can bump-open one airlock per second. This is to prevent shock spam.
@@ -160,19 +158,25 @@
 
 
 /obj/machinery/door/proc/bumpopen(mob/user)
-	if(operating)	return
+	if(operating)
+		return FALSE
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
-		return
-	src.add_fingerprint(user)
+		return FALSE
+	add_fingerprint(user)
 	if(density)
-		if(allowed(user))	open()
-		else				do_animate("deny")
-	return
+		if(allowed(user))
+			if(open())
+				tryingToLock = TRUE
+		else
+			do_animate("deny")
+	return TRUE
 
 /obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
 	..()
 
 	var/damage = Proj.get_structure_damage()
+	if(Proj.damage_types[BRUTE])
+		damage -= bullet_resistance
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
 	if (damage > 90)
@@ -374,7 +378,7 @@
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
 
-	if (health <= 0)
+	if (health <= 0 && open_on_break)
 		visible_message(SPAN_WARNING("\The [src.name] breaks open!"))
 		open(TRUE)
 	else
@@ -430,9 +434,9 @@
 
 /obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
-		return
-	operating = 1
-
+		return FALSE
+	operating = TRUE
+	activate_mobs_in_range(src, 10)
 	set_opacity(0)
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
 		f5?.set_opacity(0)
@@ -448,23 +452,18 @@
 			explosion_resistance = 0
 			update_icon()
 			update_nearby_tiles()
-			operating = 0
-
+			operating = FALSE
 			if(autoclose)
-				close_door_at = next_close_time()
-
-	return 1
-
-/obj/machinery/door/proc/next_close_time()
-	return world.time + (normalspeed ? 150 : 5)
+				var/wait = normalspeed ? 150 : 5
+				addtimer(CALLBACK(src, .proc/close), wait)
+	return TRUE
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	set waitfor = FALSE
 	if(!can_close(forced))
 		return
-	operating = 1
+	operating = TRUE
 
-	close_door_at = 0
 	do_animate("closing")
 	spawn(3)
 		set_density(TRUE)
@@ -481,7 +480,7 @@
 				f5?.set_opacity(1)
 				f6?.set_opacity(1)
 
-			operating = 0
+			operating = FALSE
 
 			//I shall not add a check every x ticks if a door has closed over some fire.
 			var/obj/fire/fire = locate() in loc

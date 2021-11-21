@@ -12,29 +12,25 @@ RSF
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
+	var/max_stored_matter = 30
 	var/stored_matter = 30
 	var/mode = 1
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/rsf/examine(mob/user)
 	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 fabrication-units.")
+		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (istype(W, /obj/item/rcd_ammo))
-
-		if ((stored_matter + 10) > 30)
-			to_chat(user, "The RSF can't hold any more matter.")
-			return
-
-		qdel(W)
-
-		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
-		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
-		return
-
+	var/obj/item/stack/material/M = W
+	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
+		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter < max_stored_matter)
+			stored_matter += amount
+			playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+	else
+		..()
 /obj/item/rsf/attack_self(mob/user as mob)
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)

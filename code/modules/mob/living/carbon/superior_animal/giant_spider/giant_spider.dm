@@ -42,3 +42,11 @@
 /mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	..()
+
+/mob/living/carbon/superior_animal/giant_spider/UnarmedAttack(atom/A, proximity)
+	. = ..()
+
+	var/mob/living/L = A
+	if(istype(L) && L.reagents)
+		L.reagents.add_reagent(poison_type, poison_per_bite)
+

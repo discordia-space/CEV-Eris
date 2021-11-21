@@ -154,6 +154,11 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	var/obj/item/cell/large/high/HC = /obj/item/cell/large/high
 	var/min_charge = initial(HC.maxcharge) * 0.6
 
+	//calculate guild profits in a sane way
+	var/ending_balance = get_account_credits(department_accounts[DEPARTMENT_GUILD])
+	var/datum/department/guild/guild_var = new/datum/department/guild
+	GLOB.supply_profit = ending_balance - guild_var.account_initial_balance
+
 	//Check station's power levels
 	for(var/area/A in ship_areas)
 		if(A.fire || A.atmosalm)

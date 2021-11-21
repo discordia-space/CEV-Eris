@@ -1,3 +1,5 @@
+#define REPAIR_DOOR_AMOUNT 10
+
 /datum/ritual/cruciform/machines
 	name = "machines"
 	phrase = null
@@ -73,6 +75,76 @@
 
 	forge.produce()
 	return TRUE
+
+//Airlocks
+
+/datum/ritual/cruciform/machines/lock_door
+	name = "Activate door"
+	phrase = "Inlaqueatus"
+	desc = "Commands nearby door to be locked or unlocked."
+
+/datum/ritual/cruciform/machines/lock_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
+	var/list/O = get_front(user)
+
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in O
+
+	if(!door)
+		fail("You fail to find a compatible door here.", user, C)
+		return FALSE
+
+	if(door.stat & (BROKEN))
+		fail("[door] is off.", user, C)
+		return FALSE
+
+	door.locked ? door.unlock() : door.lock()
+	return TRUE
+
+/datum/ritual/cruciform/machines/repair_door
+	name = "Repair door"
+	phrase = "Redde quod periit"
+	desc = "Repairs nearby door at the cost of biomatter."
+
+/datum/ritual/cruciform/machines/repair_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
+	var/list/O = get_front(user)
+
+	var/obj/machinery/door/holy/door = locate(/obj/machinery/door/holy) in O
+	var/obj/item/stack/material/biomatter/consumable
+
+	if(!door)
+		fail("You fail to find a compatible door here.", user, C)
+		return FALSE
+
+	if(door.health == door.maxhealth)
+		fail("This door doesn\'t need repair.", user, C)
+		return FALSE
+
+	var/turf/target_turf = get_step(user, user.dir)
+	var/turf/user_turf = get_turf(user)
+
+	for(var/obj/item/stack/material/biomatter/B in target_turf.contents)
+		if(B.amount >= REPAIR_DOOR_AMOUNT)
+			consumable = B
+			break
+
+	if(!consumable)
+		for(var/obj/item/stack/material/biomatter/B in user_turf.contents)
+			if(B.amount >= REPAIR_DOOR_AMOUNT)
+				consumable = B
+				break
+
+	if(consumable)
+		consumable.use(REPAIR_DOOR_AMOUNT)
+		var/obj/effect/overlay/nt_construction/effect = new(target_turf, 50)
+		sleep(50)
+		door.stat -= BROKEN
+		door.health = door.maxhealth
+		door.unlock()
+		door.close()
+		effect.success()
+		return TRUE
+	else
+		fail("Not enough biomatter found to repair the door, you need at least [REPAIR_DOOR_AMOUNT].", user, C)
+		return FALSE
 
 ////////////////////////BIOMATTER MANIPULATION MULTI MACHINES RITUALS
 

@@ -39,7 +39,7 @@
 
 /datum/craft_recipe/gun/makeshiftgl
 	name = "makeshift grenade launcher"
-	result = /obj/item/gun/launcher/grenade/makeshift
+	result = /obj/item/gun/projectile/shotgun/pump/grenade/makeshift
 	steps = list(
 		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
@@ -98,13 +98,43 @@
 		list(QUALITY_HAMMERING, 10)
 	)
 
+/datum/craft_recipe/gun/luty
+	name = "Handmade SMG .35 Auto \"Luty\""
+	result = /obj/item/gun/projectile/automatic/luty
+	steps = list(
+		list(/obj/item/part/gun, 3),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_ADHESIVE, 15)
+	)
+
+/datum/craft_recipe/gun/flaregun
+	name = "Flare gun shotgun"
+	result = /obj/item/gun/projectile/flare_gun/shotgun
+	steps = list(
+		list(/obj/item/gun/projectile/flare_gun, 1),
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
+	)
+
 /datum/craft_recipe/gun/ammo_kit
 	name = "Scrap ammo kit"
 	result = /obj/item/ammo_kit
 	steps = list(
-		list(/obj/item/tool/wirecutters, 1),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 5, MATERIAL_CARDBOARD),
 		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
+/datum/craft_recipe/gun/ammo_case	//Added under guns because it's for ammo
+	name = "Scrap ammo case"
+	result = /obj/item/storage/hcases/ammo/scrap
+	steps = list(
+		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20)
 	)

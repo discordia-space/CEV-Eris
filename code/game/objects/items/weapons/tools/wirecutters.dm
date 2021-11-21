@@ -8,6 +8,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("pinched", "nipped")
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	sharp = TRUE
 	edge = TRUE
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 30, QUALITY_RETRACTING = 15, QUALITY_BONE_SETTING = 15)

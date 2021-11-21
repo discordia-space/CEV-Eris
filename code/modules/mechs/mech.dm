@@ -4,12 +4,12 @@
 	desc = "A powerful machine piloted from a cockpit, but worn like a suit of armour."
 	density = TRUE
 	opacity = TRUE
-	anchored = TRUE
+//	anchored = TRUE
 	default_pixel_x = -8
 	default_pixel_y = 0
 	status_flags = PASSEMOTES
 	a_intent = I_HURT
-	mob_size = MOB_LARGE
+	mob_size = MOB_GIGANTIC
 	can_be_fed = 0
 	defaultHUD = "exosuits"
 	bad_type = /mob/living/exosuit
@@ -59,7 +59,7 @@
 	var/hatch_locked = FALSE
 
 	//Air!
-	var/use_air      = FALSE
+	var/use_air = FALSE
 
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
@@ -180,7 +180,12 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
+		if(ispath(body) || !hatch_closed)
+			var/turf/current_loc = get_turf(src)
+			return current_loc.return_air()
+		if(body.pilot_coverage >= 100 && hatch_closed)
+			return body.cockpit
+
 
 /mob/living/exosuit/GetIdCard()
 	return access_card

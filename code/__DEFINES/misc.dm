@@ -169,6 +169,7 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
+#define TOGGLE_BOTTOM_FLAG 4 //0100
 
 // Default name for announcement system
 #define ANNOUNCER_NAME "CEV Eris System Announcer"
@@ -342,3 +343,7 @@
 
 //Prevent the master controller from starting automatically
 #define NO_INIT_PARAMETER "no-init"
+
+/// Required minimum values to see reagents in a beaker
+#define HUMAN_REQ_COG_FOR_REG 35
+#define HUMAN_REQ_BIO_FOR_REG 50

@@ -100,6 +100,26 @@
 	. = ..()
 	icon_state = pick(list("technohelmet_visor", "technohelmet_googles"))
 
+/obj/item/clothing/head/armor/helmet/technomancer_old
+	name = "reinforced technomancer helmet"
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight."
+	icon_state = "technohelmet_old"
+	body_parts_covered = HEAD|EARS|EYES|FACE
+	item_flags = THICKMATERIAL
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
+	action_button_name = "Toggle Headlamp"
+	brightness_on = 4
+	armor = list(
+		melee = 35,
+		bullet = 40,
+		energy = 20,
+		bomb = 40,
+		bio = 0,
+		rad = 0
+	)
+	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 500
+
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
@@ -151,7 +171,9 @@
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
 	action_button_name = "Toggle Night Vision"
-	var/obj/item/clothing/glasses/bullet_proof_ironhammer/hud
+	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
+	var/last_toggle = 0
+	var/toggle_delay = 2 SECONDS
 	price_tag = 600
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/New()
@@ -175,17 +197,23 @@
 	if(user.get_equipped_item(slot_head) != src)
 		return
 	if(hud in src)
-		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
+		if(user.equip_to_slot_if_possible(hud, slot_glasses) && world.time > last_toggle)
+			to_chat(user, "You flip down [src] night vision goggles with a high-pitched whine.")
+			last_toggle = world.time + toggle_delay
+			hud.toggle(user, TRUE)
 			update_icon()
 		else
-			to_chat(user, "You are wearing something which is in the way.")
+			to_chat(user, "You are wearing something which is in the way or trying to flip the googles too fast!")
 	else
-		if(ismob(hud.loc))
+		if(ismob(hud.loc) && world.time > last_toggle)
+			last_toggle = world.time + toggle_delay
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
-		hud.forceMove(src)
+			hud.toggle(user, TRUE)
+			to_chat(user, "You flip up [src] night vision goggles, turning them off.")
+			hud.forceMove(src)
+		else
+			to_chat(user, "You can't pull off the goggles so fast!")
 		update_icon()
 	usr.update_action_buttons()
 
@@ -331,15 +359,18 @@
  * Ironhammer riot helmet with HUD
  */
 /obj/item/clothing/head/armor/riot_hud
-	name = "riot helmet"
+	name = "heavy operator helmet"
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
+
+	tint = TINT_LOW
+
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
+		melee = 50,
+		bullet = 50,
+		energy = 40,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -348,7 +379,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 300
+	price_tag = 500
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -445,6 +476,18 @@
 		bullet = 20,
 		energy = 10,
 		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
+	name = "\improper Type-34 Semi-Enclosed Headwear"
+	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)

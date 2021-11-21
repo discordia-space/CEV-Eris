@@ -75,7 +75,7 @@
 	twohanded = TRUE
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
-	
+
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/obrez_retro.dmi'

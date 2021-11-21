@@ -14,6 +14,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 10)
 	spawn_tags = SPAWN_TAG_SURGERY_TOOL
 
@@ -47,21 +48,3 @@
 	if(QUALITY_LASER_CUTTING in required_qualities)
 		required_qualities -= QUALITY_CUTTING
 	return ..(user, required_qualities, use_on, CB)
-
-//A makeshift knife, for doing all manner of cutting and stabbing tasks in a half-assed manner
-/obj/item/tool/shiv
-	name = "shiv"
-	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle. Could become a decent tool or weapon with right tool mods."
-	icon_state = "impro_shiv"
-	worksound = WORKSOUND_HARD_SLASH
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	matter = list(MATERIAL_GLASS = 1)
-	sharp = TRUE
-	edge = TRUE
-	force = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_TINY
-	slot_flags = SLOT_EARS
-	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
-	degradation = 4 //Gets worse with use
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
-	spawn_tags = SPAWN_TAG_JUNKTOOL

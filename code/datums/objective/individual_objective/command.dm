@@ -12,13 +12,13 @@
 /datum/individual_objective/beyond/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
-	return locate(/obj/effect/overmap/ship/eris)
+	return (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 
 /datum/individual_objective/beyond/assign()
 	..()
 	x = rand(2, GLOB.maps_data.overmap_size-1)
 	y = rand(2, GLOB.maps_data.overmap_size-1)
-	linked = locate(/obj/effect/overmap/ship/eris)
+	linked = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 	desc = "There is a mark made on your old star chart. You do not remember why you did it but your curiosity wont let you sleep.  \
 			Move [linked] to coordinates [x], [y] for [unit2time(units_requested)]."
 	timer = world.time

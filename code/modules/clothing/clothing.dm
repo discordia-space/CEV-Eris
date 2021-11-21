@@ -28,6 +28,55 @@
 
 	var/style = STYLE_NONE
 
+	var/light_overlay = "helmet_light"
+	var/light_applied
+	var/brightness_on
+	var/on = FALSE
+
+/obj/item/clothing/attack_self(mob/user)
+	if(brightness_on)
+		if(!isturf(user.loc))
+			to_chat(user, "You cannot turn the light on while in this [user.loc]")
+			return
+		on = !on
+		to_chat(user, "You [on ? "enable" : "disable"] the helmet light.")
+		update_flashlight(user)
+	else
+		return ..(user)
+
+/obj/item/clothing/proc/update_flashlight(mob/user = null)
+	if(on && !light_applied)
+		set_light(brightness_on)
+		light_applied = 1
+	else if(!on && light_applied)
+		set_light(0)
+		light_applied = 0
+	update_icon(user)
+	user.update_action_buttons()
+
+/obj/item/clothing/head/on_update_icon(mob/user)
+
+	cut_overlays()
+	var/mob/living/carbon/human/H
+	if(ishuman(user))
+		H = user
+
+	if(on)
+
+		// Generate object icon.
+		if(!light_overlay_cache["[light_overlay]_icon"])
+			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
+		associate_with_overlays(light_overlay_cache["[light_overlay]_icon"])
+
+		// Generate and cache the on-mob icon, which is used in update_inv_head().
+		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
+		if(!light_overlay_cache[cache_key])
+			light_overlay_cache[cache_key] = image('icons/mob/light_overlays.dmi', light_overlay)
+
+	if(H)
+		H.update_inv_head()
+
+
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
 
@@ -321,32 +370,6 @@ BLIND     // can't see anything
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 	style = STYLE_HIGH
 
-	var/light_overlay = "helmet_light"
-	var/light_applied
-	var/brightness_on
-	var/on = FALSE
-
-/obj/item/clothing/head/attack_self(mob/user)
-	if(brightness_on)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in this [user.loc]")
-			return
-		on = !on
-		to_chat(user, "You [on ? "enable" : "disable"] the helmet light.")
-		update_flashlight(user)
-	else
-		return ..(user)
-
-/obj/item/clothing/head/proc/update_flashlight(mob/user = null)
-	if(on && !light_applied)
-		set_light(brightness_on)
-		light_applied = 1
-	else if(!on && light_applied)
-		set_light(0)
-		light_applied = 0
-	update_icon(user)
-	user.update_action_buttons()
-
 /obj/item/clothing/head/attack_ai(mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
@@ -374,28 +397,6 @@ BLIND     // can't see anything
 	else if(success == 1)
 		to_chat(user, SPAN_NOTICE("You crawl under \the [src]."))
 	return 1
-
-/obj/item/clothing/head/on_update_icon(mob/user)
-
-	cut_overlays()
-	var/mob/living/carbon/human/H
-	if(ishuman(user))
-		H = user
-
-	if(on)
-
-		// Generate object icon.
-		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
-		associate_with_overlays(light_overlay_cache["[light_overlay]_icon"])
-
-		// Generate and cache the on-mob icon, which is used in update_inv_head().
-		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
-		if(!light_overlay_cache[cache_key])
-			light_overlay_cache[cache_key] = image('icons/mob/light_overlays.dmi', light_overlay)
-
-	if(H)
-		H.update_inv_head()
 
 ///////////////////////////////////////////////////////////////////////
 //Mask
@@ -498,7 +499,7 @@ BLIND     // can't see anything
 			/obj/item/tool/knife/butterfly,
 			/obj/item/material/kitchen/utensil,
 			/obj/item/tool/knife/tacknife,
-			/obj/item/tool/shiv,
+			/obj/item/tool/knife/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
@@ -571,8 +572,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_HIGH
-	valid_accessory_slots = list("armor")
-	restricted_accessory_slots = list("armor")
+	valid_accessory_slots = list("armor","armband","decor")
+	restricted_accessory_slots = list("armor","armband")
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -605,8 +606,8 @@ BLIND     // can't see anything
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
-	valid_accessory_slots = list("utility","armband","decor")
-	restricted_accessory_slots = list("utility", "armband")
+	valid_accessory_slots = list("armor","utility","armband","decor")
+	restricted_accessory_slots = list("armor","utility", "armband")
 
 
 /obj/item/clothing/under/attack_hand(mob/user)

@@ -17,7 +17,6 @@
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-
 /obj/item/gun/projectile/colt/on_update_icon()
 	..()
 

@@ -30,10 +30,13 @@
 	recoil_buildup = 3
 	one_hand_penalty = 5 //despite it being handgun, it's better to hold in two hands while shooting. SMG level.
 
+	gun_tags = list(GUN_SILENCABLE)
+
 	init_firemodes = list(
 		FULL_AUTO_300,
 		FULL_AUTO_800
 		)
+	wield_delay = 0
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()

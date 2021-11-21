@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	power_channel = STATIC_ENVIRON
 
 	explosion_resistance = 10
+	maxhealth = 400
 
 	var/aiControlDisabled = 0
 	//If 1, AI control is disabled until the AI hacks back in and disables the lock.
@@ -177,6 +178,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	resistance = RESISTANCE_AVERAGE
+	bullet_resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
@@ -301,6 +303,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
 	resistance = RESISTANCE_UNBREAKABLE
+	bullet_resistance = RESISTANCE_VAULT
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -310,17 +313,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/last_event = 0
 
 /obj/machinery/door/airlock/Process()
-	// Deliberate no call to parent.
-	if(main_power_lost_until > 0 && world.time >= main_power_lost_until)
-		regainMainPower()
-
-	if(backup_power_lost_until > 0 && world.time >= backup_power_lost_until)
-		regainBackupPower()
-
-	else if(electrified_until > 0 && world.time >= electrified_until)
-		electrify(0)
-
-	..()
+	return PROCESS_KILL
 
 /obj/machinery/door/airlock/uranium/Process()
 	if(world.time > last_event+20)
@@ -383,6 +376,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
+	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
@@ -439,16 +433,16 @@ There are 9 wires.
 					src.justzap = 1
 					spawn (10)
 						src.justzap = 0
-					return
+					return FALSE
 			else /*if(src.justzap)*/
-				return
+				return FALSE
 		else if(prob(10) && src.operating == 0)
 			var/mob/living/carbon/C = user
 			if(istype(C) && C.hallucination_power > 25)
 				to_chat(user, "<span class='danger'>You feel a powerful shock course through your body!</span>")
 				user.adjustHalLoss(10)
 				user.Stun(10)
-				return
+				return FALSE
 	..()
 
 /obj/machinery/door/airlock/proc/isElectrified()
@@ -488,18 +482,23 @@ There are 9 wires.
 	return src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) || src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2)
 
 /obj/machinery/door/airlock/proc/loseMainPower()
-	main_power_lost_until = mainPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
+	main_power_lost_until = mainPowerCablesCut() ? -1 : SecondsToTicks(60)
+	if(main_power_lost_until > 0)
+		addtimer(CALLBACK(src, .proc/regainMainPower), main_power_lost_until)
 
 	// If backup power is permanently disabled then activate in 10 seconds if possible, otherwise it's already enabled or a timer is already running
 	if(backup_power_lost_until == -1 && !backupPowerCablesCut())
-		backup_power_lost_until = world.time + SecondsToTicks(10)
+		backup_power_lost_until = SecondsToTicks(10)
+		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
 		electrify(0)
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
-	backup_power_lost_until = backupPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
+	backup_power_lost_until = backupPowerCablesCut() ? -1 : SecondsToTicks(60)
+	if(backup_power_lost_until > 0)
+		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
@@ -535,7 +534,9 @@ There are 9 wires.
 		else
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
-		electrified_until = duration == -1 ? -1 : world.time + SecondsToTicks(duration)
+		electrified_until = duration == -1 ? -1 : SecondsToTicks(duration)
+		if(electrified_until > 0)
+			addtimer(CALLBACK(src, .proc/electrify), electrified_until)
 
 	if(feedback && message)
 		to_chat(usr, message)
@@ -605,7 +606,7 @@ There are 9 wires.
 			force_wedge_item(T)
 			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
+			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
@@ -1172,14 +1173,13 @@ There are 9 wires.
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
 
-	damage_through_armor(0.2 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	damage_through_armor(0.4 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	damage_through_armor(0.1 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
 
-	SetStunned(5)
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
@@ -1201,10 +1201,11 @@ There are 9 wires.
 		for(var/turf/turf in locs)
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
+					if(autoclose && tryingToLock)
+						addtimer(CALLBACK(src, .proc/close), 30 SECONDS)
 					if(world.time > next_beep_at)
 						playsound(loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 						next_beep_at = world.time + SecondsToTicks(10)
-					close_door_at = world.time + 6
 					return
 				if(istool(AM))
 					var/obj/item/tool/T = AM
@@ -1229,6 +1230,7 @@ There are 9 wires.
 				take_damage(DOOR_CRUSH_DAMAGE)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	tryingToLock = FALSE
 	if(arePowerSystemsOn())
 		playsound(src.loc, close_sound, 70, 1, -2)
 	else

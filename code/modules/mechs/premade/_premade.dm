@@ -11,6 +11,11 @@
 	rarity_value = 10
 	bad_type = /mob/living/exosuit/premade
 
+	arms = /obj/item/mech_component/manipulators
+	legs = /obj/item/mech_component/propulsion
+	head = /obj/item/mech_component/sensors
+	body = /obj/item/mech_component/chassis
+
 	var/exosuit_color
 	var/decal
 	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit
@@ -21,7 +26,11 @@
 
 
 /mob/living/exosuit/premade/Initialize()
-	// Paint and equip all body parts
+	arms = new arms(src)
+	body = new body(src)
+	head = new head(src)
+	legs = new legs(src)
+
 	for(var/obj/item/mech_component/C in list(arms, legs, head, body))
 		if(decal)
 			C.decal = decal
@@ -36,9 +45,9 @@
 
 	if(body && body.armor?.type != installed_armor)
 		QDEL_NULL(body.armor) // Delete old armor, if any
-		body.armor = new installed_armor(src)
+		body.armor_plate = new installed_armor(src)
 
-	. = ..()
+	..()
 
 	for(var/hardpoint in installed_systems)
 		var/system_type = installed_systems[hardpoint]
@@ -145,24 +154,10 @@
 			"#4b0082"
 		)
 
-	if(!arms)
-		var/armstype = pick(subtypesof(/obj/item/mech_component/manipulators))
-		arms = new armstype(src)
-	if(!legs)
-		var/legstype = pick(subtypesof(/obj/item/mech_component/propulsion))
-		legs = new legstype(src)
-	if(!head)
-		var/headtype = pick(subtypesof(/obj/item/mech_component/sensors))
-		head = new headtype(src)
-	if(!body)
-		var/bodytype = pick(subtypesof(/obj/item/mech_component/chassis))
-		body = new bodytype(src)
-
-	if(super_random)
-		for(var/obj/item/mech_component/C in list(arms, legs, head, body))
-			C.color = pick(use_colours)
-	else
-		exosuit_color = pick(use_colours)
+		arms = pick(subtypesof(/obj/item/mech_component/manipulators))
+		legs = pick(subtypesof(/obj/item/mech_component/propulsion))
+		head = pick(subtypesof(/obj/item/mech_component/sensors))
+		body = pick(subtypesof(/obj/item/mech_component/chassis))
 
 	material = pickweight(list(
 		MATERIAL_STEEL = 50,
@@ -174,13 +169,19 @@
 	))
 
 	installed_armor = pickweight(list(
-		/obj/item/robot_parts/robot_component/armour/exosuit = 50,
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 30,
-		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 10,
-		/obj/item/robot_parts/robot_component/armour/exosuit/em = 10
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = 50,
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 5,
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 25,
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = 20
 	))
 
-	. = ..()
+	..()
+
+	if(super_random)
+		for(var/obj/item/mech_component/C in list(arms, legs, head, body))
+			C.color = pick(use_colours)
+	else
+		exosuit_color = pick(use_colours)
 
 // Used for spawning/debugging.
 /mob/living/exosuit/premade/random/normal

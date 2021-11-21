@@ -468,7 +468,7 @@
 /obj/item/reagent_containers/food/snacks
 	price_tag = 30
 
-/obj/item/reagent_containers/food/snacks/candy
+/obj/item/reagent_containers/food/snacks/shokoloud
 	price_tag = 10
 
 /obj/item/reagent_containers/food/snacks/sosjerky
@@ -1008,9 +1008,9 @@
 /obj/item/grenade/price_tag = 50
 
 /obj/item/robot_parts/price_tag = 100
-/obj/item/robot_parts/robot_component/armour/exosuit/price_tag = 300
+/obj/item/robot_parts/robot_component/armour/exosuit/plain/price_tag = 300
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof/price_tag = 500
-/obj/item/robot_parts/robot_component/armour/exosuit/em/price_tag = 550
+/obj/item/robot_parts/robot_component/armour/exosuit/ablative/price_tag = 550
 /obj/item/robot_parts/robot_component/armour/exosuit/combat/price_tag = 1000
 
 /obj/item/mech_component/price_tag = 150
