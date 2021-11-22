@@ -354,7 +354,7 @@
 
 		if(ORION_TRAIL_MUTINY)
 			event_info = ""
-			if(num_traitors < settlers.len - 1 && prob(55)) //gotta have at LEAST one non-traitor.
+			if(num_traitors < settlers.len - 1 && prob(55)) //gotta have at LEAST one non-contractor.
 				num_traitors++
 		if(ORION_TRAIL_MUTINY_ATTACK)
 			//check to see if they just jump ship

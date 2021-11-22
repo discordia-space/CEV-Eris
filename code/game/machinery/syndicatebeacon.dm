@@ -1,9 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 //  Beacon randomly spawns in space
-//	When a non-traitor (no special role in /mind) uses it, he is given the choice to become a traitor
+//	When a non-contractor (no special role in /mind) uses it, he is given the choice to become a contractor
 //	If he accepts there is a random chance he will be accepted, rejected, or rejected and killed
-//	Bringing certain items can help improve the chance to become a traitor
+//	Bringing certain items can help improve the chance to become a contractor
 
 
 /obj/machinery/syndicate_beacon
@@ -60,10 +60,10 @@
 				return
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
-			M << "<B>You have joined the ranks of the Syndicate and become a traitor to the station!</B>"
+			M << "<B>You have joined the ranks of the Syndicate and become a contractor to the station!</B>"
 			traitors.add_antagonist(N.mind)
 			traitors.equip(N)
-			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
+			message_admins("[N]/([N.ckey]) has accepted a contractor objective from a syndicate beacon.")
 
 
 	src.updateUsrDialog()
