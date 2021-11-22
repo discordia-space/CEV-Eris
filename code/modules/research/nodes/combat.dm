@@ -206,7 +206,7 @@
 
 /datum/technology/basic_armor
 	name = "Armor Solutions"
-	desc = "Standart issue armor of moebius paramedic teams."
+	desc = "Standard issue armor of moebius paramedic teams."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
