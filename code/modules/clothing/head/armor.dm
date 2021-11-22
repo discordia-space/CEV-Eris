@@ -592,7 +592,7 @@
 		if(QDELETED(src))
 			return
 		scan_scheduled = FALSE
-		scan_scheduled = FALSE
+		report_health_alerts()
 
 
 /obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_memory_cleanup(entry)
