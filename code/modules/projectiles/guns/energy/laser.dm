@@ -167,7 +167,7 @@
 	projectile_type = /obj/item/projectile/beam/psychic
 	icon_contained = TRUE
 	spawn_blacklisted = TRUE
-	var/traitor = FALSE //Check if it's a traitor psychic weapon
+	var/traitor = FALSE //Check if it's a contractor psychic weapon
 	var/datum/mind/owner
 	var/list/victims = list()
 	var/datum/antag_contract/derail/contract

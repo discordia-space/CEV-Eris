@@ -89,7 +89,7 @@
 	/*
 		Hot or cold environments can affect the equilibrium temperature
 		The lower the pressure the less effect it has. I guess it cools using a radiator or something when in vacuum.
-		Gives traitors more opportunities to sabotage the generator or allows enterprising engineers to build additional
+		Gives contractors more opportunities to sabotage the generator or allows enterprising engineers to build additional
 		cooling in order to get more power out.
 	*/
 	var/datum/gas_mixture/environment = loc.return_air()

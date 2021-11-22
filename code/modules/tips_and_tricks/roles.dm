@@ -5,7 +5,7 @@
 
 /tipsAndTricks/roles/traitor_uplink
     roles_list = list(/datum/antagonist/traitor)
-    tipText = "As a traitor you can order all sorts of useful stuff from your PDA/Headset/Implant uplink, like weapons, devices, equipment, services and even money!"
+    tipText = "As a contractor you can order all sorts of useful stuff from your PDA/Headset/Implant uplink, like weapons, devices, equipment, services and even money!"
 
 /tipsAndTricks/roles/antag_good_rp
     roles_list = list(/datum/antagonist)

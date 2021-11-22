@@ -71,7 +71,7 @@
 	name = "psychic laser"
 	icon_state = "psychic_heavylaser"
 	var/obj/item/gun/energy/psychic/holder
-	var/traitor = FALSE //Check if it's a traitor psychic beam
+	var/traitor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
 	armor_penetration = 100
 
