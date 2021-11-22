@@ -223,7 +223,8 @@
 		else if(use_cell_power())
 			active = !active
 			if(active)
-				GC = new /datum/golem_controller(location=get_turf(loc), seismic=3, drill=src)
+				var/turf/simulated/T = get_turf(loc)
+				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
 				need_update_field = 1
 			else

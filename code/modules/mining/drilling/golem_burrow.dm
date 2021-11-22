@@ -15,7 +15,6 @@
 	controller = parent  // Link burrow with golem controller
 
 /obj/structure/golem_burrow/Destroy()
-	testing("Destroying burrow")
 	visible_message(SPAN_DANGER("\The [src] crumbles!"))
 	if(controller)
 		controller.burrows -= src
@@ -49,7 +48,6 @@
 /obj/structure/golem_burrow/proc/take_damage(value)
 	health = min(max(health - value, 0), max_health)
 	if(health == 0)
-		testing("Burrow no health")
 		qdel(src)
 
 /obj/structure/golem_burrow/proc/stop()
