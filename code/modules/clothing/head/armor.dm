@@ -591,7 +591,7 @@
 	spawn(scan_interval)
 		if(QDELETED(src))
 			return
-		report_health_alerts()
+		scan_scheduled = FALSE
 		scan_scheduled = FALSE
 
 
