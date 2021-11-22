@@ -81,14 +81,14 @@
 
 /datum/uplink_item/item/ammo/slpistol
 	name = ".35 Auto SL box"
-	desc = "Contains 2 standard .35 Auto speed loader, loaded with lethal ammunition. Can fit 6 bullets."
+	desc = "Contains 2 standard .35 Auto speed loaders, loaded with lethal ammunition. Can fit 6 bullets."
 	item_cost = 1
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/slpistol
 
 /datum/uplink_item/item/ammo/slpistol/highvelocity
 	name = ".35 Auto HV SL"
-	desc = "Contains 2 standard .35 Auto speed loader, loaded with high-velocity ammunition. Can fit 6 bullets."
+	desc = "Contains 2 standard .35 Auto speed loaders, loaded with high-velocity ammunition. Can fit 6 bullets."
 	item_cost = 2
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/slpistol/hv
