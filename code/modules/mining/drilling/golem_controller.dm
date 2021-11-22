@@ -4,7 +4,6 @@
 
 	var/turf/loc  // Location of the golem_controller
 	var/list/obj/structure/golem_burrow/burrows = list()  // List of golem burrows tied to the controller
-	var/list/mob/living/simple_animal/hostile/hivebot/range/golems = list()  // List of golems tied to the controller
 	var/processing = TRUE
 	
 	// Wave related variables
@@ -49,7 +48,6 @@
 		testing("Spawning golems")
 		spawn_golems()
 
-
 /datum/golem_controller/proc/spawn_golem_burrow()
 	// Random walk starting from drill location without crossing any dense turf
 	// That way we are sure there will always be a path to the drill
@@ -66,8 +64,18 @@
 /datum/golem_controller/proc/spawn_golems()
 	// Spawn golems at all burrows
 	for(var/obj/structure/golem_burrow/GB in burrows)
-		for(var/i in 1 to GW.golem_spawn)
-			golems += new /mob/living/simple_animal/hostile/hivebot/range(GB.loc)  // Spawn golem at that burrow
+		var/list/possible_directions = cardinal.Copy()
+		var/i = 0
+		// Spawn golems around the burrow on free turfs
+		while(i < GW.golem_spawn && possible_directions.len)
+			var/turf/possible_T = get_step(GB.loc, pick_n_take(possible_directions))
+			if(!possible_T.contains_dense_objects(TRUE))
+				i++
+				new /mob/living/carbon/superior_animal/golem/iron(possible_T)  // Spawn golem at free location
+		// Spawn remaining golems on top of burrow
+		if(i < GW.golem_spawn)
+			for(var/j in i to GW.golem_spawn)
+				new /mob/living/carbon/superior_animal/golem/iron(GB.loc)  // Spawn golem at that burrow
 
 /datum/golem_controller/proc/stop()
 	// Disable wave
