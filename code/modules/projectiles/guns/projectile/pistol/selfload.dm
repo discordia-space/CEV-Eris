@@ -63,3 +63,7 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)
+
+/obj/item/gun/projectile/selfload/moebius
+	name = "ML HG .35 Auto \"Clarissa\"" // ML stands for Moebius Laboratories
+	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'
