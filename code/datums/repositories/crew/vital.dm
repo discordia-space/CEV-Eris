@@ -38,6 +38,15 @@
 		crew_data["trauma"] = round(H.getBruteLoss())
 		crew_data["poisoning"] = round(H.getToxLoss())
 
+		if(H.getOxyLoss() >= 10)
+			crew_data["alert"] = TRUE
+		if(H.getBruteLoss() >= 50)
+			crew_data["alert"] = TRUE
+		if(H.getFireLoss() >= 50)
+			crew_data["alert"] = TRUE
+		if(H.getToxLoss() >= 50)
+			crew_data["alert"] = TRUE
+
 	crew_data["bodytemp"] = H.bodytemperature - T0C
 	return ..()
 
