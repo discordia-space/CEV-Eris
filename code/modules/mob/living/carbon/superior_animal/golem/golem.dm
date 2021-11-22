@@ -67,6 +67,21 @@
 	// Type of ore to spawn when the golem dies
 	var/ore
 
+	// The ennemy of all golemkind
+	var/obj/machinery/mining/deep_drill/DD
+
+/mob/living/carbon/superior_animal/golem/New(var/loc, var/obj/machinery/mining/deep_drill/drill)
+	..()
+	if(drill)
+		DD = drill
+		if(prob(50))
+			target_mob = drill
+			stance = HOSTILE_STANCE_ATTACK
+
+/mob/living/carbon/superior_animal/golem/Destroy()
+	DD = null
+	. = ..()
+
 /mob/living/carbon/superior_animal/golem/getarmor(var/def_zone, var/type)
 	return vars[type]
 

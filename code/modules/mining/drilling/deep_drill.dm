@@ -7,8 +7,8 @@
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/max_health = 200
-	var/health = 200
+	var/max_health = 500
+	var/health = 500
 
 	var/active = FALSE
 	var/list/resource_field = list()
@@ -160,7 +160,7 @@
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!(istype(T,/turf/simulated/floor/asteroid) || istype(T, /turf/simulated/floor/exoplanet)))
+		else if(!(istype(loc, /turf/simulated/floor/asteroid) || istype(loc, /turf/simulated/floor/exoplanet)))
 			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
 			return
 
@@ -223,7 +223,7 @@
 		else if(use_cell_power())
 			active = !active
 			if(active)
-				GC = new /datum/golem_controller(location=get_turf(loc), seismic=3)
+				GC = new /datum/golem_controller(location=get_turf(loc), seismic=3, drill=src)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
 				need_update_field = 1
 			else

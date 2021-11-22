@@ -1,10 +1,11 @@
-#define RANDOM_WALK 10
+#define RANDOM_WALK 15
 
 /datum/golem_controller
 
 	var/turf/loc  // Location of the golem_controller
 	var/list/obj/structure/golem_burrow/burrows = list()  // List of golem burrows tied to the controller
 	var/processing = TRUE
+	var/obj/machinery/mining/deep_drill/DD
 	
 	// Wave related variables
 	var/datum/golem_wave/GW  // Golem wave datum
@@ -12,19 +13,20 @@
 	var/time_burrow = 0  // Timestamp of last created burrow
 	var/time_spawn = 0  // Timestamp of last spawn wave
 
-/datum/golem_controller/New(var/turf/location, var/seismic)
-	testing("Creating controller with [seismic] - ([location.x], [location.y], [location.z]")
+/datum/golem_controller/New(var/turf/location, var/seismic, var/drill)
 	loc = location
 	var/path = GLOB.golem_waves[seismic]  // Retrieve which kind of wave it is depending on seismic activity
 	GW = new path()
+	if(drill)
+		DD = drill
 
 	START_PROCESSING(SSobj, src)
 
 /datum/golem_controller/Destroy()
-	testing("Destroying controller")
 	processing = FALSE  // Stop processing
 	qdel(GW)  // Destroy wave object
 	GW = null
+	DD = null
 	for(var/obj/structure/golem_burrow/GB in burrows)  // Unlink burrows and controller
 		GB.stop()
 	. = ..()
@@ -39,13 +41,11 @@
 	if(count < GW.burrow_count && (world.time - time_burrow) > GW.burrow_interval)
 		time_burrow = world.time
 		count++
-		testing("Spawning burrow")
 		spawn_golem_burrow()
 
 	// Check if a new spawn wave should occur
 	if((world.time - time_spawn) > GW.spawn_interval)
 		time_spawn = world.time
-		testing("Spawning golems")
 		spawn_golems()
 
 /datum/golem_controller/proc/spawn_golem_burrow()
@@ -58,7 +58,6 @@
 		if(next_T != loc && !next_T.contains_dense_objects(TRUE))
 			T = next_T
 
-	testing("Spawning burrow on [T] at [T.x] [T.y] [T.z]")
 	burrows += new /obj/structure/golem_burrow(T)  // Spawn burrow at final location
 
 /datum/golem_controller/proc/spawn_golems()
@@ -71,11 +70,11 @@
 			var/turf/possible_T = get_step(GB.loc, pick_n_take(possible_directions))
 			if(!possible_T.contains_dense_objects(TRUE))
 				i++
-				new /mob/living/carbon/superior_animal/golem/iron(possible_T)  // Spawn golem at free location
+				new /mob/living/carbon/superior_animal/golem/iron(possible_T, drill=DD)  // Spawn golem at free location
 		// Spawn remaining golems on top of burrow
 		if(i < GW.golem_spawn)
 			for(var/j in i to GW.golem_spawn)
-				new /mob/living/carbon/superior_animal/golem/iron(GB.loc)  // Spawn golem at that burrow
+				new /mob/living/carbon/superior_animal/golem/iron(GB.loc, drill=DD)  // Spawn golem at that burrow
 
 /datum/golem_controller/proc/stop()
 	// Disable wave
