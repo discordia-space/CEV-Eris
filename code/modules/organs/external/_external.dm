@@ -9,7 +9,7 @@
 
 /obj/item/organ/external
 	name = "external"
-	min_broken_damage = 30
+	min_broken_damage = 120
 	max_damage = 0
 	dir = SOUTH
 	layer = BELOW_MOB_LAYER
@@ -1074,4 +1074,3 @@ Note that amputating the affected organ does in fact remove the infection from t
 			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
 			to_chat(user, SPAN_NOTICE("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 	qdel(src)
-	

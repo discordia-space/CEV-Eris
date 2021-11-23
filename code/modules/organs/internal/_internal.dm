@@ -3,7 +3,7 @@
 	origin_tech = list(TECH_BIO = 2)
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
-	max_damage = 100
+	max_damage = 400
 	var/list/owner_verbs = list()
 	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
 	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
@@ -84,7 +84,7 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost, 
+			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
 				take_damage(rand(2,5), prob(95))	//95% chance to not warn them, damage will proc on every organ in the limb
 
 		return

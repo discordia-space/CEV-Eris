@@ -56,13 +56,13 @@
 	return TRUE
 
 /obj/item/organ/external/robotic/limb
-	max_damage = 50
-	min_broken_damage = 30
+	max_damage = 200
+	min_broken_damage = 120
 	w_class = ITEM_SIZE_NORMAL
 	bad_type = /obj/item/organ/external/robotic/limb
 
 /obj/item/organ/external/robotic/tiny
-	min_broken_damage = 15
+	min_broken_damage = 60
 	w_class = ITEM_SIZE_SMALL
 	bad_type = /obj/item/organ/external/robotic/tiny
 

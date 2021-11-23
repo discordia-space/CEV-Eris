@@ -36,8 +36,8 @@
 	default_type = /obj/item/organ/external/chest
 	default_bone_type = /obj/item/organ/internal/bone/chest
 
-	max_damage = 100
-	min_broken_damage = 60
+	max_damage = 400
+	min_broken_damage = 240
 	dislocated = -1
 	vital = TRUE
 	cannot_amputate = TRUE
@@ -59,8 +59,8 @@
 	default_type = /obj/item/organ/external/groin
 	default_bone_type = /obj/item/organ/internal/bone/groin
 
-	max_damage = 100
-	min_broken_damage = 60
+	max_damage = 400
+	min_broken_damage = 240
 	dislocated = -1
 
 	w_class = ITEM_SIZE_BULKY
@@ -79,8 +79,8 @@
 	default_type = /obj/item/organ/external/head
 	default_bone_type = /obj/item/organ/internal/bone/head
 
-	max_damage = 75
-	min_broken_damage = 60
+	max_damage = 300
+	min_broken_damage = 120
 	vital = TRUE
 
 	w_class = ITEM_SIZE_NORMAL
@@ -99,8 +99,8 @@
 
 	w_class = ITEM_SIZE_NORMAL
 
-	max_damage = 50
-	min_broken_damage = 50
+	max_damage = 200
+	min_broken_damage = 100
 
 	functions = BODYPART_GRASP
 
@@ -127,8 +127,8 @@
 
 	w_class = ITEM_SIZE_NORMAL
 
-	max_damage = 60
-	min_broken_damage = 50
+	max_damage = 240
+	min_broken_damage = 100
 
 	functions = BODYPART_STAND
 
@@ -155,44 +155,44 @@
 ////SLIME////
 /datum/organ_description/chest/slime
 	name = "upper body"
-	max_damage = 125
-	min_broken_damage = 120
+	max_damage = 500
+	min_broken_damage = 250
 	max_volume = 5
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/groin/slime
 	name = "fork"
-	max_damage = 100
-	min_broken_damage = 150
+	max_damage = 400
+	min_broken_damage = 250
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/head/slime
-	max_damage = 100
-	min_broken_damage = 150
+	max_damage = 400
+	min_broken_damage = 300
 	max_volume = 4
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/left/slime
-	max_damage = 85
-	min_broken_damage = 15
+	max_damage = 340
+	min_broken_damage = 60
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/right/slime
-	max_damage = 85
-	min_broken_damage = 15
+	max_damage = 340
+	min_broken_damage = 60
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/left/slime
-	max_damage = 85
-	min_broken_damage = 15
+	max_damage = 340
+	min_broken_damage = 60
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/right/slime
-	max_damage = 85
-	min_broken_damage = 15
+	max_damage = 340
+	min_broken_damage = 60
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
