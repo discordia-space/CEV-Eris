@@ -7,8 +7,8 @@
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/max_health = 500
-	var/health = 500
+	var/max_health = 1000
+	var/health = 1000
 
 	var/active = FALSE
 	var/list/resource_field = list()
@@ -322,11 +322,11 @@
 	health = min(max(health - value, 0), max_health)
 	if(health == 0)
 		system_error("critical damage")
-	if(prob(30)) // Some chance that the drill completely blows up
-		var/turf/O = get_turf(src)
-		if(!O) return
-		explosion(O, -1, 1, 4, 10)
-		qdel(src)
+		if(prob(10)) // Some chance that the drill completely blows up
+			var/turf/O = get_turf(src)
+			if(!O) return
+			explosion(O, -1, 1, 4, 10)
+			qdel(src)
 
 /obj/machinery/mining/deep_drill/examine(mob/user)
 	. = ..()

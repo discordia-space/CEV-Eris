@@ -1,5 +1,3 @@
-#define RANDOM_WALK 15
-
 /datum/golem_controller
 
 	var/turf/loc  // Location of the golem_controller
@@ -49,14 +47,14 @@
 		spawn_golems()
 
 /datum/golem_controller/proc/spawn_golem_burrow()
-	// Random walk starting from drill location without crossing any dense turf
-	// That way we are sure there will always be a path to the drill
-	var/turf/T = loc
-	var/turf/next_T = loc
-	for(var/i in 1 to RANDOM_WALK)
-		next_T = get_step(T, pick(GLOB.cardinal))
-		if(next_T != loc && !next_T.contains_dense_objects(TRUE))
-			T = next_T
+	// Spawn burrow randomly in a donut around the drill
+	var/turf/T = pick(circlerangeturfs(loc, 7))
+	//while(T.contains_dense_objects(TRUE) && T != loc)
+	while(T != loc)
+		T = get_step(T, get_dir(T, DD))
+	// If we end up on top of the drill, just spawn next to it
+	if(T == loc)
+		T = get_step(loc, pick(cardinal))
 
 	burrows += new /obj/structure/golem_burrow(T)  // Spawn burrow at final location
 
@@ -82,5 +80,3 @@
 
 	// Delete controller
 	qdel(src)
-
-#undef RANDOM_WALK
