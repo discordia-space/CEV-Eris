@@ -49,8 +49,7 @@
 /datum/golem_controller/proc/spawn_golem_burrow()
 	// Spawn burrow randomly in a donut around the drill
 	var/turf/T = pick(circlerangeturfs(loc, 7))
-	//while(T.contains_dense_objects(TRUE) && T != loc)
-	while(T != loc)
+	while(T.contains_dense_objects(TRUE) && T != loc)
 		T = get_step(T, get_dir(T, DD))
 	// If we end up on top of the drill, just spawn next to it
 	if(T == loc)
