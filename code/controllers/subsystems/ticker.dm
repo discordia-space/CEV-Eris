@@ -69,6 +69,7 @@ SUBSYSTEM_DEF(ticker)
 	global_huds = list(
 		global_hud.druggy,
 		global_hud.blurry,
+		global_hud.lightMask,
 		global_hud.vimpaired,
 		global_hud.darkMask,
 		global_hud.nvg,

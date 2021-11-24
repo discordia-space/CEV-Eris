@@ -19,8 +19,6 @@
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15
-	wield_delay = 0.1 SECOND
-	wield_delay_factor = 0.05 // 5 vig
 
 /obj/item/gun/projectile/handmade_pistol/New()
 	..()

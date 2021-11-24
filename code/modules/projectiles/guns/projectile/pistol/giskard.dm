@@ -20,8 +20,6 @@
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	wield_delay = 0.1 SECOND
-	wield_delay_factor = 0.05 // 5 vig
 
 /obj/item/gun/projectile/giskard/on_update_icon()
 	..()

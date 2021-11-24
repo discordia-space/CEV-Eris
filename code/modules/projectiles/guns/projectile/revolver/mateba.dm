@@ -12,5 +12,4 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.3 // 30 vig
+
