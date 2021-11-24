@@ -16,7 +16,7 @@
 	var/sticker = null
 	var/closed = TRUE
 
-/obj/item/storage/hcases/proc/can_interact(mob/user)
+/obj/item/storage/hcases/proc/can_interact_hc(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))
@@ -28,7 +28,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact(user) == 1)
+	if(can_interact_hc(user) == 1)
 		return
 	sticker(user)
 
@@ -68,14 +68,14 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
+	if(can_interact_hc(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
 		return
 
 	open_close(user)
 
 /obj/item/storage/hcases/AltClick(mob/user)
 
-	var/able = can_interact(user)
+	var/able = can_interact_hc(user)
 
 	if(able == 1)
 		return

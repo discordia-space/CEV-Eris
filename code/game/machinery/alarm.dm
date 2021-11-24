@@ -479,7 +479,8 @@
 	var/data[0]
 	var/remote_connection = 0
 	var/remote_access = 0
-	if(state)
+	// state MUST be a child or tstate. Checking because this can swap into tgui states
+	if(state && istype(state, /datum/topic_state))
 		var/list/href = state.href_list(user)
 		remote_connection = href["remote_connection"]	// Remote connection means we're non-adjacent/connecting from another computer
 		remote_access = href["remote_access"]			// Remote access means we also have the privilege to alter the air alarm.
