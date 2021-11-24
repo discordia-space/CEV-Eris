@@ -545,7 +545,6 @@
 	item_state = "trauma_team"
 	flags_inv = HIDEEARS|BLOCKHAIR
 	item_flags = BLOCK_GAS_SMOKE_EFFECT|AIRTIGHT
-	style = STYLE_HIGH
 	matter = list(
 		MATERIAL_PLASTEEL = 10,
 		MATERIAL_GLASS = 5,
