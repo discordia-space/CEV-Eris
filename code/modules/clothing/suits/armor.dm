@@ -580,4 +580,5 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
 	slowdown = -0.3

@@ -545,6 +545,7 @@
 	item_state = "trauma_team"
 	flags_inv = HIDEEARS|BLOCKHAIR
 	item_flags = BLOCK_GAS_SMOKE_EFFECT|AIRTIGHT
+	style = STYLE_HIGH
 	matter = list(
 		MATERIAL_PLASTEEL = 10,
 		MATERIAL_GLASS = 5,
@@ -568,6 +569,7 @@
 		rad = 50)
 	up = TRUE
 	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS
@@ -606,7 +608,7 @@
 	if(!speaker_enabled)
 		return
 
-	if(!loc || !istype(loc, /mob/living/carbon/human))
+	if(!ishuman(loc))
 		return
 	
 	var/mob/living/carbon/human/user = loc
