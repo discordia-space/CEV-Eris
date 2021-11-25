@@ -432,6 +432,11 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/spaceacilin_mold
+	result = "spaceacilin"
+	required_reagents = list("mold" = 1, "sugar" = 1, "acetone" = 1)
+	result_amount = 6
+
 /datum/chemical_reaction/imidazoline
 	result = "imidazoline"
 	required_reagents = list("carbon" = 1, "hydrazine" = 1, "anti_toxin" = 1)
