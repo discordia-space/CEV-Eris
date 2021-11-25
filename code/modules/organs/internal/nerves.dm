@@ -22,4 +22,4 @@
 	icon_state = "nerve_sensitive"
 	desc = "Looking at this makes you feel both nervous and sensitive!"
 	organ_efficiency = list(OP_NERVE = 150)
-	specific_organ_size = 0.6
+	specific_organ_size = 0.1
