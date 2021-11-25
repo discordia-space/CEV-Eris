@@ -62,7 +62,7 @@
 /datum/reagent/organic/nutriment/affect_ingest(mob/living/carbon/M) //notify user about sanity restoration upon ingestion;
 	..()														//cprotein doesn't notify because there usually are both protein 
 	if(prob(10))											//and nutriment in foods. Not enough exceptions to bother
-	to_chat(M, SPAN_NOTICE("You feel goodness making its way through your system."))
+		to_chat(M, SPAN_NOTICE("You feel goodness making its way through your system."))
 
 /datum/reagent/organic/nutriment/protein/cprotein
 	name = "Cooked proteins"
