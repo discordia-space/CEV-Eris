@@ -410,4 +410,30 @@
 	name = "Extended Lungs"
 	materials = list(MATERIAL_BIOMATTER = 30)
 	build_path = /obj/item/organ/internal/lungs/long
+
+/datum/design/bioprinter/heart
+	name = "Huge Heart"
+	materials = list(MATERIAL_BIOMATTER = 45)
+	build_path = /obj/item/organ/internal/heart/huge
+
+/datum/design/bioprinter/liver
+	name = "Big Liver"
+	materials = list(MATERIAL_BIOMATTER = 30)
+	build_path = /obj/item/organ/internal/liver/big
+
+/datum/design/bioprinter/nerves
+	name = "Hypersensitive Nerves"
+	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_GOLD = 1)
+	build_path = /obj/item/organ/internal/nerve/sensitive_nerve
+
+/datum/design/bioprinter/muscle
+	name = "Super Muscle"
+	materials = list(MATERIAL_BIOMATTER = 30)
+	build_path = /obj/item/organ/internal/muscle/super_muscle
+
+/datum/design/bioprinter/blood_vessel
+	name = "Extensive Blood Vessels"
+	materials = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASTIC = 2)
+	build_path = /obj/item/organ/internal/blood_vessel/extensive
+
 //[/MED]
