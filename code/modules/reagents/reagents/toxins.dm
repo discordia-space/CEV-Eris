@@ -754,8 +754,12 @@
 	taste_description = "stale vomit mixed with pineapples"
 	reagent_state = LIQUID
 	color = "#467508"
-	metabolism = REM * 2
-	overdose = REAGENTS_OVERDOSE
+	metabolism = REM
+	overdose = REAGENTS_OVERDOSE/2
 	nerve_system_accumulations = 5
 	strength = 0.01
 	sanityloss = 2
+
+/datum/reagent/toxin/mold/overdose(mob/living/carbon/M, alien, effect_multiplier)
+	if(prob(10))
+		M.vomit()
