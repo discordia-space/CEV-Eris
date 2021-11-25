@@ -132,7 +132,7 @@
 		var/actual_volume = reagents.total_volume
 		for(var/datum/reagent/R in reagents.reagent_list)
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
-		reagents.add_reagent("toxin", rand(0, actual_volume - reagents.total_volume))
+		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
 
 /obj/item/reagent_containers/food/snacks/make_old(low_quality_oldification)
 	.=..()

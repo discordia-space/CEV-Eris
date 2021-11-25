@@ -746,3 +746,16 @@
 	color = "#140b30"
 	reagent_state = LIQUID
 	strength = 4
+
+/datum/reagent/toxin/mold
+	name = "Mold"
+	id = "mold"
+	description = "Food that went rotting for so long it liquefied. Do not consume."
+	taste_description = "stale vomit mixed with pineapples"
+	reagent_state = LIQUID
+	color = "#467508"
+	metabolism = REM * 2
+	overdose = REAGENTS_OVERDOSE
+	nerve_system_accumulations = 5
+	strength = 0.01
+	sanityloss = 2
