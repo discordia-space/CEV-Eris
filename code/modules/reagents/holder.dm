@@ -111,12 +111,6 @@
 			total_volume += R.volume
 	return
 
-/datum/reagents/proc/delete()
-	for(var/datum/reagent/R in reagent_list)
-		R.holder = null
-	if(my_atom)
-		my_atom.reagents = null
-
 /datum/reagents/proc/handle_reactions()
 	if(SSchemistry)
 		SSchemistry.chem_mark_for_update(src)
