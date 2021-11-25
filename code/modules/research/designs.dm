@@ -9,7 +9,7 @@ they are simply references used as part of a "has materials?" type proc. They al
 The currently supporting non-reagent materials:
 
 Don't add new keyword/IDs if they are made from an existing one (such as rods which are made from metal). Only add raw materials.
-hh
+
 Design Guidlines
 - When adding new designs, check rdreadme.dm to see what kind of things have already been made and where new stuff is needed.
 - A single sheet of anything is 1 unit of material. Materials besides metal/glass require help from other jobs (mining for
