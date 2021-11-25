@@ -18,6 +18,9 @@
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	var/global/max_n_of_items = 0
+	var/list/blacklisted_from_buffs = list(
+	/obj/item/reagent_containers/food/snacks/donkpocket
+	)
 
 
 // see code/modules/food/recipes_microwave.dm for recipes
@@ -308,7 +311,18 @@
 		stop()
 		if(cooked)
 			cooked.loc = src.loc
+			convert_nutriment(cooked)
 		return
+
+/obj/machinery/microwave/proc/convert_nutriment(atom/target) //converts main types of nutriment(protein, nutriment)
+	if(target.type in blacklisted_from_buffs)	//to their cooked versions(reagents/food-Drinks.dm), which restore sanity
+		return FALSE // No buffs if food is blacklisted(only hot pockets for now)
+	var/amount = target.reagents.get_reagent_amount("nutriment")
+	target.reagents.remove_reagent("nutriment", amount)
+	target.reagents.add_reagent("cooked_nutriment", amount)
+	amount = target.reagents.get_reagent_amount("protein")
+	target.reagents.remove_reagent("protein", amount)
+	target.reagents.add_reagent("cooked_protein", amount) //other subtypes can be ignored, they are more for flavoring and do very little in terms of nutrition
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
@@ -449,13 +463,13 @@
 /obj/machinery/microwave/campfire/abort()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire1"	
+	icon_state = "barrelfire1"
 
 /obj/machinery/microwave/campfire/stop()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire1"
-	
+
 /obj/machinery/microwave/campfire/dispose()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
