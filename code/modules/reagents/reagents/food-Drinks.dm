@@ -50,7 +50,7 @@
 	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/organic/nutriment/cnutriment
-	name = "Cooked nutriments"
+	name = "Cooked nutriment"
 	taste_description = "bliss"
 	id = "cooked_nutriment"
 	description = "The result of complex chemical reactions involved in cooking."
@@ -61,7 +61,7 @@
 
 /datum/reagent/organic/nutriment/affect_ingest(mob/living/carbon/M) //notify user about sanity restoration upon ingestion;
 	..()														//cprotein doesn't notify because there usually are both protein 
-	if(prob(10))											//and nutriment in foods. Not enough exceptions to bother
+	if(prob(3))										//and nutriment in foods. Not enough exceptions to bother
 		to_chat(M, SPAN_NOTICE("You feel goodness making its way through your system."))
 
 /datum/reagent/organic/nutriment/protein/cprotein
