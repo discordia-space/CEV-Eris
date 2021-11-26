@@ -86,7 +86,7 @@
 	return vars[type]
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
-	. = ..()
+	..()
 
 	// Spawn ores
 	if(ore)
