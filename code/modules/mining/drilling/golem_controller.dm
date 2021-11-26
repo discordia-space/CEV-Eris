@@ -48,9 +48,9 @@
 
 /datum/golem_controller/proc/spawn_golem_burrow()
 	// Spawn burrow randomly in a donut around the drill
-	var/turf/T = pick(circlerangeturfs(loc, 7))
-	while(T.contains_dense_objects(TRUE) && T != loc)
-		T = get_step(T, get_dir(T, DD))
+	var/turf/T = pick(getcircle(loc, 7))
+	while(loc && check_density_no_mobs(T) && T != loc)
+		T = get_step(T, get_dir(T, loc))
 	// If we end up on top of the drill, just spawn next to it
 	if(T == loc)
 		T = get_step(loc, pick(cardinal))
@@ -65,13 +65,15 @@
 		// Spawn golems around the burrow on free turfs
 		while(i < GW.golem_spawn && possible_directions.len)
 			var/turf/possible_T = get_step(GB.loc, pick_n_take(possible_directions))
-			if(!possible_T.contains_dense_objects(TRUE))
+			if(!check_density_no_mobs(possible_T))
 				i++
-				new /mob/living/carbon/superior_animal/golem/iron(possible_T, drill=DD)  // Spawn golem at free location
+				var/golemtype = pick(subtypesof(/mob/living/carbon/superior_animal/golem))
+				new golemtype(possible_T, drill=DD)  // Spawn golem at free location
 		// Spawn remaining golems on top of burrow
 		if(i < GW.golem_spawn)
 			for(var/j in i to GW.golem_spawn)
-				new /mob/living/carbon/superior_animal/golem/iron(GB.loc, drill=DD)  // Spawn golem at that burrow
+				var/golemtype = pick(subtypesof(/mob/living/carbon/superior_animal/golem))
+				new golemtype(GB.loc, drill=DD)  // Spawn golem at that burrow
 
 /datum/golem_controller/proc/stop()
 	// Disable wave
@@ -79,3 +81,11 @@
 
 	// Delete controller
 	qdel(src)
+
+/datum/golem_controller/proc/check_density_no_mobs(var/turf/F)
+	if(F.density)
+		return TRUE
+	for(var/atom/A in F)
+		if(A.density && !(A.flags & ON_BORDER) && !ismob(A))
+			return TRUE
+	return FALSE

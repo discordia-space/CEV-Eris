@@ -303,8 +303,12 @@
 /obj/machinery/mining/deep_drill/proc/check_surroundings()
 	// Check if there is no dense obstacles around the drill to avoid blocking access to it
 	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
-		if(F != loc && F.contains_dense_objects(TRUE))
-			return TRUE
+		if(F != loc)
+			if(F.density)
+				return TRUE
+			for(var/atom/A in F)
+				if(A.density && !(A.flags & ON_BORDER) && !ismob(A))
+					return TRUE
 	return FALSE
 
 /obj/machinery/mining/deep_drill/attack_generic(mob/user, damage)

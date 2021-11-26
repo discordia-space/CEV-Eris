@@ -13,10 +13,10 @@
 #define GOLEM_DMG_HIGH 40
 #define GOLEM_DMG_ULTRA 55
 
-#define GOLEM_SPEED_SLUG 3
-#define GOLEM_SPEED_LOW 4
+#define GOLEM_SPEED_SLUG 9
+#define GOLEM_SPEED_LOW 7
 #define GOLEM_SPEED_MED 5
-#define GOLEM_SPEED_HIGH 6.5
+#define GOLEM_SPEED_HIGH 3
 
 // OneStar patrol borg that defends OneStar facilities
 /mob/living/carbon/superior_animal/golem

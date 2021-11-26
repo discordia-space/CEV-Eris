@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/golem/iron
 	name = "iron golem"
-	desc = "A moving pile of rocks."
+	desc = "A moving pile of rocks with iron specks in it."
 	icon_state = "golem_iron"
 	icon_living = "golem_iron"
 
@@ -9,7 +9,7 @@
 	health = GOLEM_HEALTH_HIGH
 
 	// Movement related variables
-	move_to_delay = 10
+	move_to_delay = GOLEM_SPEED_SLUG
 	turns_per_move = 5
 
 	// Damage related variables
