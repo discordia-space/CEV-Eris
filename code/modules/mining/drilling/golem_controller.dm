@@ -82,7 +82,7 @@
 	// Delete controller
 	qdel(src)
 
-/datum/golem_controller/proc/check_density_no_mobs(var/turf/F)
+/datum/golem_controller/proc/check_density_no_mobs(turf/F)
 	if(F.density)
 		return TRUE
 	for(var/atom/A in F)

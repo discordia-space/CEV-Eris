@@ -348,7 +348,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat)
+	var/mob/M = usr
+	if(ismob(M) && M.incapacitated())
 		return
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
