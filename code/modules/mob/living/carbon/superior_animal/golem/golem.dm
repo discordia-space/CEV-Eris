@@ -85,7 +85,7 @@
 /mob/living/carbon/superior_animal/golem/getarmor(def_zone, type)
 	return vars[type]
 
-/mob/living/carbon/superior_animal/golem/death(var/gibbed, var/message = deathmessage)
+/mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
 	. = ..()
 
 	// Spawn ores
