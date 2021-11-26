@@ -13,6 +13,6 @@
 /obj/item/organ/internal/blood_vessel/extensive
 	name = "extensive blood vessels"
 	icon_state = "blood_vessel_extensive"
-	desc = "The bigger the better, right?"
+	desc = "Now you bleed out twice as fast!"
 	organ_efficiency = list(OP_BLOOD_VESSEL = 150)
 	specific_organ_size = 0.6

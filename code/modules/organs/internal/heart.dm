@@ -20,7 +20,7 @@
 	return owner.pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
 
 /obj/item/organ/internal/heart/huge
-	name = "huge heart"
+	name = "five chamber heart"
 	icon_state = "heart_huge"
 	desc = "Can\'t pump the brakes now!"
 	organ_efficiency = list(OP_HEART = 150)
