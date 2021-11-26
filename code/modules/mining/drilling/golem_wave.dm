@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_count = 2
 	burrow_interval = 15 SECONDS
 	golem_spawn = 2
-	spawn_interval = 8 SECONDS
+	spawn_interval = 12 SECONDS
 	special_interval = 0
 	mineral_multiplier = 1.0
 
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_count = 3
 	burrow_interval = 15 SECONDS
 	golem_spawn = 2
-	spawn_interval = 8 SECONDS
+	spawn_interval = 12 SECONDS
 	special_interval = 4
 	mineral_multiplier = 1.1
 
@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_count = 3
 	burrow_interval = 12 SECONDS
 	golem_spawn = 3
-	spawn_interval = 7 SECONDS
+	spawn_interval = 9 SECONDS
 	special_interval = 3
 	mineral_multiplier = 1.2
 
@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_count = 4
 	burrow_interval = 12 SECONDS
 	golem_spawn = 3
-	spawn_interval = 7 SECONDS
+	spawn_interval = 9 SECONDS
 	special_interval = 3
 	mineral_multiplier = 1.35
 
@@ -59,8 +59,8 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 
 /datum/golem_wave/abnormal
 	burrow_count = 7
-	burrow_interval = 8 SECONDS
+	burrow_interval = 9 SECONDS
 	golem_spawn = 4
-	spawn_interval = 5 SECONDS
+	spawn_interval = 6 SECONDS
 	special_interval = 2
 	mineral_multiplier = 2.0

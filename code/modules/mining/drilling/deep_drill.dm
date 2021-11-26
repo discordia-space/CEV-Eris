@@ -1,4 +1,5 @@
 #define RADIUS 7
+#define DRILL_COOLDOWN 1 MINUTE
 
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
@@ -13,6 +14,7 @@
 	var/active = FALSE
 	var/list/resource_field = list()
 	var/datum/golem_controller/GC
+	var/last_use = 0.0
 
 	var/ore_types = list(
 		MATERIAL_IRON = /obj/item/ore/iron,
@@ -220,12 +222,15 @@
 			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
 		else if(!active && check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+		else if(world.time - last_use < DRILL_COOLDOWN)
+			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
 		else if(use_cell_power())
 			active = !active
 			if(active)
 				var/turf/simulated/T = get_turf(loc)
 				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
+				last_use = world.time
 				need_update_field = TRUE
 			else
 				GC.stop()
@@ -359,3 +364,6 @@
 		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
 		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
+
+#undef RADIUS
+#undef DRILL_COOLDOWN
