@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscdel: Removed flash resistant medhud from medspec locker
+  - tweak: Medspecs now directly spawn with their flash resistant medhud
