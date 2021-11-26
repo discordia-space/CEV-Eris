@@ -90,7 +90,6 @@
 	name = ".35 Auto HV SL"
 	desc = "Contains 2 standard .35 Auto speed loaders, loaded with high-velocity ammunition. Can fit 6 bullets."
 	item_cost = 2
-
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/slpistol/hv
 
