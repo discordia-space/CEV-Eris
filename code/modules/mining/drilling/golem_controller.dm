@@ -27,7 +27,7 @@
 	DD = null
 	for(var/obj/structure/golem_burrow/GB in burrows)  // Unlink burrows and controller
 		GB.stop()
-	. = ..()
+	..()
 
 /datum/golem_controller/Process()
 	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
