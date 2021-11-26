@@ -19,7 +19,7 @@
 	if(controller)
 		controller.burrows -= src
 		controller = null
-	. = ..()
+	..()
 
 /obj/structure/golem_burrow/attack_generic(mob/user, damage)
 	user.do_attack_animation(src)
