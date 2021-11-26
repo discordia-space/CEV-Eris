@@ -307,7 +307,7 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/mining/deep_drill/attack_generic(mob/user, var/damage)
+/obj/machinery/mining/deep_drill/attack_generic(mob/user, damage)
 	user.do_attack_animation(src)
 	visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
 	take_damage(damage)
