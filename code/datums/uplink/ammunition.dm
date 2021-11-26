@@ -106,7 +106,7 @@
 	desc = "Contains 2 .40 magnum HV speed loaders, loaded with high velocity ammunition. Can fit 6 bullets."
 	item_cost = 4
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/ammo_magazine/slmagnum/highvelocity
+	path = /obj/item/storage/box/syndie_kit/slmagnum/highvelocity
 
 
 /////.20 . 25 .30 Rifles/////
