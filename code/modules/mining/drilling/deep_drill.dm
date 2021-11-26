@@ -267,7 +267,7 @@
 			radius = RADIUS + P.rating
 	cell = locate(/obj/item/cell/large) in component_parts
 
-/obj/machinery/mining/deep_drill/proc/system_error(var/error)
+/obj/machinery/mining/deep_drill/proc/system_error(error)
 
 	if(error)
 		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
