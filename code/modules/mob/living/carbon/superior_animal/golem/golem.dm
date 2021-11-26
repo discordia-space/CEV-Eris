@@ -82,7 +82,7 @@
 	DD = null
 	. = ..()
 
-/mob/living/carbon/superior_animal/golem/getarmor(var/def_zone, var/type)
+/mob/living/carbon/superior_animal/golem/getarmor(def_zone, type)
 	return vars[type]
 
 /mob/living/carbon/superior_animal/golem/death(var/gibbed, var/message = deathmessage)
