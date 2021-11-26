@@ -469,7 +469,6 @@
 	name = "striped maska helmet"
 	desc = "Someone has painted a Maska in the Gopnik style"
 	icon_state = "altyn_tripoloski"
-	style = STYLE_HIGH
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
