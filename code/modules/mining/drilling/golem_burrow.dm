@@ -11,7 +11,7 @@
 	var/datum/golem_controller/controller 
 
 /obj/structure/golem_burrow/New(loc, parent)
-	. = ..()
+	..()
 	controller = parent  // Link burrow with golem controller
 
 /obj/structure/golem_burrow/Destroy()
