@@ -467,7 +467,7 @@
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 	name = "striped maska helmet"
-	desc = "Someone has painted a Maska in the Gopnik style"
+	desc = "Someone has painted a Maska in the Gopnik style."
 	icon_state = "altyn_tripoloski"
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
