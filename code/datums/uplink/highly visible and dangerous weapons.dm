@@ -82,10 +82,7 @@
 	item_cost = 7
 	path = /obj/item/gun_upgrade/barrel/gauss
 
-/datum/uplink_item/item/visible_weapons/blender
-	name = "OR \"Bullet Blender\" barrel"
-	item_cost = 5
-	path = /obj/item/gun_upgrade/barrel/blender
+
 
 /datum/uplink_item/item/visible_weapons/psychic_lasercannon
 	name = "Prototype: psychic laser cannon"
