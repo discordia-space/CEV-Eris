@@ -11,7 +11,7 @@
 	var/time_burrow = 0  // Timestamp of last created burrow
 	var/time_spawn = 0  // Timestamp of last spawn wave
 
-/datum/golem_controller/New(var/turf/location, var/seismic, var/drill)
+/datum/golem_controller/New(turf/location, seismic, drill)
 	loc = location
 	var/path = GLOB.golem_waves[seismic]  // Retrieve which kind of wave it is depending on seismic activity
 	GW = new path()
