@@ -109,7 +109,6 @@
 	path = /obj/item/ammo_magazine/slmagnum/highvelocity
 
 
-
 /////.20 . 25 .30 Rifles/////
 
 /datum/uplink_item/item/ammo/srifle
