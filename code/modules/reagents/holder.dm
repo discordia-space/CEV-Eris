@@ -60,6 +60,7 @@
 		SSchemistry.active_holders -= src
 
 	for(var/datum/reagent/R in reagent_list)
+		R.holder = null
 		qdel(R)
 	reagent_list.Cut()
 	reagent_list = null
