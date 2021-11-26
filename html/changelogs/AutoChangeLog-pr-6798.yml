@@ -1,0 +1,5 @@
+author: Iglpigl
+delete-after: true
+changes:
+  - tweak: changed the amount of power to use the vapour mask fully from 500 units
+      to 200 units.
