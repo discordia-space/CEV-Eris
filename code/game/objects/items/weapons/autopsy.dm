@@ -48,16 +48,11 @@
 		var/datum/autopsy_data/W = O.autopsy_data[V]
 
 		if(!W.pretend_weapon)
-			/*
-			// the more hits, the more likely it is that we get the right weapon type
-			if(prob(50 + W.hits * 10 + W.damage))
-			*/
-
-			// Buffing this stuff up for now!
-			if(prob(min(20 + (user.stats.getMult(STAT_BIO, STAT_LEVEL_EXPERT) * 100 ), 100)))
-				W.pretend_weapon = W.weapon
-			else
+			// 5% chance for the device to bug out
+			if(prob(5))
 				W.pretend_weapon = pick("mechanical toolbox", "wirecutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
+			else
+				W.pretend_weapon = W.weapon
 
 
 		var/datum/autopsy_data_scanner/D = wdata[V]
@@ -189,7 +184,7 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		to_chat(user, SPAN_NOTICE("A new patient has been registered.. Purging data for previous patient."))
+		to_chat(user, SPAN_NOTICE("A new patient has been registered. Purging data for previous patient."))
 
 	src.timeofdeath = M.timeofdeath
 
