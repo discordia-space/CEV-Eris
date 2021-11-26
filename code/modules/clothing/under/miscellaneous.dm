@@ -342,6 +342,14 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/storage/tracksuit
+	name = "striped tracksuit"
+	desc = "A classic style for hoodlums and bandits"
+	icon_state = "tracksuit"
+	item_state = "tracksuit"
+	style = STYLE_HIGH
+	price_tag = 300
+
 /obj/item/clothing/under/raider
 	name = "leather outfit"
 	desc = "A rather resistant, generic leather outfit. Smells like waste"
@@ -357,6 +365,8 @@ obj/item/clothing/under/genericr
 		bio = 0,
 		rad = 0
 	)
+
+
 
 
 //Adminbus versions with extremly high armor, should never spawn in game
