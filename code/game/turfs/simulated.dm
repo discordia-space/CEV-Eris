@@ -6,6 +6,7 @@
 	//Mining resources (for the large drills).
 	var/has_resources
 	var/list/resources
+	var/seismic_activity = 1  // SEISMIC_MIN
 
 	var/thermite = 0
 	oxygen = MOLES_O2STANDARD
