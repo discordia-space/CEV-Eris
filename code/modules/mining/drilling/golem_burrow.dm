@@ -10,7 +10,7 @@
 	var/health = 50
 	var/datum/golem_controller/controller 
 
-/obj/structure/golem_burrow/New(var/loc, var/parent)
+/obj/structure/golem_burrow/New(loc, parent)
 	. = ..()
 	controller = parent  // Link burrow with golem controller
 
