@@ -226,7 +226,7 @@
 				var/turf/simulated/T = get_turf(loc)
 				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
-				need_update_field = 1
+				need_update_field = TRUE
 			else
 				GC.stop()
 				GC = null
