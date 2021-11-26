@@ -98,7 +98,6 @@
 	name = ".40 magnum SL box"
 	desc = "Contains 2 .40 magnum speed loaders, loaded with lethal ammunition. Can fit 6 bullets."
 	item_cost = 1
-
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/slmagnum
 
