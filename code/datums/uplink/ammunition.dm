@@ -105,7 +105,6 @@
 	name = ".40 magnum HV SL box"
 	desc = "Contains 2 .40 magnum HV speed loaders, loaded with high velocity ammunition. Can fit 6 bullets."
 	item_cost = 4
-
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/slmagnum/highvelocity
 
