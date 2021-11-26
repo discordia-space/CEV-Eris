@@ -307,7 +307,7 @@ ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_restrictions, R_ADMIN, FALSE)
 /*
 If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
-Traitors and the like can also be revived with the previous role mostly intact.
+Contractors and the like can also be revived with the previous role mostly intact.
 /N */
 ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 /client/proc/respawn_character()

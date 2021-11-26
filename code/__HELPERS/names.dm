@@ -118,8 +118,8 @@ var/syndicate_name = null
 
 
 //Contractors and contractor silicons will get these. Revs will not.
-var/syndicate_code_phrase//Code phrase for traitors.
-var/syndicate_code_response//Code response for traitors.
+var/syndicate_code_phrase//Code phrase for contractors.
+var/syndicate_code_response//Code response for contractors.
 
 	/*
 	Should be expanded.

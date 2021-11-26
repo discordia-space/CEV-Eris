@@ -12,9 +12,9 @@
 /datum/uplink_item/abstract/announcements/announce
 	name = "Shipwide Announcement"
 	item_cost = 1
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	desc = "Broadcasts a message anonymously to the entire vessel. Triggers immediately after supplying additional data."
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/announce/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
@@ -27,7 +27,7 @@
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
 	item_cost = 6
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/New()
 	..()
@@ -86,7 +86,7 @@
 	name = "Ion Storm Announcement"
 	desc = "Interferes with the ship's ion sensors. Triggers immediately upon investment."
 	item_cost = 2
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/device/uplink/U, var/loc)
 	ion_storm_announcement()
@@ -96,7 +96,7 @@
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the ship's radiation sensors. Triggers immediately upon investment."
 	item_cost = 4
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)
@@ -107,7 +107,7 @@
 	name = "Unknown ship Announcement"
 	desc = "Interferes with the ship's array sensors. Triggers immediately upon investment."
 	item_cost = 3
-	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
 	var/datum/shuttle/autodock/multi/antag/mercenary/merc = /datum/shuttle/autodock/multi/antag/mercenary

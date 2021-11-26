@@ -925,10 +925,10 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_atom, R_DEBUG, FALSE)
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
 //interface which shows a mob's mind
-/datum/admins/proc/show_traitor_panel(var/mob/M in SSmobs.mob_list)
+/datum/admins/proc/show_contractor_panel(var/mob/M in SSmobs.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
+	set name = "Show Contractor Panel"
 
 	if(!istype(M))
 		to_chat(usr, "This can only be used on instances of type /mob")
@@ -1130,7 +1130,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/force_mode_latespawn, R_ADMIN, FALSE)
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"
-	set desc = "Force autotraitor to proc."
+	set desc = "Force autocontractor to proc."
 
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
