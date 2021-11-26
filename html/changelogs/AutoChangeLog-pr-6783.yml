@@ -1,0 +1,6 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Mining overhaul part 1
+  - rscadd: Add possibility to give sharp and edge properties to superior animals'
+      attack
