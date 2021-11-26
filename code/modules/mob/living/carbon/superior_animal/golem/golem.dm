@@ -80,7 +80,7 @@
 
 /mob/living/carbon/superior_animal/golem/Destroy()
 	DD = null
-	. = ..()
+	..()
 
 /mob/living/carbon/superior_animal/golem/getarmor(def_zone, type)
 	return vars[type]
