@@ -208,7 +208,7 @@
 		return
 	else if(need_player_check)
 		to_chat(user, "You hit the manual override and reset the drill's error checking.")
-		need_player_check = 0
+		need_player_check = FALSE
 		if(anchored)
 			get_resource_field()
 		update_icon()
