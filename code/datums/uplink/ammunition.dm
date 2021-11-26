@@ -86,7 +86,6 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/slpistol
 
-
 /datum/uplink_item/item/ammo/slpistol/highvelocity
 	name = ".35 Auto HV SL"
 	desc = "Contains 2 standard .35 Auto speed loaders, loaded with high-velocity ammunition. Can fit 6 bullets."
