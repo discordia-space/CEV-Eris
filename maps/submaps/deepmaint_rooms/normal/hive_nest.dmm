@@ -258,7 +258,7 @@
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "Y" = (
-/obj/item/trash/syndi_cakes,
+/obj/item/trash/wok,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "Z" = (

@@ -370,7 +370,7 @@
 	name = "mech gun electrical component"
 	desc = "An electrical component for exosuit energy guns."
 	icon_state = "m_st"
-	maxcharge = 1000
+	maxcharge = 700
 	bad_type = /obj/item/cell/medium/mech
 	matter = list()
 	spawn_blacklisted = TRUE
