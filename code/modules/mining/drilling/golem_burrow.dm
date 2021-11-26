@@ -42,8 +42,8 @@
 
 /obj/structure/golem_burrow/bullet_act(obj/item/projectile/Proj)
 	..()
-	var/damage = Proj.get_structure_damage() * 0.25  // Bullet not really efficient against a pile of rock
-	take_damage(damage)
+        // Bullet not really efficient against a pile of rock
+	take_damage(Proj.get_structure_damage() * 0.25)
 
 /obj/structure/golem_burrow/proc/take_damage(value)
 	health = min(max(health - value, 0), max_health)
