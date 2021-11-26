@@ -344,7 +344,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/storage/tracksuit
 	name = "striped tracksuit"
-	desc = "A classic style for hoodlums and bandits"
+	desc = "A classic style for hoodlums and bandits."
 	icon_state = "tracksuit"
 	item_state = "tracksuit"
 	style = STYLE_HIGH
