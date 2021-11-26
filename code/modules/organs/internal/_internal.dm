@@ -55,7 +55,7 @@
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
 
-/obj/item/organ/internal/proc/get_process_eficiency(process_define)
+/obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
 
 /obj/item/organ/internal/take_damage(amount, silent)	//Deals damage to the organ itself
