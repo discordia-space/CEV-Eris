@@ -70,7 +70,7 @@
 	// The ennemy of all golemkind
 	var/obj/machinery/mining/deep_drill/DD
 
-/mob/living/carbon/superior_animal/golem/New(var/loc, var/obj/machinery/mining/deep_drill/drill)
+/mob/living/carbon/superior_animal/golem/New(loc, obj/machinery/mining/deep_drill/drill)
 	..()
 	if(drill)
 		DD = drill
