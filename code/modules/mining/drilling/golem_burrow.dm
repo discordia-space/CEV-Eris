@@ -28,7 +28,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
 /obj/structure/golem_burrow/attackby(obj/item/I, mob/user)
-	if (usr.a_intent == I_HURT && user.Adjacent(src))
+	if (user.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
 			var/damage = I.force * I.structure_damage_factor
