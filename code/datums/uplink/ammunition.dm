@@ -75,7 +75,6 @@
 	desc = "SMG .40 magazine, loaded with high velocity ammunition. Can fit 25 bullets."
 	item_cost = 5
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-
 	path = /obj/item/ammo_magazine/msmg/hv
 
 ///// .35 and .40 revolvers////
