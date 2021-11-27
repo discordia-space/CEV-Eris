@@ -51,7 +51,7 @@
 			T.resources[MATERIAL_GLASS] = rand(7,12)
 			T.resources[MATERIAL_PLASTIC] = rand(7,12)
 
-			T.seismic_activity = rand(SEISMIC_MIN, SEISMIC_MAX)
+			T.seismic_activity = rand(1, 6)
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.

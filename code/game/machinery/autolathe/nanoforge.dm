@@ -30,6 +30,7 @@
 	MATERIAL_CARDBOARD = 0.1,
 	MATERIAL_RGLASS = 0.4,
 	MATERIAL_LEATHER = 0.1,
+	)
 
 	mat_efficiency = 0.6 // 40% more efficient than normal autolathes
 	storage_capacity = 240
