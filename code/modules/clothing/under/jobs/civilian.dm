@@ -10,12 +10,14 @@
 	name = "bartender's uniform"
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
+	style = STYLE_HIGH
 
 /obj/item/clothing/under/rank/bartender/skirt
 	desc = "Expensive shirt and tie with a tailored skirt."
 	name = "bartender's skirtsuit"
 	icon_state = "ba_skirt"
 	item_state = "ba_skirt"
+	style = STYLE_HIGH
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a red jumpsuit with some gold markings denoting the rank of \"Captain\"."
@@ -72,6 +74,7 @@
 	desc = "<i>'HONK!'</i>"
 	icon_state = "clown"
 	item_state = "clown"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/rank/first_officer
 	desc = "It's a jumpsuit worn by someone who works in the position of \"First Officer\"."
@@ -106,12 +109,14 @@
 	desc = "It's very... sensible."
 	icon_state = "red_suit"
 	item_state = "lawyer_red"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/mime
 	name = "mime's outfit"
 	desc = "It's not very colourful."
 	icon_state = "mime"
 	item_state = "ba_suit"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/rank/miner
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."

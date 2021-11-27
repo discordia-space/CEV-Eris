@@ -16,12 +16,14 @@
 	desc = "It's a very smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 	item_state = "waiter"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/waiter/skirt
 	name = "waiter's skirtsuit"
 	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
 	icon_state = "waiter_skirt"
 	item_state = "waiter_skirt"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
@@ -56,6 +58,7 @@
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
 	item_state = "bl_suit"
+	style = STYLE_HIGH
 
 
 /obj/item/clothing/under/suit_jacket/red
@@ -63,6 +66,7 @@
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
 	item_state = "r_suit"
+	style = STYLE_LOW
 
 
 /obj/item/clothing/under/blackskirt
@@ -72,6 +76,7 @@
 	item_state = "bl_suit"
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	style = STYLE_HIGH
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
@@ -92,6 +97,7 @@
 	icon_state = "pirate"
 	//item_state = "sl_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	style = STYLE_LOW
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -106,6 +112,7 @@
 	item_state = "kilt"
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	style = STYLE_LOW
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
@@ -121,6 +128,7 @@
 	icon_state = "bride_white"
 	item_state = "nursesuit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	style = STYLE_LOW
 
 
 /obj/item/clothing/under/captainformal
@@ -128,6 +136,7 @@
 	desc = "A captain's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state = "b_suit"
+	style = STYLE_HIGH
 
 
 /obj/item/clothing/under/assistantformal
@@ -135,6 +144,7 @@
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
+	style = STYLE_HIGH
 
 
 /obj/item/clothing/under/serviceoveralls
@@ -149,30 +159,35 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/dress/gray
 	name = "gray summerdress"
 	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
 	icon_state = "summerdress"
 	item_state = "summerdress"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/dress/blue
 	name = "blue summerdress"
 	desc = "a blue dress worn by mostly those of east asian descendance"
 	icon_state = "summerdress2"
 	item_state = "summerdress2"
+	style = STYLE_LOW
 
 /obj/item/clothing/under/dress/red
 	name = "red summerdress"
 	desc = "A red dress worn mostly by those of east asian descendance."
 	icon_state = "summerdress3"
 	item_state = "summerdress3"
+	style = STYLE_LOW
 
 obj/item/clothing/under/leisure
 	name = "leisure outfit"
 	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
 	icon_state = "leisureoutfit"
 	item_state = "leisureoutfit"
+	style = STYLE_LOW
 
 obj/item/clothing/under/leisure/white
 	name = "white blouse"
@@ -227,6 +242,7 @@ obj/item/clothing/under/netrunner
 	desc = "Jumpsuit favored by surveillance officers and VR gamers alike. Ugly as sin. Luckily, in cyberspace no one can see your realspace clothing."
 	icon_state = "jensen"
 	item_state = "jensen"
+	style = STYLE_NEG_HIGH
 
 obj/item/clothing/under/genericb
 	name = "blue generic outfit"

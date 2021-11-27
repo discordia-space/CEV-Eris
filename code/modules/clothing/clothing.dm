@@ -312,6 +312,7 @@ BLIND     // can't see anything
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
 	bad_type = /obj/item/clothing/glasses
+	style = STYLE_LOW
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -332,6 +333,7 @@ BLIND     // can't see anything
 	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
+	style = STYLE_LOW
 	var/wired = 0
 	var/clipped = 0
 
@@ -432,6 +434,7 @@ BLIND     // can't see anything
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
+	style = STYLE_LOW
 	force = 2
 
 	var/can_hold_knife = 0

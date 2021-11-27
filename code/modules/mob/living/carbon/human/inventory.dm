@@ -424,8 +424,46 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
-	for(var/obj/item/clothing/C in get_equipped_items())
-		style_factor += C.get_style()
+	var/suit_coverage = 0 // what a suit blocks from view
+	var/head_coverage = 0 // what a helmet or mask blocks from view
+	if (istype(wear_suit, /obj/item/clothing/suit))
+		var/obj/item/clothing/suit/worn_suit = wear_suit // that I have to define this is a bit silly, but I'm not touching that oldcode.
+		suit_coverage = worn_suit.flags_inv
+		style_factor += worn_suit.get_style()
+	if (istype(head, /obj/item/clothing/head))
+		var/obj/item/clothing/suit/worn_hat = head
+		head_coverage = worn_hat.flags_inv
+		style_factor += worn_hat.get_style()
+	if (!(head_coverage & HIDEMASK) && istype(wear_mask, /obj/item/clothing/mask)) // is it hidden, and if not is it a mask?
+		var/obj/item/clothing/mask/worn_mask = wear_mask
+		head_coverage |= worn_mask.flags_inv
+		style_factor += worn_mask.get_style()
+	if (!(head_coverage & HIDEEARS))
+		if (istype(l_ear, /obj/item/clothing/ears) && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
+			var/obj/item/clothing/worn_ear = l_ear
+			style_factor += worn_ear.get_style()
+		if (istype(r_ear, /obj/item/clothing/ears) && !istype(r_ear, /obj/item/clothing/ears/offear))
+			var/obj/item/clothing/worn_ear = r_ear
+			style_factor += worn_ear.get_style()
+	if (!(head_coverage & HIDEEYES) && istype(glasses, /obj/item/clothing))
+		var/obj/item/clothing/worn_glasses = glasses
+		style_factor += worn_glasses.get_style()
+	if (!(suit_coverage & HIDEGLOVES) && istype(gloves, /obj/item/clothing))
+		var/obj/item/clothing/worn_gloves = gloves
+		style_factor += worn_gloves.get_style()
+	if (!(suit_coverage & HIDEJUMPSUIT) && istype(w_uniform, /obj/item/clothing))
+		var/obj/item/clothing/worn_jumpsuit = w_uniform
+		style_factor += worn_jumpsuit.get_style()
+	if (!(suit_coverage & HIDESHOES) && istype(shoes, /obj/item/clothing))
+		var/obj/item/clothing/worn_shoes = shoes
+		style_factor += worn_shoes.get_style()
+	if (istype(back, /obj/item/clothing))
+		var/obj/item/clothing/worn_back = back
+		style_factor += worn_back.get_style()
+	if (istype(belt, /obj/item/clothing))
+		var/obj/item/clothing/worn_belt = belt
+		style_factor += worn_belt.get_style()
+
 	if(restrained())
 		style_factor -= 1
 	if(feet_blood_DNA)
@@ -440,9 +478,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/get_style_factor()
 	var/style_factor = 1
-	var/actual_style = get_total_style()
-	if(actual_style >= 0)
-		style_factor += STYLE_MODIFIER * actual_style/MAX_HUMAN_STYLE
+	style = get_total_style()
+	if(style >= 0)
+		style_factor += STYLE_MODIFIER * style/MAX_HUMAN_STYLE
 	else
-		style_factor -= STYLE_MODIFIER * actual_style/MIN_HUMAN_STYLE
+		style_factor -= STYLE_MODIFIER * style/MIN_HUMAN_STYLE
 	return style_factor

@@ -49,7 +49,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -97,7 +97,7 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 	var/list/options = list()
@@ -118,13 +118,14 @@
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -158,6 +159,7 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"

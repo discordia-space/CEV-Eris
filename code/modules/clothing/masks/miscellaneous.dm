@@ -70,6 +70,7 @@
 		rad = 0
 	)
 	price_tag = 150
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/thief/New()
 	..()
@@ -137,6 +138,7 @@
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	price_tag = 50
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/scarf/stripedblue
 	name = "striped blue scarf"
@@ -284,6 +286,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)

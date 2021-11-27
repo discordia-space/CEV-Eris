@@ -9,6 +9,15 @@ meteor_act
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
+	if (slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+		visible_message(SPAN_WARNING("[src] dodges [P]!"))
+		slickness -= P.style_damage
+		dodge_time = get_game_time()
+		confidence = FALSE
+		return PROJECTILE_FORCE_MISS // src dodged.
+	else
+		dodge_time = get_game_time()
+		confidence = FALSE
 	def_zone = check_zone(def_zone)
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
@@ -320,6 +329,16 @@ meteor_act
 					visible_message(SPAN_WARNING("[src] catches [O]!"))
 					throw_mode_off()
 					return
+
+		if (slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+			visible_message(SPAN_WARNING("[src] dodges [O]!"))
+			slickness -= O.style_damage
+			dodge_time = get_game_time()
+			confidence = FALSE
+			return
+		else
+			dodge_time = get_game_time()
+			confidence = FALSE
 
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce * (speed / THROWFORCE_SPEED_DIVISOR)
