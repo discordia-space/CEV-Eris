@@ -1347,7 +1347,7 @@
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 15
 
-	glass_icon_state = "wineglass"
+	glass_icon_state = "wineglassdrink"
 	glass_name = "wine"
 	glass_desc = "A very classy looking drink."
 	glass_center_of_mass = list("x"=15, "y"=7)
