@@ -303,6 +303,7 @@
 #include "code\datums\components\clothing_sanity_protection.dm"
 #include "code\datums\components\fabric.dm"
 #include "code\datums\craft\crafting_items.dm"
+#include "code\datums\craft\gun_parts.dm"
 #include "code\datums\craft\item.dm"
 #include "code\datums\craft\menu.dm"
 #include "code\datums\craft\recipe.dm"
