@@ -27,8 +27,6 @@
 		FULL_AUTO_800
 		)
 
-	wield_delay = 0.1 SECOND
-	wield_delay_factor = 0.05 // 5 vig
 
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

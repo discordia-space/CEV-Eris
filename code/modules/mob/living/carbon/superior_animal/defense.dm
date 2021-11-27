@@ -176,6 +176,7 @@
 
 /mob/living/carbon/superior_animal/adjustBruteLoss(var/amount)
 	. = ..()
+	reagr_new_targets()
 	if (overkill_gib && (amount >= overkill_gib) && (getBruteLoss() >= maxHealth*2))
 		if (bodytemperature > T0C)
 			gib()
@@ -184,6 +185,11 @@
 	. = ..()
 	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
+
+/mob/living/carbon/superior_animal/proc/reagr_new_targets(reagr_radius = 1)
+	var/target = findTarget()
+	for(var/mob/living/carbon/superior_animal/SA in view(reagr_radius))
+		SA.target_mob = target
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss

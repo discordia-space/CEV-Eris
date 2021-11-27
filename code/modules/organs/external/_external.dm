@@ -335,8 +335,9 @@
 		. += 0.5
 
 	var/muscle_eff = owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
-	muscle_eff = muscle_eff - (muscle_eff/(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag)/100)) //Need more nerves to control those new muscles
-	. += max(-(muscle_eff/ 100)/4, MAX_MUSCLE_SPEED)
+	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag),1)
+	muscle_eff = (muscle_eff/100) - (muscle_eff/nerve_eff) //Need more nerves to control those new muscles
+	. += max(-(muscle_eff), MAX_MUSCLE_SPEED)
 
 	. += tally
 
