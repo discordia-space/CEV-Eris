@@ -77,10 +77,10 @@
 	material = MATERIAL_DIAMOND
 	rarity_value = 100
 
-/obj/item/ore/osmium
-	name = "raw platinum"
+/obj/item/ore/titanium_ore
+	name = "raw titanium"
 	icon_state = "ore_platinum"
-	material = MATERIAL_PLATINUM
+	material = MATERIAL_TITANIUM
 	rarity_value = 50
 
 /obj/item/ore/hydrogen

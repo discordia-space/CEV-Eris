@@ -68,7 +68,7 @@
 		if(63 to 64)
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
-				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium, /obj/item/coin/platinum)
+				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium, /obj/item/coin/titanium)
 				new newcoin(src)
 		if(65 to 68)
 			var/t = rand(4,7)

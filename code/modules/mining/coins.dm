@@ -41,8 +41,8 @@
 	name = COIN_URANIUM
 	icon_state = "coin_uranium"
 
-/obj/item/coin/platinum
-	name = COIN_PLATINUM
+/obj/item/coin/titanium
+	name = COIN_TITANIUM
 	icon_state = "coin_adamantine"
 
 /obj/item/coin/attackby(obj/item/W as obj, mob/user as mob)

@@ -61,7 +61,7 @@
 	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_TITANIUM = 5, MATERIAL_DIAMOND = 5)
 	tool_qualities = list(QUALITY_HAMMERING = 50)
 	degradation = 0.6
 	use_power_cost = 1.5

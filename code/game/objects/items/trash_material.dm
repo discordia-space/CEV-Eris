@@ -29,7 +29,7 @@
 		list(MATERIAL_STEEL, 10, 20),
 		list(MATERIAL_PLASTEEL, 10, 5),
 		list(MATERIAL_PLASTEEL, 5, 10),
-		list(MATERIAL_PLATINUM, 4, 2),
+		list(MATERIAL_TITANIUM, 4, 2),
 	)
 
 /obj/item/trash/material/metal/Initialize()

@@ -82,7 +82,7 @@
 	desc = "An old and legendary One Star welding tool. Very powerful and reliable, but its compact design causes it to suffer from a lack of both fuel storage and efficiency."
 	icon_state = "one_star_welder"
 	item_state = "welder"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_TITANIUM = 2)
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3)
 	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	glow_color = COLOR_RED_LIGHT

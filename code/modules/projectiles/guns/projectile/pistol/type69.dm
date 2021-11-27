@@ -9,7 +9,7 @@
     load_method = MAGAZINE
     mag_well = MAG_WELL_PISTOL
     magazine_type = /obj/item/ammo_magazine/magnum
-    matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
+    matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_TITANIUM = 8, MATERIAL_PLASTIC = 4)
     can_dual = TRUE
     slot_flags = SLOT_BELT|SLOT_HOLSTER
     one_hand_penalty = 10 //a bit more than smg level

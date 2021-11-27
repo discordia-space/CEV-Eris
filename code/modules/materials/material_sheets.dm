@@ -191,13 +191,13 @@
 	rarity_value = 45
 
 //Valuable resource, cargo can sell it.
-/obj/item/stack/material/platinum
-	name = "platinum"
+/obj/item/stack/material/titanium
+	name = "titanium"
 	icon_state = "sheet-adamantine"
-	default_type = MATERIAL_PLATINUM
+	default_type = MATERIAL_TITANIUM
 	price_tag = 80
 
-/obj/item/stack/material/platinum/random
+/obj/item/stack/material/titanium/random
 	rand_min = 1
 	rand_max = 10
 	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE

@@ -109,7 +109,7 @@
 #define COIN_IRON "Iron coin"
 #define COIN_PLASMA "Solid plasma coin"
 #define COIN_URANIUM "Uranium coin"
-#define COIN_PLATINUM "Platunum coin"
+#define COIN_TITANIUM "Titanium coin"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

@@ -12,7 +12,7 @@
 	magazine_type = /obj/item/ammo_magazine/ihclrifle
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_TITANIUM = 4, MATERIAL_PLASTIC = 12)
 	price_tag = 2800
 	recoil_buildup = 2
 	penetration_multiplier = 1.5

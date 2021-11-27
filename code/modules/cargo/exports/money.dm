@@ -32,7 +32,7 @@
 			price = 180
 		if(COIN_PLASMA)
 			price = 220
-		if(COIN_PLATINUM)
+		if(COIN_TITANIUM)
 			price = 300
 		if(COIN_DIAMOND)
 			price = 350

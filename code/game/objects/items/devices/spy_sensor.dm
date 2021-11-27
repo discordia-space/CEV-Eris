@@ -2,7 +2,7 @@
 	name = "spying sensor"
 	icon_state = "motion0" //placeholder
 	origin_tech = list(TECH_MAGNET = 5, TECH_COVERT = 2)
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_TITANIUM = 2)
 	var/active = FALSE
 	var/datum/mind/owner
 	var/list/obj/item/device/spy_sensor/group

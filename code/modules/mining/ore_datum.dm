@@ -115,10 +115,10 @@ var/global/list/ore_data = list()
 	scan_icon = "mineral_rare"
 	xarch_source_mineral = "nitrogen"
 
-/ore/platinum
-	name = "platinum"
-	display_name = "raw platinum"
-	smelts_to = MATERIAL_PLATINUM
+/ore/titanium
+	name = "titanium"
+	display_name = "raw titanium"
+	smelts_to = MATERIAL_TITANIUM
 	compresses_to = "osmium"
 	alloy = 1
 	result_amount = 5

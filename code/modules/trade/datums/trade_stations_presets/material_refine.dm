@@ -23,7 +23,7 @@
 			/obj/item/stack/material/plasteel/full = good_data("plasteel sheets (x120)", list(-3, 5)),
 			/obj/item/stack/material/wood/full = good_data("wood planks (x120)", list(-3, 5)),
 			/obj/item/stack/material/glass/full = good_data("glass sheets (x120)", list(-3, 5)),
-			/obj/item/stack/material/platinum = good_data("platinum sheet (x1)", list(0, 3)),
+			/obj/item/stack/material/titanium = good_data("titanium sheet (x1)", list(0, 3)),
 			/obj/item/stack/material/mhydrogen = good_data("metallic hydrogen sheet (x1)", list(0, 4)),
 			/obj/item/stack/material/uranium = good_data("uranium sheet (x1)", list(0, 3)),
 			/obj/item/stack/material/diamond = good_data("diamond sheet (x1)", list(0, 3)),

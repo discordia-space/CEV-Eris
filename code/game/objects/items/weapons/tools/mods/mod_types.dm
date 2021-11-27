@@ -484,7 +484,7 @@
 	name = "Expanded fuel tank of holding"
 	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
 	icon_state = "canister_holding"
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_TITANIUM = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	spawn_blacklisted = TRUE
 
@@ -578,7 +578,7 @@
 	name = "aural dampener"
 	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations."
 	icon_state = "dampener"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_TITANIUM = 1)
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
@@ -597,7 +597,7 @@
 	desc = "A forgotten One Star tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_TITANIUM = 1)
 	spawn_blacklisted = TRUE
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
@@ -628,7 +628,7 @@
 	name = "repair nano"
 	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
 	icon_state = "repair_nano"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_TITANIUM = 1)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	spawn_blacklisted = TRUE
 

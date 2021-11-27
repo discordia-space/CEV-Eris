@@ -50,7 +50,7 @@
 	desc = "A standard One Star basic tool. There used energy technologies what makes it enough powerful and cheap at the same time."
 	icon_state = "one_star_pickaxe"
 	item_state = "pickaxe"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_DIAMOND = 2)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_TITANIUM = 2, MATERIAL_DIAMOND = 2)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
 	switched_on_force = WEAPON_FORCE_ROBUST
 	tool_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
@@ -86,7 +86,7 @@
 	desc = "A heavy One Star tool that cracks rocks with blasts, perfect for killing capitalist pigs."
 	icon_state = "one_star_jackhammer"
 	item_state = "jackhammer"
-	matter = list(MATERIAL_STEEL = 7, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 7, MATERIAL_TITANIUM = 2)
 	tool_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 35)
@@ -122,7 +122,7 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_DRILLING = 10)
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_TITANIUM = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.6
 	workspeed = 1.7

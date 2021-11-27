@@ -331,13 +331,13 @@
 	MATERIAL_PLASTEEL = 15,
 	MATERIAL_STEEL = 10,
 	MATERIAL_PLASTIC = 10,
-	MATERIAL_PLATINUM = 5
+	MATERIAL_TITANIUM = 5
 	)
 	armor = list(
 		melee = 40,
 		bullet = 40,
 		energy = 55,
-		bomb = 40, //platinum price justifies bloated stats
+		bomb = 40, //titaninum price justifies bloated stats
 		bio = 100,
 		rad = 75
 	)

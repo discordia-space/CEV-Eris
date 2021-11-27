@@ -29,7 +29,7 @@
 	desc = "Looks like a classic one, but more durable. Has more space for mods too."
 	icon_state = "one_star_crowbar"
 	item_state = "onestar_crowbar"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_TITANIUM = 1)
 	tool_qualities = list(QUALITY_PRYING = 25, QUALITY_DIGGING = 10)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_MATERIAL = 2)
 	degradation = 0.6
