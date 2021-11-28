@@ -165,41 +165,28 @@
 	update_icons()
 
 // Same as breath but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
-/mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
-	if(!(breath.total_moles))
-		if(min_air_pressure)
-			adjustBruteLoss(6)
-		if(breath_required_type)
-			adjustOxyLoss(6)
-		bad_environment = TRUE
-		return FALSE // in either cases , no breath poison type to handle
-	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
-	if(breath_required_type)
-		var/inhaling = breath.gas[breath_required_type]
-		var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
-		if(inhale_pp < min_breath_required_type)
-			adjustOxyLoss(6)
-			bad_environment = TRUE
-	if(breath_poison_type)
-		var/poison = breath.gas[breath_poison_type]
-		var/toxins_pp = (poison/breath.total_moles)*breath_pressure
-		if(toxins_pp > min_breath_poison_type)
-			adjustToxLoss(6)
 
-	return TRUE
+/mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	var/breath_required = breath_pressure > 15 && (breath_required_type || breath_poison_type)
+	if(breath_required) // 15 KPA Minimum
+		if(breath_required_type)
+			adjustOxyLoss(((breath.gas[breath_required_type] / breath.total_moles) * breath_pressure) < min_breath_required_type ? 0 : 6)
+		if(breath_poison_type)
+			adjustToxLoss(((breath.gas[breath_poison_type] / breath.total_moles) * breath_pressure) < min_breath_poison_type ? 0 : 6)
+
+#define SUPERIOR_ANIMAL_TRANSFER_COEFF 0.005
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_environment(datum/gas_mixture/environment as anything)
-	if((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature)) // its like this to avoid extra processing further below without using goto
-		bad_environment = TRUE
-		adjustFireLoss(15)
+	var/enviro_damage = (bodytemperature < min_bodytemperature) || (environment.return_pressure < min_air_pressure)
+	if(enviro_damage) // its like this to avoid extra processing further below without using goto
+		bodytemperature = max(1, (bodytemperature - environment.temperature) * (environment.return_pressure() > 5 ? 5 : environment_return_pressure) * SUPERIOR_ANIMAL_TRANSFER_COEFF)
+		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
 	if(istype(get_turf(src), /turf/space))
 		if(bodytemperature > 1)
 			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
 		if(min_air_pressure)
 			adjustBruteLoss(6)
-			bad_environment = TRUE
-		if(breath_required_type)
-			adjustOxyLoss(6)
 			bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
@@ -230,35 +217,25 @@
 		dust()
 		return FALSE
 
+// branchless isincapacited check made for roaches.
+/mob/living/carbon/superior_animal/proc/cheap_incapacitation_check() // This works based off constants ,override it if you want it to be dynamic . Based off isincapacited
+	. = stunned > 0 || weakened > 0 || resting || pinned.len > 0 || stat || paralysis || sleeping || (status_flags & FAKEDEATH) || buckled() > 0
 
 /mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
 
-	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
+	if(cheap_incapacitation_check())
+		lying = FALSE
 		canmove = TRUE //TODO: Remove this
-	else if(buckled)
-		anchored = TRUE
-		if(istype(buckled))
-			if(buckled.buckle_lying == -1)
-				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
-			else
-				lying = buckled.buckle_lying
-			if(buckled.buckle_movable)
-				anchored = FALSE
-		canmove = FALSE //TODO: Remove this
 	else
-		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 		canmove = FALSE //TODO: Remove this
-
+		if(buckled)
+			anchored = buckled.buckle_movable
+			lying = buckled.buckle_lying
 	if(lying)
 		set_density(FALSE)
 	else
 		canmove = TRUE
 		set_density(initial(density))
-	reset_layer()
-	if(update_icon)	//forces a full overlay update
-		update_icon = FALSE
-		regenerate_icons()
 
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
@@ -312,14 +289,11 @@
 
 	return TRUE
 
-// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked
+// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked, if checks removed
 /mob/living/carbon/superior_animal/handle_status_effects()
-	if(paralysis)
-		paralysis = max(paralysis-3,0)
-	if(stunned)
-		stunned = max(stunned-3,0)
-	if(weakened)
-		weakened = max(weakened-3,0)
+	paralysis = max(paralysis-3,0)
+	stunned = max(stunned-3,0)
+	weakened = max(weakened-3,0)
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
@@ -360,16 +334,19 @@
 
 /mob/living/carbon/superior_animal/Life()
 	ticks_processed++
-	handle_fire()
+	var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
+	/// Fire handling , not passing the whole list because thats unefficient.
+	handle_fire(environment.gas["oxygen"], loc)
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
 	if(!(ticks_processed%3))
-		handle_status_effects()
+		// handle_status_effects() this is handled here directly to save a bit on procedure calls
+		paralysis = max(paralysis-3,0)
+		stunned = max(stunned-3,0)
+		weakened = max(weakened-3,0)
 		cheap_update_lying_buckled_and_verb_status_()
-		var/datum/gas_mixture/breath = get_breath_from_environment()
-		if(breath)
-			handle_cheap_breath(breath)
-		var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
+		var/datum/gas_mixture/breath = environment.remove_volume(volume_needed)
+		handle_cheap_breath(breath)
 		handle_cheap_environment(environment)
 		updateicon()
 		ticks_processed = 0
