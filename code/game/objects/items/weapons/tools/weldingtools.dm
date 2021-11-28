@@ -27,6 +27,7 @@
 /obj/item/tool/weldingtool/turn_on(mob/user)
 	.=..()
 	if(.)
+		hitsound = 'sound/items/Welder.ogg'
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
