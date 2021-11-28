@@ -169,25 +169,20 @@
 /mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 	var/breath_required = breath_pressure > 15 && (breath_required_type || breath_poison_type)
-	if(breath_required) // 15 KPA Minimum
-		if(breath_required_type)
-			adjustOxyLoss(((breath.gas[breath_required_type] / breath.total_moles) * breath_pressure) < min_breath_required_type ? 0 : 6)
-		if(breath_poison_type)
-			adjustToxLoss(((breath.gas[breath_poison_type] / breath.total_moles) * breath_pressure) < min_breath_poison_type ? 0 : 6)
+	if(!breath_required) // 15 KPA Minimum
+		return FALSE
+	adjustOxyLoss(breath.gas[breath_required_type] ? 0 : ((((breath.gas[breath_required_type] / breath.total_moles) * breath_pressure) < min_breath_required_type) ? 0 : 6))
+	adjustToxLoss(breath.gas[breath_poison_type] ? 0 : ((((breath.gas[breath_poison_type] / breath.total_moles) * breath_pressure) < min_breath_poison_type) ? 0 : 6))
 
-#define SUPERIOR_ANIMAL_TRANSFER_COEFF 0.005
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_environment(datum/gas_mixture/environment as anything)
-	var/enviro_damage = (bodytemperature < min_bodytemperature) || (environment.return_pressure < min_air_pressure)
+	var/pressure = environment.return_pressure()
+	var/enviro_damage = (bodytemperature < min_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
-		bodytemperature = max(1, (bodytemperature - environment.temperature) * (environment.return_pressure() > 5 ? 5 : environment_return_pressure) * SUPERIOR_ANIMAL_TRANSFER_COEFF)
+		bodytemperature += max(1, (bodytemperature - environment.temperature) * environment.total_moles / MOLES_CELLSTANDARD * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection))
 		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
-	if(istype(get_turf(src), /turf/space))
-		if(bodytemperature > 1)
-			bodytemperature = max(1,bodytemperature - 30*(1-get_cold_protection(0)))
-		if(min_air_pressure)
-			adjustBruteLoss(6)
-			bad_environment = TRUE
+		adjustBruteLoss((pressure > min_air_pressure  || pressure < max_air_pressure) ? 0 : 6)
+		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
 	if (!contaminant_immunity)
@@ -195,23 +190,6 @@
 			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
 				pl_effects()
 				break
-
-	var/loc_temp = T0C
-	loc_temp = environment.temperature
-	var/pressure = environment.return_pressure()
-	if(pressure < min_air_pressure || pressure > max_air_pressure)
-		adjustBruteLoss(6)
-	//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-	var/temp_adj = 0
-	var/thermal_protection = 0
-	var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
-	if(loc_temp < bodytemperature) //Place is colder than we are
-		thermal_protection = get_cold_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
-		temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)//this will be negative
-	else if(loc_temp > bodytemperature) //Place is hotter than we are
-		thermal_protection = get_heat_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
-		temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
-	bodytemperature += between(BODYTEMP_COOLING_MAX, 3*temp_adj*relative_density, BODYTEMP_HEATING_MAX)*3 // Multiplied by 3 because of reduced frequency
 
 	if (overkill_dust && (getFireLoss() >= maxHealth*2))
 		dust()
@@ -345,7 +323,7 @@
 		stunned = max(stunned-3,0)
 		weakened = max(weakened-3,0)
 		cheap_update_lying_buckled_and_verb_status_()
-		var/datum/gas_mixture/breath = environment.remove_volume(volume_needed)
+		var/datum/gas_mixture/breath = environment.remove_volume()
 		handle_cheap_breath(breath)
 		handle_cheap_environment(environment)
 		updateicon()
