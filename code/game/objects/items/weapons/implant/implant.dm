@@ -66,6 +66,10 @@
 			to_chat(user, SPAN_WARNING("[src] cannot be implanted in this limb."))
 			return
 
+		if(is_carrion(user) && BP_IS_ROBOTIC(affected))
+			to_chat(user, SPAN_WARNING("[src] cannot be implanted in a prosthetic limb."))
+			return
+
 	if(!can_install(target, affected))
 		to_chat(user, SPAN_WARNING("You can't install [src]."))
 		return
