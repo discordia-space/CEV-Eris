@@ -7,6 +7,9 @@
 
 /obj/item/implant/carrion_spider/infection/activate()
 	..()
+	if(BP_IS_ROBOTIC(affected))
+		to_chat(user, SPAN_WARNING("[src] cannot be implanted in a prosthetic limb."))
+		return
 	if(!wearer)
 		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
 		return
