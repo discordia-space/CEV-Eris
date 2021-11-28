@@ -20,6 +20,7 @@
 	rarity_value = 16
 	damage_multiplier = 1
 	recoil_buildup = 2
+	gun_parts = list(/obj/item/part/gun/frame/clarissa = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
@@ -49,6 +50,15 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
+/obj/item/part/gun/frame/clarissa
+	name = "Clarissa frame"
+	desc = "A Clarissa pistol frame. Concealable yet anemic yet fast."
+	icon_state = "frame_clarissa"
+	result = /obj/item/gun/projectile/selfload
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/pistol
+
 /obj/item/gun/projectile/selfload/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
@@ -61,3 +71,14 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)
+		gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	
+
+/obj/item/part/gun/frame/makarov
+	name = "Makarov frame"
+	desc = "A Makarov pistol frame. Technology may have stagnated, but effectiveness hasn't."
+	icon_state = "frame_makarov"
+	result = /obj/item/gun/projectile/selfload/makarov
+	grip = /obj/item/part/gun/grip/excel
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/pistol

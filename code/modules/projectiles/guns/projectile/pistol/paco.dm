@@ -22,6 +22,7 @@
 	penetration_multiplier = 0.9
 	recoil_buildup = 3
 	gun_tags = list(GUN_SILENCABLE)
+	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
@@ -47,3 +48,12 @@
 /obj/item/gun/projectile/paco/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/paco
+	name = "Paco frame"
+	desc = "A Paco pistol frame. A reliable companion in the field."
+	icon_state = "frame_paco"
+	result = /obj/item/gun/projectile/paco
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/pistol
