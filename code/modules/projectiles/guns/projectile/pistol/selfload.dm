@@ -71,7 +71,7 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)
-		gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 	
 
 /obj/item/part/gun/frame/makarov

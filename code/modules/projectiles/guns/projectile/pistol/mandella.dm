@@ -21,7 +21,7 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.7
 	recoil_buildup = 2
-	gun_parts = gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/csrifle_silenced = 1)
+	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/csrifle_silenced = 1)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
