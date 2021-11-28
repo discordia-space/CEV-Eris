@@ -286,18 +286,83 @@
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
-	desc = "A case for holding your cigars when you are not smoking them."
+	desc = "A case for holding your cigars when you are not smoking them. Fancy!"
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
-	storage_slots = 7
+	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
 	icon_type = "cigar"
 	reagent_flags = REFILLABLE | NO_REACT
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/cigar
+	var/open = FALSE
+
+/obj/item/storage/fancy/cigar/proc/can_interact(mob/user)
+	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
+		return 1
+	if(istype(loc, /obj/item/storage))
+		return 2
+	return 0
+
+
+/obj/item/storage/fancy/cigar/verb/quick_open_close(mob/user)
+	set name = "Close cigar case"
+	set category = "Object"
+	set src in view(1)
+	if(!is_worn())
+		if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
+			return
+
+		open_close(user)
+	else
+		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+
+/obj/item/storage/fancy/cigar/AltClick(mob/user)
+	if(!is_worn())
+		var/able = can_interact(user)
+
+		if(able == 1)
+			return
+
+		if(able == 2)
+			to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s in a container."))
+			return
+
+		open_close(user)
+	else
+		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+
+/obj/item/storage/fancy/cigar/proc/open_close(mob/living/carbon/human/H, user)
+	close_all()
+	if(!is_worn())
+		if(!open)
+			to_chat(user, SPAN_NOTICE("You open \the [src]."))
+			w_class = ITEM_SIZE_SMALL
+			open = TRUE
+		else
+			to_chat(user, SPAN_NOTICE("You close \the [src]."))
+			w_class = ITEM_SIZE_TINY
+			open = FALSE
+		playsound(loc, 'sound/machines/click.ogg', 100, 1)
+		update_icon()
+	else
+		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+
+obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
+	if(!open)
+		to_chat(user, SPAN_NOTICE("You try to access \the [src] but it\'s closed!"))
+		return
+	. = ..()
+
+/obj/item/storage/fancy/cigar/open(mob/user)
+	if(!open)
+		to_chat(user, SPAN_NOTICE("\The [src] is closed."))
+		return
+
+	. = ..()
 
 /obj/item/storage/fancy/cigar/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -306,7 +371,10 @@
 	update_icon()
 
 /obj/item/storage/fancy/cigar/on_update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+	if(open)
+		icon_state = "[initial(icon_state)][contents.len]"
+	else
+		icon_state = "cigarcase"
 
 /obj/item/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
 		var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
