@@ -63,5 +63,6 @@
 		)
 
 /obj/item/gun/projectile/selfload/moebius
-	name = "ML HG .35 Auto \"Clarissa\"" // ML stands for Moebius Laboratories
+	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
+	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'
