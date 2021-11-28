@@ -31,7 +31,6 @@
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
-	//Todo: Add a better hit sound for a turned_on welder
 
 /obj/item/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
