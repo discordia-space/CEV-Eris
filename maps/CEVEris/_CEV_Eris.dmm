@@ -4558,10 +4558,14 @@
 /area/eris/security/exerooms)
 "akJ" = (
 /obj/structure/table/rack/shelf,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akK" = (
-/obj/machinery/vending/medical/commercial,
+/obj/structure/table/rack/shelf,
+/obj/item/roller,
+/obj/item/roller,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akL" = (
@@ -4645,6 +4649,7 @@
 /turf/simulated/floor/tiled/dark/bluecorner,
 /area/eris/security/exerooms)
 "akW" = (
+/obj/structure/bed/roller,
 /obj/structure/bed/roller,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
