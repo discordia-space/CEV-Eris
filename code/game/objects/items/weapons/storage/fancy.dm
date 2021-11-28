@@ -359,7 +359,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/fancy/cigar/open(mob/user)
 	if(!open)
-		to_chat(user, SPAN_NOTICE("\the [src] is closed."))
+		to_chat(user, SPAN_NOTICE("\The [src] is closed."))
 		return
 
 	. = ..()
