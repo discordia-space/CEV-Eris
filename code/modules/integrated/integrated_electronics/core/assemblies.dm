@@ -3,7 +3,7 @@
 
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
-	desc = "It's a case, for building electronics with."
+	desc = "A case, for building electronics with."
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"

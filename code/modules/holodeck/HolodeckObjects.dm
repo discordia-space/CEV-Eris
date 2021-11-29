@@ -113,11 +113,11 @@
 		return
 
 	if(istype(W, /obj/item/tool/screwdriver))
-		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't unfasten it!")))
+		to_chat(user, (SPAN_NOTICE("A holowindow, you can't unfasten it!")))
 	else if(istype(W, /obj/item/tool/crowbar) && reinf && state <= 1)
-		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't pry it!")))
+		to_chat(user, (SPAN_NOTICE("A holowindow, you can't pry it!")))
 	else if(istype(W, /obj/item/tool/wrench) && !anchored && (!state || !reinf))
-		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't dismantle it!")))
+		to_chat(user, (SPAN_NOTICE("A holowindow, you can't dismantle it!")))
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
@@ -183,7 +183,7 @@
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/wrench))
-		to_chat(user, (SPAN_NOTICE("It's a holochair, you can't dismantle it!")))
+		to_chat(user, (SPAN_NOTICE("A holochair, you can't dismantle it!")))
 	return
 
 /obj/item/holo

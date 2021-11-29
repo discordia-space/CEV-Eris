@@ -2,7 +2,7 @@
  * Science
  */
 /obj/item/clothing/under/rank/expedition_overseer
-	desc = "It's a jumpsuit worn by those with the know-how to achieve the position of \"Expedition Overseer\"."
+	desc = "A jumpsuit worn by those with the know-how to achieve the position of \"Expedition Overseer\"."
 	name = "moebius expedition overseer's jumpsuit"
 	icon_state = "director"
 	item_state = "lb_suit"
@@ -49,7 +49,7 @@
  * Medical
  */
 /obj/item/clothing/under/rank/moebius_biolab_officer
-	desc = "It's a jumpsuit worn by those with the experience to be \"Moebius Biolab Officer\". It provides minor biological protection."
+	desc = "A jumpsuit worn by those with the experience to be \"Moebius Biolab Officer\". It provides minor biological protection."
 	name = "moebius biolab officer's jumpsuit"
 	icon_state = "cmo"
 	item_state = "cmo"

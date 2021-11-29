@@ -35,7 +35,7 @@
 
 	switch(src.stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
+			to_chat(user, "An empty frame.")
 			return
 		if(2)
 			to_chat(user, "It's wired.")

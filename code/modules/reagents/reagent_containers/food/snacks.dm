@@ -413,7 +413,7 @@
 
 /obj/item/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
-	desc = "It's a handful of candy corn. Cannot be stored in a detective's hat, alas."
+	desc = "A handful of candy corn. Cannot be stored in a detective's hat, alas."
 	icon_state = "candy_corn"
 	filling_color = "#FFFCB0"
 	bitesize = 2
@@ -2446,7 +2446,7 @@
 
 /obj/item/reagent_containers/food/snacks/mre_cracker
 	name = "enriched cracker"
-	desc = "It's a salted cracker, the surface looks saturated with oil."
+	desc = "A salted cracker, the surface looks saturated with oil."
 	icon_state = "mre_cracker"
 	filling_color = "#F5DEB8"
 	center_of_mass = list("x"=17, "y"=6)
@@ -2955,7 +2955,7 @@
 
 /obj/item/reagent_containers/food/snacks/cracker
 	name = "Cracker"
-	desc = "It's a salted cracker."
+	desc = "A salted cracker."
 	icon_state = "cracker"
 	filling_color = "#F5DEB8"
 	center_of_mass = list("x"=17, "y"=6)
