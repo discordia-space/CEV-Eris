@@ -7,7 +7,6 @@
 	holder_type = /obj/machinery/door/airlock
 	wire_count = 12
 	window_y = 570
-	random = 1
 	descriptions = list(
 		new /datum/wire_description(AIRLOCK_WIRE_IDSCAN, "This wire is connected to the ID scanning panel."),
 		new /datum/wire_description(AIRLOCK_WIRE_MAIN_POWER1, "This wire seems to be carrying a heavy current."),
