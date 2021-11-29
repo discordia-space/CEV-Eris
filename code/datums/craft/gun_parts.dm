@@ -9,20 +9,51 @@
 
 	var/grip = /obj/item/part/gun/grip
 	var/grip_attached = FALSE
+
+	var/variant_grip = FALSE
+	var/gripvar1 = /obj/item/part/gun/grip/wood
+	var/gripvar2 = /obj/item/part/gun/grip/black
+	var/gripvar3
+	var/gripvar4
+
+	var/resultvar1 = /obj/item/gun/projectile/automatic/sts35
+	var/resultvar2 = /obj/item/gun/projectile/revolver/mateba
+	var/resultvar3
+	var/resultvar4
+
 	var/mechanism = /obj/item/part/gun/mechanism
 	var/mechanism_attached = FALSE
 	var/barrel = /obj/item/part/gun/barrel
 	var/barrel_attached = FALSE
 
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, grip))
+	if(istype(I, /obj/item/part/gun/grip))
 		if(grip_attached)
 			to_chat(user, SPAN_WARNING("[src] already has a grip attached!"))
 			return
-		else if(insert_item(I, user))
-			grip_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached [src]."))
-			return
+		else if(variant_grip) 
+			if(istype(I, gripvar1))
+				result = resultvar1
+			else if(istype(I, gripvar2))
+				result = resultvar2
+			else if(istype(I, gripvar3))
+				result = resultvar3
+			else if(istype(I, gripvar4))
+				result = resultvar4
+			else
+				to_chat(user, SPAN_WARNING("This grip does not fit!"))
+				return
+			if(insert_item(I, user))
+				grip_attached = TRUE
+				to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
+				return
+		else if(istype(I, grip))
+			if(insert_item(I, user))
+				grip_attached = TRUE
+				to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
+				return
+		else
+			to_chat(user, SPAN_WARNING("You cannot attach this to \the [src]!"))	
 
 	if(istype(I, mechanism))
 		if(mechanism_attached)
@@ -30,7 +61,7 @@
 			return
 		else if(insert_item(I, user))
 			mechanism_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached [src]."))
+			to_chat(user, SPAN_NOTICE("You have attached the mechanism to \the [src]."))
 			return
 
 	if(istype(I, barrel))
@@ -39,7 +70,7 @@
 			return
 		else if(insert_item(I, user))
 			barrel_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached [src]."))
+			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
 			return
 	return ..()
 
@@ -57,7 +88,7 @@
 		return
 	new result(T)
 	qdel(src)
-	return		
+	return
 
 //Grips
 /obj/item/part/gun/grip
