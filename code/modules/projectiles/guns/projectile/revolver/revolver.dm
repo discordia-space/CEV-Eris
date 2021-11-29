@@ -24,6 +24,7 @@
 	recoil_buildup = 8
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
+	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
 
 /obj/item/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
@@ -64,3 +65,12 @@
 /obj/item/gun/projectile/revolver/generate_guntags()
 	..()
 	gun_tags |= GUN_REVOLVER
+
+/obj/item/part/gun/frame/miller
+	name = "Miller frame"
+	desc = "A Miller revolver frame. I hope you're feeling lucky, punk."
+	icon_state = "frame_revolver"
+	result = /obj/item/gun/projectile/revolver/mateba
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/revolver
+	barrel = /obj/item/part/gun/barrel/magnum

@@ -38,3 +38,12 @@
 		return FALSE
 	..()
 
+/obj/item/part/gun/frame/sky_driver
+	name = "Sky Driver frame"
+	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
+	icon_state = "frame_revolver"
+	result = /obj/item/gun/projectile/revolver/sky_driver
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/revolver
+	barrel = /obj/item/part/gun/barrel/pistol
+
