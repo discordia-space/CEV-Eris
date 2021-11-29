@@ -323,7 +323,7 @@
 		stunned = max(stunned-3,0)
 		weakened = max(weakened-3,0)
 		cheap_update_lying_buckled_and_verb_status_()
-		var/datum/gas_mixture/breath = environment.remove_volume()
+		var/datum/gas_mixture/breath = environment.remove_volume(BREATH_VOLUME)
 		handle_cheap_breath(breath)
 		handle_cheap_environment(environment)
 		updateicon()
