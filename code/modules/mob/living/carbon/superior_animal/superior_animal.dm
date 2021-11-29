@@ -181,7 +181,7 @@
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
 		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
 		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
-		adjustBruteLoss((pressure > min_air_pressure  || pressure < max_air_pressure) ? 0 : 6)
+		adjustBruteLoss((pressure < min_air_pressure  || pressure > max_air_pressure) ? 0 : 6)
 		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE
@@ -214,6 +214,17 @@
 	else
 		canmove = TRUE
 		set_density(initial(density))
+
+/mob/living/carbon/superior_animal/verb/debug_proc_time()
+	set name = "Debug proc time"
+	set src in view(3)
+
+	to_chat(usr, "debugging processing time")
+	var/cur_time = world.time
+	for(var/i = 1, i < 5000, i++)
+		Life()
+	cur_time = world.time - cur_time
+	to_chat(usr, "debug time took [cur_time]")
 
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
