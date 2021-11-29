@@ -1165,7 +1165,8 @@ mob/proc/yank_out_object()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
-	if(!facing_dir)
+	if(facing_dir)
+		facing_dir = null
 		to_chat(usr, "You are now not facing anything.")
 	else
 		set_face_dir(client.client_dir(NORTH))
@@ -1173,7 +1174,8 @@ mob/proc/yank_out_object()
 
 /mob/verb/southfaceperm()
 	set hidden = 1
-	if(!facing_dir)
+	if(facing_dir)
+		facing_dir = null
 		to_chat(usr, "You are now not facing anything.")
 	else
 		set_face_dir(client.client_dir(SOUTH))
@@ -1181,7 +1183,8 @@ mob/proc/yank_out_object()
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
-	if(!facing_dir)
+	if(facing_dir)
+		facing_dir = null
 		to_chat(usr, "You are now not facing anything.")
 	else
 		set_face_dir(client.client_dir(EAST))
@@ -1189,7 +1192,8 @@ mob/proc/yank_out_object()
 
 /mob/verb/westfaceperm()
 	set hidden = 1
-	if(!facing_dir)
+	if(facing_dir)
+		facing_dir = null
 		to_chat(usr, "You are now not facing anything.")
 	else
 		set_face_dir(client.client_dir(WEST))
