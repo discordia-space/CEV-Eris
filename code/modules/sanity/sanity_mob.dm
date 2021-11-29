@@ -200,10 +200,12 @@
 		INSIGHT_DESIRE_DRUGS,
 	)
 
-	if(owner.metabolism_effects.addiction_list.Find(/datum/reagent/drug/nicotine))
-		candidates.Remove(INSIGHT_DESIRE_SMOKING)
-	if(owner.metabolism_effects.addiction_list.Find(/datum/reagent/drug/space_drugs))
-		candidates.Remove(INSIGHT_DESIRE_DRUGS)
+	for(var/i in owner.metabolism_effects.addiction_list)
+		if(istype(i, /datum/reagent/drug))
+			if(istype(i, /datum/reagent/drug/nicotine))
+				candidates.Remove(INSIGHT_DESIRE_SMOKING)
+				continue
+			candidates.Remove(INSIGHT_DESIRE_DRUGS)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
 		var/list/potential_desires = list()
