@@ -179,7 +179,7 @@
 	var/pressure = environment.return_pressure()
 	var/enviro_damage = (bodytemperature < min_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
-		bodytemperature += max(1, (bodytemperature - environment.temperature) * environment.total_moles / MOLES_CELLSTANDARD * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection))
+		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
 		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
 		adjustBruteLoss((pressure > min_air_pressure  || pressure < max_air_pressure) ? 0 : 6)
 		bad_environment = TRUE
