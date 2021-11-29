@@ -78,17 +78,33 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(!grip_attached)
-		to_chat(user, SPAN_WARNING("[src] does not have a grip!"))
+		to_chat(user, SPAN_WARNING("\the [src] does not have a grip!"))
 		return
 	if(!mechanism_attached)
-		to_chat(user, SPAN_WARNING("[src] does not have a mechanism!"))
+		to_chat(user, SPAN_WARNING("\the [src] does not have a mechanism!"))
 		return
 	if(!barrel_attached)
-		to_chat(user, SPAN_WARNING("[src] does not have a barrel!"))
+		to_chat(user, SPAN_WARNING("\the [src] does not have a barrel!"))
 		return
 	new result(T)
 	qdel(src)
 	return
+
+/obj/item/part/gun/frame/examine(user, distance)
+	. = ..()
+	if(.)
+		if(grip_attached)
+			to_chat(user, SPAN_NOTICE("\the [src] has a grip installed."))
+		else
+			to_chat(user, SPAN_NOTICE("\the [src] does not have a grip installed."))
+		if(mechanism_attached)
+			to_chat(user, SPAN_NOTICE("\the [src] has a mechanism installed."))
+		else
+			to_chat(user, SPAN_NOTICE("\the [src] does not have a mechanism installed."))
+		if(barrel_attached)
+			to_chat(user, SPAN_NOTICE("\the [src] has a barrel installed."))
+		else
+			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
 
 //Grips
 /obj/item/part/gun/grip
