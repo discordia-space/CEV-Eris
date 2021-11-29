@@ -215,17 +215,6 @@
 		canmove = TRUE
 		set_density(initial(density))
 
-/mob/living/carbon/superior_animal/verb/debug_proc_time()
-	set name = "Debug proc time"
-	set src in view(3)
-
-	to_chat(usr, "debugging processing time")
-	var/cur_time = world.time
-	for(var/i = 1, i < 5000, i++)
-		Life()
-	cur_time = world.time - cur_time
-	to_chat(usr, "debug time took [cur_time]")
-
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
 	objectsInView = null
