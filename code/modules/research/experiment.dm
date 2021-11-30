@@ -332,6 +332,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	return capitalize(pick(titles))
 /obj/item/computer_hardware/hard_drive/portable/research_points
 	disk_name = get_title()
+	desc = "A removable disk used to store large amounts of research data."
 	icon_state = "onestar"
 	spawn_tags = SPAWN_TAG_RESEARCH_POINTS
 	rarity_value = 12
