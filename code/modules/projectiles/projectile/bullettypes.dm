@@ -11,6 +11,7 @@ There are important things regarding this file:
 */
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
+	name = ".35 caliber bullet"
 	damage_types = list(BRUTE = 28)
 	armor_penetration = 10
 	can_ricochet = TRUE
@@ -47,6 +48,7 @@ There are important things regarding this file:
 // .20 rifle
 
 /obj/item/projectile/bullet/srifle
+	name = ".20 caliber bullet"
 	damage_types = list(BRUTE = 25)
 	armor_penetration = 25
 	penetrating = 1
@@ -84,6 +86,7 @@ There are important things regarding this file:
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
+	name = ".25 caliber bullet"
 	damage_types = list(BRUTE = 27)
 	armor_penetration = 15
 	penetrating = 1
@@ -121,6 +124,7 @@ There are important things regarding this file:
 // .30 rifle
 
 /obj/item/projectile/bullet/lrifle
+	name = ".30 caliber bullet"
 	damage_types = list(BRUTE = 28)
 	armor_penetration = 20
 	penetrating = 1
@@ -154,6 +158,7 @@ There are important things regarding this file:
 
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
+	name = " .40 caliber bullet"
 	damage_types = list(BRUTE = 34)
 	armor_penetration = 15
 	can_ricochet = TRUE
@@ -187,6 +192,7 @@ There are important things regarding this file:
 
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
+	name = ".60 caliber bullet"
 	damage_types = list(BRUTE = 70)
 	armor_penetration = 50
 	penetrating = 1
