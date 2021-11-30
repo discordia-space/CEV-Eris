@@ -618,7 +618,7 @@ default behaviour is:
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
-		if(do_after(src, 0.5 SECONDS, null, 0, 1, (INCAPACITATION_DEFAULT ^ INCAPACITATION_FORCELYING), immobile = 0))
+		if(do_after(src, 0.5 SECONDS, null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			state_changed = TRUE
 	else if (!resting)

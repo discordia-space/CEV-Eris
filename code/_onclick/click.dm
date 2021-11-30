@@ -130,10 +130,6 @@
 	if(W == A) // Handle attack_self
 		W.attack_self(src)
 		return 1
-	
-	if(W && !W.can_use_lying && src.lying)
-		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
-		return 1
 
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.
@@ -152,6 +148,10 @@
 
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
+
+	if(W && !W.can_use_lying && src.lying)
+		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
+		return 1
 
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)

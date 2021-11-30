@@ -176,7 +176,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -727,7 +730,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 				anchored = FALSE
 		canmove = FALSE //TODO: Remove this
 	else
-		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		lying = incapacitated(INCAPACITATION_GROUNDED)
 		canmove = FALSE //TODO: Remove this
 
 	if(lying)
@@ -1012,8 +1015,6 @@ mob/proc/yank_out_object()
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
 	return stunned
 
 /mob/living/proc/handle_weakened()
