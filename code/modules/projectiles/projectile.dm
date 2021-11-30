@@ -20,6 +20,7 @@
 	spawn_blacklisted = TRUE
 	spawn_frequency = 0
 	spawn_tags = null
+	style_damage = 10 // stylish people can dodge lots of projectiles
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = "ricochet"
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
@@ -273,7 +274,7 @@
 		if(def_zone)
 			var/spread = max(base_spreading - (spreading_step * distance), 0)
 			var/aim_hit_chance = max(0, projectile_accuracy)
-			
+
 			if(!prob(aim_hit_chance))
 				def_zone = ran_zone(def_zone,spread)
 
@@ -292,8 +293,6 @@
 					qdel(src)
 					return TRUE
 			result = target_mob.bullet_act(src, def_zone)
-			
-			
 			if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
 				result = PROJECTILE_FORCE_MISS
 
@@ -531,7 +530,7 @@
 /obj/item/projectile/proc/luminosity_effect()
     if (!location)
         return
-    
+
     if(attached_effect)
         attached_effect.Move(src.loc)
 
@@ -627,3 +626,4 @@
 	var/icon/I = new(P.icon, P.icon_state)
 	I.Blend(color)
 	return I
+
