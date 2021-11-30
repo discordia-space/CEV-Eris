@@ -302,11 +302,11 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	scanned_slimecores = list()
 	datablocks = 0
 
-/proc/get_title()
+/obj/item/computer_hardware/hard_drive/portable/research_points/proc/get_title()
 	var/list/verb_ion = list("exploration", "development", "refinement", "investigation", "analysis", "improvement", "emulation", "simulation", "construction", "evaluation", "deployment", "synthesis", "visualization")
 	var/list/prefixes = list("","[pick(verb_ion)]: ")
 	var/list/suffixes = list("using [pick(verb_ion)]","with [pick(verb_ion)]")
-	var/list/subjects = list("proprioception", "implants", "null space", "AI", "neural networks", "drones", "cyborgs", "human thought", "materiel", "materials", "microgravity", "artificial gravity", "MMIs", "brain death", "system shock", "SSD", "memory transcription", "closed intranets", "internal networks", "the old Alliance", "Alliance nanomachines", "One Star", "the Ironhammer SAU overfund", "SAU equipment specifications", "public administration", "outside-context problems", "the timeline", "timelines", "parallel worlds", "continuity breaches", "access points to Discordia", "the Door Phenomenon", "bluespace fault tolerance", "bluespace translocation", "firewalls", "ICE", "symmetric encryption", "NTNet", "low-light ecosystems", "algorithms", "systems", "ionospheric anomalies", "mass hallucinations", "human experimentation", "extinct civilizations")
+	var/list/subjects = list("proprioception", "implants", "null space", "AI", "neural networks", "drones", "cyborgs", "human thought", "materiel", "materials", "microgravity", "artificial gravity", "MMIs", "brain death", "system shock", "SSD", "memory transcription", "closed intranets", "internal networks", "bluespace fault tolerance", "bluespace translocation", "firewalls", "ICE", "symmetric encryption", "NTNet", "low-light ecosystems", "algorithms", "systems", "ionospheric anomalies", "mass hallucinations", "human experimentation")
 	var/list/impact = list("impact of", "effect of", "influence of")
 	var/list/verb_ing = list("harnessing", "enabling", "exploring", "controlling", "developing", "refining", "investigating", "improving", "analyzing", "constructing", "simulating", "evaluating", "emulating", "deploying", "synthesizing", "visualizing", "studying")
 	var/list/buzzword_nouns = list("wetware", "technology", "nanotechnology", "communication", "algorithms", "theory", "methodologies", "information", "models", "archetypes", "configurations", "modalities", "symmetries", "epistemologies", "gradients", "plots", "matrices", "manifolds", "methods")
@@ -331,13 +331,16 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 							"[buzzword_adj_multi] [pick(buzzword_nouns)] for [pick(subjects)]")
 	return capitalize(pick(titles))
 /obj/item/computer_hardware/hard_drive/portable/research_points
-	disk_name = get_title()
 	desc = "A removable disk used to store large amounts of research data."
 	icon_state = "onestar"
 	spawn_tags = SPAWN_TAG_RESEARCH_POINTS
 	rarity_value = 12
 	var/min_points = 2000
 	var/max_points = 10000
+
+/obj/item/computer_hardware/hard_drive/portable/research_points/Initialize()
+	disk_name = get_title()
+	. = ..()
 
 /obj/item/computer_hardware/hard_drive/portable/research_points/install_default_files()
 	..()
