@@ -19,9 +19,9 @@
 	if(is_neotheology_disciple(wearer))
 		to_chat(owner_mob, SPAN_WARNING("[wearer]'s cruciform prevents activation"))
 		return
-	var/obj/item/organ/external/affected = wearer.organs_by_name[pick(list(BP_HEAD, BP_CHEST))]
+	var/obj/item/organ/external/affected = wearer.organs_by_name[BP_HEAD || BP_CHEST]
 	if(BP_IS_ROBOTIC(affected))
-		to_chat(owner_mob, SPAN_WARNING("[src] cannot be implanted in a prosthetic limb."))
+		to_chat(owner_mob, SPAN_WARNING("[src] cannot be activated in a prosthetic limb."))
 		return
 
 	if(is_carrion(wearer))
