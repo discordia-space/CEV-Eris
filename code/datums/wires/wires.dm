@@ -71,7 +71,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		src.wires[colour] = index
 		//wires = shuffle(wires)
 
-/datum/wires/proc/examine(index, mob/user,)
+/datum/wires/proc/examine(index, mob/user)
 	. = "You aren't sure what this wire does."
 	var/mec_stat = user.stats.getStat(STAT_MEC)
 
