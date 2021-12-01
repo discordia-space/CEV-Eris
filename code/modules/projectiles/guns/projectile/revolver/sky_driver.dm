@@ -46,4 +46,4 @@
 	grip = /obj/item/part/gun/grip/black
 	mechanism = /obj/item/part/gun/mechanism/revolver
 	barrel = /obj/item/part/gun/barrel/pistol
-
+	spawn_blacklisted = TRUE
