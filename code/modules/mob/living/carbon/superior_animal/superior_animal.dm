@@ -197,15 +197,15 @@
 
 // branchless isincapacited check made for roaches.
 /mob/living/carbon/superior_animal/proc/cheap_incapacitation_check() // This works based off constants ,override it if you want it to be dynamic . Based off isincapacited
-	. = stunned > 0 || weakened > 0 || resting || pinned.len > 0 || stat || paralysis || sleeping || (status_flags & FAKEDEATH) || buckled() > 0
+	return stunned > 0 || weakened > 0 || resting || pinned.len > 0 || stat || paralysis || sleeping || (status_flags & FAKEDEATH) || buckled() > 0
 
 /mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
 
-	if(cheap_incapacitation_check())
+	if(!cheap_incapacitation_check())
 		lying = FALSE
-		canmove = TRUE //TODO: Remove this
+		canmove = TRUE
 	else
-		canmove = FALSE //TODO: Remove this
+		canmove = FALSE //TODO
 		if(buckled)
 			anchored = buckled.buckle_movable
 			lying = buckled.buckle_lying
