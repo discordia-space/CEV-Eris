@@ -171,7 +171,7 @@
 	else if (health < maxHealth * 0.75)
 		to_chat(user, SPAN_WARNING("It's wounded."))
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("A bit wounded."))
+		to_chat(user, SPAN_WARNING("It's a bit wounded."))
 
 /mob/living/simple_animal/Life()
 	.=..()

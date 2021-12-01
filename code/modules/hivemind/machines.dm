@@ -52,11 +52,11 @@
 	else if (health < max_health * 0.25)
 		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
 	else if (health < max_health * 0.50)
-		to_chat(user, SPAN_DANGER("It's very damaged, you can almost see the components inside!"))
+		to_chat(user, SPAN_DANGER("It's very damaged; you can almost see the components inside!"))
 	else if (health < max_health * 0.75)
 		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
 	else if (health < max_health)
-		to_chat(user, SPAN_WARNING("A bit scratched and has dents."))
+		to_chat(user, SPAN_WARNING("It's a bit scratched and dented."))
 
 
 /obj/machinery/hivemind_machine/Process()
