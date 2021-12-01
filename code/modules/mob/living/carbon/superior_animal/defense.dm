@@ -357,7 +357,7 @@
 	if(!on_fire)
 		return FALSE
 	adjustFireLoss(2 * bodytemperature / max_bodytemperature) // scaling with how much you are over your body temp
-	bodytemperature += fire_stacks * 5 // 5 degrees per firestack
+	bodytemperature += fire_stacks * 5 * ( 1 - heat_protection )// 5 degrees per firestack
 	if(isturf(location))
 		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 
