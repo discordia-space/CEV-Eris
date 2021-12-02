@@ -380,10 +380,10 @@
 /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	rarity_value = 27.5
 
-/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat
+/obj/item/clothing/suit/storage/serbian_overcoat
 	rarity_value = 27.5
 
-/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown
+/obj/item/clothing/suit/storage/serbian_overcoat/brown
 	rarity_value = 27.5
 
 /obj/item/clothing/suit/storage/greatcoat/german_overcoat

@@ -100,6 +100,8 @@
 			/obj/item/clothing/suit/poncho/tactical,
 			/obj/item/clothing/suit/punkvest,
 			/obj/item/clothing/suit/punkvest/cyber,
+			/obj/item/clothing/suit/storage/serbian_overcoat,
+			/obj/item/clothing/suit/storage/serbian_overcoat/brown,
 			/obj/item/clothing/suit/storage/bladerunner,
 			/obj/item/clothing/suit/storage/bomj,
 			/obj/item/clothing/suit/wcoat,

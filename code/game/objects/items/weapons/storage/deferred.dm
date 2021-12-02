@@ -271,7 +271,7 @@
 	/obj/item/clothing/head/armor/faceshield/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown = 1)
+	/obj/item/clothing/suit/storage/serbian_overcoat/brown = 1)
 
 /obj/item/storage/deferred/crate/uniform_black
 	name = "black uniform kit"
@@ -284,7 +284,7 @@
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
-	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat = 1)
+	/obj/item/clothing/suit/storage/serbian_overcoat = 1)
 
 /obj/item/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"

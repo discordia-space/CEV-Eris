@@ -332,6 +332,26 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
+/obj/item/clothing/suit/storage/serbian_overcoat
+	name = "black serbian overcoat"
+	desc = "A black serbian overcoat with armor-weave and rank epaulettes."
+	icon_state = "overcoat_black"
+	item_state = "overcoat_black"
+	armor = list(
+		melee = 20,
+		bullet = 25,
+		energy = 10,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/suit/storage/serbian_overcoat/brown
+	name = "brown serbian overcoat"
+	desc = "A brown serbian overcoat with armor-weave and rank epaulettes."
+	icon_state = "overcoat_brown"
+	item_state = "overcoat_brown"
+
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
 	desc = "With the warmth of this jacket you feel like you're a real human being."

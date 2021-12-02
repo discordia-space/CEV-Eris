@@ -84,6 +84,20 @@
 	)
 	gear_tweaks += new /datum/gear_tweak/path(longcoat)
 
+/datum/gear/suit/serbian_overcoat
+	display_name = "serbian overcoat"
+	path = /obj/item/clothing/suit/storage/serbian_overcoat
+	cost = 4 // decent armor values
+
+/datum/gear/suit/serbian_overcoat/New()
+	..()
+	var/serbcoat = list(
+		"Brown"			=	/obj/item/clothing/suit/storage/serbian_overcoat/brown,
+		"Black"			=	/obj/item/clothing/suit/storage/serbian_overcoat
+	)
+	gear_tweaks += new /datum/gear_tweak/path(serbcoat)
+
+
 /datum/gear/suit/bladerunner
 	display_name = "old leather coat"
 	path = /obj/item/clothing/suit/storage/bladerunner
