@@ -233,10 +233,6 @@
 	if(!twohanded_check(M))
 		return FALSE
 
-	if(user.facing_dir)
-		to_chat(user, SPAN_DANGER("You can't shoot while facing a direction!"))
-		return FALSE
-
 	if(!dna_check(M))
 		to_chat(user, SPAN_DANGER("The gun's biometric scanner prevents you from firing!"))
 		handle_click_empty(user)
