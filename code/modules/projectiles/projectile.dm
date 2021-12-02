@@ -286,7 +286,7 @@
 						qdel(src)
 						return TRUE
 					break //Prevents shield dual-wielding
-			//	S = C.get_equipped_item(slot_back)
+			//	S = C.get_equipped_item(slot_back)		// TODO: fix direction locking to prevent shooting backwards
 			//	if(S && S.block_bullet(C, src, def_zone))
 			//		on_hit(S,def_zone)
 			//		qdel(src)
