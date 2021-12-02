@@ -286,11 +286,11 @@
 						qdel(src)
 						return TRUE
 					break //Prevents shield dual-wielding
-				S = C.get_equipped_item(slot_back)
-				if(S && S.block_bullet(C, src, def_zone))
-					on_hit(S,def_zone)
-					qdel(src)
-					return TRUE
+			//	S = C.get_equipped_item(slot_back)
+			//	if(S && S.block_bullet(C, src, def_zone))
+			//		on_hit(S,def_zone)
+			//		qdel(src)
+			//		return TRUE
 			result = target_mob.bullet_act(src, def_zone)
 			
 			
