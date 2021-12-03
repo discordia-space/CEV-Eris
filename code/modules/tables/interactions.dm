@@ -31,14 +31,16 @@
 		P.check_hit_zone(loc, distance)
 
 		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG)) valid = TRUE //The legs are always concealed
+		if (targetzone in list(BP_R_LEG, BP_L_LEG))
+			valid = TRUE //The legs are always concealed
 		if (ismob(P.original))
 			var/mob/M = P.original
 			if (M.lying)
 				valid = TRUE				//Lying down covers your whole body
 		if(flipped==1)
 			if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
-				if (targetzone == BP_GROIN) valid = TRUE
+				if (targetzone == BP_GROIN)
+					valid = TRUE
 			else
 				valid = FALSE					//But only from one side
 		if(valid)
