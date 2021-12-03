@@ -318,7 +318,7 @@
 
 		open_close(user)
 	else
-		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
 
 /obj/item/storage/fancy/cigar/AltClick(mob/user)
 	if(!is_worn())
