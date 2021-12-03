@@ -349,7 +349,7 @@
 		playsound(loc, 'sound/machines/click.ogg', 100, 1)
 		update_icon()
 	else
-		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
 
 obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	if(!open)
