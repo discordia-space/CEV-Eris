@@ -1,0 +1,4 @@
+author: Kegdo
+delete-after: true
+changes:
+  - bugfix: smoke should be inhaled properly now. Maybe.
