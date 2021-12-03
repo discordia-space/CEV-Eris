@@ -81,6 +81,15 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
 	)
 
+/datum/craft_recipe/weapon/throwing_knife
+	name = "Throwing knife"
+	result = /obj/item/stack/knife
+	steps = list(
+		list(list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 10, "time" = 20),
+	)
+
 /datum/craft_recipe/weapon/crossbow
 	name = "crossbow"
 	result = /obj/item/gun/launcher/crossbow
