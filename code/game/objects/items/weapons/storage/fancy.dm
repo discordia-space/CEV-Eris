@@ -333,7 +333,7 @@
 
 		open_close(user)
 	else
-		to_chat(user, SPAN_NOTICE("You can\'t open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
 
 /obj/item/storage/fancy/cigar/proc/open_close(mob/living/carbon/human/H, user)
 	close_all()
