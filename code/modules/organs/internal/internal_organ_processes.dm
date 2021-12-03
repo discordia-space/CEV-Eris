@@ -157,7 +157,7 @@
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(1)
 		if(prob(15))
-			Paralyse(rand(1,3))
+			Weaken(rand(1,3))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 
 	else if(blood_volume < blood_safe)
