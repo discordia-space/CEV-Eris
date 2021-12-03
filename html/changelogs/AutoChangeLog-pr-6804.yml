@@ -1,0 +1,17 @@
+author: Stolen from Tau Ceti(WatlerJe and the Gang), CeUvi, Kegdo
+delete-after: true
+changes:
+  - imageadd: Water and welder fuel tanks resprite -  smol tanks by WatlerJe, big
+      tanks by CeUvi
+  - imageadd: A fuckathonatonobig resprite of drinks, more unique glass states, all
+      set to true manually
+  - imageadd: Fireaxe in hand, item, on back resprite
+  - imageadd: Flamethrower total resprite
+  - imageadd: Atmos cans, pumps and scrubbers resprite
+  - imageadd: Autopsy scanner resprite
+  - imageadd: Candles resprite
+  - imageadd: Lamps resprite
+  - imageadd: probably something else
+  - imageadd: cigar case and cigars
+  - rscadd: cigar case can be opened and closed, needs to be opened to access cigs,
+      storage capacity reduced from 7 to 6 (sprite reasons not nerfing I swear)
