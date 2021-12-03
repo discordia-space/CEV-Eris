@@ -32,13 +32,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		pixel_x += rand(-random_offset,random_offset)
 		pixel_y += rand(-random_offset,random_offset)
 
-
-
-/obj/effect/Destroy()
-	if(reagents)
-		reagents.delete()
-	return ..()
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
