@@ -101211,10 +101211,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"eVi" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -205582,8 +205578,8 @@ anJ
 anJ
 esN
 cwA
-eVi
 cjM
+cil
 cil
 czL
 dXT
