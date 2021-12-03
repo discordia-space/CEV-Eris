@@ -16,3 +16,10 @@
 	desc = "Used to carry the sensation of touch of robotic limbs."
 	nature = MODIFICATION_SILICON
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+
+/obj/item/organ/internal/nerve/sensitive_nerve
+	name = "sensitive nerves"
+	icon_state = "nerve_sensitive"
+	desc = "Looking at this makes you feel both nervous and sensitive!"
+	organ_efficiency = list(OP_NERVE = 150)
+	specific_organ_size = 0.1
