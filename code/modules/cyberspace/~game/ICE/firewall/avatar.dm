@@ -1,3 +1,10 @@
+/datum/CyberSpaceAvatar/interactable/firewall/CollectSubroutines()
+	. = ..()
+//	if(.)
+//		Subroutines.AddSubroutine(
+//			/datum/subroutine/raise_alarm_level{value = 1; TimeLocksFor = 10 SECONDS; distance = 5},
+//			Subroutines.Spotted
+//		)
 /datum/CyberSpaceAvatar/interactable/firewall/HackingTry(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = ..()
 	for(var/obj/machinery/cyber_security_server/S in get_area(Owner))
@@ -13,7 +20,7 @@
 		var/code = A.CyberAccessCode
 		var/code_len = length(code)
 		if(do_after(user, timingOfStage, Owner,\
-			needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE,\
+			needhand = FALSE,\
 			target_allowed_to_move = TRUE, move_range = 4)\
 		)
 			var/part_of_code_to_reveal = round(code_len * (i / stages_of_hacking))

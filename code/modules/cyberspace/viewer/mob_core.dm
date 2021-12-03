@@ -6,7 +6,7 @@
 
 /mob/proc/CanSeeCyberSpace()
 	return client && _SeeCyberSpace
-/atom/proc/CyberRange(radius = 7) // Returns atoms with cyberavatars in range
+/atom/proc/CyberRange(radius = world.view) // Returns atoms with cyberavatars in range
 	. = list()
 	for(var/atom/A in range(radius, src))
 		if(istype(A.CyberAvatar))

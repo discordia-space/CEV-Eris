@@ -5,11 +5,11 @@
 	wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK,\
 	datum/CyberSpaceAvatar/host\
 	)
-	. = ..()
 	var/mob/observer/cyber_entity/user = host.Owner
 	var/mob/observer/cyber_entity/T = triggerer.Owner
 	if(T)
-		return T.ChangeHP(0, -user.Might)
+		. = T.ChangeHP(0, -user.Might)
+		..()
 
 /datum/subroutine/damageBrain
 	TimeLocksFor = 5 SECONDS
@@ -20,9 +20,27 @@
 	wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK,\
 	datum/CyberSpaceAvatar/host\
 	)
-	. = ..()
 	var/mob/observer/cyber_entity/user = host.Owner
 	var/mob/observer/cyber_entity/cyberspace_eye/T = triggerer.Owner
 	if(istype(T) && T.owner)
 		var/mob/living/carbon/human/H = T.owner.get_user()
-		return H.adjustBrainLoss(ForcedDamageValue || user.Might)
+		. = H.adjustBrainLoss(ForcedDamageValue || user.Might)
+		..()
+
+/datum/subroutine/raise_alarm_level
+	TimeLocksFor = 30 SECONDS
+	var/value = 0.2
+	var/distance = 7
+
+/datum/subroutine/raise_alarm_level/Trigger(\
+	datum/CyberSpaceAvatar/triggerer,\
+	wayOfTrigger = SUBROUTINE_FAILED_TO_BREAK,\
+	datum/CyberSpaceAvatar/host\
+	)
+//	if(wayOfTrigger == SUBROUTINE_SPOTTED && !(get_dist(triggerer.Owner, host.Owner) > distance))
+//		return
+	var/area/A = get_area(host.Owner)
+	var/obj/machinery/power/apc/pc = locate(/obj/machinery/power/apc) in A
+	if(istype(pc))
+		pc.RaiseAlarmLevel(value)
+		. = ..()

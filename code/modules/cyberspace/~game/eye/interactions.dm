@@ -16,7 +16,7 @@
 	var/mob/observer/cyber_entity/O = Owner
 	if(istype(O) && get_dist(user, O) <= user.attack_range)
 		to_chat(user, "You are trying to fix [O].")
-		if(do_after(user, 2 SECONDS, O, needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE))
+		if(do_after(user, 2 SECONDS, O, needhand = FALSE))
 			return O.ChangeHP(0, user.Might)
 		else
 			to_chat(user, SPAN_WARNING("Fixing failed."))

@@ -10,11 +10,6 @@
 			. = ..()
 			var/mob/observer/cyber_entity/E = mover
 			nextmove = world.time + E.movement_delay
-			if(mover.CyberAvatar.ListenToSurrounding)
-				for(var/datum/CyberSpaceAvatar/A in GLOB.CyberListeners)
-					if(get_dist(A.Owner, mover) <= world.view)
-						A.AnotherAvatarFound(mover.CyberAvatar)
-						mover.CyberAvatar.AnotherAvatarFound(A)
 
 /mob/observer/cyber_entity/cyberspace_eye/AdjacentMouseDropTo(atom/target, mob/user, src_location, over_location, src_control, over_control, params)
 	. = ..()

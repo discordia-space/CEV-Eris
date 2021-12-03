@@ -8,6 +8,7 @@
 	proc/CollectSubroutines()
 		if(!istype(Subroutines))
 			Subroutines = new
+			. = Subroutines
 
 /datum/subroutine
 	var/Locked = 0 //time when it will unlocked
@@ -25,7 +26,7 @@
 /datum/subroutine_manager
 	var/list/Bumped = list()
 	var/list/FailedBreaking = list()
-	var/list/Spotted = list()
+//	var/list/Spotted = list()
 	var/list/Attack = list()
 
 	proc
@@ -61,8 +62,8 @@
 	if(istype(Subroutines))
 		TriggerSubroutines(Subroutines.Bumped, SUBROUTINE_BUMPED, avatar, src)
 
-/datum/CyberSpaceAvatar/AnotherAvatarFound(datum/CyberSpaceAvatar/avatar)
-	. = ..()
-	if(istype(Subroutines))
-		TriggerSubroutines(Subroutines.Spotted, SUBROUTINE_SPOTTED, avatar, src)
-
+///datum/CyberSpaceAvatar/AnotherAvatarFound(datum/CyberSpaceAvatar/avatar)
+//	. = ..()
+//	if(istype(Subroutines))
+//		TriggerSubroutines(Subroutines.Spotted, SUBROUTINE_SPOTTED, avatar, src)
+//

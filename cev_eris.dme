@@ -1619,7 +1619,6 @@
 #include "code\modules\cyberspace\avatar\movement.dm"
 #include "code\modules\cyberspace\avatar\nano_state.dm"
 #include "code\modules\cyberspace\avatar\api\atom_api.dm"
-#include "code\modules\cyberspace\avatar\api\cyberspace_listeners.dm"
 #include "code\modules\cyberspace\avatar\api\interactions_api.dm"
 #include "code\modules\cyberspace\controller\globals.dm"
 #include "code\modules\cyberspace\viewer\mob_core.dm"

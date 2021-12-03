@@ -28,6 +28,9 @@
 		SetHP()
 		CollectSubroutines()
 
+	incapacitated() // Fuck it, we will right our own incapaciation
+		return 0
+
 /mob/observer/cyber_entity/proc/CollectSubroutines()
 	if(istype(CyberAvatar.Subroutines))
 		var/list/L = list()

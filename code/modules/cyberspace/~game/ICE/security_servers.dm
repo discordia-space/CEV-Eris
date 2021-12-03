@@ -56,10 +56,18 @@ CYBERAVATAR_INITIALIZATION(/obj/machinery/cyber_security_server, CYBERSPACE_SECU
 	icon_file = 'icons/obj/cyberspace/servers.dmi'
 	icon_state = "os_avatar"
 	density = TRUE
+	Subroutines = TRUE
+	CollectSubroutines()
+		. = ..()
+//		if(.)
+//			Subroutines.AddSubroutine(
+//				/datum/subroutine/raise_alarm_level{value = 0.5},
+//				Subroutines.Spotted
+//			)
 
 /datum/CyberSpaceAvatar/interactable/cybersecurity_server/HackingTry(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = ..() && do_after(user, 10 SECONDS, Owner,\
-			needhand = FALSE, incapacitation_flags = INCAPACITATION_NONE,\
+			needhand = FALSE,\
 			target_allowed_to_move = TRUE, move_range = 4)
 	
 

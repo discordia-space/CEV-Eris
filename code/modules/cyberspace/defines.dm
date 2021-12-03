@@ -20,7 +20,6 @@
 
 #define SUBROUTINE_FAILED_TO_BREAK	"Failed to Break"
 #define SUBROUTINE_BUMPED			"Bumped"
-#define SUBROUTINE_SPOTTED			"Someone in range!!!"
 #define SUBROUTINE_ATTACK			"Die!"
 
 //A must be /atom variable
