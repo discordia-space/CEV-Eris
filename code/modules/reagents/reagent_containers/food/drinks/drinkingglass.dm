@@ -53,7 +53,7 @@
 	center_of_mass = initial(center_of_mass)
 	cut_overlays()
 
-	if(reagents.reagent_list.len > 0)
+	if(reagents?.total_volume)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(R.glass_unique_appearance && morf_glass)
 			if(R.glass_icon_state)
