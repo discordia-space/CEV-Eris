@@ -56,7 +56,7 @@
  */
 
 /obj/item/card/emag_broken
-	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
+	desc = "A card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
@@ -64,7 +64,7 @@
 	matter = list(MATERIAL_SILVER = 1, MATERIAL_PLASTIC = 1)
 
 /obj/item/card/emag
-	desc = "It's a card with a magnetic strip attached to some circuitry."
+	desc = "A card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"

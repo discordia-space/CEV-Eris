@@ -23,7 +23,7 @@
 
 /obj/item/clothing/head/warden
 	name = "Gunnery Sergeant hat"
-	desc = "It's a special helmet issued to the Warden of a securiy force."
+	desc = "A special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
 	body_parts_covered = NONE
 
@@ -109,7 +109,7 @@
  * Ironhammer Commander
  */
 /obj/item/clothing/under/rank/ih_commander
-	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
+	desc = "A jumpsuit worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
 	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
@@ -117,7 +117,7 @@
 
 /obj/item/clothing/under/rank/ih_commander/skirt
 	name = "Ironhammer Commander's jumpskirt"
-	desc = "It's a jumpskirt worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
+	desc = "A jumpskirt worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
 	icon_state = "hos_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -133,7 +133,7 @@
  */
 /obj/item/clothing/under/rank/cadet
 	name = "Ironhammer Cadet's jumpskirt"
-	desc = "It's a sailor's uniform used for cadets in training, though more frequently in acts of hazing."
+	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing."
 	icon_state = "cadet"
 	item_state = "cadet"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS

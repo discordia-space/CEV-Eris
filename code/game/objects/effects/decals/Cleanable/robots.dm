@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood/gibs/robot
 	name = "robot debris"
-	desc = "It's a useless heap of junk... <i>or is it?</i>"
+	desc = "A useless heap of junk... <i>or is it?</i>"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "gib1"
 	layer = LOW_OBJ_LAYER

@@ -12,7 +12,7 @@
 // For calculators.
 /obj/item/integrated_circuit/passive/power/solar_cell
 	name = "tiny photovoltaic cell"
-	desc = "It's a very tiny solar cell, generally used in calculators."
+	desc = "A tiny solar cell, generally used in calculators."
 	extended_desc = "The cell generates 1W of energy per second in optimal lighting conditions.  Less light will result in less power being generated."
 	icon_state = "solar_cell"
 	complexity = 8

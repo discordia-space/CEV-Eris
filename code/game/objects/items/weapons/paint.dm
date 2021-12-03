@@ -4,7 +4,7 @@
 var/global/list/cached_icons = list()
 
 /obj/item/reagent_containers/glass/paint
-	desc = "It's a paint bucket."
+	desc = "A paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"

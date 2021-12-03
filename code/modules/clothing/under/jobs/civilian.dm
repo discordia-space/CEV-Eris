@@ -18,14 +18,14 @@
 	item_state = "ba_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a red jumpsuit with some gold markings denoting the rank of \"Captain\"."
+	desc = "A red jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo worker's jumpsuit"
-	desc = "It's a jeans and turtleneck worn by the cargo workers."
+	desc = "A pair of jeans and turtleneck worn by the cargo workers."
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -55,7 +55,7 @@
 	item_state = "nt_sports"
 
 /obj/item/clothing/under/rank/chef
-	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
+	desc = "An apron which is given only to the most <b>hardcore</b> chefs in space."
 	name = "chef's uniform"
 	icon_state = "chef"
 	item_state = "w_suit"
@@ -74,13 +74,13 @@
 	item_state = "clown"
 
 /obj/item/clothing/under/rank/first_officer
-	desc = "It's a jumpsuit worn by someone who works in the position of \"First Officer\"."
+	desc = "A jumpsuit worn by someone who works in the position of \"First Officer\"."
 	name = "First Officer's jumpsuit"
 	icon_state = "hop"
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/hydroponics
-	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
+	desc = "A jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
@@ -114,7 +114,7 @@
 	item_state = "ba_suit"
 
 /obj/item/clothing/under/rank/miner
-	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
+	desc = "A snappy jumpsuit with a sturdy set of overalls. It is very dirty."
 	name = "guild miner's jumpsuit"
 	icon_state = "miner"
 	item_state = "lb_suit"

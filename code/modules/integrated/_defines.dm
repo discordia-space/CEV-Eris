@@ -6,7 +6,7 @@ var/list/all_integrated_circuits = list()
 
 /obj/item/integrated_circuit
 	name = "integrated circuit"
-	desc = "It's a tiny chip!  This one doesn't seem to do much, however."
+	desc = "A tiny chip!  This one doesn't seem to do much, however."
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "template"
 	w_class = ITEM_SIZE_TINY

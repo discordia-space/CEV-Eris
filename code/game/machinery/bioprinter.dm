@@ -2,7 +2,7 @@
 
 /obj/machinery/bioprinter
 	name = "organ bioprinter"
-	desc = "It's a machine that grows replacement organs."
+	desc = "A machine that grows replacement organs."
 	icon = 'icons/obj/surgery.dmi'
 
 	anchored = TRUE
@@ -26,7 +26,7 @@
 
 /obj/machinery/bioprinter/prosthetics
 	name = "prosthetics fabricator"
-	desc = "It's a machine that prints prosthetic organs."
+	desc = "A machine that prints prosthetic organs."
 	prints_prosthetics = 1
 
 /obj/machinery/bioprinter/New()

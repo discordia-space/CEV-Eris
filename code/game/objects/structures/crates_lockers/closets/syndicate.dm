@@ -7,7 +7,7 @@
 
 
 /obj/structure/closet/syndicate/personal
-	desc = "It's a storage unit for operative gear."
+	desc = "A storage unit for operative gear."
 
 /obj/structure/closet/syndicate/personal/populate_contents()
 	new /obj/item/tank/jetpack/oxygen(src)
@@ -25,7 +25,7 @@
 
 
 /obj/structure/closet/syndicate/suit
-	desc = "It's a storage unit for voidsuits."
+	desc = "A storage unit for voidsuits."
 
 /obj/structure/closet/syndicate/suit/populate_contents()
 	new /obj/item/tank/jetpack/oxygen(src)
@@ -35,7 +35,7 @@
 
 
 /obj/structure/closet/syndicate/nuclear
-	desc = "It's a storage unit for nuclear-operative gear."
+	desc = "A storage unit for nuclear-operative gear."
 	spawn_blacklisted = TRUE
 
 /obj/structure/closet/syndicate/nuclear/populate_contents()

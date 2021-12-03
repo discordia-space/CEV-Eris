@@ -1,7 +1,7 @@
 //Warning! If you change icon_state or item_state, make sure you change path for sneath as well. icons/obj/sneath.dmi
 /obj/item/tool/sword/nt // not supposed to be in the game, had to make the shortsword its own type to prevent fucking up the scourge. sorry.
 	name = "NT Sword"
-	desc = "A saint looking sword, made to do God's work."
+	desc = "A saintly-looking sword forged to do God's work."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
@@ -23,7 +23,7 @@
 
 /obj/item/tool/sword/nt/shortsword
 	name = "NT Gladius"
-	desc = "A saint looking sword, made to do God's work."
+	desc = "A saintly-looking sword forged to do God's work."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
@@ -40,7 +40,7 @@
 
 /obj/item/tool/sword/nt/longsword
 	name = "NT Spatha"
-	desc = "A saint looking longsword, recommended by experienced crusaders."
+	desc = "This saintly-looking longsword is the first choice of experienced crusaders."
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
 	force = 30
@@ -52,7 +52,7 @@
 
 /obj/item/tool/knife/dagger/nt
 	name = "NT Pugio"
-	desc = "A saint looking dagger, even God have mercy."
+	desc = "A saintly-looking dagger. May God have mercy."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
@@ -73,7 +73,7 @@
 
 /obj/item/tool/sword/nt/halberd
 	name = "NT Halebarda"
-	desc = "A saint looking halberd, for emergency situation."
+	desc = "A saintly-looking halberd for emergency situations."
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
@@ -88,7 +88,7 @@
 
 /obj/item/tool/sword/nt/scourge
 	name = "NT Scourge"
-	desc = "A saint looking scourge, extreme punishment. Can be extended to hurt more."
+	desc = "A saintly-looking whip that can be extended for more pain."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
@@ -146,7 +146,7 @@
 
 /obj/item/tool/sword/nt/spear
 	name = "NT Pilum"
-	desc = "A saint looking short spear, designed for use with a shield or as a throwing weapon. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
+	desc = "A short, saintly-looking spear for throwing or use with a shield. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
@@ -201,7 +201,7 @@
 
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
-	desc = "A saint looking shield, let the God protect you. Has several leather straps on the back to hold melee weapons."
+	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
@@ -261,7 +261,7 @@
 
 /obj/item/shield/buckler/nt
 	name = "NT Parma"
-	desc = "A round shield with a golden trim. Has several leather straps on the back to hold melee weapons."
+	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold melee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_buckler"
 	item_state = "nt_buckler"

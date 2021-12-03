@@ -5,7 +5,7 @@
 
 /tipsAndTricks/jobs/captain_boss
     jobs_list = list(/datum/job/captain)
-    tipText = "As a Captain, you own this ship. You set the rules."
+    tipText = "As the Captain, you own this ship. You set the rules."
 
 /tipsAndTricks/jobs/ironhammer_theft
     jobs_list = list(/datum/job/ihc, /datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper)
@@ -161,7 +161,7 @@
 
 /tipsAndTricks/jobs/chem_app
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist, /datum/job/cmo, /datum/job/doctor, /datum/job/paramedic)
-    tipText = "There is a program in your PDA called MIRC (Moebious Internal Reagent Catalogue) that can help you with chemistry."
+    tipText = "There is a program in your PDA called MIRC (Moebius Internal Reagent Catalogue) that can help you with chemistry."
 
 /tipsAndTricks/jobs/drink_app
     jobs_list = list(/datum/job/clubworker, /datum/job/clubmanager)

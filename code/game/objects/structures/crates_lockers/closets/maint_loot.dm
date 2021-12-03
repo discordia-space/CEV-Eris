@@ -8,7 +8,7 @@
 
 /obj/structure/closet/random/miscellaneous
 	name = "\improper forgotten closet"
-	desc = "Old and rusty closet, probably older than you."
+	desc = "Old and rusty, this closet is probably older than you."
 	icon_state = "oldstyle"
 	old_chance = 50
 	rarity_value = 10
@@ -167,7 +167,7 @@
 //Closet with unfair bullshit inside
 /obj/structure/closet/random/hostilemobs
 	name = "\improper forgotten closet"
-	desc = "Old and rusty closet, probably older than you."
+	desc = "Old and rusty, this closet is probably older than you."
 	icon_state = "oldstyle"
 	old_chance = 70
 	rarity_value = 12.5

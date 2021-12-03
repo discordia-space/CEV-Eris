@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(art_types, file2list("strings/artist_strings/descriptors/art_ty
 	return name
 
 /proc/get_art_secret_name()
-	var/list/adjectives = list("big", "terrifying", "mysterious", "fantastic", "secret", "haunting", "mysteriouss")
+	var/list/adjectives = list("big", "terrifying", "mysterious", "fantastic", "secret", "haunting", "mysterious")
 	return "the [pick(adjectives)] secret of [get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE))]"
 
 /proc/get_travel_actios()
@@ -84,8 +84,8 @@ GLOBAL_LIST_INIT(art_types, file2list("strings/artist_strings/descriptors/art_ty
 	return "[pick(GLOB.art_sculpting_method)] [get_random_material()]"
 
 /obj/proc/make_art_review()
-	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encourages")
-	desc += " A [pick(GLOB.art_styles)] [pick(GLOB.art_types)] [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] to those who look at it."
+	var/list/emotions = list("fear", "joy", "laughter", "sadness", "respect", "terror", "vigor", "encouragement")
+	desc += " A [pick(GLOB.art_styles)] [pick(GLOB.art_types)] [get_sculpting_method()]. [pick("Inspires", "Infuses")] [pick(emotions)] in those who look at it."
 
 /obj/item/gun/projectile/make_art_review()
 	desc += " [get_art_gun_desc(src)]"

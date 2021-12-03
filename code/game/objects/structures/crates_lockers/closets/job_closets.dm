@@ -11,7 +11,7 @@
  */
 /obj/structure/closet/gmcloset
 	name = "Club Manager closet"
-	desc = "It's a storage unit for formal clothing."
+	desc = "A storage unit for formal clothing."
 	icon_door = "black"
 
 /obj/structure/closet/gmcloset/populate_contents()
@@ -34,7 +34,7 @@
  */
 /obj/structure/closet/chefcloset
 	name = "Club Worker closet"
-	desc = "It's a storage unit for club personnel."
+	desc = "A storage unit for club personnel."
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/populate_contents()
@@ -55,7 +55,7 @@
  */
 /obj/structure/closet/jcloset
 	name = "janitorial closet"
-	desc = "It's a storage unit for janitorial clothes and gear."
+	desc = "A storage unit for janitorial clothes and gear."
 	icon_door = "mixed"
 
 /obj/structure/closet/jcloset/populate_contents()
@@ -83,7 +83,7 @@
 
 /obj/structure/closet/custodial
 	name = "custodial closet"
-	desc = "It's a storage unit for purifying clothes and gear."
+	desc = "A storage unit for purifying clothes and gear."
 	icon_state = "custodian"
 
 /obj/structure/closet/custodial/populate_contents()

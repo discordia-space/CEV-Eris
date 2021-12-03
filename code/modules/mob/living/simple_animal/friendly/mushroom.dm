@@ -1,6 +1,6 @@
 /mob/living/simple_animal/mushroom
 	name = "walking mushroom"
-	desc = "It's a massive mushroom... with legs?"
+	desc = "A massive mushroom... with legs?"
 	icon_state = "mushroom"
 	mob_size = MOB_SMALL
 	speak_chance = 0

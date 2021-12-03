@@ -1,6 +1,6 @@
 /obj/structure/salvageable
 	name = "broken macninery"
-	desc = "Broken beyond repair, but looks like you can still salvage something from this."
+	desc = "It is broken beyond repair. You may be able to salvage something from this."
 	icon = 'icons/obj/salvageable.dmi'
 	density = TRUE
 	anchored = TRUE

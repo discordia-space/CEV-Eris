@@ -149,31 +149,31 @@
 
 /obj/item/storage/backpack/captain
 	name = "captain's backpack"
-	desc = "It's a special backpack made exclusively for officers."
+	desc = "A special backpack made exclusively for officers."
 	icon_state = "backpack_captain"
 	rarity_value = 50
 
 /obj/item/storage/backpack/industrial
 	name = "industrial backpack"
-	desc = "It's a tough backpack for the daily grind of ship life."
+	desc = "A tough backpack for the daily grind of ship life."
 	icon_state = "backpack_industrial"
 	rarity_value = 8.33
 
 /obj/item/storage/backpack/medical
 	name = "medical backpack"
-	desc = "It's a backpack especially designed for use in a sterile environment."
+	desc = "A backpack especially designed for use in a sterile environment."
 	icon_state = "backpack_medical"
 	rarity_value = 8.33
 
 /obj/item/storage/backpack/security
 	name = "security backpack"
-	desc = "It's a very robust backpack."
+	desc = "A very robust backpack."
 	icon_state = "backpack_security"
 	rarity_value = 8.33
 
 /obj/item/storage/backpack/clown
 	name = "Giggles von Honkerton"
-	desc = "It's a backpack made by Honk! Co."
+	desc = "A backpack made by Honk! Co."
 	icon_state = "backpack_clown"
 	rarity_value = 12.5
 
@@ -323,7 +323,7 @@
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
-	desc = "It's a very fancy satchel made with fine leather."
+	desc = "A fancy satchel made with fine leather."
 	icon_state = "satchel_leather"
 
 /obj/item/storage/backpack/satchel/leather/withwallet
@@ -348,7 +348,7 @@
 //Used by mercenaries
 /obj/item/storage/backpack/satchel/military
 	name = "MOLLE patrol pack"
-	desc = "Designed for planetary infantry, for quick access to equipment."
+	desc = "Designed for planetary infantry, this pack allows for quick access to equipment."
 	icon_state = "satchel_military"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 0.9
 	rarity_value = 8.33

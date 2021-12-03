@@ -1,6 +1,6 @@
 /obj/structure/closet/coffin
 	name = "coffin"
-	desc = "It's a burial receptacle for the dearly departed."
+	desc = "A burial receptacle for the dearly departed."
 	icon_state = "coffin"
 	matter = list(MATERIAL_WOOD = 10)
 	spawn_blacklisted = TRUE
@@ -42,7 +42,7 @@
 
 /obj/structure/closet/coffin/spawnercorpse
 	name = "coffin"
-	desc = "It's a burial receptacle for the dearly departed."
+	desc = "A burial receptacle for the dearly departed."
 	icon_state = "coffin"
 	welded = 1
 
