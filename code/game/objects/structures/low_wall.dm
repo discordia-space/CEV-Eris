@@ -160,7 +160,8 @@
 		P.check_hit_zone(loc, distance)
 
 		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN)) valid = TRUE //The lower body is always concealed
+		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+			valid = TRUE //The lower body is always concealed
 		if (ismob(P.original))
 			var/mob/M = P.original
 			if (M.lying)
