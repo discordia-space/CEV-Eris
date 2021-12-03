@@ -1,0 +1,5 @@
+author: hex37
+delete-after: true
+changes:
+  - bugfix: Chems with a constant metabolism, like stims, now drain from the blood
+      of humans.
