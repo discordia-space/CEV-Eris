@@ -1,7 +1,7 @@
 /datum/wire_description
 	var/index
 	var/description
-	var/skill_level = STAT_LEVEL_PROF //STAT_LEVEL_PROF //TODO: Hook eris skills here
+	var/skill_level = STAT_LEVEL_EXPERT //40 pts
 
 /datum/wire_description/New(index, description, skill_level)
 	src.index = index

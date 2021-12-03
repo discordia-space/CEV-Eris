@@ -11,7 +11,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 /datum/wires
 
-	var/random = 0 // Will the wires be different for every single instance.
+	var/random = 1 // Will the wires be different for every single instance.
 	var/atom/holder = null // The holder
 	var/holder_type = null // The holder type; used to make sure that the holder is the correct type.
 	var/wire_count = 0 // Max is 16
@@ -22,8 +22,8 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 	var/table_options = " align='center'"
 	var/row_options1 = " width='80px'"
-	var/row_options2 = " width='260px'"
-	var/window_x = 370
+	var/row_options2 = " width='280px'"
+	var/window_x = 450
 	var/window_y = 470
 
 	var/list/descriptions // Descriptions of wires (datum/wire_description) for use with examining.
@@ -73,13 +73,13 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 /datum/wires/proc/examine(index, mob/user)
 	. = "You aren't sure what this wire does."
+	var/mec_stat = user.stats.getStat(STAT_MEC)
 
 	var/datum/wire_description/wd = get_description(index)
 	if(!wd)
 		return
-	//TODO: Port bay wires fully and integrate eris' skill system
-	//if(wd.skill_level && !user.skill_check(SKILL_ELECTRICAL, wd.skill_level))
-		//return
+	if(wd.skill_level > mec_stat)
+		return
 	return wd.description
 
 /datum/wires/proc/get_description(index)
@@ -119,12 +119,10 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		html += "<td[row_options2]>"
 		html += "<A href='?src=\ref[src];action=1;cut=[colour]'>[IsColourCut(colour) ? "Mend" :  "Cut"]</A>"
 		html += " <A href='?src=\ref[src];action=1;pulse=[colour]'>Pulse</A>"
-		html += " <A href='?src=\ref[src];action=1;attach=[colour]'>[IsAttached(colour) ? "Detach" : "Attach"] Signaller</A></td></tr>"
+		html += " <A href='?src=\ref[src];action=1;attach=[colour]'>[IsAttached(colour) ? "Detach" : "Attach"] Signaller</A>"
+		html += " <A href='?src=\ref[src];action=1;examine=[colour]'>Examine</A></td></tr>"
 	html += "</table>"
 	html += "</div>"
-
-	if (random)
-		html += "<i>\The [holder] appears to have tamper-resistant electronics installed.</i><br><br>" //maybe this could be more generic?
 
 	return html
 
@@ -180,7 +178,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						Attach(colour, I)
 					else
 						to_chat(L, SPAN_WARNING("You need a remote signaller!"))
-
+			else if(href_list["examine"])
+				var/colour = href_list["examine"]
+				to_chat(usr, examine(GetIndex(colour), usr))
 
 
 
