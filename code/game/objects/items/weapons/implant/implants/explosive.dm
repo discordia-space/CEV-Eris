@@ -5,14 +5,15 @@
 	var/explosion_delay = 70
 	var/removal_authorized = FALSE
 	var/phrase = "supercalifragilisticexpialidocious"
-	icon_state = "implant_evil"
-	implant_color = "r"
+	icon_state = "implant_explosive"
+	implant_overlay = "implantstorage_explosive"
 	is_legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_COVERT=4)
 
 /obj/item/implant/explosive/New()
 	..()
 	add_hearing()
+	update_icon()
 
 /obj/item/implant/explosive/Destroy()
 	remove_hearing()
@@ -142,7 +143,7 @@
 /obj/item/implantcase/explosive
 	name = "glass case - 'explosive'"
 	desc = "A case containing an explosive implant."
-	implant = new /obj/item/implant/explosive
+	implant = /obj/item/implant/explosive
 
 
 /obj/item/implanter/explosive
