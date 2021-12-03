@@ -275,7 +275,7 @@
 
 	if(istype(item, /obj/item/stack/throwing_knife))
 		var/obj/item/stack/throwing_knife/V = item
-		var/ROB_throwing_damage = src.stats.getStat(STAT_ROB)
+		var/ROB_throwing_damage = stats.getStat(STAT_ROB)
 		V.throwforce = (35/(1+100/(ROB_throwing_damage))+10) //soft cap; This would result in knives doing 10 damage at 0 rob, 20 at 50 ROB, 25 at 100 etc.
 		if(V.amount == 1)
 			drop_from_inventory(V)
