@@ -273,8 +273,8 @@
 
 	if(!item) return
 
-	if(istype(item, /obj/item/stack/knife))
-		var/obj/item/stack/knife/V = item
+	if(istype(item, /obj/item/stack/throwing_knife))
+		var/obj/item/stack/throwing_knife/V = item
 		var/ROB_throwing_damage = src.stats.getStat(STAT_ROB)
 		V.throwforce = (35/(1+100/(ROB_throwing_damage))+10)
 		if(V.amount == 1)
@@ -283,7 +283,7 @@
 		else
 			V.amount--
 			V.update_icon()
-			var/obj/item/stack/knife/J = new(get_turf(src))
+			var/obj/item/stack/throwing_knife/J = new(get_turf(src))
 			J.throwforce = V.throwforce
 			J.amount = 1
 			J.update_icon()
