@@ -6102,7 +6102,7 @@
 /obj/item/ammo_magazine/sllrifle,
 /obj/item/ammo_magazine/ammobox/lrifle_small,
 /obj/item/clothing/head/armor/steelpot,
-/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat,
+/obj/item/clothing/suit/storage/serbian_overcoat,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/outpost/junkyard/ship/canterbury)
 "XQ" = (
