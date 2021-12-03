@@ -102,7 +102,7 @@
  * Sleepy Pens
  */
 /obj/item/pen/reagent/sleepy
-	desc = "A black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
+	desc = "A black ink pen with a sharp point and \"Waffle Co.\" engraved on the side."
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COVERT = 5)
 
 /obj/item/pen/reagent/sleepy/New()
