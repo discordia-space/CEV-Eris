@@ -32,6 +32,7 @@
 	var/shot_from = "" // name of the object which shot us
 	var/atom/original = null // the target clicked (not necessarily where the projectile is headed). Should probably be renamed to 'target' or something.
 	var/turf/starting = null // the projectile's starting turf
+	var/turf/last_interact = null // the last turf where def_zone calculation took place
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
 
 	var/p_x = 16
@@ -257,6 +258,19 @@
 	else
 		return 0
 
+/obj/item/projectile/proc/check_hit_zone(turf/target_turf, distance)
+	var/hit_zone = check_zone(def_zone)
+	if(hit_zone)
+		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later, it is more likely to hit the same part
+		if(def_zone)
+			var/spread = max(base_spreading - (spreading_step * distance), 0)
+			var/aim_hit_chance = max(0, projectile_accuracy)
+			
+			if(!prob(aim_hit_chance))
+				def_zone = ran_zone(def_zone,spread)
+			last_interact = target_turf
+		return TRUE
+	return FALSE
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
@@ -265,35 +279,27 @@
 
 	//roll to-hit
 	miss_modifier = 0
-	var/hit_zone = check_zone(def_zone)
 
 	var/result = PROJECTILE_FORCE_MISS
-	if(hit_zone)
-		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		if(def_zone)
-			var/spread = max(base_spreading - (spreading_step * distance), 0)
-			var/aim_hit_chance = max(0, projectile_accuracy)
-			
-			if(!prob(aim_hit_chance))
-				def_zone = ran_zone(def_zone,spread)
 
-			if(iscarbon(target_mob))
-				var/mob/living/carbon/C = target_mob
-				var/obj/item/shield/S
-				for(S in get_both_hands(C))
-					if(S && S.block_bullet(C, src, def_zone))
-						on_hit(S,def_zone)
-						qdel(src)
-						return TRUE
-					break //Prevents shield dual-wielding
-			//	S = C.get_equipped_item(slot_back)		// TODO: fix direction locking to prevent shooting backwards
-			//	if(S && S.block_bullet(C, src, def_zone))
-			//		on_hit(S,def_zone)
-			//		qdel(src)
-			//		return TRUE
+	if(check_hit_zone(get_turf(target_mob), distance))
+		if(iscarbon(target_mob))
+			var/mob/living/carbon/C = target_mob
+			var/obj/item/shield/S
+			for(S in get_both_hands(C))
+				if(S && S.block_bullet(C, src, def_zone))
+					on_hit(S,def_zone)
+					qdel(src)
+					return TRUE
+				break //Prevents shield dual-wielding
+	//		S = C.get_equipped_item(slot_back)
+	//		if(S && S.block_bullet(C, src, def_zone))
+	//			on_hit(S,def_zone)
+	//			qdel(src)
+	//			return TRUE
+
 			result = target_mob.bullet_act(src, def_zone)
-			
-			
+			var/aim_hit_chance = max(0, projectile_accuracy)
 			if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
 				result = PROJECTILE_FORCE_MISS
 
@@ -362,7 +368,7 @@
 		return FALSE
 
 	var/passthrough = FALSE //if the projectile should continue flying
-	var/distance = get_dist(starting,loc)
+	var/distance = get_dist(last_interact,loc)
 
 	var/tempLoc = get_turf(A)
 
@@ -471,6 +477,7 @@
 	// setup projectile state
 	starting = startloc
 	current = startloc
+	last_interact = startloc
 	yo = targloc.y - startloc.y + y_offset
 	xo = targloc.x - startloc.x + x_offset
 
