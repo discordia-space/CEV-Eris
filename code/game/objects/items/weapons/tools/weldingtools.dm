@@ -11,6 +11,7 @@
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1)
 	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
+	switched_on_hitsound = 'sound/items/Welder.ogg'
 
 	sparks_on_use = TRUE
 	eye_hazard = TRUE
@@ -30,7 +31,6 @@
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
-	//Todo: Add a better hit sound for a turned_on welder
 
 /obj/item/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)

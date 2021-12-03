@@ -60,6 +60,7 @@
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
 	var/switched_on_force
+	var/switched_on_hitsound
 	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color	//Set color of glow upon activation, or leave it null if you dont want any light
@@ -672,6 +673,8 @@
 		to_chat(user, SPAN_NOTICE("\The [src] turns on."))
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
+	if(switched_on_hitsound)
+		hitsound = switched_on_hitsound
 	if (!isnull(switched_on_force))
 		force = switched_on_force
 		if(wielded)
@@ -689,6 +692,7 @@
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
+	hitsound = initial(hitsound)
 	force = initial(force)
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
