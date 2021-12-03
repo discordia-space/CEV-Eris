@@ -6,7 +6,7 @@
 	name = "Fossil"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "bone"
-	desc = "It's a fossil."
+	desc = "A fossil."
 	spawn_tags = SPAWN_TAG_XENOARCH_ITEM_FOSSIL
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/fossil
@@ -26,16 +26,16 @@
 /obj/item/fossil/bone
 	name = "Fossilised bone"
 	icon_state = "bone"
-	desc = "It's a fossilised bone."
+	desc = "A fossilised bone."
 
 /obj/item/fossil/skull
 	name = "Fossilised skull"
 	icon_state = "skull"
-	desc = "It's a fossilised skull."
+	desc = "A fossilised skull."
 
 /obj/item/fossil/skull/horned
 	icon_state = "hskull"
-	desc = "It's a fossilised, horned skull."
+	desc = "A fossilised, horned skull."
 
 /obj/item/fossil/skull/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/fossil/bone))
@@ -97,7 +97,7 @@
 /obj/item/fossil/shell
 	name = "Fossilised shell"
 	icon_state = "shell"
-	desc = "It's a fossilised shell."
+	desc = "A fossilised shell."
 
 /obj/item/fossil/plant
 	name = "Fossilised plant"

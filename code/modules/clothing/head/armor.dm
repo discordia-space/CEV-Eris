@@ -298,7 +298,7 @@
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)

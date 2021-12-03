@@ -25,7 +25,7 @@
 
 /obj/structure/closet/wall_mounted/firecloset
 	name = "fire-safety closet"
-	desc = "It's a storage unit for fire-fighting supplies."
+	desc = "A storage unit for fire-fighting supplies."
 	icon_state = "hydrant"
 
 /obj/structure/closet/wall_mounted/firecloset/populate_contents()
