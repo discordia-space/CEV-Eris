@@ -1,0 +1,4 @@
+author: Kegdo
+delete-after: true
+changes:
+  - bugfix: infection spiders don't work in prosthetic limbs
