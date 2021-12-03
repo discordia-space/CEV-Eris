@@ -1,6 +1,6 @@
 /obj/item/stack/throwing_knife
 	name = "throwing knife"
-	gender = NEUTER
+	gender = NEUTER  //Grammatically correct knives
 	desc = "A knife that is specially designed and weighted so that the wielder\'s strength can be accounted when being thrown."
 	icon = 'icons/obj/stack/items.dmi'
 	icon_state = "knife"
@@ -17,10 +17,10 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	amount = 1
 	max_amount = 3
-	w_class = ITEM_SIZE_SMALL //2
-	force = WEAPON_FORCE_NORMAL //10
-	throwforce = WEAPON_FORCE_WEAK //7
-	armor_penetration = ARMOR_PEN_SHALLOW //10
+	w_class = ITEM_SIZE_SMALL
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_WEAK
+	armor_penetration = ARMOR_PEN_SHALLOW
 	slot_flags = SLOT_BELT
 	//spawn values
 	rarity_value = 8
@@ -28,3 +28,7 @@
 
 /obj/item/stack/throwing_knife/on_update_icon()
 	icon_state = "[initial(icon_state)][amount]"
+
+/obj/item/stack/throwing_knife/examine(mob/user)
+	if(..(user, 1))
+		to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? "knife" : "knives"] in the stack.")

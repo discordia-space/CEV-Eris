@@ -75,7 +75,7 @@
 /obj/item/stack/examine(mob/user)
 	if(..(user, 1))
 		if(!uses_charge)
-			to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack.") //will say that there are multiple kni!F!es, but who cares?
+			to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack.")
 		else
 			to_chat(user, "There is enough charge for [get_amount()].")
 
