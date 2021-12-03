@@ -1,0 +1,5 @@
+author: Kegdo
+delete-after: true
+changes:
+  - tweak: all wires in machinery are randomised now.
+  - rscadd: you can now examine(MEC >= 40) wires to figure out what each does.
