@@ -1,7 +1,8 @@
 /obj/item/implant/compressed
 	name = "compressed matter implant"
 	desc = "Based on compressed matter technology, can store a single item."
-	icon_state = "implant_evil"
+	icon_state = "implant_storage"
+	implant_overlay = "implantstorage_storage"
 	var/activation_emote = "sigh"
 	var/obj/item/scanned
 	is_legal = FALSE
@@ -32,20 +33,9 @@
 
 /obj/item/implanter/compressed
 	name = "implanter (C)"
-	icon_state = "cimplanter1"
 	implant = /obj/item/implant/compressed
 	spawn_tags = null
 
-/obj/item/implanter/compressed/on_update_icon()
-	if(implant)
-		var/obj/item/implant/compressed/c = implant
-		if(!c.scanned)
-			icon_state = "cimplanter1"
-		else
-			icon_state = "cimplanter2"
-	else
-		icon_state = "cimplanter0"
-	return
 
 /obj/item/implanter/compressed/attack(mob/living/M, mob/living/user)
 	var/obj/item/implant/compressed/c = implant

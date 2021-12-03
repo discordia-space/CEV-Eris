@@ -1,6 +1,7 @@
 /obj/item/implant/excelsior
 	name = "excelsior implant"
-	implant_color = "r"
+	icon_state = "implant_excel"
+	implant_overlay = "implantstorage_excel"
 	allowed_organs = list(BP_HEAD)
 	origin_tech = list(TECH_COVERT = 2)
 	var/antag_id = ROLE_EXCELSIOR_REV

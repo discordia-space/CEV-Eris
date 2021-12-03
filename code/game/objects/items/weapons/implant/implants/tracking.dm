@@ -1,6 +1,8 @@
 /obj/item/implant/tracking
 	name = "tracking implant"
 	desc = "Track people with this."
+	icon_state = "implant_tracking"
+	implant_overlay = "implantstorage_tracking"
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=2, TECH_DATA=2, TECH_BIO=2)
 	var/datum/gps_data/gps
 

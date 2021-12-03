@@ -1,6 +1,8 @@
 /obj/item/implant/chem
 	name = "chemical implant"
 	desc = "Injects things."
+	icon_state = "implant_chem"
+	implant_overlay = "implantstorage_chem"
 	allow_reagents = 1
 	origin_tech = list(TECH_MATERIAL=3, TECH_BIO=4)
 	spawn_tags = null
