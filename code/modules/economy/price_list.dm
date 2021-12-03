@@ -468,7 +468,7 @@
 /obj/item/reagent_containers/food/snacks
 	price_tag = 30
 
-/obj/item/reagent_containers/food/snacks/candy
+/obj/item/reagent_containers/food/snacks/shokoloud
 	price_tag = 10
 
 /obj/item/reagent_containers/food/snacks/sosjerky

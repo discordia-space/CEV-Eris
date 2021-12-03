@@ -8,8 +8,8 @@
 	twohanded = TRUE
 	var/recentpumpmsg = 0 //	Variable to prevent chat message spam
 	var/fired_one_handed = FALSE
-	wield_delay = 2 SECOND
-	wield_delay_factor = 0.5// 50 vig
+	wield_delay = 0 SECOND
+	wield_delay_factor = 0
 
 /obj/item/gun/projectile/shotgun/twohanded_check(var/mob/living/user)
 	if(twohanded && !wielded)

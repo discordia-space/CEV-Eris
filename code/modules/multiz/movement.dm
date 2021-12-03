@@ -56,8 +56,14 @@
 
 	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
 	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
+	if(src.current_vertical_travel_method)
+		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
+		return
+
 	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
-	if (VTM.attempt(direction))
+	if(VTM.can_perform(direction))
+		src.current_vertical_travel_method = VTM
+		VTM.attempt(direction)
 		return
 
 
@@ -83,7 +89,9 @@
 
 	for (var/a in possible_methods)
 		VTM = new a(src)
-		if (VTM.attempt(direction))
+		if(VTM.can_perform(direction))
+			src.current_vertical_travel_method = VTM
+			VTM.attempt(direction)
 			return TRUE
 
 	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))

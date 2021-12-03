@@ -41,10 +41,10 @@
 /obj/item/ammo_magazine/ammobox/pistol
 	name = "ammunition packet (.35 Auto)"
 	icon_state = "pistol_l"
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
-	max_ammo = 30
+	max_ammo = 70
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
@@ -140,7 +140,7 @@
 	ammo_type = /obj/item/ammo_casing/srifle/hv
 
 /obj/item/ammo_magazine/ammobox/srifle_small/rubber
-	name = "ammunition packet (.20 Rifle high-velocity)"
+	name = "ammunition packet (.20 Rifle rubber)"
 	icon_state = "srifle_r"
 	ammo_type = /obj/item/ammo_casing/srifle/rubber
 

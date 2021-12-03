@@ -24,7 +24,7 @@
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
-	fire_sound = 'sound/weapons/guns/fire/cal/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
 	init_firemodes = list(
 		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
@@ -33,8 +33,6 @@
 
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
-	wield_delay = 0.9 SECOND
-	wield_delay_factor = 0.2 // 40 vig
 
 /obj/item/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)

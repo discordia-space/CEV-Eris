@@ -24,10 +24,8 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
-	wield_delay = 0.9 SECOND
-	wield_delay_factor = 0.1 // One-star SMG , but very powerfull
+
 	spawn_blacklisted = TRUE
-	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
 
 /obj/item/gun/projectile/type_47/on_update_icon()
 	..()

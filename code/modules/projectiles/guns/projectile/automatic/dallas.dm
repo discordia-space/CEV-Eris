@@ -15,7 +15,7 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
 	price_tag = 5000 //99 rounds of pure pain and destruction served in auto-fire, so it basically an upgraded LMG
-	fire_sound = 'sound/weapons/guns/fire/cal/25.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
@@ -25,7 +25,7 @@
 	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
-	wield_delay = 1.4 SECOND
+	wield_delay = 1 SECOND
 	wield_delay_factor = 0.4 // 40 vig for insta wield
 
 	gun_tags = list(GUN_SILENCABLE)

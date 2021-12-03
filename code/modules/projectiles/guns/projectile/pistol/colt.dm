@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 900
-	fire_sound = 'sound/weapons/guns/fire/cal/35pistol.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
@@ -16,9 +16,6 @@
 	recoil_buildup = 4
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	wield_delay = 0.3 SECOND
-	wield_delay_factor = 0.2 // 20 vig
-
 
 /obj/item/gun/projectile/colt/on_update_icon()
 	..()

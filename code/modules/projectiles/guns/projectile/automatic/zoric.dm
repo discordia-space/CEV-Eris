@@ -21,7 +21,6 @@
 	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
-	fire_sound = 'sound/weapons/guns/fire/cal/40pistol.ogg'
 
 	init_firemodes = list(
 		FULL_AUTO_300,
@@ -29,8 +28,6 @@
 		)
 
 	gun_tags = list(GUN_SILENCABLE)
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.3 // Heavy smg , 30 vig to insta wield
 
 /obj/item/gun/projectile/automatic/zoric/on_update_icon()
 	cut_overlays()

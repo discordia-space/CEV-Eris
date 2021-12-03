@@ -1,5 +1,5 @@
 /obj/structure/closet/malf/suits
-	desc = "It's a storage unit for operational gear."
+	desc = "A storage unit for operational gear."
 	icon_state = "syndicate"
 	rarity_value = 50
 

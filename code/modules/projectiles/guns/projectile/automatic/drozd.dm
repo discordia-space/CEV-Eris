@@ -18,14 +18,10 @@
 	damage_multiplier = 0.8 	 //25,6 lethal, 28 HV //damage
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
 	recoil_buildup = 1.2
-	fire_sound = 'sound/weapons/guns/fire/cal/40pistol.ogg'
 
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
-
-	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.1 // 10 vig
 
 	init_firemodes = list(
 		FULL_AUTO_300,

@@ -17,8 +17,6 @@
 		list(mode_name="induce mutations", mode_desc="Make your crops weird and wonderful", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut", item_modifystate="mut", icon="kill"),
 		list(mode_name="increase yield", mode_desc="More fruit for your labour", projectile_type=/obj/item/projectile/energy/florayield, modifystate="florayield", item_modifystate="yield", icon="stun"),
 		)
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.2 // 20 vig
 
 /obj/item/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent

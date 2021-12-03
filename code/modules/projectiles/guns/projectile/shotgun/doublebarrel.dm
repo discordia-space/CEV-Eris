@@ -18,7 +18,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
-	fire_sound = 'sound/weapons/guns/fire/cal/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1200
 	one_hand_penalty = 15 //full sized shotgun level
@@ -31,8 +31,6 @@
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // 20 vig , great as a surprise
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet

@@ -643,14 +643,14 @@
 /area/eris/security/range)
 "abP" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
+/obj/item/clothing/suit/armor/heavy/ironhammer,
 /obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
 /obj/item/clothing/head/armor/riot_hud,
@@ -61447,19 +61447,19 @@
 	},
 /area/shuttle/mining/station)
 "cSI" = (
-/obj/machinery/mining/drill,
+/obj/machinery/mining/deep_drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,17"
 	},
 /area/shuttle/mining/station)
 "cSJ" = (
-/obj/machinery/mining/drill,
+/obj/machinery/mining/deep_drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "12,17"
 	},
 /area/shuttle/mining/station)
 "cSK" = (
-/obj/machinery/mining/brace,
+/obj/machinery/mining/drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,17"
 	},
@@ -61688,7 +61688,6 @@
 	},
 /area/shuttle/mining/station)
 "cTm" = (
-/obj/machinery/mining/brace,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,16"
 	},

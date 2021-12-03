@@ -5,7 +5,8 @@
 	turns_per_move = 6
 	maxHealth = 20
 	health = 20
-	melee_damage_upper = 3
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche
 	meat_amount = 3
 	rarity_value = 11.25

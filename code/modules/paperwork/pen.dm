@@ -10,7 +10,7 @@
  * Pens
  */
 /obj/item/pen
-	desc = "It's a normal black ink pen."
+	desc = "A normal black ink pen."
 	name = "pen"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
@@ -27,17 +27,17 @@
 
 
 /obj/item/pen/blue
-	desc = "It's a normal blue ink pen."
+	desc = "A normal blue ink pen."
 	icon_state = "pen_blue"
 	colour = "blue"
 
 /obj/item/pen/red
-	desc = "It's a normal red ink pen."
+	desc = "A normal red ink pen."
 	icon_state = "pen_red"
 	colour = "red"
 
 /obj/item/pen/multi
-	desc = "It's a pen with multiple colors of ink!"
+	desc = "A pen with multiple colors of ink!"
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
 
@@ -55,7 +55,7 @@
 	to_chat(user, SPAN_NOTICE("Changed color to '[colour].'"))
 
 /obj/item/pen/invisible
-	desc = "It's an invisble pen marker."
+	desc = "An invisble pen marker."
 	icon_state = "pen"
 	colour = "white"
 
@@ -102,7 +102,7 @@
  * Sleepy Pens
  */
 /obj/item/pen/reagent/sleepy
-	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
+	desc = "A black ink pen with a sharp point and \"Waffle Co.\" engraved on the side."
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COVERT = 5)
 
 /obj/item/pen/reagent/sleepy/New()

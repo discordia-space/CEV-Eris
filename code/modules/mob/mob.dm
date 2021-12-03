@@ -562,16 +562,20 @@
 	var/mob/M = AM
 	if(ismob(AM))
 
+		if(M.mob_size >=  MOB_GIGANTIC)
+			to_chat(src, SPAN_WARNING("It won't budge!"))
+			return
+
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -1165,19 +1169,39 @@ mob/proc/yank_out_object()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(NORTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(NORTH))
+		to_chat(usr, "You are now facing north.")
 
 /mob/verb/southfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(SOUTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(SOUTH))
+		to_chat(usr, "You are now facing south.")
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(EAST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(EAST))
+		to_chat(usr, "You are now facing east.")
 
 /mob/verb/westfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(WEST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(WEST))
+		to_chat(usr, "You are now facing west.")
 
 /mob/verb/change_move_intent()
 	set name = "Change moving intent"

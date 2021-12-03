@@ -335,8 +335,9 @@
 		. += 0.5
 
 	var/muscle_eff = owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
-	muscle_eff = muscle_eff - (muscle_eff/(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag)/100)) //Need more nerves to control those new muscles
-	. += max(-(muscle_eff/ 100)/4, MAX_MUSCLE_SPEED)
+	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag),1)
+	muscle_eff = (muscle_eff/100) - (muscle_eff/nerve_eff) //Need more nerves to control those new muscles
+	. += max(-(muscle_eff), MAX_MUSCLE_SPEED)
 
 	. += tally
 
@@ -1035,6 +1036,22 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"name" = "Necrosis",
 				"fix_name" = "Treat",
 				"step" = /datum/surgery_step/fix_necrosis
+			)
+			conditions_list.Add(list(condition))
+
+		if(brute_dam > 0)
+			condition = list(
+				"name" = "Damaged tissue",
+				"fix_name" = "Treat",
+				"step" = /datum/surgery_step/fix_brute
+			)
+			conditions_list.Add(list(condition))
+
+		if(burn_dam > 0)
+			condition = list(
+				"name" = "Severe burns",
+				"fix_name" = "Salve",
+				"step" = /datum/surgery_step/fix_burn
 			)
 			conditions_list.Add(list(condition))
 

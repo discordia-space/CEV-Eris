@@ -11,7 +11,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
 	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
 	ammo_type = /obj/item/ammo_casing/srifle
-	fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
+	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
@@ -32,9 +32,6 @@
 		)
 
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
-
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.3 // 30 vig , almost a heavy assault rifle
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

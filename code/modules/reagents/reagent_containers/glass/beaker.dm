@@ -138,7 +138,7 @@
 	preloaded_reagents = list("nicotine" = 30)
 
 /obj/item/reagent_containers/glass/bucket
-	desc = "It's a bucket."
+	desc = "A bucket."
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"

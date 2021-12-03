@@ -21,7 +21,7 @@
 	unload_sound = 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
-	fire_sound = 'sound/weapons/guns/fire/cal/30.ogg'
+	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	recoil_buildup = 2.2
 	one_hand_penalty = 45 //not like it's used anyway, but HMG level
 	init_firemodes = list(
@@ -33,8 +33,8 @@
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	slowdown_hold = 5
-	wield_delay = 2 SECOND
-	wield_delay_factor = 0.4 // 40 vig , excels are not as trained
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.9 // 90 vig
 
 /obj/item/gun/projectile/automatic/maxim/on_update_icon()
 	..()

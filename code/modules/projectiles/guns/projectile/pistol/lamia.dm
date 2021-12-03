@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/lamia.dmi'
 	icon_state = "lamia"
 	item_state = "lamia"
-	fire_sound = 'sound/weapons/guns/fire/cal/40pistol.ogg'
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	can_dual = TRUE
@@ -22,8 +22,6 @@
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
 	recoil_buildup = 2
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.4 // 40 vig
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 

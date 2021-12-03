@@ -24,7 +24,7 @@ Has ability of every roach.
 	melee_damage_lower = 20
 	melee_damage_upper = 35
 	move_to_delay = 8
-	mob_size = MOB_HUGE
+	mob_size = MOB_GIGANTIC
 	status_flags = 0
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 
