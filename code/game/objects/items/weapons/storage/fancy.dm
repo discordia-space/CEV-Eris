@@ -286,7 +286,7 @@
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
-	desc = "A case for holding your cigars when you are not smoking them. Fancy!"
+	desc = "A case for holding your cigars when you are not smoking them. Fancy! Alt+click to open and close."
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
@@ -306,19 +306,6 @@
 	if(istype(loc, /obj/item/storage))
 		return 2
 	return 0
-
-
-/obj/item/storage/fancy/cigar/verb/quick_open_close(mob/user)
-	set name = "Close cigar case"
-	set category = "Object"
-	set src in view(1)
-	if(!is_worn())
-		if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
-			return
-
-		open_close(user)
-	else
-		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
 
 /obj/item/storage/fancy/cigar/AltClick(mob/user)
 	if(!is_worn())
