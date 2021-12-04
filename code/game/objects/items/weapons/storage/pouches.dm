@@ -163,7 +163,7 @@
 		)
 
 /obj/item/storage/pouch/engineering_material
-	name = "engineering construction pouch"
+	name = "engineering material pouch"
 	desc = "Can hold sheets, rods and cable coil. Has only 2 slots."
 	icon_state = "engineering_material"
 	item_state = "engineering_material"
