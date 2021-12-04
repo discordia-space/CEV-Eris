@@ -164,7 +164,7 @@
 
 /obj/item/storage/pouch/engineering_material
 	name = "engineering material pouch"
-	desc = "Can hold sheets, rods and cable coil. Has only 2 slots."
+	desc = "Can hold sheets, rods and cable coil."
 	icon_state = "engineering_material"
 	item_state = "engineering_material"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
