@@ -1,6 +1,0 @@
-author: CeUvi
-delete-after: true
-changes:
-  - bugfix: nvg bp helmet side states offset
-  - bugfix: nvg bp helmet making masks invisible
-  - imageadd: ih bp helmte

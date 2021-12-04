@@ -1,6 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscadd: throwing knives. Can spawn in maint plus be crafted. dmg from knives scales
-      DIRECTLY from user ROB stat. Soft capped at ~27. 10 dmg with 0 ROB
-  - tweak: change a bit the thrown_damage formula

@@ -1,4 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscdel: removed abundant cleanup of atom/var/reagents.
