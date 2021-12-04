@@ -61,6 +61,7 @@
 	pda_type = /obj/item/modular_computer/pda/forensics
 	belt = /obj/item/storage/belt/medical/emt
 	l_hand = /obj/item/storage/briefcase/crimekit
+	glasses = /obj/item/clothing/glasses/sunglasses/medhud
 	backpack_contents = list(/obj/item/gun/energy/gun/martin = 1, /obj/item/cell/small/high = 1)
 
 /decl/hierarchy/outfit/job/security/ihoper

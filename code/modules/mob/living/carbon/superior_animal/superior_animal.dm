@@ -60,6 +60,8 @@
 
 	var/melee_damage_lower = 0
 	var/melee_damage_upper = 10
+	var/melee_sharp = FALSE //whether mob attacks have sharp property
+	var/melee_edge = FALSE //whether mob attacks have edge property
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see

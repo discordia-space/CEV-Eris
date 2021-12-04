@@ -59,7 +59,7 @@
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"
-	desc = "It's a fork. Sure is pointy."
+	desc = "A fork. Sure is pointy."
 	icon_state = "fork"
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 
@@ -68,7 +68,7 @@
 
 /obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
-	desc = "It's a spoon. You can see your own upside-down face in it."
+	desc = "A spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
 	attack_verb = list("attacked", "poked")
 	edge = FALSE
@@ -90,7 +90,7 @@
 
 /obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
-	desc = "Used to knock out the Bartender."
+	desc = "Used to knock out the bartender."
 	icon_state = "rolling_pin"
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	default_material = "wood"
