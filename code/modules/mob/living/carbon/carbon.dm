@@ -396,9 +396,6 @@
 		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(stun_duration)
-	if(l_hand) unEquip(l_hand)
-	if(r_hand) unEquip(r_hand)
-
 	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
