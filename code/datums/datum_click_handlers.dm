@@ -106,9 +106,6 @@
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
-
-	if(owner.mob.resting)
-		return FALSE
 	if(target)
 		owner.mob.face_atom(target)
 		do_fire()

@@ -176,10 +176,7 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
-		return 1
-
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -734,14 +731,13 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 				anchored = FALSE
 		canmove = FALSE //TODO: Remove this
 	else
-		lying = incapacitated(INCAPACITATION_GROUNDED)
+		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 		canmove = FALSE //TODO: Remove this
 
 	if(lying)
 		set_density(0)
-		if(stat == UNCONSCIOUS)
-			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
-			if(r_hand) unEquip(r_hand)
+		if(l_hand) unEquip(l_hand)
+		if(r_hand) unEquip(r_hand)
 	else
 		canmove = TRUE
 		set_density(initial(density))

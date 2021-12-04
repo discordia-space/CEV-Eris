@@ -155,23 +155,16 @@
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if (get_turf(P.original) == cover)
-		var/valid = FALSE
-		var/distance = get_dist(P.last_interact,loc)
-		P.check_hit_zone(loc, distance)
-
-		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
-			valid = TRUE //The lower body is always concealed
+		var/chance = 20
 		if (ismob(P.original))
 			var/mob/M = P.original
 			if (M.lying)
-				valid = TRUE			//Lying down covers your whole body
-		if(valid)
-			var/pierce = P.check_penetrate(src)
+				chance += 20				//Lying down lets you catch less bullets
+		if(prob(chance))
 			health -= P.get_structure_damage()/2
 			if (health > 0)
 				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
-				return pierce
+				return 0
 			else
 				visible_message(SPAN_WARNING("[src] breaks down!"))
 				qdel(src)
