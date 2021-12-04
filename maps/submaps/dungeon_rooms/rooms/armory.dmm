@@ -147,6 +147,16 @@
 /obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
+"F" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"R" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun_upgrade,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -163,7 +173,7 @@ a
 a
 c
 f
-k
+F
 a
 w
 p
@@ -273,7 +283,7 @@ a
 a
 c
 f
-k
+R
 a
 z
 r

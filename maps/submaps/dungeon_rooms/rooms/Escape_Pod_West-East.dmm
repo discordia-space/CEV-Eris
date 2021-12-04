@@ -34,15 +34,25 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
+"w" = (
+/obj/structure/sign/directions/evac,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"T" = (
+/obj/structure/sign/directions/evac{
+	dir = 4
+	},
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
 
 (1,1,1) = {"
 e
 e
-e
+T
 b
 b
 b
-e
+T
 e
 e
 "}
@@ -80,7 +90,7 @@ c
 e
 "}
 (5,1,1) = {"
-e
+w
 c
 c
 e
@@ -124,7 +134,7 @@ c
 a
 "}
 (9,1,1) = {"
-e
+w
 c
 c
 e

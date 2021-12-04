@@ -52,7 +52,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "l" = (
-/obj/structure/computerframe,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "m" = (

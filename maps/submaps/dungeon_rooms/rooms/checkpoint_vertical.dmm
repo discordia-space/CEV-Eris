@@ -106,6 +106,16 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/crawler)
+"A" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
+"V" = (
+/obj/structure/salvageable/os/console_broken,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
 
 (1,1,1) = {"
 h
@@ -126,7 +136,7 @@ b
 l
 l
 l
-l
+q
 h
 "}
 (3,1,1) = {"
@@ -148,7 +158,7 @@ b
 l
 j
 w
-f
+A
 h
 "}
 (5,1,1) = {"
@@ -208,7 +218,7 @@ a
 "}
 (10,1,1) = {"
 h
-f
+V
 u
 j
 l

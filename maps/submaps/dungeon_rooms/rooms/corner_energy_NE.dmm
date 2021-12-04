@@ -35,7 +35,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "i" = (
-/obj/structure/computerframe,
+/obj/structure/salvageable/os/console_broken,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "j" = (

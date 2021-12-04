@@ -23,12 +23,14 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "g" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/material/resources/rare,
+/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "h" = (
-/obj/machinery/mineral/stacking_unit_console,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/material/resources/low_chance,
+/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "i" = (
 /obj/structure/railing/grey{
@@ -55,6 +57,9 @@
 /area/crawler)
 "m" = (
 /obj/structure/bed/chair/office/dark,
+/obj/machinery/mineral/processing_unit_console{
+	pixel_y = 25
+	},
 /turf/simulated/floor/plating,
 /area/crawler)
 "n" = (
@@ -100,6 +105,9 @@
 /area/crawler)
 "v" = (
 /obj/machinery/light/floor,
+/obj/machinery/mineral/stacking_unit_console{
+	pixel_y = 25
+	},
 /turf/simulated/floor/plating,
 /area/crawler)
 "w" = (
@@ -130,7 +138,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "A" = (
-/obj/structure/salvageable/autolathe,
+/obj/structure/salvageable/os/machine,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "B" = (
@@ -157,6 +165,7 @@
 /area/crawler)
 "F" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/material/ore,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "G" = (
@@ -201,6 +210,11 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
+"R" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/material/resources,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -221,7 +235,7 @@ q
 q
 q
 F
-F
+h
 a
 "}
 (3,1,1) = {"
@@ -242,8 +256,8 @@ d
 M
 q
 q
-F
-F
+g
+R
 a
 "}
 (5,1,1) = {"
@@ -314,7 +328,7 @@ a
 "}
 (11,1,1) = {"
 a
-g
+a
 m
 q
 q
@@ -325,7 +339,7 @@ a
 "}
 (12,1,1) = {"
 a
-h
+a
 v
 q
 A

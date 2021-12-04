@@ -7,10 +7,13 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
+/obj/machinery/light/floor,
+/obj/item/storage/briefcase{
+	pixel_y = 8
+	},
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/machinery/light/floor,
 /turf/simulated/floor/wood,
 /area/crawler)
 "d" = (
@@ -95,8 +98,12 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = 10
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
 /area/crawler)
@@ -119,7 +126,13 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "w" = (
-/obj/structure/closet/onestar/tier1,
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = 11
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
 /turf/simulated/floor/wood,
 /area/crawler)
 "x" = (
@@ -159,6 +172,28 @@
 /obj/structure/closet/onestar/tier2,
 /turf/simulated/floor/wood,
 /area/crawler)
+"H" = (
+/obj/structure/table/onestar,
+/obj/item/modular_computer/laptop/preset/custom_loadout/advanced/golden,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"I" = (
+/obj/structure/closet/onestar/tier1,
+/turf/simulated/floor/wood,
+/area/crawler)
+"J" = (
+/obj/structure/table/onestar,
+/obj/item/oddity/common/old_money{
+	pixel_y = 6
+	},
+/turf/simulated/floor/wood,
+/area/crawler)
+"O" = (
+/obj/item/storage/briefcase{
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -179,7 +214,7 @@ n
 e
 d
 l
-x
+I
 a
 "}
 (3,1,1) = {"
@@ -198,7 +233,7 @@ a
 e
 j
 j
-j
+H
 p
 d
 y
@@ -206,7 +241,7 @@ a
 "}
 (5,1,1) = {"
 a
-f
+s
 f
 f
 f
@@ -250,7 +285,7 @@ B
 "}
 (9,1,1) = {"
 a
-h
+w
 h
 h
 h
@@ -262,31 +297,31 @@ B
 (10,1,1) = {"
 a
 e
+J
 k
 k
-k
-s
+e
 d
 A
 a
 "}
 (11,1,1) = {"
 a
-e
+n
 k
 k
 k
-s
+n
 d
 x
 a
 "}
 (12,1,1) = {"
 a
-w
-i
 d
-p
+i
+O
+e
 d
 l
 C

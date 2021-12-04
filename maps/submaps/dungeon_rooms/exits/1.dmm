@@ -44,14 +44,36 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"u" = (
+/obj/structure/sign/directions/evac{
+	dir = 8
+	},
+/turf/simulated/wall,
+/area/crawler)
+"x" = (
+/obj/structure/sign/directions/evac{
+	dir = 1
+	},
+/turf/simulated/wall,
+/area/crawler)
+"A" = (
+/obj/structure/sign/directions/evac,
+/turf/simulated/wall,
+/area/crawler)
+"C" = (
+/obj/structure/sign/directions/evac{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/crawler)
 
 (1,1,1) = {"
 a
 a
 a
-a
+C
 e
-a
+C
 a
 a
 a
@@ -101,7 +123,7 @@ c
 a
 "}
 (6,1,1) = {"
-a
+A
 c
 d
 d
@@ -109,7 +131,7 @@ d
 d
 d
 c
-a
+x
 "}
 (7,1,1) = {"
 b
@@ -123,7 +145,7 @@ l
 b
 "}
 (8,1,1) = {"
-a
+A
 c
 d
 c
@@ -131,7 +153,7 @@ d
 c
 d
 c
-a
+x
 "}
 (9,1,1) = {"
 a
@@ -181,9 +203,9 @@ a
 a
 a
 a
-a
+u
 e
-a
+u
 a
 a
 a

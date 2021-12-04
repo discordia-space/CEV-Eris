@@ -92,6 +92,7 @@
 /obj/spawner/gun/normal,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/cheap,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
@@ -103,12 +104,15 @@
 /obj/spawner/gun/shotgun,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/cheap,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/cheap,
+/obj/spawner/gun_upgrade,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -123,6 +127,7 @@
 /obj/structure/table/onestar,
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/cheap,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 

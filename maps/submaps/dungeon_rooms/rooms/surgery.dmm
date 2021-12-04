@@ -32,6 +32,7 @@
 /area/crawler)
 "h" = (
 /obj/structure/table/onestar,
+/obj/item/tool/medmultitool,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "i" = (
@@ -55,6 +56,7 @@
 "m" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
+/obj/spawner/tool/advanced/onestar,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "n" = (
@@ -127,7 +129,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/washing_machine,
+/obj/structure/closet/onestar/tier2/medical,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "A" = (
@@ -139,10 +141,40 @@
 	dir = 1
 	},
 /obj/structure/table/onestar,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "D" = (
 /obj/machinery/door/window/northleft,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"H" = (
+/obj/structure/table/onestar,
+/obj/item/storage/pill_bottle/prosurgeon,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"N" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/closet/onestar/tier1/medical,
+/obj/item/tank/onestar_regenerator,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"T" = (
+/obj/structure/window/reinforced,
+/obj/structure/table/onestar,
+/obj/item/storage/firstaid/surgery/traitor,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"U" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/structure/closet/onestar/tier2/medical,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/table/onestar,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 
@@ -162,8 +194,8 @@ a
 d
 k
 p
+U
 s
-w
 z
 c
 a
@@ -187,7 +219,7 @@ j
 j
 j
 B
-h
+Y
 a
 "}
 (5,1,1) = {"
@@ -247,13 +279,13 @@ i
 "}
 (10,1,1) = {"
 a
-h
-m
+H
+T
 j
 j
 j
 B
-h
+Y
 a
 "}
 (11,1,1) = {"
@@ -274,7 +306,7 @@ o
 p
 s
 w
-z
+N
 c
 a
 "}

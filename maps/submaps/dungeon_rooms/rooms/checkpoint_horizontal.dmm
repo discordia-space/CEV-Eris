@@ -108,8 +108,8 @@
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
@@ -155,6 +155,12 @@
 /area/crawler)
 "D" = (
 /obj/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"E" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 
@@ -217,7 +223,7 @@ b
 b
 f
 j
-q
+E
 t
 s
 C

@@ -73,6 +73,9 @@
 	},
 /obj/structure/catwalk,
 /obj/machinery/light/floor,
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "p" = (
@@ -225,6 +228,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /turf/simulated/floor/plating/under,
 /area/crawler)
+"Q" = (
+/obj/structure/railing/grey,
+/obj/structure/reagent_dispensers/watertank/derelict,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -240,7 +248,7 @@ a
 (2,1,1) = {"
 a
 c
-h
+Q
 m
 u
 u

@@ -15,6 +15,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "e" = (
+/obj/structure/reagent_dispensers/watertank/derelict,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "f" = (
@@ -47,7 +48,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "l" = (
-/obj/machinery/computer,
+/obj/structure/salvageable/bliss,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "m" = (
@@ -97,8 +98,8 @@
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
@@ -107,11 +108,12 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "y" = (
-/obj/spawner/toy/plushie,
+/obj/spawner/tool/advanced/onestar,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "z" = (
 /obj/structure/table/rack,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "A" = (
@@ -123,7 +125,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "C" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/salvageable/os/machine,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "D" = (
@@ -134,28 +136,43 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "E" = (
-/obj/structure/salvageable/implant_container,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "F" = (
-/obj/structure/salvageable/server,
+/obj/structure/salvageable/os/console,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "G" = (
-/obj/structure/salvageable/machine,
+/obj/structure/salvageable/os/data,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "H" = (
-/obj/structure/salvageable/computer,
+/obj/structure/salvageable/os/server,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "I" = (
-/obj/structure/salvageable/data,
+/obj/structure/salvageable/os/implant_container,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "J" = (
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"R" = (
+/obj/structure/satellite,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"U" = (
+/obj/structure/salvageable/os/console_broken,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"W" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/spawner/pack/tech_loot/onestar,
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 
 (1,1,1) = {"
@@ -186,7 +203,7 @@ A
 n
 u
 a
-e
+R
 n
 H
 a
@@ -199,7 +216,7 @@ u
 a
 C
 n
-F
+H
 a
 "}
 (5,1,1) = {"
@@ -210,7 +227,7 @@ f
 b
 D
 o
-f
+W
 J
 "}
 (6,1,1) = {"
@@ -265,7 +282,7 @@ x
 a
 E
 n
-G
+I
 a
 "}
 (11,1,1) = {"
@@ -276,7 +293,7 @@ y
 a
 F
 n
-H
+G
 a
 "}
 (12,1,1) = {"
@@ -285,7 +302,7 @@ k
 c
 z
 a
-E
+U
 c
 I
 a

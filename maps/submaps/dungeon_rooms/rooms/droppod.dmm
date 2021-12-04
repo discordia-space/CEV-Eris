@@ -80,6 +80,16 @@
 "r" = (
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"P" = (
+/obj/item/tank/onestar_regenerator,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -173,9 +183,9 @@ b
 a
 o
 p
+Y
 r
-r
-r
+P
 q
 o
 b

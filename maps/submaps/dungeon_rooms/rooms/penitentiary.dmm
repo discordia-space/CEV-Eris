@@ -17,6 +17,9 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "e" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "f" = (
@@ -30,7 +33,7 @@
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "i" = (
-/obj/structure/table/onestar,
+/obj/structure/closet/onestar/tier3/special,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "j" = (
@@ -51,6 +54,8 @@
 /area/crawler)
 "m" = (
 /obj/structure/bed/chair/custom/onestar/red,
+/obj/item/remains,
+/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "n" = (
@@ -98,6 +103,11 @@
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"x" = (
+/obj/structure/bed,
+/obj/item/remains,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
 "y" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled/dark/brown_platform,
@@ -124,6 +134,12 @@
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
+"X" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -144,7 +160,7 @@ q
 v
 u
 z
-y
+x
 a
 "}
 (3,1,1) = {"
@@ -216,7 +232,7 @@ b
 (9,1,1) = {"
 a
 i
-i
+X
 a
 t
 u

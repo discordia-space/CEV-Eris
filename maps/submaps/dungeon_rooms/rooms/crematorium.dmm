@@ -115,6 +115,11 @@
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/tiled/dark/golden,
 /area/crawler)
+"Z" = (
+/obj/machinery/light/floor,
+/obj/structure/reagent_dispensers/fueltank/huge/derelict,
+/turf/simulated/floor/tiled/white,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -228,7 +233,7 @@ a
 "}
 (11,1,1) = {"
 a
-m
+Z
 y
 k
 i

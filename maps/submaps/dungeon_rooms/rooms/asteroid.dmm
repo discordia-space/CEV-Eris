@@ -23,7 +23,7 @@
 /turf/simulated/floor/asteroid,
 /area/crawler)
 "h" = (
-/obj/machinery/computer,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "i" = (
@@ -81,6 +81,10 @@
 /obj/structure/lattice,
 /turf/space,
 /area/crawler)
+"M" = (
+/obj/item/tank/onestar_regenerator,
+/turf/simulated/floor/plating/under,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -129,7 +133,7 @@ a
 (5,1,1) = {"
 a
 e
-f
+M
 i
 f
 g

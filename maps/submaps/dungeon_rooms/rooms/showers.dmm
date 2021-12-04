@@ -67,6 +67,18 @@
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"S" = (
+/obj/structure/closet/l3closet,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/cloth/armor,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
+"T" = (
+/obj/structure/closet/l3closet,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/spawner/cloth/under,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -114,7 +126,7 @@ a
 "}
 (5,1,1) = {"
 a
-d
+S
 h
 k
 a
@@ -125,11 +137,11 @@ b
 "}
 (6,1,1) = {"
 b
-d
+T
 h
 k
 a
-d
+T
 h
 k
 b

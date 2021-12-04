@@ -36,6 +36,9 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/crawler)
 "k" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/crawler)
 "l" = (
@@ -43,6 +46,7 @@
 /area/crawler)
 "m" = (
 /obj/structure/table/onestar,
+/obj/item/computer_hardware/hard_drive/portable/design/guns/retro,
 /turf/simulated/floor/tiled/dark/danger,
 /area/crawler)
 "n" = (
@@ -55,6 +59,7 @@
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
+/obj/item/computer_hardware/hard_drive/portable/design/onestar,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/crawler)
 "q" = (
@@ -65,7 +70,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/crawler)
 "s" = (
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
@@ -91,6 +96,9 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/crawler)
 "y" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 "z" = (

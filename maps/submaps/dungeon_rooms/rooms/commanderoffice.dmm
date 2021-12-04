@@ -18,7 +18,7 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "f" = (
-/obj/structure/undies_wardrobe,
+/obj/structure/closet/cabinet,
 /turf/simulated/floor/wood,
 /area/crawler)
 "g" = (
@@ -45,9 +45,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "l" = (
-/obj/machinery/shieldwallgen{
-	anchored = 1
-	},
+/obj/machinery/porta_turret/One_star,
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 "m" = (
@@ -82,22 +80,29 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/item/clothing/glasses/powered/thermal/onestar,
 /turf/simulated/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/closet/onestar/tier3,
+/obj/structure/closet/onestar/tier3/special,
 /turf/simulated/floor/wood,
 /area/crawler)
 "t" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 "u" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/wood,
 /area/crawler)
 "x" = (
@@ -106,7 +111,9 @@
 /area/crawler)
 "y" = (
 /obj/structure/table/onestar,
-/obj/item/device/lighting/toggleable/lamp/green,
+/obj/item/device/lighting/toggleable/lamp/green{
+	pixel_y = 7
+	},
 /turf/simulated/floor/wood,
 /area/crawler)
 "z" = (
@@ -117,7 +124,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 "A" = (
-/obj/structure/table/onestar,
+/obj/structure/salvageable/os/console{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crawler)
 "B" = (
@@ -135,13 +144,13 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "D" = (
-/obj/structure/bed/chair/office/dark{
+/obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "E" = (
-/obj/structure/bed/chair/office/dark{
+/obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -160,6 +169,31 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"K" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/wood,
+/area/crawler)
+"M" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"P" = (
+/obj/structure/table/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/spawner/oddities,
+/turf/simulated/floor/wood,
+/area/crawler)
+"X" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 
 (1,1,1) = {"
@@ -222,10 +256,10 @@ b
 c
 d
 j
-j
+X
 j
 d
-q
+P
 b
 "}
 (7,1,1) = {"
@@ -235,7 +269,7 @@ c
 C
 E
 k
-c
+K
 r
 b
 "}
@@ -256,7 +290,7 @@ c
 n
 D
 D
-j
+D
 c
 c
 b
@@ -287,9 +321,9 @@ a
 a
 l
 z
+M
 m
-m
-m
+M
 z
 l
 a

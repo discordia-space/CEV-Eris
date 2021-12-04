@@ -42,7 +42,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/modular_computer/console,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "ai" = (
@@ -209,6 +209,7 @@
 /obj/structure/table/onestar,
 /obj/item/remains/human,
 /obj/item/pen,
+/obj/item/tool/knife/butterfly,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aA" = (
@@ -248,7 +249,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -360,6 +361,8 @@
 /obj/machinery/light/floor,
 /obj/item/remains/human,
 /obj/effect/decal/cleanable/blood,
+/obj/item/ammo_casing/pistol,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "aR" = (
@@ -383,7 +386,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console_broken{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -409,7 +412,7 @@
 "aY" = (
 /obj/structure/table/onestar,
 /obj/item/pen/reagent/sleepy,
-/obj/item/newspaper,
+/obj/item/oddity/common/old_newspaper,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aZ" = (
@@ -445,8 +448,8 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/gun/projectile/handmade_pistol,
-/obj/spawner/ammo,
+/obj/item/gun/projectile/selfload/makarov,
+/obj/item/ammo_magazine/hpistol,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 

@@ -62,6 +62,7 @@
 "n" = (
 /obj/structure/table/onestar,
 /obj/machinery/light/floor,
+/obj/item/tool_upgrade/augment/holding_tank,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "o" = (
@@ -71,8 +72,8 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/rack,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "p" = (
@@ -89,10 +90,10 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "s" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
+/obj/structure/reagent_dispensers/fueltank/huge/derelict,
 /turf/simulated/floor/tiled/dark/panels,
 /area/crawler)
 "t" = (
@@ -126,6 +127,9 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
+/obj/structure/sign/faction/one_star_old{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "y" = (
@@ -159,7 +163,9 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "E" = (
-/obj/machinery/door/airlock/centcom,
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 "F" = (
@@ -174,6 +180,9 @@
 "G" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/light/floor,
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "H" = (
@@ -236,6 +245,30 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"T" = (
+/obj/machinery/mech_recharger,
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"U" = (
+/obj/structure/salvageable/os/implant_container,
+/turf/simulated/floor/tiled/dark/panels,
+/area/crawler)
+"V" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool/advanced/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/spawner/tool/advanced/onestar,
+/turf/simulated/floor/tiled/dark/panels,
+/area/crawler)
+"Z" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -289,13 +322,13 @@ q
 C
 q
 q
-i
+Z
 b
 "}
 (6,1,1) = {"
 b
 i
-i
+V
 n
 C
 y
@@ -322,17 +355,17 @@ x
 C
 G
 M
-M
+Y
 b
 "}
 (9,1,1) = {"
 a
-k
+U
 q
 z
 S
 I
-r
+T
 k
 b
 "}
