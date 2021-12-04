@@ -97,8 +97,11 @@
 				projected_mind.defaultHUD = cable.owner.UIStyle
 			var/mob/living/carbon/human/O = J.owner
 			if(istype(O))
-				var/cock = O.stats.getStat(STAT_COG)
+				var/datum/stat_holder/S = O.stats
+				var/cock = S.getStat(STAT_COG)
 				projected_mind.maxHP = 100 * (1 + cock / 100)
+				var/mek = S.getStat(STAT_MEC)
+				projected_mind.MEC = max(mek, 1)
 			projected_mind.HP = projected_mind.maxHP
 		projected_mind.reset_HUD()
 

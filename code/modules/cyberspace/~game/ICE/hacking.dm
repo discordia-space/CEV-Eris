@@ -1,4 +1,4 @@
-/datum/CyberSpaceAvatar/ice/HackingTry(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
+/datum/CyberSpaceAvatar/entity/ice/HackingTry(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = ..()
 	if(istype(Owner, /mob/observer/cyber_entity))
 		var/mob/observer/cyber_entity/C = Owner
@@ -12,7 +12,7 @@
 		else
 			return FALSE
 
-/datum/CyberSpaceAvatar/ice/Hacked(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
+/datum/CyberSpaceAvatar/entity/ice/Hacked(mob/observer/cyber_entity/cyberspace_eye/user, datum/CyberSpaceAvatar/user_avatar, params)
 	if(istype(Owner, /mob/observer/cyber_entity))
 		var/mob/observer/cyber_entity/C = Owner
 		C.Hacked = TRUE

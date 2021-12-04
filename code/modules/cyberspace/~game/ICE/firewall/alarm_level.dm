@@ -92,3 +92,10 @@
 		SPAN_WARNING("[_name]: ") + "[msg]",
 		author
 	)
+
+
+/atom/proc/RaiseAlarmLevelInArea(value)
+	var/obj/machinery/power/apc/pc = locate(/obj/machinery/power/apc) in get_area(src)
+	if(istype(pc))
+		pc.RaiseAlarmLevel(value)
+		. = ..()

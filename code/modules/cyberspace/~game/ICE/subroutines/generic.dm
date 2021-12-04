@@ -39,8 +39,6 @@
 	)
 //	if(wayOfTrigger == SUBROUTINE_SPOTTED && !(get_dist(triggerer.Owner, host.Owner) > distance))
 //		return
-	var/area/A = get_area(host.Owner)
-	var/obj/machinery/power/apc/pc = locate(/obj/machinery/power/apc) in A
-	if(istype(pc))
-		pc.RaiseAlarmLevel(value)
+	if(istype(host.Owner))
+		host.Owner.RaiseAlarmLevelInArea(value)
 		. = ..()

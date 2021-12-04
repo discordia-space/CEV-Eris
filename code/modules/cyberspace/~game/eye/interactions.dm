@@ -1,3 +1,6 @@
+/mob/observer/cyber_entity
+	var/tmp/NextDisarm = 0
+	var/DisarmCooldown = 1 SECOND
 /datum/CyberSpaceAvatar/ClickedByAvatar(mob/user, datum/CyberSpaceAvatar/user_avatar, params)
 	. = ..()
 	var/mob/observer/cyber_entity/eye = user
@@ -10,7 +13,9 @@
 			if(I_GRAB)
 				. = GrabInteraction(eye, user_avatar, params)
 			if(I_DISARM)
-				. = DisarmInteraction(eye, user_avatar, params)
+				if(eye.NextDisarm <= world.time)
+					. = DisarmInteraction(eye, user_avatar, params)
+					eye.NextDisarm = world.time + eye.DisarmCooldown
 
 /datum/CyberSpaceAvatar/proc/HelpInteraction(mob/observer/cyber_entity/user, datum/CyberSpaceAvatar/user_avatar, params)
 	var/mob/observer/cyber_entity/O = Owner
@@ -49,3 +54,19 @@
 
 /datum/CyberSpaceAvatar/proc/DisarmInteraction(mob/observer/cyber_entity/user, datum/CyberSpaceAvatar/user_avatar, params)
 
+/datum/CyberSpaceAvatar/interactable/DisarmInteraction(mob/observer/cyber_entity/user, datum/CyberSpaceAvatar/user_avatar, params)
+	. = ..()
+	if(istype(Owner))
+		var/value = 1 + round(user.MEC/10)
+		Owner.RaiseAlarmLevelInArea(1)
+		Owner.emp_act(value)
+
+/datum/CyberSpaceAvatar/entity/DisarmInteraction(mob/observer/cyber_entity/user, datum/CyberSpaceAvatar/user_avatar, params)
+	. = ..()
+	if(istype(Owner))
+		var/mek = user.MEC
+		if(prob(mek))
+			var/randOffset = 2 + round(mek/10)
+			var/newx = Owner.x + rand(-randOffset, randOffset) 
+			var/newy = Owner.y + rand(-randOffset, randOffset)
+			Owner.Move(locate(newx, newy, Owner.z))

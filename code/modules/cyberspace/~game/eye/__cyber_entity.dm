@@ -1,3 +1,10 @@
+/datum/CyberSpaceAvatar/entity
+	density = TRUE
+
+CYBERAVATAR_INITIALIZATION(/mob/observer/cyber_entity/cyberspace_eye, CYBERSPACE_MAIN_COLOR)
+CYBERAVATAR_CUSTOM_TYPE(/mob/observer/cyber_entity/cyberspace_eye, /datum/CyberSpaceAvatar/entity)
+
+
 /mob/observer/cyber_entity
 	icon = 'icons/obj/cyberspace/ices/wild.dmi'
 
@@ -7,6 +14,7 @@
 	var/maxHP = 100
 	var/HP
 	var/Might = 5
+	var/MEC = 1
 	var/attack_range = 1
 
 	var/movement_delay = 6
