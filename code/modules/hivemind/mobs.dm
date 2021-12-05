@@ -905,7 +905,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/treader/Initialize()
 	..()
-	set_light(2, 1, COLOR_LIGHTING_CYAN_MACHINERY)
+	set_light(2, 1, COLOR_BLUE_LIGHT)
 
 /mob/living/simple_animal/hostile/hivemind/treader/Life()
 	. = ..()
