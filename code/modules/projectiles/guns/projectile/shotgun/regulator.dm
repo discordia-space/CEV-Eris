@@ -15,7 +15,7 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
 	saw_off = FALSE
-		gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/part/gun/frame/regulator
 	name = "Regulator frame"
