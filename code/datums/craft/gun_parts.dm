@@ -5,7 +5,7 @@
 	generic = FALSE
 	bad_type = /obj/item/part/gun/frame
 
-	var/result = /obj/item/gun/projectile/automatic/dallas
+	var/result = /obj/item/gun/projectile
 
 	var/grip = /obj/item/part/gun/grip
 	var/grip_attached = FALSE
@@ -16,8 +16,8 @@
 	var/gripvar3
 	var/gripvar4
 
-	var/resultvar1 = /obj/item/gun/projectile/automatic/sts35
-	var/resultvar2 = /obj/item/gun/projectile/revolver/mateba
+	var/resultvar1 = /obj/item/gun/projectile
+	var/resultvar2 = /obj/item/gun/projectile
 	var/resultvar3
 	var/resultvar4
 
@@ -134,6 +134,11 @@
 	desc = "A tan plastic firearm grip, unattached from a firearm. To fight for Haven and to spread the unified revolution!"
 	icon_state = "grip_excel"
 
+/obj/item/part/gun/grip/serb
+	name = "bakelite plastic grip"
+	desc = "A brown plastic firearm grip, unattached from a firearm. Classics never go out of style."
+	icon_state = "grip_serb"
+
 //Mechanisms
 /obj/item/part/gun/mechanism
 	name = "generic mechanism"
@@ -144,13 +149,18 @@
 
 /obj/item/part/gun/mechanism/pistol
 	name = "pistol mechanism"
-	desc = "All the bits that makes the bullet go bang, all in a convenient frame."
+	desc = "All the bits that makes the bullet go bang, all in a small, convenient frame."
 	icon_state = "mechanism_pistol"
 
 /obj/item/part/gun/mechanism/revolver
 	name = "revolver mechanism"
-	desc = "All the bits that makes the bullet go bang."
+	desc = "All the bits that makes the bullet go bang, rolling round and round."
 	icon_state = "mechanism_revolver"
+
+/obj/item/part/gun/mechanism/shotgun
+	name = "shotgun mechanism"
+	desc = "All the bits that makes the bullet go bang, perfect for long shells."
+	icon_state = "mechanism_shotgun"
 
 //Barrels
 /obj/item/part/gun/barrel
@@ -174,3 +184,8 @@
 	name = ".25 integrally suppressed barrel"
 	desc = "An integrally suppressed gun barrel, which keeps the bullet going in the right direction and the noise down. Chambered in .25 caliber."
 	icon_state = "barrel_40"
+
+/obj/item/part/gun/barrel/shotgun
+	name = "shotgun barrel"
+	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber."
+	icon_state = "barrel_50"
