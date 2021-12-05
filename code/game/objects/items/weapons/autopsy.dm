@@ -48,8 +48,8 @@
 		var/datum/autopsy_data/W = O.autopsy_data[V]
 
 		if(!W.pretend_weapon)
-			// 5% chance for the device to bug out
-			if(prob(5))
+			var/error_chance = (user.stat.getStat(STAT_BIO) * 4) //always success at BIO 25+
+			if(prob(error_chance))
 				W.pretend_weapon = pick("mechanical toolbox", "wirecutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
 			else
 				W.pretend_weapon = W.weapon
