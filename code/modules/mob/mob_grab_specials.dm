@@ -92,17 +92,22 @@
 		return
 	if(target.lying)
 		return
-	visible_message(SPAN_DANGER("\The [attacker] dropkicks \the [target]!"))
-	attacker.Weaken(2 SECOND)
-	target.Stun(6 SECONDS)
+	visible_message(SPAN_DANGER("\The [attacker] dropkicks \the [target], pushing \him onward!"))
+	attacker.Weaken(2)
+	target.Weaken(6) //the target will fly over tables, railings, etc.
 	var/kick_dir = get_dir(attacker, target)
+	if(attacker.loc == target.loc) // if we are on the same tile(e.g. neck grab), turn the direction to still push them away
+		kick_dir = turn(kick_dir, 180)
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
+	//deal damage AFTER the kick
+	var/damage = (attacker.stats.getStat(STAT_ROB) / 3)
+	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE)
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")	
 	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")	
-	
-	attacker.drop_from_inventory(src) //kill the grab
+	//kill the grab
+	attacker.drop_from_inventory(src)
 	src.loc = null
 	qdel(src)
 
@@ -112,25 +117,21 @@
 		return
 	visible_message(SPAN_WARNING("\The [attacker] lifts \the [target] off the ground..." ))
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
-	if(!do_after(attacker, 20, progress = 0))
-		return 0
-	if((src && assailant == attacker && affecting == src)) //check that we still have a grab
-		return 0
-	visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back into the floor!"))
-	var/damage = ((attacker.stats.getStat(STAT_ROB) / 2) + 10)
-	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
-	attacker.Weaken(2 SECOND)
-	target.Stun(6 SECONDS)
-	playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
-
-	//admin messaging
-	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
-	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")	
-	msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
-
-	attacker.drop_from_inventory(src) //kill the grab
-	src.loc = null
-	qdel(src)
+	if(do_after(attacker, 20, progress=0) && target)
+		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back into the floor!"))
+		var/damage = ((attacker.stats.getStat(STAT_ROB) / 2) + 15)
+		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
+		attacker.Weaken(2)
+		target.Stun(6)
+		playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
+		//admin messaging
+		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")	
+		msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
+		//kill the grab
+		attacker.drop_from_inventory(src)
+		src.loc = null
+		qdel(src)
 
 /obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
