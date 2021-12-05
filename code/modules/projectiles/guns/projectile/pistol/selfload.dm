@@ -71,6 +71,7 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)
+<<<<<<< gun-assembly
 	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 	
 
@@ -82,3 +83,10 @@
 	grip = /obj/item/part/gun/grip/excel
 	mechanism = /obj/item/part/gun/mechanism/pistol
 	barrel = /obj/item/part/gun/barrel/pistol
+=======
+
+/obj/item/gun/projectile/selfload/moebius
+	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
+	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'
+>>>>>>> master
