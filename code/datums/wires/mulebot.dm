@@ -1,5 +1,4 @@
 /datum/wires/mulebot
-	random = 1
 	holder_type = /obj/machinery/bot/mulebot
 	wire_count = 10
 

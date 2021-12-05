@@ -170,6 +170,7 @@
 			Comes with inbuilt nightvision HUD."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
+	flags_inv = NONE
 	action_button_name = "Toggle Night Vision"
 	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
 	var/last_toggle = 0
@@ -298,7 +299,7 @@
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)

@@ -336,7 +336,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/lobber
 	name = "Lobber"
-	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
+	desc = "A little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
 	icon_state = "lobber"
 	attacktext = "spray painted" //this shouldn't appear anyways
 	density = FALSE
