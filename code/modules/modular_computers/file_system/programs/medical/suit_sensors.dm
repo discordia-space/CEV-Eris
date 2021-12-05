@@ -61,7 +61,7 @@
 					T.target_mob = H
 					if(!T.is_tracking)
 						T.pinpoint()
-		return TRUE
+		return TOPIC_HANDLED
 	if(href_list["search"])
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
