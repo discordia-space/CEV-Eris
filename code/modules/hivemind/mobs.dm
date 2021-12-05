@@ -886,18 +886,20 @@
 	ranged = TRUE
 	minimum_distance = 3
 	fire_verb = "spits"
-	projectiletype = /obj/item/projectile/goo
+	projectiletype = /obj/item/projectile/goo/weak
 	projectilesound = 'sound/effects/blobattack.ogg'
 	ranged_cooldown = 10 SECONDS
 	ability_cooldown = 20 SECONDS
 
 	speak = list(
+				"Hey, atleast I got my head.",
 				"I can't... I can't feel my arms...",
 				"Oh god... my legs... where are my legs..."
 				)
 
 	target_speak = list(
 				"You there! Cut off my head!",
+				"So sorry! Can't exactly control my head anymore.",
 				"S-shoot the screen! God I hope it won't hurt."
 				)
 
