@@ -17,4 +17,13 @@
 
 	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
+	gun_parts = list(/obj/item/part/gun/frame/gladstone = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
+/obj/item/part/gun/frame/gladstone
+	name = "Gladstone frame"
+	desc = "A Gladstone shotgun frame. Where capacity and force combine."
+	icon_state = "frame_gladstone"
+	result = /obj/item/gun/projectile/shotgun/pump/gladstone
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun
