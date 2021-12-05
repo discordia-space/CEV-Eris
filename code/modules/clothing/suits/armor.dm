@@ -560,9 +560,9 @@
 	spawn_blacklisted = TRUE
 
 //onestar
-/obj/item/clothing/suit/storage/onestar/jacket
-	name = "One Star officer jacket"
-	desc = "A rare stylish red jacket worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
+/obj/item/clothing/suit/storage/onestar/coat
+	name = "One Star officer coat"
+	desc = "A rare stylish red coat worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
 	icon_state = "onestar_coat"
 	price_tag = 3000
 	armor = list(
@@ -576,4 +576,5 @@
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
-	)
+
+
