@@ -44,7 +44,7 @@
 	return FALSE
 
 /datum/nano_module/crew_monitor/Topic(href, href_list)
-	if(..()) return TRUE
+	if(..()) return TOPIC_HANDLED
 
 	if(href_list["track"])
 		if(isAI(usr))
@@ -66,9 +66,9 @@
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
 			search = ""
-			return TRUE
+			return TOPIC_HANDLED
 		search = new_search
-		return TRUE
+		return TOPIC_HANDLED
 
 
 /datum/nano_module/crew_monitor/ui_data(mob/user)
