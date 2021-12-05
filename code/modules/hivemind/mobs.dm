@@ -866,6 +866,47 @@
 	qdel(src)
 
 
+
+////////////////////////Treader///////////////////
+//Big brother of the bomber
+//Tougher, heavily armoured, slow as fuck
+//Greater explosion, rarer and larger
+//Avoid at all costs
+/////////////////////////////////////////////////
+/mob/living/simple_animal/hostile/hivemind/treader
+	name = "Treader"
+	desc = "A human head frozen in a twisted scream, wired to a explosive on tank treads."
+	icon_state = "treader"
+	speak_chance = 1
+	health = 200
+	maxHealth = 200
+	resistance = RESISTANCE_HEAVILY_ARMOURED 
+	malfunction_chance = 20
+	mob_size = MOB_LARGE
+	move_to_delay = 20
+	rarity_value = 150
+
+	speak = list(
+				"Please... stop this...",
+				"Oh god... my legs... where are my legs..."
+				)
+	target_speak = list(
+				"S-stay back! I c-can't control it!",
+				"N-no! Stop it! I don't want to h-hurt them!"
+				)
+
+
+/mob/living/simple_animal/hostile/hivemind/treader/death()
+	..()
+	gibs(loc, null, /obj/effect/gibspawner/robot)
+	gibs(loc, null, /obj/effect/gibspawner/human)
+	explosion(get_turf(src), 1, 2, 4) //explosion almost equal to a full welding fuel tank, deadly
+	qdel(src)
+
+/mob/living/simple_animal/hostile/hivemind/treader/AttackingTarget()
+	death()
+
+
 /////////////////////////////////////PHASER///////////////////////////////////
 //Special ability: Superposition. Phaser exists at four locations. But, actually he vulnerable only at one. Other is just a copies
 //Moves with teleportation only, can stun victim if he land on it
