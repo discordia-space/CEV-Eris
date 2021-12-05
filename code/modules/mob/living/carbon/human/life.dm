@@ -1185,7 +1185,7 @@
 	if (slickness == style*10) // is slickness at the maximum?
 		slick = FALSE
 	slickness = max(min(slickness + 1 * source_modifier * style, style*10), 0)
-	if (slick && slickness == style*10) // if slickness was not at the maximum and now is
+	if (slick && slickness == style*10 && style > 0) // if slickness was not at the maximum and now is
 		to_chat(src, SPAN_NOTICE("You feel slick!")) // notify of slickness entering maximum
 
 /mob/living/carbon/human/proc/EnterStasis()

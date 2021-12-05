@@ -78,6 +78,7 @@
 	var/embed_mult = 0.5 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
+	var/style = STYLE_NONE // how much using this item increases your style
 
 	var/list/item_upgrades = list()
 	var/max_upgrades = 3
@@ -539,3 +540,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/on_embed_removal(mob/living/user)
 	return
+
+/obj/item/proc/get_style()
+	return style

@@ -426,43 +426,35 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/style_factor = 0
 	var/suit_coverage = 0 // what a suit blocks from view
 	var/head_coverage = 0 // what a helmet or mask blocks from view
-	if (istype(wear_suit, /obj/item/clothing/suit))
-		var/obj/item/clothing/suit/worn_suit = wear_suit // that I have to define this is a bit silly, but I'm not touching that oldcode.
-		suit_coverage = worn_suit.flags_inv
+	if (istype(wear_suit, /obj/item/clothing))
+		var/obj/item/clothing/suit/worn_suit = wear_suit // clothing has style_coverage.
+		suit_coverage = worn_suit.style_coverage
 		style_factor += worn_suit.get_style()
-	if (istype(head, /obj/item/clothing/head))
+	if (istype(head, /obj/item/clothing))
 		var/obj/item/clothing/suit/worn_hat = head
-		head_coverage = worn_hat.flags_inv
+		head_coverage = worn_hat.style_coverage
 		style_factor += worn_hat.get_style()
-	if (!(head_coverage & HIDEMASK) && istype(wear_mask, /obj/item/clothing/mask)) // is it hidden, and if not is it a mask?
+	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
 		var/obj/item/clothing/mask/worn_mask = wear_mask
-		head_coverage |= worn_mask.flags_inv
+		head_coverage |= worn_mask.style_coverage
 		style_factor += worn_mask.get_style()
-	if (!(head_coverage & HIDEEARS))
-		if (istype(l_ear, /obj/item/clothing/ears) && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
-			var/obj/item/clothing/worn_ear = l_ear
-			style_factor += worn_ear.get_style()
-		if (istype(r_ear, /obj/item/clothing/ears) && !istype(r_ear, /obj/item/clothing/ears/offear))
-			var/obj/item/clothing/worn_ear = r_ear
-			style_factor += worn_ear.get_style()
-	if (!(head_coverage & HIDEEYES) && istype(glasses, /obj/item/clothing))
-		var/obj/item/clothing/worn_glasses = glasses
-		style_factor += worn_glasses.get_style()
-	if (!(suit_coverage & HIDEGLOVES) && istype(gloves, /obj/item/clothing))
-		var/obj/item/clothing/worn_gloves = gloves
-		style_factor += worn_gloves.get_style()
-	if (!(suit_coverage & HIDEJUMPSUIT) && istype(w_uniform, /obj/item/clothing))
-		var/obj/item/clothing/worn_jumpsuit = w_uniform
-		style_factor += worn_jumpsuit.get_style()
-	if (!(suit_coverage & HIDESHOES) && istype(shoes, /obj/item/clothing))
-		var/obj/item/clothing/worn_shoes = shoes
-		style_factor += worn_shoes.get_style()
-	if (istype(back, /obj/item/clothing))
-		var/obj/item/clothing/worn_back = back
-		style_factor += worn_back.get_style()
-	if (istype(belt, /obj/item/clothing))
-		var/obj/item/clothing/worn_belt = belt
-		style_factor += worn_belt.get_style()
+	if (!(head_coverage & COVERS_EARS))
+		if (l_ear && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
+			style_factor += l_ear.get_style()
+		if (r_ear && !istype(r_ear, /obj/item/clothing/ears/offear))
+			style_factor += r_ear.get_style()
+	if (glasses && !(head_coverage & COVERS_EYES))
+		style_factor += glasses.get_style()
+	if (gloves && !(suit_coverage & COVERS_FOREARMS))
+		style_factor += gloves.get_style()
+	if (w_uniform && !(gloves ? suit_coverage & COVERS_TORSO|COVERS_FOREARMS|COVERS_FORELEGS : suit_coverage & COVERS_WHOLE_TORSO_AND_LIMBS))
+		style_factor += w_uniform.get_style()
+	if (shoes && !(suit_coverage & COVERS_FORELEGS))
+		style_factor += shoes.get_style()
+	if (back)
+		style_factor += back.get_style() // back and belt can't be covered
+	if (belt)
+		style_factor += belt.get_style()
 
 	if(restrained())
 		style_factor -= 1

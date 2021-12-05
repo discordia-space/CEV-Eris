@@ -34,6 +34,7 @@
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/clothing/head/space
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_WHOLE_HEAD
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -98,6 +99,7 @@
 	equip_delay = 4 SECONDS
 	bad_type = /obj/item/clothing/suit/space
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 
 /obj/item/clothing/suit/space/equipped(mob/M)

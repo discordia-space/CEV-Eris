@@ -17,7 +17,6 @@
 	name = "bartender's skirtsuit"
 	icon_state = "ba_skirt"
 	item_state = "ba_skirt"
-	style = STYLE_HIGH
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a red jumpsuit with some gold markings denoting the rank of \"Captain\"."

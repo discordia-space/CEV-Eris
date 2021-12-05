@@ -1,9 +1,3 @@
-#define STYLE_NEG_HIGH -2
-#define STYLE_NEG_LOW -1
-#define STYLE_NONE 0
-#define STYLE_LOW 1
-#define STYLE_HIGH 2
-
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
@@ -26,7 +20,8 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = STYLE_NONE
+	style = STYLE_NONE
+	var/style_coverage = NONE
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
@@ -99,7 +94,7 @@
 	accessories = null
 	return ..()
 
-/obj/item/clothing/proc/get_style()
+/obj/item/clothing/get_style()
 	var/real_style = style
 	if(blood_DNA)
 		real_style -= 1
@@ -460,6 +455,9 @@ BLIND     // can't see anything
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
+		if (ishuman(usr))
+			var/mob/living/carbon/human/stylish = usr
+			stylish.regen_slickness()
 	else
 		to_chat(usr, SPAN_WARNING("You need an empty, unbroken hand to do that."))
 		holding.forceMove(src)
@@ -513,6 +511,9 @@ BLIND     // can't see anything
 			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
 			verbs |= /obj/item/clothing/shoes/proc/draw_knife
 			update_icon()
+			if (ishuman(user))
+				var/mob/living/carbon/human/depleted = user
+				depleted.regen_slickness(-1)
 	else
 		return ..()
 
