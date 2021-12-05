@@ -92,3 +92,17 @@
 	hard_drive.store_file(new/datum/computer_file/program/chem_catalog())
 	hard_drive.store_file(new/datum/computer_file/program/records())
 	set_autorun("chemCatalog")
+
+/obj/item/modular_computer/tablet/moebius/preset/install_default_hardware()
+	..()
+	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
+	hard_drive = new/obj/item/computer_hardware/hard_drive(src)
+	network_card = new/obj/item/computer_hardware/network_card(src)
+	cell = new /obj/item/cell/small/moebius/high(src)
+	scanner = new /obj/item/computer_hardware/scanner/medical(src)
+	gps_sensor = new /obj/item/computer_hardware/gps_sensor(src)
+
+/obj/item/modular_computer/tablet/moebius/preset/install_default_programs()
+	..()
+	hard_drive.store_file(new/datum/computer_file/program/suit_sensors())
+	hard_drive.store_file(new/datum/computer_file/program/chem_catalog())

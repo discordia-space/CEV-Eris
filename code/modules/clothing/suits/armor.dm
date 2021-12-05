@@ -558,3 +558,27 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/armor/paramedic
+	name = "Moebius paramedic armor"
+	desc = "Seven minutes or a refund."
+	icon_state = "trauma_team"
+	item_state = "trauma_team"
+	matter = list(
+		MATERIAL_PLASTEEL = 10,
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTIC = 5,
+		MATERIAL_PLATINUM = 3
+		)
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 10,
+		bio = 100,
+		rad = 50
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
+	slowdown = -0.3
