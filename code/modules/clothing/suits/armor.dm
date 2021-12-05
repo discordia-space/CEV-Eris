@@ -107,7 +107,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
-	
+
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "greatcoat"
@@ -558,3 +558,22 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+//onestar
+/obj/item/clothing/suit/storage/onestar/jacket
+	name = "One Star officer jacket"
+	desc = "A rare stylish red jacket worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
+	icon_state = "onestar_coat"
+	price_tag = 3000
+	armor = list(
+		melee = 15,
+		bullet = 40,
+		energy = 35,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	siemens_coefficient = 0.7
+	)

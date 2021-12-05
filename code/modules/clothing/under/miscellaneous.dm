@@ -366,7 +366,21 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
-
+/obj/item/clothing/under/onestar
+	name = "One Star uniform"
+	desc = "A Comfortable red silk uniform. It is emblazened with the One Star insignia on the collar. Strangely, it seems to fit you perfectly"
+	icon_state = "onestar_uniform"
+	item_state = "onestar_uniform"
+	style = STYLE_HIGH
+	price_tag = 500
+	armor = list(
+		melee = 5,
+		bullet = 5,
+		energy = 5,
+		bomb = 5,
+		bio = 5,
+		rad = 5
+	)
 
 
 //Adminbus versions with extremly high armor, should never spawn in game

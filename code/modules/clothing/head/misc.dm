@@ -325,3 +325,18 @@
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/head/onestar
+	name = "One Star officer cap"
+	desc = "A fancy red and blue cap sporting the One Star insignia."
+	icon_state = "onestar_hat"
+	siemens_coefficient = 1
+	price_tag = 2000
+	armor = list(
+		melee = 15,
+		bullet = 40,
+		energy = 35,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
