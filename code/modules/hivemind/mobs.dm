@@ -338,16 +338,14 @@
 	name = "Lobber"
 	desc = "A little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
 	icon_state = "lobber"
-	attacktext = "spray painted" //this shouldn't appear anyways
+	attacktext = "slapped" //this shouldn't appear anyways
 	density = FALSE
 	health = 75
 	maxHealth = 75
-	melee_damage_lower = 0
-	melee_damage_upper = 0
 	speak_chance = 6
 	malfunction_chance = 10
 	ranged = TRUE
-	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below  -Wouju
+	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below
 	minimum_distance = 3 //having minimum_distance too high often resulted in the mob trying to melee
 	fire_verb = "lobs a ball of goo" //reminder that the attack message is "\red <b>[src]</b> [fire_verb] at [target]!"
 	projectiletype = /obj/item/projectile/goo/weak //what projectile it uses. Since ranged_cooldown is 2 short seconds, it's better to have a weaker projectile
@@ -868,43 +866,62 @@
 
 
 ////////////////////////Treader///////////////////
-//Big brother of the bomber
-//Tougher, heavily armoured, slow as fuck
-//Greater explosion, rarer and larger
-//Avoid at all costs
+//Ranged just like the lobber, deals more damage but needs longer to recharge
+//When damaged, releases a cloud of nanites that heal all allies in view
+//A bit tanky, but moves slow
+//Death releases a EMP pulse
 /////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/hivemind/treader
 	name = "Treader"
-	desc = "A human head frozen in a twisted scream, wired to a explosive on tank treads."
+	desc = "A human head with a screen shoved in its mouth, connected to a large collumn with another screen displaying a human face."
 	icon_state = "treader"
-	speak_chance = 1
-	health = 200
-	maxHealth = 200
-	resistance = RESISTANCE_HEAVILY_ARMOURED 
-	malfunction_chance = 20
-	mob_size = MOB_LARGE
-	move_to_delay = 20
+	attacktext = "slapped"
+	speak_chance = 2
+	health = 100
+	maxHealth = 100
+	resistance = RESISTANCE_AVERAGE
+	malfunction_chance = 10
+	move_to_delay = 10
 	rarity_value = 150
+	ranged = TRUE
+	minimum_distance = 3
+	fire_verb = "spits"
+	projectiletype = /obj/item/projectile/goo
+	projectilesound = 'sound/effects/blobattack.ogg'
+	ranged_cooldown = 10 SECONDS
+	ability_cooldown = 20 SECONDS
 
 	speak = list(
-				"Please... stop this...",
+				"I can't... I can't feel my arms...",
 				"Oh god... my legs... where are my legs..."
 				)
+
 	target_speak = list(
-				"S-stay back! I c-can't control it!",
-				"N-no! Stop it! I don't want to h-hurt them!"
+				"You there! Cut off my head!",
+				"S-shoot the screen! God I hope it won't hurt."
 				)
+
+/mob/living/simple_animal/hostile/hivemind/treader/Life()
+	. = ..()
+
+	if(maxHealth > health && world.time > special_ability_cooldown)
+		special_ability()
+
+
+/mob/living/simple_animal/hostile/hivemind/treader/special_ability()
+	visible_emote("vomits out a burst of rejuvenating nanites!")
+
+	for(var/mob/living/simple_animal/hostile/hivemind/ally in view(src))
+		ally.heal_overall_damage(10, 0)
+
+	special_ability_cooldown = world.time + ability_cooldown
 
 
 /mob/living/simple_animal/hostile/hivemind/treader/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	gibs(loc, null, /obj/effect/gibspawner/human)
-	explosion(get_turf(src), 1, 2, 4) //explosion almost equal to a full welding fuel tank, deadly
+	empulse(get_turf(src), 1, 3)
 	qdel(src)
-
-/mob/living/simple_animal/hostile/hivemind/treader/AttackingTarget()
-	death()
 
 
 /////////////////////////////////////PHASER///////////////////////////////////
