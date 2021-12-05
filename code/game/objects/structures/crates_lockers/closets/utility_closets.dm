@@ -14,7 +14,7 @@
  */
 /obj/structure/closet/emcloset
 	name = "emergency closet"
-	desc = "A storage unit for emergency breathmasks and o2 tanks."
+	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
 	rarity_value = 3
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
@@ -59,7 +59,7 @@
  */
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
-	desc = "A storage unit for fire-fighting supplies."
+	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "fire"
 	rarity_value = 1.5
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
@@ -80,7 +80,7 @@
  */
 /obj/structure/closet/toolcloset
 	name = "tool closet"
-	desc = "A storage unit for tools."
+	desc = "It's a storage unit for tools."
 	icon_state = "eng"
 	icon_door = "eng_tool"
 	rarity_value = 1.5
@@ -132,7 +132,7 @@
  */
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
-	desc = "A storage unit for rad-protective suits."
+	desc = "It's a storage unit for rad-protective suits."
 	icon_state = "eng"
 	icon_door = "eng_rad"
 
@@ -147,7 +147,7 @@
  */
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
-	desc = "A storage unit for explosion-protective space suits."
+	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
 	rarity_value = 14.28
 	spawn_tags = SPAWN_TAG_CLOSET_BOMB

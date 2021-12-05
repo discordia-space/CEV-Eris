@@ -1,8 +1,6 @@
 /obj/item/implant/death_alarm
 	name = "death alarm implant"
 	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
-	icon_state = "implant_deathalarm"
-	implant_overlay = "implantstorage_deathalarm"
 	var/mobname = "Will Robinson"
 	origin_tech = list(TECH_BLUESPACE=1, TECH_MAGNET=2, TECH_DATA=4, TECH_BIO=3)
 

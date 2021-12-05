@@ -170,7 +170,6 @@
 			Comes with inbuilt nightvision HUD."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
-	flags_inv = NONE
 	action_button_name = "Toggle Night Vision"
 	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
 	var/last_toggle = 0
@@ -299,7 +298,7 @@
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
-	desc = "A helmet specifically designed to protect against close range attacks."
+	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
@@ -544,113 +543,3 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
-/obj/item/clothing/head/armor/faceshield/paramedic
-	name = "Moebius paramedic helmet"
-	desc = "Seven minutes or a refund."
-	icon_state = "trauma_team"
-	item_state = "trauma_team"
-	flags_inv = HIDEEARS|BLOCKHAIR
-	item_flags = BLOCK_GAS_SMOKE_EFFECT|AIRTIGHT
-	matter = list(
-		MATERIAL_PLASTEEL = 10,
-		MATERIAL_GLASS = 5,
-		MATERIAL_PLASTIC = 5,
-		MATERIAL_PLATINUM = 2
-		)
-	armor_up = list(
-		melee = 25,
-		bullet = 25,
-		energy = 20,
-		bomb = 10,
-		bio = 100,
-		rad = 50
-		)
-	armor_down = list(
-		melee = 35,
-		bullet = 35,
-		energy = 30,
-		bomb = 15,
-		bio = 100,
-		rad = 50)
-	up = TRUE
-	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
-	var/speaker_enabled = TRUE
-	var/scan_scheduled = FALSE
-	var/scan_interval = 15 SECONDS
-	var/repeat_report_after = 60 SECONDS
-	var/list/crewmembers_recently_reported = list()
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/equipped(mob/M)
-	. = ..()
-	schedule_scan()
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_scan()
-	if(scan_scheduled)
-		return
-	
-	if(!speaker_enabled)
-		return
-
-	scan_scheduled = TRUE
-	spawn(scan_interval)
-		if(QDELETED(src))
-			return
-		scan_scheduled = FALSE
-		report_health_alerts()
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_memory_cleanup(entry)
-	spawn(repeat_report_after)
-		if(QDELETED(src))
-			return
-		crewmembers_recently_reported.Remove(entry)
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/proc/report_health_alerts()
-	if(!speaker_enabled)
-		return
-
-	if(!ishuman(loc))
-		return
-	
-	var/mob/living/carbon/human/user = loc
-
-	var/list/crewmembers = list()
-	var/list/z_levels_to_scan = list(1, 2, 3, 4, 5)
-
-	for(var/z_level in z_levels_to_scan)
-		crewmembers += crew_repository.health_data(z_level)
-
-	if(crewmembers.len)
-		for(var/i = 1, i <= crewmembers.len, i++)
-			var/list/entry = crewmembers[i]
-			if(entry["alert"])
-				if(entry["name"] in crewmembers_recently_reported)
-					continue
-				crewmembers_recently_reported += entry["name"]
-				schedule_memory_cleanup(entry["name"])
-				to_chat(user, SPAN_WARNING("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
-
-	schedule_scan()
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/AltClick()
-	toogle_speaker()
-
-
-/obj/item/clothing/head/armor/faceshield/paramedic/verb/toogle_speaker()
-	set name = "Toogle helmet's speaker"
-	set category = "Object"
-	set src in usr
-
-	if(speaker_enabled)
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications disabled.'"))
-		speaker_enabled = FALSE
-	else
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications enabled.'"))
-		speaker_enabled = TRUE
-		report_health_alerts()
-		schedule_scan()

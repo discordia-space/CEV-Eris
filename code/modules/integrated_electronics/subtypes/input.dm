@@ -316,7 +316,7 @@
 
 /obj/item/integrated_circuit/input/examiner
 	name = "examiner"
-	desc = "A little machine vision system. It can return the name, description, distance, \
+	desc = "It's a little machine vision system. It can return the name, description, distance, \
 	relative coordinates, total amount of reagents, maximum amount of reagents, density, and opacity of the referenced object."
 	icon_state = "video_camera"
 	complexity = 6

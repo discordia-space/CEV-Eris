@@ -3,7 +3,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 /mob/observer/ghost
 	name = "ghost"
-	desc = "A g-g-g-g-ghooooost!" //jinkies!
+	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	canmove = 0

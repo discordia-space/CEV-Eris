@@ -1,13 +1,6 @@
 /datum/wires/alarm
 	holder_type = /obj/machinery/alarm
 	wire_count = 5
-	descriptions = list(
-		new /datum/wire_description(AALARM_WIRE_IDSCAN, "This wire is connected to the ID scanning panel."),
-		new /datum/wire_description(AALARM_WIRE_POWER, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AALARM_WIRE_SYPHON, "This wire runs to atmospherics logic circuits of some sort."),
-		new /datum/wire_description(AALARM_WIRE_AI_CONTROL, "This wire connects to automated control systems."),
-		new /datum/wire_description(AALARM_WIRE_AALARM, "This wire gives power to the actual alarm mechanism.")
-	)
 
 var/const/AALARM_WIRE_IDSCAN = 1
 var/const/AALARM_WIRE_POWER = 2

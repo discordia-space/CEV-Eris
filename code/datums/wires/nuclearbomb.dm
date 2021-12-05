@@ -1,11 +1,7 @@
 /datum/wires/nuclearbomb
 	holder_type = /obj/machinery/nuclearbomb
+	random = 1
 	wire_count = 7
-	descriptions = list(
-		new /datum/wire_description(NUCLEARBOMB_WIRE_LIGHT, "This wire seems to connect to the small light on the device."),
-		new /datum/wire_description(NUCLEARBOMB_WIRE_TIMING, "This wire connects to the time display."),
-		new /datum/wire_description(NUCLEARBOMB_WIRE_SAFETY, "This wire connects to a safety override.")
-	)
 
 var/const/NUCLEARBOMB_WIRE_LIGHT		= 1
 var/const/NUCLEARBOMB_WIRE_TIMING		= 2

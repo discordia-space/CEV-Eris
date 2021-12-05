@@ -10,7 +10,7 @@
  */
 /obj/item/storage/firstaid
 	name = "first-aid kit"
-	desc = "An emergency medical kit for those serious boo-boos."
+	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
@@ -24,7 +24,7 @@
 
 /obj/item/storage/firstaid/fire
 	name = "fire first-aid kit"
-	desc = "An emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 	rarity_value = 15
@@ -221,7 +221,7 @@
  */
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
-	desc = "An airtight container for storing medication."
+	desc = "It's an airtight container for storing medication."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"

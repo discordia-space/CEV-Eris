@@ -744,7 +744,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
-	crate_name = "standard exosuit assembly crate"
+	crate_name = "standart exosuit assembly crate"
 	group = "Engineering"
 
 /datum/supply_pack/robotics

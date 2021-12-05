@@ -33,7 +33,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /obj/machinery/hologram/holopad
 	name = "\improper AI holopad"
-	desc = "A floor-mounted device for projecting holographic images."
+	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
 
 	plane = FLOOR_PLANE
@@ -55,7 +55,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /obj/machinery/hologram/holopad/New()
 	..()
-	desc = "A floor-mounted device for projecting holographic images. Its ID is '[loc.loc]'"
+	desc = "It's a floor-mounted device for projecting holographic images. Its ID is '[loc.loc]'"
 	add_hearing()
 
 /obj/machinery/hologram/holopad/Destroy()

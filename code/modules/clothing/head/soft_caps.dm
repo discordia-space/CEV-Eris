@@ -1,7 +1,7 @@
 /obj/item/clothing/head/soft
 	name = "cargo cap"
 	initial_name = "yellow cap"
-	desc = "A peaked cap in a tasteless yellow color."
+	desc = "It's a peaked cap in a tasteless yellow color."
 	icon_state = "cargosoft"
 	item_state_slots = list(
 		slot_l_hand_str = "helmet", //probably a placeholder
@@ -29,61 +29,61 @@
 /obj/item/clothing/head/soft/red
 	name = "red cap"
 	initial_name = "red cap"
-	desc = "A baseball hat in a tasteless red color."
+	desc = "It's a baseball hat in a tasteless red color."
 	icon_state = "redsoft"
 
 /obj/item/clothing/head/soft/blue
 	name = "blue cap"
 	initial_name = "blue cap"
-	desc = "A peaked cap in a tasteless blue color."
+	desc = "It's a peaked cap in a tasteless blue color."
 	icon_state = "bluesoft"
 
 /obj/item/clothing/head/soft/green
 	name = "green cap"
 	initial_name = "green cap"
-	desc = "A peaked cap in a tasteless green color."
+	desc = "It's a peaked cap in a tasteless green color."
 	icon_state = "greensoft"
 
 /obj/item/clothing/head/soft/yellow
 	name = "yellow cap"
 	initial_name = "yellow cap"
-	desc = "A peaked cap in a tasteless yellow color."
+	desc = "It's a peaked cap in a tasteless yellow color."
 	icon_state = "yellowsoft"
 
 /obj/item/clothing/head/soft/grey
 	name = "grey cap"
 	initial_name = "grey cap"
-	desc = "A peaked cap in a tasteful grey color."
+	desc = "It's a peaked cap in a tasteful grey color."
 	icon_state = "greysoft"
 
 /obj/item/clothing/head/soft/orange
 	name = "orange cap"
 	initial_name = "orange cap"
-	desc = "A peaked cap in a tasteless orange color."
+	desc = "It's a peaked cap in a tasteless orange color."
 	icon_state = "orangesoft"
 
 /obj/item/clothing/head/soft/mime
 	name = "white cap"
 	initial_name = "cap"
-	desc = "A peaked cap in a tasteless white color."
+	desc = "It's a peaked cap in a tasteless white color."
 	icon_state = "mimesoft"
 
 /obj/item/clothing/head/soft/purple
 	name = "purple cap"
 	initial_name = "purple cap"
-	desc = "A peaked cap in a tasteless purple color."
+	desc = "It's a peaked cap in a tasteless purple color."
 	icon_state = "purplesoft"
 
 /obj/item/clothing/head/soft/rainbow
 	name = "rainbow cap"
 	initial_name = "rainbow cap"
-	desc = "A peaked cap in a bright rainbow of colors."
+	desc = "It's a peaked cap in a bright rainbow of colors."
 	icon_state = "rainbowsoft"
 
 /obj/item/clothing/head/soft/sec
 	name = "security cap"
 	initial_name = "security cap"
-	desc = "A field cap in tasteful red color."
+	desc = "It's a field cap in tasteful red color."
 	icon_state = "secsoft"
 
 /obj/item/clothing/head/soft/sec/corp
@@ -97,13 +97,13 @@
 /obj/item/clothing/head/soft/green2soft
 	name = "green military cap"
 	initial_name = "green cap"
-	desc = "A field cap in tasteful green color."
+	desc = "It's a field cap in tasteful green color."
 	icon_state = "green2soft"
 
 /obj/item/clothing/head/soft/tan2soft
 	name = "tan military cap"
 	initial_name = "tan cap"
-	desc = "A field cap in tasteful tan color."
+	desc = "It's a field cap in tasteful tan color."
 	icon_state = "tansoft"
 
 // I H S //
@@ -111,13 +111,13 @@
 /obj/item/clothing/head/soft/sec2soft
 	name = "IH field cap"
 	initial_name = "IH field cap"
-	desc = "A field cap for operatives."
+	desc = "It's a field cap for operatives."
 	icon_state = "sec2soft"
 
 /obj/item/clothing/head/soft/sarge2soft
 	name = "IH sergeant cap"
 	initial_name = "IH sergeant cap"
-	desc = "A field cap for officers."
+	desc = "It's a field cap for officers."
 	icon_state = "sargesoft"
 
 // M O E B I U S //m

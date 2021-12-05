@@ -1,6 +1,6 @@
 /obj/item/integrated_circuit
 	name = "integrated circuit"
-	desc = "A tiny chip!  This one doesn't seem to do much, however."
+	desc = "It's a tiny chip!  This one doesn't seem to do much, however."
 	icon = 'icons/obj/assemblies/electronic_components.dmi'
 	icon_state = "template"
 	w_class = ITEM_SIZE_TINY

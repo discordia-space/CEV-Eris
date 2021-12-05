@@ -11,15 +11,7 @@
 
 
 /obj/item/implantpad/on_update_icon()
-	cut_overlays()
-	if(case)
-		icon_state = "implantpad-1"
-		if(case.implant)
-			var/image/content = image('icons/obj/items.dmi', icon_state = case.implant.implant_overlay, pixel_x = 7, pixel_y = -6)
-			add_overlay(content)
-	else
-		icon_state = "implantpad-0"
-
+	icon_state = case ? "implantpad-1" : "implantpad-0"
 
 /obj/item/implantpad/attack_hand(mob/living/user)
 	if ((src.case && (user.l_hand == src || user.r_hand == src)))

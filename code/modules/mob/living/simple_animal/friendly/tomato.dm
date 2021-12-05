@@ -1,6 +1,6 @@
 /mob/living/simple_animal/tomato
 	name = "tomato"
-	desc = "A horrifyingly enormous beef tomato, and it's packing extra beef!"
+	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
 	icon_state = "tomato"
 	icon_living = "tomato"
 

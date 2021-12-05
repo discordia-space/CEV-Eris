@@ -192,21 +192,6 @@
 							/datum/design/research/structure/bidonadv
 							)
 
-/datum/technology/tracker_tablet
-	name = "Tracker tablet"
-	desc = "Modified tablet frame with extra screens for use with sensor monitoring software."
-	tech_type = RESEARCH_BIOTECH
-
-	x = 0.55
-	y = 0.9
-	icon = "moetablet"
-
-	required_technologies = list(/datum/technology/portable_biotech)
-	required_tech_levels = list()
-	cost = 1000
-
-	unlocks_designs = list(/datum/design/research/item/tracker_tablet)
-
 /*
 /datum/technology/med_teleportation
 	name = "Medical Teleportation"

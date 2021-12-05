@@ -295,7 +295,7 @@
 /* Assembly */
 
 /obj/item/bucket_sensor
-	desc = "A bucket with a sensor attached."
+	desc = "It's a bucket. With a sensor attached."
 	name = "proxy bucket"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "bucket_proxy"

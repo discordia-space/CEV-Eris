@@ -24,7 +24,7 @@
 
 /obj/item/clothing/head/that
 	name = "top-hat"
-	desc = "An amish looking hat."
+	desc = "It's an amish looking hat."
 	icon_state = "tophat"
 	item_state = "tophat"
 	siemens_coefficient = 0.9
@@ -74,7 +74,7 @@
 
 /obj/item/clothing/head/bandana/green
 	name = "green bandana"
-	desc = "A green bandana with some fine nanotech lining."
+	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
 	flags_inv = 0

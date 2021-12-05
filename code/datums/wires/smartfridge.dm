@@ -1,13 +1,9 @@
 /datum/wires/smartfridge
 	holder_type = /obj/machinery/smartfridge
 	wire_count = 3
-	descriptions = list(
-		new /datum/wire_description(SMARTFRIDGE_WIRE_ELECTRIFY, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(SMARTFRIDGE_WIRE_THROW, "This wire leads to the item dispensor force controls."),
-		new /datum/wire_description(SMARTFRIDGE_WIRE_IDSCAN, "This wire is connected to the ID scanning panel.")
-	)
 
 /datum/wires/smartfridge/secure
+	random = 1
 	wire_count = 4
 
 var/const/SMARTFRIDGE_WIRE_ELECTRIFY	= 1

@@ -1,6 +1,6 @@
 /obj/structure/closet/wardrobe
 	name = "wardrobe"
-	desc = "A storage unit for standard-issue attire."
+	desc = "It's a storage unit for standard-issue attire."
 	icon_state = "generic"
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_WARDROBE
@@ -57,7 +57,7 @@
 
 /obj/structure/closet/wardrobe/color/orange
 	name = "prison wardrobe"
-	desc = "A storage unit for regulation prisoner attire."
+	desc = "It's a storage unit for regulation prisoner attire."
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/color/orange/populate_contents()
@@ -263,7 +263,7 @@
 
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
-	desc = "A storage unit for approved religious attire."
+	desc = "It's a storage unit for approved religious attire."
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/populate_contents()

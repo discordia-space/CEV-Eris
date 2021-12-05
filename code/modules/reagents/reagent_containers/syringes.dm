@@ -220,6 +220,7 @@
 
 
 /obj/item/reagent_containers/syringe/on_update_icon()
+	..()
 	cut_overlays()
 
 	var/iconstring = initial(item_state)
@@ -342,34 +343,6 @@
 	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
-
-/obj/item/reagent_containers/syringe/large/on_update_icon()
-	cut_overlays()
-
-	var/iconstring = initial(item_state)
-	if(mode == SYRINGE_BROKEN)
-		icon_state = "broken"
-		return
-
-	var/rounded_vol
-	if(reagents && reagents.total_volume)
-		rounded_vol = CLAMP(round((reagents.total_volume / volume * 30),5), 1, 30)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "[iconstring][rounded_vol]")
-		filling_overlay.color = reagents.get_color()
-		add_overlay(filling_overlay)
-	else
-		rounded_vol = 0
-	icon_state = "[rounded_vol]"
-	item_state = "[iconstring]_[rounded_vol]"
-	if(ismob(loc))
-		var/injoverlay
-		switch(mode)
-			if (SYRINGE_DRAW)
-				injoverlay = "draw"
-			if (SYRINGE_INJECT)
-				injoverlay = "inject"
-		add_overlay(injoverlay)
-		update_wear_icon()
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes. END

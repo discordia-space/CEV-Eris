@@ -39,7 +39,7 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
-	desc = "A plain jumpsuit. It seems to have a small dial on the wrist."
+	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	icon_state = "black"
 	item_state = "bl_suit"
 	spawn_blacklisted = TRUE
@@ -93,7 +93,7 @@
 
 /obj/item/clothing/head/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey cap"
-	desc = "A baseball hat in a tasteful grey colour."
+	desc = "It's a baseball hat in a tasteful grey colour."
 	icon_state = "greysoft"
 	update_icon()
 	update_wear_icon()
@@ -277,7 +277,7 @@
 
 /obj/item/clothing/mask/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "gas mask"
-	desc = "A gas mask."
+	desc = "It's a gas mask."
 	icon_state = "gas_alt"
 	update_icon()
 	update_wear_icon()
@@ -313,7 +313,7 @@
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "Optical Meson Scanner"
-	desc = "A set of mesons."
+	desc = "It's a set of mesons."
 	icon_state = "meson"
 	update_icon()
 	update_wear_icon()

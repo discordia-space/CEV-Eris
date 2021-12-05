@@ -1,6 +1,6 @@
 /obj/structure/closet/l3closet
 	name = "level-3 biohazard suit closet"
-	desc = "A storage unit for level-3 biohazard gear."
+	desc = "It's a storage unit for level-3 biohazard gear."
 	icon_state = "bio"
 
 /obj/structure/closet/l3closet/general

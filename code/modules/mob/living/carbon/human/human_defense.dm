@@ -322,7 +322,8 @@ meteor_act
 					return
 
 		var/dtype = O.damtype
-		var/throw_damage = O.throwforce
+		var/throw_damage = O.throwforce * (speed / THROWFORCE_SPEED_DIVISOR)
+
 		var/zone
 		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower

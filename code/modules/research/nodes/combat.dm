@@ -86,7 +86,7 @@
 
 	x = 0.6
 	y = 0.5
-	icon = "clarissa"
+	icon = "ammobox"
 
 	required_technologies = list(/datum/technology/weapon_recharging)
 	required_tech_levels = list()
@@ -94,7 +94,6 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/large_grenade,
-							/datum/design/research/item/weapon/clarissa
 						)
 
 /datum/technology/exotic_weaponry
@@ -204,30 +203,16 @@
 
 	unlocks_designs = list(/datum/design/research/item/weapon/mindflayer,  /datum/design/research/item/weapon/nuclear, /datum/design/research/item/weapon/lasercannon)
 
-/datum/technology/basic_armor
-	name = "Armor Solutions"
-	desc = "Standard issue armor of moebius paramedic teams."
-	tech_type = RESEARCH_COMBAT
-
-	x = 0.8
-	y = 0.5
-	icon = "traumateam"
-
-	required_technologies = list(/datum/technology/laser_weaponry)
-	required_tech_levels = list()
-	cost = 2500
-	unlocks_designs = list(/datum/design/research/item/paramedic_armor, /datum/design/research/item/paramedic_helmet)
-
 /datum/technology/advanced_armor
 	name = "Advanced Armor Solutions"
 	desc = "Advanced voidsuit with combined ballistic and ablative plating."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
-	y = 0.6
+	y = 0.5
 	icon = "moebiushelm"
 
-	required_technologies = list(/datum/technology/basic_armor)
+	required_technologies = list(/datum/technology/laser_weaponry)
 	required_tech_levels = list()
 	cost = 2500
 	unlocks_designs = list(/datum/design/research/item/science_voidsuit)

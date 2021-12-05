@@ -1,6 +1,6 @@
 /obj/item/storage/pill_bottle/dice
 	name = "pack of dice"
-	desc = "A small container with dice inside."
+	desc = "It's a small container with dice inside."
 	spawn_tags = SPAWN_TAG_ITEM
 	pill_type = /obj/item/dice/d20
 	initial_amt = 1
@@ -105,7 +105,7 @@
 
 /obj/item/storage/box/clown
 	name = "clown costume box"
-	desc = "A cardboard box with a clown costume."
+	desc = "It's a cardboard box with a clown costume."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/clown/populate_contents()

@@ -193,7 +193,6 @@
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/storage/pouch/pistol_holster(src)
-	new /obj/item/storage/briefcase/crimekit(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

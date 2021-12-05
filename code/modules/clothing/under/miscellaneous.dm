@@ -13,13 +13,13 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "A very smart uniform with a special pocket for tip."
+	desc = "It's a very smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 	item_state = "waiter"
 
 /obj/item/clothing/under/waiter/skirt
 	name = "waiter's skirtsuit"
-	desc = "A very smart uniform with a special pocket for tip and a skirt for female waiters."
+	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
 	icon_state = "waiter_skirt"
 	item_state = "waiter_skirt"
 

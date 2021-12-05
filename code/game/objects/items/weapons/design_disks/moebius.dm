@@ -32,14 +32,9 @@
 /obj/item/computer_hardware/hard_drive/portable/design/surgery
 	disk_name = "Back Alley Organs"
 	icon_state = "moebius"
-	license = 10
+	license = 5
 	designs = list(
-		/datum/design/bioprinter/lungs,
-		/datum/design/bioprinter/heart,
-		/datum/design/bioprinter/liver,
-		/datum/design/bioprinter/nerves,
-		/datum/design/bioprinter/muscle,
-		/datum/design/bioprinter/blood_vessel
+		/datum/design/bioprinter/lungs
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/computer

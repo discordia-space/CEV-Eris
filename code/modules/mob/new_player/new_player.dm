@@ -119,7 +119,7 @@
 			close_spawn_windows()
 			var/turf/T = pick_spawn_location("Observer")
 			if(istype(T))
-				to_chat(src, SPAN_NOTICE("You are now observing."))
+				to_chat(src, SPAN_NOTICE("You are observer now."))
 				observer.forceMove(T)
 			else
 				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")

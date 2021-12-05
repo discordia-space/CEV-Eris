@@ -1165,39 +1165,19 @@ mob/proc/yank_out_object()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
-	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
-	else
-		set_face_dir(client.client_dir(NORTH))
-		to_chat(usr, "You are now facing north.")
+	set_face_dir(client.client_dir(NORTH))
 
 /mob/verb/southfaceperm()
 	set hidden = 1
-	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
-	else
-		set_face_dir(client.client_dir(SOUTH))
-		to_chat(usr, "You are now facing south.")
+	set_face_dir(client.client_dir(SOUTH))
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
-	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
-	else
-		set_face_dir(client.client_dir(EAST))
-		to_chat(usr, "You are now facing east.")
+	set_face_dir(client.client_dir(EAST))
 
 /mob/verb/westfaceperm()
 	set hidden = 1
-	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
-	else
-		set_face_dir(client.client_dir(WEST))
-		to_chat(usr, "You are now facing west.")
+	set_face_dir(client.client_dir(WEST))
 
 /mob/verb/change_move_intent()
 	set name = "Change moving intent"
