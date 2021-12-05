@@ -311,18 +311,7 @@
 		stop()
 		if(cooked)
 			cooked.loc = src.loc
-			convert_nutriment(cooked)
 		return
-
-/obj/machinery/microwave/proc/convert_nutriment(atom/target) //converts main types of nutriment(protein, nutriment)
-	if(target.type in blacklisted_from_buffs)	//to their cooked versions(reagents/food-Drinks.dm), which restore sanity
-		return FALSE // No buffs if food is blacklisted(only hot pockets for now)
-	var/amount = target.reagents.get_reagent_amount("nutriment")
-	target.reagents.remove_reagent("nutriment", amount)
-	target.reagents.add_reagent("cooked_nutriment", amount)
-	amount = target.reagents.get_reagent_amount("protein")
-	target.reagents.remove_reagent("protein", amount)
-	target.reagents.add_reagent("cooked_protein", amount) //other subtypes can be ignored, they are more for flavoring and do very little in terms of nutrition
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)

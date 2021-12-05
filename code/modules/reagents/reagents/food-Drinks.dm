@@ -49,30 +49,6 @@
 
 	apply_sanity_effect(M, effect_multiplier)
 
-/datum/reagent/organic/nutriment/cnutriment
-	name = "Cooked nutriment"
-	taste_description = "bliss"
-	id = "cooked_nutriment"
-	description = "The result of complex chemical reactions involved in cooking."
-	color = "#7e5b11"
-	// Gives a lot of sanity , but generally theres little of it.
-	// Metabolises faster than oddity tea(/reagents/other.dm)
-	sanity_gain_ingest = 1
-
-/datum/reagent/organic/nutriment/affect_ingest(mob/living/carbon/M) //notify user about sanity restoration upon ingestion;
-	..()														//cprotein doesn't notify because there usually are both protein 
-	if(prob(3))										//and nutriment in foods. Not enough exceptions to bother
-		to_chat(M, SPAN_NOTICE("You feel goodness making its way through your system."))
-
-/datum/reagent/organic/nutriment/protein/cprotein
-	name = "Cooked proteins"
-	taste_description = "perfection"
-	id = "cooked_protein"
-	description = "A mass of proteins which have undergone complex chemical processes. Simply put, cooked."
-	color = "#805009"
-	taste_tag = list(TASTE_SPICY)
-	sanity_gain_ingest = 0.7 //there can be a lot of protein in foods
-
 /datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
 	id = "glucose"
