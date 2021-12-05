@@ -107,3 +107,8 @@
 			shoot_projectile(target_mob.loc, rand(0,90))
 			MoveToTarget()
 	move_to_delay = initial(move_to_delay)
+
+/mob/living/simple_animal/hostile/megafauna/one_star/death()
+	. = ..()
+	new /obj/item/tool_upgrade/augment/ai_tool(get_turf(src))
+	visible_message(SPAN_DANGER("\the [src] AI Core clatters to the ground"))
