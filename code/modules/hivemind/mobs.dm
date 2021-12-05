@@ -866,8 +866,8 @@
 
 
 ////////////////////////Treader///////////////////
-//Ranged just like the lobber, deals more damage but needs longer to recharge
-//When damaged, releases a cloud of nanites that heal all allies in view
+//Ranged just like the lobber, (deals more damage but needs longer to recharge, but given that ranged_cooldown does nothing not implemented yet)
+//When damaged, "releases a cloud of nanites" that heal all allies in view
 //A bit tanky, but moves slow
 //Death releases a EMP pulse
 /////////////////////////////////////////////////
@@ -902,6 +902,10 @@
 				"So sorry! Can't exactly control my head anymore.",
 				"S-shoot the screen! God I hope it won't hurt."
 				)
+
+/mob/living/simple_animal/hostile/hivemind/treader/Initialize()
+	..()
+	set_light(2, 1, COLOR_LIGHTING_CYAN_MACHINERY)
 
 /mob/living/simple_animal/hostile/hivemind/treader/Life()
 	. = ..()
