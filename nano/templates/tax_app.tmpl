@@ -1,0 +1,59 @@
+{{if data.logined}}
+	{{if data.browsing_logs}}
+		<tr>
+			<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
+		</tr>
+		{{for data.logs}}
+			{{:value.entry}}
+		{{/for}}
+	{{else}}
+	<div align="center" style="margin-top: 15px;">
+		<div class="item"><b>Access authorized</b></div>
+		<div class="item">Chose action:</div>
+		<table>
+			<tr>
+				<td><span class='white'>Logged as: {{:value.account_owner}}</span></td>
+				<td><span class='white'>Current balance: {{:value.account_balance}}</span></td>
+				{{if !data.is_department_account}}
+					<td><span class='white'>Hourly wage: {{:value.account_wage}}</span></td>
+					<td><span class='white'>Employer: {{:value.account_alignment}}</span></td>
+					<td>{{:helper.link('Resign ', null, {'resign' : 1})}}</td>
+				{{/if}}
+				<td>{{:helper.link('Logs', null, {'logs' : 1})}}</td>
+				<td>{{:helper.link('Transfer', null, {'transfer' : 1})}}</td>
+				<td>{{:helper.link('Log out', null, {'log_out' : 1})}}</td>
+			</tr>
+		</table>
+	</div>
+	{{/if}}
+	
+
+{{else}}
+	{{if data.login_failed}}
+	<div align="center" style="margin-top: 15px;">
+		<div class="item"><b>An error has occurred</b></div>
+		<div class="item">Invalid Credentials.</div>
+		<table>
+			<tr>
+				<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
+			</tr>
+		</table>
+	{{else}}
+	<div align="center" style="margin-top: 15px;">
+		<div class='item'>
+			<div style="font-size: x-large;font-weight: bold;">TaxQuickly</div>
+			<div style="font-style: italic;">Managing your money since 2559</div>
+		</div>
+		<div class="item">
+			<div class="itemLabel">
+				Options:
+			</div>
+			<div class="itemContent">
+				{{:helper.link('Enter Tax ID', null, {'enter_login' : 1})}}
+                {{:helper.link('Enter Password', null, {'enter_pin' : 1})}}
+				{{:helper.link('Log In', null, {'log_in' : 1})}}
+			</div>
+		</div>
+	</div>
+	{{/if}}
+{{/if}}

@@ -53,35 +53,16 @@ SUBSYSTEM_DEF(economy)
 
 //This is step 1, lets get the info
 /proc/gather_payroll_info()
-
-
-	//First gather the data for crew wages
-	//Each record covers a specific crewman
-	for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
-
-		/* TODO: Add in checks for suspension, dead, etc */
-
-
-
-
-		//Ok lets get their job to determine how much we'll pay them
-		var/datum/job/temp_job = SSjob.GetJob(R.get_job())
-		if(!istype(temp_job))
-			temp_job = SSjob.GetJob(ASSISTANT_TITLE)
-		if(!istype(temp_job))
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.wage <= 0)
 			continue
 
-		var/datum/department/department = GLOB.all_departments[temp_job.department]
-		if (!department)
+		if(!A.employer)
 			continue
+		
+		var/datum/department/department = GLOB.all_departments[A.employer]
 
-		var/wage = temp_job.get_wage(R)
-		if (wage <= 0)
-			continue //This person will not be paid
-
-		//Alright we have their wage and their department, lets add it to the department's pending payments
-		LAZYAPLUS(department.pending_wages, R, wage)
-
+		LAZYAPLUS(department.pending_wages, A, A.wage)
 
 	//Lets request departmental funding next
 	for (var/d in GLOB.all_departments)
@@ -178,11 +159,11 @@ SUBSYSTEM_DEF(economy)
 			continue
 
 		//Here we go, lets pay them!
-		for (var/datum/computer_file/report/crew_record/R in department.pending_wages)
+		for (var/datum/money_account/A in department.pending_wages)
 			var/paid = FALSE
 			//Get the crewman's account that we'll pay to
-			var/crew_account_num = R.get_account()
-			var/amount = department.pending_wages[R]
+			var/crew_account_num = A.account_number
+			var/amount = department.pending_wages[A]
 			paid = transfer_funds(department.account_number, crew_account_num, "Payroll", "CEV Eris payroll system", amount)
 			if (paid)
 				total_paid += amount
@@ -191,6 +172,7 @@ SUBSYSTEM_DEF(economy)
 					//If this wage was funded internally, make sure the recipient knows that
 					sender = "CEV Eris via [sender]"
 
+				var/datum/computer_file/report/crew_record/R = get_crewmember_record(A.owner_name)
 				payroll_mail_account_holder(R, sender, amount)
 		department.pending_wages = list() //All pending wages paid off
 	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
