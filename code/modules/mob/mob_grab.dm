@@ -386,6 +386,10 @@
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
 						headbutt(affecting, assailant)
+					else if(hit_zone == BP_CHEST)
+						suplex(affecting, assailant)
+					else if(hit_zone == BP_GROIN)
+						dropkick(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
 
