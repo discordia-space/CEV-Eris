@@ -215,10 +215,10 @@ meteor_act
 		return target_zone
 	var/hit_zone = check_zone(target_zone)
 	//check if we hit
-	var/dodge = src.stats.getStat(STAT_ROB)
-	var/miss_chance = ((base_miss_chance[hit_zone] / 4) + (20 / (1 + 100 / (dodge + 1)) + 10)) //soft cap, minumum 10 at rob 0, 16.5 at 50, 20 at 100, 22 at 150,
+	var/dodge = max(src.stats.getStat(STAT_ROB), 1)
+	var/miss_chance = (20 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 16.5 at 50, 20 at 100, 22 at 150,
 	if(prob(miss_chance))																//max - ~24, ignoring the base_miss_chance that adds a bit more
-		hit_zone = null																//+ 1 is there to avoid division by zero
+		hit_zone = null
 	// you cannot miss if your target is prone or restrained
 	if(src.buckled || src.lying)
 		return hit_zone
@@ -342,8 +342,8 @@ meteor_act
 		//check if we hit
 		if (!(zone in base_miss_chance))//does the target even have that bodypart?
 			return
-		var/dodge = src.stats.getStat(STAT_ROB)
-		var/miss_chance = ((base_miss_chance[zone] / 3) + (25 / (1 + 100 / (dodge + 1)) + 10)) //soft cap, minumum 10 at rob 0, 18 at 50, 22 at 100, 25 at 150, + 1 is there to avoid division by zero
+		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))
+		var/miss_chance = (25 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 18 at 50, 22 at 100, 25 at 150
 		// we cannot miss if the target is prone or restrained								//max - ~27 ignoring the base_miss_chance that adds some more(listed in mob_helpers.dm)
 		if(src.buckled || src.lying)
 			miss_chance = 0
