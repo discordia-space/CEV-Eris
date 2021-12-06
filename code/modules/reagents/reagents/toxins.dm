@@ -760,6 +760,7 @@
 	strength = 0.01
 	sanityloss = 2
 
-/datum/reagent/toxin/mold/overdose(mob/living/carbon/M, alien, effect_multiplier)
-	if(prob(10))
+/datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(prob(20 * effect_multiplier))
 		M.vomit()
