@@ -217,7 +217,7 @@ meteor_act
 	//check if we hit
 	var/dodge = max(src.stats.getStat(STAT_ROB), 1)
 	var/miss_chance = (20 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 16.5 at 50, 20 at 100, 22 at 150,
-	if(prob(miss_chance))																//max - ~24, ignoring the base_miss_chance that adds a bit more
+	if(prob(miss_chance))
 		hit_zone = null
 	// you cannot miss if your target is prone or restrained
 	if(src.buckled || src.lying)
@@ -344,7 +344,7 @@ meteor_act
 			return
 		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))
 		var/miss_chance = (25 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 18 at 50, 22 at 100, 25 at 150
-		// we cannot miss if the target is prone or restrained								//max - ~27 ignoring the base_miss_chance that adds some more(listed in mob_helpers.dm)
+		// we cannot miss if the target is prone or restrained
 		if(src.buckled || src.lying)
 			miss_chance = 0
 		// if the target is being grabbed aggressively by someone we cannot miss either
