@@ -187,9 +187,6 @@
 
 					And after that, we subtract AGI stat from chance to hit different organ.
 					General miss chance also depends on AGI.
-
-					Note: We don't use get_zone_with_miss_chance() here since the chances
-						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
 				if(prob(50 - H.stats.getStat(STAT_ROB)))

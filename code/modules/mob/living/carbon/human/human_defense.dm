@@ -213,9 +213,19 @@ meteor_act
 
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
-
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
-
+	var/hit_zone = check_zone(target_zone)
+	//check if we hit
+	var/dodge = src.stats.getStat(STAT_ROB)
+	var/miss_chance = ((base_miss_chance[hit_zone] / 4) + (20 / (1 + 100 / (dodge + 1)) + 10)) //soft cap, minumum 10 at rob 0, 16.5 at 50, 20 at 100, 22 at 150,
+	if(prob(miss_chance))																//max - ~24, ignoring the base_miss_chance that adds a bit more
+		hit_zone = null																//+ 1 is there to avoid division by zero
+	// you cannot miss if your target is prone or restrained
+	if(src.buckled || src.lying)
+		return hit_zone
+	// if your target is being grabbed aggressively by someone you cannot miss either
+	for(var/obj/item/grab/G in src.grabbed_by)
+		if(G.state >= GRAB_AGGRESSIVE)
+			return hit_zone
 	if(!hit_zone)
 		visible_message(SPAN_DANGER("\The [user] misses [src] with \the [I]!"))
 		return null
@@ -328,27 +338,32 @@ meteor_act
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else
-			zone = ran_zone(BP_CHEST, 75)	//Hits a random part of the body, geared towards the chest
-
+			zone = ran_zone(BP_CHEST, 75)//Hits a random part of the body, geared towards the chest
 		//check if we hit
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
-
-		if(zone && O.thrower != src)
+		if (!(zone in base_miss_chance))//does the target even have that bodypart?
+			return
+		var/dodge = src.stats.getStat(STAT_ROB)
+		var/miss_chance = ((base_miss_chance[zone] / 3) + (25 / (1 + 100 / (dodge + 1)) + 10)) //soft cap, minumum 10 at rob 0, 18 at 50, 22 at 100, 25 at 150, + 1 is there to avoid division by zero
+		// we cannot miss if the target is prone or restrained								//max - ~27 ignoring the base_miss_chance that adds some more(listed in mob_helpers.dm)
+		if(src.buckled || src.lying)
+			miss_chance = 0
+		// if the target is being grabbed aggressively by someone we cannot miss either
+		for(var/obj/item/grab/G in src.grabbed_by)
+			if(G.state >= GRAB_AGGRESSIVE)
+				miss_chance = 0
+		if(prob(miss_chance))
+			zone = null		
+		if(zone && O.thrower != src) //does the target have a shield?
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
 			if(shield_check == PROJECTILE_FORCE_MISS)
 				zone = null
 			else if(shield_check)
 				return
-
-		if(!zone)
+		if(!zone)//we missed!
 			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
 			return
 
-		O.throwing = 0		//it hit, so stop moving
+		O.throwing = 0//it hit, so stop moving
 		/// Get hit with glass shards , your fibers are on them now, or with a rod idk.
 		O.add_fibers(src)
 
