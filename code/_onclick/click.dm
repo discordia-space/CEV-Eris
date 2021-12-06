@@ -366,46 +366,6 @@
 	set_dir(ndir)
 	return 1
 
-
-
-GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
-
-/obj/screen/click_catcher
-	icon = 'icons/mob/screen_gen.dmi'
-	icon_state = "click_catcher"
-	plane = CLICKCATCHER_PLANE
-	mouse_opacity = 2
-	screen_loc = "CENTER-7,CENTER-7"
-
-/obj/screen/click_catcher/Destroy()
-	return QDEL_HINT_LETMELIVE
-
-/proc/create_click_catcher()
-	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
-			var/obj/screen/click_catcher/CC = new()
-			CC.screen_loc = "NORTH-[i],EAST-[j]"
-			. += CC
-
-/obj/screen/click_catcher/Click(location, control, params)
-	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
-		var/mob/living/carbon/C = usr
-		C.swap_hand()
-	else
-		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
-		if(T)
-			usr.client.Click(T, location, control, params)
-			//T.Click(location, control, params)
-			//Bay system doesnt use client.click, not sure if better
-
-	. = 1
-
-/obj/screen/click_catcher/proc/resolve(var/mob/user)
-	var/turf/T = screen_loc2turf(screen_loc, get_turf(user))
-	return T
-
 /mob/living/carbon/human/proc/absolute_grab(mob/living/carbon/human/T)
 	if(!ishuman(T))
 		return
