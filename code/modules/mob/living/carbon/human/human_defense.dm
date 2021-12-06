@@ -215,8 +215,8 @@ meteor_act
 		return target_zone
 	var/hit_zone = check_zone(target_zone)
 	//check if we hit
-	var/dodge = max(src.stats.getStat(STAT_ROB), 1)
-	var/miss_chance = (20 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 16.5 at 50, 20 at 100, 22 at 150,
+	var/dodge = max(src.stats.getStat(STAT_ROB), 1)//handled differently in living_defense
+	var/miss_chance = ((base_miss_chance[hit_zone] * (5 /(1 + 100 / dodge) + 10)) / 10)//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
 	if(prob(miss_chance))
 		hit_zone = null
 	// you cannot miss if your target is prone or restrained
@@ -342,8 +342,8 @@ meteor_act
 		//check if we hit
 		if (!(zone in base_miss_chance))//does the target even have that bodypart?
 			return
-		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))
-		var/miss_chance = (25 / (1 + 100 / dodge) + 10) //soft cap, minumum 10 at rob 0, 18 at 50, 22 at 100, 25 at 150
+		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))//handled differently in living_defense
+		var/miss_chance = (base_miss_chance[zone] * (10 / (1 + 100 / dodge ) + 10)) /10//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
 		// we cannot miss if the target is prone or restrained
 		if(src.buckled || src.lying)
 			miss_chance = 0
