@@ -343,7 +343,7 @@ meteor_act
 		if (!(zone in base_miss_chance))//does the target even have that bodypart?
 			return
 		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))//handled differently in living_defense
-		var/miss_chance = (base_miss_chance[zone] * (10 / (1 + 100 / dodge ) + 10)) /10//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
+		var/miss_chance = ((base_miss_chance[zone] * (10 / (1 + 100 / dodge ) + 10)) / 10)//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
 		// we cannot miss if the target is prone or restrained
 		if(src.buckled || src.lying)
 			miss_chance = 0
