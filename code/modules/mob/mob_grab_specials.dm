@@ -92,7 +92,7 @@
 		return
 	if(target.lying)
 		return
-	visible_message(SPAN_DANGER("\The [attacker] dropkicks \the [target], pushing \him onward!"))
+	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onward!"))
 	attacker.Weaken(2)
 	target.Weaken(6) //the target will fly over tables, railings, etc.
 	var/kick_dir = get_dir(attacker, target)
@@ -115,7 +115,7 @@
 	if(state < GRAB_NECK) //red grab check
 		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
-	visible_message(SPAN_WARNING("\The [attacker] lifts \the [target] off the ground..." ))
+	visible_message(SPAN_WARNING("[attacker] lifts [target] off the ground..." ))
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
 	if(do_after(attacker, 20, progress=0) && target)
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back into the floor!"))
