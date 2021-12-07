@@ -57,11 +57,6 @@
 //If its not valid, null will be returned
 //In the case of click catchers, we resolve and return the turf under it
 /datum/click_handler/proc/resolve_world_target(var/a)
-
-	if (istype(a, /obj/screen/click_catcher))
-		var/obj/screen/click_catcher/CC = a
-		return CC.resolve(owner.mob)
-
 	if (istype(a, /turf))
 		return a
 
