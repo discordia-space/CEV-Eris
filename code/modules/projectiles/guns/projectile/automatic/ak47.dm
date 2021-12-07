@@ -55,12 +55,13 @@
 	mechanism = /obj/item/part/gun/mechanism/autorifle
 	barrel = /obj/item/part/gun/barrel/lrifle
 
-/obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
+/obj/item/gun/projectile/automatic/ak47/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))
 		return 2
 	return 0
+
 
 /obj/item/gun/projectile/automatic/ak47/on_update_icon()
 	..()
@@ -113,7 +114,7 @@
 /obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick(mob/user)
 	. = ..()
 
-	var/able = can_interact_ak(user)
+	var/able = can_interact(user)
 
 	if(able == 1)
 		return
@@ -130,7 +131,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact_ak(user) == 1)
+	if(can_interact(user) == 1)
 		return
 
 	fold(user)
@@ -196,7 +197,7 @@
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
 
-	var/able = can_interact_ak(user)
+	var/able = can_interact(user)
 
 	if(able == 1)
 		return
@@ -212,7 +213,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact_ak(user) == 1)
+	if(can_interact(user) == 1)
 		return
 	fold(user)
 

@@ -348,6 +348,10 @@
 #define HUMAN_REQ_COG_FOR_REG 35
 #define HUMAN_REQ_BIO_FOR_REG 50
 
+/// Misc atmos equations
+
+#define FIRESTACKS_TEMP_CONV(firestacks) min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))
+
 //used by canUseTopic()
 #define BE_CLOSE TRUE //in the case of a silicon, to select if they need to be next to the atom
 #define NO_DEXTERITY TRUE //if other mobs (monkeys, aliens, etc) can use this // I had to change 20+ files because some non-dnd-playing fuckchumbis can't spell "dexterity"
