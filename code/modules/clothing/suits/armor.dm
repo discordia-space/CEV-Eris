@@ -21,6 +21,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	slowdown = 0.05
 	armor = list(
 		melee = 30,
 		bullet = 30,
@@ -39,7 +40,7 @@
 	desc = "A generic armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_fullbody"
 	blood_overlay_type = "armor"
-	slowdown = 0.1
+	slowdown = 0.15
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
 	matter = list(
 		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
@@ -71,6 +72,7 @@
 	name = "operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
+	slowdown = 0
 
 /obj/item/clothing/suit/armor/vest/full/ironhammer
 	name = "full operator armor"
@@ -96,7 +98,6 @@
 	name = "full handmade armor vest"
 	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
 	icon_state = "armor_handmade_fullbody"
-	slowdown = 0.1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
 
 /obj/item/clothing/suit/storage/greatcoat
@@ -107,6 +108,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
+	slowdown = 0.1
 	
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
@@ -145,6 +147,7 @@
 	icon_state = "flakvest"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	slowdown = 0.1
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -175,7 +178,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	slowdown = 0.15
+	slowdown = 0.1
 	armor = list(
 		melee = 25,
 		bullet = 55,
@@ -194,6 +197,7 @@
 	name = "full bulletproof vest"
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "bulletproof_fullbody"
+	slowdown = 0.3
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	matter = list(
 		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
@@ -225,7 +229,7 @@
 	icon_state = "platecarrier"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	slowdown = 0.15
+	slowdown = 0.1
 	armor = list(
 		melee = 25,
 		bullet = 50,
@@ -254,7 +258,7 @@
 	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	slowdown = 0.1
+	slowdown = 0.3
 
 /obj/item/clothing/suit/armor/platecarrier/full/green
 	name = "full green platecarrier vest"
@@ -274,7 +278,7 @@
 	item_state = "ablative"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	blood_overlay_type = "armor"
-	slowdown = 0.15
+	slowdown = 0.3
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -342,7 +346,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 0.6
+	slowdown = 0.45
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
 		melee = 45, //massive slowdown justifies
@@ -411,6 +415,7 @@
 	name = "webbed armor"
 	desc = "An armored vest used for day-to-day operations. This one has various pouches and straps attached."
 	icon_state = "webvest"
+	slowdown = 0.1
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
 		melee = 30,
@@ -441,6 +446,7 @@
 	name = "webbed operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
 	icon_state = "webvest_ironhammer"
+	slowdown = 0.05
 	spawn_blacklisted = TRUE
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
@@ -449,6 +455,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
+	slowdown = 0.15
 	armor = list(
 		melee = 50,
 		bullet = 50,
@@ -462,8 +469,9 @@
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
-	slowdown = 0.15
+	slowdown = 0.45
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
 	name = "insulated technomancer armor"
@@ -471,6 +479,7 @@
 	icon_state = "armor_engineering"
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
+	slowdown = 0.15
 	armor = list(
 		melee = 35,
 		bullet = 25,
@@ -545,7 +554,7 @@
 	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	slowdown = 0.15
+	slowdown = 0.25 // melee-based faction, slightly buffed speed
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 50,
@@ -564,6 +573,7 @@
 	desc = "Seven minutes or a refund."
 	icon_state = "trauma_team"
 	item_state = "trauma_team"
+	slowdown = -0.15 // TODO: rebuff once bulletproof armor plates no longer stack with it
 	matter = list(
 		MATERIAL_PLASTEEL = 10,
 		MATERIAL_STEEL = 5,
@@ -580,5 +590,3 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
-	slowdown = -0.3

@@ -574,7 +574,6 @@
 		rad = 50)
 	up = TRUE
 	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS
