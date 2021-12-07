@@ -7,16 +7,18 @@
 	icon_state = "scorched1"
 
 /obj/effect/damagedfloor/Initialize()
+	SHOULD_CALL_PARENT(FALSE)
 	var/turf/simulated/floor/F = loc
 	if(istype(F))
 		F.break_tile(1)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/damagedfloor/fire/Initialize()
+	SHOULD_CALL_PARENT(FALSE)
 	var/turf/simulated/floor/F = loc
 	if(istype(F))
 		F.burn_tile()
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/damagedfloor/rust
 	icon_state = "rust"

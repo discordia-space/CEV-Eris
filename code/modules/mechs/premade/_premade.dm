@@ -47,7 +47,8 @@
 		QDEL_NULL(body.armor) // Delete old armor, if any
 		body.armor_plate = new installed_armor(src)
 
-	..()
+	// IMPORTANT! do not move or else the parent initialize will get bad refs
+	. = ..()
 
 	for(var/hardpoint in installed_systems)
 		var/system_type = installed_systems[hardpoint]
@@ -59,6 +60,8 @@
 	desc = "It seems to have been roughly thrown together and then spraypainted in a single color."
 
 /mob/living/exosuit/premade/random/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random = FALSE, using_boring_colours = FALSE)
+	. = ..()
+
 	//if(!prob(100/(LAZYLEN(GLOB.mech_decals)+1)))
 	//	decal = pick(GLOB.mech_decals)
 
@@ -175,8 +178,6 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = 20
 	))
 
-	..()
-
 	if(super_random)
 		for(var/obj/item/mech_component/C in list(arms, legs, head, body))
 			C.color = pick(use_colours)
@@ -186,8 +187,8 @@
 // Used for spawning/debugging.
 /mob/living/exosuit/premade/random/normal
 
-/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
-	..(newloc, source_frame, FALSE, TRUE)
+/mob/living/exosuit/premade/random/boring/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random, using_boring_colours)
+	. = ..(mapload, source_frame, FALSE, TRUE) // override the intializer, make it boring.
 
-/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)//??
-	..(newloc, source_frame, TRUE)
+/mob/living/exosuit/premade/random/extra/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random, using_boring_colours)
+	. = ..(mapload, source_frame, TRUE) // pure random

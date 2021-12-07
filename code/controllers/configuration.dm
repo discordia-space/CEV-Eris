@@ -341,10 +341,11 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("log_runtime")
 					config.log_runtime = 1
-					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
+					var/newlog = "data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
 					if(runtime_diary != newlog)
-						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
+						world.log << "Now logging runtimes to \"[newlog]\""
 						runtime_diary = newlog
+						start_log(runtime_diary)
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1

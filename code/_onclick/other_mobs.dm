@@ -28,6 +28,40 @@
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	return
 
+
+//Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
+/atom/proc/_try_interact(mob/user)
+	if(isghost(user) && is_admin(user)) //admin abuse
+		return interact(user)
+	if(can_interact(user))
+		return interact(user)
+	return FALSE
+
+/atom/proc/can_interact(mob/user)
+	if(!user.can_interact_with(src))
+		return FALSE
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		return FALSE
+	// if(!(interaction_flags_atom & INTERACT_ATOM_IGNORE_INCAPACITATED) && user.incapacitated((interaction_flags_atom & INTERACT_ATOM_IGNORE_RESTRAINED), !(interaction_flags_atom & INTERACT_ATOM_CHECK_GRAB)))
+	// 	return FALSE
+	return TRUE
+
+/atom/ui_status(mob/user)
+	. = ..()
+	if(!can_interact(user))
+		. = min(., UI_UPDATE)
+
+/atom/movable/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!anchored) //  && (interaction_flags_atom & INTERACT_ATOM_REQUIRES_ANCHORED))
+		return FALSE
+
+/atom/proc/interact(mob/user)
+	return FALSE
+
 /mob/living/carbon/human/RangedAttack(var/atom/A)
 	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
 		var/turf/T = get_turf(A)
@@ -67,7 +101,7 @@
 			return
 
 	//PERK_ABSOLUTE_GRAB
-	
+
 	if(get_dist_euclidian(get_turf(A), get_turf(src)) < 3 && ishuman(A))
 		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
 			absolute_grab(A) // moved into a proc belowaa

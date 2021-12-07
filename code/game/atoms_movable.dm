@@ -28,29 +28,27 @@
 	var/spawn_blacklisted = FALSE
 	var/bad_type //path
 
-/atom/movable/Del()
-	if(isnull(gc_destroyed) && loc)
-		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
-//	else if(isnull(gcDestroyed))
-//		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
-//	else
-//		testing("GC: [type] was deleted via GC with qdel()")
-	..()
-
-/atom/movable/Destroy()
-	. = ..()
-	for(var/atom/movable/AM in contents)
-		qdel(AM)
-
+/atom/movable/Destroy(force)
 	if(loc)
 		loc.handle_atom_del(src)
 
+	var/turf/T = loc
+	if(opacity && istype(T))
+		set_opacity(FALSE)
+
+	invisibility = 101
+
+	if(pulledby)
+		pulledby.stop_pulling()
+
+	. = ..()
+
+	for(var/movable_content in contents)
+		qdel(movable_content)
+
 	forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
+
+	vis_contents.Cut()
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
@@ -70,7 +68,7 @@
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
-		return 0
+		return FALSE
 
 	if (glide_size_override)
 		set_glide_size(glide_size_override)

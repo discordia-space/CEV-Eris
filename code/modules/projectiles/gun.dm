@@ -733,7 +733,7 @@
 
 	toggle_carry_state(usr)
 
-/obj/item/gun/ui_data(mob/user)
+/obj/item/gun/nano_ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
@@ -777,7 +777,7 @@
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A.name)))
 
 	return data
 

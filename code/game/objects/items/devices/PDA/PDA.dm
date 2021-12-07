@@ -319,7 +319,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	return ..()
 
 
-/obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/pda/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	ui_tick++
 	var/datum/nanoui/old_ui = SSnano.get_open_ui(user, src, "main")
 	var/auto_update = 1
@@ -487,8 +487,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/index = 0
 				for(var/datum/feed_message/FM in FC.messages)
 					++index
-					if(FM.img)
-						send_asset(usr.client, "newscaster_photo_[sanitize(FC.channel_name)]_[index].png")
+					if(FM.img_asset)
+						SSassets.transport.send_assets(usr.client, FM.img_asset)
 					// News stories are HTML-stripped but require newline replacement to be properly displayed in NanoUI
 					var/body = replacetext(FM.body, "\n", "<br>")
 					messages[++messages.len] = list("author" = FM.author, "body" = body, "message_type" = FM.message_type, "time_stamp" = FM.time_stamp, "has_image" = (FM.img != null), "caption" = FM.caption, "index" = index)
@@ -506,7 +506,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 	        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state =GLOB.inventory_state)
+		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400, state = GLOB.inventory_state)
 		// when the ui is first opened this is the data it will use
 
 		ui.set_initial_data(data)
@@ -522,7 +522,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(active_uplink_check(user))
 		return
 
-	ui_interact(user) //NanoUI requires this proc
+	nano_ui_interact(user) //NanoUI requires this proc
 	return
 
 /obj/item/device/pda/Topic(href, href_list)

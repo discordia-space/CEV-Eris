@@ -226,7 +226,7 @@
 			to_chat(usr, "This can only be done to instances of type /datum")
 			return
 
-		src.holder.marked_datum_weak = weakref(D)
+		src.holder.marked_datum_weak = WEAKREF(D)
 		href_list["datumrefresh"] = href_list["mark_object"]
 
 	else if(href_list["rotatedatum"])
@@ -476,9 +476,8 @@
 			return
 
 		SSnano.close_uis(H)
-		H.client.cache.Cut()
-		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
-		assets.send(H)
+		var/datum/asset/simple/assets = get_asset_datum(/datum/asset/simple/directories/nanoui)
+		assets.send(H.client)
 
 		to_chat(usr, "Resource files sent")
 		to_chat(H, "Your NanoUI Resource files have been refreshed")

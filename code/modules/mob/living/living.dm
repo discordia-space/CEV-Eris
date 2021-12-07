@@ -20,6 +20,25 @@
 	usr.visible_message("<b>[src]</b> points to [A]")
 	return TRUE
 
+/mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
+	// if(!(mobility_flags & MOBILITY_UI) && !floor_okay)
+	// 	to_chat(src, span_warning("You can't do that right now!"))
+	// 	return FALSE
+	if(be_close && !Adjacent(M) && (M.loc != src))
+		if(no_tk)
+			to_chat(src, span_warning("You are too far away!"))
+			return FALSE
+		if(!(TK in mutations))
+			to_chat(src, span_warning("You are too far away!"))
+			return FALSE
+	// if(need_hands && !can_hold_items(isitem(M) ? M : null)) //almost redundant if it weren't for mobs,
+	// 	to_chat(src, span_warning("You don't have the physical ability to do this!"))
+	// 	return FALSE
+	if(!no_dexterity && !src.IsAdvancedToolUser())
+		to_chat(src, span_warning("You don't have the dexterity to do this!"))
+		return FALSE
+	return TRUE
+
 /*one proc, four uses
 swapping: if it's 1, the mobs are trying to switch, if 0, non-passive is pushing passive
 default behaviour is:

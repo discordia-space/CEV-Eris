@@ -113,7 +113,7 @@
 /obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick(mob/user)
 	. = ..()
 
-	var/able = can_interact(user)
+	var/able = can_interact_ak(user)
 
 	if(able == 1)
 		return
@@ -130,7 +130,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact(user) == 1)
+	if(can_interact_ak(user) == 1)
 		return
 
 	fold(user)
@@ -196,7 +196,7 @@
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
 
-	var/able = can_interact(user)
+	var/able = can_interact_ak(user)
 
 	if(able == 1)
 		return
@@ -212,7 +212,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(can_interact(user) == 1)
+	if(can_interact_ak(user) == 1)
 		return
 	fold(user)
 

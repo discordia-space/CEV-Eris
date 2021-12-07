@@ -98,7 +98,7 @@
 	var/list/jf_pool = list()  // Pool of junk fields you can choose from
 
 	var/beam_cooldown_start = 0  // Starting time of the cooldown for the progress bar
-	var/beam_cooldown_time = 5 MINUTES 
+	var/beam_cooldown_time = 5 MINUTES
 	var/beam_capture_time = 20 SECONDS
 
 	var/list/preloaded_25_25 = list()  // Need to preload maps in SOUTH direction
@@ -189,7 +189,7 @@
 		var/b = x1 + i * dx - 1
 		spawn(i * dt)
 			cleanup_junk_field(a, b, y1, y2)
-		
+
 	log_world("Junk field cleanup is over at zlevel [loc.z].")
 
 /obj/jtb_generator/proc/cleanup_junk_field(var/x1, var/x2, var/y1, var/y2)
@@ -262,7 +262,7 @@
 	qdel(src)
 
 /obj/jtb_generator/proc/populate_z_level()
-	
+
 	log_world("Junk Field build starting at zlevel [loc.z].")
 	if(current_jf.asteroid_belt_status)  // Generate asteroids only if the junk field has an asteroid belt
 		generate_asteroids()
@@ -298,7 +298,7 @@
 			return 1
 	return 0
 
-// Compute matrix with 1 if cell is occupied, 0 otherwise 
+// Compute matrix with 1 if cell is occupied, 0 otherwise
 /obj/jtb_generator/proc/compute_occupancy_map()
 	for(var/i = 1 to numR)
 		for(var/j = 1 to numC)
@@ -339,7 +339,7 @@
 	for(var/i = (target_x-4) to target_x)
 		for(var/j = (target_y-4) to target_y)
 			map[i][j] = 1
-	
+
 	// Update the occupancy grid
 	compute_occupancy_grid()
 	// bottom left corner turf
@@ -366,9 +366,9 @@
 
 	// Update the occupancy map
 	map[target_x][target_y] = 1
-	
+
 	// Update the occupancy grid
-	grid[target_x][target_y] = 0 
+	grid[target_x][target_y] = 0
 	// No need to do a compute_occupancy_grid() because we don't care about the exact values to place 5 by 5 chunks
 
 	// bottom left corner turf
@@ -423,7 +423,7 @@
 		// Remove atmosphere
 		TM.oxygen = 0
 		TM.nitrogen = 0
-		
+
 		for(var/obj/O in TM)
 			if(istype(O, /obj/structure/lattice)) // Fix lattice dir that is not rotated correctly by the loader
 				O.dir = 2
@@ -519,7 +519,7 @@
 // Generate the edge at the border of the map for wrapping effect
 /obj/jtb_generator/proc/generate_edge()
 	log_world("Generating edges of junk field at zlevel [loc.z].")
-	
+
 	edges = list()
 	edges += block(locate(1+JTB_OFFSET-JTB_EDGE, 1+JTB_OFFSET, z), locate(1+JTB_OFFSET, maxy+JTB_OFFSET, z))  // Left border
 	edges |= block(locate(maxx+JTB_OFFSET, 1+JTB_OFFSET, z),locate(maxx+JTB_OFFSET+JTB_EDGE, maxy+JTB_OFFSET, z))  // Right border
@@ -543,7 +543,7 @@
 	for(var/turf/T in edges)
 		for(var/obj/O in T)
 			qdel(O)  // JTB related stuff is safe near (1, 1) of the map so no need to check with istype
-	
+
 	// Make space outside the edge impassable to avoid fast moving object moving too fast through the barrier to be detected and wraped-around
 	edges = list()
 	edges += block(locate(1+JTB_OFFSET-JTB_EDGE+1, 1+JTB_OFFSET-JTB_EDGE, z), locate(1+JTB_OFFSET-JTB_EDGE+1, maxy+JTB_OFFSET+JTB_EDGE, z))  // Left border
@@ -578,7 +578,7 @@
 /proc/load_chunk(turf/corner_turf, datum/map_template/template, var/ori)
 	if(!template)
 		return FALSE
-	if(ori == WEST || ori == EAST)  
+	if(ori == WEST || ori == EAST)
 		// For west and east the x and y coordinates are switched by template.load so we need to switch them ourself to spawn at correct location
 		corner_turf = get_turf(locate(corner_turf.y, corner_turf.x, corner_turf.z))
 	template.load(corner_turf, centered=FALSE, orientation=ori)
@@ -693,14 +693,14 @@
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
 		return
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/computer/jtb_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/jtb_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!jtb_gen)
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'</span>")
 		return
-	
+
 	var/data[0]
 	data = list(
 		"beam_state" = get_beam_state(),
@@ -733,7 +733,7 @@
 
 	if(href_list["release"])
 		field_release()
-	
+
 	if(href_list["pick"])
 		var/list/possible_fields = get_possible_fields()
 		var/datum/junk_field/JF
@@ -745,7 +745,7 @@
 		possible_fields = get_possible_fields()
 		if(CanInteract(usr,GLOB.default_state) && (JF in possible_fields))
 			set_field(possible_fields[JF])
-	
+
 	updateUsrDialog()
 
 /obj/machinery/computer/jtb_console/proc/get_beam_state()
@@ -779,7 +779,7 @@
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 	if(check_pillars())
 		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Starting capture of targeted junk field.'</span>")
-		jtb_gen.field_capture(get_turf(locate(x+5, y, z))) 
+		jtb_gen.field_capture(get_turf(locate(x+5, y, z)))
 	else
 		src.audible_message("<span class='warning'>The junk tractor beam console beeps: 'NOTICE: Interference dampening pillars not detected.'</span>")
 	return
@@ -832,7 +832,7 @@
 
 /obj/machinery/computer/jtb_console/proc/set_field(var/datum/junk_field/JF)
 	jtb_gen.set_field(JF)
-	return 
+	return
 
 //////////////////////////////
 // Wrapping at the edge of junk field
@@ -858,20 +858,20 @@
 
 /turf/simulated/jtb_edge/Exited(atom/movable/AM)
 	. = ..()
-	LAZYREMOVE(victims, weakref(AM))
-	
+	LAZYREMOVE(victims, WEAKREF(AM))
+
 /turf/simulated/jtb_edge/Entered(atom/movable/AM)
 	..()
-	LAZYADD(victims, weakref(AM))
+	LAZYADD(victims, WEAKREF(AM))
 	START_PROCESSING(SSobj, src)
 
 /turf/simulated/jtb_edge/Process()
 	. = ..()
 
-	for(var/weakref/W in victims)
+	for(var/datum/weakref/W in victims)
 		var/atom/movable/AM = W.resolve()
-		if (AM == null || get_turf(AM) != src )
-			if(victims) // Avoid null runtimes
+		if (!AM || get_turf(AM) != src )
+			if(victims) // Avoid null runtimes (NULL IS INTENTIONAL)
 				victims -= W
 				continue
 
@@ -881,7 +881,7 @@
 			new_x = JTB_OFFSET + JTB_MAXX
 		else if (x >= (JTB_OFFSET + JTB_MAXX + 1))
 			new_x = JTB_OFFSET + 1
-		
+
 		if (y <= JTB_OFFSET)
 			new_y = JTB_OFFSET + JTB_MAXY
 		else if (y >= (JTB_OFFSET + JTB_MAXY + 1))

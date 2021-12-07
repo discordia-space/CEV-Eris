@@ -371,7 +371,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					can_build = min(can_build, can_build_temp)
 
 				designs_list += list(list(
-					"data" = D.ui_data(),
+					"data" = D.nano_ui_data(),
 					"id" = "\ref[D]",
 					"can_create" = can_build,
 					"missing_materials" = missing_materials,
@@ -382,10 +382,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/attack_hand(mob/user)
 	if(..())
 		return
-	ui_interact(user)
+	nano_ui_interact(user)
 
 
-/obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null) // Here we go again
+/obj/machinery/computer/rdconsole/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null) // Here we go again
 	if((screen == SCREEN_PROTO && !linked_lathe) || (screen == SCREEN_IMPRINTER && !linked_imprinter))
 		screen = SCREEN_MAIN // Kick us from protolathe or imprinter screen if they were destroyed
 
@@ -669,6 +669,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
 		ui = new(user, src, ui_key, "rdconsole.tmpl", "R&D Console", 1000, 700)
+
+		// add the design icon **spritesheet**
+		var/datum/asset/spritesheet/S = get_asset_datum(/datum/asset/spritesheet/design_icons)
+		S.send(user.client)
+		ui.add_stylesheet(S.css_filename())
 
 		ui.set_initial_data(data)
 		ui.open()

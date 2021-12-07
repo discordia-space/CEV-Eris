@@ -1,14 +1,9 @@
-/*
-	A tool upgrade is a little attachment for a tool that improves it in some way
-	Tool upgrades are generally permanant
-
-	Some upgrades have multiple bonuses. Some have drawbacks in addition to boosts
-*/
-
-/*/client/verb/debugupgrades()
-	for (var/t in subtypesof(/obj/item/tool_upgrade))
-		new t(usr.loc)
-*/
+/**
+ * A tool upgrade is a little attachment for a tool that improves it in some way
+ * Tool upgrades are generally permanant
+ *
+ * Some upgrades have multiple bonuses. Some have drawbacks in addition to boosts
+ */
 /datum/component/item_upgrade
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
@@ -39,11 +34,14 @@
 	var/list/weapon_upgrades = list() //variable name(string) -> num
 
 /datum/component/item_upgrade/RegisterWithParent()
+	. = ..()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, mob/living/user, params)
+	// SIGNAL_HANDLER Help needed! If you can somehow move the input() in check_robot() that would be nice
+
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/item_upgrade/proc/can_apply(atom/A, mob/living/user)
@@ -195,16 +193,16 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
+	SIGNAL_HANDLER
+
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
-		UnregisterSignal(I, COMSIG_ADDVAL)
-		UnregisterSignal(I, COMSIG_APPVAL)
+		UnregisterSignal(I, list(COMSIG_ADDVAL, COMSIG_APPVAL))
 		qdel(P)
 		return
 	P.forceMove(get_turf(I))
-	UnregisterSignal(I, COMSIG_ADDVAL)
-	UnregisterSignal(I, COMSIG_APPVAL)
+	UnregisterSignal(I, list(COMSIG_ADDVAL, COMSIG_APPVAL))
 
 /datum/component/item_upgrade/proc/apply_values(atom/holder)
 	if(!holder)
@@ -341,7 +339,7 @@
 
 	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
 		G.dna_compare_samples = FALSE
-	
+
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -378,214 +376,218 @@
 				if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
-/datum/component/item_upgrade/proc/on_examine(mob/user)
+/datum/component/item_upgrade/proc/on_examine(atom/A, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
 	if(tool_upgrades[UPGRADE_SANCTIFY])
-		to_chat(user, SPAN_NOTICE("Does additional burn damage to mutants."))
+		examine_list += SPAN_NOTICE("Does additional burn damage to mutants.")
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
-		to_chat(user, SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
+		examine_list += SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]")
 	else if(tool_upgrades[UPGRADE_PRECISION] < 0)
-		to_chat(user, SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))
+		examine_list += SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]")
 	if(tool_upgrades[UPGRADE_WORKSPEED])
-		to_chat(user, SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
+		examine_list += SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%")
 
 	if(tool_upgrades[UPGRADE_DEGRADATION_MULT])
 		if(tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
-			to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
+			examine_list += SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%")
 		else if	(tool_upgrades[UPGRADE_DEGRADATION_MULT] > 1)
-			to_chat(user, SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
+			examine_list += SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%")
 
 	if(tool_upgrades[UPGRADE_FORCE_MULT] >= 1)
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [(tool_upgrades[UPGRADE_FORCE_MULT]-1)*100]%"))
+		examine_list += SPAN_NOTICE("Increases tool damage by [(tool_upgrades[UPGRADE_FORCE_MULT]-1)*100]%")
 	if(tool_upgrades[UPGRADE_FORCE_MOD])
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [tool_upgrades[UPGRADE_FORCE_MOD]]"))
+		examine_list += SPAN_NOTICE("Increases tool damage by [tool_upgrades[UPGRADE_FORCE_MOD]]")
 	if(tool_upgrades[UPGRADE_POWERCOST_MULT] >= 1)
-		to_chat(user, SPAN_WARNING("Modifies power usage by [(tool_upgrades[UPGRADE_POWERCOST_MULT]-1)*100]%"))
+		examine_list += SPAN_WARNING("Modifies power usage by [(tool_upgrades[UPGRADE_POWERCOST_MULT]-1)*100]%")
 	if(tool_upgrades[UPGRADE_FUELCOST_MULT] >= 1)
-		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(tool_upgrades[UPGRADE_FUELCOST_MULT]-1)*100]%"))
+		examine_list += SPAN_WARNING("Modifies fuel usage by [(tool_upgrades[UPGRADE_FUELCOST_MULT]-1)*100]%")
 	if(tool_upgrades[UPGRADE_MAXFUEL])
-		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [tool_upgrades[UPGRADE_MAXFUEL]] units."))
+		examine_list += SPAN_NOTICE("Modifies fuel storage by [tool_upgrades[UPGRADE_MAXFUEL]] units.")
 	if(tool_upgrades[UPGRADE_BULK])
-		to_chat(user, SPAN_WARNING("Increases tool size by [tool_upgrades[UPGRADE_BULK]]"))
+		examine_list += SPAN_WARNING("Increases tool size by [tool_upgrades[UPGRADE_BULK]]")
 	if(tool_upgrades[UPGRADE_MAXUPGRADES])
-		to_chat(user, SPAN_NOTICE("Adds [tool_upgrades[UPGRADE_MAXUPGRADES]] additional modification slots."))
+		examine_list += SPAN_NOTICE("Adds [tool_upgrades[UPGRADE_MAXUPGRADES]] additional modification slots.")
 	if(required_qualities.len)
-		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
-		to_chat(user, english_list(required_qualities, and_text = " or "))
+		examine_list += SPAN_WARNING("Requires a tool with one of the following qualities:")
+		examine_list += english_list(required_qualities, and_text = " or ")
 
 	if(weapon_upgrades.len)
-		to_chat(user, SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:"))
+		examine_list += SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]-1
 			if(amount > 0)
-				to_chat(user, SPAN_NOTICE("Increases projectile damage by [amount*100]%"))
+				examine_list += SPAN_NOTICE("Increases projectile damage by [amount*100]%")
 			else
-				to_chat(user, SPAN_WARNING("Decreases projectile damage by [abs(amount*100)]%"))
+				examine_list += SPAN_WARNING("Decreases projectile damage by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_PEN_MULT]-1
 			if(amount > 0)
-				to_chat(user, SPAN_NOTICE("Increases projectile penetration by [amount*100]%"))
+				examine_list += SPAN_NOTICE("Increases projectile penetration by [amount*100]%")
 			else
-				to_chat(user, SPAN_WARNING("Decreases projectile penetration by [abs(amount*100)]%"))
+				examine_list += SPAN_WARNING("Decreases projectile penetration by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_PIERC_MULT]
 			if(amount > 1)
-				to_chat(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] walls"))
+				examine_list += SPAN_NOTICE("Increases projectile piercing penetration by [amount] walls")
 			else if(amount == 1)
-				to_chat(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] wall"))
+				examine_list += SPAN_NOTICE("Increases projectile piercing penetration by [amount] wall")
 			else if(amount == -1)
-				to_chat(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] wall"))
+				examine_list += SPAN_WARNING("Decreases projectile piercing penetration by [amount] wall")
 			else
-				to_chat(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] walls"))
+				examine_list += SPAN_WARNING("Decreases projectile piercing penetration by [amount] walls")
 
 		if(weapon_upgrades[GUN_UPGRADE_RICO_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RICO_MULT]
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases projectile ricochet by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases projectile ricochet by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases projectile ricochet by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases projectile ricochet by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases fire delay by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases fire delay by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases fire delay by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases fire delay by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases move delay by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases move delay by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases move delay by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases move delay by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Slows down the weapons projectile by [amount*100]%"))
+				examine_list += SPAN_WARNING("Slows down the weapons projectile by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Speeds up the weapons projectile by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Speeds up the weapons projectile by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE])
-			to_chat(user, SPAN_NOTICE("Modifies projectile brute damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile brute damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN])
-			to_chat(user, SPAN_NOTICE("Modifies projectile burn damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile burn damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX])
-			to_chat(user, SPAN_NOTICE("Modifies projectile toxic damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile toxic damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY])
-			to_chat(user, SPAN_NOTICE("Modifies projectile oxy-loss damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile oxy-loss damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE])
-			to_chat(user, SPAN_NOTICE("Modifies projectile clone damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile clone damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
-			to_chat(user, SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
-			to_chat(user, SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY])
-			to_chat(user, SPAN_NOTICE("Modifies projectile psy damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]] damage points"))
+			examine_list += SPAN_NOTICE("Modifies projectile psy damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]] damage points")
 
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases kickback by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases kickback by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases kickback by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases kickback by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases muzzle flash by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases muzzle flash by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases muzzle flash by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases muzzle flash by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MAGUP]
 			if(amount > 1)
-				to_chat(user, SPAN_NOTICE("Increases internal magazine size by [amount]"))
+				examine_list += SPAN_NOTICE("Increases internal magazine size by [amount]")
 			else
-				to_chat(user, SPAN_WARNING("Decreases internal magazine size by [amount]"))
+				examine_list += SPAN_WARNING("Decreases internal magazine size by [amount]")
 
 		if(weapon_upgrades[GUN_UPGRADE_SILENCER] == 1)
-			to_chat(user, SPAN_NOTICE("Silences the weapon."))
+			examine_list += SPAN_NOTICE("Silences the weapon.")
 
 		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 0)
-			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
+			examine_list += SPAN_WARNING("Disables the safety toggle of the weapon.")
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
-			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
-		
+			examine_list += SPAN_WARNING("Forces the safety toggle of the weapon to always be on.")
+
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
-			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
+			examine_list += SPAN_WARNING("Adds a biometric scanner to the weapon.")
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases cell firing cost by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases cell firing cost by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases cell firing cost by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases cell firing cost by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases overcharge maximum by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases overcharge maximum by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases overcharge maximum by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases overcharge maximum by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE]-1
 			if(amount > 0)
-				to_chat(user, SPAN_NOTICE("Increases overcharge rate by [amount*100]%"))
+				examine_list += SPAN_NOTICE("Increases overcharge rate by [amount*100]%")
 			else
-				to_chat(user, SPAN_WARNING("Decreases overcharge rate by [abs(amount*100)]%"))
+				examine_list += SPAN_WARNING("Decreases overcharge rate by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_OFFSET])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OFFSET]-1
 			if(amount > 0)
-				to_chat(user, SPAN_WARNING("Increases weapon inaccuracy by [amount*100]%"))
+				examine_list += SPAN_WARNING("Increases weapon inaccuracy by [amount*100]%")
 			else
-				to_chat(user, SPAN_NOTICE("Decreases weapon inaccuracy by [abs(amount*100)]%"))
+				examine_list += SPAN_NOTICE("Decreases weapon inaccuracy by [abs(amount*100)]%")
 
 		if(weapon_upgrades[GUN_UPGRADE_HONK])
-			to_chat(user, SPAN_WARNING("Cheers up the firing sound of the weapon."))
+			examine_list += SPAN_WARNING("Cheers up the firing sound of the weapon.")
 
 		if(weapon_upgrades[GUN_UPGRADE_RIGGED])
-			to_chat(user, SPAN_WARNING("Rigs the weapon to fire back on its user."))
+			examine_list += SPAN_WARNING("Rigs the weapon to fire back on its user.")
 
 		if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
-			to_chat(user, SPAN_WARNING("Rigs the weapon to explode."))
+			examine_list += SPAN_WARNING("Rigs the weapon to explode.")
 
 		if(weapon_upgrades[GUN_UPGRADE_ZOOM])
 			var/amount = weapon_upgrades[GUN_UPGRADE_ZOOM]
 			if(amount > 0)
-				to_chat(user, SPAN_NOTICE("Increases scope zoom by x[amount]"))
+				examine_list += SPAN_NOTICE("Increases scope zoom by x[amount]")
 			else
-				to_chat(user, SPAN_WARNING("Decreases scope zoom by x[amount]"))
+				examine_list += SPAN_WARNING("Decreases scope zoom by x[amount]")
 
-		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
-		to_chat(user, english_list(req_gun_tags))
+		examine_list += SPAN_WARNING("Requires a weapon with the following properties")
+		examine_list += english_list(req_gun_tags)
 
 /datum/component/item_upgrade/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_IATTACK)
-	UnregisterSignal(parent, COMSIG_EXAMINE)
-	UnregisterSignal(parent, COMSIG_REMOVE)
+	. = ..()
+	UnregisterSignal(parent, list(COMSIG_IATTACK, COMSIG_PARENT_EXAMINE, COMSIG_REMOVE))
 
-/datum/component/item_upgrade/PostTransfer()
-	return COMPONENT_TRANSFER
 
+/**
+ * Component for removing upgrades?
+ */
 /datum/component/upgrade_removal
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 /datum/component/upgrade_removal/RegisterWithParent()
+	. = ..()
 	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
 
 /datum/component/upgrade_removal/UnregisterFromParent()
+	. = ..()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)

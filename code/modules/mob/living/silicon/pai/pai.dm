@@ -211,6 +211,9 @@
 //End of code by Mord_Sith
 */
 
+/mob/living/silicon/pai/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
+	return ..(M, be_close, no_dexterity, no_tk, need_hands, TRUE) //Resting is just an aesthetic feature for them.
+
 
 /*
 // Debug command - Maybe should be added to admin verbs later

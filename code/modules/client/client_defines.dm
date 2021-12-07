@@ -1,4 +1,8 @@
-/client
+/client	
+		//////////////////////
+		//BLACK MAGIC THINGS//
+		//////////////////////
+	parent_type = /datum // <- this is required to see if a client is qdeleted
 		////////////////
 		//ADMIN THINGS//
 		////////////////
@@ -70,3 +74,15 @@
 	var/connection_timeofday //world.timeofday they connected
 
 	var/datum/chatOutput/chatOutput
+
+	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
+	var/list/sent_assets = list()
+	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
+	var/list/completed_asset_jobs = list()
+	/// Last asset send job id.
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0
+	
+	var/VPN_whitelist //avoid vpn cheking-OLD
+	var/list/related_ip = list()
+	var/list/related_cid = list()

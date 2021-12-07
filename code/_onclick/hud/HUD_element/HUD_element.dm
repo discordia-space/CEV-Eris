@@ -79,7 +79,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	_identifier = identifier
 	updateIconInformation()
 
-/HUD_element/Destroy()
+/HUD_element/Destroy() // everyting starts at /atom/movable.
 	hide()
 
 	if (_data)
@@ -101,7 +101,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	for(var/name in _iconsBuffer)
 		qdel(_iconsBuffer[name])
 
-	return QDEL_HINT_QUEUE
+	return ..()
 
 /HUD_element/Click(location,control,params)
 	if (_clickProc)

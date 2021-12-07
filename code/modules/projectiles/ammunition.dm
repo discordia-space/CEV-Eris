@@ -12,7 +12,7 @@
 	var/is_caseless = FALSE
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/projectile_type					//The bullet type to create when New() is called
-	var/obj/item/projectile/BB			//The loaded bullet - make it so that the projectiles are created only when needed?
+	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
 	var/spent_icon
 	var/amount = 1
 	var/maxamount = 15
@@ -31,15 +31,19 @@
 		var/matrix/rotation_matrix = matrix()
 		rotation_matrix.Turn(round(45 * rand(0, sprite_max_rotate) / 2))
 		if(sprite_use_small)
-			src.transform = rotation_matrix * sprite_scale
+			transform = rotation_matrix * sprite_scale
 		else
-			src.transform = rotation_matrix
+			transform = rotation_matrix
 	if(ispath(projectile_type))
 		BB = new projectile_type(src)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	if(amount > 1)
 		update_icon()
+
+/obj/item/ammo_casing/Destroy()
+	QDEL_NULL(BB) // it spawns a projectile that it doesn't clean! Yikes!
+	return ..()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
@@ -200,12 +204,14 @@
 
 	var/ammo_color = ""		//For use in modular sprites
 
+	///list containing the actual ammo within the magazine
 	var/list/stored_ammo = list()
+	///maximum amount of ammo in the magazine
+	var/max_ammo = 7
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
 	var/mag_well = MAG_WELL_GENERIC
 	var/caliber = CAL_357
 	var/ammo_mag = "default"
-	var/max_ammo = 7
 	var/reload_delay = 0 //when we need to make reload slower
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
@@ -216,8 +222,8 @@
 	var/list/icon_keys = list()		//keys
 	var/list/ammo_states = list()	//values
 
-/obj/item/ammo_magazine/New()
-	..()
+/obj/item/ammo_magazine/Initialize()
+	. = ..()
 	if(multiple_sprites)
 		initialize_magazine_icondata(src)
 
@@ -225,7 +231,7 @@
 		initial_ammo = max_ammo
 
 	if(initial_ammo)
-		for(var/i in 1 to initial_ammo)
+		for(var/i = max(1, stored_ammo.len), i <= initial_ammo, i++)
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
@@ -389,9 +395,9 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	dump_it(T, usr)
+	dump_it(T)
 
-/obj/item/ammo_magazine/proc/dump_it(var/turf/target) //bogpilled
+/obj/item/ammo_magazine/proc/dump_it(turf/target) //bogpilled
 	if(!istype(target))
 		return
 	if(!Adjacent(usr))
@@ -420,6 +426,10 @@
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
 	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+
+/obj/item/ammo_magazine/handle_atom_del(atom/A)
+	stored_ammo -= A
+	update_icon()
 
 //magazine icon state caching
 /var/global/list/magazine_icondata_keys = list()

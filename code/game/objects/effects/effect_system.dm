@@ -16,8 +16,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 
-
-/obj/effect/Initialize(mapload, ...)
+/obj/effect/Initialize(mapload)
 	. = ..()
 	if (random_rotation)
 		var/matrix/M = transform

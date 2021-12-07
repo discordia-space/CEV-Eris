@@ -43,7 +43,7 @@
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
-	var/machinery_was_awake = SSmachines.suspend() // Suspend machinery (if it was not already suspended)
+	// var/machinery_was_awake = SSmachines.suspend() // Suspend machinery (if it was not already suspended)
 
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
@@ -72,8 +72,8 @@
 		var/area/A = I
 		A.power_change()
 
-	if(machinery_was_awake)
-		SSmachines.wake() // Wake only if it was awake before we tried to suspended it.
+	// if(machinery_was_awake)
+	// 	SSmachines.wake() // Wake only if it was awake before we tried to suspended it.
 
 	//admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 

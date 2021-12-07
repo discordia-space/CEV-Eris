@@ -103,12 +103,15 @@
 				visible_message(SPAN_DANGER("\The [M] supports themself with the handrail to avoid slipping."))
 				return ..()
 			if(M.slip("the [floor_type] floor",slip_stun))
-				for(var/i = 0;i<slip_dist;i++)
-					step(M, M.dir)
-					sleep(1)
+				INVOKE_ASYNC(src, .proc/do_eris_slip, slip_dist, M) // why are you blocking entered you warcriminal
 
 	..()
 
+/// i hate you fuck you for using sleep()
+/turf/simulated/proc/do_eris_slip(slip_dist, mob/living/L)
+	for(var/i = 0; i < slip_dist; i++)
+		step(L, L.dir)
+		sleep(1)
 
 
 /turf/simulated/proc/can_build_cable(var/mob/user)

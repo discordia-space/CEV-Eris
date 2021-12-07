@@ -152,6 +152,7 @@ Data storage vars:
 		return active()
 
 /datum/global_iterator/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
 	tag = null
 	arg_list.Cut()
 	stop()

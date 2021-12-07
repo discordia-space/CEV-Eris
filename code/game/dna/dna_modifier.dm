@@ -284,11 +284,11 @@
 
 /obj/machinery/computer/scan_consolenew/attack_ai(user as mob)
 	src.add_hiddenprint(user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/machinery/computer/scan_consolenew/attack_hand(user as mob)
 	if(!..())
-		ui_interact(user)
+		nano_ui_interact(user)
 
  /**
   * The ui_interact proc is used to open and update Nano UIs
@@ -301,7 +301,7 @@
   *
   * @return nothing
   */
-/obj/machinery/computer/scan_consolenew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/scan_consolenew/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 
 	if(user == connected.occupant || user.stat)
 		return

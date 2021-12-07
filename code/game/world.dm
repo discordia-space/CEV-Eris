@@ -24,9 +24,6 @@ var/global/datum/global_init/init = new ()
 
 	qdel(src) //we're done
 
-/datum/global_init/Destroy()
-	return 1
-
 var/game_id
 /proc/generate_gameid()
 	if(game_id != null)
@@ -76,12 +73,16 @@ var/game_id
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	href_logfile = "data/logs/[date_string]-hrefs.htm"
+	diary = "data/logs/[date_string].log"
+	world_qdel_log = "data/logs/[date_string]-qdel.log"	// GC Shutdown log
+
+	start_log(diary)
+	start_log(href_logfile)
+	start_log(world_qdel_log)
+
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
-	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
@@ -112,12 +113,11 @@ var/game_id
 	if(NO_INIT_PARAMETER in params)
 		return
 
-	Master.Initialize(10, FALSE)
+	Master.Initialize(10, FALSE, TRUE)
 
 	call_restart_webhook()
 
 	#ifdef UNIT_TESTS
-	// load_unit_test_changes() // ??
 	HandleTestRun()
 	#endif
 
@@ -127,8 +127,7 @@ var/game_id
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
-	// Master.sleep_offline_after_initializations = FALSE
-	world.sleep_offline = FALSE // iirc mc SHOULD handle this
+	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
 	config.empty_server_restart_time = 0
 	config.vote_autogamemode_timeleft = 0
@@ -156,7 +155,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			break
 
 	if(!handler || initial(handler.log))
-		diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+		log_href("TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
 
 	if(!handler)
 		return

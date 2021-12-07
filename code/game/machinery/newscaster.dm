@@ -9,6 +9,8 @@
 	var/datum/feed_channel/parent_channel
 	var/is_admin_message = 0
 	var/icon/img = null
+	/// datum/asset of the image. Must not be null if img exists.
+	var/datum/asset/img_asset = null
 	var/icon/caption = ""
 	var/time_stamp = ""
 	var/backup_body = ""
@@ -89,15 +91,15 @@
 			insert_message_in_channel(FC, newMsg) //Adding message to the network's appropriate feed_channel
 			break
 
-/datum/feed_network/proc/insert_message_in_channel(var/datum/feed_channel/FC, var/datum/feed_message/newMsg)
+/datum/feed_network/proc/insert_message_in_channel(datum/feed_channel/FC, datum/feed_message/newMsg)
 	FC.messages += newMsg
 	if(newMsg.img)
-		register_asset("newscaster_photo_[sanitize(FC.channel_name)]_[FC.messages.len].png", newMsg.img)
+		newMsg.img_asset = SSassets.transport.register_asset("newscaster_photo_[sanitize(FC.channel_name)]_[FC.messages.len].png", newMsg.img)
 	newMsg.parent_channel = FC
 	FC.update()
 	alert_readers(FC.announcement)
 
-/datum/feed_network/proc/alert_readers(var/annoncement)
+/datum/feed_network/proc/alert_readers(annoncement)
 	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
@@ -351,11 +353,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
 								var/resourc_name = "newscaster_photo_[sanitize(viewing_channel.channel_name)]_[i].png"
-								send_asset(usr.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								SSassets.transport.send_assets(usr.client, MESSAGE.img_asset)
+								dat += "<img src='[SSassets.transport.get_asset_url(resourc_name)]' width = '180'><BR>"
 								if(MESSAGE.caption)
-									dat+="<FONT SIZE=1><B>[MESSAGE.caption]</B></FONT><BR>"
-								dat+="<BR>"
+									dat += "<FONT SIZE=1><B>[MESSAGE.caption]</B></FONT><BR>"
+								dat += "<BR>"
 							dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author] - [MESSAGE.time_stamp]</FONT>\]</FONT><BR>"
 				dat+="<BR><HR><A href='?src=\ref[src];refresh=1'>Refresh</A>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[1]'>Back</A>"
@@ -848,8 +850,8 @@ obj/item/newspaper/attack_self(mob/user as mob)
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
 								var/resourc_name = "newscaster_photo_[sanitize(C.channel_name)]_[i].png"
-								send_asset(user.client, resourc_name)
-								dat+="<img src='[resourc_name]' width = '180'><BR>"
+								SSassets.transport.send_assets(usr.client, MESSAGE.img_asset)
+								dat+="<img src='[SSassets.transport.get_asset_url(resourc_name)]' width = '180'><BR>"
 							dat+="<FONT SIZE=1>\[[MESSAGE.message_type] by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
 						dat+="</ul>"
 				if(scribble_page==curr_page)

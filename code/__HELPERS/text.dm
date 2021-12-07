@@ -365,7 +365,7 @@ proc/TextPreview(var/string, var/len=40)
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
 		return tagdesc
-	return icon2html(icon(text_tag_icons, tagname), world, realsize=TRUE)
+	return icon2html(icon(text_tag_icons, tagname), world)
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)
@@ -596,3 +596,15 @@ proc/TextPreview(var/string, var/len=40)
 	. = ""
 	for(var/i=1, i<=times, i++)
 		. += string
+
+//Removes a few problematic characters
+/proc/tg_sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + length(char))
+			index = findtext(t, char, index + length(char))
+	return t
+
+/proc/sanitize_filename(t)
+	return tg_sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))

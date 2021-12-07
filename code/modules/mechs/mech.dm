@@ -72,10 +72,11 @@
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
-/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
 	material = get_material_by_name("[material]")
-	if(!access_card) access_card = new (src)
+	if(!access_card)
+		access_card = new (src)
 
 	pixel_x = default_pixel_x
 	pixel_y = default_pixel_y
@@ -120,7 +121,6 @@
 	update_icon()
 
 /mob/living/exosuit/Destroy()
-
 	selected_system = null
 
 	for(var/mob/living/Pilot in pilots)
@@ -140,10 +140,12 @@
 	QDEL_NULL(legs)
 	QDEL_NULL(head)
 	QDEL_NULL(body)
+	QDEL_NULL(radio)
+	QDEL_NULL(sparks)
 
 	destroy_HUD()
 
-	. = ..()
+	return ..()
 
 /mob/living/exosuit/IsAdvancedToolUser()
 	return TRUE

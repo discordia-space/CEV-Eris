@@ -33,6 +33,10 @@
 	var/datum/category_collection/player_setup_collection/player_setup
 	var/datum/browser/panel
 
+	// doohekeys for tgui
+	var/tgui_fancy = TRUE
+	var/tgui_lock = FALSE
+
 /datum/preferences/New(client/C)
 	if(istype(C))
 		client = C

@@ -47,32 +47,66 @@
 /atom/proc/on_update_icon()
 	return
 
+/**
+ * Called when an atom is created in byond (built in engine proc)
+ *
+ * Not a lot happens here in SS13 code, as we offload most of the work to the
+ * [Intialization][/atom/proc/Initialize] proc, mostly we run the preloader
+ * if the preloader is being used and then call [InitAtom][/datum/controller/subsystem/atoms/proc/InitAtom] of which the ultimate
+ * result is that the Intialize proc is called.
+ *
+ * We also generate a tag here if the DF_USE_TAG flag is set on the atom
+ */
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
 	init_light()
-	var/do_initialize = SSatoms.init_state
+	var/do_initialize = SSatoms.initialized
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
-		if(SSatoms.InitAtom(src, args))
+		if(SSatoms.InitAtom(src, FALSE, args))
 			//we were deleted
 			return
 
-	var/list/created = SSatoms.created_atoms
-	if(created)
-		created += src
-
-
-//Called after New if the map is being loaded. mapload = TRUE
-//Called from base of New if the map is not being loaded. mapload = FALSE
-//This base must be called or derivatives must set initialized to TRUE
-//must not sleep
-//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
-//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
-
+/**
+ * The primary method that objects are setup in SS13 with
+ *
+ * we don't use New as we have better control over when this is called and we can choose
+ * to delay calls or hook other logic in and so forth
+ *
+ * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
+ * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
+ * is also true for loading map templates as well, so they don't Initalize until all objects
+ * in the map file are parsed and present in the world
+ *
+ * If you're creating an object at any point after SSInit has run then this proc will be
+ * immediately be called from New.
+ *
+ * mapload: This parameter is true if the atom being loaded is either being intialized during
+ * the Atom subsystem intialization, or if the atom is being loaded from the map template.
+ * If the item is being created at runtime any time after the Atom subsystem is intialized then
+ * it's false.
+ *
+ * You must always call the parent of this proc, otherwise failures will occur as the item
+ * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
+ * the item being completely unclickable)
+ *
+ * You must not sleep in this proc, or any subprocs
+ *
+ * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
+ * there are no other arguments
+ *
+ * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
+ *
+ * Note: the following functions don't call the base for optimization and must copypasta handling:
+ * * [/turf/proc/Initialize]
+ * * [/turf/open/space/proc/Initialize]
+ */
 /atom/proc/Initialize(mapload, ...)
+	// SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 	if(initialized)
-		crash_with("Warning: [src]([type]) initialized multiple times!")
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
 
 	if(light_power && light_range)
@@ -92,15 +126,40 @@
 
 	return INITIALIZE_HINT_NORMAL
 
-//called if Initialize returns INITIALIZE_HINT_LATELOAD
+/**
+ * Late Intialization, for code that should run after all atoms have run Intialization
+ *
+ * To have your LateIntialize proc be called, your atoms [Initalization][/atom/proc/Initialize]
+ *  proc must return the hint
+ * [INITIALIZE_HINT_LATELOAD] otherwise you will never be called.
+ *
+ * useful for doing things like finding other machines on GLOB.machines because you can guarantee
+ * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
+ * code has been run
+ */
 /atom/proc/LateInitialize()
-	return
+	set waitfor = FALSE
 
+/**
+ * Top level of the destroy chain for most atoms
+ *
+ * Cleans up the following:
+ * * Removes alternate apperances from huds that see them
+ * * qdels the reagent holder from atoms if it exists
+ * * clears the orbiters list
+ * * clears overlays and priority overlays
+ * * clears the light object
+ */
 /atom/Destroy()
-	QDEL_NULL(reagents)
-	spawn()
-		update_openspace()
-	. = ..()
+	if(reagents)
+		QDEL_NULL(reagents)
+	update_openspace()
+
+	if(light)
+		light.destroy() // we tell our LS to update, then we nuke it.
+	QDEL_NULL(light)
+
+	return ..()
 
 /atom/proc/reveal_blood()
 	return
@@ -155,9 +214,21 @@
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
+/**
+ * React to an EMP of the given severity
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EMP_ACT] signal
+ *
+ * If the signal does not return protection, and there are attached wires then we call
+ * [emp_pulse][/datum/wires/proc/emp_pulse] on the wires
+ *
+ * We then return the protection value
+ */
 /atom/proc/emp_act(severity)
-	return
-
+	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
+	// if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
+	// 	wires.emp_pulse()
+	return protection // Pass the protection value collected here upwards
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	P.on_hit(src, def_zone)
@@ -199,11 +270,13 @@
 			found += A.search_contents_for(path, filter_path)
 	return found
 
-//This proc is called on the location of an atom when the atom is Destroy()'d
+/**
+ * This proc is called when an atom in our contents has it's [Destroy][/atom/proc/Destroy] called
+ *
+ * Default behaviour is to simply send [COMSIG_ATOM_CONTENTS_DEL]
+ */
 /atom/proc/handle_atom_del(atom/A)
-	return
-
-
+	// SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 /*
 Beam code by Gunbuddy
@@ -273,62 +346,71 @@ its easier to just keep the beam vertical.
 					//I've found that 3 ticks provided a nice balance for my use.
 	for(var/obj/effect/overlay/beam/O in orange(10, src)) if(O.BeamSource==src) qdel(O)
 
+/**
+ * Get the name of this object for examine
+ *
+ * You can override what is returned from this proc by registering to listen for the
+ * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
+ */
+/atom/proc/get_examine_name(mob/user)
+	. = "\a [src]"
+	// var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	// if(article)
+	// 	. = "[article] [src]"
+	// 	override[EXAMINE_POSITION_ARTICLE] = article
+	// if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+	// 	. = override.Join("")
+
+///Generate the full examine string of this atom (including icon for goonchat)
+/atom/proc/get_examine_string(mob/user, thats = FALSE)
+	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 //All atoms
 /atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/full_name = "\a [src][infix]."
+	. = list("[get_examine_string(user, TRUE)][infix].")
+
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
-		if(gender == PLURAL)
-			full_name = "some "
-		else
-			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			. += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
-			full_name += "oil-stained [name][infix]."
+			. += "oil-stained [name][infix]."
 
-	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
-	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+	. += "[suffix]" // the thing above makes a full name
 
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
+
+	if(!isobserver(user))
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>") // go ask examinate
 
 	if(desc)
-		to_chat(user, desc)
+		. += desc
+
+	. += show_stat_verbs()
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			to_chat(user, SPAN_NOTICE("It contains:"))
-			var/return_value = user.can_see_reagents()
-			if(return_value == TRUE) //Show each individual reagent
-				for(var/datum/reagent/R in reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			/* Uncomment to check for consumer reagents also in can_see_reagents
-			else if(return_value == 2) // Check for consumer reagents
-				for(var/datum/reagent/R in reagents.reagent_list)
-					if(!(istype(R,/datum/reagent/ethanol) || istype(R,/datum/reagent/drink) || istype(R, /datum/reagent/water)))
-						//to_chat(user, SPAN_NOTICE("[R.volume] units of an unfamiliar substance")) For balance concers , don't let them know
-						continue
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			*/
-			else if(reagents && reagents.reagent_list.len)
-				to_chat(user, SPAN_NOTICE("[reagents.total_volume] units of various reagents."))
-		else
-			if(reagent_flags & AMOUNT_VISIBLE)
-				if(reagents.total_volume)
-					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
-				else
-					to_chat(user, SPAN_DANGER("It's empty."))
+			. += "It contains:"
+			if(length(reagents.reagent_list))
+				if(user.can_see_reagents()) //Show each individual reagent
+					for(var/datum/reagent/R in reagents.reagent_list)
+						. += "[round(R.volume, 0.01)] units of [R.name]"
+				else //Otherwise, just show the total volume
+					var/total_volume = 0
+					for(var/datum/reagent/R in reagents.reagent_list)
+						total_volume += R.volume
+					. += "[total_volume] units of various reagents"
+			else
+				. += "Nothing."
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			if(reagents.total_volume)
+				. += span_notice("It has [reagents.total_volume] unit\s left.")
+			else
+				. += span_danger("It's empty.")
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
-
-	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

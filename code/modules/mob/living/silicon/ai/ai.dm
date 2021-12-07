@@ -249,6 +249,22 @@ var/list/ai_verbs_default = list(
 
 	return ..()
 
+/mob/living/silicon/ai/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
+	if(control_disabled)
+		to_chat(src, span_warning("You can't do that right now!"))
+		return FALSE
+	return can_see(M) && ..() //stop AIs from leaving windows open and using then after they lose vision
+
+/mob/living/silicon/ai/proc/can_see(atom/A)
+	if(isturf(loc)) //AI in core, check if on cameras
+		//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
+		//apc_override is needed here because AIs use their own APC when depowered
+		return (cameranet && cameranet.checkTurfVis(get_turf_pixel(A)))
+	//AI is carded/shunted
+	//view(src) returns nothing for carded/shunted AIs and they have X-ray vision so just use get_dist
+	var/list/viewscale = getviewsize(client.view)
+	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
+
 /mob/living/silicon/ai/proc/setup_icon()
 	var/file = file2text("config/custom_sprites.txt")
 	var/lines = splittext(file, "\n")
@@ -747,7 +763,7 @@ var/list/ai_verbs_default = list(
 	set name = "Control Personal Drone"
 	set desc = "Take control of your own AI-bound maintenance drone."
 	set category = "Silicon Commands"
-	
+
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
 		to_chat(src, SPAN_WARNING("You lack power!"))
 	else
@@ -758,7 +774,7 @@ var/list/ai_verbs_default = list(
 	set name = "Destroy Personal Drone"
 	set desc = "Destroy your AI-bound maintenance drone."
 	set category = "Silicon Commands"
-	
+
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
 		to_chat(src, SPAN_WARNING("You lack power!"))
 	else

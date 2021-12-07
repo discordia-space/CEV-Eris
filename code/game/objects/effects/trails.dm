@@ -108,6 +108,7 @@ Their only special behaviour atm is to delete themselves shortly after creation
 	opacity = FALSE
 
 /obj/effect/trail_particle/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/finish, TRUE), lifetime)
 
 /obj/effect/trail_particle/proc/finish()

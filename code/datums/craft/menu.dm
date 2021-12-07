@@ -12,7 +12,7 @@
 	if(!CM)
 		CM = new(src)
 	CM.set_category(category, src)
-	CM.ui_interact(src)
+	CM.nano_ui_interact(src)
 
 /datum/nano_module/craft
 	name = "Craft menu"
@@ -37,7 +37,7 @@
 /datum/nano_module/craft/proc/set_item(item_ref, mob/mob)
 	SScraft.current_item[mob.ckey] = locate(item_ref)
 
-/datum/nano_module/craft/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/craft/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 	if(!usr)
 		return
 	if(usr.incapacitated())
@@ -53,19 +53,21 @@
 	data["cur_item"] = null
 
 	if(CR)
+		var/datum/asset/spritesheet/S = get_asset_datum(/datum/asset/spritesheet/craft)
 		data["cur_item"] = list(
 			"name" = CR.name,
-			"icon" = getAtomCacheFilename(CR.result),
-			"ref"  = "\ref[CR]",
+			"icon" = S.icon_class_name(sanitize_filename("[CR.result]")),
+			"ref"  = "[REF(CR)]",
 			"desc" = CR.get_description(),
-			"batch" = CR.flags & CRAFT_BATCH
+			"batch" = (CR.flags & CRAFT_BATCH)
 		)
+
 	var/list/items = list()
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
 		if((recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes)))
 			items += list(list(
 				"name" = capitalize(recipe.name),
-				"ref" = "\ref[recipe]"
+				"ref" = "[REF(recipe)]"
 			))
 	data["items"] = items
 
@@ -73,6 +75,16 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "craft.tmpl", "[src]", 800, 450, state = state)
+
+		// add the craft spritesheet
+		var/datum/asset/spritesheet/SC = get_asset_datum(/datum/asset/spritesheet/craft)
+		SC.send(user.client)
+		ui.add_stylesheet(SC.css_filename())
+		// add materials
+		var/datum/asset/spritesheet/SM = get_asset_datum(/datum/asset/spritesheet/materials)
+		SM.send(user.client)
+		ui.add_stylesheet(SM.css_filename())
+
 		ui.set_initial_data(data)
 		ui.open()
 

@@ -15,6 +15,9 @@
 //#define REFERENCE_TRACKING
 #ifdef REFERENCE_TRACKING
 
+///Should we be logging our findings or not
+#define REFERENCE_TRACKING_LOG
+
 ///Used for doing dry runs of the reference finder, to test for feature completeness
 //#define REFERENCE_TRACKING_DEBUG
 
@@ -49,19 +52,13 @@
 // #endif
 
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 513
-#define MIN_COMPILER_BUILD 1513
-#if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
+#define MIN_COMPILER_VERSION 514
+#define MIN_COMPILER_BUILD 1556
+#if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
 //Don't forget to update this part
-#warn Your version of BYOND is too out-of-date to compile this project.
-#warn Go to https://secure.byond.com/download and update.
-#warn You need version 513.1513 or higher
+#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
+#error You need version 514.1556 or higher
 #endif
-
-//Don't load extools on 514 and 513.1539+
-// #if DM_VERSION < 514 && DM_BUILD < 1540
-// #define USE_EXTOOLS
-// #endif
 
 //Additional code for the above flags.
 #ifdef TESTING
@@ -83,18 +80,11 @@
 #define FIND_REF_NO_CHECK_TICK
 #endif
 
-// #ifdef TGS
+#ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
-// #define CBT
-// #endif
+#define CBT
+#endif
 
 // A reasonable number of maximum overlays an object needs
 // If you think you need more, rethink it
-// #define MAX_ATOM_OVERLAYS 100
-/* not yet done
-#if !defined(CBT) && !defined(SPACEMAN_DMM)
-#warn "Building with Dream Maker is no longer supported and will result in errors."
-#warn "In order to build, run BUILD.bat in the root directory."
-#warn "Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build."
-#endif
-*/
+#define MAX_ATOM_OVERLAYS 100

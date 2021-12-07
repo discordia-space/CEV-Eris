@@ -139,10 +139,10 @@
 		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
 		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 			view_only += 3
-		ui_interact(user)
+		nano_ui_interact(user)
 		SSnano.update_uis(src)
 
-/obj/item/craft_frame/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
+/obj/item/craft_frame/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/list/data = list()
 
 	var/list/listed_products = list()

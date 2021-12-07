@@ -22,11 +22,37 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	// asset_cache
+	var/asset_cache_job
+	if(href_list["asset_cache_confirm_arrival"])
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
+
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
+		return
+
+	// Tgui Topic middleware
+	if(tgui_Topic(href_list))
+		return
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
+	// if(href_list["reload_statbrowser"])
+	// 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	// Log all hrefs (MAKE SURE PING IS NOT BEING LOGGED)
+	// log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
 	//Admin PM
@@ -52,7 +78,7 @@
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
-		to_chat(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
+		log_href("<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
@@ -434,33 +460,28 @@
 	return "[round(seconds / 60)] minute\s, [seconds % 60] second\s"
 
 
-//send resources to the client. It's here in its own proc so we can move it around easiliy if need be
+/// Send resources to the client.
+/// Sends both game resources and browser assets.
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/talisman.png'
-		)
-
 	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		var/list/priority_assets = list()
-		var/list/other_assets = list()
-
-		for(var/asset_type in asset_datums)
-			var/datum/asset/D = asset_datums[asset_type]
-			if(D.isTrivial)
-				other_assets += D
-			else
-				priority_assets += D
-
-		for(var/datum/asset/D in (priority_assets + other_assets))
-			D.send_slow(src)
+		// if (CONFIG_GET(flag/asset_simple_preload))
+		addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
 		send_all_cursor_icons(src)
+
+	// getFiles(
+	// 	'html/search.js',
+	// 	'html/panels.css',
+	// 	'html/images/loading.gif',
+	// 	'html/images/ntlogo.png',
+	// 	'html/images/talisman.png'
+	// 	)
+
 
 /mob/proc/MayRespawn()
 	return FALSE

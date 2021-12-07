@@ -22,7 +22,6 @@
 	return w_class * 2
 
 /obj/examine(mob/user, distance=-1, infix, suffix)
-	..(user, distance, infix, suffix)
 	if(get_dist(user, src) <= 2)
 		if (corporation)
 			if (corporation in global.GLOB.global_corporations)
@@ -32,12 +31,15 @@
 				[C.name]. [C.about]</font>")
 			else
 				to_chat(user, "You think this [src.name] create a [corporation].")
-	return distance == -1 || (get_dist(src, user) <= distance)
+	. = ..()
 
 
-/obj/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+/obj/Destroy(force=FALSE)
+	if(!ismachinery(src))
+		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
+	SStgui.close_uis(src)
+	SSnano.close_uis(src)
+	. = ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
@@ -111,56 +113,70 @@
 
 /obj/proc/updateUsrDialog()
 	if(in_use)
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.attack_hand(M)
-		if (isAI(usr) || isrobot(usr))
+				is_in_use = TRUE
+				ui_interact(M)
+		if(issilicon(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(usr)
+					is_in_use = TRUE
+					ui_interact(usr)
 
 		// check for TK users
 
-		if (ishuman(usr))
-			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-				if(!(usr in nearby))
-					if(usr.client && usr.machine==src)
-						is_in_use = 1
-						src.attack_hand(usr)
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if(!(usr in nearby))
+				if(usr.client && usr.machine==src)
+					if(istype(H.l_hand, /obj/item/tk_grab) || istype(H.r_hand, /obj/item/tk_grab))
+						is_in_use = TRUE
+						ui_interact(usr)
 		in_use = is_in_use
 
-/obj/proc/updateDialog()
+/obj/proc/updateDialog(update_viewers = TRUE,update_ais = TRUE)
 	// Check that people are actually using the machine. If not, don't update anymore.
 	if(in_use)
-		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
-		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
+		var/is_in_use = FALSE
+		if(update_viewers)
+			for(var/mob/M in viewers(1, src))
+				if ((M.client && M.machine == src))
+					is_in_use = TRUE
+					src.interact(M)
+		var/ai_in_use = FALSE
+		if(update_ais)
+			ai_in_use = AutoUpdateAI(src)
 
-		if(!ai_in_use && !is_in_use)
-			in_use = 0
+		if(update_viewers && update_ais) //State change is sure only if we check both
+			if(!ai_in_use && !is_in_use)
+				in_use = 0
 
 /obj/attack_ghost(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
-	..()
-
-/obj/proc/interact(mob/user)
-	return
+	nano_ui_interact(user)
 
 /mob/proc/unset_machine()
-	src.machine = null
+	SIGNAL_HANDLER
+	if(!machine)
+		return
+	UnregisterSignal(machine, COMSIG_PARENT_QDELETING)
+	machine.on_unset_machine(src)
+	machine = null
+
+//called when the user unsets the machine.
+/atom/movable/proc/on_unset_machine(mob/user)
+	return
 
 /mob/proc/set_machine(obj/O)
-	if(src.machine)
+	if(machine)
 		unset_machine()
-	src.machine = O
+	machine = O
+	RegisterSignal(O, COMSIG_PARENT_QDELETING, .proc/unset_machine)
 	if(istype(O))
 		O.in_use = 1
 

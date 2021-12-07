@@ -60,11 +60,3 @@
 		if(client.description_holders["antag"])
 			stat(null,"<font color='#8a0808'><b>[client.description_holders["antag"]]</b></font>") //Red, malicious antag-related text
 
-//override examinate verb to update description holders when things are examined
-/mob/examinate(atom/A as mob|obj|turf in view())
-	if(..())
-		return 1
-
-	var/is_antag = (isghost(src) || player_is_antag(mind)) //ghosts don't have minds
-	if(client)
-		client.update_description_holders(A, is_antag)

@@ -8,8 +8,8 @@
 		</div>
 		{{if data.current}}
 		<div class="item">
-			<div style ='position: absolute; top: 8px; right: 8px; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px' class='statusDisplayItem'>
-				<img src= {{:data.current.icon}} height=48 width=48>
+			<div style ='position: absolute; top: 8px; right: 8px; height:48px; width:48px; margin-left:0px' class='statusDisplayItem'>
+				<span class="{{:data.current.icon}}"></span>
 			</div>
 			<div class="itemLabelWidest">Printing {{:data.current.name}}</div>
 			<div style="width: calc(100% - 4px)">
@@ -57,7 +57,7 @@
 		</div>
 		{{else}}
 			<div class="itemLabelWidest"><div class="average">Idle</div></div>
-		{{/if}}	
+		{{/if}}
 	</div>
 </div>
 {{if data.queue_max}}
@@ -67,14 +67,16 @@
 		{{for data.queue}}
 			<div class="item">
 				<div class="itemContentWidest" style ='position: relative;'>
-					<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+					<div style ='position: absolute; top: 10px; right: 10px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'>
+						<span class="{{:value.icon}}"></span>
+					</div>
 					{{if value.error >= 2}}
 						<div class="bad">{{:value.name}}</div>
 					{{else value.error == 1}}
 						<div class="average">{{:value.name}}</div>
 					{{else}}
 						{{:value.name}}
-					{{/if}}				
+					{{/if}}
 				</div>
 				<div class="itemLabelWidest">
 					{{:helper.link('', 'close', {'remove_from_queue' : value.ind}, null, 'statusValue')}}

@@ -150,10 +150,9 @@
 		plant_controller.plant_icon_cache[icon_key] = plant_icon
 	associate_with_overlays(plant_icon)
 
-/obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+/obj/item/reagent_containers/food/snacks/grown/Crossed(mob/living/M)
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
 		if(istype(M))
-
 			if(M.buckled)
 				return
 
@@ -168,8 +167,7 @@
 			M.Stun(8)
 			M.Weaken(5)
 			seed.thrown_at(src,M)
-			sleep(-1)
-			if(src) qdel(src)
+			QDEL_IN(1, src)
 			return
 
 /obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom)

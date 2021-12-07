@@ -198,6 +198,20 @@
 #undef PARTIALLY_BUCKLED
 #undef FULLY_BUCKLED
 
+///Can the mob interact() with an atom?
+/mob/proc/can_interact_with(atom/A)
+	if(Adjacent(A)) // isAdminGhostAI(src) ||
+		return TRUE
+
+	if (iscarbon(src))
+		var/mob/living/carbon/C = src
+		if((TK in C.mutations))
+			return TRUE
+
+///Can the mob use Topic to interact with machines
+/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
+	return
+
 /mob/proc/restrained()
 	return
 
@@ -224,20 +238,37 @@
 /mob/proc/show_inv(mob/user as mob)
 	return
 
-//mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/A as mob|obj|turf in view())
+/**
+ * Examine a mob
+ *
+ * mob verbs are faster than object verbs. See
+ * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
+ * for why this isn't atom/verb/examine()
+ */
+/mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
 	set category = "IC"
 
-	if((is_blind(src) || usr.stat) && !isobserver(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
-		return 1
+	if(isturf(A) && !(sight & SEE_TURFS) && !(A in view(client ? client.view : world.view, src)))
+		// shift-click catcher may issue examinate() calls for out-of-sight turfs
+		return
+
+	if(is_blind()) //blind people see things differently (through touch)
+		return
 
 	face_atom(A)
-	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
+	var/list/result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+
+	var/is_antag = (isghost(src) || player_is_antag(mind)) //ghosts don't have minds
+	if(client)
+		client.update_description_holders(A, is_antag)
+	var/obj/item/device/lighting/toggleable/flashlight/FL = (locate() in src) // this is a crime, why the fuck does this exist
 	if (FL && FL.on && src.stat != DEAD && !incapacitated())
 		FL.afterattack(A,src)
-	A.examine(src)
+
+	if (result)
+		to_chat(src, "<span class='infoplain'>[result.Join("\n")]</span>")
+	// SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
@@ -1120,10 +1151,9 @@ mob/proc/yank_out_object()
 	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
 		for(var/perk in stats.perks)
 			var/datum/perk/P = perk
-			var/filename = sanitizeFileName("[P.type].png")
-			var/asset = asset_cache.cache[filename] // this is definitely a hack, but getAtomCacheFilename accepts only atoms for no fucking reason whatsoever.
-			if(asset)
-				Plist += "<td valign='middle'><img src=[filename]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
+			var/filename = sanitize_filename("[P.type].png")
+			// assume it exists.
+			Plist += "<td valign='middle'><img src=[SSassets.transport.get_asset_url(filename)]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
 	data += {"
 		<table width=80%>
 			<th colspan=2>Perks</th>

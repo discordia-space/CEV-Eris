@@ -13,7 +13,13 @@
 	var/turf/loc = get_turf(O)
 	return loc ? loc.z : 0
 
-/proc/get_area_name(N) //get area by its name
+/proc/get_area_name(atom/X, format_text = FALSE)
+	var/area/A = isarea(X) ? X : get_area(X)
+	if(!A)
+		return null
+	return format_text ? format_text(A.name) : A.name
+
+/proc/get_area_by_name(N) //get area by its name (renamed, it was misleading)
 	for(var/area/A in GLOB.map_areas)
 		if(A.name == N)
 			return A
