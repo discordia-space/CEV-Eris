@@ -212,6 +212,9 @@
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
 
+/obj/item/part/gun/barrel/srifle/steel
+	matter = list(MATERIAL_STEEL = 8)
+
 /obj/item/part/gun/barrel/clrifle
 	name = ".25 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber."
@@ -228,6 +231,9 @@
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
 	icon_state = "barrel_30"
 	matter = list(MATERIAL_PLASTEEL = 8)
+
+/obj/item/part/gun/barrel/lrifle/steel
+	matter = list(MATERIAL_STEEL = 8)
 
 /obj/item/part/gun/barrel/shotgun
 	name = "shotgun barrel"

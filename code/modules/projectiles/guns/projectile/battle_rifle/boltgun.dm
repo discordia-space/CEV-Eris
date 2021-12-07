@@ -33,6 +33,20 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+
+/obj/item/part/gun/frame/boltgun
+	name = "bolt-action rifle frame"
+	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
+	icon_state = "frame_serbrifle"
+	result = /obj/item/gun/projectile/boltgun
+	variant_grip = TRUE
+	gripvar1 = /obj/item/part/gun/grip/excel
+	gripvar2 = /obj/item/part/gun/grip/wood
+	resultvar1 = /obj/item/gun/projectile/boltgun
+	resultvar2 = /obj/item/gun/projectile/boltgun/serbian
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/boltgun/on_update_icon()
 	..()
@@ -116,6 +130,7 @@
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Tosshin\""
@@ -137,7 +152,16 @@
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/stack/material/steel = 16)
+	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+
+/obj/item/part/gun/frame/tosshin
+	name = "Tosshin frame"
+	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
+	icon_state = "frame_excelrifle"
+	result = /obj/item/gun/projectile/boltgun
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/srifle
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
