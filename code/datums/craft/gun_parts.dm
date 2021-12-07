@@ -4,6 +4,7 @@
 	icon_state = "frame_olivaw"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/frame
+	matter = list(MATERIAL_PLASTEEL = 4)
 
 	var/result = /obj/item/gun/projectile
 
@@ -113,18 +114,20 @@
 	icon_state = "grip_wood"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/grip
+	matter = list(MATERIAL_PLASTIC = 6)
 
 /obj/item/part/gun/grip/wood
 	name = "wood grip"
 	desc = "A wood firearm grip, unattached from a firearm."
 	icon_state = "grip_wood"
+	matter = list(MATERIAL_WOOD = 6)
 
-/obj/item/part/gun/grip/black
+/obj/item/part/gun/grip/black //Nanotrasen, Moebius, Syndicate, Oberth
 	name = "plastic grip"
 	desc = "A black plastic firearm grip, unattached from a firearm. For sleekness and decorum."
 	icon_state = "grip_black"
 
-/obj/item/part/gun/grip/rubber
+/obj/item/part/gun/grip/rubber //FS and IH
 	name = "rubber grip"
 	desc = "A rubber firearm grip, unattached from a firearm. For professionalism and violence of action."
 	icon_state = "grip_rubber"
@@ -146,6 +149,7 @@
 	icon_state = "mechanism_pistol"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/mechanism
+	matter = list(MATERIAL_PLASTEEL = 4)
 
 /obj/item/part/gun/mechanism/pistol
 	name = "pistol mechanism"
@@ -162,6 +166,27 @@
 	desc = "All the bits that makes the bullet go bang, perfect for long shells."
 	icon_state = "mechanism_shotgun"
 
+/obj/item/part/gun/mechanism/smg
+	name = "SMG mechanism"
+	desc = "All the bits that makes the bullet go bang, in a speedy package."
+	icon_state = "mechanism_smg"
+
+/obj/item/part/gun/mechanism/boltgun
+	name = "bolt-action mechanism"
+	desc = "All the bits that makes the bullet go bang, slow and methodical."
+	icon_state = "mechanism_boltaction"
+	matter = list(MATERIAL_STEEL = 10)
+
+/obj/item/part/gun/mechanism/autorifle
+	name = "self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+	icon_state = "mechanism_autorifle"
+
+/obj/item/part/gun/mechanism/machinegun
+	name = "machine gun mechanism"
+	desc = "All the bits that makes the bullet go bang. Now I have a machine gun, Ho, Ho, Ho."
+	icon_state = "mechanism_machinegun"
+
 //Barrels
 /obj/item/part/gun/barrel
 	name = "generic barrel"
@@ -169,6 +194,7 @@
 	icon_state = "barrel_35"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/barrel
+	matter = list(MATERIAL_PLASTEEL = 4)
 
 /obj/item/part/gun/barrel/pistol
 	name = ".35 barrel"
@@ -180,12 +206,37 @@
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber."
 	icon_state = "barrel_40"
 
-/obj/item/part/gun/barrel/csrifle_silenced
+/obj/item/part/gun/barrel/srifle
+	name = ".20 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .20 caliber."
+	icon_state = "barrel_20"
+	matter = list(MATERIAL_PLASTEEL = 8)
+
+/obj/item/part/gun/barrel/clrifle
+	name = ".25 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber."
+	icon_state = "barrel_25"
+	matter = list(MATERIAL_PLASTEEL = 8)
+
+/obj/item/part/gun/barrel/clrifle_silenced
 	name = ".25 integrally suppressed barrel"
 	desc = "An integrally suppressed gun barrel, which keeps the bullet going in the right direction and the noise down. Chambered in .25 caliber."
-	icon_state = "barrel_40"
+	icon_state = "barrel_25_s"
+
+/obj/item/part/gun/barrel/lrifle
+	name = ".30 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
+	icon_state = "barrel_30"
+	matter = list(MATERIAL_PLASTEEL = 8)
 
 /obj/item/part/gun/barrel/shotgun
 	name = "shotgun barrel"
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber."
 	icon_state = "barrel_50"
+	matter = list(MATERIAL_PLASTEEL = 8)
+
+/obj/item/part/gun/barrel/antim
+	name = ".60 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .60 caliber."
+	icon_state = "barrel_60"
+	matter = list(MATERIAL_PLASTEEL = 16)
