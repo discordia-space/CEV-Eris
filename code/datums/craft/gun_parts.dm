@@ -5,6 +5,7 @@
 	generic = FALSE
 	bad_type = /obj/item/part/gun/frame
 	matter = list(MATERIAL_PLASTEEL = 4)
+	rarity_value = 10
 
 	var/result = /obj/item/gun/projectile
 
@@ -115,6 +116,8 @@
 	generic = FALSE
 	bad_type = /obj/item/part/gun/grip
 	matter = list(MATERIAL_PLASTIC = 6)
+	price_tag = 100
+	rarity_value = 5
 
 /obj/item/part/gun/grip/wood
 	name = "wood grip"
@@ -136,11 +139,13 @@
 	name = "Excelsior plastic grip"
 	desc = "A tan plastic firearm grip, unattached from a firearm. To fight for Haven and to spread the unified revolution!"
 	icon_state = "grip_excel"
+	rarity_value = 7
 
 /obj/item/part/gun/grip/serb
 	name = "bakelite plastic grip"
 	desc = "A brown plastic firearm grip, unattached from a firearm. Classics never go out of style."
 	icon_state = "grip_serb"
+	rarity_value = 7
 
 //Mechanisms
 /obj/item/part/gun/mechanism
@@ -150,6 +155,8 @@
 	generic = FALSE
 	bad_type = /obj/item/part/gun/mechanism
 	matter = list(MATERIAL_PLASTEEL = 4)
+	price_tag = 100
+	rarity_value = 6
 
 /obj/item/part/gun/mechanism/pistol
 	name = "pistol mechanism"
@@ -186,6 +193,7 @@
 	name = "machine gun mechanism"
 	desc = "All the bits that makes the bullet go bang. Now I have a machine gun, Ho, Ho, Ho."
 	icon_state = "mechanism_machinegun"
+	rarity_value = 8
 
 //Barrels
 /obj/item/part/gun/barrel
@@ -195,16 +203,20 @@
 	generic = FALSE
 	bad_type = /obj/item/part/gun/barrel
 	matter = list(MATERIAL_PLASTEEL = 4)
+	price_tag = 200
+	rarity_value = 15
 
 /obj/item/part/gun/barrel/pistol
 	name = ".35 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .35 caliber."
 	icon_state = "barrel_35"
+	price_tag = 100
 
 /obj/item/part/gun/barrel/magnum
 	name = ".40 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber."
 	icon_state = "barrel_40"
+	price_tag = 100
 
 /obj/item/part/gun/barrel/srifle
 	name = ".20 barrel"
@@ -225,6 +237,8 @@
 	name = ".25 integrally suppressed barrel"
 	desc = "An integrally suppressed gun barrel, which keeps the bullet going in the right direction and the noise down. Chambered in .25 caliber."
 	icon_state = "barrel_25_s"
+	price_tag = 500
+	rarity_value = 21
 
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"

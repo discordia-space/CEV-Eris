@@ -73,3 +73,4 @@
 	desc = "A C-20M SMG frame. The syndicate's bread and butter, reverse-engineered."
 	icon_state = "frame_moe"
 	result = /obj/item/gun/projectile/automatic/c20r/moebius
+	spawn_blacklisted = TRUE
