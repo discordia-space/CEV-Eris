@@ -504,6 +504,8 @@
 	icon_state = "crusader_hemet"
 	item_state = "crusader_hemet"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	tint = TINT_LOW
+
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
 		melee = 70,
