@@ -22,6 +22,7 @@
 	w_class = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
+	spawn_blacklisted = TRUE
 	rarity_value = 10
 	bad_type = /obj/item/rig
 

@@ -26,6 +26,7 @@
 	light_overlay = "helmet_light_green"
 	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 300
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/excelsior/New()
 	..()
