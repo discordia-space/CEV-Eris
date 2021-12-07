@@ -29,6 +29,7 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY
 		)
+	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/bojevic/on_update_icon()
 	..()
@@ -55,3 +56,12 @@
 /obj/item/gun/projectile/shotgun/bojevic/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/bojevic
+	name = "Bojevic frame"
+	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
+	icon_state = "frame_bojevic"
+	result = /obj/item/gun/projectile/shotgun/bojevic
+	grip = /obj/item/part/gun/grip/serb
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun

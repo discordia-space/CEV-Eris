@@ -34,6 +34,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 	gun_tags = list(GUN_SILENCABLE)
+	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
 /obj/item/gun/projectile/automatic/wintermute/on_update_icon()
 	..()
@@ -54,3 +55,12 @@
 /obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/wintermute
+	name = "Wintermute frame"
+	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
+	icon_state = "frame_wintermute"
+	result = /obj/item/gun/projectile/automatic/wintermute
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/srifle

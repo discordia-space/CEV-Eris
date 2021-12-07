@@ -26,6 +26,7 @@
 		BURST_3_ROUND
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/clrifle = 1)
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)
@@ -47,3 +48,12 @@
 /obj/item/gun/projectile/automatic/sol/generate_guntags()
 	..()
 	gun_tags |= GUN_SOL
+
+/obj/item/part/gun/frame/sol
+	name = "Sol frame"
+	desc = "A Sol carbine frame. Ironhammer's favorite."
+	icon_state = "frame_ihbullpup"
+	result = /obj/item/gun/projectile/automatic/sol
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/smg
+	barrel = /obj/item/part/gun/barrel/clrifle

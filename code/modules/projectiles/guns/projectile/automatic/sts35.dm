@@ -31,6 +31,7 @@
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
+	gun_parts = list(/obj/item/part/gun/frame/sts35 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 
 /obj/item/gun/projectile/automatic/sts35/on_update_icon()
@@ -51,3 +52,12 @@
 /obj/item/gun/projectile/automatic/sts35/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/sts35
+	name = "STS-35 frame"
+	desc = "An STS-35 frame. The finest in kraut space magic."
+	icon_state = "frame_orrifle"
+	result = /obj/item/gun/projectile/automatic/sts35
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/lrifle

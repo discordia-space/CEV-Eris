@@ -24,7 +24,7 @@
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
 	spawn_blacklisted = TRUE
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -36,6 +36,24 @@
 	spawn_blacklisted = TRUE
 
 	var/folded = FALSE
+
+/obj/item/part/gun/frame/ak47
+	name = "AK frame"
+	desc = "An AK rifle frame. The eternal firearm."
+	icon_state = "frame_ak"
+	matter = list(MATERIAL_PLASTEEL = 8)
+	result = /obj/item/gun/projectile/automatic/ak47
+	variant_grip = TRUE
+	gripvar1 = /obj/item/part/gun/grip/excel
+	gripvar2 = /obj/item/part/gun/grip/serb
+	gripvar3 = /obj/item/part/gun/grip/wood
+	gripvar4 = /obj/item/part/gun/grip/rubber
+	resultvar1 = /obj/item/gun/projectile/automatic/ak47
+	resultvar2 = /obj/item/gun/projectile/automatic/ak47/sa
+	resultvar3 = /obj/item/gun/projectile/automatic/ak47/fs
+	resultvar4 = /obj/item/gun/projectile/automatic/ak47/fs/ih
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -87,6 +105,8 @@
 	penetration_multiplier = 1.2
 
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 	price_tag = 3500
 
@@ -156,6 +176,7 @@
 	price_tag = 2000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 
 
@@ -170,6 +191,7 @@
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
@@ -221,6 +243,7 @@
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
 	recoil_buildup = 1.6	//Full size, but cheap
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
