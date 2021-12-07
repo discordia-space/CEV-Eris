@@ -33,7 +33,6 @@
 		SEMI_AUTO_NODELAY,
 		BURST_5_ROUND
 		)
-	spawn_blacklisted = TRUE
 
 	var/folded = FALSE
 
@@ -155,9 +154,6 @@
 
 	price_tag = 2000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	spawn_blacklisted = FALSE
-
-
 
 //////////////////////////////////////////IH//////////////////////////////////////////
 
@@ -168,7 +164,6 @@
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
 			This rifle is from the Frozen Star's Planetary Defence line. Painted in IH blue and black, with a folding stock so it can be stored compactly for years without use."
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
-	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
@@ -228,8 +223,8 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
 	)
-
 	price_tag = 500
+	spawn_blacklisted = FALSE
 
 /obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)

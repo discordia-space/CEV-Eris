@@ -16,6 +16,7 @@
 	damage_multiplier = 1.36
 	recoil_buildup = 15
 	spawn_frequency = 0
+	spawn_blacklisted = FALSE
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15

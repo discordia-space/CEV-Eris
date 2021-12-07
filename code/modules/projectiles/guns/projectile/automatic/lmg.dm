@@ -93,7 +93,6 @@
 	icon_base = "pk"
 	icon_state = "pkclosed-empty"
 	item_state = "pkclosedmag"
-	spawn_blacklisted = FALSE
 
 /obj/item/gun/projectile/automatic/lmg/pk/on_update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
@@ -111,5 +110,3 @@
 	damage_multiplier = 0.9
 	penetration_multiplier = 1.1
 	recoil_buildup = 1.7
-	spawn_blacklisted = FALSE
-

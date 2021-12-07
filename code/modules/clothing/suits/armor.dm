@@ -10,6 +10,7 @@
 	price_tag = 200
 	style = STYLE_NEG_HIGH
 	bad_type = /obj/item/clothing/suit/armor
+	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
 /*
@@ -90,7 +91,7 @@
 		rad = 0
 	)
 	price_tag = 150
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = FALSE
 
 /obj/item/clothing/suit/armor/vest/handmade/full
 	name = "full handmade armor vest"

@@ -6,6 +6,7 @@
     icon = 'icons/obj/guns/projectile/luty.dmi'
     icon_state = "luty"
     item_state = "luty"
+    spawn_blacklisted = FALSE
 
     w_class = ITEM_SIZE_NORMAL
     can_dual = TRUE
@@ -26,7 +27,7 @@
     penetration_multiplier = 0.9
     recoil_buildup = 1
     one_hand_penalty = 5 //SMG level.
-    spawn_blacklisted = TRUE
+    spawn_blacklisted = FALSE
     wield_delay = 0 // No delay for this , its litteraly a junk gun
 
     origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

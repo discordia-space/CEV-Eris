@@ -25,7 +25,9 @@
 		BURST_3_ROUND
 		)
 
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = FALSE//will spawn only on OS dungeons
+	price_tag = 2000
 
 /obj/item/gun/projectile/type_47/on_update_icon()
 	..()

@@ -20,7 +20,7 @@
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 
-	spawn_blacklisted = TRUE //until loot rework
+	spawn_blacklisted = FALSE//only OS dungeons
 
 
 /obj/item/gun/projectile/type_42/on_update_icon()

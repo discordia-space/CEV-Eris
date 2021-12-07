@@ -21,6 +21,7 @@
         SEMI_AUTO_NODELAY
         )
     spawn_tags = SPAWN_TAG_GUN_OS
+    spawn_blacklisted = FALSE//will spawn only on OS dungeons
     price_tag = 2500
 
     spawn_blacklisted = TRUE //until loot rework

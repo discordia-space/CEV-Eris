@@ -28,7 +28,7 @@
 		BURST_3_ROUND,
         SEMI_AUTO_NODELAY
 		)
-    spawn_blacklisted = TRUE //until loot rework
+    spawn_blacklisted = FALSE//only OS dungeons
 
     gun_tags = list(GUN_SILENCABLE)
 

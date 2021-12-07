@@ -24,7 +24,8 @@
 	init_firemodes = list(
 		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=7, icon="burst"),
 		)
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = FALSE
+	rarity_value = 20
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
 
