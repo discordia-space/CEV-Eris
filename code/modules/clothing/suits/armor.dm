@@ -554,7 +554,7 @@
 	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	slowdown = 0.25 // melee-based faction, slightly buffed speed
+	slowdown = 0.35 // melee-based faction, slightly buffed speed
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		melee = 50,
