@@ -31,8 +31,6 @@
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
-	wield_delay = 0.4 SECOND
-	wield_delay_factor = 0.2 // 20 vig , great as a surprise
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet

@@ -27,8 +27,8 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
-	wield_delay = 2 SECOND
-	wield_delay_factor = 0.6 // 60 vig for instant wield
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
 		FULL_AUTO_600,

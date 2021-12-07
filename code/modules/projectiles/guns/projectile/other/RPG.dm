@@ -25,8 +25,8 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
-	wield_delay = 2 SECOND
-	wield_delay_factor = 0.6 // 60 vig , heavy stuff
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.8 // 80 vig
 
 /obj/item/gun/projectile/rpg/on_update_icon()
 	. = ..()

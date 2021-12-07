@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/personal
 	name = "personal closet"
-	desc = "It's a secure locker for personnel."
+	desc = "A secure locker for personnel."
 	req_access = list(access_all_personal_lockers)
 	icon_state = "secure"
 	var/registered_name

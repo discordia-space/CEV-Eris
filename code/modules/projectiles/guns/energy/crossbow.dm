@@ -16,8 +16,7 @@
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500
-	wield_delay = 0.8 SECOND
-	wield_delay_factor = 0.2 // 20 vig
+
 
 /obj/item/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
