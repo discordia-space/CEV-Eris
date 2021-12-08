@@ -6028,7 +6028,7 @@
 /area/eris/maintenance/section2deck1port)
 "aog" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /obj/item/clothing/mask/gas/ihs,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
@@ -12285,8 +12285,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDY" = (
@@ -15679,7 +15679,7 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 2. Maints above the dorms, behind the window on the west end of it."
 	},
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/sleep)
 "aNo" = (
@@ -25176,7 +25176,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bih" = (
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bii" = (
@@ -29213,7 +29213,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bro" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brp" = (
@@ -33927,7 +33927,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bCY" = (
@@ -34047,7 +34047,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDr" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDs" = (
@@ -34796,7 +34796,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFb" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bFc" = (
@@ -53126,7 +53126,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/pinpointer,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
 "cxV" = (
@@ -53415,7 +53415,7 @@
 /area/eris/engineering/engine_room)
 "cyC" = (
 /obj/structure/catwalk,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/open,
 /area/eris/maintenance/oldtele)
 "cyD" = (
@@ -59354,7 +59354,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cNe" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cNf" = (
@@ -69075,7 +69075,7 @@
 /area/eris/rnd/research)
 "dkc" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -74638,14 +74638,14 @@
 "dwO" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwP" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwQ" = (
@@ -76851,7 +76851,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -78815,7 +78815,7 @@
 /obj/structure/multiz/ladder/up,
 /obj/effect/floor_decal/rust,
 /obj/spawner/flora/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHi" = (
@@ -83979,7 +83979,7 @@
 /area/eris/maintenance/section2deck1port)
 "dTa" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
