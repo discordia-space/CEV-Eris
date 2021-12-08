@@ -17,7 +17,7 @@
 /obj/item/device/holowarrant/examine(mob/user, distance)
 	. = ..()
 	if(active)
-		to_chat(user, "It's a holographic warrant for '[active.fields["namewarrant"]]'.")
+		to_chat(user, "A holographic warrant for '[active.fields["namewarrant"]]'.")
 	if(distance <= 1)
 		show_content(user)
 	else

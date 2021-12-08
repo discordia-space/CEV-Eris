@@ -117,7 +117,7 @@
 
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
-	desc = "It's a chair. It looks comfy."
+	desc = "A chair. It looks comfy."
 	icon_state = "comfychair_preview"
 
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)

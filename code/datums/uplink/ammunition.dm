@@ -73,39 +73,39 @@
 /datum/uplink_item/item/ammo/magnum/msmg/hv
 	name = "SMG .40 HV magazine"
 	desc = "SMG .40 magazine, loaded with high velocity ammunition. Can fit 25 bullets."
-	item_cost = 4
+	item_cost = 5
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/msmg/hv
 
 ///// .35 and .40 revolvers////
 
 /datum/uplink_item/item/ammo/slpistol
-	name = ".35 Auto SL"
-	desc = "Standard .35 Auto speed loader, loaded with lethal ammunition. Can fit 6 bullets."
+	name = ".35 Auto SL box"
+	desc = "Contains 2 standard .35 Auto speed loaders, loaded with lethal ammunition. Can fit 6 bullets."
 	item_cost = 1
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/ammo_magazine/slpistol
+	path = /obj/item/storage/box/syndie_kit/slpistol
 
 /datum/uplink_item/item/ammo/slpistol/highvelocity
 	name = ".35 Auto HV SL"
-	desc = "Standard .35 Auto speed loader, loaded with high-velocity ammunition. Can fit 6 bullets."
+	desc = "Contains 2 standard .35 Auto speed loaders, loaded with high-velocity ammunition. Can fit 6 bullets."
 	item_cost = 2
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/ammo_magazine/slpistol/hv
+	path = /obj/item/storage/box/syndie_kit/slpistol/hv
 
 /datum/uplink_item/item/ammo/slmagnum
-	name = ".40 magnum SL"
-	desc = ".40 magnum speed loader, loaded with lethal ammunition. Can fit 6 bullets."
+	name = ".40 magnum SL box"
+	desc = "Contains 2 .40 magnum speed loaders, loaded with lethal ammunition. Can fit 6 bullets."
 	item_cost = 1
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/ammo_magazine/slmagnum
+	path = /obj/item/storage/box/syndie_kit/slmagnum
 
 /datum/uplink_item/item/ammo/slmagnum/highvelocity
-	name = ".40 magnum HV SL"
-	desc = ".40 magnum HV speed loader, loaded with high velocity ammunition. Can fit 6 bullets."
+	name = ".40 magnum HV SL box"
+	desc = "Contains 2 .40 magnum HV speed loaders, loaded with high velocity ammunition. Can fit 6 bullets."
 	item_cost = 4
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/ammo_magazine/slmagnum/highvelocity
+	path = /obj/item/storage/box/syndie_kit/slmagnum/highvelocity
 
 
 /////.20 . 25 .30 Rifles/////
@@ -192,7 +192,7 @@
 /datum/uplink_item/item/ammo/magnum_hv
 	name = ".40 Magnum HV ammo packet"
 	desc = ".40 ammo packet with high velocity ammunition. Contain 30 bullets."
-	item_cost = 5
+	item_cost = 6
 	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/ammobox/magnum/hv
 

@@ -78,7 +78,7 @@
 "o" = (
 /mob/living/simple_animal/hostile/hivemind/mechiver{
 	malfunction_chance = 0;
-	name = "Test Subjet Beta-149"
+	name = "Test Subject Beta-149"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)

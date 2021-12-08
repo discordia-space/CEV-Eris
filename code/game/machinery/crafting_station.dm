@@ -68,6 +68,10 @@
 	. = ..()
 
 /obj/machinery/craftingstation/attack_hand(mob/user as mob)
+	if(working)
+		to_chat(user, SPAN_NOTICE("You are already crafting something."))
+		return
+
 	var/cog_stat = user.stats.getStat(STAT_COG)
 
 	var/list/options = list(
@@ -159,7 +163,7 @@
 	flick("[initial(icon_state)]_warmup", src)
 	working = TRUE
 	START_PROCESSING(SSmachines, src)
-	if(do_after(user,work_time,src))
+	if(do_after(user, work_time, src))
 		STOP_PROCESSING(SSmachines, src)
 		working = FALSE
 		flick("[initial(icon_state)]_done", src)

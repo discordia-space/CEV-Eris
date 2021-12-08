@@ -1,6 +1,8 @@
 /obj/item/implant/uplink
 	name = "uplink"
 	desc = "Summon things."
+	icon_state = "implant_uplink"
+	implant_overlay = "implantstorage_uplink"
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	scanner_hidden = TRUE

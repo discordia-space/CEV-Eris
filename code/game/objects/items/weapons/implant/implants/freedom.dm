@@ -4,7 +4,8 @@
 /obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this if you ever get tied up. Has a cooldown of ten minutes."
-	implant_color = "r"
+	icon_state = "implant_freedom"
+	implant_overlay = "implantstorage_freedom"
 	var/activation_emote = "chuckle"
 	var/uses = 1
 	var/install_organ = INSTALL_HANDS

@@ -1,6 +1,6 @@
 /obj/item/oddity/secdocs
 	name = "science data"
-	desc = "Folder contains some papers with important science data."
+	desc = "A folder containing some papers with important scientific data."
 	icon = 'icons/obj/oddities.dmi'
 	icon_state = "folder"
 	price_tag = 5000
@@ -15,26 +15,26 @@
 
 /obj/item/oddity/secdocs/Initialize()
 	icon_state = "folder-[pick("omega","psi","theta")]"
-	name = pick("Atractor fields theory",
+	name = pick("Attractor field theory",
 				"World lines theory",
-				"Outside context problem evidence",
-				"Use of self-learning AI for public administration",
+				"Evidence of an outside-context problem",
+				"On the use of self-learning AI for public administration",
 				"Evidence of time travel related changes in history",
-				"Geography of non existent cities",
+				"Geography of nonexistent cities",
 				"Production of Alliance nanomachines",
-				"Known S.A.U. equipment specifications",
+				"Known SAU equipment specifications",
 				"Known access points to Discordia",
 				"The Door phenomenon",
-				"Parallel world related mutations",
-				"Mass hallucinations or a breach from another world?",
-				"Ironhammer budget: evidence of S.A.U. overfund",
-				"Real reason of One Star fall",
-				"Connection between One Star and dead alien civilizations, are we next?",
+				"Parallel world-related mutations",
+				"Mass hallucinations or breach from another world?",
+				"Ironhammer budget: evidence of SAU overfund",
+				"The truth behind the fall of One Star",
+				"Are we next? The connection between One Star and dead alien civilizations",
 				"Unknown device blueprints")
 	. = ..()
 	var/mob/living/carbon/human/owner = loc
 	if(istype(owner))
-		to_chat(owner, SPAN_NOTICE("You have valuable science data on your person. It is essential that you do not let it fall into the wrong hands."))
+		to_chat(owner, SPAN_NOTICE("You have valuable scientific data on your person. Do not let it fall into the wrong hands."))
 
 /hook/roundstart/proc/place_docs()
 	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()

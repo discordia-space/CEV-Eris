@@ -1,7 +1,7 @@
 // These are basically USB data sticks and may be used to transfer files between devices
 /obj/item/computer_hardware/hard_drive/portable
 	name = "data disk"
-	desc = "Removable disk used to store data."
+	desc = "A removable disk used to store data."
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "blue"
@@ -26,7 +26,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/advanced
 	name = "advanced data disk"
-	desc = "Removable disk used to store large amounts of data."
+	desc = "A removable disk used to store large amounts of data."
 	icon_state = "black"
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)

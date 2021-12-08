@@ -147,7 +147,7 @@
 	icon_state = "sec"
 
 /obj/structure/closet/secure_closet/medspec/populate_contents()
-	new /obj/item/clothing/glasses/sunglasses/medhud(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/clothing/under/rank/medspec(src)
@@ -193,6 +193,7 @@
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/briefcase/crimekit(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
