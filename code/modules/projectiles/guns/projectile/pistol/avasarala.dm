@@ -52,7 +52,7 @@
 /obj/item/part/gun/frame/avasarala
 	name = "Avasarala frame"
 	desc = "An Avasarala pistol frame. Something to command respect."
-	icon_state = "frame_avasarala"
+	icon_state = "frame_deagle"
 	result = /obj/item/gun/projectile/avasarala
 	grip = /obj/item/part/gun/grip/black
 	mechanism = /obj/item/part/gun/mechanism/pistol

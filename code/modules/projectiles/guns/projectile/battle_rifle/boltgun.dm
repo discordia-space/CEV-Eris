@@ -158,7 +158,7 @@
 	name = "Tosshin frame"
 	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_excelrifle"
-	result = /obj/item/gun/projectile/boltgun
+	result = /obj/item/gun/projectile/boltgun/fs
 	grip = /obj/item/part/gun/grip/rubber
 	mechanism = /obj/item/part/gun/mechanism/boltgun
 	barrel = /obj/item/part/gun/barrel/srifle

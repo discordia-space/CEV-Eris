@@ -41,7 +41,7 @@
 /obj/item/part/gun/frame/colt
 	name = "Colt 1911 frame"
 	desc = "A Colt pistol frame. Winner of dozens of world wars, and loser of many more guerilla wars."
-	icon_state = "frame_colt"
+	icon_state = "frame_1911"
 	result = /obj/item/gun/projectile/colt
 	grip = /obj/item/part/gun/grip/wood
 	mechanism = /obj/item/part/gun/mechanism/pistol
