@@ -262,11 +262,12 @@
 	var/is_antag = (isghost(src) || player_is_antag(mind)) //ghosts don't have minds
 	if(client)
 		client.update_description_holders(A, is_antag)
+
 	var/obj/item/device/lighting/toggleable/flashlight/FL = (locate() in src) // this is a crime, why the fuck does this exist
 	if (FL && FL.on && src.stat != DEAD && !incapacitated())
 		FL.afterattack(A,src)
 
-	if (result)
+	if (result && istype(result))
 		to_chat(src, "<span class='infoplain'>[result.Join("\n")]</span>")
 	// SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
