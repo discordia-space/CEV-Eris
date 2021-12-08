@@ -253,6 +253,7 @@
 	)
 
 	price_tag = 500
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
 
 /obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
