@@ -91,9 +91,6 @@
 		link_to_zas()
 	. = ..()
 
-/obj/machinery/door/firedoor/proc/begin_delayed_link()
-	addtimer(CALLBACK(src, .proc/link_to_zas_with_update), 1 SECONDS)
-
 /obj/machinery/door/firedoor/proc/link_to_zas_with_update()
 	SHOULD_NOT_SLEEP(TRUE)
 	link_to_zas()
@@ -101,10 +98,10 @@
 
 /obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
 	SHOULD_NOT_SLEEP(TRUE)
-	/*if(do_delayed && (world.time > last_time_since_link))
+	if(do_delayed && (world.time > last_time_since_link))
 		last_time_since_link = world.time + minimum_link_cooldown
-		INVOKE_ASYNC(src, .proc/begin_delayed_link)
-		return FALSE */
+		spawn(20) link_to_zas_with_update()
+		return FALSE
 	for(var/our_cardinal in registered_zas_zones)
 		if(!registered_zas_zones[our_cardinal])
 			continue
@@ -390,26 +387,27 @@
 		var/alerts = 0
 		var/list/data = tile_info[cardinal_target]
 		var/turf/target_turf = data[FIREDOOR_TURF]
-		//data[FIREDOOR_ATMOS] = target_turf.return_air()
-		if(!data[FIREDOOR_ATMOS])
-			alerts |= FIREDOOR_ALERT_COLD
-			lockdown = TRUE
-			continue
-		data[FIREDOOR_ALERT] = 0
-		if(data[FIREDOOR_ATMOS])
-			var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
-			if(gasses.temperature >= FIREDOOR_MAX_TEMP)
-				alerts |= FIREDOOR_ALERT_HOT
-				lockdown = TRUE
-			if(gasses.temperature <= FIREDOOR_MIN_TEMP)
+		spawn(5) // we need this here else the air subsystem pauses whenever we do return_air
+			data[FIREDOOR_ATMOS] = target_turf.return_air() // problem?
+			if(!data[FIREDOOR_ATMOS])
 				alerts |= FIREDOOR_ALERT_COLD
 				lockdown = TRUE
-			if(gasses.return_pressure() <= FIREDOOR_MIN_PRESSURE)
-				alerts |= FIREDOOR_ALERT_COLD
-				lockdown = TRUE
-			data[FIREDOOR_ALERT] = alerts
-		tile_info[cardinal_target] = data
-	INVOKE_ASYNC(src , /atom.proc/update_icon)
+				continue
+			data[FIREDOOR_ALERT] = 0
+			if(data[FIREDOOR_ATMOS])
+				var/datum/gas_mixture/gasses = data[FIREDOOR_ATMOS]
+				if(gasses.temperature >= FIREDOOR_MAX_TEMP)
+					alerts |= FIREDOOR_ALERT_HOT
+					lockdown = TRUE
+				if(gasses.temperature <= FIREDOOR_MIN_TEMP)
+					alerts |= FIREDOOR_ALERT_COLD
+					lockdown = TRUE
+				if(gasses.return_pressure() <= FIREDOOR_MIN_PRESSURE)
+					alerts |= FIREDOOR_ALERT_COLD
+					lockdown = TRUE
+				data[FIREDOOR_ALERT] = alerts
+			tile_info[cardinal_target] = data
+	spawn(10) update_icon()
 	return TRUE
 
 	/*
@@ -461,7 +459,7 @@
 		return
 
 	if(hatch_open)
-		hatch_open = 0
+		hatch_open = FALSE
 		visible_message("The maintenance hatch of \the [src] closes.")
 		update_icon()
 
