@@ -381,6 +381,7 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 	return QDEL_HINT_LETMELIVE
 
 /obj/screen/click_catcher/New(_name = "", mob/living/_parentmob, _icon, _icon_state)
+..()
 
 /proc/create_click_catcher()
 	. = list()
