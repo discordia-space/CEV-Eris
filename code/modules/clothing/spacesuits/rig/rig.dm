@@ -24,6 +24,7 @@
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
 	bad_type = /obj/item/rig
+	spawn_blacklisted = TRUE//TODO: Resprite these, remove old bay leftover RIGs, add a RIG to moeb R&D, add more RIGs in general
 
 	// These values are passed on to all component pieces.
 	armor = list(
