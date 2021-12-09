@@ -120,3 +120,16 @@
 		return
 	power_change()
 	..(severity)
+
+// Dimmer switch
+/obj/machinery/light_switch/dimmer_switch
+	name = "dimmer switch"
+	var/input_color = COLOR_LIGHTING_PURPLE_BRIGHT
+	var/input_brightness = 1
+
+/obj/machinery/light_switch/dimmer_switch/set_on(on_ = TRUE, play_sound = TRUE)
+	for(var/obj/machinery/light/L in area)
+		L.brightness_power = initial(L.brightness_power) * input_brightness
+		L.brightness_range = initial(L.brightness_range) * input_brightness
+		L.brightness_color = input_color
+	..()
