@@ -380,6 +380,10 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 /obj/screen/click_catcher/Destroy()
 	return QDEL_HINT_LETMELIVE
 
+/obj/screen/click_catcher/New()
+	..()
+	name = ""
+
 /proc/create_click_catcher()
 	. = list()
 	for(var/i = 0, i<15, i++)

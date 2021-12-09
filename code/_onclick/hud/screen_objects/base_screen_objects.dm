@@ -22,7 +22,7 @@
 	var/hideflag = 0
 	var/list/image/ovrls = list()
 
-/obj/screen/New(_name = "", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
+/obj/screen/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
 //	src.screen_loc = _screen_loc
