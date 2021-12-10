@@ -270,7 +270,6 @@
 			var/rob_attacker = (50 / (1 + 150 / max(1, H.stats.getStat(STAT_ROB))) + 40) //soft capped amount of recoil that attacker deals
 			var/rob_target = max(0, min(400,stats.getStat(STAT_ROB))) //hard capped amount of recoil the target negates upon disarming
 			var/recoil_damage = (rob_attacker * (1 - (rob_target / 400))) //recoil itself
-			visible_message("[recoil_damage] and [rob_attacker] and [rob_target]")
 			for(var/obj/item/I in holding)
 				external_recoil(recoil_damage)
 				if(recoil >= 60) //disarming
