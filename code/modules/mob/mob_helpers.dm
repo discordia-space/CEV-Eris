@@ -101,7 +101,6 @@ var/list/global/organ_rel_size = list(
 
 // Returns zone with a certain probability. If the probability fails, or no zone is specified, then a random body part is chosen.
 // Do not use this if someone is intentionally trying to hit a specific body part.
-// Use get_zone_with_miss_chance() for that.
 /proc/ran_zone(zone, probability)
 	if (zone)
 		zone = check_zone(zone)
@@ -121,33 +120,6 @@ var/list/global/organ_rel_size = list(
 		)
 
 	return ran_zone
-
-// Emulates targetting a specific body part, and miss chances
-// May return null if missed
-// miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0)
-	zone = check_zone(zone)
-
-	if(!ranged_attack)
-		// you cannot miss if your target is prone or restrained
-		if(target.buckled || target.lying)
-			return zone
-		// if your target is being grabbed aggressively by someone you cannot miss either
-		for(var/obj/item/grab/G in target.grabbed_by)
-			if(G.state >= GRAB_AGGRESSIVE)
-				return zone
-
-	var/miss_chance = 10
-	if (zone in base_miss_chance)
-		miss_chance = base_miss_chance[zone]
-	miss_chance = max(miss_chance + miss_chance_mod, 0)
-	if(prob(miss_chance))
-		if(prob(70))
-			return null
-		return pick(base_miss_chance)
-	return zone
-
-
 
 //Replaces some of the characters with *, used in whispers. pr = probability of no star.
 //Will try to preserve HTML formatting. re_encode controls whether the returned text is HTML encoded outside tags.
