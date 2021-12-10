@@ -285,7 +285,6 @@
 					src.unEquip(I) //finally disarm target
 					visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					src.recoil *= 0.5 //halve all gained recoil
 					return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
