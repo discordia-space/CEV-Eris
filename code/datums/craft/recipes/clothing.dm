@@ -76,14 +76,13 @@
 
 /datum/craft_recipe/clothing/scavengerarmor
 	name = "Scavenger armor"
-	result = /obj/item/clothing/suit/storage/scavengerarmor
+	result = /obj/item/clothing/suit/storage/vest/scavengerarmor
 	steps = list(
 		list(/obj/item/part/armor, 5),
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 		list(QUALITY_ADHESIVE, 15, 15),
-		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
-		list(QUALITY_WELDING, 10, 20),
 	)
 
 /datum/craft_recipe/clothing/armor_attach

@@ -44,7 +44,7 @@
 
 /datum/uplink_item/item/tools/heavy_vest
 	name = "Heavy Armor Vest"
-	item_cost = 6
+	item_cost = 4
 	path = /obj/item/clothing/suit/storage/vest/merc
 
 /datum/uplink_item/item/tools/full_heavy_vest
@@ -54,7 +54,7 @@
 
 /datum/uplink_item/item/tools/heavy_helmet
 	name = "Heavy Armor Helmet"
-	item_cost = 4
+	item_cost = 6
 	path = /obj/item/clothing/head/armor/helmet/merchelm
 
 /datum/uplink_item/item/tools/encryptionkey_radio

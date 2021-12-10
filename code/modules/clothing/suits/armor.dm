@@ -455,7 +455,7 @@
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
-	slowdown = 0.15
+	slowdown = 0.05 // flexible and light
 	armor = list(
 		melee = 50,
 		bullet = 50,
@@ -469,8 +469,33 @@
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
-	slowdown = 0.45
+	slowdown = 0.35 // antag item, requires speed to survive
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
+/obj/item/clothing/suit/storage/vest/scavengerarmor
+	name = "scavenger armor"
+	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
+	icon_state = "scav_armor"
+	item_state = "scav_armor"
+	slowdown = 0.3
+	armor = list(
+		melee = 45,
+		bullet = 45,
+		energy = 25,
+		bomb = 15,
+		bio = 50,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	siemens_coefficient = 0.7
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/storage/vest/scavengerarmor/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 3
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 6
 
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated

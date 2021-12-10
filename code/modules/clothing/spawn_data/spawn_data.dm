@@ -551,7 +551,7 @@
 /obj/item/clothing/suit/storage/bomj
 	rarity_value = 16.6667
 
-/obj/item/clothing/suit/storage/scavengerarmor
+/obj/item/clothing/suit/storage/vest/scavengerarmor
 	rarity_value = 26.1111
 
 /obj/item/clothing/suit/storage

@@ -410,30 +410,6 @@
 		rad = 0
 	)
 
-/obj/item/clothing/suit/storage/scavengerarmor
-	name = "scavenger armor"
-	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
-	icon_state = "scav_armor"
-	item_state = "scav_armor"
-	armor = list(
-		melee = 40,
-		bullet = 35,
-		energy = 25,
-		bomb = 10,
-		bio = 50,
-		rad = 0
-	)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	siemens_coefficient = 0.7
-	spawn_blacklisted = TRUE
-
-/obj/item/clothing/suit/storage/scavengerarmor/New()
-	..()
-	pockets = new/obj/item/storage/internal(src)
-	pockets.storage_slots = 3
-	pockets.max_w_class = ITEM_SIZE_SMALL
-	pockets.max_storage_space = 6
-
 /obj/item/clothing/suit/storage/akira
 	name = "red jacket"//Akira, preety obvious
 	desc = "A red jacket designed for riding on a bike. Has a pill icon on the back."
