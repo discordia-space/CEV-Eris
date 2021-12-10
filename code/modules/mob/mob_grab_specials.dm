@@ -100,7 +100,7 @@
 		kick_dir = turn(kick_dir, 180)
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 	//deal damage AFTER the kick
-	var/damage = (attacker.stats.getStat(STAT_ROB) / 3)
+	var/damage = attacker.stats.getStat(STAT_ROB) / 3
 	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE)
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
