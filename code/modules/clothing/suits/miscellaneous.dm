@@ -434,30 +434,6 @@
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 6
 
-
-/obj/item/clothing/suit/storage/triad
-	name = "triad jacket"//RUINER reference
-	desc = "A well armoured trench coat. The label on the inside claims it comes from Hanza."
-	icon_state = "triadkillers"
-	item_state = "triadkillers"
-	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
-		bomb = 15,
-		bio = 0,
-		rad = 0
-	)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	price_tag = 1000
-
-/obj/item/clothing/suit/storage/triad/New()
-	..()
-	pockets = new/obj/item/storage/internal(src)
-	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
-	pockets.max_storage_space = 8
-
 /obj/item/clothing/suit/storage/akira
 	name = "red jacket"//Akira, preety obvious
 	desc = "A red jacket designed for riding on a bike. Has a pill icon on the back."

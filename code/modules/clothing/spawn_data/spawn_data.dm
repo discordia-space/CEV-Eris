@@ -488,13 +488,13 @@
 /obj/item/clothing/suit/storage/neotheosports
 	rarity_value = 19.1667
 
-/obj/item/clothing/suit/storage/detective/ironhammer
+/obj/item/clothing/suit/storage/trenchcoat/ironhammer
 	rarity_value = 23
 
 /obj/item/clothing/suit/storage/hazardvest
 	rarity_value = 8
 
-/obj/item/clothing/suit/storage/detective
+/obj/item/clothing/suit/storage/trenchcoat
 	rarity_value = 21.6667
 
 /obj/item/clothing/suit/storage/te_coat

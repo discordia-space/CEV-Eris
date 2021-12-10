@@ -38,7 +38,7 @@
 /decl/hierarchy/outfit/job/security/inspector
 	name = OUTFIT_JOB_NAME("Ironhammer Inspector")
 	uniform = /obj/item/clothing/under/rank/inspector
-	suit = /obj/item/clothing/suit/storage/detective/ironhammer
+	suit = /obj/item/clothing/suit/storage/trenchcoat/ironhammer
 	head = /obj/item/clothing/head/det
 	l_pocket = /obj/item/device/flash
 	shoes = /obj/item/clothing/shoes/reinforced/ironhammer

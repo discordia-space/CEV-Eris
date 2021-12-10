@@ -202,7 +202,7 @@
 	spawn_blacklisted = TRUE
 
 //Detective
-/obj/item/clothing/suit/storage/detective
+/obj/item/clothing/suit/storage/trenchcoat
 	name = "brown trenchcoat"
 	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective"
@@ -220,12 +220,35 @@
 	siemens_coefficient = 0.8
 	price_tag = 250
 
-/obj/item/clothing/suit/storage/detective/ironhammer
+/obj/item/clothing/suit/storage/trenchcoat/ironhammer
 	name = "Inspector's armored trenchcoat"
 	desc = "Brown and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "insp_coat"
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"
+
+/obj/item/clothing/suit/storage/trenchcoat/triad
+	name = "triad jacket"//RUINER reference
+	desc = "A well armoured trench coat. The label on the inside claims it comes from Hanza."
+	icon_state = "triadkillers"
+	item_state = "triadkillers"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	armor = list(
+		melee = 35,
+		bullet = 35,
+		energy = 35,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 1000
+
+/obj/item/clothing/suit/storage/trenchcoat/triad/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 4
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 8
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest

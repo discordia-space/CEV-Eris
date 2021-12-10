@@ -1638,7 +1638,7 @@
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
-		/obj/item/clothing/suit/storage/triad = 2,
+		/obj/item/clothing/suit/storage/trenchcoat/triad = 2,
 		/obj/item/clothing/suit/storage/akira = 2,
 		/obj/item/clothing/under/storage/tracksuit = 4
 					)
@@ -1664,7 +1664,7 @@
 		/obj/item/clothing/under/helltaker = 450,
 		/obj/item/clothing/under/johnny = 600,
 		/obj/item/clothing/under/raider = 600,
-		/obj/item/clothing/suit/storage/triad = 1200,
+		/obj/item/clothing/suit/storage/trenchcoat/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
 		/obj/item/clothing/under/storage/tracksuit = 450,
 		/obj/item/clothing/head/skull/drip = 100000
