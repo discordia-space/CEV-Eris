@@ -1,0 +1,4 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added new engineering pouch, can only hold sheets, rods and cable coil.
