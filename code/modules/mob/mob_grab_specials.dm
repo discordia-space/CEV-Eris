@@ -108,7 +108,7 @@
 	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")	
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	src.loc = null
+	loc = null
 	qdel(src)
 
 /obj/item/grab/proc/suplex(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
