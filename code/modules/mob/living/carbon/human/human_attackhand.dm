@@ -267,7 +267,7 @@
 						return W.afterattack(target,src)
 
 			//Actually disarm them
-			var/rob_attacker = (50 / (1 + 150 / (min(1, max(0, H.stats.getStat(STAT_ROB))))) + 20) //soft capped amount of recoil that attacker deals
+			var/rob_attacker = (50 / (1 + 150 / (min(1, max(0, H.stats.getStat(STAT_ROB))))) + 40) //soft capped amount of recoil that attacker deals
 			var/rob_target = max(0, min(400,stats.getStat(STAT_ROB))) //hard capped amount of recoil the target negates upon disarming. 400 - no recoil
 			var/recoil_damage = (rob_attacker * (1 - (rob_target / 400))) //recoil itself
 			for(var/obj/item/I in holding)
@@ -283,7 +283,7 @@
 							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 							return
 					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
-						unEquip(src.get_inactive_hand()) //different proc here because
+						unEquip(src.get_inactive_hand())
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
