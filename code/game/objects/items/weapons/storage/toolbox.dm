@@ -11,6 +11,7 @@
 	throw_speed = 1
 	throw_range = 7
 	w_class = ITEM_SIZE_BULKY
+	matter = list(MATERIAL_STEEL = 6)
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 14 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)

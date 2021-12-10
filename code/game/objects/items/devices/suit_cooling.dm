@@ -5,6 +5,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GOLD = 4)
 
 	//copied from tank.dm
 	flags = CONDUCT
