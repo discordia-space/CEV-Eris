@@ -18,6 +18,9 @@
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	var/global/max_n_of_items = 0
+	var/list/blacklisted_from_buffs = list(
+	/obj/item/reagent_containers/food/snacks/donkpocket
+	)
 
 
 // see code/modules/food/recipes_microwave.dm for recipes
@@ -449,13 +452,13 @@
 /obj/machinery/microwave/campfire/abort()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-	icon_state = "barrelfire1"	
+	icon_state = "barrelfire1"
 
 /obj/machinery/microwave/campfire/stop()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 	icon_state = "barrelfire1"
-	
+
 /obj/machinery/microwave/campfire/dispose()
 	..()
 	playsound(loc, 'sound/effects/flare.ogg', 50, 1)
