@@ -832,7 +832,6 @@
 /obj/item/reagent_containers/food/snacks/donkpocket
 	name = "donk-pocket"
 	desc = "The food of choice for the seasoned contractor."
-
 	icon_state = "donkpocket"
 	filling_color = "#DEDEAB"
 	center_of_mass = list("x"=16, "y"=10)
