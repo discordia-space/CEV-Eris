@@ -121,6 +121,8 @@
 		new /obj/item/storage/pouch/engineering_tools(src)
 	if(prob(1))
 		new /obj/item/storage/pouch/engineering_supply(src)
+	if(prob(1))
+		new /obj/item/storage/pouch/engineering_material(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 	new /obj/spawner/tool_upgrade(src)
