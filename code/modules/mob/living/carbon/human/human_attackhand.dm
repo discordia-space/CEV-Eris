@@ -270,22 +270,28 @@
 			var/rob_attacker = (50 / (1 + 150 / (min(1, max(0, H.stats.getStat(STAT_ROB))))) + 20) //soft capped amount of recoil that attacker deals
 			var/rob_target = max(0, min(400,stats.getStat(STAT_ROB))) //hard capped amount of recoil the target negates upon disarming. 400 - no recoil
 			var/recoil_damage = (rob_attacker * (1 - (rob_target / 400))) //recoil itself
-			if(recoil >= 60) //disarming
-				for(var/obj/item/I in holding)
-					external_recoil(recoil_damage)
+			for(var/obj/item/I in holding)
+				external_recoil(recoil_damage)
+				if(recoil >= 60) //disarming
 					if(istype(I, /obj/item/grab)) //did M grab someone?
 						break_all_grabs(M) //See about breaking grips or pulls
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 					if(I.wielded) //is the held item wielded?
-						if(!src.recoil >= 80) //if yes, we need more recoil to disarm
+						if(!recoil >= 80) //if yes, we need more recoil to disarm
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 							return
-					src.unEquip(I) //finally disarm target
-					visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					return
+					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
+						unEquip(src.get_inactive_hand()) //different proc here because
+						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						return
+					else 
+						unEquip(I)
+						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 			visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
