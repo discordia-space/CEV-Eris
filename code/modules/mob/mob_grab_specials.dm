@@ -92,7 +92,7 @@
 		return
 	if(target.lying)
 		return
-	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onward!"))
+	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onwards!"))
 	attacker.Weaken(2)
 	target.Weaken(6) //the target will fly over tables, railings, etc.
 	var/kick_dir = get_dir(attacker, target)
