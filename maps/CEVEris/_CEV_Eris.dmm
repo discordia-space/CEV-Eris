@@ -104576,7 +104576,7 @@
 /obj/structure/table/reinforced{
 	pixel_x = -5
 	},
-/obj/structure/complicator{
+/obj/item/complicator{
 	pixel_x = -5;
 	pixel_y = 5
 	},
