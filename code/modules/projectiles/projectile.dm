@@ -298,10 +298,10 @@
 	//			qdel(src)
 	//			return TRUE
 
-			result = target_mob.bullet_act(src, def_zone)
-			var/aim_hit_chance = max(0, projectile_accuracy)
-			if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
-				result = PROJECTILE_FORCE_MISS
+		result = target_mob.bullet_act(src, def_zone)
+		var/aim_hit_chance = max(0, projectile_accuracy)
+		if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
+			result = PROJECTILE_FORCE_MISS
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
