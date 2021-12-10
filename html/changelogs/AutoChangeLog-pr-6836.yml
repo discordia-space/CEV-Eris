@@ -1,0 +1,5 @@
+author: Wouju
+delete-after: true
+changes:
+  - tweak: Reality Complicator is a item that can be picked up once more, reduced
+      its cooldown by 10 minutes aswell.
