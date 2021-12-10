@@ -22,6 +22,7 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/taperoll/engineering(src)
 	new /obj/item/storage/pouch/engineering_supply(src)
+	new /obj/item/storage/pouch/engineering_material(src)
 	new /obj/item/clothing/head/armor/helmet/technomancer_old(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical

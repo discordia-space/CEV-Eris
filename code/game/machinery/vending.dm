@@ -1368,10 +1368,10 @@
 	icon_deny = "tool-deny"
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 5,/obj/item/tool/wirecutters = 3, /obj/item/tool/wirecutters/pliers = 3,
 					/obj/item/tool/wrench = 5,/obj/item/tool/hammer = 5,/obj/item/device/scanner/gas = 5,/obj/item/device/t_scanner = 5, /obj/item/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1,
-					/obj/item/storage/pouch/engineering_tools = 2, /obj/item/storage/pouch/engineering_supply = 2)
+					/obj/item/storage/pouch/engineering_tools = 2, /obj/item/storage/pouch/engineering_supply = 2, /obj/item/storage/pouch/engineering_material = 2)
 	prices = list(/obj/item/tool/hammer = 30,/obj/item/stack/cable_coil/random = 100,/obj/item/tool/crowbar = 30,/obj/item/tool/weldingtool = 50,/obj/item/tool/wirecutters = 30, /obj/item/tool/wirecutters/pliers = 30,
 					/obj/item/tool/wrench = 30,/obj/item/device/scanner/gas = 50,/obj/item/device/t_scanner = 50, /obj/item/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600,
-					/obj/item/storage/pouch/engineering_tools = 300, /obj/item/storage/pouch/engineering_supply = 600)
+					/obj/item/storage/pouch/engineering_tools = 300, /obj/item/storage/pouch/engineering_supply = 600, /obj/item/storage/pouch/engineering_material = 450)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
