@@ -266,24 +266,30 @@
 						visible_message(SPAN_DANGER("[src]'s [W] goes off during the struggle!"))
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100)
-			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-
-			if(randn <= 50)
-				//See about breaking grips or pulls
-				if(break_all_grabs(M))
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					return
-
-				//Actually disarm them
-				for(var/obj/item/I in holding)
-					if(I && src.unEquip(I))
-						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+			//Actually disarm them
+			var/rob_attacker = (50 / (1 + 150 / (min(1, H.stats.getStat(STAT_ROB)))) + 20) //soft capped amount of recoil that attacker deals
+			var/rob_target = max(0, min(400, src.stats.getStat(STAT_ROB))) //hard capped amount of recoil the target negates upon disarming. 400 - no recoil
+			var/recoil_damage = (rob_attacker * (1 - (rob_target / 400))) //recoil itself
+			for(var/obj/item/I in holding)
+				src.external_recoil(recoil_damage)
+				if(src.recoil >= 60) //disarming
+					if(istype(I, /obj/item/grab)) //did M grab someone?
+						break_all_grabs(M) //See about breaking grips or pulls
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
+					if(I.wielded) //is the held item wielded?
+						if(!src.recoil >= 80) //if yes, we need more recoil to disarm
+							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
+							return
+					src.unEquip(I) //finally disarm target
+					visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					src.recoil *= 0.5 //halve all gained recoil
+					return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
+			visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
