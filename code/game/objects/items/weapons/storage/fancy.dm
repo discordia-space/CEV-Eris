@@ -286,7 +286,7 @@
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
-	desc = "A case for holding your cigars when you are not smoking them. Fancy! Alt+click to open and close."
+	desc = "A case for holding your cigars when you are not smoking them. Fancy!"
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
