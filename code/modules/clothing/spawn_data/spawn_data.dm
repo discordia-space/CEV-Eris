@@ -452,19 +452,19 @@
 /obj/item/clothing/suit/armor/custodian
 	rarity_value = 57.5
 
-/obj/item/clothing/suit/storage/vest/merc/full
+/obj/item/clothing/suit/storage/armor/vest/merc/full
 	rarity_value = 75
 
-/obj/item/clothing/suit/storage/vest/merc
+/obj/item/clothing/suit/storage/armor/vest/merc
 	rarity_value = 60
 
-/obj/item/clothing/suit/storage/vest/insulated
+/obj/item/clothing/suit/storage/armor/vest/insulated
 	rarity_value = 30.2778
 
-/obj/item/clothing/suit/storage/vest/chestrig
+/obj/item/clothing/suit/storage/armor/vest/chestrig
 	rarity_value = 13.8889
 
-/obj/item/clothing/suit/storage/vest
+/obj/item/clothing/suit/storage/armor/vest
 	rarity_value = 26.1111
 
 /obj/item/clothing/suit/storage/ass_jacket
@@ -551,7 +551,7 @@
 /obj/item/clothing/suit/storage/bomj
 	rarity_value = 16.6667
 
-/obj/item/clothing/suit/storage/vest/scavengerarmor
+/obj/item/clothing/suit/storage/armor/scavenger
 	rarity_value = 26.1111
 
 /obj/item/clothing/suit/storage

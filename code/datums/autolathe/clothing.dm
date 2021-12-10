@@ -27,7 +27,7 @@
 
 /datum/design/autolathe/clothing/generic_vest_webbing
 	name = "webbed armor vest"
-	build_path = /obj/item/clothing/suit/storage/vest
+	build_path = /obj/item/clothing/suit/storage/armor/vest
 
 /datum/design/autolathe/clothing/riot_helmet
 	name = "riot helmet"

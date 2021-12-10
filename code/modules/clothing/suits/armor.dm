@@ -411,7 +411,20 @@
 /*
  * Storage Types
  */
-/obj/item/clothing/suit/storage/vest
+/obj/item/clothing/suit/storage/armor
+	bad_type = /obj/item/clothing/suit/storage/armor
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|THICKMATERIAL
+
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.6
+	style = STYLE_NEG_HIGH
+
+/obj/item/clothing/suit/storage/armor/vest
 	name = "webbed armor"
 	desc = "An armored vest used for day-to-day operations. This one has various pouches and straps attached."
 	icon_state = "webvest"
@@ -425,24 +438,13 @@
 		bio = 0,
 		rad = 0
 	)
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|THICKMATERIAL
-
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0.6
-	bad_type = /obj/item/clothing/suit/storage/vest
-	style = STYLE_NEG_HIGH
-
+	bad_type = /obj/item/clothing/suit/storage/armor/vest
 	matter = list(
 		MATERIAL_STEEL = 8,
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_PLASTIC = 3, //for webbing
 	)
-/obj/item/clothing/suit/storage/vest/ironhammer
+/obj/item/clothing/suit/storage/armor/vest/ironhammer
 	name = "webbed operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
 	icon_state = "webvest_ironhammer"
@@ -450,7 +452,7 @@
 	spawn_blacklisted = TRUE
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
-/obj/item/clothing/suit/storage/vest/merc
+/obj/item/clothing/suit/storage/armor/vest/merc
 	name = "heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
@@ -465,14 +467,14 @@
 		rad = 0
 	)
 
-/obj/item/clothing/suit/storage/vest/merc/full
+/obj/item/clothing/suit/storage/armor/vest/merc/full
 	name = "full heavy armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
 	slowdown = 0.35 // antag item, requires speed to survive
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
-/obj/item/clothing/suit/storage/vest/scavengerarmor
+/obj/item/clothing/suit/storage/armor/scavenger
 	name = "scavenger armor"
 	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
 	icon_state = "scav_armor"
@@ -490,7 +492,7 @@
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
 
-/obj/item/clothing/suit/storage/vest/scavengerarmor/New()
+/obj/item/clothing/suit/storage/armor/scavenger/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 3
@@ -498,7 +500,7 @@
 	pockets.max_storage_space = 6
 
 //Technomancer armor
-/obj/item/clothing/suit/storage/vest/insulated
+/obj/item/clothing/suit/storage/armor/vest/insulated
 	name = "insulated technomancer armor"
 	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
 	icon_state = "armor_engineering"

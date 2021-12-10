@@ -136,7 +136,7 @@
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(I, /obj/item/clothing/suit/storage/vest))
+			if(istype(I, /obj/item/clothing/suit/storage/armor/vest))
 				user.drop_item()
 				qdel(I)
 				build_step++

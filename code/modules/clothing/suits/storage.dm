@@ -57,14 +57,14 @@
 		update_wear_icon()	//so our overlays update
 
 
-/obj/item/clothing/suit/storage/vest/merc/New()
+/obj/item/clothing/suit/storage/armor/vest/merc/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
-/obj/item/clothing/suit/storage/vest/ironhammer/New()
+/obj/item/clothing/suit/storage/armor/vest/ironhammer/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
@@ -72,7 +72,7 @@
 	pockets.max_storage_space = 8
 
 //Makeshift chest rig.
-/obj/item/clothing/suit/storage/vest/chestrig
+/obj/item/clothing/suit/storage/armor/vest/chestrig
 	name = "makeshift chest rig"
 	desc = "A makeshift chest rig made for carrying some stuff. Can carry four small items. Has little protective value.."
 	icon_state = "mchestrig"
@@ -87,7 +87,7 @@
 	)
 	spawn_blacklisted = TRUE
 
-/obj/item/clothing/suit/storage/vest/chestrig/New()
+/obj/item/clothing/suit/storage/armor/vest/chestrig/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4

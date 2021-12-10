@@ -54,7 +54,7 @@
 
 /datum/craft_recipe/clothing/chest_rig
 	name = "chest rig"
-	result = /obj/item/clothing/suit/storage/vest/chestrig
+	result = /obj/item/clothing/suit/storage/armor/vest/chestrig
 	steps = list(
 		list(/obj/item/stack/medical/bruise_pack/handmade, 3, "time" = 10),
 		list(/obj/item/stack/rods, 2, "time" = 10),
@@ -76,7 +76,7 @@
 
 /datum/craft_recipe/clothing/scavengerarmor
 	name = "Scavenger armor"
-	result = /obj/item/clothing/suit/storage/vest/scavengerarmor
+	result = /obj/item/clothing/suit/storage/armor/scavenger
 	steps = list(
 		list(/obj/item/part/armor, 5),
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),

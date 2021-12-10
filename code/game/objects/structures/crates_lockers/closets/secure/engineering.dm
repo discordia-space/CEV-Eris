@@ -86,5 +86,5 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/powered/meson(src)
 	new /obj/item/clothing/head/armor/helmet/technomancer(src)
-	new /obj/item/clothing/suit/storage/vest/insulated(src)
+	new /obj/item/clothing/suit/storage/armor/vest/insulated(src)
 	new /obj/item/clothing/head/armor/helmet/technomancer_old(src)
