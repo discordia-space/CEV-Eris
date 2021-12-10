@@ -24,7 +24,11 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/computer_hardware/hard_drive/portable,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/stamp)
+		/obj/item/stamp,
+		/obj/item/oddity/common/coin,
+		/obj/item/oddity/common/old_money,
+		/obj/item/oddity/common/old_id,
+		/obj/item/oddity/common/disk)
 	slot_flags = SLOT_ID
 
 	matter = list(MATERIAL_BIOMATTER = 4)
