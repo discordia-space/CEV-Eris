@@ -14,9 +14,6 @@ var/global/list/sparring_attack_cache = list()
 	var/deal_halloss
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
 
-	var/eye_attack_text
-	var/eye_attack_text_victim
-
 /datum/unarmed_attack/proc/get_sparring_variant()
 	if(sparring_variant_type)
 		if(!sparring_attack_cache[sparring_variant_type])
@@ -111,8 +108,8 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/organ/internal/eyes/eyes = target.random_organ_by_process(OP_EYES)
 	eyes.take_damage(rand(3,4), 1)
 
-	user.visible_message(SPAN_DANGER("[user] presses \his [eye_attack_text] into [target]'s [eyes.name]!"))
-	to_chat(target, SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] [eye_attack_text_victim] being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]"))
+	user.visible_message(SPAN_DANGER("[user] presses \his fingers into [target]'s [eyes.name]!")) //no need to check for claws because only humans(monkeys?) can grab(no, humans and monkeys don't have claws)
+	to_chat(target, SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] digits being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]"))
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bit")
@@ -133,8 +130,6 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/punch
 	attack_verb = list("punched")
 	attack_noun = list("fist")
-	eye_attack_text = "fingers"
-	eye_attack_text_victim = "digits"
 	damage = 0
 
 /datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
