@@ -211,25 +211,7 @@ meteor_act
 	if(check_attack_throat(I, user))
 		return null
 
-	if(user == src) // Attacking yourself can't miss
-		return target_zone
 	var/hit_zone = check_zone(target_zone)
-	//check if we hit
-	var/dodge = max(src.stats.getStat(STAT_ROB), 1)//handled differently in living_defense
-	var/miss_chance = ((base_miss_chance[hit_zone] * (5 /(1 + 100 / dodge) + 10)) / 10)//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
-	if(prob(miss_chance))
-		hit_zone = null
-	// you cannot miss if your target is prone or restrained
-	if(src.buckled || src.lying)
-		return hit_zone
-	// if your target is being grabbed aggressively by someone you cannot miss either
-	for(var/obj/item/grab/G in src.grabbed_by)
-		if(G.state >= GRAB_AGGRESSIVE)
-			return hit_zone
-	if(!hit_zone)
-		visible_message(SPAN_DANGER("\The [user] misses [src] with \the [I]!"))
-		return null
-
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
 
@@ -339,29 +321,12 @@ meteor_act
 			zone = check_zone(L.targeted_organ)
 		else
 			zone = ran_zone(BP_CHEST, 75)//Hits a random part of the body, geared towards the chest
-		//check if we hit
-		if (!(zone in base_miss_chance))//does the target even have that bodypart?
-			return
-		var/dodge = (max(src.stats.getStat(STAT_ROB), 1))//handled differently in living_defense
-		var/miss_chance = ((base_miss_chance[zone] * (10 / (1 + 100 / dodge ) + 10)) / 10)//soft cap that takes base_miss_chance into account, base_miss_chance in mob_helpers
-		// we cannot miss if the target is prone or restrained
-		if(src.buckled || src.lying)
-			miss_chance = 0
-		// if the target is being grabbed aggressively by someone we cannot miss either
-		for(var/obj/item/grab/G in src.grabbed_by)
-			if(G.state >= GRAB_AGGRESSIVE)
-				miss_chance = 0
-		if(prob(miss_chance))
-			zone = null		
 		if(zone && O.thrower != src) //does the target have a shield?
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
 			if(shield_check == PROJECTILE_FORCE_MISS)
 				zone = null
 			else if(shield_check)
 				return
-		if(!zone)//we missed!
-			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
-			return
 
 		O.throwing = 0//it hit, so stop moving
 		/// Get hit with glass shards , your fibers are on them now, or with a rod idk.
