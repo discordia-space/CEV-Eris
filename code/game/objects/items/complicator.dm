@@ -1,6 +1,6 @@
 /obj/item/complicator
 	name = "Reality Complicator"
-	desc = "A weird device of unknown origin. A note on the side says 'Do not press.'"
+	desc = "A weird device of unknown origin. A note on the side says \'Do not press.\'"
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "complicator"
 	item_state = "complicator"
