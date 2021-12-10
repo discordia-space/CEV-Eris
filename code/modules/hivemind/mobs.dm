@@ -873,7 +873,7 @@
 /////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/hivemind/treader
 	name = "Treader"
-	desc = "A human head with a screen shoved in its mouth, connected to a large collumn with another screen displaying a human face."
+	desc = "A human head with a screen shoved in its mouth, connected to a large column with another screen displaying a human face."
 	icon_state = "treader"
 	attacktext = "slapped"
 	speak_chance = 2
