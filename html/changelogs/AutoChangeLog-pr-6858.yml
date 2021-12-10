@@ -1,0 +1,5 @@
+author: koghs
+delete-after: true
+changes:
+  - tweak: Added material cost to toolboxes, throwing knives, suit cooling unit, increased
+      OS LG "Cog" melee damage, added ability to put appropriate oddities into wallet.
