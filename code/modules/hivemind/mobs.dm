@@ -892,15 +892,15 @@
 	ability_cooldown = 20 SECONDS
 
 	speak = list(
-				"Hey, atleast I got my head.",
-				"I can't... I can't feel my arms...",
+				"Hey, at least I got my head.",
+				"I can\'t... I can\'t feel my arms...",
 				"Oh god... my legs... where are my legs..."
 				)
 
 	target_speak = list(
 				"You there! Cut off my head!",
-				"So sorry! Can't exactly control my head anymore.",
-				"S-shoot the screen! God I hope it won't hurt."
+				"So sorry! Can\'t exactly control my head anymore.",
+				"S-shoot the screen! God I hope it won\'t hurt."
 				)
 
 /mob/living/simple_animal/hostile/hivemind/treader/Initialize()
