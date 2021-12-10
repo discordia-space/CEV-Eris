@@ -1,0 +1,6 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added new Hivemind mob no one asked for. Treader spits weakened goo and
+      can heal allies, along with itself.
+  - tweak: tweaked lobber attack text incase it actually attacks

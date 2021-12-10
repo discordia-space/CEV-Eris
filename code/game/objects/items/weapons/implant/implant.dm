@@ -5,13 +5,13 @@
 /obj/item/implant
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
-	icon_state = "implant"
+	icon_state = "implant_health"
 	w_class = ITEM_SIZE_TINY
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer
 	var/obj/item/organ/external/part
-	var/implant_color = "b"
+	var/implant_overlay = "implantstorage_deathalarm"
 	var/allow_reagents = FALSE
 	var/malfunction = MALFUNCTION_NONE
 	var/is_legal = TRUE

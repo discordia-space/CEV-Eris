@@ -7,6 +7,12 @@
 			crew_data["alert"] = TRUE
 		if(H.getOxyLoss() >= 20)
 			crew_data["alert"] = TRUE
+		if(H.getBruteLoss() >= 100)
+			crew_data["alert"] = TRUE
+		if(H.getFireLoss() >= 100)
+			crew_data["alert"] = TRUE
+		if(H.getToxLoss() >= 100)
+			crew_data["alert"] = TRUE
 	return ..()
 
 /* Jamming */

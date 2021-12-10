@@ -143,7 +143,7 @@
 			else
 				new_item = new /obj/item/material/kitchen/utensil/spoon(src.loc)
 			additional_desc = "[pick("It's like no [item_type] you've ever seen before",\
-			"It's a mystery how anyone is supposed to eat with this",\
+			"How anyone is supposed to eat with this is a mystery",\
 			"You wonder what the creator's mouth was shaped like")]."
 		if(4)
 			name = "statuette"

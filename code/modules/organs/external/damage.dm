@@ -21,8 +21,8 @@
 			var/obj/item/organ/internal/I = pick(internal_organs)
 			I.take_damage(brute / 2)
 			brute -= brute / 2
-
-	if(brute_dam > min_broken_damage && prob(brute_dam + brute))
+	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
+	if(brute_dam > (min_broken_damage * (bone_efficiency / 100)) && prob(brute_dam + brute))
 		fracture()
 
 	if(status & ORGAN_BROKEN && prob(40) && brute)

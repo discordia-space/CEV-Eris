@@ -1,0 +1,7 @@
+author: Kegdo
+delete-after: true
+changes:
+  - balance: dodging melee attacks and thrown items scales off ROB
+  - rscdel: bay leftover get_zone proc
+  - bugfix: missing buckled mobs with thrown items
+  - bugfix: division by zero in throwing knives code

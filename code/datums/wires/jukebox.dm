@@ -13,6 +13,10 @@
 	random = TRUE
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 10
+	descriptions = list(
+		new /datum/wire_description(WIRE_MAIN_POWER1, "This wire seems to be carrying a heavy current."),
+		new /datum/wire_description(WIRE_POWER, "This wire seems to be carrying a heavy current."),
+	)
 
 /datum/wires/jukebox/CanUse(mob/user)
 	var/obj/machinery/media/jukebox/A = holder
