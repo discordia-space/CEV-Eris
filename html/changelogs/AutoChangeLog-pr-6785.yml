@@ -1,5 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscadd: mold toxin. Mold deals sanity damage and a little bit of toxin damage.
-  - tweak: vomitol in trash foods is replaced with mold.
