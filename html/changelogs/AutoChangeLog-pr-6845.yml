@@ -1,5 +1,0 @@
-author: hex37
-delete-after: true
-changes:
-  - bugfix: Fix punching that was computed with the target's hand instead of the attacker's
-      hand

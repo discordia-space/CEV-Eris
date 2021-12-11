@@ -1,4 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - tweak: autopsy scanning error formula changed to BIO_STAT * 4
