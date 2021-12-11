@@ -162,6 +162,25 @@
 		/obj/item/gun/projectile/flare_gun
 		)
 
+/obj/item/storage/pouch/engineering_material
+	name = "engineering material pouch"
+	desc = "Can hold sheets, rods and cable coil."
+	icon_state = "engineering_material"
+	item_state = "engineering_material"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	rarity_value = 33
+
+	storage_slots = 2
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
+
+	can_hold = list(
+		/obj/item/stack/material,
+		/obj/item/material,
+		/obj/item/stack/cable_coil,
+		/obj/item/stack/rods,
+		)
+
 /obj/item/storage/pouch/ammo
 	name = "ammo pouch"
 	desc = "Can hold ammo magazines and bullets, not the boxes though."

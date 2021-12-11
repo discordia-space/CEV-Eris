@@ -3635,6 +3635,7 @@
 /area/eris/security/exerooms)
 "aiN" = (
 /obj/machinery/light/small,
+/obj/structure/closet/secure_closet/injection,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/exerooms)
 "aiO" = (
@@ -4280,22 +4281,22 @@
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "akd" = (
+/obj/machinery/dnaforensics,
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/security/exerooms)
+"ake" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/swabs,
+/obj/item/storage/box/swabs,
+/obj/item/storage/box/evidence,
+/obj/item/storage/box/evidence,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_ihsforens2";
 	name = "Maintenance Hatch Control";
 	pixel_y = 26
-	},
-/obj/structure/table/rack/shelf,
-/obj/item/forensics/sample_kit,
-/obj/item/forensics/sample_kit/powder,
-/obj/item/device/scanner/mass_spectrometer,
-/obj/item/device/scanner/reagent,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/eris/security/exerooms)
-"ake" = (
-/obj/machinery/dnaforensics,
-/obj/machinery/firealarm{
-	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
@@ -4307,23 +4308,25 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
-/obj/structure/table/standard,
-/obj/item/storage/secure/briefcase,
+/obj/structure/closet/secure_closet/medspec,
 /turf/simulated/floor/plating/under,
 /area/eris/security/exerooms)
 "akg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
 /obj/structure/catwalk,
-/obj/machinery/microscope,
-/obj/structure/table/standard,
+/obj/structure/closet/secure_closet/medspec,
 /turf/simulated/floor/plating/under,
 /area/eris/security/exerooms)
 "akh" = (
+/obj/structure/table/rack/shelf,
+/obj/item/forensics/sample_kit,
+/obj/item/forensics/sample_kit/powder,
+/obj/item/device/scanner/mass_spectrometer,
+/obj/item/device/scanner/reagent,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
 	},
-/obj/item/modular_computer/console/preset/security/records,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
 "aki" = (
@@ -4353,9 +4356,6 @@
 /area/eris/security/exerooms)
 "akl" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
 /turf/simulated/floor/tiled/dark/bluecorner,
 /area/eris/security/exerooms)
 "akm" = (
@@ -4536,10 +4536,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep)
 "akF" = (
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -26
-	},
+/obj/structure/bed/chair/office/dark,
+/obj/landmark/join/start/medspec,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
 "akG" = (
@@ -4554,49 +4552,20 @@
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "akI" = (
-/obj/machinery/camera/network/security{
-	dir = 4
-	},
-/obj/structure/medical_stand,
+/obj/structure/table/rack/shelf,
+/obj/item/autopsy_scanner,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akJ" = (
-/obj/item/reagent_containers/blood/AMinus{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/blood/APlus{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/empty{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/blood/empty{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/blood/OMinus{
-	pixel_x = -5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = 4;
-	pixel_y = 2
-	},
 /obj/structure/table/rack/shelf,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akK" = (
-/obj/structure/closet/secure_closet/injection,
+/obj/structure/table/rack/shelf,
+/obj/item/roller,
+/obj/item/roller,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akL" = (
@@ -4621,9 +4590,6 @@
 "akN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
 /obj/structure/catwalk,
-/obj/structure/bed/chair/office/light{
-	dir = 1
-	},
 /obj/landmark/join/start/medspec,
 /turf/simulated/floor/plating/under,
 /area/eris/security/exerooms)
@@ -4683,7 +4649,8 @@
 /turf/simulated/floor/tiled/dark/bluecorner,
 /area/eris/security/exerooms)
 "akW" = (
-/obj/structure/closet/secure_closet/anesthetics,
+/obj/structure/bed/roller,
+/obj/structure/bed/roller,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "akX" = (
@@ -4730,26 +4697,20 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/crew_quarters/sleep)
 "ale" = (
-/obj/structure/table/rack/shelf,
-/obj/machinery/light/small,
-/obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_ihsforens1";
-	name = "Maintenance Hatch Control";
-	pixel_y = -26
+/obj/item/modular_computer/console/preset/medical/records{
+	dir = 1
 	},
-/obj/item/storage/box/swabs,
-/obj/item/storage/box/swabs,
-/obj/item/storage/box/evidence,
-/obj/item/storage/box/evidence,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
 "alf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/light/small,
-/obj/item/modular_computer/console/preset/medical/records{
-	dir = 1
+/obj/machinery/light,
+/obj/machinery/button/remote/blast_door{
+	id = "maint_hatch_ihsforens1";
+	name = "Maintenance Hatch Control";
+	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
@@ -4757,15 +4718,12 @@
 /turf/simulated/wall/r_wall,
 /area/eris/maintenance/section3deck5port)
 "alh" = (
-/obj/structure/table/standard,
-/obj/item/storage/briefcase/crimekit,
 /obj/machinery/camera/network/security{
 	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/paper/detective_guide,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
 "ali" = (
@@ -4812,31 +4770,12 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/catwalk,
-/obj/structure/closet/secure_closet/medspec,
-/turf/simulated/floor/plating/under,
+/obj/structure/table/standard,
+/obj/machinery/microscope,
+/turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/exerooms)
 "alp" = (
-/obj/structure/table/glass,
-/obj/item/storage/freezer/medical,
-/turf/simulated/floor/tiled/white/bluecorner,
-/area/eris/security/exerooms)
-"alq" = (
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
+/obj/structure/medical_stand,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alr" = (
@@ -5104,9 +5043,11 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alX" = (
-/obj/machinery/computer/operating{
-	name = "Brig Operating Computer"
-	},
+/obj/structure/table/rack/shelf,
+/obj/item/tank/anesthetic,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/clothing/mask/breath/medical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alY" = (
@@ -5152,12 +5093,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
 "ame" = (
-/obj/structure/table/glass,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 22
-	},
-/obj/item/storage/firstaid/surgery,
+/obj/machinery/optable,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amf" = (
@@ -5256,43 +5192,51 @@
 /turf/simulated/floor/plating,
 /area/eris/quartermaster/hangarsupply)
 "amo" = (
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 2;
-	pixel_y = 6
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/beakers{
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/item/storage/firstaid/adv{
-	pixel_x = -2
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes{
+	pixel_x = -3;
+	pixel_y = -3
 	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/obj/item/storage/firstaid/toxin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/storage/firstaid/o2,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amp" = (
-/obj/item/storage/box/bodybags{
-	pixel_x = -1;
-	pixel_y = -2
+/obj/structure/table/rack/shelf,
+/obj/item/storage/firstaid/adv{
+	pixel_x = 3;
+	pixel_y = 3
 	},
-/obj/structure/table/glass,
-/obj/machinery/light,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amq" = (
-/obj/structure/table/glass,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/structure/table/rack/shelf,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amr" = (
-/obj/machinery/bodyscanner,
+/obj/structure/table/rack/shelf,
+/obj/item/storage/hcases/med,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "ams" = (
@@ -5346,18 +5290,16 @@
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/sleep)
 "amz" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/bodyscanner,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amA" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/body_scanconsole,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amB" = (
-/obj/machinery/sleeper{
-	dir = 4;
-	req_access = list(67)
-	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amC" = (
@@ -5365,15 +5307,15 @@
 	dir = 1;
 	pixel_y = -28
 	},
-/obj/machinery/light,
+/obj/machinery/sleeper{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amD" = (
+/obj/machinery/light,
 /obj/structure/table/glass,
-/obj/item/autopsy_scanner{
-	pixel_x = 1;
-	pixel_y = 1
-	},
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "amE" = (
@@ -92808,7 +92750,6 @@
 "eot" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
 /obj/structure/catwalk,
-/obj/structure/closet/secure_closet/medspec,
 /turf/simulated/floor/plating/under,
 /area/eris/security/exerooms)
 "eou" = (
@@ -101162,6 +101103,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"eSp" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/straight_jacket,
+/obj/item/clothing/glasses/sunglasses/blindfold,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -101480,6 +101427,12 @@
 /obj/item/clothing/head/welding,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
+"ggL" = (
+/obj/machinery/computer/operating{
+	name = "Brig Operating Computer"
+	},
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "gjm" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -101779,6 +101732,18 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"htJ" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/spray/sterilizine{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/storage/freezer/medical{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "hug" = (
 /obj/structure/closet/acolyte,
 /obj/machinery/camera/network/third_section{
@@ -102175,6 +102140,11 @@
 /obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
+"iOS" = (
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/surgery,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "iPY" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -102856,6 +102826,19 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
+"lxE" = (
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/gloves{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/box/masks{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/bodybags,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "lBX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -103909,7 +103892,38 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
 "pAH" = (
-/obj/machinery/optable,
+/obj/item/reagent_containers/blood/AMinus{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/blood/APlus{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/empty{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/blood/empty{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/blood/OMinus{
+	pixel_x = -5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "pAJ" = (
@@ -104576,7 +104590,7 @@
 /obj/structure/table/reinforced{
 	pixel_x = -5
 	},
-/obj/structure/complicator{
+/obj/item/complicator{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -104807,6 +104821,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/warden)
+"tcj" = (
+/obj/structure/table/rack/shelf,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "tcP" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/dark/techfloor,
@@ -104990,6 +105009,18 @@
 /obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
+"tWZ" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/structure/table/standard,
+/obj/item/paper/detective_guide,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/security/exerooms)
 "tXm" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -105376,6 +105407,17 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
+"vml" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "voL" = (
 /obj/structure/disposaloutlet{
 	dir = 1
@@ -105824,6 +105866,11 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"wWh" = (
+/obj/structure/table/standard,
+/obj/item/storage/secure/briefcase,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/security/exerooms)
 "wXf" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/machinery/light/small{
@@ -105898,6 +105945,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/reception)
+"xgP" = (
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/security/exerooms)
 "xij" = (
 /obj/machinery/light/small,
 /obj/structure/bed/chair{
@@ -123615,10 +123668,10 @@ aaa
 aad
 aaa
 aaa
+aad
 aaa
 aaa
-aaa
-aaa
+aad
 aaa
 dzi
 aaa
@@ -123815,13 +123868,13 @@ aaa
 aaa
 aaa
 aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aht
+aht
+aht
+aht
+aht
+aad
+aad
 dzi
 aaa
 aaa
@@ -124018,11 +124071,11 @@ aaa
 aaa
 aad
 aht
+alo
+tWZ
+wWh
 aht
-aht
-aht
-aht
-aaa
+aad
 aaa
 dzi
 dzi
@@ -124424,7 +124477,7 @@ ahU
 adJ
 akf
 akM
-alo
+akM
 apW
 agQ
 abo
@@ -125032,9 +125085,9 @@ akh
 akL
 alh
 aht
-aaa
-aaa
-aad
+tcj
+eSp
+aht
 aaa
 dzq
 dzn
@@ -125234,8 +125287,8 @@ aht
 ajP
 aht
 aht
-aht
-aht
+xgP
+lxE
 aht
 aaa
 dzq
@@ -125435,8 +125488,8 @@ aht
 aki
 akO
 aeH
-akI
-alq
+akJ
+aln
 amo
 aht
 aad
@@ -126445,7 +126498,7 @@ aht
 akn
 akO
 aeH
-aln
+akI
 alW
 amA
 aht
@@ -127052,7 +127105,7 @@ akq
 akV
 aeH
 alp
-ame
+aln
 amD
 aht
 aad
@@ -127253,9 +127306,9 @@ aht
 aht
 aht
 aht
-aht
-aht
-aht
+ame
+aln
+iOS
 aht
 aaa
 dzq
@@ -127455,10 +127508,10 @@ aht
 aiR
 ajg
 dzi
-aaa
-aaa
-aaa
-aad
+ggL
+vml
+htJ
+aht
 aaa
 dzq
 dzn

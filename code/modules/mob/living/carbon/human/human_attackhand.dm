@@ -144,7 +144,7 @@
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
-			var/obj/item/organ/external/current_hand = organs_by_name[hand ? BP_L_ARM : BP_R_ARM]
+			var/obj/item/organ/external/current_hand = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
 
 			if(current_hand)
 				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
@@ -187,9 +187,6 @@
 
 					And after that, we subtract AGI stat from chance to hit different organ.
 					General miss chance also depends on AGI.
-
-					Note: We don't use get_zone_with_miss_chance() here since the chances
-						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
 				if(prob(50 - H.stats.getStat(STAT_ROB)))
