@@ -1,5 +1,5 @@
 /datum/computer_file/program/uplink
-	filename = "quicklytax"
+	filename = "taxquickly"
 	filedesc = "TaxQuickly 2559"
 	program_icon_state = "uplink"
 	extended_desc = "An online tax filing software. It is a few years out of date."

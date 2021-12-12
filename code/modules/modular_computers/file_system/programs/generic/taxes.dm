@@ -1,10 +1,10 @@
 /datum/computer_file/program/tax
-	filename = "taxquickly"
+	filename = "taxapp"
 	filedesc = "TaxQuickly 2565"
 	program_icon_state = "uplink"
 	extended_desc = "An online tax filing software."
 	size = 0 // it is cloud based
-	requires_ntnet = 0
+	requires_ntnet = 1
 	available_on_ntnet = 1
 	usage_flags = PROGRAM_PDA
 	nanomodule_path = /datum/nano_module/program/tax
@@ -25,11 +25,8 @@
 		return TRUE
 
 	if(href_list["enter_login"])
-		account_num = input("Enter account number", "Login") as num
-		return
-
-	if(href_list["enter_pin"])
-		account_pin = input("Enter pin code", "Password") as num
+		account_num = text2num(input("Enter account number", "Login"))
+		account_pin = text2num(input("Enter pin code", "Password"))
 		return
 
 	if(href_list["log_in"])
@@ -41,7 +38,7 @@
 			login_failed = TRUE
 			return
 
-		account = attempt_account_access(account_num, account_pin, 2, force_security = TRUE)
+		account = attempt_account_access(account_num, account_pin, 1, force_security = TRUE)
 
 		if(!account)
 			login_failed = TRUE
@@ -70,9 +67,9 @@
 		browsing_logs = FALSE
 	
 	if(href_list["transfer"])
-		var/target	= input(usr,"Enter target account number", "Funds transfer") as num
-		var/amount	= input(usr,"Enter amount to transfer", "Funds transfer") as num
-		var/purpose	= input(usr,"Enter transfer purpose", "Funds transfer") as text
+		var/target	= text2num(input(usr,"Target account number", "Funds transfer"))
+		var/amount	= text2num(input(usr,"Amount to transfer", "Funds transfer"))
+		var/purpose	= input(usr,"Transfer purpose", "Funds transfer")
 		transfer_funds(account.account_number, target, purpose, name, amount)
 
 	if(href_list["logs"])
@@ -91,16 +88,41 @@
 	data["logined"] = logined
 	data["browsing_logs"] = browsing_logs
 
+	data["is_department_account"] = FALSE
+	data["is_command_account"] = FALSE
+	data["is_guild_account"] = FALSE
+
+	data["account_owner"] = "N/A"
+	data["account_balance"] = "N/A"
+	data["account_wage"] = "N/A"
+	data["account_alignment"] = "N/A"
+	data["account_logs"] = "N/A"
+
 	if(account)
-		data["is_department_account"] = (account in department_accounts)
-		data["is_command_account"] = account == department_accounts[DEPARTMENT_COMMAND]
-		data["is_guild_account"] = account == department_accounts[DEPARTMENT_GUILD]
+		if(account in department_accounts)
+			data["is_department_account"] = TRUE
+		if(account == department_accounts[DEPARTMENT_COMMAND])
+			data["is_command_account"] = TRUE
+		if(account == department_accounts[DEPARTMENT_GUILD])
+			data["is_guild_account"] = TRUE
 
 		data["account_owner"] = account.get_name()
 		data["account_balance"] = account.money
 		data["account_wage"] = account.wage? account.wage : "None"
 		data["account_alignment"] = account.employer? account.employer : "None"
-		data["account_logs"] = get_logs()
+
+		var/list/logs[0]
+		for(var/datum/transaction/T in account.transaction_log)
+			logs.Add(list(list(
+				"date" = T.date,
+				"time" = T.time,
+				"target_name" = T.target_name,
+				"purpose" = T.purpose,
+				"amount" = T.amount,
+				"source_terminal" = T.source_terminal)))
+
+		if (logs.len)
+			data["account_logs"] = logs
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -117,12 +139,15 @@
 		return
 
 	var/list/logs = list()
-	for(var/i = account.transaction_log.len; i > 1; i--)
+	for(var/datum/transaction/T in account.transaction_log)
 		logs.Add(list(list(
-			"entry" = account.transaction_log[i]
-		)))
+			"date" = T.date, \
+			"time" = T.time, \
+			"target_name" = T.target_name, \
+			"purpose" = T.purpose, \
+			"amount" = T.amount, \
+			"source_terminal" = T.source_terminal)))
 	return logs
-
 
 /*
 (if !logined)
