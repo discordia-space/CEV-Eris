@@ -101,12 +101,16 @@ var/list/flooring_cache = list()
 
 			//Now lets handle those fancy floors which have many centre icons
 			if(flooring.has_base_range)
-				if (!has_border || (flooring.flags & TURF_CAN_HAVE_RANDOM_BORDER))
+				if(flooring.flags & TURF_IS_MULTITILE)
+					icon_state = "[flooring.icon_base][x % flooring.has_base_range]-[y % flooring.has_base_range]"
+				else if (!has_border || (flooring.flags & TURF_CAN_HAVE_RANDOM_BORDER))
 					//Some floors can have random tiles on the borders, some don't. It all depends on the sprite
 					icon_state = "[flooring.icon_base][rand(0,flooring.has_base_range)]"
 					flooring_override = icon_state
 				else
 					icon_state = flooring.icon_base+"0"
+
+
 
 
 
