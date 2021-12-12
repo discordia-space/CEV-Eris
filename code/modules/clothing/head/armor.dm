@@ -16,6 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_HAIR
 
 /*
  * Helmets
@@ -62,6 +63,7 @@
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -95,6 +97,7 @@
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
@@ -163,6 +166,7 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -170,6 +174,7 @@
 			Comes with inbuilt nightvision HUD."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
+	flags_inv = NONE
 	action_button_name = "Toggle Night Vision"
 	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
 	var/last_toggle = 0
@@ -278,6 +283,7 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
@@ -295,10 +301,11 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	bad_type = /obj/item/clothing/head/armor/faceshield
+	style_coverage = COVERS_HAIR|COVERS_EARS
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
 	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
@@ -329,12 +336,14 @@
 		tint = initial(tint)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
+		style_coverage = initial(style_coverage)
 	else
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
+		style_coverage = COVERS_WHOLE_HEAD
 
 	update_icon()
 	update_wear_icon()	//update our mob overlays
@@ -380,6 +389,7 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -465,6 +475,11 @@
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
 
+/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
+	name = "striped maska helmet"
+	desc = "Someone has painted a Maska in the Gopnik style."
+	icon_state = "altyn_tripoloski"
+
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
 	desc = "Civilian model of a popular helmet used by certain law enforcement agencies. It does not have any armor plating, but has a neo-laminated fabric lining."
@@ -479,6 +494,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style_coverage = COVERS_FACE|COVERS_HAIR
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
 	name = "\improper Type-34 Semi-Enclosed Headwear"
@@ -509,6 +525,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"

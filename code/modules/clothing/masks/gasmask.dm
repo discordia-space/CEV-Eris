@@ -12,6 +12,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	style_coverage = COVERS_WHOLE_FACE
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
@@ -97,7 +98,7 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	style = STYLE_LOW
+	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 	var/list/options = list()
@@ -118,7 +119,6 @@
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
-	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -139,7 +139,7 @@
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -159,7 +159,6 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"

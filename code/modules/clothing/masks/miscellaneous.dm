@@ -7,13 +7,16 @@
 	icon_state = "muzzle"
 	item_state = "muzzle"
 	body_parts_covered = FACE
+	style_coverage = COVERS_MOUTH
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	voicechange = 1
+	style_coverage = COVERS_MOUTH
+	style = STYLE_LOW//yes
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
-	desc = "It's a robust DIY muzzle!"
+	desc = "A robust DIY muzzle!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
@@ -49,6 +52,7 @@
 		rad = 0
 	)
 	price_tag = 10
+	style_coverage = COVERS_MOUTH
 
 /obj/item/clothing/mask/surgical/New()
 	..()
@@ -70,7 +74,7 @@
 		rad = 0
 	)
 	price_tag = 150
-	style = STYLE_LOW
+	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/mask/thief/New()
 	..()
@@ -119,6 +123,7 @@
 	icon_state = "fake-moustache"
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
+	style_coverage = COVERS_MOUTH
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
@@ -126,6 +131,7 @@
 	icon_state = "snorkel"
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
+	style_coverage = COVERS_WHOLE_FACE
 
 //scarves (fit in in mask slot)
 /obj/item/clothing/mask/scarf
@@ -139,6 +145,7 @@
 	gas_transfer_coefficient = 0.90
 	price_tag = 50
 	style = STYLE_LOW
+	style_coverage = COVERS_MOUTH
 
 /obj/item/clothing/mask/scarf/stripedblue
 	name = "striped blue scarf"
@@ -218,6 +225,7 @@
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/mask/pig/New()
 	..()
@@ -232,6 +240,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/mask/horsehead/New()
 	..()
@@ -250,6 +259,8 @@
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_WHOLE_FACE
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/mask/ai/Initialize(mapload, ...)
 	. = ..()
@@ -294,10 +305,12 @@
 			flags_inv = HIDEFACE
 			body_parts_covered = FACE
 			icon_state = initial(icon_state)
+			style_coverage = COVERS_MOUTH|COVERS_FACE
 		if(slot_head)
 			flags_inv = 0
 			body_parts_covered = HEAD
 			icon_state = "[initial(icon_state)]_up"
+			style_coverage = COVERS_HAIR
 
 	return ..()
 
@@ -355,3 +368,4 @@
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 	style = STYLE_HIGH
+	style_coverage = COVERS_MOUTH|COVERS_FACE

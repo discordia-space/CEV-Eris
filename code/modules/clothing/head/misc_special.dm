@@ -37,6 +37,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
 	style = STYLE_NEG_LOW
+	style_coverage = COVERS_WHOLE_FACE
 	var/base_state
 
 /obj/item/clothing/head/welding/attack_self()
@@ -59,6 +60,7 @@
 			tint = initial(tint)
 			icon_state = base_state
 			to_chat(usr, "You flip the [src] down to protect your eyes.")
+			style_coverage = COVERS_WHOLE_FACE
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
@@ -67,6 +69,7 @@
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]up"
 			to_chat(usr, "You push the [src] up out of your face.")
+			style_coverage = COVERS_HAIR
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 
@@ -81,6 +84,7 @@
 	item_state = "cake0"
 	var/onfire = 0
 	body_parts_covered = HEAD
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/cakehat/Process()
 	if(!onfire)
@@ -120,6 +124,7 @@
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	flags_inv = HIDEEARS
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)
 	if(src.icon_state == "ushankadown")
@@ -141,6 +146,7 @@
 	brightness_on = 2
 	light_overlay = "helmet_light"
 	w_class = ITEM_SIZE_NORMAL
+	style_coverage = COVERS_WHOLE_HEAD
 
 /*
  * Kitty ears
@@ -152,6 +158,7 @@
 	body_parts_covered = 0
 	siemens_coefficient = 1.5
 	item_icons = list()
+	style = STYLE_NEG_HIGH//you can't argue against this
 
 /obj/item/clothing/head/kitty/equipped(mob/user, slot)
 	if(slot == slot_head)
@@ -173,3 +180,4 @@
 	icon_state = "richard"
 	body_parts_covered = HEAD|FACE
 	flags_inv = BLOCKHAIR
+	style_coverage = COVERS_WHOLE_HEAD

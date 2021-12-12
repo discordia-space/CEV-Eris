@@ -21,6 +21,11 @@
 	update_wear_icon()
 
 	return copy //for inheritance
+obj/item/clothing/disguise(newtype, mob/user)
+	. = ..()
+	var/obj/item/clothing/copy = .
+	if (istype(copy))
+		style_coverage = copy.style_coverage
 
 /proc/generate_chameleon_choices(basetype, blacklist=list())
 	. = list()
@@ -269,6 +274,7 @@
 	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
+	style_coverage = COVERS_WHOLE_FACE//default state
 
 /obj/item/clothing/mask/chameleon/New()
 	..()
@@ -440,4 +446,4 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked], usr) 
+	disguise(clothing_choices[picked], usr)

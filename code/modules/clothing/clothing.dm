@@ -546,6 +546,7 @@ BLIND     // can't see anything
 	icon = 'icons/inventory/suit/icon.dmi'
 	name = "suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style_coverage = COVERS_TORSO
 	allowed = list(
 		/obj/item/clipboard,
 		/obj/item/storage/pouch/,
@@ -575,7 +576,7 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	valid_accessory_slots = list("armor","armband","decor")
 	restricted_accessory_slots = list("armor","armband")
 

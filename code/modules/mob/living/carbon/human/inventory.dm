@@ -447,7 +447,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor += glasses.get_style()
 	if (gloves && !(suit_coverage & COVERS_FOREARMS))
 		style_factor += gloves.get_style()
-	if (w_uniform && !(gloves ? suit_coverage & COVERS_TORSO|COVERS_FOREARMS|COVERS_FORELEGS : suit_coverage & COVERS_WHOLE_TORSO_AND_LIMBS))
+	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
 		style_factor += w_uniform.get_style()
 	if (shoes && !(suit_coverage & COVERS_FORELEGS))
 		style_factor += shoes.get_style()
