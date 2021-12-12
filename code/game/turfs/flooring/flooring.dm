@@ -28,6 +28,8 @@ var/list/flooring_types
 	var/footstep_type
 
 	var/has_base_range
+	var/multitile_pattern_width
+	var/multitile_pattern_height
 	var/has_damage_range
 	var/has_burn_range
 	var/damage_temperature
@@ -201,13 +203,14 @@ var/list/flooring_types
 	descriptor = "support beams"
 	icon_base = "under"
 	build_type = /obj/item/stack/material/steel //Same type as the normal plating, we'll use can_build_floor to control it
-	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS
+	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_MULTITILE_PATTERN
+	multitile_pattern_width = 3
+	multitile_pattern_height = 7
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
-	has_base_range = 0
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
 	space_smooth = SMOOTH_ALL
