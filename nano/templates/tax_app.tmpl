@@ -1,7 +1,16 @@
-{{if data.logined}}
+{{if data.popup}}
+	<div align="center" style="margin-top: 15px;">
+		<div class="item">{{:data.popup_message}}</div>
+		<table>
+			<tr>
+				<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
+			</tr>
+		</table>
+	</div>
+{{else data.logined}}
 	{{if data.browsing_logs}}
-		<div class="statusDisplay" style="overflow: auto;">
-			<tr><td>{{:helper.link('Back', null, {'back' : 1})}}</td></tr>
+		<tr><td>{{:helper.link('Back', null, {'back' : 1})}}</td></tr>
+		<div class="statusDisplayRecords">
 			<tr>
 				<th><b>Timestamp</b></th>
 				<th><b>Target</b></th>
@@ -20,40 +29,76 @@
 			{{/for}}
 		</div>
 	{{else}}
-		<div align="center" style="margin-top: 15px;">
+		<div align="center">
 			<div class="item"><b>Access authorized</b></div>
 			<div class="item">Logged as: {{:data.account_owner}}</div>
-			<table>
+		</div>
+		<div>
+			<table align="center" style="position: relative;">
 				<tr>
-					<td><span class='white'>Current balance: {{:data.account_balance}}</span></td>
-					{{if !data.is_department_account}}
-						<td><span class='white'>Hourly wage: {{:data.account_wage}}</span></td>
-						<td><span class='white'>Employer: {{:data.account_alignment}}</span></td>
-						<td>{{:helper.link('Resign ', null, {'resign' : 1})}}</td>
-					{{/if}}
-					<td>{{:helper.link('Logs', null, {'logs' : 1})}}</td>
-					<td>{{:helper.link('Transfer', null, {'transfer' : 1})}}</td>
-					<td>{{:helper.link('Log out', null, {'log_out' : 1})}}</td>
+					<th>Balance</th>
+					<th>&nbsp&nbsp&nbsp</th>
+					<th>Income</th>
+					<th>&nbsp&nbsp&nbsp</th>
+					<th>Employer</th>
+				</tr>
+				<tr>
+					<td>{{:data.account_balance}}</td>
+					<td>&nbsp&nbsp&nbsp</td>
+					<td>{{:data.account_wage}}</td>
+					<td>&nbsp&nbsp&nbsp</td>
+					<td>{{:data.account_alignment}}</td>
 				</tr>
 			</table>
 		</div>
+		{{if data.is_department_account}}
+			<table align="center">
+				{{if data.have_employees}}
+					<br><hr>
+					<tr>
+						<th><b>Employee</b></th><th> </th>
+						<th><b>Wage</b></th><th> </th>
+					</tr>
+					{{for data.account_employees}}
+						<tr>
+							<td>{{:value.employee_name}}</td> <td>{{:helper.link('Disavow', null, {'disavow' : value.employee_number})}}</td>
+							<td>{{:value.employee_wage}}</td> <td>{{:helper.link('Set wage', null, {'set_wage' : value.employee_number})}}</td>
+						</tr>
+					{{/for}}
+				{{else}}
+					<td><b>No employee accounts linked.</b></td>
+				{{/if}}
+			</table>
+		{{/if}}
+		<br><hr>
+		{{if data.is_aster_account}}
+			<td>{{:helper.link('Register new account', null, {'create_account' : 1})}}</td>
+		{{/if}}
+		{{if data.is_department_account}}
+			<td>{{:helper.link('Link employee account', null, {'link' : 1})}}</td>
+		{{else}}
+			<td>{{:helper.link('Resign', null, {'resign' : 1})}}</td>
+		{{/if}}
+		{{if data.is_guild_account}}
+			<td>{{:helper.link('Register account', null, {'create_account' : 1})}}</td>
+		{{/if}}
+			<td>{{:helper.link('Browse logs', null, {'logs' : 1})}}</td>
+			<td>{{:helper.link('Transfer funds', null, {'transfer' : 1})}}</td>
+			<td>{{:helper.link('Log out', null, {'log_out' : 1})}}</td>
 	{{/if}}
 {{else}}
-	{{if data.login_failed}}
-		<div align="center" style="margin-top: 15px;">
-			<div class="item"><b>An error has occurred</b></div>
-			<div class="item">Invalid Credentials.</div>
-			<table>
-				<tr>
-					<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
-				</tr>
-			</table>
-		</div>
-	{{else}}
 	<div align="center" style="margin-top: 15px;">
 		<div class='item'>
 			<div style="font-size: x-large;font-weight: bold;">TaxQuickly</div>
 			<div style="font-style: italic;">Managing your money since 2559</div>
+		</div>
+		<div class="item">
+			<div class="itemLabel">
+				Tax ID:
+			</div>
+			<div align="left" class="itemContent">
+				{{:data.stored_login}}&nbsp
+			</div>
 		</div>
 		<div class="item">
 			<div class="itemLabel">
@@ -65,5 +110,4 @@
 			</div>
 		</div>
 	</div>
-	{{/if}}
 {{/if}}

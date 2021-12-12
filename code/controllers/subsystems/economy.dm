@@ -65,9 +65,9 @@ SUBSYSTEM_DEF(economy)
 		LAZYAPLUS(department.pending_wages, A, A.wage)
 
 	//Lets request departmental funding next
-	for (var/d in GLOB.all_departments)
+	for(var/d in GLOB.all_departments)
 		var/datum/department/department = GLOB.all_departments[d]
-		if (department.account_budget)
+		if(department.account_budget)
 			department.pending_budget_total += department.account_budget
 		department.sum_wages() //Poke this in here to cache the wage totals
 
@@ -75,9 +75,9 @@ SUBSYSTEM_DEF(economy)
 //Step 2: Requesting funds
 //Here we attempt to transfer money from funding sources to department accounts
 /proc/request_payroll_funds()
-	for (var/d in GLOB.all_departments)
+	for(var/d in GLOB.all_departments)
 		var/datum/department/department = GLOB.all_departments[d]
-		if (department.funding_type == FUNDING_NONE)
+		if(department.funding_type == FUNDING_NONE)
 			continue //This department gets no funding
 
 		var/datum/money_account/source //Source account for internal funding
@@ -92,36 +92,36 @@ SUBSYSTEM_DEF(economy)
 		var/can_pay = FALSE
 
 		//External funding always succeeds
-		if (department.funding_type == FUNDING_EXTERNAL)
+		if(department.funding_type == FUNDING_EXTERNAL)
 			can_pay = TRUE
 			terminal = "Hansa Galactic Link" //Magical wireless money transfer
 
 		//Internal funding, from another account on the ship
-		else if (department.funding_type == FUNDING_INTERNAL)
+		else if(department.funding_type == FUNDING_INTERNAL)
 			//First lets get the source account, its probably a department account
 			source = department_accounts[department.funding_source]
-			if (!source)
+			if(!source)
 				//No? Maybe its been set to a personal account number
 				source = get_account(department.funding_source)
 
 
-			if (source)
+			if(source)
 				//Ok we have the account to draw from, next lets check if it has enough money
-				if (source.money >= total_request)
+				if(source.money >= total_request)
 					//It has enough, lets do this
 					can_pay = TRUE
 
-		if (can_pay)
+		if(can_pay)
 			var/paid = FALSE
 
 			//If its external, we use the deposit function to create money and put it in the department account
-			if (department.funding_type == FUNDING_EXTERNAL)
+			if(department.funding_type == FUNDING_EXTERNAL)
 				paid = deposit_to_account(department.account_number, department.funding_source, reason, terminal, total_request)
 
-			else if (department.funding_type == FUNDING_INTERNAL)
+			else if(department.funding_type == FUNDING_INTERNAL)
 				paid = transfer_funds(source.account_number, department.account_number, reason, terminal, total_request)
 
-			if (paid)
+			if(paid)
 				//The department has recieved its budget, so this is set zero now
 				department.pending_budget_total = 0
 		else
@@ -135,40 +135,40 @@ SUBSYSTEM_DEF(economy)
 //Step 3: Actually paying the wages
 /proc/pay_wages()
 	var/total_paid = 0
-	for (var/d in GLOB.all_departments)
+	for(var/d in GLOB.all_departments)
 		var/datum/department/department = GLOB.all_departments[d]
-		if (!department.pending_wage_total)
+		if(!department.pending_wage_total)
 			//No need to do anything if nobody's being paid here
 			continue
 
 		//Get our account
 		var/datum/money_account/account = department_accounts[department.id]
-		if (!account)
+		if(!account)
 			continue
 
 		//Check again that the department has enough. Because some departments, like guild, didnt request funds
-		if (account.money < department.pending_wage_total)
+		if(account.money < department.pending_wage_total)
 			//TODO Here: Email the account owner warning them that wages can't be paid
 			//Ok we can't pay wages, this is bad. Lets tell the account owner
 			var/ownername = account.owner_name
-			if (ownername)
+			if(ownername)
 				//Lets pull up the records for this person
 				var/datum/computer_file/report/crew_record/OR = get_crewmember_record(ownername)
-				if (OR)
+				if(OR)
 					payroll_failure_mail(OR, account, department.pending_wage_total)
 			continue
 
 		//Here we go, lets pay them!
-		for (var/datum/money_account/A in department.pending_wages)
+		for(var/datum/money_account/A in department.pending_wages)
 			var/paid = FALSE
 			//Get the crewman's account that we'll pay to
 			var/crew_account_num = A.account_number
 			var/amount = department.pending_wages[A]
 			paid = transfer_funds(department.account_number, crew_account_num, "Payroll", "CEV Eris payroll system", amount)
-			if (paid)
+			if(paid)
 				total_paid += amount
 				var/sender = "[department.name] account"
-				if (department.funding_type == FUNDING_INTERNAL)
+				if(department.funding_type == FUNDING_INTERNAL)
 					//If this wage was funded internally, make sure the recipient knows that
 					sender = "CEV Eris via [sender]"
 

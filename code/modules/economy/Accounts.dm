@@ -7,7 +7,9 @@
 	var/list/transaction_log = list()
 	var/suspended = 0
 	var/employer
-	var/wage
+	var/wage = 0
+	var/department_id // Easy identification for department accounts
+	var/can_make_accounts // Individual guild members and their departments authorized to register new accounts
 	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
@@ -77,7 +79,7 @@
 /datum/transaction/proc/Copy()
 	return new/datum/transaction(amount, target_name, purpose, source_terminal, date, time)
 
-/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db, department, wage)
+/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db, department, wage, aster_guild_member)
 
 	//create a new account
 	var/datum/money_account/M = new()
@@ -86,6 +88,7 @@
 	M.money = starting_funds
 	M.employer = department
 	M.wage = wage
+	M.can_make_accounts = aster_guild_member
 
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()

@@ -129,3 +129,4 @@
 	name = "Offship entities"
 	id = DEPARTMENT_OFFSHIP
 	account_budget = 0
+	funding_type = FUNDING_NONE
