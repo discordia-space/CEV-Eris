@@ -13,14 +13,14 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	desc = "A very smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 	item_state = "waiter"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/waiter/skirt
 	name = "waiter's skirtsuit"
-	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
+	desc = "A very smart uniform with a special pocket for tip and a skirt for female waiters."
 	icon_state = "waiter_skirt"
 	item_state = "waiter_skirt"
 	style = STYLE_LOW
@@ -358,6 +358,14 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/storage/tracksuit
+	name = "striped tracksuit"
+	desc = "A classic style for hoodlums and bandits."
+	icon_state = "tracksuit"
+	item_state = "tracksuit"
+	style = STYLE_HIGH
+	price_tag = 300
+
 /obj/item/clothing/under/raider
 	name = "leather outfit"
 	desc = "A rather resistant, generic leather outfit. Smells like waste"
@@ -373,6 +381,8 @@ obj/item/clothing/under/genericr
 		bio = 0,
 		rad = 0
 	)
+
+
 
 
 //Adminbus versions with extremly high armor, should never spawn in game

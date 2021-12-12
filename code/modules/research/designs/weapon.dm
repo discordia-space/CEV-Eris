@@ -58,6 +58,10 @@
 	build_path = /obj/item/grenade/chem_grenade/large/moebius
 	sort_string = "TACAA"
 
+/datum/design/research/item/weapon/clarissa
+	build_path = /obj/item/gun/projectile/selfload/moebius
+	sort_string = "TACAB"
+
 /datum/design/research/item/weapon/flora_gun
 	build_path = /obj/item/gun/energy/floragun
 	sort_string = "TBAAA"

@@ -17,7 +17,7 @@
 
 /obj/item/plantspray/weeds // -- Skie
 	name = "weed-spray"
-	desc = "It's a toxic mixture, in spray form, to kill small weeds."
+	desc = "A toxic mixture, in spray form, to kill small weeds."
 	icon_state = "weedspray"
 	weed_kill_str = 6
 

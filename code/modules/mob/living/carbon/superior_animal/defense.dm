@@ -176,6 +176,7 @@
 
 /mob/living/carbon/superior_animal/adjustBruteLoss(var/amount)
 	. = ..()
+	reagr_new_targets()
 	if (overkill_gib && (amount >= overkill_gib) && (getBruteLoss() >= maxHealth*2))
 		if (bodytemperature > T0C)
 			gib()
@@ -184,6 +185,11 @@
 	. = ..()
 	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
+
+/mob/living/carbon/superior_animal/proc/reagr_new_targets(reagr_radius = 1)
+	var/target = findTarget()
+	for(var/mob/living/carbon/superior_animal/SA in view(reagr_radius))
+		SA.target_mob = target
 
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
@@ -340,15 +346,20 @@
 
 	return 1
 
-/mob/living/carbon/superior_animal/handle_fire()
-	if(..())
-		return
-
-	var/burn_temperature = fire_burn_temperature()
-	var/thermal_protection = get_heat_protection(burn_temperature)
-
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
-		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
+/mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
+	// if its lower than 0 , just bring it back to 0
+	fire_stacks = fire_stacks > 0 ? min(0, ++fire_stacks) : fire_stacks
+	// branchless programming , faster than conventional the more we avoid if checks
+	var/handling_needed = on_fire && (fire_stacks < 0 || flammable_gas < 1)
+	if(handling_needed)
+		ExtinguishMob() //Fire's been put out.
+		return TRUE
+	if(!on_fire)
+		return FALSE
+	adjustFireLoss(2 * bodytemperature / max_bodytemperature * (1 - heat_protection)) // scaling with how much you are over your body temp
+	bodytemperature += fire_stacks * 5 * ( 1 - heat_protection )// 5 degrees per firestack
+	if(isturf(location))
+		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 
 /mob/living/carbon/superior_animal/update_fire()
 	remove_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))

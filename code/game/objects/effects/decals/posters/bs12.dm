@@ -92,7 +92,7 @@
 /datum/poster/bay_21
 	icon_state="bsposter21"
 	name = "Join the Fuzz!"
-	desc = "It's a nice recruitment poster of a white haired Chinese woman that says; \"Big Guns, Hot Women, Good Times. Security. We get it done.\""
+	desc = "A nice recruitment poster of a white haired Chinese woman that says; \"Big Guns, Hot Women, Good Times. Security. We get it done.\""
 
 /datum/poster/bay_22
 	icon_state="bsposter22"

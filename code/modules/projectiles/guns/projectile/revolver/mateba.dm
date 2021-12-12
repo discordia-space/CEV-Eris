@@ -5,12 +5,10 @@
 	icon_state = "mateba"
 	drawChargeMeter = FALSE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	price_tag = 3000 //more op and rare than miller, hits harder, but have fun with hittin anything
-	damage_multiplier = 1.35
+	price_tag = 3000 //more op and rare than miller, hits as hard as a Miller and doesn't struggle with armor, good luck finding it
+	damage_multiplier = 1.75
 	penetration_multiplier = 1.5
 	recoil_buildup = 6
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-	wield_delay = 0.5 SECOND
-	wield_delay_factor = 0.3 // 30 vig

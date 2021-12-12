@@ -32,13 +32,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		pixel_x += rand(-random_offset,random_offset)
 		pixel_y += rand(-random_offset,random_offset)
 
-
-
-/obj/effect/Destroy()
-	if(reagents)
-		reagents.delete()
-	return ..()
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
@@ -236,11 +229,11 @@ steam.start() -- spawns the effect
 	if (istype(M))
 		return 0
 	if (M.internal != null)
-		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
+		if(M.wear_mask && (M.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 			return 0
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.head && (H.head.item_flags & AIRTIGHT))
+			if(H.head && (H.head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 				return 0
 		return 0
 	return 1

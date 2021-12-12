@@ -29,7 +29,7 @@ var/global/list/random_junk
 		random_junk -= /obj/item/trash/material
 		random_junk -= /obj/item/trash/plate
 		random_junk -= /obj/item/trash/snack_bowl
-		random_junk -= /obj/item/trash/syndi_cakes
+		random_junk -= /obj/item/trash/wok
 		random_junk -= /obj/item/trash/tray
 	return pick(random_junk)
 

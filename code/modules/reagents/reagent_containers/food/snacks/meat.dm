@@ -54,7 +54,7 @@
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser
 	name = "Kaiser meat"
 	desc = "A slab of sickly-green meat of a kaiser roach, bubbling with unimaginable power. Delicious!"
-	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 12, "diplopterum" = 6)
+	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 4, "diplopterum" = 6, "kaiseraurum" = 16)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	name = "Jager meat"

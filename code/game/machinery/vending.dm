@@ -978,14 +978,12 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-	products = list(/obj/item/reagent_containers/food/snacks/candy = 6,/obj/item/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/reagent_containers/food/snacks/chips =6,
+	products = list(/obj/item/reagent_containers/food/snacks/shokoloud = 6,/obj/item/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/reagent_containers/food/snacks/chips =6,
 					/obj/item/reagent_containers/food/snacks/sosjerky = 6,/obj/item/reagent_containers/food/snacks/no_raisin = 6,/obj/item/reagent_containers/food/snacks/spacetwinkie = 6,
 					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/reagent_containers/food/snacks/tastybread = 6)
-	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
-	prices = list(/obj/item/reagent_containers/food/snacks/candy = 40,/obj/item/reagent_containers/food/drinks/dry_ramen = 45,/obj/item/reagent_containers/food/snacks/chips = 40,
+	prices = list(/obj/item/reagent_containers/food/snacks/shokoloud = 40,/obj/item/reagent_containers/food/drinks/dry_ramen = 45,/obj/item/reagent_containers/food/snacks/chips = 40,
 					/obj/item/reagent_containers/food/snacks/sosjerky = 45,/obj/item/reagent_containers/food/snacks/no_raisin = 40,/obj/item/reagent_containers/food/snacks/spacetwinkie = 40,
-					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 40, /obj/item/reagent_containers/food/snacks/tastybread = 50,
-					/obj/item/reagent_containers/food/snacks/syndicake = 60)
+					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 40, /obj/item/reagent_containers/food/snacks/tastybread = 50)
 	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/weapon_machine
@@ -1370,10 +1368,10 @@
 	icon_deny = "tool-deny"
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 5,/obj/item/tool/wirecutters = 3, /obj/item/tool/wirecutters/pliers = 3,
 					/obj/item/tool/wrench = 5,/obj/item/tool/hammer = 5,/obj/item/device/scanner/gas = 5,/obj/item/device/t_scanner = 5, /obj/item/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1,
-					/obj/item/storage/pouch/engineering_tools = 2, /obj/item/storage/pouch/engineering_supply = 2)
+					/obj/item/storage/pouch/engineering_tools = 2, /obj/item/storage/pouch/engineering_supply = 2, /obj/item/storage/pouch/engineering_material = 2)
 	prices = list(/obj/item/tool/hammer = 30,/obj/item/stack/cable_coil/random = 100,/obj/item/tool/crowbar = 30,/obj/item/tool/weldingtool = 50,/obj/item/tool/wirecutters = 30, /obj/item/tool/wirecutters/pliers = 30,
 					/obj/item/tool/wrench = 30,/obj/item/device/scanner/gas = 50,/obj/item/device/t_scanner = 50, /obj/item/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600,
-					/obj/item/storage/pouch/engineering_tools = 300, /obj/item/storage/pouch/engineering_supply = 600)
+					/obj/item/storage/pouch/engineering_tools = 300, /obj/item/storage/pouch/engineering_supply = 600, /obj/item/storage/pouch/engineering_material = 450)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -1527,6 +1525,9 @@
 					/obj/item/clothing/mask/balaclava = 50,
 					/obj/item/storage/hcases/ammo/serb = 10
 					)
+	contraband = list(
+					/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
+					)
 	prices = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
           			/obj/item/storage/deferred/crate/uniform_green = 2000,
@@ -1541,7 +1542,8 @@
 					/obj/item/ammo_magazine/sllrifle = 100,
 					/obj/item/storage/ration_pack = 800,
 					/obj/item/clothing/mask/balaclava = 100,
-					/obj/item/storage/hcases/ammo/serb = 300
+					/obj/item/storage/hcases/ammo/serb = 300,
+					/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski = 1800
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
@@ -1637,7 +1639,8 @@
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
 		/obj/item/clothing/suit/storage/triad = 2,
-		/obj/item/clothing/suit/storage/akira = 2
+		/obj/item/clothing/suit/storage/akira = 2,
+		/obj/item/clothing/under/storage/tracksuit = 4
 					)
 	prices = list(
 		/obj/item/clothing/mask/scarf/style = 250,
@@ -1663,6 +1666,7 @@
 		/obj/item/clothing/under/raider = 600,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
+		/obj/item/clothing/under/storage/tracksuit = 450,
 		/obj/item/clothing/head/skull/drip = 100000
 					)
 

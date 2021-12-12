@@ -48,15 +48,15 @@
 			list("hclacid" = 20) = 2,
 			list("potassium" = 20) = 2,
 			list("iron" = 20) = 2,
-			list("copper" = 20) = 2,
-			list("mercury" = 20) = 2,
-			list("radium" = 20) = 2,
 			list("water" = 20) = 2,
 			list("ethanol" = 20) = 2,
 			list("sugar" = 20) = 2,
+			list("copper" = 20) = 2,
+			list("mercury" = 20) = 2,
+			list("radium" = 20) = 2,
 			list("sacid" = 20) = 2,
 			list("tungsten" = 20) = 2,
-			list("vomitol" = 20) = 10)
+			list("mold" = 20) = 10)
 		var/list/picked_reagents = pickweight(random_reagent_list)
 		for(var/reagent in picked_reagents)
 			food.reagents.add_reagent(reagent, picked_reagents[reagent])

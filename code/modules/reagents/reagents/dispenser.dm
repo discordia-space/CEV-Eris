@@ -104,7 +104,7 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
-	sanity_gain_ingest = 0.5 //this defines how good eating/drinking the thing will make you feel
+	sanity_gain_ingest = 0.5 //this defines how good eating/drinking the thing will make you feel, scales off strength and strength mod(ethanol)
 	taste_tag = list()  // list the tastes the thing got there
 
 	glass_icon_state = "glass_clear"
@@ -445,7 +445,7 @@
 			L.take_damage(1, 0)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	
+
 /datum/reagent/sulfur
 	name = "Sulfur"
 	id = "sulfur"

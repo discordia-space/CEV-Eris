@@ -27,8 +27,6 @@
 		FULL_AUTO_800
 		)
 
-	wield_delay = 0.1 SECOND
-	wield_delay_factor = 0.05 // 5 vig
 
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
@@ -63,3 +61,8 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)
+
+/obj/item/gun/projectile/selfload/moebius
+	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
+	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
+	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'

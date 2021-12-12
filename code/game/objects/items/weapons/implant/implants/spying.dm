@@ -6,7 +6,8 @@
 
 /obj/item/implant/spying
 	name = "spying implant"
-	icon_state = "implant_evil"
+	icon_state = "implant_tracking"
+	implant_overlay = "implantstorage_tracking"
 	is_legal = FALSE
 	var/timer
 	var/datum/mind/owner

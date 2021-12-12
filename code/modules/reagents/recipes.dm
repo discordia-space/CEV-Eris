@@ -432,6 +432,11 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/spaceacilin_mold
+	result = "spaceacilin"
+	required_reagents = list("mold" = 1, "sugar" = 1, "acetone" = 1)
+	result_amount = 6
+
 /datum/chemical_reaction/imidazoline
 	result = "imidazoline"
 	required_reagents = list("carbon" = 1, "hydrazine" = 1, "anti_toxin" = 1)
@@ -2106,4 +2111,14 @@
 /datum/chemical_reaction/rejuvenating_agent
 	result = "rejuvenating_agent"
 	required_reagents = list("cleaner" = 2, "pacid" = 1, "sulfur" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/roachbeer
+	result = "roachbeer"
+	required_reagents = list("water" = 2, "diplopterum" = 1, "fuel" = 1, "beer" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/kaiserbeer
+	result = "kaiserbeer"
+	required_reagents = list("fuhrerole" = 1, "kaiseraurum" = 1, "roachbeer" = 2)
 	result_amount = 2

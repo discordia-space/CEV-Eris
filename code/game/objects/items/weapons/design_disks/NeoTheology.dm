@@ -93,6 +93,7 @@
 		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
+		/datum/design/bioprinter/engineering_material,
 		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
