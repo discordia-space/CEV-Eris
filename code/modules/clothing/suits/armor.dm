@@ -587,7 +587,7 @@
 	var/speed_boost_ready = TRUE
 	var/speed_boost_active = FALSE
 	var/speed_boost_power = -0.5
-	var/speed_boost_length = 15 SECONDS
+	var/speed_boost_length = 30 SECONDS
 	var/speed_boost_cooldown = 5 MINUTES
 	var/matching_helmet = /obj/item/clothing/head/armor/faceshield/paramedic
 
