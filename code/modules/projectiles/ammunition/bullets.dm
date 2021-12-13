@@ -469,7 +469,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/ammo_casing/rocket/scrap
-	desc = "An old PG-7VL grenade"
+	desc = "Scrap rocket"
 	icon_state = "old_rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket/scrap
 	caliber = CAL_ROCKET
