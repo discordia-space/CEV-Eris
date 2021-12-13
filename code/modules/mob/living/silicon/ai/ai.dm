@@ -174,6 +174,11 @@ var/list/ai_verbs_default = list(
 	//Languages
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
+	add_language(LANGUAGE_CYRILLIC, 1)
+	add_language(LANGUAGE_GERMAN, 1)
+	add_language(LANGUAGE_LATIN, 1)
+	add_language(LANGUAGE_NEOHONGO, 1)
+	add_language(LANGUAGE_SERBIAN, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -622,7 +627,7 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(W.has_quality(QUALITY_BOLT_TURNING))
 		if(anchored)
 			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40, src))
