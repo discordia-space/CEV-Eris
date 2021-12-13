@@ -58,7 +58,7 @@
 	id = DEPARTMENT_ENGINEERING
 
 /datum/department/civilian
-	name = "CEV Eris Civic"
+	name = "CEV Eris Civilian"
 	id = DEPARTMENT_CIVILIAN
 	//Now for the club
 
@@ -68,22 +68,22 @@
 *******************/
 //Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
-	name = "Moebius Corp: Medical Division"
+	name = "Moebius Laboratories: Medical Department"
 	id = DEPARTMENT_MEDICAL
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Moebius Corp."
+	funding_source = "Moebius Laboratories: Financial Department"
 
 /datum/department/moebius_research
-	name = "Moebius Corp: Research Division"
+	name = "Moebius Laboratories: Research Department"
 	id = DEPARTMENT_SCIENCE
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Moebius Corp."
+	funding_source = "Moebius Laboratories: Financial Department"
 
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
 	funding_type = FUNDING_NONE //The church on eris has no external funding. This further reinforces the theory that everyone on the CEV Eris is a reject of their factions
-	funding_source = "Church of NeoTheology"
+	funding_source = "New Rome"
 
 
 
