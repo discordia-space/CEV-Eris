@@ -15,15 +15,15 @@
 #define CREDS "&cent;"
 
 
-#define DEPARTMENT_COMMAND	"Command"
-#define DEPARTMENT_MEDICAL	"Medical"
-#define DEPARTMENT_ENGINEERING	"Engineering"
-#define DEPARTMENT_SCIENCE	"Science"
-#define DEPARTMENT_SECURITY "Security"
-#define DEPARTMENT_GUILD "Guild"
-#define DEPARTMENT_CIVILIAN	"Civilian"
-#define DEPARTMENT_CHURCH	"Church"
-#define DEPARTMENT_OFFSHIP "Offship"
+#define DEPARTMENT_COMMAND		"CEV Eris Command"
+#define DEPARTMENT_MEDICAL		"Moebius Laboratories: Medical Department"
+#define DEPARTMENT_ENGINEERING	"Technomancer League"
+#define DEPARTMENT_SCIENCE		"Moebius Laboratories: Research Department"
+#define DEPARTMENT_SECURITY		"Ironhammer Security"
+#define DEPARTMENT_GUILD		"Asters Guild"
+#define DEPARTMENT_CIVILIAN		"CEV Eris Civilian"
+#define DEPARTMENT_CHURCH		"Church of NeoTheology"
+#define DEPARTMENT_OFFSHIP		"Offship"
 
 #define ALL_DEPARTMENTS list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING, DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CIVILIAN, DEPARTMENT_CHURCH)
 #define ASTER_DEPARTMENTS list(DEPARTMENT_COMMAND, DEPARTMENT_GUILD)
