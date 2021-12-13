@@ -508,7 +508,6 @@
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
-	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/holding_tank/New()
 	..()
@@ -620,7 +619,6 @@
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
-	spawn_blacklisted = TRUE
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 
