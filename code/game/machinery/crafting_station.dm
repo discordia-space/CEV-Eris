@@ -85,7 +85,7 @@
 		".50 Shotgun Beanbag ammunition" = "bean",
 		".50 Shotgun Slug ammunition" = "slug",
 		".60 Anti-Material ammunition" = "antim",
-		"PG-7VL grenade" = "rocket",
+		"RPG shell" = "rocket",
 		"Gun parts" = "gunpart",
 		"Armor parts"= "armorpart",
 		)
