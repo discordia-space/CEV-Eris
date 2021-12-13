@@ -468,6 +468,19 @@
 	is_caseless = TRUE
 	w_class = ITEM_SIZE_NORMAL
 
+/obj/item/ammo_casing/rocket/scrap
+	desc = "An old PG-7VL grenade"
+	icon_state = "old_rocketshell"
+	projectile_type = /obj/item/projectile/bullet/rocket/scrap
+	caliber = CAL_ROCKET
+	maxamount = 1
+	reload_delay = 15
+	is_caseless = TRUE
+	w_class = ITEM_SIZE_NORMAL
+
+/obj/item/ammo_casing/rocket/scrap/prespawned
+	amount = 1
+
 /obj/item/ammo_casing/a75
 	desc = "A .70 bullet casing."
 	caliber = CAL_70

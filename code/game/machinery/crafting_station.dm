@@ -19,10 +19,11 @@
 	var/mat_efficiency = 15
 	var/storage_capacity = 40
 	var/list/stored_material = list()
-	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD)
+	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
 	var/list/needed_material_gunpart = list(MATERIAL_PLASTEEL = 5)
 	var/list/needed_material_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20,MATERIAL_CARDBOARD = 20)
 	var/list/needed_material_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
+	var/list/needed_material_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flicker_overlay/image_load
@@ -84,6 +85,7 @@
 		".50 Shotgun Beanbag ammunition" = "bean",
 		".50 Shotgun Slug ammunition" = "slug",
 		".60 Anti-Material ammunition" = "antim",
+		"PG-7VL grenade" = "rocket",
 		"Gun parts" = "gunpart",
 		"Armor parts"= "armorpart",
 		)
@@ -149,6 +151,12 @@
 				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
+		if("rocket")
+			for(var/material in needed_material_rocket)
+				var/amount = needed_material_rocket[material]
+				if(amount > stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
+					return
 		if("gunpart")
 			if(stored_material[MATERIAL_PLASTEEL] < needed_material_gunpart[MATERIAL_PLASTEEL])
 				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part."))
@@ -211,6 +219,10 @@
 				stored_material[_material] -= needed_material_ammo[_material]
 
 			spawn_antim(dice_roll,user)
+		if("rocket")
+			for(var/_material in needed_material_ammo)
+				stored_material[_material] -= needed_material_ammo[_material]
+			spawn_rocket(dice_roll,user)
 		if("shot")
 			for(var/_material in needed_material_ammo)
 				stored_material[_material] -= needed_material_ammo[_material]
@@ -444,6 +456,21 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
+/obj/machinery/craftingstation/proc/spawn_rocket(dice = 0, mob/user)	//All rifles use same spawning stats
+
+	var/piles = 0
+
+	switch(dice)
+		if(-99 to 0)	//if someone gets less than -99, they deserve the ammo
+			piles = 1
+		else
+			piles = 1 + round(dice/7-1,1)	//We can use math here because it's just piles
+
+	if(piles)
+		for(var/j = 1 to piles)
+			new /obj/item/ammo_casing/rocket/scrap/prespawned(user.loc)
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/craftingstation/proc/spawn_gunpart(dice = 0, mob/user)
 
 	var/parts = 0
@@ -519,7 +546,7 @@
 		return FALSE
 
 	if(stored_material[material] >= storage_capacity)
-		to_chat(user, SPAN_WARNING("The [src] are full of [material]."))
+		to_chat(user, SPAN_WARNING("The [src] is full of [material]."))
 		return FALSE
 
 	if(stored_material[material] + stack.amount > storage_capacity)
