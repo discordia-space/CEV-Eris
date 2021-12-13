@@ -517,7 +517,7 @@
 			H.EnterStasis()
 			if(H.mind && H.mind.initial_account)
 				var/datum/money_account/A = H.mind.initial_account
-				if(A.employer && A.wage_original) // Dicreace personnel budget of our department, if have one
+				if(A.employer && A.wage_original) // Dicrease personnel budget of our department, if have one
 					var/datum/money_account/EA = department_accounts[A.employer]
 					var/datum/department/D = GLOB.all_departments[A.employer]
 					if(D && EA)

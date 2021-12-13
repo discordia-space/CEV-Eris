@@ -48,14 +48,14 @@
 		if(!account)
 			popup_message = "<b>An error has occurred.</b><br> Invalid Credentials."
 			popup = TRUE
-			//create an entry in the account transaction log
+			// Create an entry in the account transaction log
 			var/datum/money_account/failed_account = get_account(account_num)
 			if(failed_account)
 				var/datum/transaction/T = new(0, failed_account.owner_name, "Unauthorised login attempt", name)
 				T.apply_to(failed_account)
 
 		else
-			//create a transaction log entry
+			// Create a transaction log entry
 			var/datum/transaction/T = new(0, account.owner_name, "Remote terminal access", name)
 			T.apply_to(account)
 			logined = TRUE
