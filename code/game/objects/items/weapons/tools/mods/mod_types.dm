@@ -435,6 +435,26 @@
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
 	I.prefix = "vibration-compensated"
 
+//onestar stabilizer
+/obj/item/tool_upgrade/refinement/gravenhancer
+	name = "Onestar Microgravity Stabilizer"
+	desc = "a strange large contraption, it appears to manipulate gravity around it to make a weapon or tool more stable at the cost of a larger size"
+	icon_state = "grav_enhancer"
+	SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
+
+/obj/item/tool_upgrade/refinement/gravenhancer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+	UPGRADE_PRECISION = 20)
+	UPGRADE_BULK = 1
+	I.weapon_upgrades = list(
+	GUN_UPGRADE_RECOIL = 0.3)
+	UPGRADE_BULK = 1
+	I.prefix = "gravity-stabilized"
+
+
 // 		AUGMENTS: MISCELLANEOUS AND UTILITY
 //------------------------------------------------
 
