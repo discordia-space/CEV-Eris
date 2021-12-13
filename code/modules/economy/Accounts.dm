@@ -6,8 +6,11 @@
 	var/money = 0
 	var/list/transaction_log = list()
 	var/suspended = 0
-	var/employer
-	var/wage = 0
+	var/employer // Linked department account's define. DEPARTMENT_COMMAND or some such
+	var/wage = 0 // How much money account should recieve on a payday
+	var/wage_original // Value passed from job datum on account creation
+	var/wage_manual = FALSE // If wage have been set manually. Prevents wage auto update on players joining/leaving deparment
+	var/debt = 0 // How much money employer owe us
 	var/department_id // Easy identification for department accounts
 	var/can_make_accounts // Individual guild members and their departments authorized to register new accounts
 	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
@@ -87,6 +90,7 @@
 	M.remote_access_pin = rand(1111, 9999)
 	M.money = starting_funds
 	M.employer = department
+	M.wage_original = wage
 	M.wage = wage
 	M.can_make_accounts = aster_guild_member
 
@@ -137,7 +141,16 @@
 	//add the account
 	M.transaction_log.Add(T)
 	all_money_accounts.Add(M)
+	personal_accounts.Add(M)
 
+	// Increase personnel budget of our department, if have one
+	if(department && wage)
+		var/datum/money_account/EA = department_accounts[department]
+		var/datum/department/D = GLOB.all_departments[department]
+		if(D && EA)
+			D.budget_personnel += wage
+			if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
+				EA.wage = (D.budget_base + D.budget_personnel)
 	return M
 
 //Charges an account a certain amount of money which is functionally just removed from existence

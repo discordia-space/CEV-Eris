@@ -515,6 +515,16 @@
 		if(ishuman(occupant) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
 			H.EnterStasis()
+			if(H.mind && H.mind.initial_account)
+				var/datum/money_account/A = H.mind.initial_account
+				if(A.employer && A.wage_original) // Dicreace personnel budget of our department, if have one
+					var/datum/money_account/EA = department_accounts[A.employer]
+					var/datum/department/D = GLOB.all_departments[A.employer]
+					if(D && EA)
+						D.budget_personnel -= A.wage_original
+						if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
+							EA.wage = (D.budget_base + D.budget_personnel)
+
 		new_occupant.forceMove(src)
 
 		if (notifications)

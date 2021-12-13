@@ -40,12 +40,20 @@
 					<th>&nbsp&nbsp&nbsp</th>
 					<th>Income</th>
 					<th>&nbsp&nbsp&nbsp</th>
+					<th>Debt</th>
+					<th>&nbsp&nbsp&nbsp</th>
+					<th>Handled</th>
+					<th>&nbsp&nbsp&nbsp</th>
 					<th>Employer</th>
 				</tr>
 				<tr>
 					<td>{{:data.account_balance}}</td>
 					<td>&nbsp&nbsp&nbsp</td>
 					<td>{{:data.account_wage}}</td>
+					<td>&nbsp&nbsp&nbsp</td>
+					<td>{{:data.account_debt}}</td>
+					<td>&nbsp&nbsp&nbsp</td>
+					<td>{{:data.is_manual_wage}}</td>
 					<td>&nbsp&nbsp&nbsp</td>
 					<td>{{:data.account_alignment}}</td>
 				</tr>
@@ -58,11 +66,15 @@
 					<tr>
 						<th><b>Employee</b></th><th> </th>
 						<th><b>Wage</b></th><th> </th>
+						<th><b>Debt</b></th><th> </th>
+						<th><b>Handled</b></th>
 					</tr>
 					{{for data.account_employees}}
 						<tr>
 							<td>{{:value.employee_name}}</td> <td>{{:helper.link('Disavow', null, {'disavow' : value.employee_number})}}</td>
 							<td>{{:value.employee_wage}}</td> <td>{{:helper.link('Set wage', null, {'set_wage' : value.employee_number})}}</td>
+							<td>{{:value.employee_debt}}</td> <td>{{:helper.link('Reset wage', null, {'reset_wage' : value.employee_number})}}</td>
+							<td>{{:value.employee_is_manual}}</td>
 						</tr>
 					{{/for}}
 				{{else}}

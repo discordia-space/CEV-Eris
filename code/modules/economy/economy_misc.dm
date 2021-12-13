@@ -61,9 +61,11 @@ var/global/current_date_string
 var/global/datum/money_account/vendor_account
 var/global/datum/money_account/station_account
 var/global/list/datum/money_account/department_accounts = list()
+var/global/list/datum/money_account/personal_accounts = list()
+var/global/list/datum/money_account/all_money_accounts = list()
 var/global/num_financial_terminals = 1
 var/global/next_account_number = 0
-var/global/list/all_money_accounts = list()
+
 var/global/list/transaction_devices = list()
 var/global/economy_init = 0
 
@@ -109,7 +111,7 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	department_account.account_name = "[department.name] Account"
 	department_account.account_number = rand(111111, 999999)
 	department.account_number = department_account.account_number
-
+	department_account.wage = (department.budget_base + department.budget_personnel)
 	department_account.remote_access_pin = rand(1111, 111111)
 	department.account_pin = department_account.remote_access_pin
 

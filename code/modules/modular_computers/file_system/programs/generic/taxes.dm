@@ -96,20 +96,45 @@
 	if(href_list["resign"])
 		account.employer = null
 		account.wage = null
+		account.debt = null
+		account.wage_manual = FALSE
 		return TOPIC_REFRESH
 
 	if(href_list["set_wage"])
 		var/datum/money_account/A = get_account(text2num(href_list["set_wage"]))
 		if(istype(A))
 			var/amount	= text2num(input(usr,"Set new wage", ""))
+			if(amount < 0) // Negative salaries is fun but better not
+				amount = 0
 			A.wage = amount
+			A.wage_manual = TRUE // Handle wage manually from now on
 		return TOPIC_REFRESH
 
-	if(href_list["disavow"])
+	if(href_list["reset_wage"])
+		var/datum/money_account/A = get_account(text2num(href_list["reset_wage"]))
+		if(istype(A))
+			if(A.department_id) // If department account, recalculate wage
+				var/datum/department/D = GLOB.all_departments[A.department_id]
+				A.wage = (D.budget_base + D.budget_personnel)
+			else // If personal account, set starting wage
+				A.wage = A.wage_original
+			A.wage_manual = FALSE // Handle wage authomatically from now on
+		return TOPIC_REFRESH
+
+	if(href_list["disavow"]) // Unlink that account and reset it's values
 		var/datum/money_account/A = get_account(text2num(href_list["disavow"]))
 		if(istype(A))
 			A.employer = null
-			A.wage = null
+			A.wage = 0
+			A.debt = 0
+			A.wage_manual = FALSE
+			if(A.department_id) // If it was linked and unlinked to account mid-round some values could break, resetting
+				var/datum/department/D = GLOB.all_departments[A.department_id]
+				D.funding_type = initial(D.funding_type)
+				D.funding_source = initial(D.funding_source)
+				if(D.funding_source == FUNDING_EXTERNAL) // If it was funded from external - restore that link
+					A.employer = initial(A.employer)
+					A.wage = (D.budget_base + D.budget_personnel)
 		return TOPIC_REFRESH
 
 	if(href_list["link"])
@@ -122,13 +147,21 @@
 			else if(A == account)
 				popup_message = "<b>An error has occurred.</b><br> Can't link an account to itself."
 				popup = TRUE
+			else if(A.department_id)
+				var/datum/department/D = GLOB.all_departments[A.department_id]
+				D.funding_type = FUNDING_INTERNAL
+				D.funding_source = account.department_id
+				A.employer = account.department_id
+				A.wage_manual = FALSE
+				A.wage = (D.budget_base + D.budget_personnel)
 			else
 				A.employer = account.department_id
+				A.wage_manual = FALSE
 		return TOPIC_REFRESH
 	
 	if(href_list["create_account"])
 		if(account.money < account_registration_fee)
-			popup_message = "<b>An error has occurred.</b><br> Can't afford account registration fee. Try again when you're a little richer."
+			popup_message = "<b>An error has occurred.</b><br> Can't afford account registration fee.<br> Try again when you're a little richer."
 			popup = TRUE
 			return TOPIC_REFRESH
 
@@ -149,6 +182,7 @@
 
 		M.transaction_log.Add(T)
 		all_money_accounts.Add(M)
+		personal_accounts.Add(M)
 
 		charge_to_account(account.account_number, account_name, "Account registration fee", name, account_registration_fee)
 		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won’t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
@@ -167,6 +201,7 @@
 	data["logined"] = logined
 	data["browsing_logs"] = browsing_logs
 
+	data["is_manual_wage"] = FALSE
 	data["is_department_account"] = FALSE
 	data["is_aster_account"] = FALSE
 	data["have_employees"] = FALSE
@@ -174,6 +209,7 @@
 	data["account_employees"] = "N/A"
 	data["account_owner"] = "N/A"
 	data["account_balance"] = "N/A"
+	data["account_debt"] = "N/A"
 	data["account_wage"] = "N/A"
 	data["account_alignment"] = "N/A"
 	data["account_logs"] = "N/A"
@@ -181,9 +217,11 @@
 	if(account)
 		data["account_owner"] = account.get_name()
 		data["account_balance"] = account.money
+		data["account_debt"] = account.debt? account.debt : "None"
 		data["account_wage"] = account.wage? account.wage : "None"
 		data["account_alignment"] = account.employer? account.employer : "None"
 		data["is_aster_account"] = account.can_make_accounts
+		data["is_manual_wage"] = account.wage_manual? "Manually" : "Automatically"
 
 		if(account.department_id)
 			data["is_department_account"] = TRUE
@@ -193,7 +231,9 @@
 					employee_accounts.Add(list(list(
 					"employee_number" = A.account_number,
 					"employee_name" = A.get_name(),
-					"employee_wage" = A.wage? A.wage : "None")))
+					"employee_debt" = A.debt? A.debt : "None",
+					"employee_wage" = A.wage? A.wage : "None",
+					"employee_is_manual" = A.wage_manual? "Manually" : "Automatically")))
 			if(employee_accounts.len)
 				data["have_employees"] = TRUE
 				data["account_employees"] = employee_accounts
