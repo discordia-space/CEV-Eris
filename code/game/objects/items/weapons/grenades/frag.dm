@@ -43,3 +43,13 @@
 	matter = list(MATERIAL_BIOMATTER = 75)
 	fragment_damage = 7
 	damage_step = 3
+
+/obj/item/grenade/frag/pipebomb
+	name = "Improvised Pipebomb"
+	desc = "A metal tube with wires taped to its side. Throw at authority."
+	icon_state = "frag_pipebomb"
+	item_state = "frggrenade_pipebomb"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 1) //plastic comes from the wiring and assembly
+	fragment_damage = 2
+	damage_step = 4
+
