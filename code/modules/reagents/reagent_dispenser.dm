@@ -36,7 +36,7 @@
 	else if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
 
-	else if(QUALITY_BOLT_TURNING in W.tool_qualities && user.a_intent = I_HELP)
+	else if(QUALITY_BOLT_TURNING in W.tool_qualities && user.a_intent == I_HELP)
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.add_fingerprint(user)
 			if(anchored)
