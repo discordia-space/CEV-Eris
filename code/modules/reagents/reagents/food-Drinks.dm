@@ -282,7 +282,6 @@
 	taste_description = "hot peppers"
 	taste_mult = 1.5
 	reagent_state = LIQUID
-	nutriment_factor = 0.8
 	color = "#B31008"
 	var/agony_dose = 5
 	var/agony_amount = 2
@@ -294,6 +293,7 @@
 	M.adjustToxLoss(0.05 * effect_multiplier)
 
 /datum/reagent/organic/capsaicin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.adjustNutrition(0.8 * effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & (NO_PAIN)))
