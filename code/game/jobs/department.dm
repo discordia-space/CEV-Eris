@@ -68,22 +68,22 @@
 *******************/
 //Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
-	name = "Moebius Laboratories: Medical Department"
+	name = "Moebius Corp: Medical Division"
 	id = DEPARTMENT_MEDICAL
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Moebius Laboratories: Financial Department"
+	funding_source = "Moebius Corp."
 
 /datum/department/moebius_research
-	name = "Moebius Laboratories: Research Department"
+	name = "Moebius Corp: Research Division"
 	id = DEPARTMENT_SCIENCE
 	funding_type = FUNDING_EXTERNAL
-	funding_source = "Moebius Laboratories: Financial Department"
+	funding_source = "Moebius Corp."
 
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
 	funding_type = FUNDING_NONE //The church on eris has no external funding. This further reinforces the theory that everyone on the CEV Eris is a reject of their factions
-	funding_source = "New Rome"
+	funding_source = "Church of NeoTheology"
 
 
 
