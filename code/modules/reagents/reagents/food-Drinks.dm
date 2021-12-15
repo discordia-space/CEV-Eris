@@ -82,6 +82,7 @@
 	taste_description = "sweetness"
 	nutriment_factor = 4
 	color = "#FFFF00"
+	sanity_gain_ingest = 0.5 //tasty
 	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
 /datum/reagent/organic/nutriment/flour
@@ -107,6 +108,7 @@
 	taste_mult = 1.3
 	reagent_state = SOLID
 	nutriment_factor = 2
+	sanity_gain_ingest = 0.5 // endorphins
 	color = "#302000"
 	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
@@ -150,6 +152,7 @@
 	taste_mult = 1.3
 	reagent_state = LIQUID
 	nutriment_factor = 0.4
+	sanity_gain_ingest = 0.5
 	color = "#801E28"
 	taste_tag = list(TASTE_SLIMEY)
 
@@ -188,8 +191,10 @@
 	taste_mult = 2
 	reagent_state = LIQUID
 	nutriment_factor = 0.8
+	sanity_gain_ingest = 0 //Yucky
 	color = "#899613"
 	taste_tag = list(TASTE_SOUR)
+
 /datum/reagent/organic/nutriment/sprinkles
 	name = "Sprinkles"
 	id = "sprinkles"
@@ -227,6 +232,7 @@
 	description = "A salt made of sodium chloride. Commonly used to season food."
 	taste_description = "salt"
 	reagent_state = SOLID
+	sanity_gain_ingest = 0.05 //seasoning
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
 
@@ -236,8 +242,9 @@
 	description = "A powder ground from peppercorns. Used in many medicinal and beauty products."
 	taste_description = "pepper"
 	reagent_state = SOLID
+	sanity_gain_ingest = 0.05 //ditto
 	color = "#000000"
-	taste_tag = list(TASTE_SPICY,)
+	taste_tag = list(TASTE_SPICY)
 
 /datum/reagent/organic/enzyme
 	name = "Universal Enzyme"
@@ -275,6 +282,7 @@
 	taste_description = "hot peppers"
 	taste_mult = 1.5
 	reagent_state = LIQUID
+	nutriment_factor = 0.8
 	color = "#B31008"
 	var/agony_dose = 5
 	var/agony_amount = 2
@@ -387,6 +395,7 @@
 	id = "drink"
 	description = "Uh, some kind of drink."
 	reagent_state = LIQUID
+	sanity_gain_ingest = 0.2 //Less effective than alcohol but more obtainable and no downsides (usually)
 	color = "#E78108"
 	var/nutrition = 0 // Per metabolism tick
 	var/adj_dizzy = 0 // Per metabolism tick
@@ -622,6 +631,7 @@
 	id = "tea"
 	description = "Tasty black tea. Contains caffeine."
 	taste_description = "tart black tea"
+	sanity_gain_ingest = 0.25 //calming
 	color = "#AC3700"
 	adj_dizzy = -2
 	adj_drowsy = -1
@@ -747,6 +757,7 @@
 	id = "cafe_latte"
 	description = "A nice, strong and tasty beverage while you are reading."
 	taste_description = "bitter cream"
+	sanity_gain_ingest = 0.25
 	color = "#664300" // rgb: 102, 67, 0
 	adj_temp = 5
 	taste_tag = list(TASTE_BITTER)
@@ -767,6 +778,7 @@
 	description = "A heated drink consisting melted chocolate and heated milk."
 	taste_description = "creamy chocolate"
 	reagent_state = LIQUID
+	sanity_gain_ingest = 0.25
 	color = "#403010"
 	nutrition = 2
 	adj_temp = 5
@@ -1021,6 +1033,7 @@
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
 	taste_description = "homely fruit"
 	reagent_state = LIQUID
+	sanity_gain_ingest = 0.5 //Delightful
 	color = "#FF8CFF"
 	nutrition = 1
 	taste_tag = list(TASTE_SWEET)
@@ -1048,6 +1061,7 @@
 	taste_description = "dry and cheap noodles"
 	reagent_state = SOLID
 	nutrition = 1
+	sanity_gain_ingest = 0.1
 	color = "#302000"
 	taste_tag = list(TASTE_SLIMEY)
 
@@ -1057,6 +1071,7 @@
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	taste_description = "wet and cheap noodles"
 	reagent_state = LIQUID
+	sanity_gain_ingest = 0.3
 	color = "#302000"
 	nutrition = 5
 	adj_temp = 5
@@ -1068,6 +1083,7 @@
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	taste_description = "wet and cheap noodles on fire"
 	reagent_state = LIQUID
+	sanity_gain_ingest = 0.3
 	color = "#302000"
 	nutrition = 5
 	taste_tag = list(TASTE_SLIMEY,TASTE_SPICY)
@@ -1083,6 +1099,7 @@
 	taste_description = "ice"
 	taste_mult = 1.5
 	reagent_state = SOLID
+	sanity_gain_ingest = 0 //it's just water
 	color = "#619494"
 	adj_temp = -5
 	taste_tag = list(TASTE_REFRESHING)
@@ -1097,6 +1114,7 @@
 	id = "nothing"
 	description = "Absolutely nothing."
 	taste_description = "nothing"
+	sanity_gain_ingest = 0 //Nothing
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "nothing"
