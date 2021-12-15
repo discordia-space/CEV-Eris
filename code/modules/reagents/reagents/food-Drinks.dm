@@ -529,7 +529,7 @@
 	id = "poisonberryjuice"
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
 	taste_description = "berries"
-	sanity_gain_ingest = 0 //bad for you
+	sanity_gain_ingest = 0.8 //Bad for your health but good for your mental state
 	color = "#863353"
 	strength = 5
 
@@ -2142,6 +2142,7 @@
 	id = "pwine"
 	description = "Is this even wine? Toxic! Hallucinogenic! Probably consumed in boatloads by your superiors!"
 	taste_description = "purified alcoholic death"
+	sanity_gain_ingest = 2 // With risk comes reward 
 	color = "#000000"
 	strength = 1
 	druggy = 50
