@@ -124,7 +124,7 @@
 // Dimmer switch
 /obj/machinery/light_switch/dimmer_switch
 	name = "dimmer switch"
-	var/input_color = area.area_light_color
+	var/input_color = COLOR_LIGHTING_DEFAULT_BRIGHT
 
 /obj/machinery/light_switch/dimmer_switch/attack_hand(mob/user)
 	return ui_interact(user)
