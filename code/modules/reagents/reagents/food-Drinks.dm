@@ -529,6 +529,7 @@
 	id = "poisonberryjuice"
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
 	taste_description = "berries"
+	sanity_gain_ingest = 0 //bad for you
 	color = "#863353"
 	strength = 5
 
@@ -738,6 +739,7 @@
 	id = "soy_latte"
 	description = "A coffee drink made with espresso and steamed soy milk."
 	taste_description = "creamy coffee"
+	sanity_gain_ingest = 0.25
 	color = "#664300"
 	adj_temp = 5
 	taste_tag = list(TASTE_BITTER)
