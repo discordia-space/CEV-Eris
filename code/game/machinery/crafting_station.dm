@@ -458,7 +458,7 @@
 
 /obj/machinery/craftingstation/proc/spawn_rocket(dice = 0, mob/user)	//All rifles use same spawning stats
 
-	var/piles = 0
+	var/piles
 
 	switch(dice)
 		if(-99 to 0)	//if someone gets less than -99, they deserve the ammo
