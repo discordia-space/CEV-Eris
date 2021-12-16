@@ -461,10 +461,10 @@
 	var/piles
 
 	switch(dice)
-		if(-99 to 0)	//if someone gets less than -99, they deserve the ammo
+		if(-99 to 20)
 			piles = 1
-		else
-			piles = 1 + round(dice/7-1,1)	//We can use math here because it's just piles
+		if(20 to 50)
+			piles = 2
 
 	if(piles)
 		for(var/j = 1 to piles)
