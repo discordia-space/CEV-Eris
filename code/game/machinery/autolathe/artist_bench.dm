@@ -167,6 +167,7 @@
 			if("sniper")//From sniper.dm, Arbitrary values
 				R.caliber = CAL_ANTIM
 				R.damage_multiplier = 0.55 + rand(-3,3)/20
+				R.penetration_multiplier = 1.0
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 				R.one_hand_penalty = 10 + rand(-3,5) //From sniper.dm, Temporary values
@@ -174,10 +175,13 @@
 
 			if("rocket")//From RPG.dm, Arbitrary values
 				R.caliber = CAL_ROCKET
+				R.damage_multiplier = 1.0
+				R.penetration_multiplier = 1.0
 				R.fire_sound = 'sound/effects/bang.ogg'
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
-				R.recoil_buildup = 0.2 + rand(-1,1)/10
+				R.recoil_buildup = 3 + rand(-1,1)
+
 
 			//No gun currently uses CAL_357 far as I know
 			//	if("revolver")
