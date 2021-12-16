@@ -71,7 +71,8 @@
 	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen's headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
 			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of Nanotrasen and never recovered. \
 			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NeoTheology desperately trying to revive the ecosphere artificially with biomatter technology. \
-			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live. Gives you knowledge of the Latin language."
+			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live. \
+			Gives you knowledge of the Latin language."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -92,7 +93,8 @@
 	desc = "Founded by a Japanese megacorporation, Shimatengoku was - and still is - a high tech paradise. With 95% of its surface covered in seawater, its residents mostly live on islands, or drift along on gigantic oceanborne colonies. \
 			When the time of the Corporation War came, Shimatengoku made the wise decision to side with the Syndicate, and prospered immensely as a result. \
 			While there is a local government administration, the planet is mostly controlled by Frozen Star, an enormous company that is responsible for producing most of the military products found in Hanza. \
-			Frozen Star itself is owned by a family with ties to the Yakuza, organized crime syndicates originating from old Earth's Japan. Fittingly, is a cruelly efficient place. Gives you knowledge of the Neohongo language."
+			Frozen Star itself is owned by a family with ties to the Yakuza, organized crime syndicates originating from old Earth's Japan. Fittingly, is a cruelly efficient place. \
+			Gives you knowledge of the Neohongo language."
 
 	stat_modifiers = list(
 		STAT_ROB = -6,
