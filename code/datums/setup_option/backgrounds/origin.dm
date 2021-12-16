@@ -11,7 +11,8 @@
 	desc = "An independent colony founded by German immigrants from old Earth and consisting of one giant hive city on a barren desert planet. \
 			It was once one of the most promising of colonies, back when the terraforming process had just begun; a group of scientists gathered together to forge a brighter future. \
 			Now, after a stalemated civil war, Oberth has degenerated into an anarcho-capitalist hell ruled by three governments, all unable to establish control over the city or stop ravaging band wars. \
-			Even Hanza and NeoTheology failed to bring order. Though still a place of infinite possibilities, most of them are illegal. Gives you knowledge of the German language."
+			Even Hanza and NeoTheology failed to bring order. Though still a place of infinite possibilities, most of them are illegal. \
+			Gives you knowledge of the German language."
 
 	stat_modifiers = list(
 		STAT_ROB = 6,
@@ -33,7 +34,8 @@
 			Unfortunately, that idea failed miserably and is still failing. \
 			A jungle death world, full of hostile fauna and mired in endless armed conflict. \
 			The Serbian government occupied all of Predstraza's space ports and controls most of the civilized regions. \
-			Located far from Hanza or NT territories, it's a place favored for business by pirates, smugglers and all manner of outlaw. Gives you knowledge of the Serbian language."
+			Located far from Hanza or NT territories, it's a place favored for business by pirates, smugglers and all manner of outlaw. \
+			Gives you knowledge of the Serbian language."
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
