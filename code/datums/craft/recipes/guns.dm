@@ -3,6 +3,14 @@
 	time = 25
 	related_stats = list(STAT_MEC)
 
+/datum/craft_recipe/gun/guns_craft_frame
+	name = "Gun assembly"
+	result = /obj/item/craft_frame/guns
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 10)
+	)
+
 /datum/craft_recipe/gun/pistol
 	name = "Handmade gun"
 	result = /obj/item/gun/projectile/handmade_pistol
