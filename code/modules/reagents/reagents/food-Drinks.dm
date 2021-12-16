@@ -191,7 +191,7 @@
 	taste_mult = 2
 	reagent_state = LIQUID
 	nutriment_factor = 0.8
-	sanity_gain_ingest = 0 //Yucky
+	sanity_gain_ingest = -0.3 //Yucky
 	color = "#899613"
 	taste_tag = list(TASTE_SOUR)
 
