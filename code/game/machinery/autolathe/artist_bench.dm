@@ -133,7 +133,7 @@
 			"magnum" = 8 + weight_vigilance,
 			"shotgun" = 8 + weight_robustness,
 			"rifle" = 8 + weight_vigilance,
-			"sniper" = 8 + max(weight_vigilance + weight_cognition),
+			"sniper" = 8 + max(weight_vigilance, weight_cognition),
 			"rocket" = 8 + weight_toughness
 		))
 
