@@ -143,13 +143,13 @@
 				R.caliber = pick(CAL_PISTOL)
 				R.damage_multiplier = 1.4 + rand(-5,5)/10
 				R.penetration_multiplier = 1.4 + rand(-5,5)/10
-				R.recoil_buildup = 3 + rand(-3,3)
+				R.recoil_buildup = 3 + rand(-3,3)/5
 
 			if("magnum") //From consul.dm, Arbitrary values
 				R.caliber = CAL_MAGNUM
 				R.damage_multiplier = 1.35 + rand(-5,5)/10
 				R.penetration_multiplier = 1.5 + rand(-5,5)/10
-				R.recoil_buildup = 6 + rand(-5,5)
+				R.recoil_buildup = 6 + rand(-6,6)/5
 
 			if("shotgun") //From bull.dm, Arbitrary values
 				R.caliber = CAL_SHOTGUN
