@@ -20,7 +20,8 @@
 	var/account_pin
 	var/datum/money_account/account
 
-	var/account_registration_fee = 500 // Not sure where this belong
+	var/account_registration_fee = 500
+	var/department_registration_fee = 2000
 
 
 /datum/nano_module/program/tax/Topic(href, href_list)
@@ -160,21 +161,56 @@
 		return TOPIC_REFRESH
 	
 	if(href_list["create_account"])
-		if(account.money < account_registration_fee)
+		var/account_type = alert("Personal account have all basic functionality and cost [account_registration_fee] credits. Department account additionally can add other accounts to authomated payroll and cost [department_registration_fee] credits.", "Account Registration", "Personal", "Department", "Cancel")
+		var/registration_fee
+		var/is_department
+		switch(account_type)
+			if("Personal")
+				registration_fee = account_registration_fee
+
+			if("Department")
+				registration_fee = department_registration_fee
+				is_department = TRUE
+
+			if("Cancel")
+				return TOPIC_HANDLED
+
+		if(account.money < registration_fee)
 			popup_message = "<b>An error has occurred.</b><br> Can't afford account registration fee.<br> Try again when you're a little richer."
 			popup = TRUE
 			return TOPIC_REFRESH
 
-		var/account_name = input(usr,"Enter account owner's name", "Account Registration")
+		var/owner_name = input(usr,"Enter account owner name", "Account Registration") as text|null
+		if(!owner_name)
+			popup_message = "<b>An error has occurred.</b><br> Invalid account name."
+			popup = TRUE
+			return TOPIC_REFRESH
 
 		var/datum/money_account/M = new()
-		M.owner_name = account_name
+		M.owner_name = owner_name
 		M.remote_access_pin = rand(1111, 9999)
 		M.account_number = next_account_number
 		next_account_number += rand(1,25)
 
+		if(is_department)
+			var/account_name = input(usr,"Enter department name", "Account Registration") as text|null
+			if(!account_name)
+				account_name = owner_name
+
+			var/department_id = uppertext("department_[account_name]")
+			var/datum/department/D = new()
+			D.name = account_name
+			D.id = department_id
+			D.account_number = M.account_number
+			D.account_pin = M.remote_access_pin
+			GLOB.all_departments.Add(D)
+
+			M.account_name = account_name
+			M.department_id = department_id
+			M.can_make_accounts = TRUE
+
 		var/datum/transaction/T = new()
-		T.target_name = account_name
+		T.target_name = owner_name
 		T.purpose = "Account creation"
 		T.date = current_date_string
 		T.time = stationtime2text()
@@ -184,7 +220,7 @@
 		all_money_accounts.Add(M)
 		personal_accounts.Add(M)
 
-		charge_to_account(account.account_number, account_name, "Account registration fee", name, account_registration_fee)
+		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
 		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won’t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
 		popup = TRUE
 		return TOPIC_REFRESH
