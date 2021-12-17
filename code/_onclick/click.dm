@@ -149,6 +149,10 @@
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
 
+	if(W && !W.can_use_lying && src.lying)
+		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
+		return 1
+
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()

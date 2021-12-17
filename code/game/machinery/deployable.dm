@@ -132,12 +132,47 @@ for reference:
 			return
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
+
+	if(istype(mover,/obj/item/projectile))
+		return (check_cover(mover,target))
+
 	if(air_group || (height==0))
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	else
 		return 0
+
+/obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
+	var/turf/cover
+	cover = get_step(loc, get_dir(from, loc))
+	if(!cover)
+		return 1
+	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
+		return 1
+	if (get_turf(P.original) == cover)
+		var/valid = FALSE
+		var/distance = get_dist(P.last_interact,loc)
+		P.check_hit_zone(loc, distance)
+
+		var/targetzone = check_zone(P.def_zone)
+		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+			valid = TRUE //The lower body is always concealed
+		if (ismob(P.original))
+			var/mob/M = P.original
+			if (M.lying)
+				valid = TRUE			//Lying down covers your whole body
+		if(valid)
+			var/pierce = P.check_penetrate(src)
+			health -= P.get_structure_damage()/2
+			if (health > 0)
+				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+				return pierce
+			else
+				visible_message(SPAN_WARNING("[src] breaks down!"))
+				qdel(src)
+				return 1
+	return 1
 
 //Actual Deployable machinery stuff
 /obj/machinery/deployable
@@ -153,8 +188,8 @@ for reference:
 	anchored = FALSE
 	density = TRUE
 	icon_state = "barrier0"
-	var/health = 100
-	var/maxhealth = 100
+	var/health = 300
+	var/maxhealth = 300
 	var/locked = FALSE
 //	req_access = list(access_maint_tunnels)
 
@@ -227,6 +262,10 @@ for reference:
 		icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
+
+	if(istype(mover,/obj/item/projectile))
+		return (check_cover(mover,target))
+
 	if(air_group || (height==0))
 		return 1
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -269,3 +308,34 @@ for reference:
 		s.start()
 		visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
 		return 1
+
+/obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
+	var/turf/cover
+	cover = get_step(loc, get_dir(from, loc))
+	if(!cover)
+		return 1
+	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
+		return 1
+	if (get_turf(P.original) == cover)
+		var/valid = FALSE
+		var/distance = get_dist(P.last_interact,loc)
+		P.check_hit_zone(loc, distance)
+
+		var/targetzone = check_zone(P.def_zone)
+		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+			valid = TRUE //The lower body is always concealed
+		if (ismob(P.original))
+			var/mob/M = P.original
+			if (M.lying)
+				valid = TRUE			//Lying down covers your whole body
+		if(valid)
+			var/pierce = P.check_penetrate(src)
+			health -= P.get_structure_damage()/2
+			if (health > 0)
+				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+				return pierce
+			else
+				visible_message(SPAN_WARNING("[src] breaks down!"))
+				qdel(src)
+				return 1
+	return 1
