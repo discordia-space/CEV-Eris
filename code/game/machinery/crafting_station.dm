@@ -598,10 +598,57 @@
 	work_time = initial(work_time) - 2 * (man_rating - 1) SECONDS
 	mat_efficiency = initial(mat_efficiency) - (1.5 ^ las_rating)
 
-/obj/machinery/autolathe/on_deconstruction()
+/obj/machinery/craftingstation/on_deconstruction()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
 	..()
+
+//Autolathes can eject decimal quantities of material as a shard
+/obj/machinery/craftingstation/proc/eject(material, amount)
+	if(!(material in stored_material))
+		return
+
+	if(!amount)
+		return
+
+	var/material/M = get_material_by_name(material)
+
+	if(!M.stack_type)
+		return
+	amount = min(amount, stored_material[material])
+
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
+
+	if(whole_amount)
+		var/obj/item/stack/material/S = new M.stack_type(drop_location())
+
+		//Accounting for the possibility of too much to fit in one stack
+		if(whole_amount <= S.max_amount)
+			S.amount = whole_amount
+			S.update_strings()
+			S.update_icon()
+		else
+			//There's too much, how many stacks do we need
+			var/fullstacks = round(whole_amount / S.max_amount)
+			//And how many sheets leftover for this stack
+			S.amount = whole_amount % S.max_amount
+
+			if(!S.amount)
+				qdel(S)
+
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
+				MS.amount = MS.max_amount
+				MS.update_strings()
+				MS.update_icon()
+
+	//And if there's any remainder, we eject that as a shard
+	if(remainder)
+		new /obj/item/material/shard(drop_location(), material, _amount = remainder)
+
+	//The stored material gets the amount (whole+remainder) subtracted
+	stored_material[material] -= amount
 
 #undef WORK
 #undef DONE
