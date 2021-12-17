@@ -1,0 +1,4 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Some materials will form regular-looking walls now.

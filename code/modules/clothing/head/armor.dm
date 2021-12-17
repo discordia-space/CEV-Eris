@@ -627,6 +627,7 @@
 	if(!ishuman(loc))
 		return
 
+
 	var/mob/living/carbon/human/user = loc
 
 	var/list/crewmembers = list()

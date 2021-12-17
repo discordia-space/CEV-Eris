@@ -1,0 +1,5 @@
+author: Kegdo and Humonitarian
+delete-after: true
+changes:
+  - rscadd: disarm deals recoil, scales off of ROB from both the attacker and target,
+      wielding matters

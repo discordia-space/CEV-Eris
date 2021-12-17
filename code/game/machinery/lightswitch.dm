@@ -120,3 +120,41 @@
 		return
 	power_change()
 	..(severity)
+
+// Dimmer switch
+/obj/machinery/light_switch/dimmer_switch
+	name = "dimmer switch"
+	var/input_color = COLOR_LIGHTING_DEFAULT_BRIGHT
+
+/obj/machinery/light_switch/dimmer_switch/attack_hand(mob/user)
+	return ui_interact(user)
+
+/obj/machinery/light_switch/dimmer_switch/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+	var/data = list()
+	data["on"] = on
+	data["input_color"] = input_color
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "dimmer_switch.tmpl", "[name]", 200, 120)
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/machinery/light_switch/dimmer_switch/Topic(href, href_list)
+	if(..())
+		return TRUE
+
+	usr.set_machine(src)
+	if (href_list["on"])
+		forceful_toggle = TRUE
+		set_on(!on)
+		. = TRUE
+	if(href_list["input_color"])
+		input_color = input("Choose a color.", name, input_color) as color|null
+		area.area_light_color = input_color
+		for(var/obj/machinery/light/L in area)
+			L.reset_color()
+		. = TRUE
+	if(.)
+		SSnano.update_uis(src)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
