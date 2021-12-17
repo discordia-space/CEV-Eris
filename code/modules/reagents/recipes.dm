@@ -432,8 +432,8 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/spaceacilin_mold
-	result = "spaceacilin"
+/datum/chemical_reaction/spaceacillin_mold
+	result = "spaceacillin"
 	required_reagents = list("mold" = 1, "sugar" = 1, "acetone" = 1)
 	result_amount = 6
 
