@@ -1,0 +1,5 @@
+author: Hatterhat
+delete-after: true
+changes:
+  - bugfix: Crafting stations should now, theoretically, drop their loaded materials
+      when deconstructed.
