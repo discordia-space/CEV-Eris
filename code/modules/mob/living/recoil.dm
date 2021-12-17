@@ -7,6 +7,12 @@
 		recoil += G.recoil_buildup
 		update_recoil()
 
+/mob/living/proc/external_recoil(var/recoil_amount) //used in human_attackhand.dm
+	deltimer(recoil_reduction_timer)
+	if(recoil_amount)
+		recoil += recoil_amount
+		update_recoil()
+
 /mob/living/proc/calc_recoil()
 
 	if(recoil >= 10)
