@@ -469,7 +469,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/ammo_casing/rocket/scrap
-	name = "Scrap rocket"
+	name = "scrap rocket"
 	desc = "An old improvised rocket shell for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "old_rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket/scrap
