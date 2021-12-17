@@ -1,0 +1,12 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Removed Jester and Warrior causing natural maintenance to crew area migrations
+      due to problems with implementation.
+  - balance: Burrow migrations will trigger one minute more often. Migrations now
+      only take twenty seconds now as well, beware maintenance burrows from now on
+      as there may be little warning.
+  - balance: The Warrior will now be more aggressive in spawning more moderately severe
+      events than before, such as infestation events. Blitzshell and Serbians have
+      also been weighted to be somewhat more common than other antagonist choices
+      with this storyteller.
