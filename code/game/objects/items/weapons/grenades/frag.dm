@@ -45,7 +45,7 @@
 	damage_step = 3
 
 /obj/item/grenade/frag/pipebomb
-	name = "Improvised Pipebomb"
+	name = "improvised pipebomb"
 	desc = "A metal tube with wires taped to its side. Throw at authority."
 	icon_state = "frag_pipebomb"
 	item_state = "frggrenade_pipebomb"
