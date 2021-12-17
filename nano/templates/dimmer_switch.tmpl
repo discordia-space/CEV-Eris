@@ -1,0 +1,23 @@
+<!-- 
+Title: Dimmer Switch UI
+Used In File(s): \code\game\machinery\lightswitch.dm
+-->
+
+<div class="item">
+	<div class="itemLabel">
+		Power:
+	</div>
+	<div class="itemContent">
+        {{:helper.link('On', null, {'on' : 0}, data.on ? 'selected' : null)}}
+        {{:helper.link('Off', null, {'on' : 1}, data.on ? null : 'selected')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Color:
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Change', 'pencil', {'input_color' : 1})}}
+	</div>
+</div>

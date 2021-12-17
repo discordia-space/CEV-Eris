@@ -296,11 +296,11 @@
 
 /obj/machinery/light/proc/reset_color()
 	if(on)
-		if(cmptext(base_state,"tube"))
+		var/area/location = get_area(loc)
+		if(!location.is_maintenance)
 			firealarmed = 0
 			atmosalarmed = 0
 
-			var/area/location = get_area(loc)
 			if(location.area_light_color)
 				brightness_color = location.area_light_color
 

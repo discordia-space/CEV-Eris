@@ -43326,6 +43326,9 @@
 "bZh" = (
 /obj/structure/table/bar_special,
 /obj/item/reagent_containers/food/drinks/shaker,
+/obj/machinery/light_switch/dimmer_switch{
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "bZi" = (
