@@ -81,6 +81,10 @@ var/list/flooring_types
 	var/space_smooth = SMOOTH_ALL
 	//There are no lists for spaces
 
+	//How we smooth with catwalks
+	var/catwalk_smooth = SMOOTH_NONE
+	//There are no lists for catwalks
+
 	/*
 	How we smooth with movable atoms
 	These are checked after the above turf based smoothing has been handled
@@ -167,7 +171,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = /obj/item/stack/material/steel
-	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_CAN_HAVE_RANDOM_BORDER
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
@@ -203,9 +207,9 @@ var/list/flooring_types
 	descriptor = "support beams"
 	icon_base = "under"
 	build_type = /obj/item/stack/material/steel //Same type as the normal plating, we'll use can_build_floor to control it
-	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_MULTITILE_PATTERN
-	multitile_pattern_width = 3
-	multitile_pattern_height = 7
+	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS
+	multitile_pattern_width = 7
+	multitile_pattern_height = 2
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
@@ -213,8 +217,8 @@ var/list/flooring_types
 	health = 200
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
-	space_smooth = SMOOTH_ALL
-	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_ALL
+	space_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
 //Underplating can only be upgraded to normal plating
@@ -363,7 +367,9 @@ var/list/flooring_types
 	can_paint = 1
 	resistance = RESISTANCE_FRAGILE
 
-	floor_smooth = SMOOTH_NONE
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(/decl/flooring/carpet)
+
 	wall_smooth = SMOOTH_NONE
 	space_smooth = SMOOTH_NONE
 
