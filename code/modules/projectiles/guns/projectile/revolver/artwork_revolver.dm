@@ -11,7 +11,7 @@
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
 	penetration_multiplier = 1.4
-	recoil_buildup = 30
+	recoil_buildup = 3
 	spawn_frequency = 0
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
