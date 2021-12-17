@@ -1,0 +1,5 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: new(good) material sprites(drawn by CeUvi)
+  - rscdel: old(bad) material sprites
