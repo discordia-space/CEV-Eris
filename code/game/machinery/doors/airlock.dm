@@ -852,11 +852,10 @@ There are 9 wires.
 	return ..()
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!issilicon(usr) && isElectrified() && shock(user, 100))
+	if(!issilicon(user) && isElectrified() && shock(user, 100))
 		return
 
-	// No. -- cib
-	/**
+	// Why did they comment this out this is comedy gold
 	if(ishuman(user) && prob(40) && density)
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
@@ -864,14 +863,13 @@ There are 9 wires.
 			if(!istype(H.head, /obj/item/clothing/head/armor/helmet))
 				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
 				var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
-				H.Stun(8)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
 				visible_message(SPAN_WARNING("[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
-	**/
+
 
 	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
 		take_out_wedged_item(user)
