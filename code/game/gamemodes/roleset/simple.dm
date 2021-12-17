@@ -13,6 +13,7 @@
 	name = "blitzshell infiltration"
 	role_id = ROLE_BLITZ
 	weight = 0.6
+	tags = list(TAG_COMBAT)
 
 	req_crew = 10
 	req_sec = 2
