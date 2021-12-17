@@ -164,6 +164,12 @@ var/list/flooring_cache = list()
 				is_linked = TRUE
 
 
+		//Look for catwalks on the turf to smooth to
+		else if(locate(/obj/structure/catwalk, T))
+			if(catwalk_smooth == SMOOTH_ALL)
+				is_linked = TRUE
+
+
 		//If we get here then its a normal floor
 		else if (istype(T, /turf/simulated/floor) && !istype(T, /turf/simulated/floor/exoplanet))
 			var/turf/simulated/floor/t = T
