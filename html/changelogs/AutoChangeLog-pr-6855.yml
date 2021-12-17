@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - code_imp: Optimized firedoors to no longer process
+  - balance: Firedoors no longer give as much data about the other sides
