@@ -1,0 +1,5 @@
+author: Anonmare
+delete-after: true
+changes:
+  - rscadd: The AI can now speak the languages of the crew (except the ones that it
+      would not logically be able to).
