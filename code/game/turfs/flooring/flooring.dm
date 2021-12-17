@@ -81,10 +81,6 @@ var/list/flooring_types
 	var/space_smooth = SMOOTH_ALL
 	//There are no lists for spaces
 
-	//How we smooth with catwalks
-	var/catwalk_smooth = SMOOTH_NONE
-	//There are no lists for catwalks
-
 	/*
 	How we smooth with movable atoms
 	These are checked after the above turf based smoothing has been handled
