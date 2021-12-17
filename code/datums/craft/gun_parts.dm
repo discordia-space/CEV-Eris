@@ -233,13 +233,6 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 
-/obj/item/part/gun/barrel/clrifle_silenced
-	name = ".25 integrally suppressed barrel"
-	desc = "An integrally suppressed gun barrel, which keeps the bullet going in the right direction and the noise down. Chambered in .25 caliber."
-	icon_state = "barrel_25_s"
-	price_tag = 500
-	rarity_value = 21
-
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."

@@ -23,7 +23,7 @@
 	recoil_buildup = 2
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle_silenced = 1)
+	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle = 1)
 
 
 /obj/item/gun/projectile/mandella/on_update_icon()
@@ -50,4 +50,4 @@
 	result = /obj/item/gun/projectile/mandella
 	grip = /obj/item/part/gun/grip/black
 	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/clrifle_silenced
+	barrel = /obj/item/part/gun/barrel/clrifle
