@@ -96,6 +96,7 @@
 	icon_state = "sheet-iron"
 	default_type = MATERIAL_IRON
 	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/iron/random
 	rand_min = 3
@@ -119,6 +120,7 @@
 	icon_state = "sheet-diamond"
 	default_type = MATERIAL_DIAMOND
 	price_tag = 100
+	novariants = FALSE
 
 /obj/item/stack/material/diamond/random
 	rand_min = 1
@@ -131,6 +133,7 @@
 	icon_state = "sheet-uranium"
 	default_type = MATERIAL_URANIUM
 	price_tag = 50
+	novariants = FALSE
 
 /obj/item/stack/material/uranium/random
 	rand_min = 2
@@ -143,6 +146,7 @@
 	icon_state = "sheet-plasma"
 	default_type = MATERIAL_PLASMA
 	price_tag = 30
+	novariants = FALSE
 
 /obj/item/stack/material/plasma/random
 	rand_min = 3
@@ -171,6 +175,7 @@
 	icon_state = "sheet-gold"
 	default_type = MATERIAL_GOLD
 	price_tag = 50
+	novariants = FALSE
 
 /obj/item/stack/material/gold/random
 	rand_min = 2
@@ -183,6 +188,7 @@
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_SILVER
 	price_tag = 40
+	novariants = FALSE
 
 /obj/item/stack/material/silver/random
 	rand_min = 3
@@ -193,9 +199,10 @@
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
 	name = "platinum"
-	icon_state = "sheet-adamantine"
+	icon_state = "sheet-platinum"
 	default_type = MATERIAL_PLATINUM
 	price_tag = 80
+	novariants = FALSE
 
 /obj/item/stack/material/platinum/random
 	rand_min = 1
