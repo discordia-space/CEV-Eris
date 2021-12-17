@@ -1,0 +1,10 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: tables and low walls protect the leg instead of having a random chance
+      to eat bullets
+  - refactor: refactored the targeting check of bullets that updates the targeted
+      limb when hitting a mob
+  - balance: resting now doesn't force you to drop items
+  - balance: you can manage your inventory while resting, but not use them to interact
+      with the world
