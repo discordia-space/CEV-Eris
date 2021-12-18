@@ -582,10 +582,6 @@
 /datum/chemical_reaction/plasmasolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
 	new /obj/item/stack/material/plasma(get_turf(holder.my_atom), created_volume)
 	return
-	
-/datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/uranium(get_turf(holder.my_atom), created_volume)
-	return
 
 /datum/chemical_reaction/plastication
 	result = null
