@@ -1,5 +1,0 @@
-author: greenteaguzzler
-delete-after: true
-changes:
-  - rscadd: Added a lightswitch that can change the color of lights
-  - tweak: Cyberplants now glow less
