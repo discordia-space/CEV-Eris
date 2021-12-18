@@ -583,6 +583,20 @@
 	new /obj/item/stack/material/plasma(get_turf(holder.my_atom), created_volume)
 	return
 	
+/datum/chemical_reaction/goldsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "gold" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/goldsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/gold(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/uraniumsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "uranium" = 20)
+	result_amount = 1
+
 /datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
 	new /obj/item/stack/material/uranium(get_turf(holder.my_atom), created_volume)
 	return
