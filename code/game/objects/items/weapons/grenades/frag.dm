@@ -45,11 +45,13 @@
 	damage_step = 3
 
 /obj/item/grenade/frag/pipebomb
-	name = "improvised pipebomb"
+	name = "improvised explosive device"
 	desc = "A metal tube with wires taped to its side. Throw at authority."
 	icon_state = "frag_pipebomb"
 	item_state = "frggrenade_pipebomb"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 1) //plastic comes from the wiring and assembly
-	fragment_damage = 2
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2)
+	fragment_type = /obj/item/projectile/bullet/pellet/fragment
+	num_fragments = 100
+	fragment_damage = 3
 	damage_step = 4
 

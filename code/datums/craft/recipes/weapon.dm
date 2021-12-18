@@ -310,23 +310,20 @@
 	)
 
 /datum/craft_recipe/weapon/pipebomb
-	name = "improvised pipebomb"
+	name = "improvised explosive device"
 	result = /obj/item/grenade/frag/pipebomb
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/cell/medium/high, 1),
 		list(QUALITY_SAWING, 10),
-		list(CRAFT_MATERIAL, 2, MATERIAL_PLASMA), //similary to the makeshift landmine, as explosive, frags come from the shell/pipe itself
-		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTEEL),
+		list(QUALITY_DRILLING, 10, "time" = 40),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASMA), //similary to the makeshift landmine, as explosive, frags come from the shell itself
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(QUALITY_DRILLING, 10, "time" = 40),
 		list(/obj/item/device/assembly/igniter, 1),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 30),
-		list(/obj/item/device/assembly/timer, 1),
-		list(QUALITY_SCREW_DRIVING, 10, "time" = 30),
-		list(QUALITY_ADHESIVE, 15),
 		list(/obj/item/stack/cable_coil, 5),
 		list(QUALITY_WIRE_CUTTING, 10, "time" = 20),
-		list(QUALITY_ADHESIVE, 15)
 	)
 
