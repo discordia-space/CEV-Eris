@@ -310,7 +310,7 @@
 	)
 
 /datum/craft_recipe/weapon/pipebomb
-	name = "improvised explosive device"
+	name = "improvised pipebomb"
 	result = /obj/item/grenade/frag/pipebomb
 	steps = list(
 		list(/obj/item/cell/medium/high, 1),

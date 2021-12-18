@@ -45,8 +45,8 @@
 	damage_step = 3
 
 /obj/item/grenade/frag/pipebomb
-	name = "improvised explosive device"
-	desc = "A metal tube with wires taped to its side. Throw at authority."
+	name = "improvised pipebomb"
+	desc = "A jury rigged medium cell filled with plasma. Throw at authorities."
 	icon_state = "frag_pipebomb"
 	item_state = "frggrenade_pipebomb"
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2)
