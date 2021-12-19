@@ -27,6 +27,12 @@
 /datum/nano_module/program/tax/Topic(href, href_list)
 	if(..())
 		return TOPIC_HANDLED
+	
+	// Used to call set_icon()
+	// When not logined or have an "error" popup - screen is uplink red
+	// When logined and have no popups - screen is blue
+	// When have a "success" popup - screen is green
+	var/datum/computer_file/program/tax/P = program
 
 	if(href_list["enter_login"])
 		account_num = text2num(input("Enter account number", "Login"))
@@ -37,11 +43,13 @@
 		if(!account_num)
 			popup_message = "<b>An error has occurred.</b><br> Invalid Credentials."
 			popup = TRUE
+			P.set_icon("uplink")
 			return TOPIC_REFRESH
 
 		if(!account_pin)
 			popup_message = "<b>An error has occurred.</b><br> Invalid Credentials."
 			popup = TRUE
+			P.set_icon("uplink")
 			return TOPIC_REFRESH
 
 		account = attempt_account_access(account_num, account_pin, 1, force_security = TRUE)
@@ -49,6 +57,7 @@
 		if(!account)
 			popup_message = "<b>An error has occurred.</b><br> Invalid Credentials."
 			popup = TRUE
+			P.set_icon("uplink")
 			// Create an entry in the account transaction log
 			var/datum/money_account/failed_account = get_account(account_num)
 			if(failed_account)
@@ -60,6 +69,7 @@
 			var/datum/transaction/T = new(0, account.owner_name, "Remote terminal access", name)
 			T.apply_to(account)
 			logined = TRUE
+			P.set_icon("uplink_blue")
 
 		return TOPIC_REFRESH
 
@@ -68,11 +78,16 @@
 		account = null
 		account_num = null
 		account_pin = null
+		P.set_icon("uplink")
 		return TOPIC_REFRESH
 
 	if(href_list["back"])
 		popup = FALSE
 		browsing_logs = FALSE
+		if(logined)
+			P.set_icon("uplink_blue")
+		else
+			P.set_icon("uplink")
 		return TOPIC_REFRESH
 	
 	if(href_list["transfer"])
@@ -81,12 +96,16 @@
 		var/purpose	= input(usr,"Transfer purpose", "Funds transfer")
 		if(amount > account.money)
 			popup_message = "<b>An error has occurred.</b><br> Insufficient funds."
+			P.set_icon("uplink")
 		else if(!get_account(target))
 			popup_message = "<b>An error has occurred.</b><br> Target account not found."
+			P.set_icon("uplink")
 		else if(transfer_funds(account.account_number, target, purpose, name, amount))
 			popup_message = "<b>Transaction successful.</b><br> "
+			P.set_icon("uplink_green")
 		else
 			popup_message = "<b>An error has occurred.</b><br> Transaction failed."
+			P.set_icon("uplink")
 		popup = TRUE
 		return TOPIC_REFRESH
 
@@ -145,9 +164,11 @@
 			if(A.employer)
 				popup_message = "<b>An error has occurred.</b><br> Account already bound to a department. Request employee to resign first."
 				popup = TRUE
+				P.set_icon("uplink")
 			else if(A == account)
 				popup_message = "<b>An error has occurred.</b><br> Can\'t link an account to itself."
 				popup = TRUE
+				P.set_icon("uplink")
 			else if(A.department_id)
 				var/datum/department/D = GLOB.all_departments[A.department_id]
 				D.funding_type = FUNDING_INTERNAL
@@ -178,12 +199,14 @@
 		if(account.money < registration_fee)
 			popup_message = "<b>An error has occurred.</b><br> Can\'t afford account registration fee.<br> Try again when you\'re a little richer."
 			popup = TRUE
+			P.set_icon("uplink")
 			return TOPIC_REFRESH
 
 		var/owner_name = input(usr,"Enter account owner name", "Account Registration") as text|null
 		if(!owner_name)
 			popup_message = "<b>An error has occurred.</b><br> Invalid account name."
 			popup = TRUE
+			P.set_icon("uplink")
 			return TOPIC_REFRESH
 
 		var/datum/money_account/M = new()
@@ -222,6 +245,7 @@
 		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
 		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won\'t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
 		popup = TRUE
+		P.set_icon("uplink_green")
 		return TOPIC_REFRESH
 
 	return TOPIC_HANDLED
@@ -229,7 +253,6 @@
 
 /datum/nano_module/program/tax/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
-//	var/datum/computer_file/program/tax/PRG = program
 	data["stored_login"] = account_num ? account_num : ""
 	data["popup"] = popup
 	data["popup_message"] = popup_message
