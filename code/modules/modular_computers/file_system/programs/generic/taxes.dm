@@ -146,7 +146,7 @@
 				popup_message = "<b>An error has occurred.</b><br> Account already bound to a department. Request employee to resign first."
 				popup = TRUE
 			else if(A == account)
-				popup_message = "<b>An error has occurred.</b><br> Can't link an account to itself."
+				popup_message = "<b>An error has occurred.</b><br> Can\'t link an account to itself."
 				popup = TRUE
 			else if(A.department_id)
 				var/datum/department/D = GLOB.all_departments[A.department_id]
@@ -176,7 +176,7 @@
 				return TOPIC_HANDLED
 
 		if(account.money < registration_fee)
-			popup_message = "<b>An error has occurred.</b><br> Can't afford account registration fee.<br> Try again when you're a little richer."
+			popup_message = "<b>An error has occurred.</b><br> Can\'t afford account registration fee.<br> Try again when you\'re a little richer."
 			popup = TRUE
 			return TOPIC_REFRESH
 
@@ -210,18 +210,18 @@
 			M.can_make_accounts = TRUE
 
 		var/datum/transaction/T = new()
-		T.target_name = owner_name
+		T.target_name = M.get_name()
 		T.purpose = "Account creation"
 		T.date = current_date_string
 		T.time = stationtime2text()
-		T.source_terminal = account.department_id? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]"
+		T.source_terminal = account.department_id ? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]"
 
 		M.transaction_log.Add(T)
 		all_money_accounts.Add(M)
 		personal_accounts.Add(M)
 
 		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
-		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won’t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
+		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won\'t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
 		popup = TRUE
 		return TOPIC_REFRESH
 	
@@ -231,7 +231,7 @@
 /datum/nano_module/program/tax/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 //	var/datum/computer_file/program/tax/PRG = program
-	data["stored_login"] = account_num? account_num : ""
+	data["stored_login"] = account_num ? account_num : ""
 	data["popup"] = popup
 	data["popup_message"] = popup_message
 	data["logined"] = logined
@@ -253,11 +253,11 @@
 	if(account)
 		data["account_owner"] = account.get_name()
 		data["account_balance"] = account.money
-		data["account_debt"] = account.debt? account.debt : "None"
-		data["account_wage"] = account.wage? account.wage : "None"
-		data["account_alignment"] = account.employer? account.employer : "None"
+		data["account_debt"] = account.debt ? account.debt : "None"
+		data["account_wage"] = account.wage ? account.wage : "None"
+		data["account_alignment"] = account.employer ? account.employer : "None"
 		data["is_aster_account"] = account.can_make_accounts
-		data["is_manual_wage"] = account.wage_manual? "Manually" : "Automatically"
+		data["is_manual_wage"] = account.wage_manual ? "Manually" : "Automatically"
 
 		if(account.department_id)
 			data["is_department_account"] = TRUE
@@ -267,9 +267,9 @@
 					employee_accounts.Add(list(list(
 					"employee_number" = A.account_number,
 					"employee_name" = A.get_name(),
-					"employee_debt" = A.debt? A.debt : "None",
-					"employee_wage" = A.wage? A.wage : "None",
-					"employee_is_manual" = A.wage_manual? "Manually" : "Automatically")))
+					"employee_debt" = A.debt ? A.debt : "None",
+					"employee_wage" = A.wage ? A.wage : "None",
+					"employee_is_manual" = A.wage_manual ? "Manually" : "Automatically")))
 			if(employee_accounts.len)
 				data["have_employees"] = TRUE
 				data["account_employees"] = employee_accounts
