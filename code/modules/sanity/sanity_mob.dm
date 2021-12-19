@@ -53,13 +53,13 @@
 
 	var/insight
 	var/max_insight = INFINITY
-	var/insight_passive_gain_multiplier = 1
+	var/insight_passive_gain_multiplier = 0.5
 	var/insight_gain_multiplier = 1
 	var/insight_rest = 0
 	var/max_insight_rest = INFINITY
 	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
-	var/max_resting = INFINITY
+	var/max_resting = 1
 
 	var/list/valid_inspirations = list(/obj/item/oddity)
 	var/list/desires = list()
@@ -240,13 +240,13 @@
 
 	var/stat_pool = resting * 15
 	while(stat_pool--)
-		LAZYAPLUS(stat_change, pick(ALL_STATS), 1)
+		LAZYAPLUS(stat_change, pick(ALL_STATS), 3)
 
 	for(var/stat in stat_change)
 		owner.stats.changeStat(stat, stat_change[stat])
 
 	if(!owner.stats.getPerk(PERK_ARTIST))
-		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
+		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting*2)
 
 	if(owner.stats.getPerk(PERK_ARTIST))
 		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats."))
