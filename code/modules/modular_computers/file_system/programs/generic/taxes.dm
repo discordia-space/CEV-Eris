@@ -230,6 +230,11 @@
 			M.account_name = account_name
 			M.department_id = account_name
 			M.can_make_accounts = TRUE
+			department_accounts.Add(M)
+		else
+			personal_accounts.Add(M)
+
+		all_money_accounts.Add(M)
 
 		var/datum/transaction/T = new()
 		T.target_name = M.get_name()
@@ -237,10 +242,7 @@
 		T.date = current_date_string
 		T.time = stationtime2text()
 		T.source_terminal = account.department_id ? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]"
-
 		M.transaction_log.Add(T)
-		all_money_accounts.Add(M)
-		personal_accounts.Add(M)
 
 		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
 		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won\'t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
