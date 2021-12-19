@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(economy)
 		var/datum/money_account/EA = get_account(ED.account_number)
 
 		if(D && (D.funding_type != FUNDING_NONE) && !A.wage_manual)
-			A.wage = (D.budget_base + D.budget_personnel)
+			A.wage = D.get_total_budget()
 
 		var/amount_to_pay = A.debt + A.wage
 

@@ -116,7 +116,7 @@
 		if(istype(A))
 			if(A.department_id) // If department account, recalculate wage
 				var/datum/department/D = GLOB.all_departments[A.department_id]
-				A.wage = (D.budget_base + D.budget_personnel)
+				A.wage = D.get_total_budget()
 			else // If personal account, set starting wage
 				A.wage = A.wage_original
 			A.wage_manual = FALSE // Handle wage authomatically from now on
@@ -135,7 +135,7 @@
 				D.funding_source = initial(D.funding_source)
 				if(D.funding_source == FUNDING_EXTERNAL) // If it was funded from external - restore that link
 					A.employer = initial(A.employer)
-					A.wage = (D.budget_base + D.budget_personnel)
+					A.wage = D.get_total_budget()
 		return TOPIC_REFRESH
 
 	if(href_list["link"])
@@ -154,12 +154,12 @@
 				D.funding_source = account.department_id
 				A.employer = account.department_id
 				A.wage_manual = FALSE
-				A.wage = (D.budget_base + D.budget_personnel)
+				A.wage = D.get_total_budget()
 			else
 				A.employer = account.department_id
 				A.wage_manual = FALSE
 		return TOPIC_REFRESH
-	
+
 	if(href_list["create_account"])
 		var/account_type = alert("Personal account have all basic functionality and cost [account_registration_fee] credits. Department account additionally can add other accounts to authomated payroll and cost [department_registration_fee] credits.", "Account Registration", "Personal", "Department", "Cancel")
 		var/registration_fee
@@ -197,16 +197,15 @@
 			if(!account_name)
 				account_name = owner_name
 
-			var/department_id = uppertext("department_[account_name]")
 			var/datum/department/D = new()
 			D.name = account_name
-			D.id = department_id
+			D.id = account_name
 			D.account_number = M.account_number
 			D.account_pin = M.remote_access_pin
-			GLOB.all_departments.Add(D)
+			GLOB.all_departments[D.id] = D
 
 			M.account_name = account_name
-			M.department_id = department_id
+			M.department_id = account_name
 			M.can_make_accounts = TRUE
 
 		var/datum/transaction/T = new()
@@ -224,7 +223,7 @@
 		popup_message = "<b>Account created!</b><br> Make sure to copy following information now.<br> You won\'t be able to see it again!<br> Tax ID: [M.account_number]<br> Pin code: [M.remote_access_pin]"
 		popup = TRUE
 		return TOPIC_REFRESH
-	
+
 	return TOPIC_HANDLED
 
 

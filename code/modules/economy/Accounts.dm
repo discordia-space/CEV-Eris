@@ -150,7 +150,7 @@
 		if(D && EA)
 			D.budget_personnel += wage
 			if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
-				EA.wage = (D.budget_base + D.budget_personnel)
+				EA.wage = D.get_total_budget()
 	return M
 
 //Charges an account a certain amount of money which is functionally just removed from existence

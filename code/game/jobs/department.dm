@@ -26,6 +26,9 @@
 	// How much account failed to pay to employees. Used for emails
 	var/total_debt = 0
 
+/datum/department/proc/get_total_budget()
+	return budget_base + budget_personnel
+
 
 /*************
 	Command
