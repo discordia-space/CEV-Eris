@@ -152,11 +152,12 @@
 /datum/sanity/proc/handle_Insight()
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
+	var/cognition_multiplier = 0.7 / (1 + 70 / max(1, owner.stats.getStat(STAT_COG)) + 1
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
-	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
+	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier * cognition_multiplier)
 	while(resting < max_resting && insight >= 100)
 		give_resting(1)
 		if(owner.stats.getPerk(PERK_ARTIST))
