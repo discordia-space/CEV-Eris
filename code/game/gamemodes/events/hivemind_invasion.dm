@@ -16,7 +16,7 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen = 180
+	announceWhen = 60
 
 
 /datum/event/hivemind/announce()
