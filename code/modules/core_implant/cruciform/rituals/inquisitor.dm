@@ -131,56 +131,6 @@
 
 
 
-/*
-	Succour
-	Heals another person, quite powerfully. Only works on NT disciples
-*/
-/datum/ritual/cruciform/inquisitor/heal_other
-	name = "Succour"
-	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
-	desc = "Heal a nearby disciple"
-	cooldown = TRUE
-	cooldown_time = 100
-	power = 35
-
-/datum/ritual/cruciform/inquisitor/heal_other/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
-	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
-
-	if(!CI || !CI.active || !CI.wearer)
-		fail("Cruciform not found.", user, C)
-		return FALSE
-
-
-
-	var/mob/living/carbon/human/H = CI.wearer
-
-	if(!istype(H))
-		fail("Target not found.",user,C,targets)
-		return FALSE
-
-	//Checking turfs allows this to be done in unusual circumstances
-	var/turf/T = get_turf(user)
-	if (!(T.Adjacent(get_turf(H))))
-		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
-		return
-
-
-	user.visible_message("[user] places their hands upon [H] and utters a prayer", "You lay your hands upon [H] and begin speaking the words of convalescence")
-	if (do_after(user, 40, H, TRUE))
-		T = get_turf(user)
-		if (!(T.Adjacent(get_turf(H))))
-			to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
-			return
-		log_and_message_admins(" healed [CI.wearer] with Succour litany")
-		to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
-		H.add_chemical_effect(CE_PAINKILLER, 20)
-		H.adjustBruteLoss(-20)
-		H.adjustFireLoss(-20)
-		H.adjustOxyLoss(-40)
-		H.updatehealth()
-		set_personal_cooldown(user)
-		return TRUE
-
 
 /*
 	Scrying: Remotely look through someone's eyes. Global range, useful to find fugitives or corpses
