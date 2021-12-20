@@ -67,6 +67,15 @@
 		list(QUALITY_SCREW_DRIVING, 10, 70,"time" = 3),
 	)
 
+/datum/craft_recipe/weapon/throwing_knife
+	name = "throwing knife"
+	result = /obj/item/stack/throwing_knife
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 10, "time" = 20)
+	)
+
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
 	result = /obj/item/material/butterflyblade

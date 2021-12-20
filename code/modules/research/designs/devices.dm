@@ -26,3 +26,10 @@
 	build_path = /obj/item/clothing/accessory/bs_silk
 	category = "Telecoms | Bluespace"
 	sort_string = "VAAAJ"
+
+/datum/design/research/item/tracker_tablet
+	name = "Tracker tablet frame"
+	desc = "Modified tablet frame with extra screens for use with sensor monitoring software."
+	build_path = /obj/item/modular_computer/tablet/moebius
+	category = "Medical"
+	sort_string = "VAAAK"

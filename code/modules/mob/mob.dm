@@ -176,7 +176,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -731,13 +734,14 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 				anchored = FALSE
 		canmove = FALSE //TODO: Remove this
 	else
-		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		lying = incapacitated(INCAPACITATION_GROUNDED)
 		canmove = FALSE //TODO: Remove this
 
 	if(lying)
 		set_density(0)
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+		if(stat == UNCONSCIOUS)
+			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
+			if(r_hand) unEquip(r_hand)
 	else
 		canmove = TRUE
 		set_density(initial(density))
@@ -1165,19 +1169,39 @@ mob/proc/yank_out_object()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(NORTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(NORTH))
+		to_chat(usr, "You are now facing north.")
 
 /mob/verb/southfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(SOUTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(SOUTH))
+		to_chat(usr, "You are now facing south.")
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(EAST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(EAST))
+		to_chat(usr, "You are now facing east.")
 
 /mob/verb/westfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(WEST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(WEST))
+		to_chat(usr, "You are now facing west.")
 
 /mob/verb/change_move_intent()
 	set name = "Change moving intent"
