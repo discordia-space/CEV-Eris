@@ -523,7 +523,7 @@
 	desc = "Heal a nearby disciple"
 	cooldown = TRUE
 	cooldown_time = 100
-	power = 35
+	power = 50
 
 /datum/ritual/targeted/cruciform/priest/heal_other/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
