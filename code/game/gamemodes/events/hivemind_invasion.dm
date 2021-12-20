@@ -8,7 +8,6 @@
 /datum/storyevent/hivemind
 	id = "hivemind"
 	name = "Hivemind Invasion"
-	req_crew = 16
 
 
 	event_type = /datum/event/hivemind
@@ -17,7 +16,7 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen	= 240
+	announceWhen = 180
 
 
 /datum/event/hivemind/announce()
