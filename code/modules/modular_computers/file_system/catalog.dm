@@ -345,13 +345,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		thing_nature = "Drink"
 
 	else if(istype(V, /datum/reagent/ethanol))
-		var/datum/reagent/ethanol/E = V
+		var/datum/reagent/alcohol/E = V
 		if(E.adj_temp)
 			temperature = E.adj_temp > 0 ? "Warm" : "Cold"
 		if(E.nutriment_factor)
 			nutrition = E.nutriment_factor > 1 ? "High" : "Low"
 		strength = E.strength <= 15 ? "Light" : E.strength <= 50 ? "Strong" : "Knocking out"
-		thing_nature = "Alchohol drink"
+		thing_nature = "Alcohol drink"
 		if(E.taste_tag.len)
 			taste_tag = list()
 			for(var/tastes in E.taste_tag)

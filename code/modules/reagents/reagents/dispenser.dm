@@ -87,7 +87,7 @@
 	color = "#6E3B08"
 
 /datum/reagent/ethanol
-	name = "Ethanol" //Parent class for all alcoholic reagents.
+	name = "Ethanol"
 	id = "ethanol"
 	description = "A well-known alcohol with a variety of applications."
 	taste_description = "pure alcohol"
@@ -95,10 +95,9 @@
 	color = "#404030"
 	ingest_met = REM * 4
 	touch_met = 5
-	var/nutriment_factor = 0
-	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/strength_mod = 1
 	var/toxicity = 1
+	scannable = 1
 
 	var/druggy = 0
 	var/adj_temp = 0
@@ -110,7 +109,7 @@
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
-	reagent_type = "Alchohol"
+	reagent_type = "Alcohol"
 
 /datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	if(istype(L))
@@ -125,15 +124,12 @@
 	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
+	M.add_chemical_effect(CE_PAINKILLER, 125 * effect_multiplier)	// Same strength as paracetamol
 
-/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
-	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
+	var/tolerance = 5 + max(0, M.stats.getStat(STAT_TGH)) * 0.1
 
 	if(M.stats.getPerk(/datum/perk/sommelier))
 		tolerance *= 10
@@ -160,6 +156,11 @@
 	if(dose * strength_mod >= tolerance * 9) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
+
+/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+
+	var/datum/reagents/metabolism/met = M.get_metabolism_handler(CHEM_BLOOD)
+	met.add_reagent(id, effect_multiplier / 2) // Only half of it enters the bloodstream
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
