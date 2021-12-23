@@ -712,6 +712,9 @@ var/list/rank_prefix = list(\
 
 				adjustNutrition(-40)
 				adjustToxLoss(-3)
+				regen_slickness(-1)
+				dodge_time = get_game_time()
+				confidence = FALSE
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
 
@@ -1425,6 +1428,9 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
+	regen_slickness(-1)
+	dodge_time = get_game_time()
+	confidence = FALSE
 
 /mob/living/carbon/human/trip(tripped_on, stun_duration)
 	if(buckled)

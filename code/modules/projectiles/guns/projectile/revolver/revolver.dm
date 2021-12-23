@@ -27,6 +27,7 @@
 
 
 /obj/item/gun/projectile/revolver/pickup(mob/user)
+	. = ..()
 	if (ishuman(user))
 		var/mob/living/carbon/human/stylish = user
 		if(stylish.style > 4)
@@ -60,8 +61,11 @@
 	return ..()
 
 /obj/item/gun/projectile/revolver/load_ammo(obj/item/A, mob/user)
+	. = ..()
 	chamber_offset = 0
-	return ..()
+	if (. && ishuman(user)) // if it actually loaded and the user is human
+		var/mob/living/carbon/human/stylish = user
+		stylish.regen_slickness()
 
 /obj/item/gun/projectile/revolver/proc/update_charge()
 	if(!drawChargeMeter)

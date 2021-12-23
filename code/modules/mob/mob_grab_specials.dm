@@ -102,10 +102,11 @@
 	//deal damage AFTER the kick
 	var/damage = attacker.stats.getStat(STAT_ROB) / 3
 	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE)
+	attacker.regen_slickness()
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
-	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")	
-	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")	
+	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")
+	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")
 	//kill the grab
 	attacker.drop_from_inventory(src)
 	loc = null
@@ -124,9 +125,10 @@
 		attacker.Weaken(2)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
+		attacker.regen_slickness()
 		//admin messaging
 		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")	
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")
 		msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
 		//kill the grab
 		attacker.drop_from_inventory(src)

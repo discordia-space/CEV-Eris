@@ -17,7 +17,7 @@
 	permeability_coefficient = 0.05
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
-	style = STYLE_NEG_HIGH
+	style = STYLE_NEG_HIGH // very powergame much unstylish... literal power this time
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
