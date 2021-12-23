@@ -8,7 +8,7 @@
 /datum/storyevent/hivemind
 	id = "hivemind"
 	name = "Hivemind Invasion"
-
+	req_crew = 14
 
 	event_type = /datum/event/hivemind
 	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.9) //bit more common
