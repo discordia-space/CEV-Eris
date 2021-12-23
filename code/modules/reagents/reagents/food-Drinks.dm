@@ -1137,7 +1137,7 @@
 	ingest_met = REM * 8
 	touch_met = 5
 	var/nutriment_factor = 0
-	var/strength = 10 // The amount of ethanol it contains. 1 refers to a 1:1 ratio, anything bigger is a divisor
+	var/strength = 10 // The amount of ethanol it contains. 3 refers to a 1:1 ratio, anything bigger is a divisor, smaller is a multiplier (dense alcohol)
 	var/strength_mod = 1 // Kept in case an insight rework takes strength into account
 	var/toxicity = 1
 
@@ -1173,7 +1173,7 @@
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 
 	var/datum/reagents/metabolism/met = M.get_metabolism_handler(CHEM_BLOOD)
-	met.add_reagent("ethanol", effect_multiplier / strength * strength_mod)
+	met.add_reagent("ethanol", effect_multiplier / strength * strength_mod * 3)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)

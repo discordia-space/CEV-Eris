@@ -124,7 +124,7 @@
 	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 125 * effect_multiplier)	// Same strength as paracetamol
+	M.add_chemical_effect(CE_PAINKILLER, 125 * effect_multiplier)	// Effect multiplier is 0.2, same strength as paracetamol
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
@@ -134,26 +134,26 @@
 	if(M.stats.getPerk(/datum/perk/sommelier))
 		tolerance *= 10
 
-	if(dose * strength_mod >= tolerance) // Early warning
-		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
+	if(volume * strength_mod >= tolerance) // Early warning
+		M.make_dizzy(9) // It is decreased at the speed of 3 per tick
 
-	if(dose * strength_mod >= tolerance * 2) // Slurring
+	if(volume * strength_mod >= tolerance * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
 
-	if(dose * strength_mod >= tolerance * 3) // Confusion - walking in random directions
+	if(volume * strength_mod >= tolerance * 3) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
 
-	if(dose * strength_mod >= tolerance * 4) // Blurry vision
+	if(volume * strength_mod >= tolerance * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
 
-	if(dose * strength_mod >= tolerance * 5) // Drowsyness - periodically falling asleep
+	if(volume * strength_mod >= tolerance * 5) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(dose * strength_mod >= tolerance * 7) // Pass out
+	if(volume * strength_mod >= tolerance * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
-	if(dose * strength_mod >= tolerance * 9) // Toxic dose
+	if(volume * strength_mod >= tolerance * 9) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
 
