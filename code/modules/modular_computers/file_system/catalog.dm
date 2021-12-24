@@ -19,9 +19,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		if(D.appear_in_default_catalog)
 			create_catalog_entry(D, CATALOG_REAGENTS)
 			create_catalog_entry(D, CATALOG_ALL)
-			if(istype(D, /datum/reagent/drink) || istype(D, /datum/reagent/ethanol))
-				if(D.type == /datum/reagent/ethanol)
-					create_catalog_entry(D, CATALOG_CHEMISTRY)
+			if(istype(D, /datum/reagent/drink) || istype(D, /datum/reagent/alcohol))
 				create_catalog_entry(D, CATALOG_DRINKS)
 			else
 				create_catalog_entry(D, CATALOG_CHEMISTRY)
@@ -59,7 +57,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
 	if(!GLOB.all_catalog_entries_by_type[thing.type])
 		if(istype(thing, /datum/reagent))
-			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/ethanol) && thing.type != /datum/reagent/ethanol))
+			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/alcohol) && thing.type != /datum/reagent/alcohol))
 				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/drink(thing)
 			else
 				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/reagent(thing)
@@ -344,7 +342,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			nutrition = D.nutrition > 1 ? "High" : "Low"
 		thing_nature = "Drink"
 
-	else if(istype(V, /datum/reagent/ethanol))
+	else if(istype(V, /datum/reagent/alcohol))
 		var/datum/reagent/alcohol/E = V
 		if(E.adj_temp)
 			temperature = E.adj_temp > 0 ? "Warm" : "Cold"

@@ -317,7 +317,7 @@
 	var/sanity_gain = E.sanity_gain_ingest
 	if(E.id == "ethanol")
 		sanity_gain /= 5
-	else if(istype(E, /datum/reagent/ethanol))
+	else if(istype(E, /datum/reagent/alcohol))
 		var/datum/reagent/alcohol/fine_drink = E
 		if (fine_drink.strength <= 20)
 			sanity_gain *= (5 - (fine_drink.strength / 5))
