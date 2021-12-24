@@ -333,7 +333,7 @@
 /obj/item/stack/tile/floor/white/gray_perforated
 	name = "white gray perforated tile"
 	singular_name = "white gray perforated tile"
-	icon_state = "tile-white-grayperforated"
+	icon_state = "tile_white_grayperforated"
 
 /obj/item/stack/tile/floor/white/cargo
 	name = "white cargo tile"
