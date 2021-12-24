@@ -47,7 +47,8 @@
 				SPAN_NOTICE("[user] draws \the [holstered], pointing it at the ground."),
 				SPAN_NOTICE("You draw \the [holstered], pointing it at the ground.")
 				)
-		user.put_in_active_hand(holstered)
+		if(!user.put_in_active_hand(holstered))// If your primary hand is full, draw with your offhand
+			user.put_in_inactive_hand(holstered)// Prevents guns from getting deleted with hotkeys.
 		holstered.add_fingerprint(user)
 		w_class = initial(w_class)
 		clear_holster()
