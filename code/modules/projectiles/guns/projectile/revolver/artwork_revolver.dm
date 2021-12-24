@@ -16,7 +16,7 @@
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
-	var/random_icon = rand(1,5)
+	var/random_icon = rand(1,8)
 	icon_state = "artwork_revolver_[random_icon]"
 	item_state = "artwork_revolver_[random_icon]"
 	set_item_state("_[random_icon]")
