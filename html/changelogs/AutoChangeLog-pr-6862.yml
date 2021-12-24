@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: mute/unmute button to paramedic tablet's interface
+  - bugfix: synthetic heart no longer trigger suit sensors
