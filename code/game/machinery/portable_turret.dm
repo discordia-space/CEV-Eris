@@ -451,7 +451,7 @@ var/list/turret_icons
 		iconholder = 1
 		controllock = 1
 		enabled = 0 //turns off the turret temporarily
-		sleep(60) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
+		sleep(60) //6 seconds for the contractor to gtfo of the area before the turret decides to ruin his shit
 		enabled = 1 //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 

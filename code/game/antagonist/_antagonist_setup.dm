@@ -8,7 +8,7 @@
 
  To use:
    - Get the appropriate datum via get_antag_data("antagonist id")
-     using the id var of the desired /datum/antagonist ie. var/datum/antagonist/A = get_antag_data("traitor")
+     using the id var of the desired /datum/antagonist ie. var/datum/antagonist/A = get_antag_data("contractor")
    - Call add_antagonist() on the desired target mind ie. A.add_antagonist(mob.mind)
    - To ignore protected roles, supply a positive second argument.
    - To skip equipping with appropriate gear, supply a positive third argument.

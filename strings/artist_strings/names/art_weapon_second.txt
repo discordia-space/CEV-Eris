@@ -88,5 +88,5 @@ Jester
 Guide
 Warrior
 Wrangler
-Traitor
+Contractor
 Commissar
