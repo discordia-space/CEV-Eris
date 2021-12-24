@@ -383,10 +383,10 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
-	if(M.ingested)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+	if(M.bloodstr)
+		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - effect_multiplier, 0)
+				R.dose = max(R.dose + effect_multiplier * 4, 0) // Increases the metabolism rate of ethanol by 0.2 for each unit of ethylredoxrazine metabolised
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
