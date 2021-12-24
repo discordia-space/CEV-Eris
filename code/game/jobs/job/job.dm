@@ -21,6 +21,7 @@
 	var/req_admin_notify					// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department							// Does this position have a department tag?
 	var/head_position = FALSE				// Is this position Command?
+	var/aster_guild_member = FALSE			// If this person's account authorized to register new accounts
 	var/department_account_access = FALSE	// Can this position access the department acount, even if they're not a head?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
@@ -103,7 +104,7 @@
 		species_modifier = economic_species_modifier[/datum/species/human]
 
 	var/money_amount = one_time_payment(species_modifier)
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	var/datum/money_account/M = create_account(H.real_name, money_amount, null, department, wage, aster_guild_member)
 	if(H.mind)
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
