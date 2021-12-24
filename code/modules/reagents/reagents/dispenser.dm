@@ -87,18 +87,18 @@
 	color = "#6E3B08"
 
 /datum/reagent/ethanol
-	name = "Ethanol" //Parent class for all alcoholic reagents.
+	name = "Ethanol"
 	id = "ethanol"
 	description = "A well-known alcohol with a variety of applications."
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
 	color = "#404030"
-	ingest_met = REM * 4
+	metabolism = REM * 0.25
+	ingest_met = REM * 8
 	touch_met = 5
-	var/nutriment_factor = 0
-	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/strength_mod = 1
 	var/toxicity = 1
+	scannable = 1
 
 	var/druggy = 0
 	var/adj_temp = 0
@@ -110,7 +110,7 @@
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
-	reagent_type = "Alchohol"
+	reagent_type = "Alcohol"
 
 /datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	if(istype(L))
@@ -125,41 +125,47 @@
 	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
+	M.add_chemical_effect(CE_PAINKILLER, 125 * effect_multiplier)	// Effect multiplier is 0.2, same strength as paracetamol
 
-/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
-	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
+	var/tolerance = 3 + max(0, M.stats.getStat(STAT_TGH)) * 0.1
 
 	if(M.stats.getPerk(/datum/perk/sommelier))
 		tolerance *= 10
 
-	if(dose * strength_mod >= tolerance) // Early warning
-		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
+	if(volume * strength_mod >= tolerance) // Early warning
+		M.make_dizzy(9) // It is decreased at the speed of 3 per tick
 
-	if(dose * strength_mod >= tolerance * 2) // Slurring
+	if(volume * strength_mod >= tolerance * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
 
-	if(dose * strength_mod >= tolerance * 3) // Confusion - walking in random directions
+	if(volume * strength_mod >= tolerance * 4) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
 
-	if(dose * strength_mod >= tolerance * 4) // Blurry vision
-		M.eye_blurry = max(M.eye_blurry, 10)
+	// if(volume * strength_mod >= tolerance * 4) // Blurry vision // Not fun
+	//	M.eye_blurry = max(M.eye_blurry, 10)
 
-	if(dose * strength_mod >= tolerance * 5) // Drowsyness - periodically falling asleep
+	if(volume * strength_mod >= tolerance * 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(dose * strength_mod >= tolerance * 7) // Pass out
+	if(volume * strength_mod >= tolerance * 8) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
-	if(dose * strength_mod >= tolerance * 9) // Toxic dose
+	if(volume * strength_mod >= tolerance * 10) // Toxic dose, at least 30 ethanol required
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
+	metabolism = REM * (0.25 + dose * 0.05) // For the sake of better balancing between alcohol strengths
+
+	if(M.sleeping)
+		metabolism *= 1.5
+
+/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+
+	var/datum/reagents/metabolism/met = M.get_metabolism_handler(CHEM_BLOOD)
+	met.add_reagent(id, effect_multiplier / 2) // Only half of it enters the bloodstream
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
