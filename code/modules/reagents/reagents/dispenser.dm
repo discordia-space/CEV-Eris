@@ -93,6 +93,7 @@
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
 	color = "#404030"
+	metabolism = REM * 0.25
 	ingest_met = REM * 4
 	touch_met = 5
 	var/strength_mod = 1
@@ -129,7 +130,7 @@
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
-	var/tolerance = 5 + max(0, M.stats.getStat(STAT_TGH)) * 0.1
+	var/tolerance = 3 + max(0, M.stats.getStat(STAT_TGH)) * 0.1
 
 	if(M.stats.getPerk(/datum/perk/sommelier))
 		tolerance *= 10
@@ -140,22 +141,26 @@
 	if(volume * strength_mod >= tolerance * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
 
-	if(volume * strength_mod >= tolerance * 3) // Confusion - walking in random directions
+	if(volume * strength_mod >= tolerance * 4) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
 
-	if(volume * strength_mod >= tolerance * 4) // Blurry vision
-		M.eye_blurry = max(M.eye_blurry, 10)
+	// if(volume * strength_mod >= tolerance * 4) // Blurry vision // Not fun
+	//	M.eye_blurry = max(M.eye_blurry, 10)
 
-	if(volume * strength_mod >= tolerance * 5) // Drowsyness - periodically falling asleep
+	if(volume * strength_mod >= tolerance * 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(volume * strength_mod >= tolerance * 7) // Pass out
+	if(volume * strength_mod >= tolerance * 8 // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
-	if(volume * strength_mod >= tolerance * 9) // Toxic dose
+	if(volume * strength_mod >= tolerance * 10) // Toxic dose, at least 30 ethanol required
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
+	metabolism = REM * (0.25 + dose * 0.05) // For the sake of better balancing between alcohol strengths
+
+	if(M.sleeping)
+		metabolism *= 1.5
 
 /datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 
