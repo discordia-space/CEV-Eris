@@ -80,6 +80,11 @@
 	if(computer)
 		computer.update_icon()
 
+/datum/computer_file/program/proc/set_icon(string)
+	if(string && istext(string))
+		program_icon_state = string
+	update_computer_icon()
+
 // Attempts to create a log in global ntnet datum. Returns 1 on success, 0 on fail.
 /datum/computer_file/program/proc/generate_network_log(var/text)
 	if(computer)

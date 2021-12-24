@@ -3,7 +3,8 @@
 	title = "Guild Merchant"
 	flag = MERCHANT
 	department = DEPARTMENT_GUILD
-	head_position = 1
+	head_position = TRUE
+	aster_guild_member = TRUE
 	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1

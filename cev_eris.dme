@@ -2163,6 +2163,7 @@
 #include "code\modules\modular_computers\file_system\programs\generic\reports.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\scanner.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\signaller.dm"
+#include "code\modules\modular_computers\file_system\programs\generic\taxes.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\trade.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\wordprocessor.dm"
 #include "code\modules\modular_computers\file_system\programs\medical\chem_catalog.dm"

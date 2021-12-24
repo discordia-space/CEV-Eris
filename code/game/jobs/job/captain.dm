@@ -4,7 +4,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	title = "Captain"
 	flag = CAPTAIN
 	department = DEPARTMENT_COMMAND
-	head_position = 1
+	head_position = TRUE
+	aster_guild_member = TRUE
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -72,7 +73,8 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	title = "First Officer"
 	flag = FIRSTOFFICER
 	department = DEPARTMENT_COMMAND
-	head_position = 1
+	head_position = TRUE
+	aster_guild_member = TRUE
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
