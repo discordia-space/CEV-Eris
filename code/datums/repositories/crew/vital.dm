@@ -24,9 +24,6 @@
 				if(PULSE_THREADY)
 					crew_data["alert"] = TRUE
 					crew_data["pulse_span"] = "bad"
-		else if(O)
-			crew_data["pulse_span"] = "highlight"
-			crew_data["pulse"] = "synthetic"
 	else
 		crew_data["pulse_span"] = "highlight"
 		crew_data["pulse"] = "synthetic"
