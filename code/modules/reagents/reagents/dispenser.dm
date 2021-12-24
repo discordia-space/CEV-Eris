@@ -94,7 +94,7 @@
 	reagent_state = LIQUID
 	color = "#404030"
 	metabolism = REM * 0.25
-	ingest_met = REM * 4
+	ingest_met = REM * 8
 	touch_met = 5
 	var/strength_mod = 1
 	var/toxicity = 1
@@ -150,7 +150,7 @@
 	if(volume * strength_mod >= tolerance * 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(volume * strength_mod >= tolerance * 8 // Pass out
+	if(volume * strength_mod >= tolerance * 8) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
 
