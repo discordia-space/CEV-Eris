@@ -6,7 +6,7 @@
 
 	if(!H.isSynthetic() && H.should_have_process(OP_HEART))
 		var/obj/item/organ/internal/heart/O = H.random_organ_by_process(OP_HEART)
-		if (!O || !BP_IS_ROBOTIC(O)) // Don't make medical freak out over prosthetic hearts
+		if(O && BP_IS_ORGANIC(O)) // Don't make medical freak out over prosthetic hearts
 			crew_data["true_pulse"] = H.pulse()
 			crew_data["pulse"] = H.get_pulse(1)
 			switch(crew_data["true_pulse"])
@@ -24,9 +24,6 @@
 				if(PULSE_THREADY)
 					crew_data["alert"] = TRUE
 					crew_data["pulse_span"] = "bad"
-		else if(BP_IS_ROBOTIC(O))
-			crew_data["pulse_span"] = "highlight"
-			crew_data["pulse"] = "synthetic"
 	else
 		crew_data["pulse_span"] = "highlight"
 		crew_data["pulse"] = "synthetic"

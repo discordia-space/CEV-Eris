@@ -34,7 +34,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 	..()
 
-/datum/repository/crew/proc/health_data(var/z_level)
+/datum/repository/crew/proc/health_data(z_level, forced = FALSE)
 	var/list/crewmembers = list()
 	if(!z_level)
 		return crewmembers
@@ -44,7 +44,7 @@ var/global/datum/repository/crew/crew_repository = new()
 		cache_entry = new/datum/cache_entry
 		cache_data[num2text(z_level)] = cache_entry
 
-	if(world.time < cache_entry.timestamp)
+	if(!forced && (world.time < cache_entry.timestamp))
 		return cache_entry.data
 
 	cache_data_alert[num2text(z_level)] = FALSE
