@@ -8,8 +8,7 @@
 /datum/storyevent/hivemind
 	id = "hivemind"
 	name = "Hivemind Invasion"
-	req_crew = 16
-
+	req_crew = 14
 
 	event_type = /datum/event/hivemind
 	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.9) //bit more common
@@ -17,7 +16,7 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen	= 240
+	announceWhen = 60
 
 
 /datum/event/hivemind/announce()
@@ -27,7 +26,7 @@
 /datum/event/hivemind/start()
 	var/turf/start_location
 	for(var/i=1 to 100)
-		var/area/A = random_ship_area(filter_players = TRUE, filter_maintenance = TRUE, filter_critical = TRUE)
+		var/area/A = random_ship_area(filter_players = TRUE, filter_maintenance = TRUE, filter_critical = TRUE, need_apc = TRUE)
 		start_location = A.random_space()
 		if(!start_location && i == 100)
 			log_and_message_admins("Hivemind failed to find a viable turf.")

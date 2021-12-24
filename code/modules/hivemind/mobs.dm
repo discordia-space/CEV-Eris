@@ -648,8 +648,8 @@
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
-	health = 600
-	maxHealth = 600
+	health = 500
+	maxHealth = 500
 	resistance = RESISTANCE_ARMOURED 
 	melee_damage_lower = 25
 	melee_damage_upper = 35

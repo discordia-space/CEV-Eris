@@ -248,7 +248,7 @@
 	return TRUE
 
 /datum/reagent/toxin/plantbgone/touch_obj(obj/O, var/volume)
-	if(istype(O, /obj/effect/plant))
+	if(istype(O, /obj/effect/plant) && !istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/T = O
@@ -738,6 +738,10 @@
 	taste_description = "bleach"
 	color = "#707c13"
 	strength = 15
+/datum/reagent/toxin/chlorine/touch_obj(obj/O)
+	if(istype(O, /obj/effect/plant/hivemind))
+		qdel(O)
+
 
 /datum/reagent/toxin/tar
 	name = "Tar"
