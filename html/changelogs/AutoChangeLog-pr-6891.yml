@@ -1,0 +1,4 @@
+author: Jamini
+delete-after: true
+changes:
+  - bugfix: Holsters no longer devour guns
