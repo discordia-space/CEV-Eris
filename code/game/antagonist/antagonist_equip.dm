@@ -72,6 +72,6 @@
 	H.equip_to_slot_or_del(R, slot_l_ear)
 	return R
 
-/datum/antagonist/proc/spawn_uplink(mob/living/carbon/human/traitor_mob, amount = DEFAULT_TELECRYSTAL_AMOUNT)
-	setup_uplink_source(traitor_mob, amount)
+/datum/antagonist/proc/spawn_uplink(mob/living/carbon/human/contractor_mob, amount = DEFAULT_TELECRYSTAL_AMOUNT)
+	setup_uplink_source(contractor_mob, amount)
 

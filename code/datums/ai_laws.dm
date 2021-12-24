@@ -93,7 +93,7 @@ var/global/const/base_law_type = /datum/ai_laws/eris
 
 
 /mob/living/silicon/proc/sync_zeroth(var/datum/ai_law/zeroth_law, var/datum/ai_law/zeroth_law_borg)
-	if (!is_malf_or_traitor(src))
+	if (!is_malf_or_contractor(src))
 		if(zeroth_law_borg)
 			laws.set_zeroth_law(zeroth_law_borg.law)
 		else if(zeroth_law)

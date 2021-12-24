@@ -51,8 +51,8 @@
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
 #define ROLE_MALFUNCTION "malf"
-#define ROLE_TRAITOR "traitor"
-#define ROLE_TRAITOR_SYNTH "robo_traitor"
+#define ROLE_CONTRACTOR "contractor"
+#define ROLE_CONTRACTOR_SYNTH "robo_contractor"
 #define ROLE_MARSHAL "marshal"
 
 #define ROLE_EXCELSIOR_REV "excelsior_rev"
@@ -68,10 +68,10 @@
 #define FACTION_NEOTHEOLOGY	"neotheologists"
 
 #define ROLES_CONTRACT_VIEWONLY ROLE_MARSHAL
-#define ROLES_CONTRACT list(ROLE_TRAITOR,ROLE_CARRION,ROLE_BLITZ)
-#define ROLES_UPLINK_BASE list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY)
+#define ROLES_CONTRACT list(ROLE_CONTRACTOR,ROLE_CARRION,ROLE_BLITZ)
+#define ROLES_UPLINK_BASE list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY)
 
-#define ROLESET_TRAITOR "traitor"
+#define ROLESET_CONTRACTOR "contractor"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
 #define IMPLANT_TELECRYSTAL_AMOUNT(x) (round(x * 0.49)) // If this cost is ever greater than half of DEFAULT_TELECRYSTAL_AMOUNT then it is possible to buy more TC than you spend

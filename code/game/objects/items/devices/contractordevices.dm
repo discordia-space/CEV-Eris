@@ -1,6 +1,6 @@
 /*
 
-Miscellaneous traitor devices
+Miscellaneous contractor devices
 
 BATTERER
 
@@ -25,7 +25,7 @@ effective or pretty fucking useless.
 	flags = CONDUCT
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 3, TECH_COVERT = 3)
-	spawn_blacklisted = TRUE//traitor item
+	spawn_blacklisted = TRUE//contractor item
 	var/times_used = 0 //Number of times it's been used.
 	var/max_uses = 2
 

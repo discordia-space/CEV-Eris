@@ -39,7 +39,7 @@
 	I.gun_loc_tag = GUN_SCOPE
 	I.req_gun_tags = list(GUN_AMR, GUN_SCOPE)
 
-/obj/item/clothing/glasses/powered/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
+/obj/item/clothing/glasses/powered/thermal/syndi	//These are now a contractor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
