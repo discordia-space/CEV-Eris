@@ -429,6 +429,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
+	item_state = "eshield0"
 	flags = CONDUCT
 	force = 3
 	throwforce = 5
@@ -477,6 +478,7 @@
 
 /obj/item/shield/buckler/energy/on_update_icon()
 	icon_state = "eshield[active]"
+	item_state = "eshield[active]"
 	update_wear_icon()
 	if(active)
 		set_light(1.5, 1.5, COLOR_LIGHTING_BLUE_BRIGHT)

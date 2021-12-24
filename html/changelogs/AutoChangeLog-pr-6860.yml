@@ -1,5 +1,0 @@
-author: Hatterhat
-delete-after: true
-changes:
-  - bugfix: Hydraulic circuits have returned to increasing tool speed, and not coating
-      tools in plasma.

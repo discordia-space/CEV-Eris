@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: paramedic armor's constant 0.3 speed boost replaced with 0.5, that can
+      be active for 30 seconds and have a cooldown of 5 minutes

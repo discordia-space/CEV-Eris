@@ -1,0 +1,14 @@
+author: Wouju
+delete-after: true
+changes:
+  - rscadd: Added new sprite for hivemind Turret, its animated now
+  - rscdel: Reverts some changes from "Hivemind Pop requirement and actually making
+      said requirement work"
+  - tweak: Mechiver HP reduced to 500 from 600, Hivewire spread chance increased to
+      95 from 85,
+  - balance: reduced announcement time to 60 seconds, also hivemind has also a check
+      to only spawn in APC containing rooms, wont do much since every room has an
+      APC.
+  - bugfix: Hivewires cant be killed via plantbgone anymore, acid can now kill wires
+      by being sprayed on
+  - spellcheck: Decapitalized the goo
