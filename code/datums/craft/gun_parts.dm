@@ -14,16 +14,7 @@
 
 	var/variant_grip = FALSE
 	var/list/gripvars = list(/obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/black)
-	var/gripvar1 = /obj/item/part/gun/grip/wood
-	var/gripvar2 = /obj/item/part/gun/grip/black
-	var/gripvar3
-	var/gripvar4
-
 	var/list/resultvars = list(/obj/item/gun/projectile, /obj/item/gun/energy)
-	var/resultvar1 = /obj/item/gun/projectile
-	var/resultvar2 = /obj/item/gun/projectile
-	var/resultvar3
-	var/resultvar4
 
 	var/mechanism = /obj/item/part/gun/mechanism
 	var/mechanism_attached = FALSE
@@ -36,21 +27,6 @@
 			to_chat(user, SPAN_WARNING("[src] already has a grip attached!"))
 			return
 		else if(variant_grip) 
-			/*if(istype(I, gripvar1))
-				result = resultvar1
-			else if(istype(I, gripvar2))
-				result = resultvar2
-			else if(istype(I, gripvar3))
-				result = resultvar3
-			else if(istype(I, gripvar4))
-				result = resultvar4
-			else
-				to_chat(user, SPAN_WARNING("This grip does not fit!"))
-				return
-			if(insert_item(I, user))
-				grip_attached = TRUE
-				to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
-				return*/
 			handle_gripvar(I, user)
 		else if(istype(I, grip))
 			if(insert_item(I, user))
@@ -85,10 +61,10 @@
 		result = resultvars[variantnum]
 		if(insert_item(I, user))
 			grip_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]. var [variantnum]"))
+			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
 			return
 	else
-		to_chat(user, SPAN_WARNING("This grip does not fit!!!"))
+		to_chat(user, SPAN_WARNING("This grip does not fit!"))
 		return
 
 /obj/item/part/gun/frame/attack_self(mob/user)

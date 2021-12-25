@@ -43,9 +43,7 @@
 	icon_state = "frame_mk58"
 	result = /obj/item/gun/projectile/mk58
 	variant_grip = TRUE
-	gripvar1 = /obj/item/part/gun/grip/black
-	gripvar2 = /obj/item/part/gun/grip/wood
-	resultvar1 = /obj/item/gun/projectile/mk58
-	resultvar2 = /obj/item/gun/projectile/mk58/wood
+	gripvars = list(/obj/item/part/gun/grip/black, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/mk58, /obj/item/gun/projectile/mk58/wood)
 	mechanism = /obj/item/part/gun/mechanism/pistol
 	barrel = /obj/item/part/gun/barrel/pistol

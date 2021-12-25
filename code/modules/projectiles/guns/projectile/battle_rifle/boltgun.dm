@@ -41,10 +41,8 @@
 	icon_state = "frame_serbrifle"
 	result = /obj/item/gun/projectile/boltgun
 	variant_grip = TRUE
-	gripvar1 = /obj/item/part/gun/grip/excel
-	gripvar2 = /obj/item/part/gun/grip/wood
-	resultvar1 = /obj/item/gun/projectile/boltgun
-	resultvar2 = /obj/item/gun/projectile/boltgun/serbian
+	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
 	mechanism = /obj/item/part/gun/mechanism/boltgun
 	barrel = /obj/item/part/gun/barrel/lrifle
 
