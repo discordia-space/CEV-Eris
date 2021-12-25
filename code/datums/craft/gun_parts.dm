@@ -82,6 +82,7 @@
 /obj/item/part/gun/frame/proc/handle_gripvar(obj/item/I, mob/living/user)
 	if(I.type in gripvars)
 		var/variantnum = gripvars.Find(I.type)
+		result = resultvars[variantnum]
 		if(insert_item(I, user))
 			grip_attached = TRUE
 			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]. var [variantnum]"))
