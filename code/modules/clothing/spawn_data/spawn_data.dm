@@ -166,8 +166,6 @@
 /obj/item/clothing/head/ushanka
 	rarity_value = 10
 
-/obj/item/clothing/head/kitty
-	rarity_value = 50
 
 /obj/item/clothing/head/bio_hood/general
 	rarity_value = 23.8889
