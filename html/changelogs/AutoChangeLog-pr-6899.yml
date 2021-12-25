@@ -1,8 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - refactor: alcohol was refactored, now involves putting ethanol in the bloodstream
-  - tweak: cahors is halal
-  - bugfix: a large number of typos were fixed
-  - bugfix: lots of withdrawals fixed, including nicotine
-  - tweak: various withdrawal and Toxin tweaks
