@@ -935,7 +935,6 @@
 #include "code\game\objects\items\stacks\medical.dm"
 #include "code\game\objects\items\stacks\nanopaste.dm"
 #include "code\game\objects\items\stacks\rods.dm"
-#include "code\game\objects\items\stacks\knife.dm"
 #include "code\game\objects\items\stacks\stack.dm"
 #include "code\game\objects\items\stacks\telecrystal.dm"
 #include "code\game\objects\items\stacks\sheets\leather.dm"
