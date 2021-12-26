@@ -588,6 +588,42 @@
 	new /obj/item/stack/material/plasma(get_turf(holder.my_atom), created_volume)
 	return
 
+/datum/chemical_reaction/goldsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "gold" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/goldsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/gold(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/uraniumsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "uranium" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/uranium(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/silversolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "silver" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/silversolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/silver(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/platinumsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "platinum" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/platinumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/platinum(get_turf(holder.my_atom), created_volume)
+	return
+
 /datum/chemical_reaction/plastication
 	result = null
 	required_reagents = list("pacid" = 1, "plasticide" = 2)
@@ -656,8 +692,8 @@
 
 /datum/chemical_reaction/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
-	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
+	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than contractor EMP grandes.
+	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than contractor EMP grenades.
 	empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 	holder.clear_reagents()
 	return

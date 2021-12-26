@@ -19,10 +19,11 @@
 	var/mat_efficiency = 15
 	var/storage_capacity = 40
 	var/list/stored_material = list()
-	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD)
+	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
 	var/list/needed_material_gunpart = list(MATERIAL_PLASTEEL = 5)
 	var/list/needed_material_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20,MATERIAL_CARDBOARD = 20)
 	var/list/needed_material_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
+	var/list/needed_material_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flicker_overlay/image_load
@@ -84,6 +85,7 @@
 		".50 Shotgun Beanbag ammunition" = "bean",
 		".50 Shotgun Slug ammunition" = "slug",
 		".60 Anti-Material ammunition" = "antim",
+		"RPG shell" = "rocket",
 		"Gun parts" = "gunpart",
 		"Armor parts"= "armorpart",
 		)
@@ -149,6 +151,12 @@
 				if(amount > stored_material[material])
 					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
 					return
+		if("rocket")
+			for(var/material in needed_material_rocket)
+				var/amount = needed_material_rocket[material]
+				if(amount > stored_material[material])
+					to_chat(user, SPAN_NOTICE("You don't have enough [material] to work with."))
+					return
 		if("gunpart")
 			if(stored_material[MATERIAL_PLASTEEL] < needed_material_gunpart[MATERIAL_PLASTEEL])
 				to_chat(user, SPAN_NOTICE("You do not have enough plasteel to craft gun part."))
@@ -211,6 +219,10 @@
 				stored_material[_material] -= needed_material_ammo[_material]
 
 			spawn_antim(dice_roll,user)
+		if("rocket")
+			for(var/_material in needed_material_ammo)
+				stored_material[_material] -= needed_material_ammo[_material]
+			spawn_rocket(dice_roll,user)
 		if("shot")
 			for(var/_material in needed_material_ammo)
 				stored_material[_material] -= needed_material_ammo[_material]
@@ -444,6 +456,21 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
+/obj/machinery/craftingstation/proc/spawn_rocket(dice = 0, mob/user)	//All rifles use same spawning stats
+
+	var/piles
+
+	switch(dice)
+		if(-99 to 20)
+			piles = 1
+		if(20 to 50)
+			piles = 2
+
+	if(piles)
+		for(var/j = 1 to piles)
+			new /obj/item/ammo_casing/rocket/scrap/prespawned(user.loc)
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/craftingstation/proc/spawn_gunpart(dice = 0, mob/user)
 
 	var/parts = 0
@@ -519,7 +546,7 @@
 		return FALSE
 
 	if(stored_material[material] >= storage_capacity)
-		to_chat(user, SPAN_WARNING("The [src] are full of [material]."))
+		to_chat(user, SPAN_WARNING("The [src] is full of [material]."))
 		return FALSE
 
 	if(stored_material[material] + stack.amount > storage_capacity)
@@ -571,10 +598,57 @@
 	work_time = initial(work_time) - 2 * (man_rating - 1) SECONDS
 	mat_efficiency = initial(mat_efficiency) - (1.5 ^ las_rating)
 
-/obj/machinery/autolathe/on_deconstruction()
+/obj/machinery/craftingstation/on_deconstruction()
 	for(var/mat in stored_material)
 		eject(mat, stored_material[mat])
 	..()
+
+//Autolathes can eject decimal quantities of material as a shard
+/obj/machinery/craftingstation/proc/eject(material, amount)
+	if(!(material in stored_material))
+		return
+
+	if(!amount)
+		return
+
+	var/material/M = get_material_by_name(material)
+
+	if(!M.stack_type)
+		return
+	amount = min(amount, stored_material[material])
+
+	var/whole_amount = round(amount)
+	var/remainder = amount - whole_amount
+
+	if(whole_amount)
+		var/obj/item/stack/material/S = new M.stack_type(drop_location())
+
+		//Accounting for the possibility of too much to fit in one stack
+		if(whole_amount <= S.max_amount)
+			S.amount = whole_amount
+			S.update_strings()
+			S.update_icon()
+		else
+			//There's too much, how many stacks do we need
+			var/fullstacks = round(whole_amount / S.max_amount)
+			//And how many sheets leftover for this stack
+			S.amount = whole_amount % S.max_amount
+
+			if(!S.amount)
+				qdel(S)
+
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
+				MS.amount = MS.max_amount
+				MS.update_strings()
+				MS.update_icon()
+
+	//And if there's any remainder, we eject that as a shard
+	if(remainder)
+		new /obj/item/material/shard(drop_location(), material, _amount = remainder)
+
+	//The stored material gets the amount (whole+remainder) subtracted
+	stored_material[material] -= amount
 
 #undef WORK
 #undef DONE

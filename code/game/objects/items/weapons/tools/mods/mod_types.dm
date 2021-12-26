@@ -783,7 +783,7 @@
 	spawn_blacklisted = TRUE
 	price_tag = 600
 
-/obj/item/tool_upgrade/augment/hydraulic/New()
+/obj/item/tool_upgrade/plasma_coating/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(

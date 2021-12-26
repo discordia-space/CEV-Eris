@@ -95,7 +95,7 @@
 
 /datum/perk/fate/alcoholic/assign(mob/living/carbon/human/H)
 	..()
-	var/ethanoltype = pick(subtypesof(/datum/reagent/ethanol))
+	var/ethanoltype = pick(subtypesof(/datum/reagent/alcohol))
 	if(!(ethanoltype in holder.metabolism_effects.addiction_list))
 		var/datum/reagent/alcohol = new ethanoltype
 		holder.metabolism_effects.addiction_list.Add(alcohol)
@@ -122,7 +122,7 @@
 	name = "Noble"
 	icon_state = "family" //https://game-icons.net
 	desc = "You are a descendant of a long-lasting family, bearing a name of high status that can be traced back to the early civilization of your domain. \
-			Start with an heirloom weapon, higher chance to be on traitor contracts and removed sanity cap. Stay clear of filth and danger."
+			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger."
 
 /datum/perk/fate/noble/assign(mob/living/carbon/human/H)
 	..()

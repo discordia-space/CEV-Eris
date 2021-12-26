@@ -45,6 +45,13 @@ Used In File(s): code\modules\modular_computers\file_system\programs\medical\sui
 			{{else}}
 				<td><span class="white">Area:</span> Not Available</td>
 			{{/if}}
+			{{if data.can_mute}}
+				{{if value.muted}}
+					<td class='tracking'>{{:helper.link('Unmute', null, {'unmute' : value.ref})}}</td>
+				{{else}}
+					<td class='tracking'>{{:helper.link('Mute', null, {'mute' : value.ref})}}</td>
+				{{/if}}
+			{{/if}}
 		</tr>
 		<tr class="candystripe">
 			<td>({{:value.assignment}})
