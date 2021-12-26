@@ -462,10 +462,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor -= 1
 	if(blood_DNA)
 		style_factor -= 1
-	if(style_factor > MAX_HUMAN_STYLE)
-		style_factor = MAX_HUMAN_STYLE
-	else if(style_factor < MIN_HUMAN_STYLE)
-		style_factor = MIN_HUMAN_STYLE
+	style_factor = clamp(style_factor, MIN_HUMAN_STYLE, max_style) // if the ship wants you dead, you are NOT stylish.
 	return style_factor
 
 /mob/living/carbon/human/proc/get_style_factor()

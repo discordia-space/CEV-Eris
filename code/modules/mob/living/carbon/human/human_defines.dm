@@ -93,6 +93,7 @@
 	var/datum/sanity/sanity
 
 	var/style = 0
+	var/max_style = MAX_HUMAN_STYLE
 	var/slickness = 0 // used for stylish dodging stuff, capped at style * 10
 	var/confidence = TRUE // needed to notify player when slickness passively regens
 
