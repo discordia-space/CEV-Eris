@@ -459,7 +459,7 @@
 
 /obj/item/ammo_casing/rocket
 	name = "PG-7VL grenade"
-	desc = "A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape."
+	desc = "A 1.5 warhead designed for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket
 	caliber = CAL_ROCKET
@@ -467,6 +467,16 @@
 	reload_delay = 15
 	is_caseless = TRUE
 	w_class = ITEM_SIZE_NORMAL
+
+/obj/item/ammo_casing/rocket/scrap
+	name = "scrap rocket"
+	desc = "An old improvised rocket shell for the RPG-7 launcher. Has a tubular shape."
+	icon_state = "old_rocketshell"
+	projectile_type = /obj/item/projectile/bullet/rocket/scrap
+	caliber = CAL_ROCKET
+
+/obj/item/ammo_casing/rocket/scrap/prespawned
+	amount = 1
 
 /obj/item/ammo_casing/a75
 	desc = "A .70 bullet casing."

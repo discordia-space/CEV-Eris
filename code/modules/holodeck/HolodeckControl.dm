@@ -106,7 +106,7 @@
 			return
 
 		if(safety_disabled && emagged)
-			return //if a traitor has gone through the trouble to emag the thing, let them keep it.
+			return //if a contractor has gone through the trouble to emag the thing, let them keep it.
 
 		safety_disabled = !safety_disabled
 		update_projections()
