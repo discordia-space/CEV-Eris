@@ -60,7 +60,7 @@
 		if(AB_ITEM)
 			if(target)
 				var/obj/item/item = target
-				item.ui_action_click()
+				item.ui_action_click(usr, name)
 		//if(AB_SPELL)
 		//	if(target)
 		//		var/obj/effect/proc_holder/spell = target

@@ -3,6 +3,8 @@
 	metabolism = REM/4
 	constant_metabolism = TRUE
 	reagent_type = "Stimulator"
+	withdrawal_threshold = 20
+	withdrawal_rate = REM * 1.5
 
 
 /datum/reagent/stim/mbr

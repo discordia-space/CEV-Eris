@@ -36,7 +36,7 @@
 	var/list/supply_cost = list("1" = 1000, "2" = 950, "3" = 1100, "4" = 75, "5" = 100)
 	var/list/supply_name = list("1" = "engine parts", "2" = "hull parts", "3" = "electronic parts", "4" = "food", "5" = "fuel", "6" = "credits")
 	var/list/settlers = list()
-	var/num_traitors = 0
+	var/num_contractors = 0
 	var/list/events = list(
 		ORION_TRAIL_RAIDERS		= 3,
 		ORION_TRAIL_FLUX			= 1,
@@ -80,7 +80,7 @@
 			settlers += pick(GLOB.first_names_male)
 		else
 			settlers += pick(GLOB.first_names_female)
-	num_traitors = 0
+	num_contractors = 0
 	event = ORION_TRAIL_START
 	port = 0
 	view = ORION_VIEW_MAIN
@@ -295,12 +295,12 @@
 
 	event_info += "The crewmember, [settlers[specific]] [desc == null ? "has died!":"[desc]"]<BR>"
 	settlers -= settlers[specific]
-	if(num_traitors > 0 && prob(100/max(1,settlers.len-1)))
-		num_traitors--
+	if(num_contractors > 0 && prob(100/max(1,settlers.len-1)))
+		num_contractors--
 
 /obj/machinery/computer/arcade/orion_trail/proc/generate_event(var/specific = null)
 	if(!specific)
-		if(prob(20*num_traitors))
+		if(prob(20*num_contractors))
 			specific = ORION_TRAIL_MUTINY_ATTACK
 		else
 			specific = pickweight(events)
@@ -354,34 +354,34 @@
 
 		if(ORION_TRAIL_MUTINY)
 			event_info = ""
-			if(num_traitors < settlers.len - 1 && prob(55)) //gotta have at LEAST one non-traitor.
-				num_traitors++
+			if(num_contractors < settlers.len - 1 && prob(55)) //gotta have at LEAST one non-contractor.
+				num_contractors++
 		if(ORION_TRAIL_MUTINY_ATTACK)
 			//check to see if they just jump ship
-			if(prob(30+(settlers.len-num_traitors)*20))
-				event_info = "The traitors decided to jump ship along with some of your supplies!<BR>"
-				change_resource(4,-1 - (0.2 * num_traitors))
-				change_resource(5,-1 - (0.1 * num_traitors))
-				for(var/i=0;i<num_traitors;i++)
+			if(prob(30+(settlers.len-num_contractors)*20))
+				event_info = "The contractors decided to jump ship along with some of your supplies!<BR>"
+				change_resource(4,-1 - (0.2 * num_contractors))
+				change_resource(5,-1 - (0.1 * num_contractors))
+				for(var/i=0;i<num_contractors;i++)
 					remove_settler(rand(2,settlers.len),"decided to up and leave!")
-				num_traitors = 0
+				num_contractors = 0
 			else //alright. They wanna fight for the ship.
-				event_info = "The traitors are charging you! Prepare your weapons!<BR>"
-				var/list/traitors = list()
-				for(var/i=0;i<num_traitors;i++)
-					traitors += pick((settlers-traitors)-settlers[1])
-				var/list/nontraitors = settlers-traitors
-				while(nontraitors.len && traitors.len)
+				event_info = "The contractors are charging you! Prepare your weapons!<BR>"
+				var/list/contractors = list()
+				for(var/i=0;i<num_contractors;i++)
+					contractors += pick((settlers-contractors)-settlers[1])
+				var/list/noncontractors = settlers-contractors
+				while(noncontractors.len && contractors.len)
 					if(prob(50))
-						var/t = rand(1,traitors.len)
-						remove_settler(t,"was slain like the traitorous scum they were!")
-						traitors -= traitors[t]
+						var/t = rand(1,contractors.len)
+						remove_settler(t,"was slain like the contractorous scum they were!")
+						contractors -= contractors[t]
 					else
-						var/n = rand(1,nontraitors.len)
+						var/n = rand(1,noncontractors.len)
 						remove_settler(n,"was slain in defense of the ship!")
-						nontraitors -= nontraitors[n]
-				settlers = nontraitors
-				num_traitors = 0
+						noncontractors -= noncontractors[n]
+				settlers = noncontractors
+				num_contractors = 0
 		if(ORION_TRAIL_DISASTER)
 			event_desc = "The [event] proved too difficult for you and your crew!"
 			change_resource(4,-1)

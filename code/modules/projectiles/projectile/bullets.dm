@@ -47,7 +47,7 @@
 		return 1
 
 	var/chance = 0
-	if(istype(A, /turf/simulated/wall))
+	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
 		chance = round(penetrating * armor_penetration * 2 / W.material.integrity * 180)
 	else if(istype(A, /obj/item/shield))
@@ -59,9 +59,16 @@
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
+	else if(istype(A, /obj/structure/low_wall))
+		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+	else if(istype(A, /obj/structure/table))
+		var/obj/structure/table/T = A
+		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)
+	else if(istype(A, /obj/structure/barricade))
+		var/obj/structure/barricade/B = A
+		chance = round(penetrating * armor_penetration * 2 / B.material.integrity * 180)
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		chance = armor_penetration * penetrating
-
 
 	if(prob(chance))
 		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
@@ -119,7 +126,6 @@
 			continue
 
 		//pellet hits spread out across different zones, but 'aim at' the targeted zone with higher probability
-		//whether the pellet actually hits the def_zone or a different zone should still be determined by the parent using get_zone_with_miss_chance().
 		var/old_zone = def_zone
 		def_zone = ran_zone(def_zone, spread)
 		if (..()) hits++

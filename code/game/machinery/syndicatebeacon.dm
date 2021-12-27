@@ -1,9 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 //  Beacon randomly spawns in space
-//	When a non-traitor (no special role in /mind) uses it, he is given the choice to become a traitor
+//	When a non-contractor (no special role in /mind) uses it, he is given the choice to become a contractor
 //	If he accepts there is a random chance he will be accepted, rejected, or rejected and killed
-//	Bringing certain items can help improve the chance to become a traitor
+//	Bringing certain items can help improve the chance to become a contractor
 
 
 /obj/machinery/syndicate_beacon
@@ -34,7 +34,7 @@
 				honorific = "Ms."
 			dat += "<font color=red><i>Identity not found in operative database. What can the Syndicate do for you today, [honorific] [user.name]?</i></font><br>"
 			if(!selfdestructing)
-				dat += "<br><br><A href='?src=\ref[src];betraitor=1;traitormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
+				dat += "<br><br><A href='?src=\ref[src];becontractor=1;contractormob=\ref[user]'>\"[pick("I want to switch teams.", "I want to work for you.", "Let me join you.", "I can be of use to you.", "You want me working for you, and here's why...", "Give me an objective.", "How's the 401k over at the Syndicate?")]\"</A><BR>"
 	dat += temptext
 	user << browse(dat, "window=syndbeacon")
 	onclose(user, "syndbeacon")
@@ -42,11 +42,11 @@
 /obj/machinery/syndicate_beacon/Topic(href, href_list)
 	if(..())
 		return
-	if(href_list["betraitor"])
+	if(href_list["becontractor"])
 		if(charges < 1)
 			src.updateUsrDialog()
 			return
-		var/mob/M = locate(href_list["traitormob"])
+		var/mob/M = locate(href_list["contractormob"])
 		if(M.mind.antagonist.len || jobban_isbanned(M, "Syndicate"))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
 			src.updateUsrDialog()
@@ -60,10 +60,10 @@
 				return
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
-			M << "<B>You have joined the ranks of the Syndicate and become a traitor to the station!</B>"
-			traitors.add_antagonist(N.mind)
-			traitors.equip(N)
-			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
+			M << "<B>You have joined the ranks of the Syndicate and become a contractor to the station!</B>"
+			contractors.add_antagonist(N.mind)
+			contractors.equip(N)
+			message_admins("[N]/([N.ckey]) has accepted a contractor objective from a syndicate beacon.")
 
 
 	src.updateUsrDialog()

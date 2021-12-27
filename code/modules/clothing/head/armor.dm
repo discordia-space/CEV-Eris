@@ -575,6 +575,7 @@
 	up = TRUE
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
+	tint_down = TINT_LOW
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS
@@ -627,7 +628,7 @@
 	if(crewmembers.len)
 		for(var/i = 1, i <= crewmembers.len, i++)
 			var/list/entry = crewmembers[i]
-			if(entry["alert"])
+			if(entry["alert"] && !entry["muted"])
 				if(entry["name"] in crewmembers_recently_reported)
 					continue
 				crewmembers_recently_reported += entry["name"]

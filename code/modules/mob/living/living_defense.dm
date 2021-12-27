@@ -317,13 +317,13 @@
 
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
-		on_fire = 1
+		on_fire = TRUE
 		set_light(light_range + 3, l_color = COLOR_RED)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
-		on_fire = 0
+		on_fire = FALSE
 		fire_stacks = 0
 		set_light(max(0, light_range - 3))
 		update_fire()
@@ -365,11 +365,11 @@
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
 	if (fire_stacks <= 0)
-		return 0
+		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
-	return min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))
+	return FIRESTACKS_TEMP_CONV(fire_stacks)
 
 /mob/living/proc/reagent_permeability()
 	return 1

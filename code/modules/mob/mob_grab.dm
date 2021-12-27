@@ -279,7 +279,7 @@
 			to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
 			return
 
-		assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] neck!"))
+		assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] by the neck!"))
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		assailant.set_dir(get_dir(assailant, affecting))
@@ -386,6 +386,10 @@
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
 						headbutt(affecting, assailant)
+					else if(hit_zone == BP_CHEST)
+						suplex(affecting, assailant)
+					else if(hit_zone == BP_GROIN)
+						dropkick(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
 
