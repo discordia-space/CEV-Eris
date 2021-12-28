@@ -84,7 +84,6 @@
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
-	funding_source = "Church of NeoTheology"
 
 
 /******************
