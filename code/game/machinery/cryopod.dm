@@ -520,7 +520,7 @@
 				if(A.employer && A.wage_original) // Dicrease personnel budget of our department, if have one
 					var/datum/money_account/EA = department_accounts[A.employer]
 					var/datum/department/D = GLOB.all_departments[A.employer]
-					if(EA && D && (D.funding_type != FUNDING_NONE)) // Don't bother if department have no employer
+					if(EA && D) // Don't bother if department have no employer
 						D.budget_personnel -= A.wage_original
 						if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
 							EA.wage = D.get_total_budget()
