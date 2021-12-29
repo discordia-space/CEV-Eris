@@ -316,7 +316,6 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/head/space/void/science
-	var/list/icon_colors = list("Blue","Red", "Purple","Green", "Yellow", "White")
 	var/list/icon_states = list(
 		"Blue" = "moebiushelmb",
 		"Red" = "moebiushelmr",
@@ -330,14 +329,14 @@
 	set category = "Object"
 	set src in usr
 
-	var/color = input(usr, "Colors available", "Visor configuration", "moebiushelmb") as null|anything in icon_colors
+	var/color = input(usr, "Colors available", "Visor configuration", "moebiushelmb") as null|anything in icon_states
 	icon_state = icon_states[color]
 	update_wear_icon()
 	usr.update_action_buttons()
 
 /obj/item/clothing/head/space/void/science/New()
 	..()
-	var/color = pick(icon_colors)
+	var/color = pick(icon_states)
 	icon_state = icon_states[color]
 
 /obj/item/clothing/suit/space/void/science
