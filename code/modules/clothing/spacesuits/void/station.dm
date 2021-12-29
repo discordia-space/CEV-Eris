@@ -290,7 +290,7 @@
 
 //Science
 /obj/item/clothing/head/space/void/science
-	name = "Moebius combat Helmet"
+	name = "Moebius combat helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
@@ -316,11 +316,29 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/head/space/void/science
-    var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw") //TODO: a manual selection anytime.
+	var/list/icon_colors = list("Blue","Red", "Purple","Green", "Yellow", "White")
+	var/list/icon_states = list(
+		"Blue" = "moebiushelmb",
+		"Red" = "moebiushelmr",
+		"Purple" = "moebiushelmp",
+		"Green" = "moebiushelmg",
+		"Yellow" = "moebiushelmy",
+		"White" = "moebiushelmw")
+
+/obj/item/clothing/head/space/void/science/verb/recolor()
+	set name = "Change helmet's color"
+	set category = "Object"
+	set src in usr
+
+	var/color = input(usr, "Colors available", "Visor configuration", "moebiushelmb") as null|anything in icon_colors
+	icon_state = icon_states[color]
+	update_wear_icon()
+	usr.update_action_buttons()
 
 /obj/item/clothing/head/space/void/science/New()
-    ..()
-    icon_state = pick(icon_states)
+	..()
+	var/color = pick(icon_colors)
+	icon_state = icon_states[color]
 
 /obj/item/clothing/suit/space/void/science
 	name = "Moebius combat voidsuit"
