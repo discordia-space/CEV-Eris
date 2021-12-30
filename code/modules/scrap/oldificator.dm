@@ -32,6 +32,16 @@
 		return TRUE
 	return FALSE
 
+/obj/item/computer_hardware/hard_drive/make_young()
+	var/result = ..()
+	stored_files = list()
+	return result
+
+/obj/item/computer_hardware/hard_drive/portable/design/make_young()
+	var/result = ..()
+	license = min(license, 0)
+	return result
+
 /obj/proc/make_old(low_quality_oldification)	//low_quality_oldification changes names and colors to fit with "bad prints" instead of "very old items" asthetic
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(oldified)
