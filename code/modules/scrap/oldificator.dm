@@ -32,7 +32,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item
+/obj/item/make_young()
 	.=..()
 	refresh_upgrades() //should fix the problem of stacking mods
 
