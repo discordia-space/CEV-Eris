@@ -32,10 +32,6 @@
 		return TRUE
 	return FALSE
 
-/obj/item/make_young()
-	.=..()
-	refresh_upgrades() //should fix the problem of stacking mods
-
 /obj/item/computer_hardware/hard_drive/make_young()
 	.=..()
 	stored_files = list()
