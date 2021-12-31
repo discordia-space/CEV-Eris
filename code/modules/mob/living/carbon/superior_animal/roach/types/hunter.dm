@@ -20,3 +20,4 @@
 	melee = 20 // Jager jacket
 	bullet = 10
 	energy = 10
+	
