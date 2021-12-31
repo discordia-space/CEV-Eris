@@ -23,7 +23,7 @@
 	// Armor related variables
 	bullet = 20
 	bio = 75
-	rad = 50
+	rad = 100
 
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
 	. = ..()
