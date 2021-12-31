@@ -99,6 +99,14 @@
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
 	var/ticks_processed = 0
 
+	// Armor related variables
+	var/melee = 0
+	var/bullet = 0
+	var/energy = 0
+	var/bomb = 0
+	var/bio = 0
+	var/rad = 0
+
 /mob/living/carbon/superior_animal/New()
 	..()
 
@@ -352,3 +360,5 @@
 	life_cycles_before_scan = initial(life_cycles_before_scan)
 	return FALSE
 
+/mob/living/carbon/superior_animal/getarmor(def_zone, type)
+	return vars[type]

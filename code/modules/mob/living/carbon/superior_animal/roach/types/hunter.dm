@@ -9,8 +9,13 @@
 	move_to_delay = 3.5
 
 	melee_damage_lower = 4
-	melee_damage_upper = 11
+	melee_damage_upper = 13
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3
 	rarity_value = 11.25
+
+	// Armor related variables
+	melee = 20 // Jager jacket
+	bullet = 10
+	energy = 10

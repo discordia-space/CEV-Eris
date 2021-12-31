@@ -15,8 +15,8 @@ Has ability of every roach.
 	rarity_value = 100
 
 	turns_per_move = 6
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1500
+	health = 1500
 	contaminant_immunity = TRUE
 
 	var/datum/reagents/gas_sac
@@ -43,6 +43,13 @@ Has ability of every roach.
 	var/health_marker_1 = 1500
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
+
+	// Armor related variables
+	melee = 40
+	bullet = 40
+	energy = 60
+	bio = 25
+	rad = 50
 
 /mob/living/carbon/superior_animal/roach/kaiser/New()
 	..()

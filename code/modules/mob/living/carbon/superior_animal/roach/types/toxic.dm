@@ -5,8 +5,8 @@
 
 	meat_amount = 3
 	turns_per_move = 1
-	maxHealth = 45
-	health = 45
+	maxHealth = 40
+	health = 40
 
 	contaminant_immunity = TRUE
 
@@ -19,6 +19,11 @@
 	fire_verb = "spits glowing bile"
 	acceptableTargetDistance = 5
 	kept_distance = 3
+
+	// Armor related variables
+	bullet = 20
+	bio = 75
+	rad = 50
 
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
 	. = ..()

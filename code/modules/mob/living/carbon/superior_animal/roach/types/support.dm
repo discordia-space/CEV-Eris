@@ -12,6 +12,9 @@
 	rarity_value = 11.25
 	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 
+	// Armor related variables
+	bio = 50
+
 /mob/living/carbon/superior_animal/roach/support/New()
 	.=..()
 	gas_sac = new /datum/reagents(100, src)
