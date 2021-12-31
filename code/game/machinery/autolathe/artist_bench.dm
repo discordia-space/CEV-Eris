@@ -141,46 +141,77 @@
 
 			if("pistol") //From havelock.dm, Arbitrary Values
 				R.caliber = pick(CAL_PISTOL)
+				R.custom_default["caliber"] = R.caliber
 				R.damage_multiplier = 1.4 + rand(-5,5)/10
+				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.4 + rand(-5,5)/10
+				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
 				R.recoil_buildup = 3 + rand(-3,3)/5
+				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("magnum") //From consul.dm, Arbitrary values
 				R.caliber = CAL_MAGNUM
+				R.custom_default["caliber"] = R.caliber
 				R.damage_multiplier = 1.35 + rand(-5,5)/10
+				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.5 + rand(-5,5)/10
+				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
 				R.recoil_buildup = 6 + rand(-6,6)/5
+				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("shotgun") //From bull.dm, Arbitrary values
 				R.caliber = CAL_SHOTGUN
+				R.custom_default["caliber"] = R.caliber
 				R.damage_multiplier = 0.75 + rand(-2,2)/10
+				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 0.75 + rand(-3,3)/10
+				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
 				R.recoil_buildup = 1.2 + rand(-2,2)/10//from sawnoff.dm
+				R.custom_default["recoil_buildup"] = R.recoil_buildup
 				R.one_hand_penalty = 10 + rand(-2,3)
+				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
+				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
 				R.fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+				R.custom_default["fire_sound"] = R.fire_sound
 
 			if("rifle")
 				R.caliber = pick(CAL_CLRIFLE, CAL_SRIFLE, CAL_LRIFLE)
+				R.custom_default["caliber"] = R.caliber
 				R.fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
-			
+				R.custom_default["fire_sound"] = R.fire_sound
+
 			if("sniper")//From sniper.dm, Arbitrary values
 				R.caliber = CAL_ANTIM
+				R.custom_default["caliber"] = R.caliber
 				R.damage_multiplier = 0.55 + rand(-3,3)/20
+				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.0
+				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
+				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
 				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+				R.custom_default["fire_sound"] = R.fire_sound
 				R.one_hand_penalty = 10 + rand(-3,5) //From sniper.dm, Temporary values
+				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
 				R.recoil_buildup = 75 + rand(-10,10)
+				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("rocket")//From RPG.dm, Arbitrary values
 				R.caliber = CAL_ROCKET
+				R.custom_default["caliber"] = R.caliber
 				R.damage_multiplier = 1.0
+				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.0
+				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
 				R.fire_sound = 'sound/effects/bang.ogg'
+				R.custom_default["fire_sound"] = R.fire_sound
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
+				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
 				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
+				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
 				R.recoil_buildup = 3 + rand(-1,1)
+				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 
 			//No gun currently uses CAL_357 far as I know
@@ -192,6 +223,7 @@
 				list(mode_name="Single shot", mode_desc="fire one barrel at a time", burst=1, icon="semi"),
 				list(mode_name="Triple barrel",mode_desc="fire three barrels at once", burst=3, icon="auto"),
 				)
+			R.custom_default["init_firemodes"] = R.init_firemodes
 		return R
 
 	else if(full_artwork == "artwork_statue")
