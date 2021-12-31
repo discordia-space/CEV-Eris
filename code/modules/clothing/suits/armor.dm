@@ -10,7 +10,7 @@
 	price_tag = 200
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_TORSO
-	equip_delay = 6 SECONDS
+	equip_delay = 4 SECONDS
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
