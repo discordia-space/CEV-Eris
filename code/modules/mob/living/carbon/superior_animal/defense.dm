@@ -388,7 +388,7 @@
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
-		L.armor_penetration = penetration
+		penetration = L.armor_penetration
 
 	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
