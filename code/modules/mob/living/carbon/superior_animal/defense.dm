@@ -344,7 +344,7 @@
 		if(toxins_pp > min_breath_poison_type)
 			adjustToxLoss(2)
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
 	// if its lower than 0 , just bring it back to 0
@@ -396,7 +396,7 @@
 	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
-	return 1
+	return TRUE
 
 /mob/living/carbon/superior_animal/adjustHalLoss(amount)
 	if(status_flags & GODMODE)
