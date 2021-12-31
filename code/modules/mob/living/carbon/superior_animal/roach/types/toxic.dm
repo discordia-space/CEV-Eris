@@ -40,8 +40,8 @@
 	name = "Glowing bile"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
-	damage_types = list()
-	irradiate = 20
+	damage_types = list(TOX = 15)
+	irradiate = 15
 	check_armour = ARMOR_BIO
 	step_delay = 2
 
