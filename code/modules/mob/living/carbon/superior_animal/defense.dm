@@ -397,3 +397,8 @@
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return 1
+
+/mob/living/carbon/superior_animal/adjustHalLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	halloss = min(max(halloss + (amount / 2), 0),(maxHealth*2)) // Agony is less effective against beasts
