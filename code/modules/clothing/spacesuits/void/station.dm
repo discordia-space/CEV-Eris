@@ -329,7 +329,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/color = input(usr, "Available colors", "Visor configuration", "Purple") as null|anything in icon_states
+	var/color = input(usr, "Available colors", "Visor configuration") in icon_states
 	icon_state = icon_states[color]
 	update_wear_icon()
 	usr.update_action_buttons()
