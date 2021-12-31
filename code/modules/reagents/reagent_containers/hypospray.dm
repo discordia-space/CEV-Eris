@@ -114,6 +114,7 @@
 		icon_state = "[initial(icon_state)]0"
 
 
+// Basic
 /obj/item/reagent_containers/hypospray/autoinjector/antitoxin
 	name = "autoinjector (anti-toxin)"
 	preloaded_reagents = list("anti_toxin" = 5)
@@ -122,9 +123,54 @@
 	name = "autoinjector (tricordrazine)"
 	preloaded_reagents = list("tricordrazine" = 5)
 
+/obj/item/reagent_containers/hypospray/autoinjector/kelotane
+	name = "autoinjector (kelotane)"
+	preloaded_reagents = list("kelotane" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/bicaridine
+	name = "autoinjector (bicaridine)"
+	preloaded_reagents = list("bicaridine" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/antirad
+	name = "autoinjector (anti-rad)"
+	preloaded_reagents = list("hyronalin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/dexalin
+	name = "autoinjector (dexalin)"
+	preloaded_reagents = list("dexalin" = 5)
+
 /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
 	name = "autoinjector (spaceacillin)"
 	preloaded_reagents = list("spaceacillin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/tramadol
+	name = "autoinjector (tramadol)"
+	preloaded_reagents = list("tramadol" = 5)
+
+// Intermediate
+/obj/item/reagent_containers/hypospray/autoinjector/polystem
+	name = "autoinjector (polystem)"
+	preloaded_reagents = list("polystem" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/meralyne
+	name = "autoinjector (meralyne)"
+	preloaded_reagents = list("meralyne" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/dermaline
+	name = "autoinjector (dermaline)"
+	preloaded_reagents = list("dermaline" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
+	name = "autoinjector (dexalin plus)"
+	preloaded_reagents = list("dexalinp" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/oxycodone
+	name = "autoinjector (oxycodone)"
+	preloaded_reagents = list("oxycodone" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/ryetalyn
+	name = "autoinjector (ryetalyn)"
+	preloaded_reagents = list("ryetalyn" = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "autoinjector (hyperzine)"

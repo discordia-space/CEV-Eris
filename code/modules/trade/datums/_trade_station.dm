@@ -32,14 +32,14 @@
 	var/markdown = 0.6				// Default markdown is 60%
 	var/list/assortiment = list()
 	var/list/offer_types = list()
-	var/list/offer_limit = 0		// For limiting sell offer quantity. 0 is no cap.
+	var/list/offer_limit = 0		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
 	var/list/special_offers = list()
 
 	var/base_income = 1600				// Stations can replenish some stock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
-	var/wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
+	var/wealth = 0						// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 	var/total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached.
 	var/secret_inv_threshold = 32000	// Total value required to unlock secret inventory
 	var/secret_inv_unlocked = FALSE
@@ -114,13 +114,13 @@
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()
-	if(initialized)
+	if(initialized)		// So the station doesn't get paid or replenish stock at roundstart
 		goods_tick()
 	else
 		initialized = TRUE
 	addtimer(CALLBACK(src, .proc/update_tick), rand(15,25) MINUTES, TIMER_STOPPABLE)
 
-// Old goods_tick(), now good amounts are randomly chosen once at round start
+// Old goods_tick(). Now, good amounts are randomly chosen once at round start.
 /datum/trade_station/proc/init_goods()
 	for(var/category_name in assortiment)
 		var/list/category = assortiment[category_name]
@@ -147,12 +147,12 @@
 			special_offers[offer_path] = offer_content
 
 
-// Rather than randomly replenishing stock, the station will replenish based on base_income + wealth
+// The station will replenish stock based on base_income + wealth, then check to see if the secret inventory is unlocked.
 /datum/trade_station/proc/goods_tick()
-	// Get income
+	// Get base income
 	add_to_wealth(base_income)
 
-	// Replenish stock; this isn't working, the amounts_of_goods value won't budge no matter what I do
+	// Replenish stock
 	var/starting_balance = wealth								// For calculating production budget
 	var/budget = round(starting_balance / unique_good_count)	// Don't wanna blow the whole balance on one item
 	for(var/category_name in assortiment)
@@ -161,12 +161,12 @@
 			for(var/good_path in category)
 				var/good_index = category.Find(good_path)
 				var/good_amount = get_good_amount(category_name, good_index)
-				var/chance_to_replenish = (good_amount < 10) ? 100 : 15
+				var/chance_to_replenish = (good_amount < 5) ? 100 : 15						// Always replenish low stock goods if we have the funds.
 				var/roll = rand(1,100)
 				if(roll <= chance_to_replenish)
 					var/cost = max(1, round(SStrade.get_import_cost(good_path, src) / 2))	// Cost of production is lower than sale price. Otherwise, it wouldn't make sense for the station to operate.
 					var/amount_to_add = rand(1, round(budget / cost))
-					if(cost * amount_to_add < wealth)
+					if(cost * amount_to_add < wealth)										// This means the cost of the items can go over budget, but that might be alright for now.
 						set_good_amount(category_name, good_index, good_amount + amount_to_add)
 						subtract_from_wealth(amount_to_add * cost)
 
@@ -180,7 +180,7 @@
 					var/category_name_index = secret_inventory.Find(category_name)
 					secret_inventory.Cut(category_name_index, category_name_index + 1)
 					assortiment.Add(category_name)
-					assortiment[category_name] = category	// not sure if this is needed
+					assortiment[category_name] = category
 				for(var/good_path in category)
 					var/cost = SStrade.get_import_cost(good_path, src)
 					var/list/rand_args = list(0, 50 / max(cost/200, 1))
@@ -214,7 +214,6 @@
 			if(islist(L))
 				L[L[index]] = value
 
-// Added as part of the new method of indirectly replenishing station stock
 /datum/trade_station/proc/add_to_wealth(var/income)
 	if(!isnum(income))
 		return
@@ -226,7 +225,7 @@
 		return
 	wealth -= cost
 
-// Added as part of the new method of directly replenishing station stock, does not add to total_value_received
+// Part of the new method of directly replenishing station stock. Does not add to total_value_received.
 datum/trade_station/proc/add_to_stock(atom/movable/AM)
 	var/path_found = FALSE
 	for(var/category_name in assortiment)
@@ -282,9 +281,9 @@ datum/trade_station/proc/add_to_stock(atom/movable/AM)
 		return
 	for(var/offer_type in offer_types)
 		var/list/offer_content = offer_types[offer_type]
-		var/name
-		var/base_price
-		var/amount_cap = 0
+		var/name = "ERROR: no name found"	// Shouldn't see these anyway
+		var/base_price = 1					//
+		var/amount_cap = 0					//
 		if(offer_content?.len >= 3)
 			name = offer_content["name"]
 			base_price = text2num(offer_content["price"])

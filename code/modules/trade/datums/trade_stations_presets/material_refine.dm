@@ -1,7 +1,13 @@
 /datum/trade_station/collector
+	name_pool = list(
+		"CRS 'Reoll'" = "Civilian Refinery Ship 'Recoll'. They're sending a message. \"Heey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
-	name_pool = list("CRS 'Reoll'" = "Civilian Refinery Ship 'Recoll'. They're sending a message. \"Heey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\"")
+	markup = COMMON_GOODS
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 16000
 	assortiment = list(
 		"Unrefined Materials"  = list(
 			/obj/item/ore/iron,
@@ -15,7 +21,6 @@
 			/obj/item/ore/hydrogen = custom_good_amount_range(list(0, 2)),
 			/obj/item/ore/uranium = custom_good_amount_range(list(0, 2))
 		),
-
 		"Refined Materials" = list(
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/cardboard/full = good_data("cardboard sheets (x120)", list(-4, 6)),
@@ -33,4 +38,23 @@
 			/obj/item/stack/material/tritium = good_data("tritium ingot (x1)", list(0, 2)),
 			/obj/item/stack/material/osmium = good_data("osmium ingot (x1)", list(0, 2))
 		),
+	)
+	secret_inventory = list(
+		"Refined Material Stacks" = list(
+			// Full stacks defined in material_sheets.dm
+			/obj/item/stack/material/platinum/full = good_data("platinum sheets (x120)", list(1, 1)),
+			/obj/item/stack/material/mhydrogen/full = good_data("metallic hydrogen sheets (x120)", list(1, 1)),
+			/obj/item/stack/material/uranium/full = good_data("uranium sheets (x120)", list(1, 1)),
+			/obj/item/stack/material/diamond/full = good_data("diamond sheets (x120)", list(1, 1)),
+			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 1)),
+			/obj/item/stack/material/gold/full = good_data("gold ingots (x120)", list(1, 1)),
+			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 1)),
+			/obj/item/stack/material/tritium/full = good_data("tritium ingots (x120)", list(1, 1)),
+			/obj/item/stack/material/osmium/full = good_data("osmium ingots (x120)", list(1, 1))
+		)
+	)
+	offer_types = list(
+		/obj/item/trash/material/metal = offer_data("scrap metal", 120, 20),
+		/obj/item/trash/material/circuit = offer_data("burnt circuit", 90, 20),
+		/obj/item/trash/material/device = offer_data("broken device", 205, 20),
 	)
