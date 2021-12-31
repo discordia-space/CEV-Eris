@@ -572,7 +572,7 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-	equip_delay = 1 SECONDS
+	equip_delay = 3 SECONDS
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
