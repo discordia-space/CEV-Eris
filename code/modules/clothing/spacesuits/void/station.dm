@@ -325,7 +325,7 @@
 		"White" = "moebiushelmw")
 
 /obj/item/clothing/head/space/void/science/verb/recolor()
-	set name = "Change helmet's color"
+	set name = "Change helmet color"
 	set category = "Object"
 	set src in usr
 
