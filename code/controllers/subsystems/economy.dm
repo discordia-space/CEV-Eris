@@ -32,6 +32,9 @@ SUBSYSTEM_DEF(economy)
 		var/datum/department/D = GLOB.all_departments[A.department_id]
 		var/datum/department/ED = GLOB.all_departments[D.funding_source]
 
+		if(!A.employer)
+			continue
+
 		if(D && !A.wage_manual)
 			A.wage = D.get_total_budget()
 
