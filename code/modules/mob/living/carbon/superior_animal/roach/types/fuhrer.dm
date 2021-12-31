@@ -8,8 +8,9 @@
 	maxHealth = 150
 	health = 150
 
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 12
+	melee_damage_upper = 25
+	armor_penetration = 20
 
 	move_to_delay = 8
 	mob_size = MOB_MEDIUM

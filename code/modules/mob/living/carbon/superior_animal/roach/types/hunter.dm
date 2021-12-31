@@ -10,6 +10,7 @@
 
 	melee_damage_lower = 4
 	melee_damage_upper = 13
+	armor_penetration = 20
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3

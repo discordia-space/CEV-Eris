@@ -23,6 +23,8 @@ Has ability of every roach.
 
 	melee_damage_lower = 20
 	melee_damage_upper = 35
+	armor_penetration = 40
+
 	move_to_delay = 8
 	mob_size = MOB_GIGANTIC
 	status_flags = 0

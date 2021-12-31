@@ -7,6 +7,8 @@
 	meat_type = /obj/item/bluespace_crystal
 	melee_damage_lower = 4
 	melee_damage_upper = 11
+	armor_penetration = 100 // Hits through armor, only GDR helps
+
 	sanity_damage = 1
 	spawn_blacklisted = TRUE
 	var/change_tele_to_mob = 25
