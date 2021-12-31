@@ -839,8 +839,8 @@
 	one_hand_penalty = initial(one_hand_penalty)
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
 		for(var/propname in custom_default) // taken from gun_firemode.dm
-			if(propname in src.vars)
-				src.vars[propname] = custom_default[propname]
+			if(propname in vars)
+				vars[propname] = custom_default[propname]
 	initialize_scope()
 	initialize_firemodes()
 
