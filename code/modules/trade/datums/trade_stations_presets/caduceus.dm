@@ -1,13 +1,19 @@
 /datum/trade_station/caduceus
-	name_pool = list("MAV 'Caduceus'" = "Moebius Aid Vessel 'Caduceus'. They're sending a message. \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you any medical aid while we are still here.\".")
+	name_pool = list(
+		"MAV 'Caduceus'" = "Moebius Aid Vessel 'Caduceus':\n\"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the mean time.\"."
+	)
 	icon_states = "moe_capital"
-	start_discovered = TRUE
-	spawn_always = TRUE
-
 	forced_overmap_zone = list(
 		list(20, 22),
 		list(20, 25)
 	)
+	start_discovered = TRUE
+	spawn_always = TRUE
+	markup = COMMON_GOODS
+	offer_limit = 20
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 32000
 	assortiment = list(
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular,
@@ -53,15 +59,23 @@
 			/obj/item/computer_hardware/hard_drive/portable/design
 		),
 	)
-
-	offer_types = list(
-			/obj/item/reagent_containers/blood/APlus,
-			/obj/item/reagent_containers/blood/AMinus,
-			/obj/item/reagent_containers/blood/BPlus,
-			/obj/item/reagent_containers/blood/BMinus,
-			/obj/item/reagent_containers/blood/OPlus,
-			/obj/item/reagent_containers/blood/OMinus,
-			/obj/item/stack/medical/bruise_pack,
-			/obj/item/stack/medical/splint,
-			/obj/item/stack/medical/ointment
+	secret_inventory = list(
+		"Autoinjectors" = list(
+			// Autoinjectors defined in hypospray.dm
+			/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = custom_good_amount_range(list(5, 10)),
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalin = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = custom_good_amount_range(list(5, 10)),
 		)
+	)
+	offer_types = list(
+		/obj/item/organ/internal/blood_vessel = offer_data("blood vessel", 100, 0),		// base price: 100
+		/obj/item/organ/internal/bone = offer_data("bone", 100, 0),						// base price: 100
+		/obj/item/organ/internal/muscle = offer_data("muscle", 100, 0),					// base price: 100
+		/obj/item/organ/internal/nerve = offer_data("nerve", 100, 0),					// base price: 100
+		/obj/item/organ/internal/kidney = offer_data("kidney", 400, 8),					// base price: 400
+		/obj/item/organ/internal/liver = offer_data("liver", 900, 8),					// base price: 900
+	)
