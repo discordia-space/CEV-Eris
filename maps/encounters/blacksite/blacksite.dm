@@ -26,7 +26,7 @@
 // Map templates
 /////
 /datum/map_template/blacksite
-	template_flags = 0
+	template_flags = TEMPLATE_FLAG_SPAWN_GUARANTEED
 	var/prefix = "maps/encounters/blacksite/blacksite_"
 	var/suffix = null
 
@@ -115,9 +115,9 @@
 
 // Set chunk_template in Initialize and not New because otherwise it causes a map preloading
 // that runtimes because the shuttle_landmark is created before the SSmapping system is launched
-/obj/effect/shuttle_landmark/blacksite/small/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/small
+// /obj/effect/shuttle_landmark/blacksite/small/Initialize()
+// 	..()
+// 	chunk_template = new /datum/map_template/blacksite/small
 
 /obj/effect/shuttle_landmark/blacksite/medium
 	x_corner = 83
@@ -127,13 +127,13 @@
 	..()
 	chunk_template = new /datum/map_template/blacksite/medium
 
-/obj/effect/shuttle_landmark/blacksite/large
-	x_corner = 83
-	y_corner = 80
+// /obj/effect/shuttle_landmark/blacksite/large
+// 	x_corner = 83
+// 	y_corner = 80
 
-/obj/effect/shuttle_landmark/blacksite/large/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/medium
+// /obj/effect/shuttle_landmark/blacksite/large/Initialize()
+// 	..()
+// 	chunk_template = new /datum/map_template/blacksite/medium
 
 // Navigation points for shuttle travel
 /obj/effect/shuttle_landmark/blacksite/small/nav1
