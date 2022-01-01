@@ -173,15 +173,15 @@
 	// Compare total score and unlock thresholds
 	if(secret_inv_unlocked)
 		return
-		if(total_value_received >= secret_inv_threshold)
-			secret_inv_unlocked = TRUE
-			for(var/category_name in secret_inventory)
-				var/list/category = secret_inventory[category_name]
-				if(istext(category_name) && islist(category))
-					var/category_name_index = secret_inventory.Find(category_name)
-					secret_inventory.Cut(category_name_index, category_name_index + 1)
-					assortiment.Add(category_name)
-					assortiment[category_name] = category
+	if(total_value_received >= secret_inv_threshold)
+		secret_inv_unlocked = TRUE
+		for(var/category_name in secret_inventory)
+			var/list/category = secret_inventory[category_name]
+			if(istext(category_name) && islist(category))
+				var/category_name_index = secret_inventory.Find(category_name)
+				secret_inventory.Cut(category_name_index, category_name_index + 1)
+				assortiment.Add(category_name)
+				assortiment[category_name] = category
 				for(var/good_path in category)
 					var/cost = SStrade.get_import_cost(good_path, src)
 					var/list/rand_args = list(0, 50 / max(cost/200, 1))
