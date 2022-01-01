@@ -20,7 +20,7 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10)),
-			/obj/item/storage/deferred/disks
+//			/obj/item/storage/deferred/disks	// Can be bought, emptied, and resold to discount the price. Now that direct selling replenishes stock, this may be a problem.
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -107,6 +107,6 @@
 		/obj/item/mech_equipment/ = offer_data("mech equipment", 175, 10),															// base price: 200
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 250, 8),					// base price: 300, sold at common
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 415, 8),		// base price: 500, sold at common
-		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 460, 8),		// base price: 550, sold at common
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 465, 8),		// base price: 550, sold at common
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 830, 8),			// base price: 1000, sold at common
 	)
