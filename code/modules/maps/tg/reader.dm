@@ -91,7 +91,7 @@ var/global/use_preloader = FALSE
 		// (1,1,1) = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
 		else if(dmmRegex.group[3]) // Coords
 			if(!key_len)
-				throw EXCEPTION("Coords before model definition in DMM")
+				throw EXCEPTION("Coords before model definition in DMM - [dmm_file]")
 
 			var/xcrdStart = text2num(dmmRegex.group[3]) + x_offset - 1
 			//position of the currently processed square
