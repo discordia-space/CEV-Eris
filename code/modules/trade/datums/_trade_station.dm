@@ -171,7 +171,8 @@
 						subtract_from_wealth(amount_to_add * cost)
 
 	// Compare total score and unlock thresholds
-	if(!secret_inv_unlocked)
+	if(secret_inv_unlocked)
+		return
 		if(total_value_received >= secret_inv_threshold)
 			secret_inv_unlocked = TRUE
 			for(var/category_name in secret_inventory)
