@@ -266,20 +266,15 @@
 ///////// .30 RIFLE ///////////
 
 /obj/item/ammo_magazine/lrifle
-	name = "magazine box (.30 Rifle)"
-	icon_state = "lrifle_box"
-	modular_sprites = FALSE
-	origin_tech = list(TECH_COMBAT = 2)
+	name = "long magazine (.30 Rifle)"
+	icon_state = "lrifle"
 	mag_type = MAGAZINE
-	mag_well = MAG_WELL_BOX
+	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 8)
+	matter = list(MATERIAL_STEEL = 5)
 	ammo_type = /obj/item/ammo_casing/lrifle
-	max_ammo = 50
-	ammo_states = list(10, 20, 30, 40, 50)
-
-/obj/item/ammo_magazine/lrifle/empty
-	initial_ammo = 0
+	max_ammo = 30
+	ammo_states = list(30)
 
 /obj/item/ammo_magazine/lrifle/pk
 	name = "LMG munitions box (.30 Rifle)"
@@ -304,17 +299,6 @@
 
 /obj/item/ammo_magazine/lrifle/pk/empty
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/lrifle
-	name = "long magazine (.30 Rifle)"
-	icon_state = "lrifle"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
-	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 5)
-	ammo_type = /obj/item/ammo_casing/lrifle
-	max_ammo = 30
-	ammo_states = list(30)
 
 /obj/item/ammo_magazine/lrifle/empty
 	initial_ammo = 0
