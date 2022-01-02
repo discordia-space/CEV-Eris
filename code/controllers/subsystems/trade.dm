@@ -131,14 +131,14 @@ SUBSYSTEM_DEF(trade)
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
 	. = round(get_cost(target) * 0.6)
 
-/datum/controller/subsystem/trade/proc/get_sell_price(path, datum/trade_station/trade_station)
-	. = round(get_new_cost(path) * trade_station.markdown)
+/datum/controller/subsystem/trade/proc/get_sell_price(path, datum/trade_station/station)
+	. = round(get_new_cost(path) * station.markdown)
 
-/datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/trade_station)
+/datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
 	. = get_new_cost(path)
 	var/markup = 1
-	if(istype(trade_station))
-		markup += trade_station.markup
+	if(istype(station))
+		markup += station.markup
 	. *= markup
 
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, atom/movable/offer_path)
