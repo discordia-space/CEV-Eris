@@ -279,6 +279,7 @@
 /obj/item/ammo_magazine/lrifle/pk
 	name = "LMG munitions box (.30 Rifle)"
 	icon_state = "pk_box"
+	modular_sprites = FALSE
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
@@ -287,7 +288,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	w_class = ITEM_SIZE_NORMAL
-	ammo_states = list(15, 30, 45, 60, 80)
+	ammo_states = list(15, 30, 50, 79, 80)
 
 //Magazine type for the mech PK, you shouldn't see this
 

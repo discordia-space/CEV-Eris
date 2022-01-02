@@ -37,7 +37,7 @@
 			var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
 			add_overlays("mag[silenced ? "_s" : ""]-[AC.shell_color]")
 		else
-			add_overlays("slide[silenced ? "_s" : ""]")	
+			add_overlays("mag[silenced ? "_s" : ""]")
 	else
 		add_overlays("slide[silenced ? "_s" : ""]")
 
