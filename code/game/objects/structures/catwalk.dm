@@ -46,9 +46,9 @@
 /obj/structure/catwalk/proc/test_connect(var/turf/T)
 	if(locate(/obj/structure/catwalk, T))
 		return TRUE
-	else if(T.is_wall)
+	if(T && T.is_wall)
 		return TRUE
-	else if (istype(T, /turf/simulated/floor))
+	if(istype(T, /turf/simulated/floor))
 		var/turf/simulated/floor/t = T
 		if(!t.flooring.is_plating || istype(t.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
 			return TRUE
